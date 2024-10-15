@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bank_bg",
+    "texture": "b7a80522-c3e9-40f6-b474-5fac58057f7e",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      994,
+      129
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      994,
+      129
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

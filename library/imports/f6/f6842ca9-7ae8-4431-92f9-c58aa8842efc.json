@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "xigua",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nxigua.png\nsize: 420,502\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 2, 2\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 251, 80\n  size: 167, 166\n  orig: 170, 170\n  offset: 1, 1\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 248\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 255, 338\n  size: 162, 162\n  orig: 167, 167\n  offset: 3, 1\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "95410173-ae9d-42ae-aa01-9e9293242451"
+    }
+  ],
+  "textureNames": [
+    "xigua.png"
+  ],
+  "scale": 1
+}

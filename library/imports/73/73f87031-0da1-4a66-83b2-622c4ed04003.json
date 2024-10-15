@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "金币堆",
+    "texture": "dd765311-0277-4631-9928-53ffc23f3a83",
+    "atlas": "",
+    "rect": [
+      2,
+      3,
+      233,
+      184
+    ],
+    "offset": [
+      0,
+      0.5
+    ],
+    "originalSize": [
+      237,
+      191
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

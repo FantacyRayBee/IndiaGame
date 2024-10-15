@@ -1,0 +1,97 @@
+
+rk_Rummy.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 208, 155
+  size: 295, 99
+  orig: 340, 100
+  offset: 20, 1
+  index: -1
+jiba
+  rotate: false
+  xy: 262, 3
+  size: 120, 112
+  orig: 120, 112
+  offset: 0, 0
+  index: -1
+jinb1
+  rotate: true
+  xy: 165, 13
+  size: 99, 95
+  orig: 99, 95
+  offset: 0, 0
+  index: -1
+kuai1
+  rotate: false
+  xy: 44, 13
+  size: 74, 78
+  orig: 74, 78
+  offset: 0, 0
+  index: -1
+kuai2
+  rotate: false
+  xy: 208, 116
+  size: 43, 37
+  orig: 43, 37
+  offset: 0, 0
+  index: -1
+kuai3
+  rotate: false
+  xy: 253, 117
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+kuai4
+  rotate: false
+  xy: 120, 2
+  size: 38, 23
+  orig: 38, 23
+  offset: 0, 0
+  index: -1
+pai
+  rotate: false
+  xy: 2, 93
+  size: 160, 161
+  orig: 160, 161
+  offset: 0, 0
+  index: -1
+qq1
+  rotate: true
+  xy: 164, 114
+  size: 140, 42
+  orig: 360, 55
+  offset: 110, 4
+  index: -1
+qq2
+  rotate: true
+  xy: 2, 8
+  size: 83, 40
+  orig: 360, 55
+  offset: 139, 7
+  index: -1
+qq3
+  rotate: false
+  xy: 290, 127
+  size: 60, 26
+  orig: 360, 55
+  offset: 151, 12
+  index: -1
+qq4
+  rotate: true
+  xy: 120, 27
+  size: 64, 43
+  orig: 360, 55
+  offset: 149, 3
+  index: -1
+staraY
+  rotate: false
+  xy: 384, 25
+  size: 126, 128
+  orig: 128, 128
+  offset: 2, 0
+  index: -1

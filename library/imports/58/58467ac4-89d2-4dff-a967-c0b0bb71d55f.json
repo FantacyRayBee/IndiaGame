@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "font_choumaOrange",
+    "texture": "5d1c0759-fb39-41f6-8d56-0a6dda242db1",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      72,
+      60
+    ],
+    "offset": [
+      0,
+      0.5
+    ],
+    "originalSize": [
+      72,
+      61
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

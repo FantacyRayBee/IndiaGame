@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "getABonus",
+    "texture": "0f98de2b-6b98-44f0-8b24-113ec59d928b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      537,
+      53
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      537,
+      53
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_bonustable",
+    "texture": "c03e88c4-69c4-4957-80bd-2882e17b294b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      68,
+      65
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      68,
+      65
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

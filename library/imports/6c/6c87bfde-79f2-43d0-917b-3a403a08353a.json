@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hd_dapao01_end",
+    "texture": "5f30f8ad-45e4-49f4-9dd1-baaf4483b04f",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      499,
+      486
+    ],
+    "offset": [
+      -4.5,
+      11
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "rk_Teenpatti",
+    "texture": "6ac9d1fc-1559-402c-a73a-309c6d1cd713",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      507,
+      248
+    ],
+    "offset": [
+      -0.5,
+      2
+    ],
+    "originalSize": [
+      512,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

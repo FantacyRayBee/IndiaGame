@@ -1,0 +1,39 @@
+{
+"skeleton": { "hash": "xJQeUq27K4VbS2xAbjN+i+PLxsI", "spine": "3.3.07", "width": 226.98, "height": 157.21, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "yanjing", "parent": "root", "scaleX": 0.453, "scaleY": 0.314 }
+],
+"slots": [
+	{ "name": "yanjing", "bone": "yanjing", "color": "ff5110ff", "attachment": "yanjingguang_00000", "blend": "additive" }
+],
+"skins": {
+	"default": {
+		"yanjing": {
+			"yanjingguang_00000": { "width": 500, "height": 500 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"yanjing": {
+				"color": [
+					{ "time": 0, "color": "ff5110ff" },
+					{ "time": 0.5, "color": "ff511000" },
+					{ "time": 1, "color": "ff5110ff" }
+				]
+			}
+		},
+		"bones": {
+			"yanjing": {
+				"scale": [
+					{ "time": 0, "x": 0.905, "y": 0.905 },
+					{ "time": 0.5, "x": 0.639, "y": 0.639 },
+					{ "time": 1, "x": 0.905, "y": 0.905 }
+				]
+			}
+		}
+	}
+}
+}

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "5348e840-eb40-4b32-b6e9-e7282062bf2c",
+  "importer": "image",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 481,
+  "height": 83,
+  "platformSettings": {},
+  "subMetas": {
+    "gates_oly_win1": {
+      "ver": "1.0.6",
+      "uuid": "5348e840-eb40-4b32-b6e9-e7282062bf2c@6c48a",
+      "importer": "texture",
+      "rawTextureUuid": "5348e840-eb40-4b32-b6e9-e7282062bf2c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 481,
+      "height": 83,
+      "rawWidth": 481,
+      "rawHeight": 83,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "__type__": "cc.TextAsset",
+  "_name": "gameservice",
+  "_objFlags": 0,
+  "_native": "",
+  "text": "syntax = \"proto3\";\npackage gameservice;\n\n//返回结果\nmessage ResponseBase {\n  uint32 result = 1;\n  string message = 2;\n}\n\n\n//心跳\nmessage PingPang {\n\tuint64 timestamp = 1;\t//时间戳\n}\n\nmessage UserInfo {\n  uint64 playerId = 1;//游戏ID\n  string displayName = 2; //用于显示的数字ID\n  string imgUrl = 3;  //头像\n  string nickname = 4;    //昵称\n  int64 coin = 5; //金币\n  bool isVisitor = 6; //游客标记\n  uint32 vipLevel = 7;\n}\n\n//登录\nmessage LoginReq {\n  string userid = 1;  //用户ID\n  string token = 2;  //登录服拿到的token\n  uint32 fromid = 3; //来源平台ID\n}\nmessage LoginAck {\n  ResponseBase result = 1;\n  UserInfo userinfo = 2; //玩家信息\n}\n//游戏配置\nmessage callTypeItem{\n  uint64 index = 1;\n  uint64 amount = 2;\n}\nmessage GameConfigAck {\n  ResponseBase result = 1;\n  repeated  callTypeItem callTypes = 2; //锤子配置\n  uint32 sceneChangeTime = 3; //场景切换时间\n}\n\n//刚进入游戏后游戏场景发送\nmessage GameSceneAck {\n  repeated UserInfo players = 1; //玩家列表\n}\n\n//打地鼠\nmessage CallReq{\n  uint64 callType = 2;\n}\n\nmessage CallAck{\n    ResponseBase result = 1;\n}\n\n//打地鼠广播\nmessage CallNotify{\n    ResponseBase result = 1;\n    uint64 playerId = 2;\n    int64 amount = 3;\n    int64 coin = 4;\n  }\n\n//踢人\nmessage KickOutAck {\n  uint32 kickType = 1;\n}\n\n//进入通知其他玩家\nmessage EnterUserNotify{\n  UserInfo userinfo = 1;\n}\n\n//玩家离开广播\nmessage LeaveUserNotify{\n  uint64 playerId = 1;\n}"
+}

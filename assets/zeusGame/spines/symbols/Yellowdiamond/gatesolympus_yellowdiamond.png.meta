@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "bb93cd98-ca1d-4d60-bc39-8901fb484bf5",
+  "importer": "image",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 536,
+  "height": 103,
+  "platformSettings": {},
+  "subMetas": {
+    "gatesolympus_yellowdiamond": {
+      "ver": "1.0.6",
+      "uuid": "bb93cd98-ca1d-4d60-bc39-8901fb484bf5@6c48a",
+      "importer": "texture",
+      "rawTextureUuid": "bb93cd98-ca1d-4d60-bc39-8901fb484bf5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 536,
+      "height": 103,
+      "rawWidth": 536,
+      "rawHeight": 103,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

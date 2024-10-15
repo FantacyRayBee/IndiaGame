@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "quickRecharge",
+    "texture": "e3a3a05e-810e-4c06-bdf2-3e4dad9ab37e",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      232,
+      65
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      232,
+      65
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

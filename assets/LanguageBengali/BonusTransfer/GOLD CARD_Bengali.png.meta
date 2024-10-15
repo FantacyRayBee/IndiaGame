@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c11788a2-5f5d-4c4f-8bf2-496d1103c33b",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 220,
+  "height": 42,
+  "platformSettings": {},
+  "subMetas": {
+    "GOLD CARD_Bengali": {
+      "ver": "1.0.6",
+      "uuid": "836baba9-7508-4908-82f9-06f2274cf814",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c11788a2-5f5d-4c4f-8bf2-496d1103c33b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 220,
+      "height": 42,
+      "rawWidth": 220,
+      "rawHeight": 42,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

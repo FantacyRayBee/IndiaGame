@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "levelUpGiftTitle",
+    "texture": "fa5b90a4-5312-474c-98b3-a15accf0b170",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      355,
+      84
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      355,
+      84
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

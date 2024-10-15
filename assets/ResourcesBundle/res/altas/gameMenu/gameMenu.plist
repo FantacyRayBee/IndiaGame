@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>bg_left.9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{59,924},{64,64}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{64,64}</string>
+			</dict>
+			<key>bg_yy.9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{301,756},{36,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{36,36}</string>
+			</dict>
+			<key>bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{685,750}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{685,750}</string>
+			</dict>
+			<key>btn_bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,756},{239,53}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{239,53}</string>
+			</dict>
+			<key>icon_01.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{127,912},{33,33}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{33,33}</string>
+			</dict>
+			<key>icon_02.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{260,756},{37,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{37,36}</string>
+			</dict>
+			<key>icon_03.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{214,756},{42,42}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{42,42}</string>
+			</dict>
+			<key>icon_04.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{463,756},{41,44}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{41,44}</string>
+			</dict>
+			<key>icon_05.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{214,802},{42,42}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{42,42}</string>
+			</dict>
+			<key>line.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{59,992},{400,2}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{400,2}</string>
+			</dict>
+			<key>title.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{164,756},{189,46}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{189,46}</string>
+			</dict>
+			<key>wenzi_01.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{127,949},{110,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{110,36}</string>
+			</dict>
+			<key>wenzi_02.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{59,756},{164,29}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{164,29}</string>
+			</dict>
+			<key>wenzi_03.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,999},{158,23}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{158,23}</string>
+			</dict>
+			<key>icon_07.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{92,847},{31,33}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{31,33}</string>
+			</dict>
+			<key>wenzi_05.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{92,756},{87,29}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{87,29}</string>
+			</dict>
+			<key>wenzi_14.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{127,756},{152,29}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{152,29}</string>
+			</dict>
+			<key>icon_12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{341,756},{36,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{36,36}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>gameMenu.png</string>
+			<key>realTextureFileName</key>
+			<string>gameMenu.png</string>
+			<key>size</key>
+			<string>{689,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>689</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>

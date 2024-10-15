@@ -1,0 +1,82 @@
+syntax = "proto3";
+package gameservice;
+
+//返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+message UserInfo {
+  uint64 playerId = 1;//游戏ID
+  string displayName = 2; //用于显示的数字ID
+  string imgUrl = 3;  //头像
+  string nickname = 4;    //昵称
+  int64 coin = 5; //金币
+  bool isVisitor = 6; //游客标记
+  uint32 vipLevel = 7;
+}
+
+//登录
+message LoginReq {
+  string userid = 1;  //用户ID
+  string token = 2;  //登录服拿到的token
+  uint32 fromid = 3; //来源平台ID
+}
+message LoginAck {
+  ResponseBase result = 1;
+  UserInfo userinfo = 2; //玩家信息
+}
+//游戏配置
+message callTypeItem{
+  uint64 index = 1;
+  uint64 amount = 2;
+}
+message GameConfigAck {
+  ResponseBase result = 1;
+  repeated  callTypeItem callTypes = 2; //锤子配置
+  uint32 sceneChangeTime = 3; //场景切换时间
+}
+
+//刚进入游戏后游戏场景发送
+message GameSceneAck {
+  repeated UserInfo players = 1; //玩家列表
+}
+
+//打地鼠
+message CallReq{
+  uint64 callType = 2;
+}
+
+message CallAck{
+    ResponseBase result = 1;
+}
+
+//打地鼠广播
+message CallNotify{
+    ResponseBase result = 1;
+    uint64 playerId = 2;
+    int64 amount = 3;
+    int64 coin = 4;
+  }
+
+//踢人
+message KickOutAck {
+  uint32 kickType = 1;
+}
+
+//进入通知其他玩家
+message EnterUserNotify{
+  UserInfo userinfo = 1;
+}
+
+//玩家离开广播
+message LeaveUserNotify{
+  uint64 playerId = 1;
+}

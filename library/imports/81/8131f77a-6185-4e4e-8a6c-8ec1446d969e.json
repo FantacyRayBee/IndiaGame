@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ty_daoju_baocaidai",
+    "texture": "5459a9fa-135d-49ed-9ddb-84d8fdfa21e6",
+    "atlas": "",
+    "rect": [
+      2,
+      4,
+      1024,
+      1026
+    ],
+    "offset": [
+      -3,
+      -1
+    ],
+    "originalSize": [
+      1034,
+      1032
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

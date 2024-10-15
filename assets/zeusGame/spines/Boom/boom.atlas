@@ -1,0 +1,104 @@
+
+boom.png
+size: 1699,558
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/01
+  rotate: true
+  xy: 1501, 265
+  size: 65, 63
+  orig: 350, 350
+  offset: 140, 144
+  index: -1
+images/02
+  rotate: false
+  xy: 953, 255
+  size: 314, 303
+  orig: 350, 350
+  offset: 18, 27
+  index: -1
+images/03
+  rotate: true
+  xy: 0, 232
+  size: 326, 323
+  orig: 350, 350
+  offset: 8, 16
+  index: -1
+images/04
+  rotate: true
+  xy: 325, 245
+  size: 313, 308
+  orig: 350, 350
+  offset: 14, 21
+  index: -1
+images/05
+  rotate: false
+  xy: 635, 253
+  size: 316, 305
+  orig: 350, 350
+  offset: 7, 22
+  index: -1
+images/06
+  rotate: false
+  xy: 771, 3
+  size: 248, 248
+  orig: 350, 350
+  offset: 48, 52
+  index: -1
+images/07
+  rotate: false
+  xy: 523, 0
+  size: 246, 243
+  orig: 350, 350
+  offset: 51, 53
+  index: -1
+images/08
+  rotate: true
+  xy: 1021, 2
+  size: 251, 238
+  orig: 350, 350
+  offset: 41, 59
+  index: -1
+images/09
+  rotate: true
+  xy: 1261, 8
+  size: 245, 240
+  orig: 350, 350
+  offset: 53, 57
+  index: -1
+images/10
+  rotate: false
+  xy: 0, 10
+  size: 263, 220
+  orig: 350, 350
+  offset: 44, 73
+  index: -1
+images/11
+  rotate: false
+  xy: 265, 5
+  size: 256, 225
+  orig: 350, 350
+  offset: 53, 70
+  index: -1
+images/12
+  rotate: true
+  xy: 1269, 317
+  size: 241, 230
+  orig: 350, 350
+  offset: 70, 67
+  index: -1
+images/13
+  rotate: true
+  xy: 1503, 332
+  size: 226, 193
+  orig: 350, 350
+  offset: 84, 68
+  index: -1
+images/14
+  rotate: false
+  xy: 1503, 96
+  size: 196, 167
+  orig: 350, 350
+  offset: 114, 86
+  index: -1

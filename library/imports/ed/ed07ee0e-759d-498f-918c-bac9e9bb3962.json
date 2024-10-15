@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betBlue_0",
+    "texture": "d925b5cc-a706-4715-abd8-dc5c41bca182",
+    "atlas": "",
+    "rect": [
+      6,
+      5,
+      97,
+      74
+    ],
+    "offset": [
+      -9.5,
+      22
+    ],
+    "originalSize": [
+      128,
+      128
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

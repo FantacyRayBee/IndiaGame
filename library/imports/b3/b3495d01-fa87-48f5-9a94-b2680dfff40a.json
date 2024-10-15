@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cardStrength1",
+    "texture": "3079629b-cc0c-44f4-8fc1-8fd3335ebfae",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      208,
+      11
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      208,
+      11
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "limitedTimeOffer",
+    "texture": "2bd04097-d762-4a08-8355-024218df3f68",
+    "atlas": "",
+    "rect": [
+      1,
+      5,
+      166,
+      15
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      168,
+      24
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

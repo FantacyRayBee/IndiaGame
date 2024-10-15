@@ -1,0 +1,93 @@
+{
+"skeleton": {
+	"hash": "y3Zl//oPCj4dMSkQJDKnO1oUD8I",
+	"spine": "3.8.99",
+	"x": -136,
+	"y": -247,
+	"width": 273,
+	"height": 494,
+	"images": "",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root", "scaleX": 0.7, "scaleY": 0.7 }
+],
+"slots": [
+	{ "name": "x2", "bone": "root", "attachment": "images/44", "blend": "screen" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"x2": {
+				"images/11": { "x": 0.5, "width": 273, "height": 494 },
+				"images/12": { "x": 0.5, "width": 273, "height": 494 },
+				"images/13": { "x": 0.5, "width": 273, "height": 494 },
+				"images/14": { "x": 0.5, "width": 273, "height": 494 },
+				"images/21": { "x": 0.5, "width": 273, "height": 494 },
+				"images/22": { "x": 0.5, "width": 273, "height": 494 },
+				"images/23": { "x": 0.5, "width": 273, "height": 494 },
+				"images/24": { "x": 0.5, "width": 273, "height": 494 },
+				"images/31": { "x": 0.5, "width": 273, "height": 494 },
+				"images/32": { "x": 0.5, "width": 273, "height": 494 },
+				"images/33": { "x": 0.5, "width": 273, "height": 494 },
+				"images/34": { "x": 0.5, "width": 273, "height": 494 },
+				"images/41": { "x": 0.5, "width": 273, "height": 494 },
+				"images/42": { "x": 0.5, "width": 273, "height": 494 },
+				"images/43": { "x": 0.5, "width": 273, "height": 494 },
+				"images/44": { "x": 0.5, "width": 273, "height": 494 }
+			}
+		}
+	}
+],
+"animations": {
+	"blue": {
+		"slots": {
+			"x2": {
+				"attachment": [
+					{ "name": "images/11" },
+					{ "time": 0.0667, "name": "images/12" },
+					{ "time": 0.1333, "name": "images/13" },
+					{ "time": 0.2, "name": "images/14" }
+				]
+			}
+		}
+	},
+	"green": {
+		"slots": {
+			"x2": {
+				"attachment": [
+					{ "name": "images/21" },
+					{ "time": 0.0667, "name": "images/22" },
+					{ "time": 0.1333, "name": "images/23" },
+					{ "time": 0.2, "name": "images/24" }
+				]
+			}
+		}
+	},
+	"purple": {
+		"slots": {
+			"x2": {
+				"attachment": [
+					{ "name": "images/41" },
+					{ "time": 0.0667, "name": "images/42" },
+					{ "time": 0.1333, "name": "images/43" },
+					{ "time": 0.2, "name": "images/44" }
+				]
+			}
+		}
+	},
+	"red": {
+		"slots": {
+			"x2": {
+				"attachment": [
+					{ "name": "images/31" },
+					{ "time": 0.0667, "name": "images/32" },
+					{ "time": 0.1333, "name": "images/33" },
+					{ "time": 0.2, "name": "images/34" }
+				]
+			}
+		}
+	}
+}
+}

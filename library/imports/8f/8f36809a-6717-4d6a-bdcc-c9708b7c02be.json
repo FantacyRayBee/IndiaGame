@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betRed_0",
+    "texture": "2c040f29-1b39-4117-98f9-d20714685856",
+    "atlas": "",
+    "rect": [
+      6,
+      5,
+      97,
+      74
+    ],
+    "offset": [
+      -9.5,
+      22
+    ],
+    "originalSize": [
+      128,
+      128
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

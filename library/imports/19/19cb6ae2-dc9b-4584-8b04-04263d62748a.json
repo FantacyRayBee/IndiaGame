@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "no-card-account",
+    "texture": "c3c81d65-2115-40fe-a4e4-7db0b8fdae24",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      259,
+      24
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      259,
+      24
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

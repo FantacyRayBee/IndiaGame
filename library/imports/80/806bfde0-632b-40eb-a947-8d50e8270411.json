@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ty_btn_blue",
+    "texture": "c64590a1-397e-483a-865f-e7066350f40f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      206,
+      72
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      206,
+      72
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "markVip",
+    "texture": "4482da64-3ce5-488a-90c6-a5e0682d83fc",
+    "atlas": "",
+    "rect": [
+      8,
+      13,
+      273,
+      89
+    ],
+    "offset": [
+      -7.5,
+      -1
+    ],
+    "originalSize": [
+      304,
+      113
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Withdraw",
+    "texture": "fcb9f696-23c0-48cf-9de7-822d8934efe0",
+    "atlas": "",
+    "rect": [
+      5,
+      0,
+      333,
+      93
+    ],
+    "offset": [
+      -0.5,
+      1
+    ],
+    "originalSize": [
+      344,
+      95
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "levelUpGiftMark",
+    "texture": "6086bbce-6b59-4409-af6f-5a0238da6df9",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      267,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      269,
+      42
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

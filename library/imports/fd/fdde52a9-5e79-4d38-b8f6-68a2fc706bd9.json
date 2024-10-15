@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "qingmang",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nqingmang.png\nsize: 666,297\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 255, 51\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 504, 147\n  size: 160, 148\n  orig: 164, 151\n  offset: 2, 2\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 43\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 504, 2\n  size: 154, 143\n  orig: 161, 149\n  offset: 4, 3\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd"
+    }
+  ],
+  "textureNames": [
+    "qingmang.png"
+  ],
+  "scale": 1
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "rk_CricketBattle",
+    "texture": "160d97e0-eefe-4a68-a311-650365bbe72e",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      500,
+      508
+    ],
+    "offset": [
+      -4,
+      0
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

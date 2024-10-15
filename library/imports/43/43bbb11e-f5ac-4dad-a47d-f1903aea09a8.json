@@ -1,0 +1,172 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "boom",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "VZaT/vJIa6Nkm+djLM/zztgXG2k",
+      "spine": "3.8.99",
+      "x": -250,
+      "y": -250,
+      "width": 500,
+      "height": 500,
+      "images": "",
+      "audio": ""
+    },
+    "bones": [
+      {
+        "name": "root",
+        "scaleX": 0.7,
+        "scaleY": 0.7
+      }
+    ],
+    "slots": [
+      {
+        "name": "boom",
+        "bone": "root",
+        "attachment": "images/14"
+      }
+    ],
+    "skins": [
+      {
+        "name": "default",
+        "attachments": {
+          "boom": {
+            "images/01": {
+              "width": 500,
+              "height": 500
+            },
+            "images/02": {
+              "width": 500,
+              "height": 500
+            },
+            "images/03": {
+              "width": 500,
+              "height": 500
+            },
+            "images/04": {
+              "width": 500,
+              "height": 500
+            },
+            "images/05": {
+              "width": 500,
+              "height": 500
+            },
+            "images/06": {
+              "width": 500,
+              "height": 500
+            },
+            "images/07": {
+              "width": 500,
+              "height": 500
+            },
+            "images/08": {
+              "width": 500,
+              "height": 500
+            },
+            "images/09": {
+              "width": 500,
+              "height": 500
+            },
+            "images/10": {
+              "width": 500,
+              "height": 500
+            },
+            "images/11": {
+              "width": 500,
+              "height": 500
+            },
+            "images/12": {
+              "width": 500,
+              "height": 500
+            },
+            "images/13": {
+              "width": 500,
+              "height": 500
+            },
+            "images/14": {
+              "width": 500,
+              "height": 500
+            }
+          }
+        }
+      }
+    ],
+    "animations": {
+      "animation": {
+        "slots": {
+          "boom": {
+            "attachment": [
+              {
+                "name": "images/01"
+              },
+              {
+                "time": 0.0333,
+                "name": "images/02"
+              },
+              {
+                "time": 0.0667,
+                "name": "images/03"
+              },
+              {
+                "time": 0.1,
+                "name": "images/04"
+              },
+              {
+                "time": 0.1333,
+                "name": "images/05"
+              },
+              {
+                "time": 0.1667,
+                "name": "images/06"
+              },
+              {
+                "time": 0.2,
+                "name": "images/07"
+              },
+              {
+                "time": 0.2333,
+                "name": "images/08"
+              },
+              {
+                "time": 0.2667,
+                "name": "images/09"
+              },
+              {
+                "time": 0.3,
+                "name": "images/10"
+              },
+              {
+                "time": 0.3333,
+                "name": "images/11"
+              },
+              {
+                "time": 0.3667,
+                "name": "images/12"
+              },
+              {
+                "time": 0.4,
+                "name": "images/13"
+              },
+              {
+                "time": 0.4333,
+                "name": "images/14"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nboom.png\nsize: 1699,558\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimages/01\n  rotate: true\n  xy: 1501, 265\n  size: 65, 63\n  orig: 350, 350\n  offset: 140, 144\n  index: -1\nimages/02\n  rotate: false\n  xy: 953, 255\n  size: 314, 303\n  orig: 350, 350\n  offset: 18, 27\n  index: -1\nimages/03\n  rotate: true\n  xy: 0, 232\n  size: 326, 323\n  orig: 350, 350\n  offset: 8, 16\n  index: -1\nimages/04\n  rotate: true\n  xy: 325, 245\n  size: 313, 308\n  orig: 350, 350\n  offset: 14, 21\n  index: -1\nimages/05\n  rotate: false\n  xy: 635, 253\n  size: 316, 305\n  orig: 350, 350\n  offset: 7, 22\n  index: -1\nimages/06\n  rotate: false\n  xy: 771, 3\n  size: 248, 248\n  orig: 350, 350\n  offset: 48, 52\n  index: -1\nimages/07\n  rotate: false\n  xy: 523, 0\n  size: 246, 243\n  orig: 350, 350\n  offset: 51, 53\n  index: -1\nimages/08\n  rotate: true\n  xy: 1021, 2\n  size: 251, 238\n  orig: 350, 350\n  offset: 41, 59\n  index: -1\nimages/09\n  rotate: true\n  xy: 1261, 8\n  size: 245, 240\n  orig: 350, 350\n  offset: 53, 57\n  index: -1\nimages/10\n  rotate: false\n  xy: 0, 10\n  size: 263, 220\n  orig: 350, 350\n  offset: 44, 73\n  index: -1\nimages/11\n  rotate: false\n  xy: 265, 5\n  size: 256, 225\n  orig: 350, 350\n  offset: 53, 70\n  index: -1\nimages/12\n  rotate: true\n  xy: 1269, 317\n  size: 241, 230\n  orig: 350, 350\n  offset: 70, 67\n  index: -1\nimages/13\n  rotate: true\n  xy: 1503, 332\n  size: 226, 193\n  orig: 350, 350\n  offset: 84, 68\n  index: -1\nimages/14\n  rotate: false\n  xy: 1503, 96\n  size: 196, 167\n  orig: 350, 350\n  offset: 114, 86\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "f358102a-b30f-49bd-83f0-b7d0422f6db4"
+    }
+  ],
+  "textureNames": [
+    "boom.png"
+  ],
+  "scale": 1
+}

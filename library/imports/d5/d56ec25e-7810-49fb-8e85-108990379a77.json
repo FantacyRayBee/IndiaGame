@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_fast_01",
+    "texture": "c8c54de7-91ba-4e43-82db-1c59d5f02bbe",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      90,
+      81
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      81
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

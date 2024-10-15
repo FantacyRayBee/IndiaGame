@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "juzi",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\njuzi.png\nsize: 409,502\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 2, 2\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 251, 88\n  size: 156, 158\n  orig: 160, 162\n  offset: 2, 2\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 248\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 255, 346\n  size: 151, 154\n  orig: 157, 158\n  offset: 3, 2\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "e03f135e-7fe3-4161-be68-cad84bb5bd78"
+    }
+  ],
+  "textureNames": [
+    "juzi.png"
+  ],
+  "scale": 1
+}

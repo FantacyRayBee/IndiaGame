@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "biao_pot",
+    "texture": "b5abb379-029c-453f-b4c8-04e3d1eb83b1",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      134,
+      45
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      134,
+      45
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

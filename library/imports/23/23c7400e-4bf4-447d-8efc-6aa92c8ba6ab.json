@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "7up7down_bg",
+    "texture": "c782232d-168a-4b85-a36b-3fbb526aaa3c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1835,
+      750
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1835,
+      750
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "recorddk",
+    "texture": "3b5d303b-918a-44f4-8eee-e11f05e07b21",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1000,
+      344
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1000,
+      344
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

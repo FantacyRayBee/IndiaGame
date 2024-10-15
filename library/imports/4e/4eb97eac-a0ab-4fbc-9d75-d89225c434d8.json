@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "wenzi_rule",
+    "texture": "1450b983-a14e-439c-b06f-db68eeabfeba",
+    "atlas": "bb6c3f82-36e5-400d-acd3-3ed313eb2d5c",
+    "rect": [
+      2,
+      562,
+      785,
+      301
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      785,
+      301
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

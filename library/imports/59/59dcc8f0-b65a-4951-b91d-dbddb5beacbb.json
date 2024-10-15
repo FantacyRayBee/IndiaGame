@@ -1,0 +1,35 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "wanfa.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "title_01": {
+      "__uuid__": "493e7f57-6ea4-4f2f-b7ef-f890a9c71cd2"
+    },
+    "icon_01": {
+      "__uuid__": "4e69921e-74b9-4a3d-b155-8bc46c850a93"
+    },
+    "icon_02": {
+      "__uuid__": "d38ef0ae-f667-4176-ac60-12bcb104f12c"
+    },
+    "icon_03": {
+      "__uuid__": "3ec568c9-3d5c-479e-a1aa-14da8aa7e6f6"
+    },
+    "icon_04": {
+      "__uuid__": "9a835a77-5887-432b-a67c-f29a785a25e3"
+    },
+    "ty_bg.9": {
+      "__uuid__": "d6bb1347-9403-41aa-bbbd-043410aa24f1"
+    },
+    "btn_green": {
+      "__uuid__": "a3500df9-dd13-42bf-9b17-db5a5d6a66ed"
+    },
+    "ty_btn_close": {
+      "__uuid__": "1ba754d2-f553-42ae-aa00-435400fdaf36"
+    },
+    "ty_k_01_small": {
+      "__uuid__": "7df92c68-b8ca-443d-98ba-6de1d87e5497"
+    }
+  }
+}

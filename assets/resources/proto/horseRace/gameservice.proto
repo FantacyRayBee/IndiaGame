@@ -1,0 +1,221 @@
+syntax = "proto3";
+package gameservice;
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+//返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+//用户信息
+message UserInfoAck {
+  uint64 playerid = 1;          //玩家Id
+  string displayname = 2;       //用于显示的数字ID
+  string imgurl = 3;            //头像
+  string nickname = 4;          //昵称
+  int64 diamond = 5;            //金币
+  int32 pos = 6;                //位置
+  repeated int64 BetScore = 7;  //下注积分
+  uint32 vipLevel = 8;
+}
+
+//房间配置
+message RoomConfig {
+  int64 minibetscore = 1; //最小下分
+  int64 maxberscore = 2;  //最大下分
+}
+
+
+
+//RoomRuntimeInfo 房间运行信息
+message RoomRuntimeInfo {
+  int64 runtime = 1;              // 小局开始(开始下注)到现在的毫秒数
+  int32 status = 2;               //房间状态
+  repeated int32 cards = 3;       //牌
+  repeated int64 betscore = 4;    //下注积分
+  repeated int64 betconf = 6;     //下注配置
+}
+
+//登录 gameservice.login
+message LoginReq {
+  string userid = 1;  //用户ID
+  string token = 2;   //登录服拿到的token
+  uint32 fromid = 3;  //来源平台ID
+}
+
+message LoginAck {
+  ResponseBase result = 1;
+  UserInfoAck userinfo = 2;    //用户信息
+}
+
+//加入房间 gameservice.joinroom
+message JoinRoomReq {
+}
+
+message RecordList{
+  int64 id = 1;
+  int32 winrolose = 2;
+}
+
+//JoinRoom 加入房间
+message JoinRoomAck {
+  ResponseBase result = 1;
+  RoomConfig roomconfig = 2;                  //房间信息
+  repeated UserInfoAck vipplayers = 4;        //vpi座位信息
+  RoomRuntimeInfo roomruntimeinfo = 5;        //房间运行信息
+  repeated int64 betscore = 6;                //自己下注
+  repeated RecordList recordlist = 7;         //战绩列表
+  GameOverNotify gameoverinfo = 8;            //结束信息
+  int32 onlinenum = 9;                        //在线人数
+  EndBetNotify endbetnotify = 10;             //结束下注信息
+  PlayerWinLoseInfoNotify playerwinloseinfonotify = 11;                 //用户信息
+  int64 ownerDiamond = 12;                    // 携带金币
+}
+
+//JoinRoomNotify 加入房间通知 gameservice.joinroomnotify
+message JoinRoomNotify  {
+  ResponseBase result = 1;
+  UserInfoAck  userinfo = 2;            //玩家信息
+}
+
+
+//加入Vip座位 gameservice.joinvippos
+message JoinVipPosReq {
+  int32 pos = 1;
+}
+
+message JoinVipPosAck {
+  ResponseBase result = 1;
+  UserInfoAck userinfo = 2;   //玩家信息
+}
+
+//加入vip座位广播 gameservice.joinvipposnotify
+message JoinVipPosNotify {
+  UserInfoAck userinfo = 1; //用户信息
+}
+
+
+//退出游戏 gameservice.outgame
+message OutGameReq {
+}
+
+message OutGameAck {
+  ResponseBase result = 1;
+}
+
+//退出游戏广播 gameservice.outgamenotify
+message OutGameNotify {
+  UserInfoAck userinfo = 1; //用户信息
+}
+
+
+//获取玩家列表 gameservice.playerlist
+message PlayerListReq {
+  uint32 page = 1;
+  uint32 rows = 2;
+}
+
+message PlayerListAck {
+  ResponseBase result = 1;
+  repeated UserInfoAck playerlist = 2;
+  uint32 allcount = 3;
+}
+
+//获取Vip列表 gameservice.vipplayerlist
+message VipPlayerListReq {
+}
+
+message VipPlayerListAck {
+  ResponseBase result = 1;
+  repeated UserInfoAck playerlist = 2;
+}
+
+//获取获取战绩信息   gameservice.gamerecordlist
+message GameRecordListReq {
+
+}
+
+message GameRecordListAck {
+  ResponseBase result = 1;
+  repeated RecordList recordlist = 2;    //战绩列表
+}
+
+//下注   gameservice.call
+message CallReq {
+  int64 amount = 1;     //金额
+  int32 types = 2;      //下注类型(马的序号)
+}
+
+message CallAck {
+  ResponseBase result = 1;
+}
+
+//下注通知 gameservice.callnotify
+message  CallNotify {
+  uint64 pid = 1;
+  int32 pos = 2;          //位置
+  int64 amount = 3;       //金额
+  int32 types = 4;        //下注类型(马的序号)
+  repeated int64 BetScore = 5; //总下注信息
+  repeated int64 bet = 6;      //下注信息(平民缓存)
+}
+
+//游戏开始通知 gameservice.startgamenotify
+message StartGameNotify {
+  repeated int64 betconf = 1;    //下注配置
+  int32 onlinenum = 2;           //在线人数
+
+}
+
+//发牌通知 gameservice.sendcardsnotify
+message SendCardsNotify {
+  repeated int32 cards = 1;
+}
+
+//结束下注通知 gameservice.endbetnotify
+message EndBetNotify {
+  int32 winorlose = 1;         //输赢(那匹马赢了)
+  int64 rand = 2;              //随机数
+}
+
+//游戏结束通知 gameservice.gameovernotify
+message GameOverNotify {
+  message UserInfo {
+    uint64 pid = 1;         //玩家游戏ID，用于索引玩家
+    int64 score = 2;        //输赢积分
+    int32 pos = 3;          //座位号
+    int64 coin = 4;         //玩家身上最终金币
+  }
+  repeated UserInfo infos = 1; //用户输赢列表
+}
+
+///游戏输赢通知 gameservice.playerwinloseinfonotify
+message PlayerWinLoseInfoNotify {
+    int64 score = 1;       //输赢积分
+    int64 coin = 2;        //自己身上的金币
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}   

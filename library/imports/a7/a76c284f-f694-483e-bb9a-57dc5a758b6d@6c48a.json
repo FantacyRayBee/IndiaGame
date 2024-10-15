@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gates_oly_switch_btn_off",
+    "texture": "a76c284f-f694-483e-bb9a-57dc5a758b6d",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      70,
+      26
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      70,
+      26
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

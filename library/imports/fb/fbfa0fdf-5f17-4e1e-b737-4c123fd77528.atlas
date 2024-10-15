@@ -1,0 +1,34 @@
+
+xigua.png
+size: 420,502
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sanguang
+  rotate: false
+  xy: 2, 2
+  size: 247, 244
+  orig: 256, 256
+  offset: 4, 6
+  index: -1
+waiguang
+  rotate: false
+  xy: 251, 80
+  size: 167, 166
+  orig: 170, 170
+  offset: 1, 1
+  index: -1
+zhuanguang
+  rotate: false
+  xy: 2, 248
+  size: 251, 252
+  orig: 256, 256
+  offset: 2, 2
+  index: -1
+zhuti
+  rotate: false
+  xy: 255, 338
+  size: 162, 162
+  orig: 167, 167
+  offset: 3, 1
+  index: -1

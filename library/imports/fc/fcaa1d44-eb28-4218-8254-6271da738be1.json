@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_EXCHANGE",
+    "texture": "c802c52e-d114-45b1-a982-89c01bf5ecc0",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      242,
+      58
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      242,
+      58
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

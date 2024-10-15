@@ -1,0 +1,135 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "zhuanpan",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "4weikPgz+iVRSzi+TaTuNVWZ4iI",
+      "spine": "3.6.53",
+      "width": 490,
+      "height": 491,
+      "images": "./images/"
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "bone",
+        "parent": "root",
+        "x": 23.3,
+        "y": 9.48
+      },
+      {
+        "name": "bone2",
+        "parent": "root",
+        "x": 37.49,
+        "y": -23.62
+      }
+    ],
+    "slots": [
+      {
+        "name": "dipan",
+        "bone": "root",
+        "attachment": "dipan"
+      },
+      {
+        "name": "1",
+        "bone": "bone",
+        "attachment": "1",
+        "blend": "additive"
+      },
+      {
+        "name": "2_3",
+        "bone": "bone2"
+      }
+    ],
+    "skins": {
+      "default": {
+        "1": {
+          "1": {
+            "x": -23.08,
+            "y": -10.63,
+            "width": 436,
+            "height": 433
+          },
+          "1_1": {
+            "x": -23.3,
+            "y": -5.77,
+            "width": 406,
+            "height": 404
+          }
+        },
+        "2_3": {
+          "2": {
+            "x": -37.49,
+            "y": 26.4,
+            "width": 397,
+            "height": 396
+          },
+          "2_2": {
+            "x": -34.7,
+            "y": 21.77,
+            "width": 427,
+            "height": 425
+          }
+        },
+        "dipan": {
+          "dipan": {
+            "width": 490,
+            "height": 491
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "1": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "1"
+              },
+              {
+                "time": 0.1667,
+                "name": "1_1"
+              },
+              {
+                "time": 0.3333,
+                "name": "1"
+              }
+            ]
+          },
+          "2_3": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "2"
+              },
+              {
+                "time": 0.1667,
+                "name": "2_2"
+              },
+              {
+                "time": 0.3333,
+                "name": "2"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nzhuanpan.png\nsize: 1764,807\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\n1\n  rotate: true\n  xy: 494, 369\n  size: 436, 433\n  orig: 436, 433\n  offset: 0, 0\n  index: -1\n1_1\n  rotate: false\n  xy: 1356, 401\n  size: 406, 404\n  orig: 406, 404\n  offset: 0, 0\n  index: -1\n2\n  rotate: true\n  xy: 1356, 2\n  size: 397, 396\n  orig: 397, 396\n  offset: 0, 0\n  index: -1\n2_2\n  rotate: true\n  xy: 929, 378\n  size: 427, 425\n  orig: 427, 425\n  offset: 0, 0\n  index: -1\ndipan\n  rotate: false\n  xy: 2, 314\n  size: 490, 491\n  orig: 490, 491\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "b6d902a6-b2d2-4942-9e8b-1f4ccbe67ec7"
+    }
+  ],
+  "textureNames": [
+    "zhuanpan.png"
+  ],
+  "scale": 1
+}

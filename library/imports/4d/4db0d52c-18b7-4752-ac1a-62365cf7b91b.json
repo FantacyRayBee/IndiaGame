@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_jackpot_0",
+    "texture": "2c273f24-f04d-4c11-8dfd-b32f87f26020",
+    "atlas": "ce5c075d-7212-4d95-af39-fa6594325c80",
+    "rect": [
+      141,
+      1333,
+      130,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      130,
+      28
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

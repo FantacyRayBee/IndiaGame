@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cashout",
+    "texture": "7bf23e7b-145a-4f97-b1e2-0ed63f0e3546",
+    "atlas": "",
+    "rect": [
+      0,
+      3,
+      292,
+      86
+    ],
+    "offset": [
+      0,
+      -1.5
+    ],
+    "originalSize": [
+      292,
+      89
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

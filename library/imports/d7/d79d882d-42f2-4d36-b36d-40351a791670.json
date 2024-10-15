@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bg_luckyplayer",
+    "texture": "3e94562e-9eeb-46d6-b264-15668a48621a",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      572,
+      50
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      572,
+      50
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

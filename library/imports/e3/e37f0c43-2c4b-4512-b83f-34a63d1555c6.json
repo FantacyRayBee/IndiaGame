@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hui_btn_go",
+    "texture": "637be747-bff1-40ec-9fe3-5197cdbe9039",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      124,
+      157
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      124,
+      157
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

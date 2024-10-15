@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "title_andar",
+    "texture": "c81034fd-4a87-4570-a8fd-181a6824e5d2",
+    "atlas": "2531b678-3fa6-47ea-a3b7-a877554c3718",
+    "rect": [
+      483,
+      1925,
+      272,
+      49
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      272,
+      49
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_see_Bengali",
+    "texture": "0f8d0b0d-b62c-42ea-8dce-5fc558b8c872",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      182,
+      52
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      182,
+      52
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

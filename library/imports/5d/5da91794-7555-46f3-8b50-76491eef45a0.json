@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "zhuan",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nzhuan.png\nsize: 823,814\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nzhuan_00\n  rotate: false\n  xy: 304, 205\n  size: 157, 182\n  orig: 250, 250\n  offset: 40, 34\n  index: -1\nzhuan_01\n  rotate: false\n  xy: 681, 2\n  size: 138, 186\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_02\n  rotate: false\n  xy: 165, 28\n  size: 108, 187\n  orig: 250, 250\n  offset: 40, 30\n  index: -1\nzhuan_03\n  rotate: false\n  xy: 573, 3\n  size: 106, 187\n  orig: 250, 250\n  offset: 41, 30\n  index: -1\nzhuan_04\n  rotate: false\n  xy: 687, 190\n  size: 134, 184\n  orig: 250, 250\n  offset: 41, 31\n  index: -1\nzhuan_05\n  rotate: false\n  xy: 2, 47\n  size: 161, 183\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_06\n  rotate: false\n  xy: 549, 376\n  size: 179, 169\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_07\n  rotate: false\n  xy: 556, 547\n  size: 184, 140\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_08\n  rotate: false\n  xy: 373, 695\n  size: 183, 117\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_09\n  rotate: false\n  xy: 188, 702\n  size: 183, 110\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_10\n  rotate: false\n  xy: 187, 565\n  size: 183, 135\n  orig: 250, 250\n  offset: 40, 31\n  index: -1\nzhuan_11\n  rotate: false\n  xy: 187, 400\n  size: 179, 163\n  orig: 250, 250\n  offset: 44, 30\n  index: -1\nzhuan_12\n  rotate: false\n  xy: 275, 20\n  size: 155, 183\n  orig: 250, 250\n  offset: 68, 30\n  index: -1\nzhuan_13\n  rotate: false\n  xy: 432, 6\n  size: 139, 184\n  orig: 250, 250\n  offset: 84, 31\n  index: -1\nzhuan_14\n  rotate: false\n  xy: 463, 192\n  size: 109, 182\n  orig: 250, 250\n  offset: 114, 33\n  index: -1\nzhuan_15\n  rotate: false\n  xy: 574, 192\n  size: 111, 182\n  orig: 250, 250\n  offset: 112, 33\n  index: -1\nzhuan_16\n  rotate: false\n  xy: 167, 217\n  size: 135, 181\n  orig: 250, 250\n  offset: 88, 34\n  index: -1\nzhuan_17\n  rotate: false\n  xy: 2, 232\n  size: 163, 177\n  orig: 250, 250\n  offset: 60, 38\n  index: -1\nzhuan_18\n  rotate: false\n  xy: 368, 389\n  size: 179, 166\n  orig: 250, 250\n  offset: 44, 49\n  index: -1\nzhuan_19\n  rotate: false\n  xy: 2, 575\n  size: 183, 126\n  orig: 250, 250\n  offset: 41, 89\n  index: -1\nzhuan_20\n  rotate: false\n  xy: 558, 689\n  size: 183, 123\n  orig: 250, 250\n  offset: 41, 92\n  index: -1\nzhuan_21\n  rotate: false\n  xy: 2, 703\n  size: 184, 109\n  orig: 250, 250\n  offset: 40, 106\n  index: -1\nzhuan_22\n  rotate: false\n  xy: 372, 557\n  size: 182, 136\n  orig: 250, 250\n  offset: 40, 79\n  index: -1\nzhuan_23\n  rotate: false\n  xy: 2, 411\n  size: 183, 162\n  orig: 250, 250\n  offset: 40, 54\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "9e24db8d-8574-4017-b253-1b388c2e1dc7"
+    }
+  ],
+  "textureNames": [
+    "zhuan.png"
+  ],
+  "scale": 1
+}

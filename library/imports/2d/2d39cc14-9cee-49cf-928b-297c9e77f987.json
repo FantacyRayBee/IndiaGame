@@ -1,0 +1,32 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "colorbar.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "bar_blue": {
+      "__uuid__": "02ced802-75f7-46c3-84f9-62d3d4bacfc0"
+    },
+    "bar_green": {
+      "__uuid__": "f7c1fbdc-fc11-42f7-8af2-3b8f5c45f562"
+    },
+    "bar_red": {
+      "__uuid__": "7ad4de32-f914-4ebd-aa00-655f93df236b"
+    },
+    "bar_yellow": {
+      "__uuid__": "2b5ef109-8d71-4e33-aad4-b1429795085e"
+    },
+    "blue_bar": {
+      "__uuid__": "e8f5870a-9d2f-4cf1-9806-0290369365fa"
+    },
+    "green_bar": {
+      "__uuid__": "df3a748e-cf12-4894-a02e-1325c818df67"
+    },
+    "red_bar": {
+      "__uuid__": "819dd199-b183-4558-a0ca-e1e351ff565e"
+    },
+    "yellow_bar": {
+      "__uuid__": "6b4c4acc-58eb-449d-b1e7-ac5750f37dda"
+    }
+  }
+}

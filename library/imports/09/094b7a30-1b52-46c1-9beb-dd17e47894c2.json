@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betPurple_0",
+    "texture": "0374e98c-edf3-4a12-b317-af8302e0caa0",
+    "atlas": "",
+    "rect": [
+      6,
+      5,
+      97,
+      74
+    ],
+    "offset": [
+      -9.5,
+      22
+    ],
+    "originalSize": [
+      128,
+      128
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

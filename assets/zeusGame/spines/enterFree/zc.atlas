@@ -1,0 +1,62 @@
+
+zc.png
+size: 1960,1891
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/ZC_00
+  rotate: true
+  xy: 0, 1002
+  size: 889, 500
+  orig: 889, 500
+  offset: 0, 0
+  index: -1
+images/ZC_01
+  rotate: true
+  xy: 1503, 151
+  size: 849, 457
+  orig: 889, 500
+  offset: 40, 0
+  index: -1
+images/ZC_02
+  rotate: true
+  xy: 1393, 1002
+  size: 889, 499
+  orig: 889, 500
+  offset: 0, 0
+  index: -1
+images/ZC_03
+  rotate: true
+  xy: 0, 111
+  size: 889, 500
+  orig: 889, 500
+  offset: 0, 0
+  index: -1
+images/ZC_04
+  rotate: false
+  xy: 502, 891
+  size: 889, 499
+  orig: 889, 500
+  offset: 0, 0
+  index: -1
+images/ZC_05
+  rotate: true
+  xy: 502, 0
+  size: 889, 499
+  orig: 889, 500
+  offset: 0, 1
+  index: -1
+images/ZC_06
+  rotate: true
+  xy: 1003, 0
+  size: 889, 498
+  orig: 889, 500
+  offset: 0, 0
+  index: -1
+images/ZC_07
+  rotate: false
+  xy: 502, 1392
+  size: 889, 499
+  orig: 889, 500
+  offset: 0, 1
+  index: -1

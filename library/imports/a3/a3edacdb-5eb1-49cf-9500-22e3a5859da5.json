@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "qf_xishou01",
+    "texture": "edb061f5-36cc-4a93-8382-d182405d522c",
+    "atlas": "",
+    "rect": [
+      3,
+      9,
+      999,
+      499
+    ],
+    "offset": [
+      -9.5,
+      -2.5
+    ],
+    "originalSize": [
+      1024,
+      512
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

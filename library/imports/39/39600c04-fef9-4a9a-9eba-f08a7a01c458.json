@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "rk_rummy_1",
+    "texture": "bc7d85de-66e9-476d-9c39-73f4928b2772",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      118,
+      45
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      118,
+      45
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

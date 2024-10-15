@@ -1,0 +1,141 @@
+syntax = "proto3";
+package gameservice;
+
+import "../gamebase";
+
+
+// 房间状态
+enum RoomStatus {
+  FirstBet = 0;   // 第一次下注
+  SecondBet = 1;  // 第二次下注
+  Dealing = 2;    // 发牌中
+  Calc = 3;       // 结算
+}
+
+// 下注位置
+enum BetSide {
+    A = 0; // Andar
+    B = 1; // Bahar
+}
+
+message LoginAck {
+  Result result = 1;
+  uint64 pid = 2;         // playerId-用于索引玩家
+  int32 cacheRoomId = 3;  // 缓存的房间ID(记录上次在某房间中), -1表示无
+  repeated int32 multiple= 4; // 下注选项倍数组
+}
+
+// 进入房间 gameservice.enterroom
+message EnterRoomReq {
+  int32 id = 1;
+}
+
+message EnterRoomAck {
+  Result result = 1;
+  Scene scene = 2;     // 房间场景信息
+  int64 betDurationMs = 3;      // 下注阶段持续总时间.毫秒
+}
+
+// 退出房间 gameservice.exitroom
+message ExitRoomReq {
+}
+message ExitRoomAck {
+  Result result = 1;
+}
+
+// 换桌 gameservice.changeroom
+message ChangeRoomReq {
+}
+
+message ChangeRoomAck {
+  Result result = 1;
+  Scene scene = 2;     // 房间场景信息
+}
+
+// 玩家进入广播 gameservice.playerenternotify
+message PlayerEnterNotify {
+  PlayerInfo player = 1;      // 用户信息
+}
+
+// 玩家离开广播 gameservice.playerexitnotify
+message PlayerExitNotify {
+  int32 pos = 1;              // 位置
+}
+
+// 刷新游戏场景 gameservice.gamescene
+message GameSceneReq {
+}
+
+message GameSceneAck {
+  Result result = 1;
+  Scene scene = 2;     // 房间场景信息
+}
+
+// 场景信息
+message Scene {
+  RoomStatus  status = 1;             // 当前状态
+  int64 currentStatusLeftMs = 2;      // 当前状态剩余时间.毫秒
+  repeated int64 totalBet = 3;        // 总下注信息
+  repeated PlayerInfo players = 4;    // vip玩家信息
+  int32 midCard = 5;                  // 中间牌
+  repeated int32 abCards = 6;         // 两边的牌,a,b,a,b,a,b......循环
+  bool aWin = 7;                      // A赢
+  bool bWin = 8;                      // B赢
+}
+
+// 玩家信息
+message PlayerInfo {
+  UserInfo userInfo = 1;      // 用户信息
+  int32 pos = 2;              // 位置
+  repeated int64 betInfo = 3; // 下注信息 a,b
+}
+
+
+// 第一次下注状态开始 gameservice.firstbetstatusstartnotify
+message FirstBetStatusStartNotify {
+  int32 midCard = 1;    // 中间牌
+  int64 duration = 2;   // 持续时间
+}
+
+// 发牌通知  gameservice.abdealnotify
+message ABDealNotify {
+  repeated int32 abCards = 1;   // 两边的牌,a,b,a,b,a,b......循环
+  bool aWin = 2;    // A赢
+  bool bWin = 3;    // B赢
+}
+
+// 第二次下注状态开始   gameservice.secondbetstatusstartnotify
+message SecondBetStatusStartNotify {
+  int64 duration = 1;   // 持续时间
+}
+
+//下注 gameservice.call
+message CallReq {
+  int64 amount = 1;     // 金额
+  BetSide side = 2;     // 下注位置
+}
+message CallAck {
+  Result result = 1;
+}
+
+// 下注通知 gameservice.callnotify
+message CallNotify {
+  int32 pos = 1;          // 下注玩家seat
+  BetSide side = 2;       // 下注位置 A/B
+  int64 amount = 3;       // 下注金额
+  int64 after = 4;        // 下注后剩余
+  repeated int64 playerBet = 5; // 玩家总下注 0A,1B
+  repeated int64 poolBet = 6;   // 系统总下注 0A,1B
+}
+
+//游戏结束通知 gameservice.gamesettlenotify
+message GameSettleNotify {
+  message PlayerCalcInfo {
+    int32 pos = 1;    // 座位号
+    int64 win = 2;    // 赢分
+    int64 after = 3;  // 结算后
+  }
+  bool aWin = 1;        // A赢
+  bool bWin = 2;        // B赢
+  repeated PlayerCalcInfo players = 3; // 结算玩家信息
+}

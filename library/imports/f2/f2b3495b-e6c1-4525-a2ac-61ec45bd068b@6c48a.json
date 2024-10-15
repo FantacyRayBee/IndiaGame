@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gates_oly_auto_btn_unchecked",
+    "texture": "f2b3495b-e6c1-4525-a2ac-61ec45bd068b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      105,
+      78
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      105,
+      78
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

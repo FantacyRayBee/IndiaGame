@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betInGames",
+    "texture": "fa456a6b-7073-4aaa-a067-2c69f099c854",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      141,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      141,
+      28
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

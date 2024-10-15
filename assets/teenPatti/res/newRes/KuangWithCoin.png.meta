@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "8c1f6e15-167c-4c59-a1af-40a3b6b8bcff",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 122,
+  "height": 153,
+  "platformSettings": {},
+  "subMetas": {
+    "KuangWithCoin": {
+      "ver": "1.0.6",
+      "uuid": "45041695-9ff1-4107-a08c-67931abb56ac",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "8c1f6e15-167c-4c59-a1af-40a3b6b8bcff",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 6,
+      "trimY": 1,
+      "width": 110,
+      "height": 151,
+      "rawWidth": 122,
+      "rawHeight": 153,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

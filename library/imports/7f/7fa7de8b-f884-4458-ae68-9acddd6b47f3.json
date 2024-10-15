@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btnBg",
+    "texture": "aeabb8f5-288b-4d4f-8010-b75d132c9858",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      20,
+      70
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      20,
+      70
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+
+fire1.png
+size: 1260,596
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Fire_00
+  rotate: true
+  xy: 0, 1
+  size: 198, 256
+  orig: 300, 300
+  offset: 49, 17
+  index: -1
+images/Fire_01
+  rotate: true
+  xy: 0, 201
+  size: 197, 245
+  orig: 300, 300
+  offset: 49, 23
+  index: -1
+images/Fire_02
+  rotate: true
+  xy: 247, 201
+  size: 197, 257
+  orig: 300, 300
+  offset: 48, 2
+  index: -1
+images/Fire_03
+  rotate: true
+  xy: 258, 1
+  size: 198, 259
+  orig: 300, 300
+  offset: 49, 6
+  index: -1
+images/Fire_04
+  rotate: true
+  xy: 506, 201
+  size: 197, 243
+  orig: 300, 300
+  offset: 48, 23
+  index: -1
+images/Fire_05
+  rotate: true
+  xy: 0, 400
+  size: 196, 240
+  orig: 300, 300
+  offset: 49, 23
+  index: -1
+images/Fire_06
+  rotate: true
+  xy: 751, 200
+  size: 197, 249
+  orig: 300, 300
+  offset: 48, 18
+  index: -1
+images/Fire_07
+  rotate: true
+  xy: 519, 0
+  size: 198, 239
+  orig: 300, 300
+  offset: 47, 21
+  index: -1
+images/Fire_08
+  rotate: true
+  xy: 242, 400
+  size: 196, 241
+  orig: 300, 300
+  offset: 48, 22
+  index: -1
+images/Fire_09
+  rotate: true
+  xy: 760, 0
+  size: 198, 246
+  orig: 300, 300
+  offset: 48, 22
+  index: -1
+images/Fire_10
+  rotate: true
+  xy: 1008, 0
+  size: 198, 241
+  orig: 300, 300
+  offset: 47, 23
+  index: -1
+images/Fire_11
+  rotate: true
+  xy: 485, 400
+  size: 196, 243
+  orig: 300, 300
+  offset: 48, 22
+  index: -1
+images/Fire_12
+  rotate: true
+  xy: 730, 400
+  size: 196, 243
+  orig: 300, 300
+  offset: 49, 23
+  index: -1
+images/Fire_13
+  rotate: true
+  xy: 1002, 200
+  size: 197, 258
+  orig: 300, 300
+  offset: 48, 16
+  index: -1
+images/Fire_14
+  rotate: true
+  xy: 975, 399
+  size: 197, 254
+  orig: 300, 300
+  offset: 49, 17
+  index: -1

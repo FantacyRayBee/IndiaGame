@@ -1,0 +1,26 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "lhdPlayersList.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "jb": {
+      "__uuid__": "040ca7c6-9f2c-42f1-a1ab-3836edb03443"
+    },
+    "btn_next": {
+      "__uuid__": "fc26e62d-074d-48d1-9689-544d04b34787"
+    },
+    "btn_prev": {
+      "__uuid__": "e66dd10c-c19d-4996-a0b9-fd215050a5e3"
+    },
+    "title": {
+      "__uuid__": "2533bb2d-d3f4-4c24-b0e5-f86d4299e0b3"
+    },
+    "tx": {
+      "__uuid__": "54cb0915-db4a-4a5c-9259-3c17f7fd63be"
+    },
+    "tx_k": {
+      "__uuid__": "a49e0f13-6a28-4002-b552-901d68548347"
+    }
+  }
+}

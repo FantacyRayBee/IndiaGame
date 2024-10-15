@@ -1,0 +1,90 @@
+
+hongbao_pdd.png
+size: 1096,1096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+biaoti
+  rotate: true
+  xy: 749, 39
+  size: 593, 123
+  orig: 595, 125
+  offset: 1, 1
+  index: -1
+btn_open
+  rotate: false
+  xy: 306, 3
+  size: 100, 106
+  orig: 102, 108
+  offset: 1, 1
+  index: -1
+guag
+  rotate: false
+  xy: 306, 111
+  size: 354, 353
+  orig: 500, 500
+  offset: 80, 70
+  index: -1
+guang_bei
+  rotate: true
+  xy: 874, 387
+  size: 245, 206
+  orig: 299, 304
+  offset: 24, 47
+  index: -1
+guang_k
+  rotate: true
+  xy: 306, 770
+  size: 324, 448
+  orig: 326, 450
+  offset: 1, 1
+  index: -1
+guang_xing
+  rotate: false
+  xy: 874, 57
+  size: 139, 139
+  orig: 141, 141
+  offset: 1, 1
+  index: -1
+heidi
+  rotate: false
+  xy: 874, 198
+  size: 187, 187
+  orig: 187, 187
+  offset: 0, 0
+  index: -1
+hongbao
+  rotate: false
+  xy: 756, 634
+  size: 302, 460
+  orig: 304, 462
+  offset: 1, 1
+  index: -1
+hongbao_k
+  rotate: true
+  xy: 306, 466
+  size: 302, 441
+  orig: 557, 623
+  offset: 128, 40
+  index: -1
+hongbao_k2
+  rotate: false
+  xy: 2, 24
+  size: 302, 503
+  orig: 557, 623
+  offset: 127, 40
+  index: -1
+hongbao_k3
+  rotate: false
+  xy: 2, 529
+  size: 302, 565
+  orig: 557, 623
+  offset: 127, 40
+  index: -1
+hongbao_open
+  rotate: false
+  xy: 2, 2
+  size: 57, 20
+  orig: 59, 22
+  offset: 1, 1
+  index: -1

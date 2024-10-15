@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hd_daocha01",
+    "texture": "c8d25d5f-298d-4aa5-8d98-a74e5a3c7df0",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      393,
+      252
+    ],
+    "offset": [
+      -57.5,
+      0
+    ],
+    "originalSize": [
+      512,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

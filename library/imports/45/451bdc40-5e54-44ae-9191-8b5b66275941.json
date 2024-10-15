@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bg_wenti",
+    "texture": "316e0c4a-1ef9-4f69-bab7-7fee3cb37ab9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      650,
+      230
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      650,
+      230
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

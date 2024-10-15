@@ -1,0 +1,3384 @@
+"use strict";
+cc._RF.push(module, '3c913qdb1dNZ5hKhGc9ufWL', 'CommonFun');
+// Main/Script/Common/UtilTools/CommonFun.js
+
+"use strict";
+
+var EnumOrientation = cc.Enum({
+  HORIZONTAL: 0,
+  VERTICAL: 1
+});
+var CommonFun = cc.Class({
+  statics: {
+    _instance: null
+  },
+  ctor: function ctor() {
+    this._layerNodeMap = new Map();
+    this._progressTimer = null;
+    this._progressNode = null;
+    this._selectRoomNode = null;
+    this._loadedPrefabMap = new Map();
+    this._verticalAcc = 0;
+    this._curOrientation = EnumOrientation.HORIZONTAL;
+  },
+  checkShiPei: function checkShiPei(node) {
+    var _canvas = cc.Canvas.instance; //获取硬件分辨率
+
+    var frameSize = cc.view.getFrameSize();
+    var w = frameSize.width;
+    var h = frameSize.height;
+    GlobalCfg.DEVICE_MODEL = h;
+    var bi = w / h;
+
+    if (cc.sys.isBrowser) {
+      if (bi > 1.7 && bi < 2.1) {
+        node.setContentSize(1334, 750);
+      } else if (bi >= 2.1 && bi < 2.3) {
+        GlobalCfg.DEVICE_MODEL = "iphone X";
+        node.setContentSize(1625, 750);
+      } else {
+        GlobalCfg.DEVICE_MODEL = "iphone X";
+        node.setContentSize(1835, 750);
+      }
+
+      ;
+    } else {
+      if (w == 2436 && h == 1125) {
+        //Iphone X 
+        GlobalCfg.DEVICE_MODEL = "iphone X";
+        node.setContentSize(1625, 750);
+      } else if (w == 2265 && h == 1080) {
+        GlobalCfg.DEVICE_MODEL = "iphone X";
+        node.setContentSize(1625, 750);
+      } else if (bi >= 2.4) {
+        GlobalCfg.DEVICE_MODEL = "iphone X";
+        node.setContentSize(1835, 750);
+      } else if (bi >= 2.1 && bi < 2.4) {
+        GlobalCfg.DEVICE_MODEL = "iphone X";
+        node.setContentSize(1625, 750);
+      } else {
+        node.setContentSize(1334, 750);
+      }
+
+      ;
+    }
+
+    ;
+
+    if (_canvas) {
+      _canvas.fitHeight = true;
+      _canvas.fitWidth = false;
+    }
+
+    ;
+  },
+  // 加密
+  encrypt: function encrypt(str, pwd) {
+    if (str == '') {
+      return '';
+    }
+
+    str = encodeURIComponent(str);
+
+    if (!pwd || pwd == '') {
+      pwd = 'kb1234';
+    }
+
+    pwd = encodeURIComponent(pwd);
+
+    if (pwd == '' || pwd.length <= 0) {
+      return '';
+    }
+
+    ;
+    var prand = '';
+
+    for (var i = 0, len = pwd.length; i < len; i += 1) {
+      prand += pwd.charCodeAt(i).toString();
+    }
+
+    ;
+    var sPos = Math.floor(prand.length / 5);
+    var mult = parseInt(prand.charAt(sPos) + prand.charAt(sPos * 2) + prand.charAt(sPos * 3) + prand.charAt(sPos * 4) + prand.charAt(sPos * 5));
+    var incr = Math.ceil(pwd.length / 2);
+    var modu = Math.pow(2, 31) - 1;
+
+    if (mult < 2) {
+      return '';
+    }
+
+    ;
+    var salt = Math.round(Math.random() * 1000000000) % 100000000;
+    prand += salt;
+
+    while (prand.length > 10) {
+      prand = (parseInt(prand.substring(0, 10)) + parseInt(prand.substring(10, prand.length))).toString();
+    }
+
+    ;
+    prand = (mult * prand + incr) % modu;
+    var encChr = '';
+    var encStr = '';
+
+    for (var i = 0, len = str.length; i < len; i += 1) {
+      encChr = parseInt(str.charCodeAt(i) ^ Math.floor(prand / modu * 255));
+
+      if (encChr < 16) {
+        encStr += '0' + encChr.toString(16);
+      } else {
+        encStr += encChr.toString(16);
+      }
+
+      prand = (mult * prand + incr) % modu;
+    }
+
+    salt = salt.toString(16);
+
+    while (salt.length < 8) {
+      salt = "0" + salt;
+    }
+
+    encStr += salt;
+    return encStr;
+  },
+  // 解密
+  decrypt: function decrypt(str, pwd) {
+    if (str == '') {
+      return '';
+    }
+
+    if (!pwd || pwd == '') {
+      pwd = 'kb1234';
+    }
+
+    pwd = encodeURIComponent(pwd);
+
+    if (str == undefined || str.length < 8) {
+      return '';
+    }
+
+    if (pwd == undefined || pwd.length <= 0) {
+      return '';
+    }
+
+    var prand = '';
+
+    for (var i = 0, len = pwd.length; i < len; i += 1) {
+      prand += pwd.charCodeAt(i).toString();
+    }
+
+    var sPos = Math.floor(prand.length / 5);
+    var mult = parseInt(prand.charAt(sPos) + prand.charAt(sPos * 2) + prand.charAt(sPos * 3) + prand.charAt(sPos * 4) + prand.charAt(sPos * 5));
+    var incr = Math.round(pwd.length / 2);
+    var modu = Math.pow(2, 31) - 1;
+    var salt = parseInt(str.substring(str.length - 8, str.length), 16);
+    str = str.substring(0, str.length - 8);
+    prand += salt;
+
+    while (prand.length > 10) {
+      prand = (parseInt(prand.substring(0, 10)) + parseInt(prand.substring(10, prand.length))).toString();
+    }
+
+    prand = (mult * prand + incr) % modu;
+    var encChr = '';
+    var encStr = '';
+
+    for (var i = 0, len = str.length; i < len; i += 2) {
+      encChr = parseInt(parseInt(str.substring(i, i + 2), 16) ^ Math.floor(prand / modu * 255));
+      encStr += String.fromCharCode(encChr);
+      prand = (mult * prand + incr) % modu;
+    }
+
+    return decodeURIComponent(encStr);
+  },
+
+  /**
+   * 处理App的配置信息数据
+   * @param {Object} json App配置信息的数据对象 
+   */
+  dealAppInfoJson: function dealAppInfoJson(json) {
+    /**
+     * 服务器重启中
+     */
+    GlobalCfg.SERVERRELOAD = Reflect.has(json, "ServerReload") == true ? json["ServerReload"] : false;
+    GlobalCfg.SERVERRELOAD_Descr = Reflect.has(json, "ServerReloadDescribe") == true ? json["ServerReloadDescribe"] : "";
+    /**
+     * App的落地页地址（主要是OpenInstall的功能）
+     */
+
+    GlobalCfg.APP_SHARE_URL = json["APP_SHARE_URL"];
+    /**
+     * 是否检查热更
+     */
+
+    GlobalCfg.IS_UPDATE = json["IS_UPDATE"];
+    /**
+     * 资源的版本
+     */
+
+    GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
+    /**
+     * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
+     */
+
+    GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
+    /**
+     * 资源的父路径
+     */
+
+    GlobalCfg.ASSETS_UPDATE_URL = "" + GlobalCfg.ASSETS_URL + GlobalCfg.ASSETS_VERSION;
+    /**
+     * 子包资源的版本信息
+     */
+
+    GlobalCfg.SUB_GAME_VERSION_INFO = json["SUB_GAME_VERSION_INFO"];
+    /**
+     * Http根路由 
+     */
+
+    GlobalCfg.HTTP_ROOT_URL = json["HTTP_ROOT_URL"];
+    /**
+     * 用户登录相关的路由
+     */
+
+    GlobalCfg.HTTP_USER_LOGIN = json["HTTP_ROOT_URL"] + "/login";
+    /**
+     * 用户登录相关的路由
+     */
+
+    GlobalCfg.Forced_Migration = json["ForcedMigration"];
+    /**
+     * 暂定（配合服务器的定义）
+     */
+
+    GlobalCfg.HTTP_SERVER = json["HTTP_ROOT_URL"] + "/httpserver";
+    /**
+     * 小游戏的ws路由
+     */
+
+    GlobalCfg.WEB_SOCKET_GAME = json["WEB_SOCKET_GAME"];
+    /**
+     * 大厅的ws路由
+     */
+
+    GlobalCfg.WEB_SOCKET_LOBBY = json["WEB_SOCKET_LOBBY"];
+    /**
+     * 渠道标识
+     */
+
+    GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+    /**
+     * 谷歌ID
+     */
+
+    GlobalCfg.GOOGLE_ID = json["GOOGLE_ID"];
+    /**
+     * Facebook ID
+     */
+
+    GlobalCfg.FACEBOOK_ID = json["FACEBOOK_ID"];
+    /**
+     * 远程App版本更新
+     */
+
+    GlobalCfg.REMOTE_APP_UPDATE = json["REMOTE_APP_UPDATE"];
+    /**
+     * 远程App版本
+     */
+
+    GlobalCfg.REMOTE_APP_VERSION = json["REMOTE_APP_VERSION"];
+    /**
+     * 远程App地址
+     */
+
+    GlobalCfg.REMOTE_APP_URL = json["REMOTE_APP_URL"];
+    /**
+     * 获取OpenInstall的数据
+     */
+
+    APPManager.getOpenInstallData();
+    /**
+     * 设置Facebook ID
+     */
+
+    if (GlobalCfg.FACEBOOK_ID && GlobalCfg.FACEBOOK_ID.length > 0) {
+      APPManager.setFaceBookID(GlobalCfg.FACEBOOK_ID);
+    }
+
+    ;
+    /**
+     * 新的渠道模式
+     */
+
+    var packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+
+    if (packageChannel && packageChannel.indexOf("_") != -1) {
+      var packageChannelArr = packageChannel.split("_");
+      var channel = packageChannelArr[1];
+
+      if (!channel) {
+        LoggerUtil.getInstance().error("Incorrect channel configuration during packaging!");
+        return;
+      }
+
+      ;
+
+      if (Reflect.has(json, "PACKAGE_CONFIG_DICT") == false) {
+        LoggerUtil.getInstance().error("AppInfo configuration file without \"PACKAGE_CONFIG_DICT\" parameter!");
+        return;
+      }
+
+      ;
+      var packageConfigDict = json["PACKAGE_CONFIG_DICT"];
+
+      if (Reflect.has(packageConfigDict, channel) == false) {
+        LoggerUtil.getInstance().error("AppInfo configuration file, channel \"" + channel + "\" information not configured!");
+        return;
+      }
+
+      ;
+      var packageConfig = packageConfigDict[channel];
+
+      if (Reflect.has(packageConfig, "CHANNEL_INFO") == true) {
+        GlobalCfg.CHANNEL_INFO = packageConfig["CHANNEL_INFO"];
+      }
+
+      ;
+
+      if (Reflect.has(packageConfig, "GOOGLE_ID") == true) {
+        GlobalCfg.GOOGLE_ID = packageConfig["GOOGLE_ID"];
+      }
+
+      ;
+
+      if (Reflect.has(packageConfig, "FACEBOOK_ID") == true) {
+        GlobalCfg.FACEBOOK_ID = packageConfig["FACEBOOK_ID"];
+
+        if (GlobalCfg.FACEBOOK_ID && GlobalCfg.FACEBOOK_ID.length > 0) {
+          APPManager.setFaceBookID(GlobalCfg.FACEBOOK_ID);
+        }
+
+        ;
+      }
+
+      ;
+
+      if (Reflect.has(packageConfig, "REMOTE_APP_UPDATE") == true) {
+        GlobalCfg.REMOTE_APP_UPDATE = packageConfig["REMOTE_APP_UPDATE"];
+      }
+
+      ;
+
+      if (Reflect.has(packageConfig, "REMOTE_APP_VERSION") == true) {
+        GlobalCfg.REMOTE_APP_VERSION = packageConfig["REMOTE_APP_VERSION"];
+      }
+
+      ;
+
+      if (Reflect.has(packageConfig, "REMOTE_APP_URL") == true) {
+        GlobalCfg.REMOTE_APP_URL = packageConfig["REMOTE_APP_URL"];
+      }
+
+      ;
+
+      if (Reflect.has(packageConfig, "APP_SHARE_URL") == true) {
+        GlobalCfg.APP_SHARE_URL = packageConfig["APP_SHARE_URL"];
+      }
+
+      ;
+    }
+
+    ;
+  },
+
+  /**
+   * 
+   * @param {String} prefabPath 预制体路径
+   * @param {cc.Node} parent 父节点
+   * @param {Number} siblingIndex 设置在父节点上的层级
+   * @param {Number} zIndex cc.Node.zIndex 的值，不推荐使用，设置 zIndex 后，siblingIndex会失效
+   */
+  showViewByPath: function showViewByPath(prefabPath, parent, siblingIndex, zIndex) {
+    if (prefabPath && prefabPath.length != 0) {
+      var viewName = prefabPath.split("/").pop();
+      var curScene = cc.director.getScene();
+      var curTips = null;
+
+      if (parent && cc.isValid(parent)) {
+        curTips = parent.getChildByName(viewName);
+      }
+
+      if (curTips) {
+        curTips.active = true;
+
+        var _siblingIndex = curTips.getSiblingIndex();
+
+        curTips.setSiblingIndex(++_siblingIndex);
+      } else {
+        this.creatPreAndShowViewAction(prefabPath, parent, viewName, zIndex, siblingIndex);
+      }
+
+      ;
+    }
+  },
+  creatPreAndShowViewAction: function creatPreAndShowViewAction(prefabPath, parentNode, name, index, siblingIndex) {
+    if (!prefabPath) {
+      return;
+    }
+
+    ;
+    this.creatPrefab(prefabPath, parentNode, name, index, siblingIndex);
+  },
+  creatPrefab: function creatPrefab(url, parentNode, name, index, siblingIndex) {
+    var prefab = cc.loader.getRes(url, cc.Prefab);
+    var curScene = cc.director.getScene();
+
+    if (!cc.isValid(parentNode)) {
+      parentNode = curScene;
+    }
+
+    if (prefab != null && typeof prefab != "undefined") {
+      var prefabNode = cc.instantiate(prefab);
+
+      if (parentNode && prefabNode) {
+        prefabNode.parent = parentNode;
+        prefabNode.name = name ? name : "";
+
+        if (index) {
+          prefabNode.zIndex = index;
+        }
+
+        if (siblingIndex) {
+          prefabNode.setSiblingIndex(siblingIndex);
+        }
+      }
+
+      return prefabNode;
+    } else {
+      ResourcesBundle.load(url, function (err, prefab) {
+        if (!err) {
+          var _prefabNode = cc.instantiate(prefab);
+
+          if (!cc.isValid(parentNode)) {
+            parentNode = curScene;
+          }
+
+          if (cc.isValid(parentNode) && _prefabNode) {
+            _prefabNode.parent = parentNode;
+            _prefabNode.name = name ? name : "";
+
+            if (index) {
+              _prefabNode.zIndex = index;
+            }
+
+            if (siblingIndex) {
+              _prefabNode.setSiblingIndex(siblingIndex);
+            }
+          }
+
+          return _prefabNode;
+        } else {
+          LoggerUtil.getInstance().log("creatPrefab-获取预制体预制体异常：", err);
+          return null;
+        }
+      });
+    }
+
+    ;
+  },
+  loadPrefab: function loadPrefab(url, callFun, params) {
+    ResourcesBundle.load(url, function (err, prefab) {
+      if (!err && callFun) {
+        callFun(prefab, params);
+      }
+
+      ;
+    });
+  },
+
+  /**
+   * // UploadGameErrorReq 上报游戏错误消息 POST v1/upload/gameerror
+      type UploadGameErrorReq struct {
+      Product string `json:"product"` // 游戏项目appID(对应small_game/list接口product)
+      Event   int    `json:"event"`   // 错误事件枚举(前后端对应，0:未知错误，1:未充值拒绝游戏)
+      Message string `json:"message"` // 其他附带信息
+      }
+  */
+  UploadGameErrorReq: function UploadGameErrorReq(params) {},
+  httpGet: function httpGet(url, callFun, outCallFun, Authorization) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+
+    xhr.onreadystatechange = function () {
+      var responseText = xhr.responseText;
+
+      if (url == GlobalCfg.APP_INFO_URL || url == GlobalCfg.APP_CONFIG_URL || url == GlobalCfg.APP_INFO_URL_SPARE || url == GlobalCfg.APP_CONFIG_URL_SPARE) {
+        try {
+          var enCode = responseText;
+          responseText = CommonFun.getInstance().decrypt(enCode, GlobalCfg.STR_KEY);
+        } catch (error) {}
+
+        ;
+      }
+
+      ;
+      var responseJson = null;
+
+      try {
+        responseJson = JSON.parse(responseText);
+      } catch (error) {
+        responseJson = null;
+      }
+
+      ;
+
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      ;
+
+      if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+        LoggerUtil.getInstance().log("HttpGet ===> Url: ", url);
+        LoggerUtil.getInstance().log("HttpGet ===> Readystate: 4, Status[(>= 200 && < 300) || 304]: ", xhr.status, "statusText: ", xhr.statusText);
+
+        if (responseJson) {
+          LoggerUtil.getInstance().log("HttpGet ===> ResponseJson: ", cc.sys.isNative ? JSON.stringify(responseJson) : responseJson);
+
+          if (responseJson.result === 5) {
+            CommonFun.getInstance().showTips(responseJson.msg);
+            LobbyServerManager.clientCloseServer();
+            GameServerManager.clientCloseServer();
+            CommonFun.getInstance().deleteLoginLocalStorage();
+            cc.director.loadScene("Update");
+          } else if (responseJson.result === 33) {
+            // 提示版本更新
+            CommonFun.getInstance().showTips(responseJson.msg);
+            LobbyServerManager.clientCloseServer();
+            GameServerManager.clientCloseServer();
+            CommonFun.getInstance().deleteLoginLocalStorage();
+            cc.director.loadScene("Update");
+          } else {
+            callFun && callFun(responseJson);
+          }
+
+          ;
+        } else {
+          LoggerUtil.getInstance().log("HttpGet ===> ResponseText: ", cc.sys.isNative ? JSON.stringify(responseText) : responseText);
+          outCallFun && outCallFun({
+            result: 0,
+            msg: responseText
+          });
+        }
+
+        ;
+      } else {
+        var reason = "";
+
+        if (xhr.responseText) {
+          reason = xhr.responseText;
+        } else if (xhr.statusText) {
+          reason = xhr.statusText;
+        } else {
+          reason = xhr.status;
+        }
+
+        ;
+        LoggerUtil.getInstance().log("HttpGet ===> Url: ", url);
+        LoggerUtil.getInstance().log("HttpGet ===> Readystate: ", xhr.readyState, ", Status: ", xhr.status, "statusText: ", xhr.statusText);
+        LoggerUtil.getInstance().log("HttpGet ===> Respone: ", cc.sys.isNative ? responseJson ? JSON.stringify(responseJson) : responseText : responseJson ? responseJson : responseText);
+        outCallFun && outCallFun({
+          result: 0,
+          msg: reason
+        });
+      }
+
+      ;
+    };
+
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+    if (Authorization) {
+      xhr.setRequestHeader("Authorization", Authorization);
+    }
+
+    ;
+    xhr.send();
+  },
+  httpPost: function httpPost(url, params, callFun, outCallFun, Authorization) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+
+    xhr.onreadystatechange = function () {
+      var responseText = xhr.responseText;
+      var responseJson = null;
+
+      try {
+        responseJson = JSON.parse(responseText);
+      } catch (error) {
+        responseJson = null;
+      }
+
+      ;
+
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      ;
+
+      if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+        LoggerUtil.getInstance().log("HttpPost ===> Url: ", url);
+        LoggerUtil.getInstance().log("HttpPost ===> Params: ", cc.sys.isNative ? JSON.stringify(params) : params);
+        LoggerUtil.getInstance().log("HttpPost ===> Readystate: 4, Status[(>= 200 && < 300) || 304]: ", xhr.status, "statusText: ", xhr.statusText);
+
+        if (responseJson) {
+          LoggerUtil.getInstance().log("HttpPost ===> ResponseJson: ", cc.sys.isNative ? JSON.stringify(responseJson) : responseJson);
+
+          if (responseJson.result === 5) {
+            CommonFun.getInstance().showTips(responseJson.msg);
+            LobbyServerManager.clientCloseServer();
+            GameServerManager.clientCloseServer();
+            CommonFun.getInstance().deleteLoginLocalStorage();
+            cc.director.loadScene("Update");
+          } else {
+            callFun && callFun(responseJson);
+          }
+
+          ;
+        } else {
+          LoggerUtil.getInstance().log("HttpPost ===> ResponseText: ", cc.sys.isNative ? JSON.stringify(responseText) : responseText);
+          outCallFun && outCallFun({
+            result: 0,
+            msg: responseText
+          });
+        }
+
+        ;
+      } else {
+        var reason = "";
+
+        if (xhr.responseText) {
+          reason = xhr.responseText;
+        } else if (xhr.statusText) {
+          reason = xhr.statusText;
+        } else {
+          reason = xhr.status;
+        }
+
+        ;
+        LoggerUtil.getInstance().log("HttpPost ===> Url: ", url);
+        LoggerUtil.getInstance().log("HttpPost ===> Params: ", cc.sys.isNative ? JSON.stringify(params) : params);
+        LoggerUtil.getInstance().log("HttpPost ===> Readystate: ", xhr.readyState, "Status: ", xhr.status, "statusText: ", xhr.statusText);
+        LoggerUtil.getInstance().log("HttpPost ===> Respone: ", cc.sys.isNative ? responseJson ? JSON.stringify(responseJson) : responseText : responseJson ? responseJson : responseText);
+        outCallFun && outCallFun({
+          result: 0,
+          msg: reason
+        });
+      }
+
+      ;
+    };
+
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    if (Authorization) {
+      LoggerUtil.getInstance().log("BearerToken\u60C5\u51B5\u4E0B, Post\u8BF7\u6C42\u7684\u5730\u5740\uFF1A" + url);
+      xhr.setRequestHeader("Authorization", Authorization);
+    }
+
+    ;
+    xhr.send(JSON.stringify(params));
+  },
+  generateUUID: function generateUUID() {
+    var d = new Date().getTime();
+
+    if (window.performance && typeof window.performance.now === "function") {
+      d += performance.now();
+    }
+
+    ;
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (d + Math.random() * 16) % 16 | 0;
+      d = Math.floor(d / 16);
+      return (c == 'x' ? r : r & 0x3 | 0x8).toString(16);
+    });
+    return uuid;
+  },
+
+  /**
+   * 检测小游戏是需要版本更新
+   * @param {string} subpackgeName 小游戏bundle名
+   * @returns 
+   */
+  isNeedUpdata: function isNeedUpdata(subpackgeName) {
+    if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+      return false;
+    }
+
+    ;
+    var serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
+    var localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
+    LoggerUtil.getInstance().log(subpackgeName + "\u7248\u672C\u53F7\u5BF9\u6BD4===> \u8FDC\u7A0B\u7248\u672C\u53F7: " + serverVersionNum + ", \u672C\u5730\u7248\u672C\u53F7: " + localVersionNum);
+
+    if (serverVersionNum !== localVersionNum) {
+      return true;
+    } else {
+      return false;
+    }
+
+    ;
+  },
+
+  /**
+   * 判断脚本是否有效
+   * @param {cc.Script} target 脚本实例化的对象
+   */
+  isValidForScr: function isValidForScr(target) {
+    if (target && target.node && cc.isValid(target.node)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  // 补0位 num传入的数字，n需要的字符长度
+  prefixInteger: function prefixInteger(num, n) {
+    return (Array(n).join(0) + num).slice(-n);
+  },
+  random: function random(lower, upper) {
+    return Math.floor(Math.random() * (upper - lower + 1)) + lower;
+  },
+  // 货币显示规范
+  numberToShow: function numberToShow(number, entrycondition) {
+    if (entrycondition == 0) {
+      return number;
+    } else {
+      var coin = parseInt(number) + '';
+
+      if (coin.length >= 8) {
+        var tcoin1 = (coin / 10000000 + '').split('.');
+        coin = tcoin1[0] + (tcoin1[1] ? '.' + tcoin1[1].substring(0, 2) : '') + 'C';
+        return coin;
+      } else if (coin.length >= 6) {
+        var tcoin2 = (coin / 100000 + '').split('.');
+        coin = tcoin2[0] + (tcoin2[1] ? '.' + tcoin2[1].substring(0, 2) : '') + 'L';
+        return coin;
+      }
+
+      return number;
+    }
+
+    ;
+  },
+  getStrLength: function getStrLength(str) {
+    var realLength = 0,
+        len = str.length,
+        charCode = -1;
+
+    for (var i = 0; i < len; i++) {
+      charCode = str.charCodeAt(i);
+      if (charCode >= 0 && charCode <= 128) realLength += 1;else realLength += 2;
+    }
+
+    return realLength;
+  },
+  getStrByLength: function getStrByLength(str, length) {
+    var realLength = 0,
+        len = str.length,
+        charCode = -1;
+    var newStr = "";
+
+    for (var i = 0; i < len; i++) {
+      charCode = str.charCodeAt(i);
+      if (charCode >= 0 && charCode <= 128) realLength += 1;else realLength += 2;
+      newStr += str[i];
+
+      if (realLength >= length) {
+        if (i !== len - 1) newStr = newStr + "...";
+        break;
+      }
+    }
+
+    return newStr;
+  },
+  deleteLoginLocalStorage: function deleteLoginLocalStorage() {
+    cc.sys.localStorage.removeItem("login_token");
+    cc.sys.localStorage.removeItem("login_userid");
+    GlobalCfg.USER_DATAS.userId = null;
+    GlobalCfg.USER_DATAS.token = null;
+  },
+  showLabelLanguage: function showLabelLanguage(str, str1, str2) {
+    var strName = '';
+
+    for (var i = 0; i < dynamicChangeLabel.length; i++) {
+      var arr = dynamicChangeLabel[i];
+      var name = arr[1];
+
+      if (name == str) {
+        if (str.length > 0) {
+          strName = arr[language];
+        }
+
+        if (str1) {
+          strName = arr[language] + str1;
+        }
+
+        if (str2) {
+          strName = arr[language] + str2;
+        }
+      }
+    }
+
+    return strName;
+  },
+
+  /**
+   * 展示商城
+   * @param {Boolean} isFromFirstRecharge 直接展示商城
+   * @returns 
+   */
+  showNewShop: function showNewShop(isFromFirstRecharge, from) {
+    if (from === void 0) {
+      from = '';
+    }
+
+    if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
+      CommonFun.getInstance().showMsgBox("Not yet open", "NO", function () {}, false);
+      return;
+    }
+
+    ; // 首充 且 首充活动模块开关开启
+
+    if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(10)) {
+      // if (isFromFirstRecharge == true) {
+      // 展示商城
+      if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+        this._showShop(from);
+      } else {
+        this.showBindPhone('AddCash');
+      } // }
+      // else {
+      //     this.showFirstRecharge();
+      // }
+
+    } else {
+      this._showShop(from);
+    }
+  },
+  debounce: function debounce(action, delayTime) {
+    if (!delayTime) {
+      return action;
+    }
+
+    ;
+
+    var fn = function fn() {
+      var btnNode = arguments[0].node;
+
+      if (!btnNode.timeOut && action) {
+        action.apply(this, arguments);
+        btnNode.timeOut = setTimeout(function () {
+          if (btnNode) {
+            clearTimeout(btnNode.timeOut);
+            btnNode.timeOut = null;
+          }
+
+          ;
+        }, delayTime * 1000);
+      }
+
+      ;
+    };
+
+    return fn;
+  },
+  getAllChildrensNodeList: function getAllChildrensNodeList(root, path, viewList) {
+    if (viewList === void 0) {
+      viewList = {};
+    }
+
+    for (var i = 0, len = root.childrenCount; i < len; i++) {
+      viewList[path + root.children[i].name] = root.children[i];
+      this.getAllChildrensNodeList(root.children[i], path + root.children[i].name + "/", viewList);
+    }
+
+    return viewList;
+  },
+  deepCopy: function deepCopy(o) {
+    // 判断如果不是引用类型，直接返回数据即可
+    if (typeof o === 'string' || typeof o === 'number' || typeof o === 'boolean' || typeof o === 'undefined') {
+      return o;
+    } else if (Array.isArray(o)) {
+      // 如果是数组，则定义一个新数组，完成复制后返回
+      // 注意，这里判断数组不能用typeof，因为typeof Array 返回的是object
+      // LoggerUtil.getInstance().log(typeof [])  // --> object
+      var _arr = [];
+      o.forEach(function (item) {
+        _arr.push(item);
+      });
+      return _arr;
+    } else if (typeof o === 'object') {
+      var _o = {};
+
+      for (var key in o) {
+        _o[key] = this.deepCopy(o[key]);
+      }
+
+      return _o;
+    }
+  },
+  arrayBufferToBase64: function arrayBufferToBase64(array) {
+    array = new Uint8Array(array);
+    var length = array.byteLength;
+    var table = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'];
+    var base64Str = '';
+    var i = 0;
+
+    for (i = 0; length - i >= 3; i += 3) {
+      var num1 = array[i];
+      var num2 = array[i + 1];
+      var num3 = array[i + 2];
+      base64Str += table[num1 >>> 2] + table[(num1 & 3) << 4 | num2 >>> 4] + table[(num2 & 15) << 2 | num3 >>> 6] + table[num3 & 63];
+    }
+
+    var lastByte = length - i;
+
+    if (lastByte === 1) {
+      var lastNum1 = array[i];
+      base64Str += table[lastNum1 >>> 2] + table[(lastNum1 & 3) << 4] + '==';
+    } else if (lastByte === 2) {
+      var _lastNum = array[i];
+      var lastNum2 = array[i + 1];
+      base64Str += table[_lastNum >>> 2] + table[(_lastNum & 3) << 4 | lastNum2 >>> 4] + table[(lastNum2 & 15) << 2] + '=';
+    }
+
+    return base64Str;
+  },
+  localConvertWorldPointAR: function localConvertWorldPointAR(node) {
+    if (!node) {
+      return null;
+    }
+
+    ;
+    return node.convertToWorldSpaceAR(cc.v2(0, 0));
+  },
+  localConvertWorldPoint: function localConvertWorldPoint(node) {
+    if (!node) {
+      return null;
+    }
+
+    return node.convertToWorldSpace(cc.v2(0, 0));
+  },
+  worldConvertLocalPointAR: function worldConvertLocalPointAR(node, worldPoint) {
+    if (!node || !worldPoint) {
+      return null;
+    }
+
+    return node.convertToNodeSpaceAR(worldPoint);
+  },
+  convertOtherNodeSpaceAR: function convertOtherNodeSpaceAR(node, targetNode) {
+    if (!node || !targetNode) {
+      return null;
+    }
+
+    var worldPos = this.localConvertWorldPointAR(node);
+    return this.worldConvertLocalPointAR(targetNode, worldPos);
+  },
+  getCurTimeFormatByProof: function getCurTimeFormatByProof() {
+    var nowdate = new Date();
+    var month = nowdate.getMonth() + 1;
+    var date = nowdate.getDate();
+    var hour = nowdate.getHours();
+    var minutes = nowdate.getMinutes();
+    var seconds = nowdate.getSeconds();
+
+    if (hour >= 0 && hour <= 9) {
+      hour = "0" + hour;
+    }
+
+    ;
+
+    if (minutes >= 0 && minutes <= 9) {
+      minutes = "0" + minutes;
+    }
+
+    ;
+
+    if (seconds >= 0 && seconds <= 9) {
+      seconds = "0" + seconds;
+    }
+
+    ;
+    return date + "/" + month + " " + hour + ":" + minutes + ":" + seconds;
+  },
+
+  /**
+   * 加载预制体
+   * @param {String} prefabPath 预制体路径
+  */
+  loadPrefabByPromise: function loadPrefabByPromise(prefabPath) {
+    var _this = this;
+
+    var arr = prefabPath.split("/");
+    var bundleName = arr[0];
+    var path = prefabPath.substring(bundleName.length + 1);
+    LoggerUtil.getInstance().log("Loading prefab ===> " + prefabPath);
+    var assetBundle = cc.assetManager.getBundle(bundleName);
+    return new Promise(function (resolve, reject) {
+      if (assetBundle) {
+        assetBundle.load(path, cc.Prefab, function (error, prefab) {
+          if (!error) {
+            if (_this._loadedPrefabMap.has(prefabPath) == false) {
+              prefab.addRef();
+
+              _this._loadedPrefabMap.set(prefabPath, prefab);
+            }
+
+            ;
+            resolve(prefab);
+          } else {
+            reject(error);
+          }
+
+          ;
+        });
+      } else {
+        CommonFun.getInstance().loadBundle(bundleName, function (bundle) {
+          bundle.load(path, cc.Prefab, function (error, prefab) {
+            if (!error) {
+              if (_this._loadedPrefabMap.has(prefabPath) == false) {
+                prefab.addRef();
+
+                _this._loadedPrefabMap.set(prefabPath, prefab);
+              }
+
+              ;
+              resolve(prefab);
+            } else {
+              reject(error);
+            }
+
+            ;
+          });
+        }, function (err) {
+          reject(err);
+        });
+      }
+
+      ;
+    });
+  },
+
+  /**
+   * 释放预制体及其资源
+   * @param {String} prefabPath 预制体路径
+   */
+  releasePrefab: function releasePrefab(prefabPath) {
+    if (this._loadedPrefabMap.has(prefabPath)) {
+      var prefab = this._loadedPrefabMap.get(prefabPath);
+
+      if (prefab) {
+        this._loadedPrefabMap["delete"](prefabPath);
+
+        prefab.decRef();
+        prefab = null;
+      }
+
+      ;
+    }
+
+    ;
+  },
+
+  /**
+   * 将指定的节点加入到指定的父节点
+   * @param {cc.Node} child
+   * @param {string} parentTag
+   */
+  addToPointParent: function addToPointParent(child, parentTag) {
+    var parentNode = this.getLayerNode(parentTag);
+
+    if (parentNode) {
+      parentNode.addChild(child);
+    }
+
+    ;
+  },
+
+  /**
+   * 将指定的LayerNode节点加入到layerNodeMap中
+   * @param {string} tag
+   * @param {cc.Node} layerNode
+   */
+  setLayerNode: function setLayerNode(tag, layerNode) {
+    var has = this._layerNodeMap.has(tag);
+
+    if (has) {
+      this._layerNodeMap["delete"](tag);
+    }
+
+    ;
+
+    this._layerNodeMap.set(tag, layerNode);
+  },
+
+  /**
+   * 获取LayerNode节点
+   * @param {string} tag
+   * @returns 
+   */
+  getLayerNode: function getLayerNode(tag) {
+    var layerNode = this._layerNodeMap.get(tag);
+
+    return layerNode;
+  },
+
+  /**
+   * 检测节点是否在父节点中
+   * @param {string} path 节点路径
+   * @param {*} parentTag 父节点Tag
+   * @returns Boolean true:存在 false:不存在
+   */
+  checkNodeInParentNode: function checkNodeInParentNode(path, parentTag) {
+    var parentNode = this.getLayerNode(parentTag);
+    var arr = path.split("/");
+    var nodeName = arr[arr.length - 1];
+
+    if (parentNode.getChildByName(nodeName)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  /**
+   * 显示提示框
+   * @param {string} content 内容
+   * @param {string} direction 方向
+   */
+  showTips: function showTips(content, direction) {
+    var _this2 = this;
+
+    if (direction === void 0) {
+      direction = "horizontal";
+    }
+
+    var tipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TIPS);
+    tipsPrefabPromise.then(function (prefab) {
+      var tipsNode = cc.instantiate(prefab);
+      tipsNode.angle = direction == "horizontal" ? 0 : -90;
+      var tipsCtrl = tipsNode.getComponent('TipsCtrl');
+      tipsCtrl.setContent(content);
+
+      _this2.addToPointParent(tipsNode, GlobalCfg.PREFAB_PARENT.TIPS);
+    });
+  },
+  proloadProgress: function proloadProgress() {
+    var _this3 = this;
+
+    return new Promise(function (resolve, reject) {
+      var progressPrefabPromise = _this3.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROGRESS);
+
+      progressPrefabPromise.then(function (prefab) {
+        _this3._progressNode = cc.instantiate(prefab);
+        _this3._progressNode.active = false;
+
+        _this3.addToPointParent(_this3._progressNode, GlobalCfg.PREFAB_PARENT.PROGRESS);
+
+        resolve();
+      })["catch"](function () {
+        reject();
+      });
+    });
+  },
+
+  /**
+   * 显示进度框
+   * @param {string} content 内容
+   * @param {number} lastTime 持续时间
+   */
+  showProgress: function showProgress(content, lastTime) {
+    var _this4 = this;
+
+    if (lastTime === void 0) {
+      lastTime = 15;
+    }
+
+    if (this._progressNode) {
+      var progressCtrl = this._progressNode.getComponent('ProgressCtrl');
+
+      progressCtrl.setContent(content);
+      this._progressNode.active = true;
+      this._progressTimer = setTimeout(function () {
+        _this4.hidProgress();
+      }, lastTime * 1000);
+    }
+
+    ;
+  },
+
+  /**
+   * 隐藏进度框
+   */
+  hidProgress: function hidProgress() {
+    clearTimeout(this._progressTimer);
+
+    if (this._progressNode) {
+      this._progressNode.active = false;
+    }
+
+    ;
+  },
+
+  /**
+   * 显示消息框
+   * @param {string} content 内容
+   * @param {string} msgBoxType 类型
+   * @param {function} callFun 回调函数
+   * @param {boolean} isShowCloseBtn 是否显示关闭按钮
+   * @param {boolean} isNet 是否是网络错误
+   * @param {string} title 标题
+   * @param {function} callFun2 回调函数
+   */
+  showMsgBox: function showMsgBox(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2) {
+    var _this5 = this;
+
+    var msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
+    msgBoxPrefabPromise.then(function (prefab) {
+      var msgBoxNode = cc.instantiate(prefab);
+      var msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
+      msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2);
+
+      _this5.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
+    });
+  },
+
+  /**
+   * 显示设置界面
+   */
+  showSetting: function showSetting() {
+    var _this6 = this;
+
+    var settingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SETTING);
+    settingPrefabPromise.then(function (prefab) {
+      var settingNode = cc.instantiate(prefab);
+
+      _this6.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
+    });
+  },
+
+  /**
+   * 小游戏中显示加金币
+   * @param {string} gameName 游戏名称
+   * @param {number} gameCoin 游戏底分
+   */
+  showSmallAddCash: function showSmallAddCash(gameName, gameCoin) {
+    if (gameName === void 0) {
+      gameName = null;
+    }
+
+    if (gameCoin === void 0) {
+      gameCoin = null;
+    }
+
+    var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+
+    if (rechargeNeedInfo) {
+      if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+        this.showNewShop();
+      } else {
+        // CommonFun.getInstance().showFirstRecharge();
+        this.showBindPhone('AddCash');
+      }
+
+      ;
+    } else {
+      this.showNewShop();
+    }
+
+    ;
+  },
+
+  /**
+   * 小游戏中显示加经验
+   */
+  showSmallAddExperience: function showSmallAddExperience() {
+    var _this7 = this;
+
+    var smallAddExperiencePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SMALLADDEXPERIENCE);
+    smallAddExperiencePrefabPromise.then(function (prefab) {
+      var smallAddExperienceNode = cc.instantiate(prefab);
+      var smallAddExperienceCtrl = smallAddExperienceNode.getComponent('SmallAddExperienceCtrl');
+
+      _this7.addToPointParent(smallAddExperienceNode, GlobalCfg.PREFAB_PARENT.SMALLADDEXPERIENCE);
+    });
+  },
+
+  /**
+   * 小游戏中显示用户头像
+   * @param {string} headUrl 用户头像地址
+   * @param {string} playerName 用户昵称
+   * @param {number} playerCoin 用户金币
+   * @param {boolean} trial 是否是体验用户
+   */
+  showUserIU: function showUserIU(headUrl, playerName, playerCoin, trial) {
+    var _this8 = this;
+
+    if (headUrl === void 0) {
+      headUrl = "";
+    }
+
+    if (playerName === void 0) {
+      playerName = "";
+    }
+
+    if (playerCoin === void 0) {
+      playerCoin = 0;
+    }
+
+    if (trial === void 0) {
+      trial = true;
+    }
+
+    var userHeadPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.USERHEAD);
+    userHeadPrefabPromise.then(function (prefab) {
+      var userHeadNode = cc.instantiate(prefab);
+      var userHeadCtrl = userHeadNode.getComponent('UserHeadCtrl');
+      userHeadCtrl.setUserDate(headUrl, playerName, playerCoin, trial);
+
+      _this8.addToPointParent(userHeadNode, GlobalCfg.PREFAB_PARENT.USERHEAD);
+    });
+  },
+
+  /**
+   * 显示金币散落动画
+   */
+  scatterGoldCoinsAim: function scatterGoldCoinsAim() {
+    var _this9 = this;
+
+    var scatterCoinPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SCATTERCOIN);
+    scatterCoinPrefabPromise.then(function (prefab) {
+      var scatterCoinNode = cc.instantiate(prefab);
+      var scatterCoinCtrl = scatterCoinNode.getComponent('ScatterCoinCtrl');
+
+      _this9.addToPointParent(scatterCoinNode, GlobalCfg.PREFAB_PARENT.SCATTERCOIN);
+    });
+  },
+
+  /**
+   * 显示领取奖励提示界面，点击领取按钮默认播放撒金币特效
+   * @param {Array[{id,amount}]} coin 奖励金币
+   */
+  showRewardsTips: function showRewardsTips(coin) {
+    var _this10 = this;
+
+    var count = 0;
+
+    for (var i = 0; i < coin.length; i++) {
+      count += coin[i].amount;
+    }
+
+    if (count <= 0) {
+      return;
+    }
+
+    var rewardsTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.REWARDSTIPS);
+    rewardsTipsPrefabPromise.then(function (prefab) {
+      CommonFun.getInstance().scatterGoldCoinsAim();
+      var rewardsTipsNode = cc.instantiate(prefab);
+      var rewardsTipsCtrl = rewardsTipsNode.getComponent('RewardsTipsCtrl');
+      rewardsTipsCtrl.setRewards(coin);
+
+      _this10.addToPointParent(rewardsTipsNode, GlobalCfg.PREFAB_PARENT.REWARDSTIPS);
+    });
+  },
+
+  /**
+   * 发送文字，微表情
+   * @param {string} notify 服务器下发的信息
+   * @param {cc.Vec2} pos 位置
+   */
+  sendFace: function sendFace(notify, pos) {
+    var _this11 = this;
+
+    var chatActPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHATACT);
+    chatActPrefabPromise.then(function (prefab) {
+      var chatActNode = cc.instantiate(prefab);
+      var chatActCtrl = rewardsTipsNode.getComponent('ChatActCtrl');
+      chatActCtrl.face(notify, pos);
+
+      _this11.addToPointParent(chatActNode, GlobalCfg.PREFAB_PARENT.CHATACT);
+    });
+  },
+
+  /**
+   * 显示活动界面
+   */
+  showActivity: function showActivity(pointView) {
+    var _this12 = this;
+
+    if (pointView === void 0) {
+      pointView = null;
+    }
+
+    var activityPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY);
+    activityPrefabPromise.then(function (prefab) {
+      var activityNode = cc.instantiate(prefab);
+      var activityCtrl = activityNode.getComponent('ActivityCtrl');
+      pointView && activityCtrl.setPointView(pointView);
+
+      _this12.addToPointParent(activityNode, GlobalCfg.PREFAB_PARENT.ACTIVITY);
+    });
+  },
+
+  /**
+   * 显示首充界面
+   */
+  showFirstRecharge: function showFirstRecharge() {
+    var _this13 = this;
+
+    var path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
+
+    if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+      path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
+    }
+
+    var firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+    firstRechargePrefabPromise.then(function (prefab) {
+      var firstRechargeNode = cc.instantiate(prefab);
+      var firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
+
+      _this13.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
+    });
+  },
+
+  /**
+   * 显示联系我们界面
+   */
+  showContactUs: function showContactUs() {
+    var _this14 = this;
+
+    var contactUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CONTACTUS);
+    contactUsPrefabPromise.then(function (prefab) {
+      var contactUsNode = cc.instantiate(prefab);
+      var contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');
+
+      _this14.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+    });
+  },
+
+  /**
+   * 添加跑马灯
+   */
+  addCarouselStrip: function addCarouselStrip() {
+    var _this15 = this;
+
+    this.removeCarouselStrip();
+    var carouselStripPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CAROUSELSTRIP);
+    carouselStripPrefabPromise.then(function (prefab) {
+      var carouselStripNode = cc.instantiate(prefab);
+      var carouselStripCtrl = carouselStripNode.getComponent('CarouselStripCtrl');
+
+      _this15.addToPointParent(carouselStripNode, GlobalCfg.PREFAB_PARENT.CAROUSELSTRIP);
+    });
+  },
+
+  /**
+   * 删除跑马灯
+   */
+  removeCarouselStrip: function removeCarouselStrip() {
+    try {
+      var parentNode = this.getLayerNode(GlobalCfg.PREFAB_PARENT.CAROUSELSTRIP);
+      var children = parentNode.children;
+
+      for (var i = 0, len = children.length; i < len; i++) {
+        var node = children[i];
+        node.destroy();
+      }
+
+      ;
+    } catch (error) {}
+
+    ;
+  },
+
+  /**
+   * 添加侧边栏
+   */
+  addSidebar: function addSidebar() {
+    var _this16 = this;
+
+    var node = this.getSidebar();
+
+    if (node) {
+      return;
+    }
+
+    var sideBarPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SIDEBAR);
+    sideBarPrefabPromise.then(function (prefab) {
+      var sideBarNode = cc.instantiate(prefab);
+      var activityModulesCtrl = sideBarNode.getComponent('activityModulesCtrl');
+
+      _this16.addToPointParent(sideBarNode, GlobalCfg.PREFAB_PARENT.SIDEBAR);
+    });
+  },
+
+  /**
+   * 删除侧边栏
+   */
+  removeSidebar: function removeSidebar() {
+    var node = this.getSidebar();
+
+    if (node) {
+      node.destroy();
+    }
+  },
+
+  /**
+   * 更新侧边栏数据
+   * @param {Boolean} bool 是否展开
+   */
+  updateSidebarData: function updateSidebarData(bool) {
+    var node = this.getSidebar();
+
+    if (node) {
+      var activityModulesCtrl = node.getComponent('activityModulesCtrl');
+      activityModulesCtrl.setShowState(bool);
+      activityModulesCtrl.checkActivity();
+    }
+  },
+
+  /**
+   * 隐藏侧边栏
+   */
+  hideSidebarData: function hideSidebarData() {
+    var node = this.getSidebar();
+
+    if (node) {
+      var activityModulesCtrl = node.getComponent('activityModulesCtrl');
+      activityModulesCtrl.setHideActivity();
+    }
+
+    ;
+  },
+  getSidebar: function getSidebar() {
+    var resultNode = null;
+    var name = GlobalCfg.PREFAB_PATH.SIDEBAR.split("/").pop();
+    var parentNode = this.getLayerNode(GlobalCfg.PREFAB_PARENT.SIDEBAR);
+    var children = parentNode.children;
+
+    for (var i = 0, len = children.length; i < len; i++) {
+      var node = children[i];
+
+      if (node.name == name) {
+        resultNode = node;
+        break;
+      }
+    }
+
+    ;
+    return resultNode;
+  },
+
+  /**
+   * 显示评分界面
+   */
+  showRateUs: function showRateUs() {
+    var _this17 = this;
+
+    var rateUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RATEUS);
+    rateUsPrefabPromise.then(function (prefab) {
+      var rateUsNode = cc.instantiate(prefab);
+      var rateUsCtrl = rateUsNode.getComponent('RateUsCtrl');
+
+      _this17.addToPointParent(rateUsNode, GlobalCfg.PREFAB_PARENT.RATEUS);
+    });
+  },
+
+  /**
+   * 显示绑定手机奖励界面
+   */
+  showBindPhoneRewards: function showBindPhoneRewards() {
+    var _this18 = this;
+
+    var bindPhoneRewardsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONEREWARDS);
+    bindPhoneRewardsPrefabPromise.then(function (prefab) {
+      var bindPhoneRewardsNode = cc.instantiate(prefab);
+      var bindPhoneRewardsCtrl = bindPhoneRewardsNode.getComponent('BindPhoneRewardsCtrl');
+
+      _this18.addToPointParent(bindPhoneRewardsNode, GlobalCfg.PREFAB_PARENT.BINDPHONEREWARDS);
+    });
+  },
+
+  /**
+   * 强制引导弹窗
+   */
+  showHallTip: function showHallTip() {
+    var _this19 = this;
+
+    var hallTipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.HALLTIP);
+    hallTipPrefabPromise.then(function (prefab) {
+      var bhallTipNode = cc.instantiate(prefab);
+
+      _this19.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
+    });
+  },
+
+  /**
+   * 显示绑定手机界面
+   * @param {String} str  Lobby (大厅) Personal (个人中心) AddCash (充值填写) 
+   */
+  showBindPhone: function showBindPhone(str) {
+    var _this20 = this;
+
+    if (str === void 0) {
+      str = 'Lobby';
+    }
+
+    var bindPhonePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONE);
+    bindPhonePrefabPromise.then(function (prefab) {
+      CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MOBILE_VIEW);
+      var bindPhoneNode = cc.instantiate(prefab);
+      var bindPhoneCtrl = bindPhoneNode.getComponent('BindPhoneCtrl');
+      bindPhoneCtrl.setNodeStateStr(str);
+
+      _this20.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
+    });
+  },
+
+  /**
+   * 显示推广员界面
+   */
+  showPromoter: function showPromoter() {
+    var _this21 = this;
+
+    var promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+    promoterPrefabPromise.then(function (prefab) {
+      var promoterNode = cc.instantiate(prefab);
+      var promoterCtrl = promoterNode.getComponent('PromoterCtrl');
+
+      _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);
+    });
+  },
+
+  /**
+   * 显示推广员左侧界面
+   * @param {string} typeStr 显示类型
+   */
+  showPromoterLeftView: function showPromoterLeftView(typeStr) {
+    var _this22 = this;
+
+    var promoterLeftViewPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERLEFTVIEW);
+    promoterLeftViewPrefabPromise.then(function (prefab) {
+      var promoterLeftViewNode = cc.instantiate(prefab);
+      var promoterLeftViewCtrl = promoterLeftViewNode.getComponent('PromoterLeftViewCtrl');
+      promoterLeftViewCtrl.showLeftViewByTypeStr(typeStr);
+
+      _this22.addToPointParent(promoterLeftViewNode, GlobalCfg.PREFAB_PARENT.PROMOTERLEFTVIEW);
+    });
+  },
+
+  /**
+   * 显示救济金界面
+   */
+  showRelief: function showRelief() {
+    var _this23 = this;
+
+    var reliefPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RELIEF);
+    reliefPrefabPromise.then(function (prefab) {
+      var reliefNode = cc.instantiate(prefab);
+      var reliefCtrl = reliefNode.getComponent('ReliefCtrl');
+
+      _this23.addToPointParent(reliefNode, GlobalCfg.PREFAB_PARENT.RELIEF);
+    });
+  },
+
+  /**
+   * 显示邮箱界面
+   */
+  showEmail: function showEmail() {
+    var _this24 = this;
+
+    var emailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.EMAIL);
+    emailPrefabPromise.then(function (prefab) {
+      var emailNode = cc.instantiate(prefab);
+      var emailCtrl = emailNode.getComponent('EmailCtrl');
+
+      _this24.addToPointParent(emailNode, GlobalCfg.PREFAB_PARENT.EMAIL);
+    });
+  },
+
+  /**
+   * 显示反馈邮件界面
+   */
+  showFeedbackMail: function showFeedbackMail(dataContent, emailCtrl) {
+    var _this25 = this;
+
+    var feedbackMailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FEEDBACKEMAIL);
+    feedbackMailPrefabPromise.then(function (prefab) {
+      var feedbackMailNode = cc.instantiate(prefab);
+      var feedbackMailCtrl = feedbackMailNode.getComponent('FeedbackMailCtrl');
+      feedbackMailCtrl.setState(dataContent, emailCtrl);
+
+      _this25.addToPointParent(feedbackMailNode, GlobalCfg.PREFAB_PARENT.FEEDBACKEMAIL);
+    });
+  },
+
+  /**
+   * 显示超级折扣界面
+   */
+  showSuperDiscount: function showSuperDiscount() {
+    var _this26 = this;
+
+    var isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.SUPERDISCOUNT, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);
+
+    if (isExist) {
+      return;
+    }
+
+    ;
+    var superDiscountPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SUPERDISCOUNT);
+    superDiscountPrefabPromise.then(function (prefab) {
+      var superDiscountNode = cc.instantiate(prefab);
+      var superDiscountCtrl = superDiscountNode.getComponent('SuperDiscountCtrl');
+      superDiscountCtrl.initByType();
+
+      _this26.addToPointParent(superDiscountNode, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);
+    });
+  },
+
+  /**
+   * 显示客服界面
+   */
+  showCustomerService: function showCustomerService() {
+    var _this27 = this;
+
+    var customerServicePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CUSTOMERSERVICE);
+    customerServicePrefabPromise.then(function (prefab) {
+      var customerServiceNode = cc.instantiate(prefab);
+      var customerServiceCtrl = customerServiceNode.getComponent('CustomerServiceCtrl');
+
+      _this27.addToPointParent(customerServiceNode, GlobalCfg.PREFAB_PARENT.CUSTOMERSERVICE);
+    });
+  },
+
+  /**
+   * 显示快速反馈界面
+   */
+  showFastFeedBack: function showFastFeedBack() {
+    var _this28 = this;
+
+    var fastFeedBackPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FASTFEEDBACK);
+    fastFeedBackPrefabPromise.then(function (prefab) {
+      var fastFeedBackNode = cc.instantiate(prefab);
+      var fastFeedBackCtrl = fastFeedBackNode.getComponent('FastFeedBackCtrl');
+
+      _this28.addToPointParent(fastFeedBackNode, GlobalCfg.PREFAB_PARENT.FASTFEEDBACK);
+    });
+  },
+
+  /**
+   * 显示个人中心界面
+   */
+  showPersonal: function showPersonal() {
+    var _this29 = this;
+
+    var personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
+    personalPrefabPromise.then(function (prefab) {
+      var personalNode = cc.instantiate(prefab);
+      var personalCtrl = personalNode.getComponent('PersonalCtrl');
+
+      _this29.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);
+    });
+  },
+
+  /**
+   * 显示个人中心修改昵称界面
+   */
+  showChangeName: function showChangeName() {
+    var _this30 = this;
+
+    var changeNamePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHANGENAME);
+    changeNamePrefabPromise.then(function (prefab) {
+      var changeNameNode = cc.instantiate(prefab);
+      var changeNameCtrl = changeNameNode.getComponent('ChangeNameCtrl');
+
+      _this30.addToPointParent(changeNameNode, GlobalCfg.PREFAB_PARENT.CHANGENAME);
+    });
+  },
+
+  /**
+   * 显示个人中心修改头像界面
+   */
+  showChangeHead: function showChangeHead() {
+    var _this31 = this;
+
+    var changeHeadPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHANGEHEAD);
+    changeHeadPrefabPromise.then(function (prefab) {
+      var changeHeadNode = cc.instantiate(prefab);
+      var changeHeadCtrl = changeHeadNode.getComponent('ChangeHeadCtrl');
+
+      _this31.addToPointParent(changeHeadNode, GlobalCfg.PREFAB_PARENT.CHANGEHEAD);
+    });
+  },
+
+  /**
+   * 显示奖励转移界面
+   */
+  showBonusTransfer: function showBonusTransfer() {
+    var _this32 = this;
+
+    var bonusTransferPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BONUSTRANSFER);
+    bonusTransferPrefabPromise.then(function (prefab) {
+      var bonusTransferNode = cc.instantiate(prefab);
+      var bonusTransferCtrl = bonusTransferNode.getComponent('BonusTransferCtrl');
+
+      _this32.addToPointParent(bonusTransferNode, GlobalCfg.PREFAB_PARENT.BONUSTRANSFER);
+    });
+  },
+
+  /**
+   * 预加载选择房间界面
+   */
+  proloadSelectRoom: function proloadSelectRoom() {
+    var _this33 = this;
+
+    return new Promise(function (resolve, reject) {
+      var selectRoomPrefabPromise = _this33.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SELECTROOM);
+
+      selectRoomPrefabPromise.then(function (prefab) {
+        _this33._selectRoomNode = cc.instantiate(prefab);
+        _this33._selectRoomNode.active = false;
+
+        _this33.addToPointParent(_this33._selectRoomNode, GlobalCfg.PREFAB_PARENT.SELECTROOM);
+
+        resolve();
+      })["catch"](function () {
+        reject();
+      });
+    });
+  },
+
+  /**
+   * 显示选择房间界面
+   */
+  showSelectRoom: function showSelectRoom() {
+    if (this._selectRoomNode) {
+      CommonFun.getInstance().updateSidebarData(false);
+
+      var selectRoomCtrl = this._selectRoomNode.getComponent('selectRoomCtrl');
+
+      this._selectRoomNode.active = true;
+
+      if (selectRoomCtrl) {
+        selectRoomCtrl && selectRoomCtrl.showPointGameRoom();
+      } else {
+        LoggerUtil.getInstance().log("3333333333 selectRoomCtrl is null");
+      }
+    }
+
+    ;
+  },
+
+  /**
+   * 隐藏选择房间界面
+   */
+  hideSelectRoom: function hideSelectRoom() {
+    if (this._selectRoomNode) {
+      CommonFun.getInstance().updateSidebarData(true);
+      this._selectRoomNode.active = false;
+    }
+
+    ;
+  },
+
+  /**
+   * 显示每日奖励卡片
+   */
+  showDailyBonusCard: function showDailyBonusCard() {
+    var _this34 = this;
+
+    var dailyBonusCardPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DAILYBONUSCARD);
+    dailyBonusCardPrefabPromise.then(function (prefab) {
+      var dailyBonusCardNode = cc.instantiate(prefab);
+      var dailyBonusCardCtrl = dailyBonusCardNode.getComponent('DailyBonusCardCtrl');
+
+      _this34.addToPointParent(dailyBonusCardNode, GlobalCfg.PREFAB_PARENT.DAILYBONUSCARD);
+    });
+  },
+
+  /**
+   * 显示新人礼品界面
+   */
+  showFirstGiftDiamond: function showFirstGiftDiamond() {
+    var _this35 = this;
+
+    var firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
+    firstGiftDiamondPrefabPromise.then(function (prefab) {
+      var firstGiftDiamondNode = cc.instantiate(prefab);
+      var firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');
+
+      _this35.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND);
+    });
+  },
+
+  /**
+   * 显示规则界面
+   * @param {string} typeStr 
+   */
+  showRule: function showRule(typeStr) {
+    var _this36 = this;
+
+    var rulePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RULE);
+    rulePrefabPromise.then(function (prefab) {
+      var ruleNode = cc.instantiate(prefab);
+      var ruleCtrl = ruleNode.getComponent('RuleCtrl');
+      ruleCtrl.SmallGameRule(typeStr);
+
+      _this36.addToPointParent(ruleNode, GlobalCfg.PREFAB_PARENT.RULE);
+    });
+  },
+
+  /**
+   * 显示隐私政策/隐私政策界面
+   * @param {number} urlType 1: 用户协议 2: 隐私政策
+   */
+  showPrivacyPolicy: function showPrivacyPolicy(urlType) {
+    var _this37 = this;
+
+    var privacyPolicyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PRIVACYPOLICY);
+    privacyPolicyPrefabPromise.then(function (prefab) {
+      var privacyPolicyNode = cc.instantiate(prefab);
+      var privacyPolicyCtrl = privacyPolicyNode.getComponent('PrivacyPolicyCtrl');
+      privacyPolicyCtrl.setUrlType(urlType);
+
+      _this37.addToPointParent(privacyPolicyNode, GlobalCfg.PREFAB_PARENT.PRIVACYPOLICY);
+    });
+  },
+  _showShop: function _showShop(from) {
+    var _this38 = this;
+
+    this.getPayChannel(function (payChannels) {
+      var shopPrefabPromise = _this38.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
+
+      shopPrefabPromise.then(function (prefab) {
+        CommonFun.getInstance().addVerticalAcc();
+        var shopNode = cc.instantiate(prefab);
+        var shopCtrl = shopNode.getComponent("ShopCtrl");
+        shopCtrl.setPayChannel(payChannels);
+        shopCtrl.setJumpFrom(from);
+
+        _this38.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP);
+      });
+    });
+  },
+  _showShopNewTip: function _showShopNewTip(changed, coin, bonus) {
+    var _this39 = this;
+
+    var shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
+    shopPrefabPromise.then(function (prefab) {
+      var shopNode = cc.instantiate(prefab);
+      var shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
+      shopCtrl.setStartCoin(changed, coin, bonus);
+
+      _this39.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP);
+    });
+  },
+
+  /**
+   * 显示充值说明界面
+   */
+  showShopInstructions: function showShopInstructions() {
+    var _this40 = this;
+
+    var shopInstructionsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPINSTRUCTIONS);
+    shopInstructionsPrefabPromise.then(function (prefab) {
+      var shopInstructionsNode = cc.instantiate(prefab);
+
+      _this40.addToPointParent(shopInstructionsNode, GlobalCfg.PREFAB_PARENT.SHOPINSTRUCTIONS);
+    });
+  },
+
+  /**
+   * 展示提现界面
+   * @param {Function} callback 
+   */
+  showWithDraw: function showWithDraw(callback) {
+    var _this41 = this;
+
+    var withdrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW);
+    withdrawPrefabPromise.then(function (prefab) {
+      CommonFun.getInstance().addVerticalAcc();
+      var withdrawNode = cc.instantiate(prefab);
+      callback && callback();
+
+      _this41.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW);
+    });
+  },
+
+  /**
+   * 展示提现界面回调的提示框
+   * @param {string} btnTipsType
+   * @param {string} content 
+   * @param {Function} callFun 
+   */
+  showWithDrawTips: function showWithDrawTips(btnTipsType, content, callFun) {
+    var _this42 = this;
+
+    var withdrawTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWTIPS);
+    withdrawTipsPrefabPromise.then(function (prefab) {
+      var withDrawTipsNode = cc.instantiate(prefab);
+      var withDrawTipsCtrl = withDrawTipsNode.getComponent("WithDrawTipsCtrl");
+      withDrawTipsCtrl.setWithDrawTipsData(btnTipsType, content, callFun);
+
+      _this42.addToPointParent(withDrawTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWTIPS);
+    });
+  },
+
+  /**
+   * 显示交易记录界面
+   */
+  showTransactionRecord: function showTransactionRecord() {
+    var _this43 = this;
+
+    var transactionRecordPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORD);
+    transactionRecordPrefabPromise.then(function (prefab) {
+      CommonFun.getInstance().addVerticalAcc();
+      var transactionRecordNode = cc.instantiate(prefab);
+
+      _this43.addToPointParent(transactionRecordNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORD);
+    });
+  },
+
+  /**
+   * 显示交易记录界的说明提示框
+   */
+  showTransactionRecordTips: function showTransactionRecordTips() {
+    var _this44 = this;
+
+    var transactionRecordTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDTIPS);
+    transactionRecordTipsPrefabPromise.then(function (prefab) {
+      var transactionRecordTipsNode = cc.instantiate(prefab);
+
+      _this44.addToPointParent(transactionRecordTipsNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDTIPS);
+    });
+  },
+
+  /**
+   * 显示交易记录界面的“help”提示框
+   */
+  showTransactionRecordHelp: function showTransactionRecordHelp(data) {
+    var _this45 = this;
+
+    var transactionRecordHelpPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDHELP);
+    transactionRecordHelpPrefabPromise.then(function (prefab) {
+      var transactionRecordHelpNode = cc.instantiate(prefab);
+      var transactionRecordHelpCtrl = transactionRecordHelpNode.getComponent('TransactionRecordHelpCtrl');
+      transactionRecordHelpCtrl.setTransactionRecordHelpData(data);
+
+      _this45.addToPointParent(transactionRecordHelpNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDHELP);
+    });
+  },
+
+  /**
+   * 显示提现诱导弹框
+   */
+  showPopUpWithDraw: function showPopUpWithDraw() {
+    var _this46 = this;
+
+    var popUpWithDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.POPUPWITHDRAW);
+    popUpWithDrawPrefabPromise.then(function (prefab) {
+      var popUpWithDrawNode = cc.instantiate(prefab);
+
+      _this46.addToPointParent(popUpWithDrawNode, GlobalCfg.PREFAB_PARENT.POPUPWITHDRAW);
+    });
+  },
+
+  /**
+   * 展示填写提现资料界面
+   */
+  showWithDrawPreData: function showWithDrawPreData() {
+    var _this47 = this;
+
+    this.showProgress();
+    var withdrawPreDataPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWPREDATA);
+    withdrawPreDataPrefabPromise.then(function (prefab) {
+      var withdrawalPreDataNode = cc.instantiate(prefab);
+      var data = GlobalCfg.USER_DATAS.transferAddress;
+      var withDrawPreDataCtrl = withdrawalPreDataNode.getComponent('WithDrawPreDataCtrl');
+      withDrawPreDataCtrl.setData(data);
+
+      _this47.addToPointParent(withdrawalPreDataNode, GlobalCfg.PREFAB_PARENT.WITHDRAWPREDATA);
+
+      _this47.hidProgress();
+    });
+  },
+
+  /**
+   * 展示提现错误弹窗提示
+   * @param {Object} data { }
+   */
+  showWithDrawError: function showWithDrawError(data) {
+    var _this48 = this;
+
+    var orderId = data.orderId;
+    var amount = Number(data.amount);
+    var createTime = Number(data.createTime);
+
+    var func = function func(time) {
+      var date = new Date(time);
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var day = date.getDate();
+      month = month < 10 ? "0" + month : month;
+      day = day < 10 ? "0" + day : day;
+      return year + "/" + month + "/" + day + " " + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    };
+
+    var time = func(createTime * 1000);
+    var msg = data.errMsg;
+    var withdrawPreDataPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWERRORTIPS);
+    withdrawPreDataPrefabPromise.then(function (prefab) {
+      var withDrawErrorTipsNode = cc.instantiate(prefab);
+      var WithDrawErrorTipsCtrl = withDrawErrorTipsNode.getComponent("WithDrawErrorTipsCtrl");
+      WithDrawErrorTipsCtrl.setErrData(orderId, amount, time, msg);
+
+      _this48.addToPointParent(withDrawErrorTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWERRORTIPS);
+    });
+  },
+
+  /**
+   * 展示提现分享界面
+   */
+  showWithDrawShare: function showWithDrawShare() {
+    var _this49 = this;
+
+    var withdrawSharePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWSHARE);
+    withdrawSharePrefabPromise.then(function (prefab) {
+      var withdrawShareNode = cc.instantiate(prefab);
+
+      _this49.addToPointParent(withdrawShareNode, GlobalCfg.PREFAB_PARENT.WITHDRAWSHARE);
+    });
+  },
+
+  /**
+   * 首充之后，清空金币弹窗提示
+   * @param {Boolean} bool 是否可以直接关闭
+   */
+  showAdvancedMode: function showAdvancedMode(bool) {
+    var _this50 = this;
+
+    var path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE;
+    var parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
+
+    if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+      path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V;
+      parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
+    }
+
+    var advancedModePrefabPromise = this.loadPrefabByPromise(path);
+    advancedModePrefabPromise.then(function (prefab) {
+      var advancedModeNode = cc.instantiate(prefab);
+      var advancedModeCtrl = advancedModeNode.getComponent("AdvancedModeCtrl");
+
+      _this50.addToPointParent(advancedModeNode, parentNode);
+
+      advancedModeCtrl.show(bool);
+    });
+  },
+
+  /**
+   * 
+   */
+  showNewRechargeTip: function showNewRechargeTip() {
+    var _this51 = this;
+
+    var path = GlobalCfg.PREFAB_PATH.NEW_FIRSTRECHARGETIPS;
+    var parentNode = GlobalCfg.PREFAB_PARENT.FIRSTRECHARGETIPS;
+
+    if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+      var shopParentNode = CommonFun.getInstance().getLayerNode(GlobalCfg.PREFAB_PARENT.SHOP);
+
+      if (cc.isValid(shopParentNode.getChildByName("newshop"))) {
+        shopParentNode.getChildByName("newshop").destroy();
+      }
+
+      if (cc.isValid(shopParentNode.getChildByName("newWithdrawal"))) {
+        shopParentNode.getChildByName("newWithdrawal").destroy();
+      }
+    }
+
+    APPManager.setOrientation("H");
+    var firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+    firstRechargePrefabPromise.then(function (prefab) {
+      var firstRechargeTipsNode = cc.instantiate(prefab);
+
+      _this51.addToPointParent(firstRechargeTipsNode, parentNode);
+    });
+  },
+
+  /**
+   * 展示Go Betting活动
+   */
+  showGoBetting: function showGoBetting() {
+    var _this52 = this;
+
+    var goBettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_GOBETTING);
+    goBettingPrefabPromise.then(function (prefab) {
+      var goBettingNode = cc.instantiate(prefab);
+      var consumerActivities = goBettingNode.getComponent("ConsumerActivities");
+
+      _this52.addToPointParent(goBettingNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_GOBETTING);
+    });
+  },
+  showPddActivity: function showPddActivity() {
+    var _this53 = this;
+
+    var pddPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_PDD_FIRST);
+    pddPrefabPromise.then(function (prefab) {
+      var pddFirstNode = cc.instantiate(prefab);
+      var firstCtrl = pddFirstNode.getComponent("firstCtrl");
+
+      _this53.addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
+    });
+  },
+  // 服务器重启
+  showServerReload: function showServerReload(data) {
+    var title = data.title;
+    var content = data.content;
+    var kind = data.kind;
+    this.showMsgBox(content, "YES", null, false, false, title);
+  },
+
+  /**
+   * 游戏中显示破产充值
+   * @param {Number} curGameMinEnter 当前游戏最小准入
+   * @param {Number} curGameCurRoundBetNum 当前游戏当前局下注金额
+   * @param {Function} callback 回调函数
+   */
+  gameShowSecondRecharge: function gameShowSecondRecharge(curGameMinEnter, curGameCurRoundBetNum, callback) {
+    if (curGameCurRoundBetNum === void 0) {
+      curGameCurRoundBetNum = 0;
+    }
+
+    var BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
+
+    if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && curGameCurRoundBetNum > 0 && (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.lastRecharged * BrokeGift_ShowInGame_Rate)) {
+      this.showBankruptcy();
+
+      if (callback) {
+        callback();
+      }
+    }
+  },
+  updateToastLocalStorageByHours: function updateToastLocalStorageByHours(toastType, hours) {
+    /**
+     * 当前毫秒级的时间戳
+     */
+    var curTimeStamp = new Date().getTime();
+    var toastLocalStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage");
+
+    if (toastLocalStorage) {
+      try {
+        var toastLocalData = JSON.parse(toastLocalStorage);
+        var showTag = toastLocalData.showTag;
+
+        if (curTimeStamp > parseInt(showTag) + hours * 60 * 60 * 1000) {
+          toastLocalData.showTag = "" + curTimeStamp;
+          cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage", JSON.stringify(toastLocalData));
+        }
+
+        ;
+      } catch (error) {
+        LoggerUtil.getInstance().error(toastType + "\u672C\u5730\u7F13\u5B58\u7684\u6570\u636E\u5F02\u5E38\uFF1A", cc.sys.isNative ? JSON.stringify(error) : error);
+      }
+
+      ;
+    } else {
+      var _toastLocalData = {
+        showTag: curTimeStamp
+      };
+      cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage", JSON.stringify(_toastLocalData));
+    }
+
+    ;
+  },
+
+  /**
+   * 根据本地缓存判断是否需要显示弹框
+   * @param {*} toastType 弹框类型
+   * @param {*} hours 间隔几个小时
+   */
+  isNeedShowPointToastByHours: function isNeedShowPointToastByHours(toastType, hours) {
+    /**
+     * 当前毫秒级的时间戳
+     */
+    var curTimeStamp = new Date().getTime();
+    var toastLocalStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage");
+
+    if (toastLocalStorage) {
+      try {
+        var toastLocalData = JSON.parse(toastLocalStorage);
+        var showTag = toastLocalData.showTag;
+
+        if (curTimeStamp > parseInt(showTag) + hours * 60 * 60 * 1000) {
+          return true;
+        } else {
+          return false;
+        }
+
+        ;
+      } catch (error) {
+        LoggerUtil.getInstance().error(toastType + "\u672C\u5730\u7F13\u5B58\u7684\u6570\u636E\u5F02\u5E38\uFF1A", cc.sys.isNative ? JSON.stringify(error) : error);
+        return false;
+      }
+
+      ;
+    } else {
+      return true;
+    }
+
+    ;
+  },
+
+  /**
+   * 上报错误至 Telegram
+   * @param {String} info 
+   */
+  reportToTelegram: function reportToTelegram(info) {
+    var appInfo = {
+      UserId: GlobalCfg.USER_DATAS.userId,
+      Channel: GlobalCfg.CHANNEL_INFO,
+      PackageName: GlobalCfg.GOOGLE_ID,
+      AppVersion: GlobalCfg.ASSETS_VERSION
+    };
+    var url = "https://api.telegram.org/bot6678922305:AAEBmVbT_O-jkzCOpR-pCKWnabi6cV-U6TY/sendMessage";
+    var params = {
+      chat_id: "-4071072256",
+      text: "\u3010\u57FA\u672C\u4FE1\u606F\u3011:\n " + JSON.stringify(appInfo) + "\n\u3010\u5F02\u5E38\u4FE1\u606F\u3011:\n " + JSON.stringify(info)
+    };
+    this.httpPost(url, params, function (msg) {});
+  },
+
+  /**
+   * 显示我的VIP
+   */
+  showMyVip: function showMyVip() {
+    var _this54 = this;
+
+    var myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
+    myVipPrefabPromise.then(function (prefab) {
+      var myVipNode = cc.instantiate(prefab);
+
+      _this54.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.MYVIP);
+    });
+  },
+
+  /**
+   * 显示VIP幸运抽奖
+   */
+  showVipLuckyDraw: function showVipLuckyDraw() {
+    var _this55 = this;
+
+    var vipLuckyDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
+    vipLuckyDrawPrefabPromise.then(function (prefab) {
+      var vipLuckyDrawNode = cc.instantiate(prefab);
+
+      _this55.addToPointParent(vipLuckyDrawNode, GlobalCfg.PREFAB_PARENT.VIPLUCKYDRAW);
+    });
+  },
+
+  /**
+   * 显示VIP规则
+   */
+  showVipRules: function showVipRules(childViewType) {
+    var _this56 = this;
+
+    if (childViewType === void 0) {
+      childViewType = "vipRules";
+    }
+
+    var vipRulesPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULES);
+    vipRulesPrefabPromise.then(function (prefab) {
+      var vipRulesNode = cc.instantiate(prefab);
+      var scr = vipRulesNode.getComponent("VipRulesCtrl");
+      scr.setVipRulesChildViewType(childViewType);
+
+      _this56.addToPointParent(vipRulesNode, GlobalCfg.PREFAB_PARENT.VIPRULES);
+    });
+  },
+
+  /**
+   * 显示VIP奖励弹框
+   * @param {number} amount 
+   * @param {boolean} isBonus 
+   */
+  showVipRewardToast: function showVipRewardToast(amount, isBonus) {
+    var _this57 = this;
+
+    var vipRewardToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPREWARDTOAST);
+    vipRewardToastPrefabPromise.then(function (prefab) {
+      var vipRewardToastNode = cc.instantiate(prefab);
+      var vipRewardToastCtrl = vipRewardToastNode.getComponent("VipRewardToastCtrl");
+
+      _this57.addToPointParent(vipRewardToastNode, GlobalCfg.PREFAB_PARENT.VIPREWARDTOAST);
+
+      vipRewardToastCtrl.setVipRewardToastAmount(amount, isBonus);
+    });
+  },
+
+  /**
+   * 显示VIP充值弹框
+   */
+  showVipRechargeToast: function showVipRechargeToast() {
+    var _this58 = this;
+
+    var vipRechargeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRECHARGETOAST);
+    vipRechargeToastPrefabPromise.then(function (prefab) {
+      var vipRechargeToastNode = cc.instantiate(prefab);
+
+      _this58.addToPointParent(vipRechargeToastNode, GlobalCfg.PREFAB_PARENT.VIPRECHARGETOAST);
+    });
+  },
+
+  /**
+   * 显示VIP升级弹框
+   */
+  showVipUpgradeToast: function showVipUpgradeToast() {
+    var _this59 = this;
+
+    var vipUpgradeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPUPGRADETOAST);
+    vipUpgradeToastPrefabPromise.then(function (prefab) {
+      var vipUpgradeToastNode = cc.instantiate(prefab);
+
+      _this59.addToPointParent(vipUpgradeToastNode, GlobalCfg.PREFAB_PARENT.VIPUPGRADETOAST);
+    });
+  },
+
+  /**
+   * 显示VIP快充弹框
+   */
+  showVipForOnceToast: function showVipForOnceToast() {
+    var _this60 = this;
+
+    var vipForOnceToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
+    vipForOnceToastPrefabPromise.then(function (prefab) {
+      var vipForOnceToastNode = cc.instantiate(prefab);
+
+      _this60.addToPointParent(vipForOnceToastNode, GlobalCfg.PREFAB_PARENT.VIPFORONCETOAST);
+    });
+  },
+
+  /**
+   * 判断是否可以坐在VIP座位
+   * @param {number} level VIP等级
+   */
+  isCanSitVipSeatByLevel: function isCanSitVipSeatByLevel(level) {
+    for (var i = 0, len = GlobalCfg.USER_DATAS.vipLevels.length; i < len; i++) {
+      var element = GlobalCfg.USER_DATAS.vipLevels[i];
+
+      if (element.level == level) {
+        return element.vipSeats > 0;
+      }
+
+      ;
+    }
+
+    ;
+    return false;
+  },
+
+  /**
+   * 判断是否可以显示VIP字体
+   * @param {number} level VIP等级
+   */
+  isCanShowVIPFontByLevel: function isCanShowVIPFontByLevel(level) {
+    if (level >= 3 && level <= 10 && this.isOpenVipModule()) {
+      return true;
+    }
+
+    ;
+    return false;
+  },
+
+  /**
+   * vip模块是否开启
+   * @returns boolean 
+   */
+  isOpenVipModule: function isOpenVipModule() {
+    if (GlobalCfg.USER_DATAS.openModules.includes(21)) {
+      return true;
+    }
+
+    ;
+    return false;
+  },
+  encryptByRSA: function encryptByRSA(str) {
+    var JSEncrypt = require('./jsencrypt.min.js');
+    /**
+     * 公钥，勿动！！！
+     */
+
+
+    var publicKey = "-----BEGIN PUBLIC KEY-----\n        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAssbvb8tFKSeAruFDokaF\n        AkCxcPL+5zNeJUXQgciH8lhx31Gdhnmbka6MlyNcCypSGN7u0F+CLgZ+HU7mgSsr\n        jnXYG50d9jJlVU2ga0PoC7FGHIDzbTSEUhsCUP8KGZtP2gVm44je4aocU+FShgHv\n        FXpblrxxMXi/FKS3cPPsNLdfE03IOb1mUjyIrjRUIftC2vqfQjTZXvV5iSHH6VDi\n        JTIGsIftcu+MY4uz6n0UId8jrV292g6ca5gvc1InUgQvKTu+JrnOHeh3i/LqKkSC\n        QHBrEPng0WrrsbSB0SCENRHyFw0PctyRyGAOkfRzarTvIQpH5OxYx+zfIrgE0GJq\n        hwIDAQAB\n        -----END PUBLIC KEY-----";
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(publicKey);
+    var encryptStr = encrypt.encrypt(str);
+    return encryptStr;
+  },
+
+  /**
+   * 数组去重
+   * @param {Array} arr 
+   */
+  arrayDeduplication: function arrayDeduplication(arr) {
+    var map = new Map();
+    var newArr = [];
+    arr.forEach(function (item) {
+      if (!map.has(item)) {
+        map.set(item, true);
+        newArr.push(item);
+      }
+
+      ;
+    });
+    return newArr;
+  },
+
+  /**
+   * 加载bundle
+   * @param {string} bundleName 
+   * @param {function} succCallback
+   * @param {function} failCallback 
+   */
+  loadBundle: function loadBundle(bundleName, succCallback, failCallback) {
+    cc.assetManager.loadBundle("" + bundleName, function (err, bundle) {
+      if (!err) {
+        succCallback && succCallback(bundle);
+      } else {
+        failCallback && failCallback(err);
+      }
+
+      ;
+    });
+  },
+
+  /**
+   * 释放所有属于该Bundle的资源并移除该Bundle
+   * @param {string} bundleName bundle名称
+   */
+  releaseBundle: function releaseBundle(bundleName) {
+    var bundle = cc.assetManager.getBundle("" + bundleName);
+
+    if (bundle) {
+      bundle.releaseAll();
+      cc.assetManager.removeBundle(bundle);
+    }
+  },
+
+  /**
+   * 指定免费玩家几天后无法进入游戏
+   * @param {number} days 天数，默认7天
+   * @return {boolean} true:可以进入游戏，false:不可以进入游戏
+   */
+  limitFreePlayerEnterGameByDays: function limitFreePlayerEnterGameByDays(days) {
+    if (days === void 0) {
+      days = 7;
+    }
+
+    var createTime = GlobalCfg.USER_DATAS.registerTime * 1000;
+
+    if (createTime == 0 || GlobalCfg.USER_DATAS.recharged > 0) {
+      return true;
+    }
+
+    var now = new Date();
+    var nowTime = now.getTime();
+    var duringTime = nowTime - createTime;
+    LoggerUtil.getInstance().log("limitFreePlayerEnterGameByDays", createTime, duringTime);
+
+    if (duringTime > days * 24 * 60 * 60 * 1000) {
+      return false;
+    } else {
+      return true;
+    }
+  },
+
+  /**
+   * 获取设备ID
+   * @returns string 设备id
+   */
+  getDeviceId: function getDeviceId() {
+    var device = APPManager.getUUID();
+
+    if (!device) {
+      device = cc.sys.localStorage.getItem("LOGIN_DEVICE");
+
+      if (!device) {
+        device = CommonFun.getInstance().generateUUID();
+        cc.sys.localStorage.setItem("LOGIN_DEVICE", device);
+      }
+
+      ;
+    }
+
+    ;
+    return device;
+  },
+
+  /**
+   * 事件埋点上报
+   * @param {string} eventName 事件名称
+   * @param {number} duration 事件持续时间，单位毫秒
+   */
+  behaviorReporting: function behaviorReporting(eventName, duration) {
+    if (duration === void 0) {
+      duration = 0;
+    }
+
+    if (!eventName) {
+      return;
+    }
+
+    ;
+
+    if (!cc.sys.isNative) {
+      return;
+    }
+
+    ;
+    var url = "";
+    var device = CommonFun.getInstance().getDeviceId();
+    var serverType = CommonFun.getInstance().getServerType();
+
+    switch (serverType) {
+      case 0:
+        url = "https://svrtest.tpgame.in/login/uievent";
+        break;
+
+      case 1:
+        url = "https://svr.tpgame.in/login/uievent";
+        break;
+
+      case 2:
+        url = "https://svr2.tpgame.in/login/uievent";
+        break;
+
+      case 3:
+        url = "https://svr.3tpattiyi.in/login/uievent";
+        break;
+
+      case 6:
+        url = "https://svr.teengatti.in/login/uievent";
+        break;
+
+      default:
+        url = "https://svrtest.tpgame.in/login/uievent";
+        break;
+    }
+
+    ;
+    var httpParam = {
+      device: "" + device,
+      uid: "" + (GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""),
+      triggerTime: cc.sys.now(),
+      duration: duration,
+      event: "" + eventName,
+      sign: CommonFun.getInstance().encryptByRSA(device)
+    };
+    CommonFun.getInstance().httpPost(url, httpParam, function (json) {}, function (json) {});
+  },
+
+  /**
+   * 获取服务器类型. 0: 测试服，1: 1服，2: 2服， 3:3服，6:J服
+   * @returns {number}
+   */
+  getServerType: function getServerType() {
+    var type = 0;
+
+    if (GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
+      type = 0;
+    } else if (GlobalCfg.server_id == "1" || GlobalCfg.server_id == "11") {
+      type = 1;
+    } else if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "4" || GlobalCfg.server_id == "22") {
+      type = 2;
+    } else if (GlobalCfg.server_id == "3") {
+      type = 3;
+    } else if (GlobalCfg.server_id == "6") {
+      type = 6;
+    }
+
+    ;
+    return type;
+  },
+
+  /**
+   * 直接通过商品ID跳转H5充值
+   * @param {Number} commodityId 商品ID
+   * @param {Function} callback 
+   */
+  rechargeByCommodityId: function rechargeByCommodityId(commodityId, from, callback) {
+    var url = GlobalCfg.HTTP_SERVER + "/v1/payment/h5pay";
+    url += "?user_mobile=" + GlobalCfg.USER_DATAS.phone;
+    url += "&user_email=" + GlobalCfg.USER_DATAS.mail;
+    url += "&id=" + commodityId;
+    url += "&from=" + from;
+    url += "&pay_channel=" + GlobalCfg.PAY_CHANNEL;
+    CommonFun.getInstance().showProgress();
+    CommonFun.getInstance().httpGet(url, function (strInfo) {
+      CommonFun.getInstance().hidProgress();
+
+      if (strInfo && strInfo.result == 0) {
+        if (strInfo.data.pay_url && strInfo.data.pay_url.length > 0) {
+          cc.sys.openURL(strInfo.data.pay_url);
+          callback && callback();
+        } else {
+          CommonFun.getInstance().showTips("Payment link is empty!");
+          callback && callback();
+        }
+
+        ;
+      } else {
+        CommonFun.getInstance().showTips(strInfo.msg);
+      }
+
+      ;
+    }, null, GlobalCfg.USER_DATAS.BearerToken);
+  },
+
+  /**
+   * 获取商场角标
+   */
+  getPayChannel: function getPayChannel(callback) {
+    var url = GlobalCfg.HTTP_SERVER + "/v1/payment/GetPayChannel";
+    CommonFun.getInstance().showProgress();
+    CommonFun.getInstance().httpGet(url, function (strInfo) {
+      CommonFun.getInstance().hidProgress();
+
+      if (strInfo && strInfo.result == 0) {
+        callback && callback(strInfo.data.pay_channels);
+      } else {
+        CommonFun.getInstance().showTips(strInfo.msg);
+      }
+
+      ;
+    }, null, GlobalCfg.USER_DATAS.BearerToken);
+  },
+
+  /**
+   * 显示游戏开始遮罩
+   */
+  showGameStartMask: function showGameStartMask() {
+    var _this61 = this;
+
+    var gameStartMaskPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESTARTMASK);
+    gameStartMaskPrefabPromise.then(function (prefab) {
+      var gameStartMaskNode = cc.instantiate(prefab);
+
+      _this61.addToPointParent(gameStartMaskNode, GlobalCfg.PREFAB_PARENT.GAMESTARTMASK);
+    });
+  },
+
+  /**
+   * 播放文字滚动动画
+   */
+  startTextAnimation: function startTextAnimation(label, currentNumber, targetNumber, callback, duration) {
+    if (duration === void 0) {
+      duration = 1;
+    }
+
+    var difference = targetNumber - currentNumber;
+    var frames = Math.ceil(duration * 60);
+    var frameCounter = 0;
+
+    var updateValue = function updateValue() {
+      if (frameCounter <= frames) {
+        var newValue = Math.round(currentNumber + difference / frames * frameCounter);
+        label.string = newValue.toString();
+        frameCounter++;
+        requestAnimationFrame(updateValue);
+      } else {
+        callback && callback();
+      }
+    };
+
+    requestAnimationFrame(updateValue);
+  },
+
+  /**
+   * 显示游戏动画互动界面
+   * @param {Number} targetSeat 默认-1，表示群发
+   */
+  showGameGifInteraction: function showGameGifInteraction(targetSeat) {
+    var _this62 = this;
+
+    if (targetSeat === void 0) {
+      targetSeat = -1;
+    }
+
+    var gameGifInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTION);
+    gameGifInteractionPrefabPromise.then(function (prefab) {
+      var gameGifInteractionNode = cc.instantiate(prefab);
+      var gameGifInteractionCtrl = gameGifInteractionNode.getComponent('GameGifInteractionCtrl');
+      gameGifInteractionCtrl.setTargetSeat(targetSeat);
+
+      _this62.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
+    });
+  },
+
+  /**
+   * 
+   * @param {String} skeletonName 动画名称
+   * @param {cc.Node} senderNode 发送者的节点
+   * @param {[cc.Node]} targetNodeArr 接收者的节点
+   * @returns 
+   */
+  playGameGifInteraction: function playGameGifInteraction(skeletonName, senderNode, targetNodeArr) {
+    var _this63 = this;
+
+    if (!Array.isArray(targetNodeArr) || targetNodeArr.length === 0) {
+      return;
+    }
+
+    ;
+
+    if (cc.isValid(senderNode) == false) {
+      return;
+    }
+
+    ;
+    var targetNodeArrLen = targetNodeArr.length;
+
+    if (targetNodeArrLen > 0) {
+      var _loop = function _loop(i) {
+        var targetNode = targetNodeArr[i];
+
+        var gameGifInteractionSkePrefabPromise = _this63.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTIONSKE);
+
+        gameGifInteractionSkePrefabPromise.then(function (prefab) {
+          var gameGifInteractionSkeNode = cc.instantiate(prefab);
+
+          _this63.addToPointParent(gameGifInteractionSkeNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
+
+          var gameGifInteractionSkeCtrl = gameGifInteractionSkeNode.getComponent('GameGifInteractionSkeCtrl');
+
+          var parentNode = _this63.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
+
+          gameGifInteractionSkeCtrl.playGameGifSkeleton(skeletonName, senderNode, targetNode, parentNode);
+        });
+      };
+
+      for (var i = 0; i < targetNodeArrLen; i++) {
+        _loop(i);
+      }
+
+      ;
+    }
+
+    ;
+  },
+
+  /**
+   * 显示游戏文字/Face互动界面
+   * @param {Number} targetSeat 默认-1，表示群发
+   */
+  showGameWordInteraction: function showGameWordInteraction(targetSeat) {
+    var _this64 = this;
+
+    var gameWordInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTION);
+    gameWordInteractionPrefabPromise.then(function (prefab) {
+      var gameWordInteractionNode = cc.instantiate(prefab);
+      var gameWordInteractionCtrl = gameWordInteractionNode.getComponent('GameWordInteractionCtrl');
+      gameWordInteractionCtrl.setTargetSeat(targetSeat);
+
+      _this64.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
+    });
+  },
+
+  /**
+   * 显示文字/Face互动内容
+   * @param {number} type 
+   * @param {string} name 
+   * @param {cc.Node} targetNode 
+   * @param {cc.Vec2} offset 
+   * @returns 
+   */
+  playGameWordInteraction: function playGameWordInteraction(type, name, targetNode, offset) {
+    var _this65 = this;
+
+    if (cc.isValid(targetNode) == false) {
+      return;
+    }
+
+    ;
+    var gameWordInteractionShowrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTIONSHOW);
+    gameWordInteractionShowrefabPromise.then(function (prefab) {
+      var gameWordInteractionShowNode = cc.instantiate(prefab);
+      var gameWordInteractionShowCtrl = gameWordInteractionShowNode.getComponent('GameWordInteractionShowCtrl');
+
+      var parentNode = _this65.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+
+      gameWordInteractionShowCtrl.setGameWordInteraction(type, name, targetNode, offset, parentNode);
+
+      _this65.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+    });
+  },
+
+  /**
+   * 显示游戏中的设置界面
+   */
+  showGameSetting: function showGameSetting() {
+    var _this66 = this;
+
+    var gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
+    gameSettingPrefabPromise.then(function (prefab) {
+      var gameSettingNode = cc.instantiate(prefab);
+      var gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
+
+      _this66.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+    });
+  },
+
+  /**
+   * 显示游戏的菜单界面
+   * @param {boolean} isShowSwitchBtn 是否显示换桌按钮
+   */
+  showGameMenu: function showGameMenu(isShowSwitchBtn) {
+    var _this67 = this;
+
+    if (isShowSwitchBtn === void 0) {
+      isShowSwitchBtn = true;
+    }
+
+    var gameMenuPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEMENU);
+    gameMenuPrefabPromise.then(function (prefab) {
+      var gameSettingNode = cc.instantiate(prefab);
+      var gameMenuCtrl = gameSettingNode.getComponent('GameMenuCtrl');
+      gameMenuCtrl.setSwitchTableBtnActive(isShowSwitchBtn);
+
+      _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
+    });
+  },
+
+  /**
+   * 初始化竖屏次数
+   */
+  initVerticalAcc: function initVerticalAcc() {
+    this._verticalAcc = 0;
+
+    if (this._curOrientation == EnumOrientation.VERTICAL) {
+      this._curOrientation = EnumOrientation.HORIZONTAL;
+      APPManager.setOrientation('H');
+    }
+
+    ;
+  },
+
+  /**
+   * 累加竖屏次数，当累加次数大于0，则竖屏
+   */
+  addVerticalAcc: function addVerticalAcc() {
+    this._verticalAcc += 1;
+
+    if (this._verticalAcc > 0 && this._curOrientation == EnumOrientation.HORIZONTAL) {
+      this._curOrientation = EnumOrientation.VERTICAL;
+      APPManager.setOrientation('V');
+    }
+
+    ;
+  },
+
+  /**
+   * 减少竖屏次数，当累加次数等于0，则横屏
+   */
+  decVerticalAcc: function decVerticalAcc() {
+    this._verticalAcc -= 1;
+
+    if (this._verticalAcc <= 0 && this._curOrientation == EnumOrientation.VERTICAL) {
+      this._curOrientation = EnumOrientation.HORIZONTAL;
+      APPManager.setOrientation('H');
+    }
+
+    ;
+  },
+
+  /**
+   * 处理商品列表
+   * @param {number} couldWithdraw 
+   * @param {Array} commoditys 商品列表 
+   * @returns 处理后的商品列表
+   */
+  dealShopList: function dealShopList(couldWithdraw, commoditys) {
+    var btnListData = commoditys.sort(function (a, b) {
+      var value1 = a["amount"];
+      var value2 = b["amount"];
+      return value1 - value2;
+    });
+    /**
+     * 配置1: 无论诱导金额是多少，始终显示所有的充值额度（所有商品）
+     * 配置2：根据诱导金额显示商城支付最低充值额度（部分商品）
+     */
+
+    var shopModel = this.getAppConfigValueByKey('SHOP_MODEL', 1);
+
+    if (GlobalCfg.USER_DATAS.recharged > 0 || shopModel == 1) {
+      return btnListData;
+    }
+
+    var index = 0,
+        startIndex = 0;
+    var mixShowAmounts = [[10000, 20000], [30000, 20000], [50000, 30000], [150000, 50000]];
+    var length = mixShowAmounts.length,
+        limitShow = mixShowAmounts[0][1];
+
+    while (index < length - 1) {
+      if (couldWithdraw > mixShowAmounts[length - 1][0]) {
+        limitShow = 100000;
+
+        for (var i = 0, len = btnListData.length; i < len; i++) {
+          if (btnListData[i].amount == limitShow) {
+            startIndex = i;
+          }
+        }
+
+        break;
+      } else {
+        if (couldWithdraw > mixShowAmounts[index][0] && couldWithdraw <= mixShowAmounts[index + 1][0]) {
+          limitShow = mixShowAmounts[index + 1][1];
+
+          for (var _i = 0, _len = btnListData.length; _i < _len; _i++) {
+            if (btnListData[_i].amount == limitShow) {
+              startIndex = _i;
+            }
+          }
+
+          break;
+        }
+
+        index++;
+      }
+    }
+
+    var arr = btnListData.slice(startIndex, btnListData.length);
+    LoggerUtil.getInstance().log(">>>>>ShopList>>>>>>>>", arr);
+    return arr;
+  },
+
+  /**
+   * 根据key获取APP_CONFIG中的值
+   * @param {string} key 
+   * @param {any} defaultValue 
+   * @returns 
+   */
+  getAppConfigValueByKey: function getAppConfigValueByKey(key, defaultValue) {
+    for (var i = 0; i < GlobalCfg.APP_CONFIG_DATAS.length; i++) {
+      var element = GlobalCfg.APP_CONFIG_DATAS[i];
+
+      if (element.key == key) {
+        return element.value;
+      }
+    }
+
+    LoggerUtil.getInstance().warn("APP_CONFIG doesn`t have " + key);
+    return defaultValue;
+  },
+
+  /**
+   * 当日倒计时
+   * @returns {string}
+   */
+  getTodayCountdown: function getTodayCountdown() {
+    var padZero = function padZero(num) {
+      return num < 10 ? "0" + num : num;
+    }; // 获取当前时间
+
+
+    var now = new Date(); // 设置今天的结束时间为 23:59:59
+
+    var todayEnd = new Date();
+    todayEnd.setHours(23, 59, 59, 999); // 计算剩余时间（毫秒数）
+
+    var timeRemaining = todayEnd - now; // 计算时、分、秒
+
+    var hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+    var minutes = Math.floor(timeRemaining % (1000 * 60 * 60) / (1000 * 60));
+    var seconds = Math.floor(timeRemaining % (1000 * 60) / 1000); // 格式化输出
+
+    var formattedCountdown = padZero(hours) + ":" + padZero(minutes) + ":" + padZero(seconds);
+    return formattedCountdown;
+  },
+
+  /**
+   * 显示免费玩家百人类游戏赶场到免费TP弹框
+   * @param {Function} clickBtnPlayNowCallback 点击“Play Now”按钮的回调
+   */
+  showDiversionFreeTP: function showDiversionFreeTP(clickBtnPlayNowCallback) {
+    var _this68 = this;
+
+    if (GlobalCfg.IS_EXIST_DIVERSIONFREETP_VIEW) {
+      return;
+    }
+
+    ;
+    GlobalCfg.IS_EXIST_DIVERSIONFREETP_VIEW = true;
+    var diversionFreeTPPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DIVERSIONFREETP);
+    diversionFreeTPPrefabPromise.then(function (prefab) {
+      var diversionFreeTPNode = cc.instantiate(prefab);
+      var diversionFreeTPCtrl = diversionFreeTPNode.getComponent('DiversionFreeTPCtrl');
+      diversionFreeTPCtrl.setDiversionFreeTPBtnPlayNowCallback(clickBtnPlayNowCallback);
+
+      _this68.addToPointParent(diversionFreeTPNode, GlobalCfg.PREFAB_PARENT.DIVERSIONFREETP);
+    });
+  },
+
+  /**
+   * 是否是免费玩家被定向到免费TP
+   * @returns {boolean}
+   */
+  isFreePlayerDirectedToFreeTP: function isFreePlayerDirectedToFreeTP() {
+    if (this.getAppConfigValueByKey("FREE_PLAYER_DIRECTED_TO_FREE_TP", false) == true) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * 在游戏中显示提现提示弹窗
+   */
+  showWithdrawToastInGame: function showWithdrawToastInGame() {
+    console.log("isNeedShowWithdrawToastInGame: ", CommonFun.getInstance().isNeedShowWithdrawToastInGame());
+
+    if (this.isNeedShowWithdrawToastInGame() == false) {
+      return;
+    }
+
+    ;
+    var defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100); // 提现弹窗限制默认值
+
+    var func = function func(date) {
+      var _date = date * 1000;
+
+      var _curDate = new Date().getTime();
+
+      var _differ = _curDate - _date;
+
+      if (_differ < 24 * 60 * 60 * 1000) {
+        return Number(30 / 60).toFixed(1);
+      } else if (_differ < 3 * 24 * 60 * 60 * 1000) {
+        return Number(20 / 60).toFixed(1);
+      } else if (_differ < 5 * 24 * 60 * 60 * 1000) {
+        return Number(10 / 60).toFixed(1);
+      } else {
+        return Number(5 / 60).toFixed(1);
+      }
+
+      ;
+    };
+
+    var isNeedShowPointToastByHours = function isNeedShowPointToastByHours(toastType, hours) {
+      /**
+       * 当前毫秒级的时间戳
+       */
+      var curTimeStamp = new Date().getTime();
+      var toastLocalStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage");
+
+      if (toastLocalStorage) {
+        try {
+          var toastLocalData = JSON.parse(toastLocalStorage);
+          var showTag = toastLocalData.showTag;
+
+          if (curTimeStamp > parseInt(showTag) + hours * 60 * 60 * 1000) {
+            return true;
+          } else {
+            return false;
+          }
+
+          ;
+        } catch (error) {
+          LoggerUtil.getInstance().error(toastType + "\u672C\u5730\u7F13\u5B58\u7684\u6570\u636E\u5F02\u5E38\uFF1A", cc.sys.isNative ? JSON.stringify(error) : error);
+          return false;
+        }
+
+        ;
+      } else {
+        return true;
+      }
+
+      ;
+    };
+
+    var updateToastLocalStorageByHours = function updateToastLocalStorageByHours(toastType, hours) {
+      /**
+       * 当前毫秒级的时间戳
+       */
+      var curTimeStamp = new Date().getTime();
+      var toastLocalStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage");
+
+      if (toastLocalStorage) {
+        try {
+          var toastLocalData = JSON.parse(toastLocalStorage);
+          var showTag = toastLocalData.showTag;
+
+          if (curTimeStamp > parseInt(showTag) + hours * 60 * 60 * 1000) {
+            toastLocalData.showTag = "" + curTimeStamp;
+            cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage", JSON.stringify(toastLocalData));
+          }
+
+          ;
+        } catch (error) {
+          LoggerUtil.getInstance().error(toastType + "\u672C\u5730\u7F13\u5B58\u7684\u6570\u636E\u5F02\u5E38\uFF1A", cc.sys.isNative ? JSON.stringify(error) : error);
+        }
+
+        ;
+      } else {
+        var _toastLocalData2 = {
+          showTag: curTimeStamp
+        };
+        cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_" + toastType + "_LocalStorage", JSON.stringify(_toastLocalData2));
+      }
+
+      ;
+    };
+
+    var toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+    console.log("toastWithDrawFrequency1: ", GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5));
+    console.log("toastWithDrawFrequency2: ", GlobalCfg.USER_DATAS.userDiamond > defaultPopupWithdrawLimit * 100);
+    console.log("toastWithDrawFrequency3: ", isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency));
+
+    if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > defaultPopupWithdrawLimit * 100 && isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+      updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+      CommonFun.getInstance().showPopUpWithDraw();
+    }
+
+    ;
+  },
+
+  /**
+   * 是否显示提现提示弹窗关闭按钮
+   * @returns 
+   */
+  isShowWithdrawToastCloseBtn: function isShowWithdrawToastCloseBtn() {
+    if (this.getAppConfigValueByKey("SHOW_WITHDRAW_TOAST_CLOSE_BTN", false) == true) {
+      return true;
+    }
+
+    ;
+    return false;
+  },
+  isNeedShowWithdrawToastInGame: function isNeedShowWithdrawToastInGame() {
+    if (this.getAppConfigValueByKey("SHOW_WITHDRAW_TOAST_IN_GAME", false) == true) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * 是否需要签到弹窗的获取按钮改变
+   * @returns {boolean}
+   */
+  isNeedSignToastGetBtnChange: function isNeedSignToastGetBtnChange() {
+    if (this.getAppConfigValueByKey("SIGN_TOAST_GET_BTN_CHANGE", false) == true) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * 是否显示签到弹窗
+   * @returns {boolean}
+   */
+  isNeewShowSignToast: function isNeewShowSignToast() {
+    if (this.getAppConfigValueByKey("SHOW_SIGN_TOAST", false) == true) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * 显示签到弹窗
+   */
+  showSignToast: function showSignToast() {
+    var _this69 = this;
+
+    var signPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SIGN);
+    signPrefabPromise.then(function (prefab) {
+      var signNode = cc.instantiate(prefab);
+      var gameMenuCtrl = signNode.getComponent('SignCtrl');
+
+      _this69.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
+    });
+  },
+
+  /**
+   * 是否是进入过TP游戏
+   * @returns {boolean}
+   */
+  isEnteredTPGame: function isEnteredTPGame() {
+    var state = cc.sys.localStorage.getItem("ENTERED_TP_GAME_" + GlobalCfg.USER_DATAS.userId);
+
+    if (state == null) {
+      return false;
+    }
+
+    ;
+    return true;
+  },
+
+  /**
+   * 是否需要显示TP手指提示
+   * @returns {boolean}
+   */
+  isNeedShowTPFingerTip: function isNeedShowTPFingerTip() {
+    if (this.getAppConfigValueByKey("SHOW_TP_FINGER_TIP", false) == true) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * 显示破产弹窗
+   */
+  showBankruptcy: function showBankruptcy() {
+    var _this70 = this;
+
+    var isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+
+    if (isExist) {
+      return;
+    }
+
+    ;
+    var curScene = SceneManager.getInstance().curSceneType;
+    var bankruptcyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
+    bankruptcyPrefabPromise.then(function (prefab) {
+      var bankruptcyNode = cc.instantiate(prefab);
+
+      if (curScene == SceneManager.getInstance().sceneType.BENZ) {
+        bankruptcyNode.setScale(0.7);
+      }
+
+      var BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
+      BankruptcyGiftCtrl.init();
+
+      _this70.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+    });
+  }
+});
+
+CommonFun.getInstance = function () {
+  if (!CommonFun._instance) {
+    CommonFun._instance = new CommonFun();
+  }
+
+  return CommonFun._instance;
+};
+
+window.CommonFun = CommonFun;
+
+cc._RF.pop();

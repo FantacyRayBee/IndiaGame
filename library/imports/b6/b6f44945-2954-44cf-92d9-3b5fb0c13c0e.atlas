@@ -1,0 +1,34 @@
+
+feihuojian_heng.png
+size: 1408,1406
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img/cankao
+  rotate: false
+  xy: 2, 965
+  size: 641, 61
+  orig: 641, 61
+  offset: 0, 0
+  index: -1
+img/hengtiao
+  rotate: false
+  xy: 2, 1254
+  size: 1404, 150
+  orig: 1404, 150
+  offset: 0, 0
+  index: -1
+img/huojian
+  rotate: false
+  xy: 2, 1028
+  size: 759, 224
+  orig: 759, 224
+  offset: 0, 0
+  index: -1
+img/sudux
+  rotate: false
+  xy: 763, 1240
+  size: 226, 12
+  orig: 226, 12
+  offset: 0, 0
+  index: -1

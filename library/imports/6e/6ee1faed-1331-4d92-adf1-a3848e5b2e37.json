@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "myVip",
+    "texture": "c0eb126f-e342-4db1-afbe-742835077d8a",
+    "atlas": "",
+    "rect": [
+      73,
+      15,
+      256,
+      63
+    ],
+    "offset": [
+      0,
+      -2.5
+    ],
+    "originalSize": [
+      402,
+      88
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

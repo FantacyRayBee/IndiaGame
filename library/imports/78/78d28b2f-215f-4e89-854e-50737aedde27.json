@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "lianxian",
+    "texture": "e699a172-6133-4077-975a-8cf9a252be79",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      510,
+      512
+    ],
+    "offset": [
+      -1,
+      0
+    ],
+    "originalSize": [
+      516,
+      516
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

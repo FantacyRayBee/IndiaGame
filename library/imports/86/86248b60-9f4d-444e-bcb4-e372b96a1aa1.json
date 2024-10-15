@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "win_me_bg",
+    "texture": "8fb6b021-0120-4b98-898e-a0d118c6e067",
+    "atlas": "3828fab2-691a-4044-be46-d86ea7f50177",
+    "rect": [
+      0,
+      377,
+      140,
+      129
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      140,
+      129
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+syntax = "proto3";
+package gameservice;
+
+// response结果
+message Result {
+  uint32 result = 1;
+  string message = 2;
+}
+
+// 用户信息
+message UserInfo {
+  uint64 playerId = 1;    // 玩家房间索引Id
+  string displayName = 2;
+  string imgUrl = 3;      // 头像
+  string nickname = 4;    // 昵称
+  int64 diamond = 5;      // 金币
+  uint32 vipLevel = 6;
+}
+
+// 登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+  uint32 fromid = 3;  // 来源平台ID
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  Result result = 1;
+}
+
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情 2礼物
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}
+
+// 货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  uint64 playerId = 1;    // 玩家Id
+  int64 balance = 2;      // 剩余数量
+  int32 reason = 3;       // 原因 1:支付; 其他：未知
+}
+
+// 获取积分 gameservice.asktrial
+message AskTrialReq{
+  uint32 times = 1;     //倍数
+}
+message AskTrialAck {
+  Result result = 1;
+}
+
+// 心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}

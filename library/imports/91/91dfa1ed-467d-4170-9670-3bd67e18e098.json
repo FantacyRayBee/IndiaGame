@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bg_down_gai",
+    "texture": "c533deb4-31da-4bc6-ba0b-9fdc9583a667",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      750,
+      353
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      750,
+      353
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

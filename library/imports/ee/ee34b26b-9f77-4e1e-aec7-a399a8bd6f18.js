@@ -1,0 +1,89 @@
+"use strict";
+cc._RF.push(module, 'ee34bJrn3dOHq7Ho5movW8Y', 'zooServerMsgManager');
+// zooGame/Scripts/zooServerMsgManager.js
+
+"use strict";
+
+cc.Class({
+  "extends": cc.Component,
+  properties: {},
+  // LIFE-CYCLE CALLBACKS:
+  onLoad: function onLoad() {
+    this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4); // 是否开启支付模块
+  },
+  start: function start() {},
+  sendLoginMsg: function sendLoginMsg() {
+    GameServerManager.send("gameservice.login", "LoginReq", {
+      userid: GlobalCfg.USER_DATAS.userId,
+      token: GlobalCfg.USER_DATAS.token
+    });
+  },
+  // 刷新游戏场景
+  sendFreshSceneMsg: function sendFreshSceneMsg() {
+    GameServerManager.send("gameservice.loadwhole", "LoadWholeReq", {});
+  },
+  sendExitMsg: function sendExitMsg() {
+    if (GlobalCfg.ACT_SCENE_CTRL.curRoundBetData.length > 0) {
+      var str = '"Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?"';
+      CommonFun.getInstance().showMsgBox(str, "YES_NO", function () {
+        GameServerManager.send("gameservice.exit", "ExitReq", {});
+      }, false);
+    } else {
+      GameServerManager.send("gameservice.exit", "ExitReq", {});
+    }
+  },
+
+  /**
+   * 获取玩家列表
+   * @param {Number} page 页数，0 开始
+   * @param {Number} rows 
+   */
+  sendGetPlayerListMsg: function sendGetPlayerListMsg(_page, _rows) {
+    GameServerManager.send("gameservice.playerlist", "PlayerListReq", {
+      page: _page,
+      rows: _rows
+    });
+  },
+
+  /**
+   * 下注
+   * @param {Array<{ani,amount}>} chips 
+   */
+  sendBetMsg: function sendBetMsg(chips) {
+    var _this = this;
+
+    if (GlobalCfg.ACT_SCENE_CTRL.gameState == 0) {
+      var allBet = 0;
+
+      for (var i = 0; i < chips.length; i++) {
+        var chip = chips[i];
+        var amount = chip.amount;
+        allBet += amount;
+      }
+
+      if (allBet > GlobalCfg.USER_DATAS.userDiamond) {
+        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+          if (_this.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      } else {
+        GameServerManager.send("gameservice.bet", "BetReq", {
+          chip: chips
+        });
+      }
+    } else {
+      // 1 转动、结算
+      CommonFun.getInstance().showTips('non betting stage');
+    }
+  },
+  // vip入座
+  sendJoinVip: function sendJoinVip(seatId) {
+    GameServerManager.send("gameservice.joinvip", "JoinVipReq", {
+      pos: seatId
+    });
+  }
+});
+
+cc._RF.pop();

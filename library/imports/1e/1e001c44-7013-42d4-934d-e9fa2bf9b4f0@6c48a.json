@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "sandglass",
+    "texture": "1e001c44-7013-42d4-934d-e9fa2bf9b4f0",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      57,
+      64
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      57,
+      64
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

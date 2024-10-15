@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betOrange_0",
+    "texture": "6834f08d-f445-4e07-9c4f-38b06cea5912",
+    "atlas": "",
+    "rect": [
+      6,
+      5,
+      97,
+      74
+    ],
+    "offset": [
+      -9.5,
+      22
+    ],
+    "originalSize": [
+      128,
+      128
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

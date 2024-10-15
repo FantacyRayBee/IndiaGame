@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bonus_card_ico_sale",
+    "texture": "59424dba-0fc5-45ca-866b-e43b998a9fc7",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      62,
+      69
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      62,
+      69
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

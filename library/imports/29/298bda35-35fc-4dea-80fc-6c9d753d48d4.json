@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hd_cangyingpai01",
+    "texture": "8990e451-268b-4650-b850-f59bbb66a08a",
+    "atlas": "",
+    "rect": [
+      2,
+      7,
+      506,
+      497
+    ],
+    "offset": [
+      -1,
+      0.5
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

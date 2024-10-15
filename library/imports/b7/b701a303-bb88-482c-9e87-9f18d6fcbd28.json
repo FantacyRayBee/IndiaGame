@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "yuananniu_zhuanquan",
+    "texture": "dd816f18-8ee0-40bd-bb68-bc37387f385a",
+    "atlas": "",
+    "rect": [
+      55,
+      27,
+      244,
+      245
+    ],
+    "offset": [
+      10,
+      0
+    ],
+    "originalSize": [
+      334,
+      299
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

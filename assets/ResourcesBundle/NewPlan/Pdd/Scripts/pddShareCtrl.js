@@ -1,0 +1,36 @@
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        
+    },
+
+    // onLoad () {},
+
+    start () {
+
+    },
+
+    init(){
+        this.btnShare = this.node.getChildByName("btn_share").getComponent(cc.Button);
+        this.btn_bg = this.node.getChildByName("btn_bg").getComponent(cc.Button);
+        this.btnShare.node.on('click', this.btnClick, this);
+        this.btn_bg.node.on('click', this.btnClick, this);
+    },
+
+    btnClick: function (Button) {
+        let btnName = Button.node.name;
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        if (btnName == "btn_share") {
+            this.share();
+        }else if(btnName == "btn_bg"){
+            this.node.destroy();
+        }
+    },
+
+    share(){
+        let shareUrl = `${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+        APPManager.Share(shareUrl);
+    },
+    // update (dt) {},
+});

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_newOra_big",
+    "texture": "3cc1e1b0-fefe-4208-a366-c47df1d76d0b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      174,
+      83
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      174,
+      83
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+"use strict";
+cc._RF.push(module, '9d2d8X0hNRL+InYndyGG15x', 'BankruptcyGiftCtrl');
+// ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGiftCtrl.js
+
+"use strict";
+
+cc.Class({
+  "extends": cc.Component,
+  properties: {
+    btnClose: {
+      "default": null,
+      type: cc.Button
+    },
+    item1: {
+      "default": null,
+      type: cc.Node
+    },
+    item2: {
+      "default": null,
+      type: cc.Node
+    }
+  },
+  // onLoad () {},
+  start: function start() {
+    var _this = this;
+
+    this.btnClose.node.on('click', function () {
+      _this.node.destroy();
+    });
+  },
+  update: function update(dt) {},
+  onDestroy: function onDestroy() {
+    CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
+  },
+
+  /**
+   * 获取当前低商品 Index 通过用户总充值金额
+   * @param {Array<PaymentProduct>} arr 
+   * @param {Number} allRecharged 
+   */
+  getLowerOptionIndexByAllRecharge: function getLowerOptionIndexByAllRecharge(arr, allRecharged) {
+    var index = -1;
+    var all_recharged = allRecharged / 100;
+    var putAmount = 300;
+
+    if (all_recharged <= 5000) {
+      putAmount = 300;
+    } else if (all_recharged <= 10000) {
+      putAmount = 500;
+    } else if (all_recharged <= 20000) {
+      putAmount = 1000;
+    } else {
+      putAmount = 2000;
+    }
+
+    for (var i = 0; i < arr.length; i++) {
+      var element = arr[i];
+
+      if (element && element.amount == putAmount * 100) {
+        index = i;
+        break;
+      }
+    }
+
+    return index;
+  },
+
+  /**
+   * 获取当前低商品 Index 通过用户最后一次充值金额
+   * @param {*} arr 
+   * @param {*} lastRecharged 
+   * @returns 
+   */
+  getLowerOptionIndexByLastRecharge: function getLowerOptionIndexByLastRecharge(arr, lastRecharged) {
+    var index = -1;
+
+    for (var i = 0; i < arr.length; i++) {
+      var element = arr[i];
+
+      if (element && element.amount > lastRecharged) {
+        index = i;
+        break;
+      }
+
+      if (i == arr.length - 1) {
+        index = arr.length - 1;
+      }
+    }
+
+    return index;
+  },
+
+  /**
+   * 
+   * @param {Array<PaymentProduct>} options 
+   * message PaymentProduct {
+          int32 id = 1;       // 商品ID(支付接口用)
+          int32 amount = 2;   // 金额
+          int32 add = 3;      // 额外赠送-dep
+          int32 bonus = 4;    // 额外赠送-bonus
+          bool plot = 5;      // 暂无意义，默认false
+      }
+   */
+  init: function init() {
+    GlobalCfg.USER_DATAS.discoList = GlobalCfg.USER_DATAS.discoList.sort(function (a, b) {
+      return a.amount - b.amount;
+    });
+    var options = [].concat(GlobalCfg.USER_DATAS.discoList);
+    var curIndex = this.getLowerOptionIndexByLastRecharge(options, GlobalCfg.USER_DATAS.lastRecharged);
+    var curIndex2 = this.getLowerOptionIndexByAllRecharge(options, GlobalCfg.USER_DATAS.recharged);
+    curIndex = curIndex2 > curIndex ? curIndex2 : curIndex;
+
+    if (curIndex + 2 >= options.length) {
+      curIndex2 = options.length - 1;
+    } else {
+      curIndex2 = curIndex + 2;
+    }
+
+    if (curIndex == options.length - 1) {
+      curIndex -= 1;
+    }
+
+    var option_1 = options[curIndex];
+    var option_2 = options[curIndex2];
+    this.initItem(option_1, this.item1);
+    this.initItem(option_2, this.item2);
+  },
+  initItem: function initItem(data, node) {
+    var _this2 = this;
+
+    if (!data) {
+      LoggerUtil.getInstance().error('BankruptcyGiftCtrl.initItem Data error');
+      this.node.destroy();
+      return;
+    }
+
+    var id = data.id;
+    var cash = data.amount;
+    var extraCash = data.add;
+    var bonus = data.bonus;
+    var rate = Math.round((extraCash + bonus) * 100 / cash);
+    var labelRate = node.getChildByName('LabelRate').getComponent(cc.Label);
+    var labelCash = node.getChildByName('LabelCash').getComponent(cc.Label);
+    var labelExtraCash = node.getChildByName('LabelExtraCash').getComponent(cc.Label);
+    var labelBonus = node.getChildByName('LabelBonus').getComponent(cc.Label);
+    var labelTotalGet = node.getChildByName('LabelTotalGet').getComponent(cc.Label);
+    var button = node.getChildByName('Button').getComponent(cc.Button);
+    var buttonLabelNum = button.node.getChildByName('LabelNum').getComponent(cc.Label);
+    labelRate.string = rate + '%';
+    labelCash.string = Math.round(cash / 100);
+    labelExtraCash.string = Math.round(extraCash / 100);
+    labelBonus.string = Math.round(bonus / 100);
+    labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
+    buttonLabelNum.string = Math.round(cash / 100);
+    button.node.on('click', function () {
+      CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, function () {
+        button.node.off('click');
+
+        _this2.node.destroy();
+      });
+    });
+  }
+});
+
+cc._RF.pop();

@@ -1,0 +1,32 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "newZjhLobby.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "bg_menu": {
+      "__uuid__": "d7e31c0a-06ec-4d09-97f3-ee25e48b2cc7"
+    },
+    "btn_cd": {
+      "__uuid__": "a70492b4-c76b-4ccf-aa45-a324f9fea7f5"
+    },
+    "btn_ck": {
+      "__uuid__": "bb67b0ff-700a-437d-9e3d-1eee83698c32"
+    },
+    "btn_cz": {
+      "__uuid__": "c0c6ec8e-78dc-43d7-bc12-0b1688937957"
+    },
+    "btn_fh": {
+      "__uuid__": "94138cdb-8418-4a34-95fd-8687f7874850"
+    },
+    "btn_hz": {
+      "__uuid__": "aed569c2-9049-40d4-8dff-c6ccf21faa6e"
+    },
+    "btn_lt": {
+      "__uuid__": "ac7b6c4f-94db-4266-8c7c-55f5a9c8f35f"
+    },
+    "btn_wf": {
+      "__uuid__": "e77d6fb8-d8d6-4642-b58b-b86f6b7636c8"
+    }
+  }
+}

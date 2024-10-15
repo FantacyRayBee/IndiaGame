@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gatesofolympus_fall_coin",
+    "texture": "80504043-f17d-4ccc-af16-7e7658331952",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      332,
+      60
+    ],
+    "offset": [
+      -90,
+      2
+    ],
+    "originalSize": [
+      512,
+      64
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

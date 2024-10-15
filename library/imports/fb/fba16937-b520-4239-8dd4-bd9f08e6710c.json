@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "sanyecao",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nsanyecao.png\nsize: 404,502\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 2, 2\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 251, 72\n  size: 151, 174\n  orig: 166, 188\n  offset: 7, 7\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 248\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 255, 333\n  size: 144, 167\n  orig: 150, 172\n  offset: 3, 2\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "01f321d4-a9f6-418d-95c7-803ef2bfd419"
+    }
+  ],
+  "textureNames": [
+    "sanyecao.png"
+  ],
+  "scale": 1
+}

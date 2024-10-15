@@ -1,0 +1,52 @@
+{
+  "start-scene": "eeef25ac-93ef-4201-8e43-ea568e9277d1",
+  "last-module-event-record-time": 1728378260856,
+  "group-list": [
+    "default"
+  ],
+  "collision-matrix": [
+    [
+      true
+    ]
+  ],
+  "excluded-modules": [
+    "Collider",
+    "Geom Utils",
+    "Intersection",
+    "Mesh",
+    "MotionStreak",
+    "Physics",
+    "ParticleSystem",
+    "StudioComponent",
+    "TiledMap",
+    "3D",
+    "3D Primitive",
+    "3D Physics/cannon.js",
+    "3D Physics/Builtin",
+    "3D Particle"
+  ],
+  "preview-port": 7456,
+  "design-resolution-width": 960,
+  "design-resolution-height": 640,
+  "fit-width": false,
+  "fit-height": true,
+  "use-project-simulator-setting": false,
+  "simulator-orientation": false,
+  "use-customize-simulator": true,
+  "simulator-resolution": {
+    "width": 960,
+    "height": 640
+  },
+  "clear-simulator-cache": true,
+  "facebook": {
+    "enable": false,
+    "appID": "",
+    "live": {
+      "enable": false
+    },
+    "audience": {
+      "enable": false
+    }
+  },
+  "assets-sort-type": "name"
+}

@@ -1,0 +1,146 @@
+
+hd_cangyingpai01.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 366, 308
+  size: 86, 69
+  orig: 86, 69
+  offset: 0, 0
+  index: -1
+cheek1
+  rotate: false
+  xy: 244, 61
+  size: 74, 85
+  orig: 74, 85
+  offset: 0, 0
+  index: -1
+cheek2
+  rotate: true
+  xy: 366, 150
+  size: 71, 63
+  orig: 71, 63
+  offset: 0, 0
+  index: -1
+cheek3
+  rotate: false
+  xy: 366, 223
+  size: 65, 83
+  orig: 65, 83
+  offset: 0, 0
+  index: -1
+ear
+  rotate: true
+  xy: 135, 8
+  size: 46, 55
+  orig: 46, 55
+  offset: 0, 0
+  index: -1
+eye1
+  rotate: false
+  xy: 494, 361
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+eye2
+  rotate: false
+  xy: 55, 3
+  size: 78, 51
+  orig: 78, 51
+  offset: 0, 0
+  index: -1
+eye3
+  rotate: false
+  xy: 433, 217
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+eyeball1
+  rotate: true
+  xy: 463, 273
+  size: 49, 29
+  orig: 49, 29
+  offset: 0, 0
+  index: -1
+eyeball2
+  rotate: true
+  xy: 2, 2
+  size: 52, 51
+  orig: 52, 51
+  offset: 0, 0
+  index: -1
+eyeball3
+  rotate: false
+  xy: 192, 13
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+fx1
+  rotate: false
+  xy: 2, 330
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+fx2
+  rotate: false
+  xy: 2, 148
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+fx3
+  rotate: false
+  xy: 184, 330
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+fx4
+  rotate: false
+  xy: 184, 148
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 366, 379
+  size: 131, 131
+  orig: 131, 131
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 433, 256
+  size: 50, 28
+  orig: 50, 28
+  offset: 0, 0
+  index: -1
+mouth2
+  rotate: false
+  xy: 454, 324
+  size: 38, 53
+  orig: 38, 53
+  offset: 0, 0
+  index: -1
+mouth3
+  rotate: false
+  xy: 320, 83
+  size: 38, 63
+  orig: 38, 63
+  offset: 0, 0
+  index: -1
+pai
+  rotate: true
+  xy: 2, 56
+  size: 90, 240
+  orig: 90, 240
+  offset: 0, 0
+  index: -1

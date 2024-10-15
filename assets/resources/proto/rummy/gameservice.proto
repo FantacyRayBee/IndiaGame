@@ -1,0 +1,404 @@
+syntax = "proto3";
+package gameservice;
+
+// 虚拟的virtual
+message Virtual{
+}
+
+//返回结果
+message ResponseBase{
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+message UserInfo{
+  uint64  playerId = 1;
+  string  displayName = 2;
+  string  imgUrl = 3;
+  string  nickname = 4;
+  uint32  sex = 5;
+  int64   diamond = 6;
+  RummyEnumPlayStatus  playerStatus = 7; //是否是旁观
+  uint32 vipLevel = 8;
+}
+
+// 游戏桌子状态(阶段)
+enum RummyEnumTableStatus{
+  GAME_WAIT = 0;      //游戏准备阶段
+  GAME_START = 1;     //开局预备       (开局倒计时的3秒内)
+  GAME_BATTLE = 2;    //开局比牌中     (游戏正式开始但未发牌)
+  GAME_DEAL = 3;      //发牌          (指定客户端播放发牌动画)
+  GAME_RUNNING = 4;   //游戏中        (起牌/出牌)
+  GAME_Hu = 5;        //报胡中        (等待下家应答胡)
+  GAME_CALC = 6;      //结算阶段       (结算到开局期间)
+}
+
+
+// 等待操作的状态
+enum RummyEnumActionStep {
+  ACT_NULL = 0;     //没有动作
+  ACT_Pick = 1;     //起牌
+  ACT_Out = 2;      //出牌
+  ACT_AnswerHu = 3; //应答胡
+}
+
+// 结束原因
+enum RummyEnumFinishReason {
+  Hu = 0;    //胡
+  Faker = 1; //炸胡
+  Drop = 2;  //弃牌
+}
+
+// 玩家的状态
+enum RummyEnumPlayStatus{
+  PSNormal = 0;  // 正常
+  PSDrop = 1;    // 弃牌
+  PSHu = 2;      // 胡
+  PSFaker = 3;   // 炸胡
+  PSWatch = 4;   // 观战
+  PSLose = 5;    // 输(特指 别人胡你摆牌结束)
+}
+
+
+//******************************************大厅与房间******************************************
+//登录gameservice.login
+message LoginReq{
+  string userid = 1;//用户ID
+  string token = 2; //登录服拿到的token
+  uint32 fromid = 3; //来源平台ID
+}
+message LoginAck{
+  ResponseBase result = 1;
+  uint64 playerid = 2;  //游戏中玩家ID
+  int64 diamond = 3;    //钻石数量
+//  bool bInGame = 5;     //是否在游戏中
+  int32 roomId = 4;   // 房间ID -1表示不在房间中
+}
+
+//获取房间列表 gameservice.queryroomlist
+message QueryRoomListReq {
+  uint32 gameType = 1;  //游戏类型
+}
+message QueryRoomListAck {
+  ResponseBase result = 1;
+  uint32 gameType = 2;
+  repeated RoomListItem list = 3;
+  string now = 4;   //服务器时间
+}
+message RoomListItem{
+  int64   id = 1;
+  uint32  level = 2;
+  int32   entryCondition = 3;
+  uint32  cellScore = 4;
+  string  icon = 5;
+  int32   entryConditionMax = 6;
+  int32   onlineNum = 7;    // 玩家在线人数
+  bool    trial = 8;        // 是否体验场
+  int32   num = 9;          // 游戏人数
+}
+
+// 进入房间 gameservice.enterroom
+message EnterRoomReq {
+  int64 id = 1;
+}
+message EnterRoomAck {
+  ResponseBase result = 1;
+  int64 id = 2;
+  uint32 level = 3;
+  uint32 startGameTime = 4;
+}
+
+//换桌  gameservice.changetable
+message ChangeTableReq {
+}
+message ChangeTableAck {
+  ResponseBase result = 1;
+}
+
+//离开游戏 gameservice.exitgame
+message ExitGameReq {
+}
+message ExitGameAck {
+  ResponseBase result = 1;
+}
+
+//游戏准备 gameservice.ready
+message ReadyReq {
+  bool ready = 1;
+}
+message ReadyAck {
+  ResponseBase result = 1;
+}
+message OnPlayerReady {
+  uint32 seat = 1;   //牌桌中座位ID
+  bool  ready = 2;
+}
+
+//新玩家进入 gameservice.onplayerjoin
+message OnPlayerJoin{
+  UserInfo userInfo = 1;  //新玩家信息
+  uint32 seatId = 2;  //座位ID
+  bool isReconnect = 3;
+}
+
+//玩家离开房间  gameservice.onplayerleave
+message OnPlayerLeave {
+  uint64 uid = 1;    //玩家ID
+  int32 reason = 2;  //0.正常离开, 1.离线(还占坑), 2.其他原因被踢出
+}
+
+// 被踢出 gameservice.onkickout
+message OnKickout {
+  uint32 kickType = 1;
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}
+
+//******************************************Rummy******************************************
+// 游戏流程
+/*
+ * 1. PUSH 游戏开始,摸牌比牌 gameservice.ongamestart
+ * 2. PUSH 延时N秒后 刷新游戏场景,发牌   gameservice.refreshgamescene (根据status判断是发牌阶段)
+ * 3. REQ 起牌   gameservice.pickcard
+ * 4. PUSH 广播起牌   gameservice.onplayerpick
+ * 5. REQ 出牌   gameservice.outcard
+ * 6. PUSH 广播出牌   gameservice.onplayerout
+ * 7. REQ 选择胡   gameservice.choosehu
+ * 8. PUSH 广播结算   gameservice.ongamecalc
+ */
+
+// On游戏开始 gameservice.ongamestart
+message OnGameStart {
+  int32 banker = 1;                   // 庄家
+  repeated int32 firstPickCard = 2;   // 第一次翻牌CardId(下标与座位号对应) -1表示空
+  int32 firstPickWinSeat = 3;         // 第一次翻牌赢家
+}
+
+// 开始后第一次翻牌,
+
+// 起牌 gameservice.pickcard
+message PickCardReq {
+  int32 side = 1;                   // 起牌方位 0左1右
+}
+message PickCardAck{
+  ResponseBase result = 1;
+}
+
+// On玩家起牌 gameservice.onplayerpick
+message OnPlayerPick {
+  int32 seat = 1;                         // seat
+  int32 side = 2;                         // 起牌方位 0左1右
+  int32 card = 3;                         // 牌
+  int32 leftRemain = 4;                   // 左-剩余张数
+  repeated OutPoolCard rightFace = 5;     // 右-展示的牌
+  int32 rightRemain = 6;                  // 右-剩余张数
+  repeated int32 handCards = 7;           // 手牌
+}
+
+// On流局刷新牌库 gameservice.onflowrefresh
+message OnFlowRefresh {
+  int32 leftRemain = 1;                   // 左-剩余张数
+  repeated OutPoolCard rightFace = 2;     // 右-展示的牌
+  int32 rightRemain = 3;                  // 右-剩余张数
+}
+
+// 出牌 gameservice.outcard
+message OutCardReq {
+  int32 card = 1;                   // 牌
+  int32 index = 2;                  // 客户端使用值(广播再返回)
+}
+message OutCardAck{
+  ResponseBase result = 1;
+}
+
+// On玩家出牌 gameservice.onplayerout
+message OnPlayerOut {
+  int32 seat = 1;                         // seat
+  int32 card = 2;                         // 牌
+  repeated OutPoolCard rightFace = 3;     // 右-展示的牌
+  int32 rightRemain = 4;                  // 右-剩余张数
+  int32 nextSeat = 5;                     // 下家
+  int32 simpleTimeout = 6;                // 下家通用超时(默认20)
+  int32 extraTimeout = 7;                 // 下家额外超时(默认30)
+  int32 index = 8;                        // 客户端使用值(从Req获取)
+  repeated int32 handCards = 9;           // 手牌
+}
+
+message CardGroup {
+  repeated int32 cards = 1;
+}
+
+// 选择胡 gameservice.choosehu
+message ChooseHuReq {
+  int32 outCard = 1;                   // 牌
+  repeated CardGroup groups = 2;       // 摆牌
+}
+message ChooseHuAck {
+  ResponseBase result = 1;
+}
+message OnChooseHu {
+  int32 huSeat = 1;                   // 胡的人
+  int32 outCard = 2;                  // 出的牌
+  int32 simpleTimeout = 3;            // 通用超时(默认20)
+  int32 extraTimeout = 4;             // 额外超时(默认30)
+  bool isHu = 5;                      // 是否胡, false表示炸胡
+}
+
+// 弃牌/投降
+message DropReq {
+}
+message DropAck {
+  ResponseBase result = 1;
+}
+
+// 最后的摆牌 gameservice.tidyfinalcards
+message TidyFinalCardsReq {
+  repeated CardGroup groups = 1;     // 摆牌
+  int32 score = 2;                  // 分数
+}
+message TidyFinalCardsAck {
+  ResponseBase result = 1;
+}
+
+// 有人摆牌广播 gameservice.ontidyfinalcards
+message OnTidyFinalCards {
+  int32   seat = 1;           // 摆牌的玩家
+  int64   calc = 2;           // 结算
+  int64   afterCalc = 3;      // 结算后
+  int32   winner = 4;         // 赢家
+}
+
+// 摆牌 gameservice.movehandgroup
+message MoveHandGroupReq {
+  repeated CardGroup groups = 1;     // 摆牌
+}
+message MoveHandGroupAck {
+  ResponseBase result = 1;
+  repeated int32 handCards = 2;      // 手牌
+}
+
+// 出牌信息
+message OutPoolCard {
+  int32 card = 1;                  // 牌
+  int32 sourceSeat = 2;            // 谁打的(开局第一张:-1)
+  bool isPicked = 3;               // 是否被起了
+}
+// 获取出牌库 gameservice.lookoutpool
+message LookOutPoolReq {
+}
+message LookOutPoolAck {
+  ResponseBase result = 1;
+  repeated OutPoolCard outs = 2;
+}
+
+// 游戏结算 gameservice.ongamecalc
+message OnGameCalc {
+  message PlayerInfo{
+    int32               seat = 1;           // seat
+    repeated int32      cards = 2;          // 牌
+    repeated CardGroup  groups = 3;         // 摆牌
+    int32               score = 4;          // 分
+    int64               calc = 5;           // 结算
+    int64               afterCalc = 6;      // 结算后
+    string              imgUrl = 7;         // 头像
+    string              nickname = 8;       // 昵称
+    int32               sex = 9;            // 性别
+  }
+
+  repeated PlayerInfo players = 1;
+  RummyEnumFinishReason reason = 2;     // 结束原因
+//  int32 winSeat = 3;         // 赢家
+  int32 singleEventSeat = 3;   // 唯一的赢家或输家,根据reason判断输赢
+  int32 outCard = 4;    // 最后手打出的牌
+}
+
+// 继续下一局
+message SetContinueReq {
+}
+message SetContinueAck {
+  ResponseBase result = 1;
+}
+
+//游戏开始倒计时 gameservice.onstartgametimer
+message OnStartGameTimer {
+  uint32 time = 1;  //剩下时间
+}
+
+// 主动拉取游戏场景 gameservice.refreshgamescene
+message RefreshGameSceneReq {
+}
+// 游戏场景刷新 gameservice.refreshgamescene
+message RefreshGameSceneAck {
+  message PlayerInfo{
+    int32               seat = 1;           //牌桌中座位ID
+    repeated int32      cards = 2;          //卡牌信息
+    repeated CardGroup  handGroup = 3;      //摆牌(client需要校验空,表示第一次或未摆;则从cards中获取信息)
+    RummyEnumPlayStatus playerStatus = 4;   //玩家的状态
+    bool                ready = 5;          //是否准备
+    UserInfo            user = 6;           //玩家信息
+    // 如果simpleCountdown大于0,滚动该值; 否则滚动extraCountdown
+    int32               simpleCountdown = 7;     // 牌权通用超时(默认20)  ,
+    int32               extraCountdown = 8;      // 牌权额外超时(默认30)
+  }
+
+  ResponseBase          result = 1;
+  repeated PlayerInfo   players = 2;
+  RummyEnumTableStatus  status = 3; //牌桌状态
+  int32                 roomType = 4;      //桌子类型，0为房卡场，1为道具场
+  int32                 cellScore = 5;     //底分
+  int32                 laiId = 6;         //癞子牌的数值
+  int32                 dissolveSeat = 7;  //解散的座位号
+  int32                 banker = 8;        //庄家的座位号
+  int32                 round = 9;         // 当前轮数
+  int32                 step = 10;         // 当前阶段(起牌/出牌)
+  int32                 curSeat = 11;      // 当前该谁操作的座位号
+  int32                 leftRemain = 12;   // 左-剩余张数
+  repeated OutPoolCard  rightFace = 13;    // 右-展示的牌
+  int32                 rightRemain = 14;  // 右-剩余张数
+  int32                 statusCountdown = 15;      //房间状态倒计时(ms, 目前只有在GAME_START，GAME_CALC阶段有应用)
+}
+
+// 领取体验币 gameservice.receivefreetrial
+message ReceiveFreeTrialReq{
+  uint32 times = 1; //倍数
+}
+message ReceiveFreeTrialAck{
+  ResponseBase result = 1;
+}
+
+// 货币刷新 gameservice.ondiamondupdate
+message OnDiamondUpdate {
+  uint64 playerId = 1;  // 游戏中玩家ID
+  int64  after    = 2;  // 更改后的值
+  int32  reason   = 3;  // 原因(暂无定义)
+}
+
+// 有人弃牌广播 gameservice.ondrop
+message OnDrop {
+  int32   seat = 1;  // 弃牌的玩家
+  int64   calc = 2;           // 结算
+  int64   afterCalc = 3;      // 结算后
+}

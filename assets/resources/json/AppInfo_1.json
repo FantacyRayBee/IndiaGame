@@ -1,0 +1,90 @@
+{
+	"APP_STATUS": 6,
+	"APP_SHARE_URL": "https://18.googletp.in/",
+	"IS_UPDATE": true,
+	"ASSETS_URL": "https://download.tpgame.in/Release/",
+	"ASSETS_VERSION": 31,
+	"SUB_GAME_VERSION_INFO": {
+		"Rummy": 31,
+		"ResourcesBundle": 31,
+		"tpGame": 31,
+		"7up7downGame": 31,
+		"andaerGame": 31,
+		"baccarat3PattiGame": 31,
+		"Benz": 31,
+		"fruitMachine": 31,
+		"horseRaceGame": 31,
+		"lhdGame": 31,
+		"munda": 31,
+		"mwGame": 31,
+		"sscGame": 31,
+		"rocket": 31,
+		"zooGame": 31,
+		"cricketGame": 31,
+		"zeusGame": 31
+	},
+	"HTTP_ROOT_URL": "https://svr.tpgame.in",
+	"WEB_SOCKET_GAME": "ws://svr.tpgame.in/",
+	"WEB_SOCKET_LOBBY": "ws://svr.tpgame.in/lobby/echo",
+	"CHANNEL_INFO": "2018",
+	"GOOGLE_ID": "com.poeyre.dyedf.py",
+	"FACEBOOK_ID": "1542325269936641",
+	"ServerReload": false,
+	"ServerReloadDescribe": "The server is currently under maintenance, with an estimated completion time of 08:35:00",
+	"PACKAGE_CONFIG_DICT": {
+		"2018": {
+			"CHANNEL_INFO": "2018",
+			"GOOGLE_ID": "com.poeyre.dyedf.py",
+			"FACEBOOK_ID": "1542325269936641",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"APP_SHARE_URL": "https://18.googletp.in/",
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2020": {
+			"CHANNEL_INFO": "2020",
+			"GOOGLE_ID": "com.ytrplusee.net",
+			"FACEBOOK_ID": "913086420418793",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"APP_SHARE_URL": "https://20.patteeraaja.in/",
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2026": {
+			"CHANNEL_INFO": "2026",
+			"GOOGLE_ID": "com.wordfespattis.styebt",
+			"FACEBOOK_ID": "1062553774957497",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"APP_SHARE_URL": "https://26.pattimagic.in/",
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2027": {
+			"CHANNEL_INFO": "2027",
+			"GOOGLE_ID": "com.flushdetr.ysdtrt",
+			"FACEBOOK_ID": "1104837404042796",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"APP_SHARE_URL": "https://27.tpattiraaja.in/",
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2070": {
+			"CHANNEL_INFO": "2070",
+			"GOOGLE_ID": "com.gteenpat.rebo.bnt",
+			"FACEBOOK_ID": ""
+		},
+		"2071": {
+			"CHANNEL_INFO": "2071",
+			"GOOGLE_ID": "com.buena.reteen.aptt",
+			"FACEBOOK_ID": ""
+		},
+		"TeenPattiGo": {
+			"CHANNEL_INFO": "TeenPattiGo",
+			"GOOGLE_ID": "com.whwh.tpgo",
+			"FACEBOOK_ID": "1534008587132712",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		}
+	}
+}

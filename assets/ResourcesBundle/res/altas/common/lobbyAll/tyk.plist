@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>btn_green.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1900,186},{206,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{206,72}</string>
+			</dict>
+			<key>ty_bg.9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1976,499},{36,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{36,36}</string>
+			</dict>
+			<key>ty_btn_bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1834,186},{260,62}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{260,62}</string>
+			</dict>
+			<key>ty_btn_blue.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1900,396},{206,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{206,72}</string>
+			</dict>
+			<key>ty_btn_fh.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1976,186},{66,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,66}</string>
+			</dict>
+			<key>ty_btn_kg_01.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1834,450},{56,56}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{56,56}</string>
+			</dict>
+			<key>ty_btn_kg_01_bg.9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1976,256},{97,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{97,36}</string>
+			</dict>
+			<key>ty_btn_kg_02.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1834,510},{56,56}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{56,56}</string>
+			</dict>
+			<key>ty_btn_kg_02_bg.9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1976,357},{97,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{97,36}</string>
+			</dict>
+			<key>ty_btn_left_01.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1834,2},{198,88}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{198,88}</string>
+			</dict>
+			<key>ty_btn_left_02.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1834,94},{198,88}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{198,88}</string>
+			</dict>
+			<key>ty_btn_red.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1878,606},{206,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{206,72}</string>
+			</dict>
+			<key>ty_k_01_small.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1503,816},{682,449}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{682,449}</string>
+			</dict>
+			<key>ty_k_02_mid.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{635,756},{864,579}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{864,579}</string>
+			</dict>
+			<key>ty_k_03_big.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,756},{1044,629}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{1044,629}</string>
+			</dict>
+			<key>ty_k_04_bigger_left.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1631,2},{199,570}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{199,570}</string>
+			</dict>
+			<key>btn_org2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1954,606},{206,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{206,72}</string>
+			</dict>
+			<key>ty_btn_close1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1976,458},{37,38}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{37,38}</string>
+			</dict>
+			<key>shopMask.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1834,570},{40,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{40,40}</string>
+			</dict>
+			<key>mask.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{1625,750}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{1625,750}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>tyk.png</string>
+			<key>realTextureFileName</key>
+			<string>tyk.png</string>
+			<key>size</key>
+			<string>{2044,1802}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>2044</integer>
+			<key>height</key>
+			<integer>1802</integer>
+		</dict>
+	</dict>
+</plist>

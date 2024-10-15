@@ -1,0 +1,131 @@
+syntax = "proto3";
+package gameservice;
+//游戏模板
+//cd
+
+message ResponseBase{
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+//call gameservice.login
+message LoginReq{
+  string userid = 1;//用户ID
+  string token = 2; //登录服拿到的token
+  uint32 fromid = 3; //来源平台ID
+}
+
+message LoginAck{
+  ResponseBase result = 1;
+  UserInfo userinfo=2;
+  ConfigInfo config=3;  // 新增配置
+}
+
+// 配置信息
+message ConfigInfo {
+  repeated int32 chipOption = 1;   // 下注选项
+}
+
+message UserInfo {
+  uint64 PlayerId = 1;  //玩家id
+  string DisplayName = 2;  //用于显示的数字ID
+  string ImgUrl = 3;  //头像
+  string Nickname = 4;   //昵称
+  int64 Diamond = 5;    //金币
+  uint32 vipLevel = 6;
+}
+
+//游戏模式
+enum BenzGameType {
+  TopTen = 0;//新手模式 前10次
+  FakerMode = 1; //吃分
+  LoseMode = 2; //吐分
+  GenGenMode = 3;//常规模式
+}
+
+//种类定义
+enum BenzBmwEnumBossType {
+  GG = 0;//占位 无含义
+  VW = 1; //大众
+  Lexus = 2; //雷克萨斯
+  Bmw = 3;  //宝马
+  Benz = 4; //奔驰
+  Porsche = 5; //保时捷
+  Maserati	=6; //玛莎拉蒂
+  Lamborghini	=7; //兰博基尼
+  Ferrari =8; //法拉利
+}
+
+//玩法模式定义
+enum BenzBmwPlayType {
+  GGG = 0;//占位 无含义
+  GenMode = 1; //常规
+  FakerModeOne = 2; //吃分1
+  FakerModeTwo = 3;  //吃分2
+  RandomThree = 4; //点兵点将*3
+  LinkThree = 5; //开火车
+  RandomSix	=6; //点兵点将*6
+  SpaceTwelve	=7; //满天星
+  All =8; //大满贯
+}
+
+message CallSet{
+  int64 Amount = 1;
+  BenzBmwEnumBossType type = 2;
+  repeated int64  AmountType = 3;
+}
+
+//call gameservice.call
+message CallReq {
+  repeated CallSet Call=2;
+}
+
+//call gameservice.exit
+message ExitGameCallReq{
+  repeated CallSet Call=2;
+}
+
+//游戏结果 gameservice.callack
+message CallAck {
+  ResponseBase Result = 1;
+  UserInfo Userinfo = 2;
+  repeated CallSet Call=3;
+  repeated BenzBmwEnumBossType Win = 4; // 游戏结果
+  BenzBmwPlayType PlayType= 5; //游戏模式  是否触发了彩蛋
+  repeated int64 GameScene = 6;//触发彩蛋后 返回奖励位置信息
+  int64 AllAmount = 7; //win all结算
+}
+
+// 主动拉取/场景推送 gameservice.gamescene
+message GameSceneReq {
+}
+
+//场景信息 请求gameservice.gamescene  //奖池信息
+message GameSceneAck{
+  int64 jackpot = 1; //奖池
+}
+//场景信息 gameservice.gamescenenotify  //奖池信息
+message GameSceneNotify{
+  int64 jackpot = 1; //奖池
+}
+
+//message GameSceneSet{
+//  BenzBmwEnumBossType CarType = 1; //car位置  从顶部8号 即Ferrari开始
+//  int64 Amount = 2;//单次彩蛋win
+//}
+message ExitAck {
+  ResponseBase Result = 1;
+}
+
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  UserInfo userinfo = 1;
+  int32 reason = 2;   // 原因 1:支付; 其他：未知
+}

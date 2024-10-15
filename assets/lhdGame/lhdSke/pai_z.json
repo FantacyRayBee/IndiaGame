@@ -1,0 +1,88 @@
+{
+"skeleton": { "hash": "jY3uTxzCi6hlHnYLI1ao+vjqDTs", "spine": "3.3.07", "width": 0, "height": 0, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "pai_z", "parent": "root" }
+],
+"slots": [
+	{ "name": "pai_z", "bone": "pai_z", "blend": "screen" }
+],
+"skins": {
+	"default": {
+		"pai_z": {
+			"pai-zm_00000": { "width": 1835, "height": 750 },
+			"pai-zm_00001": { "width": 1835, "height": 750 },
+			"pai-zm_00002": { "width": 1835, "height": 750 },
+			"pai-zm_00003": { "width": 1835, "height": 750 },
+			"pai-zm_00004": { "width": 1835, "height": 750 },
+			"pai-zm_00005": { "width": 1835, "height": 750 },
+			"pai-zm_00006": { "width": 1835, "height": 750 },
+			"pai-zm_00007": { "width": 1835, "height": 750 },
+			"pai-zm_00008": { "width": 1835, "height": 750 },
+			"pai-zm_00009": { "width": 1835, "height": 750 },
+			"pai-zm_00010": { "width": 1835, "height": 750 },
+			"pai-zm_00011": { "width": 1835, "height": 750 },
+			"pai-zm_00012": { "width": 1835, "height": 750 },
+			"pai-zm_00013": { "width": 1835, "height": 750 },
+			"pai-zm_00014": { "width": 1835, "height": 750 },
+			"pai-zm_00015": { "width": 1835, "height": 750 },
+			"pai-zm_00016": { "width": 1835, "height": 750 },
+			"pai-zm_00017": { "width": 1835, "height": 750 },
+			"pai-zm_00018": { "width": 1835, "height": 750 },
+			"pai-zm_00019": { "width": 1835, "height": 750 },
+			"pai-zm_00020": { "width": 1835, "height": 750 },
+			"pai-zm_00021": { "width": 1835, "height": 750 },
+			"pai-zm_00022": { "width": 1835, "height": 750 },
+			"pai-zm_00023": { "width": 1835, "height": 750 },
+			"pai-zm_00024": { "width": 1835, "height": 750 },
+			"pai-zm_00025": { "width": 1835, "height": 750 },
+			"pai-zm_00026": { "width": 1835, "height": 750 },
+			"pai-zm_00027": { "width": 1835, "height": 750 },
+			"pai-zm_00028": { "width": 1835, "height": 750 },
+			"pai-zm_00029": { "width": 1835, "height": 750 },
+			"pai-zm_00030": { "width": 1835, "height": 750 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"pai_z": {
+				"attachment": [
+					{ "time": 0, "name": "pai-zm_00000" },
+					{ "time": 0.0666, "name": "pai-zm_00001" },
+					{ "time": 0.1333, "name": "pai-zm_00002" },
+					{ "time": 0.2, "name": "pai-zm_00003" },
+					{ "time": 0.2666, "name": "pai-zm_00004" },
+					{ "time": 0.3333, "name": "pai-zm_00005" },
+					{ "time": 0.4, "name": "pai-zm_00006" },
+					{ "time": 0.4666, "name": "pai-zm_00007" },
+					{ "time": 0.5333, "name": "pai-zm_00008" },
+					{ "time": 0.6, "name": "pai-zm_00009" },
+					{ "time": 0.6666, "name": "pai-zm_00010" },
+					{ "time": 0.7333, "name": "pai-zm_00011" },
+					{ "time": 0.8, "name": "pai-zm_00012" },
+					{ "time": 0.8666, "name": "pai-zm_00013" },
+					{ "time": 0.9333, "name": "pai-zm_00014" },
+					{ "time": 1, "name": "pai-zm_00015" },
+					{ "time": 1.0666, "name": "pai-zm_00016" },
+					{ "time": 1.1333, "name": "pai-zm_00017" },
+					{ "time": 1.2, "name": "pai-zm_00018" },
+					{ "time": 1.2666, "name": "pai-zm_00019" },
+					{ "time": 1.3333, "name": "pai-zm_00020" },
+					{ "time": 1.4, "name": "pai-zm_00021" },
+					{ "time": 1.4666, "name": "pai-zm_00022" },
+					{ "time": 1.5333, "name": "pai-zm_00023" },
+					{ "time": 1.6, "name": "pai-zm_00024" },
+					{ "time": 1.6666, "name": "pai-zm_00025" },
+					{ "time": 1.7333, "name": "pai-zm_00026" },
+					{ "time": 1.8, "name": "pai-zm_00027" },
+					{ "time": 1.8666, "name": "pai-zm_00028" },
+					{ "time": 1.9333, "name": "pai-zm_00029" },
+					{ "time": 2, "name": "pai-zm_00030" }
+				]
+			}
+		}
+	}
+}
+}

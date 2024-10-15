@@ -1,0 +1,117 @@
+{
+  "__type__": "cc.JsonAsset",
+  "_name": "AppInfo_4",
+  "_objFlags": 0,
+  "_native": "",
+  "json": {
+    "APP_STATUS": 6,
+    "APP_SHARE_URL": "https://www.google3patti.com/",
+    "IS_UPDATE": true,
+    "ASSETS_URL": "https://download2.tpgame.in/Release4/",
+    "ASSETS_VERSION": 16,
+    "SUB_GAME_VERSION_INFO": {
+      "Rummy": 16,
+      "ResourcesBundle": 16,
+      "tpGame": 16,
+      "7up7downGame": 16,
+      "andaerGame": 16,
+      "baccarat3PattiGame": 16,
+      "Benz": 16,
+      "fruitMachine": 16,
+      "horseRaceGame": 16,
+      "lhdGame": 16,
+      "munda": 16,
+      "mwGame": 16,
+      "sscGame": 16,
+      "rocket": 16,
+      "zooGame": 16,
+      "cricketGame": 16,
+      "zeusGame": 16
+    },
+    "HTTP_ROOT_URL": "https://svr2.tpgame.in",
+    "WEB_SOCKET_GAME": "ws://svr2.tpgame.in/",
+    "WEB_SOCKET_LOBBY": "ws://svr2.tpgame.in/lobby/echo",
+    "CHANNEL_INFO": "4001",
+    "GOOGLE_ID": "com.winnerdf.yuskhd.ttyt",
+    "FACEBOOK_ID": "",
+    "ServerReload": false,
+    "ServerReloadDescribe": "The server is currently under maintenance, with an estimated completion time of 08:35:00",
+    "REMOTE_APP_UPDATE": false,
+    "REMOTE_APP_VERSION": 1,
+    "REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk",
+    "PACKAGE_CONFIG_DICT": {
+      "4001": {
+        "CHANNEL_INFO": "4001",
+        "GOOGLE_ID": "com.winnerdf.yuskhd.ttyt",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false,
+        "REMOTE_APP_VERSION": 1,
+        "REMOTE_APP_URL": ""
+      },
+      "4002": {
+        "CHANNEL_INFO": "4002",
+        "GOOGLE_ID": "com.srrens.ytesd.ttret",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false,
+        "REMOTE_APP_VERSION": 1,
+        "REMOTE_APP_URL": ""
+      },
+      "4003": {
+        "CHANNEL_INFO": "4003",
+        "GOOGLE_ID": "com.fsdn.teye.crtn",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false,
+        "REMOTE_APP_VERSION": 1,
+        "REMOTE_APP_URL": ""
+      },
+      "4004": {
+        "CHANNEL_INFO": "4004",
+        "GOOGLE_ID": "com.tsata.yrecd.rresd",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false,
+        "REMOTE_APP_VERSION": 1,
+        "REMOTE_APP_URL": ""
+      },
+      "4005": {
+        "CHANNEL_INFO": "4005",
+        "GOOGLE_ID": "com.hyad.tomrt.tyit",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false,
+        "REMOTE_APP_VERSION": 1,
+        "REMOTE_APP_URL": ""
+      },
+      "4006": {
+        "CHANNEL_INFO": "4006",
+        "GOOGLE_ID": "com.sunde.rewqp.cvbt",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false,
+        "REMOTE_APP_VERSION": 1,
+        "REMOTE_APP_URL": ""
+      },
+      "4007": {
+        "CHANNEL_INFO": "4007",
+        "GOOGLE_ID": "com.trecs.notebvd.vdet",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false
+      },
+      "4008": {
+        "CHANNEL_INFO": "4008",
+        "GOOGLE_ID": "com.rapode.bytgvf.ccvt",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false
+      },
+      "4009": {
+        "CHANNEL_INFO": "4009",
+        "GOOGLE_ID": "com.hpdef.trenm.cby",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false
+      },
+      "4010": {
+        "CHANNEL_INFO": "4010",
+        "GOOGLE_ID": "com.sunter.vjkt.cvnt",
+        "FACEBOOK_ID": "",
+        "REMOTE_APP_UPDATE": false
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "dragon vs tiger",
+    "texture": "458ba310-bd3c-4b78-b79f-d5233f6d5d71",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1835,
+      346
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1835,
+      346
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

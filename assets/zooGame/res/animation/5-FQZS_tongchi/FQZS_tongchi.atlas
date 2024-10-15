@@ -1,0 +1,83 @@
+
+FQZS_tongchi.png
+size: 334,814
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+feiqinzoushou_caidai1
+  rotate: true
+  xy: 2, 386
+  size: 426, 110
+  orig: 428, 110
+  offset: 1, 0
+  index: -1
+feiqinzoushou_glow1
+  rotate: false
+  xy: 114, 399
+  size: 199, 199
+  orig: 203, 203
+  offset: 2, 2
+  index: -1
+feiqinzoushou_glow2
+  rotate: true
+  xy: 221, 297
+  size: 100, 101
+  orig: 111, 111
+  offset: 5, 5
+  index: -1
+feiqinzoushou_glow3
+  rotate: true
+  xy: 2, 168
+  size: 216, 217
+  orig: 225, 225
+  offset: 4, 3
+  index: -1
+feiqinzoushou_guangshu1
+  rotate: false
+  xy: 114, 600
+  size: 218, 212
+  orig: 223, 216
+  offset: 3, 2
+  index: -1
+feiqinzoushou_huo_2
+  rotate: false
+  xy: 248, 2
+  size: 60, 56
+  orig: 100, 100
+  offset: 20, 23
+  index: -1
+feiqinzoushou_huo_3
+  rotate: false
+  xy: 248, 60
+  size: 81, 77
+  orig: 100, 100
+  offset: 10, 13
+  index: -1
+feiqinzoushou_huo_4
+  rotate: false
+  xy: 221, 206
+  size: 100, 89
+  orig: 100, 100
+  offset: 0, 11
+  index: -1
+feiqinzoushou_huo_5
+  rotate: true
+  xy: 165, 58
+  size: 79, 81
+  orig: 100, 100
+  offset: 10, 11
+  index: -1
+feiqinzoushou_tongchi
+  rotate: false
+  xy: 221, 139
+  size: 110, 65
+  orig: 122, 70
+  offset: 9, 5
+  index: -1
+feiqinzoushou_zhadan
+  rotate: false
+  xy: 2, 13
+  size: 161, 153
+  orig: 163, 170
+  offset: 0, 13
+  index: -1

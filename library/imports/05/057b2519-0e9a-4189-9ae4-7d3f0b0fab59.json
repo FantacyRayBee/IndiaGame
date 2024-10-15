@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "icon_whatsapp",
+    "texture": "192884cd-6bad-4bd2-b470-f68738d1b823",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      228,
+      288
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      228,
+      288
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

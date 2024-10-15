@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bonus_card_btn_green",
+    "texture": "e6d99612-3f83-4152-9a10-64687a799476",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      194,
+      63
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      194,
+      63
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

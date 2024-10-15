@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_team",
+    "texture": "d878ed4c-0071-4ce9-b084-dbc33ffafb2b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      72,
+      65
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      72,
+      65
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

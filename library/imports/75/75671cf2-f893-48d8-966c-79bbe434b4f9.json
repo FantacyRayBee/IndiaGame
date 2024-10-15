@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "kuangWithoutCoin",
+    "texture": "887e8af8-04ae-4c68-a8c4-4be9c8e567d9",
+    "atlas": "",
+    "rect": [
+      6,
+      1,
+      110,
+      151
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      122,
+      153
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

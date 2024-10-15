@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_practice_02",
+    "texture": "4d68d418-010f-4f21-9aa8-7cc40f530f63",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      158,
+      152
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      158,
+      152
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

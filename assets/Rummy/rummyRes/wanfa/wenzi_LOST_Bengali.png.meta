@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "19009ad8-b917-405b-83a4-aa9b672d7c11",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 115,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "wenzi_LOST_Bengali": {
+      "ver": "1.0.6",
+      "uuid": "aaab5042-7dfd-496e-8be4-fcced34fc240",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "19009ad8-b917-405b-83a4-aa9b672d7c11",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 115,
+      "height": 32,
+      "rawWidth": 115,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

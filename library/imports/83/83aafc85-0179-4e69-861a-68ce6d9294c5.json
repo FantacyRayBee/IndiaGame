@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "DIAMOND CARD_EN",
+    "texture": "a504ab3a-c63f-4443-ab67-5141dcc65733",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      260,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      260,
+      28
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

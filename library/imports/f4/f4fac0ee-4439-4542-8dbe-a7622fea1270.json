@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betGreen_0",
+    "texture": "9da4d741-8e9c-441f-9575-964ca08b712b",
+    "atlas": "",
+    "rect": [
+      7,
+      5,
+      96,
+      74
+    ],
+    "offset": [
+      -9,
+      22
+    ],
+    "originalSize": [
+      128,
+      128
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

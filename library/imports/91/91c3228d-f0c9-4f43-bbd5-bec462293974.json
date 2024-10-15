@@ -1,0 +1,115 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "k_yx",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "+7LTv0hP4vllVVGXagvjykM9cHc",
+      "spine": "3.3.07",
+      "width": 302,
+      "height": 190,
+      "images": "./images/"
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "k_yx",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "k_yx",
+        "bone": "k_yx",
+        "attachment": "k_yx",
+        "blend": "additive"
+      }
+    ],
+    "skins": {
+      "default": {
+        "k_yx": {
+          "k_yx": {
+            "width": 302,
+            "height": 190
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "k_yx": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 0.5,
+                "color": "ffffff7d"
+              },
+              {
+                "time": 1,
+                "color": "ffffffff"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "k_yx": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nk_yx.png\nsize: 306,194\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nk_yx\n  rotate: false\n  xy: 2, 2\n  size: 302, 190\n  orig: 302, 190\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "7e598203-aaea-4894-a94d-285205775abe"
+    }
+  ],
+  "textureNames": [
+    "k_yx.png"
+  ],
+  "scale": 1
+}

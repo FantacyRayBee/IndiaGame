@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bg_wj_0",
+    "texture": "7d825e1e-4c6e-41a5-98ce-2a33428a693c",
+    "atlas": "6083a91c-e4b6-45db-9995-a8b007eab489",
+    "rect": [
+      2,
+      2,
+      312,
+      106
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      312,
+      106
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

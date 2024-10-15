@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "rk_7up7down",
+    "texture": "87337ba2-500b-4af7-aaec-115f3448c19a",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      844,
+      237
+    ],
+    "offset": [
+      -88,
+      7.5
+    ],
+    "originalSize": [
+      1024,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

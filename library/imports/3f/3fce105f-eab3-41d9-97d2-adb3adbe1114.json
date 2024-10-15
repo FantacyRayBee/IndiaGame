@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Bank-Account",
+    "texture": "9d988ab1-2095-4ce6-be5c-891504ea7100",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      287,
+      34
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      287,
+      34
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

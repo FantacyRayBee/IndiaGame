@@ -1,0 +1,176 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "sscNewLobby.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "bg_title_01": {
+      "__uuid__": "e8df128f-64e4-4520-8518-df37649ec656"
+    },
+    "bg_title_02": {
+      "__uuid__": "a527cc6d-ccf6-4411-aac3-c02f129cc9e1"
+    },
+    "btn_ADDCASH_Urdu": {
+      "__uuid__": "e9cd56c7-62a8-47a1-aa90-d6868f67d8c7"
+    },
+    "btn_ADD_loto": {
+      "__uuid__": "fc9be1d4-34ea-402c-9455-2a0397dab843"
+    },
+    "btn_jilu_BIG WINNER_01_Bengali": {
+      "__uuid__": "e26d75af-7817-4f4d-bd64-03ef54629519"
+    },
+    "btn_jilu_BIG WINNER_01_EN": {
+      "__uuid__": "d89bd52c-d861-4e2c-9f69-ca4404096c6f"
+    },
+    "btn_jilu_BIG WINNER_01_Hindi": {
+      "__uuid__": "f3e2ff98-6b3d-4ccd-b92a-852738b6845e"
+    },
+    "btn_jilu_BIG WINNER_01_Urdu": {
+      "__uuid__": "67de3d87-b9e0-47f3-965d-d89c0a98d6dc"
+    },
+    "btn_jilu_BIG WINNER_02_Bengali": {
+      "__uuid__": "cfb9c4f7-1b74-4439-a6ef-c59e121b6f9f"
+    },
+    "btn_jilu_BIG WINNER_02_EN": {
+      "__uuid__": "4f73ebbc-db10-4c4f-9d80-721dd5318d0d"
+    },
+    "btn_jilu_BIG WINNER_02_Hindi": {
+      "__uuid__": "606511f6-15e3-454c-bcae-d34fd2b514e9"
+    },
+    "btn_jilu_BIG WINNER_02_Urdu": {
+      "__uuid__": "fd147e26-eede-4d2f-b5a6-4ce5db25537e"
+    },
+    "btn_jilu_JACKPOT_01_Bengali": {
+      "__uuid__": "6ac85fe1-e076-4936-a221-a64a460d6cfc"
+    },
+    "btn_jilu_JACKPOT_01_EN": {
+      "__uuid__": "1d81aed8-7469-4033-87cc-e407b4f490f6"
+    },
+    "btn_jilu_JACKPOT_01_Hindi": {
+      "__uuid__": "9c92ee8a-faae-4ad4-9767-81b0df6b07c7"
+    },
+    "btn_jilu_JACKPOT_01_Urdu": {
+      "__uuid__": "0be9ccb0-ef6e-4093-b79d-99a8756aeac1"
+    },
+    "btn_jilu_JACKPOT_02_Bengali": {
+      "__uuid__": "9944f3c0-3cfd-4b06-aaaf-334ba6dee6a9"
+    },
+    "btn_jilu_JACKPOT_02_EN": {
+      "__uuid__": "c07799b9-0c06-46b0-8a23-87f341902180"
+    },
+    "btn_jilu_JACKPOT_02_Hindi": {
+      "__uuid__": "7b798919-2a64-4857-9ef6-8386a4241f72"
+    },
+    "btn_jilu_JACKPOT_02_Urdu": {
+      "__uuid__": "926fd95e-85cc-447f-a3ff-ebc3123f253b"
+    },
+    "btn_jilu_Lucky Loto": {
+      "__uuid__": "df6fd5b3-c456-4901-afcf-cd0df10427c9"
+    },
+    "btn_jilu_MY HISTORY_01_Bengali": {
+      "__uuid__": "ed285fb5-6e32-43f3-8872-34c87c2d5f46"
+    },
+    "btn_jilu_MY HISTORY_01_EN": {
+      "__uuid__": "d41395eb-fc27-4c00-8c36-84eaf933a821"
+    },
+    "btn_jilu_MY HISTORY_01_Hindi": {
+      "__uuid__": "39fb76d7-243c-4b72-814d-b9457972419a"
+    },
+    "btn_jilu_MY HISTORY_01_Urdu": {
+      "__uuid__": "f0e09248-b6bc-434e-a704-ae43424cc093"
+    },
+    "btn_jilu_MY HISTORY_02_Bengali": {
+      "__uuid__": "72bd67b5-4e72-44a8-9143-17b506a4c712"
+    },
+    "btn_jilu_MY HISTORY_02_EN": {
+      "__uuid__": "57e9e1cc-e776-484b-9743-1d4aae43f925"
+    },
+    "btn_jilu_MY HISTORY_02_Hindi": {
+      "__uuid__": "bd9b0611-ae0c-4684-b5cd-f4e0378bbcaa"
+    },
+    "btn_jilu_MY HISTORY_02_Urdu": {
+      "__uuid__": "9c0f201d-75a1-4d0b-9569-e382775e3d80"
+    },
+    "btn_REPEAT BET": {
+      "__uuid__": "af586132-13be-4eca-9121-97765fc6ad81"
+    },
+    "btn_Repeat bets": {
+      "__uuid__": "e5910899-7e2d-4f59-bf16-740ef3886892"
+    },
+    "btn_Repeat bets_grey": {
+      "__uuid__": "5cc7831f-3f5e-40bf-b96e-b6c8ab8be615"
+    },
+    "btn_REPEAT BET_grey": {
+      "__uuid__": "3242e9fc-ac40-41b8-a65f-3ba32ee466b8"
+    },
+    "title_ONLINE PLAYERS_Bengali": {
+      "__uuid__": "9e0a2127-a66b-493f-9b93-b26f1b0c3f67"
+    },
+    "title_ONLINE PLAYERS_Hindi": {
+      "__uuid__": "9b80aa72-b6f2-4037-a9bc-1840062c0a02"
+    },
+    "title_ONLINE PLAYERS_Urdu": {
+      "__uuid__": "903fefa4-a6da-494c-8b62-08a65c0b8f02"
+    },
+    "title_WINNING HISTORY_Bengali": {
+      "__uuid__": "c5574d99-01b4-4caf-ac55-c9ca9d3ce5ee"
+    },
+    "title_WINNING HISTORY_Hindi": {
+      "__uuid__": "4adc3d6d-9a43-4478-9316-57dfeddf5396"
+    },
+    "title_WINNING HISTORY_Urdu": {
+      "__uuid__": "5a927af5-861a-4b65-8865-ca26870e923b"
+    },
+    "wenzi_BIG WINNER_Bengali": {
+      "__uuid__": "5baea6c8-b732-4d44-b18a-56af5c872dcf"
+    },
+    "wenzi_BIG WINNER_EN": {
+      "__uuid__": "724cd4be-b828-4138-9c7d-d61b1e661197"
+    },
+    "wenzi_BIG WINNER_Hindi": {
+      "__uuid__": "9b63fffd-eb35-41f5-9fbe-dce6be4c21d8"
+    },
+    "wenzi_BIG WINNER_Urdu": {
+      "__uuid__": "ee02603d-f3af-4ab3-b7c3-3d1fb2626134"
+    },
+    "wenzi_JACKPOT_Bengali": {
+      "__uuid__": "b275bf8b-4d08-4d13-8872-ae78df15fae0"
+    },
+    "wenzi_JACKPOT_EN": {
+      "__uuid__": "08237d28-d45c-4046-bdab-ca572e232039"
+    },
+    "wenzi_JACKPOT_Hindi": {
+      "__uuid__": "1011ea53-0486-4d9d-85d3-1d7afe7ce6d3"
+    },
+    "wenzi_JACKPOT_Urdu": {
+      "__uuid__": "1453be78-7612-427f-a287-64cfe71571d4"
+    },
+    "btn_color": {
+      "__uuid__": "bdd6c782-8aff-41d2-bb73-3166b8b0350f"
+    },
+    "btn_high": {
+      "__uuid__": "3c9e9558-ff61-480f-8c5a-99cdf691a1ce"
+    },
+    "btn_jackpot": {
+      "__uuid__": "b69612b1-abfe-4784-881f-02b341a68fb2"
+    },
+    "btn_jackpot_grey": {
+      "__uuid__": "7295ed04-396b-4fc6-83e9-eec5c98960ee"
+    },
+    "btn_pair": {
+      "__uuid__": "702f29f6-1643-4f10-ad9b-8385dd9fa161"
+    },
+    "btn_pure": {
+      "__uuid__": "e4911068-84e4-4b47-bae0-0d544367eed5"
+    },
+    "btn_seq": {
+      "__uuid__": "959bca54-cacd-4db9-b4a0-3deea90033a3"
+    },
+    "btn_set": {
+      "__uuid__": "18acaedb-683e-484e-bdb5-7d07a812f4e6"
+    },
+    "bg_Lucky Loto": {
+      "__uuid__": "fae4df04-0307-4802-83cf-7c0b09d4ba8b"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Experience Coins(1)",
+    "texture": "3a51ab97-ae1b-4feb-9a23-a33f40d8e8c6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      280,
+      34
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      280,
+      34
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

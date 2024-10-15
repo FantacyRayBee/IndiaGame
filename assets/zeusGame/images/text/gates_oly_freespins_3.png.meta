@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "81b097e8-0210-413f-9608-e5325d29af24",
+  "importer": "image",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 99,
+  "height": 37,
+  "platformSettings": {},
+  "subMetas": {
+    "gates_oly_freespins_3": {
+      "ver": "1.0.6",
+      "uuid": "81b097e8-0210-413f-9608-e5325d29af24@6c48a",
+      "importer": "texture",
+      "rawTextureUuid": "81b097e8-0210-413f-9608-e5325d29af24",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 99,
+      "height": 37,
+      "rawWidth": 99,
+      "rawHeight": 37,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

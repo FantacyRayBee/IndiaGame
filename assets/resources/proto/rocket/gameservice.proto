@@ -1,0 +1,194 @@
+syntax = "proto3";
+package gameservice;
+
+// 返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+// 房间状态
+enum RoomStatus {
+  Betting = 0; // 下注状态
+  Flight = 1;  // 飞行中
+  Crashed = 2; // 坠落
+}
+
+// 主动消息
+// 登陆
+// 刷新场景
+// 下注
+// 下机
+// 查看玩家列表
+
+// 被动通知
+// 有人下注
+// 人数变化
+// 开始下注
+// 开始飞行
+// 飞行结束
+// 下注阶段update
+
+
+// 登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+}
+message LoginAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2; // 所有信息
+}
+
+message WholeInfo {
+  ConfigInfo config = 1;      // 配置信息
+  SceneInfo scene = 2;        // 场景信息
+  PlayerInfo requester = 3;   // 玩家信息
+}
+
+// 配置信息
+message ConfigInfo {
+  repeated int64 chipOption = 1;   // 下注选项
+  int32 betDuration = 2;  // 下注时长 ms
+  int32 calcDuration = 3; // 爆炸后结算时长 ms
+}
+
+// 场景信息
+message SceneInfo {
+  RoomStatus status = 1;              // 当前状态
+  int32 playerNum = 2;                // 总玩家人数
+  int64 currentStatusLeftMs = 3;      // 当前状态剩余时间.毫秒(下注，结算)
+  int64 betPool = 4;                  // 下注池
+  int64 jackpotPool = 5;              // 头奖池
+  Point point = 6;                    // 当前坐标点
+  repeated Point openRecord = 7;      // 开奖记录
+  //int64 flyFactor = 7;              // 飞行因数
+}
+// 坐标点
+message Point {
+  int64 x = 1;
+  int64 mul = 2;
+  int64 win = 3; // 赢取的
+}
+
+// 玩家信息
+message PlayerInfo {
+  UserInfo userInfo = 1;      // 用户信息
+  int64 chip = 2;             // 已下注的
+  Point cashPoint = 3;        // 领取点
+}
+
+// 用户信息
+message UserInfo {
+  uint64 playerId = 1;    // 玩家游戏Id
+  string displayName = 2; // uid
+  string imgUrl = 3;      // 头像
+  string nickname = 4;    // 昵称
+  int64 diamond = 5;      // 金币
+  uint32 vipLevel = 6;
+}
+
+// 刷新游戏场景 gameservice.loadwhole
+message LoadWholeReq {
+}
+message LoadWholeAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2;
+}
+
+// 退出房间 gameservice.exit
+message ExitReq {
+}
+message ExitAck {
+  ResponseBase result = 1;
+}
+
+// 人数变化通知 gameservice.playernumberchangednotify
+message PlayerNumberChangedNotify {
+  int32 num = 1;
+}
+
+// 获取玩家列表 gameservice.playerlist
+message PlayerListReq {
+  uint32 page = 1;     // 页数 (0代表第一页，1代表第二页)
+  uint32 rows = 2;
+}
+message PlayerListAck {
+  ResponseBase result = 1;
+  int32 total = 2;
+  repeated UserInfo list = 3;
+}
+
+// 下注 gameservice.bet
+message BetReq {
+  int64 amount = 1;     // 金额
+}
+message BetAck {
+  ResponseBase result = 1;
+  int64 amount = 2;     // 金额
+  int64 totalChip = 3;  // 个人总下注
+  int64 poolChip = 4;   // 注池总下注
+  int64 after = 5;      // 下注后剩余
+}
+
+// 领取奖励 gameservice.cash
+message CashReq {
+  int64 x = 1;    // 时间坐标
+  int64 mul = 2;  // 倍数
+}
+message CashAck {
+  ResponseBase result = 1;
+  int64 x = 2;      // 时间坐标
+  int64 mul = 3;    // 倍数
+  int64 amount = 4; // 领取的金额
+  int64 after = 5;  // 钱包剩余
+}
+
+// 有人领取通知 gameservice.cashnotify
+message CashNotify {
+  uint64 pid = 1;      // 玩家游戏id
+  string nickname = 2; // 昵称
+  int64 x = 3;         // 时间坐标
+  int64 mul = 4;       // 倍数
+  int64 amount = 5;    // 领取的金额
+  int64 after = 6;     // 钱包剩余
+}
+
+// 开始下注阶段通知 gameservice.startbettingnotify
+message StartBetNotify {
+}
+
+// 开始飞行阶段通知 gameservice.startflynotify
+message StartFlyNotify {
+  int64 m = 1;   // 曲率系数
+}
+
+// 飞行结束通知 gameservice.flyfinishnotify
+message FlyFinishNotify {
+  int64 x = 1;      // 时间坐标
+  int64 mul = 2;    // 倍数
+  int64 sysEat = 3; // 被系统吃掉的分
+  bool isJackpot = 4; // 是否头奖
+  int64 jackpotPool = 5;  // 头奖池
+}
+
+// 下注过程update gameservice.bettingupdatenotify
+message BettingUpdateNotify {
+  int64 currentStatusLeftMs = 1;  // 当前状态剩余时间.毫秒
+  int64 betAdd = 2;               // 增加的注
+  int64 betPool = 3;              // 下注池
+  int64 jackpotPool = 4;          // 头奖池
+}
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  uint64 playerId = 1;    // 玩家Id
+  int64 balance = 2;      // 剩余数量
+  int32 reason = 3;       // 原因 1:支付; 其他：未知
+}
+

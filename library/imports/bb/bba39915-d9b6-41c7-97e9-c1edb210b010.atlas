@@ -1,0 +1,27 @@
+
+pai_guang.png
+size: 323,323
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img/fangsheguang_goods
+  rotate: false
+  xy: 163, 164
+  size: 157, 157
+  orig: 157, 157
+  offset: 0, 0
+  index: -1
+img/pai_guang
+  rotate: false
+  xy: 2, 126
+  size: 159, 195
+  orig: 159, 195
+  offset: 0, 0
+  index: -1
+img/poker_fp_6
+  rotate: true
+  xy: 2, 2
+  size: 122, 156
+  orig: 122, 156
+  offset: 0, 0
+  index: -1

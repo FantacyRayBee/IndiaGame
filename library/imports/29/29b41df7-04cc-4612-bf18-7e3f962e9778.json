@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_chouma_02",
+    "texture": "5a764000-dc48-4bef-b9b3-91beccd27140",
+    "atlas": "",
+    "rect": [
+      5,
+      4,
+      89,
+      91
+    ],
+    "offset": [
+      1.5,
+      -1
+    ],
+    "originalSize": [
+      96,
+      97
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

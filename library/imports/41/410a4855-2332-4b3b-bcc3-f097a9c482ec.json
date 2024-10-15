@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "luckyLoto",
+    "texture": "773930bb-ef8e-45e9-8dfd-fe1af22d3b08",
+    "atlas": "",
+    "rect": [
+      18,
+      1,
+      53,
+      15
+    ],
+    "offset": [
+      -1.5,
+      0.5
+    ],
+    "originalSize": [
+      92,
+      18
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

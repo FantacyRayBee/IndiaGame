@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c58005a4-f1b9-4b7e-adc6-c381af235429",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 446,
+  "height": 80,
+  "platformSettings": {},
+  "subMetas": {
+    "levelUpGiftTitle": {
+      "ver": "1.0.6",
+      "uuid": "18c3976d-f1bf-4566-9597-e3dcda95b8de",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c58005a4-f1b9-4b7e-adc6-c381af235429",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 446,
+      "height": 80,
+      "rawWidth": 446,
+      "rawHeight": 80,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

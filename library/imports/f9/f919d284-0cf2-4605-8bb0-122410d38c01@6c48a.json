@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gates_oly_num2_0",
+    "texture": "f919d284-0cf2-4605-8bb0-122410d38c01",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      244,
+      93
+    ],
+    "offset": [
+      -6,
+      79.5
+    ],
+    "originalSize": [
+      256,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

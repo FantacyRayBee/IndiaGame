@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_Repeat bets_grey",
+    "texture": "31048910-5063-45d1-86ff-f233f91c270f",
+    "atlas": "b29c3bd4-c7d9-4005-b5a9-3f62fa7c9280",
+    "rect": [
+      781,
+      875,
+      180,
+      78
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      180,
+      78
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

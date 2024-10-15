@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>jb.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{250,62},{31,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{31,32}</string>
+			</dict>
+			<key>btn_next.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{94,62},{76,28}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{76,28}</string>
+			</dict>
+			<key>btn_prev.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{174,62},{72,28}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,28}</string>
+			</dict>
+			<key>title.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{327,56}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{327,56}</string>
+			</dict>
+			<key>tx.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,62},{88,88}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{88,88}</string>
+			</dict>
+			<key>tx_k.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{333,2},{92,92}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{92,92}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>lhdPlayersList.png</string>
+			<key>realTextureFileName</key>
+			<string>lhdPlayersList.png</string>
+			<key>size</key>
+			<string>{427,152}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>427</integer>
+			<key>height</key>
+			<integer>152</integer>
+		</dict>
+	</dict>
+</plist>

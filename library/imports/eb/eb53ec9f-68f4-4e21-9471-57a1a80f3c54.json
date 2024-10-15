@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "putao",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nputao.png\nsize: 409,502\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 2, 2\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 251, 85\n  size: 156, 161\n  orig: 160, 165\n  offset: 2, 2\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 248\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 255, 345\n  size: 150, 155\n  orig: 158, 161\n  offset: 4, 3\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "bb75acd4-974b-406d-9fcd-5c5f35c89279"
+    }
+  ],
+  "textureNames": [
+    "putao.png"
+  ],
+  "scale": 1
+}

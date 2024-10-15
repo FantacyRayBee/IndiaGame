@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "wild",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nwild.png\nsize: 870,263\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nd\n  rotate: false\n  xy: 667, 3\n  size: 30, 33\n  orig: 30, 33\n  offset: 0, 0\n  index: -1\ni\n  rotate: false\n  xy: 856, 229\n  size: 12, 32\n  orig: 12, 32\n  offset: 0, 0\n  index: -1\nl\n  rotate: false\n  xy: 699, 3\n  size: 25, 33\n  orig: 25, 33\n  offset: 0, 0\n  index: -1\nsanguang\n  rotate: false\n  xy: 255, 17\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nstaraY\n  rotate: false\n  xy: 504, 17\n  size: 116, 117\n  orig: 128, 128\n  offset: 8, 6\n  index: -1\nw\n  rotate: false\n  xy: 622, 2\n  size: 43, 34\n  orig: 43, 34\n  offset: 0, 0\n  index: -1\nwaiguang\n  rotate: false\n  xy: 504, 136\n  size: 176, 125\n  orig: 178, 127\n  offset: 1, 1\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 9\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuanshi\n  rotate: false\n  xy: 622, 38\n  size: 120, 96\n  orig: 124, 104\n  offset: 2, 2\n  index: -1\nzhuanshi2\n  rotate: false\n  xy: 744, 40\n  size: 120, 96\n  orig: 124, 104\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 682, 138\n  size: 172, 123\n  orig: 178, 126\n  offset: 3, 1\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "0cfca949-9645-45bb-9628-7f18a77135ad"
+    }
+  ],
+  "textureNames": [
+    "wild.png"
+  ],
+  "scale": 1
+}

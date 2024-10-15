@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "daojishilianyi",
+    "texture": "1874905d-db4d-4b86-b214-84b4666f08ba",
+    "atlas": "",
+    "rect": [
+      2,
+      57,
+      282,
+      225
+    ],
+    "offset": [
+      0,
+      -27.5
+    ],
+    "originalSize": [
+      286,
+      284
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

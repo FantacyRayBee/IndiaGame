@@ -1,0 +1,192 @@
+syntax = "proto3";
+package gameservice;
+
+// 返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+// 房间状态
+enum RoomStatus {
+  StartBet = 0;
+  EndBet = 1;
+}
+
+// 下注位置
+enum BetSide {
+    Dragon = 0; // 龙
+    Tiger = 1;  // 虎
+    Tie = 2;    // 平
+}
+// 玩家离线后的逻辑 -- 当局离线缓存，预扣，结算时
+
+// 登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+  uint32 fromid = 3;  // 来源平台ID
+}
+message LoginAck {
+  ResponseBase result = 1;
+  SceneInfo sceneInfo = 2;    // 场景信息
+  ConfigInfo configInfo = 3;  // 配置信息
+  PlayerInfo requester = 4;   // 玩家信息
+}
+
+// 刷新游戏场景 gameservice.gamescene
+message GameSceneReq {
+}
+message GameSceneAck {
+  ResponseBase result = 1;
+  SceneInfo sceneInfo = 2;    // 场景信息
+  PlayerInfo requester = 3;   // 玩家信息
+}
+
+// 用户信息
+message UserInfo {
+  uint64 playerId = 1;    // 玩家Id
+  string displayName = 2; // 用于显示的数字ID
+  string imgUrl = 3;      // 头像
+  string nickname = 4;    // 昵称
+  int64 diamond = 5;      // 金币
+  uint32 vipLevel = 6;
+}
+// 场景信息
+message SceneInfo {
+  RoomStatus  status = 1;             // 当前状态
+  int32 currentStatusLeftMs = 2;      // 当前状态剩余时间.毫秒
+  BetInfo totalBet = 3;               // 总下注信息
+  repeated BetSide openRecord = 4;    // 下注记录 由前到后
+  int32 playerNum = 5;                // 总玩家人数
+  repeated PlayerInfo vipPlayer = 6;  // vip玩家信息
+}
+// 配置信息
+message ConfigInfo {
+  repeated int64 betOption = 1;   // 下注选项
+}
+// 玩家信息
+message PlayerInfo {
+  UserInfo userInfo = 1;      // 用户信息
+  int32 pos = 2;              // 位置
+  BetInfo betInfo = 3;        // 下注信息
+}
+
+// 退出房间 gameservice.exitroom
+message ExitRoomReq {
+}
+message ExitRoomAck {
+  ResponseBase result = 1;
+}
+
+// 人数变化通知 gameservice.playernumberchangednotify
+message PlayerNumberChangedNotify {
+  int32 num = 1;
+}
+
+// 获取玩家列表 gameservice.playerlist
+message PlayerListReq {
+  int32 page = 1;     // 页数 (0代表第一页，1代表第二页)
+  int32 rows = 2;
+}
+message PlayerListAck {
+  ResponseBase result = 1;
+  repeated UserInfo playerList = 2;
+  int32 total = 3;
+}
+
+// 加入Vip座位 gameservice.joinvip
+message JoinVipReq {
+  int32 pos = 1;  // -1:退出vip; >=0:上桌/换桌
+}
+message JoinVipAck {
+  ResponseBase result = 1;
+  UserInfo userinfo = 2;   //玩家信息
+}
+// 加入vip座位广播 gameservice.joinvipnotify
+message JoinVipNotify {
+  UserInfo userinfo = 1; //用户信息
+  int32 oldPos = 2;   // 变化前的座位
+  int32 curPos = 3;   // 变化后的座位
+}
+
+// 游戏状态变化通知 gameservice.roomstatuschangednotify
+message RoomStatusChangedNotify {
+    RoomStatus  status = 1;
+}
+
+//下注 gameservice.call
+message CallReq {
+  int64 amount = 1;     // 金额
+  BetSide side = 2;     // 下注位置(0.龙 1.虎 2.平)
+}
+message CallAck {
+  ResponseBase result = 1;
+  int64 amount = 2;       // 金额
+  BetSide side = 3;       // 下注位置(0.龙 1.虎 2.平)
+  BetInfo totalBet = 4;   // 总下注信息
+  int64 after = 5;        // 下注后剩余
+}
+message BetInfo {
+  int64 dragon = 1; // 龙
+  int64 tiger = 2;  // 虎
+  int64 tie = 3;    // 平
+}
+message VipCall {
+  int32 pos = 1;
+  BetInfo bet = 2;
+  int64 after = 3;        // 下注后剩余
+}
+// 下注通知 gameservice.callnotify
+message CallNotify {
+  repeated VipCall vipBet = 1;  // vip下注
+  BetInfo civilianBet = 2;      // 平民下注
+  BetInfo poolBet = 3;          // 总下注情况
+}
+
+//游戏结束通知 gameservice.gamesettlenotify
+message GameSettleNotify {
+  repeated int32 cards = 1;   // 底牌下标 (0龙,1虎)
+  BetSide winSide = 2;        // 赢位置 (0.龙, 1.虎, 2.平)
+  repeated VipWin vipWin = 3; // vip赢分
+  int64 civilianWin = 4;      // 平民赢分
+  int64 selfWin = 5;          // 接受者赢分
+  int64 selfAfter = 6;        // 接受者赢分后
+}
+message VipWin {
+  int32 pos = 1;    // 座位号
+  int64 win = 2;    // 赢分
+  int64 after = 3;  // 结算后
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情 2礼物
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  uint64 playerId = 1;    // 玩家Id
+  int64 balance = 2;      // 剩余数量
+  int32 reason = 3;       // 原因 1:支付; 其他：未知
+}
+

@@ -1,0 +1,367 @@
+"use strict";
+cc._RF.push(module, '552b0vMp35MUJ5cjc1InolR', 'Main');
+// Main/Main.js
+
+"use strict";
+
+cc.Class({
+  "extends": cc.Component,
+  properties: {},
+  ctor: function ctor() {
+    this.reqRemoteVersionUrlAcount = 0;
+    this.loadPrecess = 0;
+    this.reqAppInfoCount = 0;
+    this.reqAppConfigCount = 0;
+  },
+  onLoad: function onLoad() {
+    /**
+     * 首次进入上报
+     */
+    if (cc.sys.isNative) {
+      var firstEnterStatus = Number(cc.sys.localStorage.getItem("FIRST_ENTER_STATUS"));
+
+      if (firstEnterStatus == 0) {
+        cc.sys.localStorage.setItem("FIRST_ENTER_STATUS", 1);
+        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.FIRST_ENTER);
+      }
+
+      ;
+    }
+
+    ;
+    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);
+    /**
+     * 日志开关
+     */
+
+    if (cc.sys.isNative) {
+      var loggerUtilStatus = Number(cc.sys.localStorage.getItem("LOGGERUTIL_STATUS"));
+      LoggerUtil.getInstance().setLoggerStatus(loggerUtilStatus == 1 ? true : false);
+    } else {
+      LoggerUtil.getInstance().setLoggerStatus(true);
+    }
+
+    ;
+    console.log("LoggerUtil Status is: " + LoggerUtil.getInstance().getLoggerStatus());
+    /**
+     * 常驻节点
+     */
+
+    var persistNode = cc.find("PersistNode");
+    cc.game.addPersistRootNode(persistNode);
+    var carouselLayer = persistNode.getChildByName("CarouselLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.CAROUSELLAYER, carouselLayer);
+    var firstLayer = persistNode.getChildByName("FirstLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.FIRSTLAYER, firstLayer);
+    var secondLayer = persistNode.getChildByName("SecondLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.SECONDLAYER, secondLayer);
+    var thirdLayer = persistNode.getChildByName("ThirdLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.THIRDLAYER, thirdLayer);
+    var toastLayer = persistNode.getChildByName("ToastLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.TOASTLAYER, toastLayer);
+    var shopLayer = persistNode.getChildByName("ShopLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.SHOPLAYER, shopLayer);
+    var progressLayer = persistNode.getChildByName("ProgressLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.PROGRESSLAYER, progressLayer);
+    var tipsLayer = persistNode.getChildByName("TipsLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.TIPSLAYER, tipsLayer);
+    GlobalCfg.G_COMPONENTS.Audio = persistNode.getComponent('AudioManager');
+    this.node_loadTipsLayer = this.node.getChildByName('loadTipsLayer');
+    this.lab_loadTips = this.node_loadTipsLayer.getChildByName('lab_loadTips').getComponent(cc.Label);
+    this.node_loadMark = this.node_loadTipsLayer.getChildByName('loadMark');
+    this.playLoadTipsAct();
+    var UnUseFacebook = Number(cc.sys.localStorage.getItem("UnUseFacebook"));
+    LoggerUtil.getInstance().log("UnUseFacebook: ", UnUseFacebook);
+    GlobalCfg.UNUSE_FACEBOOK = UnUseFacebook;
+    var needToLogEncrypt = false;
+
+    if (needToLogEncrypt) {
+      var appConfigPathObj = {
+        "0": "json/AppConfig_test",
+        "1": "json/AppConfig_1",
+        "2": "json/AppConfig_2",
+        "3": "json/AppConfig_3",
+        "4": "json/AppConfig_4"
+      };
+      var appConfigPath = appConfigPathObj[GlobalCfg.server_id]; // appConfigPath = appConfigPathObj['2'];
+
+      cc.loader.loadRes(appConfigPath, function (err, asset) {
+        var enStrb = CommonFun.getInstance().encrypt(JSON.stringify(asset.json));
+        LoggerUtil.getInstance().log("appConfig加密后的值：\n", enStrb);
+        var deStrb = CommonFun.getInstance().decrypt(enStrb);
+        LoggerUtil.getInstance().log("appConfig解密后的值：", JSON.parse(deStrb));
+      });
+      var appInfoPathObj = {
+        "0": "json/AppInfo_test",
+        "1": "json/AppInfo_1",
+        "2": "json/AppInfo_2",
+        "3": "json/AppInfo_3",
+        "4": "json/AppInfo_4",
+        "5": "json/AppInfo_5"
+      };
+      var appInfoPath = appInfoPathObj[GlobalCfg.server_id]; // appInfoPath = appInfoPathObj['5'];
+
+      cc.loader.loadRes(appInfoPath, function (err, asset) {
+        var enStr = CommonFun.getInstance().encrypt(JSON.stringify(asset.json));
+        LoggerUtil.getInstance().log("appInfo加密后的值：\n", enStr);
+        var deStr = CommonFun.getInstance().decrypt(enStr);
+        LoggerUtil.getInstance().log("appInfo解密后的值：", JSON.parse(deStr));
+      });
+    }
+  },
+  playLoadTipsAct: function playLoadTipsAct() {
+    var _this = this;
+
+    var dt = 0;
+    var pointArr = ['.', '..', '...'];
+    this.schedule(function () {
+      _this.lab_loadTips.string = "Resource loading " + pointArr[dt % 3] + " " + _this.loadPrecess + "%";
+      dt += 1;
+    }, 0.5);
+    cc.tween(this.node_loadMark).by(1, {
+      angle: -360
+    }).repeatForever().start();
+  },
+  start: function start() {
+    var _this2 = this;
+
+    APPManager.getFirebaseToken();
+    var packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+    var channel = 0;
+
+    if (packageChannel && packageChannel.indexOf("_") != -1) {
+      var packageChannelArr = packageChannel.split("_");
+      channel = packageChannelArr[1];
+    }
+
+    if (channel == "4001") {
+      this.reqAppInfo(function () {
+        LoggerUtil.getInstance().log("44444 start 1");
+        Promise.all([_this2.getAdvertisingId()]).then(function (arr) {
+          _this2.loadUpdateScene();
+        });
+      }, GlobalCfg.APP_INFO_URL);
+    } else if (GlobalCfg.PACKAGE_REPORT_METHOD == 2 || GlobalCfg.isPattiHunt == 1 || GlobalCfg.ISPackage2019 == 1) {
+      LoggerUtil.getInstance().log("44444 start 2");
+      this.reqAppInfo(function () {
+        Promise.all([_this2.getAppsFlyerId(), _this2.getAdvertisingId()]).then(function (arr) {
+          _this2.loadUpdateScene();
+        });
+      }, GlobalCfg.APP_INFO_URL);
+    } else if (GlobalCfg.PACKAGE_REPORT_METHOD == 3 || GlobalCfg.ISPackage2009 == 1 || GlobalCfg.isPackage2010 == 1 || GlobalCfg.isPackage2014 == 1 || GlobalCfg.ISPackage2018 == 1 || GlobalCfg.isBloom3Rummy == 1 || GlobalCfg.isPackage2020 == 1) {
+      // Jsut need AppInfo, PIX上报(UA+IP)
+      LoggerUtil.getInstance().log("44444 start 3");
+      this.reqAppInfo(function () {
+        _this2.loadUpdateScene();
+      }, GlobalCfg.APP_INFO_URL);
+    } else if (GlobalCfg.PACKAGE_REPORT_METHOD == 4 || channel == "2058" || channel == "4003" || channel == "4004" || channel == "6019" || channel == "6020" || channel == "6021" || channel == "7001" || channel == "7002") {
+      LoggerUtil.getInstance().log("44444 start 4");
+      this.reqAppInfo(function () {
+        Promise.all([_this2.getAdjustId()]).then(function (arr) {
+          _this2.loadUpdateScene();
+        });
+      }, GlobalCfg.APP_INFO_URL);
+    } else {
+      LoggerUtil.getInstance().log("44444 start 5");
+      this.reqAppInfo(function () {
+        Promise.all([_this2.getAdjustId(), _this2.getAdvertisingId()]).then(function (arr) {
+          _this2.loadUpdateScene();
+        });
+      }, GlobalCfg.APP_INFO_URL);
+    }
+
+    ;
+    this.reqAppConfig(GlobalCfg.APP_CONFIG_URL);
+  },
+  getAdjustId: function getAdjustId() {
+    var _this3 = this;
+
+    var startTime = cc.sys.now();
+    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_START);
+    return new Promise(function (resolve, reject) {
+      var getAdjustIDCallback = function getAdjustIDCallback() {
+        var endTime = cc.sys.now();
+        var adjustId = APPManager.getAdjustID();
+
+        if (adjustId && adjustId != '' && adjustId.length > 0) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_SUCCESS, endTime - startTime);
+          GlobalCfg.ADJUST_ID = adjustId;
+          LoggerUtil.getInstance().log("adjustId:", GlobalCfg.ADJUST_ID);
+
+          _this3.unschedule(getAdjustIDCallback);
+
+          resolve(adjustId);
+          return;
+        } else if (endTime - startTime > 20000) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
+          GlobalCfg.ADJUST_ID = "";
+          LoggerUtil.getInstance().log("adjustId is empty");
+
+          _this3.unschedule(getAdjustIDCallback);
+
+          resolve("");
+          return;
+        }
+
+        ;
+      };
+
+      _this3.schedule(getAdjustIDCallback, 0.5);
+    });
+  },
+  getAppsFlyerId: function getAppsFlyerId() {
+    var _this4 = this;
+
+    var startTime = cc.sys.now();
+    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_START);
+    return new Promise(function (resolve, reject) {
+      var getAppsFlyerIdCallback = function getAppsFlyerIdCallback() {
+        var endTime = cc.sys.now();
+        var appsFlyerId = APPManager.getAppsFlyerId();
+
+        if (appsFlyerId && appsFlyerId.length > 0) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_SUCCESS, endTime - startTime);
+          GlobalCfg.APPSFLYER_ID = appsFlyerId;
+          LoggerUtil.getInstance().log("appsFlyerId:", GlobalCfg.APPSFLYER_ID);
+
+          _this4.unschedule(getAppsFlyerIdCallback);
+
+          resolve(appsFlyerId);
+          return;
+        } else if (endTime - startTime > 20000) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_FAIL, endTime - startTime);
+          GlobalCfg.APPSFLYER_ID = "";
+          LoggerUtil.getInstance().log("appsFlyerId is empty");
+
+          _this4.unschedule(getAppsFlyerIdCallback);
+
+          resolve("");
+          return;
+        }
+
+        ;
+      };
+
+      _this4.schedule(getAppsFlyerIdCallback, 0.5);
+    });
+  },
+  getAdvertisingId: function getAdvertisingId() {
+    var _this5 = this;
+
+    var startTime = cc.sys.now();
+    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
+    return new Promise(function (resolve, reject) {
+      var getAdvertisingIdCallback = function getAdvertisingIdCallback() {
+        var endTime = cc.sys.now();
+        var advertisingId = APPManager.getAdvertisingId();
+        LoggerUtil.getInstance().log("11 advertisingId:", advertisingId);
+
+        if (advertisingId && advertisingId.length > 0) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
+
+          if (advertisingId == "32131293129831-23312461278") {
+            GlobalCfg.ADVERTISING_ID = "";
+          } else {
+            GlobalCfg.ADVERTISING_ID = advertisingId;
+          }
+
+          LoggerUtil.getInstance().log("22 advertisingId:", GlobalCfg.ADVERTISING_ID);
+
+          _this5.unschedule(getAdvertisingIdCallback);
+
+          resolve(advertisingId);
+          return;
+        } else if (endTime - startTime > 20000) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
+          GlobalCfg.ADVERTISING_ID = "";
+          LoggerUtil.getInstance().log("33 advertisingId is empty");
+
+          _this5.unschedule(getAdvertisingIdCallback);
+
+          resolve("");
+          return;
+        }
+
+        ;
+      };
+
+      _this5.schedule(getAdvertisingIdCallback, 0.5);
+    });
+  },
+  reqAppConfig: function reqAppConfig(url) {
+    var _this6 = this;
+
+    this.reqAppConfigCount++;
+    CommonFun.getInstance().httpGet(url, function (jsonObj) {
+      LoggerUtil.getInstance().log("APP Config Datas", jsonObj);
+      GlobalCfg.APP_CONFIG_DATAS = jsonObj.list;
+    }, function () {
+      LoggerUtil.getInstance().warn("APPCONFIG GET ERROR!");
+
+      if (_this6.reqAppConfigCount < 5) {
+        _this6.reqAppConfig(url);
+      } else {
+        if (url == GlobalCfg.APP_CONFIG_URL) {
+          _this6.reqAppConfigCount = 0;
+
+          _this6.reqAppConfig(GlobalCfg.APP_CONFIG_URL_SPARE);
+        } else {
+          GlobalCfg.APP_CONFIG_DATAS = [];
+        }
+      }
+    });
+  },
+  reqAppInfo: function reqAppInfo(finishCallback, url) {
+    var _this7 = this;
+
+    if (url.length == 0) {
+      console.error("reqAppInfo url is empty");
+      return;
+    }
+
+    this.reqAppInfoCount++;
+    var startTime = cc.sys.now();
+    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_START);
+    CommonFun.getInstance().httpGet(url, function (json) {
+      var endTime = cc.sys.now();
+      CommonFun.getInstance().dealAppInfoJson(json);
+      CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_SUCCESS, endTime - startTime);
+      finishCallback && finishCallback();
+    }, function () {
+      var endTime = cc.sys.now();
+      CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);
+
+      if (_this7.reqAppInfoCount < 5) {
+        _this7.reqAppInfo(finishCallback, url);
+      } else {
+        LoggerUtil.getInstance().warn("APPINFO GET ERROR!!");
+
+        if (url == GlobalCfg.APP_INFO_URL) {
+          _this7.reqAppInfoCount = 0;
+
+          _this7.reqAppInfo(finishCallback, GlobalCfg.APP_INFO_URL_SPARE);
+        } else {
+          _this7.reqAppInfo(finishCallback, url);
+        }
+      }
+    });
+  },
+  loadUpdateScene: function loadUpdateScene() {
+    var localAppVersion = Number(cc.sys.localStorage.getItem("LocalAppVersion"));
+    var isCanDownApp = Number(cc.sys.localStorage.getItem("IsCanDownApp"));
+    LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);
+    LoggerUtil.getInstance().log("isCanDownApp: ", isCanDownApp);
+
+    if (cc.sys.isNative && isCanDownApp == 1 && GlobalCfg.REMOTE_APP_UPDATE && GlobalCfg.REMOTE_APP_VERSION != localAppVersion) {
+      this.node_loadTipsLayer.active = false;
+      APPManager.downloadApkByApkUrl(GlobalCfg.REMOTE_APP_URL);
+    } else {
+      this.loadPrecess = 100.00;
+      cc.director.loadScene("Update");
+    }
+
+    ;
+  }
+});
+
+cc._RF.pop();

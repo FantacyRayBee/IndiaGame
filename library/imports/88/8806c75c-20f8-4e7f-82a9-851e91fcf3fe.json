@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "台子(1)",
+    "texture": "b5cf2a9d-04f9-4c62-8c1c-30c3abf698e0",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      338,
+      207
+    ],
+    "offset": [
+      -0.5,
+      0
+    ],
+    "originalSize": [
+      339,
+      207
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

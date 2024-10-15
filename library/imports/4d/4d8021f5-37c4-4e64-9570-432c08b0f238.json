@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "uiquan",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nuiquan.png\nsize: 318,476\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nxuliekuang_00\n  rotate: true\n  xy: 2, 307\n  size: 88, 97\n  orig: 118, 118\n  offset: 7, 9\n  index: -1\nxuliekuang_15\n  rotate: true\n  xy: 2, 307\n  size: 88, 97\n  orig: 118, 118\n  offset: 7, 9\n  index: -1\nxuliekuang_01\n  rotate: true\n  xy: 2, 210\n  size: 95, 97\n  orig: 118, 118\n  offset: 7, 9\n  index: -1\nxuliekuang_02\n  rotate: false\n  xy: 2, 110\n  size: 106, 95\n  orig: 118, 118\n  offset: 8, 9\n  index: -1\nxuliekuang_03\n  rotate: false\n  xy: 210, 296\n  size: 106, 92\n  orig: 118, 118\n  offset: 8, 9\n  index: -1\nxuliekuang_04\n  rotate: false\n  xy: 2, 397\n  size: 106, 77\n  orig: 118, 118\n  offset: 8, 10\n  index: -1\nxuliekuang_05\n  rotate: false\n  xy: 101, 207\n  size: 106, 93\n  orig: 118, 118\n  offset: 8, 10\n  index: -1\nxuliekuang_06\n  rotate: false\n  xy: 104, 2\n  size: 103, 98\n  orig: 118, 118\n  offset: 11, 10\n  index: -1\nxuliekuang_07\n  rotate: false\n  xy: 110, 107\n  size: 96, 98\n  orig: 118, 118\n  offset: 18, 10\n  index: -1\nxuliekuang_08\n  rotate: true\n  xy: 110, 390\n  size: 84, 97\n  orig: 118, 118\n  offset: 30, 11\n  index: -1\nxuliekuang_09\n  rotate: false\n  xy: 208, 102\n  size: 103, 96\n  orig: 118, 118\n  offset: 10, 11\n  index: -1\nxuliekuang_10\n  rotate: false\n  xy: 209, 200\n  size: 107, 94\n  orig: 118, 118\n  offset: 6, 13\n  index: -1\nxuliekuang_11\n  rotate: false\n  xy: 101, 302\n  size: 107, 86\n  orig: 118, 118\n  offset: 6, 21\n  index: -1\nxuliekuang_12\n  rotate: false\n  xy: 209, 390\n  size: 106, 84\n  orig: 118, 118\n  offset: 6, 23\n  index: -1\nxuliekuang_13\n  rotate: false\n  xy: 209, 2\n  size: 104, 98\n  orig: 118, 118\n  offset: 7, 9\n  index: -1\nxuliekuang_14\n  rotate: false\n  xy: 2, 11\n  size: 100, 97\n  orig: 118, 118\n  offset: 7, 9\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "afe69c46-f65a-43ce-a034-447ec67ba92f"
+    }
+  ],
+  "textureNames": [
+    "uiquan.png"
+  ],
+  "scale": 1
+}

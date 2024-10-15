@@ -1,0 +1,20 @@
+
+bt_fx_reward.png
+size: 305,305
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img/1b
+  rotate: false
+  xy: 2, 132
+  size: 215, 171
+  orig: 217, 171
+  offset: 0, 0
+  index: -1
+img/Tex_0005
+  rotate: false
+  xy: 2, 2
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1

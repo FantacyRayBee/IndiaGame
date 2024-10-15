@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "0fda700c-90d8-4990-b917-a3d28572035d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 395,
+  "height": 62,
+  "platformSettings": {},
+  "subMetas": {
+    "title_WINNING HISTORY_Hindi": {
+      "ver": "1.0.6",
+      "uuid": "1952d8e9-4b72-4d98-a9f7-b73b4ec054cc",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "0fda700c-90d8-4990-b917-a3d28572035d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 395,
+      "height": 62,
+      "rawWidth": 395,
+      "rawHeight": 62,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

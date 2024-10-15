@@ -1,0 +1,293 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "gamestart",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "e4fXu5YOjmG+R7sK+YwjR4A1OO4",
+      "spine": "3.3.07",
+      "width": 754.37,
+      "height": 106.73,
+      "images": "./images/"
+    },
+    "bones": [
+      {
+        "name": "root",
+        "rotation": 0.2
+      },
+      {
+        "name": "gamestart",
+        "parent": "root"
+      },
+      {
+        "name": "kuang",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "kuang",
+        "bone": "kuang",
+        "attachment": "kuang"
+      },
+      {
+        "name": "gamestart",
+        "bone": "gamestart",
+        "attachment": "gamestart"
+      }
+    ],
+    "skins": {
+      "default": {
+        "gamestart": {
+          "gamestart": {
+            "path": "Game Start!",
+            "x": 0.5,
+            "width": 263,
+            "height": 47
+          }
+        },
+        "kuang": {
+          "kuang": {
+            "width": 754,
+            "height": 104
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "gamestart": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ]
+          },
+          "kuang": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "root": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "gamestart": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": -463.57,
+                "y": 0
+              },
+              {
+                "time": 0.1666,
+                "x": -33.54,
+                "y": 0
+              },
+              {
+                "time": 0.8333,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "time": 1,
+                "x": 446.69,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 0.33
+              }
+            ]
+          },
+          "kuang": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 0.031
+              },
+              {
+                "time": 0.1666,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 0.031
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\ngamestart.png\nsize: 1023,108\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nGame Start!\n  rotate: false\n  xy: 758, 59\n  size: 263, 47\n  orig: 263, 47\n  offset: 0, 0\n  index: -1\nkuang\n  rotate: false\n  xy: 2, 2\n  size: 754, 104\n  orig: 754, 104\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "5146d429-809e-42bc-8656-f309a5dc51dc"
+    }
+  ],
+  "textureNames": [
+    "gamestart.png"
+  ],
+  "scale": 1
+}

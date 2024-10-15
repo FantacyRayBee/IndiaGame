@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_upi1",
+    "texture": "41d93a73-ed4c-4cfd-b60c-00cf7e5fa31f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      145,
+      71
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      145,
+      71
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

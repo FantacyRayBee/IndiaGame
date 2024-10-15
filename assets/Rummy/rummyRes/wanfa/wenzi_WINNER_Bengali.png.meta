@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "4994780c-3a68-4e38-b7e5-289f7f539841",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 92,
+  "height": 33,
+  "platformSettings": {},
+  "subMetas": {
+    "wenzi_WINNER_Bengali": {
+      "ver": "1.0.6",
+      "uuid": "d6f47160-3e5a-4353-af8d-b6cecd90d69c",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "4994780c-3a68-4e38-b7e5-289f7f539841",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 92,
+      "height": 33,
+      "rawWidth": 92,
+      "rawHeight": 33,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

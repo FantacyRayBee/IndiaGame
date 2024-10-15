@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bonusCard",
+    "texture": "1f206993-b23f-4769-b146-31d0c52927fc",
+    "atlas": "",
+    "rect": [
+      17,
+      0,
+      61,
+      36
+    ],
+    "offset": [
+      -0.5,
+      6
+    ],
+    "originalSize": [
+      96,
+      48
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

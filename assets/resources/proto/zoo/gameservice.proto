@@ -1,0 +1,218 @@
+syntax = "proto3";
+package gameservice;
+
+//protoc --go_out=:. game.proto
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+// 返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+// 房间状态
+enum RoomStatus {
+  Betting = 0;  // 下注状态
+  Flight = 1;   // 飞行中
+  Relaxing = 2; // 结算后
+}
+
+enum Animal {
+  Shark = 0; // 鲨鱼
+  Monkey = 1; // 猴子
+  Rabbit = 2; // 兔子
+  Lion = 3; // 狮子
+  Panda = 4; // 熊猫
+  Swallow = 5; // 海燕
+  Pigeon = 6; // 鸽子
+  Peacock = 7; // 孔雀
+  Eagle = 8; // 老鹰
+  Beast = 9; // 走兽
+  Bird = 10; // 飞禽
+  // 以上是下注枚举, 以下包含额外开奖枚举
+  GoldShark = 11; // 金鲨鱼
+  AllKill = 12; // 全杀
+  AllWin = 13; // 全赢
+  MaxLength = 14; // 最大长度(客户端忽略)
+}
+
+
+// 登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+}
+message LoginAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2; // 所有信息
+}
+
+message WholeInfo {
+  ConfigInfo config = 1;      // 配置信息
+  SceneInfo scene = 2;        // 场景信息
+  PlayerInfo requester = 3;   // 玩家信息
+}
+
+// 配置信息
+message ConfigInfo {
+  repeated int64 chipOption = 1;   // 下注选项
+  int32 betDuration = 2;  // 下注时长 ms
+  int32 calcDuration = 3; // 结算时长 ms
+}
+
+// 场景信息
+message SceneInfo {
+  RoomStatus status = 1;              // 当前状态
+  int32 playerNum = 2;                // 总玩家人数
+  int64 currentStatusLeftMs = 3;      // 当前状态剩余时间.毫秒(下注，结算)
+  repeated int64 betPool = 4;         // 下注池
+  repeated Animal openRecord = 5;     // 开奖记录
+  repeated PlayerInfo vip = 6;        // VIP玩家
+  OpenInfo openInfo = 7;              // 延时开奖信息
+}
+
+// 玩家信息
+message PlayerInfo {
+  UserInfo userInfo = 1;   // 用户信息
+  repeated int64 chip = 2; // 已下注的，下标为Animal
+}
+
+// 用户信息
+message UserInfo {
+  uint64 playerId = 1;    // 玩家游戏Id
+  string uid = 2;         // userid
+  string imgUrl = 3;      // 头像
+  string nickname = 4;    // 昵称
+  int64 diamond = 5;      // 金币
+  int32 pos = 6;          // vip座位, -1非vip，>=0表示vip座
+  uint32 vipLevel = 7;    // vip等级
+}
+
+// 刷新游戏场景 gameservice.loadwhole
+message LoadWholeReq {
+}
+message LoadWholeAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2;
+}
+
+// 退出房间 gameservice.exit
+message ExitReq {
+}
+message ExitAck {
+  ResponseBase result = 1;
+}
+
+// 人数变化通知 gameservice.playernumberchangednotify
+message PlayerNumberChangedNotify {
+  int32 num = 1;
+}
+
+// 获取玩家列表 gameservice.playerlist
+message PlayerListReq {
+  uint32 page = 1;     // 页数 (0代表第一页，1代表第二页)
+  uint32 rows = 2;
+}
+message PlayerListAck {
+  ResponseBase result = 1;
+  int32 total = 2;
+  repeated UserInfo list = 3;
+}
+
+message Chip {
+  Animal ani = 1;   // 下注位置
+  int64 amount = 2; // 金额
+}
+
+// 下注 gameservice.bet
+message BetReq {
+  repeated Chip chip = 1; // 下注
+}
+message BetAck {
+  ResponseBase result = 1;
+}
+// 下注通知(only vip or self) gameservice.betnotify
+message BetNotify {
+  uint64 pid = 1;         // pid
+  int32 pos = 2;          // vip座位
+  repeated Chip chip = 3;     // 下注
+  repeated int64 allChip = 4; // 个人总下注
+  int64 after = 5;        // 下注后剩余
+}
+
+// 开始下注阶段通知 gameservice.startbettingnotify
+message StartBetNotify {
+  int64 diamond = 1;        // 携带钻石
+}
+
+// 开奖信息
+message OpenInfo {
+  Animal ani = 1;   // 中奖位置
+  message Player {
+    int32 pos = 1;          // 座位号
+    uint64 pid = 2;         // pid
+    int64 take = 3;         // 输赢积分
+    int64 after = 4;        // 最终最终
+  }
+  repeated Player vips = 2; // VIP玩家输赢
+  int64 otherTake = 3; // 非VIP输赢
+  Player self = 4; // 自己
+}
+
+// 开始飞行阶段通知 gameservice.startflynotify
+message StartFlyNotify {
+  OpenInfo openInfo = 1; // 开奖信息
+}
+
+
+// 下注过程update gameservice.bettingupdatenotify
+message BettingUpdateNotify {
+  int64 currentStatusLeftMs = 1;  // 当前状态剩余时间.毫秒
+  repeated int64 betPool = 2;     // 下注池
+}
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  uint64 playerId = 1;    // 玩家Id
+  int64 balance = 2;      // 剩余数量
+  int32 reason = 3;       // 原因 1:支付; 其他：未知
+}
+
+
+//vip入座 gameservice.joinvip
+message JoinVipReq {
+  int32 pos = 1;           // 选择的座位 -1离座, >=0表示上座/换座
+}
+message JoinVipAck {
+  ResponseBase result = 1;
+}
+//vip入座进入 gameservice.joinvipnotify
+message JoinVipNotify {
+  UserInfo user = 1;
+  int32 from = 2;          // 原座位号 -1表示这次是上桌
+  int32 target = 3;        // 目标座位号 -1表示这次是下桌
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情 2礼物
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}

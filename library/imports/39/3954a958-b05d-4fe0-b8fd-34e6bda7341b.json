@@ -1,0 +1,98 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "adrLobby.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "Andarwins": {
+      "__uuid__": "c480bb6f-761d-4124-8f45-3b45fc113302"
+    },
+    "a_input": {
+      "__uuid__": "b2461b4f-ae68-44dc-b8cc-f36759810f01"
+    },
+    "Baharwins": {
+      "__uuid__": "5943bea4-f441-400d-a61d-70e37e68b67b"
+    },
+    "bg_1835": {
+      "__uuid__": "0d218ae0-b976-42e8-a169-b0458c3bddd8"
+    },
+    "btn_addcash": {
+      "__uuid__": "538d975a-18c0-4adf-b8e1-2482ccf3bb7a"
+    },
+    "btn_andar": {
+      "__uuid__": "2f0d0951-cdb8-43a0-8ed0-14fe9145e292"
+    },
+    "btn_chat": {
+      "__uuid__": "1bc55a45-a333-43cd-8835-18c63d063af0"
+    },
+    "btn_hz": {
+      "__uuid__": "465b0fcc-0d57-4cce-82f4-328c072e621a"
+    },
+    "btn_plus": {
+      "__uuid__": "e0923b7c-7d4e-4336-9b8b-d7956f5bb021"
+    },
+    "btn_plus_g": {
+      "__uuid__": "857ac316-315f-48d4-b845-8d546964708d"
+    },
+    "btn_plus_red": {
+      "__uuid__": "1aa7be8a-0c77-40b8-9691-d2a6d28e5ddb"
+    },
+    "btn_plus_reduce": {
+      "__uuid__": "a2cbd186-9bb2-4a9e-9120-30f09bcd427f"
+    },
+    "btn_reduce": {
+      "__uuid__": "2260f93e-033b-4dc0-ab5e-03d5a7709f26"
+    },
+    "btn_reduce_g": {
+      "__uuid__": "f3735bfd-c019-4cbc-bcaf-8d9401a995c4"
+    },
+    "btn_reduce_red": {
+      "__uuid__": "24b3610f-57f3-443e-abe4-440316c072a0"
+    },
+    "btn_skip": {
+      "__uuid__": "2385cfe3-326b-4c1a-8574-8ce598ae95c1"
+    },
+    "btn_skip_g": {
+      "__uuid__": "fc6acea5-4685-4d1d-af61-ae91d9ee00a5"
+    },
+    "btn_tc": {
+      "__uuid__": "58cde3c7-9232-4efa-8e2b-8343025c19a7"
+    },
+    "btn_wf": {
+      "__uuid__": "490cc25b-8c60-4ab2-8367-b3a08662f61a"
+    },
+    "B_bahar": {
+      "__uuid__": "5e1469f8-f7c5-4b76-855a-0f731179dbbe"
+    },
+    "b_input": {
+      "__uuid__": "071914a3-3177-4807-9810-4f84805ce684"
+    },
+    "DealingCards": {
+      "__uuid__": "b3d3fc09-7f12-4f15-8ac2-00ca8e05e6ac"
+    },
+    "firstbet": {
+      "__uuid__": "dac6843e-a25f-42b3-9960-ce8dc64e68fc"
+    },
+    "gamestartingin5s": {
+      "__uuid__": "da5df694-8875-4aa2-a9cc-4fde5b8b86f1"
+    },
+    "img_gold": {
+      "__uuid__": "bf395fc3-ccf4-4d0b-90d1-a52441a4317d"
+    },
+    "suer_head_02": {
+      "__uuid__": "ad4f613c-274b-41ac-b6c7-2e3a69a34a87"
+    },
+    "talk_bg": {
+      "__uuid__": "5fe9d7ea-19d5-4c9d-b17b-b5ea9f4825d5"
+    },
+    "user_head_01": {
+      "__uuid__": "8709fa5b-b185-4ab1-8f71-0e8ca86af30d"
+    },
+    "user_head_bg": {
+      "__uuid__": "c321adb0-b547-4aec-b54d-fa94702c561e"
+    },
+    "zimu_bg.9": {
+      "__uuid__": "8ba6d6ab-4c93-41e4-a469-3a33aedff2dd"
+    }
+  }
+}

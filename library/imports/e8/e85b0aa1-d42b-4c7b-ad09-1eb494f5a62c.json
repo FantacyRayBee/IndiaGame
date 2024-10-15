@@ -1,0 +1,83 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "newbtn.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "VIP": {
+      "__uuid__": "0178da00-479e-4d9f-af22-76641295e6e4"
+    },
+    "bg_fen.9": {
+      "__uuid__": "d63daa07-6217-4aa9-9944-0c455638fc49"
+    },
+    "bg_js_f": {
+      "__uuid__": "a7a7d466-1c22-4e4c-999d-afd540ef1728"
+    },
+    "bg_js_z": {
+      "__uuid__": "4d0bf4fe-0cb6-44f1-ac0a-0ddbfcfcf75a"
+    },
+    "bg_k.9": {
+      "__uuid__": "3a6273c7-21a8-43b4-9d3f-da70929bfa95"
+    },
+    "bg_tz": {
+      "__uuid__": "de08521c-11f9-478f-930b-fb79a8bd5945"
+    },
+    "btn_blue_big": {
+      "__uuid__": "cf30bfef-d7c9-44b3-9a62-66ca1e6ad528"
+    },
+    "btn_blue_small": {
+      "__uuid__": "4268fe21-b539-410e-9199-d94149ada2bb"
+    },
+    "btn_gift": {
+      "__uuid__": "316ec52c-6645-45ec-af12-3e74382f0205"
+    },
+    "btn_ora_big": {
+      "__uuid__": "4d0f93a6-05c6-49e0-a7e5-9ab25dcc93ba"
+    },
+    "btn_ora_small": {
+      "__uuid__": "f5f167fa-4702-4642-9cc2-27633063039b"
+    },
+    "btn_red_big": {
+      "__uuid__": "760fb8ef-c484-4dc5-989c-118c656cc72e"
+    },
+    "btn_red_mid": {
+      "__uuid__": "96a683fd-3541-4635-b680-b1726460fd4c"
+    },
+    "btn_red_small": {
+      "__uuid__": "68cf9c71-3d5a-4824-bf21-1251fbc9156a"
+    },
+    "btn_see": {
+      "__uuid__": "4eb319e5-5c34-4f73-adb7-bd6ceb99dcc5"
+    },
+    "chouma": {
+      "__uuid__": "231ee7c4-6580-4c74-8aed-5cc963bbf129"
+    },
+    "img_ddrz": {
+      "__uuid__": "fd35341c-20ce-4998-afca-359a7ddc609e"
+    },
+    "img_dx": {
+      "__uuid__": "161e337c-d686-4fbc-9e95-38c9b50c28a7"
+    },
+    "jinbi": {
+      "__uuid__": "4ec9923c-f144-49ca-8dd7-93da0143b4c5"
+    },
+    "tx_bg_rummy": {
+      "__uuid__": "bd430b77-6ad5-40ab-b1ad-3e5f43558065"
+    },
+    "tx_rummy": {
+      "__uuid__": "be5cfbc4-2652-4ea9-a936-e996c8a06493"
+    },
+    "tx_zz.9": {
+      "__uuid__": "39b2eefa-7fa4-4e0c-8712-35a44575643e"
+    },
+    "wj_tx": {
+      "__uuid__": "7a3aa81b-4b35-4009-a428-90eb2c2fe326"
+    },
+    "wj_tx_bg": {
+      "__uuid__": "d495f93c-8c08-4319-8781-2469e9b21680"
+    },
+    "yuan": {
+      "__uuid__": "5373dd5d-06ee-4015-8b8c-11fce53e14bd"
+    }
+  }
+}

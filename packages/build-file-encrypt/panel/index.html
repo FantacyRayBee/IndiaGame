@@ -1,0 +1,43 @@
+<div class="layout vertical" style="width: 100%;height: 100%">
+    <!--<ui-button id="btn">Send To Main</ui-button>-->
+    <div class="layout vertical start-justified">
+
+        <div class="self-end layout center horizontal">
+            <ui-button class="self-end red" v-on:confirm="onModified">加入或修改引擎层解密</ui-button>
+        </div>
+
+        <ui-prop name="是否开启加密功能">
+            <div class="layout horizontal center flex-1">
+                <ui-checkbox v-bind:checked="isEncrypt" v-on:change="onIsEncrypt"></ui-checkbox>
+            </div>
+        </ui-prop>
+
+        <ui-prop name="加密码" v-show="isEncrypt">
+            <div class="layout horizontal center flex-1">
+                <ui-input class="flex-1" v-value="password" v-on:blur="onPassword"></ui-input>
+            </div>
+        </ui-prop>
+
+        <ui-prop name="加密图像(png、jpg)" v-show="isEncrypt">
+            <div class="layout horizontal center flex-1">
+                <ui-checkbox v-bind:checked="isImageEncrypt" v-on:change="onIsImageEncrypt"></ui-checkbox>
+            </div>
+        </ui-prop>
+
+        <ui-prop name="加密文本(txt、json)" v-show="isEncrypt">
+            <div class="layout horizontal center flex-1">
+                <ui-checkbox v-bind:checked="isTextEncrypt" v-on:change="onIsTextEncrypt"></ui-checkbox>
+            </div>
+        </ui-prop>
+
+        <ui-prop name="加密音频(mp3、wav、ogg)" v-show="isEncrypt">
+            <div class="layout horizontal center flex-1">
+                <ui-checkbox v-bind:checked="isAudioEncrypt" v-on:change="onIsAudioEncrypt"></ui-checkbox>
+            </div>
+        </ui-prop>
+
+        <h2>日志:</h2>
+        <textarea class="" id="logTextArea" v-value="logView" @contextmenu="onLogViewMenu"
+            style="width: 100%; height: 200px; background: #252525;	color: #fd942b;	border-color: #fd942b;"></textarea>
+    </div>
+</div>

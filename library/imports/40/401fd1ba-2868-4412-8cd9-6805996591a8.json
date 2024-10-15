@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ty_k_03_big",
+    "texture": "72f8118a-f6a0-45ad-a8be-8fd8755f644a",
+    "atlas": "e233687c-9a1f-4ce9-9d64-5e66686c926a",
+    "rect": [
+      2,
+      756,
+      1044,
+      629
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1044,
+      629
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

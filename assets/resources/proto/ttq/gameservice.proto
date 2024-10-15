@@ -1,0 +1,174 @@
+syntax = "proto3";
+package gameservice;
+
+//返回结果
+message ResponseBase {
+    uint32 result = 1;
+    string message = 2;
+}
+
+message UserInfo {
+    uint64 playerid = 1;
+    string displayname = 2; //用于显示的数字ID
+    string imgurl = 3;  //头像
+    string nickname = 4;    //昵称
+    int64 gold = 5;
+    uint32 vipLevel = 6;
+}
+
+
+
+enum BallType {
+    FIRST = 0; //用户下注
+    SECOND = 1;
+    THIRD = 2;
+    FOURTH = 3;
+    SPECIAL = 4;
+}
+
+message BallInfo {
+    BallType ball = 1;
+    int64 count = 2;
+    repeated int64 hits = 3;
+    int64 score =4;
+}
+
+
+
+
+//心跳地址 gameservice.pingpang
+message PingPang {
+    uint64 timestamp = 1;    //时间戳
+}
+
+
+//登录 gameservice.login
+message LoginReq {
+    string userid = 1;    //用户ID
+    string token = 2;    //登录服拿到的token
+    uint32 fromid = 3; //来源平台ID
+    bool   isnew = 4;
+}
+message LoginAck {
+    ResponseBase result = 1;
+    uint64 playerid = 2; //游戏中玩家ID
+    int64 coin = 3; //游戏币数量(多种游戏币考虑做成游戏ID + 余额 数组形式)
+    int64 diamond = 4;//钻石
+    int64 fort = 5;//锤子
+    bool isvisitor = 6; //游客标记 true游客
+}
+//游戏配置 gameservice.gameconfig
+message GameConfigAck {
+    ResponseBase result = 1;
+    repeated int64 fortsize = 2; //锤子大小范围
+    int64 sceneChange = 7; //场景切换时间
+    bool finish = 4;
+}
+
+//发射 gameservice.call   就是打地鼠
+message CallReq{
+    uint64 playerid = 1;
+    int64 fort = 2;
+}
+
+message CallAck{
+    ResponseBase result = 1;
+}
+message CallNotify{
+    ResponseBase result = 1;
+    UserInfo userinfo = 2;
+    int64 amount = 3;
+    repeated BallInfo ballinfos = 4; //每个球的具体信息
+}
+
+//gameservice.settlement    游戏结算 上传小球
+message SettlementReq{
+    uint64 playerid = 1;
+    int64  firstballcount= 2;
+    int64  secondballcount= 3;
+    int64  thirdballcount= 4;
+    int64  fourthcount =5;
+    int64  specialcount = 6;
+}
+
+message SettlementAck{
+    ResponseBase result = 1;
+    repeated BallInfo ballinfos = 2; //每个球的具体信息
+    UserInfo userinfo = 3;
+    int64  score  =4;
+}
+//刷新金币 gameservice.updatebalance
+message UpdateBalanceReq {
+    uint32 currencyid = 1;
+}
+message UpdateBalanceAck {
+    ResponseBase result = 1;
+    uint32 currencyid = 2;
+    int64 balance = 3;
+}
+
+//踢人 gameservice.kickout
+message KickOutAck {
+    uint32 kicktype = 1;
+}
+//更换炮台 gameservice.changefort
+message ChangeFortReq {
+    int64 fort  = 1 ;
+}
+message ChangeFortAck {
+    ResponseBase result = 1;
+
+}
+//玩家进行兑换  gamservice.CurrencyCovert
+message ConvertReq{
+    string Token  = 1;
+    uint32 CommodityId = 2;
+}
+message CurrencyItemExt {
+    uint32 CurrencyId = 1 ;
+    int64 Amount = 2;
+    int64 Remain = 3;
+}
+
+message CovertAck{
+    ResponseBase result = 1;
+    CurrencyItemExt srcCurrency = 2;
+    CurrencyItemExt dstCurrency = 3;
+}
+
+//通知刷新玩家当前金币数量 gamservice.refreshusernotify
+message CoinPlayer{
+     uint32 seatid = 1;  //牌桌中座位ID
+     int64 coin = 2;  //金币数量
+}
+//保险箱 gamservice.querysafeleft
+message QuerySafeLeftReq {}
+message QuerySafeLeftAck {
+    ResponseBase result = 1;
+    int64 safebalance = 2; //保险箱游戏币
+}
+//更新 gamservice.updatesafe
+message UpdateSafeReq {
+    enum SafeOperateType {
+        DEPOSIT = 0;    //存款
+        WITHDRAW = 1;    //提款
+    }
+    SafeOperateType type = 1;    //操作类型
+    int64 amount = 2;    //金额
+}
+message UpdateSafeAck {
+    ResponseBase result = 1;
+    int64 coin = 2; //游戏币数量
+    int64 safebalance = 3; //保险箱游戏币
+}
+
+//退出当前房间在游戏等待或者结算，已经游戏中弃牌或者比牌输掉的人可以退出房间，否则会返回退出房间错误码
+//gameservice.exitgamereq
+message ExitGameReq{
+
+}
+message ExitGameAck{
+    ResponseBase result = 1;
+}
+
+

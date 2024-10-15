@@ -1,0 +1,146 @@
+
+bonuscard_dt.png
+size: 238,236
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+img/rukou/T0
+  rotate: false
+  xy: 2, 127
+  size: 112, 107
+  orig: 119, 119
+  offset: 2, 12
+  index: -1
+img/rukou/jb
+  rotate: false
+  xy: 84, 2
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: -1
+img/rukou/jib
+  rotate: false
+  xy: 123, 46
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1
+img/rukou/ka1
+  rotate: false
+  xy: 2, 66
+  size: 70, 59
+  orig: 70, 59
+  offset: 0, 0
+  index: -1
+img/rukou/ka2
+  rotate: false
+  xy: 116, 176
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+img/rukou/xiaosaoguang/xsg_01
+  rotate: false
+  xy: 165, 152
+  size: 13, 22
+  orig: 70, 70
+  offset: 5, 41
+  index: -1
+img/rukou/xiaosaoguang/xsg_02
+  rotate: false
+  xy: 212, 110
+  size: 22, 40
+  orig: 70, 70
+  offset: 2, 23
+  index: -1
+img/rukou/xiaosaoguang/xsg_03
+  rotate: false
+  xy: 84, 32
+  size: 29, 44
+  orig: 70, 70
+  offset: 1, 19
+  index: -1
+img/rukou/xiaosaoguang/xsg_04
+  rotate: true
+  xy: 165, 67
+  size: 35, 45
+  orig: 70, 70
+  offset: 1, 18
+  index: -1
+img/rukou/xiaosaoguang/xsg_05
+  rotate: false
+  xy: 123, 79
+  size: 40, 46
+  orig: 70, 70
+  offset: 2, 16
+  index: -1
+img/rukou/xiaosaoguang/xsg_06
+  rotate: false
+  xy: 165, 104
+  size: 45, 46
+  orig: 70, 70
+  offset: 3, 15
+  index: -1
+img/rukou/xiaosaoguang/xsg_07
+  rotate: false
+  xy: 2, 17
+  size: 47, 47
+  orig: 70, 70
+  offset: 8, 13
+  index: -1
+img/rukou/xiaosaoguang/xsg_08
+  rotate: false
+  xy: 116, 127
+  size: 47, 47
+  orig: 70, 70
+  offset: 14, 12
+  index: -1
+img/rukou/xiaosaoguang/xsg_09
+  rotate: false
+  xy: 74, 78
+  size: 47, 47
+  orig: 70, 70
+  offset: 20, 11
+  index: -1
+img/rukou/xiaosaoguang/xsg_10
+  rotate: true
+  xy: 188, 191
+  size: 43, 48
+  orig: 70, 70
+  offset: 26, 9
+  index: -1
+img/rukou/xiaosaoguang/xsg_11
+  rotate: true
+  xy: 188, 152
+  size: 37, 48
+  orig: 70, 70
+  offset: 32, 8
+  index: -1
+img/rukou/xiaosaoguang/xsg_12
+  rotate: false
+  xy: 51, 16
+  size: 31, 48
+  orig: 70, 70
+  offset: 38, 7
+  index: -1
+img/rukou/xiaosaoguang/xsg_13
+  rotate: true
+  xy: 165, 40
+  size: 25, 46
+  orig: 70, 70
+  offset: 44, 7
+  index: -1
+img/rukou/xiaosaoguang/xsg_14
+  rotate: false
+  xy: 212, 76
+  size: 16, 32
+  orig: 70, 70
+  offset: 50, 7
+  index: -1
+img/rukou/xiaosaoguang/xsg_15
+  rotate: true
+  xy: 74, 71
+  size: 5, 8
+  orig: 70, 70
+  offset: 55, 8
+  index: -1

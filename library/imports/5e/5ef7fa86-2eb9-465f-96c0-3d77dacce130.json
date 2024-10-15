@@ -1,0 +1,292 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "Start Betting",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "NazOX5idyQ95xiptf/RLYoupEIM",
+      "spine": "3.3.07",
+      "width": 709,
+      "height": 82,
+      "images": "./images/"
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "Start Betting",
+        "parent": "root"
+      },
+      {
+        "name": "di",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "di",
+        "bone": "di",
+        "attachment": "di"
+      },
+      {
+        "name": "Start Betting",
+        "bone": "Start Betting",
+        "attachment": "Start Betting"
+      }
+    ],
+    "skins": {
+      "default": {
+        "Start Betting": {
+          "Start Betting": {
+            "path": "Start Betting!",
+            "x": 0.5,
+            "width": 272,
+            "height": 46
+          }
+        },
+        "di": {
+          "di": {
+            "width": 709,
+            "height": 82
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "Start Betting": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "color": "ffffffff"
+              },
+              {
+                "time": 0.9666,
+                "color": "ffffff00"
+              }
+            ]
+          },
+          "di": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "root": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "Start Betting": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": -463.57,
+                "y": 0
+              },
+              {
+                "time": 0.1666,
+                "x": -33.54,
+                "y": 0
+              },
+              {
+                "time": 0.8333,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "time": 1,
+                "x": 446.69,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 0.33
+              }
+            ]
+          },
+          "di": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "angle": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 0,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 0.031
+              },
+              {
+                "time": 0.1666,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 0.031
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nStart Betting.png\nsize: 987,86\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nStart Betting!\n  rotate: false\n  xy: 713, 38\n  size: 272, 46\n  orig: 272, 46\n  offset: 0, 0\n  index: -1\ndi\n  rotate: false\n  xy: 2, 2\n  size: 709, 82\n  orig: 709, 82\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "ae657548-0a42-4979-bbcb-9234c45ef985"
+    }
+  ],
+  "textureNames": [
+    "Start Betting.png"
+  ],
+  "scale": 1
+}

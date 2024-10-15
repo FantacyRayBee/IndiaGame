@@ -1,0 +1,14 @@
+info face="face" size=63
+common lineHeight=63 scaleW=216 scaleH=128 pages=1
+page id=0 file="font_zjh_daoJIShi.png"
+chars count=10
+char id=48 x=0 y=0 width=43 height=63 xoffset=0 yoffset=0 xadvance=43 page=0 chnl=15
+char id=49 x=176 y=64 width=26 height=61 xoffset=0 yoffset=0 xadvance=26 page=0 chnl=15
+char id=50 x=133 y=63 width=40 height=62 xoffset=0 yoffset=0 xadvance=40 page=0 chnl=15
+char id=51 x=86 y=65 width=40 height=63 xoffset=0 yoffset=0 xadvance=40 page=0 chnl=15
+char id=52 x=45 y=0 width=43 height=62 xoffset=0 yoffset=0 xadvance=43 page=0 chnl=15
+char id=53 x=176 y=0 width=40 height=62 xoffset=0 yoffset=0 xadvance=40 page=0 chnl=15
+char id=54 x=90 y=0 width=41 height=63 xoffset=0 yoffset=0 xadvance=41 page=0 chnl=15
+char id=55 x=133 y=0 width=41 height=61 xoffset=0 yoffset=0 xadvance=41 page=0 chnl=15
+char id=56 x=0 y=65 width=41 height=63 xoffset=0 yoffset=0 xadvance=41 page=0 chnl=15
+char id=57 x=43 y=65 width=41 height=63 xoffset=0 yoffset=0 xadvance=41 page=0 chnl=15

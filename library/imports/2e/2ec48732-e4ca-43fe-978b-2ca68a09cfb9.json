@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gold_bg",
+    "texture": "ecabcfe4-eae1-4b6d-876d-8724727b3194",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      241,
+      44
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      241,
+      44
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

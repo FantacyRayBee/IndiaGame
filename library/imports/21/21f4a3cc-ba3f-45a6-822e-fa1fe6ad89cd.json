@@ -1,0 +1,296 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "pai_b",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "fL+oyCljO7rAaKP5Bx8l7T749zI",
+      "spine": "3.3.07",
+      "width": 0,
+      "height": 0,
+      "images": "./images/"
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "pai_b",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "pai_b",
+        "bone": "pai_b"
+      }
+    ],
+    "skins": {
+      "default": {
+        "pai_b": {
+          "pai_bm_00000": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00001": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00002": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00003": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00004": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00005": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00006": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00007": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00008": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00009": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00010": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00011": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00012": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00013": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00014": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00015": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00016": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00017": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00018": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00019": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00020": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00021": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00022": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00023": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00024": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00025": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00026": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00027": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00028": {
+            "width": 1835,
+            "height": 750
+          },
+          "pai_bm_00029": {
+            "width": 1835,
+            "height": 750
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "pai_b": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "pai_bm_00000"
+              },
+              {
+                "time": 0.0666,
+                "name": "pai_bm_00001"
+              },
+              {
+                "time": 0.1333,
+                "name": "pai_bm_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "pai_bm_00003"
+              },
+              {
+                "time": 0.2666,
+                "name": "pai_bm_00004"
+              },
+              {
+                "time": 0.3333,
+                "name": "pai_bm_00005"
+              },
+              {
+                "time": 0.4,
+                "name": "pai_bm_00006"
+              },
+              {
+                "time": 0.4666,
+                "name": "pai_bm_00007"
+              },
+              {
+                "time": 0.5333,
+                "name": "pai_bm_00008"
+              },
+              {
+                "time": 0.6,
+                "name": "pai_bm_00009"
+              },
+              {
+                "time": 0.6666,
+                "name": "pai_bm_00010"
+              },
+              {
+                "time": 0.7333,
+                "name": "pai_bm_00011"
+              },
+              {
+                "time": 0.8,
+                "name": "pai_bm_00012"
+              },
+              {
+                "time": 0.8666,
+                "name": "pai_bm_00013"
+              },
+              {
+                "time": 0.9333,
+                "name": "pai_bm_00014"
+              },
+              {
+                "time": 1,
+                "name": "pai_bm_00015"
+              },
+              {
+                "time": 1.0666,
+                "name": "pai_bm_00016"
+              },
+              {
+                "time": 1.1333,
+                "name": "pai_bm_00017"
+              },
+              {
+                "time": 1.2,
+                "name": "pai_bm_00018"
+              },
+              {
+                "time": 1.2666,
+                "name": "pai_bm_00019"
+              },
+              {
+                "time": 1.3333,
+                "name": "pai_bm_00020"
+              },
+              {
+                "time": 1.4,
+                "name": "pai_bm_00021"
+              },
+              {
+                "time": 1.4666,
+                "name": "pai_bm_00022"
+              },
+              {
+                "time": 1.5333,
+                "name": "pai_bm_00023"
+              },
+              {
+                "time": 1.6,
+                "name": "pai_bm_00024"
+              },
+              {
+                "time": 1.6666,
+                "name": "pai_bm_00025"
+              },
+              {
+                "time": 1.7333,
+                "name": "pai_bm_00026"
+              },
+              {
+                "time": 1.8,
+                "name": "pai_bm_00027"
+              },
+              {
+                "time": 1.8666,
+                "name": "pai_bm_00028"
+              },
+              {
+                "time": 1.9333,
+                "name": "pai_bm_00029"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\npai_b.png\nsize: 1737,229\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\npai_bm_00000\n  rotate: false\n  xy: 2, 116\n  size: 116, 111\n  orig: 1468, 600\n  offset: 677, 241\n  index: -1\npai_bm_00001\n  rotate: false\n  xy: 1275, 118\n  size: 115, 109\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00002\n  rotate: false\n  xy: 2, 2\n  size: 115, 112\n  orig: 1468, 600\n  offset: 677, 241\n  index: -1\npai_bm_00003\n  rotate: false\n  xy: 119, 2\n  size: 115, 112\n  orig: 1468, 600\n  offset: 677, 241\n  index: -1\npai_bm_00004\n  rotate: false\n  xy: 120, 116\n  size: 115, 111\n  orig: 1468, 600\n  offset: 677, 241\n  index: -1\npai_bm_00005\n  rotate: false\n  xy: 586, 114\n  size: 113, 113\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00006\n  rotate: true\n  xy: 1162, 115\n  size: 112, 111\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00007\n  rotate: true\n  xy: 1624, 119\n  size: 108, 111\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00008\n  rotate: false\n  xy: 1505, 7\n  size: 106, 109\n  orig: 1468, 600\n  offset: 681, 241\n  index: -1\npai_bm_00009\n  rotate: false\n  xy: 1613, 8\n  size: 109, 109\n  orig: 1468, 600\n  offset: 679, 241\n  index: -1\npai_bm_00010\n  rotate: false\n  xy: 820, 2\n  size: 111, 110\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00011\n  rotate: false\n  xy: 1165, 2\n  size: 112, 111\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00012\n  rotate: true\n  xy: 701, 114\n  size: 113, 112\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00013\n  rotate: true\n  xy: 815, 114\n  size: 113, 112\n  orig: 1468, 600\n  offset: 679, 241\n  index: -1\npai_bm_00014\n  rotate: false\n  xy: 354, 116\n  size: 114, 111\n  orig: 1468, 600\n  offset: 678, 242\n  index: -1\npai_bm_00015\n  rotate: false\n  xy: 470, 2\n  size: 115, 110\n  orig: 1468, 600\n  offset: 677, 242\n  index: -1\npai_bm_00016\n  rotate: false\n  xy: 1392, 118\n  size: 115, 109\n  orig: 1468, 600\n  offset: 677, 242\n  index: -1\npai_bm_00017\n  rotate: false\n  xy: 1509, 120\n  size: 113, 107\n  orig: 1468, 600\n  offset: 677, 242\n  index: -1\npai_bm_00018\n  rotate: true\n  xy: 1279, 2\n  size: 114, 107\n  orig: 1468, 600\n  offset: 677, 242\n  index: -1\npai_bm_00019\n  rotate: false\n  xy: 1388, 7\n  size: 115, 109\n  orig: 1468, 600\n  offset: 677, 241\n  index: -1\npai_bm_00020\n  rotate: false\n  xy: 237, 116\n  size: 115, 111\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00021\n  rotate: false\n  xy: 587, 2\n  size: 115, 110\n  orig: 1468, 600\n  offset: 678, 242\n  index: -1\npai_bm_00022\n  rotate: false\n  xy: 933, 2\n  size: 114, 111\n  orig: 1468, 600\n  offset: 678, 242\n  index: -1\npai_bm_00023\n  rotate: false\n  xy: 236, 2\n  size: 115, 112\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00024\n  rotate: false\n  xy: 353, 2\n  size: 115, 112\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00025\n  rotate: false\n  xy: 1046, 115\n  size: 114, 112\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00026\n  rotate: false\n  xy: 470, 114\n  size: 114, 113\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00027\n  rotate: false\n  xy: 929, 115\n  size: 115, 112\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00028\n  rotate: false\n  xy: 1049, 2\n  size: 114, 111\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\npai_bm_00029\n  rotate: false\n  xy: 704, 2\n  size: 114, 110\n  orig: 1468, 600\n  offset: 678, 241\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "2b7e20f4-51c0-42bc-80ab-cfc45042eff9"
+    }
+  ],
+  "textureNames": [
+    "pai_b.png"
+  ],
+  "scale": 1
+}

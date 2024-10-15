@@ -1,0 +1,55 @@
+
+luckyloto.png
+size: 224,224
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+T0
+  rotate: false
+  xy: 2, 122
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+aaa
+  rotate: true
+  xy: 123, 8
+  size: 52, 66
+  orig: 54, 68
+  offset: 1, 1
+  index: -1
+bg
+  rotate: true
+  xy: 93, 2
+  size: 99, 28
+  orig: 101, 30
+  offset: 1, 1
+  index: -1
+kkk
+  rotate: false
+  xy: 123, 62
+  size: 59, 77
+  orig: 59, 77
+  offset: 0, 0
+  index: -1
+qi
+  rotate: true
+  xy: 187, 103
+  size: 119, 33
+  orig: 121, 35
+  offset: 1, 1
+  index: -1
+saoguang02
+  rotate: false
+  xy: 104, 141
+  size: 81, 81
+  orig: 81, 81
+  offset: 0, 0
+  index: -1
+yuan
+  rotate: false
+  xy: 2, 28
+  size: 89, 92
+  orig: 91, 94
+  offset: 1, 1
+  index: -1

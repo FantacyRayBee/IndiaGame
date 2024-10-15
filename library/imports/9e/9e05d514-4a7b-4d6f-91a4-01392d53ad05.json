@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betting-time",
+    "texture": "729b5217-cd78-4693-9355-f859c34fb89e",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      210,
+      30
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      210,
+      30
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,424 @@
+syntax = "proto3";
+package gameservice;
+
+
+//返回结果
+message ResponseBase{
+  uint32 result = 1;
+  string message = 2;
+}
+
+// 心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+message UserInfo{
+  uint64 playerId = 1;
+  string displayName = 2;
+  string imgUrl = 3;
+  string nickname = 4;
+  int32  sex = 5;
+  int64 diamond = 6;
+  uint32 vipLevel = 7;
+}
+//游戏场馆状态
+enum EnumTableStatus{
+  WAIT = 0;     //游戏准备阶段
+  RUNNING = 1 ; //游戏中
+  Calc = 2;     //结算阶段
+}
+
+// 离开原因
+enum EnumLeaveReason{
+  LeaveNormal = 0;      // 正常离开
+  LeaveOffline = 1 ;    // 离线踢出
+  LeaveBroke = 2;       // 破产踢出
+  LeaveTimeout = 3;     // 超时踢出
+  LeaveRoomClose = 4;   // 房间解散踢出
+  LeaveChangeTable = 5; // 换桌
+  LeaveJumpSpace = 6;   // 强制转场
+  LeavePlotOffset = 7;  // 首充剧情补偿
+}
+
+// 小局结算原因
+enum EnumSetFinishReason{
+  FinishDrop = 0;           // 弃牌
+  FinishCompare = 1;        // 比牌
+  FinishRoundLimit = 2;     // 回合数封顶
+  FinishChipPoolLimit = 3;  // 注池封顶
+}
+
+// 玩家动作
+enum EnumPlayAct {
+  NONE = 0;       //空
+  LOOK = 1;       //看牌
+  FOLL = 2;       //跟注
+  ADD = 4;        //加注
+  COMP = 8;       //比牌
+  DROP = 16;      //弃牌
+  ANSCOMP = 32;   //应答比牌
+}
+
+// 玩家状态
+enum EnumPlayStatus {
+  Normal = 0;         // 正常
+  Drop = 1;           // 弃牌
+  CompareLost = 2;    // 比牌输了
+  Watch = 3;          // 旁观
+}
+
+//游戏牌的类型
+enum EnumCardSuit {
+  NULL = 0;           //没有牌型
+  POINT = 1;          //点数
+  TWO = 2;            //对子
+  FLUSH = 3;          //金花
+  STRAIGHT = 4;       //顺子
+  STRAIGHT_FLUSH = 5; //金顺
+  THREE = 6;          //豹子
+}
+
+//登录gameservice.login
+message LoginReq{
+  string userid = 1;//用户ID
+  string token = 2; //登录服拿到的token
+  uint32 fromid = 3; //来源平台ID
+}
+message LoginAck{
+  ResponseBase result = 1;
+  uint64 pid = 2;     // pid
+  int64 diamond = 3;  // 钻石
+  int64 totalPay = 4; // 总充值金额
+  int32 roomId = 5;   // 房间ID -1表示不在房间中
+}
+
+//免费获取积分
+message ReceiveFreeTrialReq {
+  string userid = 1; //用户ID
+  uint32 times=2; //倍数
+}
+message ReceiveFreeTrialAck{
+  ResponseBase result = 1; //result=0则表示获取成功
+}
+
+//******************************************金币场******************************************
+//获取金币场列表 gameservice.querygoldlist
+message QueryGoldListReq {
+}
+message RoomConfig {
+  int32 id = 1;
+  int32 level = 2;
+  int32 entryCondition = 3;
+  int32 entryConditionMax = 4;
+  int32 cellScore = 5;
+  string icon = 6;
+  bool  blind = 7;                  // 是否是闷牌场
+  int32 maxJetton = 8;              // 最大筹码
+  int64 maxTableJetton = 9;         // 桌面奖池最大筹码
+  bool  trial = 10;                 // 是否体验场
+}
+message QueryGoldListAck {
+  repeated RoomConfig list = 1;
+}
+
+// 入场 gameservice.enterlv
+message EnterLvReq {
+  int32 id = 1;
+}
+message EnterLvAckOld {
+  ResponseBase result = 1;
+  int32 roomId = 2;
+  int32 tableId = 3;
+  int32 tableSeat = 4;
+  RoomConfig conf = 5;
+  int32 forceJump = 6;  // 强制转场，-1表示不需要，用户手动点击后再次发送enterlv消息
+  GameSceneNotify scene = 7; // 场景信息
+}
+
+message EnterLvAck {
+  ResponseBase result = 1;
+  RoomConfig conf = 2;
+  int32 forceJump = 3;  // 强制转场，-1表示不需要
+  bool matching = 4; // 匹配中，暂无意义
+  GameSceneNotify scene = 5; // 场景信息
+}
+
+//踢人 gameservice.kickout
+message KickOutAck {
+  uint32 kicktype = 1;
+}
+
+// 退出房间 gameservice.exitgame
+message ExitGameReq{
+}
+message ExitGameAck{
+  ResponseBase result = 1;
+}
+
+//换桌  gameservice.changeroom
+message ChangeRoomReq{
+}
+//换桌
+message ChangeRoomAck{
+  ResponseBase result = 1;
+  RoomConfig conf = 2;
+  int32 forceJump = 3;  // 强制转场
+  bool matching =4; // 匹配中，暂无意义
+  GameSceneNotify scene = 5; // 场景信息
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情 2礼物
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  int32 seat = 1;
+  int64 diamond = 2;  // 剩余数量
+  int32 reason = 3;   // 原因 1:支付; 其他：未知
+}
+
+//*************************************
+
+// 场景复盘 gameservice.gamescene
+message GameSceneReq {
+}
+message GameSceneNotify {
+  message PlayerInfo{
+    UserInfo user = 1;
+    int32 seat = 2;
+    EnumPlayStatus status = 3;  // 玩家的状态
+    Hand hand = 4;
+    int64 allChip = 5;          // 下的注
+    int64 after = 6;            // 下注后的货币
+    uint32 actionMask = 7;      // 当前可以进行的操作
+    bool ready = 9;             // 是否准备
+    bool look = 10;             // 是否看牌了
+    EnumPlayAct lastAct = 11;   // 最近的操作
+  }
+
+  ResponseBase result = 1;
+  string setFlag = 2;               // 小局标识(索引小局日志)
+  repeated PlayerInfo players = 3;  // 玩家信息
+  EnumTableStatus status = 4;       // 牌桌状态
+  int32 banker = 5;                 // 庄家的座位号
+  int64 curChip = 6;                // 基础筹码
+  int64 selfBaseChip = 7;           // 当前玩家跟注金额
+  int64 chipPool = 8;               // 下注的总筹码
+  repeated int64 chipList = 9;      // 筹码列表
+  int32 curSeat = 10;                // 当前该谁操作的座位号
+  int32 round = 11;                  // 当前轮数
+  int32 actTime = 12;                // 当前倒计时
+  int32 duringPaymentSeat = 13;      // 支付中的玩家
+
+  int32 sourceCompSeat = 14;     // 发起比牌的玩家
+  int32 targetCompSeat = 15;     // 被比牌的玩家
+  GameOverNotify lastGameCalc = 16;  // 最近一次的游戏结算
+
+  PaymentProduct plotPayment = 17; // 支付商品
+  int32 plotWinRate = 18; // 赢的概率 1298表示12.98%
+  bool inQueue = 19;     // 是否在队列中
+  bool matchFinish = 20; // 匹配完成（玩家加入的音效播放点）
+}
+
+// 广播 - 房间销毁并开始匹配 gameservice.destroyandmatchingnotify
+message DestroyAndMatchingNotify {
+}
+
+// 广播 - 玩家进入 gameservice.playerjoinnotify
+message PlayerJoinNotify{
+  UserInfo userInfo = 1;      // 新玩家信息
+  int32 seat = 2;             // 座位
+  EnumPlayStatus status = 3;  // 玩家的状态
+}
+
+// 广播 - 玩家离开房间  gameservice.playerleavenotify
+message PlayerLeaveNotify {
+  int32 seat = 1;     // 座位
+  EnumLeaveReason reason = 2; // 离开原因
+  int32 forceJump = 3;  // 强制转场-转场ID,此时reason=6.LeaveJumpSpace
+}
+
+// 广播 - 玩家离线  gameservice.playerofflinenotify
+message PlayerOfflineNotify {
+  int32 seat = 1;     // 座位
+  bool offline = 2;   // 是否离线
+}
+
+//游戏开始广播 gameservice.gamestartnotify
+message GameStartNotify {
+  message Player {
+    int32 seat = 1;               // 座位
+    EnumPlayStatus status = 2;    // 游戏状态
+    int64 diamond = 3;
+  }
+  int32 banker = 1;                     // 庄家
+  int64 curChip = 2;                    // 底注
+  int64 chipPool = 3;                   // 总注池
+  repeated Player players = 4;          // 玩家状态
+}
+
+// 广播 - 呼叫下注  gameservice.askchipnotify
+message AskChipNotify {
+  int32 seat = 1;
+  int32 round = 2;          // 第几轮
+  int64 curChip = 3;        // 当前注
+  int64 selfBaseChip = 4;   // 自己基础注
+  uint32 allowAction = 5;   // 允许的操作
+  int32 timeout = 6;        // 超时
+  bool first = 7;           // 第一次
+}
+
+// 下注 gameservice.chip
+message ChipReq{
+  bool add = 1;        // 是否加注
+}
+message ChipAck {
+  ResponseBase result = 1;
+}
+// 广播 - 有人下注  gameservice.playerchipnotify
+message PlayerChipNotify {
+  int32 seat = 1;
+  bool add = 2;           // 是否加注
+  int64 chip = 3;         // 下注额
+  int64 allChip = 4;      // 该玩家总下注
+  int64 after = 5;        // 该玩家下注后
+  int64 chipPool = 6;     // 总注池
+  int64 curChip = 7;      // 当前注
+}
+
+// 弃牌
+message DropReq{}
+message DropAck {
+  ResponseBase result = 1;
+}
+// 广播 - 有人弃牌  gameservice.playerdropnotify
+message PlayerDropNotify {
+  int32 seat = 1;
+}
+
+// 看牌
+message LookReq{}
+message LookAck {
+  ResponseBase result = 1;
+}
+// 广播 - 有人看牌  gameservice.playerlooknotify
+message PlayerLookNotify {
+  int32 seat = 1;
+  Hand hand = 2;
+  uint32 actionMask = 3;      // 当前可以进行的操作
+  //  repeated int32 cards = 2;
+  //  EnumCardSuit suit = 3;  // 牌型
+}
+
+// 手牌信息
+message Hand {
+  repeated int32 cards = 1; // 牌
+  EnumCardSuit suit = 2;    // 牌型
+  int32 score = 3;          // 分值
+}
+
+
+// 发起比牌 gameservice.launchcompare
+message LaunchCompareReq{}
+message LaunchCompareAck {
+  ResponseBase result = 1;
+}
+// 广播 - 有人发起比牌  gameservice.playerlaunchcomparenotify
+message LaunchCompareNotify {
+  int32 launch = 1;
+  int32 target = 2;
+}
+
+// 应答比牌 gameservice.answercompare
+message AnswerCompareReq{
+  bool agree = 1;
+}
+message AnswerCompareAck {
+  ResponseBase result = 1;
+}
+// 广播 - 有人应答比牌  gameservice.playeranswercomparenotify
+message AnswerCompareNotify {
+  bool agree = 1;
+  int32 launch = 2;
+  int32 target = 3;
+  bool launcherWin = 4;
+  bool autoAnswer = 5;   // 自动应答(无客户端选择)
+}
+
+// 广播 - 游戏结算 gameservice.gameovernotify
+message GameOverNotify {
+  message Player {
+    int32 seat = 1;  //位置信息
+    repeated int32 cards = 2;         // 牌
+    EnumCardSuit suit = 3;            // 牌型
+    int64 calc = 4;                   // 输赢分数
+    int64 after = 5;                  // 结算后货币
+    EnumPlayStatus status = 6;        // 玩家状态
+    bool handledCompare = 7;          // 执行过比牌
+  }
+  message PlotOffset {
+    int32 offset = 1;  // 补偿金
+    int64 after = 2;   // 补偿后剩余
+    int32 jumpSpace = 3; // 转场roomId
+  }
+  repeated Player players = 1;
+  int32 winSeat = 2;                    // 赢家
+  int64 chipPool = 3;                   // 注池
+  EnumSetFinishReason finishReason = 4; // 结束原因
+  int32 nextTimeout = 5;                // 下局倒计时(ms)
+  PlotOffset plotOffset = 6; // 首充剧情补偿
+}
+
+
+// 准备充值 gameservice.preparepayment
+message PreparePaymentReq{
+}
+message PreparePaymentAck {
+  ResponseBase result = 1;
+}
+// 广播 - 有人准备充值 gameservice.preparepaymentnotify
+message PreparePaymentNotify {
+  int32 seat = 1;
+  int32 timeoutMs = 2;  // 修正超时
+  PaymentProduct payment= 3; // 支付商品
+  int32 winRate = 4; // 赢的概率 1298表示12.98%
+}
+// 广播 - 有人充值成功  gameservice.paymentfinishnotify
+message PaymentFinishNotify {
+  int32 seat = 1;
+  int32 timeoutMs = 2;      // 修正超时
+  uint32 actionMask = 3;    // 当前可以进行的操作
+}
+
+// 广播 - 强制跳场  gameservice.forcejumpspacenotify
+message ForceJumpSpace {
+  int32 id = 1; // 强制跳转的场id
+  string reason = 2; // 无意义-缺省
+}
+
+// PaymentProduct 支付商品
+message PaymentProduct {
+  int32 id = 1;       // 商品ID(支付接口用)
+  int32 amount = 2;   // 金额
+  int32 add = 3;      // 额外赠送-dep
+  int32 bonus = 4;    // 额外赠送-bonus
+  bool plot = 5;      // 是否是剧情
+}

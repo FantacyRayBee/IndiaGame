@@ -1,0 +1,55 @@
+{
+	"APP_STATUS": 6,
+	"APP_SHARE_URL": "https://www.tmaxter.in/",
+	"IS_UPDATE": true,
+	"ASSETS_URL": "https://download.tkptat.in/production/",
+	"ASSETS_VERSION": 1,
+	"SUB_GAME_VERSION_INFO": {
+		"Rummy": 1,
+		"ResourcesBundle": 1,
+		"tpGame": 1,
+		"7up7downGame": 1,
+		"andaerGame": 1,
+		"baccarat3PattiGame": 1,
+		"Benz": 1,
+		"fruitMachine": 1,
+		"horseRaceGame": 1,
+		"lhdGame": 1,
+		"munda": 1,
+		"mwGame": 1,
+		"sscGame": 1,
+		"rocket": 1,
+		"zooGame": 1,
+		"cricketGame": 1,
+		"zeusGame": 1
+	},
+	"HTTP_ROOT_URL": "https://svr.tkptat.in",
+	"WEB_SOCKET_GAME": "ws://svr.tkptat.in/",
+	"WEB_SOCKET_LOBBY": "ws://svr.tkptat.in/lobby/echo",
+	"CHANNEL_INFO": "5001",
+	"GOOGLE_ID": "com.yutrd.bfhd.cbvhf",
+	"FACEBOOK_ID": "",
+	"ServerReload": false,
+	"ServerReloadDescribe": "The server is currently under maintenance, with an estimated completion time of 08:35:00",
+	"REMOTE_APP_UPDATE": false,
+	"REMOTE_APP_VERSION": 1,
+	"REMOTE_APP_URL": "https://download.tkptat.in/Apk/TeenPatti5001-release.apk",
+	"PACKAGE_CONFIG_DICT": {
+		"5001": {
+			"CHANNEL_INFO": "5001",
+			"GOOGLE_ID": "com.yutrd.bfhd.cbvhf",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://download.tkptat.in/Apk/TeenPatti5001-release.apk"
+		},
+		"5002": {
+			"CHANNEL_INFO": "5002",
+			"GOOGLE_ID": "com.masx.tryd.mater",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://download.tkptat.in/Apk/TeenPatti5001-release.apk"
+		}
+	}
+}

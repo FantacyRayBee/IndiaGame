@@ -1,0 +1,205 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "lianxian",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "gPJI5WkA1+MJkt107hlsXcdStPI",
+      "spine": "3.7.94",
+      "width": 64,
+      "height": 512,
+      "images": "",
+      "audio": ""
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "shandian",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "img/Tex_0347_01",
+        "bone": "shandian",
+        "attachment": "img/Tex_0347_03",
+        "blend": "additive"
+      }
+    ],
+    "skins": {
+      "default": {
+        "img/Tex_0347_01": {
+          "img/Tex_0347_01": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_02": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_03": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_04": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_05": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_06": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_07": {
+            "width": 64,
+            "height": 512
+          },
+          "img/Tex_0347_08": {
+            "width": 64,
+            "height": 512
+          }
+        }
+      }
+    },
+    "animations": {
+      "chang": {
+        "slots": {
+          "img/Tex_0347_01": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 0.0667,
+                "name": "img/Tex_0347_01"
+              },
+              {
+                "time": 0.1333,
+                "name": "img/Tex_0347_02"
+              },
+              {
+                "time": 0.2,
+                "name": "img/Tex_0347_03"
+              },
+              {
+                "time": 0.2667,
+                "name": "img/Tex_0347_04"
+              },
+              {
+                "time": 0.3333,
+                "name": "img/Tex_0347_05"
+              },
+              {
+                "time": 0.4,
+                "name": "img/Tex_0347_06"
+              },
+              {
+                "time": 0.4667,
+                "name": null
+              }
+            ]
+          }
+        },
+        "bones": {
+          "shandian": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.465,
+                "y": 2.102
+              }
+            ]
+          }
+        }
+      },
+      "duan": {
+        "slots": {
+          "img/Tex_0347_01": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 0.0667,
+                "name": "img/Tex_0347_01"
+              },
+              {
+                "time": 0.1333,
+                "name": "img/Tex_0347_02"
+              },
+              {
+                "time": 0.2,
+                "name": "img/Tex_0347_03"
+              },
+              {
+                "time": 0.2667,
+                "name": "img/Tex_0347_04"
+              },
+              {
+                "time": 0.3333,
+                "name": "img/Tex_0347_05"
+              },
+              {
+                "time": 0.4,
+                "name": "img/Tex_0347_06"
+              },
+              {
+                "time": 0.4667,
+                "name": null
+              }
+            ]
+          }
+        },
+        "bones": {
+          "shandian": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0
+              }
+            ],
+            "translate": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.222,
+                "y": 0.348
+              }
+            ],
+            "shear": [
+              {
+                "time": 0,
+                "x": 0,
+                "y": 0
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nlianxian.png\nsize: 516,516\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/Tex_0347_01\n  rotate: false\n  xy: 464, 226\n  size: 48, 288\n  orig: 64, 512\n  offset: 16, 216\n  index: -1\nimg/Tex_0347_02\n  rotate: false\n  xy: 2, 2\n  size: 64, 512\n  orig: 64, 512\n  offset: 0, 0\n  index: -1\nimg/Tex_0347_03\n  rotate: false\n  xy: 134, 7\n  size: 64, 507\n  orig: 64, 512\n  offset: 0, 0\n  index: -1\nimg/Tex_0347_04\n  rotate: false\n  xy: 68, 6\n  size: 64, 508\n  orig: 64, 512\n  offset: 0, 0\n  index: -1\nimg/Tex_0347_05\n  rotate: false\n  xy: 200, 10\n  size: 64, 504\n  orig: 64, 512\n  offset: 0, 0\n  index: -1\nimg/Tex_0347_06\n  rotate: false\n  xy: 266, 18\n  size: 64, 496\n  orig: 64, 512\n  offset: 0, 0\n  index: -1\nimg/Tex_0347_07\n  rotate: false\n  xy: 332, 22\n  size: 64, 492\n  orig: 64, 512\n  offset: 0, 4\n  index: -1\nimg/Tex_0347_08\n  rotate: false\n  xy: 398, 74\n  size: 64, 440\n  orig: 64, 512\n  offset: 0, 24\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "e699a172-6133-4077-975a-8cf9a252be79"
+    }
+  ],
+  "textureNames": [
+    "lianxian.png"
+  ],
+  "scale": 1
+}

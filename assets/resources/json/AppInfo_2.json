@@ -1,0 +1,474 @@
+{
+	"APP_STATUS": 6,
+	"APP_SHARE_URL": "https://www.google3patti.com/",
+	"IS_UPDATE": true,
+	"ASSETS_URL": "https://download2.tpgame.in/Release/",
+	"ASSETS_VERSION": 243,
+	"SUB_GAME_VERSION_INFO": {
+		"Rummy": 243,
+		"ResourcesBundle": 243,
+		"tpGame": 243,
+		"7up7downGame": 243,
+		"andaerGame": 243,
+		"baccarat3PattiGame": 243,
+		"Benz": 243,
+		"fruitMachine": 243,
+		"horseRaceGame": 243,
+		"lhdGame": 243,
+		"munda": 243,
+		"mwGame": 243,
+		"sscGame": 243,
+		"rocket": 243,
+		"zooGame": 243,
+		"cricketGame": 243,
+		"zeusGame": 243
+	},
+	"HTTP_ROOT_URL": "https://svr2.tpgame.in",
+	"WEB_SOCKET_GAME": "ws://svr2.tpgame.in/",
+	"WEB_SOCKET_LOBBY": "ws://svr2.tpgame.in/lobby/echo",
+	"CHANNEL_INFO": "2019",
+	"GOOGLE_ID": "com.enjoygame.littlecamel.runsquickly",
+	"FACEBOOK_ID": "358584650243111",
+	"ServerReload": false,
+	"ServerReloadDescribe": "The server is currently under maintenance, with an estimated completion time of 08:35:00",
+	"REMOTE_APP_UPDATE": false,
+	"REMOTE_APP_VERSION": 1,
+	"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk",
+	"PACKAGE_CONFIG_DICT": {
+		"2007": {
+			"CHANNEL_INFO": "2007",
+			"GOOGLE_ID": "com.whwh.tpgo",
+			"FACEBOOK_ID": "376623721591630",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2009": {
+			"CHANNEL_INFO": "2009",
+			"GOOGLE_ID": "org.bysepatti.kofxwj",
+			"FACEBOOK_ID": "410255971325756",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2010": {
+			"CHANNEL_INFO": "2010",
+			"GOOGLE_ID": "com.rtp.royalteenpatti",
+			"FACEBOOK_ID": "653535476995946",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2012": {
+			"CHANNEL_INFO": "2012",
+			"GOOGLE_ID": "ort.Zonepatt.netkr",
+			"FACEBOOK_ID": "771655938104173",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"TeenPattiMaster": {
+			"CHANNEL_INFO": "TeenPattiMaster",
+			"GOOGLE_ID": "com.baggy.ranistan",
+			"FACEBOOK_ID": "1534008587132712",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"TPCASH5": {
+			"CHANNEL_INFO": "TPCASH5",
+			"GOOGLE_ID": "com.rtp.royalteenpatti",
+			"FACEBOOK_ID": "873078934293415",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2014": {
+			"CHANNEL_INFO": "2014",
+			"GOOGLE_ID": "magic.paorkkd.net",
+			"FACEBOOK_ID": "1412050926358483",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"PatteeRaaja": {
+			"CHANNEL_INFO": "PatteeRaaja",
+			"GOOGLE_ID": "com.whwh.tpgo",
+			"FACEBOOK_ID": "1332521707373609",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"APP_SHARE_URL": "https://floor.teenpattee.in/",
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"PattiHunt": {
+			"CHANNEL_INFO": "PattiHunt",
+			"GOOGLE_ID": "com.cardgame.drawratio.happyplay",
+			"FACEBOOK_ID": "3749214512067703",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2019": {
+			"CHANNEL_INFO": "2019",
+			"GOOGLE_ID": "com.enjoygame.littlecamel.runsquickly",
+			"FACEBOOK_ID": "358584650243111",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2021": {
+			"CHANNEL_INFO": "2021",
+			"GOOGLE_ID": "tpccax.sffc.com",
+			"FACEBOOK_ID": "684340627202497",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2022": {
+			"CHANNEL_INFO": "2022",
+			"GOOGLE_ID": "com.patblitde.yet",
+			"FACEBOOK_ID": "1711778242659998",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2023": {
+			"CHANNEL_INFO": "2023",
+			"GOOGLE_ID": "com.luckwincardjke.yuet",
+			"FACEBOOK_ID": "362920686459148",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2024": {
+			"CHANNEL_INFO": "2024",
+			"GOOGLE_ID": "com.maxtenpatt.ntret",
+			"FACEBOOK_ID": "1576529179839984",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2025": {
+			"CHANNEL_INFO": "2025",
+			"GOOGLE_ID": "com.patdalunar.dayert",
+			"FACEBOOK_ID": "417729227502708",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2028": {
+			"CHANNEL_INFO": "2028",
+			"GOOGLE_ID": "com.teepattindian.pokyt",
+			"FACEBOOK_ID": "1055627362390816",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2030": {
+			"CHANNEL_INFO": "2030",
+			"GOOGLE_ID": "com.redmob.solitaireclassic",
+			"FACEBOOK_ID": "7319578434788552",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2031": {
+			"CHANNEL_INFO": "2031",
+			"GOOGLE_ID": "com.circleyur.sdsdef.yet",
+			"FACEBOOK_ID": "927580475470331",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2032": {
+			"CHANNEL_INFO": "2032",
+			"GOOGLE_ID": "com.sytsd.ddsdr.ytet",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2033": {
+			"CHANNEL_INFO": "2033",
+			"GOOGLE_ID": "com.lucyrich.patti.net",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2034": {
+			"CHANNEL_INFO": "2034",
+			"GOOGLE_ID": "com.dhsrt.yue.yuedt",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2035": {
+			"CHANNEL_INFO": "2035",
+			"GOOGLE_ID": "com.shgmae.yued.tye",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2036": {
+			"CHANNEL_INFO": "2036",
+			"GOOGLE_ID": "com.ryupid.patt.deret",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2037": {
+			"CHANNEL_INFO": "2037",
+			"GOOGLE_ID": "com.guidemaste.yuejded.sdtef",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2038": {
+			"CHANNEL_INFO": "2038",
+			"GOOGLE_ID": "com.teenpatti.star.yurt",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2039": {
+			"CHANNEL_INFO": "2039",
+			"GOOGLE_ID": "com.tteenpatti.yuede",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2044": {
+			"CHANNEL_INFO": "2044",
+			"GOOGLE_ID": "com.tyccom.teenp.tyed",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2045": {
+			"CHANNEL_INFO": "2045",
+			"GOOGLE_ID": "com.sdyt.facai.intet",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2046": {
+			"CHANNEL_INFO": "2046",
+			"GOOGLE_ID": "com.afcc.teyred.tyrey",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2047": {
+			"CHANNEL_INFO": "2047",
+			"GOOGLE_ID": "com.sejrnd.adeft.yuresd",
+			"FACEBOOK_ID": "653535476995946",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2048": {
+			"CHANNEL_INFO": "2048",
+			"GOOGLE_ID": "com.otruymt.yntme.ret",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2049": {
+			"CHANNEL_INFO": "2049",
+			"GOOGLE_ID": "com.yolate.enrtr.dntsy",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2050": {
+			"CHANNEL_INFO": "2050",
+			"GOOGLE_ID": "com.andedr.bahar.ytet",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2051": {
+			"CHANNEL_INFO": "2051",
+			"GOOGLE_ID": "com.hterd.ythbf.okytr",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2052": {
+			"CHANNEL_INFO": "2052",
+			"GOOGLE_ID": "com.octro.ytres.oppns",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2053": {
+			"CHANNEL_INFO": "2053",
+			"GOOGLE_ID": "com.tebdopatt.rumy.patiit",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2054": {
+			"CHANNEL_INFO": "2054",
+			"GOOGLE_ID": "com.hayteen.sdefr.yurtsn",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2055": {
+			"CHANNEL_INFO": "2055",
+			"GOOGLE_ID": "com.oppens.dgekay.yet",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2056": {
+			"CHANNEL_INFO": "2056",
+			"GOOGLE_ID": "com.trsren.dhfea.yyetr",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2057": {
+			"CHANNEL_INFO": "2057",
+			"GOOGLE_ID": "com.jfkehh.dhfekk.yuert",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2058": {
+			"CHANNEL_INFO": "2058",
+			"GOOGLE_ID": "com.zeurs.yuerv.ttesdf",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2059": {
+			"CHANNEL_INFO": "2059",
+			"GOOGLE_ID": "com.nidc.zuesdf.ytercd",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2060": {
+			"CHANNEL_INFO": "2060",
+			"GOOGLE_ID": "com.tred.reootr.renp",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2061": {
+			"CHANNEL_INFO": "2061",
+			"GOOGLE_ID": "com.redfle.ganel.bvcs",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2062": {
+			"CHANNEL_INFO": "2062",
+			"GOOGLE_ID": "com.lingker.rewyt.cvb",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2063": {
+			"CHANNEL_INFO": "2063",
+			"GOOGLE_ID": "com.redenm.pytre.bning",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2064": {
+			"CHANNEL_INFO": "2064",
+			"GOOGLE_ID": "com.rtyet.raaja.cvhy",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2065": {
+			"CHANNEL_INFO": "2065",
+			"GOOGLE_ID": "com.grenr.outrd.cvb",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2066": {
+			"CHANNEL_INFO": "2066",
+			"GOOGLE_ID": "com.victoryds.ghky.vvt",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2067": {
+			"CHANNEL_INFO": "2067",
+			"GOOGLE_ID": "com.leiuresardcq.straiproductonightrts",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false
+		},
+		"2068": {
+			"CHANNEL_INFO": "2068",
+			"GOOGLE_ID": "com.gooleplay.desntv.cvnt",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2069": {
+			"CHANNEL_INFO": "2069",
+			"GOOGLE_ID": "com.pattigd.trent.vbfy",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2072": {
+			"CHANNEL_INFO": "2072",
+			"GOOGLE_ID": "com.gogolin.cghjr.vbnm",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false,
+			"REMOTE_APP_VERSION": 1,
+			"REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk"
+		},
+		"2073": {
+			"CHANNEL_INFO": "2073",
+			"GOOGLE_ID": "com.emqiblackqbw.deciesdedcomeoutq",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false
+		},
+		"2074": {
+			"CHANNEL_INFO": "2074",
+			"GOOGLE_ID": "com.trdbdf.cctvb.ytrt",
+			"FACEBOOK_ID": "",
+			"REMOTE_APP_UPDATE": false
+		}
+	}
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gates_oly_add_btn_normal",
+    "texture": "ce9e66d5-8a30-4b79-bd90-5d81a18ec3c2",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      53,
+      64
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      53,
+      64
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

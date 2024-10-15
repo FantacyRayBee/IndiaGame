@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ForOnceBg",
+    "texture": "42dfb85e-34f7-451e-a2dc-610414277c78",
+    "atlas": "",
+    "rect": [
+      30,
+      33,
+      742,
+      503
+    ],
+    "offset": [
+      -31,
+      4
+    ],
+    "originalSize": [
+      864,
+      577
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

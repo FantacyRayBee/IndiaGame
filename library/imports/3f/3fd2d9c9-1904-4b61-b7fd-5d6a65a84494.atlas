@@ -1,0 +1,104 @@
+
+hd_dapao01_end.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dian
+  rotate: true
+  xy: 412, 372
+  size: 14, 49
+  orig: 14, 49
+  offset: 0, 0
+  index: -1
+f0
+  rotate: false
+  xy: 2, 2
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+f1
+  rotate: true
+  xy: 154, 248
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+f2
+  rotate: false
+  xy: 217, 257
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+f3
+  rotate: false
+  xy: 288, 257
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+f4
+  rotate: false
+  xy: 154, 185
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+fx03
+  rotate: false
+  xy: 204, 320
+  size: 152, 40
+  orig: 152, 40
+  offset: 0, 0
+  index: -1
+fx2
+  rotate: true
+  xy: 412, 388
+  size: 100, 89
+  orig: 100, 89
+  offset: 0, 0
+  index: -1
+fx3
+  rotate: false
+  xy: 2, 193
+  size: 150, 124
+  orig: 150, 124
+  offset: 0, 0
+  index: -1
+fx4
+  rotate: false
+  xy: 2, 319
+  size: 200, 169
+  orig: 200, 169
+  offset: 0, 0
+  index: -1
+quan
+  rotate: true
+  xy: 106, 47
+  size: 144, 39
+  orig: 144, 39
+  offset: 0, 0
+  index: -1
+y1
+  rotate: false
+  xy: 204, 362
+  size: 102, 126
+  orig: 102, 126
+  offset: 0, 0
+  index: -1
+y2
+  rotate: false
+  xy: 2, 65
+  size: 102, 126
+  orig: 102, 126
+  offset: 0, 0
+  index: -1
+y3
+  rotate: false
+  xy: 308, 362
+  size: 102, 126
+  orig: 102, 126
+  offset: 0, 0
+  index: -1

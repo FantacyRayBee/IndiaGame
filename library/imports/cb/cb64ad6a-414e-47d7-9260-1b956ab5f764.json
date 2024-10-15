@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_magic_01",
+    "texture": "366f54e3-cc44-43ab-b629-dd0af3b390ac",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      62,
+      217
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      62,
+      217
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

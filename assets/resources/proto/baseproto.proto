@@ -1,0 +1,13 @@
+syntax = "proto3";
+package baseproto;
+
+//通信包装 
+message TransPack {
+	string id = 1;
+	bytes data = 2;
+}
+
+//连接检测
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}

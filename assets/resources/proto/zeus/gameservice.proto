@@ -1,0 +1,172 @@
+syntax = "proto3";
+package gameservice;
+
+
+//返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+
+// 登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+  uint32 fromid = 3;  // 来源平台ID
+}
+
+message LoginAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2; // 所有信息
+}
+
+message WholeInfo {
+  ConfigInfo config = 1;      // 配置信息
+  SceneInfo scene = 2;        // 场景信息
+  PlayerInfo requester = 3;   // 玩家信息
+}
+// 配置信息
+message ConfigInfo {
+  repeated int32 chipOption = 1;   // 下注选项
+}
+// 场景信息
+message SceneInfo {
+  // 随机轴
+  repeated Axis scroll = 1;
+}
+// 玩家信息
+message PlayerInfo {
+  UserInfo userInfo = 1;   // 用户信息
+  int32 leftFreeSpin = 2;  // 剩余免费spin
+}
+
+// 用户信息
+message UserInfo {
+  uint64 playerId = 1;    // 玩家游戏Id
+  string uid = 2;         // userid
+  string imgUrl = 3;      // 头像
+  string nickname = 4;    // 昵称
+  int64 diamond = 5;      // 金币
+  uint32 vipLevel = 6;    // vip等级
+}
+
+
+// 退出房间 gameservice.exit
+message ExitReq {
+}
+message ExitAck {
+  ResponseBase result = 1;
+}
+
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  uint64 playerId = 1;    // 玩家Id
+  int64 balance = 2;      // 剩余数量
+  int32 reason = 3;       // 原因 1:支付; 其他：未知
+}
+
+
+// 精灵元素
+enum Elf {
+  None = 0; // 空-被消除擦除了
+  Scatter = 1;
+  White = 2; // 白板
+  Crown = 3; // 皇冠
+  SandClock = 4; // 沙漏
+  Ring = 5; // 戒指
+  Glass = 6; // 酒杯
+  Ruby = 7; // 红宝石
+  Purple = 8; // 紫宝石
+  Topaz = 9; // 黄宝石
+  Emerald = 10; // 绿宝石
+  Sapphire = 11; // 蓝宝石
+  XX = 12; // 额外倍数
+}
+
+// 单元格
+message Cell {
+  Elf elf = 1; // 元素内容
+  int32 x = 2; // 附加属性:X倍数
+  bool read = 3; // 已读
+}
+
+// 纵轴
+message Axis {
+  repeated Cell cell = 1;
+}
+
+// 消除Action
+message Erase {
+  Elf elf = 1;            // 消除元素
+  int32 num = 2;          // 元素个数
+  int32 mul = 3;          // 倍数
+  int32 addFree = 4;      // 增加免费次数
+  bool read = 5;          // 此对象只读不消
+  int32 currentElfMul = 6; // 当轮SPIN总分元素累和
+  int32 currentXMul = 7;   // 当轮SPIN总X元素累和
+  int32 spinWinMul = 8;   // 当轮SPIN总赢倍数累和
+  bool roll = 9;          // 是否滚动(该消除Action是否为滚动)
+}
+
+// SPIN 单轮逻辑
+// 下注 gameservice.call
+message CallReq {
+  int64 amount = 1;   //金额
+  bool double = 2;    // 高倍X模式
+}
+
+// FREE模式下注 gameservice.freecall
+message FreeCallReq {
+  int64 amount = 1;   //金额(底注，实际扣款100倍)
+}
+
+message CallAck {
+  ResponseBase result = 1;
+  // 开始时免费次数
+  int32 startFreeSpin = 2;
+  // 常规SPIN
+  SpinResult spin = 3;
+  // 常规SPIN结算后剩余金币
+  int64 normalAfter = 4;
+  // FreeSPIN列表
+  repeated SpinResult freeSpin = 5;
+  // 结算后剩余金币
+  int64 finalAfter = 6;
+  // 下注金额(底注)
+  int64 bet = 7;
+}
+
+// SPIN结果
+message SpinResult {
+  // 起始轴
+  repeated Axis startScroll = 2;
+  // 消除记录
+  repeated Erase erase = 3;
+  // 是否免费
+  bool free = 4;
+  // 剩余免费次数
+  int32 remainFree = 5;
+  // 这轮SPIN前赢的总倍数
+  int32 beforeWinMul = 6;
+}
+
+
+/**
+Zeus 协议概述
+3个核心协议
+  1.login: gameservice.login
+  2.exit: gameservice.call
+  3.call: gameservice.exit
+客户端逻辑
+  执行spin后收到call回帧
+  1.根据ack.startScroll加载初始轴
+  2.根据ack.erase执行消除
+  3.根据ack.其他字段执行其他UI逻辑
+*/

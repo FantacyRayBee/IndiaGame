@@ -1,0 +1,55 @@
+
+FQZS_shayu.png
+size: 339,995
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+feiqinzoushou_caidaix
+  rotate: true
+  xy: 2, 138
+  size: 504, 111
+  orig: 506, 111
+  offset: 1, 0
+  index: -1
+feiqinzoushou_glow1
+  rotate: false
+  xy: 115, 2
+  size: 201, 201
+  orig: 203, 203
+  offset: 1, 1
+  index: -1
+feiqinzoushou_glow2
+  rotate: false
+  xy: 2, 35
+  size: 101, 101
+  orig: 111, 111
+  offset: 5, 5
+  index: -1
+feiqinzoushou_glow3
+  rotate: true
+  xy: 115, 421
+  size: 221, 222
+  orig: 225, 225
+  offset: 2, 1
+  index: -1
+feiqinzoushou_guangshu
+  rotate: false
+  xy: 115, 205
+  size: 220, 214
+  orig: 223, 216
+  offset: 2, 1
+  index: -1
+feiqinzoushou_shayu
+  rotate: true
+  xy: 2, 644
+  size: 349, 259
+  orig: 373, 287
+  offset: 2, 28
+  index: -1
+feiqinzoushou_x25
+  rotate: true
+  xy: 263, 806
+  size: 187, 50
+  orig: 218, 56
+  offset: 31, 1
+  index: -1

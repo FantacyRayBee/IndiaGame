@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hd_mtb01",
+    "texture": "64394a8f-8657-4cb0-998f-8e7ad01f1de6",
+    "atlas": "",
+    "rect": [
+      2,
+      7,
+      486,
+      485
+    ],
+    "offset": [
+      -11,
+      6.5
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

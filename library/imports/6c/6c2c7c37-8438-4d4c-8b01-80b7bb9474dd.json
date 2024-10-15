@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bg_pmd",
+    "texture": "f6bbfd62-e375-414a-a797-d66703be2e21",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      690,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      690,
+      40
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

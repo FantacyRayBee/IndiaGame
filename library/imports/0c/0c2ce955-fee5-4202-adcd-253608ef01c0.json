@@ -1,0 +1,7 @@
+{
+  "__type__": "cc.TextAsset",
+  "_name": "baseproto",
+  "_objFlags": 0,
+  "_native": "",
+  "text": "syntax = \"proto3\";\npackage baseproto;\n\n//通信包装 \nmessage TransPack {\n\tstring id = 1;\n\tbytes data = 2;\n}\n\n//连接检测\nmessage PingPang {\n\tuint64 timestamp = 1;\t//时间戳\n}"
+}

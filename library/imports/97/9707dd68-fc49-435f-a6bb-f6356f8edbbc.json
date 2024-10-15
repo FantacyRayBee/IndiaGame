@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ty_btn_kg_02_bg",
+    "texture": "fb760691-34a2-4c3b-88bb-4f031287f50c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      97,
+      36
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      97,
+      36
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

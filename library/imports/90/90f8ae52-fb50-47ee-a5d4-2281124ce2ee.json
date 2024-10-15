@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "millionaire",
+    "texture": "133b35f6-f17b-4fc3-b36e-a1de242ed8b5",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      210,
+      94
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      210,
+      94
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

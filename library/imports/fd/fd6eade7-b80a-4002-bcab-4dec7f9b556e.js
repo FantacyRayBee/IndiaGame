@@ -1,0 +1,470 @@
+"use strict";
+cc._RF.push(module, 'fd6ea3nuApAAryrTex/m1Vu', 'english');
+// Main/Script/Common/Config/english.js
+
+"use strict";
+
+var _window$loginLanguage;
+
+// 1是英文 2是印地语 3乌尔都 4孟加拉语  默认英语 
+window.language = cc.sys.localStorage.getItem("language") ? cc.sys.localStorage.getItem("language") : 1; // 登录界面
+
+window.loginLanguage = (_window$loginLanguage = {
+  lab_fbLogin: ["lab_fbLogin", "Login Via Facebook", "फेसबुक लॉग इन", "فیس بک کے ذریعے لاگ ان کریں", "Facebook দিয়ে লগইন করুন"],
+  lab_mobile: ["lab_mobile", "Login", "लॉग इन करें", "لاگ ان کریں", "লগইন করুন"],
+  lab_Verify: ["lab_Verify", "Verify", "सत्यापित", "تصدیق کریں", "যাচাই করুন"],
+  lab_notreceived: ["lab_notreceived", "Not received.", "नही मिला।", "موصول نہیں ہوا۔ ", "পাওয়া হয়নি।"],
+  lab_resend: ["lab_resend", " Resend", "दोबारा भेजें", "دوبارہ بھیجیں", "আবার পাঠান"],
+  lab_InputOTP: ["lab_InputOTP", "Input OTP here", "यहां ओटीपी डालें", "یہاں OTP درج کریں", "OTP এখানে লিপিবদ্ধ করুন"],
+  lab_optTip: ["lab_optTip", "X  Invalid OTP. Please  try  again.", "एक्स अवैध ओटीपरी। कृपया दोबारा प्रयास करें।", "X غلط OTP۔ براہِ کرم دوبارہ کوشش کریں.", "X অবৈধ OTP। অনুগ্রহ করে আবার চেষ্টা করুন।"],
+  lab_sendtoName: ["lab_sendtoName", "Sent to", "को भेजा", "کو ارسال کریں", "এখানে পাঠান"],
+  lab_lastTime: ["lab_lastTime", "Resend OTP in  ", "में ओटीपी फिर से भेजें   ", "میں OTP دوبارہ بھیجیں", "এ OTP আবার পাঠান"],
+  lab_phoneTip: ["lab_phoneTip", "Please enter the correct phone number", "कृपया सही फोन नंबर दर्ज", "براہِ کرم درست فون نمبر درج کریں", "অনুগ্রহ করে সঠিক ফোন নম্বর লিখুন"],
+  lab_shouji_phone: ["lab_shouji_phone", "Input phone number here", "यहां फोन नंबर डालें", "یہاں فون نمبر درج کریں", "এখানে ফোন নম্বর লিপিবদ্ধ করুন"],
+  RichText_tip: ["RichText_tip", "Verify with OTP", "ओटीपी के साथ सत्यापित करें", "OTP کے ساتھ تصدیق کریں", "OTP যাচাই করুন"]
+}, _window$loginLanguage["lab_Verify"] = ["lab_Verify", "Verify", "सत्यापित", "تصدیق کریں", "যাচাই করুন"], _window$loginLanguage.lab_backOTP = ["lab_backOTP", ">>Back & Change Mobile", ">>वापस करें और मोबाइल बदलें", ">>پیچھے جائیں اور موبائل تبدیل کریں", ">>ফিরে যান ও মোবাইল নম্বর পরিবর্তন করুন"], _window$loginLanguage);
+window.UpdateLanguage = {
+  lab_repeatBets: ["lab_repeatBets", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"]
+}; //  个人中心 
+
+window.playerCenterLanguage = {
+  node_deposited: ["node_deposited", "Deposited", "जमा", "ڈپازٹ کریں", "জমা"],
+  node_bonus: ["node_bonus", "Bonus", "बोनास", "بونس", "বোনাস"],
+  node_winnings: ["node_winnings", "Withdrawale", "जीत", "جیت", "জয়লাভ"],
+  node_totalCash: ["node_totalCash", "Total Cash", "कुल नकद", "مجموعی کیش", "মোট ক্যাশ"],
+  node_mobile: ["node_mobile", "Mobile:", "मोबाइल:", "موبائل", "মোবাইল"],
+  node_name: ["node_name", "Name:", "नाम:", "نام:", "নাম:"],
+  node_email: ["node_email", "Email:", "इमेल:", "ای میل:", "ইমেল:"],
+  lab_ok: ["lab_ok", "Agree", "स्वीकार", "متفق ہوں", "স্বীকার করুন"],
+  lab_on: ["lab_on", "Cancel", "रद्द करना", "منسوخ کریں", "বাতিল করুন"],
+  lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_tip: ["lab_tip", "Input your new nickname below", "अपना नया उपनाम नीचे दर्ज करें", "اپنی نئی عرفیت ذیل میں درج کریں", "আপনার নতুন ডাকনাম নীচে লিপিবদ্ধ করুন"],
+  lab_tip_01: ["lab_tip_01", "Users can only modify it once within 24 hours ", "उपयोगकर्ता केवल 24 घंटे के लिए इसे संशोधित कर सकते हैं", "یوزرز 24 گھنٹے میں صرف ایک مرتبہ ہی ترمیم کرسکتے ہیں", "ব্যবহারকারীরা শুধু 24 ঘন্টার জন্য এটি সংশোধন করতে পারেন"],
+  PLACEHOLDER_LABEL: ["PLACEHOLDER_LABEL", "No more than 12 character", "12 से अधिक वर्ण नहीं", "12 حروف سے زیادہ نہیں", "12 এর চেয়ে বেশি অক্ষর নয়"],
+  lab_Photograph: ["lab_Photograph", "Photograph", "तस्वीर", "فوٹوگراف", "ফোটোগ্রাফ"],
+  lab_SelectFromPhotos: ["lab_SelectFromPhotos", "Select From Photo", "तस्वीरों में से चुनें", "تصاویر میں سے منتخب کریں", "ছবিগুলির থেকে বেছে নিন"],
+  lab_Cancel: ["lab_Cancel", "Cancel", "रद्द करना", "منسوخ کریں", "বাতিল করুন"]
+}; // 活动
+
+window.activityLanguage = {
+  lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_day: ["lab_day", "Day", "दिन", "دن", "দিন"],
+  lab_cash: ["lab_cash", "Cash", "जमा", "کیش", "নগদ"],
+  lab_bonus: ["lab_bonus", "Bonus", "बोनस", "بونس", "বোনাস"],
+  lab_otheramount: ["lab_otheramount", "Other Amount >>", "अन्य राशि >>", "دیگر رقم >>", "অন্যান্য পরিমাণ >>"],
+  lab_onlyone: ["lab_onlyone", "Only one chance. choose any one to buy.", "सिर्फ एक मौका। खरीदने के लिए कोई एक चुनें", "صرف ایک موقع ۔ خریداری کے لیے کوئی بھی ایک منتخب کریں", "শুধু একটি সুযোগ। ক্রয় করার জন্য যেকোনো একটি বেছে নিন"],
+  lab_addcash: ["lab_addcash", "ADD CASH", "कैश जोड़े", "کیش شامل کریں", "নগদ যোগ করুন"],
+  lab_TotalGet: ["lab_TotalGet", "Total Get", "कुल सिक्का", "مجموعی حصول", "মোট প্রাপ্তি"],
+  lab_get: ["lab_get", "Get", "प्राप्त करें", "حاصل کریں", "পান"],
+  lab_morecash: ["lab_morecash", "more cash bonus after the purchase", "खरीद के बाद अधिक नकद बोनस", "خریداری کے بعد مزید کیش بونس", "ক্রয়ের পরে আরও ক্যাশ বোনাস"],
+  lab_times: ["lab_times", "Remaining times : ", "बचा हुआ समय : ", "باقی ماندہ وقت : ", "অবশিষ্ট সময় : "],
+  lab_turnplate_tips: ["lab_turnplate_tips", "Tips", "टिप्स", "مشورے", "পরামর্শ"],
+  lab_turnplate_1: ["lab_turnplate_1", "1.You can get a luckdraw for every 50 games you play", "1. आपको अपने द्वारा खेले गए हर 50 खेल के लिए एक लकड्रा मिलेगा", "1. آپ اپنے کھیلے جانے والے ہر 50 گیمز کے لیے لکی ڈرا حاصل کرسکتے ہیں", "1. আপনি আপনার খেলা প্রতি 50টি গেমের জন্য একটি লাকিড্র পেতে পারেন"],
+  lab_turnplate_2: ["lab_turnplate_2", "2.there is a freelottery every day", "2. हर दिन एक मुफ्त लॉटरी होती है", "2. روزانہ مفت لاٹری بھی ہے", "2. প্রতিদিন একটি ফ্রি লটারি আছে"],
+  lab_bg_sign: ["lab_bg_sign", "DAILY" + "\n" + "FREE RUPEES", "दैनिक" + "\n" + "मुफ्त रुपये", "روزانہ" + "\n" + "مفت روپے", "প্রতিদিনের" + "\n" + "ফ্রি টাকা"],
+  lab_cm_sign: ["lab_cm_sign", "DAILY" + "\n" + "FREE RUPEES", "दैनिक" + "\n" + "मुफ्त रुपये", "روزانہ" + "\n" + "مفت روپے", "প্রতিদিনের" + "\n" + "ফ্রি টাকা"],
+  lab_bg_zp: ["lab_bg_zp", "LUCKY" + "\n" + "TURNTABLE", "लकी" + "\n" + "टर्नटेबल", "لکی" + "\n" + "ٹرن ٹیبل", "LUCKY" + "\n" + "TURNTABLE"],
+  lab_cm_zp: ["lab_cm_zp", "LUCKY" + "\n" + "TURNTABLE", "लकी" + "\n" + "टर्नटेबल", "لکی" + "\n" + "ٹرن ٹیبل", "LUCKY" + "\n" + "TURNTABLE"],
+  lab_bg_sc: ["lab_bg_sc", "GET" + "\n" + "YOUR BONUS", "आप" + "\n" + "बोनस प्राप्त करो", "اپنا بونس" + "\n" + "حاصل کریں", "আপনার" + "\n" + "বোনাস পান"],
+  lab_cm_sc: ["lab_cm_sc", "GET" + "\n" + "YOUR BONUS", "आप" + "\n" + "बोनस प्राप्त करो", "اپنا بونس" + "\n" + "حاصل کریں", "আপনার" + "\n" + "বোনাস পান"]
+}; // 奖券卡
+
+window.bonusCardLanguage = {
+  lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_getmore: ["lab_getmore", "Get more", "ज्यादा पाएं", "مزید حاصل کریں", "আরও পান"],
+  lab_collect: ["lab_collect", "Collect", "जुटायें", "وصول کریں", "সংগ্রহ করুন"],
+  lab_bonusCardTitle: ["lab_bonusCardTitle", "Choose 1 Daily Bonus Card to purchase each time , you can select other card after expiration", "हर बार खरीदने के लिए 1 दैनिक बोनस कार्ड चुनें, समाप्ति के बाद आप दूसरे कार्ड का चयन कर सकते हैं", "1 کارڈ فی خریداری، آپ میعاد ختم ہونے کے بعد دوسرا کارڈ منتخب کر سکتے ہیں۔", "প্রতিবার কেনার 1টি  কার্ড , মেয়াদ শেষ হওয়ার পরে আপনি অন্য কার্ড নির্বাচন করতে পারেন"],
+  lab_transferTip: ["lab_transferTip", "Bonus will be transferred info desposit when you lose in some games", "दिजब आप कुछ खेल में हार जाते हैं तो जमा में बोनस स्थानांतरित कर दिया जाएगान", "جب آپ کچھ گیمز کا ڈپازٹ کھو دیں تو بونس ڈپازٹ میں منتقل ہو جائے گا", "খেলার জমা থাকা টাকার কিছুটা আপনি হারালে বোনাস আপনার জমাতে ট্রান্সফার করা হবে"],
+  lab_noticehelp1: ["lab_noticehelp1", "All the bonuses you get will be placedhere Whenever you lose money in the game , the bonus will be converted intocash at 10% of the money you lose . At this time you can collect cash", "आपको मिलने वाले सभी बोनस यहां रखे जाएंगे जब भी आप खेल में पैसे खो देंगे, बोनस आपके द्वारा खोए गए धन के 10% पर नकद में परिवर्तित हो जाएगा। इस समय आप नकद ले सकते हैं।", "آپ کے حاصل کردہ تمام بونسز یہاں رکھے جائیں گے جب بھی آپ گیم میں رقم کھو دیں گے، تو آپ کی کھوئی ہوئی رقم کے 10 فیصد پر بونس کیش میں تبدیل ہو جائے گا۔ اس موقع پر آپ کیش وصول کرسکتے ہیں", "আপনার পাওয়া সব বোনাস এখানে রাখা থাকবে আপনি যখনই খেলায় টাকা হারাবেন, বোনাস আপনার হারানো টাকার 10% এ নগদে রূপান্তর করা হবে। সেই সময় আপনি নগদ সংগ্রহ করতে পারেন "],
+  lab_getbonus_1: ["lab_getbonus_1", "Get 1000 right now:", "अभी 1000 प्राप्त करें:", "ابھی اور اسی وقت 1000 حاصل کریں", "এখনই 1000 পান"],
+  lab_getbonus_2: ["lab_getbonus_2", "Get 5000 right now:", "अभी 5000 प्राप्त करें:", "ابھی اور اسی وقت 1000 حاصل کریں", "এখনই 5000 পান"],
+  lab_getbonus_3: ["lab_getbonus_3", "Get 20000 right now:", "अभी 20000 प्राप्त करें:", "ابھی اور اسی وقت 20000 حاصل کریں", "এখনই 20000 পান"],
+  lab_daybonusday_1: ["lab_daybonusday_1", "50 Bonus x3 days", "50 बोनस x3 दिन", "50 بونس x3 دن", "50 বোনাস x3 দিন"],
+  lab_daybonusday_2: ["lab_daybonusday_2", "210 Bonus x5 days", "210 बोनस x5 दिन", "210 بونس x5 دن", "210 বোনাস x5 দিন"],
+  lab_daybonusday_3: ["lab_daybonusday_3", "650 Bonus x7 days", "650 बोनस x7 दिन", "650 بونس x7 دن", "650 বোনাস x7 দিন"],
+  lab_noticeCardHelp1: ["lab_noticeCardHelp1", "1 . You can recharge to buy the Daily Bonus Card，you can get the recharged amount right now , and extra bonus rewards will be given out a few days", "1. आप दैनिक बोनस कार्ड खरीदने के लिए रिचार्ज कर सकते हैं， आप अभी रिचार्ज की गई राशि प्राप्त कर सकते हैं, और अतिरिक्त बोनस पुरस्कार कुछ दिनों में दिए जाएंगे", "1. آپ یومیہ بونس کارڈ خریدنے کے لیے ریچارج کرسکتے ہیں، آپ ابھی اور اسی وقت ریچارج کردہ رقم حاصل کرسکتے ہیں، اور چند ہی دنوں میں اضافی بونس کے انعامات دے دیے جائیں گے", "1. আপনি প্রতিদিনের বোনাস কার্ড ক্রয় করার জন্য রিচার্জ করতে পারেন, আপনি এখনই রিচার্জ করা পরিমাণ পেতে পারেন, এবং অতিরিক্ত বোনাস পুরস্কারগুলি কিছু দিনে দেওয়া হবে"],
+  lab_noticeCardHelp2: ["lab_noticeCardHelp2", "2 . You can only choose one type to purchase . On-ly one card is allowed at the same time", "2. आप खरीदने के लिए सिर्फ एक प्रकार का चयन कर सकते हैं। एक ही समय में सिर्फ एक कार्ड की अनुमति है", "2. آپ خریداری کے لیے صرف ایک قسم کو منتخب کرسکتے ہیں۔ ایک وقت میں صرف ایک کارڈ کی اجازت ہے", "2. আপনি ক্রয় করার জন্য শুধু একটি প্রকারই বেছে নিতে পারেন। এক সময়ে শুধু একটি কার্ডই অনুমোদিত"],
+  lab_noticeCardHelp3: ["lab_noticeCardHelp3", "3 . You can buy the Daily Bonus Card only after the first deposit.", "3. आप पहली जमा राशि के बाद ही दैनिक बोनस कार्ड खरीद सकते हैं।", "3. آپ صرف پہلے ڈپازٹ کے بعد ہی یومیہ بونس کارڈ خرید سکتے ہیں۔", "3. আপনি প্রতিদিনের বোনাস কার্ড শুধু প্রথমবার জমা দেওয়ার পরেই ক্রয় করতে পারবেন।"]
+}; // 设置
+
+window.settingLanguage = {
+  label_sz: ['label_sz', 'SETTINGS', "समायोजन", "ترتیبات", "বিন্যাস"],
+  lab_yx: ['lab_yx', 'Backgroud music', "बैकग्राउड संगीत", "پس منظر کی موسیقی", "ব্যাকগ্রাউন্ড সঙ্গীত"],
+  lab_yy: ['lab_yy', 'Effect Sound', "प्रभाव ध्वनि", "صوتی اثر", "প্রভাব ধ্বনি"],
+  lab_version: ['lab_version', 'Version: ' + GlobalCfg.APP_VERSION, "संस्करण: " + GlobalCfg.APP_VERSION, 'ورژن: ' + GlobalCfg.APP_VERSION, 'সংস্করণ: ' + GlobalCfg.APP_VERSION],
+  lab_daFen: ['lab_daFen', 'Rate us', "हमें रेटिंग दें", "ہمیں درجہ بندی دیں", ""],
+  lab_xianXIRen: ['lab_xianXIRen', 'আমাদের রেটিং দিন', "संपर्क करें"],
+  lab_contact: ["lab_contact", "Contact", "संपर्क करें", "ہم سے رابطہ کریں", "আমাদের সাথে যোগাযোগ করুন"],
+  lab_logout: ["lab_logout", "Logout", " लॉग आउट", "لاگ آؤٹ کریں", "লগআউট করুন"]
+};
+window.serviceLanguage = {
+  tip: ["tip", "Please contact us if you need help!", "अगर आपको मदद चाहिए तो कृपया हमसे संपर्क करें!", "اگر آپ کو مدد درکار ہو تو براہِ کرم ہم سے رابطہ کریں!", "আপনার সাহায্য লাগলে অনুগ্রহ করে আমাদের সাথে যোগাযোগ করুন!"],
+  tip_2: ["tip_2", "Due to working hours, sometimes customer service can't reply in time, sorry！", "काम के घंटों के कारण, कभी-कभी ग्राहक सेवा समय पर जवाब नहीं दे पाती है, क्षमा करें！", "دفتری اوقاتِ کار کے باعث، بعض اوقات کسٹمر سروس کا جواب بروقت موصول نہیں ہو پاتا، معذرت !", "কাজের সময়ের কারণে, কখনও কখনও গ্রাহক পরিষেবা সময়মতো উত্তর দিতে পারে না, দুঃখিত!"],
+  lab_tip_1: ["lab_tip_1", "1. Feedback your questions and suggestions to us. After verification, you will receive exclusive cash reward", "1. हमें अपने प्रश्नों और सुझावों पर प्रतिक्रिया दें। सत्यापन के बाद, आपको विशेष नकद इनाम मिलेगा", "1. اپنے سوالات اور تجاویز فیڈ بیک کی شکل میں ہمیں بھیجیں۔ تصدیق کے بعد، آپ کو خصوصی کیش انعام ارسال کیا جائے گا", "1. আপনার প্রশ্ন ও পরামর্শজনিত প্রতিক্রিয়া আমাদের জানান। যাচাইকরণের পরে, আপনি একচেটিয়া ক্যাশ পুরস্কার পাবেন"],
+  lab_tip_2: ["lab_tip_2", "2.Your feedback will be answered within 1-2 working days", "2. आपकी प्रतिक्रिया का जवाब  1-2 कार्य दिवसों के भीतर दिया जाएगा", "2. آپ کے فیڈ بیک پر 1 سے 2 کاروباری دنوں کے اندر اندر جواب دے دیا جائے گا", "2. আপনার প্রতিক্রিয়ার উত্তর 1-2 কর্মদিবসের মধ্যে দেওয়া হবে "],
+  PLACEHOLDER_LABEL: ["PLACEHOLDER_LABEL", "Please fill in your questions and suggestions here and send them to us.", "कृपया अपने प्रश्नों और सुझावों को यहां भरें और हमें भेजें।", "براہِ کرم اپنے سوالات اور تجاویز یہاں لکھیں اور ہمیں بھیج دیں۔", "অনুগ্রহ করে এখানে আপনার প্রশ্ন ও পরামর্শগুলি এখানে পূরণ করুন এবং তাদেরকে আমাদের কাছে পাঠান।"],
+  lab_send: ["lab_send", "Send", "भेजना", "بھیجیں", "পাঠান"]
+}; // 商城
+
+window.shopLanguage = {
+  lab_title: ["lab_title", "Add  Cash", "नकद जोड़ें", "نقد رقم جمع کریں", "ক্যাশ যোগ করুন"],
+  // lab_QuickAdd:["lab_QuickAdd","Select payment amount","शीघ्र जोड़ें","فوری شامل کریں","দ্রুত যোগ করুন"],
+  lab_cash: ["lab_cash", "Cash", "नकद", "نقد رقم", "ক্যাশ"],
+  lab_bonus: ["lab_bonus", "Bonus", "बोनास", "بونس", "বোনাস"],
+  lab_totalget: ["lab_totalget", "Total Get", "कुल प्राप्त", "کل حاصل کردہ", "মোট পান"],
+  lab_title_Tips: ["lab_title_Tips", "Tips", "सुझाव", "تجاویز ", "পরামর্শ"],
+  lab_ok: ["lab_ok", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_tips: ["lab_tips", "Get 10% Cash Back on your losing amount", "अपने खोने वाली रकम पर 10 फीसदी कैशबैक पाएं।", "اپنی ہاری ہوئی رقم پر 10% نقد رقم واپس حاصل کریں", "আপনার পরাজয়ের পরিমাণে 10% ক্যাশ ব্যাক পান"],
+  lab_warn_tips: ["lab_warn_tips", "Welcome bonus is valid only for the first cash add ition ofper player", "स्वागत बोनस हर खिलाड़ी द्वारा सिर्फ पहली बार नकद जोड़ने पर मान्य है।", "استقبالیہ بونس کا اطلاق ہر کھلاڑی کے لئے صرف پہلی بار نقد رقم جمع کرانے پر ہوتا ہے", "স্বাগতম বোনাস খেলোয়াড় প্রতি প্রথমবার ক্যাশ যোগ করার উপরই শুধু বৈধ।"],
+  lab_tip1: ["lab_tip1", "1 Order processing in 1-7 working days Please be patient.", "1 ऑर्डर प्रसंस्करण 1—7 कार्यदिवसों में पूरा किया जाएगा, कृपया धैर्य रखें", "1 آرڈر کی پراسیسنگ میں 1-7 کاروباری ایام لگتے ہیں۔ براہ کرم تحمل کا مظاہرہ کریں", "1 অর্ডার 1-7 কর্মদিবসে প্রক্রিয়াকরণ করা হবে অনুগ্রহ করে অপেক্ষা করুন"],
+  lab_tip2: ["lab_tip2", "2 There may be a delay in disbursement to your bank account after the order state being successful . And delay days dependon the withdrawal way you choose", "2 ऑर्डर के स्तर के सफल होने के बाद आपके बैंक खाते में भुगतान होने में देरी हो सकती है। और यह देरी आपके द्वारा चुने गए निकासी माध्यम पर निर्भर करता है", "2 آرڈر کے کامیاب ہونے کے بعد، آپ کے بینک اکاؤنٹ میں رقم کی ادائیگی میں تاخیر ہو سکتی ہے۔ اور تاخیر کے دنوں کا انحصار آپ کے منتخب کردہ نکالنے کے طریقے پر ہے۔", "2 অর্ডারের স্থিতি সফল হওয়ার পরে আপনার ব্যাঙ্ক অ্যাকাউন্টে টাকা দেওয়ায় বিলম্ব হতে পারে। এবং বিলম্ব আপনি টাকা তোলার যে পদ্ধতি বেছে নিয়েছেন তার উপরও নির্ভর করে"],
+  lab_tip3: ["lab_tip3", "3 If you have problems with the order，Please contact our customer service ", "3 अगर ऑर्डर के साथ आपकी कोई समस्या है, तो कृपया हमारे ग्राहक सुविधा से संपर्क करें", "3 اگر آپ کو آرڈر میں مسائل درپیش ہیں تو براہ کرم ہماری کسٹمر سروس سے رابطہ کریں۔", "3 অর্ডারের সাথে আপনার কোনো সমস্যা থাকলে, অনুগ্রহ করে আমাদের গ্রাহক পরিষেবার সাথে যোগাযোগ করুন "],
+  lab_tip4: ["lab_tip4", "Winnings Cash is the Cash that you have won in cash games", "जीता हुआ नकद वो नकद है जो आपने नकद खेलों से जीता है", "جیتی گئی رقم وہ نقد رقم ہے جو آپ گیمز میں جیتتے ہیں", "জয়লাভের ক্যাশ হ ক্যাশ গেমগুলিতে আপনার জেতা নগদ টাকাগুলি"],
+  lab_tip5: ["lab_tip5", "You can use Winnings Cash and Deposit Cash to play for cash games", "आप जीते हुए नकद का इस्तेमाल कर सकते हैं और नकद खेल खेलने के लिए नकद जमा कर सकते हैं।", "آپ کیش گیمز کھیلنے کے لئے ڈپازٹ کیش اور جیتی گئی رقم کا استعمال کر سکتے ہیں", "আপনি ক্যাশ গেমগুলির জন্য জয়লাভের ক্যাশ এবং জমা দেওয়া ক্যাশ ব্যবহার করতে পারেন"],
+  lab_tip6: ["lab_tip6", "Note : You can withdraw your Winnings Cash", "ध्यान दें: आप अपने जीते हुए नकद को निकाल सकते हैं", "نوٹ: آپ اپنی جیتی گئی رقم نکلوا سکتے ہیں", "দ্রষ্টব্য: আপনি আপনার জয়লাভের ক্যাশ তুলতে পারবেন"],
+  lab_tip7: ["lab_tip7", "Deposit Cash is the Cash that you've added to your Wallet", "जमा नकद वो नकद है जिसे आपने अपने वॉलेट में जोड़ा है", "ڈپازٹ کیش وہ نقد رقم ہے جو آپ اپنے والٹ میں جمع کراتے ہیں", "জমা দেওয়া ক্যাশ হল আপনার ওয়ালেটে যোগ করা ক্যাশ"],
+  lab_tip8: ["lab_tip8", "You can use Deposit Cash with Winnings Cash to pay for cash games", "आप जीते हुए नकद से नकद खेलों के भुगतान के लिए नकद जमा कर सकते हैं", "آپ کیش گیمز کی ادائیگی کے لئے ڈپازٹ کیش کے ساتھ جیتی گئی رقم استعمال کر سکتے ہیں", "আপনি ক্যাশ গেমগুলির জন্য জয়লাভের ক্যাশের সাথে জমা দেওয়া ক্যাশ ব্যবহার করতে পারেন"],
+  lab_tip9: ["lab_tip9", "Note : You cannot withdraw your Deposit Cash", "ध्यान दें: आप अपने जमा नकद को नहीं निकाल सकते", "نوٹ: آپ اپنے ڈپازٹ کیش کو نکال نہیں سکتے ہیں۔", "দ্রষ্টব্য: আপনি আপনার জমা দেওয়া ক্যাশ তুলতে পারবেন না"],
+  lab_tip10: ["lab_tip10", "You must recharge and activate your account before you can withdraw cash", "You must recharge and activate your account before you can withdraw cash", "You must recharge and activate your account before you can withdraw cash", "You must recharge and activate your account before you can withdraw cash"],
+  lab_mail: ["lab_mail", "E-mail:teenpattikayu01@gmail.com", "ईमेल :teenpattikayuo1@gmail.com पर", "ای میل: teenpattikayuo1@gmail.com", " ইমেল：teenpattikayuo1@gmail.com"],
+  // 提现  
+  lab_Withdraw: ["lab_Withdraw", "Withdraw", "निकासी", "رقم نکالیں", "টাকা তোলা"],
+  lab_cashBalance0: ["lab_cashBalance0", "Cash Balance", "शेष नकद", "نقد رقم کا بیلنس", "ক্যাশ ব্যালেন্স"],
+  lab_depositCash: ["lab_depositCash", "Deposit Cash", "नकद जमा करें", "نقد رقم جمع کرائیں", "জমা দেওয়া ক্যাশ"],
+  lab_withdrawCash: ["lab_withdrawCash", "Winning Cash", "नकद जीतना", "جیتی گئی نقد رقم", "জয়লাভের ক্যাশ"],
+  lab_withdrawNum: ["lab_withdrawNum", "Daily Withdrawal Count Left : ", "शेष दैनिक निकासी गिनती: ", " یومیہ رقم نکالنے کی بقیہ تعداد", "জন্য বাকি সংখ্যা:"],
+  lab_cashBalance: ["lab_cashBalance", "Withdrawal history >", "निकासी का इतिहास >", "< نکالنے کی سرگزشت", "টাকা তোলার ইতিহাস  >"],
+  lab_WithdrawAmount: ["lab_WithdrawAmount", "Withdraw Amount:", "निकासी की राशि", "نکالی گئی رقم ", "টাকা তোলার পরিমাণ"],
+  lab_WithdrawableBalance: ["lab_WithdrawableBalance", "Withdrawable Balance:", "निकासी योग्य शेष राशि", "نکالنے کا بیلنس  رقم", "টাকা তোলারযোগ্য ব্যালেন্স"],
+  lab_warn: ["lab_warn", "1 . Money will be remitted to you within 7 days" + "\n" + "2 . The user's daily withdrawal limit is 3 times and the" + "\n" + "withdrawal limit is 15000 ", "1. पैसा 7 दिनों के अंदर आपको भेज दिया जाएगा" + "\n" + "2. उपयोगकर्ता की दैनिक निकासी सीमा 3 बार है और " + "\n" + "    निकासी सीमा 15000 है", "1.	آپ کو 7 ایام کے اندر رقم جمع کروا دی جائے گی" + "\n" + "2.	صارف کی یومیہ رقم نکالنے کی تعداد 3 بار اور نکالنے کی حد 15000 ہے", "1. টাকা 7 দিনের মধ্যে আপনার কাছে প্রেরণ করা হবে" + "\n" + "2. ব্যবহারকারীর প্রতিদিনের টাকা তোলার সীমা 3 বার এবং" + "\n" + "   15000 পর্যন্ত টাকা তোলা যাবে"]
+}; // 手机登录 手机绑定
+
+window.MobileLoginLanguage = {
+  lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_on: ["lab_on", "Cancel", "रद्द करना", "منسوخ کریں", "বাতিল করুন"],
+  lab_shouji_name: ["lab_shouji_name", "Please enter your Name", "अपना नाम दर्ज करें", "براہِ کرم اپنا نام درج کریں", "অনুগ্রহ করে আপনার নাম লিখুন"],
+  lab_shouji_phone: ["lab_shouji_phone", "Input phone number here", "यहां फोन नंबर डालें", "فون نمبر یہاں درج کریں", "এখানে ফোন নম্বর লিপিবদ্ধ করুন"],
+  lab_InputOTP: ["lab_InputOTP", "Input OTP here", "यहां ओटीपी डालें", "یہاں OTP درج کریں", "OTP এখানে লিপিবদ্ধ করুন"],
+  lab_mail: ["lab_mail", "Input your Email", "अपना ईमेल इनपुट करें", "اپنا ای میل درج کریں", "আপনার ইমেল লিপিবদ্ধ করুন"],
+  lab_otp: ["lab_otp", "OTP", "ओटीपी", "OTP", "OTP"],
+  lab_login: ["lab_login", "Login", "लॉगइनकरें", "لاگ ان کریں", "লগইন করুন"],
+  lab_phoneTip: ["lab_phoneTip", "Please enter the correct phone number", "कृपया सही फोन नंबर दर्ज", "براہِ کرم درست فون نمبر درج کریں", "অনুগ্রহ করে সথ্জিক ফোন নম্বর লিখুন"],
+  lab_email_title: ["lab_email_title", "Email", "ईमेल", "ای میل", "ইমেল"],
+  tipsName: ['', 'name can not be Empty ！', "पनाम खाली नहीं हो सकता", "نام کا خانہ خالی نہیں چھوڑا جاسکتا!", "নাম খালি রাখা যাবেন না!"],
+  tipsEmail: ["", "Email can not be empty", "इनपुट जानकारी खाली नहीं हो सकती", "ای میل کا خانہ خالی نہیں چھوڑا جاسکتا", "ইমেল খালি রাখা যাবে না"],
+  tipsEmail01: ["", "Please fill in the correct email", "इनपुट जानकारी खाली नहीं हो सकती", "براہِ کرم درست ای میل پُر کریں", "অনুগ্রহ করে সঠিক ইমেল পূরণ করুন"],
+  tipsOTP: ["", "X  Invalid OTP. Please  try  again.", "इनपुट जानकारी खाली नहीं हो सकती", "X غلط OTP۔ براہِ کرم دوبارہ کوشش کریں.", "X অবৈধ OTP। অনুগ্রহ করে আবার চেষ্টা করুন।"]
+}; // 选场列表
+
+window.xuanChangLanguage = {
+  lab_cash: ["lab_cash", "Cash", "नकद", "کیش", "নগদ"],
+  lab_practice: ["lab_practice", "Practice", "अभ्यास", "مشق کریں", "অনুশীলন"],
+  lab_teenPatti_boot: ["lab_teenPatti_boot", "Boot", "मबूट", "بوٹ", "ন্যূনতম বাজি"],
+  lab_minBuyin: ["lab_minBuyin", "Min Buyin    ", "मिन बायिन", " کم سے کم", "মিন বাইইন"],
+  lab_chaalLimit: ["lab_chaalLimit", "Chaal Limit", "चल सीमा", "چال حد", "চালের সীমা"],
+  lab_potLimit: ["lab_potLimit", "Pot Limit", "पॉट सीमा", "پوٹ حد", "পটের সীমা"],
+  lab_totalPlayers: ["lab_totalPlayers", "Total Players", "कुल खिलाड़ी", "مجموعی کھلاڑی", "মোট খেলোয়াড়"],
+  lab_Join: ["lab_Join", "Join", "जोड़ें", "شامل ہوجائیں", "যোগ দিন"],
+  lab_patti3: ['lab_patti3', '3 Patti', "३ पट्", "3 پتی", "3 পাত্তি"],
+  lab_blind: ['lab_blind', 'Pot Blind', "पॉट ब्लाइंड", "پوٹ بلائنڈ", "পট ব্লাইন্ড"],
+  lab_low: ['lab_low', 'MID', "मिड", "درمیانہ", "মিড"],
+  lab_mid: ['lab_mid', 'Low', "कम", "کم", "কম"],
+  lab_high: ['lab_high', 'HIGH', "हिगो", "بلند", "বড়"],
+  lab_boot: ['lab_boot', 'Min Bet', "मिन बेट", "کم سے کم بیٹ", "ন্যূনতম বাজি"],
+  lab_MinBuyin: ['lab_MinBuyin', 'Max Bet', "अधिकतम शर्त", "شرط زیادہ", "সর্বাধিক বাজি"],
+  // lab_BlindLimif: ['lab_BlindLimif','Max Payout',"अधिकतम भुगतान","زیادہ سے زیادہ ادائیگی","সর্বাধিক পাওয়া টাকা"], 
+  lab_playNow: ['lab_playNow', 'play now', "अब खेलते हैं", "ابھی کھیلیں", "এখনই খেলুন"],
+  lab_PointValue: ['lab_PointValue', 'Point  Value', "बूट मूल्य", "پوائنٹ ویلیو", "পয়েন্ট মূল্য"],
+  lab_MinEntr: ['lab_MinEntr', 'Min  Entry', "न्यूनतम प्रविष्टि", "کم سے کم اندراج", "ন্যূনতম প্রবেশ"],
+  lab_MaxPlayers: ['lab_MaxPlayers', 'Max payout', "अधिकतम खिलाड़ी", "کم  اندراج", "সর্বোচ্চ অর্থপ্রদান"],
+  lab_player2: ['lab_player2', '2 player', "2 खिलाड़ी", "2 کھلاڑی", "2 জন"],
+  lab_player6: ['lab_player6', '6 player', "6 खिलाड़ी", "6 کھلاڑی", "6 জন"],
+  lab_bootAmountTips: ['lab_bootAmountTips', 'Boot Amount', "बूट मूल्य", "بوٹ رقم", "বুট মূল্য"],
+  lab_chaalLimitTips: ['lab_chaalLimitTips', 'Chaal Limit', "चल सीमा", "چال حد", "চালের সীমা"],
+  lab_maxBlindsTips: ['lab_maxBlindsTips', 'Max Blinds', "मैक्स ब्लाइंड्स", "زیادہ سے زیادہ بلائنڈز", "ম্যাক্স ব্লাইন্ডস"],
+  lab_potLimitTips: ['lab_potLimitTips', 'Pot Limit', "पॉट सीमा", "پوٹ حد", "পটের সীমা"],
+  lab_seen: ['lab_seen', 'SEEN', "देखा", "دیکھا گیا", "দেখা হয়েছে"],
+  lab_teenpatti: ['lab_teenpatti', 'Teen Patti', "तीन पत्ती", "تین پتی", "তিন পাত্তি"],
+  lab_rummy: ['lab_rummy', 'Rummy', "رمی", "रम्मी"],
+  lab_andarBahar: ['lab_andarBahar', 'Andar Bahar', "आंदर बहारी", "اندر باہر", "Andar Bahar"],
+  lab_7up7down: ['lab_7up7down', '7up7down', "7up7डाउन", "7 اپ 7 ڈاؤن", "7up7down"],
+  lab_lhd: ['lab_lhd', 'Dragon vs Tiger', "ड्रगैन बनाम बाघ", "ڈریگن بمقابلہ ٹائیگر", "Dragon vs Tiger"],
+  lab_munda: ['lab_munda', 'Jhandi Munda', "घुड़दौड़", "گھڑ دوڑ", "Jhandi Munda"],
+  lab_horseRace: ['lab_horseRace', 'Horse Race', "گھڑ دوڑ", "Horse Race"],
+  lab_fruitMachine: ['lab_fruitMachine', 'Fruit Party', "फ्रूट पार्टी", "فروٹ پارٹی", "Fruit Party"],
+  lab_goAhead: ['lab_goAhead', 'Go ahead', 'आगे बढ़ो', 'ہاں ضرور', 'এগিয়ে যান'],
+  lab_notNow: ['lab_notNow', 'Not now', 'अभी नहीं', 'ابھی نہیں', 'এখন নয়'],
+  lab_content: ['lab_content', 'You have much more money than other players in current level , go to challenge higher level and win more money ?', 'वर्तमान स्तर में आपके पास अन्य खिलाड़ियों की तुलना में काफी अधिक पैसा है, और ऊँचे स्तर पर जाना और अधिक धन जीतना चाहेंगे ?', 'موجودہ لیول میں آپ کے پاس دوسرے کھلاڑیوں سے کافی زیادہ رقم ہے، زیادہ اونچے لیول میں جاکر چیلنج کریں گے اور مزید رقم جیتیں گے؟', 'বর্তমান লেভেলের অন্যান্য খেলোয়াড়দের তুলনায় আপনার কাছে অনেক বেশি অর্থ আছে, উপরের লেভেলে চ্যালেঞ্জ করতে এবং আরও বেশি অর্থ জিততে যাওয়া যাক ?']
+}; //  俏皮话
+
+window.zjhQiaoPiHau = [["", "Play Fast", " तेजी से खेलना", "Play Fast", "Play Fast"], ["", "Jaldi Khelo", "जल्दी खेलो", "Jaldi Khelo", "Jaldi Khelo"], ["", "Please Play Blind", "प्लीज प्ले ब्लाइंड", "Please Play Blind", "Please Play Blind"], ["", "Blind Khelo!", "अंधे खेलो", "Blind Khelo!", "Blind Khelo!"], ["", "I Won!", "मैं जीता!", "I Won!", "I Won!"], ["", "Good Luck", "शुभ लाभ", "Good Luck", "Good Luck"], ["", "Hi All!", "नमस्ते!", "Hi All!", "Hi All!"], ["", "It is your day", "आपका दिन है", "It is your day", "It is your day"], ["", "Thanks!", "धन्यवाद", "Thanks!", "Thanks!"], ["", "Try next time", "अगली बार कोशिश करें", "Try next time", "Try next time"], ["", "Nice Game", " अच्छा खेल है", "Nice Game", "Nice Game"]]; // 大厅规则
+
+window.lobbyRuleLanguage = {
+  lab_repeatBets: ["lab_repeatBets", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
+  lab_teenpatti: ['lab_teenpatti', 'Teen Patti', "तीन पत्ती", "تین پتی", 'তিন পাত্তি'],
+  lab_rummy: ['lab_rummy', 'Rummy', "रम्मी", "رمی", "রামি"],
+  lab_andarBahar: ['lab_andarBahar', 'Andar Bahar', "आंदर बहारी", "اندر باہر", "Andar Bahar"],
+  lab_7up7down: ['lab_7up7down', '7up7down', "7अप 7डाउन", "7 اپ 7 ڈاؤن", "7UP 7DOWN"],
+  lab_lhd: ['lab_lhd', 'Dragon vs Tiger', "ड्रगैन बनाम बाघ", "ڈریگن بمقابلہ ٹائیگر", "Dragon vs Tiger"],
+  lab_munda: ['lab_munda', 'Jhandi Munda', "झंडी मुंडा", "جھنڈی منڈا", "Jhandi Munda"],
+  lab_horseRace: ['lab_horseRace', 'Horse Race', "घुड़दौड़", "گھڑ دوڑ", "Horse Race"],
+  lab_fruitMachine: ['lab_fruitMachine', 'Fruit Party', "फ्रूट पार्टी", "فروٹ پارٹی", "Fruit Party"],
+  // rummy
+  lab_pure: ["lab_pure", "Pure Sequence", "शुद्ध अनुक्रम", "خالص ترتیب", "শুদ্ধ ক্রম"],
+  lab_seq: ["lab_seq", "Sequence", "अनुक्रम", "ترتی", "ক্রম"],
+  lab_not: ["lab_not", "Not Correct", "सही नहीं", "درست نہیں", "সঠিক নয়"],
+  lab_set: ["lab_set", "Set", "सेट", "سیٹ", "সেট"],
+  lab_st: ["lab_st", "1st Life", "पहला जीवन", "پہلی زندگی", "1ম লাইফ"],
+  lab_nd: ["lab_nd", "2nd life", "दूसरा जीवन", "دوسری زندگی", "2য় লাইফ"],
+  lab_coal: ["lab_coal", "GOAL", "GOAL", "GOAL", "GOAL"],
+  lab_JOKERS: ["lab_JOKERS", "JOKERS", "जोकर", "جوکرز", "জোকার"],
+  lab_SEQUENCES: ["lab_SEQUENCES", "SEQUENCES", "दृश्यों", "ترتیبات", "ক্রম"],
+  lab_FINISH: ["lab_FINISH", "FINISH", "खत्म हो", "ختم کریں", "শেষ"],
+  lab_SCORE: ["lab_SCORE", "SCORE", "स्कोर", "اسکور", "স্কোর"],
+  lab_SCORE2: ["lab_SCORE2", "SCORE：22", "स्कोर: 22", "اسکور: 22", "স্কোর: 22"],
+  lab_NOTE: ["lab_NOTE", "NOTE: IMPURE SEQUENCE is not valid until you have a PURE SEQUENCE", "नोट: अशुद्ध अनुक्रम तब तक मान्य नहीं है जब तक आपके पास शुद्ध अनुक्रम न हो", "نوٹ: غیر خالص ترتیب اس وقت تک درست نہیں ہوتی جب تک کہ آپ کے پاس خالص ترتیب نہ ہو", "দ্রষ্টব্য: আপনার কাছে একটি শুদ্ধ ক্রম না থাকা পর্যন্ত অশুদ্ধ ক্রম বৈধ নয়"],
+  lab_NOTE3: ["lab_NOTE3", "NOTE: Sets are not valid until you have a PURE SEQUENCE and an IMPURE", "नोट: सेट तब तक मान्य नहीं होते जब तक आपके पास एक शुद्ध अनुक्रम और एक अशुद्ध न हो ", "نوٹ: مجموعے اس وقت تک درست نہیں ہوتے جب تک کہ آپ کے پاس خالص اور غیر خالص ترتیب نہ ہو", "দ্রষ্টব্য: আপনার কাছে একটি শুদ্ধ ক্রম ও একটি অশুদ্ধ ক্রম না থাকা পর্যন্ত সেট বৈধ নয়"],
+  lab_rummy_01: ["lab_rummy_01", "A player's objective is to make the best combinations of cards in theform of sets or sequences. To win, one needs to declare first andthen meld the cards in hand correctly 1as per the rules of the Rummy game.", "एक खिलाड़ी का उद्देश्य सेट या क्रम के रूप में कार्ड का सबसे अच्छा संयोजन बनाना है। जीतने के लिए, पहले घोषित करना होगा और फिर रम्मी गेम के नियमों के अनुसार कार्डों को सही ढंग से हाथ में मिलाना होगा।", "کھلاڑی کا مقصد یہ ہوتا ہے کہ وہ مجموعوں یا ترتیب کی شکل میں کارڈز کے بہترین امتزاج تخلیق کرے۔ جیتنے کے لیے، پہلے اسے اعلان کرنا ہوگا اور پھر رمی گیم کے اصولوں کے مطابق کارڈز کو ہاتھ میں درست طریقے سے ملانا ہوگا۔", " একজন খেলোয়াড়ের উদ্দেশ্য হল সেট বা ক্রমের আকারে সবচেয়ে সেরা সামঞ্জস্যের তাস বানানো। জেতার জন্য, একজনকে প্রথমে ঘোষণা করতে হবে এবং তারপর রামি খেলার নিয়ম অনুযায়ী তাসগুলিকে "],
+  lab_rummy_02: ["lab_rummy_02", "Game is played with two decks of cards consisting of 52 cards and 2face Jokers each.", "खेल ताश के दो डेक के साथ खेला जाता है जिसमें 52 पत्ते होते हैं और प्रत्येक में 2 फेस जोकर होते हैं।", " گیم کو کارڈز کے دو ڈیکس کے ساتھ کھیلا جاتا ہے جن میں سے ہر ڈیک 52 کارڈز اور 2 چہروں والے جوکرز پر مشتمل ہوتا ہے۔", "খেলাটি দুই ডেক তাস নিয়ে খেলা হয় যাতে 52টি তাস থাকে এবং প্রতিটিতে 2 ফেস জোকার থাকে।"],
+  lab_rummy_03: ["lab_rummy_03", "All cards with the same rank as the card below the closed deck are", "बंद डेक के नीचे के कार्ड के समान रैंक वाले सभी कार्ड हैं", "ایک جیسے رینک کے حامل تمام کارڈز جبکہ بند ڈیک کے نیچے موجود کارڈ کو ", "বন্ধ ডেকের নীচের তাসগুলির মত একই র‍্যাঙ্কের সব তাসগুলিকে"],
+  lab_rummy_04: ["lab_rummy_04", "considered jokers. A joker functions as a substitute to any card.", "बंद डेक के नीचे के कार्ड के समान रैंक वाले सभी कार्ड हैं| जोकर माना जाता है। एक जोकर किसी भी कार्ड के विकल्प के रूप में कार्य करता है।", "جوکرز سمجھا جاتا ہے۔ جوکر کسی بھی کارڈ کے متبادل کے طور پر کام کرتا ہے۔", "জোকার হিসেবে বিবেচনা করা হয়। একটি জোকার যেকোনো তাসের বিকল্প রূপে কাজ করে।"],
+  lab_rummy_05: ["lab_rummy_05", "Sets are a group of 3 or 4 cards with the same rank but different suits. Sets can contain Jokers. ", "सेट एक ही रैंक वाले 3 या 4 कार्डों का समूह होता है लेकिन अलग-अलग सूट होते हैं।सेट में जोकर हो सकते हैं", "مجموعے ایک ہی رینک کے حامل 3 یا 4 کارڈز کا ایک گروپ ہوتا ہے لیکن مختلف سوٹس کے ساتھ۔ مجموعوں میں جوکرز شامل ہوسکتے ہیں۔", "জোকার হিসেবে বিবেচনা করা হয়। একটি জোকার যেকোনো তাসের বিকল্প রূপে কাজ করে।"],
+  lab_rummy_06: ["lab_rummy_06", "A sequence consists of three or more cards of the same suit in order.", "एक क्रम में एक ही सूट के तीन या अधिक कार्ड क्रम में होते हैं।", "ترتیب قطار میں رکھے ہوئے ایک جیسے سوٹ کے تین یا زائد کارڈز پر مشتمل ہوتی ہے۔", "একটি ক্রমে একই স্যুটের তিন বা তারও বেশি তাস ক্রমে থাকে। "],
+  lab_rummy_07: ["lab_rummy_07", "A PURE SEQUENCE is a sequence without jokers.", "एक शुद्ध अनुक्रम जोकरों के बिना एक अनुक्रम है।", "خالص ترتیب جوکرز کے بغیر کی ترتیب ہوتی ہے۔", "একটি শুদ্ধ ক্রম হল জোকার ছাড়া একটি ক্রম।"],
+  lab_rummy_08: ["lab_rummy_08", "IMPURE SEQUENCES are sequences that can contain jokers.", "अशुद्ध अनुक्रम ऐसे क्रम हैं जिनमें जोकर शामिल हो सकते हैं", "نوٹ: غیر خالص ترتیب اس وقت تک درست نہیں ہوتی جب تک کہ آپ کے پاس خالص ترتیب نہ ہو", "দ্রষ্টব্য: আপনার কাছে একটি শুদ্ধ ক্রম না থাকা পর্যন্ত অশুদ্ধ ক্রম বৈধ নয়"],
+  lab_rummy_09: ["lab_rummy_09", "To win the game the player must call for a Finish with the following", "गेम जीतने के लिए खिलाड़ी को निम्नलिखित के साथ फिनिश के लिए कॉल करना चाहिए", "گیم جیتنے کے لیے کھلاڑی کو درج ذیل کے ساتھ لازماً ختم کرنے کا کہنا ہوگا", "খেলা জিততে খেলোয়াড়কে নিম্নলিখিতের সাথে শেষ হওয়া একটি কল করতে হবে"],
+  lab_rummy_10: ["lab_rummy_10", "1st life: pure Sequence - no Jokers", "पहला जीवन: शुद्ध अनुक्रम – कोई जोकर नहीं", "پہلی زندگی: خالص ترتیب - کوئی جوکرز نہیں", "1ম লাইফ: শুদ্ধ ক্রম - কোনো জোকার নেই"],
+  lab_rummy_11: ["lab_rummy_11", "2nd life: 2nd Sequence -Pure or impure", "दूसरा जीवन: दूसरा क्रम - शुद्ध या अशुद्ध", "دوسری زندگی: دوسری ترتیب", "2য় লাইফ: 2য় ক্রম শুদ্ধ বা অশুদ্ধ"],
+  lab_rummy_12: ["lab_rummy_12", "Score : All 13 cards part of a valid Sequence or Set", "स्कोर : सभी 13 कार्ड एक वैध अनुक्रम या सेट का हिस्सा हैं", "اسکور : تمام 13 کارڈز ایک درست ترتیب یا مجموعے کا حصہ ہیں", "2য় লাইফ: 2য় ক্রম শুদ্ধ বা অশুদ্ধ"],
+  lab_rummy_13: ["lab_rummy_13", "The players score is the total value of all the cards and that are not a part of a valid sequence or a set.", "खिलाड़ियों का स्कोर सभी कार्डों का कुल मूल्य है और यह एक मान्य अनुक्रम या सेट का हिस्सा नहीं है।", "کھلاڑیوں کا اسکور تمام کارڈز اور درست ترتیب یا مجموعے کا حصہ نہ ہونے والے کارڈز کی مجموعی ویلیو ہوتا ہے۔", "খেলোয়াড়দের স্কোর হল সব তাসের মোট মূল্য এবং কোনো বৈধ ক্রম বা সেটের অংশ নয় এমন স্কোর।"],
+  lab_rummy_14: ["lab_rummy_14", "The objective is to reduce your score to 0 by forming valid sequencesand sets", "इसका उद्देश्य वैध अनुक्रम और सेट बनाकर अपने स्कोर को 0 तक कम करना है", "مقصد یہ ہوتا ہے کہ درست ترتیبات اور مجموعوں کی تشکیل کے ذریعے اپنے اسکور کو کم کرکے 0 کر دیا جائے", "উদ্দেশ্য হল বৈধ ক্রম ও সেট বানিয়ে আপনার স্কোরকে 0 তে কমিয়ে আনা"],
+  lab_rummy_15: ["lab_rummy_15", " J、Q、K and A have avalueof 10 ", "J、Q、K और A का मान 10 . है", "J، Q، K اور A 10 کی ویلیو رکھتے ہیں", "J、Q、K ও A এর মান হল 10 "],
+  lab_rummy_16: ["lab_rummy_16", "The values of the rest of the card are equal to their rank", "शेष कार्ड के मूल्य उनके रैंक के बराबर हैं ", "باقی ماندہ کارڈز کی ویلیوز ان کے رینک کے مساوی ہوتی ہیں", "বাকি তাসগুলির মান তাদের র‍্যাঙ্কের সমান"],
+  lab_rummy_17: ["lab_rummy_17", "SCORE: Total value of cards that are not a part of a valid Set ora Sequence.", "स्कोर: कार्डों का कुल मूल्य जो वैध सेट या अनुक्रम का हिस्सा नहीं हैं।", "اسکور: درست مجموعے یا ترتیب کا حصہ نہ ہونے والے کارڈز کی مجموعی ویلیو۔", "স্কোর: তাসের মোট মান কোনো বৈধ সেট বা ক্রমের অংশ নয়।"],
+  lab_rummy_18: ["lab_rummy_18", "REMEMBER: Lower Score is always better", "याद रखें: कम स्कोर हमेशा बेहतर होता है", "یاد رکھیں: کم تر اسکور ہمیشہ بہتر ہوتا ہے", "মনে রাখবেন: কম স্কোর সবসময় ভাল"],
+  // 炸金花
+  lab_tp_01: ["lab_tp_01", "Trail or Set ( three of same rank )", "ट्रेल या सेट (एक ही रैंक के तीन)", " ٹریل یا مجموعہ (ایک ہی رینک کے تین)", " ট্রেল বা সেট (একই র‍্যাঙ্কের তিনটি)"],
+  lab_tp_02: ["lab_tp_02", "Sequence ( run )", "अनुक्रम (रन)", "ترتیب (رن)", "ক্রম (রান)"],
+  lab_tp_03: ["lab_tp_03", "Color", "रंग", "رنگ", " রং"],
+  lab_tp_04: ["lab_tp_04", "Pair ( two cards of same rank )", "जोड़ी (एक ही रैंक के दो कार्ड)", "جوڑا (ایک ہی رینک کے دو کارڈز)", "জোড়া (একই র‍্যাঙ্কের দুটি তাস)"],
+  lab_tp_05: ["lab_tp_05", "High Card", "उच्च कार्ड", "بلند کارڈ", "বড় তাস"],
+  lab_tp_06: ["lab_tp_06", "The game needs 2-5 players involved with 52 poker cards (without jokers)", "खेल में 52 पोकर कार्ड (बिना जोकर के) के साथ शामिल 2-5 खिलाड़ियों की जरूरत है", "گیم کو 52 پوکر کارڈز کے ساتھ شامل 2-5 کھلاڑیوں کی ضرورت ہے (جوکر کو چھوڑ کر)", "গেমটির জন্য 52টি পোকার কার্ডের সাথে জড়িত 2-5 জন খেলোয়াড়ের প্রয়োজন (জোকার ছাড়া)"],
+  lab_tp_07: ["lab_tp_07", "The best3-card owner win the game", "सर्वश्रेष्ठ 3-कार्ड स्वामी गेम जीतता है।", "بہترین 3 کارڈ کا مالک گیم جیتتا ہے۔", "সেরা 3-কার্ডের মালিক গেমটি জিত"],
+  lab_tp_08: ["lab_tp_08", "Blind: After cards dealt, you can choose to see your cards directly or toblind with a maximum of 4 rounds.", "ब्लाइंड: कार्ड डिलीट होने के बाद, आप अपने कार्ड्स को सीधे देखना या अधिकतम 4 राउंड के साथ ब्लाइंड देखना चुन सकते हैं |", "بلائنڈ: کارڈز بانٹنے کے بعد، آپ چاہیں تو اپنے کارڈز کو براہِ راست دیکھ سکتے ہیں یا زیادہ سے زیادہ 4 راؤنڈز کے ساتھ بلائنڈ کرسکتے ہیں۔", "ব্লাইন্ড: তাস ডিল করার পরে, আপনি সরাসরি আপনার তাস দেখা বা সর্বাধিক 4  রাউন্ডের সাথে ব্লাইন্ড করা বেছে নিতে পারেন। "],
+  lab_tp_09: ["lab_tp_09", "Chaal: Each chaal amount cannot be less than your previous round. Andyou shall chaal double the current amount if you choose to raise chaalamount.", "चाल: प्रत्येक चाल की राशि आपके पिछले दौर से कम नहीं हो सकती। और यदि आप चल राशि को बढ़ाने का चुनाव करते हैं तो आपको वर्तमान राशि से दोगुना चालान करना होगा", "چال: ہر چال کی رقم آپ کے گزشتہ راؤنڈ سے کم نہیں ہوسکتی۔ اور اگر آپ چال کی رقم بڑھانا چاہیں تو آپ کو موجودہ رقم سے دوہری چال چلنی چاہیے۔", "চাল: প্রত্যেক চালের পরিমাণ আপনার পূর্বের রাউন্ডের চেয়ে কম হতে পারবে না। এবং আপনি চালের পরিমাণ বাড়াতে চাইলে আপনাকে বর্তমান পরিমাণের দ্বিগুণ করতে  হবে।"],
+  lab_tp_10: ["lab_tp_10", "See: You shall chaal double the blind players' chaal amount after you seeyour cards.", "देखें: अपने पत्ते देखने के बाद आप नेत्रहीन खिलाड़ियों की चाल की राशि को दोगुना कर देंगे।", "دیکھیں: آپ کو اپنے کارڈز دیکھ لینے کے بعد بلائنڈ کھلاڑیوں کی چال کی رقم سے دوہری چال چلنی چاہیے", "দেখুন: আপনি আপনার তাসগুলি দেখার পরে আপনাকে ব্লাইন্ড খেলোয়াড়ের চালের পরিমাণের দ্বিগুণ চাল দিতে হবে।"],
+  lab_tp_11: ["lab_tp_11", "Side Show: If you choose to compare your cards with your previous player'sthen you need to put bet amount into the pot.", "साइड शो: यदि आप अपने कार्ड की तुलना अपने पिछले खिलाड़ी के साथ करना चाहते हैं तो आपको दांव की राशि पॉट में डालनी होगी।", "سائیڈ شو: اگر آپ اپنے کارڈز کا موازنہ گزشتہ کھلاڑی کے کارڈز سے کرنا چاہیں تو پھر آپ کو بیٹ کی رقم پوٹ میں رکھنی ہوگی۔", "সাইড শো: আপনি আপনার আগের খেলোয়ারদের সাথে আপনার তাসগুলির তুলনা করতে চাইলে আপনাকে পাত্রে বাজিত পরিমাণ রাখতে হবে।"],
+  lab_tp_12: ["lab_tp_12", "Pack: Give up and quit your bet amount in this round.", "पैक: इस दौर में अपनी शर्त राशि को छोड़ दें और छोड़ दें।", "پیک: ہار مان لیں اور اس راؤنڈ میں اپنی بیٹ کی رقم چھوڑ دیں۔", "প্যাক: এই রাউন্ডে আপনার বাজির পরিমাণ ছেড়ে দিন এবং বেরিয়ে আসুন।"],
+  //andeer
+  lab_ander_01: ["lab_ander_01", "The dealer puts a card in thecenter of the table.This is the Joker card.", "डीलर टेबल के बीच में एक कार्ड रखता है। यह जोकर कार्ड है।", "کارڈ تقسیم کرنے والا کارڈ کو ٹیبل کے وسط میں رکھتا ہے۔ یہ جوکر کارڈ ہوتا ہے۔", "ডিলার টেবিলের মাঝখানে একটি তাস রাখবেন। সেটি হল জোকার তাস।"],
+  lab_ander_02: ["lab_ander_02", "Players bet on which side acard of Joker's rank.", "खिलाड़ी जोकर के रैंक के कार्ड पर दांव लगातेहैं ", "کھلاڑی جوکر کے رینک کے کارڈ کی سمت پر بیٹ لگاتا ہے۔", "খেলোয়াড়রা জোকারের র‍্যাঙ্কের কোন দিকের তাস হবে সেটা বাজি ধরেন।"],
+  lab_ander_03: ["lab_ander_03", "You bet twice.The first bet happens afterthe Joker card appears.", "आपने दो बार शर्त लगाई। पहली बेट जोकर कार्ड के प्रकट होने के बाद होती है।", "آپ دو مرتبہ بیٹ لگاتے ہیں۔ پہلی بیٹ جوکر کارڈ کے ظاہر ہونے کے بعد ہوتی ہے۔", "আপনি দুইবার বাজি ধরতে পারেন। প্রথমবার হল জোকার তাস দেখানোর পরে।"],
+  lab_ander_04: ["lab_ander_04", "Second bet happens aftertwo cards have been dealtto the table.", " दूसरी बेट तब होती है जब टेबल पर दो कार्ड डिलिट हो जाते हैं |", "دوسری بیٹ تب ہوتی ہے جب دو کارڈز ٹیبل پر تقسیم کر دیے گئے ہوں۔", "দ্বিতীয় বাজি টেবিলে দুটি তাস ডিল করার পরে হয়।"],
+  lab_ander_05: ["lab_ander_05", "The game ends when a cardof the same rank as the Jokerlands on Andar or Bahar.", "खेल तब समाप्त होता है जब जोकर के समान रैंक का कार्ड अंदर या बहार पर उतरता है।", "جب جوکر کے مساوی رینک کا کارڈ اندر یا باہر آجاتا ہے تو گیم ختم ہو جاتا ہے۔", "খেলাটি জোকারের সমান র‍্যাঙ্কের একটি তাস Andar or Bahar-এ চলে আসলে শেষ হয়ে যাবে।"],
+  // 7上7下
+  lab_7up_01: ["lab_7up_01", "7 Up 7 Down is a simple dice game", "7 अप 7 डाउन एक साधारण पासा खेल है।", "7 اپ 7 ڈاؤن ایک سادہ ڈائس گیم ہے", "7 Up 7 Down পাশার একটি সাধারণ খেলা। "],
+  lab_7up_02: ["lab_7up_02", "Two 6 sided dice are rolled and the results are totalled up", "दो 6 भुजाओं वाले पासों को लुढ़काया जाता है और परिणामों का योग किया जाता है।", "6 پہلوئی دو ڈائس پھینکی جاتی ہیں اور ان پر آنے والے نمبرز کو جمع کرلیا جاتا ہے", "দুটি 6 দিকওয়ালা পাশা ঘুরিয়ে ফেলা হয় এবং ফলাফলগুলির সমষ্টি বের করা হয়।"],
+  lab_7up_03: ["lab_7up_03", "You can bet on the total being under 7, exactly 7 ,or over 7.", "आप कुल 7 से कम, ठीक 7 या 7 से अधिक होने पर बेट लगा सकते हैं।", " آپ 7 سے کم، پورے 7 یا 7 سے زائد کے ٹوٹل پر بیٹ لگا سکتے ہیں۔", " আপনি মোটকে 7 এর চেয়ে কম, ঠিক 7 বা 7-এর বেশি হলে বাজি ধরতে পারেন।"],
+  lab_7up_04: ["lab_7up_04", "Above and below 7 gives payout double the bet amount", "7 से ऊपर और नीचे बेट राशि का दोगुना भुगतान देता है।", "7 سے زیادہ یا کم بیٹ کی رقم سے دوہری ادائیگی کرتا ہے۔- 7", "7 এর উপরে বা নীচে বাজির পরিমাণের দ্বিগুণ রাশি টাকা পাওয়া যায়।"],
+  lab_7up_05: ["lab_7up_05", "Exactly 7 gives payout 5 times the bet amount.", "बिल्कुल 7 बेट राशि का 5 गुना पेआउट देता है।", "پورے 7 بیٹ کی رقم سے 5 گنا کی ادائیگی کرتا ہے", "ঠিক 7 হলে বাজির পরিমাণের 5 গুণ টাকা পাওয়া যায়।"],
+  // 龙虎斗
+  lab_lhd_01: ["lab_lhd_01", "The dealer deals two cards each game , one for the", "डीलर हर खेल में दो कार्ड डील करता है, एक ", "تقسیم کرنے والا ہر گیم میں دو کارڈز بانٹتا ہے، ایک", "ডিলার প্রতিটি খেলায় দুটি তাস ডিল করেন, একটি"],
+  lab_lhd_02: ["lab_lhd_02", "Dragon and one for the Tiger . Simply makes a bet to Dragon or Tiger which could draw the highest card", "ड्रैगन के लिए और एक बाघ के लिए। ड्रैगन या बाघ पर सामान्य रूप से शर्त लगाता है, जो सबसे ऊंचा कार्ड निकालता है", "ڈریگن اور دوسرا ٹائیگر کے لیے۔ بس پھر ڈریگن یا ٹائیگر سے بیٹ لگاتا ہے جو بلند ترین کارڈ اٹھا سکتا ہے", "ড্রাগনের জন্য ও আরেকটি টাইগারের জন্য। ড্রাগন বা টাইগারে শুধু বাজি ধরে যা বৃহত্তম তাস ড্র করতে পারে"],
+  lab_lhd_03: ["lab_lhd_03", "Card from the smallest to the biggest are ( ignoring the symbols）：", "छोटे से लेकर बड़े तक (प्रतीकों की अनदेखी) कार्ड हैं :", "سب سے چھوٹے سے لے کر سب سے بڑے تک کارڈ ہیں (علامات نظرانداز کرتے ہوئے) :", "ক্ষুদ্রতম থেকে বৃহত্তম তাসগুলি হল (চিহ্ন অগ্রাহ্য করে) :"],
+  lab_lhd_04: ["lab_lhd_04", "A < 2 < 3 < 4 < 5 < 6 < 7 < 8 < 9 < 10 < J < Q < K", "ए < 2 < 3 < 4 < 5 < 6 < 7 < 8 < 9 < 10 < जे < क्यू < के ", "A < 2 < 3 < 4 < 5 < 6 < 7 < 8 < 9 < 10 < J < Q < K", "A < 2 < 3 < 4 < 5 < 6 < 7 < 8 < 9 < 10 < J < Q < K"],
+  lab_lhd_05: ["lab_lhd_05", "Paid for Dragon Tiger : 1 : 1", "ड्रैगन टाइगर के लिए भुगतान किया: 1: 1", "ڈریگن ٹائیگر کے لیے ادا کردہ : 1 : 1", "ড্রাগন টাইগারের জন্য দেওয়া টাকা : 1:1"],
+  lab_lhd_06: ["lab_lhd_06", "Paid for Tie：          1 : 8 ", "टाई के लिए भुगतान किया  : ：1:8 ", "ٹائی کے لیے ادا کردہ : 8 : 1", "টাইয়ের জন্য দেওয়া টাকা : 1:8"],
+  lab_lhd_07: ["lab_lhd_07", "For Tie , betting on the Dragon and Tiger will get half ofthe bet amount return back.", "टाई के लिए, ड्रैगन और टाइगर पर शर्त लगाने पर शर्त की आधी राशि वापस मिल जाएगी।", "ٹائی کے لیے، ڈریگن یا ٹائیگر پر بیٹ لگانے سے بیٹ کی آدھی رقم واپس آ جائے گی۔", "টাইয়ের জন্য, ড্রাগন ও টাইগারের উপর বাজি ধরলে অর্ধেক বাজির পরিমাণ ফেরত আসবে।"],
+  // 赛马
+  lab_HorseRace_01: ["lab_HorseRace_01", "* Players must place a bet before the racing start", "* एल खिलाड़ियों को रेसिंग शुरू होने से पहले एक शर्त लगानी चाहिए", "* I کھلاڑیوں کو دوڑ شروع ہونے سے پہلے لازماً بیٹ لگانا ہوگی", "* । দৌড় শুরু হওয়ার আগে খেলোয়াড়দের বাজি ধরতে হবে"],
+  lab_HorseRace_02: ["lab_HorseRace_02", "* You can bet on any horse or any number of horses among the horse 1-6", "* आप 1—6 घोड़ों के बीच किसी भी घोड़े की संख्या पर शर्त लगा सकते हैं", "* I آپ 1 سے لے کر 6 تک کسی بھی گھوڑے پر یا کسی بھی تعداد میں گھوڑوں پر بیٹ لگا سکتے ہیں۔", "* । আপনি 1-6 নং ঘোড়াদের মধ্য থেকে যেকোনো ঘোড়া বা নম্বরে বাজি ধরতে পারেন "],
+  lab_HorseRace_03: ["lab_HorseRace_03", "* The odds will change every round", "* मौका हर राउंड में बदलेगा", "* I اوڈز ہر راؤنڈ میں تبدیل ہوجائیں گے", "* । বিরূপতা প্রতি রাউন্ডে পরিবর্তিত হবে"],
+  lab_HorseRace_04: ["lab_HorseRace_04", "* Winning amount =winner area betting amount * odds", "* जीतने की राशि = विजेता क्षेत्र की सट्टेबाजी राशि * मौका", "* I جیتنے والی رقم = جیتنے والے کے احاطے کے بیٹنگ رقم * اوڈز", "* । জয়লাভের পরিমাণ = বিজয়ী এলাকার বাজির পরিমাণ * বিরূপতা"],
+  //六个塞子
+  lab_munda_01: ["lab_munda_01", "In this game we have symbols Jhanda   Burja Itta   Paan   Hukum  and  Chidi  printed on the six faces of each dice.", "इस खेल में हमारे पास झंडा, बुर्जा इट्टा, पान, हुकुम और चिड़ प्रतीक हैं जो हर एक पासे के छह चेहरों पर मुद्रित होते हैं।", "اس گیم میں ہر ڈائس کے چھ پہلوؤں پر طبع شدہ علامات ہمیں نظر آتی ہیں ’’جھنڈا‘‘، ’’برجا‘‘’’اٹا‘‘، ’’پان‘‘، ’’حکم‘‘ اور ’’چیڈی‘‘", "এই খেলায় প্রতিটি পাশার ছয় দিকে  ঝান্ডা, বুর্জা, ইট্টা, পান, হুকুম ও চিড়ি চিহ্নিত সংকেত থাকে।"],
+  lab_munda_02: ["lab_munda_02", "The player will place a bet and the game will start rolling the dices.", "खिलाड़ी शर्त लगाएगा और खेल पासा पलटने लगेगा।", "I کھلاڑی بیٹ لگائے گا اور ڈائسز پھینک کر گیم شروع ہو جائے گا۔", "। খেলোয়াড় একটি বাজি ধরবেন এবং খেলা পাশা ফেলে শুরু হবে।"],
+  lab_munda_03: ["lab_munda_03", "You can bet on multiple symbols in a similar way", "आप एक ही तरह से कई प्रतीकों पर शर्त लगा सकते हैं", "I آپ ایک ہی طریقے سے مختلف علامات پر بیٹ لگا سکتے ہیں", "একইভাবে আপনি অনেকগুলি সংকেতের উপর বাজি ধরতে পারেন"],
+  lab_munda_04: ["lab_munda_04", "Winning ratio is as below . If you bet Rs .10 on Burja and 2 dices show Burja , then your winnings is3 *10 = Rs 30 . If 3 dices show Burja , then your winningsis 5 *10 = 5 *10 = Rs 50", "जीतने का अनुपात इस प्रकार है। अगर आप बुर्जा पर 10 रुपये का दांव लगाते हैं और 2 पासे बुर्जा दिखाते हैं, तो आपकी जीत 3 *10 = 30 रुपये है। अगर 3 पासे बुर्जा दिखाते हैं, तो आपकी जीत 5 *10 =  अगर 3 पासे बुर्जा दिखाते हैं, तो आपकी जीत 5 *10 =  50 रुपये हैं", "I جیت کا تناسب درج ذیل کے مطابق ہے۔ اگر آپ برجا پر 10 روپے کی شرط لگاتے ہیں اور 2 ڈائسز پر برجا نظر آتا ہے، تو آپ کی جیت 3 *10 = 30 روپے ہے۔ اگر 3 ڈائسز پر برجا نظر آتا ہے، تو آپ کی جیت 5 *10 = 50 ہے۔", "। জেতার অনুপাত নিম্নরূপ। আপনি বুর্জাতে 10 টাকার বাজি ধরলে এবং 2 পাশা বুর্জা দেখালে, আপনার জয়লাভ হবে 3*10 = 30 টাকা। 3 পাশা বুর্জা দেখালে, আপনার জয়লাভ হল 5*10 = 50 টাকা"],
+  lab_munda_05: ["lab_munda_05", "Winning ratio chart :", "जीत अनुपात चार्ट:", "جیت کا تناسبی چارٹ:", "জয়লাভের অনুপাত তালিকা :"],
+  lab_munda_06: ["lab_munda_06", "0 or 1 Symbols hit , lose", "0 या 1 प्रतीक हिट, हारे", "0 یا 1 علامات ہٹ ,  ہاریں", "0 বা 1 সংকেত হিট, পরাজয়"],
+  lab_munda_07: ["lab_munda_07", "2 Symbols hit , win = bet amount * 3", "2 प्रतीक हिट , जीत = शर्त राशि * 3", "2 علامات ہٹ ,  جیتیں = بیٹ کی رقم * 3", "2 সংকেত হিট, জয় = বাজির পরিমাণ * 3"],
+  lab_munda_08: ["lab_munda_08", "3 Symbols hit , win = bet amount * 5", "3 प्रतीक हिट ,  शर्त राशि जीतें *5", "3 علامات ہٹ ,  جیتیں بیٹ کی رقم * 5", "3 সংকেত হিট, জয় বাজির পরিমাণ * 5"],
+  lab_munda_09: ["lab_munda_09", "4 Symbols hit , win = bet amount * 10", "4 प्रतीक हिट , जीत = शर्त राशि *10", "4 علامات ہٹ , جیتیں = بیٹ کی رقم * 10", "4 সংকেত হিট, জয় = বাজির পরিমাণ * 10"],
+  lab_munda_10: ["lab_munda_10", "5 Symbols hit , win = bet amount * 20", "5 प्रतीक हिट , शर्त राशि जीतें *20", "5 علامات ہٹ , جیتیں بیٹ کی رقم * 20", "5 সংকেত হিট, জয় বাজির পরিমাণ * 2"],
+  lab_munda_11: ["lab_munda_11", "6 Symbols hit , win = bet amount * 100", "6 प्रतीक हिट , शर्त राशि जीतें *100", "6 علامات ہٹ , جیتیں بیٹ کی رقم * 100", "6 সংকেত হিট, জয় বাজির পরিমাণ * 100"],
+  // 水果机  
+  lab_win: ["lab_win", "WIN", "जीत", "جیتیں", "জয়"],
+  lab_notwin: ["lab_notwin", "NOT WIN", "नहीं जीत", "کوئی فتح نہیں", "জিতে নি"],
+  lab_PAYTABLE: ["lab_PAYTABLE", "PAYTABLE", "भुगतान तालिका", "ادائیگی کا ٹیبل", "পেটেবিল"],
+  lab_special: ["lab_special", "SPECIAL SYMBOLS", "विशेष प्रतीक", "خصوصی علامات", "বিশেষ সংকেতগুলি"],
+  lab_SCATTER: ["lab_SCATTER", "SCATTER", "फैलाएं ", "I انتشار", "স্ক্যাটার"],
+  lab_FruitParty_01: ["lab_FruitParty_01", "If the same symbol appears in at least three consecutive columns since the first column, you win. It is OK if the same symbol does not appear in the sameline, but it must appear in the first column. The prize you get ", "अगर एक ही प्रतीक कम से कम तीन में दिखाई देता है पहले कॉलम के बाद से क्रमानुगत कॉलम, आप जीतते हैं। यह ठीक है अगर वही प्रतीक समान पंक्ति में दिखाई नहीं देता है, लेकिन यह पहले कॉलम में दिखाई देना चाहिए। आपको मिलने वाला पुरस्कार ", "اگر ایک ہی علامات کم از کم تین مسلسل کالمز میں ظاہر ہوتی ہے پہلے کالم کے بعد سے، تو آپ جیت جاتے ہیں۔ اگر ایک ہی لائن میں وہی علامت ظاہر نہ ہو تو کوئی بات نہیں، لیکن اسے لازماً پہلے کالم میں ہی ظاہر ہونا چاہیے۔ آپ کو حاصل ہونے والے انعام کا انحصار مسلسل کالمز پر ", "প্রথম কলামের পরে একই সংকেত পরপর অন্তত তিনটি কলামে দেখা গেলে, আপনি জিতবেন। একই সংকেত একই লাইনে না এলেও চলবে, কিন্তু সেটাকে প্রথম কলামে আসতেই হবে। আপনার পাওয়া প্রাইজ পরবর্তী কলামগুলির উপর নির্ভর করবে। যত বেশি কলাম"],
+  lab_FruitParty_02: ["lab_FruitParty_02", "If you get more than one type same symbols , the odds of each type will be calculated and the total prize will be distributed together", "अगर आपको एक से अधिक प्रकार के समान प्रतीक मिलते हैं, तो हर एक प्रकार के मौकों की गणना की जाएगी और कुल पुरस्कार एक साथ वितरित किए जाएंगे", " اگر آپ ایک ہی علامت کی ایک قسم سے زیادہ حاصل کرتے ہیں، تو ہر قسم کے اوڈز کا تخمینہ لگایا جائے گا اور مجموعی انعام ایک ساتھ تقسیم ہو جائے گا", "আপনি একই ধরনের বেশি অনুরূপ সংকেত পেলে, প্রতিটি ধরনের বিরূপতার হিসাব করা হবে এবং মোট প্রাইজ একসাথে বন্টন করে দেওয়া হবে"],
+  lab_FruitParty_03: ["lab_FruitParty_03", "Diamond WILD can represent any symbol except Clover", "l डायमंड वाइल्ड क्लोवर को छोड़कर किसी भी प्रतीक का प्रतिनिधित्व कर सकता है", "I ’’ڈائمنڈ وائلڈ‘‘ کسی بھی علامت کی نمائندگی کرسکتا ہے سوائے ’’کلوور‘‘ کے", "ডায়মন্ড ওয়াইল্ড ক্লোভার ছাড়া যেকোনো সংকেতের প্রতিনিধিত্ব করতে পারে"],
+  lab_FruitParty_04: ["lab_FruitParty_04", "If Clover appears in the first three columns consecutively , you will get “Freegame'prize.That means , you will get 10 free spins . The machine will spin 10 times ", " अगर 'क्लोवर' पहले तीन कॉलम में क्रमानुगत दिखाई देता है, तो आपको फ्रीगेम पुरस्कार मिलेगा। इसका मतलब है कि आपको 10 मुफ्त स्पिन मिलेंगे। मशीन आपके पैसे काटे बिना 10 बार अपने आप ", "I اگر مسلسل پہلے تین کالمز میں ’’کلوور‘‘ ظاہر ہوتا ہے، تو آپ کو ’’مفت گیم‘‘ کا انعام ملے گا۔ یعنی آپ کو 10 مفت اسپنز ملیں گے۔ مشین آپ کی رقم سے کٹوتی کیے بغیر خود بخود 10 مرتبہ اسپن کرے گی اور آپ حسبِ معمول اس ", "পরপর তিনটি কলামে ক্লোভার এলে, আপনি ফ্রিগেম প্রাইজ পাবেন। এর মানে হল, আপনি 10টি ফ্রি স্পিন পাবেন। মেশিন আপনার টাকা না কেটে স্বয়ংক্রিয়ভাবে 10 বার স্পিন করবে এবং আপনি সাধারণ "],
+  lab_FruitParty_05: ["lab_FruitParty_05", "WILD SYMBOL", "जंगली प्रतीक", "جنگلی علامت", " ওয়াইল্ড সংকেত"],
+  lab_FruitParty_06: ["lab_FruitParty_06", "It only appears on the 2-5th reel .", "यह सिर्फ 2-5वीं रील पर दिखाई देता है।", "یہ صرف دوسری سے پانچویں ریل پر نظر آتا ہے۔", "এটি শুধু 2-5ম রিলেই দেখা যায়।"],
+  lab_FruitParty_07: ["lab_FruitParty_07", "Substitutes all symbols except", "एक को छोड़कर सभी प्रतीकों को स्थानापन्न करें", "تمام علامات کا متبادل بناتا ہے سوائے", "এটি ছাড়া সব সংকেত বিকল্প হিসেবে ব্যবহার করা যায়"],
+  lab_FruitParty_08: ["lab_FruitParty_08", "It only appears on the 1-3th reel", "यह सिर्फ 1-3वीं रील पर दिखाई देता है", "یہ صرف پہلی سے تیسری ریل پر نظر آتا ہے", "এটি শুধু 1-3য় রিলেই দেখা যায়"],
+  lab_FruitParty_09: ["lab_FruitParty_09", "If the first three reels are all appears", "अगर पहले तीन रील हैं तो सभी दिखाई देते हैं", "اگر پہلی تین ریلز سب نظر آجائیں", "প্রথম তিনটি রিলের সবগুলি দেখা দিলে"],
+  lab_FruitParty_10: ["lab_FruitParty_10", "you will receive 10 Free Spins", "आपको 10 मुफ्त स्पिन प्राप्त होंगे", "آپ کو 10 مفت اسپنز ملیں گے", "আপনি 10টি ফ্রি স্পিন পাবেন"],
+  //时时猜
+  lab_sscWaFa_01: ["lab_sscWaFa_01", "Bet on HIGH CARD :", "हाई कार्ड पर शर्त लगाएं:", "بلند کارڈ پر بیٹ لگائیں :", "বড় তাসে বাজি ধরুন:"],
+  lab_sscWaFa_02: ["lab_sscWaFa_02", "Bet on PAIR : ", "जोड़े पर शर्त लगाएं:", "جوڑے پر بیٹ لگائیں :", "জোড়ায় বাজি ধরুন:"],
+  lab_sscWaFa_03: ["lab_sscWaFa_03", "Bet on COLOR: ", "रंग पर शर्त लगाएं:", "رنگ پر بیٹ لگائیں :", "রংয়ে বাজি ধরুন:"],
+  lab_sscWaFa_04: ["lab_sscWaFa_04", "Bet on SEQUENCE: ", "अनुक्रम पर शर्त लगाएं:", "ترتیب پر بیٹ لگائیں :", "ক্রমে বাজি ধরুন:"],
+  lab_sscWaFa_05: ["lab_sscWaFa_05", "Bet on PURE SEQUENCE:", "शुद्ध अनुक्रम पर शर्त लगाएं:", "خالص ترتیب پر بیٹ لگائیں :", "শুদ্ধ ক্রমে বাজি ধরুন:"],
+  lab_sscWaFa_06: ["lab_sscWaFa_06", "Bet on SET:", "सेट पर शर्त लगाएं:", "سیٹ پر بیٹ:", "সেটে বাজি ধরুন:"],
+  lab_sscWaFa_07: ["lab_sscWaFa_07", "Split the Jackpot * 20 %", "जैकपॉट को विभाजित करें * 20 %", "جیک پوٹ کو منقسم کریں * 20 فیصد", "জিতুন= জ্যাকপট ভাগ করুন * 20"],
+  lab_sscWaFa_08: ["lab_sscWaFa_08", "Win = bet * 6", "जीत= शर्त* 6", "کامیابی=بیٹ * 6", "জিতুন=বাজি * 6"],
+  lab_sscWaFa_09: ["lab_sscWaFa_09", "Win=bet * 5", "जीत= शर्त* 5", "کامیابی=بیٹ * 5", "জিতুন=বাজি * 5"],
+  lab_sscWaFa_10: ["lab_sscWaFa_10", "Win=bet * 4", "जीत= शर्त* 4", "کامیابی=بیٹ * 4", "জিতুন=বাজি * 4"],
+  lab_sscWaFa_11: ["lab_sscWaFa_11", "Win=bet * 3", "जीत= शर्त* 3", "کامیابی=بیٹ * 3", "জিতুন=বাজি * 3"],
+  lab_sscWaFa_12: ["lab_sscWaFa_12", "Win=bet * 10", "जीत= शर्त* 10", "کامیابی=بیٹ * 10", "জিতুন=বাজি * 10"]
+}; // 其他 
+
+window.otherLanguage = {
+  lab_Copy: ["", "Copy", "कॉपी", "کاپی کریں", "কপি করুন"],
+  nameTips: ["", "Invalid nickname , please use common letters and numbers", "अवैध उपनाम, कृपया सामान्य शब्दों और संख्याओं का इस्तेमाल करें", "غلط عرفیت، براہِ کرم عام حروفِ تہجی اور اعداد استعمال کریں", "অবৈধ ডাকনাম, অনুগ্রহ করে প্রচলিত বর্ণ ও সংখ্যাগুলি ব্যবহার করুন"],
+  message_tips: ["", "Only keep mails within 15 days", "सिर्फ 15 दिनों के भीतर मेल रखें", "صرف 15 دن کے اندر اندر میلز محفوظ رکھی جاتی ہیں", "শুধু 15 দিনের মেল রাখুন"],
+  modify: ["", "Modify", "संशोधित", "ترمیم کریں", "সংশোধিত"],
+  stLife: ["", "1st Life", "1st Life", "पहला जीवन", "پہلی زندگی", "1ম লাইফ"],
+  ndLife: ["", "2nd Life", "2nd life", "दूसरा जीवन", "دوسری زندگی", "2য় লাইফ"],
+  set: ["", "Set", "सेट", "سیٹ", "সেট"],
+  NotCorrect: ["", "Not Correct", "सही नहीं", "درست نہیں", "সঠিক নয়"],
+  stLifeNeeded: ["", "1st Life Needed", "पहले जीवन की जरूरत", "1ম লাইফ প্রয়োজনীয়", "پہلی زندگی درکار ہے"],
+  ndLifeNeeded: ["", "2st Life Needed", "", "", ""],
+  PureSequence: ["", "Pure Sequence", "शुद्ध अनुक्रम", "خالص ترتیب", "শুদ্ধ ক্রম"],
+  Sequence: ["", "Sequence", "शुद्ध अनुक्रम", "خالص ترتیب", "শুদ্ধ ক্রম"],
+  OtherAmiount: ["", "Other Amount", "अन्य राशि", "دیگر رقم", "অন্যান্য পরিমাণ"],
+  dailyBonusTisp: ["dailyBonusTisp", "Register with your mobile number to win double bonus", "दोहरा बोनस ​जीतने के लिए अपने मोबाइल नंबर के साथ रजिस्टर करें", "دوہرا بونس جیتنے کے لیے اپنا موبائل نمبر رجسٹر کریں", "ডাবল বোনাস জয়লাভ করার জন্য আপনার মোবাইল নম্বর দিয়ে নিবন্ধন করুন"],
+  settingSound: ["", "Sound", "प्रभाव ध्वनि", "صوتی اثر", "প্রভাব ধ্বনি"],
+  settingMusic: ["", "Music", "संगीत", "موسیقی", "সঙ্গীত"],
+  prop: ["", "Free", "मुक्त", "Free", "Free"],
+  lab_get: ["lab_get", "Get", "पाएं", "حاصل کریں", "পান"],
+  lab_get_2: ["lab_get_2", "Get X2", "पाएं X2", "2X حاصل کریں", "পান X2"],
+  andeerWaFa: ["", "Note: Winnings on the First Card drawn after each bet are 25%", "नोट: हर शर्त के बाद निकाले गए पहले कार्ड पर जीत 25% है ", " نوٹ : ہر بیٹ کے بعد نکالے گئے پہلے کارڈ پر کامیابیاں 25 فیصد ہیں", "দ্রষ্টব্য: প্রতিটি বাজির পরে চালা প্রথম তাসে জয়লাভ 25% "],
+  rummyTisp_01: ["", "Waiting for other players join the games..", "खेलों में शामिल होने के लिए अन्य खिलाड़ियों का इंतजार कर रहे हैं", "گیمز میں شمولیت کے لیے دوسرے کھلاڑیوں کا انتظار کر رہے ہیں", "খেলায় অন্য খেলোয়াড়দের যোগ দেওয়ার জন্য অপেক্ষা করা হচ্ছে"],
+  rummyTisp_02: ["", "pick from close or open deck", "बंद या खुले डक से चुनें", "بند یا کھلے ڈیک میں سے کوئی منتخب کریں", "বন্ধ বা খোলা ডেকের থেকে বেছে নিন"],
+  rummyTisp_03: ["", "you have already picked a card", "आपने पहले ही एक कार्ड चुन लिया है", "آپ پہلے ہی کارڈ منتخب کر چکے ہیں", "আপনি ইতিমধ্যে একটি তাস বেছে নিয়েছেন"],
+  rummyTisp_04: ["", "Are you sure you want to declare?", "क्या आप निश्चित हैं कि आप घोषणा करना चाहते हैं?", "کیا آپ واقعی اعلان کرنا چاہتے ہیں؟", "আপনি কি নিশ্চিত যে আপনি ডিক্লেয়ার করতে চান?"],
+  rummyTisp_05: ["", "please wait for your turn", "कृपया अपनी बारी आने का इंतजार करें", "براہِ کرم اپنی باری کا انتظار کریں", "অনুগ্রহ করে আপনার পালার জন্য অপেক্ষা করুন"],
+  rummyTisp_06: ["", " has declared Declare Group your cards and declare", "ने घोषित समूह की घोषणा कर दी है अपने कार्ड का समूह बनाएं और घोषणा करें", "اعلان کر چکا ہے اعلان کریں اپنے کارڈز کو گروپ کریں اور اعلان کریں جیتن ", "ডিক্লেয়ার করেছেন আপনার তাসগুলি ডিক্লেয়ার গ্রুপ করুন এবং ডিক্লেয়ার করুন"],
+  rummyTisp_07: ["", "Waiting for other players join the games", "खेलों में शामिल होने के लिए अन्य खिलाड़ियों का इंतजार कर रहे हैं", "گیمز میں شمولیت کے لیے دوسرے کھلاڑیوں کا انتظار کر رہے ہیں", "খেলায় অন্য খেলোয়াড়দের যোগ দেওয়ার জন্য অপেক্ষা করা হচ্ছে"],
+  rummyTisp_08: ["", "Game starting in 3 sec", "खेल 3 सेकेंड में शुरू होने वाला है", "گیم 3 سیکنڈز میں شروع ہو رہا ہے", "খেলা 3 সেকেন্ডে শুরু হচ্ছে"],
+  rummyTisp_09: ["", "Game starting in 2 sec", "खेल 2 सेकेंड में शुरू होने वाला है", "گیم 2 سیکنڈز میں شروع ہو رہا ہے", "খেলা 2 সেকেন্ডে শুরু হচ্ছে"],
+  rummyTisp_10: ["", "Game starting in 1 sec", "खेल 1 सेकेंड में शुरू होने वाला है", "گیم 1 سیکنڈز میں شروع ہو رہا ہے", "খেলা 1 সেকেন্ডে শুরু হচ্ছে"],
+  rummyTisp_11: ["", "Game starting in 0 sec", "खेल 0 सेकेंड में शुरू होने वाला है", "گیم 0 سیکنڈز میں شروع ہو رہا ہے", "খেলা 0 সেকেন্ডে শুরু হচ্ছে"],
+  rummyTisp_12: ["", "Game starting in 5 sec", "खेल 5 सेकेंड में शुरू होने वाला है", "گیم 5 سیکنڈز میں شروع ہو رہا ہے", "খেলা 5 সেকেন্ডে শুরু হচ্ছে"],
+  rummyTisp_13: ["", "Game starting in 4 sec", "खेल 4 सेकेंड में शुरू होने वाला है", "گیم 4 سیکنڈز میں شروع ہو رہا ہے", "খেলা 4 সেকেন্ডে শুরু হচ্ছে"]
+}; // 拉米游戏
+
+window.rummyLanguage = {
+  lab_OPEN: ["lab_OPEN", "OPEN", "खुला", "کھولیں", "খোলা"],
+  lab_CLOSE: ["lab_CLOSE", "CLOSE", "बंद", "بند کریں", "বন্ধ"],
+  lab_desc: ["lab_desc", "Drop", "छोड़ दें", "ڈراپ کریں", "ড্রপ"],
+  lab_Finish: ["lab_Finish", "Finish", "खत्म करें", "ختم کریں", "শেষ"],
+  lab_Group: ["lab_Group", "Group", "समूह", "گروپ", "গ্রুপ"],
+  lab_Discard: ["lab_Discard", "Discard", "निकाल दें", "ضائع کریں", "গ্রুপ"],
+  lab_Score: ["lab_Score", "Score:", "स्कोर:", "اسکور", "স্কোর"],
+  lab_joker: ["lab_joker", "Joker", "जोकर", "جوکرز", "জোকার"],
+  lab_exit: ["lab_exit", "Exit", "निकालें", "باہر نکلیں", "প্রস্থান করুন"],
+  lab_start: ["lab_start", "Start", "शुरू करें", "شروع کریں", "শুরু করুন"],
+  lab_PointValue: ["lab_PointValue", "Point Value", "बूट मूल्य", "پوائنٹ ویلیو", "পয়েন্ট মূল্য"],
+  textwinnings: ["textwinnings", "Max Winning", "अधिकतम जीतें", "کامیابیوں کی زیادہ سے زیادہ تعداد", "ম্যাক্স জয়লাভ"],
+  textPlayers: ["textPlayers", "Start", "डेक्स की संख्या", "ڈیکس کی تعداد", "ডেকের সংখ্যা"],
+  lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_note: ["lab_note", "Note:If you quit a game in progress you will lose up to 40 point", "नोट: अगर आप किसी खेल को प्रगति के दौरान छोड़ देते हैं तो 40 अंक खो देंगे", "نوٹ: اگر آپ جاری گیم کو چھوڑ دیں گے تو آپ کے 40 پوائنٹس تک ضائع ہو جائیں گے", "দ্রষ্টব্য: আপনি চালু থাকা কোনো খেলা ত্যাগ করলে 40 পয়েন্ট পর্যন্ত হারাতে পারেন"]
+}; // 炸金花游戏内翻译
+
+window.teenPattiLanguage = {
+  lab_bootAmountTips: ['lab_bootAmountTips', 'Boot Amount', "बूट मूल्य", "بوٹ رقم", "বুট মূল্য"],
+  lab_chaalLimitTips: ['lab_chaalLimitTips', "Chaal Limit", "चल सीमा", "چال حد", "চালের সীমা"],
+  lab_maxBlindsTips: ['lab_maxBlindsTips', 'Max Blinds', "मैक्स ब्लाइंड्स", "زیادہ سے زیادہ بلائنڈز", "ম্যাক্স ব্লাইন্ডস"],
+  lab_potLimitTips: ['lab_potLimitTips', "Pot Limit", "पॉट सीमा", "پوٹ حد", "পটের সীমা"],
+  lab_maxBlinds: ["lab_maxBlinds", "Blind", "अंधा", "بلائنڈ", "ব্লাইন্ড"],
+  lobby: [["", "Side Show", "साइड शो", "سلائیڈ شو", "সাইড শো"], ["", "Show", "साइड शो", "دکھائیں", "প্রদর্শন করুন"], ["", "Blind", "अंधा", "بلائنڈ", "ব্লাইন্ড"], ["", "Chaal", "चाली", "چال حد", "চাল"], ["", "Pack", "पैक", "پیک", "প্যাক"], ["", "Boot Amount", "बूट मूल्य", "بوٹ رقم", "বুট মূল্য"], ["", "Max Blinds", "मैक्स ब्लाइंड्स", "زیادہ سے زیادہ بلائنڈز", "ম্যাক্স ব্লাইন্ডস"], ["", "Chaal Limit", "चल सीमा", "چال کی حد", "চালের সীমা"], ["", "Pot Limit", "पॉट सीमा", "پوٹ حد", "পটের সীমা"], ["", "PACKED", "पैकर", "پیک شدہ", "প্যাকার"], ["", "LOST", "खोया हुआ", "گمشدہ", "হারিয়ে যাওয়া"], ["", "WATCH", "घड़ी", "دیکھیں", "ঘড়ি"], ["", "SEEN", "देखा", "دیکھا گیا", "দেখা হয়েছে"], ["", "High Card", "उच्च कार्ड", "بلند کارڈ", "বড় তাস"], ["", "Pair", "जोड़ा", "جوڑا", "জোড়া"], ["", "Sequence", "अनुक्रम", "ترتیبات", "ক্রম"], ["", "Color", "रंग", "رنگ", "রং"], ["", "Pure SEQ", "शुद्ध", "خالص", "শুদ্ধ"], ["", "SET", "सेट", "سیٹ", "সেট"]],
+  palyerStatus: [["这个不用管是虚值"], ["", "PACKED", "LOST", "WATCH"], ["", "पैक", "खोया हुआ", "घड़ी"], ["", "پیک", "گمشدہ", "پیک شدہ"], ["", "প্যাক", "হারিয়ে যাওয়া", "ঘড়ি"]],
+  afterClicking: ["", "After clicking", "क्लिक करने के बाद", "کلک کرنے کے بعد", "ক্লিক করার পরে"],
+  waitFor: ["", "You have 200s to recharge", "आपके पास रिचार्ज करने के लिए 200एस हैं", "ری چارج کے لیے آپ کے پاس 200 سیکنڈز ہیں", "রিচার্জ করার জন্য আপনার কাছে 200 সেকেন্ড আছে"],
+  tips: ["", "tips", "रिचार्ज", "Recharge", "Recharge"],
+  rich: ["", "is recharging , please wait for him", "रिचार्ज कर रहा है, कृपया उसके लिए इंतजार करें", "ری چارج کر رہا ہے، براہِ کرم اس کا انتظار کریں", "রিচার্জ করছেন, অনুগ্রহ করে তার জন্য অপেক্ষা করুন"]
+}; // 安德尔游戏
+
+window.andeerLanguage = {
+  lab_title: ["lab_title", 'Andar Bahar', "आंदर बहारी", "اندر باہر", "Andar Bahar"],
+  lab_PofLimif: ["lab_PofLimif", "Totai Players", "कुल खिलाड़ी", "مجموعی کھلاڑی", "没有"],
+  lab_Join: ["lab_Join", "Join", "जोड़ें", "شامل ہوجائیں", "যোগ দিন"],
+  lab_a_aandar: ['lab_a_aandar', 'Aandar', "अंदर", "Aandar", "Aandar"],
+  lab_b_bahar: ['lab_b_bahar ', 'Bahar', "बहार", "Bahar", "Bahar"],
+  lab_skip: ['lab_skip', 'Skip', "छोड़ें", "چھوڑا ہوا", "এড়িয়ে যান"],
+  lab_ok: ["lab_ok", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
+  lab_wanfa: ["lab_wanfa", "TABLE INFO", "जानकारी", "ٹیبل کی معلومات", "টেবিলের তথ্য"],
+  lab_wanfa01: ["lab_wanfa01", "Min Bet", "न्यूनतम बेट", "کم از کم بیٹ", "সবচেয়ে কম বাজি"],
+  lab_wanfa02: ["lab_wanfa02", "Max Bet", "अधिकतम बेट", "زیادہ سے زیادہ بیٹ", "সর্বাধিক বাজি"],
+  lab_wanfa03: ["lab_wanfa03", "Min Entry", "अधिकतम पैसा", "زیادہ سے زیادہ ادائیگی", "সর্বাধিক প্রাপ্ত টাকা"],
+  lab_andeer: ["lab_andeer", 'Andar Bahar', "आंदर बहारी", "اندر باہر", "Andar Bahar"],
+  skipped: ["", "Skipped", "छोड़ा गया", "چھوڑا ہوا", "এড়িয়ে যাওয়া হয়েছে"],
+  packed: ["", "PACKED", "पैक", "پیک شدہ", "প্যাকার"]
+}; // 七上七下
+
+window.updownLanguage = {
+  lab_title: ["lab_title", "ONLINE PLAYERS", "ऑनलाइन खिलाड़ी", "آن لائن کھلاڑی", "অনলাইন খেলোয়াড়"],
+  lab_playerTotal: ["lab_playerTotal", "Total online players:", "कुल ऑनलाइन खिलाड़ी:", "مجموعی آن لائن کھلاڑی", "মোট অনলাইন খেলোয়াড়:"]
+}; // 龙虎斗
+
+window.lhdLanguage = {
+  lab_tiger: ["", "Tiger", "बाघ", "ٹائیگر", "টাইগার"],
+  lab_dragon: ["", "Dragon", "ड्रैगन", "ڈریگن", "ড্রাগন"],
+  lab_tie: ["", "Tie", "बंधना", "ٹائی", "টাই"],
+  lab_set: ["", "Set", "सेट", "سیٹ", "সেট"],
+  lab_prev: ["lab_prev", "<Prev", "<पिछला", "گزشتہ>", "<পূর্বের"],
+  lab_next: ["lab_next", "Next>", "अगला>", "<اگلا", "পরবর্তী>"],
+  lab_repeat: ["lab_repeat", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
+  lab_repeatBets: ["lab_repeatBets", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
+  lab_playerTotal: ["", "Total online players:", "कुल ऑनलाइन खिलाड़ी:", ":مجموعی آن لائن کھلاڑی", "মোট অনলাইন খেলোয়াড়:"]
+}; // 时时猜
+
+window.loToLanguage = {
+  Betting: ["", "Betting:", "शर्त लगाना:", "بیٹنگ:", "বাজি ধরুন:"],
+  lab_repeatBets: ["lab_repeatBets", "REPEAT BET", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
+  lab_JackpotTime: ["lab_JackpotTime", "Interval after jackpot:", "जैकपॉट के बाद अंतराल", "جیک پوٹ کے بعد وقفہ", "জ্যাকপটের পরের বিরতি"],
+  lab_set: ["lab_set", "SET", "सेट", "سیٹ", "সেট"],
+  lab_pureSeq: ["lab_pureSeq", "PURE SEQ", "शुद्ध अनुक्रम", "خالص ترتیب", "শুদ্ধ ক্রম"],
+  lab_Seq: ["lab_Seq", "SEQ", "अनुक्रम", "ترتیب", "ক্রম"],
+  lab_color: ["lab_color", "COLOR", "रंग", "رنگ", "রং"],
+  lab_pair: ["lab_pair", "PAIR", "जोड़ा", "جوڑا", "জোড়া"],
+  lab_highCard: ["lab_highCard", "High Card", "उच्च कार्ड", "بلند کارڈ", "বড় তাস"],
+  lab_BetAmount: ["lab_BetAmount", "BET AMOUNT", "शर्त की रकम", "بیٹ کی رقم", "বাজির পরিমাণ"],
+  lab_type: ["lab_type", "Type", "प्रकार", "قسم", "প্রকার"],
+  lab_time: ["lab_time", "Time", "समय", "وقت", "সময়"],
+  lab_winner: ["lab_winner", "Winner", "विजेता", "جیتنے والا", "বিজয়ী"],
+  lab_win: ["lab_win", "Win", "जीत", "جیتیں", "জয়"],
+  lab_pure10X: ["lab_pure10X", "PURE 10X", "शुद्ध 10X", "خالص 10X", "শুদ্ধ 10X"],
+  lab_Seq6X: ["lab_Seq6X", "SEQ 6X", "अनुक्रम 10X", "ترتیب 10X", "ক্রম 10X"],
+  lab_color5X: ["lab_color5X", "COLOR 10X", "रंग 10X", "رنگ 10X", "রং 10X"],
+  lab_pair4X: ["lab_pair4X", "PAIR 10X", "जोड़ा 10X", "جوڑا 10X", "জোড়া 10X"],
+  lab_HighCard3X: ["lab_HighCard3X", "HIGH CARD 3X", "उच्च कार्ड 10X", "بلند کارڈ 10X", "বড় তাস 10X"],
+  lab_player: ["lab_player", "Player", "खिलाड़ी", "کھلاڑی", "জন"],
+  lab_winnerBetAmount: ["lab_winnerBetAmount", "Bet Amount", "शर्त की रकम", "بیٹ کی رقم", "বাজির পরিমাণ"]
+}; //提现信息填写   
+
+window.WithdrawNews = {
+  lab_title_name: ["", "Payee Name", "प्राप्तकर्ता का नाम", "وصول کنندہ کا نام", "প্রাপকের নাম"],
+  lab_title_email: ["", "Payee Email", "भुगतानकर्ताईमेल", "وصول کنندہ کا ای میل", "প্রাপকের ইমেল"],
+  lab_title_mobile: ["", "Payee Mobile", "पेईमोबाइल", "وصول کنندہ کا موبائل", "প্রাপকের মোবাইল"],
+  lab_title_bank: ["", "Bank Account", "बैंक खाता संख्या", "بینک اکاؤنٹ", "ব্যাঙ্ক অ্যাকাউন্ট"],
+  lab_title_if: ["", "IF SC Code", "आईएफएससी कोड", "IFSC کوڈ", "IFSC কোড"],
+  lab_title_code: ["", "Bank Code", "बैंक का सांकेतिक अंक", " بینک کا کوڈ", "ব্যাঙ্ক কোড"],
+  Pleaseenteryour: ["", "Please enter your ", "कृपया अपना डालें", "براہ کرم درج کریں اپن", "অনুগ্রহ করে লিখুন আপনার"],
+  lab_modification: ["", "Modification", "संशोधन", "ترمیم", "সংশোধন"]
+}; //动态修改Label
+
+window.dynamicChangeLabel = [["", "There is no announcement at this time", "इस समय कोई घोषणा नहीं है"], ["", "Already bind your Phone Number：", "अपना फ़ोन नंबर पहले से ही बाँध लें："], ["", "You can not bind yourself", "आप खुद को बांध नहीं सकते"], ["", "Congratulations on your successfully binding 5 rupees has been sent to your account", "आपके खाते में ५ रुपये सफलतापूर्वक बाध्यकारी होने पर बधाई भेज दी गई है"], ["", "Blind ID : ", "बिंदो: "], ["", "This feature is available only for premium players Add cash now to become a premium player.", "यह सुविधा केवल वरिष्ठ खिलाड़ियों के लिए उपलब्ध है,  और एक वरिष्ठ खिलाड़ी बनने के लिए तुरंत नकद जोड़ती है।"], ["", "Brick", "ब्रिक"], ["", "Hammer", "हथौड़ा"], ["", "Sandal", "चन्दन"], ["", "Bat", "बल्ला"], ["", "Gold Pot", "सोने का बर्तन"], ["", "Declare", "没有"], ["", "Oops！", "उफ़"], //炸金花
+["", "Chaal ", "चाली "], ["", "Blind ", "अंधा ", "ব্লাইন্ড "], ["", "Side Show", "साइड शो"], ["", "Show", "साइड"], //7上7下
+["", "Billing...", "बिलिंग...", "...بلنگ", "বিলিং..."], ["", " seconds", "बेटिंग"], ["", "Betting starts in 0 seconds", "बेटिंग 0 सेकंड में शुरू होती है", "بیٹنگ 0 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 0 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 1 seconds", "बेटिंग 1 सेकंड में शुरू होती है", "بیٹنگ 1 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 1 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 2 seconds", "बेटिंग 2 सेकंड में शुरू होती है", "بیٹنگ 2 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 2 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 3 seconds", "बेटिंग 3 सेकंड में शुरू होती है", "بیٹنگ 3 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 3 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting end in 0 seconds", "बेटिंग 0 सेकंड में समाप्त होती है", "بیٹنگ 0 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 0 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 1 seconds", "बेटिंग 1 सेकंड में समाप्त होती है", "بیٹنگ 1 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 1 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 2 seconds", "बेटिंग 2 सेकंड में समाप्त होती है", "بیٹنگ 2 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 2 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 3 seconds", "बेटिंग 3 सेकंड में समाप्त होती है", "بیٹنگ 3 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 3 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 4 seconds", "बेटिंग 4 सेकंड में समाप्त होती है", "بیٹنگ 4 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 4 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 5 seconds", "बेटिंग 5 सेकंड में समाप्त होती है", "بیٹنگ 5 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 5 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 6 seconds", "बेटिंग 6 सेकंड में समाप्त होती है", "بیٹنگ 6 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 6 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 7 seconds", "बेटिंग 7 सेकंड में समाप्त होती है", "بیٹنگ 7 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 7 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 8 seconds", "बेटिंग 8 सेकंड में समाप्त होती है", "بیٹنگ 9 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 8 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 9 seconds", "बेटिंग 9 सेकंड में समाप्त होती है", "بیٹنگ 10 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 9 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 10 seconds", "बेटिंग 10 सेकंड में समाप्त होती है", "بیٹنگ 11 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 10 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 11 seconds", "बेटिंग 11 सेकंड में समाप्त होती है", "بیٹنگ 11 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 11 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 12 seconds", "बेटिंग 12 सेकंड में समाप्त होती है", "بیٹنگ 12 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 12 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 13 seconds", "बेटिंग 13 सेकंड में समाप्त होती है", "بیٹنگ 13 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 13 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 14 seconds", "बेटिंग 14 सेकंड में समाप्त होती है", "بیٹنگ 14 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 14 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 15 seconds", "बेटिंग 15 सेकंड में समाप्त होती है", "بیٹنگ 15 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 15 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 16 seconds", "बेटिंग 16 सेकंड में समाप्त होती है", "بیٹنگ 16 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 16 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 17 seconds", "बेटिंग 17 सेकंड में समाप्त होती है", "بیٹنگ 17 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 17 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 18 seconds", "बेटिंग 18 सेकंड में समाप्त होती है", "بیٹنگ 18 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 18 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 19 seconds", "बेटिंग 19 सेकंड में समाप्त होती है", "بیٹنگ 19 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 19 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 20 seconds", "बेटिंग 20 सेकंड में समाप्त होती है", "بیٹنگ 20 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 20 সেকেন্ডে শেষ হচ্ছে"], //  安德尔
+["", "      Gamestartingin 5 s", "गेम 5 सेकंड में शुरू हो रहा है ", "گیم 5 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 5 সেকেন্ডে"], ["", "      Gamestartingin 4 s", "गेम 4 सेकंड में शुरू हो रहा है ", "گیم 4 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 4 সেকেন্ডে"], ["", "      Gamestartingin 3 s", "गेम 3 सेकंड में शुरू हो रहा है ", "گیم 3 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 3 সেকেন্ডে"], ["", "      Gamestartingin 2 s", "गेम 2 सेकंड में शुरू हो रहा है ", "گیم 2 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 2 সেকেন্ডে"], ["", "      Gamestartingin 1 s", "गेम 1 सेकंड में शुरू हो रहा है ", "گیم 1 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 1 সেকেন্ডে"], ["", "      Gamestartingin 0 s", "गेम 0 सेकंड में शुरू हो रहा है ", "گیم 0 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 0 সেকেন্ডে"], ["", "Dealing Cards...", "Dealing Cards...", "Dealing Cards...", "Dealing Cards..."], ["", "Bahar Win!", "         बहार जीत！", "Bahar Win!", "Bahar Win!"], ["", "Andar Win!", "         आंदर विंस！", "Andar Win!", "Andar Win!"], ["", "Andar Win And Bahar Win!", "         आंदर विंस！", "Andar Win And Bahar Win!", "Andar Win And Bahar Win!"], ["", "The first round starts to bet!", "पहला राउंड दांव लगाना शुरू करता है!", "پہلا راؤنڈ بیٹ کے لیے شروع ہو رہا ہے", "বাজি ধরার জন্য প্রথম রাউন্ড শুরু হচ্ছে"], ["", "The second round starts to bet!", "दूसरा दौर दांव लगाना  शुरूकरता है!", "دوسرا راؤنڈ بیٹ کے لیے شروع ہو رہا ہے !", "বাজি ধরার জন্য দ্বিতীয় রাউন্ড শুরু হচ্ছে"], ["", "Failure", "विफलता"], ["", "Progressing", "प्रसंस्करण"], ["", "Pending", "लंबित"], ["", "Processing", "प्रसंस्करण"], ["", "Released", "जारी किया गया"], ["", "Rejected", "अस्वीकृत"], ["", "Cancelled", "रद्द"], ["", "Closed", "बंद किया हुआ"], ["", "Unpaid", "अवैतनिक"], ["", "Paid", "भुगतान किया"]]; // 所有提示语言
+
+window.TipsMsgBox = [["服务器繁忙", "Server busy", "व्यस्त सर्वर"], ["该账号无法绑定手机号", "The account cannot be bound with a mobile phone number", "खाते को मोबाइल फ़ोन नंबर से बाध्य नहीं किया जा सकता"], ["用户昵称重复", "Duplicate user nickname", "डुप्लिकेट उपयोगकर्ता उपनाम"], ["验证码错误", "Verification code error", "सत्यापन कोड त्रुटि"], ["接口服务繁忙", "Interface service busy", "इंटरफ़ेस सेवा व्यस्त"], ["验证码已发送请稍候重新发送", "The verification code has been sent. Please resend it later", "सत्यापन कोड भेज दिया गया है। कृपया इसे बाद में भेजें"], ["请勿重复登录", "Do not repeat login", "लॉगिन दोहराएं नहीं"], ["金币不足，您已退出该场次", "Insufficient gold coins", "अपर्याप्त सोने के सिक्के"], ["没有足够的金币", "", ""], ["余额不足", "Insufficient balance", "अपर्याप्त शेषराशि"], ["游戏还未开始", "The game hasn't started yet", "खेल अभी शुरू नहीं हुआ है"], ["关键参数不能为空", "The key parameter cannot be empty", "मुख्य पैरामीटर खाली नहीं हो सकता"], ["获取用户信息失败", "Failed to obtain user information", "उपयोगकर्ता जानकारी प्राप्त करने में विफल"], ["", "Bind succeeded", "अंधी सफलता", "اندھی کامیابی ", "ব্লাইন্ড সফল"], ["", "Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", "आपका खेल अभी खत्म नहीं हुआ है, टेबल में पैसा होगा| वापस न किया जाए। क्या आपका जाना निश्चित है?", "آپ کا گیم ابھی تک ختم نہیں ہوا ہے۔ اگر آپ ٹیبل سے باہر نکلنا چاہتے ہیں، تو آپ کی رقم ڈوب جائے گی۔ کیا آپ ٹیبل چھوڑنا چاہتے ہیں؟", "আপনার খেলা এখনও শেষ হয়নি। আপনি টেবিলে পয়সা থাকবে, যা ফেরত দেওয়া হবে না। আপনি কি প্রস্থান করতে নিশ্চিত?"], ["", "Nickname can not be Empty!", "पनाम खाली नहीं हो सकता", "عرفیت کا خانہ خالی نہیں چھوڑا جاسکتا", "ডাকনাম খালি রাখা যাবে না"], ["", "Please enter the correct phone number!", "कृपया सही फोन नंबर दर्ज करें", "براہِ کرم درست فون نمبر درج کریں", "অনুগ্রহ করে সথ্জিক ফোন নম্বর লিখুন"], ["", "Nickname modified successfully!", "उपनाम सफलतापूर्वक संशोधित किया गया", "عرفیت میں کامیابی سے ترمیم کر دی گئی", "ডাকনাম সফলভাবে সংশোধন করা হয়েছে"], ["", "Insufficient amount, unable to withdraw cash!", "अपर्याप्त राशि, नकदी निकालने में असमर्थ"], ["", "The application for cash withdrawal has been submitted. Please wait patiently!", "नकद निकासी के लिए आवेदन जमा कर दिया गया है। - कृपया धैर्यपूर्वक प्रतीक्षा करें"], ["", "Please check your recharge status in the add history", "कृपया ऐड हिस्ट्री में अपना रिचार्ज स्टेटस चेक करें"], ["", "Input your new nickname below", "अपना नया उपनाम नीचे दर्ज करें", "اپنی نئی عرفیت ذیل میں درج کریں", "আপনার নতুন ডাকনাম নীচে লিপিবদ্ধ করুন"], ["", "Input your new nickname", "अपना नया उपनाम डालें", "اپنی نئی عرفیت ذیل میں درج کریں", "আপনার নতুন ডাকনাম নীচে লিপিবদ্ধ করুন"], ["", "Verification code error", "सत्यापन कोड त्रुटि"], ["", "The game hasn't started yet", "खेल अभी शुरू नहीं हुआ है"], ["", "The user ID is not exist", "उपयोगकर्ता आईडी मौजूद नहीं है"], ["", "Binding error", "बाध्यकारी त्रुटि"], ["", "Please input player ID !", "कृपया इनपुट प्लेयर आईडी"], ["", "Modified successfully!", "सफलतापूर्वक संशोधित", "کامیابی سے ترمیم کی گئی", "সফলভাবে সংশোধন করা হয়েছে!"], ["", "Your cash is insufficient,Please recharge in time！", "क्षमा करें, पर्याप्त सोने के सिक्के नहीं हैं"], ["", "Sharing is temporarily closed", "साझाकरण अस्थायी रूप से बंद है"], ["", "There are other players in the VIP seat!", " वीआईपी सीट पर अन्य खिलाड़ी हैंहै"], ["", "Login exception", "लॉगिन अपवाद"], ["", "Login type error,please check and then login!", "लॉगिन टाइप एरर, कृपया चेक करें और फिर लॉग इन करें"], ["", "Congratulate on binding your Mobile Phone Number!", "अपना मोबाइल फ़ोन नंबर बाइंड करने पर बधाई!"], ["", "Avatar modified successfully", "अवतार सफलतापूर्वक संशोधित"], ["", "Copy Successfully!", "सफलतापूर्वक कॉपी करें!"], ["", "Skill cooling...", "कौशल ठंडा करना.."], ["", "modificationing successfully", "सफलतापूर्वक संशोधित"], ["", "Daily withdrawal limit", "दैनिक निकासी की सीमा"], ["", "Input information cannot be empty!", "इनपुट जानकारी खाली नहीं हो सकती"], ["", "please check the information you entered", "कृपया आपके द्वारा दर्ज की गई जानकारी की जांच करें"], ["", "Top-up success", "टॉप-अप सफलता"], ["", "last page", "अंतिम पृष्ठ"], ["", "first page", "पहिला पृष्ठ"], ["", "Submitted successfully, waiting for review", "सफलतापूर्वक सबमिट किया गया, समीक्षा की प्रतीक्षा में"], ["", "The withdrawal amount is less than 100", "निकासी राशि 100 से कम है"], ["", "It's already mentioned today", "यह आज पहले ही उल्लेख किया जा चुका है"], ["", "Unable to withdraw cash", "नकदी निकालने में असमर्थ"], ["", "Please be wait and check your phone!", "कृपया प्रतीक्षा करें और अपना फोन जांचें!", "براہِ کرم انتظار کریں اور اپنا فون چیک کریں !", "অনুগ্রহ করে অপেক্ষা করে আপনার ফোন চেক করুন"], ["", "Incorrect phone number or vertification code!", "गलत फोन नंबर या सत्यापन कोड!"], ["", "The current network is not good", "वर्तमान नेटवर्क अच्छा नहीं है"], ["", "Busy game server,please login later!", "व्यस्त गेम सर्वर, कृपया बाद में पुन: प्रयास करें!"], ["", "Please do not log in again!", "कृपया दोबारा लॉग इन न करें"], ["", "Downloading, please wait！", "डाउनलोड कर रहा है, कृपया प्रतीक्षा करें"], ["", "Auto Logining...", "ऑटो लॉगिंग..."], ["", "In the game, unable to exit", "खेल में, बाहर निकलने में असमर्थ"], ["", "No changing tables in the game", "खेल में कोई बदलती मेज नहीं"], ["", "Interface loading...", "इंटरफ़ेस लोड हो रहा है..."], ["", "Insufficient balance to continue", "जारी रखने के लिए अपर्याप्त शेष"], ["", "Are you sure you want to join the VIP seat?", "क्या आप वाकई वीआईपी सीट से जुड़ना चाहते हैं?", "کیا آپ واقعی VIP نشست میں شامل ہونا چاہتے ہیں", "আপনি কি নিশ্চিত যে আপনি ভিআইপি সীটে যোগ দিতে চান"], ["", "You can't be a VIP if you carry less than 100 gold coins", "अगर आपके पास 100 से कम सोने के सिक्के हैं तो आप वीआईपी नहीं हो सकते", "اگر آپ کے پاس سونے کے سکے 100 سے کم ہیں تو آپ VIP نہیں بن سکتے", "যদি আপনার কাছে 100 এর চেয়ে কম সোনার কয়েন থাকে তাহলে আপনি ভিআইপি হতে পারবেন না "], ["", "On other VIP seats, are you sure you want to enter this VIP seat?", "अन्य वीआईपी सीटों पर, क्या आप वाकई इस वीआईपी सीट में प्रवेश करना चाहते हैं?", "دیگر VIP نشستوں پر، کیا آپ واقعی اس VIP نشست میں داخل ہونا چاہتے ہیں؟", "অন্য ভিআইপি সীটে, আপনি কি নিশ্চিত অপি এই ভিআইপি সীটে প্রবেশ করতে চান?"], ["", "Do you want to exit the VIP seat?", "क्या आप वीआईपी सीट से बाहर निकलना चाहते हैं", "کیا آپ VIP نشست سے باہر نکلنا چاہتے ہیں ؟", "আপনি কি ভিআইপি সীটের থেকে বেরিয়ে আসতে চান?"], ["", "There are other players in this VIP seat. Please choose again!", "इस वीआईपी सीट पर और भी खिलाड़ी हैं। कृपया फिर से चुनें", "اس VIP نشست میں دیگر کھلاڑی موجود ہیں۔ براہِ کرم دوبارہ منتخب کریں !", "এই ভিআইপি সীটে অন্য খেলোয়াড়রাও আছেন। অনুগ্রহ করে আবার বেছে নিন!"], ["", "Do you wish to use this turret?", "क्या आप इस बुर्ज का उपयोग करना चाहते हैं?"], ["", "You need to carry at least 50RS to withdraw cash!", "नकदी निकालने के लिए आपके पास कम से कम 50 रुपये होने चाहिए"], ["", "Are you sure you want to withdraw cash", "क्या आप सुनिश्चित हैं कि आप नकद निकालना चाहते हैं"], ["", "Internet connection closed or failed!", "इंटरनेट कनेक्शन बंद या विफल"], ["", "Account remote login, please login again!", "खाता दूरस्थ लॉगिन, कृपया फिर से लॉगिन करें"], ["", "No operation for a long time, please exit the room", "लंबे समय से कोई ऑपरेशन नहीं, कृपया कमरे से बाहर निकलें"], ["", "Facebook Copied Successfully", "सफलतापूर्वक कॉपी किया गया", "کامیابی سے کاپی کر لیا گیا", "সফলভাবে কপি করা হয়েছে"], ["", "Email Copied Successfully", "सफलतापूर्वक कॉपी किया गया", "کامیابی سے کاپی کر لیا گیا", "সফলভাবে কপি করা হয়েছে"], ["", "Send error!", "त्रुटि भेजें", "کی غلطی", "পাঠাতে ত্রুটি"], ["", 'Send successfully!\n please pay attention to Message', "सफलतापूर्वक भेजें！\n कृपया संदेश पर ध्यान दें", "کامیابی سے بھیجیں !\n براہِ کرم پیغام پر دھیان دیں", "সফলভাবে পাঠান \n অনুগ্রহ করে বার্তায় মনোযোগ দিন"]];
+
+cc._RF.pop();

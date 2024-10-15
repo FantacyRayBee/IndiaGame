@@ -1,0 +1,241 @@
+syntax = "proto3";
+package gameservice;
+
+
+//返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+message UserInfo {
+  uint64 PlayerId = 1;
+  string DisplayName = 2;
+  string ImgUrl = 3;
+  string Nickname = 4;
+  int64 LeftScore = 5;
+  int64 MidScore = 6;
+  int64 RightScore = 7;
+  int64 Diamond = 8;
+  int64 VipSite = 9;
+  uint32 vipLevel = 10;
+}
+//游戏场馆状态
+enum SevenEnumGameStatus {
+  GAME_READY = 0; //用户下注
+  GAME_RESULT_NOTIFY = 1; //游戏结果广播
+}
+enum SevenEnumBossType {
+  Left = 0;
+  Right = 1;
+  Box = 4;
+}
+
+message BaseBoss {
+  SevenEnumBossType Boss = 1;
+  int64 AllAmount = 2;
+  int64 Amount = 3;
+  uint32 Streak = 4;
+}
+
+message GameRecordItem {
+  int32  LeftDicePoints = 1 ;
+  int32  RightDicePoints = 2 ;
+}
+
+message GameResultItem {
+  int64 Site = 1;
+  int64 Score = 2;    // 结算值
+  int64 After = 3;    // 结算后的金币
+}
+
+//登录 gameservice.login
+message LoginReq {
+  string userid = 1;  //用户ID
+  string token = 2;  //登录服拿到的token
+  uint32 fromid = 3; //来源平台ID
+}
+message LoginAck {
+  ResponseBase Result = 1;
+  uint64 PlayerId = 2; //游戏中玩家ID
+  int64 Diamond = 4;//钻石
+  UserInfo userinfo = 5;    //用户信息
+}
+
+//游戏配置 gameservice.gameconfig
+message GameConfigAck {
+  ResponseBase Result = 1;
+  uint32 GameTime = 2;
+  uint32 SettlementTime = 3;
+  repeated int64 FortSize = 4;
+  int64 VipLimit = 5;
+}
+
+//vip入座进入 gameservice.joinvipnotify
+message JoinVipReq {
+  int64 Site = 1 ;
+  int64 Act = 2 ;
+}
+
+message JoinVipAck {
+  ResponseBase Result = 1;
+}
+
+//vip入座进入 gameservice.joinvipnotify
+message JoinVipNotify {
+  ResponseBase Result = 1;
+  UserInfo Userinfo = 2;
+  int64 Act = 3 ; //进或者出
+  int64 OldSite = 4 ; // 换做的情况下原来的座位号
+}
+
+//游戏开始 gameservice.gamestartnotify
+message GameStartNotifyReq {
+}
+message GameStartNotifyAck {
+  ResponseBase Result = 1;
+  BaseBoss LeftBoss = 2; //当前游戏中红包信息
+  BaseBoss RightBoss = 3; //当前游戏中红包信息
+  BaseBoss MidBoss = 4; //当前游戏中红包信息
+  int64 NeedBoss = 5; //操作机器人用
+  int64 NeedScore = 6;
+  int32 playerNumber = 7;  // 玩家人数
+}
+
+//刚进入游戏后游戏场景发送 gameservice.gamescene
+message CurGameStateBase  {
+  BaseBoss LeftBoss = 1; //当前游戏中红包信息
+  BaseBoss RightBoss = 2; //当前游戏中红包信息
+  BaseBoss MidBoss = 3; //当前游戏中红包信息
+  repeated UserInfo VipPlayerList = 4; //vip玩家列表
+}
+
+message GameSceneAck {
+  ResponseBase Result = 1;
+  SevenEnumGameStatus status = 2; //游戏状态
+  CurGameStateBase CurGameState = 3;
+  int64   Remaining = 4;
+  repeated  GameResultItem GameResult = 5;
+  SevenEnumBossType  Win = 6;
+  bool First = 7;
+  int32 playerNumber = 8;  // 玩家人数
+}
+
+//进入游戏后返回所有玩家列表 gameservice.playerlist
+message PlayerListReq {
+  int32 page = 1;       // 页码 0~n
+  int32 size = 2;       // 每页个数
+}
+message PlayerListAck {
+  ResponseBase Result = 1;
+  int32 total = 2;          // 总数
+  repeated UserInfo List = 3;
+}
+
+
+//进入游戏后返回vip玩家列表 gameservice.vipplayerlist
+message VipPlayerListReq {
+}
+message VipPlayerListAck {
+  ResponseBase Result = 1;
+  repeated UserInfo List = 2;
+}
+
+//进入游戏后返回历史记录 gameservice.gamerecordlist
+message GameRecordListReq {
+}
+message GameRecordListAck {
+  ResponseBase Result = 1;
+  repeated GameRecordItem List = 2;
+}
+
+//发射 gameservice.call  我能区分是否vip
+message CallReq{
+  uint64 PlayerId = 1;
+  int64 Amount = 2;
+  SevenEnumBossType  Call = 3;
+}
+
+//vip发射广播 gameservice.callnotify  这里普通用户就自己ack vip用户就广播 这个没有返回 因为操作需要排队
+// 如何及时返回呢?  notify 和ack一样 用同一个
+message CallNotifyAck{
+  ResponseBase Result = 1;
+  UserInfo Userinfo = 2;
+  int64 Amount = 3;
+  SevenEnumBossType  Call = 4;
+  int64 AllAmount = 5;
+}
+
+//游戏结果 gameservice.gameendnotify
+message GameEndNotify {
+  ResponseBase Result = 1;
+  GameResultItem  SelfGameResult = 2;
+  repeated  GameResultItem GameResult = 3;
+  SevenEnumBossType  Win = 4;
+  int32  LeftDicePoints = 5 ;
+  int32  RightDicePoints = 6 ;
+  int64 Gold = 7;
+  bool GoldDice = 8; 
+}
+
+//刷新金币 gameservice.updatebalance
+message UpdateBalanceReq {
+  uint32 CurrencyId = 1;
+}
+
+message UpdateBalanceAck {
+  ResponseBase Result = 1;
+  uint32 CurrencyId = 2;
+  int64 Balance = 3;
+}
+
+//踢人 gameservice.kickout
+message KickOutAck {
+  uint32 KickType = 1;
+}
+
+message ExitGameReq{}
+message ExitGameAck{
+  ResponseBase Result = 1;
+}
+
+message NeedVipRobotNotify {
+  int64 Act = 1; //行为
+  int64 Site = 2; //座位
+}
+
+//gameservice.querygameendinfo
+message QueryGameEndInfoReq{}
+message QueryGameEndInfoAck{
+  ResponseBase Result = 1;
+  GameResultItem  SelfGameResult = 2;
+  repeated  GameResultItem GameResult = 3;
+  SevenEnumBossType  Win = 4;
+  int32  LeftDicePoints = 5 ;
+  int32  RightDicePoints = 6 ;
+  int64 Gold = 7;
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}

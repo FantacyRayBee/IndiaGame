@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "coinMask",
+    "texture": "302ca851-2ba2-47e7-8d25-e615f0661b62",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      152,
+      39
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      152,
+      39
+    ],
+    "capInsets": [
+      50,
+      12,
+      39,
+      14
+    ]
+  }
+}

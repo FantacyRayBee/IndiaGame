@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "title_SCORE WINDOW_Bengali",
+    "texture": "cf000282-8721-4b46-a652-23d94d1efb79",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      377,
+      61
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      377,
+      61
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

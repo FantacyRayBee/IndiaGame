@@ -1,0 +1,399 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "win-tie",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "N2fiW6c3JfpzZ11MMdSa8OIRTFQ",
+      "spine": "3.3.07",
+      "width": 0,
+      "height": 0,
+      "images": "./images/"
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "win-tie",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "win-tie",
+        "bone": "win-tie"
+      }
+    ],
+    "skins": {
+      "default": {
+        "win-tie": {
+          "win-tie_00000": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00002": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00004": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00006": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00008": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00010": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00012": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00014": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00016": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00018": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00020": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00022": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00024": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00026": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00028": {
+            "width": 600,
+            "height": 600
+          },
+          "win-tie_00030": {
+            "width": 600,
+            "height": 600
+          }
+        }
+      }
+    },
+    "animations": {
+      "win-tie-loop": {
+        "slots": {
+          "win-tie": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffffff"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "win-tie_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "win-tie_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "win-tie_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "win-tie_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "win-tie_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "win-tie_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "win-tie_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "win-tie_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "win-tie_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "win-tie_00018"
+              },
+              {
+                "time": 1,
+                "name": "win-tie_00020"
+              },
+              {
+                "time": 1.1,
+                "name": "win-tie_00022"
+              },
+              {
+                "time": 1.2,
+                "name": "win-tie_00024"
+              },
+              {
+                "time": 1.3,
+                "name": "win-tie_00026"
+              },
+              {
+                "time": 1.4,
+                "name": "win-tie_00028"
+              },
+              {
+                "time": 1.5,
+                "name": "win-tie_00030"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "win-tie": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.9,
+                "y": 0.9,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 0.9,
+                "y": 0.9
+              }
+            ]
+          }
+        }
+      },
+      "win-tie-out": {
+        "slots": {
+          "win-tie": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "win-tie_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "win-tie_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "win-tie_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "win-tie_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "win-tie_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "win-tie_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "win-tie_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "win-tie_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "win-tie_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "win-tie_00018"
+              },
+              {
+                "time": 1,
+                "name": "win-tie_00020"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "win-tie": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.9,
+                "y": 0.9
+              }
+            ]
+          }
+        }
+      },
+      "win-tie-star": {
+        "slots": {
+          "win-tie": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.3333,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffffff"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "win-tie_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "win-tie_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "win-tie_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "win-tie_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "win-tie_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "win-tie_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "win-tie_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "win-tie_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "win-tie_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "win-tie_00018"
+              },
+              {
+                "time": 1,
+                "name": "win-tie_00020"
+              },
+              {
+                "time": 1.1,
+                "name": "win-tie_00022"
+              },
+              {
+                "time": 1.2,
+                "name": "win-tie_00024"
+              },
+              {
+                "time": 1.3,
+                "name": "win-tie_00026"
+              },
+              {
+                "time": 1.4,
+                "name": "win-tie_00028"
+              },
+              {
+                "time": 1.5,
+                "name": "win-tie_00030"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "win-tie": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.9,
+                "y": 0.9
+              },
+              {
+                "time": 0.3333,
+                "x": 1.05,
+                "y": 1.05
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nwin-tie.png\nsize: 1869,547\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nwin-tie_00000\n  rotate: false\n  xy: 276, 2\n  size: 226, 269\n  orig: 480, 480\n  offset: 128, 107\n  index: -1\nwin-tie_00002\n  rotate: false\n  xy: 960, 2\n  size: 225, 270\n  orig: 480, 480\n  offset: 129, 107\n  index: -1\nwin-tie_00004\n  rotate: false\n  xy: 504, 2\n  size: 226, 270\n  orig: 480, 480\n  offset: 128, 107\n  index: -1\nwin-tie_00006\n  rotate: false\n  xy: 684, 274\n  size: 225, 271\n  orig: 480, 480\n  offset: 129, 106\n  index: -1\nwin-tie_00008\n  rotate: false\n  xy: 1187, 2\n  size: 225, 270\n  orig: 480, 480\n  offset: 129, 106\n  index: -1\nwin-tie_00010\n  rotate: false\n  xy: 911, 274\n  size: 225, 271\n  orig: 480, 480\n  offset: 129, 105\n  index: -1\nwin-tie_00012\n  rotate: false\n  xy: 1365, 275\n  size: 225, 270\n  orig: 480, 480\n  offset: 129, 106\n  index: -1\nwin-tie_00014\n  rotate: false\n  xy: 2, 270\n  size: 225, 275\n  orig: 480, 480\n  offset: 129, 102\n  index: -1\nwin-tie_00016\n  rotate: false\n  xy: 1138, 274\n  size: 225, 271\n  orig: 480, 480\n  offset: 129, 106\n  index: -1\nwin-tie_00018\n  rotate: false\n  xy: 229, 273\n  size: 225, 272\n  orig: 480, 480\n  offset: 130, 105\n  index: -1\nwin-tie_00020\n  rotate: true\n  xy: 2, 42\n  size: 226, 272\n  orig: 480, 480\n  offset: 129, 105\n  index: -1\nwin-tie_00022\n  rotate: false\n  xy: 456, 274\n  size: 226, 271\n  orig: 480, 480\n  offset: 129, 105\n  index: -1\nwin-tie_00024\n  rotate: false\n  xy: 732, 2\n  size: 226, 270\n  orig: 480, 480\n  offset: 128, 106\n  index: -1\nwin-tie_00026\n  rotate: false\n  xy: 1414, 3\n  size: 225, 270\n  orig: 480, 480\n  offset: 128, 106\n  index: -1\nwin-tie_00028\n  rotate: false\n  xy: 1592, 276\n  size: 226, 269\n  orig: 480, 480\n  offset: 128, 107\n  index: -1\nwin-tie_00030\n  rotate: false\n  xy: 1641, 5\n  size: 226, 269\n  orig: 480, 480\n  offset: 128, 107\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "50f60a25-b808-4d2a-8106-aeb82ea9a0c8"
+    }
+  ],
+  "textureNames": [
+    "win-tie.png"
+  ],
+  "scale": 1
+}

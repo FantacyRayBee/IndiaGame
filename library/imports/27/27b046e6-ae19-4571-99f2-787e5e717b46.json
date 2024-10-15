@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "wj_kong",
+    "texture": "93e1e6bf-28c9-4b56-8102-268b7c656571",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      100,
+      144
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      100,
+      144
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

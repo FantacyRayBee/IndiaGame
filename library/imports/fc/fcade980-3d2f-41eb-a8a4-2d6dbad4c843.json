@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "playersNum",
+    "texture": "64edecef-6e38-4785-92ba-ab6afdcb90e9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      40,
+      20
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      40,
+      20
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

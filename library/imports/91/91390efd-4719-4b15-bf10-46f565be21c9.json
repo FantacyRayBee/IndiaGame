@@ -1,0 +1,41 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "trendChart.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "bg_01": {
+      "__uuid__": "55f75006-2b93-439e-bea6-2c6d6ddbe548"
+    },
+    "bg_02": {
+      "__uuid__": "dda29b80-26f2-4b6c-928c-a595e759b550"
+    },
+    "bg_blue": {
+      "__uuid__": "6704e542-a183-47b7-aae1-23ead2688ee8"
+    },
+    "bg_red": {
+      "__uuid__": "61ce565d-3b03-4836-ae18-e4138b471009"
+    },
+    "icon_01": {
+      "__uuid__": "6d82f71b-c9f4-469d-979f-2923c64f5dde"
+    },
+    "icon_02": {
+      "__uuid__": "e25f6af7-b7c3-4ba9-b5ec-0de2b95f7558"
+    },
+    "title_lhzs": {
+      "__uuid__": "e09fe807-322d-484a-befb-59464c1cda3e"
+    },
+    "btn_close": {
+      "__uuid__": "5f79fdcf-92d8-4e77-add7-9740ca5c2f36"
+    },
+    "icon_d": {
+      "__uuid__": "eb2bacbc-c22a-4fca-9c57-23b4488a369d"
+    },
+    "icon_t": {
+      "__uuid__": "9a22cc05-07be-4d09-afa5-2ab8ece2281b"
+    },
+    "icon_tie": {
+      "__uuid__": "b7c48bf3-497b-4ff7-89a1-f3a4986d4363"
+    }
+  }
+}

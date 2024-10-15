@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "red_bar",
+    "texture": "a81dc312-94f3-4373-9d83-af9903d0a023",
+    "atlas": "2d39cc14-9cee-49cf-928b-297c9e77f987",
+    "rect": [
+      1151,
+      0,
+      165,
+      27
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      165,
+      27
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

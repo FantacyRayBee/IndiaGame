@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "feihuojian_heng",
+    "texture": "ad7dd6ce-61e9-4b64-b3bc-0690b46bc338",
+    "atlas": "",
+    "rect": [
+      2,
+      965,
+      1404,
+      439
+    ],
+    "offset": [
+      0,
+      -481.5
+    ],
+    "originalSize": [
+      1408,
+      1406
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

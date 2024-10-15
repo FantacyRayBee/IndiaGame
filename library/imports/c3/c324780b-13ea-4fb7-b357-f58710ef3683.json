@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "HIGH",
+    "texture": "815a6370-7022-410e-a30d-5540e511fc26",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      49,
+      19
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      49,
+      19
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

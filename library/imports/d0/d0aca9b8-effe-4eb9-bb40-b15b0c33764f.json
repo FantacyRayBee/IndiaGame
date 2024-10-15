@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_start_gai",
+    "texture": "fc8d8208-82d1-4594-91ec-bbf447a9061a",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      254,
+      100
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      254,
+      100
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

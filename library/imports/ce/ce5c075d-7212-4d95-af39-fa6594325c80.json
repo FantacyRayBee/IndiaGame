@@ -1,0 +1,53 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "record.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "back": {
+      "__uuid__": "32465031-f6b2-4554-99b7-59ec1edad6bc"
+    },
+    "bg_an": {
+      "__uuid__": "48e9e68c-b489-49da-a6d9-7b0fcb63951c"
+    },
+    "bg_bigwinner": {
+      "__uuid__": "5de6f7e0-46b3-4cfb-acbe-13d95bd61e31"
+    },
+    "bg_jackpot": {
+      "__uuid__": "274bb5a9-50c6-482a-ae82-2a3292b26ba7"
+    },
+    "bg_myhistory": {
+      "__uuid__": "a4f207ec-7fe6-47a9-91dd-faf4d786d00f"
+    },
+    "btn_bigwinner": {
+      "__uuid__": "30c775ef-a615-4878-841c-ac072c5dc206"
+    },
+    "btn_bigwinner_0": {
+      "__uuid__": "a88bcdf3-8ae6-4e76-a699-88426fd3ef99"
+    },
+    "btn_jackpot": {
+      "__uuid__": "94de2596-c09e-4e92-93f8-e2d303043ca8"
+    },
+    "btn_jackpot_0": {
+      "__uuid__": "4db0d52c-18b7-4752-ac1a-62365cf7b91b"
+    },
+    "btn_myhistory": {
+      "__uuid__": "db9eff81-17f7-4860-8986-e39a51c39014"
+    },
+    "btn_myhistory_0": {
+      "__uuid__": "8a54ddb3-ab54-4524-aae2-e619022dae75"
+    },
+    "title_bigwinner": {
+      "__uuid__": "8d23906e-7ff4-42cc-9e53-07318e54ecc0"
+    },
+    "title_jackpot": {
+      "__uuid__": "1544b324-9fa0-4ab9-955c-17c2f84a2bbc"
+    },
+    "title_myhistory": {
+      "__uuid__": "aeca7e5e-e045-479d-80f3-80d46650724b"
+    },
+    "tx": {
+      "__uuid__": "22c05fb3-c5db-4d0d-879a-64dff37c2a45"
+    }
+  }
+}

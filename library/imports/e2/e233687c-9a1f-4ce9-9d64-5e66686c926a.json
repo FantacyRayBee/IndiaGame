@@ -1,0 +1,68 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "tyk.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "btn_green": {
+      "__uuid__": "11162fe1-2c6e-4885-9615-ad1887d49971"
+    },
+    "ty_bg.9": {
+      "__uuid__": "ea0d920e-9bcc-40d9-95b2-ab93ee71ee24"
+    },
+    "ty_btn_bg": {
+      "__uuid__": "90134af8-20f6-413d-914b-b7547d0fe950"
+    },
+    "ty_btn_blue": {
+      "__uuid__": "2889a318-67b4-4ad5-a511-96b6f1e9c189"
+    },
+    "ty_btn_fh": {
+      "__uuid__": "8ce0fb71-7415-4d66-9e12-27a8aad6ee4b"
+    },
+    "ty_btn_kg_01": {
+      "__uuid__": "d643af50-c71f-47bc-8cd8-8a71c9463e09"
+    },
+    "ty_btn_kg_01_bg.9": {
+      "__uuid__": "444381fa-3eb1-4c71-b71f-72e2d5c8838a"
+    },
+    "ty_btn_kg_02": {
+      "__uuid__": "d1164d1a-cd34-40f9-9789-ae2cdd3cd836"
+    },
+    "ty_btn_kg_02_bg.9": {
+      "__uuid__": "2962be08-6823-43c2-ab07-bd71bab8af1d"
+    },
+    "ty_btn_left_01": {
+      "__uuid__": "39bf5796-7cae-4b4c-821c-b811a54ae55e"
+    },
+    "ty_btn_left_02": {
+      "__uuid__": "b2c1789d-32bd-479b-9a28-1899b0338385"
+    },
+    "ty_btn_red": {
+      "__uuid__": "aa2f4461-6db4-4dd5-93ae-e22791e323f3"
+    },
+    "ty_k_01_small": {
+      "__uuid__": "dca632e5-6bad-475f-9568-1417a7b1f8ae"
+    },
+    "ty_k_02_mid": {
+      "__uuid__": "27954cf0-4108-42c0-bc15-c63ad5ba86c2"
+    },
+    "ty_k_03_big": {
+      "__uuid__": "401fd1ba-2868-4412-8cd9-6805996591a8"
+    },
+    "ty_k_04_bigger_left": {
+      "__uuid__": "976efaec-ba01-4f22-b832-d5e34850df34"
+    },
+    "btn_org2": {
+      "__uuid__": "8a2a5708-9327-4bf2-b734-bb2ad7ea9165"
+    },
+    "ty_btn_close1": {
+      "__uuid__": "d21867fa-544d-4d72-8c95-ef3603fa6ba1"
+    },
+    "shopMask": {
+      "__uuid__": "66e39ebd-5ed5-4b88-8af6-ab5f490ef6fb"
+    },
+    "mask": {
+      "__uuid__": "211b5595-bcd8-4f06-a56b-dd49b874aaad"
+    }
+  }
+}

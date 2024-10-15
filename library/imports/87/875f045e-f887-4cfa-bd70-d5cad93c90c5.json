@@ -1,0 +1,163 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "reward_frame",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "Yn42X7I8CQsDQR0aclLk/8RgjhQ",
+      "spine": "3.8.99",
+      "x": -120,
+      "y": -87,
+      "width": 240,
+      "height": 174,
+      "images": "",
+      "audio": ""
+    },
+    "bones": [
+      {
+        "name": "root",
+        "scaleX": 0.7,
+        "scaleY": 0.7
+      },
+      {
+        "name": "light",
+        "parent": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "frame",
+        "bone": "root",
+        "attachment": "images/frame"
+      },
+      {
+        "name": "light",
+        "bone": "light",
+        "attachment": "images/reward_frame_09"
+      }
+    ],
+    "skins": [
+      {
+        "name": "default",
+        "attachments": {
+          "frame": {
+            "images/frame": {
+              "width": 214,
+              "height": 148
+            }
+          },
+          "light": {
+            "images/reward_frame_00": {
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_01": {
+              "y": 0.5,
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_02": {
+              "x": 0.5,
+              "y": 0.5,
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_03": {
+              "y": 0.5,
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_04": {
+              "x": 0.5,
+              "y": 0.5,
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_05": {
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_06": {
+              "x": 0.5,
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_07": {
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_08": {
+              "x": 0.5,
+              "width": 240,
+              "height": 174
+            },
+            "images/reward_frame_09": {
+              "width": 240,
+              "height": 174
+            }
+          }
+        }
+      }
+    ],
+    "animations": {
+      "animation": {
+        "slots": {
+          "light": {
+            "attachment": [
+              {
+                "name": "images/reward_frame_00"
+              },
+              {
+                "time": 0.0333,
+                "name": "images/reward_frame_01"
+              },
+              {
+                "time": 0.0667,
+                "name": "images/reward_frame_02"
+              },
+              {
+                "time": 0.1,
+                "name": "images/reward_frame_03"
+              },
+              {
+                "time": 0.1333,
+                "name": "images/reward_frame_04"
+              },
+              {
+                "time": 0.1667,
+                "name": "images/reward_frame_05"
+              },
+              {
+                "time": 0.2,
+                "name": "images/reward_frame_06"
+              },
+              {
+                "time": 0.2333,
+                "name": "images/reward_frame_07"
+              },
+              {
+                "time": 0.2667,
+                "name": "images/reward_frame_08"
+              },
+              {
+                "time": 0.3,
+                "name": "images/reward_frame_00"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nreward_frame.png\nsize: 2048,128\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimages/frame\n  rotate: false\n  xy: 1560, 4\n  size: 150, 104\n  orig: 150, 104\n  offset: 0, 0\n  index: -1\nimages/reward_frame_00\n  rotate: false\n  xy: 156, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_01\n  rotate: false\n  xy: 312, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_02\n  rotate: false\n  xy: 468, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_03\n  rotate: false\n  xy: 624, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_04\n  rotate: false\n  xy: 780, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_05\n  rotate: false\n  xy: 936, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_06\n  rotate: false\n  xy: 1092, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_07\n  rotate: false\n  xy: 1248, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_08\n  rotate: false\n  xy: 1404, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\nimages/reward_frame_09\n  rotate: false\n  xy: 0, 0\n  size: 154, 108\n  orig: 168, 122\n  offset: 7, 7\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "1bf810fe-68b7-4547-b58f-5cd62f37a3d0"
+    }
+  ],
+  "textureNames": [
+    "reward_frame.png"
+  ],
+  "scale": 1
+}

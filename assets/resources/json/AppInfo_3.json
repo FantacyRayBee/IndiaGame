@@ -1,0 +1,84 @@
+{
+	"APP_STATUS": 6,
+	"APP_SHARE_URL": "https://www.tpeenmax.in/",
+	"IS_UPDATE": true,
+	"ASSETS_URL": "https://download.3tpattiyi.in/Release3/",
+	"ASSETS_VERSION": 39,
+	"SUB_GAME_VERSION_INFO": {
+		"Rummy": 39,
+		"ResourcesBundle": 39,
+		"tpGame": 39,
+		"7up7downGame": 39,
+		"andaerGame": 39,
+		"baccarat3PattiGame": 39,
+		"Benz": 39,
+		"fruitMachine": 39,
+		"horseRaceGame": 39,
+		"lhdGame": 39,
+		"munda": 39,
+		"mwGame": 39,
+		"sscGame": 39,
+		"rocket": 39,
+		"zooGame": 39,
+		"cricketGame": 39,
+		"zeusGame": 39
+	},
+	"HTTP_ROOT_URL": "https://svr.3tpattiyi.in",
+	"WEB_SOCKET_GAME": "ws://svr.3tpattiyi.in/",
+	"WEB_SOCKET_LOBBY": "ws://svr.3tpattiyi.in/lobby/echo",
+	"CHANNEL_INFO": "3001",
+	"GOOGLE_ID": "com.tycoon.uiet.mate",
+	"FACEBOOK_ID": "",
+	"ServerReload": false,
+	"ServerReloadDescribe": "The server is currently under maintenance, with an estimated completion time of 08:35:00",
+	"REMOTE_APP_UPDATE": false,
+	"REMOTE_APP_VERSION": 1,
+	"REMOTE_APP_URL": "https://download.3tpattiyi.in/Release3/TeenPattiRoyale.apk",
+	"PACKAGE_CONFIG_DICT": {
+		"3001": {
+			"CHANNEL_INFO": "3001",
+			"GOOGLE_ID": "com.tycoon.uiet.mate",
+			"FACEBOOK_ID": ""
+		},
+		"3002": {
+			"CHANNEL_INFO": "3002",
+			"GOOGLE_ID": "com.maxyt.syted.mate",
+			"FACEBOOK_ID": ""
+		},
+		"3003": {
+			"CHANNEL_INFO": "3003",
+			"GOOGLE_ID": "com.mssater.yued.chset",
+			"FACEBOOK_ID": ""
+		},
+		"3004": {
+			"CHANNEL_INFO": "3004",
+			"GOOGLE_ID": "com.tyfun.patt.yyest",
+			"FACEBOOK_ID": ""
+		},
+		"3005": {
+			"CHANNEL_INFO": "3005",
+			"GOOGLE_ID": "com.aayds.hifhie.nytrd",
+			"FACEBOOK_ID": ""
+		},
+		"3006": {
+			"CHANNEL_INFO": "3006",
+			"GOOGLE_ID": "com.hunt.openg.inter",
+			"FACEBOOK_ID": ""
+		},
+		"3007": {
+			"CHANNEL_INFO": "3007",
+			"GOOGLE_ID": "com.yesdff.esddaf.nyet",
+			"FACEBOOK_ID": ""
+		},
+		"3008": {
+			"CHANNEL_INFO": "3008",
+			"GOOGLE_ID": "com.circleyet.yeube.eenty",
+			"FACEBOOK_ID": ""
+		},
+		"3009": {
+			"CHANNEL_INFO": "3009",
+			"GOOGLE_ID": "com.blizde.mater.vvbre",
+			"FACEBOOK_ID": ""
+		}
+	}
+}

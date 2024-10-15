@@ -1,0 +1,142 @@
+syntax = "proto3";
+package lobbyservice;
+// import public "google/protobuf/timestamp.proto";
+//返回结果
+message ResponseBase {
+	uint32 result = 1;
+	string message = 2;
+}
+
+//心跳地址 lobbyservice.pingpang
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+//玩家个人基本信息
+message UserInfo {
+	string userid = 1;	//用户ID
+	string displayname = 2; //用于显示的数字ID
+	string nickname = 3;	//昵称
+	string headimgurl = 4;	//头像
+	bool kyc_flag = 5;	//实名认证标记
+	uint32 sex = 6; //性別
+	string phonenum = 7; //手机号
+}
+
+//登录 lobbyservice.login
+message LoginReq {
+	string userId = 1;  //用户ID
+	string token = 2;  //登录服拿到的token
+	string channel = 3;  //渠道包名
+}
+
+//提现成功
+message PushTransferSuccessAck {
+	int64 price = 1;
+}
+
+// 货币变更通知 "lobbyservice.pushcurrencychanged"
+message PushCurrencyChanged {
+	int32 reason = 1;       // 原因
+	int64 changed = 2;      // 变化值
+	int64 winnings = 3;     // winnings(后)
+	int64 deposit = 4;      // deposit(后)
+	int64 voucher = 5;      // 代金券(后)
+	bool firstRecharge = 6; // 是否是首次充值
+	int32 firstRechargeRetainBonus = 7; // 首次清0后保留的bonus
+	bool firstRechargeCleanWallet = 8; // 首充清空钱包
+}
+
+//新用户第一次充值
+message PushPaySuccessAck {
+	int64 price = 1;
+	uint32 isNew = 2; // 是否是新用户第一次支付
+}
+
+// 跑马灯类型
+enum EnumMarqueeEvent {
+  Simple = 0;      // 直接一句话   param0.消息完整内容
+  Recharge = 1;    // 充值        param0.display name param1.数额
+  Withdraw = 2;    // 提现        param0.display name param1.数额
+  Win = 3;         // 赢分        param0.display name param1.数额 param2.游戏名 param3.牌型
+}
+
+// 跑马灯消息  lobbyservice.marquee
+message Marquee {
+	EnumMarqueeEvent event = 1;   // 事件类型
+	int32 productId = 2;          // 项目/游戏ID(后期版本会删除,先保证前面版本兼容)
+	bool isRobot = 3;             // 是否机器人
+	repeated string params = 4;   // 其他附加参数
+	string product = 5;           // 项目AppID<mini*>
+  }
+
+enum EnumKickOutType {
+	RepeatLogin = 0;      // 重复登录
+} 
+
+// 踢出 lobbyservice.kickout
+message KickOut {
+	uint32 reason = 1; // 踢出原因,  0：通用-未知(读msg展示即可), 1: 封禁踢出(可不读msg), ...
+	string msg = 2;    // 详细信息
+  }
+
+message LoginAck {
+  ResponseBase result = 1;
+}
+
+// lobbyservice.withdrawcallback
+message WithdrawCallback {
+	string orderId = 1; // 订单ID
+	int64 amount = 2; // 金额
+	int64 createTime = 3; // 创建时间
+	bool success = 4; // 是否成功
+	string errMsg = 5; // 错误信息
+}
+
+message NewEmail {
+	
+}
+
+// 弹框公告 "lobbyservice.pushnotice"
+message Notice {
+	string title = 1;  // 标题
+	string content = 2; // 正文
+	int32 kind = 3;   // 性质(目前无意义；当前需求：收到消息后弹出对话框，点击确认后消失)
+}
+
+// 钻卡开通通知 "lobbyservice.onseriescardopened"
+message OnSeriesCardOpened {
+	message Item {
+		int32 id = 1;    		// 物品ID	10 dep 11 winnings 12 bonus	
+		int64 amount = 2; 		// 数量
+	}
+	int32 cardId = 1;           // 钻卡ID
+	repeated Item changed = 2;  // 变化值
+	int64 winnings = 3;         // winnings(后)
+	int64 deposit = 4;          // deposit(后)
+	int64 voucher = 5;          // Bonus(后)
+}
+
+// 从游戏中踢出到大厅 lobbyservice.kicktolobby
+message KickToLobby {
+	uint32 reason = 1; // 踢出原因,  0：通用
+	string msg = 2;    // 详细信息
+}
+
+// PaymentProduct 支付商品
+message PaymentProduct {
+	int32 id = 1;       // 商品ID(支付接口用)
+	int32 amount = 2;   // 金额
+	int32 add = 3;      // 额外赠送-dep
+	int32 bonus = 4;    // 额外赠送-bonus
+	bool plot = 5;      // 暂无意义，默认false
+}
+// 破产通知 lobbyservice.gobroke
+message Broke {
+  repeated PaymentProduct payProduct = 1; // 破产礼包
+}
+
+// 首充通知 "lobbyservice.firstchargenotification"
+message FirstChargeNotification {
+   	int64 deposit = 1; //首充需要转换的金币
+}

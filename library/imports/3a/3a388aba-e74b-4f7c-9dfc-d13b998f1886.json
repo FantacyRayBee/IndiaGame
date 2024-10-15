@@ -1,0 +1,539 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "baoxiang",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "Q23tEF2oVUUGgI31JuAvfDYbTF0",
+      "spine": "3.6.53",
+      "width": 90.49,
+      "height": 90.72,
+      "images": ""
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "1",
+        "parent": "root",
+        "length": 22.99,
+        "rotation": 90,
+        "x": -0.08,
+        "y": -32.85
+      },
+      {
+        "name": "effect",
+        "parent": "root",
+        "x": -2.74,
+        "y": -2.38
+      },
+      {
+        "name": "bone",
+        "parent": "effect",
+        "x": 3.52,
+        "y": 9.24,
+        "scaleX": 0.671,
+        "scaleY": 0.671
+      },
+      {
+        "name": "xingxingshan",
+        "parent": "effect",
+        "x": -17.36,
+        "y": 49.27,
+        "scaleX": 0.566,
+        "scaleY": 0.566
+      },
+      {
+        "name": "xingxingshan2",
+        "parent": "effect",
+        "x": 16.93,
+        "y": 32.12,
+        "scaleX": 0.479,
+        "scaleY": 0.479
+      },
+      {
+        "name": "xingxingshan3",
+        "parent": "effect",
+        "x": -6.01,
+        "y": 11.91,
+        "scaleX": 0.321,
+        "scaleY": 0.321
+      }
+    ],
+    "slots": [
+      {
+        "name": "1",
+        "bone": "1",
+        "attachment": "1"
+      },
+      {
+        "name": "shaoguang_0",
+        "bone": "bone",
+        "color": "ffffff67",
+        "blend": "additive"
+      },
+      {
+        "name": "2",
+        "bone": "root",
+        "attachment": "2"
+      },
+      {
+        "name": "staraY",
+        "bone": "xingxingshan",
+        "blend": "additive"
+      },
+      {
+        "name": "staraY2",
+        "bone": "xingxingshan2",
+        "blend": "additive"
+      },
+      {
+        "name": "staraY3",
+        "bone": "xingxingshan3",
+        "blend": "additive"
+      }
+    ],
+    "skins": {
+      "default": {
+        "1": {
+          "1": {
+            "x": 39.54,
+            "y": -1.54,
+            "rotation": -90,
+            "width": 90,
+            "height": 90
+          }
+        },
+        "2": {
+          "2": {
+            "x": 1.95,
+            "y": -16.53,
+            "width": 90,
+            "height": 45
+          }
+        },
+        "shaoguang_0": {
+          "shaoguang_0": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_1": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_2": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_3": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_4": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_5": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_6": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_7": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_8": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_9": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_10": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_11": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_12": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_13": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_14": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_15": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_16": {
+            "width": 135,
+            "height": 135
+          },
+          "shaoguang_17": {
+            "width": 135,
+            "height": 135
+          }
+        },
+        "staraY": {
+          "staraY": {
+            "x": -1.69,
+            "y": 2.53,
+            "width": 128,
+            "height": 128
+          }
+        },
+        "staraY2": {
+          "staraY": {
+            "x": -1.69,
+            "y": 2.53,
+            "width": 128,
+            "height": 128
+          }
+        },
+        "staraY3": {
+          "staraY": {
+            "x": -1.69,
+            "y": 2.53,
+            "width": 128,
+            "height": 128
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "shaoguang_0": {
+            "color": [
+              {
+                "time": 1.0667,
+                "color": "ffffff67"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 1.0667,
+                "name": "shaoguang_0"
+              },
+              {
+                "time": 1.1,
+                "name": "shaoguang_1"
+              },
+              {
+                "time": 1.1667,
+                "name": "shaoguang_3"
+              },
+              {
+                "time": 1.2,
+                "name": "shaoguang_4"
+              },
+              {
+                "time": 1.2333,
+                "name": "shaoguang_5"
+              },
+              {
+                "time": 1.3,
+                "name": "shaoguang_6"
+              },
+              {
+                "time": 1.3333,
+                "name": "shaoguang_7"
+              },
+              {
+                "time": 1.3667,
+                "name": "shaoguang_8"
+              },
+              {
+                "time": 1.4,
+                "name": "shaoguang_9"
+              },
+              {
+                "time": 1.4667,
+                "name": "shaoguang_10"
+              },
+              {
+                "time": 1.5,
+                "name": "shaoguang_12"
+              },
+              {
+                "time": 1.5333,
+                "name": "shaoguang_13"
+              },
+              {
+                "time": 1.6,
+                "name": "shaoguang_14"
+              },
+              {
+                "time": 1.6333,
+                "name": "shaoguang_15"
+              },
+              {
+                "time": 1.6667,
+                "name": "shaoguang_16"
+              },
+              {
+                "time": 1.7,
+                "name": "shaoguang_17"
+              },
+              {
+                "time": 1.7667,
+                "name": null
+              },
+              {
+                "time": 2.4667,
+                "name": null
+              }
+            ]
+          },
+          "staraY": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 1.3667,
+                "name": "staraY"
+              },
+              {
+                "time": 1.7667,
+                "name": null
+              }
+            ]
+          },
+          "staraY2": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 1.8333,
+                "name": "staraY"
+              },
+              {
+                "time": 2.2,
+                "name": null
+              }
+            ]
+          },
+          "staraY3": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 1.5333,
+                "name": "staraY"
+              },
+              {
+                "time": 1.9,
+                "name": null
+              },
+              {
+                "time": 3.4667,
+                "name": null
+              }
+            ]
+          }
+        },
+        "bones": {
+          "1": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 0.1333,
+                "x": 0.962,
+                "y": 1.086,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 0.3,
+                "x": 1.106,
+                "y": 0.944,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 0.4667,
+                "x": 0.939,
+                "y": 1.059,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 0.6667,
+                "x": 1.068,
+                "y": 0.984,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 0.8333,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.8,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "xingxingshan": {
+            "scale": [
+              {
+                "time": 1.3667,
+                "x": 0.177,
+                "y": 0.177,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 1.4667,
+                "x": 1,
+                "y": 1,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 1.7667,
+                "x": 0.177,
+                "y": 0.177
+              }
+            ]
+          },
+          "xingxingshan2": {
+            "scale": [
+              {
+                "time": 1.8333,
+                "x": 0.177,
+                "y": 0.177,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 1.9333,
+                "x": 1,
+                "y": 1,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 2.2,
+                "x": 0.177,
+                "y": 0.177
+              }
+            ]
+          },
+          "xingxingshan3": {
+            "scale": [
+              {
+                "time": 1.5333,
+                "x": 0.177,
+                "y": 0.177,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 1.6333,
+                "x": 1,
+                "y": 1,
+                "curve": [
+                  0.25,
+                  0,
+                  0.75,
+                  1
+                ]
+              },
+              {
+                "time": 1.9,
+                "x": 0.177,
+                "y": 0.177,
+                "curve": "stepped"
+              },
+              {
+                "time": 3.4667,
+                "x": 0.177,
+                "y": 0.177
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nbaoxiang.png\nsize: 429,429\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\n1\n  rotate: false\n  xy: 225, 14\n  size: 82, 75\n  orig: 90, 90\n  offset: 4, 11\n  index: -1\n2\n  rotate: false\n  xy: 97, 32\n  size: 85, 40\n  orig: 90, 45\n  offset: 3, 2\n  index: -1\nshaoguang_0\n  rotate: false\n  xy: 309, 15\n  size: 39, 75\n  orig: 135, 135\n  offset: 12, 54\n  index: -1\nshaoguang_1\n  rotate: false\n  xy: 305, 204\n  size: 55, 108\n  orig: 135, 135\n  offset: 6, 21\n  index: -1\nshaoguang_10\n  rotate: false\n  xy: 69, 74\n  size: 80, 108\n  orig: 135, 135\n  offset: 44, 18\n  index: -1\nshaoguang_11\n  rotate: false\n  xy: 151, 75\n  size: 72, 108\n  orig: 135, 135\n  offset: 52, 18\n  index: -1\nshaoguang_12\n  rotate: false\n  xy: 225, 91\n  size: 68, 108\n  orig: 135, 135\n  offset: 61, 18\n  index: -1\nshaoguang_13\n  rotate: false\n  xy: 362, 210\n  size: 59, 103\n  orig: 135, 135\n  offset: 70, 18\n  index: -1\nshaoguang_14\n  rotate: true\n  xy: 2, 18\n  size: 50, 93\n  orig: 135, 135\n  offset: 79, 18\n  index: -1\nshaoguang_15\n  rotate: false\n  xy: 184, 2\n  size: 39, 71\n  orig: 135, 135\n  offset: 90, 21\n  index: -1\nshaoguang_16\n  rotate: false\n  xy: 350, 54\n  size: 30, 36\n  orig: 135, 135\n  offset: 99, 21\n  index: -1\nshaoguang_17\n  rotate: false\n  xy: 350, 21\n  size: 20, 31\n  orig: 135, 135\n  offset: 109, 22\n  index: -1\nshaoguang_2\n  rotate: false\n  xy: 2, 70\n  size: 65, 112\n  orig: 135, 135\n  offset: 6, 17\n  index: -1\nshaoguang_3\n  rotate: false\n  xy: 332, 315\n  size: 74, 112\n  orig: 135, 135\n  offset: 6, 17\n  index: -1\nshaoguang_4\n  rotate: false\n  xy: 2, 184\n  size: 84, 113\n  orig: 135, 135\n  offset: 6, 16\n  index: -1\nshaoguang_5\n  rotate: false\n  xy: 130, 314\n  size: 94, 113\n  orig: 135, 135\n  offset: 6, 16\n  index: -1\nshaoguang_6\n  rotate: false\n  xy: 226, 314\n  size: 104, 113\n  orig: 135, 135\n  offset: 6, 16\n  index: -1\nshaoguang_7\n  rotate: false\n  xy: 88, 185\n  size: 109, 112\n  orig: 135, 135\n  offset: 9, 17\n  index: -1\nshaoguang_8\n  rotate: false\n  xy: 199, 201\n  size: 104, 111\n  orig: 135, 135\n  offset: 18, 17\n  index: -1\nshaoguang_9\n  rotate: false\n  xy: 295, 92\n  size: 95, 107\n  orig: 135, 135\n  offset: 29, 19\n  index: -1\nstaraY\n  rotate: false\n  xy: 2, 299\n  size: 126, 128\n  orig: 128, 128\n  offset: 2, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "75e71eee-656c-45cf-88bf-7caae873e48c"
+    }
+  ],
+  "textureNames": [
+    "baoxiang.png"
+  ],
+  "scale": 1
+}

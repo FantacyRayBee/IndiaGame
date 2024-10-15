@@ -1,0 +1,100 @@
+{
+  "__type__": "cc.JsonAsset",
+  "_name": "AppInfo_temp",
+  "_objFlags": 0,
+  "_native": "",
+  "json": {
+    "APP_STATUS": 6,
+    "APP_SHARE_URL": "https://www.google3patti.com/",
+    "IS_UPDATE": true,
+    "ASSETS_URL": "https://download2.toopatti.in/Package2007/",
+    "ASSETS_VERSION": 23,
+    "SUB_GAME_VERSION_INFO": {
+      "Rummy": 23,
+      "ResourcesBundle": 23,
+      "tpGame": 23,
+      "7up7downGame": 23,
+      "andaerGame": 23,
+      "baccarat3PattiGame": 23,
+      "Benz": 23,
+      "fruitMachine": 23,
+      "horseRaceGame": 23,
+      "lhdGame": 23,
+      "munda": 23,
+      "mwGame": 23,
+      "sscGame": 23,
+      "rocket": 23,
+      "zooGame": 23,
+      "cricketGame": 23,
+      "zeusGame": 23
+    },
+    "HTTP_ROOT_URL": "https://svr.toopatti.in",
+    "WEB_SOCKET_GAME": "ws://svr.toopatti.in/",
+    "WEB_SOCKET_LOBBY": "ws://svr.toopatti.in/lobby/echo",
+    "CHANNEL_INFO": "2007",
+    "GOOGLE_ID": "com.whwh.tpgo",
+    "FACEBOOK_ID": "",
+    "ServerReload": false,
+    "ServerReloadDescribe": "The server is currently under maintenance, with an estimated completion time of 08:35:00",
+    "REMOTE_APP_UPDATE": false,
+    "REMOTE_APP_VERSION": 1,
+    "REMOTE_APP_URL": "https://resource.teengatti.in/Release/TeenPattiRoyale.apk",
+    "PACKAGE_CONFIG_DICT": {
+      "2007": {
+        "CHANNEL_INFO": "2007",
+        "GOOGLE_ID": "com.whwh.tpgo",
+        "FACEBOOK_ID": ""
+      },
+      "2034": {
+        "CHANNEL_INFO": "2034",
+        "GOOGLE_ID": "com.dhsrt.yue.yuedt",
+        "FACEBOOK_ID": ""
+      },
+      "2035": {
+        "CHANNEL_INFO": "2035",
+        "GOOGLE_ID": "com.shgmae.yued.tye",
+        "FACEBOOK_ID": ""
+      },
+      "2036": {
+        "CHANNEL_INFO": "2036",
+        "GOOGLE_ID": "com.ryupid.patt.deret",
+        "FACEBOOK_ID": ""
+      },
+      "2037": {
+        "CHANNEL_INFO": "2037",
+        "GOOGLE_ID": "com.guidemaste.yuejded.sdtef",
+        "FACEBOOK_ID": ""
+      },
+      "2038": {
+        "CHANNEL_INFO": "2038",
+        "GOOGLE_ID": "com.teenpatti.star.yurt",
+        "FACEBOOK_ID": ""
+      },
+      "2039": {
+        "CHANNEL_INFO": "2039",
+        "GOOGLE_ID": "com.tteenpatti.yuede",
+        "FACEBOOK_ID": ""
+      },
+      "2040": {
+        "CHANNEL_INFO": "2040",
+        "GOOGLE_ID": "com.tcpatti.cdsw.mate",
+        "FACEBOOK_ID": ""
+      },
+      "2041": {
+        "CHANNEL_INFO": "2041",
+        "GOOGLE_ID": "com.boomser.tennpatti.yest",
+        "FACEBOOK_ID": ""
+      },
+      "2042": {
+        "CHANNEL_INFO": "2042",
+        "GOOGLE_ID": "com.threegame.cardflower.comparison",
+        "FACEBOOK_ID": ""
+      },
+      "2043": {
+        "CHANNEL_INFO": "2043",
+        "GOOGLE_ID": "com.roufsreyalp.playgame.dracevenodd",
+        "FACEBOOK_ID": ""
+      }
+    }
+  }
+}

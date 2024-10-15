@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "puke01_xipai02",
+    "texture": "db020645-d31d-4001-9293-88e60e59407c",
+    "atlas": "",
+    "rect": [
+      5,
+      6,
+      316,
+      205
+    ],
+    "offset": [
+      -93,
+      19.5
+    ],
+    "originalSize": [
+      512,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

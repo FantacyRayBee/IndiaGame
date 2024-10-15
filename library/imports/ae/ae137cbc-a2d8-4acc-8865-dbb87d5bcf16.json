@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "firstGiftDiamond",
+    "texture": "c3204848-235c-4d4a-92e5-c55df16319b6",
+    "atlas": "",
+    "rect": [
+      4,
+      3,
+      233,
+      88
+    ],
+    "offset": [
+      -0.5,
+      0
+    ],
+    "originalSize": [
+      242,
+      94
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

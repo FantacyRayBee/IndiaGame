@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Start Betting",
+    "texture": "40631066-3f04-4b4f-8ee2-6ab32d42b1fb",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      983,
+      82
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      987,
+      86
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "rk_FruitParty",
+    "texture": "c85269d1-3c99-43d2-920e-057b5226934d",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      1012,
+      229
+    ],
+    "offset": [
+      -4,
+      11.5
+    ],
+    "originalSize": [
+      1024,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

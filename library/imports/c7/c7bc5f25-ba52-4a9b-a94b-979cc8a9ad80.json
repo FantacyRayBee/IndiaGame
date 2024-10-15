@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "icon_lucky_big",
+    "texture": "e7925c98-20d1-445a-b65f-2a181d303ed6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      150,
+      172
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      150,
+      172
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

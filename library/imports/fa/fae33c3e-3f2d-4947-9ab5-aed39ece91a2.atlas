@@ -1,0 +1,272 @@
+
+skeleton.png
+size: 953,953
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/jinbi
+  rotate: false
+  xy: 2, 411
+  size: 273, 214
+  orig: 285, 230
+  offset: 6, 9
+  index: -1
+images/jinbi2
+  rotate: false
+  xy: 2, 627
+  size: 379, 324
+  orig: 379, 324
+  offset: 0, 0
+  index: -1
+images/juxing1
+  rotate: false
+  xy: 772, 555
+  size: 69, 76
+  orig: 78, 82
+  offset: 5, 3
+  index: -1
+images/juxing2
+  rotate: false
+  xy: 813, 651
+  size: 69, 76
+  orig: 78, 82
+  offset: 5, 3
+  index: -1
+images/juxing3
+  rotate: false
+  xy: 774, 20
+  size: 76, 83
+  orig: 86, 89
+  offset: 5, 3
+  index: -1
+images/juxingzong
+  rotate: false
+  xy: 2, 8
+  size: 171, 83
+  orig: 180, 89
+  offset: 5, 3
+  index: -1
+images/q0009
+  rotate: false
+  xy: 289, 11
+  size: 95, 96
+  orig: 819, 461
+  offset: 156, 161
+  index: -1
+images/q0010
+  rotate: false
+  xy: 386, 11
+  size: 95, 96
+  orig: 819, 461
+  offset: 156, 161
+  index: -1
+images/q0011
+  rotate: false
+  xy: 483, 12
+  size: 95, 96
+  orig: 819, 461
+  offset: 159, 166
+  index: -1
+images/q0012
+  rotate: false
+  xy: 580, 12
+  size: 95, 95
+  orig: 819, 461
+  offset: 163, 174
+  index: -1
+images/q0013
+  rotate: false
+  xy: 857, 734
+  size: 94, 96
+  orig: 819, 461
+  offset: 167, 181
+  index: -1
+images/q0014
+  rotate: false
+  xy: 677, 8
+  size: 95, 95
+  orig: 819, 461
+  offset: 172, 191
+  index: -1
+images/q0015
+  rotate: true
+  xy: 729, 105
+  size: 95, 102
+  orig: 819, 461
+  offset: 180, 194
+  index: -1
+images/q0016
+  rotate: true
+  xy: 175, 10
+  size: 98, 112
+  orig: 819, 461
+  offset: 187, 196
+  index: -1
+images/q0017
+  rotate: false
+  xy: 846, 832
+  size: 103, 119
+  orig: 819, 461
+  offset: 188, 198
+  index: -1
+images/q0018
+  rotate: false
+  xy: 742, 202
+  size: 113, 127
+  orig: 819, 461
+  offset: 189, 200
+  index: -1
+images/q0019
+  rotate: true
+  xy: 598, 109
+  size: 128, 129
+  orig: 819, 461
+  offset: 189, 207
+  index: -1
+images/q0020
+  rotate: true
+  xy: 324, 109
+  size: 133, 126
+  orig: 819, 461
+  offset: 197, 218
+  index: -1
+images/q0021
+  rotate: false
+  xy: 452, 110
+  size: 144, 127
+  orig: 819, 461
+  offset: 201, 225
+  index: -1
+images/q0022
+  rotate: false
+  xy: 171, 110
+  size: 151, 132
+  orig: 819, 461
+  offset: 207, 227
+  index: -1
+images/q0023
+  rotate: true
+  xy: 222, 244
+  size: 165, 133
+  orig: 819, 461
+  offset: 208, 229
+  index: -1
+images/q0024
+  rotate: false
+  xy: 387, 366
+  size: 173, 120
+  orig: 819, 461
+  offset: 219, 245
+  index: -1
+images/q0025
+  rotate: false
+  xy: 357, 247
+  size: 181, 117
+  orig: 819, 461
+  offset: 229, 251
+  index: -1
+images/q0026
+  rotate: false
+  xy: 562, 430
+  size: 193, 107
+  orig: 819, 461
+  offset: 233, 261
+  index: -1
+images/q0027
+  rotate: false
+  xy: 562, 334
+  size: 193, 94
+  orig: 819, 461
+  offset: 252, 274
+  index: -1
+images/q0028
+  rotate: false
+  xy: 540, 239
+  size: 200, 93
+  orig: 819, 461
+  offset: 260, 272
+  index: -1
+images/q0029
+  rotate: true
+  xy: 757, 331
+  size: 206, 92
+  orig: 819, 461
+  offset: 274, 269
+  index: -1
+images/q0030
+  rotate: false
+  xy: 555, 539
+  size: 215, 92
+  orig: 819, 461
+  offset: 290, 262
+  index: -1
+images/q0031
+  rotate: false
+  xy: 617, 729
+  size: 222, 92
+  orig: 819, 461
+  offset: 304, 254
+  index: -1
+images/q0032
+  rotate: false
+  xy: 595, 633
+  size: 216, 94
+  orig: 819, 461
+  offset: 325, 244
+  index: -1
+images/q0033
+  rotate: true
+  xy: 277, 415
+  size: 210, 108
+  orig: 819, 461
+  offset: 351, 230
+  index: -1
+images/q0034
+  rotate: false
+  xy: 617, 823
+  size: 227, 128
+  orig: 819, 461
+  offset: 354, 211
+  index: -1
+images/q0035
+  rotate: false
+  xy: 383, 807
+  size: 232, 144
+  orig: 819, 461
+  offset: 362, 196
+  index: -1
+images/q0036
+  rotate: false
+  xy: 2, 253
+  size: 218, 156
+  orig: 819, 461
+  offset: 386, 183
+  index: -1
+images/q0037
+  rotate: false
+  xy: 383, 642
+  size: 210, 163
+  orig: 819, 461
+  offset: 399, 175
+  index: -1
+images/q0038
+  rotate: false
+  xy: 387, 488
+  size: 166, 152
+  orig: 819, 461
+  offset: 445, 166
+  index: -1
+images/q0039
+  rotate: false
+  xy: 2, 93
+  size: 167, 158
+  orig: 819, 461
+  offset: 447, 161
+  index: -1
+images/xingxing
+  rotate: false
+  xy: 833, 124
+  size: 76, 76
+  orig: 127, 127
+  offset: 26, 25
+  index: -1

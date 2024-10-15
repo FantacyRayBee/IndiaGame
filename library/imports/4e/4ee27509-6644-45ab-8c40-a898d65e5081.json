@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "switchTable",
+    "texture": "6520da4f-baf0-45ac-82e5-a414b58bd067",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      186,
+      39
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      186,
+      39
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

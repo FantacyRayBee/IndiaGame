@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zhuanzhengdi",
+    "texture": "b406a3a1-d954-42e1-bc9b-0df8940ec6cb",
+    "atlas": "",
+    "rect": [
+      0,
+      5,
+      600,
+      944
+    ],
+    "offset": [
+      0,
+      3
+    ],
+    "originalSize": [
+      600,
+      960
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

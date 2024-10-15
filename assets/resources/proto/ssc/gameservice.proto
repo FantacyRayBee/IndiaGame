@@ -1,0 +1,196 @@
+syntax = "proto3";
+package gameservice;
+
+// ack结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+//牌型
+enum EnumCardSuit {
+  SET = 0;          // 头奖/豹子
+  PURESEQ = 1;      // 顺金
+  SEQ = 2;          // 顺子
+  COLOR = 3;        // 金花
+  PAIR = 4;         // 对子
+  HIGHCARD = 5;     // 高牌
+}
+
+//游戏状态
+enum EnumGameStatus {
+  GAME_Betting = 0;   // 下注中
+  GAME_Wait = 1;      // 等待
+}
+
+/// 玩家信息
+message UserInfo {
+  uint64 playerId = 1;
+  string displayName = 2;
+  string imgUrl = 3;
+  string nickname = 4;
+  int64 diamond = 5;
+  uint32 vipLevel = 6;
+}
+
+//登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+  uint32 fromid = 3;  // 来源平台ID
+}
+message LoginAck {
+  ResponseBase Result = 1;
+  uint64 playerId = 2;      // 游戏中玩家ID
+  int64 diamond = 4;        // 钻石
+}
+
+
+
+//游戏开始 gameservice.gamestartnotify
+message GameStartNotifyAck {
+  int32 id = 1;             // 小局编号(客户端可无视)
+}
+
+//登录 ggameservice.gamescene
+message GameSceneReq {
+}
+
+
+// 刚进入游戏后游戏场景发送/刷新注池 gameservice.gamescene
+message GameSceneAck {
+  ResponseBase Result = 1;
+  EnumGameStatus status = 2;            // 游戏状态
+  int64 remaining = 3;                  // 当前状态剩余时间
+  repeated SidePool pools = 4;          // 下注信息
+  int32 playerNumber = 5;               // 总玩家人数
+  int64 jackpot = 6;                    // 头奖池
+  BigWinnerRecord bigWinner = 7;        // 大赢家记录
+  int64 lastJackpotTime = 8;            // 上一次开头奖的时间
+  repeated EnumCardSuit openRecord = 9; // 开奖记录
+  repeated int32 lastCards = 10;         // 最近一次开的牌
+  EnumCardSuit lastSuit = 11;           // 最近一次的牌型
+  UserInfo requester = 12;              // 请求者信息
+}
+
+// 下注池
+message SidePool {
+  EnumCardSuit side = 1;               // 注池
+  int64 all = 2;                // 总量
+  int64 self = 3;               // 自己下的
+}
+
+
+// 下注 gameservice.call
+message CallReq {
+  int64 amount = 1;           // 下注金额
+  EnumCardSuit side = 2;      // 下的哪边
+}
+message CallAck {
+  ResponseBase Result = 1;
+}
+// 下注通知 gameservice.callnotify
+message CallNotifyAck{
+  uint64 playerId = 1;
+  EnumCardSuit side = 2;   // 下注池
+  int64 amount = 3;        // 下注额
+  int64 selfAll = 4;       // 自己下注所有
+  int64 allAmount = 5;     // 注池总金额
+  int64 jackpot = 6;       // 当前头奖池
+  int64 after = 7;         // 玩家下注后剩余货币
+}
+
+//游戏结果 gameservice.gameendnotify
+message GameEndNotify {
+  repeated int32 cards = 1;       // 牌
+  EnumCardSuit winSide = 2;       // 开奖side
+  repeated SidePool pools = 3;    // 下注信息
+  int64 score = 4;                // 个人的结算值
+  int64 after = 5;                // 个人结算后的金币
+  BigWinnerRecord bigWinner = 6;  // 大赢家记录
+}
+// 结算结果
+message CalcResult {
+  int64 score = 2;    // 结算值
+  int64 after = 3;    // 结算后的金币
+}
+
+//踢人 gameservice.kickout
+message KickOutAck {
+  uint32 KickType = 1;
+}
+
+// gameservice.exitgame
+message ExitGameReq{}
+message ExitGameAck{
+  ResponseBase Result = 1;
+}
+
+//玩家列表 gameservice.playerlist
+message PlayerListReq {
+  int32 page = 1;       // 页码 0~n
+  int32 size = 2;       // 每页个数
+}
+message PlayerListAck {
+  ResponseBase Result = 1;
+  int32 total = 2;              // 总数
+  repeated UserInfo list = 3;
+}
+
+// 查询最近的结算信息 gameservice.querygameendinfo
+message QueryGameEndInfoReq{}
+message QueryGameEndInfoAck{
+}
+
+// 返回结构体 = GameEndNotify
+
+// 记录 - 查询开奖记录 gameservice.queryopenrecord
+message QueryOpenRecordReq{}
+message QueryOpenRecordAck{
+  repeated EnumCardSuit list = 1;
+  int32 unJackpotCount = 2;     // 不是头奖的次数
+}
+
+// 记录 - 我的记录    gameservice.querymyrecord
+message MyGameRecord{
+  int64 time = 1;   // 时间
+  EnumCardSuit side = 2;   // 开奖
+  int64 calc = 3;   // 总输赢
+  repeated int32 cards = 4;  // 卡牌信息
+  repeated SidePool pools = 5;    // 下注信息
+}
+
+message QueryMyRecordReq{}
+message QueryMyRecordAck{
+  repeated MyGameRecord list = 1;
+}
+
+// 记录 - 头奖记录   gameservice.queryjackpotrecord
+message JackpotRecord{
+  int64 time = 1;        // 时间
+  int32 winner = 2;      // 赢家个数
+  int64 win = 3;         // 总赢
+  repeated int32 cards = 4;       // 卡牌信息
+}
+message QueryJackpotRecordReq{}
+message QueryJackpotRecordAck{
+  repeated JackpotRecord list = 1;
+}
+
+// 记录 - 大赢家记录   gameservice.querybigwinnerrecord
+message BigWinnerRecord{
+  int64 time = 1;           // 时间
+  UserInfo bigWinner = 2;   // 大赢家玩家
+  int64 bet = 3;            // 下注额
+  int64 win = 4;            // 输赢
+}
+message QueryBigWinnerRecordReq{}
+message QueryBigWinnerRecordAck{
+  repeated BigWinnerRecord list = 1;
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Bonus Coins",
+    "texture": "b16149b1-4bbf-4edd-8fdd-c2a308674965",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      235,
+      36
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      235,
+      36
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

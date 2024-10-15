@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Get按钮@3x",
+    "texture": "2f039723-34d4-4a11-9897-eafc238ac4cb",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      840,
+      222
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      840,
+      222
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

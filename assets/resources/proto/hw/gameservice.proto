@@ -1,0 +1,193 @@
+syntax = "proto3";
+package gameservice;
+//返回结果
+
+//游戏场馆状态
+enum AquamanEnumGameStatus {
+  GAME_READY = 0; //用户下注
+  GAME_RESULT_NOTIFY = 1; //游戏结果广播
+}
+enum AquamanEnumBossType {  
+  Box = 0; //箱子
+  Fish = 1; //鱼
+  Deity = 2; //神
+  Dragon = 3; //龙
+  Phoenix = 4; //凤凰
+}
+enum AquamanEnumCallType{
+  Mid = 0; //中间
+  Left = 1; //左边
+  Right = 2; //右边
+}
+
+//返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+message UserInfo {
+  uint64 playerId = 1;
+  string displayName = 2;
+  string imgUrl = 3;
+  string nickname = 4;
+  int64 coin = 5;
+  bool isVisitor = 6;
+}
+message BaseBoss {
+  int64 amount = 3; //自己下注的金额
+  int64 allAmount = 2; //所有人下注的金额
+}
+message GameInfoItem{
+  uint64 playerId = 1;
+  int64 leftScore = 2;
+  int64 midScore = 3;
+  int64 rightScore = 4;
+  int64 score = 5;
+}
+message GameRecordItem {
+  AquamanEnumBossType  leftBossType = 1;
+  AquamanEnumBossType  rightBossType = 2;
+  AquamanEnumCallType winner = 3;
+}
+message VipItem{
+  int64 fort = 1; // 炮台类型
+  int64 site = 2; // 座位号
+}
+
+message LoginReq {
+  string userid = 1;
+  string token = 2;
+  uint32 fromid = 3;
+}
+message LoginAck {
+  ResponseBase result = 1;
+  UserInfo userinfo = 2;
+}
+
+message JoinVipReq {
+  int64 site = 1;
+  int64 act = 2;
+  int64 fort = 3;
+}
+message JoinVipAck {
+  ResponseBase result = 1;
+}
+
+message GameStatusNotify{
+  AquamanEnumGameStatus status = 1;
+  int64   remainingTime = 2;
+}
+message GameConfigNotify {
+  uint32 gameTime = 1;
+  uint32 settlementTime = 2;
+  repeated uint64 callPrices = 3;
+  int64 vipLimit = 4;
+}
+message JoinVipNotify {
+  int64 act = 1; //进或者出
+  VipItem vipInfo = 2; // VIP信息
+  UserInfo userInfo = 3;
+}
+message GameStartNotify {
+  AquamanEnumBossType leftBossType = 1;
+  AquamanEnumBossType rightBossType = 2;
+}
+message GameSceneNotify {
+  AquamanEnumGameStatus status = 1;
+  AquamanEnumBossType  winner = 2;
+  BaseBoss leftBoss = 3;
+  BaseBoss midBoss = 4;
+  BaseBoss rightBoss = 5;
+  AquamanEnumBossType leftBossType = 6;
+  AquamanEnumBossType rightBossType = 7;
+  repeated VipPlayerListItem vipPlayers = 8;
+  int64   remainingTime = 9;
+}
+message CallNotify{
+  uint64 playerId = 1;
+  int64 amount = 2;
+  int64 vipSite = 3;
+  AquamanEnumBossType  call = 4;
+}
+message GameEndNotifyVipItem{
+  int64 site = 1;
+  int64 score = 2;
+  int64 coin = 3;
+}
+message GameEndNotify {
+  GameRecordItem curGameInfo = 1;
+  int64 selfScore = 2;
+  repeated GameEndNotifyVipItem vips = 3;
+  int64 otherScore = 4;
+  int64 coin = 5;
+}
+message VipChangeFortNotify{
+  uint64 playerId = 1;
+  int64 site = 2;
+  int64 fort = 3;
+}
+
+message PlayerListReq {}
+message PlayerListAck {
+  ResponseBase result = 1;
+  repeated UserInfo players = 2;
+}
+
+message VipPlayerListReq {}
+message   VipPlayerListItem{
+  UserInfo userInfo = 1;
+  VipItem vipInfo = 2;
+}
+message VipPlayerListAck {
+  ResponseBase result = 1;
+  repeated VipPlayerListItem vipPlayers = 2;
+}
+
+message GameRecordListReq {}
+message streakItem {
+  int64 num = 1;
+  AquamanEnumBossType bossType = 2;
+}
+message GameRecordListAck {
+  ResponseBase result = 1;
+  repeated GameRecordItem records = 2;
+  repeated streakItem streakInfo = 3;
+}
+
+message CallReq{
+  uint64 playerId = 1;
+  int64 amount = 2;
+  AquamanEnumBossType  call = 3; //0:出 1:进
+}
+message CallAck{
+  ResponseBase result = 1;
+}
+
+message KickOutAck {
+  uint32 KickType = 1;
+}
+
+message ExitGameReq{}
+message ExitGameAck{
+  ResponseBase Result = 1;
+}
+
+message QueryGameEndInfoReq{}
+message QueryGameEndInfoAck{
+  ResponseBase result = 1;
+  GameEndNotify  gameEndNotifyInfo = 2;
+}
+
+message VipChangeFortReq{
+  int64 fort = 1;
+}
+message VipChangeFortAck{
+  ResponseBase Result = 1;
+}

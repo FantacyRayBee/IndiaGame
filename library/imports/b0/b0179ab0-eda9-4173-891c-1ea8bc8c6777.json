@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_ora_small",
+    "texture": "b69e32f9-712e-4cda-92ab-6493d7455bf9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      78,
+      83
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      78,
+      83
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

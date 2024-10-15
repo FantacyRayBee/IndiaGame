@@ -1,0 +1,264 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "loding",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "5jFDks4g0hlqMgOWyCWAI9Rn0u0",
+      "spine": "3.7.94",
+      "width": 1835,
+      "height": 750,
+      "images": "",
+      "audio": ""
+    },
+    "bones": [
+      {
+        "name": "root"
+      },
+      {
+        "name": "di",
+        "parent": "root"
+      },
+      {
+        "name": "hua",
+        "parent": "di"
+      },
+      {
+        "name": "quan",
+        "parent": "di"
+      }
+    ],
+    "slots": [
+      {
+        "name": "img/di",
+        "bone": "di",
+        "attachment": "img/di"
+      },
+      {
+        "name": "img/f",
+        "bone": "hua",
+        "attachment": "img/m",
+        "blend": "additive"
+      },
+      {
+        "name": "img/quan",
+        "bone": "quan",
+        "attachment": "img/quan"
+      }
+    ],
+    "skins": {
+      "default": {
+        "img/di": {
+          "img/di": {
+            "width": 206,
+            "height": 206
+          }
+        },
+        "img/f": {
+          "img/f": {
+            "width": 60,
+            "height": 60
+          },
+          "img/m": {
+            "y": 0.5,
+            "width": 60,
+            "height": 60
+          },
+          "img/t": {
+            "x": 0.5,
+            "width": 60,
+            "height": 60
+          },
+          "img/x": {
+            "width": 60,
+            "height": 60
+          }
+        },
+        "img/quan": {
+          "img/quan": {
+            "width": 108,
+            "height": 108
+          }
+        }
+      }
+    },
+    "animations": {
+      "animation": {
+        "slots": {
+          "img/f": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "img/t"
+              },
+              {
+                "time": 0.8333,
+                "name": "img/t"
+              },
+              {
+                "time": 0.8667,
+                "name": "img/x"
+              },
+              {
+                "time": 2.5667,
+                "name": "img/x"
+              },
+              {
+                "time": 2.6,
+                "name": "img/m"
+              },
+              {
+                "time": 4.2667,
+                "name": "img/m"
+              },
+              {
+                "time": 4.3,
+                "name": "img/f"
+              },
+              {
+                "time": 6,
+                "name": "img/f"
+              },
+              {
+                "time": 6.0333,
+                "name": "img/t"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "hua": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 0.4333,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 0.8667,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 1.2667,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 1.7333,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 2.1667,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 2.6,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 3,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 3.4333,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 3.8667,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 4.3,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 4.7333,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 5.1667,
+                "x": 0.045,
+                "y": 1
+              },
+              {
+                "time": 5.6,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 6.0333,
+                "x": 0.045,
+                "y": 1
+              }
+            ]
+          },
+          "quan": {
+            "rotate": [
+              {
+                "time": 0,
+                "angle": 0
+              },
+              {
+                "time": 0.7667,
+                "angle": 90
+              },
+              {
+                "time": 1.5,
+                "angle": 180
+              },
+              {
+                "time": 2.2667,
+                "angle": -90
+              },
+              {
+                "time": 3,
+                "angle": 0
+              },
+              {
+                "time": 3.7667,
+                "angle": 90
+              },
+              {
+                "time": 4.5,
+                "angle": 180
+              },
+              {
+                "time": 5.2667,
+                "angle": -90
+              },
+              {
+                "time": 6.0333,
+                "angle": 0
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "_atlasText": "\nloding.png\nsize: 382,210\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/di\n  rotate: false\n  xy: 2, 2\n  size: 206, 206\n  orig: 206, 206\n  offset: 0, 0\n  index: -1\nimg/f\n  rotate: false\n  xy: 320, 148\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\nimg/m\n  rotate: false\n  xy: 320, 86\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\nimg/quan\n  rotate: false\n  xy: 210, 100\n  size: 108, 108\n  orig: 108, 108\n  offset: 0, 0\n  index: -1\nimg/t\n  rotate: false\n  xy: 210, 38\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\nimg/x\n  rotate: false\n  xy: 272, 24\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "6e0b4065-c8e3-47c8-8d9a-26cfca4b9319"
+    }
+  ],
+  "textureNames": [
+    "loding.png"
+  ],
+  "scale": 1
+}

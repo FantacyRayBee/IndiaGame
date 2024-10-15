@@ -1,0 +1,90 @@
+
+touzhong.png
+size: 1229,160
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: true
+  xy: 2, 13
+  size: 145, 158
+  orig: 145, 158
+  offset: 0, 0
+  index: -1
+02
+  rotate: true
+  xy: 162, 13
+  size: 145, 158
+  orig: 145, 158
+  offset: 0, 0
+  index: -1
+03
+  rotate: true
+  xy: 322, 13
+  size: 145, 158
+  orig: 145, 158
+  offset: 0, 0
+  index: -1
+04
+  rotate: true
+  xy: 482, 13
+  size: 145, 158
+  orig: 145, 158
+  offset: 0, 0
+  index: -1
+05
+  rotate: true
+  xy: 642, 13
+  size: 145, 158
+  orig: 145, 158
+  offset: 0, 0
+  index: -1
+06
+  rotate: true
+  xy: 802, 13
+  size: 145, 158
+  orig: 145, 158
+  offset: 0, 0
+  index: -1
+D1
+  rotate: false
+  xy: 962, 64
+  size: 90, 94
+  orig: 138, 132
+  offset: 24, 19
+  index: -1
+D2
+  rotate: false
+  xy: 1148, 68
+  size: 79, 90
+  orig: 138, 132
+  offset: 29, 21
+  index: -1
+D3
+  rotate: false
+  xy: 1054, 74
+  size: 92, 84
+  orig: 138, 132
+  offset: 23, 24
+  index: -1
+di
+  rotate: false
+  xy: 1122, 32
+  size: 62, 34
+  orig: 62, 34
+  offset: 0, 0
+  index: -1
+guan
+  rotate: true
+  xy: 962, 8
+  size: 54, 73
+  orig: 54, 73
+  offset: 0, 0
+  index: -1
+kai
+  rotate: false
+  xy: 1054, 2
+  size: 66, 70
+  orig: 66, 70
+  offset: 0, 0
+  index: -1
