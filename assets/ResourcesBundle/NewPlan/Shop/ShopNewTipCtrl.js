@@ -37,12 +37,12 @@ cc.Class({
 
     async PlayAnimation() {
         await this.waitForSeconds(0.7);
-        CommonFun.getInstance().startTextAnimation(this.lab_1, this.startCoin, 0, ()=>{}, 0.5);
-        await this.waitForSeconds(1.5);
+        CommonFun.getInstance().startTextAnimation(this.lab_1, this.startCoin, 0, ()=>{}, 1.5);
+        await this.waitForSeconds(2.5);
         cc.tween(this.img_coin2)
         .to(0.5, { scale: 1 })
         .start();
-        CommonFun.getInstance().startTextAnimation(this.lab_2, 0, this.startCoin, ()=>{}, 0.5);
+        CommonFun.getInstance().startTextAnimation(this.lab_2, 0, this.startCoin, ()=>{}, 1.5);
         await this.waitForSeconds(1);
 
         var fadeIn = cc.fadeIn(1); // 参数表示动作持续的时间，单位为秒
