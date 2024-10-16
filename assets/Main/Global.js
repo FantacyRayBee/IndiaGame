@@ -1060,18 +1060,18 @@ if (GlobalCfg.isOfflineDeve == 1) {
 
 };
 
-// /* 
-//   * 最新测试包 连5服
-//   * 包名： com.taara.saara.master
-//   * 渠道名：5007
-// */
-// GlobalCfg.isOfflineDeve2 = 1;
-// if (GlobalCfg.isOfflineDeve2 == 1) {
-//   GlobalCfg.IsDownloadPackage2 = 0;
-//   cc.sys.localStorage.setItem("PackageChannel", "5_5007");
-//   GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-//   GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-// };
+/* 
+  * 最新测试包
+  * 包名： com.taara.saara.master
+  * 渠道名：5007
+*/
+GlobalCfg.isOfflineDeve2 = 1;
+if (GlobalCfg.isOfflineDeve2 == 1) {
+  GlobalCfg.IsDownloadPackage2 = 0;
+  cc.sys.localStorage.setItem("PackageChannel", "0_5007");
+  GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+  GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+};
 
 /**
  * 落地页包 

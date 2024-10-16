@@ -27,10 +27,15 @@ cc.Class({
   onDestroy: function onDestroy() {
     this.unschedule(this.scheduleCallback);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE);
-    CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V); // let changed = GlobalCfg.USER_DATAS.changed = notify.deposit; // 变化值
-    // let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
-    // let getBouns = GlobalCfg.USER_DATAS.firstGetBonus/ 100; //本次充值获得的代金券
-    // CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
+    CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V);
+    var changed = GlobalCfg.USER_DATAS.changed; // 变化值
+
+    var coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+
+    var getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100; //本次充值获得的代金券
+
+    CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
+
   },
   show: function show(bool) {
     var _this2 = this;

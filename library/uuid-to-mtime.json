@@ -22559,16 +22559,6 @@
     "meta": 1728722217960,
     "relativePath": "resources\\proto\\lobbyservice.proto"
   },
-  "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
-    "asset": 1728899235694,
-    "meta": 1728899562696,
-    "relativePath": "Main\\Script\\Common\\Net\\LobbyServerManager.js"
-  },
-  "9cae3e49-7192-4ac9-ad30-1868c7257c2e": {
-    "asset": 1728899343830,
-    "meta": 1728899562710,
-    "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode\\AdvancedModeCtrl.js"
-  },
   "e23591c3-6f2d-4027-a362-3dac71d2ac65": {
     "asset": 1728899332566,
     "meta": 1728899562819,
@@ -22579,29 +22569,39 @@
     "meta": 1728984419892,
     "relativePath": "Main\\Update.js"
   },
-  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
-    "asset": 1728985946264,
-    "meta": 1728986044193,
-    "relativePath": "Main\\Main.js"
-  },
-  "da78386b-15c7-459d-b25b-166a4dbb5272": {
-    "asset": 1728985956264,
-    "meta": 1728986044258,
-    "relativePath": "Main\\SDK\\APPManager.js"
-  },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
     "asset": 1728987266649,
     "meta": 1728988083858,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1728988872019,
-    "meta": 1728988875031,
-    "relativePath": "Main\\Global.js"
+  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
+    "asset": 1729044397797,
+    "meta": 1729044416828,
+    "relativePath": "Main\\Main.js"
   },
   "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1728988850451,
-    "meta": 1728988875107,
+    "asset": 1729044397799,
+    "meta": 1729044416926,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
+  },
+  "da78386b-15c7-459d-b25b-166a4dbb5272": {
+    "asset": 1729044397798,
+    "meta": 1729044416972,
+    "relativePath": "Main\\SDK\\APPManager.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1729044668756,
+    "meta": 1729044676585,
+    "relativePath": "Main\\Global.js"
+  },
+  "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
+    "asset": 1729044487013,
+    "meta": 1729044676644,
+    "relativePath": "Main\\Script\\Common\\Net\\LobbyServerManager.js"
+  },
+  "9cae3e49-7192-4ac9-ad30-1868c7257c2e": {
+    "asset": 1729045821674,
+    "meta": 1729045827777,
+    "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode\\AdvancedModeCtrl.js"
   }
 }
