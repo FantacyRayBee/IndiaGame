@@ -22559,11 +22559,6 @@
     "meta": 1728722217960,
     "relativePath": "resources\\proto\\lobbyservice.proto"
   },
-  "e23591c3-6f2d-4027-a362-3dac71d2ac65": {
-    "asset": 1728899332566,
-    "meta": 1728899562819,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopNewTipCtrl.js"
-  },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
     "asset": 1728980769699,
     "meta": 1728984419892,
@@ -22589,19 +22584,24 @@
     "meta": 1729044416972,
     "relativePath": "Main\\SDK\\APPManager.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1729044668756,
-    "meta": 1729044676585,
-    "relativePath": "Main\\Global.js"
-  },
   "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
     "asset": 1729044487013,
     "meta": 1729044676644,
     "relativePath": "Main\\Script\\Common\\Net\\LobbyServerManager.js"
   },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1729047183838,
+    "meta": 1729047198792,
+    "relativePath": "Main\\Global.js"
+  },
   "9cae3e49-7192-4ac9-ad30-1868c7257c2e": {
-    "asset": 1729045821674,
-    "meta": 1729045827777,
+    "asset": 1729047349871,
+    "meta": 1729047351420,
     "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode\\AdvancedModeCtrl.js"
+  },
+  "e23591c3-6f2d-4027-a362-3dac71d2ac65": {
+    "asset": 1729047565751,
+    "meta": 1729047569280,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopNewTipCtrl.js"
   }
 }

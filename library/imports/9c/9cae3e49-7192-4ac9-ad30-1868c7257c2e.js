@@ -28,7 +28,7 @@ cc.Class({
     this.unschedule(this.scheduleCallback);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V);
-    var changed = GlobalCfg.USER_DATAS.changed; // 变化值
+    var changed = GlobalCfg.USER_DATAS.changed / 100; // 变化值
 
     var coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
 

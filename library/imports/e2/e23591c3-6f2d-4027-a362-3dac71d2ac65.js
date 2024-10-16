@@ -26,6 +26,8 @@ cc.Class({
   start: function start() {},
   //changed:转换的金币值, coin:本次获得的货币数量, bonus:本次获得的代金券数量
   setStartCoin: function setStartCoin(changed, coin, bonus) {
+    this.lab_1.string = changed.toString();
+    ;
     this.startCoin = changed;
     this.coin = coin;
     this.bonus = bonus;
@@ -56,7 +58,7 @@ cc.Class({
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this2.waitForSeconds(1);
+              return _this2.waitForSeconds(0.7);
 
             case 2:
               CommonFun.getInstance().startTextAnimation(_this2.lab_1, _this2.startCoin, 0, function () {}, 0.5);
