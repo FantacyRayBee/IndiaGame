@@ -488,6 +488,7 @@ let SceneManager = cc.Class({
                 "afid": GlobalCfg.APPSFLYER_ID,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(device),
+                "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,
             };
         };
 
@@ -977,6 +978,32 @@ let SceneManager = cc.Class({
             }
         }
     },
+
+    getAdvertisingId: function() {
+        let startTime = cc.sys.now();
+        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
+        return new Promise((resolve, reject) => {
+            let getAdvertisingIdCallback = () =>  {
+                let endTime = cc.sys.now();
+                let advertisingId = APPManager.getAdvertisingId();
+                if (advertisingId && advertisingId.length > 0) {
+                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
+                    GlobalCfg.ADVERTISING_ID = advertisingId;   
+                    this.unschedule(getAdvertisingIdCallback);
+                    resolve(advertisingId);
+                    return;
+                }
+                else if (endTime - startTime > 20000) {
+                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
+                    GlobalCfg.ADVERTISING_ID = "test01";
+                    this.unschedule(getAdvertisingIdCallback);
+                    resolve("");
+                    return;
+                };
+            };
+            this.schedule(getAdvertisingIdCallback, 0.5);
+        });
+    },
 });
 
 SceneManager.getInstance = () => {
@@ -985,6 +1012,8 @@ SceneManager.getInstance = () => {
     };
     return SceneManager._instance;
 };
+
+
 
 module.exports = SceneManager;
 

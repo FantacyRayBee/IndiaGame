@@ -132,7 +132,6 @@ cc.Class({
         }
         if(channel == "4001"){
             this.reqAppInfo(() => {
-                LoggerUtil.getInstance().log("44444 start 1");
                 Promise.all([this.getAdvertisingId()])
                 .then((arr) => {
                     this.loadUpdateScene();
@@ -142,7 +141,6 @@ cc.Class({
         else if (GlobalCfg.PACKAGE_REPORT_METHOD == 2 ||  
             GlobalCfg.isPattiHunt == 1 || 
             GlobalCfg.ISPackage2019 == 1) {
-                LoggerUtil.getInstance().log("44444 start 2");
 
             this.reqAppInfo(() => {
                 Promise.all([this.getAppsFlyerId(), this.getAdvertisingId()])
@@ -159,8 +157,6 @@ cc.Class({
             GlobalCfg.isBloom3Rummy == 1 || 
             GlobalCfg.isPackage2020 == 1) {
             // Jsut need AppInfo, PIX上报(UA+IP)
-            LoggerUtil.getInstance().log("44444 start 3");
-
             this.reqAppInfo(() => {
                 this.loadUpdateScene();
             }, GlobalCfg.APP_INFO_URL);
@@ -168,19 +164,17 @@ cc.Class({
         else if (GlobalCfg.PACKAGE_REPORT_METHOD == 4 || channel == "2058" ||
             channel == "4003" || channel == "4004" ||
             channel == "6019" || channel == "6020" || channel == "6021" || channel == "7001"|| channel == "7002") {
-            LoggerUtil.getInstance().log("44444 start 4");
 
             this.reqAppInfo(() => {
-                Promise.all([this.getAdjustId()])
+                Promise.all([this.getAdjustId(), this.getAdvertisingId()])
                 .then((arr) => {
                     this.loadUpdateScene();
                 });
             }, GlobalCfg.APP_INFO_URL);
         }
         else {
-            LoggerUtil.getInstance().log("44444 start 5");
             this.reqAppInfo(() => {
-                Promise.all([this.getAdjustId(), this.getAdvertisingId()])
+                Promise.all([this.getAdjustId()])
                 .then((arr) => {
                     this.loadUpdateScene();
                 })
@@ -253,23 +247,16 @@ cc.Class({
             let getAdvertisingIdCallback = () =>  {
                 let endTime = cc.sys.now();
                 let advertisingId = APPManager.getAdvertisingId();
-                LoggerUtil.getInstance().log("11 advertisingId:", advertisingId);
                 if (advertisingId && advertisingId.length > 0) {
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
-                    if (advertisingId == "32131293129831-23312461278") {
-                        GlobalCfg.ADVERTISING_ID = "";
-                    } else{
-                        GlobalCfg.ADVERTISING_ID = advertisingId;   
-                    }
-                    LoggerUtil.getInstance().log("22 advertisingId:", GlobalCfg.ADVERTISING_ID);
+                    GlobalCfg.ADVERTISING_ID = advertisingId;   
                     this.unschedule(getAdvertisingIdCallback);
                     resolve(advertisingId);
                     return;
                 }
                 else if (endTime - startTime > 20000) {
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
-                    GlobalCfg.ADVERTISING_ID = "";
-                    LoggerUtil.getInstance().log("33 advertisingId is empty");
+                    GlobalCfg.ADVERTISING_ID = "test01";
                     this.unschedule(getAdvertisingIdCallback);
                     resolve("");
                     return;
@@ -277,7 +264,7 @@ cc.Class({
             };
             this.schedule(getAdvertisingIdCallback, 0.5);
         });
-    },  
+    },
 
     reqAppConfig: function(url) {
         this.reqAppConfigCount++;

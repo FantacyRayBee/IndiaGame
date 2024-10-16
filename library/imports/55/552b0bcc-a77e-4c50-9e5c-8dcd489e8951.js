@@ -136,13 +136,11 @@ cc.Class({
 
     if (channel == "4001") {
       this.reqAppInfo(function () {
-        LoggerUtil.getInstance().log("44444 start 1");
         Promise.all([_this2.getAdvertisingId()]).then(function (arr) {
           _this2.loadUpdateScene();
         });
       }, GlobalCfg.APP_INFO_URL);
     } else if (GlobalCfg.PACKAGE_REPORT_METHOD == 2 || GlobalCfg.isPattiHunt == 1 || GlobalCfg.ISPackage2019 == 1) {
-      LoggerUtil.getInstance().log("44444 start 2");
       this.reqAppInfo(function () {
         Promise.all([_this2.getAppsFlyerId(), _this2.getAdvertisingId()]).then(function (arr) {
           _this2.loadUpdateScene();
@@ -150,21 +148,18 @@ cc.Class({
       }, GlobalCfg.APP_INFO_URL);
     } else if (GlobalCfg.PACKAGE_REPORT_METHOD == 3 || GlobalCfg.ISPackage2009 == 1 || GlobalCfg.isPackage2010 == 1 || GlobalCfg.isPackage2014 == 1 || GlobalCfg.ISPackage2018 == 1 || GlobalCfg.isBloom3Rummy == 1 || GlobalCfg.isPackage2020 == 1) {
       // Jsut need AppInfo, PIX上报(UA+IP)
-      LoggerUtil.getInstance().log("44444 start 3");
       this.reqAppInfo(function () {
         _this2.loadUpdateScene();
       }, GlobalCfg.APP_INFO_URL);
     } else if (GlobalCfg.PACKAGE_REPORT_METHOD == 4 || channel == "2058" || channel == "4003" || channel == "4004" || channel == "6019" || channel == "6020" || channel == "6021" || channel == "7001" || channel == "7002") {
-      LoggerUtil.getInstance().log("44444 start 4");
       this.reqAppInfo(function () {
-        Promise.all([_this2.getAdjustId()]).then(function (arr) {
+        Promise.all([_this2.getAdjustId(), _this2.getAdvertisingId()]).then(function (arr) {
           _this2.loadUpdateScene();
         });
       }, GlobalCfg.APP_INFO_URL);
     } else {
-      LoggerUtil.getInstance().log("44444 start 5");
       this.reqAppInfo(function () {
-        Promise.all([_this2.getAdjustId(), _this2.getAdvertisingId()]).then(function (arr) {
+        Promise.all([_this2.getAdjustId()]).then(function (arr) {
           _this2.loadUpdateScene();
         });
       }, GlobalCfg.APP_INFO_URL);
@@ -254,18 +249,10 @@ cc.Class({
       var getAdvertisingIdCallback = function getAdvertisingIdCallback() {
         var endTime = cc.sys.now();
         var advertisingId = APPManager.getAdvertisingId();
-        LoggerUtil.getInstance().log("11 advertisingId:", advertisingId);
 
         if (advertisingId && advertisingId.length > 0) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
-
-          if (advertisingId == "32131293129831-23312461278") {
-            GlobalCfg.ADVERTISING_ID = "";
-          } else {
-            GlobalCfg.ADVERTISING_ID = advertisingId;
-          }
-
-          LoggerUtil.getInstance().log("22 advertisingId:", GlobalCfg.ADVERTISING_ID);
+          GlobalCfg.ADVERTISING_ID = advertisingId;
 
           _this5.unschedule(getAdvertisingIdCallback);
 
@@ -273,8 +260,7 @@ cc.Class({
           return;
         } else if (endTime - startTime > 20000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
-          GlobalCfg.ADVERTISING_ID = "";
-          LoggerUtil.getInstance().log("33 advertisingId is empty");
+          GlobalCfg.ADVERTISING_ID = "test01";
 
           _this5.unschedule(getAdvertisingIdCallback);
 

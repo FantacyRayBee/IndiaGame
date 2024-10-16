@@ -512,7 +512,8 @@ var SceneManager = cc.Class({
         "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
         "afid": GlobalCfg.APPSFLYER_ID,
         "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
-        "sign": CommonFun.getInstance().encryptByRSA(device)
+        "sign": CommonFun.getInstance().encryptByRSA(device),
+        "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD
       };
     }
 
@@ -1091,6 +1092,40 @@ var SceneManager = cc.Class({
         index++;
       }
     }
+  },
+  getAdvertisingId: function getAdvertisingId() {
+    var _this5 = this;
+
+    var startTime = cc.sys.now();
+    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
+    return new Promise(function (resolve, reject) {
+      var getAdvertisingIdCallback = function getAdvertisingIdCallback() {
+        var endTime = cc.sys.now();
+        var advertisingId = APPManager.getAdvertisingId();
+
+        if (advertisingId && advertisingId.length > 0) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
+          GlobalCfg.ADVERTISING_ID = advertisingId;
+
+          _this5.unschedule(getAdvertisingIdCallback);
+
+          resolve(advertisingId);
+          return;
+        } else if (endTime - startTime > 20000) {
+          CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
+          GlobalCfg.ADVERTISING_ID = "test01";
+
+          _this5.unschedule(getAdvertisingIdCallback);
+
+          resolve("");
+          return;
+        }
+
+        ;
+      };
+
+      _this5.schedule(getAdvertisingIdCallback, 0.5);
+    });
   }
 });
 

@@ -501,7 +501,6 @@ APPManager.getAdvertisingId = function () {
     }
 
     ;
-    LoggerUtil.getInstance().log("11 APPManager advertisingId:", result);
     return result;
   } else {
     return "32131293129831-23312461278";
@@ -527,7 +526,8 @@ APPManager.downloadApkByApkUrl = function (apkUrl) {
 };
 
 APPManager.adjustGoogleIdCallBack = function (googleAdId) {
-  console.log("adjustGoogleIdCallBack:", googleAdId);
+  // console.log("adjustGoogleIdCallBack:", googleAdId);
+  cc.log("adjustGoogleIdCallBack:", googleAdId);
 
   if (googleAdId && googleAdId.length > 0) {
     GlobalCfg.ADVERTISING_ID = googleAdId;
