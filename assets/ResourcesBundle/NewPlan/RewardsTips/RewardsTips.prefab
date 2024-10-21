@@ -1300,10 +1300,13 @@
     },
     "_enabled": true,
     "sprite_gold_coin": {
-      "__uuid__": "2e5bdb68-f927-4448-9baa-d5095bb4410a"
+      "__uuid__": "5d44985f-bec8-4e1b-b690-c4865159962f"
+    },
+    "sprite_lubi_coin": {
+      "__uuid__": "75b5aee9-6cfd-46d6-b273-1965df140379"
     },
     "sprite_silver_coin": {
-      "__uuid__": "89774bb5-003c-49fd-9d2b-c07a22ea3277"
+      "__uuid__": "46842171-7ebb-4ded-a8d1-a24808b4559b"
     },
     "btn_okay": {
       "__id__": 31

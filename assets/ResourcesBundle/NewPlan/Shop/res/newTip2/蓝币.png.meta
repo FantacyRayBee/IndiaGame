@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "11b29887-2f3a-4609-8c79-60ffe2c19926",
+  "uuid": "dc30c69a-5374-434d-8638-0cb4c5c7d56c",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -8,15 +8,15 @@
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
-  "width": 64,
-  "height": 64,
+  "width": 59,
+  "height": 59,
   "platformSettings": {},
   "subMetas": {
-    "2": {
+    "蓝币": {
       "ver": "1.0.6",
-      "uuid": "75b5aee9-6cfd-46d6-b273-1965df140379",
+      "uuid": "ae6166bb-d99d-41a1-95a0-aef3b29766e0",
       "importer": "sprite-frame",
-      "rawTextureUuid": "11b29887-2f3a-4609-8c79-60ffe2c19926",
+      "rawTextureUuid": "dc30c69a-5374-434d-8638-0cb4c5c7d56c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

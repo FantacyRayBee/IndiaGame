@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "11b29887-2f3a-4609-8c79-60ffe2c19926",
+  "uuid": "5744039a-0112-434b-b51e-1da75d02f04c",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -8,15 +8,15 @@
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
-  "width": 64,
-  "height": 64,
+  "width": 59,
+  "height": 59,
   "platformSettings": {},
   "subMetas": {
-    "2": {
+    "金币 ₹": {
       "ver": "1.0.6",
-      "uuid": "75b5aee9-6cfd-46d6-b273-1965df140379",
+      "uuid": "ab47edf6-6eac-406c-8d92-cd215616140e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "11b29887-2f3a-4609-8c79-60ffe2c19926",
+      "rawTextureUuid": "5744039a-0112-434b-b51e-1da75d02f04c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
