@@ -1258,14 +1258,19 @@ var CommonFun = cc.Class({
    * 显示设置界面
    */
   showSetting: function showSetting() {
-    var _this6 = this;
+    var changed = 100; // 变化值
 
-    var settingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SETTING);
-    settingPrefabPromise.then(function (prefab) {
-      var settingNode = cc.instantiate(prefab);
+    var coin = 100; //本次充值获得的金币
 
-      _this6.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
-    });
+    var getBouns = 20; //本次充值获得的代金券
+
+    CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
+    // let settingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SETTING);
+    // settingPrefabPromise.then((prefab) => {
+    //     let settingNode = cc.instantiate(prefab);
+    //     this.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
+    // });
+
   },
 
   /**
@@ -1304,14 +1309,14 @@ var CommonFun = cc.Class({
    * 小游戏中显示加经验
    */
   showSmallAddExperience: function showSmallAddExperience() {
-    var _this7 = this;
+    var _this6 = this;
 
     var smallAddExperiencePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SMALLADDEXPERIENCE);
     smallAddExperiencePrefabPromise.then(function (prefab) {
       var smallAddExperienceNode = cc.instantiate(prefab);
       var smallAddExperienceCtrl = smallAddExperienceNode.getComponent('SmallAddExperienceCtrl');
 
-      _this7.addToPointParent(smallAddExperienceNode, GlobalCfg.PREFAB_PARENT.SMALLADDEXPERIENCE);
+      _this6.addToPointParent(smallAddExperienceNode, GlobalCfg.PREFAB_PARENT.SMALLADDEXPERIENCE);
     });
   },
 
@@ -1323,7 +1328,7 @@ var CommonFun = cc.Class({
    * @param {boolean} trial 是否是体验用户
    */
   showUserIU: function showUserIU(headUrl, playerName, playerCoin, trial) {
-    var _this8 = this;
+    var _this7 = this;
 
     if (headUrl === void 0) {
       headUrl = "";
@@ -1347,7 +1352,7 @@ var CommonFun = cc.Class({
       var userHeadCtrl = userHeadNode.getComponent('UserHeadCtrl');
       userHeadCtrl.setUserDate(headUrl, playerName, playerCoin, trial);
 
-      _this8.addToPointParent(userHeadNode, GlobalCfg.PREFAB_PARENT.USERHEAD);
+      _this7.addToPointParent(userHeadNode, GlobalCfg.PREFAB_PARENT.USERHEAD);
     });
   },
 
@@ -1355,14 +1360,14 @@ var CommonFun = cc.Class({
    * 显示金币散落动画
    */
   scatterGoldCoinsAim: function scatterGoldCoinsAim() {
-    var _this9 = this;
+    var _this8 = this;
 
     var scatterCoinPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SCATTERCOIN);
     scatterCoinPrefabPromise.then(function (prefab) {
       var scatterCoinNode = cc.instantiate(prefab);
       var scatterCoinCtrl = scatterCoinNode.getComponent('ScatterCoinCtrl');
 
-      _this9.addToPointParent(scatterCoinNode, GlobalCfg.PREFAB_PARENT.SCATTERCOIN);
+      _this8.addToPointParent(scatterCoinNode, GlobalCfg.PREFAB_PARENT.SCATTERCOIN);
     });
   },
 
@@ -1371,7 +1376,7 @@ var CommonFun = cc.Class({
    * @param {Array[{id,amount}]} coin 奖励金币
    */
   showRewardsTips: function showRewardsTips(coin) {
-    var _this10 = this;
+    var _this9 = this;
 
     var count = 0;
 
@@ -1390,7 +1395,7 @@ var CommonFun = cc.Class({
       var rewardsTipsCtrl = rewardsTipsNode.getComponent('RewardsTipsCtrl');
       rewardsTipsCtrl.setRewards(coin);
 
-      _this10.addToPointParent(rewardsTipsNode, GlobalCfg.PREFAB_PARENT.REWARDSTIPS);
+      _this9.addToPointParent(rewardsTipsNode, GlobalCfg.PREFAB_PARENT.REWARDSTIPS);
     });
   },
 
@@ -1400,7 +1405,7 @@ var CommonFun = cc.Class({
    * @param {cc.Vec2} pos 位置
    */
   sendFace: function sendFace(notify, pos) {
-    var _this11 = this;
+    var _this10 = this;
 
     var chatActPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHATACT);
     chatActPrefabPromise.then(function (prefab) {
@@ -1408,7 +1413,7 @@ var CommonFun = cc.Class({
       var chatActCtrl = rewardsTipsNode.getComponent('ChatActCtrl');
       chatActCtrl.face(notify, pos);
 
-      _this11.addToPointParent(chatActNode, GlobalCfg.PREFAB_PARENT.CHATACT);
+      _this10.addToPointParent(chatActNode, GlobalCfg.PREFAB_PARENT.CHATACT);
     });
   },
 
@@ -1416,7 +1421,7 @@ var CommonFun = cc.Class({
    * 显示活动界面
    */
   showActivity: function showActivity(pointView) {
-    var _this12 = this;
+    var _this11 = this;
 
     if (pointView === void 0) {
       pointView = null;
@@ -1428,7 +1433,7 @@ var CommonFun = cc.Class({
       var activityCtrl = activityNode.getComponent('ActivityCtrl');
       pointView && activityCtrl.setPointView(pointView);
 
-      _this12.addToPointParent(activityNode, GlobalCfg.PREFAB_PARENT.ACTIVITY);
+      _this11.addToPointParent(activityNode, GlobalCfg.PREFAB_PARENT.ACTIVITY);
     });
   },
 
@@ -1436,7 +1441,7 @@ var CommonFun = cc.Class({
    * 显示首充界面
    */
   showFirstRecharge: function showFirstRecharge() {
-    var _this13 = this;
+    var _this12 = this;
 
     var path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
 
@@ -1449,7 +1454,7 @@ var CommonFun = cc.Class({
       var firstRechargeNode = cc.instantiate(prefab);
       var firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
 
-      _this13.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
+      _this12.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
     });
   },
 
@@ -1457,14 +1462,14 @@ var CommonFun = cc.Class({
    * 显示联系我们界面
    */
   showContactUs: function showContactUs() {
-    var _this14 = this;
+    var _this13 = this;
 
     var contactUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CONTACTUS);
     contactUsPrefabPromise.then(function (prefab) {
       var contactUsNode = cc.instantiate(prefab);
       var contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');
 
-      _this14.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+      _this13.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
     });
   },
 
@@ -1472,7 +1477,7 @@ var CommonFun = cc.Class({
    * 添加跑马灯
    */
   addCarouselStrip: function addCarouselStrip() {
-    var _this15 = this;
+    var _this14 = this;
 
     this.removeCarouselStrip();
     var carouselStripPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CAROUSELSTRIP);
@@ -1480,7 +1485,7 @@ var CommonFun = cc.Class({
       var carouselStripNode = cc.instantiate(prefab);
       var carouselStripCtrl = carouselStripNode.getComponent('CarouselStripCtrl');
 
-      _this15.addToPointParent(carouselStripNode, GlobalCfg.PREFAB_PARENT.CAROUSELSTRIP);
+      _this14.addToPointParent(carouselStripNode, GlobalCfg.PREFAB_PARENT.CAROUSELSTRIP);
     });
   },
 
@@ -1507,7 +1512,7 @@ var CommonFun = cc.Class({
    * 添加侧边栏
    */
   addSidebar: function addSidebar() {
-    var _this16 = this;
+    var _this15 = this;
 
     var node = this.getSidebar();
 
@@ -1520,7 +1525,7 @@ var CommonFun = cc.Class({
       var sideBarNode = cc.instantiate(prefab);
       var activityModulesCtrl = sideBarNode.getComponent('activityModulesCtrl');
 
-      _this16.addToPointParent(sideBarNode, GlobalCfg.PREFAB_PARENT.SIDEBAR);
+      _this15.addToPointParent(sideBarNode, GlobalCfg.PREFAB_PARENT.SIDEBAR);
     });
   },
 
@@ -1585,14 +1590,14 @@ var CommonFun = cc.Class({
    * 显示评分界面
    */
   showRateUs: function showRateUs() {
-    var _this17 = this;
+    var _this16 = this;
 
     var rateUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RATEUS);
     rateUsPrefabPromise.then(function (prefab) {
       var rateUsNode = cc.instantiate(prefab);
       var rateUsCtrl = rateUsNode.getComponent('RateUsCtrl');
 
-      _this17.addToPointParent(rateUsNode, GlobalCfg.PREFAB_PARENT.RATEUS);
+      _this16.addToPointParent(rateUsNode, GlobalCfg.PREFAB_PARENT.RATEUS);
     });
   },
 
@@ -1600,14 +1605,14 @@ var CommonFun = cc.Class({
    * 显示绑定手机奖励界面
    */
   showBindPhoneRewards: function showBindPhoneRewards() {
-    var _this18 = this;
+    var _this17 = this;
 
     var bindPhoneRewardsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONEREWARDS);
     bindPhoneRewardsPrefabPromise.then(function (prefab) {
       var bindPhoneRewardsNode = cc.instantiate(prefab);
       var bindPhoneRewardsCtrl = bindPhoneRewardsNode.getComponent('BindPhoneRewardsCtrl');
 
-      _this18.addToPointParent(bindPhoneRewardsNode, GlobalCfg.PREFAB_PARENT.BINDPHONEREWARDS);
+      _this17.addToPointParent(bindPhoneRewardsNode, GlobalCfg.PREFAB_PARENT.BINDPHONEREWARDS);
     });
   },
 
@@ -1615,13 +1620,13 @@ var CommonFun = cc.Class({
    * 强制引导弹窗
    */
   showHallTip: function showHallTip() {
-    var _this19 = this;
+    var _this18 = this;
 
     var hallTipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.HALLTIP);
     hallTipPrefabPromise.then(function (prefab) {
       var bhallTipNode = cc.instantiate(prefab);
 
-      _this19.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
+      _this18.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
     });
   },
 
@@ -1630,7 +1635,7 @@ var CommonFun = cc.Class({
    * @param {String} str  Lobby (大厅) Personal (个人中心) AddCash (充值填写) 
    */
   showBindPhone: function showBindPhone(str) {
-    var _this20 = this;
+    var _this19 = this;
 
     if (str === void 0) {
       str = 'Lobby';
@@ -1643,7 +1648,7 @@ var CommonFun = cc.Class({
       var bindPhoneCtrl = bindPhoneNode.getComponent('BindPhoneCtrl');
       bindPhoneCtrl.setNodeStateStr(str);
 
-      _this20.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
+      _this19.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
     });
   },
 
@@ -1651,14 +1656,14 @@ var CommonFun = cc.Class({
    * 显示推广员界面
    */
   showPromoter: function showPromoter() {
-    var _this21 = this;
+    var _this20 = this;
 
     var promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
     promoterPrefabPromise.then(function (prefab) {
       var promoterNode = cc.instantiate(prefab);
       var promoterCtrl = promoterNode.getComponent('PromoterCtrl');
 
-      _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);
+      _this20.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);
     });
   },
 
@@ -1667,7 +1672,7 @@ var CommonFun = cc.Class({
    * @param {string} typeStr 显示类型
    */
   showPromoterLeftView: function showPromoterLeftView(typeStr) {
-    var _this22 = this;
+    var _this21 = this;
 
     var promoterLeftViewPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERLEFTVIEW);
     promoterLeftViewPrefabPromise.then(function (prefab) {
@@ -1675,7 +1680,7 @@ var CommonFun = cc.Class({
       var promoterLeftViewCtrl = promoterLeftViewNode.getComponent('PromoterLeftViewCtrl');
       promoterLeftViewCtrl.showLeftViewByTypeStr(typeStr);
 
-      _this22.addToPointParent(promoterLeftViewNode, GlobalCfg.PREFAB_PARENT.PROMOTERLEFTVIEW);
+      _this21.addToPointParent(promoterLeftViewNode, GlobalCfg.PREFAB_PARENT.PROMOTERLEFTVIEW);
     });
   },
 
@@ -1683,14 +1688,14 @@ var CommonFun = cc.Class({
    * 显示救济金界面
    */
   showRelief: function showRelief() {
-    var _this23 = this;
+    var _this22 = this;
 
     var reliefPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RELIEF);
     reliefPrefabPromise.then(function (prefab) {
       var reliefNode = cc.instantiate(prefab);
       var reliefCtrl = reliefNode.getComponent('ReliefCtrl');
 
-      _this23.addToPointParent(reliefNode, GlobalCfg.PREFAB_PARENT.RELIEF);
+      _this22.addToPointParent(reliefNode, GlobalCfg.PREFAB_PARENT.RELIEF);
     });
   },
 
@@ -1698,14 +1703,14 @@ var CommonFun = cc.Class({
    * 显示邮箱界面
    */
   showEmail: function showEmail() {
-    var _this24 = this;
+    var _this23 = this;
 
     var emailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.EMAIL);
     emailPrefabPromise.then(function (prefab) {
       var emailNode = cc.instantiate(prefab);
       var emailCtrl = emailNode.getComponent('EmailCtrl');
 
-      _this24.addToPointParent(emailNode, GlobalCfg.PREFAB_PARENT.EMAIL);
+      _this23.addToPointParent(emailNode, GlobalCfg.PREFAB_PARENT.EMAIL);
     });
   },
 
@@ -1713,7 +1718,7 @@ var CommonFun = cc.Class({
    * 显示反馈邮件界面
    */
   showFeedbackMail: function showFeedbackMail(dataContent, emailCtrl) {
-    var _this25 = this;
+    var _this24 = this;
 
     var feedbackMailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FEEDBACKEMAIL);
     feedbackMailPrefabPromise.then(function (prefab) {
@@ -1721,7 +1726,7 @@ var CommonFun = cc.Class({
       var feedbackMailCtrl = feedbackMailNode.getComponent('FeedbackMailCtrl');
       feedbackMailCtrl.setState(dataContent, emailCtrl);
 
-      _this25.addToPointParent(feedbackMailNode, GlobalCfg.PREFAB_PARENT.FEEDBACKEMAIL);
+      _this24.addToPointParent(feedbackMailNode, GlobalCfg.PREFAB_PARENT.FEEDBACKEMAIL);
     });
   },
 
@@ -1729,7 +1734,7 @@ var CommonFun = cc.Class({
    * 显示超级折扣界面
    */
   showSuperDiscount: function showSuperDiscount() {
-    var _this26 = this;
+    var _this25 = this;
 
     var isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.SUPERDISCOUNT, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);
 
@@ -1744,7 +1749,7 @@ var CommonFun = cc.Class({
       var superDiscountCtrl = superDiscountNode.getComponent('SuperDiscountCtrl');
       superDiscountCtrl.initByType();
 
-      _this26.addToPointParent(superDiscountNode, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);
+      _this25.addToPointParent(superDiscountNode, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);
     });
   },
 
@@ -1752,14 +1757,14 @@ var CommonFun = cc.Class({
    * 显示客服界面
    */
   showCustomerService: function showCustomerService() {
-    var _this27 = this;
+    var _this26 = this;
 
     var customerServicePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CUSTOMERSERVICE);
     customerServicePrefabPromise.then(function (prefab) {
       var customerServiceNode = cc.instantiate(prefab);
       var customerServiceCtrl = customerServiceNode.getComponent('CustomerServiceCtrl');
 
-      _this27.addToPointParent(customerServiceNode, GlobalCfg.PREFAB_PARENT.CUSTOMERSERVICE);
+      _this26.addToPointParent(customerServiceNode, GlobalCfg.PREFAB_PARENT.CUSTOMERSERVICE);
     });
   },
 
@@ -1767,14 +1772,14 @@ var CommonFun = cc.Class({
    * 显示快速反馈界面
    */
   showFastFeedBack: function showFastFeedBack() {
-    var _this28 = this;
+    var _this27 = this;
 
     var fastFeedBackPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FASTFEEDBACK);
     fastFeedBackPrefabPromise.then(function (prefab) {
       var fastFeedBackNode = cc.instantiate(prefab);
       var fastFeedBackCtrl = fastFeedBackNode.getComponent('FastFeedBackCtrl');
 
-      _this28.addToPointParent(fastFeedBackNode, GlobalCfg.PREFAB_PARENT.FASTFEEDBACK);
+      _this27.addToPointParent(fastFeedBackNode, GlobalCfg.PREFAB_PARENT.FASTFEEDBACK);
     });
   },
 
@@ -1782,14 +1787,14 @@ var CommonFun = cc.Class({
    * 显示个人中心界面
    */
   showPersonal: function showPersonal() {
-    var _this29 = this;
+    var _this28 = this;
 
     var personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
     personalPrefabPromise.then(function (prefab) {
       var personalNode = cc.instantiate(prefab);
       var personalCtrl = personalNode.getComponent('PersonalCtrl');
 
-      _this29.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);
+      _this28.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);
     });
   },
 
@@ -1797,14 +1802,14 @@ var CommonFun = cc.Class({
    * 显示个人中心修改昵称界面
    */
   showChangeName: function showChangeName() {
-    var _this30 = this;
+    var _this29 = this;
 
     var changeNamePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHANGENAME);
     changeNamePrefabPromise.then(function (prefab) {
       var changeNameNode = cc.instantiate(prefab);
       var changeNameCtrl = changeNameNode.getComponent('ChangeNameCtrl');
 
-      _this30.addToPointParent(changeNameNode, GlobalCfg.PREFAB_PARENT.CHANGENAME);
+      _this29.addToPointParent(changeNameNode, GlobalCfg.PREFAB_PARENT.CHANGENAME);
     });
   },
 
@@ -1812,14 +1817,14 @@ var CommonFun = cc.Class({
    * 显示个人中心修改头像界面
    */
   showChangeHead: function showChangeHead() {
-    var _this31 = this;
+    var _this30 = this;
 
     var changeHeadPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHANGEHEAD);
     changeHeadPrefabPromise.then(function (prefab) {
       var changeHeadNode = cc.instantiate(prefab);
       var changeHeadCtrl = changeHeadNode.getComponent('ChangeHeadCtrl');
 
-      _this31.addToPointParent(changeHeadNode, GlobalCfg.PREFAB_PARENT.CHANGEHEAD);
+      _this30.addToPointParent(changeHeadNode, GlobalCfg.PREFAB_PARENT.CHANGEHEAD);
     });
   },
 
@@ -1827,14 +1832,14 @@ var CommonFun = cc.Class({
    * 显示奖励转移界面
    */
   showBonusTransfer: function showBonusTransfer() {
-    var _this32 = this;
+    var _this31 = this;
 
     var bonusTransferPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BONUSTRANSFER);
     bonusTransferPrefabPromise.then(function (prefab) {
       var bonusTransferNode = cc.instantiate(prefab);
       var bonusTransferCtrl = bonusTransferNode.getComponent('BonusTransferCtrl');
 
-      _this32.addToPointParent(bonusTransferNode, GlobalCfg.PREFAB_PARENT.BONUSTRANSFER);
+      _this31.addToPointParent(bonusTransferNode, GlobalCfg.PREFAB_PARENT.BONUSTRANSFER);
     });
   },
 
@@ -1842,16 +1847,16 @@ var CommonFun = cc.Class({
    * 预加载选择房间界面
    */
   proloadSelectRoom: function proloadSelectRoom() {
-    var _this33 = this;
+    var _this32 = this;
 
     return new Promise(function (resolve, reject) {
-      var selectRoomPrefabPromise = _this33.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SELECTROOM);
+      var selectRoomPrefabPromise = _this32.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SELECTROOM);
 
       selectRoomPrefabPromise.then(function (prefab) {
-        _this33._selectRoomNode = cc.instantiate(prefab);
-        _this33._selectRoomNode.active = false;
+        _this32._selectRoomNode = cc.instantiate(prefab);
+        _this32._selectRoomNode.active = false;
 
-        _this33.addToPointParent(_this33._selectRoomNode, GlobalCfg.PREFAB_PARENT.SELECTROOM);
+        _this32.addToPointParent(_this32._selectRoomNode, GlobalCfg.PREFAB_PARENT.SELECTROOM);
 
         resolve();
       })["catch"](function () {
@@ -1897,14 +1902,14 @@ var CommonFun = cc.Class({
    * 显示每日奖励卡片
    */
   showDailyBonusCard: function showDailyBonusCard() {
-    var _this34 = this;
+    var _this33 = this;
 
     var dailyBonusCardPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DAILYBONUSCARD);
     dailyBonusCardPrefabPromise.then(function (prefab) {
       var dailyBonusCardNode = cc.instantiate(prefab);
       var dailyBonusCardCtrl = dailyBonusCardNode.getComponent('DailyBonusCardCtrl');
 
-      _this34.addToPointParent(dailyBonusCardNode, GlobalCfg.PREFAB_PARENT.DAILYBONUSCARD);
+      _this33.addToPointParent(dailyBonusCardNode, GlobalCfg.PREFAB_PARENT.DAILYBONUSCARD);
     });
   },
 
@@ -1912,14 +1917,14 @@ var CommonFun = cc.Class({
    * 显示新人礼品界面
    */
   showFirstGiftDiamond: function showFirstGiftDiamond() {
-    var _this35 = this;
+    var _this34 = this;
 
     var firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
     firstGiftDiamondPrefabPromise.then(function (prefab) {
       var firstGiftDiamondNode = cc.instantiate(prefab);
       var firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');
 
-      _this35.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND);
+      _this34.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND);
     });
   },
 
@@ -1928,7 +1933,7 @@ var CommonFun = cc.Class({
    * @param {string} typeStr 
    */
   showRule: function showRule(typeStr) {
-    var _this36 = this;
+    var _this35 = this;
 
     var rulePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RULE);
     rulePrefabPromise.then(function (prefab) {
@@ -1936,7 +1941,7 @@ var CommonFun = cc.Class({
       var ruleCtrl = ruleNode.getComponent('RuleCtrl');
       ruleCtrl.SmallGameRule(typeStr);
 
-      _this36.addToPointParent(ruleNode, GlobalCfg.PREFAB_PARENT.RULE);
+      _this35.addToPointParent(ruleNode, GlobalCfg.PREFAB_PARENT.RULE);
     });
   },
 
@@ -1945,7 +1950,7 @@ var CommonFun = cc.Class({
    * @param {number} urlType 1: 用户协议 2: 隐私政策
    */
   showPrivacyPolicy: function showPrivacyPolicy(urlType) {
-    var _this37 = this;
+    var _this36 = this;
 
     var privacyPolicyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PRIVACYPOLICY);
     privacyPolicyPrefabPromise.then(function (prefab) {
@@ -1953,14 +1958,14 @@ var CommonFun = cc.Class({
       var privacyPolicyCtrl = privacyPolicyNode.getComponent('PrivacyPolicyCtrl');
       privacyPolicyCtrl.setUrlType(urlType);
 
-      _this37.addToPointParent(privacyPolicyNode, GlobalCfg.PREFAB_PARENT.PRIVACYPOLICY);
+      _this36.addToPointParent(privacyPolicyNode, GlobalCfg.PREFAB_PARENT.PRIVACYPOLICY);
     });
   },
   _showShop: function _showShop(from) {
-    var _this38 = this;
+    var _this37 = this;
 
     this.getPayChannel(function (payChannels) {
-      var shopPrefabPromise = _this38.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
+      var shopPrefabPromise = _this37.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
 
       shopPrefabPromise.then(function (prefab) {
         CommonFun.getInstance().addVerticalAcc();
@@ -1969,12 +1974,12 @@ var CommonFun = cc.Class({
         shopCtrl.setPayChannel(payChannels);
         shopCtrl.setJumpFrom(from);
 
-        _this38.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP);
+        _this37.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP);
       });
     });
   },
   _showShopNewTip: function _showShopNewTip(changed, coin, bonus) {
-    var _this39 = this;
+    var _this38 = this;
 
     var shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
     shopPrefabPromise.then(function (prefab) {
@@ -1982,7 +1987,7 @@ var CommonFun = cc.Class({
       var shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
       shopCtrl.setStartCoin(changed, coin, bonus);
 
-      _this39.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP);
+      _this38.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP);
     });
   },
 
@@ -1990,13 +1995,13 @@ var CommonFun = cc.Class({
    * 显示充值说明界面
    */
   showShopInstructions: function showShopInstructions() {
-    var _this40 = this;
+    var _this39 = this;
 
     var shopInstructionsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPINSTRUCTIONS);
     shopInstructionsPrefabPromise.then(function (prefab) {
       var shopInstructionsNode = cc.instantiate(prefab);
 
-      _this40.addToPointParent(shopInstructionsNode, GlobalCfg.PREFAB_PARENT.SHOPINSTRUCTIONS);
+      _this39.addToPointParent(shopInstructionsNode, GlobalCfg.PREFAB_PARENT.SHOPINSTRUCTIONS);
     });
   },
 
@@ -2005,7 +2010,7 @@ var CommonFun = cc.Class({
    * @param {Function} callback 
    */
   showWithDraw: function showWithDraw(callback) {
-    var _this41 = this;
+    var _this40 = this;
 
     var withdrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW);
     withdrawPrefabPromise.then(function (prefab) {
@@ -2013,7 +2018,7 @@ var CommonFun = cc.Class({
       var withdrawNode = cc.instantiate(prefab);
       callback && callback();
 
-      _this41.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW);
+      _this40.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW);
     });
   },
 
@@ -2024,7 +2029,7 @@ var CommonFun = cc.Class({
    * @param {Function} callFun 
    */
   showWithDrawTips: function showWithDrawTips(btnTipsType, content, callFun) {
-    var _this42 = this;
+    var _this41 = this;
 
     var withdrawTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWTIPS);
     withdrawTipsPrefabPromise.then(function (prefab) {
@@ -2032,7 +2037,7 @@ var CommonFun = cc.Class({
       var withDrawTipsCtrl = withDrawTipsNode.getComponent("WithDrawTipsCtrl");
       withDrawTipsCtrl.setWithDrawTipsData(btnTipsType, content, callFun);
 
-      _this42.addToPointParent(withDrawTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWTIPS);
+      _this41.addToPointParent(withDrawTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWTIPS);
     });
   },
 
@@ -2040,14 +2045,14 @@ var CommonFun = cc.Class({
    * 显示交易记录界面
    */
   showTransactionRecord: function showTransactionRecord() {
-    var _this43 = this;
+    var _this42 = this;
 
     var transactionRecordPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORD);
     transactionRecordPrefabPromise.then(function (prefab) {
       CommonFun.getInstance().addVerticalAcc();
       var transactionRecordNode = cc.instantiate(prefab);
 
-      _this43.addToPointParent(transactionRecordNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORD);
+      _this42.addToPointParent(transactionRecordNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORD);
     });
   },
 
@@ -2055,13 +2060,13 @@ var CommonFun = cc.Class({
    * 显示交易记录界的说明提示框
    */
   showTransactionRecordTips: function showTransactionRecordTips() {
-    var _this44 = this;
+    var _this43 = this;
 
     var transactionRecordTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDTIPS);
     transactionRecordTipsPrefabPromise.then(function (prefab) {
       var transactionRecordTipsNode = cc.instantiate(prefab);
 
-      _this44.addToPointParent(transactionRecordTipsNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDTIPS);
+      _this43.addToPointParent(transactionRecordTipsNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDTIPS);
     });
   },
 
@@ -2069,7 +2074,7 @@ var CommonFun = cc.Class({
    * 显示交易记录界面的“help”提示框
    */
   showTransactionRecordHelp: function showTransactionRecordHelp(data) {
-    var _this45 = this;
+    var _this44 = this;
 
     var transactionRecordHelpPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDHELP);
     transactionRecordHelpPrefabPromise.then(function (prefab) {
@@ -2077,7 +2082,7 @@ var CommonFun = cc.Class({
       var transactionRecordHelpCtrl = transactionRecordHelpNode.getComponent('TransactionRecordHelpCtrl');
       transactionRecordHelpCtrl.setTransactionRecordHelpData(data);
 
-      _this45.addToPointParent(transactionRecordHelpNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDHELP);
+      _this44.addToPointParent(transactionRecordHelpNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDHELP);
     });
   },
 
@@ -2085,13 +2090,13 @@ var CommonFun = cc.Class({
    * 显示提现诱导弹框
    */
   showPopUpWithDraw: function showPopUpWithDraw() {
-    var _this46 = this;
+    var _this45 = this;
 
     var popUpWithDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.POPUPWITHDRAW);
     popUpWithDrawPrefabPromise.then(function (prefab) {
       var popUpWithDrawNode = cc.instantiate(prefab);
 
-      _this46.addToPointParent(popUpWithDrawNode, GlobalCfg.PREFAB_PARENT.POPUPWITHDRAW);
+      _this45.addToPointParent(popUpWithDrawNode, GlobalCfg.PREFAB_PARENT.POPUPWITHDRAW);
     });
   },
 
@@ -2099,7 +2104,7 @@ var CommonFun = cc.Class({
    * 展示填写提现资料界面
    */
   showWithDrawPreData: function showWithDrawPreData() {
-    var _this47 = this;
+    var _this46 = this;
 
     this.showProgress();
     var withdrawPreDataPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWPREDATA);
@@ -2109,9 +2114,9 @@ var CommonFun = cc.Class({
       var withDrawPreDataCtrl = withdrawalPreDataNode.getComponent('WithDrawPreDataCtrl');
       withDrawPreDataCtrl.setData(data);
 
-      _this47.addToPointParent(withdrawalPreDataNode, GlobalCfg.PREFAB_PARENT.WITHDRAWPREDATA);
+      _this46.addToPointParent(withdrawalPreDataNode, GlobalCfg.PREFAB_PARENT.WITHDRAWPREDATA);
 
-      _this47.hidProgress();
+      _this46.hidProgress();
     });
   },
 
@@ -2120,7 +2125,7 @@ var CommonFun = cc.Class({
    * @param {Object} data { }
    */
   showWithDrawError: function showWithDrawError(data) {
-    var _this48 = this;
+    var _this47 = this;
 
     var orderId = data.orderId;
     var amount = Number(data.amount);
@@ -2144,7 +2149,7 @@ var CommonFun = cc.Class({
       var WithDrawErrorTipsCtrl = withDrawErrorTipsNode.getComponent("WithDrawErrorTipsCtrl");
       WithDrawErrorTipsCtrl.setErrData(orderId, amount, time, msg);
 
-      _this48.addToPointParent(withDrawErrorTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWERRORTIPS);
+      _this47.addToPointParent(withDrawErrorTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWERRORTIPS);
     });
   },
 
@@ -2152,13 +2157,13 @@ var CommonFun = cc.Class({
    * 展示提现分享界面
    */
   showWithDrawShare: function showWithDrawShare() {
-    var _this49 = this;
+    var _this48 = this;
 
     var withdrawSharePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWSHARE);
     withdrawSharePrefabPromise.then(function (prefab) {
       var withdrawShareNode = cc.instantiate(prefab);
 
-      _this49.addToPointParent(withdrawShareNode, GlobalCfg.PREFAB_PARENT.WITHDRAWSHARE);
+      _this48.addToPointParent(withdrawShareNode, GlobalCfg.PREFAB_PARENT.WITHDRAWSHARE);
     });
   },
 
@@ -2167,7 +2172,7 @@ var CommonFun = cc.Class({
    * @param {Boolean} bool 是否可以直接关闭
    */
   showAdvancedMode: function showAdvancedMode(bool) {
-    var _this50 = this;
+    var _this49 = this;
 
     var path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE;
     var parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
@@ -2182,7 +2187,7 @@ var CommonFun = cc.Class({
       var advancedModeNode = cc.instantiate(prefab);
       var advancedModeCtrl = advancedModeNode.getComponent("AdvancedModeCtrl");
 
-      _this50.addToPointParent(advancedModeNode, parentNode);
+      _this49.addToPointParent(advancedModeNode, parentNode);
 
       advancedModeCtrl.show(bool);
     });
@@ -2192,7 +2197,7 @@ var CommonFun = cc.Class({
    * 
    */
   showNewRechargeTip: function showNewRechargeTip() {
-    var _this51 = this;
+    var _this50 = this;
 
     var path = GlobalCfg.PREFAB_PATH.NEW_FIRSTRECHARGETIPS;
     var parentNode = GlobalCfg.PREFAB_PARENT.FIRSTRECHARGETIPS;
@@ -2214,7 +2219,7 @@ var CommonFun = cc.Class({
     firstRechargePrefabPromise.then(function (prefab) {
       var firstRechargeTipsNode = cc.instantiate(prefab);
 
-      _this51.addToPointParent(firstRechargeTipsNode, parentNode);
+      _this50.addToPointParent(firstRechargeTipsNode, parentNode);
     });
   },
 
@@ -2222,25 +2227,25 @@ var CommonFun = cc.Class({
    * 展示Go Betting活动
    */
   showGoBetting: function showGoBetting() {
-    var _this52 = this;
+    var _this51 = this;
 
     var goBettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_GOBETTING);
     goBettingPrefabPromise.then(function (prefab) {
       var goBettingNode = cc.instantiate(prefab);
       var consumerActivities = goBettingNode.getComponent("ConsumerActivities");
 
-      _this52.addToPointParent(goBettingNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_GOBETTING);
+      _this51.addToPointParent(goBettingNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_GOBETTING);
     });
   },
   showPddActivity: function showPddActivity() {
-    var _this53 = this;
+    var _this52 = this;
 
     var pddPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_PDD_FIRST);
     pddPrefabPromise.then(function (prefab) {
       var pddFirstNode = cc.instantiate(prefab);
       var firstCtrl = pddFirstNode.getComponent("firstCtrl");
 
-      _this53.addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
+      _this52.addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
     });
   },
   // 服务器重启
@@ -2365,13 +2370,13 @@ var CommonFun = cc.Class({
    * 显示我的VIP
    */
   showMyVip: function showMyVip() {
-    var _this54 = this;
+    var _this53 = this;
 
     var myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
     myVipPrefabPromise.then(function (prefab) {
       var myVipNode = cc.instantiate(prefab);
 
-      _this54.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.MYVIP);
+      _this53.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.MYVIP);
     });
   },
 
@@ -2379,13 +2384,13 @@ var CommonFun = cc.Class({
    * 显示VIP幸运抽奖
    */
   showVipLuckyDraw: function showVipLuckyDraw() {
-    var _this55 = this;
+    var _this54 = this;
 
     var vipLuckyDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
     vipLuckyDrawPrefabPromise.then(function (prefab) {
       var vipLuckyDrawNode = cc.instantiate(prefab);
 
-      _this55.addToPointParent(vipLuckyDrawNode, GlobalCfg.PREFAB_PARENT.VIPLUCKYDRAW);
+      _this54.addToPointParent(vipLuckyDrawNode, GlobalCfg.PREFAB_PARENT.VIPLUCKYDRAW);
     });
   },
 
@@ -2393,7 +2398,7 @@ var CommonFun = cc.Class({
    * 显示VIP规则
    */
   showVipRules: function showVipRules(childViewType) {
-    var _this56 = this;
+    var _this55 = this;
 
     if (childViewType === void 0) {
       childViewType = "vipRules";
@@ -2405,7 +2410,7 @@ var CommonFun = cc.Class({
       var scr = vipRulesNode.getComponent("VipRulesCtrl");
       scr.setVipRulesChildViewType(childViewType);
 
-      _this56.addToPointParent(vipRulesNode, GlobalCfg.PREFAB_PARENT.VIPRULES);
+      _this55.addToPointParent(vipRulesNode, GlobalCfg.PREFAB_PARENT.VIPRULES);
     });
   },
 
@@ -2415,14 +2420,14 @@ var CommonFun = cc.Class({
    * @param {boolean} isBonus 
    */
   showVipRewardToast: function showVipRewardToast(amount, isBonus) {
-    var _this57 = this;
+    var _this56 = this;
 
     var vipRewardToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPREWARDTOAST);
     vipRewardToastPrefabPromise.then(function (prefab) {
       var vipRewardToastNode = cc.instantiate(prefab);
       var vipRewardToastCtrl = vipRewardToastNode.getComponent("VipRewardToastCtrl");
 
-      _this57.addToPointParent(vipRewardToastNode, GlobalCfg.PREFAB_PARENT.VIPREWARDTOAST);
+      _this56.addToPointParent(vipRewardToastNode, GlobalCfg.PREFAB_PARENT.VIPREWARDTOAST);
 
       vipRewardToastCtrl.setVipRewardToastAmount(amount, isBonus);
     });
@@ -2432,13 +2437,13 @@ var CommonFun = cc.Class({
    * 显示VIP充值弹框
    */
   showVipRechargeToast: function showVipRechargeToast() {
-    var _this58 = this;
+    var _this57 = this;
 
     var vipRechargeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRECHARGETOAST);
     vipRechargeToastPrefabPromise.then(function (prefab) {
       var vipRechargeToastNode = cc.instantiate(prefab);
 
-      _this58.addToPointParent(vipRechargeToastNode, GlobalCfg.PREFAB_PARENT.VIPRECHARGETOAST);
+      _this57.addToPointParent(vipRechargeToastNode, GlobalCfg.PREFAB_PARENT.VIPRECHARGETOAST);
     });
   },
 
@@ -2446,13 +2451,13 @@ var CommonFun = cc.Class({
    * 显示VIP升级弹框
    */
   showVipUpgradeToast: function showVipUpgradeToast() {
-    var _this59 = this;
+    var _this58 = this;
 
     var vipUpgradeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPUPGRADETOAST);
     vipUpgradeToastPrefabPromise.then(function (prefab) {
       var vipUpgradeToastNode = cc.instantiate(prefab);
 
-      _this59.addToPointParent(vipUpgradeToastNode, GlobalCfg.PREFAB_PARENT.VIPUPGRADETOAST);
+      _this58.addToPointParent(vipUpgradeToastNode, GlobalCfg.PREFAB_PARENT.VIPUPGRADETOAST);
     });
   },
 
@@ -2460,13 +2465,13 @@ var CommonFun = cc.Class({
    * 显示VIP快充弹框
    */
   showVipForOnceToast: function showVipForOnceToast() {
-    var _this60 = this;
+    var _this59 = this;
 
     var vipForOnceToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
     vipForOnceToastPrefabPromise.then(function (prefab) {
       var vipForOnceToastNode = cc.instantiate(prefab);
 
-      _this60.addToPointParent(vipForOnceToastNode, GlobalCfg.PREFAB_PARENT.VIPFORONCETOAST);
+      _this59.addToPointParent(vipForOnceToastNode, GlobalCfg.PREFAB_PARENT.VIPFORONCETOAST);
     });
   },
 
@@ -2770,13 +2775,13 @@ var CommonFun = cc.Class({
    * 显示游戏开始遮罩
    */
   showGameStartMask: function showGameStartMask() {
-    var _this61 = this;
+    var _this60 = this;
 
     var gameStartMaskPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESTARTMASK);
     gameStartMaskPrefabPromise.then(function (prefab) {
       var gameStartMaskNode = cc.instantiate(prefab);
 
-      _this61.addToPointParent(gameStartMaskNode, GlobalCfg.PREFAB_PARENT.GAMESTARTMASK);
+      _this60.addToPointParent(gameStartMaskNode, GlobalCfg.PREFAB_PARENT.GAMESTARTMASK);
     });
   },
 
@@ -2811,7 +2816,7 @@ var CommonFun = cc.Class({
    * @param {Number} targetSeat 默认-1，表示群发
    */
   showGameGifInteraction: function showGameGifInteraction(targetSeat) {
-    var _this62 = this;
+    var _this61 = this;
 
     if (targetSeat === void 0) {
       targetSeat = -1;
@@ -2823,7 +2828,7 @@ var CommonFun = cc.Class({
       var gameGifInteractionCtrl = gameGifInteractionNode.getComponent('GameGifInteractionCtrl');
       gameGifInteractionCtrl.setTargetSeat(targetSeat);
 
-      _this62.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
+      _this61.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
     });
   },
 
@@ -2835,7 +2840,7 @@ var CommonFun = cc.Class({
    * @returns 
    */
   playGameGifInteraction: function playGameGifInteraction(skeletonName, senderNode, targetNodeArr) {
-    var _this63 = this;
+    var _this62 = this;
 
     if (!Array.isArray(targetNodeArr) || targetNodeArr.length === 0) {
       return;
@@ -2854,16 +2859,16 @@ var CommonFun = cc.Class({
       var _loop = function _loop(i) {
         var targetNode = targetNodeArr[i];
 
-        var gameGifInteractionSkePrefabPromise = _this63.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTIONSKE);
+        var gameGifInteractionSkePrefabPromise = _this62.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTIONSKE);
 
         gameGifInteractionSkePrefabPromise.then(function (prefab) {
           var gameGifInteractionSkeNode = cc.instantiate(prefab);
 
-          _this63.addToPointParent(gameGifInteractionSkeNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
+          _this62.addToPointParent(gameGifInteractionSkeNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
 
           var gameGifInteractionSkeCtrl = gameGifInteractionSkeNode.getComponent('GameGifInteractionSkeCtrl');
 
-          var parentNode = _this63.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
+          var parentNode = _this62.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
 
           gameGifInteractionSkeCtrl.playGameGifSkeleton(skeletonName, senderNode, targetNode, parentNode);
         });
@@ -2884,7 +2889,7 @@ var CommonFun = cc.Class({
    * @param {Number} targetSeat 默认-1，表示群发
    */
   showGameWordInteraction: function showGameWordInteraction(targetSeat) {
-    var _this64 = this;
+    var _this63 = this;
 
     var gameWordInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTION);
     gameWordInteractionPrefabPromise.then(function (prefab) {
@@ -2892,7 +2897,7 @@ var CommonFun = cc.Class({
       var gameWordInteractionCtrl = gameWordInteractionNode.getComponent('GameWordInteractionCtrl');
       gameWordInteractionCtrl.setTargetSeat(targetSeat);
 
-      _this64.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
+      _this63.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
     });
   },
 
@@ -2905,7 +2910,7 @@ var CommonFun = cc.Class({
    * @returns 
    */
   playGameWordInteraction: function playGameWordInteraction(type, name, targetNode, offset) {
-    var _this65 = this;
+    var _this64 = this;
 
     if (cc.isValid(targetNode) == false) {
       return;
@@ -2917,11 +2922,11 @@ var CommonFun = cc.Class({
       var gameWordInteractionShowNode = cc.instantiate(prefab);
       var gameWordInteractionShowCtrl = gameWordInteractionShowNode.getComponent('GameWordInteractionShowCtrl');
 
-      var parentNode = _this65.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+      var parentNode = _this64.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
 
       gameWordInteractionShowCtrl.setGameWordInteraction(type, name, targetNode, offset, parentNode);
 
-      _this65.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+      _this64.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
     });
   },
 
@@ -2929,14 +2934,14 @@ var CommonFun = cc.Class({
    * 显示游戏中的设置界面
    */
   showGameSetting: function showGameSetting() {
-    var _this66 = this;
+    var _this65 = this;
 
     var gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
     gameSettingPrefabPromise.then(function (prefab) {
       var gameSettingNode = cc.instantiate(prefab);
       var gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
 
-      _this66.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+      _this65.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
     });
   },
 
@@ -2945,7 +2950,7 @@ var CommonFun = cc.Class({
    * @param {boolean} isShowSwitchBtn 是否显示换桌按钮
    */
   showGameMenu: function showGameMenu(isShowSwitchBtn) {
-    var _this67 = this;
+    var _this66 = this;
 
     if (isShowSwitchBtn === void 0) {
       isShowSwitchBtn = true;
@@ -2957,7 +2962,7 @@ var CommonFun = cc.Class({
       var gameMenuCtrl = gameSettingNode.getComponent('GameMenuCtrl');
       gameMenuCtrl.setSwitchTableBtnActive(isShowSwitchBtn);
 
-      _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
+      _this66.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
     });
   },
 
@@ -3114,7 +3119,7 @@ var CommonFun = cc.Class({
    * @param {Function} clickBtnPlayNowCallback 点击“Play Now”按钮的回调
    */
   showDiversionFreeTP: function showDiversionFreeTP(clickBtnPlayNowCallback) {
-    var _this68 = this;
+    var _this67 = this;
 
     if (GlobalCfg.IS_EXIST_DIVERSIONFREETP_VIEW) {
       return;
@@ -3128,7 +3133,7 @@ var CommonFun = cc.Class({
       var diversionFreeTPCtrl = diversionFreeTPNode.getComponent('DiversionFreeTPCtrl');
       diversionFreeTPCtrl.setDiversionFreeTPBtnPlayNowCallback(clickBtnPlayNowCallback);
 
-      _this68.addToPointParent(diversionFreeTPNode, GlobalCfg.PREFAB_PARENT.DIVERSIONFREETP);
+      _this67.addToPointParent(diversionFreeTPNode, GlobalCfg.PREFAB_PARENT.DIVERSIONFREETP);
     });
   },
 
@@ -3303,14 +3308,14 @@ var CommonFun = cc.Class({
    * 显示签到弹窗
    */
   showSignToast: function showSignToast() {
-    var _this69 = this;
+    var _this68 = this;
 
     var signPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SIGN);
     signPrefabPromise.then(function (prefab) {
       var signNode = cc.instantiate(prefab);
       var gameMenuCtrl = signNode.getComponent('SignCtrl');
 
-      _this69.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
+      _this68.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
     });
   },
 
@@ -3345,7 +3350,7 @@ var CommonFun = cc.Class({
    * 显示破产弹窗
    */
   showBankruptcy: function showBankruptcy() {
-    var _this70 = this;
+    var _this69 = this;
 
     var isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
 
@@ -3366,7 +3371,7 @@ var CommonFun = cc.Class({
       var BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
       BankruptcyGiftCtrl.init();
 
-      _this70.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+      _this69.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
     });
   }
 });
