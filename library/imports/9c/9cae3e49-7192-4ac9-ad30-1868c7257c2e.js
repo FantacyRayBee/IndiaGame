@@ -32,7 +32,7 @@ cc.Class({
 
     var coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
 
-    var getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100; //本次充值获得的代金券
+    var getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 + changed; //本次充值获得的代金券
 
     CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
 

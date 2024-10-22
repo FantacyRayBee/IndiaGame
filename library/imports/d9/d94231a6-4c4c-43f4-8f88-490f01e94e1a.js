@@ -1472,7 +1472,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
 
     case "5":
       // 5服
-      GlobalCfg.APP_VERSION = "5.0.0.1";
+      GlobalCfg.APP_VERSION = "5.0.0.2";
       GlobalCfg.APP_INFO_URL = "https://download.tkptat.in/production/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download.tkptat.in/production/AppConfig.json"; // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;

@@ -11,6 +11,10 @@ cc.Class({
       "default": null,
       type: cc.SpriteFrame
     },
+    sprite_lubi_coin: {
+      "default": null,
+      type: cc.SpriteFrame
+    },
     sprite_silver_coin: {
       "default": null,
       type: cc.SpriteFrame
@@ -122,11 +126,17 @@ cc.Class({
         sprite.node.setContentSize(this.silver_size);
         break;
 
+      case 13:
+        sprite.spriteFrame = this.sprite_lubi_coin;
+        sprite.node.setPosition(this.gold_pos);
+        sprite.node.setContentSize(this.gold_pos);
+        break;
+
       default:
         break;
     }
 
-    lab_coin.string = "\u20B9" + amount;
+    lab_coin.string = "" + amount;
   }
 });
 

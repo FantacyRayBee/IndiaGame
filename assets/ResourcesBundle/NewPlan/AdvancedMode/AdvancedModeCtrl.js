@@ -28,7 +28,7 @@ cc.Class({
 
         let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
         let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
-        let getBouns = GlobalCfg.USER_DATAS.firstGetBonus/ 100; //本次充值获得的代金券
+        let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
         CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
     },
 

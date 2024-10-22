@@ -61,15 +61,15 @@ cc.Class({
               return _this2.waitForSeconds(0.7);
 
             case 2:
-              CommonFun.getInstance().startTextAnimation(_this2.lab_1, _this2.startCoin, 0, function () {}, 0.5);
+              CommonFun.getInstance().startTextAnimation(_this2.lab_1, _this2.startCoin, 0, function () {}, 2.3);
               _context.next = 5;
-              return _this2.waitForSeconds(1.5);
+              return _this2.waitForSeconds(2.1);
 
             case 5:
-              cc.tween(_this2.img_coin2).to(0.5, {
+              cc.tween(_this2.img_coin2).to(1.2, {
                 scale: 1
               }).start();
-              CommonFun.getInstance().startTextAnimation(_this2.lab_2, 0, _this2.startCoin, function () {}, 0.5);
+              CommonFun.getInstance().startTextAnimation(_this2.lab_2, 0, _this2.startCoin, function () {}, 2.3);
               _context.next = 9;
               return _this2.waitForSeconds(1);
 
@@ -94,7 +94,7 @@ cc.Class({
 
     if (this.bonus > 0) {
       CommonFun.getInstance().showRewardsTips([{
-        id: 10,
+        id: 13,
         amount: this.coin
       }, {
         id: 12,
@@ -102,7 +102,7 @@ cc.Class({
       }]);
     } else {
       CommonFun.getInstance().showRewardsTips([{
-        id: 10,
+        id: 13,
         amount: this.coin
       }]);
     }
