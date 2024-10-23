@@ -49,6 +49,8 @@ cc.Class({
     this.betAmountArrIndex = 0;
     this.finishedFruitItemNum = 0;
     this.isRunningFruitAnim = false;
+    this.height = 150; // 每个水果的高度
+
     this.paymentSwitch = false;
     this.frees = [];
     this.isHaveMianFeiRecord = false;
@@ -536,7 +538,7 @@ cc.Class({
         item.shu = i;
 
         _this2.scheduleOnce(function () {
-          _this2.runFruitItemAnim(item, item.y, item.y + 165);
+          _this2.runFruitItemAnim(item, item.y, item.y + _this2.height);
         }, fruitContentTime * i);
       };
 
@@ -550,6 +552,8 @@ cc.Class({
     ;
   },
   runFruitItemAnim: function runFruitItemAnim(node, statrPositionY, endedPositionY) {
+    var _this3 = this;
+
     var self = this;
     node.repeat += 1;
     node.setPosition(cc.v2(0, statrPositionY));
@@ -571,8 +575,8 @@ cc.Class({
       easing: easeType
     }).call(function () {
       if (repeat == 20) {
-        if (endedPositionY >= 330) {
-          node.setPosition(cc.v2(0, -330));
+        if (endedPositionY >= _this3.height * 2) {
+          node.setPosition(cc.v2(0, -(_this3.height * 2)));
         }
 
         ;
@@ -582,7 +586,7 @@ cc.Class({
 
       ;
 
-      if (endedPositionY >= 330) {
+      if (endedPositionY >= _this3.height * 2) {
         var src = node.getComponent('fruitItemCtrl');
 
         if (repeat == 17 && index == 0) {
@@ -611,9 +615,9 @@ cc.Class({
         }
 
         ;
-        self.runFruitItemAnim(node, -330, -165);
+        self.runFruitItemAnim(node, -(_this3.height * 2), -_this3.height);
       } else {
-        self.runFruitItemAnim(node, endedPositionY, endedPositionY + 165);
+        self.runFruitItemAnim(node, endedPositionY, endedPositionY + _this3.height);
       }
 
       ;
@@ -653,7 +657,7 @@ cc.Class({
     ;
   },
   showResultAnima: function showResultAnima() {
-    var _this3 = this;
+    var _this4 = this;
 
     if (this.gameResult) {
       this.setUserDiamond(this.gameResult.userinfo.diamond);
@@ -703,52 +707,52 @@ cc.Class({
 
       var startNextSpin = function startNextSpin() {
         // this.isRunningFruitAnim = false;
-        if (_this3.isRunningFruitAnim) {
+        if (_this4.isRunningFruitAnim) {
           return;
         }
 
         ;
 
-        _this3.unschedule(startNextSpin);
+        _this4.unschedule(startNextSpin);
 
-        if (_this3.gameResult.mianfeinum > 0) {
-          if (_this3.gameResult.mianfeinum == 10 && _this3.isHaveMianFeiRecord == false) {
-            _this3.isHaveMianFeiRecord = true;
-            _this3.selectAutoBetStr = _this3.lab_autoBetCiShu.string;
-            _this3.selectAutoStatus = _this3.toggle_auto.isChecked;
+        if (_this4.gameResult.mianfeinum > 0) {
+          if (_this4.gameResult.mianfeinum == 10 && _this4.isHaveMianFeiRecord == false) {
+            _this4.isHaveMianFeiRecord = true;
+            _this4.selectAutoBetStr = _this4.lab_autoBetCiShu.string;
+            _this4.selectAutoStatus = _this4.toggle_auto.isChecked;
           }
 
           ;
-          _this3.lab_autoBetCiShu.string = _this3.gameResult.mianfeinum;
-          _this3.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
-          _this3.toggle_auto.interactable = false;
-          _this3.autoSpineNode.active = true;
-          var amount = parseInt(_this3.lab_betAmount.string);
+          _this4.lab_autoBetCiShu.string = _this4.gameResult.mianfeinum;
+          _this4.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
+          _this4.toggle_auto.interactable = false;
+          _this4.autoSpineNode.active = true;
+          var amount = parseInt(_this4.lab_betAmount.string);
           var proroID = 'gameservice.call';
           var message = 'CallReq';
           GameServerManager.send(proroID, message, {
             amount: amount * 100
           });
         } else {
-          if (_this3.isHaveMianFeiRecord) {
-            _this3.isHaveMianFeiRecord = false;
-            _this3.toggle_auto.isChecked = _this3.selectAutoStatus;
-            _this3.lab_autoBetCiShu.string = _this3.selectAutoBetStr;
+          if (_this4.isHaveMianFeiRecord) {
+            _this4.isHaveMianFeiRecord = false;
+            _this4.toggle_auto.isChecked = _this4.selectAutoStatus;
+            _this4.lab_autoBetCiShu.string = _this4.selectAutoBetStr;
           }
 
           ;
-          _this3.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-          _this3.toggle_auto.interactable = true;
-          _this3.autoSpineNode.active = false;
+          _this4.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+          _this4.toggle_auto.interactable = true;
+          _this4.autoSpineNode.active = false;
 
-          _this3.curRoundAddCoinFinish();
+          _this4.curRoundAddCoinFinish();
 
-          var isAuto = _this3.toggle_auto.isChecked;
+          var isAuto = _this4.toggle_auto.isChecked;
 
           if (isAuto) {
-            _this3.sendCallReq();
+            _this4.sendCallReq();
           } else {
-            _this3.recoverySpinBtnEvent();
+            _this4.recoverySpinBtnEvent();
           }
 
           ;
@@ -763,21 +767,21 @@ cc.Class({
     ;
   },
   curRoundAddCoinFinish: function curRoundAddCoinFinish() {
-    var _this4 = this;
+    var _this5 = this;
 
     if (cc.isValid(this)) {
       var minLimit = this.betAmountArr[0] || 0;
       minLimit = parseInt(minLimit) * 100;
       CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, function () {
-        if (cc.isValid(_this4)) {
-          _this4.toggle_auto.isChecked = false;
+        if (cc.isValid(_this5)) {
+          _this5.toggle_auto.isChecked = false;
         }
       });
       CommonFun.getInstance().showWithdrawToastInGame();
     }
   },
   showXianNun: function showXianNun(totalMultiple, isFast) {
-    var _this5 = this;
+    var _this6 = this;
 
     if (this.gameResult) {
       var lineArr = [];
@@ -929,18 +933,18 @@ cc.Class({
           var lineTime = _i3 == 0 ? 0 : pointTime * 2.5 * (lineArr[_i3 - 1].length - 1);
           allTime += lineTime;
 
-          _this5.scheduleOnce(function () {
+          _this6.scheduleOnce(function () {
             var _loop3 = function _loop3(k, len1) {
               var itemNode1 = typeArr[k];
               var itemNode2 = typeArr[k + 1];
 
-              _this5.scheduleOnce(function () {
-                _this5.drawLine(itemNode1, itemNode2, pointTime);
+              _this6.scheduleOnce(function () {
+                _this6.drawLine(itemNode1, itemNode2, pointTime);
               }, pointTime * k);
 
               if (k == len1 - 2) {
-                _this5.scheduleOnce(function () {
-                  _this5.isRunningFruitAnim = false;
+                _this6.scheduleOnce(function () {
+                  _this6.isRunningFruitAnim = false;
                 }, pointTime * k + 3);
               }
 
@@ -980,7 +984,7 @@ cc.Class({
 
         ;
         this.scheduleOnce(function () {
-          _this5.isRunningFruitAnim = false;
+          _this6.isRunningFruitAnim = false;
         }, 1);
       }
 
@@ -1022,12 +1026,12 @@ cc.Class({
     });
   },
   sendCallReq: function sendCallReq() {
-    var _this6 = this;
+    var _this7 = this;
 
     if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
-        if (_this6.paymentSwitch) {
+        if (_this7.paymentSwitch) {
           CommonFun.getInstance().showSmallAddCash();
         }
       }, false);
@@ -1042,7 +1046,7 @@ cc.Class({
     if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
       this.recoverySpinBtnEvent();
       CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-        if (_this6.paymentSwitch) {
+        if (_this7.paymentSwitch) {
           CommonFun.getInstance().showSmallAddCash();
         }
       }, false);

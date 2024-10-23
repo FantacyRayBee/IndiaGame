@@ -55,6 +55,8 @@ cc.Class({
         this.finishedFruitItemNum = 0;
         this.isRunningFruitAnim = false; 
 
+        this.height = 150; // 每个水果的高度
+
         this.paymentSwitch = false;
 
         this.frees = [];
@@ -558,7 +560,7 @@ cc.Class({
                 item.index = k;
                 item.shu = i;
                 this.scheduleOnce(() => {
-                    this.runFruitItemAnim(item, item.y, item.y + 165);
+                    this.runFruitItemAnim(item, item.y, item.y + this.height);
                 }, fruitContentTime * i);
             };
         };
@@ -585,13 +587,13 @@ cc.Class({
         )
         .call(() => {
             if (repeat == 20) {
-                if (endedPositionY >= 330) {
-                    node.setPosition(cc.v2(0, -330));
+                if (endedPositionY >= this.height * 2) {
+                    node.setPosition(cc.v2(0, -(this.height * 2)));
                 };
                 self.checkAnimFinish();
                 return;
             };
-            if (endedPositionY >= 330) {
+            if (endedPositionY >= this.height * 2) {
                 let src = node.getComponent('fruitItemCtrl');
                 if (repeat == 17 && index == 0) {
                     let fruitType = self.gameResult.cards[shu].cards[0];
@@ -619,10 +621,10 @@ cc.Class({
                     src.setFruitSkeletonJing(num);
                     node.fruitType = num;
                 };
-                self.runFruitItemAnim(node, -330, -165);
+                self.runFruitItemAnim(node, -(this.height * 2), -this.height);
             }
             else {
-                self.runFruitItemAnim(node, endedPositionY, endedPositionY + 165);
+                self.runFruitItemAnim(node, endedPositionY, endedPositionY + this.height);
             };
         })
         .start();
