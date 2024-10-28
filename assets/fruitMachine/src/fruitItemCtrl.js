@@ -28,7 +28,7 @@ cc.Class({
 
         this.skeletonNameArr2 = [
             'maya_icon_1', //正常元素
-            'maya_icon_2', //wild，scarrent元素
+            'maya_icon_2', //wild，scatter元素
         ];
     },
 
@@ -75,7 +75,7 @@ cc.Class({
         if (this.skeleton_kuang && !this.skeleton_kuang.node.active) {
             this.skeleton_kuang.node.active = true
             this.skeleton_fruit.node.active = true;
-            this.skeleton_kuang.setAnimation(0, 'animation', true);
+            // this.skeleton_kuang.setAnimation(0, 'LOCK_loop', true);
         };
     },
 

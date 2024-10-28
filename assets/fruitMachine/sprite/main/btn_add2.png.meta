@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "fe562d40-3396-4019-ae30-9bfc71716fa2",
+  "uuid": "6fc0534b-6ef5-4911-9494-dcc2ab80fd13",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -12,11 +12,11 @@
   "height": 44,
   "platformSettings": {},
   "subMetas": {
-    "btn_add": {
+    "btn_add2": {
       "ver": "1.0.6",
-      "uuid": "7c2b9d06-d8b4-41f7-a8ba-593f26e8b2c6",
+      "uuid": "4db97af3-474d-47dd-a841-0cf4c53a22c5",
       "importer": "sprite-frame",
-      "rawTextureUuid": "fe562d40-3396-4019-ae30-9bfc71716fa2",
+      "rawTextureUuid": "6fc0534b-6ef5-4911-9494-dcc2ab80fd13",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -24,10 +24,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 79,
-      "height": 106,
-      "rawWidth": 79,
-      "rawHeight": 106,
+      "width": 78,
+      "height": 44,
+      "rawWidth": 78,
+      "rawHeight": 44,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

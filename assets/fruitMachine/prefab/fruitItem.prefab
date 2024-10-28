@@ -336,8 +336,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 196.92,
+      "height": 176.36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -388,7 +388,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "animation",
+    "defaultAnimation": "LOCK_Loop",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -399,13 +399,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "animation",
+    "_animationName": "LOCK_Loop",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "5da91794-7555-46f3-8b50-76491eef45a0"
+      "__uuid__": "5c33eed2-bb59-4325-87ca-77dae4778dd8"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
