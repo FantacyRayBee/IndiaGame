@@ -524,11 +524,6 @@
     "meta": 1728961105343,
     "relativePath": "cricketGame"
   },
-  "d5807b0b-dfa3-4d14-b91d-357d081b757e": {
-    "asset": 1730101419354,
-    "meta": 1730101520201,
-    "relativePath": "fruitMachine"
-  },
   "79c8144c-a359-4704-ab84-bf4bb53be11e": {
     "asset": 1728960014802,
     "meta": 1728961105345,
@@ -560,8 +555,8 @@
     "relativePath": "lhdGame"
   },
   "a8eacbcf-fbef-4465-84b3-524340df9455": {
-    "asset": 1729581843617,
-    "meta": 1729668384284,
+    "asset": 1730189312373,
+    "meta": 1730189328294,
     "relativePath": "Main"
   },
   "8fc902c6-4301-45e4-a71d-b923f1634160": {
@@ -753,36 +748,6 @@
     "asset": 1728960014124,
     "meta": 1728961105375,
     "relativePath": "cricketGame\\scripts"
-  },
-  "119f1e15-141a-4f28-bec2-114d841b1451": {
-    "asset": 1730101419331,
-    "meta": 1730101520202,
-    "relativePath": "fruitMachine\\font"
-  },
-  "32e667c8-5ef9-4a59-b0cf-1c36ec4649e8": {
-    "asset": 1730101419355,
-    "meta": 1730101520202,
-    "relativePath": "fruitMachine\\prefab"
-  },
-  "9bdf7e28-df2f-41cb-9892-4242df8860fe": {
-    "asset": 1729216913515,
-    "meta": 1729475582364,
-    "relativePath": "fruitMachine\\skeleton"
-  },
-  "31492e51-ebcc-48cf-a86b-9b0c687c97c1": {
-    "asset": 1728960014283,
-    "meta": 1728961105378,
-    "relativePath": "fruitMachine\\sound"
-  },
-  "3f477dd4-b055-4748-bfc9-1bd1ec412695": {
-    "asset": 1730101419349,
-    "meta": 1730101520203,
-    "relativePath": "fruitMachine\\sprite"
-  },
-  "674eccc7-f8ec-4549-af35-0265551a7c31": {
-    "asset": 1730101419358,
-    "meta": 1730101520204,
-    "relativePath": "fruitMachine\\src"
   },
   "c902967a-d68e-41b4-b4fc-670f5380c14b": {
     "asset": 1728960014396,
@@ -1470,8 +1435,8 @@
     "relativePath": "resources\\pem"
   },
   "015e5320-2be4-4e3c-98ef-d8e41a147c8e": {
-    "asset": 1728960017269,
-    "meta": 1728961105458,
+    "asset": 1730189312367,
+    "meta": 1730189328677,
     "relativePath": "resources\\proto"
   },
   "66173686-75bd-47c9-b9ff-59a130f372d8": {
@@ -1505,8 +1470,8 @@
     "relativePath": "ResourcesBundle\\res"
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
-    "asset": 1728960021797,
-    "meta": 1728961105461,
+    "asset": 1730189312379,
+    "meta": 1730189328677,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -3309,16 +3274,6 @@
     "meta": 1727158445029,
     "relativePath": "Benz\\BenzSke\\chouma_fei.json"
   },
-  "3223abc6-1de5-40a2-9893-7d5928b32943": {
-    "asset": 1724821647000,
-    "meta": 1727158445030,
-    "relativePath": "fruitMachine\\font\\totalWin.fnt"
-  },
-  "ff6b42d7-34b8-434f-96e0-57affe45a72b": {
-    "asset": 1724821647000,
-    "meta": 1727158445031,
-    "relativePath": "fruitMachine\\font\\winFont.fnt"
-  },
   "1468a38a-6baf-431f-976b-081b17ae871e": {
     "asset": 1724821647000,
     "meta": 1727158432343,
@@ -3328,16 +3283,6 @@
     "asset": 1724821647000,
     "meta": 1727158432346,
     "relativePath": "Benz\\Sound\\w2.mp3"
-  },
-  "129f8b4a-87b7-44f5-b607-9cb834420881": {
-    "asset": 1724821647000,
-    "meta": 1727158432349,
-    "relativePath": "fruitMachine\\skeleton\\bar.atlas"
-  },
-  "e173018d-461b-41f6-b09b-c7bba0ee4521": {
-    "asset": 1724821647000,
-    "meta": 1727158432351,
-    "relativePath": "fruitMachine\\skeleton\\777.atlas"
   },
   "578195f7-6e73-490b-8db2-a15937b07935": {
     "asset": 1724821647000,
@@ -3359,260 +3304,35 @@
     "meta": 1727158445036,
     "relativePath": "Benz\\BenzSke\\yuananniu_shuaguang.json"
   },
-  "98e2d1d6-665d-4cd8-96ad-c4ba12f354e1": {
-    "asset": 1724821647000,
-    "meta": 1727158432358,
-    "relativePath": "fruitMachine\\skeleton\\juzi.atlas"
-  },
   "e57e37a4-be45-4f05-8f15-00ad8c26e98a": {
     "asset": 1724821647000,
     "meta": 1727158445037,
     "relativePath": "Benz\\BenzSke\\yuananniu_zhuanquan.json"
-  },
-  "e4cf6759-f6f4-495f-b459-39379825ba07": {
-    "asset": 1724821647000,
-    "meta": 1730101583940,
-    "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "81e3a566-6fa5-4b7a-b5ec-1285dbec5be3": {
     "asset": 1724821647000,
     "meta": 1727158445044,
     "relativePath": "Benz\\BenzSke\\mingche_all.json"
   },
-  "7fc7a444-2527-430c-8c34-305307436c63": {
-    "asset": 1724821647000,
-    "meta": 1730101583942,
-    "relativePath": "fruitMachine\\skeleton\\bar.skel"
-  },
-  "014cba24-244a-4c9d-8ca5-d8cc92841f73": {
-    "asset": 1724821647000,
-    "meta": 1727158432369,
-    "relativePath": "fruitMachine\\skeleton\\lingdang.atlas"
-  },
-  "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
-    "asset": 1724821647000,
-    "meta": 1727158432356,
-    "relativePath": "fruitMachine\\font\\totalWin.png"
-  },
-  "98fc052a-da65-4a4c-baaa-156f3fb008f3": {
-    "asset": 1724821647000,
-    "meta": 1727158432372,
-    "relativePath": "fruitMachine\\skeleton\\pingguo.atlas"
-  },
-  "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
-    "asset": 1724821647000,
-    "meta": 1730101583940,
-    "relativePath": "fruitMachine\\skeleton\\juzi.skel"
-  },
-  "6c95fe0e-2b08-4a9b-a991-53c408aeef4d": {
-    "asset": 1724821647000,
-    "meta": 1727158432375,
-    "relativePath": "fruitMachine\\skeleton\\putao.atlas"
-  },
-  "546da097-7128-413a-afec-f885c0eb1bd9": {
-    "asset": 1724821647000,
-    "meta": 1727158432362,
-    "relativePath": "fruitMachine\\font\\winFont.png"
-  },
-  "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
-    "asset": 1724821647000,
-    "meta": 1727158432378,
-    "relativePath": "fruitMachine\\skeleton\\qingmang.atlas"
-  },
-  "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
-    "asset": 1724821647000,
-    "meta": 1730101583943,
-    "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
-  },
-  "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
-    "asset": 1724821647000,
-    "meta": 1727158432365,
-    "relativePath": "fruitMachine\\skeleton\\bar.png"
-  },
-  "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
-    "asset": 1724821647000,
-    "meta": 1730101583941,
-    "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
-  },
-  "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
-    "asset": 1724821647000,
-    "meta": 1730101583943,
-    "relativePath": "fruitMachine\\skeleton\\putao.skel"
-  },
-  "24731f90-8302-4aca-a43f-a269647f5b08": {
-    "asset": 1724821647000,
-    "meta": 1727158432366,
-    "relativePath": "fruitMachine\\skeleton\\777.png"
-  },
-  "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
-    "asset": 1724821647000,
-    "meta": 1727158432388,
-    "relativePath": "fruitMachine\\skeleton\\sanyecao.atlas"
-  },
-  "d8abb29c-c397-4fde-9114-5136149992a4": {
-    "asset": 1724821647000,
-    "meta": 1727158432392,
-    "relativePath": "fruitMachine\\skeleton\\uiquan.atlas"
-  },
-  "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
-    "asset": 1724821647000,
-    "meta": 1727158432378,
-    "relativePath": "fruitMachine\\skeleton\\juzi.png"
-  },
-  "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
-    "asset": 1724821647000,
-    "meta": 1730101583942,
-    "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
-  },
-  "48f777ad-c3bc-4954-90c2-07ec0ed2467e": {
-    "asset": 1724821647000,
-    "meta": 1727158432399,
-    "relativePath": "fruitMachine\\skeleton\\wild.atlas"
-  },
-  "8608e7b9-1088-47ea-a679-6399442603bb": {
-    "asset": 1724821647000,
-    "meta": 1727158432385,
-    "relativePath": "fruitMachine\\skeleton\\lingdang.png"
-  },
-  "fba16937-b520-4239-8dd4-bd9f08e6710c": {
-    "asset": 1724821647000,
-    "meta": 1730101583944,
-    "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
-  },
-  "4d8021f5-37c4-4e64-9570-432c08b0f238": {
-    "asset": 1724821647000,
-    "meta": 1730101583945,
-    "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
-  },
-  "fbfa0fdf-5f17-4e1e-b737-4c123fd77528": {
-    "asset": 1724821647000,
-    "meta": 1727158432406,
-    "relativePath": "fruitMachine\\skeleton\\xigua.atlas"
-  },
-  "d4b99e35-f559-424b-a98e-d3e4a10bc9d9": {
-    "asset": 1724821647000,
-    "meta": 1727158432389,
-    "relativePath": "fruitMachine\\skeleton\\pingguo.png"
-  },
-  "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
-    "asset": 1724821647000,
-    "meta": 1730101583945,
-    "relativePath": "fruitMachine\\skeleton\\wild.skel"
-  },
-  "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
-    "asset": 1724821647000,
-    "meta": 1727158432393,
-    "relativePath": "fruitMachine\\skeleton\\putao.png"
-  },
-  "0f75adde-5095-4a30-aa1d-bc02533c7dea": {
-    "asset": 1724821647000,
-    "meta": 1727158432410,
-    "relativePath": "fruitMachine\\skeleton\\yingtao.atlas"
-  },
-  "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
-    "asset": 1724821647000,
-    "meta": 1730101583946,
-    "relativePath": "fruitMachine\\skeleton\\xigua.skel"
-  },
-  "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
-    "asset": 1724821647000,
-    "meta": 1727158432400,
-    "relativePath": "fruitMachine\\skeleton\\qingmang.png"
-  },
-  "6877db0b-48c2-420b-aff7-7df0a19b283a": {
-    "asset": 1724821647000,
-    "meta": 1727158432417,
-    "relativePath": "fruitMachine\\skeleton\\zhuan.atlas"
-  },
-  "0430044f-25ce-49e7-8fe3-12daef78c352": {
-    "asset": 1730101419346,
-    "meta": 1730101520220,
-    "relativePath": "fruitMachine\\sprite\\bg"
-  },
-  "feeea7b7-4245-4ae8-9a26-e5e7e560c54f": {
-    "asset": 1730101419357,
-    "meta": 1730101520222,
-    "relativePath": "fruitMachine\\sprite\\main"
-  },
-  "afe69c46-f65a-43ce-a034-447ec67ba92f": {
-    "asset": 1724821647000,
-    "meta": 1727158432408,
-    "relativePath": "fruitMachine\\skeleton\\uiquan.png"
-  },
-  "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
-    "asset": 1724821647000,
-    "meta": 1730101583946,
-    "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
-  },
-  "01f321d4-a9f6-418d-95c7-803ef2bfd419": {
-    "asset": 1724821647000,
-    "meta": 1727158432412,
-    "relativePath": "fruitMachine\\skeleton\\sanyecao.png"
-  },
   "2b941c98-f3ab-4a0c-82cd-c9c70d0befe3": {
     "asset": 1724821647000,
     "meta": 1727158432510,
     "relativePath": "horseRaceGame\\horseFab\\betCoin.prefab"
-  },
-  "0cfca949-9645-45bb-9628-7f18a77135ad": {
-    "asset": 1724821647000,
-    "meta": 1727158432420,
-    "relativePath": "fruitMachine\\skeleton\\wild.png"
-  },
-  "790757c7-1078-49ec-9e5b-0aabc0a123b4": {
-    "asset": 1724821647000,
-    "meta": 1727158432511,
-    "relativePath": "fruitMachine\\sound\\win-fast.mp3"
-  },
-  "5da91794-7555-46f3-8b50-76491eef45a0": {
-    "asset": 1724821647000,
-    "meta": 1730101583951,
-    "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
-  },
-  "e55d99a3-a054-4a4b-9868-73e1fddef77d": {
-    "asset": 1724821647000,
-    "meta": 1727158432514,
-    "relativePath": "fruitMachine\\sound\\win.mp3"
-  },
-  "5ea8f161-98fe-4ac5-a4e6-ca2557294b68": {
-    "asset": 1724821647000,
-    "meta": 1727158432516,
-    "relativePath": "fruitMachine\\sound\\zhuang-fast.mp3"
   },
   "f681825f-1f02-4df6-87e9-38fee7282e76": {
     "asset": 1724821647000,
     "meta": 1727158432518,
     "relativePath": "horseRaceGame\\horseFab\\horseRacePlayer.prefab"
   },
-  "52bd6c77-0c6a-4672-b34d-5404f02ceb12": {
-    "asset": 1724821647000,
-    "meta": 1727158432519,
-    "relativePath": "fruitMachine\\sound\\zhuang.mp3"
-  },
-  "95410173-ae9d-42ae-aa01-9e9293242451": {
-    "asset": 1724821647000,
-    "meta": 1727158432434,
-    "relativePath": "fruitMachine\\skeleton\\xigua.png"
-  },
   "69693fc3-bdac-4465-96d0-28c26805e683": {
     "asset": 1724821647000,
     "meta": 1727158432521,
     "relativePath": "horseRaceGame\\horseFab\\horseRacePlayerItem.prefab"
   },
-  "a97dd78b-c764-4b1c-8978-a46e42b137f0": {
-    "asset": 1724821647000,
-    "meta": 1727158432522,
-    "relativePath": "fruitMachine\\sound\\bg.mp3"
-  },
   "2574c929-6067-4933-aa64-afd2334a8560": {
     "asset": 1724821647000,
     "meta": 1727158432523,
     "relativePath": "horseRaceGame\\horseFab\\horseRacePlayerList.prefab"
-  },
-  "db47b3d1-6808-4c86-814b-6bce5d55f561": {
-    "asset": 1724821647000,
-    "meta": 1727158432507,
-    "relativePath": "fruitMachine\\skeleton\\yingtao.png"
   },
   "3f56b9cb-d02e-4e5e-95d5-f058d70bbbdd": {
     "asset": 1724821647000,
@@ -3653,11 +3373,6 @@
     "asset": 1724821647000,
     "meta": 1727158432536,
     "relativePath": "horseRaceGame\\horseFab\\node_horse_4.prefab"
-  },
-  "9e24db8d-8574-4017-b253-1b388c2e1dc7": {
-    "asset": 1724821647000,
-    "meta": 1727158432525,
-    "relativePath": "fruitMachine\\skeleton\\zhuan.png"
   },
   "31102d8e-12b4-4997-baf8-d1b077998572": {
     "asset": 1724821647000,
@@ -7310,8 +7025,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips"
   },
   "a64dd4d3-43c2-422c-b990-8fb736db869a": {
-    "asset": 1728960020322,
-    "meta": 1728961105575,
+    "asset": 1730189312376,
+    "meta": 1730189328871,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule"
   },
   "184e46ca-a4d7-482b-a9c6-beb48a63b1e2": {
@@ -7445,8 +7160,8 @@
     "relativePath": "ResourcesBundle\\sound\\pddSound"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1724821647000,
-    "meta": 1727158434586,
+    "asset": 1730189312378,
+    "meta": 1730189329262,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "08edcc4f-fcae-4b29-8c0b-ea601305efcf": {
@@ -9499,11 +9214,6 @@
     "meta": 1728961105623,
     "relativePath": "zeusGame\\spines\\ZSSF"
   },
-  "e9b9747b-7186-4547-9af5-60b15fc106db": {
-    "asset": 1729581833348,
-    "meta": 1729668384444,
-    "relativePath": "zeusGame\\src\\zeusAudiosCtrl.js"
-  },
   "13273704-4881-405d-9f1e-4b4edc1f4cf6": {
     "asset": 1724821647000,
     "meta": 1727158436565,
@@ -9578,11 +9288,6 @@
     "asset": 1729581833355,
     "meta": 1729668384813,
     "relativePath": "zeusGame\\src\\zeusRightAreaCtrl.js"
-  },
-  "4bc98a51-e288-4894-aeae-20766687af1b": {
-    "asset": 1729581833356,
-    "meta": 1729668384860,
-    "relativePath": "zeusGame\\src\\zeusSceneCtrl.js"
   },
   "fb836837-375a-473f-be4e-d4ecde4b6de2": {
     "asset": 1728960024898,
@@ -10859,131 +10564,6 @@
     "meta": 1727158437548,
     "relativePath": "cricketGame\\res\\sound\\time3-2.mp3"
   },
-  "c62ad9fc-cbee-4d2c-9ad0-cd4b52c9d97c": {
-    "asset": 1724821647000,
-    "meta": 1727158437555,
-    "relativePath": "fruitMachine\\sprite\\bg\\bg_sdh.png"
-  },
-  "b0208577-9fdf-4b35-8a81-2d5664ae3029": {
-    "asset": 1724821647000,
-    "meta": 1727158437557,
-    "relativePath": "fruitMachine\\sprite\\bg\\bg_xdh.png"
-  },
-  "2101933c-87a1-40cd-a442-64bdc0caf7b4": {
-    "asset": 1724821647000,
-    "meta": 1727158437558,
-    "relativePath": "fruitMachine\\sprite\\main\\bg_jb.png"
-  },
-  "483b2706-634d-4fef-9c7f-250208da8a11": {
-    "asset": 1724821647000,
-    "meta": 1727158437559,
-    "relativePath": "fruitMachine\\sprite\\main\\bg_tc.png"
-  },
-  "409c3d96-7252-4eb4-84a3-26711010e7aa": {
-    "asset": 1724821647000,
-    "meta": 1727158437564,
-    "relativePath": "fruitMachine\\sprite\\bg\\bg_k-min.png"
-  },
-  "e3b5ed79-752f-43a3-be7b-87b79a9625d9": {
-    "asset": 1724821647000,
-    "meta": 1727158437566,
-    "relativePath": "fruitMachine\\sprite\\main\\bg_xz.png"
-  },
-  "deb19502-26c9-4a44-982a-6a47759b3927": {
-    "asset": 1724821647000,
-    "meta": 1727158437570,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_+.png"
-  },
-  "152e4253-db6d-4761-865a-3162029e1179": {
-    "asset": 1724821647000,
-    "meta": 1727158437574,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_-.png"
-  },
-  "d702a3a7-ec2c-4e46-93ac-f83c6028c217": {
-    "asset": 1724821647000,
-    "meta": 1727158437588,
-    "relativePath": "fruitMachine\\sprite\\main\\mainAutoAtlas.pac"
-  },
-  "74c9e89d-0b6e-4f59-acff-2d0fbfe1d8c8": {
-    "asset": 1724821647000,
-    "meta": 1727158437575,
-    "relativePath": "fruitMachine\\sprite\\bg\\bg-min.jpg"
-  },
-  "39e764aa-91ea-4976-ad4f-aa88406f940a": {
-    "asset": 1724821647000,
-    "meta": 1727158437579,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_addcash.png"
-  },
-  "07758f46-7d6a-4716-b38b-43ba7202a69c": {
-    "asset": 1724821647000,
-    "meta": 1727158437581,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_addcash_SHOP.png"
-  },
-  "90154fd9-b46a-4115-9625-f14bb28a892b": {
-    "asset": 1724821647000,
-    "meta": 1727158437587,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_auto_0.png"
-  },
-  "23704142-2b30-4e75-ad0b-edcb3597952b": {
-    "asset": 1724821647000,
-    "meta": 1727158437589,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_fast_02.png"
-  },
-  "c8c54de7-91ba-4e43-82db-1c59d5f02bbe": {
-    "asset": 1724821647000,
-    "meta": 1727158437590,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_fast_01.png"
-  },
-  "6a0566fe-c4c0-4e5b-b293-9d4d311eba7b": {
-    "asset": 1724821647000,
-    "meta": 1727158437591,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_fh.png"
-  },
-  "48edc87a-1ceb-44b0-977e-82765d2583d5": {
-    "asset": 1724821647000,
-    "meta": 1727158437598,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_max.png"
-  },
-  "0d0ae03c-bf74-40c1-bbd4-b64f772d1916": {
-    "asset": 1724821647000,
-    "meta": 1727158437601,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_setting.png"
-  },
-  "a9fc0f68-cbd7-4d6d-a9f0-0eacd882b3ef": {
-    "asset": 1724821647000,
-    "meta": 1727158437602,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_spin.png"
-  },
-  "02cac9f3-f877-45c8-8edf-bab86dad6dfb": {
-    "asset": 1724821647000,
-    "meta": 1727158437604,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_spin_grey.png"
-  },
-  "9ea88320-6ca7-4801-91c4-8e64e8756048": {
-    "asset": 1724821647000,
-    "meta": 1727158437606,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_total.png"
-  },
-  "5cb372a7-d354-4e37-949f-a3b85e47afc8": {
-    "asset": 1724821647000,
-    "meta": 1727158437608,
-    "relativePath": "fruitMachine\\sprite\\main\\btn_wf.png"
-  },
-  "e938662c-f553-44a6-b128-6318467920c3": {
-    "asset": 1724821647000,
-    "meta": 1727158437609,
-    "relativePath": "fruitMachine\\sprite\\main\\icon_bar.png"
-  },
-  "bb8ccaee-49e8-424e-a0e6-09eb6b96ab2f": {
-    "asset": 1724821647000,
-    "meta": 1727158437610,
-    "relativePath": "fruitMachine\\sprite\\main\\jinbi.png"
-  },
-  "fb0d3c18-9a9d-40cf-a9c6-14a20ed4abb4": {
-    "asset": 1724821647000,
-    "meta": 1727158437612,
-    "relativePath": "fruitMachine\\sprite\\main\\xuanze.png"
-  },
   "2dfc2d48-5c40-4b3f-916e-534e5df5814d": {
     "asset": 1724821647000,
     "meta": 1727158437617,
@@ -11230,8 +10810,8 @@
     "relativePath": "Main\\res\\updateScene\\btn_hw_0.png"
   },
   "8a967505-2829-4dcf-9447-4a81c44ace84": {
-    "asset": 1728960016616,
-    "meta": 1728961105629,
+    "asset": 1730189312371,
+    "meta": 1730189329062,
     "relativePath": "Main\\Script\\Common\\Config"
   },
   "7b198cc4-3979-48e0-9245-89b21526631b": {
@@ -11250,8 +10830,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1729044397798,
-    "meta": 1729066514811,
+    "asset": 1730189312372,
+    "meta": 1730189329063,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "1b2df374-d44f-4a73-96b8-c47cd717960c": {
@@ -12615,19 +12195,14 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\Personal.prefab"
   },
   "b919c4a0-c2a9-49bc-8751-7f38d12cfc26": {
-    "asset": 1728960020320,
-    "meta": 1728961105656,
+    "asset": 1730189312284,
+    "meta": 1730189329063,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\gameRules"
   },
   "c05d62fd-f5a8-4d5a-9136-cea90f29b538": {
     "asset": 1728960020344,
     "meta": 1728961105657,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\res"
-  },
-  "ecda5918-163d-4042-b55a-d2a348fc835d": {
-    "asset": 1724821647000,
-    "meta": 1727158439181,
-    "relativePath": "ResourcesBundle\\NewPlan\\Rule\\RuleCtrl.js"
   },
   "907ec51c-acd1-4aac-a965-76cea850a3ab": {
     "asset": 1724821647000,
@@ -12720,8 +12295,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips\\RewardsTips.prefab"
   },
   "59307561-eaa7-48d7-bda3-ddb7118e58af": {
-    "asset": 1724821647000,
-    "meta": 1727158439313,
+    "asset": 1730189312375,
+    "meta": 1730189329258,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\Rule.prefab"
   },
   "83e575d2-aea3-48e7-b45a-04f5e93eac5c": {
@@ -15923,11 +15498,6 @@
     "asset": 1724821647000,
     "meta": 1727158440772,
     "relativePath": "zooGame\\res\\sound\\roll.mp3"
-  },
-  "fd6eade7-b80a-4002-bcab-4dec7f9b556e": {
-    "asset": 1724821647000,
-    "meta": 1727158440813,
-    "relativePath": "Main\\Script\\Common\\Config\\english.js"
   },
   "ce9a150a-749d-4604-9811-830d68cb2ad4": {
     "asset": 1724821647000,
@@ -22449,11 +22019,6 @@
     "meta": 1728698850320,
     "relativePath": "Main\\Script\\Tools\\Test_xl.js"
   },
-  "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1728713221304,
-    "meta": 1728713253454,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
-  },
   "23a2c87a-a185-4ab6-ba28-6b77ad21c8d3": {
     "asset": 1728713742110,
     "meta": 1728713778833,
@@ -22474,25 +22039,10 @@
     "meta": 1728721688677,
     "relativePath": "Main\\Script\\Common\\Net\\ProtobufManager.js"
   },
-  "de49df87-6e4a-44df-a73d-c8d090f88016": {
-    "asset": 1728722166788,
-    "meta": 1728722167702,
-    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
-  },
   "e559a67c-16f2-44e4-a77c-3346a6f4fa60": {
     "asset": 1728722183284,
     "meta": 1728722217960,
     "relativePath": "resources\\proto\\lobbyservice.proto"
-  },
-  "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1728980769699,
-    "meta": 1728984419892,
-    "relativePath": "Main\\Update.js"
-  },
-  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1729044397799,
-    "meta": 1729044416926,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
   "da78386b-15c7-459d-b25b-166a4dbb5272": {
     "asset": 1729044397798,
@@ -22554,11 +22104,6 @@
     "meta": 1729485966043,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1729496449053,
-    "meta": 1729496586440,
-    "relativePath": "Main\\Global.js"
-  },
   "9cae3e49-7192-4ac9-ad30-1868c7257c2e": {
     "asset": 1729500718830,
     "meta": 1729501917169,
@@ -22594,29 +22139,484 @@
     "meta": 1730084179956,
     "relativePath": "zeusGame\\src\\zeusCentreAreaCtrl.js"
   },
+  "e9b9747b-7186-4547-9af5-60b15fc106db": {
+    "asset": 1730104129888,
+    "meta": 1730104242940,
+    "relativePath": "zeusGame\\src\\zeusAudiosCtrl.js"
+  },
+  "4bc98a51-e288-4894-aeae-20766687af1b": {
+    "asset": 1730104507191,
+    "meta": 1730104581143,
+    "relativePath": "zeusGame\\src\\zeusSceneCtrl.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1730189312369,
+    "meta": 1730189328547,
+    "relativePath": "Main\\Global.js"
+  },
+  "de49df87-6e4a-44df-a73d-c8d090f88016": {
+    "asset": 1730189312370,
+    "meta": 1730189329183,
+    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
+  },
+  "94e34e55-245d-4bd3-8a84-60774f575028": {
+    "asset": 1730189312379,
+    "meta": 1730189329060,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "fd6eade7-b80a-4002-bcab-4dec7f9b556e": {
+    "asset": 1730189312372,
+    "meta": 1730189329160,
+    "relativePath": "Main\\Script\\Common\\Config\\english.js"
+  },
+  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
+    "asset": 1730189312373,
+    "meta": 1730189329254,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
+  },
+  "0ca21298-1686-4454-abc3-3a93d8963e40": {
+    "asset": 1730189312373,
+    "meta": 1730189328676,
+    "relativePath": "Main\\Update.js"
+  },
+  "ecda5918-163d-4042-b55a-d2a348fc835d": {
+    "asset": 1730189312376,
+    "meta": 1730189329096,
+    "relativePath": "ResourcesBundle\\NewPlan\\Rule\\RuleCtrl.js"
+  },
+  "119f1e15-141a-4f28-bec2-114d841b1451": {
+    "asset": 1730189312301,
+    "meta": 1730189328294,
+    "relativePath": "fruitMachine\\font"
+  },
+  "32e667c8-5ef9-4a59-b0cf-1c36ec4649e8": {
+    "asset": 1730189312382,
+    "meta": 1730189328296,
+    "relativePath": "fruitMachine\\prefab"
+  },
+  "9bdf7e28-df2f-41cb-9892-4242df8860fe": {
+    "asset": 1729216913515,
+    "meta": 1730187358388,
+    "relativePath": "fruitMachine\\skeleton"
+  },
+  "31492e51-ebcc-48cf-a86b-9b0c687c97c1": {
+    "asset": 1728960014283,
+    "meta": 1730187358389,
+    "relativePath": "fruitMachine\\sound"
+  },
+  "3f477dd4-b055-4748-bfc9-1bd1ec412695": {
+    "asset": 1730189312316,
+    "meta": 1730189328296,
+    "relativePath": "fruitMachine\\sprite"
+  },
+  "674eccc7-f8ec-4549-af35-0265551a7c31": {
+    "asset": 1730189312385,
+    "meta": 1730189328297,
+    "relativePath": "fruitMachine\\src"
+  },
+  "a85928a3-eeb7-4532-bd41-7bf33b72e0ea": {
+    "asset": 1730189312381,
+    "meta": 1730189328694,
+    "relativePath": "fruitMachine\\fruitMachine.fire"
+  },
+  "3223abc6-1de5-40a2-9893-7d5928b32943": {
+    "asset": 1724821647000,
+    "meta": 1730187359525,
+    "relativePath": "fruitMachine\\font\\totalWin.fnt"
+  },
+  "ff6b42d7-34b8-434f-96e0-57affe45a72b": {
+    "asset": 1724821647000,
+    "meta": 1730187359527,
+    "relativePath": "fruitMachine\\font\\winFont.fnt"
+  },
+  "dce0fc1b-f00f-443a-a0c9-dec65e919b57": {
+    "asset": 1730189312382,
+    "meta": 1730189328692,
+    "relativePath": "fruitMachine\\prefab\\fruitItem.prefab"
+  },
+  "e173018d-461b-41f6-b09b-c7bba0ee4521": {
+    "asset": 1724821647000,
+    "meta": 1730187358971,
+    "relativePath": "fruitMachine\\skeleton\\777.atlas"
+  },
+  "129f8b4a-87b7-44f5-b607-9cb834420881": {
+    "asset": 1724821647000,
+    "meta": 1730187358983,
+    "relativePath": "fruitMachine\\skeleton\\bar.atlas"
+  },
+  "98e2d1d6-665d-4cd8-96ad-c4ba12f354e1": {
+    "asset": 1724821647000,
+    "meta": 1730187358985,
+    "relativePath": "fruitMachine\\skeleton\\juzi.atlas"
+  },
+  "014cba24-244a-4c9d-8ca5-d8cc92841f73": {
+    "asset": 1724821647000,
+    "meta": 1730187358986,
+    "relativePath": "fruitMachine\\skeleton\\lingdang.atlas"
+  },
+  "e4cf6759-f6f4-495f-b459-39379825ba07": {
+    "asset": 1724821647000,
+    "meta": 1730189329274,
+    "relativePath": "fruitMachine\\skeleton\\777.skel"
+  },
+  "7fc7a444-2527-430c-8c34-305307436c63": {
+    "asset": 1724821647000,
+    "meta": 1730189329274,
+    "relativePath": "fruitMachine\\skeleton\\bar.skel"
+  },
+  "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
+    "asset": 1724821647000,
+    "meta": 1730189329276,
+    "relativePath": "fruitMachine\\skeleton\\juzi.skel"
+  },
+  "546da097-7128-413a-afec-f885c0eb1bd9": {
+    "asset": 1724821647000,
+    "meta": 1730187358978,
+    "relativePath": "fruitMachine\\font\\winFont.png"
+  },
+  "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
+    "asset": 1724821647000,
+    "meta": 1730187358979,
+    "relativePath": "fruitMachine\\font\\totalWin.png"
+  },
+  "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
+    "asset": 1724821647000,
+    "meta": 1730189329276,
+    "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
+  },
+  "98fc052a-da65-4a4c-baaa-156f3fb008f3": {
+    "asset": 1724821647000,
+    "meta": 1730187359000,
+    "relativePath": "fruitMachine\\skeleton\\pingguo.atlas"
+  },
+  "6c95fe0e-2b08-4a9b-a991-53c408aeef4d": {
+    "asset": 1724821647000,
+    "meta": 1730187359005,
+    "relativePath": "fruitMachine\\skeleton\\putao.atlas"
+  },
+  "24731f90-8302-4aca-a43f-a269647f5b08": {
+    "asset": 1724821647000,
+    "meta": 1730187358989,
+    "relativePath": "fruitMachine\\skeleton\\777.png"
+  },
+  "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
+    "asset": 1724821647000,
+    "meta": 1730187359011,
+    "relativePath": "fruitMachine\\skeleton\\qingmang.atlas"
+  },
+  "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
+    "asset": 1724821647000,
+    "meta": 1730189329277,
+    "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
+  },
+  "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
+    "asset": 1724821647000,
+    "meta": 1730187358996,
+    "relativePath": "fruitMachine\\skeleton\\bar.png"
+  },
+  "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
+    "asset": 1724821647000,
+    "meta": 1730187359016,
+    "relativePath": "fruitMachine\\skeleton\\sanyecao.atlas"
+  },
+  "d8abb29c-c397-4fde-9114-5136149992a4": {
+    "asset": 1724821647000,
+    "meta": 1730187359018,
+    "relativePath": "fruitMachine\\skeleton\\uiquan.atlas"
+  },
+  "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
+    "asset": 1724821647000,
+    "meta": 1730189329275,
+    "relativePath": "fruitMachine\\skeleton\\putao.skel"
+  },
+  "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
+    "asset": 1724821647000,
+    "meta": 1730187359004,
+    "relativePath": "fruitMachine\\skeleton\\juzi.png"
+  },
+  "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
+    "asset": 1724821647000,
+    "meta": 1730189329278,
+    "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
+  },
+  "8608e7b9-1088-47ea-a679-6399442603bb": {
+    "asset": 1724821647000,
+    "meta": 1730187359007,
+    "relativePath": "fruitMachine\\skeleton\\lingdang.png"
+  },
+  "48f777ad-c3bc-4954-90c2-07ec0ed2467e": {
+    "asset": 1724821647000,
+    "meta": 1730187359027,
+    "relativePath": "fruitMachine\\skeleton\\wild.atlas"
+  },
+  "fba16937-b520-4239-8dd4-bd9f08e6710c": {
+    "asset": 1724821647000,
+    "meta": 1730189329279,
+    "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
+  },
+  "fbfa0fdf-5f17-4e1e-b737-4c123fd77528": {
+    "asset": 1724821647000,
+    "meta": 1730187359033,
+    "relativePath": "fruitMachine\\skeleton\\xigua.atlas"
+  },
+  "4d8021f5-37c4-4e64-9570-432c08b0f238": {
+    "asset": 1724821647000,
+    "meta": 1730189329280,
+    "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
+  },
+  "d4b99e35-f559-424b-a98e-d3e4a10bc9d9": {
+    "asset": 1724821647000,
+    "meta": 1730187359021,
+    "relativePath": "fruitMachine\\skeleton\\pingguo.png"
+  },
+  "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
+    "asset": 1724821647000,
+    "meta": 1730187359022,
+    "relativePath": "fruitMachine\\skeleton\\putao.png"
+  },
+  "0f75adde-5095-4a30-aa1d-bc02533c7dea": {
+    "asset": 1724821647000,
+    "meta": 1730187359040,
+    "relativePath": "fruitMachine\\skeleton\\yingtao.atlas"
+  },
+  "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
+    "asset": 1724821647000,
+    "meta": 1730189329281,
+    "relativePath": "fruitMachine\\skeleton\\wild.skel"
+  },
+  "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
+    "asset": 1724821647000,
+    "meta": 1730189329282,
+    "relativePath": "fruitMachine\\skeleton\\xigua.skel"
+  },
+  "6877db0b-48c2-420b-aff7-7df0a19b283a": {
+    "asset": 1724821647000,
+    "meta": 1730187359050,
+    "relativePath": "fruitMachine\\skeleton\\zhuan.atlas"
+  },
+  "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
+    "asset": 1724821647000,
+    "meta": 1730187359034,
+    "relativePath": "fruitMachine\\skeleton\\qingmang.png"
+  },
+  "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
+    "asset": 1724821647000,
+    "meta": 1730189329283,
+    "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
+  },
+  "afe69c46-f65a-43ce-a034-447ec67ba92f": {
+    "asset": 1724821647000,
+    "meta": 1730187359037,
+    "relativePath": "fruitMachine\\skeleton\\uiquan.png"
+  },
+  "01f321d4-a9f6-418d-95c7-803ef2bfd419": {
+    "asset": 1724821647000,
+    "meta": 1730187359039,
+    "relativePath": "fruitMachine\\skeleton\\sanyecao.png"
+  },
+  "790757c7-1078-49ec-9e5b-0aabc0a123b4": {
+    "asset": 1724821647000,
+    "meta": 1730187359067,
+    "relativePath": "fruitMachine\\sound\\win-fast.mp3"
+  },
+  "5da91794-7555-46f3-8b50-76491eef45a0": {
+    "asset": 1724821647000,
+    "meta": 1730189329285,
+    "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
+  },
+  "e55d99a3-a054-4a4b-9868-73e1fddef77d": {
+    "asset": 1724821647000,
+    "meta": 1730187359073,
+    "relativePath": "fruitMachine\\sound\\win.mp3"
+  },
+  "95410173-ae9d-42ae-aa01-9e9293242451": {
+    "asset": 1724821647000,
+    "meta": 1730187359057,
+    "relativePath": "fruitMachine\\skeleton\\xigua.png"
+  },
+  "0430044f-25ce-49e7-8fe3-12daef78c352": {
+    "asset": 1730189312313,
+    "meta": 1730189328703,
+    "relativePath": "fruitMachine\\sprite\\bg"
+  },
+  "5ea8f161-98fe-4ac5-a4e6-ca2557294b68": {
+    "asset": 1724821647000,
+    "meta": 1730187359078,
+    "relativePath": "fruitMachine\\sound\\zhuang-fast.mp3"
+  },
+  "0cfca949-9645-45bb-9628-7f18a77135ad": {
+    "asset": 1724821647000,
+    "meta": 1730187359058,
+    "relativePath": "fruitMachine\\skeleton\\wild.png"
+  },
+  "feeea7b7-4245-4ae8-9a26-e5e7e560c54f": {
+    "asset": 1730189312383,
+    "meta": 1730189328703,
+    "relativePath": "fruitMachine\\sprite\\main"
+  },
+  "a97dd78b-c764-4b1c-8978-a46e42b137f0": {
+    "asset": 1724821647000,
+    "meta": 1730187359080,
+    "relativePath": "fruitMachine\\sound\\bg.mp3"
+  },
+  "db47b3d1-6808-4c86-814b-6bce5d55f561": {
+    "asset": 1724821647000,
+    "meta": 1730187359068,
+    "relativePath": "fruitMachine\\skeleton\\yingtao.png"
+  },
   "58d1ad58-7bd2-4997-8c46-b85a6f96033e": {
-    "asset": 1730101419358,
-    "meta": 1730101462103,
+    "asset": 1730189312384,
+    "meta": 1730189328734,
     "relativePath": "fruitMachine\\src\\fruitItemCtrl.js"
   },
   "9377b7c8-9b17-438a-87b7-a622c9b4dd54": {
-    "asset": 1730101419358,
-    "meta": 1730101462174,
+    "asset": 1730189312385,
+    "meta": 1730189328870,
     "relativePath": "fruitMachine\\src\\fruitMachineCtrl.js"
   },
-  "dce0fc1b-f00f-443a-a0c9-dec65e919b57": {
-    "asset": 1730101419355,
-    "meta": 1730101462396,
-    "relativePath": "fruitMachine\\prefab\\fruitItem.prefab"
+  "52bd6c77-0c6a-4672-b34d-5404f02ceb12": {
+    "asset": 1724821647000,
+    "meta": 1730187359333,
+    "relativePath": "fruitMachine\\sound\\zhuang.mp3"
   },
-  "a85928a3-eeb7-4532-bd41-7bf33b72e0ea": {
-    "asset": 1730101419354,
-    "meta": 1730101462399,
-    "relativePath": "fruitMachine\\fruitMachine.fire"
+  "9e24db8d-8574-4017-b253-1b388c2e1dc7": {
+    "asset": 1724821647000,
+    "meta": 1730187359335,
+    "relativePath": "fruitMachine\\skeleton\\zhuan.png"
+  },
+  "c62ad9fc-cbee-4d2c-9ad0-cd4b52c9d97c": {
+    "asset": 1724821647000,
+    "meta": 1730187359366,
+    "relativePath": "fruitMachine\\sprite\\bg\\bg_sdh.png"
+  },
+  "b0208577-9fdf-4b35-8a81-2d5664ae3029": {
+    "asset": 1724821647000,
+    "meta": 1730187359368,
+    "relativePath": "fruitMachine\\sprite\\bg\\bg_xdh.png"
+  },
+  "409c3d96-7252-4eb4-84a3-26711010e7aa": {
+    "asset": 1724821647000,
+    "meta": 1730187359369,
+    "relativePath": "fruitMachine\\sprite\\bg\\bg_k-min.png"
+  },
+  "74c9e89d-0b6e-4f59-acff-2d0fbfe1d8c8": {
+    "asset": 1724821647000,
+    "meta": 1730187359375,
+    "relativePath": "fruitMachine\\sprite\\bg\\bg-min.jpg"
+  },
+  "2101933c-87a1-40cd-a442-64bdc0caf7b4": {
+    "asset": 1724821647000,
+    "meta": 1730187359444,
+    "relativePath": "fruitMachine\\sprite\\main\\bg_jb.png"
+  },
+  "483b2706-634d-4fef-9c7f-250208da8a11": {
+    "asset": 1724821647000,
+    "meta": 1730187359447,
+    "relativePath": "fruitMachine\\sprite\\main\\bg_tc.png"
+  },
+  "e3b5ed79-752f-43a3-be7b-87b79a9625d9": {
+    "asset": 1724821647000,
+    "meta": 1730187359454,
+    "relativePath": "fruitMachine\\sprite\\main\\bg_xz.png"
+  },
+  "deb19502-26c9-4a44-982a-6a47759b3927": {
+    "asset": 1724821647000,
+    "meta": 1730187359457,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_+.png"
+  },
+  "152e4253-db6d-4761-865a-3162029e1179": {
+    "asset": 1724821647000,
+    "meta": 1730187359459,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_-.png"
   },
   "fe562d40-3396-4019-ae30-9bfc71716fa2": {
-    "asset": 1730101419356,
-    "meta": 1730101462613,
+    "asset": 1730189312383,
+    "meta": 1730189329269,
     "relativePath": "fruitMachine\\sprite\\main\\btn_add.png"
+  },
+  "39e764aa-91ea-4976-ad4f-aa88406f940a": {
+    "asset": 1724821647000,
+    "meta": 1730187359472,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_addcash.png"
+  },
+  "d702a3a7-ec2c-4e46-93ac-f83c6028c217": {
+    "asset": 1724821647000,
+    "meta": 1730187359480,
+    "relativePath": "fruitMachine\\sprite\\main\\mainAutoAtlas.pac"
+  },
+  "90154fd9-b46a-4115-9625-f14bb28a892b": {
+    "asset": 1724821647000,
+    "meta": 1730187359474,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_auto_0.png"
+  },
+  "07758f46-7d6a-4716-b38b-43ba7202a69c": {
+    "asset": 1724821647000,
+    "meta": 1730187359475,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_addcash_SHOP.png"
+  },
+  "c8c54de7-91ba-4e43-82db-1c59d5f02bbe": {
+    "asset": 1724821647000,
+    "meta": 1730187359477,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_fast_01.png"
+  },
+  "23704142-2b30-4e75-ad0b-edcb3597952b": {
+    "asset": 1724821647000,
+    "meta": 1730187359479,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_fast_02.png"
+  },
+  "6a0566fe-c4c0-4e5b-b293-9d4d311eba7b": {
+    "asset": 1724821647000,
+    "meta": 1730187359486,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_fh.png"
+  },
+  "48edc87a-1ceb-44b0-977e-82765d2583d5": {
+    "asset": 1724821647000,
+    "meta": 1730187359496,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_max.png"
+  },
+  "0d0ae03c-bf74-40c1-bbd4-b64f772d1916": {
+    "asset": 1724821647000,
+    "meta": 1730187359496,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_setting.png"
+  },
+  "a9fc0f68-cbd7-4d6d-a9f0-0eacd882b3ef": {
+    "asset": 1724821647000,
+    "meta": 1730187359497,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_spin.png"
+  },
+  "02cac9f3-f877-45c8-8edf-bab86dad6dfb": {
+    "asset": 1724821647000,
+    "meta": 1730187359499,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_spin_grey.png"
+  },
+  "9ea88320-6ca7-4801-91c4-8e64e8756048": {
+    "asset": 1724821647000,
+    "meta": 1730187359510,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_total.png"
+  },
+  "5cb372a7-d354-4e37-949f-a3b85e47afc8": {
+    "asset": 1724821647000,
+    "meta": 1730187359511,
+    "relativePath": "fruitMachine\\sprite\\main\\btn_wf.png"
+  },
+  "e938662c-f553-44a6-b128-6318467920c3": {
+    "asset": 1724821647000,
+    "meta": 1730187359513,
+    "relativePath": "fruitMachine\\sprite\\main\\icon_bar.png"
+  },
+  "fb0d3c18-9a9d-40cf-a9c6-14a20ed4abb4": {
+    "asset": 1724821647000,
+    "meta": 1730187359514,
+    "relativePath": "fruitMachine\\sprite\\main\\xuanze.png"
+  },
+  "bb8ccaee-49e8-424e-a0e6-09eb6b96ab2f": {
+    "asset": 1724821647000,
+    "meta": 1730187359515,
+    "relativePath": "fruitMachine\\sprite\\main\\jinbi.png"
+  },
+  "d5807b0b-dfa3-4d14-b91d-357d081b757e": {
+    "asset": 1730189312381,
+    "meta": 1730189328294,
+    "relativePath": "fruitMachine"
   }
 }
