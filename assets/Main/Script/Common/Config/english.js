@@ -305,6 +305,7 @@ window.xuanChangLanguage = {
     lab_munda: ['lab_munda','Jhandi Munda',"घुड़दौड़","گھڑ دوڑ","Jhandi Munda"], 
     lab_horseRace: ['lab_horseRace','Horse Race',"گھڑ دوڑ","Horse Race"], 
     lab_fruitMachine: ['lab_fruitMachine','Fruit Party',"फ्रूट पार्टी","فروٹ پارٹی","Fruit Party"],
+    lab_mayaMachine: ['lab_mayaMachine','Maya Party',"फ्रूट पार्टी","فروٹ پارٹی","Maya Party"],
 
     lab_goAhead:['lab_goAhead','Go ahead','आगे बढ़ो','ہاں ضرور','এগিয়ে যান'],
     lab_notNow:['lab_notNow','Not now','अभी नहीं','ابھی نہیں','এখন নয়'],
@@ -341,7 +342,7 @@ window.lobbyRuleLanguage = {
     lab_munda: ['lab_munda','Jhandi Munda',"झंडी मुंडा","جھنڈی منڈا","Jhandi Munda"],
     lab_horseRace: ['lab_horseRace','Horse Race',"घुड़दौड़","گھڑ دوڑ","Horse Race"],
     lab_fruitMachine: ['lab_fruitMachine','Fruit Party',"फ्रूट पार्टी","فروٹ پارٹی","Fruit Party"],
-
+    lab_mayaMachine: ['lab_mayaMachine','Maya Party',"फ्रूट पार्टी","فروٹ پارٹی","Maya Party"],
     // rummy
     lab_pure:["lab_pure","Pure Sequence","शुद्ध अनुक्रम","خالص ترتیب","শুদ্ধ ক্রম"],
     lab_seq:["lab_seq","Sequence","अनुक्रम","ترتی","ক্রম"],

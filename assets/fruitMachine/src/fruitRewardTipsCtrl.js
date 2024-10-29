@@ -23,7 +23,7 @@ cc.Class({
     showRewardTips: function(curSpinAllWin, bigWinLevel, isNormal) {
         return new Promise((resolve, reject) => {
 
-            // GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.pauseMusic();
+            // GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.pauseMusic();
 
             this.node_title1.active = bigWinLevel == 1 ? true : false;
             this.node_title2.active = bigWinLevel == 2 ? true : false;
@@ -52,7 +52,7 @@ cc.Class({
                     this.skeleton_wing.setAnimation(0, 'Daiji', true);
                 }
                 else if (name == 'Xiaoshi') {
-                    // GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.resumeMusic();
+                    // GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.resumeMusic();
                     this.node.destroy();
                     resolve();
                 };
@@ -60,7 +60,7 @@ cc.Class({
            
 
             if (bigWinLevel == 1) {
-                GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin1ShowEffect();
+                GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin1ShowEffect();
                 this.scheduleOnce(() => {
                     this.playXiaoShiAnim(bigWinLevel);
                 }, 13);
@@ -68,13 +68,13 @@ cc.Class({
             }
             else if (bigWinLevel == 2) {
                 if (isNormal) {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin2ShowNotFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin2ShowNotFreeEffect();
                 }
                 else {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin2ShowFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin2ShowFreeEffect();
                 };
                 this.scheduleOnce(() => {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin2AddCoinEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin2AddCoinEffect();
                 }, 0.6);
                 this.scheduleOnce(() => {
                     this.playXiaoShiAnim(bigWinLevel);
@@ -83,13 +83,13 @@ cc.Class({
             }
             else if (bigWinLevel == 3) {
                 if (isNormal) {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin3ShowNotFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin3ShowNotFreeEffect();
                 }
                 else {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin3ShowFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin3ShowFreeEffect();
                 };
                 this.scheduleOnce(() => {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin3AddCoinEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin3AddCoinEffect();
                 }, 2.5);
                 this.scheduleOnce(() => {
                     this.playXiaoShiAnim(bigWinLevel);
@@ -98,13 +98,13 @@ cc.Class({
             }
             else if (bigWinLevel == 4) {
                 if (isNormal) {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin4ShowNotFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin4ShowNotFreeEffect();
                 }
                 else {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin4ShowFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin4ShowFreeEffect();
                 };
                 this.scheduleOnce(() => {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin4AddCoinEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin4AddCoinEffect();
                 }, 1.5);
                 this.scheduleOnce(() => {
                     this.playXiaoShiAnim(bigWinLevel);
@@ -113,13 +113,13 @@ cc.Class({
             }
             else if (bigWinLevel == 5) {
                 if (isNormal) {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin5ShowNotFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin5ShowNotFreeEffect();
                 }
                 else {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin5ShowFreeEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin5ShowFreeEffect();
                 };
                 this.scheduleOnce(() => {
-                    GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin5AddCoinEffect();
+                    GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin5AddCoinEffect();
                 }, 1.5);
                 this.scheduleOnce(() => {
                     this.playXiaoShiAnim(bigWinLevel);
@@ -137,19 +137,19 @@ cc.Class({
         this.node_notAnim.active = false;
         this.skeleton_fallingCoin.node.active = false;
         if (bigWinLevel == 1) {
-            GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin1EndEffect();
+            GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin1EndEffect();
         }
         else if (bigWinLevel == 2) {
-            GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin2EndEffect();
+            GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin2EndEffect();
         }
         else if (bigWinLevel == 3) {
-            GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin3EndEffect();
+            GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin3EndEffect();
         }
         else if (bigWinLevel == 4) {
-            GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin4EndEffect();
+            GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin4EndEffect();
         }
         else if (bigWinLevel == 5) {
-            GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBigWin5EndEffect();
+            GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.playBigWin5EndEffect();
         };
     },
 
@@ -187,7 +187,7 @@ cc.Class({
 
         for (let i = 0, len = audioClipNameArr.length; i < len; i++) {
             let audioClipName = audioClipNameArr[i];
-            GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.stopEffectByAudioClipName(audioClipName);
+            GlobalCfg.ACT_SCENE_CTRL.fruitAudiosCtrl.stopEffectByAudioClipName(audioClipName);
         };
     },
 });

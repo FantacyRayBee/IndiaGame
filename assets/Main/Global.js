@@ -229,6 +229,10 @@ window.GlobalCfg = {
     SHOW_FRUIT_GAME: "显示FRUIT界面",
     EXIT_FRUIT_GAME: "点击退出FRUIT",
 
+    CLICK_MAYA_GAME: "点击MAYA游戏按钮",
+    SHOW_MAYA_GAME: "显示MAYA界面",
+    EXIT_MAYA_GAME: "点击退出MAYA",
+
     CLICK_ZOO_GAME: "点击ZOO游戏按钮",
     SHOW_ZOO_GAME: "显示ZOO界面",
     EXIT_ZOO_GAME: "点击退出ZOO",
@@ -428,6 +432,7 @@ window.GlobalCfg = {
     upDownData: {},
     andeerData: {},
     fruitMachineData: {},
+    mayaMachineData: {},
     mwData: {},
     baccaratData: {},
     rocketData: {},

@@ -49,7 +49,7 @@ cc.Class({
     this.betAmountArrIndex = 0;
     this.finishedFruitItemNum = 0;
     this.isRunningFruitAnim = false;
-    this.height = 150; // 每个水果的高度
+    this.height = 150; // 每个水果图片的高度
 
     this.paymentSwitch = false;
     this.frees = [];
@@ -102,7 +102,8 @@ cc.Class({
   },
   onLoad: function onLoad() {
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_FRUIT_GAME);
-    GlobalCfg.ACT_SCENE_CTRL = this, this.playGameMusic('sound/bg');
+    GlobalCfg.ACT_SCENE_CTRL = this, this.fruitAudiosCtrl = this.node.getComponent("fruitAudiosCtrl");
+    this.playGameMusic('sound/bg');
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     this.btn_back.node.on('click', this.debounce(this.componentClickCall, 1), this);
@@ -680,16 +681,17 @@ cc.Class({
       this.runChangeTotalWinScore(startScore, endedScore, freeCount);
       var isNormal = this.gameResult.rewardtype == 1;
       var bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
+      bigWinLevel = 1;
 
       if (bigWinLevel > 0) {
-        CommonFun.getInstance().loadBundle('zeusGame', function (bundle) {
-          bundle.load("prefabs/zeusRewardTips", cc.Prefab, function (err, prefab) {
+        CommonFun.getInstance().loadBundle('fruitMachine', function (bundle) {
+          bundle.load("prefab/fruitRewardTips", cc.Prefab, function (err, prefab) {
             if (!err) {
               var scene = cc.director.getScene();
-              var zeusRewardTipsNode = cc.instantiate(prefab);
-              var zeusRewardTipsCtrl = zeusRewardTipsNode.getComponent("zeusRewardTipsCtrl");
-              scene.addChild(zeusRewardTipsNode);
-              zeusRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal).then(function () {
+              var fruitRewardTipsNode = cc.instantiate(prefab);
+              var fruitRewardTipsCtrl = fruitRewardTipsNode.getComponent("fruitRewardTipsCtrl");
+              scene.addChild(fruitRewardTipsNode);
+              fruitRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal).then(function () {
                 _this4.showSpinResult(totalMultiple);
               });
             }
@@ -697,7 +699,7 @@ cc.Class({
             ;
           });
         }, function (err) {
-          LoggerUtil.getInstance().error("\u52A0\u8F7DzeusGame-Bundle\u5F02\u5E38: " + JSON.stringify(err));
+          LoggerUtil.getInstance().error("\u52A0\u8F7DfruitMachine-Bundle\u5F02\u5E38: " + JSON.stringify(err));
         });
       } else {
         this.showSpinResult(totalMultiple);

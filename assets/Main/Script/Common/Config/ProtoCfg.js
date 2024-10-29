@@ -308,6 +308,11 @@ cc.Class({
       "gameservice.call": "CallAck", //下注    
     }
 
+    this.protoMaya = {
+      "gameservice.login": "LoginAck", //登录
+      "gameservice.call": "CallAck", //下注    
+    }
+
     //猫王游戏协议
     this.protoMW = {
       "gameservice.pingpang": "PingPang",
@@ -474,6 +479,9 @@ cc.Class({
     }
     else if (gameName == "SGJ") {
       return this.protoSGJ;
+    }
+    else if (gameName == "MAYA") {
+      return this.protoMaya;
     }
     else if (gameName == "MW") {
       return this.protoMW;

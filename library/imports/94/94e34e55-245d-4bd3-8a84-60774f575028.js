@@ -87,6 +87,11 @@ cc.Class({
     btn_minishuiguo: cc.Button,
 
     /**
+     * 玛雅机台
+     */
+    btn_minimaya: cc.Button,
+
+    /**
      * TP
      */
     btn_miniteenpatti: cc.Button,
@@ -369,6 +374,7 @@ cc.Class({
       "miniandar": this.btn_miniandar,
       "minilonghu": this.btn_minilonghu,
       "minishuiguo": this.btn_minishuiguo,
+      "minimaya": this.btn_minimaya,
       "minisaima": this.btn_minisaima,
       "minibenzbmw": this.btn_minibenzbmw,
       "minirummy": this.btn_minirummy,
@@ -418,6 +424,7 @@ cc.Class({
     this.btn_minisaima.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
     this.btn_miniseven.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
     this.btn_minishuiguo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+    this.btn_minimaya.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
     this.btn_miniteenpatti.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
     this.btn_miniteenpatti2.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
     this.btn_miniteenpattibaccarat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -579,6 +586,7 @@ cc.Class({
     this.btn_minisaima.node.active = false;
     this.btn_miniseven.node.active = false;
     this.btn_minishuiguo.node.active = false;
+    this.btn_minimaya.node.active = false;
     this.btn_miniteenpatti.node.active = false;
     this.btn_miniteenpatti2.node.active = false;
     this.btn_miniteenpattibaccarat.node.active = false;
@@ -751,6 +759,24 @@ cc.Class({
           ;
           break;
 
+        case "minimaya":
+          if (GlobalCfg.USER_DATAS.openModules.includes(113)) {
+            this.btn_minimaya.node.active = true;
+            GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+            GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.product = gameProduct;
+
+            var _isNeedUpdata9 = CommonFun.getInstance().isNeedUpdata("mayaMachine");
+
+            if (_isNeedUpdata9 && cc.sys.isNative) {
+              needUpdataArr.push("mayaMachine");
+            }
+
+            ;
+          }
+
+          ;
+          break;
+
         case "miniteenpatti":
           if (GlobalCfg.USER_DATAS.openModules.includes(100) || GlobalCfg.USER_DATAS.openModules.includes(101)) {
             this.btn_miniteenpatti.node.active = true;
@@ -772,9 +798,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product = gameProduct;
 
-            var _isNeedUpdata9 = CommonFun.getInstance().isNeedUpdata("tpGame");
+            var _isNeedUpdata10 = CommonFun.getInstance().isNeedUpdata("tpGame");
 
-            if (_isNeedUpdata9 && cc.sys.isNative) {
+            if (_isNeedUpdata10 && cc.sys.isNative) {
               needUpdataArr.push("tpGame");
             }
 
@@ -790,9 +816,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.baccaratData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.baccaratData.product = gameProduct;
 
-            var _isNeedUpdata10 = CommonFun.getInstance().isNeedUpdata("baccarat3PattiGame");
+            var _isNeedUpdata11 = CommonFun.getInstance().isNeedUpdata("baccarat3PattiGame");
 
-            if (_isNeedUpdata10 && cc.sys.isNative) {
+            if (_isNeedUpdata11 && cc.sys.isNative) {
               needUpdataArr.push("baccarat3PattiGame");
             }
           }
@@ -806,9 +832,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.rocketData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.rocketData.product = gameProduct;
 
-            var _isNeedUpdata11 = CommonFun.getInstance().isNeedUpdata("rocket");
+            var _isNeedUpdata12 = CommonFun.getInstance().isNeedUpdata("rocket");
 
-            if (_isNeedUpdata11 && cc.sys.isNative) {
+            if (_isNeedUpdata12 && cc.sys.isNative) {
               needUpdataArr.push("rocket");
             }
           }
@@ -821,9 +847,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.zooData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.zooData.product = gameProduct;
 
-            var _isNeedUpdata12 = CommonFun.getInstance().isNeedUpdata("zooGame");
+            var _isNeedUpdata13 = CommonFun.getInstance().isNeedUpdata("zooGame");
 
-            if (_isNeedUpdata12 && cc.sys.isNative) {
+            if (_isNeedUpdata13 && cc.sys.isNative) {
               needUpdataArr.push("zooGame");
             }
           }
@@ -836,9 +862,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.cricketData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.cricketData.product = gameProduct;
 
-            var _isNeedUpdata13 = CommonFun.getInstance().isNeedUpdata("cricketGame");
+            var _isNeedUpdata14 = CommonFun.getInstance().isNeedUpdata("cricketGame");
 
-            if (_isNeedUpdata13 && cc.sys.isNative) {
+            if (_isNeedUpdata14 && cc.sys.isNative) {
               needUpdataArr.push("cricketGame");
             }
           }
@@ -851,9 +877,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.zeusData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.zeusData.product = gameProduct;
 
-            var _isNeedUpdata14 = CommonFun.getInstance().isNeedUpdata("zeusGame");
+            var _isNeedUpdata15 = CommonFun.getInstance().isNeedUpdata("zeusGame");
 
-            if (_isNeedUpdata14 && cc.sys.isNative) {
+            if (_isNeedUpdata15 && cc.sys.isNative) {
               needUpdataArr.push("zeusGame");
             }
           }
@@ -1684,6 +1710,13 @@ cc.Class({
         GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product;
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SGJ);
       });
+    } else if (btnName == "btn_mayaMachine") {
+      CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
+      this.checkUpdate("mayaMachine", function () {
+        CommonFun.getInstance().showProgress();
+        GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.product;
+        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MAYA);
+      });
     } else if (btnName == "btn_Benz") {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_BENZ_GAME);
       this.checkUpdate("Benz", function () {
@@ -1857,6 +1890,10 @@ cc.Class({
         upDateMaskNode = this.btn_minishuiguo.node.getChildByName("upDateMask");
         break;
 
+      case "mayaMachine":
+        upDateMaskNode = this.btn_minimaya.node.getChildByName("upDateMask");
+        break;
+
       case "baccarat3PattiGame":
         upDateMaskNode = this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask");
         break;
@@ -1941,6 +1978,10 @@ cc.Class({
 
       case "fruitMachine":
         this.btn_minishuiguo.node.getChildByName("upDateMask").active = false;
+        break;
+
+      case "mayaMachine":
+        this.btn_minimaya.node.getChildByName("upDateMask").active = false;
         break;
 
       case "baccarat3PattiGame":
@@ -2110,6 +2151,15 @@ cc.Class({
 
     if (this.btn_minishuiguo.node.active) {
       skeleton = this.btn_minishuiguo.node.getChildByName('Background').getComponent(sp.Skeleton);
+      skeleton.clearTrack(0);
+      skeleton.setSkin(skinName);
+      skeleton.setAnimation(0, 'animation', true);
+    }
+
+    ;
+
+    if (this.btn_minimaya.node.active) {
+      skeleton = this.btn_minimaya.node.getChildByName('Background').getComponent(sp.Skeleton);
       skeleton.clearTrack(0);
       skeleton.setSkin(skinName);
       skeleton.setAnimation(0, 'animation', true);

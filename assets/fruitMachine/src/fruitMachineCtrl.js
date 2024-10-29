@@ -55,7 +55,7 @@ cc.Class({
         this.finishedFruitItemNum = 0;
         this.isRunningFruitAnim = false; 
 
-        this.height = 150; // 每个水果的高度
+        this.height = 150; // 每个水果图片的高度
 
         this.paymentSwitch = false;
 
@@ -102,6 +102,8 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_FRUIT_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this,
+        this.fruitAudiosCtrl = this.node.getComponent("fruitAudiosCtrl");
+
         this.playGameMusic('sound/bg');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
@@ -681,22 +683,23 @@ cc.Class({
             this.runChangeTotalWinScore(startScore, endedScore, freeCount);
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
+            bigWinLevel = 1;
             if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('zeusGame', (bundle) => {
-                    bundle.load("prefabs/zeusRewardTips", cc.Prefab, (err, prefab) => {
+                CommonFun.getInstance().loadBundle('fruitMachine', (bundle) => {
+                    bundle.load("prefab/fruitRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
                             let scene = cc.director.getScene();
-                            let zeusRewardTipsNode = cc.instantiate(prefab);
-                            let zeusRewardTipsCtrl = zeusRewardTipsNode.getComponent("zeusRewardTipsCtrl");
-                            scene.addChild(zeusRewardTipsNode);
-                            zeusRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+                            let fruitRewardTipsNode = cc.instantiate(prefab);
+                            let fruitRewardTipsCtrl = fruitRewardTipsNode.getComponent("fruitRewardTipsCtrl");
+                            scene.addChild(fruitRewardTipsNode);
+                            fruitRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
                             .then(() => {
                                 this.showSpinResult(totalMultiple);
                             });
                         };
                     });
                 }, (err) => {
-                    LoggerUtil.getInstance().error(`加载zeusGame-Bundle异常: ${JSON.stringify(err)}`);
+                    LoggerUtil.getInstance().error(`加载fruitMachine-Bundle异常: ${JSON.stringify(err)}`);
                 });
             }
             else {
