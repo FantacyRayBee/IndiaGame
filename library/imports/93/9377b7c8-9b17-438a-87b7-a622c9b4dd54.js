@@ -49,8 +49,6 @@ cc.Class({
     this.betAmountArrIndex = 0;
     this.finishedFruitItemNum = 0;
     this.isRunningFruitAnim = false;
-    this.height = 150; // 每个水果图片的高度
-
     this.paymentSwitch = false;
     this.frees = [];
     this.isHaveMianFeiRecord = false;
@@ -102,8 +100,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_FRUIT_GAME);
-    GlobalCfg.ACT_SCENE_CTRL = this, this.fruitAudiosCtrl = this.node.getComponent("fruitAudiosCtrl");
-    this.playGameMusic('sound/bg');
+    GlobalCfg.ACT_SCENE_CTRL = this, this.playGameMusic('sound/bg');
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     this.btn_back.node.on('click', this.debounce(this.componentClickCall, 1), this);
@@ -539,7 +536,7 @@ cc.Class({
         item.shu = i;
 
         _this2.scheduleOnce(function () {
-          _this2.runFruitItemAnim(item, item.y, item.y + _this2.height);
+          _this2.runFruitItemAnim(item, item.y, item.y + 165);
         }, fruitContentTime * i);
       };
 
@@ -553,8 +550,6 @@ cc.Class({
     ;
   },
   runFruitItemAnim: function runFruitItemAnim(node, statrPositionY, endedPositionY) {
-    var _this3 = this;
-
     var self = this;
     node.repeat += 1;
     node.setPosition(cc.v2(0, statrPositionY));
@@ -576,8 +571,8 @@ cc.Class({
       easing: easeType
     }).call(function () {
       if (repeat == 20) {
-        if (endedPositionY >= _this3.height * 2) {
-          node.setPosition(cc.v2(0, -(_this3.height * 2)));
+        if (endedPositionY >= 330) {
+          node.setPosition(cc.v2(0, -330));
         }
 
         ;
@@ -587,7 +582,7 @@ cc.Class({
 
       ;
 
-      if (endedPositionY >= _this3.height * 2) {
+      if (endedPositionY >= 330) {
         var src = node.getComponent('fruitItemCtrl');
 
         if (repeat == 17 && index == 0) {
@@ -616,9 +611,9 @@ cc.Class({
         }
 
         ;
-        self.runFruitItemAnim(node, -(_this3.height * 2), -_this3.height);
+        self.runFruitItemAnim(node, -330, -165);
       } else {
-        self.runFruitItemAnim(node, endedPositionY, endedPositionY + _this3.height);
+        self.runFruitItemAnim(node, endedPositionY, endedPositionY + 165);
       }
 
       ;
@@ -658,7 +653,7 @@ cc.Class({
     ;
   },
   showResultAnima: function showResultAnima() {
-    var _this4 = this;
+    var _this3 = this;
 
     if (this.gameResult) {
       this.setUserDiamond(this.gameResult.userinfo.diamond);
@@ -674,216 +669,115 @@ cc.Class({
 
       var startScore = Number(this.freeTotalWinNum); //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
 
-      var bet = parseInt(this.lab_betAmount.string);
-      var endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool / 100 : totalMultiple * bet / 10 + startScore;
+      var endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool / 100 : totalMultiple * parseInt(this.lab_betAmount.string) / 10 + startScore;
       this.freeTotalWinNum = endedScore;
       var freeCount = this.gameResult.mianfeinum;
       this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-      var isNormal = this.gameResult.rewardtype == 1;
-      var bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-      bigWinLevel = 1;
+      var isNeedShowAnim = false;
+      var xiannumArr = this.gameResult.xiannum;
 
-      if (bigWinLevel > 0) {
-        CommonFun.getInstance().loadBundle('fruitMachine', function (bundle) {
-          bundle.load("prefab/fruitRewardTips", cc.Prefab, function (err, prefab) {
-            if (!err) {
-              var scene = cc.director.getScene();
-              var fruitRewardTipsNode = cc.instantiate(prefab);
-              var fruitRewardTipsCtrl = fruitRewardTipsNode.getComponent("fruitRewardTipsCtrl");
-              scene.addChild(fruitRewardTipsNode);
-              fruitRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal).then(function () {
-                _this4.showSpinResult(totalMultiple);
-              });
-            }
+      for (var _i = 0, _len = xiannumArr.length; _i < _len; _i++) {
+        var xiannum = xiannumArr[_i];
+        var xiannumLen = xiannum.len; //线的长度
 
-            ;
+        if (xiannumLen >= 3) {
+          isNeedShowAnim = true;
+          break;
+        }
+
+        ;
+      }
+
+      ;
+      var isFast = this.toggle_fast.isChecked;
+
+      if (isNeedShowAnim) {
+        var winClipName = isFast ? 'sound/win-fast' : 'sound/win';
+        this.playGameSound(winClipName);
+        this.showXianNun(totalMultiple / 10, isFast);
+      } else {
+        this.isRunningFruitAnim = false;
+      }
+
+      ;
+
+      var startNextSpin = function startNextSpin() {
+        // this.isRunningFruitAnim = false;
+        if (_this3.isRunningFruitAnim) {
+          return;
+        }
+
+        ;
+
+        _this3.unschedule(startNextSpin);
+
+        if (_this3.gameResult.mianfeinum > 0) {
+          if (_this3.gameResult.mianfeinum == 10 && _this3.isHaveMianFeiRecord == false) {
+            _this3.isHaveMianFeiRecord = true;
+            _this3.selectAutoBetStr = _this3.lab_autoBetCiShu.string;
+            _this3.selectAutoStatus = _this3.toggle_auto.isChecked;
+          }
+
+          ;
+          _this3.lab_autoBetCiShu.string = _this3.gameResult.mianfeinum;
+          _this3.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
+          _this3.toggle_auto.interactable = false;
+          _this3.autoSpineNode.active = true;
+          var amount = parseInt(_this3.lab_betAmount.string);
+          var proroID = 'gameservice.call';
+          var message = 'CallReq';
+          GameServerManager.send(proroID, message, {
+            amount: amount * 100
           });
-        }, function (err) {
-          LoggerUtil.getInstance().error("\u52A0\u8F7DfruitMachine-Bundle\u5F02\u5E38: " + JSON.stringify(err));
-        });
-      } else {
-        this.showSpinResult(totalMultiple);
-      }
-
-      ;
-    }
-
-    ;
-  },
-  getBigWinLevel: function getBigWinLevel(isNormal, bet, betMul) {
-    var level = 0;
-
-    if (isNormal == true) {
-      if (bet <= 10) {
-        if (5 <= betMul && betMul < 10) {
-          level = 1;
-        } else if (10 <= betMul && betMul < 50) {
-          level = 2;
-        } else if (50 <= betMul && betMul < 150) {
-          level = 3;
-        } else if (150 <= betMul && betMul < 500) {
-          level = 4;
-        } else if (500 <= betMul) {
-          level = 5;
-        }
-      } else if (10 < bet && bet <= 100) {
-        if (4 <= betMul && betMul < 8) {
-          level = 1;
-        } else if (8 <= betMul && betMul < 40) {
-          level = 2;
-        } else if (40 <= betMul && betMul < 120) {
-          level = 3;
-        } else if (120 <= betMul && betMul < 400) {
-          level = 4;
-        } else if (400 <= betMul) {
-          level = 5;
-        }
-      } else if (100 < bet && bet <= 300) {
-        if (3 <= betMul && betMul < 6) {
-          level = 1;
-        } else if (6 <= betMul && betMul < 30) {
-          level = 2;
-        } else if (30 <= betMul && betMul < 80) {
-          level = 3;
-        } else if (80 <= betMul && betMul < 300) {
-          level = 4;
-        } else if (300 <= betMul) {
-          level = 5;
-        }
-      } else if (300 < bet) {
-        if (3 <= betMul && betMul < 5) {
-          level = 1;
-        } else if (5 <= betMul && betMul < 20) {
-          level = 2;
-        } else if (20 <= betMul && betMul < 60) {
-          level = 3;
-        } else if (60 <= betMul && betMul < 200) {
-          level = 4;
-        } else if (200 <= betMul) {
-          level = 5;
-        }
-      }
-    } else {
-      if (10 <= betMul && betMul < 20) {
-        level = 1;
-      } else if (20 <= betMul && betMul < 60) {
-        level = 2;
-      } else if (60 <= betMul && betMul < 200) {
-        level = 3;
-      } else if (200 <= betMul && betMul < 500) {
-        level = 4;
-      } else if (500 <= betMul) {
-        level = 5;
-      }
-    }
-
-    return level;
-  },
-  showSpinResult: function showSpinResult(totalMultiple) {
-    var _this5 = this;
-
-    var isNeedShowAnim = false;
-    var xiannumArr = this.gameResult.xiannum;
-
-    for (var i = 0, len = xiannumArr.length; i < len; i++) {
-      var xiannum = xiannumArr[i];
-      var xiannumLen = xiannum.len; //线的长度
-
-      if (xiannumLen >= 3) {
-        isNeedShowAnim = true;
-        break;
-      }
-
-      ;
-    }
-
-    ;
-    var isFast = this.toggle_fast.isChecked;
-
-    if (isNeedShowAnim) {
-      var winClipName = isFast ? 'sound/win-fast' : 'sound/win';
-      this.playGameSound(winClipName);
-      this.showXianNun(totalMultiple / 10, isFast);
-    } else {
-      this.isRunningFruitAnim = false;
-    }
-
-    ;
-
-    var startNextSpin = function startNextSpin() {
-      // this.isRunningFruitAnim = false;
-      if (_this5.isRunningFruitAnim) {
-        return;
-      }
-
-      ;
-
-      _this5.unschedule(startNextSpin);
-
-      if (_this5.gameResult.mianfeinum > 0) {
-        if (_this5.gameResult.mianfeinum == 10 && _this5.isHaveMianFeiRecord == false) {
-          _this5.isHaveMianFeiRecord = true;
-          _this5.selectAutoBetStr = _this5.lab_autoBetCiShu.string;
-          _this5.selectAutoStatus = _this5.toggle_auto.isChecked;
-        }
-
-        ;
-        _this5.lab_autoBetCiShu.string = _this5.gameResult.mianfeinum;
-        _this5.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
-        _this5.toggle_auto.interactable = false;
-        _this5.autoSpineNode.active = true;
-        var amount = parseInt(_this5.lab_betAmount.string);
-        var proroID = 'gameservice.call';
-        var message = 'CallReq';
-        GameServerManager.send(proroID, message, {
-          amount: amount * 100
-        });
-      } else {
-        if (_this5.isHaveMianFeiRecord) {
-          _this5.isHaveMianFeiRecord = false;
-          _this5.toggle_auto.isChecked = _this5.selectAutoStatus;
-          _this5.lab_autoBetCiShu.string = _this5.selectAutoBetStr;
-        }
-
-        ;
-        _this5.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-        _this5.toggle_auto.interactable = true;
-        _this5.autoSpineNode.active = false;
-
-        _this5.curRoundAddCoinFinish();
-
-        var isAuto = _this5.toggle_auto.isChecked;
-
-        if (isAuto) {
-          _this5.sendCallReq();
         } else {
-          _this5.recoverySpinBtnEvent();
+          if (_this3.isHaveMianFeiRecord) {
+            _this3.isHaveMianFeiRecord = false;
+            _this3.toggle_auto.isChecked = _this3.selectAutoStatus;
+            _this3.lab_autoBetCiShu.string = _this3.selectAutoBetStr;
+          }
+
+          ;
+          _this3.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+          _this3.toggle_auto.interactable = true;
+          _this3.autoSpineNode.active = false;
+
+          _this3.curRoundAddCoinFinish();
+
+          var isAuto = _this3.toggle_auto.isChecked;
+
+          if (isAuto) {
+            _this3.sendCallReq();
+          } else {
+            _this3.recoverySpinBtnEvent();
+          }
+
+          ;
         }
 
         ;
-      }
+      };
 
-      ;
-    };
+      this.schedule(startNextSpin, 0.01);
+    }
 
-    this.schedule(startNextSpin, 0.01);
+    ;
   },
   curRoundAddCoinFinish: function curRoundAddCoinFinish() {
-    var _this6 = this;
+    var _this4 = this;
 
     if (cc.isValid(this)) {
       var minLimit = this.betAmountArr[0] || 0;
       minLimit = parseInt(minLimit) * 100;
       CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, function () {
-        if (cc.isValid(_this6)) {
-          _this6.toggle_auto.isChecked = false;
+        if (cc.isValid(_this4)) {
+          _this4.toggle_auto.isChecked = false;
         }
       });
       CommonFun.getInstance().showWithdrawToastInGame();
     }
   },
   showXianNun: function showXianNun(totalMultiple, isFast) {
-    var _this7 = this;
+    var _this5 = this;
 
     if (this.gameResult) {
       var lineArr = [];
@@ -971,10 +865,10 @@ cc.Class({
 
             ;
 
-            for (var _i = 0; _i < shu1TypeArr.length; _i++) {
+            for (var _i2 = 0; _i2 < shu1TypeArr.length; _i2++) {
               var typeArr = [];
               typeArr.push(shu0Node);
-              var shu1Node = shu1TypeArr[_i];
+              var shu1Node = shu1TypeArr[_i2];
               typeArr.push(shu1Node);
 
               for (var i2 = 0; i2 < shu2TypeArr.length; i2++) {
@@ -1029,24 +923,24 @@ cc.Class({
       if (totalMultiple >= 5) {
         var allTime = 0;
 
-        var _loop2 = function _loop2(_i2, _len) {
-          var typeArr = lineArr[_i2];
+        var _loop2 = function _loop2(_i3, _len2) {
+          var typeArr = lineArr[_i3];
           var pointTime = isFast ? 0.1 : 0.2;
-          var lineTime = _i2 == 0 ? 0 : pointTime * 2.5 * (lineArr[_i2 - 1].length - 1);
+          var lineTime = _i3 == 0 ? 0 : pointTime * 2.5 * (lineArr[_i3 - 1].length - 1);
           allTime += lineTime;
 
-          _this7.scheduleOnce(function () {
+          _this5.scheduleOnce(function () {
             var _loop3 = function _loop3(k, len1) {
               var itemNode1 = typeArr[k];
               var itemNode2 = typeArr[k + 1];
 
-              _this7.scheduleOnce(function () {
-                _this7.drawLine(itemNode1, itemNode2, pointTime);
+              _this5.scheduleOnce(function () {
+                _this5.drawLine(itemNode1, itemNode2, pointTime);
               }, pointTime * k);
 
               if (k == len1 - 2) {
-                _this7.scheduleOnce(function () {
-                  _this7.isRunningFruitAnim = false;
+                _this5.scheduleOnce(function () {
+                  _this5.isRunningFruitAnim = false;
                 }, pointTime * k + 3);
               }
 
@@ -1061,14 +955,14 @@ cc.Class({
           }, lineTime);
         };
 
-        for (var _i2 = 0, _len = lineArr.length; _i2 < _len; _i2++) {
-          _loop2(_i2, _len);
+        for (var _i3 = 0, _len2 = lineArr.length; _i3 < _len2; _i3++) {
+          _loop2(_i3, _len2);
         }
 
         ;
       } else {
-        for (var _i3 = 0, _len2 = lineArr.length; _i3 < _len2; _i3++) {
-          var _typeArr = lineArr[_i3];
+        for (var _i4 = 0, _len3 = lineArr.length; _i4 < _len3; _i4++) {
+          var _typeArr = lineArr[_i4];
 
           for (var k = 0, len1 = _typeArr.length; k < len1 - 1; k++) {
             var itemNode1 = _typeArr[k];
@@ -1086,7 +980,7 @@ cc.Class({
 
         ;
         this.scheduleOnce(function () {
-          _this7.isRunningFruitAnim = false;
+          _this5.isRunningFruitAnim = false;
         }, 1);
       }
 
@@ -1128,12 +1022,12 @@ cc.Class({
     });
   },
   sendCallReq: function sendCallReq() {
-    var _this8 = this;
+    var _this6 = this;
 
     if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
-        if (_this8.paymentSwitch) {
+        if (_this6.paymentSwitch) {
           CommonFun.getInstance().showSmallAddCash();
         }
       }, false);
@@ -1148,7 +1042,7 @@ cc.Class({
     if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
       this.recoverySpinBtnEvent();
       CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-        if (_this8.paymentSwitch) {
+        if (_this6.paymentSwitch) {
           CommonFun.getInstance().showSmallAddCash();
         }
       }, false);
@@ -1161,24 +1055,6 @@ cc.Class({
     GameServerManager.send(proroID, message, {
       amount: betAmount
     });
-  },
-  getCoinFormatStr: function getCoinFormatStr(coin) {
-    var decimalPlaces = this.getCoinDecimalPlaces(coin);
-    return coin.toFixed(decimalPlaces);
-  },
-  getCoinDecimalPlaces: function getCoinDecimalPlaces(coin) {
-    var decimalPlaces = 0;
-
-    if (coin < 100000) {
-      decimalPlaces = 2;
-    } else if (100000 <= coin && coin < 1000000) {
-      decimalPlaces = 1;
-    } else if (1000000 <= coin) {
-      decimalPlaces = 0;
-    }
-
-    ;
-    return decimalPlaces;
   }
 });
 

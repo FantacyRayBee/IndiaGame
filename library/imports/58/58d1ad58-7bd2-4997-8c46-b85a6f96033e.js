@@ -8,62 +8,33 @@ cc.Class({
   "extends": cc.Component,
   properties: {
     skeleton_fruit: sp.Skeleton,
-    skeleton_kuang: sp.Skeleton,
-    spriteAtlas_icon: cc.SpriteAtlas,
-    icon_node: cc.Node
+    skeleton_kuang: sp.Skeleton
   },
   ctor: function ctor() {
     this.loadBundleName = "fruitMachine";
-    this.skeletonUrl = "spine/";
+    this.skeletonUrl = "skeleton/";
     this.skeletonNameArr = ['pingguo', 'qingmang', 'juzi', 'putao', 'xigua', 'yingtao', 'lingdang', '777', 'bar', 'wild', 'sanyecao'];
-    this.skeletonNameArr2 = ['maya_icon_1', //正常元素
-    'maya_icon_2' //wild，scatter元素
-    ];
   },
   setFruitSkeletonJing: function setFruitSkeletonJing(type) {
-    var _this = this;
+    var skeletonName = this.skeletonNameArr[type - 1];
 
-    var skeletonName = "";
-
-    if (type < 10) {
-      skeletonName = this.skeletonNameArr2[0];
-    } else {
-      skeletonName = this.skeletonNameArr2[1];
-      type = type + 1; //因为spine动画给过来的时候已经给wild元素设置成11了，所以这里要加1
-    }
-
-    if (!skeletonName || skeletonName == "") {
+    if (!skeletonName) {
       return;
     }
 
     ;
-    this.icon_node.active = false;
-    this.skeleton_fruit.node.active = true;
-    var spriteName = "icon_" + type * 10;
     this.loadFruitSkeletonData(skeletonName, function (skeletonData, self) {
-      if (self && _this.skeleton_fruit) {
-        _this.skeleton_fruit.skeletonData = skeletonData;
-
-        _this.skeleton_fruit.setAnimation(0, spriteName, false);
+      if (self && self.skeleton_fruit) {
+        self.skeleton_fruit.skeletonData = skeletonData;
+        self.skeleton_fruit.setAnimation(0, 'jing', false);
       }
 
       ;
     }, this);
-    var spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);
-
-    if (!spriteFrame) {
-      return;
-    }
-
-    ;
-    this.icon_node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-    this.skeleton_fruit.node.active = false;
-    this.icon_node.active = true;
   },
   setFruitSkeletonDong: function setFruitSkeletonDong() {
     if (this.skeleton_fruit) {
-      this.icon_node.active = false;
-      this.skeleton_fruit.node.active = true; // this.skeleton_fruit.addAnimation(0, 'dong', false);
+      this.skeleton_fruit.addAnimation(0, 'dong', false);
     }
 
     ;
@@ -71,24 +42,27 @@ cc.Class({
   setKuangSkeletonDong: function setKuangSkeletonDong() {
     if (this.skeleton_kuang && !this.skeleton_kuang.node.active) {
       this.skeleton_kuang.node.active = true;
-      this.skeleton_fruit.node.active = true; // this.skeleton_kuang.setAnimation(0, 'LOCK_loop', true);
+      this.skeleton_kuang.setAnimation(0, 'animation', true);
     }
 
     ;
   },
   setCloseSkeletonDong: function setCloseSkeletonDong(time) {
-    var _this2 = this;
+    var _this = this;
 
     if (time === void 0) {
       time = 2;
     }
 
     this.scheduleOnce(function () {
-      _this2.skeleton_fruit.node.active = false;
-      _this2.icon_node.active = true;
+      if (_this && _this.skeleton_fruit) {
+        _this.skeleton_fruit.setAnimation(0, 'jing', false);
+      }
 
-      if (_this2 && _this2.skeleton_kuang) {
-        _this2.skeleton_kuang.node.active = false;
+      ;
+
+      if (_this && _this.skeleton_kuang) {
+        _this.skeleton_kuang.node.active = false;
       }
 
       ;

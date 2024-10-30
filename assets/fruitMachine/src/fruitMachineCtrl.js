@@ -55,8 +55,6 @@ cc.Class({
         this.finishedFruitItemNum = 0;
         this.isRunningFruitAnim = false; 
 
-        this.height = 150; // 每个水果图片的高度
-
         this.paymentSwitch = false;
 
         this.frees = [];
@@ -102,8 +100,6 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_FRUIT_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this,
-        this.fruitAudiosCtrl = this.node.getComponent("fruitAudiosCtrl");
-
         this.playGameMusic('sound/bg');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
@@ -562,12 +558,12 @@ cc.Class({
                 item.index = k;
                 item.shu = i;
                 this.scheduleOnce(() => {
-                    this.runFruitItemAnim(item, item.y, item.y + this.height);
+                    this.runFruitItemAnim(item, item.y, item.y + 165);
                 }, fruitContentTime * i);
             };
         };
     },
-    
+
     runFruitItemAnim: function(node, statrPositionY, endedPositionY) {
         let self = this;
         node.repeat += 1;
@@ -589,13 +585,13 @@ cc.Class({
         )
         .call(() => {
             if (repeat == 20) {
-                if (endedPositionY >= this.height * 2) {
-                    node.setPosition(cc.v2(0, -(this.height * 2)));
+                if (endedPositionY >= 330) {
+                    node.setPosition(cc.v2(0, -330));
                 };
                 self.checkAnimFinish();
                 return;
             };
-            if (endedPositionY >= this.height * 2) {
+            if (endedPositionY >= 330) {
                 let src = node.getComponent('fruitItemCtrl');
                 if (repeat == 17 && index == 0) {
                     let fruitType = self.gameResult.cards[shu].cards[0];
@@ -623,10 +619,10 @@ cc.Class({
                     src.setFruitSkeletonJing(num);
                     node.fruitType = num;
                 };
-                self.runFruitItemAnim(node, -(this.height * 2), -this.height);
+                self.runFruitItemAnim(node, -330, -165);
             }
             else {
-                self.runFruitItemAnim(node, endedPositionY, endedPositionY + this.height);
+                self.runFruitItemAnim(node, endedPositionY, endedPositionY + 165);
             };
         })
         .start();
@@ -676,207 +672,85 @@ cc.Class({
             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
             let startScore = Number(this.freeTotalWinNum);
             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let bet = parseInt(this.lab_betAmount.string)
-            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple *  bet / 10 + startScore;
+            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple * parseInt(this.lab_betAmount.string) / 10 + startScore;
             this.freeTotalWinNum = endedScore;
             let freeCount = this.gameResult.mianfeinum;
-            this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            let isNormal = this.gameResult.rewardtype == 1;
-            let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            bigWinLevel = 1;
-            if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('fruitMachine', (bundle) => {
-                    bundle.load("prefab/fruitRewardTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
-                            let scene = cc.director.getScene();
-                            let fruitRewardTipsNode = cc.instantiate(prefab);
-                            let fruitRewardTipsCtrl = fruitRewardTipsNode.getComponent("fruitRewardTipsCtrl");
-                            scene.addChild(fruitRewardTipsNode);
-                            fruitRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-                            .then(() => {
-                                this.showSpinResult(totalMultiple);
-                            });
-                        };
+            this.runChangeTotalWinScore(startScore, endedScore, freeCount );
+
+            let isNeedShowAnim = false;
+            let xiannumArr = this.gameResult.xiannum;
+            for (let i = 0, len = xiannumArr.length; i < len; i++) {
+                let xiannum = xiannumArr[i];
+                let xiannumLen = xiannum.len;   //线的长度
+                if (xiannumLen >= 3) {
+                    isNeedShowAnim = true;
+                    break;
+                };
+            };
+
+            let isFast = this.toggle_fast.isChecked;
+            if (isNeedShowAnim) {
+                let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
+                this.playGameSound(winClipName);
+                this.showXianNun(totalMultiple/10, isFast);
+            }
+            else {
+                this.isRunningFruitAnim = false; 
+            };
+
+            let startNextSpin = () => {
+                // this.isRunningFruitAnim = false;
+                if (this.isRunningFruitAnim) {
+                    return;
+                };
+                this.unschedule(startNextSpin);
+
+                if (this.gameResult.mianfeinum > 0) {
+                    if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
+                        this.isHaveMianFeiRecord = true;
+                        this.selectAutoBetStr = this.lab_autoBetCiShu.string;
+                        this.selectAutoStatus = this.toggle_auto.isChecked;
+                    };
+
+                    this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
+                    this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
+
+                    this.toggle_auto.interactable = false;
+
+                    this.autoSpineNode.active = true;
+
+                    let amount = parseInt(this.lab_betAmount.string);
+                    let proroID = 'gameservice.call';
+                    let message = 'CallReq';
+                    GameServerManager.send(proroID, message, {              
+                        amount: amount * 100
                     });
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载fruitMachine-Bundle异常: ${JSON.stringify(err)}`);
-                });
-            }
-            else {
-                this.showSpinResult(totalMultiple);
-            };
-
-        };
-    },
-
-    getBigWinLevel: function(isNormal, bet, betMul) {
-        let level = 0;
-        if (isNormal == true) {
-            if (bet <= 10) {
-                if (5 <= betMul && betMul < 10) {
-                    level = 1;
-                }
-                else if (10 <= betMul && betMul < 50) {
-                    level = 2;
-                }
-                else if (50 <= betMul && betMul < 150) {
-                    level = 3;
-                }
-                else if (150 <= betMul && betMul < 500) {
-                    level = 4;
-                }
-                else if (500 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (10 < bet && bet <= 100) {
-                if (4 <= betMul && betMul < 8) {
-                    level = 1;
-                }
-                else if (8 <= betMul && betMul < 40) {
-                    level = 2;
-                }
-                else if (40 <= betMul && betMul < 120) {
-                    level = 3;
-                }
-                else if (120 <= betMul && betMul < 400) {
-                    level = 4;
-                }
-                else if (400 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (100 < bet && bet <= 300) {
-                if (3 <= betMul && betMul < 6) {
-                    level = 1;
-                }
-                else if (6 <= betMul && betMul < 30) {
-                    level = 2;
-                }
-                else if (30 <= betMul && betMul < 80) {
-                    level = 3;
-                }
-                else if (80 <= betMul && betMul < 300) {
-                    level = 4;
-                }
-                else if (300 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (300 < bet) {
-                if (3 <= betMul && betMul < 5) {
-                    level = 1;
-                }
-                else if (5 <= betMul && betMul < 20) {
-                    level = 2;
-                }
-                else if (20 <= betMul && betMul < 60) {
-                    level = 3;
-                }
-                else if (60 <= betMul && betMul < 200) {
-                    level = 4;
-                }
-                else if (200 <= betMul) {
-                    level = 5;
-                }
-            }
-        }
-        else {
-            if (10 <= betMul && betMul < 20) {
-                level = 1;
-            }
-            else if (20 <= betMul && betMul < 60) {
-                level = 2;
-            }
-            else if (60 <= betMul && betMul < 200) {
-                level = 3;
-            }
-            else if (200 <= betMul && betMul < 500) {
-                level = 4;
-            }
-            else if (500 <= betMul) {
-                level = 5;
-            }
-        }
-
-        return level;
-    },
-
-
-    showSpinResult: function(totalMultiple) {
-        let isNeedShowAnim = false;
-        let xiannumArr = this.gameResult.xiannum;
-        for (let i = 0, len = xiannumArr.length; i < len; i++) {
-            let xiannum = xiannumArr[i];
-            let xiannumLen = xiannum.len;   //线的长度
-            if (xiannumLen >= 3) {
-                isNeedShowAnim = true;
-                break;
-            };
-        };
-
-        let isFast = this.toggle_fast.isChecked;
-        if (isNeedShowAnim) {
-            let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
-            this.playGameSound(winClipName);
-            this.showXianNun(totalMultiple/10, isFast);
-        }
-        else {
-            this.isRunningFruitAnim = false; 
-        };
-
-        let startNextSpin = () => {
-            // this.isRunningFruitAnim = false;
-            if (this.isRunningFruitAnim) {
-                return;
-            };
-            this.unschedule(startNextSpin);
-
-            if (this.gameResult.mianfeinum > 0) {
-                if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
-                    this.isHaveMianFeiRecord = true;
-                    this.selectAutoBetStr = this.lab_autoBetCiShu.string;
-                    this.selectAutoStatus = this.toggle_auto.isChecked;
-                };
-
-                this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
-                this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
-
-                this.toggle_auto.interactable = false;
-
-                this.autoSpineNode.active = true;
-
-                let amount = parseInt(this.lab_betAmount.string);
-                let proroID = 'gameservice.call';
-                let message = 'CallReq';
-                GameServerManager.send(proroID, message, {              
-                    amount: amount * 100
-                });
-            }
-            else {
-                if (this.isHaveMianFeiRecord) {
-                    this.isHaveMianFeiRecord = false;
-                    this.toggle_auto.isChecked = this.selectAutoStatus;
-                    this.lab_autoBetCiShu.string = this.selectAutoBetStr;
-                };
-
-                this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-                
-                this.toggle_auto.interactable = true;
-
-                this.autoSpineNode.active = false;
-
-                this.curRoundAddCoinFinish();
-                let isAuto = this.toggle_auto.isChecked;
-                if (isAuto) {
-                    this.sendCallReq();
                 }
                 else {
-                    this.recoverySpinBtnEvent();
+                    if (this.isHaveMianFeiRecord) {
+                        this.isHaveMianFeiRecord = false;
+                        this.toggle_auto.isChecked = this.selectAutoStatus;
+                        this.lab_autoBetCiShu.string = this.selectAutoBetStr;
+                    };
+
+                    this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+                    
+                    this.toggle_auto.interactable = true;
+
+                    this.autoSpineNode.active = false;
+
+                    this.curRoundAddCoinFinish();
+                    let isAuto = this.toggle_auto.isChecked;
+                    if (isAuto) {
+                        this.sendCallReq();
+                    }
+                    else {
+                        this.recoverySpinBtnEvent();
+                    };
                 };
             };
+            this.schedule(startNextSpin, 0.01); 
         };
-        this.schedule(startNextSpin, 0.01); 
     },
 
     curRoundAddCoinFinish(){
@@ -1104,25 +978,5 @@ cc.Class({
         GameServerManager.send(proroID, message, {              
             amount: betAmount
         });
-    },
-    
-    getCoinFormatStr: function(coin) {
-        let decimalPlaces = this.getCoinDecimalPlaces(coin);
-        return coin.toFixed(decimalPlaces);
-    },
-
-
-    getCoinDecimalPlaces: function(coin) {
-        let decimalPlaces = 0;
-        if (coin < 100000) {
-            decimalPlaces = 2;
-        }
-        else if (100000 <= coin && coin < 1000000) {
-            decimalPlaces = 1;
-        }
-        else if (1000000 <= coin) {
-            decimalPlaces = 0;
-        };
-        return decimalPlaces;
     },
 });

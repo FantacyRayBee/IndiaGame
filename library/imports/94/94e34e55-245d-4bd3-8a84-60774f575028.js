@@ -740,27 +740,34 @@ cc.Class({
 
           ;
           break;
-        // case "minishuiguo":
-        //     if (GlobalCfg.USER_DATAS.openModules.includes(113)) {
-        //         this.btn_minishuiguo.node.active = true;
-        //         GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
-        //         GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product = gameProduct;
-        //         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("fruitMachine");
-        //         if (isNeedUpdata && cc.sys.isNative) {
-        //             needUpdataArr.push("fruitMachine");
-        //         };
-        //     };
-        //     break;
 
         case "minishuiguo":
+          if (GlobalCfg.USER_DATAS.openModules.includes(113)) {
+            this.btn_minishuiguo.node.active = true;
+            GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+            GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product = gameProduct;
+
+            var _isNeedUpdata8 = CommonFun.getInstance().isNeedUpdata("fruitMachine");
+
+            if (_isNeedUpdata8 && cc.sys.isNative) {
+              needUpdataArr.push("fruitMachine");
+            }
+
+            ;
+          }
+
+          ;
+          break;
+
+        case "minimaya":
           if (GlobalCfg.USER_DATAS.openModules.includes(113)) {
             this.btn_minimaya.node.active = true;
             GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.product = gameProduct;
 
-            var _isNeedUpdata8 = CommonFun.getInstance().isNeedUpdata("mayaMachine");
+            var _isNeedUpdata9 = CommonFun.getInstance().isNeedUpdata("mayaMachine");
 
-            if (_isNeedUpdata8 && cc.sys.isNative) {
+            if (_isNeedUpdata9 && cc.sys.isNative) {
               needUpdataArr.push("mayaMachine");
             }
 
@@ -791,9 +798,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product = gameProduct;
 
-            var _isNeedUpdata9 = CommonFun.getInstance().isNeedUpdata("tpGame");
+            var _isNeedUpdata10 = CommonFun.getInstance().isNeedUpdata("tpGame");
 
-            if (_isNeedUpdata9 && cc.sys.isNative) {
+            if (_isNeedUpdata10 && cc.sys.isNative) {
               needUpdataArr.push("tpGame");
             }
 
@@ -809,9 +816,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.baccaratData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.baccaratData.product = gameProduct;
 
-            var _isNeedUpdata10 = CommonFun.getInstance().isNeedUpdata("baccarat3PattiGame");
+            var _isNeedUpdata11 = CommonFun.getInstance().isNeedUpdata("baccarat3PattiGame");
 
-            if (_isNeedUpdata10 && cc.sys.isNative) {
+            if (_isNeedUpdata11 && cc.sys.isNative) {
               needUpdataArr.push("baccarat3PattiGame");
             }
           }
@@ -825,9 +832,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.rocketData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.rocketData.product = gameProduct;
 
-            var _isNeedUpdata11 = CommonFun.getInstance().isNeedUpdata("rocket");
+            var _isNeedUpdata12 = CommonFun.getInstance().isNeedUpdata("rocket");
 
-            if (_isNeedUpdata11 && cc.sys.isNative) {
+            if (_isNeedUpdata12 && cc.sys.isNative) {
               needUpdataArr.push("rocket");
             }
           }
@@ -840,9 +847,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.zooData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.zooData.product = gameProduct;
 
-            var _isNeedUpdata12 = CommonFun.getInstance().isNeedUpdata("zooGame");
+            var _isNeedUpdata13 = CommonFun.getInstance().isNeedUpdata("zooGame");
 
-            if (_isNeedUpdata12 && cc.sys.isNative) {
+            if (_isNeedUpdata13 && cc.sys.isNative) {
               needUpdataArr.push("zooGame");
             }
           }
@@ -855,9 +862,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.cricketData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.cricketData.product = gameProduct;
 
-            var _isNeedUpdata13 = CommonFun.getInstance().isNeedUpdata("cricketGame");
+            var _isNeedUpdata14 = CommonFun.getInstance().isNeedUpdata("cricketGame");
 
-            if (_isNeedUpdata13 && cc.sys.isNative) {
+            if (_isNeedUpdata14 && cc.sys.isNative) {
               needUpdataArr.push("cricketGame");
             }
           }
@@ -870,9 +877,9 @@ cc.Class({
             GlobalCfg.SMALL_GAME_DATAS.zeusData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
             GlobalCfg.SMALL_GAME_DATAS.zeusData.product = gameProduct;
 
-            var _isNeedUpdata14 = CommonFun.getInstance().isNeedUpdata("zeusGame");
+            var _isNeedUpdata15 = CommonFun.getInstance().isNeedUpdata("zeusGame");
 
-            if (_isNeedUpdata14 && cc.sys.isNative) {
+            if (_isNeedUpdata15 && cc.sys.isNative) {
               needUpdataArr.push("zeusGame");
             }
           }
