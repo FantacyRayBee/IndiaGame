@@ -10,7 +10,7 @@ cc.Class({
 
 
     onLoad: function() {
-        this.loadGameSound();
+        // this.loadGameSound();
     },
 
     onDestroy: function() {

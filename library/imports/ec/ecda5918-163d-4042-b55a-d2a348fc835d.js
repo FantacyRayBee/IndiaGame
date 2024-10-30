@@ -26,7 +26,6 @@ cc.Class({
     toggle_munda: cc.Toggle,
     toggle_horseRace: cc.Toggle,
     toggle_fruitMachine: cc.Toggle,
-    toggle_mayaMachine: cc.Toggle,
     toggle_baccarat3Patti: cc.Toggle,
     toggle_rocket: cc.Toggle,
     toggle_zoo: cc.Toggle,
@@ -100,15 +99,14 @@ cc.Class({
       "miniandar": 5,
       "minilonghu": 6,
       "minishuiguo": 7,
-      "minimaya": 8,
-      "minisaima": 9,
-      "minibenzbmw": 10,
-      "minirummy": 11,
-      "miniseven": 12,
-      "minizoo": 13,
-      "minicricket": 14,
-      "miniluckyloto": 15,
-      "minizeus": 16
+      "minisaima": 8,
+      "minibenzbmw": 9,
+      "minirummy": 10,
+      "miniseven": 11,
+      "minizoo": 12,
+      "minicricket": 13,
+      "miniluckyloto": 14,
+      "minizeus": 15
     };
     var getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
 
@@ -128,7 +126,6 @@ cc.Class({
       "miniandar": this.toggle_andeer,
       "minilonghu": this.toggle_lhd,
       "minishuiguo": this.toggle_fruitMachine,
-      "minimaya": this.toggle_mayaMachine,
       "minisaima": this.toggle_horseRace,
       "minirummy": this.toggle_rummy,
       "miniseven": this.toggle_updown,

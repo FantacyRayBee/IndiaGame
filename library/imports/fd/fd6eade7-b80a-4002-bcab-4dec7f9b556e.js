@@ -192,7 +192,7 @@ window.xuanChangLanguage = {
   lab_munda: ['lab_munda', 'Jhandi Munda', "घुड़दौड़", "گھڑ دوڑ", "Jhandi Munda"],
   lab_horseRace: ['lab_horseRace', 'Horse Race', "گھڑ دوڑ", "Horse Race"],
   lab_fruitMachine: ['lab_fruitMachine', 'Fruit Party', "फ्रूट पार्टी", "فروٹ پارٹی", "Fruit Party"],
-  lab_mayaMachine: ['lab_mayaMachine', 'Maya Party', "फ्रूट पार्टी", "فروٹ پارٹی", "Maya Party"],
+  lab_mayaMachine: ['lab_mayaMachine', 'Maya Era', "फ्रूट पार्टी", "فروٹ پارٹی", "Maya Era"],
   lab_goAhead: ['lab_goAhead', 'Go ahead', 'आगे बढ़ो', 'ہاں ضرور', 'এগিয়ে যান'],
   lab_notNow: ['lab_notNow', 'Not now', 'अभी नहीं', 'ابھی نہیں', 'এখন নয়'],
   lab_content: ['lab_content', 'You have much more money than other players in current level , go to challenge higher level and win more money ?', 'वर्तमान स्तर में आपके पास अन्य खिलाड़ियों की तुलना में काफी अधिक पैसा है, और ऊँचे स्तर पर जाना और अधिक धन जीतना चाहेंगे ?', 'موجودہ لیول میں آپ کے پاس دوسرے کھلاڑیوں سے کافی زیادہ رقم ہے، زیادہ اونچے لیول میں جاکر چیلنج کریں گے اور مزید رقم جیتیں گے؟', 'বর্তমান লেভেলের অন্যান্য খেলোয়াড়দের তুলনায় আপনার কাছে অনেক বেশি অর্থ আছে, উপরের লেভেলে চ্যালেঞ্জ করতে এবং আরও বেশি অর্থ জিততে যাওয়া যাক ?']
@@ -210,7 +210,6 @@ window.lobbyRuleLanguage = {
   lab_munda: ['lab_munda', 'Jhandi Munda', "झंडी मुंडा", "جھنڈی منڈا", "Jhandi Munda"],
   lab_horseRace: ['lab_horseRace', 'Horse Race', "घुड़दौड़", "گھڑ دوڑ", "Horse Race"],
   lab_fruitMachine: ['lab_fruitMachine', 'Fruit Party', "फ्रूट पार्टी", "فروٹ پارٹی", "Fruit Party"],
-  lab_mayaMachine: ['lab_mayaMachine', 'Maya Party', "फ्रूट पार्टी", "فروٹ پارٹی", "Maya Party"],
   // rummy
   lab_pure: ["lab_pure", "Pure Sequence", "शुद्ध अनुक्रम", "خالص ترتیب", "শুদ্ধ ক্রম"],
   lab_seq: ["lab_seq", "Sequence", "अनुक्रम", "ترتی", "ক্রম"],

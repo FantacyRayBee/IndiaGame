@@ -33,6 +33,9 @@ cc.Class({
         this.icon_node.active = false;
         this.skeleton_maya.node.active = true;
         let spriteName = "icon_" + (type * 10);
+        if (type == 12) { //scatter元素特殊判断
+            spriteName = "icon_120_appear";
+        }
         this.loadMayaSkeletonData(skeletonName, (skeletonData, self) => {
             if (self && this.skeleton_maya) {
                 this.skeleton_maya.skeletonData = skeletonData;
@@ -97,5 +100,15 @@ cc.Class({
                 }
             });
         }, target);
+    },
+
+    initIcon: function() {
+        let type = Math.floor(Math.random() * 10 + 1);
+        let spriteName = "icon_" + (type * 10);
+        let spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);
+        if (!spriteFrame) {
+            return;
+        };
+        this.icon_node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
     },
 });

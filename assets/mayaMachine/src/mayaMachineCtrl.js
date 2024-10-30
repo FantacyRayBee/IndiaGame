@@ -104,7 +104,7 @@ cc.Class({
         GlobalCfg.ACT_SCENE_CTRL = this,
         this.mayaAudiosCtrl = this.node.getComponent("mayaAudiosCtrl");
 
-        this.playGameMusic('sound/bg');
+        this.playGameMusic('sound/BGM');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.btn_back.node.on('click', this.debounce(this.componentClickCall, 1), this);
@@ -180,6 +180,7 @@ cc.Class({
 
     start: function() {
         this.sendLoginReq();
+        this.initSlotData();
     },
 
     
@@ -306,6 +307,16 @@ cc.Class({
             this.btn_spin.interactable = true;
             this.btn_spin.enableAutoGrayEffect = false;
         }
+    },
+
+    initSlotData: function() {
+        for (let j = 0, len1 = this.node_mayaContentArr.length; j < len1; j++) {
+            let children = this.node_mayaContentArr[j].children;
+            for (let k = 0, len2 = children.length; k < len2; k++) {
+                let src = children[k].getComponent('mayaItemCtrl');
+                src.initIcon();
+            };
+        };
     },
 
     setUserDiamond: function(diamond) {
@@ -683,7 +694,6 @@ cc.Class({
             this.runChangeTotalWinScore(startScore, endedScore, freeCount);
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            bigWinLevel = 1;
             if (bigWinLevel > 0) {
                 CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
                     bundle.load("prefab/mayaRewardTips", cc.Prefab, (err, prefab) => {
