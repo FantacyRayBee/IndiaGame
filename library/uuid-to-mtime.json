@@ -22859,11 +22859,6 @@
     "meta": 1730196004464,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
-  "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1730275077489,
-    "meta": 1730275090351,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
-  },
   "67ded5e5-a8c2-4a3b-b34c-34eb4a3b27b7": {
     "asset": 1730275077746,
     "meta": 1730275090071,
@@ -23158,5 +23153,10 @@
     "asset": 1724821647000,
     "meta": 1730275127365,
     "relativePath": "fruitMachine\\sprite\\main\\xuanze.png"
+  },
+  "94e34e55-245d-4bd3-8a84-60774f575028": {
+    "asset": 1730280819220,
+    "meta": 1730280820146,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   }
 }
