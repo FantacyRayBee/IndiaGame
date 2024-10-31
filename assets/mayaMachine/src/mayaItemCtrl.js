@@ -33,13 +33,14 @@ cc.Class({
         this.icon_node.active = false;
         this.skeleton_maya.node.active = true;
         let spriteName = "icon_" + (type * 10);
+        let animName = "icon_" + (type * 10);
         if (type == 12) { //scatter元素特殊判断
-            spriteName = "icon_120_appear";
+            animName = "icon_120_appear";
         }
         this.loadMayaSkeletonData(skeletonName, (skeletonData, self) => {
             if (self && this.skeleton_maya) {
                 this.skeleton_maya.skeletonData = skeletonData;
-                this.skeleton_maya.setAnimation(0, spriteName, false);
+                this.skeleton_maya.setAnimation(0, animName, false);
             };
         }, this);
 
@@ -48,6 +49,7 @@ cc.Class({
             return;
         };
         this.icon_node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        if(type == 12) return; //scatter元素出现时需要播放动画
         this.skeleton_maya.node.active = false;
         this.icon_node.active = true;
     },
