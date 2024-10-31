@@ -134,6 +134,10 @@ cc.Class({
       channel = packageChannelArr[1];
     }
 
+    if (channel == "7001") {
+      GlobalCfg.PACKAGE_REPORT_METHOD = 4;
+    }
+
     if (channel == "4001") {
       this.reqAppInfo(function () {
         Promise.all([_this2.getAdvertisingId()]).then(function (arr) {

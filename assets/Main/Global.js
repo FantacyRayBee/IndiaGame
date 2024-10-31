@@ -492,7 +492,8 @@ window.GlobalCfg = {
     112: false,  // HorseRacing
     113: false,  // FruitParty
     114: false,  // 打地鼠
-    115: false,  // 火箭
+    115: false,  // 火箭    
+    119: false,  // 玛雅机台
   },
 
   ChildzIndex:{

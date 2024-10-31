@@ -285,14 +285,15 @@ cc.Class({
             "miniandar": 5,
             "minilonghu": 6,
             "minishuiguo": 7,
-            "minisaima": 8,
-            "minibenzbmw": 9,
-            "minirummy": 10,
-            "miniseven": 11,
-            "minizoo": 12,
-            "minicricket": 13,
-            "miniluckyloto": 14,
-            "minizeus": 15
+            "minimaya": 8,
+            "minisaima": 9,
+            "minibenzbmw": 10,
+            "minirummy": 11,
+            "miniseven": 12,
+            "minizoo": 13,
+            "minicricket": 14,
+            "miniluckyloto": 15,
+            "minizeus": 16
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -531,6 +532,7 @@ cc.Class({
          * 既要判断对应的小游戏模块是否开启，还要判断对应的小游戏参数是否存在
          */
         let needUpdataArr = [];
+        LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.openModules == ", GlobalCfg.USER_DATAS.openModules);
         for (let i = 0, len = GlobalCfg.USER_DATAS.games.length; i < len; i++) {
             let gameData = GlobalCfg.USER_DATAS.games[i];
             let gameProduct = gameData.product;
@@ -654,7 +656,7 @@ cc.Class({
                     };
                     break;
                 case "minimaya":
-                    if (GlobalCfg.USER_DATAS.openModules.includes(113)) {
+                    if (GlobalCfg.USER_DATAS.openModules.includes(119)) {
                         this.btn_minimaya.node.active = true;
 
                         GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
@@ -768,6 +770,7 @@ cc.Class({
                 "miniandar": "andaerGame",
                 "minilonghu": "lhdGame",
                 "minishuiguo": "fruitMachine",
+                "minimaya": "mayaMachine",
                 "minisaima": "horseRaceGame",
                 "minibenzbmw": "Benz",
                 "minirummy": "Rummy",

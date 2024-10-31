@@ -163,7 +163,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "6f5aac41-642e-45bb-a7f7-ff79abac046a"
+      "__uuid__": "a1c65c0b-9b21-4f87-9580-908bc6ff9685"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -177,7 +177,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "806c5865-e2c6-41ca-b150-df74ec0b0aef"
+      "__uuid__": "bd84134a-e4c1-406c-ae3f-1efeba5e16e2"
     },
     "_id": ""
   },
@@ -200,7 +200,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 6
@@ -288,7 +288,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "3d87f873-a711-47b4-8266-ca23a6c2b456"
+      "__uuid__": "69dcbffc-6cba-4e60-b8ca-fbdc7a0356a0"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -405,7 +405,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "5c33eed2-bb59-4325-87ca-77dae4778dd8"
+      "__uuid__": "80029c33-7842-4ce7-bfb5-7d63208e2da2"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -440,9 +440,7 @@
     "skeleton_kuang": {
       "__id__": 9
     },
-    "spriteAtlas_icon": {
-      "__uuid__": "806c5865-e2c6-41ca-b150-df74ec0b0aef"
-    },
+    "spriteAtlas_icon": null,
     "icon_node": {
       "__id__": 2
     },

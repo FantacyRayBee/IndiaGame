@@ -88,7 +88,6 @@ var SceneManager = cc.Class({
           CommonFun.getInstance().hidProgress();
         });
       })["catch"](function (err) {
-        LoggerUtil.getInstance().error(err);
         _this.isLoadingScene = false;
         CommonFun.getInstance().hidProgress();
         CommonFun.getInstance().showTips(err);
@@ -391,6 +390,7 @@ var SceneManager = cc.Class({
       var arr = toSceneName.split("/");
       var bundleName = arr[0];
       var sceneName = arr[1];
+      LoggerUtil.getInstance().log("4444 arr = ", arr);
       CommonFun.getInstance().loadBundle(bundleName, function (bundle) {
         bundle.loadScene(sceneName, function (err1, scene) {
           if (!err1) {

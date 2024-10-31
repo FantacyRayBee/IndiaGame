@@ -56,7 +56,6 @@ let SceneManager = cc.Class({
         CommonFun.getInstance().showProgress();
 
         // this.proloadBundleScene(toSceneName);
-    
         // 从更新登录场景跳转到大厅场景
         if (fromSceneName === this.sceneType.UPDATE && toSceneName === this.sceneType.LOBBY) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LOGIN_LOBBY_START);
@@ -88,7 +87,6 @@ let SceneManager = cc.Class({
                 });
             })
             .catch((err) => {
-                LoggerUtil.getInstance().error(err);
                 this.isLoadingScene = false;
                 CommonFun.getInstance().hidProgress();
                 CommonFun.getInstance().showTips(err);
@@ -357,7 +355,6 @@ let SceneManager = cc.Class({
                 reject(`toSceneName format error: ${toSceneName}`);
                 return;
             };
-
             let arr = toSceneName.split("/");
             let bundleName = arr[0];
             let sceneName = arr[1];
