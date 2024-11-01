@@ -1515,8 +1515,8 @@
     "relativePath": "rocket\\Scripts"
   },
   "eeef25ac-93ef-4201-8e43-ea568e9277d1": {
-    "asset": 1728713799017,
-    "meta": 1730342522239,
+    "asset": 1730360172316,
+    "meta": 1730360172320,
     "relativePath": "Main\\Main.fire"
   },
   "00aeb01f-b8c3-46cf-8df3-1eaa060711c2": {
@@ -22699,11 +22699,6 @@
     "meta": 1730354877720,
     "relativePath": "resources\\proto\\mayaMachine"
   },
-  "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1730354853444,
-    "meta": 1730354877883,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
-  },
   "227ec92d-fff2-41a0-9708-42b9a1f09cf6": {
     "asset": 1730354853524,
     "meta": 1730354877885,
@@ -22715,8 +22710,8 @@
     "relativePath": "mayaMachine\\audios\\bigWin5AddCoin.mp3"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1730354853442,
-    "meta": 1730354877900,
+    "asset": 1730362542948,
+    "meta": 1730362542958,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "0a007788-708c-45b7-a4f1-2acfbec2565d": {
@@ -23158,5 +23153,25 @@
     "asset": 1730359878005,
     "meta": 1730359882361,
     "relativePath": "mayaMachine\\src\\mayaItemCtrl.js"
+  },
+  "24267f45-824b-417c-91f7-2fd9076b082a": {
+    "asset": 1730362212032,
+    "meta": 1730362212102,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\mayaera.json"
+  },
+  "f4f5eea8-5c56-4c80-b3cf-2d8d9dc5dcad": {
+    "asset": 1730362212032,
+    "meta": 1730362212046,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\mayaera.atlas"
+  },
+  "15de7cf0-8aca-4f93-945b-902c3e0a542f": {
+    "asset": 1730362212035,
+    "meta": 1730362212098,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\mayaera.png"
+  },
+  "94e34e55-245d-4bd3-8a84-60774f575028": {
+    "asset": 1730362505770,
+    "meta": 1730362507762,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   }
 }

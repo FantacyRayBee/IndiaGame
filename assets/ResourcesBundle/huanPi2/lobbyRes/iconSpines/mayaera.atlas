@@ -1,0 +1,34 @@
+
+mayaera.png
+size: 1638,1638
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Maya Era2
+  rotate: false
+  xy: 748, 174
+  size: 671, 160
+  orig: 672, 160
+  offset: 0, 0
+  index: -1
+images/glwo
+  rotate: false
+  xy: 2, 632
+  size: 1156, 1004
+  orig: 1156, 1004
+  offset: 0, 0
+  index: -1
+images/maya
+  rotate: true
+  xy: 2, 2
+  size: 628, 744
+  orig: 628, 744
+  offset: 0, 0
+  index: -1
+images/飘带7
+  rotate: true
+  xy: 1160, 336
+  size: 1300, 476
+  orig: 1300, 476
+  offset: 0, 0
+  index: -1

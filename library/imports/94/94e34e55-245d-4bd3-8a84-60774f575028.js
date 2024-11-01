@@ -2163,8 +2163,8 @@ cc.Class({
 
     if (this.btn_minimaya.node.active) {
       skeleton = this.btn_minimaya.node.getChildByName('Background').getComponent(sp.Skeleton);
-      skeleton.clearTrack(0);
-      skeleton.setSkin(skinName);
+      skeleton.clearTrack(0); // skeleton.setSkin(skinName);
+
       skeleton.setAnimation(0, 'animation', true);
     }
 
