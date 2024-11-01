@@ -2759,6 +2759,19 @@ let CommonFun = cc.Class({
      * 显示破产弹窗
      */
     showBankruptcy: function () {
+        if (GlobalCfg.BANKRUPT_CD == 0){
+            GlobalCfg.BANKRUPT_CD = new Date().getTime();
+        }
+        else{
+            let shengyuTime = (new Date().getTime() - GlobalCfg.BANKRUPT_CD) / 1000;
+            LoggerUtil.getInstance().log("333 破产礼包，游戏内显示 shengyuTime = ", shengyuTime);
+            if (shengyuTime < 60){
+                return;
+            }
+            else{
+                GlobalCfg.BANKRUPT_CD = new Date().getTime();
+            }
+        }
         let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
         if (isExist) {
             return;

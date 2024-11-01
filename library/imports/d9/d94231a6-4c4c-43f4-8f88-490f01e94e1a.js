@@ -342,6 +342,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
 
   /** APP 配置文件备用路径 */
   APP_CONFIG_URL_SPARE: "",
+  //破产弹框提示CD
+  BANKRUPT_CD: 0,
   // 谷歌id
   GOOGLE_ID: "",
   // facebookid
