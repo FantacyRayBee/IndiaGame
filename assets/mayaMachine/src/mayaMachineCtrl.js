@@ -691,7 +691,6 @@ cc.Class({
             let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple *  bet / 10 + startScore;
             this.freeTotalWinNum = endedScore;
             let freeCount = this.gameResult.mianfeinum;
-            this.runChangeTotalWinScore(startScore, endedScore, freeCount);
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
             if (bigWinLevel > 0) {
@@ -705,6 +704,7 @@ cc.Class({
                             mayaRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
                             .then(() => {
                                 this.showSpinResult(totalMultiple);
+                                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
                             });
                         };
                     });
@@ -714,6 +714,7 @@ cc.Class({
             }
             else {
                 this.showSpinResult(totalMultiple);
+                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
             };
 
         };
@@ -1099,6 +1100,7 @@ cc.Class({
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;
 
+        LoggerUtil.getInstance().error("GlobalCfg.USER_DATAS.userDiamond == " ,GlobalCfg.USER_DATAS.userDiamond); 
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {

@@ -2765,7 +2765,7 @@ let CommonFun = cc.Class({
         else{
             let shengyuTime = (new Date().getTime() - GlobalCfg.BANKRUPT_CD) / 1000;
             LoggerUtil.getInstance().log("333 破产礼包，游戏内显示 shengyuTime = ", shengyuTime);
-            if (shengyuTime < 60){
+            if (shengyuTime < 1800){//半小时CD才会弹出破产面板
                 return;
             }
             else{
