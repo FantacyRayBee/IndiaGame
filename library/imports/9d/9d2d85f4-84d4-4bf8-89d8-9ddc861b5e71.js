@@ -31,6 +31,7 @@ cc.Class({
   update: function update(dt) {},
   onDestroy: function onDestroy() {
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
+    GlobalCfg.IS_SHOW_BANKRUPT = false; //破产界面关闭时 置为false
   },
 
   /**

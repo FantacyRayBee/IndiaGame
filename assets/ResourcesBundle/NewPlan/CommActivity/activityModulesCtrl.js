@@ -342,7 +342,7 @@ cc.Class({
     },
 
     dealBtnBrokeGiftEvent:function(){
-        CommonFun.getInstance().showBankruptcy();
+        CommonFun.getInstance().showBankruptcy(true);
     }, 
 
     showSecondRechargeToast: function () {

@@ -951,7 +951,6 @@ var SceneManager = cc.Class({
            */
 
           var transfer_address = msgData.transfer_address ? msgData.transfer_address : null;
-          LoggerUtil.getInstance().log("msgData.transfer_address == ", msgData.transfer_address);
           /**
            * 小游戏房间列表。同/v1/small_game/roomlist接口数据
            */

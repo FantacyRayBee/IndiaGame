@@ -380,7 +380,7 @@ cc.Class({
     this.showSecondRechargeToast();
   },
   dealBtnBrokeGiftEvent: function dealBtnBrokeGiftEvent() {
-    CommonFun.getInstance().showBankruptcy();
+    CommonFun.getInstance().showBankruptcy(true);
   },
   showSecondRechargeToast: function showSecondRechargeToast() {
     CommonFun.getInstance().showSuperDiscount('Lobby');

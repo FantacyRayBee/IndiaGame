@@ -2264,13 +2264,26 @@ var CommonFun = cc.Class({
 
     var BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
 
-    if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && curGameCurRoundBetNum > 0 && (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.lastRecharged * BrokeGift_ShowInGame_Rate)) {
-      this.showBankruptcy();
+    if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
+      LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userDiamond = ", GlobalCfg.USER_DATAS.userDiamond);
+      LoggerUtil.getInstance().log("curGameMinEnter = ", curGameMinEnter);
+      LoggerUtil.getInstance().log("xxxx = ", GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate);
 
-      if (callback) {
-        callback();
+      if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate) {
+        this.showBankruptcy();
+
+        if (callback) {
+          callback();
+        }
       }
-    }
+    } // if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && curGameCurRoundBetNum > 0 &&
+    // (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.lastRecharged * BrokeGift_ShowInGame_Rate)) {
+    //     this.showBankruptcy();
+    //     if (callback) {
+    //         callback();
+    //     }
+    // }
+
   },
   updateToastLocalStorageByHours: function updateToastLocalStorageByHours(toastType, hours) {
     /**
@@ -3344,23 +3357,31 @@ var CommonFun = cc.Class({
   /**
    * 显示破产弹窗
    */
-  showBankruptcy: function showBankruptcy() {
+  showBankruptcy: function showBankruptcy(isClick) {
     var _this70 = this;
 
-    if (GlobalCfg.BANKRUPT_CD == 0) {
-      GlobalCfg.BANKRUPT_CD = new Date().getTime();
-    } else {
-      var shengyuTime = (new Date().getTime() - GlobalCfg.BANKRUPT_CD) / 1000;
-      LoggerUtil.getInstance().log("333 破产礼包，游戏内显示 shengyuTime = ", shengyuTime);
+    if (isClick === void 0) {
+      isClick = false;
+    }
 
-      if (shengyuTime < 1800) {
-        //半小时CD才会弹出破产面板
-        return;
-      } else {
+    if (isClick == false) {
+      //手动点击的时候不需要加入破产cd
+      if (GlobalCfg.BANKRUPT_CD == 0) {
         GlobalCfg.BANKRUPT_CD = new Date().getTime();
+      } else {
+        var shengyuTime = (new Date().getTime() - GlobalCfg.BANKRUPT_CD) / 1000;
+        LoggerUtil.getInstance().log("333 破产礼包，游戏内显示 shengyuTime = ", shengyuTime);
+
+        if (shengyuTime < 1800) {
+          //半小时CD才会弹出破产面板
+          return;
+        } else {
+          GlobalCfg.BANKRUPT_CD = new Date().getTime();
+        }
       }
     }
 
+    GlobalCfg.IS_SHOW_BANKRUPT = true;
     var isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
 
     if (isExist) {

@@ -384,6 +384,8 @@ window.GlobalCfg = {
   APP_CONFIG_URL_SPARE: "",
   //破产弹框提示CD
   BANKRUPT_CD: 0,
+  //破产弹框是否正在显示中
+  IS_SHOW_BANKRUPT: false,
   // 谷歌id
   GOOGLE_ID: "",
 
@@ -1075,7 +1077,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.isOfflineDeve2 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_7001");
+  cc.sys.localStorage.setItem("PackageChannel", "5_7001");
   GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };

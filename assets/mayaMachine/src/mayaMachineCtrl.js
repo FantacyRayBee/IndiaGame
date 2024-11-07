@@ -896,7 +896,9 @@ cc.Class({
             minLimit = parseInt(minLimit) * 100;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, ()=>{
                 if(cc.isValid(this)){
-                    this.toggle_auto.isChecked = false;
+                    if (GlobalCfg.IS_SHOW_BANKRUPT) { //破产界面显示时才需要暂停自动spin
+                        this.toggle_auto.isChecked = false;
+                    }
                 }
             });
             CommonFun.getInstance().showWithdrawToastInGame();
