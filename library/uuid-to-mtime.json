@@ -22120,8 +22120,8 @@
     "relativePath": "fruitMachine"
   },
   "d4ff8224-7619-465b-8b45-316abb221e97": {
-    "asset": 1730966935105,
-    "meta": 1730966943637,
+    "asset": 1731309333701,
+    "meta": 1731309354302,
     "relativePath": "mayaMachine"
   },
   "119f1e15-141a-4f28-bec2-114d841b1451": {
@@ -22159,19 +22159,14 @@
     "meta": 1730433886810,
     "relativePath": "Main\\Update.js"
   },
-  "e9de5a64-2b80-48e9-81ac-2fb1e8a3ede0": {
-    "asset": 1730431603940,
-    "meta": 1730433886816,
-    "relativePath": "mayaMachine\\audios"
-  },
   "8b6d7314-598e-4fd6-8742-afdf4126738b": {
     "asset": 1730431603948,
     "meta": 1730433886817,
     "relativePath": "mayaMachine\\font"
   },
   "d174bde5-2117-48dd-9e08-077bcdbff881": {
-    "asset": 1730966888939,
-    "meta": 1730966943637,
+    "asset": 1731309333704,
+    "meta": 1731309354302,
     "relativePath": "mayaMachine\\prefab"
   },
   "10d01e0e-a87d-453c-8e32-c980ead794c6": {
@@ -22180,18 +22175,18 @@
     "relativePath": "mayaMachine\\sound"
   },
   "cf39c14d-15a6-419f-938d-a67237b4b186": {
-    "asset": 1731037984462,
-    "meta": 1731040443743,
+    "asset": 1731309333704,
+    "meta": 1731309354303,
     "relativePath": "mayaMachine\\spine"
   },
   "bae97c7f-3ad6-478d-8c5e-f87c1e133e9d": {
-    "asset": 1731051234907,
-    "meta": 1731051901156,
+    "asset": 1731309333725,
+    "meta": 1731309354304,
     "relativePath": "mayaMachine\\sprite"
   },
   "b8469afe-1827-4f0b-bcbe-4059a1bfde8c": {
-    "asset": 1730431604083,
-    "meta": 1730433886820,
+    "asset": 1731309333733,
+    "meta": 1731309354304,
     "relativePath": "mayaMachine\\src"
   },
   "3223abc6-1de5-40a2-9893-7d5928b32943": {
@@ -22236,17 +22231,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1731051901185,
+    "meta": 1731309354334,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1731051901187,
+    "meta": 1731309354333,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1731051901186,
+    "meta": 1731309354335,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -22271,7 +22266,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1731051901184,
+    "meta": 1731309354336,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -22286,7 +22281,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1731051901184,
+    "meta": 1731309354332,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22296,7 +22291,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1731051901186,
+    "meta": 1731309354337,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22306,7 +22301,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1731051901188,
+    "meta": 1731309354334,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22321,7 +22316,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1731051901187,
+    "meta": 1731309354338,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22346,7 +22341,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1731051901190,
+    "meta": 1731309354338,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22361,7 +22356,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1731051901189,
+    "meta": 1731309354339,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22371,7 +22366,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1731051901189,
+    "meta": 1731309354339,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22406,12 +22401,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1731051901190,
+    "meta": 1731309354336,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1731051901191,
+    "meta": 1731309354340,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22447,17 +22442,17 @@
   "28b59d9b-8e64-4a21-83a4-1b5116427795": {
     "asset": 1730431603905,
     "meta": 1730433887411,
-    "relativePath": "mayaMachine\\audios\\bigWin2ShowFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin2ShowFree.mp3"
   },
   "2e6ebc53-57ee-4e0f-ab16-5cfe6e4d834b": {
     "asset": 1730431603907,
     "meta": 1730433887413,
-    "relativePath": "mayaMachine\\audios\\bigWin2ShowNotFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin2ShowNotFree.mp3"
   },
   "b689547a-977e-4b14-acbf-9f9da5b8e55c": {
     "asset": 1730431603904,
     "meta": 1730433887415,
-    "relativePath": "mayaMachine\\audios\\bigWin2End.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin2End.mp3"
   },
   "a97dd78b-c764-4b1c-8978-a46e42b137f0": {
     "asset": 1724821647000,
@@ -22472,12 +22467,12 @@
   "644af17b-b517-4fa6-8d3d-ae0145ea1859": {
     "asset": 1730431603892,
     "meta": 1730433887419,
-    "relativePath": "mayaMachine\\audios\\bigWin1End.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin1End.mp3"
   },
   "284ab0b5-5e58-42a5-aa47-73a3798bca2a": {
     "asset": 1730431603902,
     "meta": 1730433887423,
-    "relativePath": "mayaMachine\\audios\\bigWin2AddCoin.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin2AddCoin.mp3"
   },
   "9e24db8d-8574-4017-b253-1b388c2e1dc7": {
     "asset": 1724821647000,
@@ -22487,12 +22482,12 @@
   "2a4bb060-2027-482a-b608-604b0a341a1a": {
     "asset": 1730431603898,
     "meta": 1730433887425,
-    "relativePath": "mayaMachine\\audios\\bigWin1Show.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin1Show.mp3"
   },
   "13cdef70-eef4-4d81-8392-71996bbc902f": {
     "asset": 1730431603912,
     "meta": 1730433887427,
-    "relativePath": "mayaMachine\\audios\\bigWin3AddCoin.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin3AddCoin.mp3"
   },
   "62d8eec4-8a74-4c2e-a345-b2d37ac21a7a": {
     "asset": 1730431603942,
@@ -22502,7 +22497,7 @@
   "f8d889c0-2811-4f55-85b7-52e214a8a287": {
     "asset": 1730431603914,
     "meta": 1730433887432,
-    "relativePath": "mayaMachine\\audios\\bigWin3End.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin3End.mp3"
   },
   "e1c5db26-f874-461b-817a-26c00cebb511": {
     "asset": 1730431603944,
@@ -22512,7 +22507,7 @@
   "6160b8da-ae10-429e-946d-4de04ffead9d": {
     "asset": 1730431603917,
     "meta": 1730433887434,
-    "relativePath": "mayaMachine\\audios\\bigWin3ShowNotFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin3ShowNotFree.mp3"
   },
   "2790fc34-34a2-4720-b4c4-1aa3acc22e43": {
     "asset": 1730431603946,
@@ -22522,42 +22517,32 @@
   "24373832-437b-4f07-9424-d22024f6146a": {
     "asset": 1730431603915,
     "meta": 1730433887437,
-    "relativePath": "mayaMachine\\audios\\bigWin3ShowFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin3ShowFree.mp3"
   },
   "00d164bc-d078-4c1d-b6d0-0cdbb8dc5402": {
     "asset": 1730431603924,
     "meta": 1730433887442,
-    "relativePath": "mayaMachine\\audios\\bigWin4End.mp3"
-  },
-  "1b7f53da-8a64-4a79-9647-6fe7246b78c9": {
-    "asset": 1731308052476,
-    "meta": 1731308052480,
-    "relativePath": "mayaMachine\\prefab\\slotItem.prefab"
+    "relativePath": "Main\\res\\Audios\\bigWin4End.mp3"
   },
   "4c14acb8-67fa-424e-9df7-4886468e894c": {
     "asset": 1730431603927,
     "meta": 1730433887445,
-    "relativePath": "mayaMachine\\audios\\bigWin4ShowNotFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin4ShowNotFree.mp3"
   },
   "74a8d584-46ed-49e7-9604-92c30dbe8e1a": {
     "asset": 1730431603937,
     "meta": 1730433887448,
-    "relativePath": "mayaMachine\\audios\\bigWin5End.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin5End.mp3"
   },
   "c4173610-313c-423e-8032-94c3e5a43a0c": {
     "asset": 1730431603925,
     "meta": 1730433887450,
-    "relativePath": "mayaMachine\\audios\\bigWin4ShowFree.mp3"
-  },
-  "e7b114b7-00f8-425d-8284-20513a3d3679": {
-    "asset": 1731062407504,
-    "meta": 1731062407511,
-    "relativePath": "mayaMachine\\prefab\\slotRewardTips.prefab"
+    "relativePath": "Main\\res\\Audios\\bigWin4ShowFree.mp3"
   },
   "2d0d5122-23e3-428d-ac4c-2b02794b580f": {
     "asset": 1730431603921,
     "meta": 1730433887459,
-    "relativePath": "mayaMachine\\audios\\bigWin4AddCoin.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin4AddCoin.mp3"
   },
   "7e5bd0d3-bd42-49fa-b8f7-c719011ab871": {
     "asset": 1730431603976,
@@ -22567,16 +22552,16 @@
   "dd4e635c-3721-4ce6-8cdb-80230b3a5d4e": {
     "asset": 1730431603939,
     "meta": 1730433887460,
-    "relativePath": "mayaMachine\\audios\\bigWin5ShowFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin5ShowFree.mp3"
   },
   "4176761a-3fbc-4c6f-a1c2-a0f2a3622815": {
     "asset": 1730431603940,
     "meta": 1730433887461,
-    "relativePath": "mayaMachine\\audios\\bigWin5ShowNotFree.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin5ShowNotFree.mp3"
   },
   "68c7bb20-30c0-47d8-ba27-c1b9773f1624": {
     "asset": 1730966888940,
-    "meta": 1730966943702,
+    "meta": 1731308284398,
     "relativePath": "mayaMachine\\spine\\maya_frame_vfx.atlas"
   },
   "25b62d16-f158-4cfa-bf56-8ec587485dd6": {
@@ -22602,11 +22587,11 @@
   "8af47e1d-7575-4e2c-9395-a11550f44344": {
     "asset": 1730431603934,
     "meta": 1730433887497,
-    "relativePath": "mayaMachine\\audios\\bigWin5AddCoin.mp3"
+    "relativePath": "Main\\res\\Audios\\bigWin5AddCoin.mp3"
   },
   "d6775e74-d19d-435d-9593-488d8b52734b": {
-    "asset": 1730431604047,
-    "meta": 1730433887497,
+    "asset": 1731309333724,
+    "meta": 1731309354320,
     "relativePath": "mayaMachine\\sprite\\bg"
   },
   "0222db6b-ff7b-47bf-b4fa-d7a8de53a977": {
@@ -22629,25 +22614,10 @@
     "meta": 1730433887500,
     "relativePath": "mayaMachine\\sound\\bg.mp3"
   },
-  "67ded5e5-a8c2-4a3b-b34c-34eb4a3b27b7": {
-    "asset": 1730431604079,
-    "meta": 1730433887525,
-    "relativePath": "mayaMachine\\src\\mayaAudiosCtrl.js"
-  },
   "2cc6d892-eb48-4881-9e0d-39c8b7ba6b6f": {
     "asset": 1730431603963,
     "meta": 1730433887526,
     "relativePath": "mayaMachine\\sound\\win.mp3"
-  },
-  "37b152dd-4595-4608-91f5-d6dad7c9e4be": {
-    "asset": 1730431604080,
-    "meta": 1730433887548,
-    "relativePath": "mayaMachine\\src\\mayaItemCtrl.js"
-  },
-  "56057cf7-9a8e-409b-8219-ab3de5326eed": {
-    "asset": 1730431604082,
-    "meta": 1730433887671,
-    "relativePath": "mayaMachine\\src\\mayaRewardTipsCtrl.js"
   },
   "ddf50064-3432-431a-8e1d-69a83bcfcbd9": {
     "asset": 1730431604084,
@@ -22676,7 +22646,7 @@
   },
   "c526545a-ccd7-4dfc-a95d-073a4de21bb5": {
     "asset": 1730966888942,
-    "meta": 1730966943716,
+    "meta": 1731308284413,
     "relativePath": "mayaMachine\\spine\\maya_frame_vfx.png"
   },
   "c62ad9fc-cbee-4d2c-9ad0-cd4b52c9d97c": {
@@ -22846,7 +22816,7 @@
   },
   "80029c33-7842-4ce7-bfb5-7d63208e2da2": {
     "asset": 1730966888941,
-    "meta": 1730966943781,
+    "meta": 1731308284518,
     "relativePath": "mayaMachine\\spine\\maya_frame_vfx.json"
   },
   "50b41a7b-bbae-4ca3-8abd-774509331262": {
@@ -23069,11 +23039,6 @@
     "meta": 1730433888594,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\mayaera.json"
   },
-  "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
-    "asset": 1731308168437,
-    "meta": 1731308168442,
-    "relativePath": "mayaMachine\\indiaMachine.fire"
-  },
   "f2a86e19-7ddc-4457-8773-690b697ecb54": {
     "asset": 1730858905694,
     "meta": 1730858938339,
@@ -23104,89 +23069,299 @@
     "meta": 1730881231081,
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
   },
-  "6f9f69c6-a9e0-4e4f-9954-418347d23500": {
-    "asset": 1730881463239,
-    "meta": 1730881467538,
-    "relativePath": "mayaMachine\\src\\mayaMachineCtrl.js"
-  },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
     "asset": 1730887206338,
     "meta": 1730887212160,
     "relativePath": "Main\\Global.js"
   },
   "d39ba6ad-b8b1-4a39-9796-6d74299043f7": {
-    "asset": 1730966924498,
-    "meta": 1730966943687,
+    "asset": 1731294113242,
+    "meta": 1731309336090,
     "relativePath": "mayaMachine\\spine\\sysboms"
   },
   "d95df3a9-3edb-43ff-b32a-3baf3ee71775": {
-    "asset": 1731057509166,
-    "meta": 1731051901172,
+    "asset": 1731309333728,
+    "meta": 1731309336090,
     "relativePath": "mayaMachine\\sprite\\sysboms"
   },
   "c200c97b-995d-42c8-9c41-bcf52faa211f": {
-    "asset": 1731057504976,
-    "meta": 1731057504999,
+    "asset": 1731309333725,
+    "meta": 1731309336444,
     "relativePath": "mayaMachine\\sprite\\sysboms\\pl_icon.plist"
   },
+  "1b7f53da-8a64-4a79-9647-6fe7246b78c9": {
+    "asset": 1731314295054,
+    "meta": 1731314295060,
+    "relativePath": "mayaMachine\\prefab\\slotItem.prefab"
+  },
+  "e7b114b7-00f8-425d-8284-20513a3d3679": {
+    "asset": 1731312872466,
+    "meta": 1731312872474,
+    "relativePath": "mayaMachine\\prefab\\slotRewardTips.prefab"
+  },
+  "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
+    "asset": 1731314449674,
+    "meta": 1731314449681,
+    "relativePath": "mayaMachine\\mayaMachine.fire"
+  },
   "729fa27f-05f0-483f-b981-e4014748b891": {
-    "asset": 1731057504977,
-    "meta": 1731057504994,
+    "asset": 1731309333728,
+    "meta": 1731309336393,
     "relativePath": "mayaMachine\\sprite\\sysboms\\pl_icon.png"
   },
-  "fe847c34-c7bf-4266-b0f2-3dd79dccb27a": {
-    "asset": 1731062388498,
-    "meta": 1731062396636,
-    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_bg.png"
-  },
-  "24bd8915-3ba7-40d3-bf60-391dc5833064": {
-    "asset": 1731062735493,
-    "meta": 1731062735533,
-    "relativePath": "mayaMachine\\sprite\\bg\\pick-frm-kuangdis.png"
-  },
   "b508f9de-2edc-4c67-b39f-e02b30c4a942": {
-    "asset": 1731062739131,
-    "meta": 1731062739146,
+    "asset": 1731309333723,
+    "meta": 1731309336390,
     "relativePath": "mayaMachine\\sprite\\bg\\pick-ico-iang.png"
   },
-  "c7b54473-2154-4eba-b140-dc49b1d7dd23": {
-    "asset": 1731291194880,
-    "meta": 1731291194918,
-    "relativePath": "mayaMachine\\sprite\\bg\\pick-frm-dikuang.png"
-  },
-  "fdbb8bda-cd87-47df-9ef3-305740ceaea7": {
-    "asset": 1731291621479,
-    "meta": 1731291621496,
-    "relativePath": "mayaMachine\\sprite\\bg\\pick-ico-jindutdizi.png"
-  },
   "a13091b2-6008-43aa-ba9b-a32962da05d0": {
-    "asset": 1731291776167,
-    "meta": 1731291776182,
+    "asset": 1731309333714,
+    "meta": 1731309336391,
     "relativePath": "mayaMachine\\sprite\\bg\\pick-bg-bjdibantu01.png"
   },
+  "fdbb8bda-cd87-47df-9ef3-305740ceaea7": {
+    "asset": 1731309333724,
+    "meta": 1731309336397,
+    "relativePath": "mayaMachine\\sprite\\bg\\pick-ico-jindutdizi.png"
+  },
   "4364bd64-7dea-40be-a69b-1320e0f28efc": {
-    "asset": 1731291779198,
-    "meta": 1731291779216,
+    "asset": 1731309333716,
+    "meta": 1731309336398,
     "relativePath": "mayaMachine\\sprite\\bg\\pick-bg-kuangbian.png"
   },
+  "c7b54473-2154-4eba-b140-dc49b1d7dd23": {
+    "asset": 1731309333718,
+    "meta": 1731309336412,
+    "relativePath": "mayaMachine\\sprite\\bg\\pick-frm-dikuang.png"
+  },
+  "24bd8915-3ba7-40d3-bf60-391dc5833064": {
+    "asset": 1731309333721,
+    "meta": 1731309336413,
+    "relativePath": "mayaMachine\\sprite\\bg\\pick-frm-kuangdis.png"
+  },
+  "fe847c34-c7bf-4266-b0f2-3dd79dccb27a": {
+    "asset": 1731309333712,
+    "meta": 1731309336438,
+    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_bg.png"
+  },
+  "6cfa4869-590e-4f1d-9c59-c8dfa02455a1": {
+    "asset": 1731059541708,
+    "meta": 1731311403498,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h1.skel38.atlas"
+  },
+  "bb36876f-7e81-4f6b-9416-51fe9984dd65": {
+    "asset": 1731062356217,
+    "meta": 1731311403499,
+    "relativePath": "mayaMachine\\spine\\sysboms\\H2.skel.atlas"
+  },
+  "5123766f-4836-4fd0-b0b8-b65c5263cb6e": {
+    "asset": 1731059730512,
+    "meta": 1731311403500,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h3.skel38.atlas"
+  },
+  "1037bbbd-f134-4390-bb52-3ab03c49fdb1": {
+    "asset": 1731059791510,
+    "meta": 1731311403502,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h4.skel38.atlas"
+  },
+  "5419f2f8-7169-421f-b6d7-b117db623b0c": {
+    "asset": 1731059835100,
+    "meta": 1731311403509,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h5.skel38.atlas"
+  },
+  "8f6dbd59-ebb8-409d-83b5-d87ba2fff8de": {
+    "asset": 1731059881267,
+    "meta": 1731311403514,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h6.skel38.atlas"
+  },
+  "bdd64919-f307-4741-a6e2-a7a448ac677b": {
+    "asset": 1731059541707,
+    "meta": 1731311403516,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h1.skel38.png"
+  },
+  "c3e0bca3-e58d-4e52-8694-147792829c95": {
+    "asset": 1731059730511,
+    "meta": 1731311403519,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h3.skel38.png"
+  },
+  "8a2718aa-5ffd-4bff-93b4-814aeab134c9": {
+    "asset": 1731062257517,
+    "meta": 1731311403538,
+    "relativePath": "mayaMachine\\spine\\sysboms\\H7.skel.atlas"
+  },
+  "13d05879-7632-4a73-9c68-15905ee1fc3c": {
+    "asset": 1731059835099,
+    "meta": 1731311403532,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h5.skel38.png"
+  },
+  "d9c724b9-80cd-42ff-8d95-2d191cf02a70": {
+    "asset": 1731060034820,
+    "meta": 1731311403550,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l1.skel38.atlas"
+  },
+  "54245725-2960-4a43-87f7-4562819082dc": {
+    "asset": 1731062356216,
+    "meta": 1731311403547,
+    "relativePath": "mayaMachine\\spine\\sysboms\\H2.skel.png"
+  },
+  "4ccefd35-f216-4709-a5d5-aa2ca712c470": {
+    "asset": 1731062031824,
+    "meta": 1731311403553,
+    "relativePath": "mayaMachine\\spine\\sysboms\\L2.skel.atlas"
+  },
+  "926424fb-b138-44a8-ae37-5fc2441e9f93": {
+    "asset": 1731059881266,
+    "meta": 1731311403557,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h6.skel38.png"
+  },
+  "c0a01177-b77f-4076-a142-589fcab1c92a": {
+    "asset": 1731062257516,
+    "meta": 1731311403559,
+    "relativePath": "mayaMachine\\spine\\sysboms\\H7.skel.png"
+  },
+  "bc01bbb3-9ff4-4c68-8f0d-3ea1ac84c371": {
+    "asset": 1731060116050,
+    "meta": 1731311403561,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l3.skel38.atlas"
+  },
+  "2f6fecff-96a8-47b7-bd9a-a9c7f7ccf814": {
+    "asset": 1731059730459,
+    "meta": 1731311403594,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h3.skel38.json"
+  },
+  "b131f2a2-c032-402f-a708-f71f72f04935": {
+    "asset": 1731059881237,
+    "meta": 1731311403596,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h6.skel38.json"
+  },
+  "61c79223-5aaf-477d-a3d7-ef1248b7e542": {
+    "asset": 1731060186915,
+    "meta": 1731311403564,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l4.skel38.atlas"
+  },
+  "c5ffa175-a021-4826-99ca-6500e40e91d7": {
+    "asset": 1731059791205,
+    "meta": 1731311403597,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h4.skel38.json"
+  },
+  "6620efa1-51c8-47a6-96d3-de825b371679": {
+    "asset": 1731059541595,
+    "meta": 1731311403600,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h1.skel38.json"
+  },
+  "f74fed1e-651d-49c3-b524-05165a235b4b": {
+    "asset": 1731062257423,
+    "meta": 1731311403602,
+    "relativePath": "mayaMachine\\spine\\sysboms\\H7.skel.json"
+  },
+  "e3564641-890d-4361-8d4a-3ce3aa662713": {
+    "asset": 1731062356142,
+    "meta": 1731311403605,
+    "relativePath": "mayaMachine\\spine\\sysboms\\H2.skel.json"
+  },
+  "e1ae97c0-853b-4bc2-a9ad-5a0ca0a8cc96": {
+    "asset": 1731059835060,
+    "meta": 1731311403606,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h5.skel38.json"
+  },
+  "c4e41c3e-5d67-4619-8fac-063e5a522a64": {
+    "asset": 1731061768869,
+    "meta": 1731311403568,
+    "relativePath": "mayaMachine\\spine\\sysboms\\scatter.skel.atlas"
+  },
+  "a6d6936a-cbba-4ce2-90ab-e13e8c807bb9": {
+    "asset": 1731060034818,
+    "meta": 1731311403564,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l1.skel38.png"
+  },
+  "05de6c8c-a794-4f70-86dd-d2570659636a": {
+    "asset": 1731062031823,
+    "meta": 1731311403566,
+    "relativePath": "mayaMachine\\spine\\sysboms\\L2.skel.png"
+  },
+  "1f03ca0b-1a49-49b2-aa00-41a16cbe9cd0": {
+    "asset": 1731062031783,
+    "meta": 1731311403609,
+    "relativePath": "mayaMachine\\spine\\sysboms\\L2.skel.json"
+  },
+  "e44013bd-77ce-4d97-856e-d65d6ee4a3b5": {
+    "asset": 1731060034731,
+    "meta": 1731311403610,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l1.skel38.json"
+  },
+  "749ed08a-1d0f-427c-b571-9f6aee8d06ed": {
+    "asset": 1731060116049,
+    "meta": 1731311403572,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l3.skel38.png"
+  },
+  "aa3da91c-0b74-4235-93bb-6a545a55c6a6": {
+    "asset": 1731060186914,
+    "meta": 1731311403573,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l4.skel38.png"
+  },
+  "8760ae0e-4851-47d9-bbdb-287055512e36": {
+    "asset": 1731061768868,
+    "meta": 1731311403579,
+    "relativePath": "mayaMachine\\spine\\sysboms\\scatter.skel.png"
+  },
+  "781af8ba-a84d-49c7-a3db-1be9672a86e5": {
+    "asset": 1731059791509,
+    "meta": 1731311403584,
+    "relativePath": "mayaMachine\\spine\\sysboms\\h4.skel38.png"
+  },
+  "181700fd-8b38-4cfd-87cc-f1208501fd76": {
+    "asset": 1731060116008,
+    "meta": 1731311403613,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l3.skel38.json"
+  },
+  "22b436e7-13d4-4a4c-9894-f0b0f9a067f4": {
+    "asset": 1731060186885,
+    "meta": 1731311403615,
+    "relativePath": "mayaMachine\\spine\\sysboms\\l4.skel38.json"
+  },
+  "f8e18b72-4cee-4ccb-b139-8a3ef53e9c43": {
+    "asset": 1731061768705,
+    "meta": 1731311403619,
+    "relativePath": "mayaMachine\\spine\\sysboms\\scatter.skel.json"
+  },
   "20dc54e1-d5a8-48cc-8a43-2573b39e3325": {
-    "asset": 1731305714403,
-    "meta": 1731305743683,
+    "asset": 1731312701862,
+    "meta": 1731312722953,
+    "relativePath": "Main\\Script\\Slots\\slotAudiosCtrl.js"
+  },
+  "5970c0de-7d48-4c19-8eab-785d9ddf4609": {
+    "asset": 1731312748016,
+    "meta": 1731312748016,
+    "relativePath": "Main\\Script\\Slots"
+  },
+  "5f8e07e7-0f7a-4e23-9ee9-07652249151c": {
+    "asset": 1731312773751,
+    "meta": 1731312773752,
+    "relativePath": "Main\\res\\Audios"
+  },
+  "575ec2d6-1959-4386-b7b2-f3f00a6dc06d": {
+    "asset": 1731312813966,
+    "meta": 1731312826731,
     "relativePath": "mayaMachine\\src\\indiaAudiosCtrl.js"
   },
-  "497e1d5a-bed9-40b4-96e2-6009186308e7": {
-    "asset": 1731305716244,
-    "meta": 1731305759050,
-    "relativePath": "mayaMachine\\src\\indiaItemCtrl.js"
+  "c28062a7-0171-4137-b211-13f0773af302": {
+    "asset": 1731312989422,
+    "meta": 1731313004050,
+    "relativePath": "mayaMachine\\src\\slotRewardTipsCtrl.js"
+  },
+  "9c455463-baf6-45b2-a5ef-bb78960841cb": {
+    "asset": 1731313027703,
+    "meta": 1731313027704,
+    "relativePath": "Main\\res\\prefabs"
   },
   "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
-    "asset": 1731305718498,
-    "meta": 1731305766708,
+    "asset": 1731313175069,
+    "meta": 1731313183270,
     "relativePath": "mayaMachine\\src\\indiaMachineCtrl.js"
   },
-  "c28062a7-0171-4137-b211-13f0773af302": {
-    "asset": 1731305722281,
-    "meta": 1731305735647,
-    "relativePath": "mayaMachine\\src\\indiaRewardTipsCtrl.js"
+  "497e1d5a-bed9-40b4-96e2-6009186308e7": {
+    "asset": 1731317373960,
+    "meta": 1731317378008,
+    "relativePath": "mayaMachine\\src\\indiaItemCtrl.js"
   }
 }

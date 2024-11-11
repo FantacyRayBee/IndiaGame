@@ -10,37 +10,29 @@ cc.Class({
 
     ctor: function() {
         this.loadBundleName = "mayaMachine";
-        this.skeletonUrl = "spine/";
+        this.skeletonUrl = "spine/sysboms/";
 
         this.skeletonNameArr = [
-            'maya_icon_1', //正常元素 1-9
-            'maya_icon_2', //wild，scatter元素
+            'l1.skel38','L2.skel','l3.skel38','l4.skel38',
+            'H7.skel','h1.skel38','H2.skel','h3.skel38',
+            'h5.skel38','h6.skel38','h4.skel38','scatter.skel',
         ];
+
     },
 
     setSkeletonJing: function(type) {
-        let skeletonName = "";
-        if (type < 10) {
-            skeletonName = this.skeletonNameArr[0];
-        }
-        else {
-            skeletonName = this.skeletonNameArr[1];
-            type = type + 1; //因为spine动画给过来的时候已经给wild元素设置成11了，所以这里要加1
-        }
+        let skeletonName = this.skeletonNameArr[type - 1];
         if (!skeletonName || skeletonName == "") {
             return;
         };
+        // LoggerUtil.getInstance().log("setSkeletonJing skeletonName = " + skeletonName);
         this.icon_node.active = false;
         this.skeleton_maya.node.active = true;
-        let spriteName = "icon_" + (type * 10);
-        let animName = "icon_" + (type * 10);
-        if (type == 12) { //scatter元素特殊判断
-            animName = "icon_120_appear";
-        }
+        let spriteName = "icon_" + type;
         this.loadMayaSkeletonData(skeletonName, (skeletonData, self) => {
             if (self && this.skeleton_maya) {
                 this.skeleton_maya.skeletonData = skeletonData;
-                this.skeleton_maya.setAnimation(0, animName, false);
+                this.skeleton_maya.setAnimation(0, "act", true);
             };
         }, this);
 
@@ -49,7 +41,6 @@ cc.Class({
             return;
         };
         this.icon_node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-        if(type == 12) return; //scatter元素出现时需要播放动画
         this.skeleton_maya.node.active = false;
         this.icon_node.active = true;
     },
@@ -100,13 +91,16 @@ cc.Class({
                 if (!err) {
                     func && func(skeletonData, target);
                 }
+                else{
+                    LoggerUtil.getInstance().error(err);
+                }
             });
         }, target);
     },
 
     initIcon: function() {
         let type = Math.floor(Math.random() * 10 + 1);
-        let spriteName = "icon_" + (type * 10);
+        let spriteName = "icon_" + type;
         let spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);
         if (!spriteFrame) {
             return;

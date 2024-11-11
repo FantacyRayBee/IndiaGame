@@ -41,8 +41,8 @@ cc.Class({
                 return;
             };
             
-            CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
-                bundle.load(`audios/${audioClipName}`, cc.AudioClip, (err, audioClip) => {
+            CommonFun.getInstance().loadBundle('main', (bundle) => {
+                bundle.load(`Audios/${audioClipName}`, cc.AudioClip, (err, audioClip) => {
                     if (!err) {
                         let audioClipName = audioClip.name;
                         this.audioClipMap.set(audioClipName, audioClip);
@@ -50,11 +50,11 @@ cc.Class({
                         this.audioIdMap.set(audioClipName, audioId);
                     }
                     else {
-                        LoggerUtil.getInstance().error(`加载mayaMachine-${audioClipName}异常1: ${JSON.stringify(err)}`);
+                        LoggerUtil.getInstance().error(`加载main Audios-${audioClipName}异常1: ${JSON.stringify(err)}`);
                     };
                 });
             }, (err) => {
-                LoggerUtil.getInstance().error(`加载mayaMachine-${audioClipName}异常: ${JSON.stringify(err)}`);
+                LoggerUtil.getInstance().error(`加载main Audios-${audioClipName}异常: ${JSON.stringify(err)}`);
             });
         };
     },

@@ -102,7 +102,7 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MAYA_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this,
-        this.mayaAudiosCtrl = this.node.getComponent("mayaAudiosCtrl");
+        this.mayaAudiosCtrl = this.node.getComponent("slotAudiosCtrl");
 
         this.playGameMusic('sound/BGM');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -313,7 +313,7 @@ cc.Class({
         for (let j = 0, len1 = this.node_mayaContentArr.length; j < len1; j++) {
             let children = this.node_mayaContentArr[j].children;
             for (let k = 0, len2 = children.length; k < len2; k++) {
-                let src = children[k].getComponent('mayaItemCtrl');
+                let src = children[k].getComponent('indiaItemCtrl');
                 src.initIcon();
             };
         };
@@ -369,7 +369,7 @@ cc.Class({
         for (let j = 0, len1 = this.node_mayaContentArr.length; j < len1; j++) {
             let children = this.node_mayaContentArr[j].children;
             for (let k = 0, len2 = children.length; k < len2; k++) {
-                let src = children[k].getComponent('mayaItemCtrl');
+                let src = children[k].getComponent('indiaItemCtrl');
                 src.setCloseSkeletonDong(0);
             };
         };
@@ -607,7 +607,7 @@ cc.Class({
                 return;
             };
             if (endedPositionY >= this.height * 2) {
-                let src = node.getComponent('mayaItemCtrl');
+                let src = node.getComponent('indiaItemCtrl');
                 if (repeat == 17 && index == 0) {
                     let fruitType = self.gameResult.cards[shu].cards[0];
                     src.setSkeletonJing(fruitType);
@@ -695,13 +695,13 @@ cc.Class({
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
             if (bigWinLevel > 0) {
                 CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
-                    bundle.load("prefab/mayaRewardTips", cc.Prefab, (err, prefab) => {
+                    bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
                             let scene = cc.director.getScene();
-                            let mayaRewardTipsNode = cc.instantiate(prefab);
-                            let mayaRewardTipsCtrl = mayaRewardTipsNode.getComponent("mayaRewardTipsCtrl");
-                            scene.addChild(mayaRewardTipsNode);
-                            mayaRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+                            let RewardTipsNode = cc.instantiate(prefab);
+                            let RewardTipsCtrl = RewardTipsNode.getComponent("slotRewardTipsCtrl");
+                            scene.addChild(RewardTipsNode);
+                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
                             .then(() => {
                                 this.showSpinResult(totalMultiple);
                                 this.runChangeTotalWinScore(startScore, endedScore, freeCount);
@@ -709,7 +709,7 @@ cc.Class({
                         };
                     });
                 }, (err) => {
-                    LoggerUtil.getInstance().error(`加载mayaMachine-Bundle异常: ${JSON.stringify(err)}`);
+                    LoggerUtil.getInstance().error(`加载indiaMachine-Bundle异常: ${JSON.stringify(err)}`);
                 });
             }
             else {
@@ -1032,10 +1032,10 @@ cc.Class({
                     for (let k = 0, len1 = typeArr.length; k < len1 - 1; k++) {
                         let itemNode1 = typeArr[k];
                         let itemNode2 = typeArr[k + 1];
-                        let src1 = itemNode1.getComponent('mayaItemCtrl');
+                        let src1 = itemNode1.getComponent('indiaItemCtrl');
                         src1.setSkeletonDong();
                         src1.setKuangSkeletonDong();
-                        let src2 = itemNode2.getComponent('mayaItemCtrl');
+                        let src2 = itemNode2.getComponent('indiaItemCtrl');
                         src2.setSkeletonDong();
                         src2.setKuangSkeletonDong();
                     };
@@ -1063,7 +1063,7 @@ cc.Class({
         graphics.strokeColor = cc.Color.RED;
 
         graphics.moveTo(localPos1.x, localPos1.y);
-        let src1 = startNode.getComponent('mayaItemCtrl');
+        let src1 = startNode.getComponent('indiaItemCtrl');
         src1.setSkeletonDong();
         src1.setKuangSkeletonDong();
 
@@ -1071,7 +1071,7 @@ cc.Class({
             graphics.lineTo(localPos2.x, localPos2.y);
             graphics.stroke();
 
-            let src2 = endNode.getComponent('mayaItemCtrl');
+            let src2 = endNode.getComponent('indiaItemCtrl');
             src2.setSkeletonDong();
             src2.setKuangSkeletonDong();
         }, time);
