@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "mayaitem",
+    "_name": "slotitem",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -31,10 +31,13 @@
     "_components": [
       {
         "__id__": 11
+      },
+      {
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 13
     },
     "_opacity": 255,
     "_color": {
@@ -110,8 +113,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 84
+      "width": 114,
+      "height": 98
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -163,7 +166,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "a1c65c0b-9b21-4f87-9580-908bc6ff9685"
+      "__uuid__": "cc4b4ff3-ab6c-4b3d-a6df-603dbb3a9896"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -177,7 +180,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "bd84134a-e4c1-406c-ae3f-1efeba5e16e2"
+      "__uuid__": "c200c97b-995d-42c8-9c41-bcf52faa211f"
     },
     "_id": ""
   },
@@ -194,7 +197,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "skeleton_maya",
+    "_name": "skeleton",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -287,9 +290,7 @@
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
-    "_N$skeletonData": {
-      "__uuid__": "69dcbffc-6cba-4e60-b8ca-fbdc7a0356a0"
-    },
+    "_N$skeletonData": null,
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
     "_N$debugBones": false,
@@ -428,6 +429,26 @@
   },
   {
     "__type__": "37b15LdRZVGCJH11trXyeS+",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "skeleton_maya": {
+      "__id__": 6
+    },
+    "skeleton_kuang": {
+      "__id__": 9
+    },
+    "spriteAtlas_icon": null,
+    "icon_node": {
+      "__id__": 2
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "497e11avtlAtJbiYAkYYwjn",
     "_name": "",
     "_objFlags": 0,
     "node": {
