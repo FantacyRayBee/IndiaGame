@@ -23084,14 +23084,9 @@
     "meta": 1731309336090,
     "relativePath": "mayaMachine\\sprite\\sysboms"
   },
-  "c200c97b-995d-42c8-9c41-bcf52faa211f": {
-    "asset": 1731309333725,
-    "meta": 1731309336444,
-    "relativePath": "mayaMachine\\sprite\\sysboms\\pl_icon.plist"
-  },
   "1b7f53da-8a64-4a79-9647-6fe7246b78c9": {
-    "asset": 1731314295054,
-    "meta": 1731314295060,
+    "asset": 1731396414819,
+    "meta": 1731396414826,
     "relativePath": "mayaMachine\\prefab\\slotItem.prefab"
   },
   "e7b114b7-00f8-425d-8284-20513a3d3679": {
@@ -23100,14 +23095,9 @@
     "relativePath": "mayaMachine\\prefab\\slotRewardTips.prefab"
   },
   "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
-    "asset": 1731314449674,
-    "meta": 1731314449681,
+    "asset": 1731399577880,
+    "meta": 1731399577886,
     "relativePath": "mayaMachine\\mayaMachine.fire"
-  },
-  "729fa27f-05f0-483f-b981-e4014748b891": {
-    "asset": 1731309333728,
-    "meta": 1731309336393,
-    "relativePath": "mayaMachine\\sprite\\sysboms\\pl_icon.png"
   },
   "b508f9de-2edc-4c67-b39f-e02b30c4a942": {
     "asset": 1731309333723,
@@ -23324,11 +23314,6 @@
     "meta": 1731311403619,
     "relativePath": "mayaMachine\\spine\\sysboms\\scatter.skel.json"
   },
-  "20dc54e1-d5a8-48cc-8a43-2573b39e3325": {
-    "asset": 1731312701862,
-    "meta": 1731312722953,
-    "relativePath": "Main\\Script\\Slots\\slotAudiosCtrl.js"
-  },
   "5970c0de-7d48-4c19-8eab-785d9ddf4609": {
     "asset": 1731312748016,
     "meta": 1731312748016,
@@ -23339,29 +23324,89 @@
     "meta": 1731312773752,
     "relativePath": "Main\\res\\Audios"
   },
-  "575ec2d6-1959-4386-b7b2-f3f00a6dc06d": {
-    "asset": 1731312813966,
-    "meta": 1731312826731,
-    "relativePath": "mayaMachine\\src\\indiaAudiosCtrl.js"
-  },
-  "c28062a7-0171-4137-b211-13f0773af302": {
-    "asset": 1731312989422,
-    "meta": 1731313004050,
-    "relativePath": "mayaMachine\\src\\slotRewardTipsCtrl.js"
-  },
   "9c455463-baf6-45b2-a5ef-bb78960841cb": {
     "asset": 1731313027703,
     "meta": 1731313027704,
     "relativePath": "Main\\res\\prefabs"
   },
+  "a0ddb87e-efae-446f-903f-8598cb96064f": {
+    "asset": 1724821647000,
+    "meta": 1731396034778,
+    "relativePath": "mayaMachine\\spine\\sysboms\\wild.atlas"
+  },
+  "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
+    "asset": 1724821647000,
+    "meta": 1731396034792,
+    "relativePath": "mayaMachine\\spine\\sysboms\\wild.skel"
+  },
+  "14813841-b848-4fec-b37a-5826534d075e": {
+    "asset": 1724821647000,
+    "meta": 1731396034791,
+    "relativePath": "mayaMachine\\spine\\sysboms\\wild.png"
+  },
   "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
-    "asset": 1731313175069,
-    "meta": 1731313183270,
+    "asset": 1731396827809,
+    "meta": 1731396833385,
     "relativePath": "mayaMachine\\src\\indiaMachineCtrl.js"
   },
+  "c28062a7-0171-4137-b211-13f0773af302": {
+    "asset": 1731396823112,
+    "meta": 1731396833421,
+    "relativePath": "mayaMachine\\src\\slotRewardTipsCtrl.js"
+  },
+  "20dc54e1-d5a8-48cc-8a43-2573b39e3325": {
+    "asset": 1731396928297,
+    "meta": 1731396940559,
+    "relativePath": "Main\\Script\\Slots\\slotAudiosCtrl.js"
+  },
+  "575ec2d6-1959-4386-b7b2-f3f00a6dc06d": {
+    "asset": 1731396978065,
+    "meta": 1731396984795,
+    "relativePath": "mayaMachine\\src\\indiaAudiosCtrl.js"
+  },
+  "6ed44b5b-6b6f-4f8b-aab5-8823722c7c61": {
+    "asset": 1731397973161,
+    "meta": 1731397973179,
+    "relativePath": "mayaMachine\\sprite\\sysboms\\tplist.plist"
+  },
+  "4d58dfe4-f395-4d75-afb9-bb8ca75a7cc8": {
+    "asset": 1731397973161,
+    "meta": 1731397973174,
+    "relativePath": "mayaMachine\\sprite\\sysboms\\tplist.png"
+  },
   "497e1d5a-bed9-40b4-96e2-6009186308e7": {
-    "asset": 1731317373960,
-    "meta": 1731317378008,
+    "asset": 1731398910879,
+    "meta": 1731398914502,
     "relativePath": "mayaMachine\\src\\indiaItemCtrl.js"
+  },
+  "d7459619-a509-43cb-a867-91bec98411b5": {
+    "asset": 1731399279651,
+    "meta": 1731399279716,
+    "relativePath": "mayaMachine\\spine\\wind1x3blue.skel.json"
+  },
+  "5fd4a926-b35a-4fb2-995e-8a02237c4cf6": {
+    "asset": 1731399279650,
+    "meta": 1731399279675,
+    "relativePath": "mayaMachine\\spine\\wind1x3blue.skel.atlas"
+  },
+  "e25ce7ea-e4d7-47d2-b476-cf1ee5848384": {
+    "asset": 1731399279651,
+    "meta": 1731399279699,
+    "relativePath": "mayaMachine\\spine\\wind1x3blue.skel.png"
+  },
+  "dedab96d-f907-4d65-94e9-ef2b5fc055a6": {
+    "asset": 1731399289664,
+    "meta": 1731399289759,
+    "relativePath": "mayaMachine\\spine\\wind1x3ys.skel38.json"
+  },
+  "74c0557f-d5f0-4fdc-96de-179f47a95c4f": {
+    "asset": 1731399289662,
+    "meta": 1731399289713,
+    "relativePath": "mayaMachine\\spine\\wind1x3ys.skel38.atlas"
+  },
+  "db84456a-87f9-4768-9fad-fac57186f322": {
+    "asset": 1731399289665,
+    "meta": 1731399289743,
+    "relativePath": "mayaMachine\\spine\\wind1x3ys.skel38.png"
   }
 }

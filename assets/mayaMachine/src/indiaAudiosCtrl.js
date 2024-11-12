@@ -30,8 +30,6 @@ cc.Class({
             this.audioIdMap.delete(audioClipName);
         };
     },
-
-
     _playEffect: function (audioClipName, isLoop) {
         if (true == this.checkState('toggle_yinxiao')) {
             if (this.audioClipMap.has(audioClipName)) {

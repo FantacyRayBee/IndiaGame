@@ -102,7 +102,7 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MAYA_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this,
-        this.mayaAudiosCtrl = this.node.getComponent("slotAudiosCtrl");
+        this.slotAudiosCtrl = this.node.getComponent("slotAudiosCtrl");
 
         this.playGameMusic('sound/BGM');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);

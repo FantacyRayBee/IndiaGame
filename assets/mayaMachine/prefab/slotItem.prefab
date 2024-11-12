@@ -200,7 +200,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 6
@@ -219,8 +219,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 141.73,
-      "height": 139.94
+      "width": 208.8350830078125,
+      "height": 208.83505249023438
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -271,7 +271,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "act",
+    "defaultAnimation": "jing",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -282,13 +282,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "act",
+    "_animationName": "jing",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "e3564641-890d-4361-8d4a-3ce3aa662713"
+      "__uuid__": "e6efd503-2b03-48b2-bf6c-c69e99fe5778"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
