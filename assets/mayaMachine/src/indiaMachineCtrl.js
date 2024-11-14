@@ -34,6 +34,8 @@ cc.Class({
         lab_jb: cc.Label,
 
         pab_setting: cc.Prefab, 
+        FG_anim1: cc.Node,
+        FG_anim2: cc.Node,
     },
 
     ctor: function () {
@@ -844,25 +846,21 @@ cc.Class({
             this.unschedule(startNextSpin);
 
             if (this.gameResult.mianfeinum > 0) {
+                //刚进入FG
                 if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
                     this.isHaveMianFeiRecord = true;
                     this.selectAutoBetStr = this.lab_autoBetCiShu.string;
                     this.selectAutoStatus = this.toggle_auto.isChecked;
-                };
+                    this.FG_anim1.node.active = true;
+                    this.FG_anim2.node.active = true;
+                    this.scheduleOnce(() => {
+                        this.dealFreeGame(2);
+                    }, 2);
+                }
+                else{
+                    this.dealFreeGame();
+                }
 
-                this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
-                this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
-
-                this.toggle_auto.interactable = false;
-
-                this.autoSpineNode.active = true;
-
-                let amount = parseInt(this.lab_betAmount.string);
-                let proroID = 'gameservice.call';
-                let message = 'CallReq';
-                GameServerManager.send(proroID, message, {              
-                    amount: amount * 100
-                });
             }
             else {
                 if (this.isHaveMianFeiRecord) {
@@ -888,6 +886,23 @@ cc.Class({
             };
         };
         this.schedule(startNextSpin, 0.01); 
+    },
+
+    dealFreeGame: function(isHideAnim = false) {
+        this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
+        this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
+        this.toggle_auto.interactable = false;
+        this.autoSpineNode.active = true;
+        let amount = parseInt(this.lab_betAmount.string);
+        let proroID = 'gameservice.call';
+        let message = 'CallReq';
+        GameServerManager.send(proroID, message, {              
+            amount: amount * 100
+        });
+        if (isHideAnim) {
+            this.FG_anim1.node.active = false;
+            this.FG_anim2.node.active = false;
+        }
     },
 
     curRoundAddCoinFinish(){
