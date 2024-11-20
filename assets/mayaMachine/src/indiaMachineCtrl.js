@@ -851,11 +851,11 @@ cc.Class({
                     this.isHaveMianFeiRecord = true;
                     this.selectAutoBetStr = this.lab_autoBetCiShu.string;
                     this.selectAutoStatus = this.toggle_auto.isChecked;
-                    this.FG_anim1.node.active = true;
-                    this.FG_anim2.node.active = true;
+                    this.FG_anim1.active = true;
+                    this.FG_anim2.active = true;
                     this.scheduleOnce(() => {
-                        this.dealFreeGame(2);
-                    }, 2);
+                        this.dealFreeGame(true);
+                    }, 3);
                 }
                 else{
                     this.dealFreeGame();
@@ -900,8 +900,8 @@ cc.Class({
             amount: amount * 100
         });
         if (isHideAnim) {
-            this.FG_anim1.node.active = false;
-            this.FG_anim2.node.active = false;
+            this.FG_anim1.active = false;
+            this.FG_anim2.active = false;
         }
     },
 
