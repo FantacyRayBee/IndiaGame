@@ -400,7 +400,7 @@ cc.Class({
     }
 
     ;
-    CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from);
+    CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
   },
   dealBtnBonusTipsEvent: function dealBtnBonusTipsEvent() {
     this.node_bonusTips.active = !this.node_bonusTips.active;

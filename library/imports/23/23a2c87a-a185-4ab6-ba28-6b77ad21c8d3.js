@@ -36,7 +36,6 @@ cc.Class({
 
     if (this.node.getComponent(cc.Toggle).isChecked) {
       GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;
-      LoggerUtil.getInstance().log("222222222 GlobalCfg.PAY_CHANNEL : ", GlobalCfg.PAY_CHANNEL);
     }
 
     ;
