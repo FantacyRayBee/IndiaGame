@@ -555,8 +555,8 @@
     "relativePath": "lhdGame"
   },
   "a8eacbcf-fbef-4465-84b3-524340df9455": {
-    "asset": 1732254600072,
-    "meta": 1732500915127,
+    "asset": 1732501836136,
+    "meta": 1732502121738,
     "relativePath": "Main"
   },
   "8fc902c6-4301-45e4-a71d-b923f1634160": {
@@ -7100,8 +7100,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Setting"
   },
   "45cde789-b464-481c-b6c9-180e53f57398": {
-    "asset": 1729129661113,
-    "meta": 1730342527642,
+    "asset": 1732501847643,
+    "meta": 1732502121757,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop"
   },
   "a2fbe3ee-1a2a-4a01-a7a5-bd83b10e88f0": {
@@ -10895,8 +10895,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1730858905694,
-    "meta": 1730858938032,
+    "asset": 1732501847641,
+    "meta": 1732502121758,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
@@ -11638,11 +11638,6 @@
     "asset": 1728960018189,
     "meta": 1730342532189,
     "relativePath": "ResourcesBundle\\NewPlan\\ContactUs\\res"
-  },
-  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
-    "asset": 1724821647000,
-    "meta": 1730342532202,
-    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
   },
   "6f0d9095-0143-47c8-9834-744f68eb4edc": {
     "asset": 1728960018208,
@@ -22206,17 +22201,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1732500915167,
+    "meta": 1732502121767,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1732500915168,
+    "meta": 1732502121770,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1732500915170,
+    "meta": 1732502121769,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -22241,7 +22236,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1732500915169,
+    "meta": 1732502121768,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -22256,7 +22251,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1732500915167,
+    "meta": 1732502121771,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22266,7 +22261,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1732500915169,
+    "meta": 1732502121773,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22276,7 +22271,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1732500915170,
+    "meta": 1732502121773,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22291,7 +22286,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1732500915171,
+    "meta": 1732502121770,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22316,7 +22311,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1732500915172,
+    "meta": 1732502121771,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22331,7 +22326,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1732500915172,
+    "meta": 1732502121772,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22341,7 +22336,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1732500915171,
+    "meta": 1732502121774,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22376,12 +22371,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1732500915173,
+    "meta": 1732502121774,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1732500915174,
+    "meta": 1732502121775,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -23144,11 +23139,6 @@
     "meta": 1732071411676,
     "relativePath": "mayaMachine\\spine\\maya_icon_1.json"
   },
-  "da78386b-15c7-459d-b25b-166a4dbb5272": {
-    "asset": 1732083585163,
-    "meta": 1732085623468,
-    "relativePath": "Main\\SDK\\APPManager.js"
-  },
   "3ecfb5af-80fc-4a7e-bdb0-82146bb32c55": {
     "asset": 1732090660729,
     "meta": 1732090665371,
@@ -23158,11 +23148,6 @@
     "asset": 1732090752643,
     "meta": 1732091404890,
     "relativePath": "ResourcesBundle\\NewPlan\\TransactionRecord\\TransactionRecordCtrl.js"
-  },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1732501836136,
-    "meta": 1732501849776,
-    "relativePath": "Main\\Global.js"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
     "asset": 1732501847641,
@@ -23178,5 +23163,20 @@
     "asset": 1732501847643,
     "meta": 1732501850123,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopTogItemCtrl.js"
+  },
+  "da78386b-15c7-459d-b25b-166a4dbb5272": {
+    "asset": 1732504037974,
+    "meta": 1732504301895,
+    "relativePath": "Main\\SDK\\APPManager.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1732504368184,
+    "meta": 1732504369715,
+    "relativePath": "Main\\Global.js"
+  },
+  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
+    "asset": 1732506360520,
+    "meta": 1732506364024,
+    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
   }
 }
