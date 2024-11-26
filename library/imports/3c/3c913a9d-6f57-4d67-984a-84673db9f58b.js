@@ -2731,7 +2731,27 @@ var CommonFun = cc.Class({
    * @param {Number} commodityId 商品ID
    * @param {Function} callback 
    */
-  rechargeByCommodityId: function rechargeByCommodityId(commodityId, from, callback) {
+  rechargeByCommodityId: function rechargeByCommodityId(commodityId, from, callback, PAY_CHANNEL) {
+    var _this61 = this;
+
+    if (PAY_CHANNEL === void 0) {
+      PAY_CHANNEL = 0;
+    }
+
+    if (PAY_CHANNEL == 0) {
+      //如果传进来的支付渠道ID为0，则获取支付渠道ID
+      this.getPayChannel(function (payChannels) {
+        GlobalCfg.PAY_CHANNEL = payChannels[0];
+
+        _this61.PayHttp(commodityId, from, callback);
+      });
+      return;
+    }
+
+    ;
+    this.PayHttp(commodityId, from, callback);
+  },
+  PayHttp: function PayHttp(commodityId, from, callback) {
     var url = GlobalCfg.HTTP_SERVER + "/v1/payment/h5pay";
     url += "?user_mobile=" + GlobalCfg.USER_DATAS.phone;
     url += "&user_email=" + GlobalCfg.USER_DATAS.mail;
@@ -2783,13 +2803,13 @@ var CommonFun = cc.Class({
    * 显示游戏开始遮罩
    */
   showGameStartMask: function showGameStartMask() {
-    var _this61 = this;
+    var _this62 = this;
 
     var gameStartMaskPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESTARTMASK);
     gameStartMaskPrefabPromise.then(function (prefab) {
       var gameStartMaskNode = cc.instantiate(prefab);
 
-      _this61.addToPointParent(gameStartMaskNode, GlobalCfg.PREFAB_PARENT.GAMESTARTMASK);
+      _this62.addToPointParent(gameStartMaskNode, GlobalCfg.PREFAB_PARENT.GAMESTARTMASK);
     });
   },
 
@@ -2824,7 +2844,7 @@ var CommonFun = cc.Class({
    * @param {Number} targetSeat 默认-1，表示群发
    */
   showGameGifInteraction: function showGameGifInteraction(targetSeat) {
-    var _this62 = this;
+    var _this63 = this;
 
     if (targetSeat === void 0) {
       targetSeat = -1;
@@ -2836,7 +2856,7 @@ var CommonFun = cc.Class({
       var gameGifInteractionCtrl = gameGifInteractionNode.getComponent('GameGifInteractionCtrl');
       gameGifInteractionCtrl.setTargetSeat(targetSeat);
 
-      _this62.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
+      _this63.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
     });
   },
 
@@ -2848,7 +2868,7 @@ var CommonFun = cc.Class({
    * @returns 
    */
   playGameGifInteraction: function playGameGifInteraction(skeletonName, senderNode, targetNodeArr) {
-    var _this63 = this;
+    var _this64 = this;
 
     if (!Array.isArray(targetNodeArr) || targetNodeArr.length === 0) {
       return;
@@ -2867,16 +2887,16 @@ var CommonFun = cc.Class({
       var _loop = function _loop(i) {
         var targetNode = targetNodeArr[i];
 
-        var gameGifInteractionSkePrefabPromise = _this63.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTIONSKE);
+        var gameGifInteractionSkePrefabPromise = _this64.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTIONSKE);
 
         gameGifInteractionSkePrefabPromise.then(function (prefab) {
           var gameGifInteractionSkeNode = cc.instantiate(prefab);
 
-          _this63.addToPointParent(gameGifInteractionSkeNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
+          _this64.addToPointParent(gameGifInteractionSkeNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
 
           var gameGifInteractionSkeCtrl = gameGifInteractionSkeNode.getComponent('GameGifInteractionSkeCtrl');
 
-          var parentNode = _this63.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
+          var parentNode = _this64.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTIONSKE);
 
           gameGifInteractionSkeCtrl.playGameGifSkeleton(skeletonName, senderNode, targetNode, parentNode);
         });
@@ -2897,7 +2917,7 @@ var CommonFun = cc.Class({
    * @param {Number} targetSeat 默认-1，表示群发
    */
   showGameWordInteraction: function showGameWordInteraction(targetSeat) {
-    var _this64 = this;
+    var _this65 = this;
 
     var gameWordInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTION);
     gameWordInteractionPrefabPromise.then(function (prefab) {
@@ -2905,7 +2925,7 @@ var CommonFun = cc.Class({
       var gameWordInteractionCtrl = gameWordInteractionNode.getComponent('GameWordInteractionCtrl');
       gameWordInteractionCtrl.setTargetSeat(targetSeat);
 
-      _this64.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
+      _this65.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
     });
   },
 
@@ -2918,7 +2938,7 @@ var CommonFun = cc.Class({
    * @returns 
    */
   playGameWordInteraction: function playGameWordInteraction(type, name, targetNode, offset) {
-    var _this65 = this;
+    var _this66 = this;
 
     if (cc.isValid(targetNode) == false) {
       return;
@@ -2930,11 +2950,11 @@ var CommonFun = cc.Class({
       var gameWordInteractionShowNode = cc.instantiate(prefab);
       var gameWordInteractionShowCtrl = gameWordInteractionShowNode.getComponent('GameWordInteractionShowCtrl');
 
-      var parentNode = _this65.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+      var parentNode = _this66.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
 
       gameWordInteractionShowCtrl.setGameWordInteraction(type, name, targetNode, offset, parentNode);
 
-      _this65.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+      _this66.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
     });
   },
 
@@ -2942,14 +2962,14 @@ var CommonFun = cc.Class({
    * 显示游戏中的设置界面
    */
   showGameSetting: function showGameSetting() {
-    var _this66 = this;
+    var _this67 = this;
 
     var gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
     gameSettingPrefabPromise.then(function (prefab) {
       var gameSettingNode = cc.instantiate(prefab);
       var gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
 
-      _this66.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+      _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
     });
   },
 
@@ -2958,7 +2978,7 @@ var CommonFun = cc.Class({
    * @param {boolean} isShowSwitchBtn 是否显示换桌按钮
    */
   showGameMenu: function showGameMenu(isShowSwitchBtn) {
-    var _this67 = this;
+    var _this68 = this;
 
     if (isShowSwitchBtn === void 0) {
       isShowSwitchBtn = true;
@@ -2970,7 +2990,7 @@ var CommonFun = cc.Class({
       var gameMenuCtrl = gameSettingNode.getComponent('GameMenuCtrl');
       gameMenuCtrl.setSwitchTableBtnActive(isShowSwitchBtn);
 
-      _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
+      _this68.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
     });
   },
 
@@ -3127,7 +3147,7 @@ var CommonFun = cc.Class({
    * @param {Function} clickBtnPlayNowCallback 点击“Play Now”按钮的回调
    */
   showDiversionFreeTP: function showDiversionFreeTP(clickBtnPlayNowCallback) {
-    var _this68 = this;
+    var _this69 = this;
 
     if (GlobalCfg.IS_EXIST_DIVERSIONFREETP_VIEW) {
       return;
@@ -3141,7 +3161,7 @@ var CommonFun = cc.Class({
       var diversionFreeTPCtrl = diversionFreeTPNode.getComponent('DiversionFreeTPCtrl');
       diversionFreeTPCtrl.setDiversionFreeTPBtnPlayNowCallback(clickBtnPlayNowCallback);
 
-      _this68.addToPointParent(diversionFreeTPNode, GlobalCfg.PREFAB_PARENT.DIVERSIONFREETP);
+      _this69.addToPointParent(diversionFreeTPNode, GlobalCfg.PREFAB_PARENT.DIVERSIONFREETP);
     });
   },
 
@@ -3316,14 +3336,14 @@ var CommonFun = cc.Class({
    * 显示签到弹窗
    */
   showSignToast: function showSignToast() {
-    var _this69 = this;
+    var _this70 = this;
 
     var signPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SIGN);
     signPrefabPromise.then(function (prefab) {
       var signNode = cc.instantiate(prefab);
       var gameMenuCtrl = signNode.getComponent('SignCtrl');
 
-      _this69.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
+      _this70.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
     });
   },
 
@@ -3358,7 +3378,7 @@ var CommonFun = cc.Class({
    * 显示破产弹窗
    */
   showBankruptcy: function showBankruptcy(isClick) {
-    var _this70 = this;
+    var _this71 = this;
 
     if (isClick === void 0) {
       isClick = false;
@@ -3401,7 +3421,7 @@ var CommonFun = cc.Class({
       var BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
       BankruptcyGiftCtrl.init();
 
-      _this70.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+      _this71.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
     });
   }
 });

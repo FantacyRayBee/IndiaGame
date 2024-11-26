@@ -2250,7 +2250,19 @@ let CommonFun = cc.Class({
      * @param {Number} commodityId 商品ID
      * @param {Function} callback 
      */
-    rechargeByCommodityId: function (commodityId, from, callback) {
+    rechargeByCommodityId: function (commodityId, from, callback, PAY_CHANNEL = 0) {
+        if (PAY_CHANNEL == 0) {
+            //如果传进来的支付渠道ID为0，则获取支付渠道ID
+            this.getPayChannel((payChannels) => {
+                GlobalCfg.PAY_CHANNEL = payChannels[0]
+                this.PayHttp(commodityId, from, callback);
+            });
+            return;
+        };
+        this.PayHttp(commodityId, from, callback);
+    },
+
+    PayHttp: function (commodityId, from, callback) {
         let url = GlobalCfg.HTTP_SERVER + "/v1/payment/h5pay";
         url += "?user_mobile=" + GlobalCfg.USER_DATAS.phone;
         url += "&user_email=" + GlobalCfg.USER_DATAS.mail;
@@ -2275,6 +2287,7 @@ let CommonFun = cc.Class({
             };
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
+
 
     /**
      * 获取商场角标

@@ -1076,7 +1076,8 @@ if (GlobalCfg.IsDownloadPackage2 == 1) {
  * 包名： com.whwh.offlinedeve
 */
 // GlobalCfg.isOfflineDeve = cc.sys.isNative ? Number(cc.sys.localStorage.getItem("ISOFFLINEDEVE")) : 1;
-// GlobalCfg.isOfflineDeve = 1;
+
+GlobalCfg.isOfflineDeve = 1;
 
 if (GlobalCfg.isOfflineDeve == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;

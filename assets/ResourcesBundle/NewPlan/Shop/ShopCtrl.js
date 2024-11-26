@@ -342,7 +342,7 @@ cc.Class({
         if (this.haveFromData == false) {
             SHOPPING.from = curScene;
         };
-        CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from);
+        CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
     },
 
     dealBtnBonusTipsEvent: function() {
