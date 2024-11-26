@@ -48,7 +48,6 @@ cc.Class({
       var str = this.channel_info.telegram;
       var arr = str.split('/');
       var pageid = arr[arr.length - 1];
-      LoggerUtil.getInstance().error("btn_go_whatsApp pageid == ", pageid);
       APPManager.skipToOtherApp('org.telegram.messenger', pageid);
     } else if (btnName == 'btn_copy_fb') {
       // Skip to Twitter
