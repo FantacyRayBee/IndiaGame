@@ -74,7 +74,7 @@ cc.Class({
             return;
         };
         
-        CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
+        CommonFun.getInstance().loadBundle('inidaMachine', (bundle) => {
             bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
                 if (!err1) {
                     func && func(audioClip, target);
@@ -209,23 +209,23 @@ cc.Class({
             self.setUserDiamond(coin);
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isRunningMayaAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
-                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
                 },  false);
             }
             else {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
             };
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
             CommonFun.getInstance().showRule("fruitMachine");
         }
         else if (msgId == "lobbyservice.kicktolobby") {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
         }
     },
 
@@ -235,7 +235,7 @@ cc.Class({
         let notify = webData.msgData;
         if (!notify) {
             let info = {
-                errorMessage: `MayaMachine游戏中, 服务器下发的非正确消息中结构体异常, 内容为===>${JSON.stringify(webData)}`
+                errorMessage: `indaMachine游戏中, 服务器下发的非正确消息中结构体异常, 内容为===>${JSON.stringify(webData)}`
             };
             CommonFun.getInstance().reportToTelegram(info);
             return;
@@ -246,7 +246,7 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);           
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);           
             }, false);
         }
         else if (msgId === "gameservice.call") {
@@ -696,7 +696,7 @@ cc.Class({
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
             if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
+                CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
                     bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
                             let scene = cc.director.getScene();

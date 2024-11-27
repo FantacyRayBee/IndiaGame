@@ -67,6 +67,10 @@ cc.Class({
          */
         btn_minimaya: cc.Button,
         /**
+         * 玛雅机台
+         */
+        btn_miniindia: cc.Button,
+        /**
          * TP
          */
         btn_miniteenpatti: cc.Button,
@@ -668,6 +672,19 @@ cc.Class({
                         };
                     };
                     break;
+                case "miniindia":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(119)) {
+                        this.btn_minimaya.node.active = true;
+
+                        GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.indiachineData.product = gameProduct;
+
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("indiaMachine");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("indiaMachine");
+                        };
+                    };
+                    break;
                 case "miniteenpatti":
                     if (GlobalCfg.USER_DATAS.openModules.includes(100) || GlobalCfg.USER_DATAS.openModules.includes(101)) {
                         this.btn_miniteenpatti.node.active = true;
@@ -771,6 +788,7 @@ cc.Class({
                 "minilonghu": "lhdGame",
                 "minishuiguo": "fruitMachine",
                 "minimaya": "mayaMachine",
+                "miniindia": "indiaMachine",
                 "minisaima": "horseRaceGame",
                 "minibenzbmw": "Benz",
                 "minirummy": "Rummy",
@@ -1551,6 +1569,14 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MAYA);
             });
         } 
+        else if (btnName == "btn_indiaMachine") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
+            this.checkUpdate("indiaMachine", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.INDIA);
+            });
+        } 
         else if (btnName == "btn_Benz") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_BENZ_GAME);
             this.checkUpdate("Benz", () => {
@@ -1712,6 +1738,9 @@ cc.Class({
             case "mayaMachine":
                 upDateMaskNode = this.btn_minimaya.node.getChildByName("upDateMask");
                 break;
+            case "indiaMachine":
+                upDateMaskNode = this.btn_miniindia.node.getChildByName("upDateMask");
+                break;
             case "baccarat3PattiGame":
                 upDateMaskNode = this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask");
                 break;
@@ -1779,6 +1808,9 @@ cc.Class({
                 break;
             case "mayaMachine":
                 this.btn_minimaya.node.getChildByName("upDateMask").active = false;
+                break;
+            case "indiaMachine":
+                this.btn_miniindia.node.getChildByName("upDateMask").active = false;
                 break;
             case "baccarat3PattiGame":
                 this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask").active = false;
