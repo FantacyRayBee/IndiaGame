@@ -555,8 +555,8 @@
     "relativePath": "lhdGame"
   },
   "a8eacbcf-fbef-4465-84b3-524340df9455": {
-    "asset": 1732678238735,
-    "meta": 1732683791148,
+    "asset": 1732691264936,
+    "meta": 1732691277767,
     "relativePath": "Main"
   },
   "8fc902c6-4301-45e4-a71d-b923f1634160": {
@@ -1385,13 +1385,13 @@
     "relativePath": "Main\\Main.js"
   },
   "ceee7136-97df-412d-b944-4c9c4ff7bf9f": {
-    "asset": 1732678238799,
-    "meta": 1732683791411,
+    "asset": 1732691264985,
+    "meta": 1732691278044,
     "relativePath": "Main\\res"
   },
   "9b69b10f-55cc-4d93-a0e2-7bd43f70fdf1": {
-    "asset": 1732678238740,
-    "meta": 1732683791412,
+    "asset": 1732691264934,
+    "meta": 1732691278044,
     "relativePath": "Main\\Script"
   },
   "ca4d084e-4860-49a0-af46-7d8afc68486a": {
@@ -1480,8 +1480,8 @@
     "relativePath": "ResourcesBundle\\res"
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
-    "asset": 1732678238804,
-    "meta": 1732683791417,
+    "asset": 1732691264991,
+    "meta": 1732691278208,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -7085,8 +7085,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips"
   },
   "a64dd4d3-43c2-422c-b990-8fb736db869a": {
-    "asset": 1730431603852,
-    "meta": 1730433887675,
+    "asset": 1732691264986,
+    "meta": 1732691278570,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule"
   },
   "184e46ca-a4d7-482b-a9c6-beb48a63b1e2": {
@@ -7105,8 +7105,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Setting"
   },
   "45cde789-b464-481c-b6c9-180e53f57398": {
-    "asset": 1732678238801,
-    "meta": 1732683791876,
+    "asset": 1732691264987,
+    "meta": 1732691278571,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop"
   },
   "a2fbe3ee-1a2a-4a01-a7a5-bd83b10e88f0": {
@@ -10880,8 +10880,8 @@
     "relativePath": "Main\\res\\updateScene\\btn_hw_0.png"
   },
   "8a967505-2829-4dcf-9447-4a81c44ace84": {
-    "asset": 1730431603847,
-    "meta": 1730433887956,
+    "asset": 1732691264927,
+    "meta": 1732691279390,
     "relativePath": "Main\\Script\\Common\\Config"
   },
   "ca29df22-e887-4f1b-b0ae-1fa7f30e3393": {
@@ -10900,8 +10900,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1732678238739,
-    "meta": 1732683792606,
+    "asset": 1732691264933,
+    "meta": 1732691279392,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
@@ -11345,8 +11345,8 @@
     "relativePath": "munda\\mundaRes\\trend\\title_zs.png"
   },
   "d9317500-93a2-40ea-aeb9-81767461d998": {
-    "asset": 1730431603886,
-    "meta": 1730433888208,
+    "asset": 1732691534142,
+    "meta": 1732692260765,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines"
   },
   "337ccff1-d135-4a7c-b355-9a8996e3269d": {
@@ -12385,8 +12385,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterLeftView.prefab"
   },
   "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
-    "asset": 1732678238800,
-    "meta": 1732683792861,
+    "asset": 1732691264987,
+    "meta": 1732691279484,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
   },
   "1920cfda-a2dd-43a3-904a-62d910f6c285": {
@@ -12435,8 +12435,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\ScatterCoin\\ScatterCoin.prefab"
   },
   "23a2c87a-a185-4ab6-ba28-6b77ad21c8d3": {
-    "asset": 1732678238801,
-    "meta": 1732683792876,
+    "asset": 1732691264987,
+    "meta": 1732691279493,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopTogItemCtrl.js"
   },
   "7883d182-cfea-47b3-bdc1-b411d5a2e988": {
@@ -22120,8 +22120,8 @@
     "relativePath": "fruitMachine"
   },
   "d4ff8224-7619-465b-8b45-316abb221e97": {
-    "asset": 1732678239033,
-    "meta": 1732683791149,
+    "asset": 1732691265261,
+    "meta": 1732691277766,
     "relativePath": "indiaMachine"
   },
   "119f1e15-141a-4f28-bec2-114d841b1451": {
@@ -22155,33 +22155,33 @@
     "relativePath": "fruitMachine\\src"
   },
   "8b6d7314-598e-4fd6-8742-afdf4126738b": {
-    "asset": 1730431603948,
-    "meta": 1730433886817,
+    "asset": 1732691265000,
+    "meta": 1732691277767,
     "relativePath": "indiaMachine\\font"
   },
   "d174bde5-2117-48dd-9e08-077bcdbff881": {
-    "asset": 1732678238810,
-    "meta": 1732683791414,
+    "asset": 1732691265006,
+    "meta": 1732691277769,
     "relativePath": "indiaMachine\\prefab"
   },
   "10d01e0e-a87d-453c-8e32-c980ead794c6": {
-    "asset": 1732678238825,
-    "meta": 1732683791414,
+    "asset": 1732691265027,
+    "meta": 1732691277770,
     "relativePath": "indiaMachine\\sound"
   },
   "cf39c14d-15a6-419f-938d-a67237b4b186": {
-    "asset": 1732678238996,
-    "meta": 1732683791415,
+    "asset": 1732691265186,
+    "meta": 1732691277771,
     "relativePath": "indiaMachine\\spine"
   },
   "bae97c7f-3ad6-478d-8c5e-f87c1e133e9d": {
-    "asset": 1732678239027,
-    "meta": 1732683791416,
+    "asset": 1732691265255,
+    "meta": 1732691277771,
     "relativePath": "indiaMachine\\sprite"
   },
   "b8469afe-1827-4f0b-bcbe-4059a1bfde8c": {
-    "asset": 1732678239040,
-    "meta": 1732683791417,
+    "asset": 1732691265267,
+    "meta": 1732691277772,
     "relativePath": "indiaMachine\\src"
   },
   "3223abc6-1de5-40a2-9893-7d5928b32943": {
@@ -22226,17 +22226,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1732683793309,
+    "meta": 1732692260781,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1732683793309,
+    "meta": 1732692260782,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1732683793315,
+    "meta": 1732692260781,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -22261,7 +22261,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1732683793316,
+    "meta": 1732692260784,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -22276,7 +22276,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1732683793311,
+    "meta": 1732692260785,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22286,7 +22286,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1732683793314,
+    "meta": 1732692260783,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22296,7 +22296,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1732683793310,
+    "meta": 1732692260786,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22311,7 +22311,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1732683793312,
+    "meta": 1732692260784,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22336,7 +22336,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1732683793317,
+    "meta": 1732692260785,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22351,7 +22351,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1732683793318,
+    "meta": 1732692260787,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22361,7 +22361,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1732683793318,
+    "meta": 1732692260788,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22396,12 +22396,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1732683793323,
+    "meta": 1732692260789,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1732683793325,
+    "meta": 1732692260790,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22450,73 +22450,73 @@
     "relativePath": "fruitMachine\\skeleton\\zhuan.png"
   },
   "62d8eec4-8a74-4c2e-a345-b2d37ac21a7a": {
-    "asset": 1730431603942,
-    "meta": 1730433888503,
+    "asset": 1732691264993,
+    "meta": 1732691279814,
     "relativePath": "indiaMachine\\font\\gates_oly_num.fnt"
   },
   "e1c5db26-f874-461b-817a-26c00cebb511": {
-    "asset": 1730431603944,
-    "meta": 1730433888504,
+    "asset": 1732691264996,
+    "meta": 1732691279816,
     "relativePath": "indiaMachine\\font\\totalWin.fnt"
   },
   "2790fc34-34a2-4720-b4c4-1aa3acc22e43": {
-    "asset": 1730431603946,
-    "meta": 1730433888505,
+    "asset": 1732691264998,
+    "meta": 1732691279819,
     "relativePath": "indiaMachine\\font\\winFont.fnt"
   },
   "7e5bd0d3-bd42-49fa-b8f7-c719011ab871": {
-    "asset": 1730431603976,
-    "meta": 1730433887459,
+    "asset": 1732691265086,
+    "meta": 1732691278284,
     "relativePath": "indiaMachine\\spine\\fall_coins"
   },
   "68c7bb20-30c0-47d8-ba27-c1b9773f1624": {
-    "asset": 1730966888940,
-    "meta": 1731571911361,
+    "asset": 1732691265086,
+    "meta": 1732691278303,
     "relativePath": "indiaMachine\\spine\\maya_frame_vfx.atlas"
   },
   "25b62d16-f158-4cfa-bf56-8ec587485dd6": {
-    "asset": 1730431603943,
-    "meta": 1730433887457,
+    "asset": 1732691264994,
+    "meta": 1732691278312,
     "relativePath": "indiaMachine\\font\\gates_oly_num.png"
   },
   "447eb882-dfb0-4d58-870b-db0a00e03a82": {
-    "asset": 1730431603962,
-    "meta": 1730433887495,
+    "asset": 1732691265023,
+    "meta": 1732691279362,
     "relativePath": "indiaMachine\\sound\\win-fast.mp3"
   },
   "6c0785de-90d8-400e-b6fb-bfe1a4793f35": {
-    "asset": 1730431603972,
-    "meta": 1730433887496,
+    "asset": 1732691265034,
+    "meta": 1732691278301,
     "relativePath": "indiaMachine\\spine\\WIN"
   },
   "d6775e74-d19d-435d-9593-488d8b52734b": {
-    "asset": 1732678239025,
-    "meta": 1732683791582,
+    "asset": 1732691265237,
+    "meta": 1732691278338,
     "relativePath": "indiaMachine\\sprite\\bg"
   },
   "0222db6b-ff7b-47bf-b4fa-d7a8de53a977": {
-    "asset": 1730431603945,
-    "meta": 1730433887471,
+    "asset": 1732691264997,
+    "meta": 1732691278309,
     "relativePath": "indiaMachine\\font\\totalWin.png"
   },
   "13eae73d-5301-4b72-a9ba-29ea3e7f9f58": {
-    "asset": 1730431604064,
-    "meta": 1730433887498,
+    "asset": 1732691265254,
+    "meta": 1732691278339,
     "relativePath": "indiaMachine\\sprite\\main"
   },
   "32957fbf-0400-4633-90ff-1775c03b7349": {
-    "asset": 1730431603947,
-    "meta": 1730433887477,
+    "asset": 1732691264999,
+    "meta": 1732691278310,
     "relativePath": "indiaMachine\\font\\winFont.png"
   },
   "b970e3a3-076c-456d-b6f2-1ade30074cd0": {
-    "asset": 1730431603961,
-    "meta": 1730433887500,
+    "asset": 1732691265023,
+    "meta": 1732691279371,
     "relativePath": "indiaMachine\\sound\\bg.mp3"
   },
   "2cc6d892-eb48-4881-9e0d-39c8b7ba6b6f": {
-    "asset": 1730431603963,
-    "meta": 1730433887526,
+    "asset": 1732691265025,
+    "meta": 1732691279358,
     "relativePath": "indiaMachine\\sound\\win.mp3"
   },
   "ddf50064-3432-431a-8e1d-69a83bcfcbd9": {
@@ -22525,23 +22525,23 @@
     "relativePath": "resources\\proto\\mayaMachine"
   },
   "42273818-bba7-4d8f-b392-74a85f8582e2": {
-    "asset": 1730431603964,
-    "meta": 1730433887875,
+    "asset": 1732691265025,
+    "meta": 1732691279364,
     "relativePath": "indiaMachine\\sound\\zhuang-fast.mp3"
   },
   "227ec92d-fff2-41a0-9708-42b9a1f09cf6": {
-    "asset": 1730431603965,
-    "meta": 1730433887877,
+    "asset": 1732691265026,
+    "meta": 1732691279359,
     "relativePath": "indiaMachine\\sound\\zhuang.mp3"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1732686142769,
-    "meta": 1732686142776,
+    "asset": 1732692246650,
+    "meta": 1732692246658,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "c526545a-ccd7-4dfc-a95d-073a4de21bb5": {
-    "asset": 1730966888942,
-    "meta": 1731571911762,
+    "asset": 1732691265090,
+    "meta": 1732691278379,
     "relativePath": "indiaMachine\\spine\\maya_frame_vfx.png"
   },
   "c62ad9fc-cbee-4d2c-9ad0-cd4b52c9d97c": {
@@ -22635,8 +22635,8 @@
     "relativePath": "fruitMachine\\sprite\\main\\btn_max.png"
   },
   "d1332cd0-be28-4835-8482-8cad22bd13a1": {
-    "asset": 1730431603973,
-    "meta": 1730433887994,
+    "asset": 1732691265084,
+    "meta": 1732691278813,
     "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.atlas"
   },
   "0d0ae03c-bf74-40c1-bbd4-b64f772d1916": {
@@ -22645,8 +22645,8 @@
     "relativePath": "fruitMachine\\sprite\\main\\btn_setting.png"
   },
   "906b2962-abdf-40a0-a15f-5bbd44b5a834": {
-    "asset": 1730431603967,
-    "meta": 1730433887999,
+    "asset": 1732691265029,
+    "meta": 1732691279001,
     "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.atlas"
   },
   "a9fc0f68-cbd7-4d6d-a9f0-0eacd882b3ef": {
@@ -22685,153 +22685,153 @@
     "relativePath": "fruitMachine\\sprite\\main\\jinbi.png"
   },
   "3c815729-40e9-4773-83a4-6a492c5b2cbf": {
-    "asset": 1730431603975,
-    "meta": 1730433888028,
+    "asset": 1732691265085,
+    "meta": 1732691278872,
     "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.png"
   },
   "af2c7605-e0af-4231-ad0f-381ea211ded3": {
-    "asset": 1730431604023,
-    "meta": 1730433888030,
+    "asset": 1732691265188,
+    "meta": 1732691279016,
     "relativePath": "indiaMachine\\sprite\\bg\\bg_sdh.png"
   },
   "6a1e494d-1bba-4c5d-8a34-d03664be7de5": {
-    "asset": 1730431604023,
-    "meta": 1730433888032,
+    "asset": 1732691265189,
+    "meta": 1732691279018,
     "relativePath": "indiaMachine\\sprite\\bg\\bg_xdh.png"
   },
   "836586b2-6fa1-4424-b7ac-8ce91252bbb1": {
-    "asset": 1730431604029,
-    "meta": 1730433888052,
+    "asset": 1732691265211,
+    "meta": 1732691279020,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se1.png"
   },
   "265412ae-9d86-42ad-9161-44d649648a1a": {
-    "asset": 1730431604030,
-    "meta": 1730433888054,
+    "asset": 1732691265212,
+    "meta": 1732691279037,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se2.png"
   },
   "80029c33-7842-4ce7-bfb5-7d63208e2da2": {
-    "asset": 1730966888941,
-    "meta": 1731571911869,
+    "asset": 1732691265088,
+    "meta": 1732691279855,
     "relativePath": "indiaMachine\\spine\\maya_frame_vfx.json"
   },
   "50b41a7b-bbae-4ca3-8abd-774509331262": {
-    "asset": 1730431604031,
-    "meta": 1730433888056,
+    "asset": 1732691265213,
+    "meta": 1732691279041,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se3.png"
   },
   "7d6bbf47-1179-437a-b800-d2f31e52c92c": {
-    "asset": 1730431604036,
-    "meta": 1730433888058,
+    "asset": 1732691265219,
+    "meta": 1732691279058,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_win1.png"
   },
   "9e4f8fbb-d740-4651-9b8f-976ffcd0856d": {
-    "asset": 1730431604033,
-    "meta": 1730433888064,
+    "asset": 1732691265215,
+    "meta": 1732691279040,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se4.png"
   },
   "a82e6f00-6eea-42ec-9c35-bbfcdb6db4fd": {
-    "asset": 1730431603971,
-    "meta": 1730433888066,
+    "asset": 1732691265033,
+    "meta": 1732691279034,
     "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.png"
   },
   "a33caf1f-b15d-4961-b502-0baa1bd05769": {
-    "asset": 1730431604038,
-    "meta": 1730433888067,
+    "asset": 1732691265220,
+    "meta": 1732691279059,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_win2.png"
   },
   "d8e18f7a-61f8-4676-b571-da77912dd96e": {
-    "asset": 1730431604035,
-    "meta": 1730433888070,
+    "asset": 1732691265217,
+    "meta": 1732691279042,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se5.png"
   },
   "3fae7823-2e59-41d2-add5-aadada16b10f": {
-    "asset": 1730431604043,
-    "meta": 1730433888080,
+    "asset": 1732691265222,
+    "meta": 1732691279062,
     "relativePath": "indiaMachine\\sprite\\bg\\my_major.png"
   },
   "8a064865-230a-4461-a751-ed6801d3af87": {
-    "asset": 1730431604042,
-    "meta": 1730433888083,
+    "asset": 1732691265221,
+    "meta": 1732691279056,
     "relativePath": "indiaMachine\\sprite\\bg\\my_grand.png"
   },
   "fd9683bc-6559-4f79-9d6c-a799fb54d5c8": {
-    "asset": 1730431604044,
-    "meta": 1730433888136,
+    "asset": 1732691265223,
+    "meta": 1732691279060,
     "relativePath": "indiaMachine\\sprite\\bg\\my_mini.png"
   },
   "00a222e9-7727-46ca-b522-34e3dd48815a": {
-    "asset": 1730431604045,
-    "meta": 1730433888138,
+    "asset": 1732691265224,
+    "meta": 1732691279075,
     "relativePath": "indiaMachine\\sprite\\bg\\my_minor.png"
   },
   "a177d38d-f719-4359-9b04-a50aebb52ffe": {
-    "asset": 1730431604048,
-    "meta": 1730433888140,
+    "asset": 1732691265238,
+    "meta": 1732691279126,
     "relativePath": "indiaMachine\\sprite\\main\\bg_jb.png"
   },
   "9cec1551-80aa-477f-9514-4c19eca1a07a": {
-    "asset": 1730431604051,
-    "meta": 1730433888142,
+    "asset": 1732691265241,
+    "meta": 1732691279144,
     "relativePath": "indiaMachine\\sprite\\main\\bg_xz.png"
   },
   "832100b3-7e7f-4dcf-ac57-026ab47ef6b8": {
-    "asset": 1730431604049,
-    "meta": 1730433888143,
+    "asset": 1732691265239,
+    "meta": 1732691279124,
     "relativePath": "indiaMachine\\sprite\\main\\bg_tc.png"
   },
   "5e231bab-d127-45bc-b177-682ace60de6c": {
-    "asset": 1730431604050,
-    "meta": 1730433888148,
+    "asset": 1732691265240,
+    "meta": 1732691279128,
     "relativePath": "indiaMachine\\sprite\\main\\bg_win3.png"
   },
   "c64a49c3-59e8-49c7-b9f7-4bff6ee93132": {
-    "asset": 1730431604052,
-    "meta": 1730433888150,
+    "asset": 1732691265242,
+    "meta": 1732691279143,
     "relativePath": "indiaMachine\\sprite\\main\\btn_add.png"
   },
   "ba051a33-de87-4829-8382-895de872092e": {
-    "asset": 1730431604063,
-    "meta": 1730433888172,
+    "asset": 1732691265253,
+    "meta": 1732691279169,
     "relativePath": "indiaMachine\\sprite\\main\\mainAutoAtlas.pac"
   },
   "1733b5f4-d868-48ad-864e-50bf447aa7dc": {
-    "asset": 1730431604052,
-    "meta": 1730433888169,
+    "asset": 1732691265242,
+    "meta": 1732691279147,
     "relativePath": "indiaMachine\\sprite\\main\\btn_add2.png"
   },
   "2bcd570e-3120-4c20-b238-8dece77833e9": {
-    "asset": 1730431604054,
-    "meta": 1730433888170,
+    "asset": 1732691265244,
+    "meta": 1732691279148,
     "relativePath": "indiaMachine\\sprite\\main\\btn_addcash_SHOP.png"
   },
   "3b8263a1-8fb2-4548-9bb6-2b445e37d52e": {
-    "asset": 1730431604053,
-    "meta": 1730433888171,
+    "asset": 1732691265243,
+    "meta": 1732691279146,
     "relativePath": "indiaMachine\\sprite\\main\\btn_addcash.png"
   },
   "746a332f-c8cb-4403-a164-d3bf0a4de3e6": {
-    "asset": 1730431604054,
-    "meta": 1730433888196,
+    "asset": 1732691265244,
+    "meta": 1732691279149,
     "relativePath": "indiaMachine\\sprite\\main\\btn_auto_0.png"
   },
   "9325a84a-1dec-4e7d-9456-9b91d430f0b4": {
-    "asset": 1730431603968,
-    "meta": 1730433888580,
+    "asset": 1732691265030,
+    "meta": 1732691279958,
     "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.json"
   },
   "3b36ed96-1ba2-4efd-b691-bd584ae0f357": {
-    "asset": 1730431603974,
-    "meta": 1730433888581,
+    "asset": 1732691265084,
+    "meta": 1732691279897,
     "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.json"
   },
   "cdd5ad77-e7a8-4652-a61c-55ea09238d0c": {
-    "asset": 1730431604055,
-    "meta": 1730433888205,
+    "asset": 1732691265245,
+    "meta": 1732691279164,
     "relativePath": "indiaMachine\\sprite\\main\\btn_fast_01.png"
   },
   "b846ef2e-582e-4c6b-962e-f276d309572b": {
-    "asset": 1730431604057,
-    "meta": 1730433888207,
+    "asset": 1732691265248,
+    "meta": 1732691279162,
     "relativePath": "indiaMachine\\sprite\\main\\btn_max.png"
   },
   "fd6eade7-b80a-4002-bcab-4dec7f9b556e": {
@@ -22840,18 +22840,18 @@
     "relativePath": "Main\\Script\\Common\\Config\\english.js"
   },
   "165e72e7-dba3-486e-9361-6b681feee5b7": {
-    "asset": 1730431604057,
-    "meta": 1730433888209,
+    "asset": 1732691265247,
+    "meta": 1732691279167,
     "relativePath": "indiaMachine\\sprite\\main\\btn_fh.png"
   },
   "3090b5c5-706d-4310-8810-0d96bf86c0c9": {
-    "asset": 1730431604056,
-    "meta": 1730433888211,
+    "asset": 1732691265246,
+    "meta": 1732691279165,
     "relativePath": "indiaMachine\\sprite\\main\\btn_fast_02.png"
   },
   "b795f9a2-3d8f-4909-a5f5-7bc04ed3a4fc": {
-    "asset": 1730431604058,
-    "meta": 1730433888212,
+    "asset": 1732691265249,
+    "meta": 1732691279166,
     "relativePath": "indiaMachine\\sprite\\main\\btn_setting.png"
   },
   "7efb9bf8-077a-4854-877c-cf63c948ee74": {
@@ -22870,18 +22870,18 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\gameRules\\MayaMachine.prefab"
   },
   "2f70c65a-0f89-4609-a8ff-4f473d59fe55": {
-    "asset": 1730431604059,
-    "meta": 1730433888312,
+    "asset": 1732691265250,
+    "meta": 1732691279170,
     "relativePath": "indiaMachine\\sprite\\main\\btn_spin.png"
   },
   "4b79c09b-e081-41ae-bac4-7161124c290a": {
-    "asset": 1730431604061,
-    "meta": 1730433888333,
+    "asset": 1732691265251,
+    "meta": 1732691279187,
     "relativePath": "indiaMachine\\sprite\\main\\btn_sub.png"
   },
   "bd46d535-8367-42c3-a683-a7363720a5fe": {
-    "asset": 1730431604060,
-    "meta": 1730433888395,
+    "asset": 1732691265250,
+    "meta": 1732691279188,
     "relativePath": "indiaMachine\\sprite\\main\\btn_spin_grey.png"
   },
   "f4f5eea8-5c56-4c80-b3cf-2d8d9dc5dcad": {
@@ -22890,18 +22890,18 @@
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\mayaera.atlas"
   },
   "c24eae34-b9bb-44ea-b54e-e65fad6040c0": {
-    "asset": 1730431604062,
-    "meta": 1730433888410,
+    "asset": 1732691265252,
+    "meta": 1732691279182,
     "relativePath": "indiaMachine\\sprite\\main\\btn_wf.png"
   },
   "b70d975c-6e3a-4450-8686-93c7e981e3cf": {
-    "asset": 1730431604063,
-    "meta": 1730433888411,
+    "asset": 1732691265254,
+    "meta": 1732691279189,
     "relativePath": "indiaMachine\\sprite\\main\\xuanze.png"
   },
   "ce094c42-8d54-4675-b160-a585de6913a0": {
-    "asset": 1730431604062,
-    "meta": 1730433888411,
+    "asset": 1732691265253,
+    "meta": 1732691279185,
     "relativePath": "indiaMachine\\sprite\\main\\jinbi.png"
   },
   "11b29887-2f3a-4609-8c79-60ffe2c19926": {
@@ -22940,8 +22940,8 @@
     "relativePath": "fruitMachine\\src\\fruitMachineCtrl.js"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1732678238739,
-    "meta": 1732683793205,
+    "asset": 1732691264932,
+    "meta": 1732691279724,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
   "9d2d85f4-84d4-4bf8-89d8-9ddc861b5e71": {
@@ -22950,498 +22950,523 @@
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
   },
   "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
-    "asset": 1732678238807,
-    "meta": 1732685585740,
+    "asset": 1732691265002,
+    "meta": 1732691278220,
     "relativePath": "indiaMachine\\indiaMachine.fire"
   },
   "5f8e07e7-0f7a-4e23-9ee9-07652249151c": {
-    "asset": 1732678238797,
-    "meta": 1732683791440,
+    "asset": 1732691264985,
+    "meta": 1732691278566,
     "relativePath": "Main\\res\\Audios"
   },
   "9c455463-baf6-45b2-a5ef-bb78960841cb": {
     "asset": 1731313027703,
-    "meta": 1732683791442,
+    "meta": 1732691278568,
     "relativePath": "Main\\res\\prefabs"
   },
   "5970c0de-7d48-4c19-8eab-785d9ddf4609": {
-    "asset": 1732678238741,
-    "meta": 1732683791443,
+    "asset": 1732691264935,
+    "meta": 1732691278569,
     "relativePath": "Main\\Script\\Slots"
   },
   "82dd104c-452a-4f17-b1f6-9e8ea0dcef2e": {
-    "asset": 1732678238875,
-    "meta": 1732683791553,
+    "asset": 1732691265082,
+    "meta": 1732691278281,
     "relativePath": "indiaMachine\\spine\\bg"
   },
   "d39ba6ad-b8b1-4a39-9796-6d74299043f7": {
-    "asset": 1732678238957,
-    "meta": 1732683791555,
+    "asset": 1732691265157,
+    "meta": 1732691278301,
     "relativePath": "indiaMachine\\spine\\sysboms"
   },
   "1b7f53da-8a64-4a79-9647-6fe7246b78c9": {
-    "asset": 1732678238808,
-    "meta": 1732683791588,
+    "asset": 1732691265004,
+    "meta": 1732691278280,
     "relativePath": "indiaMachine\\prefab\\slotItem.prefab"
   },
   "d95df3a9-3edb-43ff-b32a-3baf3ee71775": {
-    "asset": 1732678239033,
-    "meta": 1732683791585,
+    "asset": 1732691265261,
+    "meta": 1732691278340,
     "relativePath": "indiaMachine\\sprite\\sysboms"
   },
   "e7b114b7-00f8-425d-8284-20513a3d3679": {
-    "asset": 1732678238810,
-    "meta": 1732683791623,
+    "asset": 1732691265005,
+    "meta": 1732691278283,
     "relativePath": "indiaMachine\\prefab\\slotRewardTips.prefab"
   },
   "575ec2d6-1959-4386-b7b2-f3f00a6dc06d": {
-    "asset": 1732678239034,
-    "meta": 1732683791622,
+    "asset": 1732691265262,
+    "meta": 1732691278375,
     "relativePath": "indiaMachine\\src\\indiaAudiosCtrl.js"
   },
   "c28062a7-0171-4137-b211-13f0773af302": {
-    "asset": 1732678239039,
-    "meta": 1732683791864,
+    "asset": 1732691265266,
+    "meta": 1732691278564,
     "relativePath": "indiaMachine\\src\\slotRewardTipsCtrl.js"
   },
   "d87d12aa-543d-4fc7-b4ef-0e05ac42e953": {
-    "asset": 1732678238960,
-    "meta": 1732683791895,
+    "asset": 1732691265158,
+    "meta": 1732691278567,
     "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.atlas"
   },
   "1cefa250-f1f2-4b5f-8801-754463da3187": {
-    "asset": 1732678238976,
-    "meta": 1732683791905,
+    "asset": 1732691265172,
+    "meta": 1732691278565,
     "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.atlas"
   },
   "28b59d9b-8e64-4a21-83a4-1b5116427795": {
-    "asset": 1732678238758,
-    "meta": 1732683792591,
+    "asset": 1732691264951,
+    "meta": 1732691279363,
     "relativePath": "Main\\res\\Audios\\bigWin2ShowFree.mp3"
   },
   "2e6ebc53-57ee-4e0f-ab16-5cfe6e4d834b": {
-    "asset": 1732678238759,
-    "meta": 1732683792593,
+    "asset": 1732691264952,
+    "meta": 1732691279360,
     "relativePath": "Main\\res\\Audios\\bigWin2ShowNotFree.mp3"
   },
   "24373832-437b-4f07-9424-d22024f6146a": {
-    "asset": 1732678238770,
-    "meta": 1732683792599,
+    "asset": 1732691264961,
+    "meta": 1732691279441,
     "relativePath": "Main\\res\\Audios\\bigWin3ShowFree.mp3"
   },
   "f8d889c0-2811-4f55-85b7-52e214a8a287": {
-    "asset": 1732678238768,
-    "meta": 1732683792602,
+    "asset": 1732691264959,
+    "meta": 1732691279389,
     "relativePath": "Main\\res\\Audios\\bigWin3End.mp3"
   },
   "b689547a-977e-4b14-acbf-9f9da5b8e55c": {
-    "asset": 1732678238757,
-    "meta": 1732683792595,
+    "asset": 1732691264950,
+    "meta": 1732691279365,
     "relativePath": "Main\\res\\Audios\\bigWin2End.mp3"
   },
   "6160b8da-ae10-429e-946d-4de04ffead9d": {
-    "asset": 1732678238772,
-    "meta": 1732683792598,
+    "asset": 1732691264962,
+    "meta": 1732691279391,
     "relativePath": "Main\\res\\Audios\\bigWin3ShowNotFree.mp3"
   },
   "50d011a2-818d-4c7e-bd68-d0ba3b2f0848": {
-    "asset": 1732678238975,
-    "meta": 1732683791951,
+    "asset": 1732691265171,
+    "meta": 1732691278871,
     "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.png"
   },
   "644af17b-b517-4fa6-8d3d-ae0145ea1859": {
-    "asset": 1732678238744,
-    "meta": 1732683792596,
+    "asset": 1732691264938,
+    "meta": 1732691279367,
     "relativePath": "Main\\res\\Audios\\bigWin1End.mp3"
   },
   "2d0d5122-23e3-428d-ac4c-2b02794b580f": {
-    "asset": 1732678238776,
-    "meta": 1732683792605,
+    "asset": 1732691264967,
+    "meta": 1732691279803,
     "relativePath": "Main\\res\\Audios\\bigWin4AddCoin.mp3"
   },
   "99281ada-afac-40fb-a6f1-e989156c4845": {
-    "asset": 1732678238995,
-    "meta": 1732683791948,
+    "asset": 1732691265186,
+    "meta": 1732691278875,
     "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.png"
   },
   "20dc54e1-d5a8-48cc-8a43-2573b39e3325": {
-    "asset": 1732678238741,
-    "meta": 1732683792622,
+    "asset": 1732691264934,
+    "meta": 1732691279407,
     "relativePath": "Main\\Script\\Slots\\slotAudiosCtrl.js"
   },
   "13cdef70-eef4-4d81-8392-71996bbc902f": {
-    "asset": 1732678238766,
-    "meta": 1732683792625,
+    "asset": 1732691264958,
+    "meta": 1732691279802,
     "relativePath": "Main\\res\\Audios\\bigWin3AddCoin.mp3"
   },
   "284ab0b5-5e58-42a5-aa47-73a3798bca2a": {
-    "asset": 1732678238755,
-    "meta": 1732683792624,
+    "asset": 1732691264948,
+    "meta": 1732691279373,
     "relativePath": "Main\\res\\Audios\\bigWin2AddCoin.mp3"
   },
   "2a4bb060-2027-482a-b608-604b0a341a1a": {
-    "asset": 1732678238750,
-    "meta": 1732683792632,
+    "asset": 1732691264944,
+    "meta": 1732691279379,
     "relativePath": "Main\\res\\Audios\\bigWin1Show.mp3"
   },
   "00d164bc-d078-4c1d-b6d0-0cdbb8dc5402": {
-    "asset": 1732678238778,
-    "meta": 1732683792651,
+    "asset": 1732691264969,
+    "meta": 1732691279494,
     "relativePath": "Main\\res\\Audios\\bigWin4End.mp3"
   },
   "2c0fe194-0145-47ce-9dbb-12ce491e2eb5": {
-    "asset": 1732678238824,
-    "meta": 1732683792648,
+    "asset": 1732691265018,
+    "meta": 1732691279381,
     "relativePath": "indiaMachine\\sound\\BGM.mp3"
   },
   "41e4b70e-6ee3-4f95-9bf6-f3094af68ea9": {
-    "asset": 1732678238827,
-    "meta": 1732683792652,
+    "asset": 1732691265035,
+    "meta": 1732691278802,
     "relativePath": "indiaMachine\\spine\\bg\\bg_scene.skel.atlas"
   },
   "c4173610-313c-423e-8032-94c3e5a43a0c": {
-    "asset": 1732678238780,
-    "meta": 1732683792664,
+    "asset": 1732691264970,
+    "meta": 1732691279484,
     "relativePath": "Main\\res\\Audios\\bigWin4ShowFree.mp3"
   },
   "dd4e635c-3721-4ce6-8cdb-80230b3a5d4e": {
-    "asset": 1732678238795,
-    "meta": 1732683792667,
+    "asset": 1732691264983,
+    "meta": 1732691279801,
     "relativePath": "Main\\res\\Audios\\bigWin5ShowFree.mp3"
   },
   "74a8d584-46ed-49e7-9604-92c30dbe8e1a": {
-    "asset": 1732678238793,
-    "meta": 1732683792666,
+    "asset": 1732691264981,
+    "meta": 1732691279803,
     "relativePath": "Main\\res\\Audios\\bigWin5End.mp3"
   },
   "ece70e69-f0f7-40fd-bb5e-c5e6bf214cc3": {
-    "asset": 1732678238854,
-    "meta": 1732683792662,
+    "asset": 1732691265061,
+    "meta": 1732691278805,
     "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.atlas"
   },
   "4176761a-3fbc-4c6f-a1c2-a0f2a3622815": {
-    "asset": 1732678238796,
-    "meta": 1732683792670,
+    "asset": 1732691264984,
+    "meta": 1732691279801,
     "relativePath": "Main\\res\\Audios\\bigWin5ShowNotFree.mp3"
   },
   "4c14acb8-67fa-424e-9df7-4886468e894c": {
-    "asset": 1732678238782,
-    "meta": 1732683792660,
+    "asset": 1732691264971,
+    "meta": 1732691279799,
     "relativePath": "Main\\res\\Audios\\bigWin4ShowNotFree.mp3"
   },
   "6cfa4869-590e-4f1d-9c59-c8dfa02455a1": {
-    "asset": 1732678238892,
-    "meta": 1732683792676,
+    "asset": 1732691265106,
+    "meta": 1732691278829,
     "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.atlas"
   },
   "bb36876f-7e81-4f6b-9416-51fe9984dd65": {
-    "asset": 1732678238876,
-    "meta": 1732683792681,
+    "asset": 1732691265091,
+    "meta": 1732691278882,
     "relativePath": "indiaMachine\\spine\\sysboms\\H2.skel.atlas"
   },
   "5123766f-4836-4fd0-b0b8-b65c5263cb6e": {
-    "asset": 1732678238898,
-    "meta": 1732683792683,
+    "asset": 1732691265110,
+    "meta": 1732691278887,
     "relativePath": "indiaMachine\\spine\\sysboms\\h3.skel38.atlas"
   },
   "1037bbbd-f134-4390-bb52-3ab03c49fdb1": {
-    "asset": 1732678238904,
-    "meta": 1732683792685,
+    "asset": 1732691265115,
+    "meta": 1732691278902,
     "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.atlas"
   },
   "8af47e1d-7575-4e2c-9395-a11550f44344": {
-    "asset": 1732678238790,
-    "meta": 1732683792693,
+    "asset": 1732691264978,
+    "meta": 1732691279805,
     "relativePath": "Main\\res\\Audios\\bigWin5AddCoin.mp3"
   },
   "bdd64919-f307-4741-a6e2-a7a448ac677b": {
-    "asset": 1732678238897,
-    "meta": 1732683792692,
+    "asset": 1732691265109,
+    "meta": 1732691278891,
     "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.png"
   },
   "5419f2f8-7169-421f-b6d7-b117db623b0c": {
-    "asset": 1732678238919,
-    "meta": 1732683792696,
+    "asset": 1732691265127,
+    "meta": 1732691278911,
     "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.atlas"
   },
   "c3e0bca3-e58d-4e52-8694-147792829c95": {
-    "asset": 1732678238903,
-    "meta": 1732683792700,
+    "asset": 1732691265113,
+    "meta": 1732691278915,
     "relativePath": "indiaMachine\\spine\\sysboms\\h3.skel38.png"
   },
   "54245725-2960-4a43-87f7-4562819082dc": {
-    "asset": 1732678238882,
-    "meta": 1732683792702,
+    "asset": 1732691265096,
+    "meta": 1732691278900,
     "relativePath": "indiaMachine\\spine\\sysboms\\H2.skel.png"
   },
   "8f6dbd59-ebb8-409d-83b5-d87ba2fff8de": {
-    "asset": 1732678238924,
-    "meta": 1732683792706,
+    "asset": 1732691265131,
+    "meta": 1732691278930,
     "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.atlas"
   },
   "a6668ae5-6d61-43a3-913e-8f7da36b4046": {
-    "asset": 1732678238963,
-    "meta": 1732683793373,
+    "asset": 1732691265160,
+    "meta": 1732691279886,
     "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.json"
   },
   "af3f2127-8e99-47dc-96d2-7fbffcbf6e43": {
-    "asset": 1732678238980,
-    "meta": 1732683793389,
+    "asset": 1732691265175,
+    "meta": 1732691279876,
     "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.json"
   },
   "13d05879-7632-4a73-9c68-15905ee1fc3c": {
-    "asset": 1732678238923,
-    "meta": 1732683792717,
+    "asset": 1732691265130,
+    "meta": 1732691278935,
     "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.png"
   },
   "8a2718aa-5ffd-4bff-93b4-814aeab134c9": {
-    "asset": 1732678238883,
-    "meta": 1732683792711,
+    "asset": 1732691265098,
+    "meta": 1732691278940,
     "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.atlas"
   },
   "3a92d08b-06ed-4b05-a29f-fcd3ec4847c2": {
-    "asset": 1732678238857,
-    "meta": 1732683793409,
+    "asset": 1732691265063,
+    "meta": 1732691279895,
     "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.json"
   },
   "d9c724b9-80cd-42ff-8d95-2d191cf02a70": {
-    "asset": 1732678238928,
-    "meta": 1732683792715,
+    "asset": 1732691265135,
+    "meta": 1732691278948,
     "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.atlas"
   },
   "371d1b3b-952d-4c76-a894-becb6349060a": {
-    "asset": 1732678238829,
-    "meta": 1732683793400,
+    "asset": 1732691265037,
+    "meta": 1732691279904,
     "relativePath": "indiaMachine\\spine\\bg\\bg_scene.skel.json"
   },
   "6620efa1-51c8-47a6-96d3-de825b371679": {
-    "asset": 1732678238894,
-    "meta": 1732683793411,
+    "asset": 1732691265107,
+    "meta": 1732691279906,
     "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.json"
   },
   "4ccefd35-f216-4709-a5d5-aa2ca712c470": {
-    "asset": 1732678238888,
-    "meta": 1732683792722,
+    "asset": 1732691265102,
+    "meta": 1732691278955,
     "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.atlas"
   },
   "926424fb-b138-44a8-ae37-5fc2441e9f93": {
-    "asset": 1732678238927,
-    "meta": 1732683792724,
+    "asset": 1732691265134,
+    "meta": 1732691278945,
     "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.png"
   },
   "2f6fecff-96a8-47b7-bd9a-a9c7f7ccf814": {
-    "asset": 1732678238900,
-    "meta": 1732683793418,
+    "asset": 1732691265111,
+    "meta": 1732691279911,
     "relativePath": "indiaMachine\\spine\\sysboms\\h3.skel38.json"
   },
   "bc01bbb3-9ff4-4c68-8f0d-3ea1ac84c371": {
-    "asset": 1732678238935,
-    "meta": 1732683792738,
+    "asset": 1732691265139,
+    "meta": 1732691278968,
     "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.atlas"
   },
   "e3564641-890d-4361-8d4a-3ce3aa662713": {
-    "asset": 1732678238878,
-    "meta": 1732683793417,
+    "asset": 1732691265092,
+    "meta": 1732691279910,
     "relativePath": "indiaMachine\\spine\\sysboms\\H2.skel.json"
   },
   "c5ffa175-a021-4826-99ca-6500e40e91d7": {
-    "asset": 1732678238906,
-    "meta": 1732683793420,
+    "asset": 1732691265116,
+    "meta": 1732691279914,
     "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.json"
   },
   "e1ae97c0-853b-4bc2-a9ad-5a0ca0a8cc96": {
-    "asset": 1732678238921,
-    "meta": 1732683793424,
+    "asset": 1732691265128,
+    "meta": 1732691279919,
     "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.json"
   },
   "c0a01177-b77f-4076-a142-589fcab1c92a": {
-    "asset": 1732678238888,
-    "meta": 1732683792730,
+    "asset": 1732691265101,
+    "meta": 1732691278965,
     "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.png"
   },
   "61c79223-5aaf-477d-a3d7-ef1248b7e542": {
-    "asset": 1732678238940,
-    "meta": 1732683792742,
+    "asset": 1732691265142,
+    "meta": 1732691278976,
     "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.atlas"
   },
   "a6d6936a-cbba-4ce2-90ab-e13e8c807bb9": {
-    "asset": 1732678238933,
-    "meta": 1732683792733,
+    "asset": 1732691265138,
+    "meta": 1732691278967,
     "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.png"
   },
   "05de6c8c-a794-4f70-86dd-d2570659636a": {
-    "asset": 1732678238891,
-    "meta": 1732683792741,
+    "asset": 1732691265105,
+    "meta": 1732691278969,
     "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.png"
   },
   "c4e41c3e-5d67-4619-8fac-063e5a522a64": {
-    "asset": 1732678238944,
-    "meta": 1732683792751,
+    "asset": 1732691265146,
+    "meta": 1732691278979,
     "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.atlas"
   },
   "749ed08a-1d0f-427c-b571-9f6aee8d06ed": {
-    "asset": 1732678238939,
-    "meta": 1732683792753,
+    "asset": 1732691265141,
+    "meta": 1732691278992,
     "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.png"
   },
   "a0ddb87e-efae-446f-903f-8598cb96064f": {
-    "asset": 1732678238952,
-    "meta": 1732683792757,
+    "asset": 1732691265152,
+    "meta": 1732691278984,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.atlas"
   },
   "b131f2a2-c032-402f-a708-f71f72f04935": {
-    "asset": 1732678238926,
-    "meta": 1732683793426,
+    "asset": 1732691265132,
+    "meta": 1732691279925,
     "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.json"
   },
   "aa3da91c-0b74-4235-93bb-6a545a55c6a6": {
-    "asset": 1732678238943,
-    "meta": 1732683792759,
+    "asset": 1732691265145,
+    "meta": 1732691278988,
     "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.png"
   },
   "781af8ba-a84d-49c7-a3db-1be9672a86e5": {
-    "asset": 1732678238918,
-    "meta": 1732683792765,
+    "asset": 1732691265126,
+    "meta": 1732691278961,
     "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.png"
   },
   "f74fed1e-651d-49c3-b524-05165a235b4b": {
-    "asset": 1732678238885,
-    "meta": 1732683793440,
+    "asset": 1732691265099,
+    "meta": 1732691279931,
     "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.json"
   },
   "2ab46cf8-e5ca-4d2e-84c1-6d676c1ffae0": {
-    "asset": 1732678238874,
-    "meta": 1732683792940,
+    "asset": 1732691265081,
+    "meta": 1732691278923,
     "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.png"
   },
   "6ed44b5b-6b6f-4f8b-aab5-8823722c7c61": {
-    "asset": 1732678239028,
-    "meta": 1732683793436,
+    "asset": 1732691265256,
+    "meta": 1732691279954,
     "relativePath": "indiaMachine\\sprite\\sysboms\\tplist.plist"
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
-    "asset": 1732678238957,
-    "meta": 1732683793427,
+    "asset": 1732691265156,
+    "meta": 1732692260790,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "8760ae0e-4851-47d9-bbdb-287055512e36": {
-    "asset": 1732678238951,
-    "meta": 1732683792878,
+    "asset": 1732691265151,
+    "meta": 1732691279003,
     "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.png"
   },
   "a13091b2-6008-43aa-ba9b-a32962da05d0": {
-    "asset": 1732678239010,
-    "meta": 1732683792777,
+    "asset": 1732691265226,
+    "meta": 1732691279080,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-bg-bjdibantu01.png"
   },
   "14813841-b848-4fec-b37a-5826534d075e": {
-    "asset": 1732678238956,
-    "meta": 1732683792862,
+    "asset": 1732691265155,
+    "meta": 1732691279011,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.png"
   },
   "4364bd64-7dea-40be-a69b-1320e0f28efc": {
-    "asset": 1732678239012,
-    "meta": 1732683793206,
+    "asset": 1732691265227,
+    "meta": 1732691279094,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-bg-kuangbian.png"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
-    "asset": 1732678238852,
-    "meta": 1732683792911,
+    "asset": 1732691265059,
+    "meta": 1732691278933,
     "relativePath": "indiaMachine\\spine\\bg\\bg_scene.skel.png"
   },
   "4d58dfe4-f395-4d75-afb9-bb8ca75a7cc8": {
-    "asset": 1732678239032,
-    "meta": 1732683793263,
+    "asset": 1732691265260,
+    "meta": 1732691279190,
     "relativePath": "indiaMachine\\sprite\\sysboms\\tplist.png"
   },
   "b508f9de-2edc-4c67-b39f-e02b30c4a942": {
-    "asset": 1732678239023,
-    "meta": 1732683793222,
+    "asset": 1732691265236,
+    "meta": 1732691279122,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-ico-iang.png"
   },
   "e44013bd-77ce-4d97-856e-d65d6ee4a3b5": {
-    "asset": 1732678238931,
-    "meta": 1732683793444,
+    "asset": 1732691265136,
+    "meta": 1732691279929,
     "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.json"
   },
   "c7b54473-2154-4eba-b140-dc49b1d7dd23": {
-    "asset": 1732678239016,
-    "meta": 1732683793237,
+    "asset": 1732691265230,
+    "meta": 1732691279104,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-frm-dikuang.png"
   },
   "fdbb8bda-cd87-47df-9ef3-305740ceaea7": {
-    "asset": 1732678239025,
-    "meta": 1732683793231,
+    "asset": 1732691265237,
+    "meta": 1732691279125,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-ico-jindutdizi.png"
   },
   "24bd8915-3ba7-40d3-bf60-391dc5833064": {
-    "asset": 1732678239021,
-    "meta": 1732683793239,
+    "asset": 1732691265234,
+    "meta": 1732691279118,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-frm-kuangdis.png"
   },
   "fe847c34-c7bf-4266-b0f2-3dd79dccb27a": {
-    "asset": 1732678239006,
-    "meta": 1732683793303,
+    "asset": 1732691265209,
+    "meta": 1732691279097,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_bg.png"
   },
   "1f03ca0b-1a49-49b2-aa00-41a16cbe9cd0": {
-    "asset": 1732678238890,
-    "meta": 1732683793445,
+    "asset": 1732691265104,
+    "meta": 1732691279932,
     "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.json"
   },
   "181700fd-8b38-4cfd-87cc-f1208501fd76": {
-    "asset": 1732678238937,
-    "meta": 1732683793450,
+    "asset": 1732691265140,
+    "meta": 1732691279934,
     "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.json"
   },
   "f8e18b72-4cee-4ccb-b139-8a3ef53e9c43": {
-    "asset": 1732678238946,
-    "meta": 1732683793455,
+    "asset": 1732691265147,
+    "meta": 1732691279938,
     "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.json"
   },
   "22b436e7-13d4-4a4c-9894-f0b0f9a067f4": {
-    "asset": 1732678238941,
-    "meta": 1732683793452,
+    "asset": 1732691265143,
+    "meta": 1732691279939,
     "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.json"
   },
   "497e1d5a-bed9-40b4-96e2-6009186308e7": {
-    "asset": 1732685655282,
-    "meta": 1732686030547,
+    "asset": 1732691265263,
+    "meta": 1732691278406,
     "relativePath": "indiaMachine\\src\\indiaItemCtrl.js"
   },
   "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
-    "asset": 1732685953304,
-    "meta": 1732686030722,
+    "asset": 1732691265265,
+    "meta": 1732691278546,
     "relativePath": "indiaMachine\\src\\indiaMachineCtrl.js"
   },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1732685738382,
-    "meta": 1732686030791,
+    "asset": 1732691264926,
+    "meta": 1732691278043,
     "relativePath": "Main\\Global.js"
   },
   "de49df87-6e4a-44df-a73d-c8d090f88016": {
-    "asset": 1732686021530,
-    "meta": 1732686030814,
+    "asset": 1732691264927,
+    "meta": 1732691279519,
     "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
   },
-  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1732685800331,
-    "meta": 1732686030878,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
-  },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1732685749004,
-    "meta": 1732686030938,
+    "asset": 1732691264936,
+    "meta": 1732691278207,
     "relativePath": "Main\\Update.js"
   },
   "ecda5918-163d-4042-b55a-d2a348fc835d": {
-    "asset": 1732685816542,
-    "meta": 1732686030966,
+    "asset": 1732691264986,
+    "meta": 1732691279440,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\RuleCtrl.js"
   },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1732686126964,
-    "meta": 1732686129588,
+    "asset": 1732691264991,
+    "meta": 1732691278759,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "0735ba0b-fe23-4b7a-8cc6-2d3ae3ac3040": {
+    "asset": 1732691534137,
+    "meta": 1732691534173,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.json"
+  },
+  "0dedcbdd-5938-4be3-939e-180a9fda4985": {
+    "asset": 1732691534137,
+    "meta": 1732691534149,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.atlas"
+  },
+  "3feb7155-c249-4c5a-8929-bbbc293d290f": {
+    "asset": 1732691534138,
+    "meta": 1732691534170,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.png"
+  },
+  "1c1a110f-2ebc-4958-9353-2d810d120cf9": {
+    "asset": 1732693077295,
+    "meta": 1732693088325,
+    "relativePath": "resources\\proto\\indiaMachine"
+  },
+  "64c67ce1-2604-4548-aff3-2d95f06daa41": {
+    "asset": 1730431604084,
+    "meta": 1732693088334,
+    "relativePath": "resources\\proto\\indiaMachine\\gameservice.proto"
+  },
+  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
+    "asset": 1732693202517,
+    "meta": 1732693328129,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   }
 }
