@@ -67,7 +67,7 @@ cc.Class({
          */
         btn_minimaya: cc.Button,
         /**
-         * 玛雅机台
+         * 印度舞娘机台
          */
         btn_miniindia: cc.Button,
         /**
@@ -297,7 +297,8 @@ cc.Class({
             "minizoo": 13,
             "minicricket": 14,
             "miniluckyloto": 15,
-            "minizeus": 16
+            "minizeus": 16,
+            "miniindia": 17,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -315,6 +316,7 @@ cc.Class({
             "minilonghu": this.btn_minilonghu,
             "minishuiguo": this.btn_minishuiguo,
             "minimaya": this.btn_minimaya,
+            "miniindia": this.btn_miniindia,
             "minisaima": this.btn_minisaima,
             "minibenzbmw": this.btn_minibenzbmw,
             "minirummy": this.btn_minirummy,
@@ -365,6 +367,7 @@ cc.Class({
         this.btn_miniseven.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minishuiguo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minimaya.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_miniindia.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpatti.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpatti2.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpattibaccarat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -520,6 +523,7 @@ cc.Class({
         this.btn_miniseven.node.active = false;
         this.btn_minishuiguo.node.active = false;
         this.btn_minimaya.node.active = false;
+        this.btn_miniindia.node.active = false;
         this.btn_miniteenpatti.node.active = false;
         this.btn_miniteenpatti2.node.active = false;
         this.btn_miniteenpattibaccarat.node.active = false;
@@ -541,6 +545,7 @@ cc.Class({
             let gameData = GlobalCfg.USER_DATAS.games[i];
             let gameProduct = gameData.product;
             let gameHost = gameData.host;
+            // LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.gameProduct == ", gameProduct);
             switch (gameProduct) {
                 case "miniandar":
                     if (GlobalCfg.USER_DATAS.openModules.includes(104) || GlobalCfg.USER_DATAS.openModules.includes(105)) {
@@ -673,12 +678,10 @@ cc.Class({
                     };
                     break;
                 case "miniindia":
-                    if (GlobalCfg.USER_DATAS.openModules.includes(119)) {
-                        this.btn_minimaya.node.active = true;
-
+                    if (GlobalCfg.USER_DATAS.openModules.includes(120)) {
+                        this.btn_miniindia.node.active = true;
                         GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
-                        GlobalCfg.SMALL_GAME_DATAS.indiachineData.product = gameProduct;
-
+                        GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.product = gameProduct;
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("indiaMachine");
                         if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("indiaMachine");
@@ -1960,6 +1963,12 @@ cc.Class({
         };
         if (this.btn_minimaya.node.active) {
             skeleton = this.btn_minimaya.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            // skeleton.setSkin(skinName);
+            skeleton.setAnimation(0, 'animation', true);
+        };
+        if (this.btn_miniindia.node.active) {
+            skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);

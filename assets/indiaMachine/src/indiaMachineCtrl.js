@@ -74,7 +74,7 @@ cc.Class({
             return;
         };
         
-        CommonFun.getInstance().loadBundle('inidaMachine', (bundle) => {
+        CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
             bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
                 if (!err1) {
                     func && func(audioClip, target);

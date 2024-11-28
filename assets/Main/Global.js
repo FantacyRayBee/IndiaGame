@@ -498,6 +498,7 @@ window.GlobalCfg = {
     114: false,  // 打地鼠
     115: false,  // 火箭    
     119: false,  // 玛雅机台
+    120: false,  // 印度舞娘机台
   },
 
   ChildzIndex:{
