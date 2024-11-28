@@ -32,6 +32,7 @@ cc.Class({
             "proto/benz/gameservice",
             "proto/fruitMachine/gameservice",
             "proto/mayaMachine/gameservice",
+            "proto/indiaMachine/gameservice",
             "proto/updown/gameservice",
             "proto/andeer/gameservice",
             "proto/baccarat3Patti/gameservice",
