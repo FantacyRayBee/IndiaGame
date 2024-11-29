@@ -7165,8 +7165,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawShare"
   },
   "3ed6223a-a37e-4664-b1b7-e10c305f188a": {
-    "asset": 1728960021550,
-    "meta": 1730342527650,
+    "asset": 1732866365525,
+    "meta": 1732870352897,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby"
   },
   "28ce3672-5801-432f-b1d2-be0972b365c3": {
@@ -12650,8 +12650,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\TransactionRecord\\TransactionRecordTips.prefab"
   },
   "8d692d68-864d-45cf-8ae4-b00be73674e3": {
-    "asset": 1728960021548,
-    "meta": 1730342533596,
+    "asset": 1732867564367,
+    "meta": 1732870352900,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others"
   },
   "340a33e8-6cc2-4ca9-9631-5f445662245f": {
@@ -18329,20 +18329,10 @@
     "meta": 1730342537225,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\bg_xz_01.png"
   },
-  "4f8029c2-8914-487b-a9c3-6a808c806239": {
-    "asset": 1724821647000,
-    "meta": 1730342537226,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\btn_jq.png"
-  },
   "1a3fbd2f-d8ac-4100-baef-0826fde1be06": {
     "asset": 1724821647000,
     "meta": 1730342537227,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\bg_xz_02.png"
-  },
-  "0f69a3f6-bb7d-416d-bf85-d5bb00eaf7fa": {
-    "asset": 1724821647000,
-    "meta": 1730342537230,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\btn_kf.png"
   },
   "2fd211f9-3047-4589-a1a0-21f92af642ad": {
     "asset": 1724821647000,
@@ -18353,11 +18343,6 @@
     "asset": 1724821647000,
     "meta": 1730342537256,
     "relativePath": "ResourcesBundle\\prefab\\lobby\\shop\\shopAndWithDrawHelpCtrl.js"
-  },
-  "5afab1e5-ee50-47be-9355-06cf17eb5365": {
-    "asset": 1724821647000,
-    "meta": 1730342537232,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\btn_setting.png"
   },
   "d613d0d6-4f9c-45a2-a8ed-c4d927d4d683": {
     "asset": 1728960021642,
@@ -18389,11 +18374,6 @@
     "meta": 1730342537263,
     "relativePath": "ResourcesBundle\\res\\altas\\gameMenu\\bg"
   },
-  "54957ccc-cb59-42c2-bbc9-9a45ee633c08": {
-    "asset": 1724821647000,
-    "meta": 1730342537237,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\btn_yj.png"
-  },
   "270b5237-7ae3-415b-8f6d-4c941d4b36cd": {
     "asset": 1724821647000,
     "meta": 1730342537266,
@@ -18424,11 +18404,6 @@
     "meta": 1730342537275,
     "relativePath": "ResourcesBundle\\prefab\\lobby\\shop\\shopAndWithDrawHelp.prefab"
   },
-  "fa4868b1-1725-41d8-81cd-097adee29ae4": {
-    "asset": 1724821647000,
-    "meta": 1730342537269,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\gold_bg.png"
-  },
   "c8a1430a-493e-4c11-aa2f-bc8ff89e4726": {
     "asset": 1724821647000,
     "meta": 1730342537278,
@@ -18439,20 +18414,10 @@
     "meta": 1730342537279,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\D.png"
   },
-  "cf009f38-56ad-46b8-af7a-2fdc30815b13": {
-    "asset": 1724821647000,
-    "meta": 1730342537280,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\jq_bg.png"
-  },
   "8d1fe37e-8499-4c31-9be2-96d8e2331231": {
     "asset": 1724821647000,
     "meta": 1730342537281,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\modulesBg.png"
-  },
-  "2131e7e8-4cc6-4687-a92f-a9496122b872": {
-    "asset": 1724821647000,
-    "meta": 1730342537282,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others\\tx_k.png"
   },
   "93a1180d-722c-4f1c-8b76-58bc58fddd62": {
     "asset": 1724821647000,
@@ -22201,17 +22166,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1732785655001,
+    "meta": 1732870352919,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1732785654998,
+    "meta": 1732870352917,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1732785655000,
+    "meta": 1732870352916,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -22236,7 +22201,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1732785655005,
+    "meta": 1732870352921,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -22251,7 +22216,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1732785655003,
+    "meta": 1732870352921,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22261,7 +22226,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1732785655004,
+    "meta": 1732870352918,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22271,7 +22236,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1732785655006,
+    "meta": 1732870352920,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22286,7 +22251,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1732785655007,
+    "meta": 1732870352923,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22311,7 +22276,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1732785655008,
+    "meta": 1732870352924,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22326,7 +22291,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1732785655009,
+    "meta": 1732870352922,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22336,7 +22301,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1732785655006,
+    "meta": 1732870352923,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22371,12 +22336,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1732785655008,
+    "meta": 1732870352925,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1732785655010,
+    "meta": 1732870352925,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22510,8 +22475,8 @@
     "relativePath": "indiaMachine\\sound\\zhuang.mp3"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1732776639933,
-    "meta": 1732776684741,
+    "asset": 1732870339750,
+    "meta": 1732870339768,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "c526545a-ccd7-4dfc-a95d-073a4de21bb5": {
@@ -23671,7 +23636,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1732776640100,
-    "meta": 1732785655010,
+    "meta": 1732870352926,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
@@ -23985,8 +23950,23 @@
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.json"
   },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1732777030318,
-    "meta": 1732777031551,
+    "asset": 1732850959907,
+    "meta": 1732862058199,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "c6f3b888-19c8-41a1-9872-1ef72160604b": {
+    "asset": 1732866377117,
+    "meta": 1732870352901,
+    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test"
+  },
+  "a825dca9-98a3-4e2e-89bb-f3151372e6fd": {
+    "asset": 1732866377111,
+    "meta": 1732866377143,
+    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test\\pl_tmp_plist.plist"
+  },
+  "c0517258-974b-47f7-84cf-e1eee3ae3191": {
+    "asset": 1732866377112,
+    "meta": 1732866377133,
+    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test\\pl_tmp_plist.png"
   }
 }
