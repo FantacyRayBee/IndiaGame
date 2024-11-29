@@ -290,15 +290,15 @@ cc.Class({
             "minilonghu": 6,
             "minishuiguo": 7,
             "minimaya": 8,
-            "minisaima": 9,
-            "minibenzbmw": 10,
-            "minirummy": 11,
-            "miniseven": 12,
-            "minizoo": 13,
-            "minicricket": 14,
-            "miniluckyloto": 15,
-            "minizeus": 16,
-            "miniindia": 17,
+            "miniindia": 9,
+            "minisaima": 10,
+            "minibenzbmw": 11,
+            "minirummy": 12,
+            "miniseven": 13,
+            "minizoo": 14,
+            "minicricket": 15,
+            "miniluckyloto": 16,
+            "minizeus": 17,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -1971,7 +1971,7 @@ cc.Class({
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'animation', true);
+            skeleton.setAnimation(0, 'idle', true);
         };
         if (this.btn_miniteenpatti.node.active) {
             skeleton = this.btn_miniteenpatti.node.getChildByName('Background').getComponent(sp.Skeleton);
