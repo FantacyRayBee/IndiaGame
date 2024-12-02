@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "c526545a-ccd7-4dfc-a95d-073a4de21bb5",
+  "uuid": "9bba48ab-46bf-43c4-9634-f186cba6d7f8",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "maya_frame_vfx": {
       "ver": "1.0.6",
-      "uuid": "7cc16dda-20b1-48f8-ab82-9b9dcd181e21",
+      "uuid": "ba82a7ca-a8ba-40d7-bf4b-c3316fa1bc2c",
       "importer": "sprite-frame",
-      "rawTextureUuid": "c526545a-ccd7-4dfc-a95d-073a4de21bb5",
+      "rawTextureUuid": "9bba48ab-46bf-43c4-9634-f186cba6d7f8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -38,6 +38,7 @@ cc.Class({
             "horseRace": 'minisaima',
             "fruitMachine": 'minishuiguo',
             "mayaMachine": 'minimaya',
+            "indiaMachine": 'miniindia',
             "baccarat3Patti": 'miniteenpattibaccarat',
             "rocket": 'minirocket',
             "zoo": 'minizoo',
