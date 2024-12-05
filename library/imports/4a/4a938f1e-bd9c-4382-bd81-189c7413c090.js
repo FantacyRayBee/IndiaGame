@@ -37,6 +37,8 @@ cc.Class({
     this.gold_size = cc.size(64, 54);
     this.silver_pos = cc.v2(4, 0);
     this.silver_size = cc.size(60, 60);
+    this.lubi_pos = cc.v2(0, 0);
+    this.lubi_size = cc.size(64, 54);
   },
   onLoad: function onLoad() {
     var _this = this;
@@ -109,9 +111,9 @@ cc.Class({
 
     switch (id) {
       case 10:
-        sprite.spriteFrame = this.sprite_gold_coin;
-        sprite.node.setPosition(this.gold_pos);
-        sprite.node.setContentSize(this.gold_size);
+        sprite.spriteFrame = this.sprite_lubi_coin;
+        sprite.node.setPosition(this.lubi_pos);
+        sprite.node.setContentSize(this.lubi_size);
         break;
 
       case 11:
@@ -125,12 +127,11 @@ cc.Class({
         sprite.node.setPosition(this.silver_pos);
         sprite.node.setContentSize(this.silver_size);
         break;
-
-      case 13:
-        sprite.spriteFrame = this.sprite_lubi_coin;
-        sprite.node.setPosition(this.gold_pos);
-        sprite.node.setContentSize(this.gold_pos);
-        break;
+      // case 13:
+      //     sprite.spriteFrame = this.sprite_lubi_coin;
+      //     sprite.node.setPosition(this.gold_pos);
+      //     sprite.node.setContentSize(this.gold_pos);
+      //     break;
 
       default:
         break;

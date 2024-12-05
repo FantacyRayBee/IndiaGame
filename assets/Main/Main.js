@@ -325,8 +325,8 @@ cc.Class({
     loadUpdateScene: function() {
         let localAppVersion = Number(cc.sys.localStorage.getItem("LocalAppVersion"));
         let isCanDownApp = Number(cc.sys.localStorage.getItem("IsCanDownApp"));
-        LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);
-        LoggerUtil.getInstance().log("isCanDownApp: ", isCanDownApp);
+        // LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);
+        // LoggerUtil.getInstance().log("isCanDownApp: ", isCanDownApp);
         if (cc.sys.isNative && isCanDownApp == 1 && GlobalCfg.REMOTE_APP_UPDATE && GlobalCfg.REMOTE_APP_VERSION != localAppVersion) {
             this.node_loadTipsLayer.active = false;
             APPManager.downloadApkByApkUrl(GlobalCfg.REMOTE_APP_URL);

@@ -555,8 +555,8 @@
     "relativePath": "lhdGame"
   },
   "a8eacbcf-fbef-4465-84b3-524340df9455": {
-    "asset": 1733105577016,
-    "meta": 1733105615445,
+    "asset": 1733211621629,
+    "meta": 1733211637247,
     "relativePath": "Main"
   },
   "8fc902c6-4301-45e4-a71d-b923f1634160": {
@@ -1379,19 +1379,14 @@
     "meta": 1730342521986,
     "relativePath": "Main\\GameDownloader.js"
   },
-  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
-    "asset": 1729129664850,
-    "meta": 1730342522121,
-    "relativePath": "Main\\Main.js"
-  },
   "ceee7136-97df-412d-b944-4c9c4ff7bf9f": {
-    "asset": 1733105577016,
-    "meta": 1733105615708,
+    "asset": 1733211621630,
+    "meta": 1733211637488,
     "relativePath": "Main\\res"
   },
   "9b69b10f-55cc-4d93-a0e2-7bd43f70fdf1": {
-    "asset": 1733105577014,
-    "meta": 1733105615713,
+    "asset": 1733211621627,
+    "meta": 1733211637494,
     "relativePath": "Main\\Script"
   },
   "ca4d084e-4860-49a0-af46-7d8afc68486a": {
@@ -1450,8 +1445,8 @@
     "relativePath": "resources\\pem"
   },
   "015e5320-2be4-4e3c-98ef-d8e41a147c8e": {
-    "asset": 1733105577313,
-    "meta": 1733105615863,
+    "asset": 1733211622067,
+    "meta": 1733211637630,
     "relativePath": "resources\\proto"
   },
   "66173686-75bd-47c9-b9ff-59a130f372d8": {
@@ -1480,8 +1475,8 @@
     "relativePath": "ResourcesBundle\\res"
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
-    "asset": 1733105577068,
-    "meta": 1733105615866,
+    "asset": 1733211621687,
+    "meta": 1733211637632,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -6219,11 +6214,6 @@
     "meta": 1730342540286,
     "relativePath": "lhdGame\\lhdSke\\ui_kuang2.json"
   },
-  "4ccc6649-9ac2-4d7e-8364-2ac35a1d6bba": {
-    "asset": 1724821647000,
-    "meta": 1730342526903,
-    "relativePath": "Main\\SDK\\WXManager.js"
-  },
   "4dda0f5a-fc27-4007-bf92-9aacc22ba657": {
     "asset": 1724821647000,
     "meta": 1730342540288,
@@ -6936,7 +6926,7 @@
   },
   "b311279c-7823-4eeb-afd9-7a0c3e876491": {
     "asset": 1732586283084,
-    "meta": 1732875612440,
+    "meta": 1733211537054,
     "relativePath": "ResourcesBundle\\NewPlan\\CustomerService"
   },
   "f4b450e7-0525-41f7-9d62-fada3363aff0": {
@@ -7075,13 +7065,13 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Relief"
   },
   "3c568be1-3b78-46da-8701-077e04ef2ec2": {
-    "asset": 1728960020254,
-    "meta": 1730342527638,
+    "asset": 1733211521083,
+    "meta": 1733211537055,
     "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips"
   },
   "a64dd4d3-43c2-422c-b990-8fb736db869a": {
-    "asset": 1733105577062,
-    "meta": 1733105617159,
+    "asset": 1733211621678,
+    "meta": 1733211638810,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule"
   },
   "184e46ca-a4d7-482b-a9c6-beb48a63b1e2": {
@@ -7100,8 +7090,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Setting"
   },
   "45cde789-b464-481c-b6c9-180e53f57398": {
-    "asset": 1732759858216,
-    "meta": 1732875612442,
+    "asset": 1733211621680,
+    "meta": 1733211638811,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop"
   },
   "a2fbe3ee-1a2a-4a01-a7a5-bd83b10e88f0": {
@@ -7165,8 +7155,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawShare"
   },
   "3ed6223a-a37e-4664-b1b7-e10c305f188a": {
-    "asset": 1733105577062,
-    "meta": 1733105617159,
+    "asset": 1733211621680,
+    "meta": 1733211638812,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby"
   },
   "28ce3672-5801-432f-b1d2-be0972b365c3": {
@@ -10875,8 +10865,8 @@
     "relativePath": "Main\\res\\updateScene\\btn_hw_0.png"
   },
   "8a967505-2829-4dcf-9447-4a81c44ace84": {
-    "asset": 1733105577012,
-    "meta": 1733105617720,
+    "asset": 1733211621620,
+    "meta": 1733211639364,
     "relativePath": "Main\\Script\\Common\\Config"
   },
   "ca29df22-e887-4f1b-b0ae-1fa7f30e3393": {
@@ -10895,8 +10885,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1733105577013,
-    "meta": 1733105617721,
+    "asset": 1733211621626,
+    "meta": 1733211639365,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
@@ -11340,8 +11330,8 @@
     "relativePath": "munda\\mundaRes\\trend\\title_zs.png"
   },
   "d9317500-93a2-40ea-aeb9-81767461d998": {
-    "asset": 1733105577074,
-    "meta": 1733105617883,
+    "asset": 1733211621697,
+    "meta": 1733211639511,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines"
   },
   "337ccff1-d135-4a7c-b355-9a8996e3269d": {
@@ -11638,6 +11628,11 @@
     "asset": 1728960018189,
     "meta": 1730342532189,
     "relativePath": "ResourcesBundle\\NewPlan\\ContactUs\\res"
+  },
+  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
+    "asset": 1732586283084,
+    "meta": 1733211537441,
+    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
   },
   "6f0d9095-0143-47c8-9834-744f68eb4edc": {
     "asset": 1728960018208,
@@ -12284,11 +12279,6 @@
     "meta": 1730433888211,
     "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips\\res"
   },
-  "4a938f1e-bd9c-4382-bd81-189c7413c090": {
-    "asset": 1729501912743,
-    "meta": 1730342533067,
-    "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips\\RewardsTipsCtrl.js"
-  },
   "b919c4a0-c2a9-49bc-8751-7f38d12cfc26": {
     "asset": 1730431603854,
     "meta": 1730433888213,
@@ -12408,11 +12398,6 @@
     "asset": 1724821647000,
     "meta": 1730342533245,
     "relativePath": "ResourcesBundle\\NewPlan\\SelectRoom\\SelectRoom.prefab"
-  },
-  "e23591c3-6f2d-4027-a362-3dac71d2ac65": {
-    "asset": 1729502720253,
-    "meta": 1730342533273,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopNewTipCtrl.js"
   },
   "5d8897ed-64ff-49a8-ba27-6a199cc7ca73": {
     "asset": 1724821647000,
@@ -12650,8 +12635,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\TransactionRecord\\TransactionRecordTips.prefab"
   },
   "8d692d68-864d-45cf-8ae4-b00be73674e3": {
-    "asset": 1733105577004,
-    "meta": 1733105617913,
+    "asset": 1733211621610,
+    "meta": 1733211639596,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\others"
   },
   "340a33e8-6cc2-4ca9-9631-5f445662245f": {
@@ -15619,20 +15604,10 @@
     "meta": 1730342535017,
     "relativePath": "zooGame\\res\\players\\wj_tx_bg.png"
   },
-  "12508095-553d-4d89-9735-cd2b8e608ab7": {
-    "asset": 1730285015929,
-    "meta": 1730342535111,
-    "relativePath": "Main\\Script\\Common\\Net\\GameServerManager.js"
-  },
   "2c041127-0741-4bb3-a2e5-ce6cef04ca59": {
     "asset": 1724821647000,
     "meta": 1730342535021,
     "relativePath": "zooGame\\res\\players\\wj_tx_bg_zj.png"
-  },
-  "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
-    "asset": 1729478432281,
-    "meta": 1730342535138,
-    "relativePath": "Main\\Script\\Common\\Net\\LobbyServerManager.js"
   },
   "8c760592-a6c2-4c27-8d43-387e04c6f0f9": {
     "asset": 1724821647000,
@@ -22126,17 +22101,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1733105618098,
+    "meta": 1733211639943,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1733105618100,
+    "meta": 1733211639947,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1733105618097,
+    "meta": 1733211639943,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -22161,7 +22136,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1733105618095,
+    "meta": 1733211639948,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -22176,7 +22151,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1733105618092,
+    "meta": 1733211639950,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22186,7 +22161,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1733105618093,
+    "meta": 1733211639949,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22196,7 +22171,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1733105618101,
+    "meta": 1733211639946,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22211,7 +22186,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1733105618100,
+    "meta": 1733211639950,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22236,7 +22211,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1733105618101,
+    "meta": 1733211639951,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22251,7 +22226,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1733105618105,
+    "meta": 1733211639951,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22261,7 +22236,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1733105618102,
+    "meta": 1733211639952,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22296,12 +22271,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1733105618103,
+    "meta": 1733211639954,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1733105618106,
+    "meta": 1733211639955,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22551,1422 +22526,1447 @@
   },
   "7fa9f064-74cd-481e-a794-c683263f524d": {
     "asset": 1731313027703,
-    "meta": 1732875610998,
+    "meta": 1733211535682,
     "relativePath": "Main\\res\\prefabs"
   },
   "3ecfb5af-80fc-4a7e-bdb0-82146bb32c55": {
     "asset": 1732090660729,
-    "meta": 1732875613021,
+    "meta": 1733211537684,
     "relativePath": "ResourcesBundle\\NewPlan\\TransactionRecord\\TransactionRecordItemCtrl.js"
   },
   "f35085d6-4b56-464c-8dfc-974b99c1076d": {
     "asset": 1732090752643,
-    "meta": 1732875612992,
+    "meta": 1733211537656,
     "relativePath": "ResourcesBundle\\NewPlan\\TransactionRecord\\TransactionRecordCtrl.js"
   },
-  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1732759858209,
-    "meta": 1732875613251,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
-  },
-  "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
-    "asset": 1732759858215,
-    "meta": 1732875612954,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
-  },
-  "23a2c87a-a185-4ab6-ba28-6b77ad21c8d3": {
-    "asset": 1732759858216,
-    "meta": 1732875612964,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopTogItemCtrl.js"
-  },
-  "da78386b-15c7-459d-b25b-166a4dbb5272": {
-    "asset": 1732504037974,
-    "meta": 1732875611089,
-    "relativePath": "Main\\SDK\\APPManager.js"
-  },
-  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
-    "asset": 1732586283084,
-    "meta": 1732875612883,
-    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
-  },
   "d4ff8224-7619-465b-8b45-316abb221e97": {
-    "asset": 1733105577258,
-    "meta": 1733105615444,
+    "asset": 1733211622002,
+    "meta": 1733211637246,
     "relativePath": "indiaMachine"
   },
   "c30ad3b4-015c-4c36-9f30-502635e3bfb5": {
-    "asset": 1733105577312,
-    "meta": 1733105615446,
+    "asset": 1733211622066,
+    "meta": 1733211637247,
     "relativePath": "mayaMachine"
   },
   "8b6d7314-598e-4fd6-8742-afdf4126738b": {
-    "asset": 1733105577080,
-    "meta": 1733105615446,
+    "asset": 1733211621704,
+    "meta": 1733211637248,
     "relativePath": "indiaMachine\\font"
   },
   "d174bde5-2117-48dd-9e08-077bcdbff881": {
-    "asset": 1733105577085,
-    "meta": 1733105615448,
+    "asset": 1733211621710,
+    "meta": 1733211637249,
     "relativePath": "indiaMachine\\prefab"
   },
   "10d01e0e-a87d-453c-8e32-c980ead794c6": {
-    "asset": 1733105577098,
-    "meta": 1733105615448,
+    "asset": 1733211621764,
+    "meta": 1733211637250,
     "relativePath": "indiaMachine\\sound"
   },
   "cf39c14d-15a6-419f-938d-a67237b4b186": {
-    "asset": 1733105577210,
-    "meta": 1733105615449,
+    "asset": 1733211621931,
+    "meta": 1733211637250,
     "relativePath": "indiaMachine\\spine"
   },
   "bae97c7f-3ad6-478d-8c5e-f87c1e133e9d": {
-    "asset": 1733105577255,
-    "meta": 1733105615449,
+    "asset": 1733211621996,
+    "meta": 1733211637251,
     "relativePath": "indiaMachine\\sprite"
   },
   "b8469afe-1827-4f0b-bcbe-4059a1bfde8c": {
-    "asset": 1733105577261,
-    "meta": 1733105615450,
+    "asset": 1733211622007,
+    "meta": 1733211637251,
     "relativePath": "indiaMachine\\src"
   },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1733105577016,
-    "meta": 1733105615859,
+    "asset": 1733211621629,
+    "meta": 1733211637626,
     "relativePath": "Main\\Update.js"
   },
   "e9de5a64-2b80-48e9-81ac-2fb1e8a3ede0": {
-    "asset": 1733105577272,
-    "meta": 1733105615859,
+    "asset": 1733211622019,
+    "meta": 1733211637626,
     "relativePath": "mayaMachine\\audios"
   },
   "49db02cf-dffd-4ba2-8766-dcd9c945c68b": {
-    "asset": 1733105577277,
-    "meta": 1733105615860,
+    "asset": 1733211622023,
+    "meta": 1733211637627,
     "relativePath": "mayaMachine\\font"
   },
   "eb522d8e-2849-4496-b3b2-fc0f7c7bfdf7": {
-    "asset": 1733105577279,
-    "meta": 1733105615861,
+    "asset": 1733211622026,
+    "meta": 1733211637628,
     "relativePath": "mayaMachine\\prefab"
   },
   "1b9bb360-cec5-4101-9ae4-70f5a8cf72d6": {
-    "asset": 1733105577282,
-    "meta": 1733105615861,
+    "asset": 1733211622030,
+    "meta": 1733211637628,
     "relativePath": "mayaMachine\\sound"
   },
   "14454a6b-ad40-4e0d-a053-2890b6a2e275": {
-    "asset": 1733105577288,
-    "meta": 1733105615862,
+    "asset": 1733211622038,
+    "meta": 1733211637629,
     "relativePath": "mayaMachine\\spine"
   },
   "a7618d87-52c8-4d41-a753-baf8d0ef06f7": {
-    "asset": 1733105577297,
-    "meta": 1733105615862,
+    "asset": 1733211622050,
+    "meta": 1733211637629,
     "relativePath": "mayaMachine\\sprite"
   },
   "d830832c-754a-4da5-953b-1dd5c2f12a75": {
     "asset": 1732694975013,
-    "meta": 1733105615863,
+    "meta": 1733211637630,
     "relativePath": "mayaMachine\\src"
+  },
+  "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
+    "asset": 1733211621707,
+    "meta": 1733211637638,
+    "relativePath": "indiaMachine\\indiaMachine.fire"
   },
   "2036f362-7780-4f77-b9f6-7dcc43fa7374": {
     "asset": 1732694345354,
-    "meta": 1733105615872,
+    "meta": 1733211637641,
     "relativePath": "mayaMachine\\mayaMachine.fire"
   },
-  "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
-    "asset": 1733105577082,
-    "meta": 1733105615876,
-    "relativePath": "indiaMachine\\indiaMachine.fire"
-  },
   "62d8eec4-8a74-4c2e-a345-b2d37ac21a7a": {
-    "asset": 1733105577075,
-    "meta": 1733105618095,
+    "asset": 1733211621699,
+    "meta": 1733211639945,
     "relativePath": "indiaMachine\\font\\gates_oly_num.fnt"
   },
   "e1c5db26-f874-461b-817a-26c00cebb511": {
-    "asset": 1733105577076,
-    "meta": 1733105618097,
+    "asset": 1733211621701,
+    "meta": 1733211639947,
     "relativePath": "indiaMachine\\font\\totalWin.fnt"
   },
   "2790fc34-34a2-4720-b4c4-1aa3acc22e43": {
-    "asset": 1733105577079,
-    "meta": 1733105618099,
+    "asset": 1733211621703,
+    "meta": 1733211639949,
     "relativePath": "indiaMachine\\font\\winFont.fnt"
   },
   "1b7f53da-8a64-4a79-9647-6fe7246b78c9": {
-    "asset": 1733105577083,
-    "meta": 1733105615916,
+    "asset": 1733211621708,
+    "meta": 1733211637678,
     "relativePath": "indiaMachine\\prefab\\slotItem.prefab"
   },
   "e7b114b7-00f8-425d-8284-20513a3d3679": {
-    "asset": 1733105577085,
-    "meta": 1733105615920,
+    "asset": 1733211621710,
+    "meta": 1733211637680,
     "relativePath": "indiaMachine\\prefab\\slotRewardTips.prefab"
   },
   "82dd104c-452a-4f17-b1f6-9e8ea0dcef2e": {
-    "asset": 1733105577141,
-    "meta": 1733105615921,
+    "asset": 1733211621816,
+    "meta": 1733211637681,
     "relativePath": "indiaMachine\\spine\\bg"
   },
   "7e5bd0d3-bd42-49fa-b8f7-c719011ab871": {
-    "asset": 1733105577143,
-    "meta": 1733105615922,
+    "asset": 1733211621819,
+    "meta": 1733211637682,
     "relativePath": "indiaMachine\\spine\\fall_coins"
   },
   "68c7bb20-30c0-47d8-ba27-c1b9773f1624": {
-    "asset": 1733105577144,
-    "meta": 1733105615938,
+    "asset": 1733211621820,
+    "meta": 1733211637698,
     "relativePath": "indiaMachine\\spine\\maya_frame_vfx.atlas"
   },
   "d39ba6ad-b8b1-4a39-9796-6d74299043f7": {
-    "asset": 1733105577190,
-    "meta": 1733105615939,
+    "asset": 1733211621894,
+    "meta": 1733211637699,
     "relativePath": "indiaMachine\\spine\\sysboms"
   },
   "6c0785de-90d8-400e-b6fb-bfe1a4793f35": {
-    "asset": 1733105577104,
-    "meta": 1733105615940,
+    "asset": 1733211621770,
+    "meta": 1733211637700,
     "relativePath": "indiaMachine\\spine\\WIN"
   },
-  "d87d12aa-543d-4fc7-b4ef-0e05ac42e953": {
-    "asset": 1733105577191,
-    "meta": 1733105615973,
-    "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.atlas"
-  },
   "d6775e74-d19d-435d-9593-488d8b52734b": {
-    "asset": 1733105577239,
-    "meta": 1733105615973,
+    "asset": 1733211621978,
+    "meta": 1733211637739,
     "relativePath": "indiaMachine\\sprite\\bg"
   },
   "13eae73d-5301-4b72-a9ba-29ea3e7f9f58": {
-    "asset": 1733105577254,
-    "meta": 1733105615974,
+    "asset": 1733211621996,
+    "meta": 1733211637740,
     "relativePath": "indiaMachine\\sprite\\main"
   },
   "0222db6b-ff7b-47bf-b4fa-d7a8de53a977": {
-    "asset": 1733105577078,
-    "meta": 1733105615960,
+    "asset": 1733211621702,
+    "meta": 1733211637702,
     "relativePath": "indiaMachine\\font\\totalWin.png"
   },
   "d95df3a9-3edb-43ff-b32a-3baf3ee71775": {
-    "asset": 1733105577258,
-    "meta": 1733105615986,
+    "asset": 1733211622001,
+    "meta": 1733211637742,
     "relativePath": "indiaMachine\\sprite\\sysboms"
   },
+  "d87d12aa-543d-4fc7-b4ef-0e05ac42e953": {
+    "asset": 1733211621895,
+    "meta": 1733211637743,
+    "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.atlas"
+  },
   "575ec2d6-1959-4386-b7b2-f3f00a6dc06d": {
-    "asset": 1733105577258,
-    "meta": 1733105616024,
+    "asset": 1733211622003,
+    "meta": 1733211637778,
     "relativePath": "indiaMachine\\src\\indiaAudiosCtrl.js"
   },
-  "32957fbf-0400-4633-90ff-1775c03b7349": {
-    "asset": 1733105577080,
-    "meta": 1733105615961,
-    "relativePath": "indiaMachine\\font\\winFont.png"
-  },
-  "497e1d5a-bed9-40b4-96e2-6009186308e7": {
-    "asset": 1733105577259,
-    "meta": 1733105616055,
-    "relativePath": "indiaMachine\\src\\indiaItemCtrl.js"
-  },
   "25b62d16-f158-4cfa-bf56-8ec587485dd6": {
-    "asset": 1733105577076,
-    "meta": 1733105615970,
+    "asset": 1733211621700,
+    "meta": 1733211637710,
     "relativePath": "indiaMachine\\font\\gates_oly_num.png"
   },
+  "497e1d5a-bed9-40b4-96e2-6009186308e7": {
+    "asset": 1733211622004,
+    "meta": 1733211637811,
+    "relativePath": "indiaMachine\\src\\indiaItemCtrl.js"
+  },
   "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
-    "asset": 1733105577260,
-    "meta": 1733105616200,
+    "asset": 1733211622005,
+    "meta": 1733211637945,
     "relativePath": "indiaMachine\\src\\indiaMachineCtrl.js"
   },
+  "32957fbf-0400-4633-90ff-1775c03b7349": {
+    "asset": 1733211621704,
+    "meta": 1733211637711,
+    "relativePath": "indiaMachine\\font\\winFont.png"
+  },
+  "1cefa250-f1f2-4b5f-8801-754463da3187": {
+    "asset": 1733211621918,
+    "meta": 1733211637946,
+    "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.atlas"
+  },
   "c28062a7-0171-4137-b211-13f0773af302": {
-    "asset": 1733105577261,
-    "meta": 1733105616221,
+    "asset": 1733211622006,
+    "meta": 1733211637966,
     "relativePath": "indiaMachine\\src\\slotRewardTipsCtrl.js"
   },
   "5f8e07e7-0f7a-4e23-9ee9-07652249151c": {
-    "asset": 1733105577060,
-    "meta": 1733105616222,
+    "asset": 1733211621677,
+    "meta": 1733211637971,
     "relativePath": "Main\\res\\Audios"
   },
   "5970c0de-7d48-4c19-8eab-785d9ddf4609": {
-    "asset": 1733105577015,
-    "meta": 1733105616222,
+    "asset": 1733211621628,
+    "meta": 1733211637972,
     "relativePath": "Main\\Script\\Slots"
   },
-  "1cefa250-f1f2-4b5f-8801-754463da3187": {
-    "asset": 1733105577201,
-    "meta": 1733105616225,
-    "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.atlas"
-  },
-  "c526545a-ccd7-4dfc-a95d-073a4de21bb5": {
-    "asset": 1733105577146,
-    "meta": 1733105616059,
-    "relativePath": "indiaMachine\\spine\\maya_frame_vfx.png"
-  },
-  "42273818-bba7-4d8f-b392-74a85f8582e2": {
-    "asset": 1733105577097,
-    "meta": 1733105616892,
-    "relativePath": "indiaMachine\\sound\\zhuang-fast.mp3"
-  },
-  "447eb882-dfb0-4d58-870b-db0a00e03a82": {
-    "asset": 1733105577095,
-    "meta": 1733105616894,
-    "relativePath": "indiaMachine\\sound\\win-fast.mp3"
-  },
   "2cc6d892-eb48-4881-9e0d-39c8b7ba6b6f": {
-    "asset": 1733105577096,
-    "meta": 1733105616896,
+    "asset": 1733211621761,
+    "meta": 1733211638589,
     "relativePath": "indiaMachine\\sound\\win.mp3"
   },
+  "c526545a-ccd7-4dfc-a95d-073a4de21bb5": {
+    "asset": 1733211621823,
+    "meta": 1733211637970,
+    "relativePath": "indiaMachine\\spine\\maya_frame_vfx.png"
+  },
   "227ec92d-fff2-41a0-9708-42b9a1f09cf6": {
-    "asset": 1733105577098,
-    "meta": 1733105616898,
+    "asset": 1733211621763,
+    "meta": 1733211638591,
     "relativePath": "indiaMachine\\sound\\zhuang.mp3"
-  },
-  "c942f2c8-6725-4e3f-9286-f586d754fc44": {
-    "asset": 1732694345313,
-    "meta": 1733105616899,
-    "relativePath": "mayaMachine\\audios\\bigWin2ShowFree.mp3"
-  },
-  "99281ada-afac-40fb-a6f1-e989156c4845": {
-    "asset": 1733105577210,
-    "meta": 1733105616260,
-    "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.png"
-  },
-  "65ddd7c3-3460-4615-865c-c36670cc284d": {
-    "asset": 1732694345312,
-    "meta": 1733105616901,
-    "relativePath": "mayaMachine\\audios\\bigWin2End.mp3"
-  },
-  "d09fd9a2-4118-4c89-908e-dde49c8539d3": {
-    "asset": 1732694345302,
-    "meta": 1733105616902,
-    "relativePath": "mayaMachine\\audios\\bigWin1End.mp3"
-  },
-  "50d011a2-818d-4c7e-bd68-d0ba3b2f0848": {
-    "asset": 1733105577200,
-    "meta": 1733105616262,
-    "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.png"
   },
   "30377a1e-8580-4669-9dde-61851f5fdb6a": {
     "asset": 1732694345315,
-    "meta": 1733105616904,
+    "meta": 1733211638592,
     "relativePath": "mayaMachine\\audios\\bigWin2ShowNotFree.mp3"
   },
+  "c942f2c8-6725-4e3f-9286-f586d754fc44": {
+    "asset": 1732694345313,
+    "meta": 1733211638594,
+    "relativePath": "mayaMachine\\audios\\bigWin2ShowFree.mp3"
+  },
+  "65ddd7c3-3460-4615-865c-c36670cc284d": {
+    "asset": 1732694345312,
+    "meta": 1733211638595,
+    "relativePath": "mayaMachine\\audios\\bigWin2End.mp3"
+  },
+  "50d011a2-818d-4c7e-bd68-d0ba3b2f0848": {
+    "asset": 1733211621916,
+    "meta": 1733211638003,
+    "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.png"
+  },
+  "d09fd9a2-4118-4c89-908e-dde49c8539d3": {
+    "asset": 1732694345302,
+    "meta": 1733211638597,
+    "relativePath": "mayaMachine\\audios\\bigWin1End.mp3"
+  },
+  "447eb882-dfb0-4d58-870b-db0a00e03a82": {
+    "asset": 1733211621760,
+    "meta": 1733211638598,
+    "relativePath": "indiaMachine\\sound\\win-fast.mp3"
+  },
+  "99281ada-afac-40fb-a6f1-e989156c4845": {
+    "asset": 1733211621931,
+    "meta": 1733211638005,
+    "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.png"
+  },
+  "42273818-bba7-4d8f-b392-74a85f8582e2": {
+    "asset": 1733211621762,
+    "meta": 1733211638599,
+    "relativePath": "indiaMachine\\sound\\zhuang-fast.mp3"
+  },
   "b970e3a3-076c-456d-b6f2-1ade30074cd0": {
-    "asset": 1733105577095,
-    "meta": 1733105616907,
+    "asset": 1733211621759,
+    "meta": 1733211638601,
     "relativePath": "indiaMachine\\sound\\bg.mp3"
   },
   "38cfc874-a4ba-46fb-88a8-2c2c82c46c7a": {
     "asset": 1732694345311,
-    "meta": 1733105616909,
+    "meta": 1733211638603,
     "relativePath": "mayaMachine\\audios\\bigWin2AddCoin.mp3"
   },
   "9e9a8648-91a4-426f-89fd-2741e01cbf70": {
     "asset": 1732694345306,
-    "meta": 1733105616912,
+    "meta": 1733211638606,
     "relativePath": "mayaMachine\\audios\\bigWin1Show.mp3"
   },
   "2c0fe194-0145-47ce-9dbb-12ce491e2eb5": {
-    "asset": 1733105577092,
-    "meta": 1733105616917,
+    "asset": 1733211621754,
+    "meta": 1733211638608,
     "relativePath": "indiaMachine\\sound\\BGM.mp3"
   },
   "dc2e378f-558d-4eb5-95b7-4363734e2254": {
     "asset": 1732694345321,
-    "meta": 1733105616920,
+    "meta": 1733211638611,
     "relativePath": "mayaMachine\\audios\\bigWin3End.mp3"
   },
   "54b9f827-df1b-4417-bf9e-b43cb8c99d34": {
     "asset": 1732694345348,
-    "meta": 1733105618114,
+    "meta": 1733211639963,
     "relativePath": "mayaMachine\\font\\gates_oly_num.fnt"
-  },
-  "121a616a-1606-4a33-84f5-1f1e8921a33e": {
-    "asset": 1732694345323,
-    "meta": 1733105616922,
-    "relativePath": "mayaMachine\\audios\\bigWin3ShowFree.mp3"
-  },
-  "11c150e9-fe66-4a26-92b3-8043b9b8240f": {
-    "asset": 1732694345350,
-    "meta": 1733105618115,
-    "relativePath": "mayaMachine\\font\\totalWin.fnt"
   },
   "0a002ecf-c83d-4ca0-94f2-2589bdc1474b": {
     "asset": 1732694345330,
-    "meta": 1733105616925,
+    "meta": 1733211638613,
     "relativePath": "mayaMachine\\audios\\bigWin4End.mp3"
   },
-  "3d8e3df1-0c49-4ff3-b7ef-a2291db75e24": {
-    "asset": 1732694345325,
-    "meta": 1733105616926,
-    "relativePath": "mayaMachine\\audios\\bigWin3ShowNotFree.mp3"
+  "11c150e9-fe66-4a26-92b3-8043b9b8240f": {
+    "asset": 1732694345350,
+    "meta": 1733211639965,
+    "relativePath": "mayaMachine\\font\\totalWin.fnt"
+  },
+  "121a616a-1606-4a33-84f5-1f1e8921a33e": {
+    "asset": 1732694345323,
+    "meta": 1733211638614,
+    "relativePath": "mayaMachine\\audios\\bigWin3ShowFree.mp3"
   },
   "7da77bc4-ace9-42fb-ac7a-d0b3efec8352": {
     "asset": 1732694345351,
-    "meta": 1733105618117,
+    "meta": 1733211639966,
     "relativePath": "mayaMachine\\font\\winFont.fnt"
+  },
+  "3d8e3df1-0c49-4ff3-b7ef-a2291db75e24": {
+    "asset": 1732694345325,
+    "meta": 1733211638616,
+    "relativePath": "mayaMachine\\audios\\bigWin3ShowNotFree.mp3"
   },
   "7d054e19-c95a-43e1-b4a5-e0f906f5fac7": {
     "asset": 1732694345332,
-    "meta": 1733105616929,
+    "meta": 1733211638617,
     "relativePath": "mayaMachine\\audios\\bigWin4ShowFree.mp3"
   },
   "066cb6f0-9036-4177-a730-0dbf90df7900": {
     "asset": 1732694345333,
-    "meta": 1733105616930,
+    "meta": 1733211638619,
     "relativePath": "mayaMachine\\audios\\bigWin4ShowNotFree.mp3"
+  },
+  "f4595524-d4f9-4d4d-b01a-d8bcce936166": {
+    "asset": 1732694345320,
+    "meta": 1733211638621,
+    "relativePath": "mayaMachine\\audios\\bigWin3AddCoin.mp3"
   },
   "945c8069-acaf-4469-b8b7-6dac5536c197": {
     "asset": 1732694345356,
-    "meta": 1733105616933,
+    "meta": 1733211638622,
     "relativePath": "mayaMachine\\prefab\\mayaItem.prefab"
   },
   "570bac17-137e-433b-bab7-4e71c3e145b2": {
     "asset": 1732694345357,
-    "meta": 1733105616934,
+    "meta": 1733211638625,
     "relativePath": "mayaMachine\\prefab\\mayaRewardTips.prefab"
-  },
-  "13cbee38-030d-49d6-8edb-2ede00c6ccf4": {
-    "asset": 1732694345329,
-    "meta": 1733105616935,
-    "relativePath": "mayaMachine\\audios\\bigWin4AddCoin.mp3"
   },
   "f26eb125-d7be-4ff8-80e9-477e67b342e3": {
     "asset": 1732694345342,
-    "meta": 1733105616936,
+    "meta": 1733211638626,
     "relativePath": "mayaMachine\\audios\\bigWin5End.mp3"
+  },
+  "13cbee38-030d-49d6-8edb-2ede00c6ccf4": {
+    "asset": 1732694345329,
+    "meta": 1733211638628,
+    "relativePath": "mayaMachine\\audios\\bigWin4AddCoin.mp3"
   },
   "ff3b71a3-6cd3-4be3-bd11-fb12f5711a16": {
     "asset": 1732694345344,
-    "meta": 1733105616938,
+    "meta": 1733211638631,
     "relativePath": "mayaMachine\\audios\\bigWin5ShowFree.mp3"
   },
-  "f4595524-d4f9-4d4d-b01a-d8bcce936166": {
-    "asset": 1732694345320,
-    "meta": 1733105616941,
-    "relativePath": "mayaMachine\\audios\\bigWin3AddCoin.mp3"
-  },
   "50d0bf91-68f7-434c-bbff-ffbe8103ecff": {
-    "asset": 1733105577287,
-    "meta": 1733105616941,
+    "asset": 1733211622036,
+    "meta": 1733211638631,
     "relativePath": "mayaMachine\\spine\\fall_coins"
   },
   "036090ae-ae33-48da-ab3c-d8f4acf91215": {
     "asset": 1732694345346,
-    "meta": 1733105616944,
+    "meta": 1733211638634,
     "relativePath": "mayaMachine\\audios\\bigWin5ShowNotFree.mp3"
-  },
-  "24dc1d13-76ca-41e8-a217-2e4f4eab768f": {
-    "asset": 1732694345375,
-    "meta": 1733105616967,
-    "relativePath": "mayaMachine\\spine\\maya_frame_vfx.atlas"
-  },
-  "3551beb5-24ea-4fb9-abcb-de708cd3cf2a": {
-    "asset": 1732694345351,
-    "meta": 1733105616953,
-    "relativePath": "mayaMachine\\font\\totalWin.png"
   },
   "064a2cf9-c1a2-4838-b327-fe0141272d78": {
     "asset": 1732694345363,
-    "meta": 1733105616981,
+    "meta": 1733211638650,
     "relativePath": "mayaMachine\\sound\\win-fast.mp3"
   },
   "7d9e61f5-2ca0-4452-b41f-db61972eb312": {
     "asset": 1732694345359,
-    "meta": 1733105616996,
+    "meta": 1733211638651,
     "relativePath": "mayaMachine\\sound\\BGM.mp3"
   },
-  "a3a179ac-5260-4609-b8e6-0b6570c095e0": {
-    "asset": 1732694345352,
-    "meta": 1733105616955,
-    "relativePath": "mayaMachine\\font\\winFont.png"
+  "d7e1edb8-c20c-47e1-b1b3-287c91b01d33": {
+    "asset": 1732694345349,
+    "meta": 1733211638638,
+    "relativePath": "mayaMachine\\font\\gates_oly_num.png"
+  },
+  "24dc1d13-76ca-41e8-a217-2e4f4eab768f": {
+    "asset": 1732694345375,
+    "meta": 1733211638661,
+    "relativePath": "mayaMachine\\spine\\maya_frame_vfx.atlas"
+  },
+  "3551beb5-24ea-4fb9-abcb-de708cd3cf2a": {
+    "asset": 1732694345351,
+    "meta": 1733211638639,
+    "relativePath": "mayaMachine\\font\\totalWin.png"
   },
   "4dbed1b4-908c-4e25-8846-9fb12ac6d51a": {
-    "asset": 1733105577285,
-    "meta": 1733105616997,
+    "asset": 1733211622033,
+    "meta": 1733211638662,
     "relativePath": "mayaMachine\\spine\\WIN"
   },
   "05cb7e0d-54ac-4431-a76e-eada6a9ed2a7": {
     "asset": 1732694345340,
-    "meta": 1733105616998,
+    "meta": 1733211638663,
     "relativePath": "mayaMachine\\audios\\bigWin5AddCoin.mp3"
   },
-  "d7e1edb8-c20c-47e1-b1b3-287c91b01d33": {
-    "asset": 1732694345349,
-    "meta": 1733105616956,
-    "relativePath": "mayaMachine\\font\\gates_oly_num.png"
+  "a3a179ac-5260-4609-b8e6-0b6570c095e0": {
+    "asset": 1732694345352,
+    "meta": 1733211638640,
+    "relativePath": "mayaMachine\\font\\winFont.png"
   },
   "28209d43-4164-4a4a-b452-7060456c107f": {
-    "asset": 1733105577297,
-    "meta": 1733105616998,
+    "asset": 1733211622049,
+    "meta": 1733211638664,
     "relativePath": "mayaMachine\\sprite\\bg"
   },
   "a9c116e3-86b9-4c70-a6b7-8b420e86ecd0": {
     "asset": 1732694345364,
-    "meta": 1733105616999,
+    "meta": 1733211638664,
     "relativePath": "mayaMachine\\sound\\win.mp3"
   },
   "d098bfbc-fcc5-4edc-8ef6-a09a828a31ca": {
-    "asset": 1733105577311,
-    "meta": 1733105617000,
+    "asset": 1733211622065,
+    "meta": 1733211638664,
     "relativePath": "mayaMachine\\sprite\\main"
   },
   "25c40f13-85e9-45a7-a99e-6422da4ca17a": {
     "asset": 1732694974998,
-    "meta": 1733105617002,
+    "meta": 1733211638665,
     "relativePath": "mayaMachine\\sprite\\sysboms"
   },
   "67ded5e5-a8c2-4a3b-b34c-34eb4a3b27b7": {
     "asset": 1732694345442,
-    "meta": 1733105617021,
+    "meta": 1733211638680,
     "relativePath": "mayaMachine\\src\\mayaAudiosCtrl.js"
   },
   "37b152dd-4595-4608-91f5-d6dad7c9e4be": {
     "asset": 1732694345443,
-    "meta": 1733105617040,
+    "meta": 1733211638699,
     "relativePath": "mayaMachine\\src\\mayaItemCtrl.js"
-  },
-  "da7093cc-eb56-4630-984a-2b9fa9458ef6": {
-    "asset": 1732694345365,
-    "meta": 1733105617041,
-    "relativePath": "mayaMachine\\sound\\zhuang-fast.mp3"
   },
   "6f9f69c6-a9e0-4e4f-9954-418347d23500": {
     "asset": 1732694345444,
-    "meta": 1733105617137,
+    "meta": 1733211638782,
     "relativePath": "mayaMachine\\src\\mayaMachineCtrl.js"
-  },
-  "f82b431c-2207-4365-b4f5-29ae67cd6937": {
-    "asset": 1732694345366,
-    "meta": 1733105617138,
-    "relativePath": "mayaMachine\\sound\\zhuang.mp3"
   },
   "56057cf7-9a8e-409b-8219-ab3de5326eed": {
     "asset": 1732694345445,
-    "meta": 1733105617157,
+    "meta": 1733211638806,
     "relativePath": "mayaMachine\\src\\mayaRewardTipsCtrl.js"
   },
   "1c1a110f-2ebc-4958-9353-2d810d120cf9": {
-    "asset": 1733105577314,
-    "meta": 1733105617158,
+    "asset": 1733211622067,
+    "meta": 1733211638806,
     "relativePath": "resources\\proto\\indiaMachine"
   },
-  "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1733105577068,
-    "meta": 1733105617336,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  "da7093cc-eb56-4630-984a-2b9fa9458ef6": {
+    "asset": 1732694345365,
+    "meta": 1733211638809,
+    "relativePath": "mayaMachine\\sound\\zhuang-fast.mp3"
   },
   "8b4b1c6f-3b2b-4c0a-95c7-9134c97abc0a": {
     "asset": 1732694345362,
-    "meta": 1733105617337,
+    "meta": 1733211638811,
     "relativePath": "mayaMachine\\sound\\bg.mp3"
+  },
+  "94e34e55-245d-4bd3-8a84-60774f575028": {
+    "asset": 1733211621687,
+    "meta": 1733211638993,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "f82b431c-2207-4365-b4f5-29ae67cd6937": {
+    "asset": 1732694345366,
+    "meta": 1733211639001,
+    "relativePath": "mayaMachine\\sound\\zhuang.mp3"
   },
   "705e1ca7-1304-41d1-9b5b-741805728730": {
     "asset": 1732694345377,
-    "meta": 1733105617338,
+    "meta": 1733211639002,
     "relativePath": "mayaMachine\\spine\\maya_icon_1.atlas"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1733105577067,
-    "meta": 1733105617356,
+    "asset": 1733211621686,
+    "meta": 1733211639014,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "0a007788-708c-45b7-a4f1-2acfbec2565d": {
     "asset": 1732694345390,
-    "meta": 1733105617365,
+    "meta": 1733211639030,
     "relativePath": "mayaMachine\\spine\\maya_icon_2.atlas"
   },
   "41e4b70e-6ee3-4f95-9bf6-f3094af68ea9": {
-    "asset": 1733105577105,
-    "meta": 1733105617380,
+    "asset": 1733211621772,
+    "meta": 1733211639036,
     "relativePath": "indiaMachine\\spine\\bg\\bg_scene.skel.atlas"
   },
   "9bba48ab-46bf-43c4-9634-f186cba6d7f8": {
     "asset": 1732694345377,
-    "meta": 1733105617374,
+    "meta": 1733211639031,
     "relativePath": "mayaMachine\\spine\\maya_frame_vfx.png"
   },
   "ece70e69-f0f7-40fd-bb5e-c5e6bf214cc3": {
-    "asset": 1733105577125,
-    "meta": 1733105617383,
+    "asset": 1733211621797,
+    "meta": 1733211639039,
     "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.atlas"
   },
   "a6668ae5-6d61-43a3-913e-8f7da36b4046": {
-    "asset": 1733105577193,
-    "meta": 1733105618150,
+    "asset": 1733211621897,
+    "meta": 1733211640001,
     "relativePath": "indiaMachine\\spine\\wind1x3blue.skel.json"
   },
   "d1332cd0-be28-4835-8482-8cad22bd13a1": {
-    "asset": 1733105577141,
-    "meta": 1733105617384,
+    "asset": 1733211621817,
+    "meta": 1733211639040,
     "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.atlas"
   },
   "80029c33-7842-4ce7-bfb5-7d63208e2da2": {
-    "asset": 1733105577145,
-    "meta": 1733105618152,
+    "asset": 1733211621821,
+    "meta": 1733211640003,
     "relativePath": "indiaMachine\\spine\\maya_frame_vfx.json"
   },
+  "af3f2127-8e99-47dc-96d2-7fbffcbf6e43": {
+    "asset": 1733211621921,
+    "meta": 1733211640014,
+    "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.json"
+  },
   "6cfa4869-590e-4f1d-9c59-c8dfa02455a1": {
-    "asset": 1733105577156,
-    "meta": 1733105617392,
+    "asset": 1733211621837,
+    "meta": 1733211639046,
     "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.atlas"
   },
   "bb36876f-7e81-4f6b-9416-51fe9984dd65": {
-    "asset": 1733105577147,
-    "meta": 1733105617398,
+    "asset": 1733211621824,
+    "meta": 1733211639052,
     "relativePath": "indiaMachine\\spine\\sysboms\\H2.skel.atlas"
   },
-  "af3f2127-8e99-47dc-96d2-7fbffcbf6e43": {
-    "asset": 1733105577203,
-    "meta": 1733105618164,
-    "relativePath": "indiaMachine\\spine\\wind1x3ys.skel.json"
-  },
   "5123766f-4836-4fd0-b0b8-b65c5263cb6e": {
-    "asset": 1733105577159,
-    "meta": 1733105617401,
+    "asset": 1733211621841,
+    "meta": 1733211639054,
     "relativePath": "indiaMachine\\spine\\sysboms\\h3.skel38.atlas"
   },
   "3c815729-40e9-4773-83a4-6a492c5b2cbf": {
-    "asset": 1733105577143,
-    "meta": 1733105617400,
+    "asset": 1733211621819,
+    "meta": 1733211639056,
     "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.png"
-  },
-  "bdd64919-f307-4741-a6e2-a7a448ac677b": {
-    "asset": 1733105577158,
-    "meta": 1733105617405,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.png"
-  },
-  "1037bbbd-f134-4390-bb52-3ab03c49fdb1": {
-    "asset": 1733105577162,
-    "meta": 1733105617412,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.atlas"
   },
   "69dcbffc-6cba-4e60-b8ca-fbdc7a0356a0": {
     "asset": 1732694345380,
-    "meta": 1733105618181,
+    "meta": 1733211640031,
     "relativePath": "mayaMachine\\spine\\maya_icon_1.json"
   },
   "5f1de4ea-b3eb-4a76-993f-441433192088": {
     "asset": 1732694345375,
-    "meta": 1733105618182,
+    "meta": 1733211640033,
     "relativePath": "mayaMachine\\spine\\maya_frame_vfx.json"
   },
+  "1037bbbd-f134-4390-bb52-3ab03c49fdb1": {
+    "asset": 1733211621852,
+    "meta": 1733211639065,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.atlas"
+  },
+  "bdd64919-f307-4741-a6e2-a7a448ac677b": {
+    "asset": 1733211621840,
+    "meta": 1733211639060,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.png"
+  },
   "54245725-2960-4a43-87f7-4562819082dc": {
-    "asset": 1733105577150,
-    "meta": 1733105617422,
+    "asset": 1733211621829,
+    "meta": 1733211639076,
     "relativePath": "indiaMachine\\spine\\sysboms\\H2.skel.png"
   },
-  "5419f2f8-7169-421f-b6d7-b117db623b0c": {
-    "asset": 1733105577171,
-    "meta": 1733105617435,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.atlas"
-  },
-  "573dbd4b-8700-4d2d-b623-6e8457177409": {
-    "asset": 1732694345396,
-    "meta": 1733105617429,
-    "relativePath": "mayaMachine\\spine\\maya_icon_2.png"
-  },
   "c3e0bca3-e58d-4e52-8694-147792829c95": {
-    "asset": 1733105577161,
-    "meta": 1733105617439,
+    "asset": 1733211621851,
+    "meta": 1733211639078,
     "relativePath": "indiaMachine\\spine\\sysboms\\h3.skel38.png"
   },
-  "8f6dbd59-ebb8-409d-83b5-d87ba2fff8de": {
-    "asset": 1733105577173,
-    "meta": 1733105617449,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.atlas"
-  },
-  "3b36ed96-1ba2-4efd-b691-bd584ae0f357": {
-    "asset": 1733105577142,
-    "meta": 1733105618186,
-    "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.json"
+  "5419f2f8-7169-421f-b6d7-b117db623b0c": {
+    "asset": 1733211621866,
+    "meta": 1733211639081,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.atlas"
   },
   "7ba97577-ce22-4cfc-bf07-24e54951470d": {
     "asset": 1732694345391,
-    "meta": 1733105618191,
+    "meta": 1733211640040,
     "relativePath": "mayaMachine\\spine\\maya_icon_2.json"
   },
-  "3a92d08b-06ed-4b05-a29f-fcd3ec4847c2": {
-    "asset": 1733105577127,
-    "meta": 1733105618197,
-    "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.json"
+  "8f6dbd59-ebb8-409d-83b5-d87ba2fff8de": {
+    "asset": 1733211621869,
+    "meta": 1733211639088,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.atlas"
+  },
+  "573dbd4b-8700-4d2d-b623-6e8457177409": {
+    "asset": 1732694345396,
+    "meta": 1733211639084,
+    "relativePath": "mayaMachine\\spine\\maya_icon_2.png"
+  },
+  "3b36ed96-1ba2-4efd-b691-bd584ae0f357": {
+    "asset": 1733211621818,
+    "meta": 1733211640043,
+    "relativePath": "indiaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.json"
   },
   "371d1b3b-952d-4c76-a894-becb6349060a": {
-    "asset": 1733105577107,
-    "meta": 1733105618205,
+    "asset": 1733211621774,
+    "meta": 1733211640049,
     "relativePath": "indiaMachine\\spine\\bg\\bg_scene.skel.json"
   },
-  "79ac4951-b8a1-4665-87dc-0df6a4eea07d": {
-    "asset": 1732694345389,
-    "meta": 1733105617451,
-    "relativePath": "mayaMachine\\spine\\maya_icon_1.png"
-  },
   "8a2718aa-5ffd-4bff-93b4-814aeab134c9": {
-    "asset": 1733105577151,
-    "meta": 1733105617462,
+    "asset": 1733211621830,
+    "meta": 1733211639101,
     "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.atlas"
   },
+  "3a92d08b-06ed-4b05-a29f-fcd3ec4847c2": {
+    "asset": 1733211621799,
+    "meta": 1733211640057,
+    "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.json"
+  },
   "13d05879-7632-4a73-9c68-15905ee1fc3c": {
-    "asset": 1733105577172,
-    "meta": 1733105617460,
+    "asset": 1733211621868,
+    "meta": 1733211639100,
     "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.png"
   },
   "d9c724b9-80cd-42ff-8d95-2d191cf02a70": {
-    "asset": 1733105577175,
-    "meta": 1733105617468,
+    "asset": 1733211621873,
+    "meta": 1733211639106,
     "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.atlas"
   },
+  "79ac4951-b8a1-4665-87dc-0df6a4eea07d": {
+    "asset": 1732694345389,
+    "meta": 1733211639103,
+    "relativePath": "mayaMachine\\spine\\maya_icon_1.png"
+  },
   "6620efa1-51c8-47a6-96d3-de825b371679": {
-    "asset": 1733105577157,
-    "meta": 1733105618208,
+    "asset": 1733211621838,
+    "meta": 1733211640060,
     "relativePath": "indiaMachine\\spine\\sysboms\\h1.skel38.json"
   },
+  "4ccefd35-f216-4709-a5d5-aa2ca712c470": {
+    "asset": 1733211621834,
+    "meta": 1733211639116,
+    "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.atlas"
+  },
+  "926424fb-b138-44a8-ae37-5fc2441e9f93": {
+    "asset": 1733211621872,
+    "meta": 1733211639108,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.png"
+  },
   "e3564641-890d-4361-8d4a-3ce3aa662713": {
-    "asset": 1733105577148,
-    "meta": 1733105618210,
+    "asset": 1733211621826,
+    "meta": 1733211640062,
     "relativePath": "indiaMachine\\spine\\sysboms\\H2.skel.json"
   },
   "2f6fecff-96a8-47b7-bd9a-a9c7f7ccf814": {
-    "asset": 1733105577160,
-    "meta": 1733105618212,
+    "asset": 1733211621843,
+    "meta": 1733211640064,
     "relativePath": "indiaMachine\\spine\\sysboms\\h3.skel38.json"
   },
-  "926424fb-b138-44a8-ae37-5fc2441e9f93": {
-    "asset": 1733105577175,
-    "meta": 1733105617474,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.png"
-  },
-  "4ccefd35-f216-4709-a5d5-aa2ca712c470": {
-    "asset": 1733105577154,
-    "meta": 1733105617496,
-    "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.atlas"
-  },
-  "a6d6936a-cbba-4ce2-90ab-e13e8c807bb9": {
-    "asset": 1733105577177,
-    "meta": 1733105617481,
-    "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.png"
-  },
   "bc01bbb3-9ff4-4c68-8f0d-3ea1ac84c371": {
-    "asset": 1733105577178,
-    "meta": 1733105617498,
+    "asset": 1733211621877,
+    "meta": 1733211639127,
     "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.atlas"
   },
   "c0a01177-b77f-4076-a142-589fcab1c92a": {
-    "asset": 1733105577153,
-    "meta": 1733105617483,
+    "asset": 1733211621833,
+    "meta": 1733211639125,
     "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.png"
   },
-  "c5ffa175-a021-4826-99ca-6500e40e91d7": {
-    "asset": 1733105577162,
-    "meta": 1733105618214,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.json"
-  },
   "61c79223-5aaf-477d-a3d7-ef1248b7e542": {
-    "asset": 1733105577180,
-    "meta": 1733105617505,
+    "asset": 1733211621880,
+    "meta": 1733211639131,
     "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.atlas"
   },
-  "05de6c8c-a794-4f70-86dd-d2570659636a": {
-    "asset": 1733105577155,
-    "meta": 1733105617508,
-    "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.png"
+  "c5ffa175-a021-4826-99ca-6500e40e91d7": {
+    "asset": 1733211621854,
+    "meta": 1733211640067,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.json"
+  },
+  "a6d6936a-cbba-4ce2-90ab-e13e8c807bb9": {
+    "asset": 1733211621876,
+    "meta": 1733211639128,
+    "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.png"
   },
   "c4e41c3e-5d67-4619-8fac-063e5a522a64": {
-    "asset": 1733105577183,
-    "meta": 1733105617515,
+    "asset": 1733211621883,
+    "meta": 1733211639144,
     "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.atlas"
   },
   "749ed08a-1d0f-427c-b571-9f6aee8d06ed": {
-    "asset": 1733105577179,
-    "meta": 1733105617513,
+    "asset": 1733211621879,
+    "meta": 1733211639139,
     "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.png"
   },
-  "a0ddb87e-efae-446f-903f-8598cb96064f": {
-    "asset": 1733105577187,
-    "meta": 1733105617521,
-    "relativePath": "indiaMachine\\spine\\sysboms\\wild.atlas"
+  "05de6c8c-a794-4f70-86dd-d2570659636a": {
+    "asset": 1733211621836,
+    "meta": 1733211639145,
+    "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.png"
   },
   "e1ae97c0-853b-4bc2-a9ad-5a0ca0a8cc96": {
-    "asset": 1733105577171,
-    "meta": 1733105618217,
+    "asset": 1733211621867,
+    "meta": 1733211640070,
     "relativePath": "indiaMachine\\spine\\sysboms\\h5.skel38.json"
   },
-  "aa3da91c-0b74-4235-93bb-6a545a55c6a6": {
-    "asset": 1733105577182,
-    "meta": 1733105617518,
-    "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.png"
-  },
-  "906b2962-abdf-40a0-a15f-5bbd44b5a834": {
-    "asset": 1733105577100,
-    "meta": 1733105617529,
-    "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.atlas"
-  },
-  "781af8ba-a84d-49c7-a3db-1be9672a86e5": {
-    "asset": 1733105577170,
-    "meta": 1733105617527,
-    "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.png"
-  },
   "2ab46cf8-e5ca-4d2e-84c1-6d676c1ffae0": {
-    "asset": 1733105577140,
-    "meta": 1733105617537,
+    "asset": 1733211621815,
+    "meta": 1733211639159,
     "relativePath": "indiaMachine\\spine\\bg\\nvzhu.skel.png"
   },
+  "aa3da91c-0b74-4235-93bb-6a545a55c6a6": {
+    "asset": 1733211621882,
+    "meta": 1733211639160,
+    "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.png"
+  },
+  "a0ddb87e-efae-446f-903f-8598cb96064f": {
+    "asset": 1733211621889,
+    "meta": 1733211639167,
+    "relativePath": "indiaMachine\\spine\\sysboms\\wild.atlas"
+  },
+  "781af8ba-a84d-49c7-a3db-1be9672a86e5": {
+    "asset": 1733211621865,
+    "meta": 1733211639162,
+    "relativePath": "indiaMachine\\spine\\sysboms\\h4.skel38.png"
+  },
   "b131f2a2-c032-402f-a708-f71f72f04935": {
-    "asset": 1733105577174,
-    "meta": 1733105618220,
+    "asset": 1733211621871,
+    "meta": 1733211640072,
     "relativePath": "indiaMachine\\spine\\sysboms\\h6.skel38.json"
   },
+  "906b2962-abdf-40a0-a15f-5bbd44b5a834": {
+    "asset": 1733211621766,
+    "meta": 1733211639192,
+    "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.atlas"
+  },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
-    "asset": 1733105577190,
-    "meta": 1733105618220,
+    "asset": 1733211621894,
+    "meta": 1733211640073,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
-  "8760ae0e-4851-47d9-bbdb-287055512e36": {
-    "asset": 1733105577186,
-    "meta": 1733105617544,
-    "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.png"
-  },
-  "14813841-b848-4fec-b37a-5826534d075e": {
-    "asset": 1733105577189,
-    "meta": 1733105617548,
-    "relativePath": "indiaMachine\\spine\\sysboms\\wild.png"
-  },
-  "af2c7605-e0af-4231-ad0f-381ea211ded3": {
-    "asset": 1733105577212,
-    "meta": 1733105617551,
-    "relativePath": "indiaMachine\\sprite\\bg\\bg_sdh.png"
-  },
-  "6a1e494d-1bba-4c5d-8a34-d03664be7de5": {
-    "asset": 1733105577212,
-    "meta": 1733105617554,
-    "relativePath": "indiaMachine\\sprite\\bg\\bg_xdh.png"
-  },
-  "f74fed1e-651d-49c3-b524-05165a235b4b": {
-    "asset": 1733105577152,
-    "meta": 1733105618223,
-    "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.json"
-  },
-  "1f03ca0b-1a49-49b2-aa00-41a16cbe9cd0": {
-    "asset": 1733105577154,
-    "meta": 1733105618224,
-    "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.json"
-  },
-  "e44013bd-77ce-4d97-856e-d65d6ee4a3b5": {
-    "asset": 1733105577176,
-    "meta": 1733105618225,
-    "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.json"
-  },
-  "836586b2-6fa1-4424-b7ac-8ce91252bbb1": {
-    "asset": 1733105577221,
-    "meta": 1733105617565,
-    "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se1.png"
-  },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
-    "asset": 1733105577125,
-    "meta": 1733105617567,
+    "asset": 1733211621796,
+    "meta": 1733211639185,
     "relativePath": "indiaMachine\\spine\\bg\\bg_scene.skel.png"
   },
+  "af2c7605-e0af-4231-ad0f-381ea211ded3": {
+    "asset": 1733211621933,
+    "meta": 1733211639206,
+    "relativePath": "indiaMachine\\sprite\\bg\\bg_sdh.png"
+  },
+  "14813841-b848-4fec-b37a-5826534d075e": {
+    "asset": 1733211621893,
+    "meta": 1733211639210,
+    "relativePath": "indiaMachine\\spine\\sysboms\\wild.png"
+  },
+  "e44013bd-77ce-4d97-856e-d65d6ee4a3b5": {
+    "asset": 1733211621874,
+    "meta": 1733211640076,
+    "relativePath": "indiaMachine\\spine\\sysboms\\l1.skel38.json"
+  },
+  "f74fed1e-651d-49c3-b524-05165a235b4b": {
+    "asset": 1733211621831,
+    "meta": 1733211640077,
+    "relativePath": "indiaMachine\\spine\\sysboms\\H7.skel.json"
+  },
+  "8760ae0e-4851-47d9-bbdb-287055512e36": {
+    "asset": 1733211621888,
+    "meta": 1733211639213,
+    "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.png"
+  },
+  "6a1e494d-1bba-4c5d-8a34-d03664be7de5": {
+    "asset": 1733211621934,
+    "meta": 1733211639215,
+    "relativePath": "indiaMachine\\sprite\\bg\\bg_xdh.png"
+  },
+  "836586b2-6fa1-4424-b7ac-8ce91252bbb1": {
+    "asset": 1733211621952,
+    "meta": 1733211639217,
+    "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se1.png"
+  },
   "265412ae-9d86-42ad-9161-44d649648a1a": {
-    "asset": 1733105577222,
-    "meta": 1733105617571,
+    "asset": 1733211621954,
+    "meta": 1733211639219,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se2.png"
   },
   "50b41a7b-bbae-4ca3-8abd-774509331262": {
-    "asset": 1733105577223,
-    "meta": 1733105617582,
+    "asset": 1733211621955,
+    "meta": 1733211639221,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se3.png"
   },
-  "181700fd-8b38-4cfd-87cc-f1208501fd76": {
-    "asset": 1733105577179,
-    "meta": 1733105618228,
-    "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.json"
-  },
-  "a82e6f00-6eea-42ec-9c35-bbfcdb6db4fd": {
-    "asset": 1733105577104,
-    "meta": 1733105617584,
-    "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.png"
-  },
-  "7d6bbf47-1179-437a-b800-d2f31e52c92c": {
-    "asset": 1733105577226,
-    "meta": 1733105617588,
-    "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_win1.png"
-  },
-  "a33caf1f-b15d-4961-b502-0baa1bd05769": {
-    "asset": 1733105577227,
-    "meta": 1733105617590,
-    "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_win2.png"
-  },
   "9e4f8fbb-d740-4651-9b8f-976ffcd0856d": {
-    "asset": 1733105577224,
-    "meta": 1733105617592,
+    "asset": 1733211621956,
+    "meta": 1733211639237,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se4.png"
   },
-  "8a064865-230a-4461-a751-ed6801d3af87": {
-    "asset": 1733105577228,
-    "meta": 1733105617595,
-    "relativePath": "indiaMachine\\sprite\\bg\\my_grand.png"
+  "a82e6f00-6eea-42ec-9c35-bbfcdb6db4fd": {
+    "asset": 1733211621770,
+    "meta": 1733211639241,
+    "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.png"
+  },
+  "181700fd-8b38-4cfd-87cc-f1208501fd76": {
+    "asset": 1733211621878,
+    "meta": 1733211640081,
+    "relativePath": "indiaMachine\\spine\\sysboms\\l3.skel38.json"
+  },
+  "1f03ca0b-1a49-49b2-aa00-41a16cbe9cd0": {
+    "asset": 1733211621835,
+    "meta": 1733211640082,
+    "relativePath": "indiaMachine\\spine\\sysboms\\L2.skel.json"
   },
   "22b436e7-13d4-4a4c-9894-f0b0f9a067f4": {
-    "asset": 1733105577181,
-    "meta": 1733105618230,
+    "asset": 1733211621881,
+    "meta": 1733211640083,
     "relativePath": "indiaMachine\\spine\\sysboms\\l4.skel38.json"
   },
-  "3fae7823-2e59-41d2-add5-aadada16b10f": {
-    "asset": 1733105577229,
-    "meta": 1733105617597,
-    "relativePath": "indiaMachine\\sprite\\bg\\my_major.png"
-  },
   "d8e18f7a-61f8-4676-b571-da77912dd96e": {
-    "asset": 1733105577225,
-    "meta": 1733105617599,
+    "asset": 1733211621958,
+    "meta": 1733211639243,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_se5.png"
   },
+  "a33caf1f-b15d-4961-b502-0baa1bd05769": {
+    "asset": 1733211621961,
+    "meta": 1733211639247,
+    "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_win2.png"
+  },
+  "7d6bbf47-1179-437a-b800-d2f31e52c92c": {
+    "asset": 1733211621960,
+    "meta": 1733211639249,
+    "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_win1.png"
+  },
+  "8a064865-230a-4461-a751-ed6801d3af87": {
+    "asset": 1733211621963,
+    "meta": 1733211639251,
+    "relativePath": "indiaMachine\\sprite\\bg\\my_grand.png"
+  },
   "fd9683bc-6559-4f79-9d6c-a799fb54d5c8": {
-    "asset": 1733105577230,
-    "meta": 1733105617602,
+    "asset": 1733211621965,
+    "meta": 1733211639252,
     "relativePath": "indiaMachine\\sprite\\bg\\my_mini.png"
   },
+  "f8e18b72-4cee-4ccb-b139-8a3ef53e9c43": {
+    "asset": 1733211621885,
+    "meta": 1733211640086,
+    "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.json"
+  },
+  "3fae7823-2e59-41d2-add5-aadada16b10f": {
+    "asset": 1733211621964,
+    "meta": 1733211639255,
+    "relativePath": "indiaMachine\\sprite\\bg\\my_major.png"
+  },
   "00a222e9-7727-46ca-b522-34e3dd48815a": {
-    "asset": 1733105577230,
-    "meta": 1733105617604,
+    "asset": 1733211621966,
+    "meta": 1733211639256,
     "relativePath": "indiaMachine\\sprite\\bg\\my_minor.png"
   },
   "a13091b2-6008-43aa-ba9b-a32962da05d0": {
-    "asset": 1733105577232,
-    "meta": 1733105617614,
+    "asset": 1733211621968,
+    "meta": 1733211639269,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-bg-bjdibantu01.png"
   },
-  "b508f9de-2edc-4c67-b39f-e02b30c4a942": {
-    "asset": 1733105577238,
-    "meta": 1733105617616,
-    "relativePath": "indiaMachine\\sprite\\bg\\pick-ico-iang.png"
-  },
   "a177d38d-f719-4359-9b04-a50aebb52ffe": {
-    "asset": 1733105577240,
-    "meta": 1733105617621,
+    "asset": 1733211621979,
+    "meta": 1733211639274,
     "relativePath": "indiaMachine\\sprite\\main\\bg_jb.png"
   },
+  "b508f9de-2edc-4c67-b39f-e02b30c4a942": {
+    "asset": 1733211621977,
+    "meta": 1733211639277,
+    "relativePath": "indiaMachine\\sprite\\bg\\pick-ico-iang.png"
+  },
   "4364bd64-7dea-40be-a69b-1320e0f28efc": {
-    "asset": 1733105577233,
-    "meta": 1733105617623,
+    "asset": 1733211621969,
+    "meta": 1733211639279,
     "relativePath": "indiaMachine\\sprite\\bg\\pick-bg-kuangbian.png"
   },
-  "fdbb8bda-cd87-47df-9ef3-305740ceaea7": {
-    "asset": 1733105577239,
-    "meta": 1733105617625,
-    "relativePath": "indiaMachine\\sprite\\bg\\pick-ico-jindutdizi.png"
-  },
   "832100b3-7e7f-4dcf-ac57-026ab47ef6b8": {
-    "asset": 1733105577240,
-    "meta": 1733105617628,
+    "asset": 1733211621980,
+    "meta": 1733211639282,
     "relativePath": "indiaMachine\\sprite\\main\\bg_tc.png"
   },
-  "f8e18b72-4cee-4ccb-b139-8a3ef53e9c43": {
-    "asset": 1733105577184,
-    "meta": 1733105618234,
-    "relativePath": "indiaMachine\\spine\\sysboms\\scatter.skel.json"
-  },
   "5e231bab-d127-45bc-b177-682ace60de6c": {
-    "asset": 1733105577241,
-    "meta": 1733105617631,
+    "asset": 1733211621981,
+    "meta": 1733211639283,
     "relativePath": "indiaMachine\\sprite\\main\\bg_win3.png"
   },
   "9cec1551-80aa-477f-9514-4c19eca1a07a": {
-    "asset": 1733105577242,
-    "meta": 1733105617633,
+    "asset": 1733211621982,
+    "meta": 1733211639285,
     "relativePath": "indiaMachine\\sprite\\main\\bg_xz.png"
   },
-  "c7b54473-2154-4eba-b140-dc49b1d7dd23": {
-    "asset": 1733105577235,
-    "meta": 1733105617639,
-    "relativePath": "indiaMachine\\sprite\\bg\\pick-frm-dikuang.png"
+  "fdbb8bda-cd87-47df-9ef3-305740ceaea7": {
+    "asset": 1733211621978,
+    "meta": 1733211639286,
+    "relativePath": "indiaMachine\\sprite\\bg\\pick-ico-jindutdizi.png"
   },
   "c64a49c3-59e8-49c7-b9f7-4bff6ee93132": {
-    "asset": 1733105577242,
-    "meta": 1733105617641,
+    "asset": 1733211621983,
+    "meta": 1733211639287,
     "relativePath": "indiaMachine\\sprite\\main\\btn_add.png"
   },
+  "c7b54473-2154-4eba-b140-dc49b1d7dd23": {
+    "asset": 1733211621972,
+    "meta": 1733211639303,
+    "relativePath": "indiaMachine\\sprite\\bg\\pick-frm-dikuang.png"
+  },
   "ba051a33-de87-4829-8382-895de872092e": {
-    "asset": 1733105577253,
-    "meta": 1733105617663,
+    "asset": 1733211621995,
+    "meta": 1733211639316,
     "relativePath": "indiaMachine\\sprite\\main\\mainAutoAtlas.pac"
   },
-  "24bd8915-3ba7-40d3-bf60-391dc5833064": {
-    "asset": 1733105577237,
-    "meta": 1733105617650,
-    "relativePath": "indiaMachine\\sprite\\bg\\pick-frm-kuangdis.png"
-  },
   "1733b5f4-d868-48ad-864e-50bf447aa7dc": {
-    "asset": 1733105577243,
-    "meta": 1733105617654,
+    "asset": 1733211621984,
+    "meta": 1733211639305,
     "relativePath": "indiaMachine\\sprite\\main\\btn_add2.png"
   },
   "3b8263a1-8fb2-4548-9bb6-2b445e37d52e": {
-    "asset": 1733105577244,
-    "meta": 1733105617658,
+    "asset": 1733211621984,
+    "meta": 1733211639308,
     "relativePath": "indiaMachine\\sprite\\main\\btn_addcash.png"
   },
   "2bcd570e-3120-4c20-b238-8dece77833e9": {
-    "asset": 1733105577244,
-    "meta": 1733105617660,
+    "asset": 1733211621985,
+    "meta": 1733211639311,
     "relativePath": "indiaMachine\\sprite\\main\\btn_addcash_SHOP.png"
   },
-  "746a332f-c8cb-4403-a164-d3bf0a4de3e6": {
-    "asset": 1733105577245,
-    "meta": 1733105617661,
-    "relativePath": "indiaMachine\\sprite\\main\\btn_auto_0.png"
+  "24bd8915-3ba7-40d3-bf60-391dc5833064": {
+    "asset": 1733211621975,
+    "meta": 1733211639313,
+    "relativePath": "indiaMachine\\sprite\\bg\\pick-frm-kuangdis.png"
   },
   "cdd5ad77-e7a8-4652-a61c-55ea09238d0c": {
-    "asset": 1733105577245,
-    "meta": 1733105617664,
+    "asset": 1733211621986,
+    "meta": 1733211639315,
     "relativePath": "indiaMachine\\sprite\\main\\btn_fast_01.png"
   },
+  "746a332f-c8cb-4403-a164-d3bf0a4de3e6": {
+    "asset": 1733211621986,
+    "meta": 1733211639318,
+    "relativePath": "indiaMachine\\sprite\\main\\btn_auto_0.png"
+  },
   "6ed44b5b-6b6f-4f8b-aab5-8823722c7c61": {
-    "asset": 1733105577255,
-    "meta": 1733105618242,
+    "asset": 1733211621997,
+    "meta": 1733211640098,
     "relativePath": "indiaMachine\\sprite\\sysboms\\tplist.plist"
   },
   "3090b5c5-706d-4310-8810-0d96bf86c0c9": {
-    "asset": 1733105577246,
-    "meta": 1733105617670,
+    "asset": 1733211621987,
+    "meta": 1733211639322,
     "relativePath": "indiaMachine\\sprite\\main\\btn_fast_02.png"
   },
   "165e72e7-dba3-486e-9361-6b681feee5b7": {
-    "asset": 1733105577247,
-    "meta": 1733105617673,
+    "asset": 1733211621988,
+    "meta": 1733211639323,
     "relativePath": "indiaMachine\\sprite\\main\\btn_fh.png"
   },
   "b846ef2e-582e-4c6b-962e-f276d309572b": {
-    "asset": 1733105577248,
-    "meta": 1733105617677,
+    "asset": 1733211621989,
+    "meta": 1733211639324,
     "relativePath": "indiaMachine\\sprite\\main\\btn_max.png"
   },
   "b795f9a2-3d8f-4909-a5f5-7bc04ed3a4fc": {
-    "asset": 1733105577249,
-    "meta": 1733105617685,
+    "asset": 1733211621990,
+    "meta": 1733211639325,
     "relativePath": "indiaMachine\\sprite\\main\\btn_setting.png"
   },
-  "2f70c65a-0f89-4609-a8ff-4f473d59fe55": {
-    "asset": 1733105577249,
-    "meta": 1733105617686,
-    "relativePath": "indiaMachine\\sprite\\main\\btn_spin.png"
-  },
-  "9325a84a-1dec-4e7d-9456-9b91d430f0b4": {
-    "asset": 1733105577101,
-    "meta": 1733105618247,
-    "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.json"
-  },
   "fe847c34-c7bf-4266-b0f2-3dd79dccb27a": {
-    "asset": 1733105577220,
-    "meta": 1733105617694,
+    "asset": 1733211621951,
+    "meta": 1733211639336,
     "relativePath": "indiaMachine\\sprite\\bg\\gates_oly_bg.png"
   },
-  "644af17b-b517-4fa6-8d3d-ae0145ea1859": {
-    "asset": 1733105577018,
-    "meta": 1733105617705,
-    "relativePath": "Main\\res\\Audios\\bigWin1End.mp3"
-  },
-  "4d58dfe4-f395-4d75-afb9-bb8ca75a7cc8": {
-    "asset": 1733105577257,
-    "meta": 1733105617708,
-    "relativePath": "indiaMachine\\sprite\\sysboms\\tplist.png"
-  },
   "bd46d535-8367-42c3-a683-a7363720a5fe": {
-    "asset": 1733105577250,
-    "meta": 1733105617696,
+    "asset": 1733211621991,
+    "meta": 1733211639340,
     "relativePath": "indiaMachine\\sprite\\main\\btn_spin_grey.png"
   },
-  "28b59d9b-8e64-4a21-83a4-1b5116427795": {
-    "asset": 1733105577029,
-    "meta": 1733105617710,
-    "relativePath": "Main\\res\\Audios\\bigWin2ShowFree.mp3"
+  "4d58dfe4-f395-4d75-afb9-bb8ca75a7cc8": {
+    "asset": 1733211622001,
+    "meta": 1733211639350,
+    "relativePath": "indiaMachine\\sprite\\sysboms\\tplist.png"
+  },
+  "2f70c65a-0f89-4609-a8ff-4f473d59fe55": {
+    "asset": 1733211621990,
+    "meta": 1733211639341,
+    "relativePath": "indiaMachine\\sprite\\main\\btn_spin.png"
+  },
+  "644af17b-b517-4fa6-8d3d-ae0145ea1859": {
+    "asset": 1733211621631,
+    "meta": 1733211639353,
+    "relativePath": "Main\\res\\Audios\\bigWin1End.mp3"
   },
   "b689547a-977e-4b14-acbf-9f9da5b8e55c": {
-    "asset": 1733105577028,
-    "meta": 1733105617712,
+    "asset": 1733211621643,
+    "meta": 1733211639354,
     "relativePath": "Main\\res\\Audios\\bigWin2End.mp3"
   },
-  "c24eae34-b9bb-44ea-b54e-e65fad6040c0": {
-    "asset": 1733105577252,
-    "meta": 1733105617698,
-    "relativePath": "indiaMachine\\sprite\\main\\btn_wf.png"
+  "b70d975c-6e3a-4450-8686-93c7e981e3cf": {
+    "asset": 1733211621995,
+    "meta": 1733211639343,
+    "relativePath": "indiaMachine\\sprite\\main\\xuanze.png"
+  },
+  "28b59d9b-8e64-4a21-83a4-1b5116427795": {
+    "asset": 1733211621644,
+    "meta": 1733211639356,
+    "relativePath": "Main\\res\\Audios\\bigWin2ShowFree.mp3"
   },
   "2e6ebc53-57ee-4e0f-ab16-5cfe6e4d834b": {
-    "asset": 1733105577030,
-    "meta": 1733105617713,
+    "asset": 1733211621645,
+    "meta": 1733211639358,
     "relativePath": "Main\\res\\Audios\\bigWin2ShowNotFree.mp3"
   },
-  "284ab0b5-5e58-42a5-aa47-73a3798bca2a": {
-    "asset": 1733105577026,
-    "meta": 1733105617714,
-    "relativePath": "Main\\res\\Audios\\bigWin2AddCoin.mp3"
-  },
   "4b79c09b-e081-41ae-bac4-7161124c290a": {
-    "asset": 1733105577251,
-    "meta": 1733105617700,
+    "asset": 1733211621992,
+    "meta": 1733211639344,
     "relativePath": "indiaMachine\\sprite\\main\\btn_sub.png"
   },
   "2a4bb060-2027-482a-b608-604b0a341a1a": {
-    "asset": 1733105577022,
-    "meta": 1733105617718,
+    "asset": 1733211621637,
+    "meta": 1733211639361,
     "relativePath": "Main\\res\\Audios\\bigWin1Show.mp3"
   },
+  "9325a84a-1dec-4e7d-9456-9b91d430f0b4": {
+    "asset": 1733211621767,
+    "meta": 1733211640104,
+    "relativePath": "indiaMachine\\spine\\WIN\\Jiang.skel.json"
+  },
+  "284ab0b5-5e58-42a5-aa47-73a3798bca2a": {
+    "asset": 1733211621641,
+    "meta": 1733211639362,
+    "relativePath": "Main\\res\\Audios\\bigWin2AddCoin.mp3"
+  },
   "f8d889c0-2811-4f55-85b7-52e214a8a287": {
-    "asset": 1733105577036,
-    "meta": 1733105617720,
+    "asset": 1733211621652,
+    "meta": 1733211639363,
     "relativePath": "Main\\res\\Audios\\bigWin3End.mp3"
   },
   "ce094c42-8d54-4675-b160-a585de6913a0": {
-    "asset": 1733105577253,
-    "meta": 1733105617701,
+    "asset": 1733211621994,
+    "meta": 1733211639345,
     "relativePath": "indiaMachine\\sprite\\main\\jinbi.png"
   },
-  "b70d975c-6e3a-4450-8686-93c7e981e3cf": {
-    "asset": 1733105577254,
-    "meta": 1733105617703,
-    "relativePath": "indiaMachine\\sprite\\main\\xuanze.png"
+  "c24eae34-b9bb-44ea-b54e-e65fad6040c0": {
+    "asset": 1733211621993,
+    "meta": 1733211639346,
+    "relativePath": "indiaMachine\\sprite\\main\\btn_wf.png"
   },
   "24373832-437b-4f07-9424-d22024f6146a": {
-    "asset": 1733105577038,
-    "meta": 1733105617723,
+    "asset": 1733211621653,
+    "meta": 1733211639366,
     "relativePath": "Main\\res\\Audios\\bigWin3ShowFree.mp3"
   },
   "20dc54e1-d5a8-48cc-8a43-2573b39e3325": {
-    "asset": 1733105577014,
-    "meta": 1733105617740,
+    "asset": 1733211621627,
+    "meta": 1733211639382,
     "relativePath": "Main\\Script\\Slots\\slotAudiosCtrl.js"
   },
   "6160b8da-ae10-429e-946d-4de04ffead9d": {
-    "asset": 1733105577040,
-    "meta": 1733105617742,
+    "asset": 1733211621655,
+    "meta": 1733211639386,
     "relativePath": "Main\\res\\Audios\\bigWin3ShowNotFree.mp3"
   },
   "00d164bc-d078-4c1d-b6d0-0cdbb8dc5402": {
-    "asset": 1733105577045,
-    "meta": 1733105617743,
+    "asset": 1733211621661,
+    "meta": 1733211639387,
     "relativePath": "Main\\res\\Audios\\bigWin4End.mp3"
   },
   "c4173610-313c-423e-8032-94c3e5a43a0c": {
-    "asset": 1733105577046,
-    "meta": 1733105617751,
+    "asset": 1733211621663,
+    "meta": 1733211639394,
     "relativePath": "Main\\res\\Audios\\bigWin4ShowFree.mp3"
   },
-  "13cdef70-eef4-4d81-8392-71996bbc902f": {
-    "asset": 1733105577035,
-    "meta": 1733105617753,
-    "relativePath": "Main\\res\\Audios\\bigWin3AddCoin.mp3"
-  },
   "4c14acb8-67fa-424e-9df7-4886468e894c": {
-    "asset": 1733105577048,
-    "meta": 1733105617756,
+    "asset": 1733211621664,
+    "meta": 1733211639395,
     "relativePath": "Main\\res\\Audios\\bigWin4ShowNotFree.mp3"
   },
-  "2d0d5122-23e3-428d-ac4c-2b02794b580f": {
-    "asset": 1733105577044,
-    "meta": 1733105617758,
-    "relativePath": "Main\\res\\Audios\\bigWin4AddCoin.mp3"
+  "13cdef70-eef4-4d81-8392-71996bbc902f": {
+    "asset": 1733211621651,
+    "meta": 1733211639396,
+    "relativePath": "Main\\res\\Audios\\bigWin3AddCoin.mp3"
   },
-  "dd4e635c-3721-4ce6-8cdb-80230b3a5d4e": {
-    "asset": 1733105577059,
-    "meta": 1733105617765,
-    "relativePath": "Main\\res\\Audios\\bigWin5ShowFree.mp3"
+  "2d0d5122-23e3-428d-ac4c-2b02794b580f": {
+    "asset": 1733211621660,
+    "meta": 1733211639397,
+    "relativePath": "Main\\res\\Audios\\bigWin4AddCoin.mp3"
   },
   "eff28733-e757-4331-a4d2-5ca232447be7": {
     "asset": 1732694345372,
-    "meta": 1733105617766,
+    "meta": 1733211639401,
     "relativePath": "mayaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.atlas"
-  },
-  "74a8d584-46ed-49e7-9604-92c30dbe8e1a": {
-    "asset": 1733105577057,
-    "meta": 1733105617767,
-    "relativePath": "Main\\res\\Audios\\bigWin5End.mp3"
   },
   "640fb914-c466-4a9c-9e32-7cd6021888a2": {
     "asset": 1732694345368,
-    "meta": 1733105617769,
+    "meta": 1733211639405,
     "relativePath": "mayaMachine\\spine\\WIN\\Jiang.skel.atlas"
   },
+  "74a8d584-46ed-49e7-9604-92c30dbe8e1a": {
+    "asset": 1733211621673,
+    "meta": 1733211639406,
+    "relativePath": "Main\\res\\Audios\\bigWin5End.mp3"
+  },
+  "dd4e635c-3721-4ce6-8cdb-80230b3a5d4e": {
+    "asset": 1733211621675,
+    "meta": 1733211639408,
+    "relativePath": "Main\\res\\Audios\\bigWin5ShowFree.mp3"
+  },
   "4176761a-3fbc-4c6f-a1c2-a0f2a3622815": {
-    "asset": 1733105577060,
-    "meta": 1733105617774,
+    "asset": 1733211621677,
+    "meta": 1733211639410,
     "relativePath": "Main\\res\\Audios\\bigWin5ShowNotFree.mp3"
   },
   "8af47e1d-7575-4e2c-9395-a11550f44344": {
-    "asset": 1733105577055,
-    "meta": 1733105617783,
+    "asset": 1733211621671,
+    "meta": 1733211639425,
     "relativePath": "Main\\res\\Audios\\bigWin5AddCoin.mp3"
   },
   "0d7f7e81-10b9-4c6e-a80b-084d93f7adb8": {
     "asset": 1732694345374,
-    "meta": 1733105617777,
+    "meta": 1733211639412,
     "relativePath": "mayaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.png"
   },
   "7d3af0f4-ab3b-415a-8b0a-e9a1fa78660f": {
     "asset": 1732694345400,
-    "meta": 1733105617785,
+    "meta": 1733211639423,
     "relativePath": "mayaMachine\\sprite\\bg\\bg_sdh.png"
   },
   "65424965-48a9-4dd3-96a8-68b5fba144d9": {
     "asset": 1732694345400,
-    "meta": 1733105617789,
+    "meta": 1733211639427,
     "relativePath": "mayaMachine\\sprite\\bg\\bg_xdh.png"
   },
   "2f4c8878-59e0-4980-b5fa-37020f1833db": {
     "asset": 1732694345403,
-    "meta": 1733105617790,
+    "meta": 1733211639428,
     "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se1.png"
-  },
-  "de712437-a5c8-411d-8200-b5bde40c2961": {
-    "asset": 1732694345405,
-    "meta": 1733105617794,
-    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se3.png"
   },
   "e4a51060-aaf6-42d0-82b1-a2f652109475": {
     "asset": 1732694345404,
-    "meta": 1733105617797,
+    "meta": 1733211639430,
     "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se2.png"
   },
-  "f63c6247-dcd6-4c54-b68b-385640ed5a0c": {
-    "asset": 1732694345406,
-    "meta": 1733105617802,
-    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se4.png"
-  },
-  "0695116f-9aaa-47fa-a5b0-11f6490a2236": {
-    "asset": 1732694345408,
-    "meta": 1733105617810,
-    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se5.png"
-  },
-  "6063a7bc-2b76-411c-a324-2b1cf5d7ad90": {
-    "asset": 1732694345371,
-    "meta": 1733105617817,
-    "relativePath": "mayaMachine\\spine\\WIN\\Jiang.skel.png"
+  "de712437-a5c8-411d-8200-b5bde40c2961": {
+    "asset": 1732694345405,
+    "meta": 1733211639435,
+    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se3.png"
   },
   "3fb4b6d5-26e7-4be0-986e-256b9e78444d": {
     "asset": 1732694345409,
-    "meta": 1733105617819,
+    "meta": 1733211639440,
     "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_win1.png"
+  },
+  "f63c6247-dcd6-4c54-b68b-385640ed5a0c": {
+    "asset": 1732694345406,
+    "meta": 1733211639445,
+    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se4.png"
   },
   "385ec692-b23b-4302-98f0-c6fda6685523": {
     "asset": 1732694345410,
-    "meta": 1733105617820,
+    "meta": 1733211639446,
     "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_win2.png"
   },
-  "db36962e-878f-48d5-bd87-dfb4e7c52680": {
-    "asset": 1732694345402,
-    "meta": 1733105617825,
-    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_bg.png"
+  "6063a7bc-2b76-411c-a324-2b1cf5d7ad90": {
+    "asset": 1732694345371,
+    "meta": 1733211639448,
+    "relativePath": "mayaMachine\\spine\\WIN\\Jiang.skel.png"
   },
-  "5e32529f-d0b6-43bb-8243-bf062caa9824": {
-    "asset": 1732694345412,
-    "meta": 1733105617833,
-    "relativePath": "mayaMachine\\sprite\\bg\\my_grand.png"
+  "0695116f-9aaa-47fa-a5b0-11f6490a2236": {
+    "asset": 1732694345408,
+    "meta": 1733211639456,
+    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_se5.png"
   },
   "ddbe1c95-1c0f-44f9-ae15-18c897bf55af": {
     "asset": 1732694345412,
-    "meta": 1733105617836,
+    "meta": 1733211639462,
     "relativePath": "mayaMachine\\sprite\\bg\\my_major.png"
   },
-  "5510e0e1-dde7-41bb-9faa-d0fe74ddf6ba": {
-    "asset": 1732694345414,
-    "meta": 1733105617838,
-    "relativePath": "mayaMachine\\sprite\\bg\\my_mini.png"
+  "5e32529f-d0b6-43bb-8243-bf062caa9824": {
+    "asset": 1732694345412,
+    "meta": 1733211639464,
+    "relativePath": "mayaMachine\\sprite\\bg\\my_grand.png"
+  },
+  "db36962e-878f-48d5-bd87-dfb4e7c52680": {
+    "asset": 1732694345402,
+    "meta": 1733211639465,
+    "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_bg.png"
   },
   "12846bff-9647-48de-aa85-9b02cac69083": {
     "asset": 1732694345411,
-    "meta": 1733105617840,
+    "meta": 1733211639469,
     "relativePath": "mayaMachine\\sprite\\bg\\kuang1.png"
+  },
+  "5510e0e1-dde7-41bb-9faa-d0fe74ddf6ba": {
+    "asset": 1732694345414,
+    "meta": 1733211639471,
+    "relativePath": "mayaMachine\\sprite\\bg\\my_mini.png"
   },
   "0d177ffe-cf15-4da4-b735-0423a8c9efc6": {
     "asset": 1732694345415,
-    "meta": 1733105617842,
+    "meta": 1733211639472,
     "relativePath": "mayaMachine\\sprite\\bg\\my_minor.png"
   },
   "02df7a78-739a-4dd0-8314-b197d9290975": {
     "asset": 1732694345416,
-    "meta": 1733105617846,
+    "meta": 1733211639476,
     "relativePath": "mayaMachine\\sprite\\bg\\yrtyr.png"
   },
   "1f65b546-262e-4cbb-8faf-d286fb31f875": {
     "asset": 1732694345417,
-    "meta": 1733105617848,
+    "meta": 1733211639479,
     "relativePath": "mayaMachine\\sprite\\main\\bg_jb.png"
   },
   "c667ea93-60c0-4dd6-bb0b-4822c4d39102": {
     "asset": 1732694345418,
-    "meta": 1733105617853,
+    "meta": 1733211639484,
     "relativePath": "mayaMachine\\sprite\\main\\bg_win3.png"
-  },
-  "b09c28db-ffbf-4180-9752-20fb5e156b13": {
-    "asset": 1732694345419,
-    "meta": 1733105617855,
-    "relativePath": "mayaMachine\\sprite\\main\\bg_xz.png"
-  },
-  "85690fe9-f58a-4329-a7f7-b7c752b9f3f0": {
-    "asset": 1732694345420,
-    "meta": 1733105617856,
-    "relativePath": "mayaMachine\\sprite\\main\\btn_add.png"
-  },
-  "6076d5ba-53fc-44fe-948e-362e95c3c374": {
-    "asset": 1732694345430,
-    "meta": 1733105617874,
-    "relativePath": "mayaMachine\\sprite\\main\\mainAutoAtlas.pac"
   },
   "48c399dc-627d-4f7c-a10d-696ce5ec1a1f": {
     "asset": 1732694345417,
-    "meta": 1733105617857,
+    "meta": 1733211639486,
     "relativePath": "mayaMachine\\sprite\\main\\bg_tc.png"
+  },
+  "b09c28db-ffbf-4180-9752-20fb5e156b13": {
+    "asset": 1732694345419,
+    "meta": 1733211639489,
+    "relativePath": "mayaMachine\\sprite\\main\\bg_xz.png"
+  },
+  "6076d5ba-53fc-44fe-948e-362e95c3c374": {
+    "asset": 1732694345430,
+    "meta": 1733211639502,
+    "relativePath": "mayaMachine\\sprite\\main\\mainAutoAtlas.pac"
+  },
+  "85690fe9-f58a-4329-a7f7-b7c752b9f3f0": {
+    "asset": 1732694345420,
+    "meta": 1733211639494,
+    "relativePath": "mayaMachine\\sprite\\main\\btn_add.png"
   },
   "635974a6-8d51-49d6-834b-d605d250a5a6": {
     "asset": 1732694345420,
-    "meta": 1733105617865,
+    "meta": 1733211639497,
     "relativePath": "mayaMachine\\sprite\\main\\btn_add2.png"
   },
   "ee8083a7-e0bc-4ea1-b670-c628d517df5a": {
     "asset": 1732694345421,
-    "meta": 1733105617869,
+    "meta": 1733211639499,
     "relativePath": "mayaMachine\\sprite\\main\\btn_addcash.png"
   },
   "ed833f55-af34-48e1-9242-6217d39fb3de": {
     "asset": 1732694345422,
-    "meta": 1733105617872,
+    "meta": 1733211639501,
     "relativePath": "mayaMachine\\sprite\\main\\btn_addcash_SHOP.png"
   },
   "4037cb99-7ce3-4f27-8f53-8ccfa50812d3": {
     "asset": 1732694345422,
-    "meta": 1733105617876,
+    "meta": 1733211639504,
     "relativePath": "mayaMachine\\sprite\\main\\btn_auto_0.png"
   },
   "bd84134a-e4c1-406c-ae3f-1efeba5e16e2": {
     "asset": 1732694345432,
-    "meta": 1733105618274,
+    "meta": 1733211640127,
     "relativePath": "mayaMachine\\sprite\\sysboms\\myepItem.plist"
   },
   "ecda5918-163d-4042-b55a-d2a348fc835d": {
-    "asset": 1733105577062,
-    "meta": 1733105617912,
+    "asset": 1733211621678,
+    "meta": 1733211639539,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\RuleCtrl.js"
   },
-  "c6f3b888-19c8-41a1-9872-1ef72160604b": {
-    "asset": 1733105577064,
-    "meta": 1733105617914,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test"
+  "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
+    "asset": 1733211621679,
+    "meta": 1733211639579,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
   },
-  "a56d9aeb-2068-4f0b-97b5-90d51ba215ce": {
-    "asset": 1732694345423,
-    "meta": 1733105617880,
-    "relativePath": "mayaMachine\\sprite\\main\\btn_fast_01.png"
+  "23a2c87a-a185-4ab6-ba28-6b77ad21c8d3": {
+    "asset": 1733211621680,
+    "meta": 1733211639595,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopTogItemCtrl.js"
   },
   "7eb67aec-5daa-48d0-aad1-873504eb8082": {
     "asset": 1732694345423,
-    "meta": 1733105617882,
+    "meta": 1733211639508,
     "relativePath": "mayaMachine\\sprite\\main\\btn_fast_02.png"
   },
-  "de49df87-6e4a-44df-a73d-c8d090f88016": {
-    "asset": 1733105577012,
-    "meta": 1733105617954,
-    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
+  "a56d9aeb-2068-4f0b-97b5-90d51ba215ce": {
+    "asset": 1732694345423,
+    "meta": 1733211639509,
+    "relativePath": "mayaMachine\\sprite\\main\\btn_fast_01.png"
   },
-  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1733105577013,
-    "meta": 1733105618040,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
+  "c6f3b888-19c8-41a1-9872-1ef72160604b": {
+    "asset": 1733211621683,
+    "meta": 1733211639601,
+    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test"
   },
   "d63e7188-5f41-4227-bed6-c96ed992937e": {
     "asset": 1732694345424,
-    "meta": 1733105617886,
+    "meta": 1733211639510,
     "relativePath": "mayaMachine\\sprite\\main\\btn_fh.png"
+  },
+  "de49df87-6e4a-44df-a73d-c8d090f88016": {
+    "asset": 1733211621620,
+    "meta": 1733211639623,
+    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
+  },
+  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
+    "asset": 1733211621625,
+    "meta": 1733211639823,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
+  },
+  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
+    "asset": 1733211621626,
+    "meta": 1733211639898,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
+  },
+  "64c67ce1-2604-4548-aff3-2d95f06daa41": {
+    "asset": 1733211622067,
+    "meta": 1733211639902,
+    "relativePath": "resources\\proto\\indiaMachine\\gameservice.proto"
   },
   "dc242af2-40c7-4756-91fd-e4e0f48e7d53": {
     "asset": 1732694345425,
-    "meta": 1733105617917,
+    "meta": 1733211639600,
     "relativePath": "mayaMachine\\sprite\\main\\btn_max.png"
   },
-  "e8d76887-a876-4594-9538-c1fb7ae16e3e": {
-    "asset": 1732694345426,
-    "meta": 1733105618043,
-    "relativePath": "mayaMachine\\sprite\\main\\btn_spin.png"
+  "a825dca9-98a3-4e2e-89bb-f3151372e6fd": {
+    "asset": 1733211621681,
+    "meta": 1733211640137,
+    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test\\pl_tmp_plist.plist"
   },
   "e48d3554-88bb-4927-9ebc-60442ca01779": {
     "asset": 1732694345425,
-    "meta": 1733105618045,
+    "meta": 1733211639912,
     "relativePath": "mayaMachine\\sprite\\main\\btn_setting.png"
   },
-  "a825dca9-98a3-4e2e-89bb-f3151372e6fd": {
-    "asset": 1733105577063,
-    "meta": 1733105618285,
-    "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test\\pl_tmp_plist.plist"
-  },
-  "64c67ce1-2604-4548-aff3-2d95f06daa41": {
-    "asset": 1733105577313,
-    "meta": 1733105618051,
-    "relativePath": "resources\\proto\\indiaMachine\\gameservice.proto"
-  },
-  "0dedcbdd-5938-4be3-939e-180a9fda4985": {
-    "asset": 1733105577069,
-    "meta": 1733105618058,
-    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.atlas"
+  "e8d76887-a876-4594-9538-c1fb7ae16e3e": {
+    "asset": 1732694345426,
+    "meta": 1733211639914,
+    "relativePath": "mayaMachine\\sprite\\main\\btn_spin.png"
   },
   "0d18a7df-0409-4c69-a45a-1474fe1719fb": {
     "asset": 1732694345427,
-    "meta": 1733105618048,
+    "meta": 1733211639916,
     "relativePath": "mayaMachine\\sprite\\main\\btn_spin_grey.png"
+  },
+  "0dedcbdd-5938-4be3-939e-180a9fda4985": {
+    "asset": 1733211621688,
+    "meta": 1733211639921,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.atlas"
   },
   "10f71a45-89fe-400a-b9f4-eb218d9f2a3e": {
     "asset": 1732694345427,
-    "meta": 1733105618050,
+    "meta": 1733211639917,
     "relativePath": "mayaMachine\\sprite\\main\\btn_sub.png"
   },
   "c0517258-974b-47f7-84cf-e1eee3ae3191": {
-    "asset": 1733105577064,
-    "meta": 1733105618062,
+    "asset": 1733211621683,
+    "meta": 1733211639923,
     "relativePath": "ResourcesBundle\\NewRes\\NewLobby\\test\\pl_tmp_plist.png"
   },
   "4b0fffcc-92c6-4f17-a266-7fd547454d7f": {
     "asset": 1732694345441,
-    "meta": 1733105618065,
+    "meta": 1733211639925,
     "relativePath": "mayaMachine\\sprite\\sysboms\\myepItem.png"
   },
   "d579050a-90c5-4b30-b461-f5c51f366451": {
     "asset": 1732694345428,
-    "meta": 1733105618059,
+    "meta": 1733211639918,
     "relativePath": "mayaMachine\\sprite\\main\\btn_wf.png"
   },
   "7b125c44-4bdc-4d70-b8d2-752ab4f97ef2": {
     "asset": 1732694345429,
-    "meta": 1733105618061,
+    "meta": 1733211639919,
     "relativePath": "mayaMachine\\sprite\\main\\jinbi.png"
   },
   "4e83ca9b-926d-4517-9e0c-2b8f48af6f1a": {
     "asset": 1732694345431,
-    "meta": 1733105618062,
+    "meta": 1733211639920,
     "relativePath": "mayaMachine\\sprite\\main\\xuanze.png"
   },
   "3feb7155-c249-4c5a-8929-bbbc293d290f": {
-    "asset": 1733105577073,
-    "meta": 1733105618077,
+    "asset": 1733211621696,
+    "meta": 1733211639936,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.png"
-  },
-  "53babdc7-221c-48df-9f0c-bb66a123b170": {
-    "asset": 1732694345373,
-    "meta": 1733105618290,
-    "relativePath": "mayaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.json"
   },
   "25cf19ee-b8cd-4400-ab1f-b508227fe72f": {
     "asset": 1732694345369,
-    "meta": 1733105618293,
+    "meta": 1733211640143,
     "relativePath": "mayaMachine\\spine\\WIN\\Jiang.skel.json"
   },
+  "53babdc7-221c-48df-9f0c-bb66a123b170": {
+    "asset": 1732694345373,
+    "meta": 1733211640146,
+    "relativePath": "mayaMachine\\spine\\fall_coins\\gatesofolympus_fall_coin.json"
+  },
   "0735ba0b-fe23-4b7a-8cc6-2d3ae3ac3040": {
-    "asset": 1733105577069,
-    "meta": 1733105618296,
+    "asset": 1733211621689,
+    "meta": 1733211640148,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\an_dancer1.json"
   },
+  "e23591c3-6f2d-4027-a362-3dac71d2ac65": {
+    "asset": 1733212280072,
+    "meta": 1733212286147,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopNewTipCtrl.js"
+  },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1733105704885,
-    "meta": 1733105834347,
+    "asset": 1733212720431,
+    "meta": 1733212721477,
     "relativePath": "Main\\Global.js"
+  },
+  "4a938f1e-bd9c-4382-bd81-189c7413c090": {
+    "asset": 1733212704272,
+    "meta": 1733212721496,
+    "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips\\RewardsTipsCtrl.js"
+  },
+  "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
+    "asset": 1733281150577,
+    "meta": 1733281154902,
+    "relativePath": "Main\\Script\\Common\\Net\\LobbyServerManager.js"
+  },
+  "da78386b-15c7-459d-b25b-166a4dbb5272": {
+    "asset": 1733281217977,
+    "meta": 1733281226802,
+    "relativePath": "Main\\SDK\\APPManager.js"
+  },
+  "12508095-553d-4d89-9735-cd2b8e608ab7": {
+    "asset": 1733283208443,
+    "meta": 1733283214979,
+    "relativePath": "Main\\Script\\Common\\Net\\GameServerManager.js"
+  },
+  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
+    "asset": 1733301519587,
+    "meta": 1733366837531,
+    "relativePath": "Main\\Main.js"
+  },
+  "4ccc6649-9ac2-4d7e-8364-2ac35a1d6bba": {
+    "asset": 1733366918406,
+    "meta": 1733367026244,
+    "relativePath": "Main\\SDK\\WXManager.js"
   }
 }

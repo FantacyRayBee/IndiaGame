@@ -30,7 +30,7 @@ WXManager.wxCallBack = function(wxKey, wxState, wxValue) {
         }).catch(error => {
             LoggerUtil.getInstance().log(error);
         });
-    }; 
+    };
 }
 
 // Firebase Token 返回

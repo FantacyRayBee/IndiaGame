@@ -54,10 +54,10 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.node.destroy();
         if (this.bonus > 0) {
-            CommonFun.getInstance().showRewardsTips([{ id: 13, amount: this.coin },{ id: 12, amount: this.bonus }]);
+            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: this.coin },{ id: 12, amount: this.bonus }]);
         }
         else {
-            CommonFun.getInstance().showRewardsTips([{ id: 13, amount: this.coin }]);
+            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: this.coin }]);
         }
     }
 });

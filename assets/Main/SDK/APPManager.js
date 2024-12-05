@@ -2,7 +2,7 @@ let APPManager = {};
 
 
 APPManager.faceBookLogEvent = function (json) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.faceBookLogEvent, "(Ljava/lang/String;)V", json);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.faceBookLogEvent, "(Ljava/lang/String;)V", json);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.faceBookLogEvent, "(Ljava/lang/String;)V", json);
@@ -11,7 +11,7 @@ APPManager.faceBookLogEvent = function (json) {
 
 //WhatsApp 客服
 APPManager.chatInWhatsApp = function (str) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.chatInWhatsApp, "(Ljava/lang/String;)V", str);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.chatInWhatsApp, "(Ljava/lang/String;)V", str);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.chatInWhatsApp, "(Ljava/lang/String;)V", str);
@@ -25,7 +25,7 @@ APPManager.chatInWhatsApp = function (str) {
  */
 APPManager.skipToOtherApp = function (packageName, url) {
     LoggerUtil.getInstance().log("Skip To APP", packageName, url);
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.skipToOtherApp, "(Ljava/lang/String;Ljava/lang/String;)V", packageName, url);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.skipToOtherApp, "(Ljava/lang/String;Ljava/lang/String;)V", packageName, url);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.skipToOtherApp, "(Ljava/lang/String;Ljava/lang/String;)V", packageName, url);
@@ -36,7 +36,7 @@ APPManager.setFaceBookID = function (fbid) {
     if(GlobalCfg.UNUSE_FACEBOOK == 1){
         return;
     }
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         LoggerUtil.getInstance().log(`设置的Facebook的ID是: ${fbid}`);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.setFaceBookID, "(Ljava/lang/String;)V", fbid);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setFaceBookID, "(Ljava/lang/String;)V", fbid);
@@ -45,7 +45,7 @@ APPManager.setFaceBookID = function (fbid) {
 }
 
 APPManager.copyToPasteBoard = function (str) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.copyToPasteBoard, "(Ljava/lang/String;)V", str);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.copyToPasteBoard, "(Ljava/lang/String;)V", str);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.copyToPasteBoard, "(Ljava/lang/String;)V", str);
@@ -54,7 +54,7 @@ APPManager.copyToPasteBoard = function (str) {
 
 //银联商务支付
 APPManager.YLPay = function (orderJson) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.YLPay, "(Ljava/lang/String;)V", orderJson);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.YLPay, "(Ljava/lang/String;)V", orderJson);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.YLPay, "(Ljava/lang/String;)V", orderJson);
@@ -63,7 +63,7 @@ APPManager.YLPay = function (orderJson) {
 
 //获取手机中的图片
 APPManager.SelectImg = function (strObjec) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.SelectImg, "(Ljava/lang/String;)V", strObjec);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.SelectImg, "(Ljava/lang/String;)V", strObjec);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.SelectImg, "(Ljava/lang/String;)V", strObjec);
@@ -115,7 +115,7 @@ APPManager.appCallBack = function (dataType, data1, data2, data3) {
 
 //安卓原生分享
 APPManager.Share = function (Url) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.Share, "(Ljava/lang/String;)V", Url);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.Share, "(Ljava/lang/String;)V", Url);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.Share, "(Ljava/lang/String;)V", Url);
@@ -124,7 +124,7 @@ APPManager.Share = function (Url) {
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.setOrientation, '(Ljava/lang/String;)V', dir);
@@ -153,7 +153,7 @@ APPManager.setOrientation = function (dir) {
 }
 
 APPManager.getConcactsArrStr = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getConcactsArrStr, '()V');
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getConcactsArrStr, '()V');
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getConcactsArrStr, '()V');
@@ -167,7 +167,7 @@ APPManager.getConcactsArrStrCallback = function(concactsArrStr) {
 }
 
 APPManager.checkSendSmsPermission = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = 0;
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.checkSendSmsPermission, "()I");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.checkSendSmsPermission, "()I");
@@ -186,7 +186,7 @@ APPManager.checkSendSmsPermission = function() {
 }
 
 APPManager.sendSmsMessage = function(message) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.sendSmsMessage, '(Ljava/lang/String;)V', message);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.sendSmsMessage, '(Ljava/lang/String;)V', message);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.sendSmsMessage, '(Ljava/lang/String;)V', message);
@@ -194,7 +194,7 @@ APPManager.sendSmsMessage = function(message) {
 }
 
 APPManager.getNetWorkType = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = 0;
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getNetWorkType, "()I");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getNetWorkType, "()I");
@@ -213,7 +213,7 @@ APPManager.getNetWorkType = function() {
 }
 
 APPManager.getUUID = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getUUID, "()Ljava/lang/String;");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getUUID, "()Ljava/lang/String;");
@@ -233,7 +233,7 @@ APPManager.getUUID = function() {
 
 
 APPManager.getAdjustID = function () {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAdjustId, "()Ljava/lang/String;");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getAdjustId, "()Ljava/lang/String;");
@@ -256,7 +256,7 @@ APPManager.getAdjustID = function () {
 
 
 APPManager.getAdjustAttribution = function () {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAdjustAttribution, "()Ljava/lang/String;");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getAdjustAttribution, "()Ljava/lang/String;");
@@ -279,7 +279,7 @@ APPManager.getAdjustAttribution = function () {
 
 
 APPManager.selectPhoto = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.selectPhoto, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.selectPhoto, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.selectPhoto, "()V");
@@ -293,7 +293,7 @@ APPManager.selectPhotoCallBack = function(photoPath, width, height) {
 }
 
 APPManager.getOpenInstallData = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getOpenInstallData, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getOpenInstallData, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getOpenInstallData, "()V");
@@ -367,7 +367,7 @@ APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
  * @returns {string}
  */
 APPManager.getAppsFlyerId = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAppsFlyerId, "()Ljava/lang/String;");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getAppsFlyerId, "()Ljava/lang/String;");
@@ -390,7 +390,7 @@ APPManager.getAppsFlyerId = function() {
  * @returns {string}
  */
 APPManager.getAdvertisingId = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAdvertisingId, "()Ljava/lang/String;");
         let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getAdvertisingId, "()Ljava/lang/String;");
@@ -412,7 +412,7 @@ APPManager.getAdvertisingId = function() {
 };
 
 APPManager.getFirebaseToken = function() {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getFirebaseToken, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getFirebaseToken, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getFirebaseToken, "()V");
@@ -421,7 +421,7 @@ APPManager.getFirebaseToken = function() {
 
 
 APPManager.downloadApkByApkUrl = function(apkUrl) {
-    if (cc.sys.os == cc.sys.OS_ANDROID) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.downloadApkByApkUrl, "(Ljava/lang/String;)V", apkUrl);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.downloadApkByApkUrl, "(Ljava/lang/String;)V", apkUrl);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.downloadApkByApkUrl, "(Ljava/lang/String;)V", apkUrl);

@@ -65,7 +65,7 @@ GameServerManager.connectServer = function (isFirstConnect) {
     GameServerManager.needReconnect = true;
 
     try {
-      if (cc.sys.os === cc.sys.OS_ANDROID) {
+      if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         var cacert = cc.url.raw('resources/pem/cacert.pem');
 
         if (cc.loader && cc.loader.md5Pipe) {

@@ -45,7 +45,7 @@ LobbyServerManager.connectServer = function(isFirstConnect = true) {
         LobbyServerManager.needReconnect = true;
     
         try {
-            if (cc.sys.os === cc.sys.OS_ANDROID) {
+            if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
                 let cacert = cc.url.raw('resources/pem/cacert.pem');
                 if (cc.loader && cc.loader.md5Pipe) {
                     cacert = cc.loader.md5Pipe.transformURL(cacert);

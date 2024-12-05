@@ -94,7 +94,7 @@ cc.Class({
 
     if (this.bonus > 0) {
       CommonFun.getInstance().showRewardsTips([{
-        id: 13,
+        id: 10,
         amount: this.coin
       }, {
         id: 12,
@@ -102,7 +102,7 @@ cc.Class({
       }]);
     } else {
       CommonFun.getInstance().showRewardsTips([{
-        id: 13,
+        id: 10,
         amount: this.coin
       }]);
     }
