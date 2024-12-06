@@ -23934,11 +23934,6 @@
     "meta": 1733212286147,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopNewTipCtrl.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1733212720431,
-    "meta": 1733212721477,
-    "relativePath": "Main\\Global.js"
-  },
   "4a938f1e-bd9c-4382-bd81-189c7413c090": {
     "asset": 1733212704272,
     "meta": 1733212721496,
@@ -23959,14 +23954,19 @@
     "meta": 1733283214979,
     "relativePath": "Main\\Script\\Common\\Net\\GameServerManager.js"
   },
-  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
-    "asset": 1733301519587,
-    "meta": 1733366837531,
-    "relativePath": "Main\\Main.js"
-  },
   "4ccc6649-9ac2-4d7e-8364-2ac35a1d6bba": {
     "asset": 1733366918406,
     "meta": 1733367026244,
     "relativePath": "Main\\SDK\\WXManager.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1733391683559,
+    "meta": 1733392429734,
+    "relativePath": "Main\\Global.js"
+  },
+  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
+    "asset": 1733455868360,
+    "meta": 1733455880421,
+    "relativePath": "Main\\Main.js"
   }
 }

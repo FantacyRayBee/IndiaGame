@@ -124,8 +124,19 @@ cc.Class({
 
     start: function() {
         APPManager.getFirebaseToken();
-        let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+        let packageChannel = "";
         let channel = 0;
+        // if(window.parent && window.parent.uni){// H5端
+        //     packageChannel = window.parent.channel;
+        //     cc.sys.localStorage.setItem("PackageChannel", packageChannel);
+
+        //     const systemInfo = window.parent.uni.getSystemInfoSync();
+        //     console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
+        // }
+        // else{
+            packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+        // }
+
         if (packageChannel && packageChannel.indexOf("_") != -1) {
             let packageChannelArr = packageChannel.split("_"); 
             channel = packageChannelArr[1];
