@@ -127,15 +127,16 @@ cc.Class({
 
     APPManager.getFirebaseToken();
     var packageChannel = "";
-    var channel = 0; // if(window.parent && window.parent.uni){// H5端
-    //     packageChannel = window.parent.channel;
-    //     cc.sys.localStorage.setItem("PackageChannel", packageChannel);
-    //     const systemInfo = window.parent.uni.getSystemInfoSync();
-    //     console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
-    // }
-    // else{
+    var channel = 0;
 
-    packageChannel = cc.sys.localStorage.getItem("PackageChannel"); // }
+    if (window.parent && window.parent.uni) {
+      // H5端
+      packageChannel = window.parent.channel;
+      cc.sys.localStorage.setItem("PackageChannel", packageChannel); // const systemInfo = window.parent.uni.getSystemInfoSync();
+      // console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
+    } else {
+      packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+    }
 
     if (packageChannel && packageChannel.indexOf("_") != -1) {
       var packageChannelArr = packageChannel.split("_");

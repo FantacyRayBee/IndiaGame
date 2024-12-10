@@ -22579,11 +22579,6 @@
     "meta": 1733211637251,
     "relativePath": "indiaMachine\\src"
   },
-  "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1733211621629,
-    "meta": 1733211637626,
-    "relativePath": "Main\\Update.js"
-  },
   "e9de5a64-2b80-48e9-81ac-2fb1e8a3ede0": {
     "asset": 1733211622019,
     "meta": 1733211637626,
@@ -23959,14 +23954,19 @@
     "meta": 1733367026244,
     "relativePath": "Main\\SDK\\WXManager.js"
   },
+  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
+    "asset": 1733464256449,
+    "meta": 1733475433797,
+    "relativePath": "Main\\Main.js"
+  },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1733391683559,
-    "meta": 1733392429734,
+    "asset": 1733712894123,
+    "meta": 1733712896739,
     "relativePath": "Main\\Global.js"
   },
-  "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
-    "asset": 1733455868360,
-    "meta": 1733455880421,
-    "relativePath": "Main\\Main.js"
+  "0ca21298-1686-4454-abc3-3a93d8963e40": {
+    "asset": 1733712984136,
+    "meta": 1733713057218,
+    "relativePath": "Main\\Update.js"
   }
 }
