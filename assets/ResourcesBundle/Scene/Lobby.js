@@ -1689,23 +1689,18 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        if(cc.sys.os == cc.sys.OS_ANDROID){
-            console.log("cc.sys.os == cc.sys.OS_ANDROID")
-        }
-        if(cc.sys.isBrowser){
-            console.log("cc.sys.isBrowser")
-        }
         // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
         //     callFun();
         //     return;
         // };
 
-        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || !cc.sys.isNative) {
+        if ((cc.sys.os != cc.sys.OS_ANDROID && cc.sys.isBrowser) || !GlobalCfg.IS_SMALL_GAME_UPDATE) {
             console.log("11111 => callFun")
             callFun();
             return;
         };
-        console.log("22222 => callFun")
+
+        console.log("222222 => callFun")
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);

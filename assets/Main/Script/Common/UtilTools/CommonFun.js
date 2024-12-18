@@ -574,12 +574,17 @@ let CommonFun = cc.Class({
      * @returns 
      */
     isNeedUpdata: function(subpackgeName) {
-        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        if ((cc.sys.os != cc.sys.OS_ANDROID && cc.sys.isBrowser) || !GlobalCfg.IS_SMALL_GAME_UPDATE) {
             return false;
         };
+
+        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        //     return false;
+        // };
         
         let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
         let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
+        
         LoggerUtil.getInstance().log(`${subpackgeName}版本号对比===> 远程版本号: ${serverVersionNum}, 本地版本号: ${localVersionNum}`);
         if (serverVersionNum !== localVersionNum) {
             return true;

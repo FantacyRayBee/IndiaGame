@@ -107,7 +107,7 @@ cc.Class({
     },
 
     // 游戏开始是牌出场动画
-    showCradStartAct:function() {
+    showCradStartAct:function(callback) {
         cc.tween(this.Sprite_crad_left.node)
         .to(0.6, { position: cc.v2(0, 0)}, {easing: "quadOut"}) 
         .call(() => { 
@@ -119,6 +119,9 @@ cc.Class({
         .to(0.6, { position: cc.v2(0, 0)}, {easing: "quadOut"}) 
         .call(() => { 
             GlobalCfg.ACT_SCENE_CTRL.ske_huo_hu.active = true;
+            if(callback){
+                callback()
+            }
          })
         .start()
     },
