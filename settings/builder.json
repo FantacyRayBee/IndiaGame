@@ -22,7 +22,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "packageName": "yuj.syuj.syuj.master",
+    "packageName": "com.FieryThemes.samsung.launchers.wallpapers.themes.A12wallpapers.a12themes.a12launchers",
     "REMOTE_SERVER_ROOT": ""
   },
   "ios": {
@@ -54,5 +54,9 @@
   "agreements": {
     "20200904180755": false,
     "20220901093235": false
+  },
+  "openharmony": {
+    "packageName": "com.cocos.openharmony",
+    "REMOTE_SERVER_ROOT": ""
   }
 }

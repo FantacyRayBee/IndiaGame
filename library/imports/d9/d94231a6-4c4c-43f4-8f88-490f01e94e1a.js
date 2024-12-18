@@ -5,44 +5,36 @@ cc._RF.push(module, 'd9423GmTExD9I+ISQ8B6U4a', 'Global');
 "use strict";
 
 var _CLIENT_MSG_ID, _window$GlobalCfg;
-
 //定义全局配置 
 window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 服务器重启
    */
   SERVERRELOAD: false,
-
   /**
    * 重启描述文本
    */
   SERVERRELOAD_Descr: "",
-
   /**
    * 平台标识
    */
   PRODUCT_ID: 2001,
-
   /**
    * 渠道信息
    */
   CHANNEL_INFO: '',
-
   /**
    * Firebase Token
    */
   FIREBASE_TOKEN: '',
-
   /**
    * 包的数据上报类型,  1: 表示接ADjust; 2: 表示接AppsFlyer; 3: 表示不接ADjust, AppsFlyer;
    */
   PACKAGE_REPORT_METHOD: 0,
-
   /**
   * 是否不使用Facebook, 0:表示使用; 1:表示不使用
   */
   UNUSE_FACEBOOK: 0,
-
   /**
    * 消息订阅的大类型
    */
@@ -54,12 +46,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 当前场景方向 horizontal， vertical
   FIRST_RECHARGE_TIPS_SHOW: false,
   // 是否展示首充之后的提示弹窗
-
   /**
    * 是否存在 divertFreeTp界面
    */
   IS_EXIST_DIVERSIONFREETP_VIEW: false,
-
   /**
    * 自定义消息分发Id
    */
@@ -143,7 +133,6 @@ window.GlobalCfg = (_window$GlobalCfg = {
     SHOP_SELECTED_ITEM: "SHOP_SELECTED_ITEM",
     WITHDRAW_SELECTED_ITEM: "WITHDRAW_SELECTED_ITEM"
   }, _CLIENT_MSG_ID["RECHARGED_DAILYBONUS_CARD"] = "RECHARGED_DAILYBONUS_CARD", _CLIENT_MSG_ID.ACTIVITY_GOBETTING_GET = "ACTIVITY_GOBETTING_GET", _CLIENT_MSG_ID.TPGAME_CLICK_RECHARGE = "TPGAME_CLICK_RECHARGE", _CLIENT_MSG_ID.TPGAME_CLICK_LUCKYPLAYER_GET = "TPGAME_CLICK_LUCKYPLAYER_GET", _CLIENT_MSG_ID),
-
   /**
    * 埋点事件名称
    */
@@ -249,12 +238,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
     SHOW_ZEUS_GAME: "显示ZEUS界面",
     EXIT_ZEUS_GAME: "点击退出ZEUS"
   },
-
   /**
    * 定义全局UI组件其中值null注册为常驻组件详见initChangZhu
    */
   G_COMPONENTS: {},
-
   /**
    * 界面zIndex
    */
@@ -266,7 +253,6 @@ window.GlobalCfg = (_window$GlobalCfg = {
     POPUP_WITHDRAW: 102,
     // 大厅弹框，提现
     POPUP_PDD: 101 // 大厅弹框，PDD
-
   },
 
   /**
@@ -320,7 +306,6 @@ window.GlobalCfg = (_window$GlobalCfg = {
   ADVERTISING_ID: "",
   // 商城角标
   PAY_CHANNEL: "",
-
   /* APP_STATUS说明
     0: 未设置状态; 
     1：正式服谷歌审核状态, 俗称马甲状态; 
@@ -333,13 +318,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
   APP_STATUS: 0,
   // 判断是否为谷歌审核状态时，获取相关信息的路径
   APP_INFO_URL: "",
-
   /** 备用路径 */
   APP_INFO_URL_SPARE: "",
-
   /** APP 配置文件路径 */
   APP_CONFIG_URL: "",
-
   /** APP 配置文件备用路径 */
   APP_CONFIG_URL_SPARE: "",
   //破产弹框提示CD
@@ -353,37 +335,30 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 远程文件加密秘钥
   STR_KEY: "kb1234",
   ADS_ID: '',
-
   /**
    * 用于服务器做事件埋点
    */
   ADJUST_ID: '',
-
   /**
    * 远程App版本
    */
   REMOTE_APP_VERSION: 0,
-
   /**
    * 远程App地址
    */
   REMOTE_APP_URL: "",
-
   /**
    * 应用内大更新
    */
   REMOTE_APP_UPDATE: false,
-
   /**
    * 用户数据
    */
   USER_DATAS: {},
-
   /**
    * 应用配置数据
    */
   APP_CONFIG_DATAS: [],
-
   /**
    * 小游戏数据
    */
@@ -414,7 +389,6 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 拒绝未充值玩百人,false(未支付可玩)  true(未支付不可玩)
   REFUSE_UNPAY_CANBET: true,
   NATIVE_CALL_URL: "kayo/maoka/gmp/JSCallJavaManager",
-
   /**
    * APP 服务器错误代码
    */
@@ -422,8 +396,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
     REPEAT_LOGIN: 9,
     // 重复登录
     SERVER_RELOAD: 29 // 服务器重启
-
   },
+
   OPEN_MODULES: {
     4: false,
     // 充值
@@ -453,8 +427,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
     // 跑马灯
     17: false,
     // 挑战任务
+
     20: false,
     // 运营活动 SuperDiscount
+
     100: false,
     // TeenPatti现金场
     101: false,
@@ -490,8 +466,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
     119: false,
     // 玛雅机台
     120: false // 印度舞娘机台
-
   },
+
   ChildzIndex: {
     defaultChildViewIndex: 10,
     // 父节点为Lobby场景 Canvas
@@ -508,229 +484,185 @@ window.GlobalCfg = (_window$GlobalCfg = {
   REPEAT_LOGIN: 9,
   // 重复登录
   SERVER_RELOAD: 29 // 服务器重启
-
 }, _window$GlobalCfg.PREFAB_PATH = {
   /**
    * 侧边栏
    */
   SIDEBAR: "ResourcesBundle/NewPlan/CommActivity/activityModules_ScrollView",
-
   /**
    * 标语提示框
    */
   TIPS: "ResourcesBundle/NewPlan/Tips/Tips",
-
   /**
    * 进度提示框
    */
   PROGRESS: "ResourcesBundle/NewPlan/Progress/Progress",
-
   /**
    * 通用提示操作框
    */
   MSGBOX: "ResourcesBundle/NewPlan/MsgBox/MsgBox",
-
   /**
    * 大厅设置
    */
   SETTING: "ResourcesBundle/NewPlan/Setting/Setting",
-
   /**
    * 小游戏中点击充值按钮所显示的金币界面
    */
   SMALLADDCASH: "ResourcesBundle/NewPlan/SmallAddCash/SmallAddCash",
-
   /**
    * 小游戏中点击充值按钮所显示的体验金币界面
    */
   SMALLADDEXPERIENCE: "ResourcesBundle/NewPlan/SmallAddExperience/SmallAddExperience",
-
   /**
    * 小游戏中玩家信息界面
    */
   USERHEAD: "ResourcesBundle/NewPlan/UserHead/UserHead",
-
   /**
    * 领取奖励，撒金币
    */
   SCATTERCOIN: "ResourcesBundle/NewPlan/ScatterCoin/ScatterCoin",
-
   /**
    * 领取奖励提示界面
    */
   REWARDSTIPS: "ResourcesBundle/NewPlan/RewardsTips/RewardsTips",
-
   /**
    * 文字，微表情
    */
   CHATACT: "ResourcesBundle/NewPlan/ChatAct/ChatAct",
-
   /**
    * 运营活动
    */
   ACTIVITY: "ResourcesBundle/NewPlan/Activity/Activity",
-
   /**
    * 运营活动中的挑战任务
    */
   ACTIVITYCHALLENGES: 'ResourcesBundle/NewPlan/Activity/ActivityChallenges',
   ACTIVITYCHALLENGESITEM: 'ResourcesBundle/NewPlan/Activity/ActivityChallengesItem',
-
   /**
    * 运营活动中的获取奖励
    */
   ACTIVITYGETBONUS: 'ResourcesBundle/NewPlan/Activity/ActivityGetBonus',
-
   /**
    * 运营活动中的转盘
    */
   ACTIVITYTURNTABLE: 'ResourcesBundle/NewPlan/Activity/ActivityTurnTable',
-
   /**
    * 运营活动中的签到
    */
   ACTIVITYSIGN: 'ResourcesBundle/NewPlan/Activity/ActivitySign',
   ACTIVITYSIGNITEM: 'ResourcesBundle/NewPlan/Activity/ActivitySignItem',
-
   /**
    * 首充
    */
   FIRSTRECHARGE: "ResourcesBundle/NewPlan/FirstRecharge/FirstRecharge",
   FIRSTRECHARGE_V: "ResourcesBundle/NewPlan/FirstRecharge/firstRecharge_V",
-
   /**
    * 联系我们 客服邮件地址
    */
   CONTACTUS: "ResourcesBundle/NewPlan/ContactUs/ContactUs",
-
   /**
    * 跑马灯
    */
   CAROUSELSTRIP: "ResourcesBundle/NewPlan/CarouselStrip/CarouselStrip",
-
   /**
    * 评价我们
    */
   RATEUS: "ResourcesBundle/NewPlan/RateUs/RateUs",
-
   /**
    * 绑定手机号奖励
    */
   BINDPHONEREWARDS: "ResourcesBundle/NewPlan/BindPhoneRewards/BindPhoneRewards",
-
   /**
    * 绑定手机号
    */
   BINDPHONE: "ResourcesBundle/NewPlan/BindPhone/BindPhone",
-
   /**
    * 推广员
    */
   PROMOTER: "ResourcesBundle/NewPlan/Promoter/Promoter",
-
   /**
    * 推广员左侧详情
    */
   PROMOTERLEFTVIEW: "ResourcesBundle/NewPlan/Promoter/PromoterLeftView",
-
   /**
    * 救济金
    */
   RELIEF: "ResourcesBundle/NewPlan/Relief/Relief",
-
   /**
    * 邮箱
    */
   EMAIL: "ResourcesBundle/NewPlan/Email/Email",
   EMAILITEM: "ResourcesBundle/NewPlan/Email/Emailitem",
-
   /**
    * 反馈邮箱
    */
   FEEDBACKEMAIL: "ResourcesBundle/NewPlan/Email/FeedbackMail",
-
   /**
    * 超级折扣
    */
   SUPERDISCOUNT: "ResourcesBundle/NewPlan/SuperDiscount/SuperDiscount",
-
   /**
    * 客服
    */
   CUSTOMERSERVICE: "ResourcesBundle/NewPlan/CustomerService/CustomerService",
-
   /**
    * 快速反馈
    */
   FASTFEEDBACK: "ResourcesBundle/NewPlan/FastFeedBack/FastFeedBack",
-
   /**
    * 个人中心
    */
   PERSONAL: "ResourcesBundle/NewPlan/Personal/Personal",
-
   /**
    * 个人中心修改昵称
    */
   CHANGENAME: "ResourcesBundle/NewPlan/Personal/ChangeName",
-
   /**
    * 个人中心修改头像
    */
   CHANGEHEAD: "ResourcesBundle/NewPlan/Personal/ChangeHead",
   CHANGEHEADITEM: "ResourcesBundle/NewPlan/Personal/ChangeHeadItem",
-
   /**
    * 奖券转移
    */
   BONUSTRANSFER: "ResourcesBundle/NewPlan/BonusTransfer/BonusTransfer",
-
   /**
    * 选择房间
    */
   SELECTROOM: "ResourcesBundle/NewPlan/SelectRoom/SelectRoom",
-
   /**
    * 日常奖励卡
    */
   DAILYBONUSCARD: "ResourcesBundle/NewPlan/DailyBonusCard/DailyBonusCard",
-
   /**
    * 新人礼
    */
   FIRSTGIFTDIAMOND: "ResourcesBundle/NewPlan/FirstGiftDiamond/FirstGiftDiamond",
-
   /**
    * 规则
    */
   RULE: "ResourcesBundle/NewPlan/Rule/Rule",
-
   /**
    * 隐私政策
    */
   PRIVACYPOLICY: "ResourcesBundle/NewPlan/PrivacyPolicy/PrivacyPolicy",
-
   /**
    * 提现订单错误弹窗
    */
   WITHDRAWERRORTIPS: "ResourcesBundle/NewPlan/WithDrawErrorTips/WithDrawErrorTips",
-
   /**
    * 提现分享
    */
   WITHDRAWSHARE: "ResourcesBundle/NewPlan/WithDrawShare/WithDrawShare",
-
   /**
    * 首充之后，清空金币窗帘动画弹窗提示
    */
   NEW_FIRSTRECHARGETIPS: "ResourcesBundle/NewPlan/NewFirstRechargeTips/NewFirstRechargeTips",
-
   /**
    * 首充之后，清空金币弹窗提示
    */
   ADVANCEDMODE: "ResourcesBundle/NewPlan/AdvancedMode/AdvancedMode",
   ADVANCEDMODE_V: "ResourcesBundle/NewPlan/AdvancedMode/AdvancedMode_V",
-
   /**
    * 商城
    */
@@ -739,14 +671,12 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SHOPINSTRUCTIONS: "ResourcesBundle/NewPlan/Shop/ShopInstructions",
   SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
   SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
-
   /**
    * 提现
    */
   WITHDRAW: "ResourcesBundle/NewPlan/WithDraw/WithDraw",
   WITHDRAWITEM: "ResourcesBundle/NewPlan/WithDraw/WithDrawItem",
   WITHDRAWTIPS: "ResourcesBundle/NewPlan/WithDraw/WithDrawTips",
-
   /**
    * 交易记录
    */
@@ -754,27 +684,22 @@ window.GlobalCfg = (_window$GlobalCfg = {
   TRANSACTIONRECORDITEM: "ResourcesBundle/NewPlan/TransactionRecord/TransactionRecordItem",
   TRANSACTIONRECORDTIPS: "ResourcesBundle/NewPlan/TransactionRecord/TransactionRecordTips",
   TRANSACTIONRECORDHELP: "ResourcesBundle/NewPlan/TransactionRecord/TransactionRecordHelp",
-
   /**
    * 填写提现资料
    */
   WITHDRAWPREDATA: "ResourcesBundle/NewPlan/WithDrawPreData/WithDrawPreData",
-
   /**
    * 提现弹窗
    */
   POPUPWITHDRAW: "ResourcesBundle/NewPlan/PopUpWithDraw/PopUpWithDraw",
-
   /**
    * 我的VIP
    */
   MYVIP: "ResourcesBundle/NewPlan/MyVip/MyVip",
-
   /**
    * VIP幸运抽奖
    */
   VIPLUCKYDRAW: "ResourcesBundle/NewPlan/MyVip/VipLuckyDraw",
-
   /**
    * VIP规则
    */
@@ -782,39 +707,32 @@ window.GlobalCfg = (_window$GlobalCfg = {
   VIPRULESRULE: "ResourcesBundle/NewPlan/MyVip/VipRulesRule",
   VIPRULESBENEFITS: "ResourcesBundle/NewPlan/MyVip/VipRulesBenefits",
   VIPRULESUPGIFT: "ResourcesBundle/NewPlan/MyVip/VipRulesUpGift",
-
   /**
    * VIP奖励领取
    */
   VIPREWARDTOAST: "ResourcesBundle/NewPlan/MyVip/VipRewardToast",
-
   /**
     * VIP充值提示弹框
     */
   VIPRECHARGETOAST: "ResourcesBundle/NewPlan/MyVip/VipRechargeToast",
-
   /**
     * VIP升级提示弹框
     */
   VIPUPGRADETOAST: "ResourcesBundle/NewPlan/MyVip/VipUpgradeToast",
-
   /**
     * VIP快充提示弹框
     */
   VIPFORONCETOAST: "ResourcesBundle/NewPlan/MyVip/VipForOnceToast",
-
   /**
    * 游戏开始遮罩
    */
   GAMESTARTMASK: "ResourcesBundle/NewPlan/GameStartMask/GameStartMask",
-
   /**
    * 游戏动画互动
    */
   GAMEGIFINTERACTION: "ResourcesBundle/NewPlan/GameGifInteraction/GameGifInteraction",
   GAMEGIFINTERACTIONITEM: "ResourcesBundle/NewPlan/GameGifInteraction/GameGifInteractionItem",
   GAMEGIFINTERACTIONSKE: "ResourcesBundle/NewPlan/GameGifInteraction/GameGifInteractionSke",
-
   /**
    * 游戏文字和笑脸互动
    */
@@ -822,38 +740,31 @@ window.GlobalCfg = (_window$GlobalCfg = {
   GAMEWORDINTERACTIONSHOW: "ResourcesBundle/NewPlan/GameWordInteraction/GameWordInteractionShow",
   GAMEWORDINTERACTIONWORDITEM: "ResourcesBundle/NewPlan/GameWordInteraction/GameWordInteractionWordItem",
   GAMEWORDINTERACTIONFACEITEM: "ResourcesBundle/NewPlan/GameWordInteraction/GameWordInteractionFaceItem",
-
   /**
    * 游戏中的设置
    */
   GAMESETTING: "ResourcesBundle/NewPlan/GameSetting/GameSetting",
-
   /**
    * 游戏中的菜单
    */
   GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
-
   /**
    * 活动 Go Betting
    */
   ACTIVITY_GOBETTING: "ResourcesBundle/NewPlan/ConsumerActivities/ConsumerActivities",
-
   /**
    * 免费玩家百人类游戏赶场到免费TP弹框
    */
   DIVERSIONFREETP: "ResourcesBundle/NewPlan/DiversionFreeTP/DiversionFreeTP",
-
   /**
    * 签到弹框
    */
   SIGN: "ResourcesBundle/NewPlan/Sign/Sign",
   SIGNITEM: "ResourcesBundle/NewPlan/Sign/SignItem",
-
   /**
    * 破产礼包
    */
   BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
-
   /**
    * 强制引导弹窗
    */
@@ -941,7 +852,6 @@ window.GlobalCfg = (_window$GlobalCfg = {
   PROGRESSLAYER: "ProgressLayer",
   // 加载等待动画
   TIPSLAYER: "TipsLayer" // 提示语父节点，（Tips）
-
 }, _window$GlobalCfg.SHOP_RECHARGE_FROM = {
   ActivityFirstRecharge: '活动内首次充值',
   BindPhone: '绑定手机',
@@ -1056,7 +966,9 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   hwLogin: 'hwLoginByOFFLINEDEVE',
   hwPay: 'hwPayByOFFLINEDEVE',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByOFFLINEDEVE'
-}; // ----------------------------------------------------------------------------------------
+};
+
+// ----------------------------------------------------------------------------------------
 
 /**
  * 落地页包 2
@@ -1064,23 +976,20 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
  * 渠道名：TeenPattiMaster
  * "FACEBOOK_ID": 1534008587132712
  */
-
 GlobalCfg.IsDownloadPackage2 = 1;
-
 if (GlobalCfg.IsDownloadPackage2 == 1) {
   GlobalCfg.APP_VERSION = "2.2.2.8";
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/DownloadPackage2/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/DownloadPackage2/AppConfig.json";
 }
-
 ;
+
 /* 
  * 测试服测试包
  * 包名： com.whwh.offlinedeve
 */
 // GlobalCfg.isOfflineDeve = cc.sys.isNative ? Number(cc.sys.localStorage.getItem("ISOFFLINEDEVE")) : 1;
 // GlobalCfg.isOfflineDeve = 1;
-
 if (GlobalCfg.isOfflineDeve == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.3.3.6";
@@ -1088,32 +997,29 @@ if (GlobalCfg.isOfflineDeve == 1) {
   GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
   GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
 }
-
 ;
+
 /* 
   * 最新测试包
   * 包名： com.taara.saara.master
   * 渠道名：5007
 */
-// GlobalCfg.isOfflineDeve2 = 1;
-
+GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.isOfflineDeve2 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "2_7001");
+  cc.sys.localStorage.setItem("PackageChannel", "0_7001");
   GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
   GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
 }
-
 ;
+
 /**
  * 落地页包 
  * 包名：com.whwh.tpgo
  * 渠道名：TeenPattiGo
  * Facebook：1534008587132712
  */
-
 GlobalCfg.isBloom3Rummy = Number(cc.sys.localStorage.getItem("ISBloom3Rummy"));
-
 if (GlobalCfg.isBloom3Rummy == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.2.5.0";
@@ -1121,16 +1027,14 @@ if (GlobalCfg.isBloom3Rummy == 1) {
   GlobalCfg.APP_INFO_URL = "https://download.tpgame.in/whwh/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download.tpgame.in/whwh/AppConfig.json";
 }
-
 ;
+
 /**
  * 包名: com.cardgame.drawratio.happyplay
  * 渠道名: PattiHunt
  * FACEBOOK: 3749214512067703
  */
-
 GlobalCfg.isPattiHunt = Number(cc.sys.localStorage.getItem("IsPattiHunt"));
-
 if (GlobalCfg.isPattiHunt == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.2.0.8";
@@ -1138,16 +1042,14 @@ if (GlobalCfg.isPattiHunt == 1) {
   GlobalCfg.APP_INFO_URL = "https://download.tpgame.in/PattiHunt/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download.tpgame.in/PattiHunt/AppConfig.json";
 }
-
 ;
+
 /**
  * 包名:com.whwh.tpgo
  * 渠道名:PatteeRaaja
  * FacebookID:1332521707373609
  */
-
 GlobalCfg.isPatteeRaaja = Number(cc.sys.localStorage.getItem("isPatteeRaaja"));
-
 if (GlobalCfg.isPatteeRaaja == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.1.2.6";
@@ -1155,17 +1057,15 @@ if (GlobalCfg.isPatteeRaaja == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/PatteeRaaja/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/PatteeRaaja/AppConfig.json";
 }
-
 ;
+
 /**
  * 落地页4包，用3包的OpenInstall
  * 包名: com.rtp.royalteenpatti
  * 渠道名: TPRaaja
  * FacebookID: 896727281217918
  */
-
 GlobalCfg.isPatteeRaaja2 = Number(cc.sys.localStorage.getItem("isPatteeRaaja2"));
-
 if (GlobalCfg.isPatteeRaaja2 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.1.2.3";
@@ -1173,17 +1073,15 @@ if (GlobalCfg.isPatteeRaaja2 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/PatteeRaaja2/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/PatteeRaaja2/AppConfig.json";
 }
-
 ;
+
 /**
  * 落地页包 5
  * 包名：com.rtp.royalteenpatti
  * 渠道名:TPCASH5
  * "FACEBOOK_ID": 873078934293415
  */
-
 GlobalCfg.ISPackage5 = Number(cc.sys.localStorage.getItem("ISPackage5"));
-
 if (GlobalCfg.ISPackage5 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.2.1.9";
@@ -1191,17 +1089,15 @@ if (GlobalCfg.ISPackage5 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package5/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package5/AppConfig.json";
 }
-
 ;
+
 /**
  * 落地页包 6
  * 包名:com.whwh.tpgo
  * 渠道标识:2007
  * "FACEBOOK_ID": 376623721591630
  */
-
 GlobalCfg.ISPackage6 = Number(cc.sys.localStorage.getItem("ISPackage6"));
-
 if (GlobalCfg.ISPackage6 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.2.1.9";
@@ -1209,17 +1105,15 @@ if (GlobalCfg.ISPackage6 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package6/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package6/AppConfig.json";
 }
-
 ;
+
 /**
  * 07包
  * 包名: com.baggy.ranistan
  * 渠道名: 2008
  * FacebookID: 887167126194770
  */
-
 GlobalCfg.isPackage07 = Number(cc.sys.localStorage.getItem("isPackage07"));
-
 if (GlobalCfg.isPackage07 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.0.2.1";
@@ -1227,11 +1121,9 @@ if (GlobalCfg.isPackage07 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package07/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package07/AppConfig.json";
 }
-
 ;
 GlobalCfg.isPackage2011 = Number(cc.sys.localStorage.getItem("isPackage2011")) ? Number(cc.sys.localStorage.getItem("isPackage2011")) : Number(cc.sys.localStorage.getItem("IsPackage2011"));
 ;
-
 if (GlobalCfg.isPackage2011 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.0.1.1";
@@ -1239,8 +1131,8 @@ if (GlobalCfg.isPackage2011 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2011/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2011/AppConfig.json";
 }
-
 ;
+
 /**
  * 2009  3Patti Star
  * 包名:org.bysepatti.kofxwj
@@ -1248,9 +1140,7 @@ if (GlobalCfg.isPackage2011 == 1) {
  * "FACEBOOK_ID": 
  * apk Version:1.9, 9
  */
-
 GlobalCfg.ISPackage2009 = Number(cc.sys.localStorage.getItem("ISPackage2009"));
-
 if (GlobalCfg.ISPackage2009 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.2.2.2";
@@ -1258,17 +1148,15 @@ if (GlobalCfg.ISPackage2009 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2009/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2009/AppConfig.json";
 }
-
 ;
+
 /**
  * 2010包
  * 包名: com.rtp.royalteenpatti
  * 渠道名: 2010
  * FacebookID: 653535476995946
  */
-
 GlobalCfg.isPackage2010 = Number(cc.sys.localStorage.getItem("isPackage2010")) ? Number(cc.sys.localStorage.getItem("isPackage2010")) : Number(cc.sys.localStorage.getItem("IsPackage2010"));
-
 if (GlobalCfg.isPackage2010 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.1.1.8";
@@ -1276,17 +1164,15 @@ if (GlobalCfg.isPackage2010 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2010/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2010/AppConfig.json";
 }
-
 ;
+
 /**
  * 2012包
  * 包名: ort.Zonepatt.netkr
  * 渠道名: 2012
  * FacebookID: 771655938104173
  */
-
 GlobalCfg.isPackage2012 = Number(cc.sys.localStorage.getItem("isPackage2012")) ? Number(cc.sys.localStorage.getItem("isPackage2012")) : Number(cc.sys.localStorage.getItem("IsPackage2012"));
-
 if (GlobalCfg.isPackage2012 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.1.1.8";
@@ -1294,17 +1180,15 @@ if (GlobalCfg.isPackage2012 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2012/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2012/AppConfig.json";
 }
-
 ;
+
 /**
  * 2014包
  * 包名: magic.paorkkd.net
  * 渠道名: 2014
  * FacebookID: 1412050926358483
  */
-
 GlobalCfg.isPackage2014 = Number(cc.sys.localStorage.getItem("isPackage2014"));
-
 if (GlobalCfg.isPackage2014 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.1.1.3";
@@ -1312,17 +1196,15 @@ if (GlobalCfg.isPackage2014 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2014/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2014/AppConfig.json";
 }
-
 ;
+
 /**
  * 2015包
  * 包名: ouyjsl.yedea.ordn
  * 渠道名: 2015
  * FacebookID: 1711778242659998
  */
-
 GlobalCfg.isPackage2015 = Number(cc.sys.localStorage.getItem("isPackage2015"));
-
 if (GlobalCfg.isPackage2015 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.1.1.3";
@@ -1330,17 +1212,15 @@ if (GlobalCfg.isPackage2015 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2015/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2015/AppConfig.json";
 }
-
 ;
+
 /**
  * 2016包
  * 包名: oyts.Onllinexd.net
  * 渠道名: 2016
  * FacebookID: 642901354487581
  */
-
 GlobalCfg.isPackage2016 = Number(cc.sys.localStorage.getItem("isPackage2016"));
-
 if (GlobalCfg.isPackage2016 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.1.1.6";
@@ -1348,17 +1228,15 @@ if (GlobalCfg.isPackage2016 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2016/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2016/AppConfig.json";
 }
-
 ;
+
 /**
  * 2017 
  * 包名：com.haywin.treesds
  * 渠道标识:2017
  * FBID:231102006607350
  */
-
 GlobalCfg.ISPackage2017 = Number(cc.sys.localStorage.getItem("ISPackage2017"));
-
 if (GlobalCfg.ISPackage2017 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.1.2.6";
@@ -1366,17 +1244,15 @@ if (GlobalCfg.ISPackage2017 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2017/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2017/AppConfig.json";
 }
-
 ;
+
 /**
  * 2018 3Patti Lucky
  * 包名：com.poeyre.dyedf.py
  * 渠道标识:2018
  * FBID:1542325269936641
  */
-
 GlobalCfg.ISPackage2018 = Number(cc.sys.localStorage.getItem("ISPackage2018"));
-
 if (GlobalCfg.ISPackage2018 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.1.1.1";
@@ -1384,17 +1260,15 @@ if (GlobalCfg.ISPackage2018 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download.tpgame.in/Package2018/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download.tpgame.in/Package2018/AppConfig.json";
 }
-
 ;
+
 /**
  * 2019 , Google包
  * 包名：com.enjoygame.littlecamel.runsquickly
  * 渠道标识:2019
  * FBID:
  */
-
 GlobalCfg.ISPackage2019 = Number(cc.sys.localStorage.getItem("ISPackage2019"));
-
 if (GlobalCfg.ISPackage2019 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "1.1.1.1";
@@ -1402,10 +1276,8 @@ if (GlobalCfg.ISPackage2019 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2019/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2019/AppConfig.json";
 }
-
 ;
 GlobalCfg.isPackage2020 = Number(cc.sys.localStorage.getItem("isPackage2020"));
-
 if (GlobalCfg.isPackage2020 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.0.2.1";
@@ -1413,17 +1285,15 @@ if (GlobalCfg.isPackage2020 == 1) {
   GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Package2020/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Package2020/AppConfig.json";
 }
-
 ;
+
 /**
  * 6002包
  * 包名: com.Royale.netdse
  * 渠道名: 6002
  * FacebookID: 642901354487581
  */
-
 GlobalCfg.isPackage6002 = Number(cc.sys.localStorage.getItem("isPackage6002"));
-
 if (GlobalCfg.isPackage6002 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   GlobalCfg.APP_VERSION = "2.0.0.2";
@@ -1431,20 +1301,17 @@ if (GlobalCfg.isPackage6002 == 1) {
   GlobalCfg.APP_INFO_URL = "https://resource.teengatti.in/Package6002/AppInfo.json";
   GlobalCfg.APP_CONFIG_URL = "https://resource.teengatti.in/Package6002/AppConfig.json";
 }
-
 ;
+
 /**
  * 新的渠道模式, 格式为：x_xxxx，x表示对应的服务器, xxxx表示对应的渠道.
  */
-
 var packageChannel = cc.sys.localStorage.getItem("PackageChannel");
-
 if (packageChannel && packageChannel.indexOf("_") != -1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   var packageChannelArr = packageChannel.split("_");
   var server = packageChannelArr[0];
   GlobalCfg.server_id = server;
-
   switch (server) {
     case "0":
       // 测试服
@@ -1452,88 +1319,79 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
       GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
       break;
-
     case "1":
       // 1服
       GlobalCfg.APP_VERSION = "1.0.8.12";
       GlobalCfg.APP_INFO_URL = "https://download.tpgame.in/Release/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download.tpgame.in/Release/AppConfig.json";
       break;
-
     case "2":
       // 2服
       GlobalCfg.APP_VERSION = "2.2.8.12";
       GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Release/AppInfo.json";
-      GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Release/AppConfig.json"; // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+      GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Release/AppConfig.json";
+
+      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-
       break;
-
     case "3":
       // 3服
       GlobalCfg.APP_VERSION = "3.0.6.28";
       GlobalCfg.APP_INFO_URL = "https://download.3tpattiyi.in/Release3/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download.3tpattiyi.in/Release3/AppConfig.json";
       break;
-
     case "4":
       // 联运(2服)
       GlobalCfg.APP_VERSION = "4.0.8.7";
       GlobalCfg.APP_INFO_URL = "https://download2.tpgame.in/Release4/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download2.tpgame.in/Release4/AppConfig.json";
       break;
-
     case "5":
       // 5服
       GlobalCfg.APP_VERSION = "5.0.0.2";
       GlobalCfg.APP_INFO_URL = "https://download.tkptat.in/production/AppInfo.json";
-      GlobalCfg.APP_CONFIG_URL = "https://download.tkptat.in/production/AppConfig.json"; // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+      GlobalCfg.APP_CONFIG_URL = "https://download.tkptat.in/production/AppConfig.json";
+
+      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 
       GlobalCfg.APP_INFO_URL_SPARE = "https://download.ltgame.in/production/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL_SPARE = "https://download.ltgame.in/production/AppConfig.json";
       break;
-
     case "6":
       // jim服 
       GlobalCfg.APP_VERSION = "6.1.6.21";
       GlobalCfg.APP_INFO_URL = "https://resource.teengatti.in/Release/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://resource.teengatti.in/Release/AppConfig.json";
       break;
-
     case "11":
       // 1服(RummyClassic)
       GlobalCfg.APP_VERSION = "11.0.8.1";
       GlobalCfg.APP_INFO_URL = "https://download.tpgame.in/RummyClassic/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download.tpgame.in/RummyClassic/AppConfig.json";
       break;
-
     case "21":
       // 个人测试用
       GlobalCfg.APP_VERSION = "21.1.4.3";
       GlobalCfg.APP_INFO_URL = "https://downloadtest.tpgame.in/LkTest/AppInfo.json?time=" + new Date().getTime();
       GlobalCfg.APP_CONFIG_URL = "https://downloadtest.tpgame.in/LkTest/AppConfig.json?time=" + new Date().getTime();
       break;
-
     case "22":
       // 2007包, 2040包(2服)
       GlobalCfg.APP_VERSION = "22.0.8.7";
       GlobalCfg.APP_INFO_URL = "https://download2.toopatti.in/Package2007/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download2.toopatti.in/Package2007/AppConfig.json";
       break;
-
     default:
       break;
   }
-
   ;
 }
-
 ;
+
 /**
  * 包的数据上报类型,  1: 表示接ADjust; 2: 表示接AppsFlyer; 3: 表示不接ADjust, AppsFlyer; 4: 表示接ADjust且需要ADId
  */
-
 GlobalCfg.PACKAGE_REPORT_METHOD = Number(cc.sys.localStorage.getItem("PackageSdkType"));
 window.SHOPPING = {
   zhifu_jine: 0,
@@ -1549,16 +1407,15 @@ window.SHOPPING = {
   orderID: "",
   paymentMethod: -1,
   from: "Lobby" // 跳转来源, 默认为大厅
+};
 
-}; // 小游戏自己ID
-
+// 小游戏自己ID
 window.gamescene = null;
 window.gameLogin = null;
 window.gameconfig = null;
 cc.Node.prototype.gcpt = cc.Node.prototype.getComponent;
 cc.Node.prototype.gcbn = cc.Node.prototype.getChildByName;
 cc.macro.ENABLE_MULTI_TOUCH = false;
-
 Date.prototype.Format = function (fmt) {
   // author: meizz
   var o = {
@@ -1575,38 +1432,29 @@ Date.prototype.Format = function (fmt) {
     "q+": Math.floor((this.getMonth() + 3) / 3),
     // 季度
     "S": this.getMilliseconds() // 毫秒
-
   };
+
   if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-
-  for (var k in o) {
-    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
-  }
-
+  for (var k in o) if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
   return fmt;
 };
-
 String.prototype.byteCheck = function (byteLength) {
   var len = 0;
   var str = "";
-
   for (var i = 0; i < this.length; i++) {
     if (this.charCodeAt(i) > 127 || this.charCodeAt(i) == 94) {
       len += 2;
     } else {
       len++;
     }
-
     if (len > byteLength) {
       return str + '...';
     } else {
       str += this[i];
     }
   }
-
   return str;
 };
-
 if (cc.sys.isNative) {
   window.__errorHandler = function (file, line, errorMessage, error) {
     var exception = {};
@@ -1614,10 +1462,8 @@ if (cc.sys.isNative) {
     exception.line = line;
     exception.error = error;
     exception.errorMessage = errorMessage;
-
     if (window.exception != JSON.stringify(exception)) {
       window.exception = JSON.stringify(exception);
-
       if (window.CommonFun) {
         var appInfo = {
           UserId: GlobalCfg.USER_DATAS.userId,
@@ -1632,14 +1478,11 @@ if (cc.sys.isNative) {
         };
         window.CommonFun.getInstance().httpPost(url, params, function (msg) {});
       }
-
       ;
     }
-
     ;
   };
 }
-
 ;
 
 cc._RF.pop();
