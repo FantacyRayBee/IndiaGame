@@ -1580,7 +1580,7 @@ cc.Class({
     }
   },
   // 游戏结算后飞走势图动作
-  showWinLosesAct: function showWinLosesAct() {
+  showWinLosesAct: function showWinLosesAct(callback) {
     var winorlose = this.winorlose;
     this.lhdAudioCtrl.playGameSound("yxks");
     var arr = [cc.v2(-305, -35), cc.v2(305, -35), cc.v2(0, -35)];
@@ -1625,6 +1625,10 @@ cc.Class({
     this.scheduleOnce(function () {
       // lizi.active = false;
       this.winorloseCoinAct();
+
+      if (callback) {
+        callback();
+      }
     }, 1.6);
   },
   // 重复上一轮的下注
@@ -1714,10 +1718,10 @@ cc.Class({
 
         _this9.showRuntime(14000);
 
-        _this9.lhdCradCtrl.showCradStartAct();
-
-        _this9.ske_vs_longhu.skeletonData = null;
-        _this9.ske_vs_longhu.node.active = false;
+        _this9.lhdCradCtrl.showCradStartAct(function () {
+          _this9.ske_vs_longhu.skeletonData = null;
+          _this9.ske_vs_longhu.node.active = false;
+        });
       }
     });
     this.dragonChipArr = []; // 存放龙的区域的筹码
@@ -1771,10 +1775,10 @@ cc.Class({
           _this10.ske_endWin.addAnimation(0, animaNameArr[winType][2], false);
         } else if (name == "Win-dragon-loop" || name == "win-tiger-loop" || name == "win-tie-loop") {// this.ske_endWin.addAnimation(0, animaNameArr[winType][2], false); 
         } else if (name == "Win-dragon-out" || name == "win-tiger-out" || name == "win-tie-out") {
-          _this10.showWinLosesAct();
-
-          _this10.ske_endWin.skeletonData = null;
-          _this10.ske_endWin.node.active = false;
+          _this10.showWinLosesAct(function () {
+            _this10.ske_endWin.skeletonData = null;
+            _this10.ske_endWin.node.active = false;
+          });
         }
       });
     }

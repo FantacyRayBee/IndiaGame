@@ -1447,7 +1447,7 @@ cc.Class({
     },
         
     // 游戏结算后飞走势图动作
-    showWinLosesAct:function(){
+    showWinLosesAct:function(callback){
         let winorlose = this.winorlose;
         this.lhdAudioCtrl.playGameSound("yxks");
         let arr = [cc.v2(-305,-35),cc.v2(305,-35),cc.v2(0,-35)];
@@ -1488,6 +1488,9 @@ cc.Class({
         this.scheduleOnce(function() {
             // lizi.active = false;
             this.winorloseCoinAct();
+            if (callback) {
+                callback();
+            }
         }, 1.6);
     },
 
@@ -1570,9 +1573,10 @@ cc.Class({
                 this.betStatus = true;
                 this.repeatPreviousRound();
                 this.showRuntime(14000);
-                this.lhdCradCtrl.showCradStartAct();
-                this.ske_vs_longhu.skeletonData = null;
-                this.ske_vs_longhu.node.active = false;
+                this.lhdCradCtrl.showCradStartAct(()=>{
+                    this.ske_vs_longhu.skeletonData = null;
+                    this.ske_vs_longhu.node.active = false;
+                });
             } 
         })
 
@@ -1622,9 +1626,10 @@ cc.Class({
                 } else if ( name == "Win-dragon-loop"||name == "win-tiger-loop"||name == "win-tie-loop") {
                     // this.ske_endWin.addAnimation(0, animaNameArr[winType][2], false); 
                 } else if ( name == "Win-dragon-out"||name == "win-tiger-out"||name == "win-tie-out") {
-                    this.showWinLosesAct();
-                    this.ske_endWin.skeletonData = null;
-                    this.ske_endWin.node.active = false;
+                    this.showWinLosesAct(()=>{
+                        this.ske_endWin.skeletonData = null;
+                        this.ske_endWin.node.active = false;
+                    });
                 }
             })
         };
