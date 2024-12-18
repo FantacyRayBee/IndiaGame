@@ -1,6 +1,6 @@
 {
   "start-scene": "eeef25ac-93ef-4201-8e43-ea568e9277d1",
-  "last-module-event-record-time": 1733212749371,
+  "last-module-event-record-time": 1734486422810,
   "group-list": [
     "default"
   ],
@@ -48,5 +48,8 @@
       "enable": false
     }
   },
-  "assets-sort-type": "name"
+  "assets-sort-type": "name",
+  "migrate-history": [
+    "cloud-function"
+  ]
 }

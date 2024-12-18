@@ -19,34 +19,29 @@ cc.Class({
      */
     if (cc.sys.isNative) {
       var firstEnterStatus = Number(cc.sys.localStorage.getItem("FIRST_ENTER_STATUS"));
-
       if (firstEnterStatus == 0) {
         cc.sys.localStorage.setItem("FIRST_ENTER_STATUS", 1);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.FIRST_ENTER);
       }
-
       ;
     }
-
     ;
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);
     /**
      * 日志开关
      */
-
     if (cc.sys.isNative) {
       var loggerUtilStatus = Number(cc.sys.localStorage.getItem("LOGGERUTIL_STATUS"));
       LoggerUtil.getInstance().setLoggerStatus(loggerUtilStatus == 1 ? true : false);
     } else {
       LoggerUtil.getInstance().setLoggerStatus(true);
     }
-
     ;
     console.log("LoggerUtil Status is: " + LoggerUtil.getInstance().getLoggerStatus());
+
     /**
      * 常驻节点
      */
-
     var persistNode = cc.find("PersistNode");
     cc.game.addPersistRootNode(persistNode);
     var carouselLayer = persistNode.getChildByName("CarouselLayer");
@@ -74,7 +69,6 @@ cc.Class({
     LoggerUtil.getInstance().log("UnUseFacebook: ", UnUseFacebook);
     GlobalCfg.UNUSE_FACEBOOK = UnUseFacebook;
     var needToLogEncrypt = false;
-
     if (needToLogEncrypt) {
       var appConfigPathObj = {
         "0": "json/AppConfig_test",
@@ -83,8 +77,8 @@ cc.Class({
         "3": "json/AppConfig_3",
         "4": "json/AppConfig_4"
       };
-      var appConfigPath = appConfigPathObj[GlobalCfg.server_id]; // appConfigPath = appConfigPathObj['2'];
-
+      var appConfigPath = appConfigPathObj[GlobalCfg.server_id];
+      // appConfigPath = appConfigPathObj['2'];
       cc.loader.loadRes(appConfigPath, function (err, asset) {
         var enStrb = CommonFun.getInstance().encrypt(JSON.stringify(asset.json));
         LoggerUtil.getInstance().log("appConfig加密后的值：\n", enStrb);
@@ -99,8 +93,8 @@ cc.Class({
         "4": "json/AppInfo_4",
         "5": "json/AppInfo_5"
       };
-      var appInfoPath = appInfoPathObj[GlobalCfg.server_id]; // appInfoPath = appInfoPathObj['5'];
-
+      var appInfoPath = appInfoPathObj[GlobalCfg.server_id];
+      // appInfoPath = appInfoPathObj['5'];
       cc.loader.loadRes(appInfoPath, function (err, asset) {
         var enStr = CommonFun.getInstance().encrypt(JSON.stringify(asset.json));
         LoggerUtil.getInstance().log("appInfo加密后的值：\n", enStr);
@@ -111,7 +105,6 @@ cc.Class({
   },
   playLoadTipsAct: function playLoadTipsAct() {
     var _this = this;
-
     var dt = 0;
     var pointArr = ['.', '..', '...'];
     this.schedule(function () {
@@ -124,29 +117,25 @@ cc.Class({
   },
   start: function start() {
     var _this2 = this;
-
     APPManager.getFirebaseToken();
     var packageChannel = "";
     var channel = 0;
-
     if (window.parent && window.parent.uni) {
       // H5端
       packageChannel = window.parent.channel;
-      cc.sys.localStorage.setItem("PackageChannel", packageChannel); // const systemInfo = window.parent.uni.getSystemInfoSync();
+      cc.sys.localStorage.setItem("PackageChannel", packageChannel);
+      // const systemInfo = window.parent.uni.getSystemInfoSync();
       // console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
     } else {
       packageChannel = cc.sys.localStorage.getItem("PackageChannel");
     }
-
     if (packageChannel && packageChannel.indexOf("_") != -1) {
       var packageChannelArr = packageChannel.split("_");
       channel = packageChannelArr[1];
     }
-
     if (channel == "7001") {
       GlobalCfg.PACKAGE_REPORT_METHOD = 4;
     }
-
     if (channel == "4001") {
       this.reqAppInfo(function () {
         Promise.all([_this2.getAdvertisingId()]).then(function (arr) {
@@ -177,132 +166,104 @@ cc.Class({
         });
       }, GlobalCfg.APP_INFO_URL);
     }
-
     ;
     this.reqAppConfig(GlobalCfg.APP_CONFIG_URL);
   },
   getAdjustId: function getAdjustId() {
     var _this3 = this;
-
     var startTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_START);
     return new Promise(function (resolve, reject) {
       var getAdjustIDCallback = function getAdjustIDCallback() {
         var endTime = cc.sys.now();
         var adjustId = APPManager.getAdjustID();
-
         if (adjustId && adjustId != '' && adjustId.length > 0) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_SUCCESS, endTime - startTime);
           GlobalCfg.ADJUST_ID = adjustId;
           LoggerUtil.getInstance().log("adjustId:", GlobalCfg.ADJUST_ID);
-
           _this3.unschedule(getAdjustIDCallback);
-
           resolve(adjustId);
           return;
         } else if (endTime - startTime > 20000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
           GlobalCfg.ADJUST_ID = "";
           LoggerUtil.getInstance().log("adjustId is empty");
-
           _this3.unschedule(getAdjustIDCallback);
-
           resolve("");
           return;
         }
-
         ;
       };
-
       _this3.schedule(getAdjustIDCallback, 0.5);
     });
   },
   getAppsFlyerId: function getAppsFlyerId() {
     var _this4 = this;
-
     var startTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_START);
     return new Promise(function (resolve, reject) {
       var getAppsFlyerIdCallback = function getAppsFlyerIdCallback() {
         var endTime = cc.sys.now();
         var appsFlyerId = APPManager.getAppsFlyerId();
-
         if (appsFlyerId && appsFlyerId.length > 0) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_SUCCESS, endTime - startTime);
           GlobalCfg.APPSFLYER_ID = appsFlyerId;
           LoggerUtil.getInstance().log("appsFlyerId:", GlobalCfg.APPSFLYER_ID);
-
           _this4.unschedule(getAppsFlyerIdCallback);
-
           resolve(appsFlyerId);
           return;
         } else if (endTime - startTime > 20000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_FAIL, endTime - startTime);
           GlobalCfg.APPSFLYER_ID = "";
           LoggerUtil.getInstance().log("appsFlyerId is empty");
-
           _this4.unschedule(getAppsFlyerIdCallback);
-
           resolve("");
           return;
         }
-
         ;
       };
-
       _this4.schedule(getAppsFlyerIdCallback, 0.5);
     });
   },
   getAdvertisingId: function getAdvertisingId() {
     var _this5 = this;
-
     var startTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
     return new Promise(function (resolve, reject) {
       var getAdvertisingIdCallback = function getAdvertisingIdCallback() {
         var endTime = cc.sys.now();
         var advertisingId = APPManager.getAdvertisingId();
-
         if (advertisingId && advertisingId.length > 0) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
           GlobalCfg.ADVERTISING_ID = advertisingId;
-
           _this5.unschedule(getAdvertisingIdCallback);
-
           resolve(advertisingId);
           return;
         } else if (endTime - startTime > 20000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
           GlobalCfg.ADVERTISING_ID = "test01";
-
           _this5.unschedule(getAdvertisingIdCallback);
-
           resolve("");
           return;
         }
-
         ;
       };
-
       _this5.schedule(getAdvertisingIdCallback, 0.5);
     });
   },
   reqAppConfig: function reqAppConfig(url) {
     var _this6 = this;
-
     this.reqAppConfigCount++;
     CommonFun.getInstance().httpGet(url, function (jsonObj) {
       LoggerUtil.getInstance().log("APP Config Datas", jsonObj);
       GlobalCfg.APP_CONFIG_DATAS = jsonObj.list;
     }, function () {
       LoggerUtil.getInstance().warn("APPCONFIG GET ERROR!");
-
       if (_this6.reqAppConfigCount < 5) {
         _this6.reqAppConfig(url);
       } else {
         if (url == GlobalCfg.APP_CONFIG_URL) {
           _this6.reqAppConfigCount = 0;
-
           _this6.reqAppConfig(GlobalCfg.APP_CONFIG_URL_SPARE);
         } else {
           GlobalCfg.APP_CONFIG_DATAS = [];
@@ -312,12 +273,10 @@ cc.Class({
   },
   reqAppInfo: function reqAppInfo(finishCallback, url) {
     var _this7 = this;
-
     if (url.length == 0) {
       console.error("reqAppInfo url is empty");
       return;
     }
-
     this.reqAppInfoCount++;
     var startTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_START);
@@ -329,15 +288,12 @@ cc.Class({
     }, function () {
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);
-
       if (_this7.reqAppInfoCount < 5) {
         _this7.reqAppInfo(finishCallback, url);
       } else {
         LoggerUtil.getInstance().warn("APPINFO GET ERROR!!");
-
         if (url == GlobalCfg.APP_INFO_URL) {
           _this7.reqAppInfoCount = 0;
-
           _this7.reqAppInfo(finishCallback, GlobalCfg.APP_INFO_URL_SPARE);
         } else {
           _this7.reqAppInfo(finishCallback, url);
@@ -347,9 +303,9 @@ cc.Class({
   },
   loadUpdateScene: function loadUpdateScene() {
     var localAppVersion = Number(cc.sys.localStorage.getItem("LocalAppVersion"));
-    var isCanDownApp = Number(cc.sys.localStorage.getItem("IsCanDownApp")); // LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);
+    var isCanDownApp = Number(cc.sys.localStorage.getItem("IsCanDownApp"));
+    // LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);
     // LoggerUtil.getInstance().log("isCanDownApp: ", isCanDownApp);
-
     if (cc.sys.isNative && isCanDownApp == 1 && GlobalCfg.REMOTE_APP_UPDATE && GlobalCfg.REMOTE_APP_VERSION != localAppVersion) {
       this.node_loadTipsLayer.active = false;
       APPManager.downloadApkByApkUrl(GlobalCfg.REMOTE_APP_URL);
@@ -357,7 +313,6 @@ cc.Class({
       this.loadPrecess = 100.00;
       cc.director.loadScene("Update");
     }
-
     ;
   }
 });
