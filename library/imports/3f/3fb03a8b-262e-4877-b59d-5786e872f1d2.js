@@ -11,9 +11,7 @@ cc.Class({
   },
   preloadAudioClip: function preloadAudioClip() {
     var _this = this;
-
     var soundArry = ["sound/lobby", "sound/button", "sound/back"];
-
     for (var index = 0; index < soundArry.length; index++) {
       var element = soundArry[index];
       ResourcesBundle.load(element, cc.AudioClip, function (err, audioClip) {
@@ -25,17 +23,14 @@ cc.Class({
   },
   playSoundByNameInResources: function playSoundByNameInResources(soundName, loop) {
     var _this2 = this;
-
     loop = loop || false;
     var clip = this.soundAudioClips[soundName];
-
     if (clip) {
       this.playSound(clip, loop);
     } else {
       ResourcesBundle.load("sound/" + soundName, cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this2.soundAudioClips[audioClip._name] = audioClip;
-
           _this2.playSound(audioClip, loop);
         }
       });
@@ -43,16 +38,13 @@ cc.Class({
   },
   playLobby: function playLobby() {
     var _this3 = this;
-
     var clip = this.soundAudioClips['lobby'];
-
     if (clip) {
       this.playMusic(clip, true);
     } else {
       ResourcesBundle.load("sound/lobby", cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this3.soundAudioClips[audioClip._name] = audioClip;
-
           _this3.playMusic(audioClip, true);
         }
       });
@@ -60,16 +52,13 @@ cc.Class({
   },
   playButton: function playButton() {
     var _this4 = this;
-
     var clip = this.soundAudioClips['button'];
-
     if (clip) {
       this.playSound(clip, false);
     } else {
       ResourcesBundle.load("sound/button", cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this4.soundAudioClips[audioClip._name] = audioClip;
-
           _this4.playSound(audioClip, false);
         }
       });
@@ -77,16 +66,13 @@ cc.Class({
   },
   playBack: function playBack() {
     var _this5 = this;
-
     var clip = this.soundAudioClips['back'];
-
     if (clip) {
       this.playSound(clip, false);
     } else {
       ResourcesBundle.load("sound/back", cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this5.soundAudioClips[audioClip._name] = audioClip;
-
           _this5.playSound(audioClip, false);
         }
       });

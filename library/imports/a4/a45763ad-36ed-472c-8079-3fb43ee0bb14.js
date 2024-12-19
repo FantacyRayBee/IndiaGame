@@ -20,27 +20,22 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
-
     if (btnName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
     } else {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
     }
-
     if (btnName === "btn_close") {
       this.node.destroy();
     } else if (btnName === "btn_okay") {
       this.curName = this.editbox.string;
-
       if (this.curName.length == 0) {
         CommonFun.getInstance().showTips("Nickname can not be Empty!");
       } else {
         var time = this.getChangeNameTime("newTime");
-
         if (time) {
           var isExistence = this.chack_name(this.curName);
           var isChina = this.funcChina(this.curName);
-
           if (isExistence || isChina) {
             CommonFun.getInstance().showTips(otherLanguage.nameTips[language]);
           } else {
@@ -58,15 +53,12 @@ cc.Class({
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token
     };
-
     if (self.oldName === self.curName) {
       self.node.destroy();
       return;
     }
-
     ;
     parm.nickname = self.curName;
-
     if (Object.keys(parm).length > 2) {
       CommonFun.getInstance().httpPost(GlobalCfg.HTTP_USER_LOGIN + '/v1/userinfoupdate', parm, function (jsonObj) {
         if (jsonObj.result == 0) {
@@ -81,12 +73,10 @@ cc.Class({
               nickname: parm.nickname
             }
           });
-
           if (CommonFun.getInstance().isValidForScr(self)) {
             self.getChangeNameTime("oneTime");
             self.node.destroy();
           }
-
           ;
           CommonFun.getInstance().showTips("Nickname modified successfully!");
         } else {
@@ -96,12 +86,14 @@ cc.Class({
     }
   },
   // 开始点击文本框
-  editboxStartClick: function editboxStartClick(editbox) {// cc.tween(this.node_editbox)
+  editboxStartClick: function editboxStartClick(editbox) {
+    // cc.tween(this.node_editbox)
     // .to(0.1, {position: cc.v2(0, 280) })
     // .start();
   },
   // 结束点击文本框
-  editboxEndClick: function editboxEndClick(editbox) {// cc.tween(this.node_editbox)
+  editboxEndClick: function editboxEndClick(editbox) {
+    // cc.tween(this.node_editbox)
     // .to(0.1, {position: cc.v2(0, 0) })
     // .start();
   },
@@ -109,14 +101,12 @@ cc.Class({
   getChangeNameTime: function getChangeNameTime(str) {
     var d = new Date();
     var time = d.getTime();
-
     if (str == "oneTime") {
       cc.sys.localStorage.setItem("oneTime", JSON.stringify(time));
     } else if (str == "newTime") {
       var oneTime = Number(JSON.parse(cc.sys.localStorage.getItem('oneTime')));
       var NewoneTime = oneTime == null ? 0 : oneTime;
       var nweTime = time - NewoneTime;
-
       if (NewoneTime == 0 || nweTime > 86400000) {
         return true;
       } else {
@@ -127,23 +117,18 @@ cc.Class({
   //检测是否有特殊符号
   chack_name: function chack_name(str) {
     var isChina = this.funcChina(str);
-
     if (isChina) {
       return false;
     }
-
     var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？ ]");
-
     if (pattern.test(str)) {
       return true;
     }
-
     return false;
   },
   //检测是否有中文字
   funcChina: function funcChina(str) {
     var patrn = /[\u4E00-\u9FA5]|[\uFE30-\uFFA0]/gi;
-
     if (!patrn.exec(str)) {
       return false;
     } else {
@@ -154,7 +139,6 @@ cc.Class({
   addClickTouch: function addClickTouch(btnNames, parent, context) {
     var dataType = Object.prototype.toString.call(btnNames);
     var btn = null;
-
     if (dataType == "[object Null]") {
       btn = context.node;
       btn.on('click', context.btnClick, context);
@@ -162,7 +146,6 @@ cc.Class({
     } else if (dataType === "[object Array]") {
       for (var index = 0; index < btnNames.length; index++) {
         var element = btnNames[index];
-
         if (parent.node) {
           parent.node.getChildByName(element).on('click', parent.btnClick, parent);
         } else {
@@ -177,7 +160,6 @@ cc.Class({
         btn = parent.getChildByName(btnNames);
         btn.on('click', context.btnClick, context);
       }
-
       return btn;
     }
   }

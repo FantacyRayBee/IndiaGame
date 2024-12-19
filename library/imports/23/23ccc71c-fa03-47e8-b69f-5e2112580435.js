@@ -14,7 +14,6 @@ cc.Class({
   initNode: function initNode() {},
   initNode_1: function initNode_1() {
     var _this = this;
-
     this.node_1 = this.node.getChildByName("node_1");
     this.choudai = this.node_1.getChildByName("choudai");
     this.lab_name_1 = this.choudai.getChildByName("lab_name").getComponent(cc.Label);
@@ -24,7 +23,6 @@ cc.Class({
     this.node_ske.setAnimation(0, "chuxian", false);
     this.node_ske.setCompleteListener(function (trackEntry, loopCount) {
       var name = trackEntry.animation.name;
-
       if (name == "chuxian") {
         _this.node_ske.setAnimation(0, "chixu", true);
       } else if (name == "kai") {
@@ -43,13 +41,11 @@ cc.Class({
     this.lab_gold_2.string = "150.00";
     this.bg_ts_1 = this.node_2.getChildByName("bg_ts_1");
     this.bg_ts_1.position = cc.v2(0, -295); //设置位置,之后上移至(0，-255)
-
     this.bg_ts_1.active = false;
     this.bg_ts_2 = this.node_2.getChildByName("bg_ts_2");
     this.bg_ts_1.active = false;
     this.qipaoPlus = this.node_2.getChildByName("qipao");
     this.qipaoPlus.position = cc.v2(280, -280); // 设置位置，之后移动至(8,50)，缩小至0.7
-
     this.qipaoPlus.scale = 1;
     this.qipaoPlus.active = false;
   },
@@ -57,16 +53,14 @@ cc.Class({
     this.node_3 = this.node.getChildByName("node_3");
     this.zhiNode_3 = this.node_3.getChildByName("zhi");
     this.zhiNode_3.height = 436; // 后续拉伸至 536
-
-    this.content = this.zhiNode_3.getChildByName("scrollView").getChildByName("view").getChildByName("content"); // this.content.removeAllChildren();
-
+    this.content = this.zhiNode_3.getChildByName("scrollView").getChildByName("view").getChildByName("content");
+    // this.content.removeAllChildren();
     this.lab_gold_3 = this.zhiNode_3.getChildByName("lab_gold").getComponent(cc.Label);
     this.lab_gold_3.string = "0.00";
     this.btn_proceed = this.node_3.getChildByName("btn_proceed").getComponent(cc.Button);
     this.btn_proceed.node.on('click', this.btnClick, this);
     this.btn_proceed.node.active = false;
     this.bg_zj = this.node_3.getChildByName("bg_zj"); // 向上移动至（0，220）
-
     this.bg_zj.active = false;
     this.node_ske_star = this.node_3.getChildByName("node_ske_star").getComponent(sp.Skeleton);
     this.node_ske_hengfu = this.node_3.getChildByName("node_ske_hengfu").getComponent(sp.Skeleton);
@@ -80,7 +74,6 @@ cc.Class({
     var btnName = button.node.name;
     console.log("btnClick", button.node.name);
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (btnName == "btn_open") {
       this.openRedPack();
     } else if (btnName == "btn_proceed") {
@@ -116,15 +109,13 @@ cc.Class({
     this.lab_name_1.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 6);
     this.lab_name_2.string = GlobalCfg.USER_DATAS.userName;
     this.flyPlusCount = 0; // 飞加号气泡
-
     this.quota = this.data.quota / 100;
-    this.unclaimed = (data.unclaimed / 100).toFixed(2); // this.lab_glod_2.string = "₹ " + (this.data.quota / 100) + ".00";
-
+    this.unclaimed = (data.unclaimed / 100).toFixed(2);
+    // this.lab_glod_2.string = "₹ " + (this.data.quota / 100) + ".00";
     this.playPddSound("show", false);
   },
   openRedPack: function openRedPack() {
     var _this2 = this;
-
     this.node_ske.setAnimation(0, "kai", false);
     this.playPddSound("firstShowRedPacket", false);
     this.node_1.active = false;
@@ -138,7 +129,6 @@ cc.Class({
   },
   showFirstTip: function showFirstTip() {
     var _this3 = this;
-
     this.bg_ts_1.active = true;
     setTimeout(function () {
       _this3.movePlusToAdd();
@@ -146,7 +136,6 @@ cc.Class({
   },
   showSecondTip: function showSecondTip() {
     var _this4 = this;
-
     this.bg_ts_2.active = true;
     setTimeout(function () {
       _this4.movePlusToAdd();
@@ -161,7 +150,6 @@ cc.Class({
       // 在这里根据给定不同的初始待领取值，来分配
       var gold = value;
       var stageGold = gold;
-
       if (this.flyPlusCount == 0) {
         var stageGoldObj = {
           "399": 300,
@@ -169,18 +157,15 @@ cc.Class({
           "599": 500,
           "799": 600
         };
-
         for (var key in stageGoldObj) {
           if (Object.hasOwnProperty.call(stageGoldObj, key)) {
             var element = stageGoldObj[key];
-
             if (gold == key) {
               stageGold = element;
             }
           }
         }
       }
-
       this.flyPlusCount++;
       var startGold = Number(this.lab_gold_2.string);
       this.danceLabel(stageGold, startGold);
@@ -192,10 +177,9 @@ cc.Class({
   },
   danceLabel: function danceLabel(toNum, fromNum) {
     this.toNum = toNum; // 跳动到达的金额
-
     this.startGold = fromNum; // 跳动起始的金额
-
-    var sc = cc.director.getScheduler(); // console.log("当前游戏帧率：",cc.director.getAnimationInterval());
+    var sc = cc.director.getScheduler();
+    // console.log("当前游戏帧率：",cc.director.getAnimationInterval());
     // console.log("当前游戏帧率2：",cc.game.getFrameRate());
 
     sc.enableForTarget(this);
@@ -208,10 +192,9 @@ cc.Class({
     var curFrameRate = cc.game.getFrameRate();
     var cha = Math.ceil((end - start) / curFrameRate * 100) / 100;
     var num = Number(this.lab_gold_2.string);
-
     if (num + cha >= end) {
-      this.lab_gold_2.string = "" + end.toFixed(2); // console.log('/\/\/\/\/', end, this.lab_gold_2.string);
-
+      this.lab_gold_2.string = "" + end.toFixed(2);
+      // console.log('/\/\/\/\/', end, this.lab_gold_2.string);
       this.stopDanceLabel();
     } else {
       num += cha;
@@ -220,11 +203,9 @@ cc.Class({
   },
   stopDanceLabel: function stopDanceLabel() {
     var _this5 = this;
-
     var sc = cc.director.getScheduler();
     sc.unschedule(this.updateLabel, this);
     console.log("this.flyPlusCount:::::::", this.flyPlusCount);
-
     switch (this.flyPlusCount) {
       case 1:
         this.showSecondTip();
@@ -232,21 +213,18 @@ cc.Class({
           position: cc.v2(0, -255)
         }).start();
         break;
-
       case 2:
         // show Node_3
         setTimeout(function () {
           _this5.showNode_3();
         }, 500);
         break;
-
       default:
         break;
     }
   },
   showNode_3: function showNode_3() {
     var _this6 = this;
-
     this.initNode_3();
     this.lab_gold_3.string = this.lab_gold_2.string;
     this.node_2.active = false;
@@ -257,7 +235,6 @@ cc.Class({
   },
   showBianchangCallback: function showBianchangCallback() {
     var _this7 = this;
-
     this.node_3.active = true;
     this.playPddSound("star", false);
     var spr_tx = this.bg_zj.getChildByName('tx_mask').getChildByName('tx').getComponent(cc.Sprite);
@@ -265,7 +242,6 @@ cc.Class({
     this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 36, spr_tx);
     lab_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 6);
     var lab_gold = this.bg_zj.getChildByName('lab_gold').getComponent(cc.Label); // 待领取的金额
-
     lab_gold.string = "₹ " + Number(this.unclaimed).toFixed(2);
     this.bg_zj.active = true;
     this.bg_zj.setPosition(cc.v2(0, 0));
@@ -295,12 +271,10 @@ cc.Class({
     var lab_name = pab_pddItem.getChildByName('lab_name').getComponent(cc.Label);
     lab_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 6);
     this.content.addChild(pab_pddItem, 1, "selfItem");
-
     for (var i = 0; i < this.content.childrenCount - 1; i++) {
       var element = this.content.children[i];
       element.zIndex = i + 1;
     }
-
     this.content.getChildByName("selfItem").zIndex = 0;
     console.log("this.content.childrenCount:::", this.content);
     this.btn_proceed.node.active = true;
@@ -308,7 +282,6 @@ cc.Class({
     this.node_ske_star.setAnimation(0, "chixu", false);
     this.node_ske_star.setCompleteListener(function (trackEntry, loopCount) {
       var name = trackEntry.animation.name;
-
       if (name == "chixu") {}
     });
     this.node_ske_hengfu.node.active = true;
@@ -327,7 +300,6 @@ cc.Class({
     if (isLoop === void 0) {
       isLoop = false;
     }
-
     soundName = "pddSound/" + soundName;
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources(soundName, isLoop);
   }

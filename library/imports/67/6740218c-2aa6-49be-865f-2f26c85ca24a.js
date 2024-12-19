@@ -26,12 +26,15 @@ cc.Class({
   ctor: function ctor() {
     this.viewList = {};
     this.playersCtrlArr = [];
-    this.joinedPlayerSeatObj = []; //玩家在游戏中的状态描述列表
+    this.joinedPlayerSeatObj = [];
 
-    this.playerStatusDescArr = ["", "PACKED", "LOST", "WATCH"]; // 退出提示
+    //玩家在游戏中的状态描述列表
+    this.playerStatusDescArr = ["", "PACKED", "LOST", "WATCH"];
 
-    this.outGameTips = ["Your game is not finished yet. If you wish to exit the table, you will lose your money. Do you want to leave table?", "आपका खेल अभी खत्म नहीं हुआ है, टेबल में पैसा होगा| वापस न किया जाए। क्या आपका जाना निश्चित है?", "آپ کا گیم ابھی تک ختم نہیں ہوا ہے۔ اگر آپ ٹیبل سے باہر نکلنا چاہتے ہیں، تو آپ کی رقم ڈوب جائے گی۔ کیا آپ ٹیبل چھوڑنا چاہتے ہیں؟", "আপনার খেলা এখনও শেষ হয়নি। আপনি টেবিলে পয়সা থাকবে, যা ফেরত দেওয়া হবে না। আপনি কি প্রস্থান করতে নিশ্চিত?"]; //玩家在游戏中的状态描述列表
+    // 退出提示
+    this.outGameTips = ["Your game is not finished yet. If you wish to exit the table, you will lose your money. Do you want to leave table?", "आपका खेल अभी खत्म नहीं हुआ है, टेबल में पैसा होगा| वापस न किया जाए। क्या आपका जाना निश्चित है?", "آپ کا گیم ابھی تک ختم نہیں ہوا ہے۔ اگر آپ ٹیبل سے باہر نکلنا چاہتے ہیں، تو آپ کی رقم ڈوب جائے گی۔ کیا آپ ٹیبل چھوڑنا چاہتے ہیں؟", "আপনার খেলা এখনও শেষ হয়নি। আপনি টেবিলে পয়সা থাকবে, যা ফেরত দেওয়া হবে না। আপনি কি প্রস্থান করতে নিশ্চিত?"];
 
+    //玩家在游戏中的状态描述列表
     this.playerCardPosArr = [[cc.v2(-47, 0), cc.v2(0, 0), cc.v2(47, 0)], [cc.v2(-29, 0), cc.v2(0, 0), cc.v2(29, 0)], [cc.v2(-29, 0), cc.v2(0, 0), cc.v2(29, 0)], [cc.v2(-29, 0), cc.v2(0, 0), cc.v2(29, 0)], [cc.v2(-29, 0), cc.v2(0, 0), cc.v2(29, 0)]];
     this.playerCardScaleArr = [0.82, 0.58, 0.58, 0.58, 0.58];
     this.playerResultScorePosArr = [cc.v2(184, 130), cc.v2(-145, 100), cc.v2(-145, 100), cc.v2(145, 100), cc.v2(145, 100)];
@@ -43,7 +46,6 @@ cc.Class({
     this.RoomConfig = {}; // 房间配置信息
 
     this.showWaitNode = false; // 展示等待其他玩家进入文字
-
     this.waitTipsTime = 0;
     this.waitTipsIndex = 0;
     this.curTableConfig = {
@@ -59,7 +61,6 @@ cc.Class({
   ///////////////////////////////////////////////////////// 脚本生命周期函数处理 Start //////////////////////////////////////////
   onLoad: function onLoad() {
     var _this = this;
-
     CommonFun.getInstance().hideSelectRoom();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_TP_GAME);
     GlobalCfg.G_COMPONENTS.Audio.stopMusic();
@@ -71,28 +72,31 @@ cc.Class({
     this.createChipsPool();
     this.createCardsPool();
     this.node.on('touchstart', this.touchNodeCall, this);
-    this.viewList = CommonFun.getInstance().getAllChildrensNodeList(this.node, ""); //发牌官节点
+    this.viewList = CommonFun.getInstance().getAllChildrensNodeList(this.node, "");
+    //发牌官节点
+    this.node_faPaiRole = this.viewList["girl"];
 
-    this.node_faPaiRole = this.viewList["girl"]; //玩家比牌表现的节点
-
+    //玩家比牌表现的节点
     this.node_player_pk = this.viewList["yindu_pk"];
     this.skele_player_pk = this.node_player_pk.getComponent(sp.Skeleton);
     this.skele_player_pk.clearTracks();
     this.skele_player_pk.setCompleteListener(function (trackEntry, loopCount) {
       _this.clearPlayerBattleDisplay();
-
       _this.showBattleWinAndFailPlayerDisplay();
     });
-    this.node_player_pk.active = false; //牌局信息
+    this.node_player_pk.active = false;
 
+    //牌局信息
     this.node_info_bg = this.viewList["info_bg"];
     this.lab_bootAmount = this.viewList["info_bg/lab_bootAmount"].getComponent(cc.Label);
     this.lab_chaalLimit = this.viewList["info_bg/lab_chaalLimit"].getComponent(cc.Label);
     this.lab_maxBlinds = this.viewList["info_bg/lab_maxBlinds"].getComponent(cc.Label);
-    this.lab_potLimit = this.viewList["info_bg/lab_potLimit"].getComponent(cc.Label); //总下注数
+    this.lab_potLimit = this.viewList["info_bg/lab_potLimit"].getComponent(cc.Label);
 
-    this.lab_tableAmount = this.viewList["jc_input/lab_tableAmount"].getComponent(cc.Label); //常规按钮
+    //总下注数
+    this.lab_tableAmount = this.viewList["jc_input/lab_tableAmount"].getComponent(cc.Label);
 
+    //常规按钮
     this.node_btn_chat = this.viewList["btn_chat"];
     this.node_btn_changeTable = this.viewList["btn_changeTable"];
     this.sprite_btn_changeTable = this.viewList["btn_changeTable/cd"].getComponent(cc.Sprite);
@@ -106,8 +110,9 @@ cc.Class({
     this.node_btn_cz.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
     this.node_btn_wf.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
     this.node_btn_tc.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
-    this.node_btn_cz.active = false; //游戏逻辑操作按钮
+    this.node_btn_cz.active = false;
 
+    //游戏逻辑操作按钮
     this.node_act_btns = this.viewList["act_btns"];
     this.node_btn_show = this.viewList["act_btns/btn_show"];
     this.node_btn_reduce = this.viewList["act_btns/btn_reduce"];
@@ -134,17 +139,18 @@ cc.Class({
     this.node_btn_openMenu = this.viewList["btn_openMenu"];
     this.node_btn_tableInfo = this.viewList["btn_tableInfo"];
     this.node_btn_openMenu.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 0.5), this);
-    this.node_btn_tableInfo.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 0.5), this); //自己牌型显示
+    this.node_btn_tableInfo.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 0.5), this);
 
+    //自己牌型显示
     this.node_myPlayerLookCardSuit = this.viewList["px_bg_big"];
     this.lab_myPlayerLookCard = this.viewList["px_bg_big/lab_myPlayerLookCard"].getComponent(cc.Label);
     this.progressBar_cardStrength = this.viewList["px_bg_big/progressBar"].getComponent(cc.ProgressBar);
-    this.node_myPlayerLookCardSuit.active = false; //玩家控制脚本
+    this.node_myPlayerLookCardSuit.active = false;
 
+    //玩家控制脚本
     for (var i = 0; i < 5; i++) {
       this["playerCtrl" + i] = this.viewList["player" + i].getComponent("teenPattiPlayerCtrl");
       var playerCtrl = this["playerCtrl" + i];
-
       if (playerCtrl) {
         playerCtrl.setTeenPattiPlayerRoomCtrl(this);
         playerCtrl.setTeenPattiPlayerResultScorePos(this.playerResultScorePosArr[i]);
@@ -152,30 +158,35 @@ cc.Class({
         playerCtrl.setTeenPattiPlayerCardPosArr(this.playerCardPosArr[i]);
         playerCtrl.setTeenPattiPlayerCardScale(this.playerCardScaleArr[i]);
       }
-
       ;
     }
+    ;
 
-    ; //表情使用
+    //表情使用
+    this.userArryNode = [this.viewList["player0"], this.viewList["player1"], this.viewList["player2"], this.viewList["player3"], this.viewList["player4"]];
 
-    this.userArryNode = [this.viewList["player0"], this.viewList["player1"], this.viewList["player2"], this.viewList["player3"], this.viewList["player4"]]; //玩法父节点
-
+    //玩法父节点
     this.node_wanFa = this.viewList["wanFaNode"];
     this.node_hintParent = this.viewList["hintParentNode"];
-    this.node_rechargeParent = this.viewList["rechargeParentNode"]; //筹码的父节点
+    this.node_rechargeParent = this.viewList["rechargeParentNode"];
 
-    this.node_chips = this.viewList["chipsParentNode"]; //比牌界面的父节点
+    //筹码的父节点
+    this.node_chips = this.viewList["chipsParentNode"];
 
-    this.node_battleCard = this.viewList["battleCardNode"]; //比牌连线动画的jiedian
+    //比牌界面的父节点
+    this.node_battleCard = this.viewList["battleCardNode"];
 
-    this.node_lianXian = this.viewList["lianXianNode"]; //免费玩家充值提示相关
+    //比牌连线动画的jiedian
+    this.node_lianXian = this.viewList["lianXianNode"];
 
+    //免费玩家充值提示相关
     this.node_rechagerBtnTips = this.viewList["chongZhiBtnTips"];
     this.node_btn_recharge = this.viewList["chongZhiBtnTips/btn_recharge"];
     this.node_rechagerBtnTips_tipBg = this.viewList["chongZhiBtnTips/tipBg"];
     this.lab_btnRechargeTip = this.node_rechagerBtnTips_tipBg.getChildByName("lab2").getComponent(cc.Label);
-    this.node_btn_recharge.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 1), this); //有免费玩家充值提示
+    this.node_btn_recharge.on('click', CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
 
+    //有免费玩家充值提示
     this.node_userChongZhiTips = this.viewList["chongZhiDaoJiShiTips"];
     this.node_richTextTips = this.viewList["chongZhiDaoJiShiTips/richTextTips"];
     this.node_daoJiShiBar = this.viewList["chongZhiDaoJiShiTips/bar"];
@@ -187,11 +198,13 @@ cc.Class({
     this.teenPattiRechargeAcTime = 0;
     this.teenPattiRechargeWinRate = 0;
     this.node_rechagerBtnTips.active = false;
-    this.node_userChongZhiTips.active = false; //轮次节点
+    this.node_userChongZhiTips.active = false;
 
+    //轮次节点
     this.lab_round = this.viewList["round/lab_round"].getComponent(cc.Label);
-    this.lab_round.string = "Round 0/20"; // 游戏信息
+    this.lab_round.string = "Round 0/20";
 
+    // 游戏信息
     this.lab_bootAmountTips = this.viewList["info_bg/lab_bootAmountTips"].getComponent(cc.Label);
     this.lab_chaalLimitTips = this.viewList["info_bg/lab_chaalLimitTips"].getComponent(cc.Label);
     this.lab_maxBlindsTips = this.viewList["info_bg/lab_maxBlindsTips"].getComponent(cc.Label);
@@ -204,65 +217,48 @@ cc.Class({
       window.isNeedShowRoomList = "teenpatti";
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
     });
-    this.nodeWaitTips.active = false; //监听后台切换事件
+    this.nodeWaitTips.active = false;
 
+    //监听后台切换事件
     cc.game.on(cc.game.EVENT_HIDE, function () {
       LoggerUtil.getInstance().log("退入游戏后台！！！！！");
       _this.isCCGameEventHideStutas = true;
-
       _this.unscheduleAllCallbacks();
-
       _this.clearPlayerBattleDisplay();
-
       _this.clearBattleCardFangDianAnim();
-
       _this.hideMyPlayerBattleCardView();
-
       _this.setReduceBtnInteractable(false);
-
       _this.setBlindBtnInteractable(false);
-
       _this.setAddBtnInteractable(false);
-
       _this.setShowBtnInteractable(false);
+      _this.setPackBtnInteractable(false);
 
-      _this.setPackBtnInteractable(false); // 清理玩家信息
-
-
+      // 清理玩家信息
       var playersCtrlArr = _this.getPlayersCtrlArr();
-
       for (var _i = 0, len = playersCtrlArr.length; _i < len; _i++) {
         var playerCtr = playersCtrlArr[_i];
-
         if (playerCtr) {
           playerCtr.setTeenPattiPlayerGameOver();
         }
-
         ;
       }
+      ;
 
-      ; // 清理桌上筹码
-
+      // 清理桌上筹码
       var chipNodes = _this.node_chips.children;
-
       for (var _i2 = 0, _len = chipNodes.length; _i2 < _len; _i2++) {
         var chipNode = chipNodes[_i2];
         chipNode.destroy();
       }
-
       ;
-
       _this.clearJoinedPlayerSeatObj();
-
       _this.curOptingPlayerSeat = null;
     }, this);
     cc.game.on(cc.game.EVENT_SHOW, function () {
       LoggerUtil.getInstance().log("切回游戏前台！！！！！");
-
       if (_this.isCCGameEventHideStutas == false) {
         return;
       }
-
       ;
       _this.isCCGameEventHideStutas = false;
       GameServerManager.send("gameservice.gamescene", "GameSceneReq", {});
@@ -282,26 +278,19 @@ cc.Class({
     this.hideMyPlayerBattleCardView();
     this.node_myPlayerLookCardSuit.active = false;
     var chipNodes = this.node_chips.children;
-
     for (var i = 0, len = chipNodes.length; i < len; i++) {
       var chipNode = chipNodes[i];
-
       if (chipNode) {
         chipNode.destroy();
       }
-
       ;
     }
-
     ;
     var playersCtrlArr = this.getPlayersCtrlArr();
-
     for (var _i3 = 0, _len2 = playersCtrlArr.length; _i3 < _len2; _i3++) {
       var playersCtrl = playersCtrlArr[_i3];
-
       if (playersCtrl) {
         playersCtrl.setTeenPattiPlayerLeaveTable();
-
         if (playersCtrl === this["playerCtrl" + 0]) {
           playersCtrl.setTeenPattiPlayerJoinedStatus();
           playersCtrl.setTeenPattiPlayerName(this.myPlayerBaseInfo.nickname);
@@ -312,10 +301,8 @@ cc.Class({
           playersCtrl.setTeenPattiPlayerPid(-1);
         }
       }
-
       ;
     }
-
     ;
     this.clearPlayersCtrlArr();
     this.clearJoinedPlayerSeatObj();
@@ -326,10 +313,8 @@ cc.Class({
     CommonFun.getInstance().removeSidebar();
     this.sendLoginReq();
     var playersCtrl = this["playerCtrl" + 0];
-
     if (playersCtrl) {
       playersCtrl.setTeenPattiPlayerLeaveTable();
-
       if (playersCtrl === this["playerCtrl" + 0]) {
         playersCtrl.setTeenPattiPlayerJoinedStatus();
         playersCtrl.setTeenPattiPlayerName(this.myPlayerBaseInfo.nickname);
@@ -340,7 +325,6 @@ cc.Class({
         playersCtrl.setTeenPattiPlayerPid(-1);
       }
     }
-
     ;
   },
   onDestroy: function onDestroy() {
@@ -355,15 +339,14 @@ cc.Class({
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_TP_GAME);
   },
   ///////////////////////////////////////////////////////// 脚本生命周期函数处理 End //////////////////////////////////////////
+
   ///////////////////////////////////////////////////////// 筹码 手牌 对象池 Start //////////////////////////////////
   createChipsPool: function createChipsPool() {
     this.chipsPool = new cc.NodePool();
-
     for (var i = 0; i < 40; i++) {
       var teenPattiChip = cc.instantiate(this.prefab_chip);
       this.chipsPool.put(teenPattiChip);
     }
-
     ;
   },
   clearChipsPool: function clearChipsPool() {
@@ -374,24 +357,20 @@ cc.Class({
   },
   getChipNodeFromChipsPool: function getChipNodeFromChipsPool() {
     var teenPattiChip = null;
-
     if (this.chipsPool.size() > 0) {
       teenPattiChip = this.chipsPool.get();
     } else {
       teenPattiChip = cc.instantiate(this.prefab_chip);
     }
-
     ;
     return teenPattiChip;
   },
   createCardsPool: function createCardsPool() {
     this.cardsPool = new cc.NodePool();
-
     for (var i = 0; i < 30; i++) {
       var cardNode = cc.instantiate(this.prefab_card);
       this.cardsPool.put(cardNode);
     }
-
     ;
   },
   clearCardsPool: function clearCardsPool() {
@@ -402,34 +381,30 @@ cc.Class({
   },
   getCardNodeFromCardsPool: function getCardNodeFromCardsPool() {
     var cardNode = null;
-
     if (this.cardsPool.size() > 0) {
       cardNode = this.cardsPool.get();
     } else {
       cardNode = cc.instantiate(this.prefab_card);
     }
-
     ;
     return cardNode;
   },
   ///////////////////////////////////////////////////////// 筹码 手牌 对象池 End //////////////////////////////////
+
   ///////////////////////////////////////////////////////// 按钮，网络，自定义事件监听回调 Start //////////////////////////////////
   touchNodeCall: function touchNodeCall() {},
   btnClickCall: function btnClickCall(btn) {
     var btnName = btn.node.name;
-
     if (btnName == "btn_chat") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.showBiaoQingView();
     } else if (btnName == "btn_cz") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       if (this.isTrialRoom) {
         CommonFun.getInstance().showSmallAddExperience();
       } else {
         CommonFun.getInstance().showSmallAddCash("teenPatti", this.curTableConfig ? this.curTableConfig.cellScore : 0);
       }
-
       ;
     } else if (btnName == "btn_show") {
       this.playTeenPattiEffect("sideshow");
@@ -444,21 +419,16 @@ cc.Class({
       this.dealBtnBlindOpt("reduce");
     } else if (btnName == "btn_pack") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       if (this.isCompleteFaPai == false) {
         return;
       }
-
       ;
-
       if (this.node_rechagerBtnTips.active == true) {
         var children = this.node_rechargeParent.children;
-
         for (var i = 0, len = children.length; i < len; i++) {
           var node = children[i];
           node.destroy();
         }
-
         ;
         var hintViewNode = cc.instantiate(this.prefab_hint);
         var ctrl = hintViewNode.getComponent("teenPattiHintCtrl");
@@ -467,7 +437,6 @@ cc.Class({
       } else {
         this.sendDropCardReq();
       }
-
       ;
     } else if (btnName == "btn_recharge") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -489,13 +458,11 @@ cc.Class({
       self.sprite_btn_changeTable.schedule(function () {
         fillRange += -0.05;
         self.sprite_btn_changeTable.fillRange = fillRange;
-
         if (fillRange <= -1) {
           self.sprite_btn_changeTable.unscheduleAllCallbacks();
           self.node_btn_changeTable.getComponent(cc.Button).interactable = true;
           self.sprite_btn_changeTable.fillRange = 0;
         }
-
         ;
       }, 0.05, 19, 0);
     } else if (btnName == "btn_openMenu") {
@@ -505,14 +472,12 @@ cc.Class({
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.dealShowWanFaOpt();
     }
-
     ;
   },
   onEventMsg: function onEventMsg(webData, target) {
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == 'gameservice.login') {
       self.dealLoginEvent(notify);
     } else if (msgId == "gameservice.enterlv") {
@@ -573,14 +538,11 @@ cc.Class({
       if (notify <= 4) {
         for (var i = 0; i < self.userArryNode.length; i++) {
           var gameCtrl = self.userArryNode[i].getComponent("teenPattiPlayerCtrl");
-
           if (gameCtrl.node_wanJia && !gameCtrl.node_wanJia.active) {
             continue;
           }
-
           gameCtrl.setLabelStatus();
         }
-
         var show = ["", "Show", "साइड शो", "دکھائیں", "প্রদর্শন করুন"][language];
         var SideShow = ["", "Side Show", "साइड शो", "سلائیڈ شو", "সাইড শো"][language];
         self.lab_catchChipType.string = ["", "Blind", "अंधा", "بلائنڈ", "ব্লাইন্ড"][language];
@@ -589,7 +551,6 @@ cc.Class({
         self.lab_chaalLimitTips.string = xuanChangLanguage.lab_chaalLimitTips[language];
         self.lab_maxBlindsTips.string = xuanChangLanguage.lab_maxBlindsTips[language];
         self.lab_potLimitTips.string = xuanChangLanguage.lab_potLimitTips[language];
-
         if (self.lab_btn_show.string == show) {
           self.lab_btn_show.string = show;
         } else {
@@ -612,16 +573,13 @@ cc.Class({
       } else {
         self.sendExitGameReq();
       }
-
       ;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_SWITCH_TABLE) {
       var myPlayerSeat = self.getMyPlayerSeat();
       var playerCtrl = self.getPlayerCtrlFromPlayersCtrlArr(myPlayerSeat);
-
       if (playerCtrl) {
         var playerStatus = playerCtrl.getTeenPattiPlayerStatusValue();
         var joinedPlayerSeatObj = self.getJoinedPlayerSeatObj();
-
         if (playerStatus == 0 && joinedPlayerSeatObj.length > 1) {
           CommonFun.getInstance().showMsgBox(self.outGameTips[0], "YES_NO", function () {
             self.sendChangeTableReq();
@@ -629,10 +587,8 @@ cc.Class({
         } else {
           self.sendChangeTableReq();
         }
-
         ;
       }
-
       ;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
       CommonFun.getInstance().showRule("teenPatti");
@@ -643,7 +599,6 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (!notify) {
       var info = {
         errorMessage: "TP\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684\u975E\u6B63\u786E\u6D88\u606F\u4E2D\u7ED3\u6784\u4F53\u5F02\u5E38, \u5185\u5BB9\u4E3A===>" + JSON.stringify(webData)
@@ -651,16 +606,12 @@ cc.Class({
       CommonFun.getInstance().reportToTelegram(info);
       return;
     }
-
     ;
     var result = notify.result;
-
     if (notify.Result) {
       result = notify.Result;
     }
-
     ;
-
     if (msgId === "gameservice.changeroom") {
       CommonFun.getInstance().showMsgBox(result.message, "YES", function () {
         window.isNeedShowRummyList = "teenPatti";
@@ -681,32 +632,28 @@ cc.Class({
       var msg = notify.result.message;
       CommonFun.getInstance().showTips(msg);
     }
-
     ;
   },
   ///////////////////////////////////////////////////////// 按钮，网络，自定义事件监听回调 End //////////////////////////////////
+
   ///////////////////////////////////////////////////////// 网络事件监听回调处理函数 Start //////////////////////////////////
+
   dealLoginEvent: function dealLoginEvent(notify) {
     if (!notify) {
       return;
     }
-
     ;
     var pid = notify.pid; //游戏中玩家ID
-
     this.pid = notify.pid;
     var diamond = notify.diamond; //钻石数量
-
     var roomId = notify.roomId; //房间ID -1表示不在房间中
 
     this.totalPay = notify.totalPay; //总充值金额
 
     this.resetSceneUI();
-
     if (roomId != -1) {
       GlobalCfg.SMALL_GAME_DATAS.teenPattiData.roomId = roomId;
     }
-
     ;
     this.sendEnterTableReq();
   },
@@ -715,18 +662,14 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     this.showWaitNode = true;
     this.node.getChildByName('node_ganChang').active = false;
     var playersCtrlArr = this.getPlayersCtrlArr();
-
     for (var i = 0, len = playersCtrlArr.length; i < len; i++) {
       var playersCtrl = playersCtrlArr[i];
-
       if (playersCtrl) {
         playersCtrl.setTeenPattiPlayerLeaveTable();
-
         if (playersCtrl === this["playerCtrl" + 0]) {
           playersCtrl.setTeenPattiPlayerJoinedStatus();
           playersCtrl.setTeenPattiPlayerName(this.myPlayerBaseInfo.nickname);
@@ -737,10 +680,8 @@ cc.Class({
           playersCtrl.setTeenPattiPlayerPid(-1);
         }
       }
-
       ;
     }
-
     ;
     this.clearPlayersCtrlArr();
     this.clearJoinedPlayerSeatObj();
@@ -755,11 +696,9 @@ cc.Class({
     this.setShowBtnInteractable(false);
     var matching = notify.matching;
     var scene = notify.scene;
-
     if (matching == false) {
       this.dealGameSceneEvent(scene);
     }
-
     ;
   },
   //有玩家加入桌子的广播
@@ -767,15 +706,11 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     this.showWaitNode = false;
     var seat = notify.seat; // 座位
-
     var status = notify.status; // 状态
-
     var userInfo = notify.userInfo; // 新加入的玩家信息
-
     var displayName = userInfo.displayName;
     var nickname = userInfo.nickname;
     var diamond = userInfo.diamond;
@@ -783,22 +718,19 @@ cc.Class({
     var sex = userInfo.sex;
     var vipLevel = userInfo.vipLevel;
     this.playTeenPattiEffect("playerJoin");
-    this.pushJoinedPlayerSeatObj(seat); // 通过玩家id判断是否是自己玩家加入了桌子
+    this.pushJoinedPlayerSeatObj(seat);
 
+    // 通过玩家id判断是否是自己玩家加入了桌子
     if (displayName == GlobalCfg.USER_DATAS.userId) {
       this.setMyPlayerSeat(seat);
       this.setPlayersCtrlArr(seat);
-
       if (this.isTrialRoom == false) {
         GlobalCfg.USER_DATAS.userDiamond = diamond;
       }
-
       ;
     }
-
     ;
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (playerCtrl) {
       var myPlayerSeat = this.getMyPlayerSeat();
       playerCtrl.setTeenPattiPlayerJoinedStatus();
@@ -810,7 +742,6 @@ cc.Class({
       playerCtrl.setTeenPattiPlayerTX(imgUrl);
       playerCtrl.setTeenPattiPlayerVipLevel(vipLevel);
       playerCtrl.setTeenPattiPlayerSex(sex);
-
       if (myPlayerSeat == seat) {
         this.myPlayerBaseInfo = {
           nickname: nickname,
@@ -820,10 +751,8 @@ cc.Class({
           imgUrl: imgUrl
         };
       }
-
       ;
     }
-
     ;
   },
   //有玩家离开桌子的广播
@@ -831,40 +760,33 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     var reason = notify.reason;
     this.removeSeatFromJoinedPlayerSeatObj(seat);
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
     var myPlayerSeat = this.getMyPlayerSeat();
-
     if (playerCtrl) {
       if (myPlayerSeat == seat) {
         GlobalCfg.SMALL_GAME_DATAS.teenPattiData.leaveRoomReason = reason;
-
         switch (reason) {
           // 换桌 5 
           case 5:
             break;
           // 强制转场 6
-
           case 6:
             var _forJump = notify.forceJump;
             LoggerUtil.getInstance().log("强制赶场。。。。。", _forJump);
             GlobalCfg.SMALL_GAME_DATAS.teenPattiData.roomId = _forJump;
             var labContent = this.node.getChildByName('node_ganChang').getChildByName('lab_content').getComponent(cc.Label);
-
             if (GlobalCfg.USER_DATAS.userDiamond < this.RoomConfig.entryCondition) {
               labContent.string = "Your balance is less than " + Math.floor(this.RoomConfig.entryCondition / 100) + ", please go to another session";
             } else {
               labContent.string = "Your balance exceeds " + Math.floor(this.RoomConfig.entryConditionMax / 100) + ", please go to other sessions";
             }
-
             this.node.getChildByName('node_ganChang').active = true;
             this.resetSceneUI();
             break;
-
           default:
             window.isNeedShowRoomList = "teenpatti";
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
@@ -873,10 +795,8 @@ cc.Class({
       } else {
         playerCtrl.setTeenPattiPlayerLeaveTable();
       }
-
       ;
     }
-
     ;
   },
   //有玩家离线的广播
@@ -884,18 +804,14 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat; // 座位
-
     var isOffLine = notify.offline; // 是否离线
 
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (playerCtrl) {
       playerCtrl.setTeenPattiPlayerIsOffLine(isOffLine);
     }
-
     ;
   },
   //游戏场景信息的广播
@@ -903,7 +819,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     this.showWaitNode = false;
     this.node_myPlayerLookCardSuit.active = false;
@@ -911,29 +826,17 @@ cc.Class({
     this.clearPlayerChongZhiActTimer();
     var setFlag = notify.setFlag;
     var curPlayers = notify.players; // 玩家信息
-
     var curTableStatus = notify.status; // 牌桌状态
-
     var banker = notify.banker; // 庄家座位(首次操作的人)
-
     var curChip = notify.curChip; // 基础筹码
-
     var selfBaseChip = notify.selfBaseChip; // 当前玩家能下的注
-
     var curChipPool = notify.chipPool; // 下注的总筹码
-
     var curChipList = notify.chipList; // 筹码列表
-
     var curSeat = notify.curSeat; // 当前该谁操作的座位号
-
     var curActTime = notify.actTime; // 当前倒计时
-
     var round = notify.round; // 当前轮数
-
     var curSourceCompSeat = notify.sourceCompSeat; // 发起比牌的玩家
-
     var curTargetCompSeat = notify.targetCompSeat; // 被比牌的玩家
-
     var lastGameCalc = notify.lastGameCalc;
     var duringPaymentSeat = notify.duringPaymentSeat; // 支付中的玩家
 
@@ -956,7 +859,6 @@ cc.Class({
     this.setSceneState(notify, myPlayerSeat);
     this.isHavaMySeat = true;
   },
-
   /**
    * 根据玩家列表获取我的座位
    * @param {*} curPlayers 
@@ -967,15 +869,12 @@ cc.Class({
       var userInfo = playerInfo.user;
       var seat = playerInfo.seat;
       var playerId = userInfo.playerId;
-
       if (this.pid == playerId) {
         return seat;
       }
     }
-
     ;
   },
-
   /**
    * 设置玩家的基础信息
    * @param {*} curPlayers 
@@ -984,7 +883,6 @@ cc.Class({
     for (var i = 0, len = curPlayers.length; i < len; i++) {
       var playerInfo = curPlayers[i];
       var seat = playerInfo.seat; // 座位
-
       var user = playerInfo.user;
       var nickname = user.nickname;
       var diamond = user.diamond;
@@ -994,7 +892,6 @@ cc.Class({
       var playerId = user.playerId;
       this.pushJoinedPlayerSeatObj(seat);
       var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
       if (playerCtrl) {
         var myPlayerSeat = this.getMyPlayerSeat();
         playerCtrl.setTeenPattiPlayerLeaveTable();
@@ -1005,7 +902,6 @@ cc.Class({
         playerCtrl.setTeenPattiPlayerVipLevel(vipLevel);
         playerCtrl.setTeenPattiPlayerSex(sex);
         playerCtrl.setTeenPattiPlayerPid(playerId);
-
         if (myPlayerSeat == seat) {
           this.myPlayerBaseInfo = {
             nickname: nickname,
@@ -1015,18 +911,14 @@ cc.Class({
             imgUrl: imgUrl
           };
         }
-
         ;
       }
-
       ;
     }
-
     ;
   },
   setSceneState: function setSceneState(notify, myPlayerSeat) {
     var curTableStatus = notify.status; // 牌桌状态[0游戏准备阶段(主要是展示玩家信息), 1游戏中, 2结算阶段]
-
     if (curTableStatus == 0) {
       this.isCanExitDirectly = true;
     } else if (curTableStatus == 1) {
@@ -1036,75 +928,50 @@ cc.Class({
       this.isCanExitDirectly = true;
       this.setSceneGameEndState(notify, myPlayerSeat);
     }
-
     ;
   },
   setSceneInGameState: function setSceneInGameState(notify, myPlayerSeat) {
     var curPlayers = notify.players; // 玩家信息
-
     var curTableStatus = notify.status; // 牌桌状态
-
     var banker = notify.banker; // 庄家座位(首次操作的人)
-
     var curChip = notify.curChip; // 基础筹码
-
     var selfBaseChip = notify.selfBaseChip; // 当前玩家能下的注
-
     var curChipPool = notify.chipPool; // 下注的总筹码
-
     var curChipList = notify.chipList; // 筹码列表
-
     var curSeat = notify.curSeat; // 当前该谁操作的座位号
-
     var curActTime = notify.actTime; // 当前倒计时
-
     var curSourceCompSeat = notify.sourceCompSeat; // 发起比牌的玩家
-
     var curTargetCompSeat = notify.targetCompSeat; // 被比牌的玩家
-
     var lastGameCalc = notify.lastGameCalc;
     var duringPaymentSeat = notify.duringPaymentSeat; // 支付中的玩家
-
     var plotPayment = notify.plotPayment;
     var plotWinRate = notify.plotWinRate;
-
     for (var i = 0, len = curPlayers.length; i < len; i++) {
       var playerInfo = curPlayers[i];
       var seat = playerInfo.seat; // 座位  
-
       var status = playerInfo.status; // 玩家的状态
-
       var hand = playerInfo.hand; // 手牌信息
-
       hand = hand ? hand : {
         cards: [],
         suit: 0,
         score: 0
       };
       var cardValues = hand.cards; // 牌值
-
       var cardSuit = hand.suit; // 牌型
-
       var cardScore = hand.score; // 牌力（1~100）
-
       var allChip = playerInfo.allChip; // 下的注
-
       var after = playerInfo.after; // 下注后的货币
-
       var actionMask = playerInfo.actionMask; // 当前可以进行的操作
-
       var look = playerInfo.look; // 是否看牌了
 
       var lastAct = playerInfo.lastAct; // 最近的操作(2跟注, 4加注)
 
       var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
       if (playerCtrl) {
         playerCtrl.clearTeenPattiPlayerCardsNode();
         playerCtrl.setTeenPattiPlayerCoin(after, myPlayerSeat == seat);
         playerCtrl.setTeenPattiPlayerStatusValue(status);
         playerCtrl.setTeenPattiPlayerStatusDisplay();
-
         if (status == 0) {
           // 正常状态
           playerCtrl.setTeenPattiPlayerCardsValueArr(cardValues);
@@ -1113,25 +980,20 @@ cc.Class({
           playerCtrl.setTeenPattiPlayerAllChipNodeActive(true);
           playerCtrl.setTeenPattiPlayerAllChip(allChip);
           playerCtrl.setTeenPattiPlayerLookValue(look);
-
           if (seat == myPlayerSeat) {
             playerCtrl.setTeenPattiPlayerCardsLookCardDisplay(look, cardValues);
             this.setBlindBtnString(look ? "Chaal" : "Blind");
-
             if (this.isTrialRoom == false) {
               GlobalCfg.USER_DATAS.userDiamond = after;
             }
-
             ;
             this.myPlayerBaseInfo.diamond = after;
           } else {
             playerCtrl.setTeenPattiPlayerCardsLookLabDisplay(look);
           }
-
           ;
           var opt = 0;
           var isAdd = lastAct == 4 ? true : false;
-
           if (look == false && isAdd == true) {
             opt = 1;
           } else if (look == true && isAdd == false) {
@@ -1139,7 +1001,6 @@ cc.Class({
           } else if (look == true && isAdd == true) {
             opt = 3;
           }
-
           ;
           playerCtrl.setTeenPattiPlayerCatchChipDisplay(true, opt);
         } else if (status == 1) {
@@ -1150,14 +1011,11 @@ cc.Class({
           playerCtrl.setTeenPattiPlayerAllChipNodeActive(true);
           playerCtrl.setTeenPattiPlayerAllChip(allChip);
           playerCtrl.setTeenPattiPlayerLookValue(look);
-
           if (seat == myPlayerSeat) {
             this.setBlindBtnString(look ? "Chaal" : "Blind");
-
             if (this.isTrialRoom == false) {
               GlobalCfg.USER_DATAS.userDiamond = after;
             }
-
             ;
             this.myPlayerBaseInfo.diamond = after;
             playerCtrl.setTeenPattiPlayerCardsLookCardDisplay(look, cardValues);
@@ -1168,7 +1026,6 @@ cc.Class({
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
             playerCtrl.setTeenPattiPlayerCardsGrayEffect();
           }
-
           ;
         } else if (status == 2) {
           // 比牌输了
@@ -1178,14 +1035,11 @@ cc.Class({
           playerCtrl.setTeenPattiPlayerAllChipNodeActive(true);
           playerCtrl.setTeenPattiPlayerAllChip(allChip);
           playerCtrl.setTeenPattiPlayerLookValue(look);
-
           if (seat == myPlayerSeat) {
             this.setBlindBtnString(look ? "Chaal" : "Blind");
-
             if (this.isTrialRoom == false) {
               GlobalCfg.USER_DATAS.userDiamond = after;
             }
-
             ;
             this.myPlayerBaseInfo.diamond = after;
             playerCtrl.setTeenPattiPlayerCardsLookCardDisplay(look, cardValues);
@@ -1196,21 +1050,16 @@ cc.Class({
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
             playerCtrl.setTeenPattiPlayerCardsGrayEffect();
           }
-
           ;
         } else if (status == 3) {// 旁观状态
         }
       }
-
       ;
     }
-
     ;
     var myPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(myPlayerSeat);
-
     if (myPlayerCtrl) {
       var _status = myPlayerCtrl.getTeenPattiPlayerStatusValue();
-
       if (_status == 0 && curSeat == myPlayerSeat) {
         this.setTableInfoNodeActive(false);
         this.setActBtnsNodeActive(true);
@@ -1218,82 +1067,61 @@ cc.Class({
         this.setTableInfoNodeActive(true);
         this.setActBtnsNodeActive(false);
       }
-
       ;
     }
+    ;
 
-    ; // 设置当前操作的玩家可以操作的动作
-
+    // 设置当前操作的玩家可以操作的动作
     var curOptPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(curSeat);
-
     if (curOptPlayerCtrl) {
       curOptPlayerCtrl.setTeenPattiPlayerCatchChipDisplay(false);
-      curOptPlayerCtrl.setTeenPattiPlayerActTime(parseInt(curActTime / 1000)); // 0空，1看牌，2跟注，4加注，8比牌，16弃牌，32被请求比牌
-
+      curOptPlayerCtrl.setTeenPattiPlayerActTime(parseInt(curActTime / 1000));
+      // 0空，1看牌，2跟注，4加注，8比牌，16弃牌，32被请求比牌
       var actionMaskValue = curOptPlayerCtrl.getTeenPattiPlayerActionMaskValue();
       var canActArr = this.getActListByActMask(actionMaskValue);
-
       if (curSeat == myPlayerSeat) {
         this.setBlindAmountLab(selfBaseChip);
-
         if (canActArr.indexOf(1) != -1) {
           curOptPlayerCtrl.setTeenPattiPlayerLookBtnActive(true);
         }
-
         ;
-
         if (canActArr.indexOf(2) != -1) {
           this.setBlindBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(4) != -1) {
           this.setAddBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(8) != -1) {
           this.setShowBtnInteractable(true);
           var str = this.getShowBtnString();
           this.setShowBtnLabStr(str);
         }
-
         ;
-
         if (canActArr.indexOf(16) != -1) {
           this.setPackBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(32) != -1) {
           this.setBattleCardFangDianAnim(launchPlayerCtrl, targetPlayerCtrl);
           this.showReqMyPlayerBattleCardView(launchPlayerCtrl, targetPlayerCtrl);
         }
-
         ;
       } else {
         if (canActArr.indexOf(32) != -1) {
           this.setBattleCardFangDianAnim(launchPlayerCtrl, targetPlayerCtrl);
         }
-
         ;
       }
-
       ;
     }
-
     ;
-
     if (curActTime > 1000 && duringPaymentSeat != -1) {
       var _time = parseInt(curActTime / 1000);
-
       var duringPaymentPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(duringPaymentSeat);
       duringPaymentPlayerCtrl.setTeenPattiPlayerActTime(_time, true);
       duringPaymentPlayerCtrl.teenPattiPlayerShoppingCar(true);
-
       if (myPlayerSeat == duringPaymentSeat) {
         this.node_rechagerBtnTips.active = true;
         var actTime = 0.5;
@@ -1306,108 +1134,73 @@ cc.Class({
         var name = duringPaymentPlayerCtrl.getTeenPattiPlayerName();
         this.richText_rechargeTips.string = "Your cash is not enough, please recharge in time!";
       }
-
       ;
     }
-
     ;
-
     if (curSourceCompSeat != -1 && curTargetCompSeat != -1) {
       this.curOptingPlayerSeat = curSourceCompSeat;
       this.playTeenPattiEffect("shanDian");
-
       var _launchPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(curSourceCompSeat);
-
       var _targetPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(curTargetCompSeat);
-
       var _myPlayerSeat = this.getMyPlayerSeat();
-
       if (_launchPlayerCtrl && _targetPlayerCtrl) {
         _launchPlayerCtrl.setTeenPattiPlayerActTime(10);
-
         if (curSourceCompSeat == _myPlayerSeat) {
           this.setShowBtnInteractable(false);
         }
-
         ;
-
         if (curTargetCompSeat == _myPlayerSeat) {
           this.showReqMyPlayerBattleCardView(_launchPlayerCtrl, _targetPlayerCtrl);
         }
-
         ;
         this.setBattleCardFangDianAnim(_launchPlayerCtrl, _targetPlayerCtrl);
       }
-
       ;
     }
-
     ;
     this.refreshMyPlayerShowBtnLabStr("下发场景信息的时候");
   },
   setSceneGameEndState: function setSceneGameEndState(notify, myPlayerSeat) {
     var curPlayers = notify.players; // 玩家信息
-
     var curTableStatus = notify.status; // 牌桌状态
-
     var banker = notify.banker; // 庄家座位(首次操作的人)
-
     var curChip = notify.curChip; // 基础筹码
-
     var selfBaseChip = notify.selfBaseChip; // 当前玩家能下的注
-
     var curChipPool = notify.chipPool; // 下注的总筹码
-
     var curChipList = notify.chipList; // 筹码列表
-
     var curSeat = notify.curSeat; // 当前该谁操作的座位号
-
     var curActTime = notify.actTime; // 当前倒计时
-
     var curSourceCompSeat = notify.sourceCompSeat; // 发起比牌的玩家
-
     var curTargetCompSeat = notify.targetCompSeat; // 被比牌的玩家
-
     var lastGameCalc = notify.lastGameCalc;
     var duringPaymentSeat = notify.duringPaymentSeat; // 支付中的玩家
 
     for (var i = 0, len = curPlayers.length; i < len; i++) {
       var playerInfo = curPlayers[i];
       var seat = playerInfo.seat; // 座位  
-
       var status = playerInfo.status; // 玩家的状态
-
       var hand = playerInfo.hand; // 手牌信息
-
       hand = hand ? hand : {
         cards: [],
         suit: 0,
         score: 0
       };
       var cardValues = hand.cards; // 牌值
-
       var cardSuit = hand.suit; // 牌型
-
       var cardScore = hand.score; // 牌力（1~100）
-
       var allChip = playerInfo.allChip; // 下的注
-
       var after = playerInfo.after; // 下注后的货币
-
       var actionMask = playerInfo.actionMask; // 当前可以进行的操作
-
       var look = playerInfo.look; // 是否看牌了
 
       var lastAct = playerInfo.lastAct; // 最近的操作(2跟注, 4加注)
 
       var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
       if (playerCtrl) {
         playerCtrl.clearTeenPattiPlayerCardsNode();
         playerCtrl.setTeenPattiPlayerCoin(after, myPlayerSeat == seat);
         playerCtrl.setTeenPattiPlayerStatusValue(status);
         playerCtrl.setTeenPattiPlayerStatusDisplay();
-
         if (status == 0) {
           // 正常状态
           playerCtrl.setTeenPattiPlayerCardsValueArr(cardValues);
@@ -1416,25 +1209,20 @@ cc.Class({
           playerCtrl.setTeenPattiPlayerAllChipNodeActive(true);
           playerCtrl.setTeenPattiPlayerAllChip(allChip);
           playerCtrl.setTeenPattiPlayerLookValue(look);
-
           if (seat == myPlayerSeat) {
             playerCtrl.setTeenPattiPlayerCardsLookCardDisplay(look, cardValues);
             this.setBlindBtnString(look ? "Chaal" : "Blind");
-
             if (this.isTrialRoom == false) {
               GlobalCfg.USER_DATAS.userDiamond = after;
             }
-
             ;
             this.myPlayerBaseInfo.diamond = after;
           } else {
             playerCtrl.setTeenPattiPlayerCardsLookLabDisplay(look);
           }
-
           ;
           var opt = 0;
           var isAdd = lastAct == 4 ? true : false;
-
           if (look == false && isAdd == true) {
             opt = 1;
           } else if (look == true && isAdd == false) {
@@ -1442,7 +1230,6 @@ cc.Class({
           } else if (look == true && isAdd == true) {
             opt = 3;
           }
-
           ;
           playerCtrl.setTeenPattiPlayerCatchChipDisplay(true, opt);
         } else if (status == 1) {
@@ -1453,14 +1240,11 @@ cc.Class({
           playerCtrl.setTeenPattiPlayerAllChipNodeActive(true);
           playerCtrl.setTeenPattiPlayerAllChip(allChip);
           playerCtrl.setTeenPattiPlayerLookValue(look);
-
           if (seat == myPlayerSeat) {
             this.setBlindBtnString(look ? "Chaal" : "Blind");
-
             if (this.isTrialRoom == false) {
               GlobalCfg.USER_DATAS.userDiamond = after;
             }
-
             ;
             this.myPlayerBaseInfo.diamond = after;
             playerCtrl.setTeenPattiPlayerCardsLookCardDisplay(look, cardValues);
@@ -1471,7 +1255,6 @@ cc.Class({
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
             playerCtrl.setTeenPattiPlayerCardsGrayEffect();
           }
-
           ;
         } else if (status == 2) {
           // 比牌输了
@@ -1481,14 +1264,11 @@ cc.Class({
           playerCtrl.setTeenPattiPlayerAllChipNodeActive(true);
           playerCtrl.setTeenPattiPlayerAllChip(allChip);
           playerCtrl.setTeenPattiPlayerLookValue(look);
-
           if (seat == myPlayerSeat) {
             this.setBlindBtnString(look ? "Chaal" : "Blind");
-
             if (this.isTrialRoom == false) {
               GlobalCfg.USER_DATAS.userDiamond = after;
             }
-
             ;
             this.myPlayerBaseInfo.diamond = after;
             playerCtrl.setTeenPattiPlayerCardsLookCardDisplay(look, cardValues);
@@ -1499,21 +1279,16 @@ cc.Class({
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
             playerCtrl.setTeenPattiPlayerCardsGrayEffect();
           }
-
           ;
         } else if (status == 3) {// 旁观状态
         }
       }
-
       ;
     }
-
     ;
     var myPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(myPlayerSeat);
-
     if (myPlayerCtrl) {
       var _status2 = myPlayerCtrl.getTeenPattiPlayerStatusValue();
-
       if (_status2 == 0 && curSeat == myPlayerSeat) {
         this.setTableInfoNodeActive(false);
         this.setActBtnsNodeActive(true);
@@ -1521,27 +1296,20 @@ cc.Class({
         this.setTableInfoNodeActive(true);
         this.setActBtnsNodeActive(false);
       }
-
       ;
     }
-
     ;
   },
   //游戏开始的广播
   dealGameStartNotifyEvent: function dealGameStartNotifyEvent(notify) {
     var _this2 = this;
-
     this.showWaitNode = false;
-
     if (!notify) {
       return;
     }
-
     ;
     var curChip = notify.curChip; // 默认先投放的底注
-
     var chipPool = notify.chipPool; // 总注池
-
     var players = notify.players; // 玩家状态
 
     this.isCanExitDirectly = false;
@@ -1555,59 +1323,44 @@ cc.Class({
     this.setBlindBtnInteractable(false);
     this.setAddBtnInteractable(false);
     this.setShowBtnInteractable(false);
-    this.setPackBtnInteractable(false); //设置玩家手牌节点(播放发牌动画)
+    this.setPackBtnInteractable(false);
 
+    //设置玩家手牌节点(播放发牌动画)
     var joinedPlayerSeatObj = this.getJoinedPlayerSeatObj();
-
     for (var k = 0, len = joinedPlayerSeatObj.length; k < len; k++) {
       var joinSeat = joinedPlayerSeatObj[k];
       var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(joinSeat);
-
       if (playerCtrl) {
         playerCtrl.clearTeenPattiPlayerCardsNode();
       }
-
       ;
     }
-
     ;
     var myPlayerSeat = this.getMyPlayerSeat();
     this.isCompleteFaPai = false;
-
     var _loop = function _loop(i) {
       _this2.scheduleOnce(function () {
         for (var _k = 0, len1 = joinedPlayerSeatObj.length; _k < len1; _k++) {
           var _joinSeat = joinedPlayerSeatObj[_k];
-
           var _playerCtrl = _this2.getPlayerCtrlFromPlayersCtrlArr(_joinSeat);
-
           if (_playerCtrl && _playerCtrl.getTeenPattiPlayerStatusValue() === 0) {
             _this2.playTeenPattiEffect("faCard");
-
             var cardNode = _this2.getCardNodeFromCardsPool();
-
             _playerCtrl.playTeenPattiPlayerFaCardAnim(cardNode, i);
-
             _playerCtrl.setTeenPattiPlayerAllChip(curChip);
-
             if (i == 2 && _joinSeat == myPlayerSeat && _this2.isBlindRoom == false) {
               _playerCtrl.setTeenPattiPlayerLookBtnActive(true);
             }
-
             ;
           }
-
           ;
         }
-
         ;
       }, 0.2 * i);
     };
-
     for (var i = 0; i < 3; i++) {
       _loop(i);
     }
-
     ;
     this.scheduleOnce(function () {
       _this2.isCompleteFaPai = true;
@@ -1621,13 +1374,10 @@ cc.Class({
     this.node_myPlayerLookCardSuit.active = false;
     this.node.getChildByName('node_ganChang').active = false;
     var playersCtrlArr = this.getPlayersCtrlArr();
-
     for (var i = 0, len = playersCtrlArr.length; i < len; i++) {
       var playersCtrl = playersCtrlArr[i];
-
       if (playersCtrl) {
         playersCtrl.setTeenPattiPlayerLeaveTable();
-
         if (playersCtrl === this["playerCtrl" + 0]) {
           playersCtrl.setTeenPattiPlayerJoinedStatus();
           playersCtrl.setTeenPattiPlayerName(this.myPlayerBaseInfo.nickname);
@@ -1637,26 +1387,19 @@ cc.Class({
           playersCtrl.setTeenPattiPlayerSex(this.myPlayerBaseInfo.sex);
           playersCtrl.setTeenPattiPlayerPid(-1);
         }
-
         ;
       }
-
       ;
     }
-
     ;
     var chipNodes = this.node_chips.children;
-
     for (var _i4 = 0, _len3 = chipNodes.length; _i4 < _len3; _i4++) {
       var chipNode = chipNodes[_i4];
-
       if (chipNode) {
         chipNode.destroy();
       }
-
       ;
     }
-
     ;
     this.clearPlayersCtrlArr();
     this.clearJoinedPlayerSeatObj();
@@ -1673,11 +1416,9 @@ cc.Class({
   //有玩家看牌的广播
   dealPlayerLookNotifyEvent: function dealPlayerLookNotifyEvent(notify) {
     var _this3 = this;
-
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     var hand = notify.hand;
@@ -1688,10 +1429,8 @@ cc.Class({
     this.playTeenPattiEffect("rollOverCard");
     var myPlayerSeat = this.getMyPlayerSeat();
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (playerCtrl) {
       playerCtrl.setTeenPattiPlayerLookValue(true);
-
       if (seat == myPlayerSeat) {
         this.setBlindBtnString("Chaal");
         playerCtrl.setTeenPattiPlayerCardsValueArr(cards);
@@ -1704,23 +1443,18 @@ cc.Class({
       } else {
         playerCtrl.setTeenPattiPlayerCardsLookLabDisplay(true);
       }
-
       ;
     }
-
     ;
     var canActArr = this.getActListByActMask(actionMask);
-
     if (canActArr.indexOf(8) != -1) {
       if (this.curOptingPlayerSeat === myPlayerSeat) {
         this.setShowBtnInteractable(true);
         var str = this.getShowBtnString();
         this.setShowBtnLabStr(str);
       }
-
       ;
     }
-
     ;
   },
   //有玩家被呼叫下注的广播
@@ -1728,17 +1462,12 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     var curChip = notify.curChip; // 当前注
-
     var selfBaseChip = notify.selfBaseChip; // 自己基础注
-
     var allowAction = notify.allowAction; // 允许的操作
-
     var timeout = notify.timeout; // 超时
-
     var round = notify.round; // 第几轮
 
     this.curOptingPlayerSeat = seat;
@@ -1747,54 +1476,40 @@ cc.Class({
     this.lab_round.string = "Round " + round + "/20";
     var myPlayerSeat = this.getMyPlayerSeat();
     var curOptPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (curOptPlayerCtrl) {
       curOptPlayerCtrl.setTeenPattiPlayerActTime(timeout);
-      curOptPlayerCtrl.setTeenPattiPlayerCatchChipDisplay(false); // 0空，1看牌，2跟注，4加注，8比牌，16弃牌
-
+      curOptPlayerCtrl.setTeenPattiPlayerCatchChipDisplay(false);
+      // 0空，1看牌，2跟注，4加注，8比牌，16弃牌
       var canActArr = this.getActListByActMask(allowAction);
-
       if (seat == myPlayerSeat) {
         this.setTableInfoNodeActive(false);
         this.setActBtnsNodeActive(true);
         this.setBlindAmountLab(selfBaseChip);
-
         if (canActArr.indexOf(1) != -1) {
           curOptPlayerCtrl.setTeenPattiPlayerLookBtnActive(true);
         }
-
         ;
-
         if (canActArr.indexOf(2) != -1) {
           this.setBlindBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(4) != -1) {
           this.setAddBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(8) != -1) {
           this.setShowBtnInteractable(true);
           var str = this.getShowBtnString();
           this.setShowBtnLabStr(str);
         }
-
         ;
-
         if (canActArr.indexOf(16) != -1) {
           this.setPackBtnInteractable(true);
         }
-
         ;
       }
-
       ;
     }
-
     ;
     this.teenPattiRechargeViewData = null;
     this.teenPattiRechargeAcTime = 0;
@@ -1811,36 +1526,27 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     var isAdd = notify.add; // 是否加注
-
     var chip = notify.chip; // 下注额
-
     var allChip = notify.allChip; // 该玩家总下注
-
     var after = notify.after; // 该玩家下注后
-
     var chipPool = notify.chipPool; // 总注池
-
     var curChip = notify.curChip; // 当前注
 
     this.playTeenPattiEffect("addChip");
     this.setChipPoolAllAmount(chipPool / 100);
     var myPlayerSeat = this.getMyPlayerSeat();
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (playerCtrl) {
       playerCtrl.clearTeenPatiiPlayerActTimer();
       playerCtrl.setTeenPattiPlayerAllChip(allChip);
       playerCtrl.setTeenPattiPlayerAfter(after, myPlayerSeat == seat);
       playerCtrl.playTeenPattiPlayerCatchChipAnim(chip / 100);
       var isLook = playerCtrl.getTeenPattiPlayerLookValue();
-
       if (chip != allChip) {
         var opt = 0;
-
         if (isLook == false && isAdd == true) {
           opt = 1;
         } else if (isLook == true && isAdd == false) {
@@ -1848,18 +1554,14 @@ cc.Class({
         } else if (isLook == true && isAdd == true) {
           opt = 3;
         }
-
         ;
         playerCtrl.setTeenPattiPlayerCatchChipDisplay(true, opt);
       }
-
       ;
-
       if (seat == myPlayerSeat) {
         if (this.isTrialRoom == false) {
           GlobalCfg.USER_DATAS.userDiamond = after;
         }
-
         ;
         this.myPlayerBaseInfo.diamond = after;
         this.setReduceBtnInteractable(false);
@@ -1868,10 +1570,8 @@ cc.Class({
         this.setShowBtnInteractable(false);
         this.setPackBtnInteractable(false);
       }
-
       ;
     }
-
     ;
   },
   //自己玩家弃牌的操作反馈
@@ -1888,28 +1588,23 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     this.playTeenPattiEffect("dropCard");
     var myPlayerSeat = this.getMyPlayerSeat();
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (playerCtrl) {
       playerCtrl.clearTeenPatiiPlayerActTimer();
       playerCtrl.setTeenPattiPlayerStatusValue(1);
       playerCtrl.setTeenPattiPlayerStatusDisplay();
       playerCtrl.setTeenPattiPlayerLookBtnActive(false);
       var isLook = playerCtrl.getTeenPattiPlayerLookValue();
-
       if (isLook) {
         playerCtrl.setTeenPattiPlayerCardsGrayMask();
       } else {
         playerCtrl.setTeenPattiPlayerCardsGrayEffect();
       }
-
       ;
-
       if (myPlayerSeat == seat) {
         this.isCanExitDirectly = true;
         this.setTableInfoNodeActive(true);
@@ -1920,10 +1615,8 @@ cc.Class({
         this.setShowBtnInteractable(false);
         this.setPackBtnInteractable(false);
       }
-
       ;
     }
-
     ;
     this.refreshMyPlayerShowBtnLabStr("有玩家弃牌的时候");
   },
@@ -1934,7 +1627,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var launch = notify.launch;
     var target = notify.target;
@@ -1945,24 +1637,18 @@ cc.Class({
     var launchPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(launch);
     var targetPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(target);
     var myPlayerSeat = this.getMyPlayerSeat();
-
     if (launchPlayerCtrl && targetPlayerCtrl) {
       launchPlayerCtrl.setTeenPattiPlayerActTime(10);
-
       if (launch == myPlayerSeat) {
         this.setShowBtnInteractable(false);
       }
-
       ;
-
       if (target == myPlayerSeat) {
         this.showReqMyPlayerBattleCardView(launchPlayerCtrl, targetPlayerCtrl);
       }
-
       ;
       this.setBattleCardFangDianAnim(launchPlayerCtrl, targetPlayerCtrl);
     }
-
     ;
   },
   //自己玩家应答比牌的反馈
@@ -1970,7 +1656,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
   },
   //有玩家应答比牌的广播
@@ -1978,8 +1663,8 @@ cc.Class({
     if (!notify) {
       return;
     }
-
-    ; //处理有人应答比牌广播
+    ;
+    //处理有人应答比牌广播
 
     var agree = notify.agree;
     var launch = notify.launch;
@@ -1990,39 +1675,30 @@ cc.Class({
     this.hideMyPlayerBattleCardView();
     var launchPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(launch);
     var targetPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(target);
-
     if (launchPlayerCtrl) {
       launchPlayerCtrl.clearTeenPatiiPlayerActTimer();
     }
-
     ;
-
     if (agree) {
       LoggerUtil.getInstance().time("比牌动画播放时间");
       this.launcherWin = launcherWin ? launch : target;
       this.launcherFail = launcherWin ? target : launch;
-
       if (targetPlayerCtrl && !autoAnswer) {
         targetPlayerCtrl.setTeenPattiPlayerAgreeActive(true);
       }
-
       ;
       this.showPlayerBattleDisplay();
     } else {
       if (targetPlayerCtrl) {
         targetPlayerCtrl.setTeenPattiPlayerRefuseActive(true);
       }
-
       ;
     }
-
     ;
     var myPlayerSeat = this.getMyPlayerSeat();
-
     if (myPlayerSeat == launcherWin) {
       this.isCanExitDirectly = true;
     }
-
     ;
   },
   //自己玩家退出游戏的操作反馈
@@ -2035,7 +1711,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     this.isCanExitDirectly = true;
     this.isHavaMySeat = false;
@@ -2049,26 +1724,19 @@ cc.Class({
     this.setBlindAmountLab(0);
     this.setChipPoolAllAmount(0);
     var chipNodes = this.node_chips.children;
-
     for (var i = 0, len = chipNodes.length; i < len; i++) {
       var chipNode = chipNodes[i];
-
       if (chipNode) {
         chipNode.destroy();
       }
-
       ;
     }
-
     ;
     var playersCtrlArr = this.getPlayersCtrlArr();
-
     for (var _i5 = 0, _len4 = playersCtrlArr.length; _i5 < _len4; _i5++) {
       var playersCtrl = playersCtrlArr[_i5];
-
       if (playersCtrl) {
         playersCtrl.setTeenPattiPlayerLeaveTable();
-
         if (playersCtrl === this["playerCtrl" + 0]) {
           playersCtrl.setTeenPattiPlayerJoinedStatus();
           playersCtrl.setTeenPattiPlayerName(this.myPlayerBaseInfo.nickname);
@@ -2079,10 +1747,8 @@ cc.Class({
           playersCtrl.setTeenPattiPlayerPid(-1);
         }
       }
-
       ;
     }
-
     ;
     this.clearPlayersCtrlArr();
     this.clearJoinedPlayerSeatObj();
@@ -2106,45 +1772,34 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     var diamond = notify.diamond;
     var myPlayerSeat = this.getMyPlayerSeat();
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (playerCtrl) {
       playerCtrl.setTeenPattiPlayerCoin(diamond, myPlayerSeat == seat);
     }
-
     ;
-
     if (myPlayerSeat == seat) {
       if (this.isTrialRoom == false) {
         GlobalCfg.USER_DATAS.userDiamond = diamond;
       }
-
       ;
     }
-
     ;
   },
   //游戏结局的广播
   dealGameOverNotifyEvent: function dealGameOverNotifyEvent(notify) {
     var _this4 = this;
-
     if (!notify) {
       return;
     }
-
     ;
     var players = notify.players;
     var winSeat = notify.winSeat; // 赢家
-
     var chipPool = notify.chipPool; // 注池
-
     var finishReason = notify.finishReason; // 结束原因 (0弃牌，1比牌，2回合数封顶，3注池封顶)
-
     var nextTimeout = notify.nextTimeout; // 下局倒计时(ms)
 
     this.isCanExitDirectly = true;
@@ -2158,34 +1813,23 @@ cc.Class({
     this.curRoundAddCoinFinish();
     this.scheduleOnce(function () {
       _this4.node_myPlayerLookCardSuit.active = false;
-
       var playersCtrlArr = _this4.getPlayersCtrlArr();
-
       for (var i = 0, len = playersCtrlArr.length; i < len; i++) {
         var playerCtrl = playersCtrlArr[i];
-
         if (playerCtrl) {
           playerCtrl.setTeenPattiPlayerGameOver();
         }
-
         ;
       }
-
       ;
       _this4.launcherWin = null;
       _this4.launcherFail = null;
       _this4.curOptingPlayerSeat = null;
-
       _this4.setChipPoolAllAmount(0);
-
       _this4.setBlindAmountLab(0);
-
       _this4.setBlindBtnString("Blind");
-
       _this4.setShowBtnString(teenPattiLanguage.lobby[0][language]);
-
       var str = _this4.getShowBtnString();
-
       _this4.setShowBtnLabStr(str);
     }, 6);
   },
@@ -2200,18 +1844,12 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var msgType = notify.msgType; // 消息类型 0短语 1表情 2礼物
-
     var target = notify.target; // 接收者seat (-1表示群发)
-
     var sender = notify.sender; // 发送者seat
-
     var price = notify.price; // 消息价格
-
     var senderAfter = notify.senderAfter; // 发送者扣价后货币
-
     var name = notify.name; // 表情名/短语内容
 
     if (msgType == 0 || msgType == 1) {
@@ -2220,53 +1858,40 @@ cc.Class({
     } else if (msgType == 2) {
       var targetNodeArr = [];
       var senderCtrl = this.getPlayerCtrlFromPlayersCtrlArr(sender);
-
       if (!senderCtrl || !senderCtrl.node) {
         return;
       }
-
       ;
-
       if (target == -1) {
         var playersCtrlArr = this.getPlayersCtrlArr();
-
         for (var i = 0; i < playersCtrlArr.length; i++) {
           var playersCtrl = playersCtrlArr[i];
-
           if (playersCtrl && playersCtrl.isHavePlayer == true && playersCtrl !== senderCtrl) {
             targetNodeArr.push(playersCtrl.node);
           }
-
           ;
         }
-
         ;
       } else {
         var _playersCtrl = this.getPlayerCtrlFromPlayersCtrlArr(target);
-
         if (_playersCtrl) {
           targetNodeArr.push(_playersCtrl.node);
         }
-
         ;
       }
-
       ;
       CommonFun.getInstance().playGameGifInteraction(name, senderCtrl.node, targetNodeArr);
     }
-
     ;
   },
   dealPlayerActTime: function dealPlayerActTime(notify) {
     if (!notify) {
       return;
     }
-
     ;
     var actTime = notify.actTime;
     var seatid = notify.seatid;
     var myPlayerSeat = this.getMyPlayerSeat();
-
     if (myPlayerSeat === seatid && this.node_rechagerBtnTips.active == true) {
       if (actTime <= 0) {
         this.teenPattiRechargeViewData = null;
@@ -2275,10 +1900,8 @@ cc.Class({
         this.node_rechagerBtnTips.active = false;
         return;
       }
-
       ;
     }
-
     ;
   },
   dealPreparepayment: function dealPreparepayment() {
@@ -2292,7 +1915,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var timeoutMs = notify.timeoutMs;
     var seat = notify.seat;
@@ -2300,12 +1922,10 @@ cc.Class({
     var winRate = notify.winRate; // 赢的概率 1298表示12.98%
 
     var _time = parseInt(timeoutMs / 1000);
-
     var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
     playerCtrl.setTeenPattiPlayerActTime(_time, true);
     playerCtrl.teenPattiPlayerShoppingCar(true);
     var myPlayerSeat = this.getMyPlayerSeat();
-
     if (myPlayerSeat == seat) {
       this.node_rechagerBtnTips.active = true;
       var actTime = 0.5;
@@ -2318,18 +1938,15 @@ cc.Class({
       var name = playerCtrl.getTeenPattiPlayerName();
       this.richText_rechargeTips.string = "Your cash is not enough, please recharge in time!";
     }
-
     ;
   },
   dealPaymentfinishnotify: function dealPaymentfinishnotify(notify) {
     if (!notify) {
       return;
     }
-
     ;
     var seat = notify.seat;
     var timeoutMs = notify.timeoutMs; // 修正超时
-
     var actionMask = notify.actionMask; // 当前可以进行的操作
 
     this.node_rechagerBtnTips.active = false;
@@ -2339,51 +1956,38 @@ cc.Class({
     this.teenPattiRechargeWinRate = 0;
     this.clearPlayerChongZhiActTimer();
     var curOptPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
     if (curOptPlayerCtrl) {
       curOptPlayerCtrl.setTeenPattiPlayerCatchChipDisplay(false);
-      curOptPlayerCtrl.setTeenPattiPlayerActTime(parseInt(timeoutMs / 1000)); // 0空，1看牌，2跟注，4加注，8比牌，16弃牌
-
+      curOptPlayerCtrl.setTeenPattiPlayerActTime(parseInt(timeoutMs / 1000));
+      // 0空，1看牌，2跟注，4加注，8比牌，16弃牌
       var canActArr = this.getActListByActMask(actionMask);
       var myPlayerSeat = this.getMyPlayerSeat();
-
       if (seat == myPlayerSeat) {
         if (canActArr.indexOf(1) != -1) {
           curOptPlayerCtrl.setTeenPattiPlayerLookBtnActive(true);
         }
-
         ;
-
         if (canActArr.indexOf(2) != -1) {
           this.setBlindBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(4) != -1) {
           this.setAddBtnInteractable(true);
         }
-
         ;
-
         if (canActArr.indexOf(8) != -1) {
           this.setShowBtnInteractable(true);
           var str = this.getShowBtnString();
           this.setShowBtnLabStr(str);
         }
-
         ;
-
         if (canActArr.indexOf(16) != -1) {
           this.setPackBtnInteractable(true);
         }
-
         ;
       }
-
       ;
     }
-
     ;
   },
   setPlayerChongZhiActTime: function setPlayerChongZhiActTime(actTime) {
@@ -2394,7 +1998,6 @@ cc.Class({
       this.sprite_rechargeDaoJiShi.fillRange = actTime / 300;
       actTime--;
       var self = this;
-
       var actTimerCall = function actTimerCall() {
         if (self && self.lab_rechargeDaoJiShi) {
           if (actTime < 0 && self) {
@@ -2407,76 +2010,58 @@ cc.Class({
             self.sprite_rechargeDaoJiShi.fillRange = 0;
             return;
           }
-
           ;
           self.lab_btnRechargeTip.string = "You have " + actTime + "s to recharge";
           self.lab_rechargeDaoJiShi.string = actTime;
           self.sprite_rechargeDaoJiShi.fillRange = actTime / 300;
           actTime--;
         }
-
         ;
       };
-
       this.playerChongZhiActTimer = setInterval(actTimerCall, 1000);
     }
-
     ;
   },
   //清除玩家操作的倒计时显示
   clearPlayerChongZhiActTimer: function clearPlayerChongZhiActTimer() {
     var self = this;
-
     if (self.playerChongZhiActTimer) {
       clearInterval(self.playerChongZhiActTimer);
       self.playerChongZhiActTimer = null;
     }
-
     ;
     var playersCtrlArr = this.getPlayersCtrlArr();
-
     for (var i = 0, len = playersCtrlArr.length; i < len; i++) {
       var playersCtrl = playersCtrlArr[i];
-
       if (playersCtrl) {
         playersCtrl.teenPattiPlayerShoppingCar(false);
       }
-
       ;
     }
-
     ;
   },
   ///////////////////////////////////////////////////////// 网络事件监听回调处理函数 End //////////////////////////////////
   refreshMyPlayerShowBtnLabStr: function refreshMyPlayerShowBtnLabStr(type) {
     var NormalPlayerNum = 0;
     var joinedPlayerSeatObj = this.getJoinedPlayerSeatObj();
-
     for (var i = 0, len = joinedPlayerSeatObj.length; i < len; i++) {
       var joinSeat = joinedPlayerSeatObj[i];
       var joinPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(joinSeat);
-
       if (joinPlayerCtrl) {
         var status = joinPlayerCtrl.getTeenPattiPlayerStatusValue();
-
         if (status == 0) {
           NormalPlayerNum++;
         }
-
         ;
       }
-
       ;
     }
-
     ;
-
     if (NormalPlayerNum == 2) {
       this.setShowBtnString(teenPattiLanguage.lobby[1][language]);
     } else {
       this.setShowBtnString(teenPattiLanguage.lobby[0][language]);
     }
-
     var str = this.getShowBtnString();
     this.setShowBtnLabStr(str);
     LoggerUtil.getInstance().log("\u5728" + type + ", \u53EF\u4EE5\u7EE7\u7EED\u64CD\u4F5C\u7684\u73A9\u5BB6\u6570\u91CF\u662F\uFF1A" + NormalPlayerNum);
@@ -2488,68 +2073,49 @@ cc.Class({
     return this.myPlayerSeat ? this.myPlayerSeat : 0;
   },
   getActListByActMask: function getActListByActMask(actMask) {
-    LoggerUtil.getInstance().log("actionMask:", actMask); // 0空，1看牌，2跟注，4加注，8比牌，16弃牌，32同意比牌
-
+    LoggerUtil.getInstance().log("actionMask:", actMask);
+    // 0空，1看牌，2跟注，4加注，8比牌，16弃牌，32同意比牌
     var havedActionArr = [];
     var actionArr = [1, 2, 4, 8, 16, 32];
-
     for (var i = 0, len = actionArr.length; i < len; i++) {
       var tempAct = actionArr[i];
       var canAction = actMask & tempAct;
-
       if (actionArr.indexOf(canAction) != -1 && havedActionArr.indexOf(canAction) == -1) {
         havedActionArr.push(canAction);
       }
-
       ;
     }
-
     ;
     return havedActionArr;
   },
   setGameOverPlayerStatus: function setGameOverPlayerStatus(players, winSeat, finishReason) {
     var _this5 = this;
-
     var myPlayerSeat = this.getMyPlayerSeat();
     var packedPlayerNum = 0;
     var allPlayerPacked = false;
-
     for (var i = 0, len = players.length; i < len; i++) {
       var player = players[i];
       var seat = player.seat;
       var status = player.status;
-
       if (status != 0 && winSeat != seat) {
         packedPlayerNum++;
       }
-
       ;
-
       if (packedPlayerNum == len - 1) {
         allPlayerPacked = true;
       }
-
       ;
     }
-
     ;
-
-    var _loop2 = function _loop2(_i6, _len5) {
+    var _loop2 = function _loop2() {
       var player = players[_i6];
       var seat = player.seat; // 位置信息
-
       var cards = player.cards; // 牌
-
       var suit = player.suit; // 牌型
-
       var calc = player.calc; // 输赢分数
-
       var after = player.after; // 结算后货币
-
       var handledCompare = player.handledCompare; // 执行过比牌
-
       var playerCtrl = _this5.getPlayerCtrlFromPlayersCtrlArr(seat);
-
       if (playerCtrl) {
         playerCtrl.clearTeenPatiiPlayerActTimer();
         playerCtrl.setTeenPattiPlayerCardsValueArr(cards);
@@ -2557,17 +2123,13 @@ cc.Class({
         playerCtrl.setTeenPattiPlayerCatchChipDisplay(false);
         playerCtrl.setTeenPattiPlayerLookBtnActive(false);
         playerCtrl.setTeenPattiPlayerAfter(after, myPlayerSeat == seat);
-
         var _status3 = playerCtrl.getTeenPattiPlayerStatusValue();
-
         var isLook = playerCtrl.getTeenPattiPlayerLookValue();
-
         if (finishReason == 1) {
           if (myPlayerSeat === seat && isLook == false) {
             playerCtrl.playTeenPattiPlayerCardsRollingOverAnima();
             playerCtrl.clearTeenPattiPlayerCardsGrayEffect();
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
-
             _this5.scheduleOnce(function () {
               playerCtrl.setTeenPattiPlayerCardSuitDisplay(suit);
             }, 1);
@@ -2575,19 +2137,16 @@ cc.Class({
             playerCtrl.playTeenPattiPlayerCardsRollingOverAnima();
             playerCtrl.clearTeenPattiPlayerCardsGrayEffect();
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
-
             _this5.scheduleOnce(function () {
               playerCtrl.setTeenPattiPlayerCardSuitDisplay(suit);
             }, 1);
           }
-
           ;
         } else {
           if (myPlayerSeat === seat && isLook == false) {
             playerCtrl.playTeenPattiPlayerCardsRollingOverAnima();
             playerCtrl.clearTeenPattiPlayerCardsGrayEffect();
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
-
             _this5.scheduleOnce(function () {
               playerCtrl.setTeenPattiPlayerCardSuitDisplay(suit);
             }, 1);
@@ -2595,34 +2154,26 @@ cc.Class({
             playerCtrl.playTeenPattiPlayerCardsRollingOverAnima();
             playerCtrl.clearTeenPattiPlayerCardsGrayEffect();
             playerCtrl.setTeenPattiPlayerCardsGrayMask();
-
             _this5.scheduleOnce(function () {
               playerCtrl.setTeenPattiPlayerCardSuitDisplay(suit);
             }, 1);
           }
-
           ;
         }
-
         ;
-
         if (winSeat == seat) {
           _this5.scheduleOnce(function () {
             _this5.playTeenPattiEffect("gz");
-
             playerCtrl.setTeenPattiPlayerWinSkeletonDisplay();
           }, 2.2);
-
           _this5.scheduleOnce(function () {
             var txNode = playerCtrl.node;
             var txNodePos = txNode.getPosition();
             var targetPosX = txNodePos.x;
             var targetPosY = txNodePos.y - 60;
             var chipNodes = _this5.node_chips.children;
-
             _this5.playTeenPattiEffect("shouCoin");
-
-            var _loop3 = function _loop3(_i7, _len6) {
+            var _loop3 = function _loop3() {
               var chipNode = chipNodes[_i7];
               cc.tween(chipNode).to(0.3 + _i7 * 0.03, {
                 position: cc.v2(targetPosX, targetPosY)
@@ -2632,54 +2183,41 @@ cc.Class({
                 chipNode.destroy();
               }).start();
             };
-
             for (var _i7 = 0, _len6 = chipNodes.length; _i7 < _len6; _i7++) {
-              _loop3(_i7, _len6);
+              _loop3();
             }
-
             ;
           }, 3);
-
           _this5.scheduleOnce(function () {
             if (calc > 0) {
               playerCtrl.setTeenPattiPlayerGameWinResultScore(calc / 100);
               playerCtrl.setTeenPattiPlayerAfter(after, myPlayerSeat == seat);
             }
-
             ;
           }, 3.5);
         }
-
         ;
       }
-
       ;
-
       if (myPlayerSeat == seat) {
         if (_this5.isTrialRoom == false) {
           GlobalCfg.USER_DATAS.userDiamond = after;
         }
-
         ;
       }
-
       ;
     };
-
     for (var _i6 = 0, _len5 = players.length; _i6 < _len5; _i6++) {
-      _loop2(_i6, _len5);
+      _loop2();
     }
-
     ;
   },
   setPlayersCtrlArr: function setPlayersCtrlArr(myPlayerSeat) {
     this.playersCtrlArr = [];
-
     for (var seat = 0; seat < 5; seat++) {
       this.playersCtrlArr[(myPlayerSeat + seat) % 5] = this["playerCtrl" + seat];
       this["playerCtrl" + seat].setTeenPattiPlayerSeat((myPlayerSeat + seat) % 5, myPlayerSeat);
     }
-
     ;
   },
   getPlayersCtrlArr: function getPlayersCtrlArr() {
@@ -2698,16 +2236,12 @@ cc.Class({
     if (!conf) {
       return;
     }
-
     ;
     this.curTableConfig = conf;
     var cellScore = conf.cellScore;
     var blind = conf.blind; // 是否是闷牌场
-
     this.maxJetton = conf.maxJetton; // 最大筹码
-
     var maxTableJetton = conf.maxTableJetton; // 桌面奖池最大筹码
-
     var trial = conf.trial;
     this.isBlindRoom = blind;
     this.isTrialRoom = trial; // true: 体验场，false: 金币场
@@ -2716,24 +2250,19 @@ cc.Class({
       this.node_btn_cz_mf.active = trial ? true : false;
       this.node_btn_cz_cz.active = trial ? false : true;
     }
-
     ;
     this.cashSwitch();
     this.lab_bootAmount.string = cellScore / 100;
     this.lab_chaalLimit.string = conf.maxJetton / 100;
     this.lab_maxBlinds.string = blind ? "Always Blind" : 4;
     this.lab_potLimit.string = maxTableJetton / 100;
-
     for (var i = 0; i < 5; i++) {
       var playerCtrl = this["playerCtrl" + i];
-
       if (playerCtrl) {
         playerCtrl.setTeenPattiPlayerChipIsTrialType(trial);
       }
-
       ;
     }
-
     ;
   },
   cashSwitch: function cashSwitch() {
@@ -2741,9 +2270,7 @@ cc.Class({
       var btn_add = cc.find('Canvas/btn_cz/Background/icon_chipsshop');
       btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
     }
-
     this.node_btn_cz.active = false; //GlobalCfg.USER_DATAS.openModules.includes(4);
-
     this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
   },
   setGameSceneChipList: function setGameSceneChipList(chipList) {
@@ -2758,7 +2285,6 @@ cc.Class({
       scr.setTeenPattiChipAmount(chipAmount / 100);
       this.node_chips.addChild(chipNode);
     }
-
     ;
   },
   setCurChipAmount: function setCurChipAmount(baseChip) {
@@ -2768,23 +2294,17 @@ cc.Class({
     for (var i = 0, len = players.length; i < len; i++) {
       var player = players[i];
       var seat = player.seat; // 座位
-
       var status = player.status; // 游戏状态
-
       var diamond = player.diamond; // 金币数量
-
       var playerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(seat);
-
       if (playerCtrl) {
         var myPlayerSeat = this.getMyPlayerSeat();
         playerCtrl.setTeenPattiPlayerCoin(diamond, myPlayerSeat == seat);
         playerCtrl.setTeenPattiPlayerStatusValue(status);
         playerCtrl.setTeenPattiPlayerStatusDisplay();
       }
-
       ;
     }
-
     ;
     this.refreshMyPlayerShowBtnLabStr("游戏开始的时候");
   },
@@ -2793,7 +2313,6 @@ cc.Class({
   },
   setMyPlayerLookCardAnim: function setMyPlayerLookCardAnim(suit, score) {
     var _this6 = this;
-
     var str = ["", "High Card", "Pair", "Color", "Sequence", "Pure SEQ", "SET"][suit];
     this.lab_myPlayerLookCard.string = this.showLable(str);
     var progress = 0.0;
@@ -2825,13 +2344,10 @@ cc.Class({
     if (!launchPlayerCtrl || !targetPlayerCtrl) {
       return;
     }
-
     ;
-
     if (this.isLoadingBattleCardView) {
       return;
     }
-
     ;
     var launchPlayerName = launchPlayerCtrl.getTeenPattiPlayerName();
     var launchPlayerTXUrl = launchPlayerCtrl.getTeenPattiPlayerTX();
@@ -2863,19 +2379,15 @@ cc.Class({
   },
   showBattleWinAndFailPlayerDisplay: function showBattleWinAndFailPlayerDisplay() {
     var _this7 = this;
-
     this.playTeenPattiEffect("bipaibaozha");
     var launcherWin = this.launcherWin;
     var launcherFail = this.launcherFail;
     var launcherWinPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(launcherWin);
     var launcherFailPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(launcherFail);
-
     if (launcherWinPlayerCtrl) {
       launcherWinPlayerCtrl.clearTeenPatiiPlayerActTimer();
     }
-
     ;
-
     if (launcherFailPlayerCtrl) {
       launcherFailPlayerCtrl.clearTeenPatiiPlayerActTimer();
       launcherFailPlayerCtrl.setTeenPattiPlayerBaoZhaSkeletonDisplay();
@@ -2883,34 +2395,26 @@ cc.Class({
         if (!launcherFailPlayerCtrl) {
           return;
         }
-
         ;
         var isLook = launcherFailPlayerCtrl.getTeenPattiPlayerLookValue();
         launcherFailPlayerCtrl.clearTeenPattiPlayerBaoZhaSkeletonDisplay();
         launcherFailPlayerCtrl.setTeenPattiPlayerStatusValue(2);
         launcherFailPlayerCtrl.setTeenPattiPlayerStatusDisplay();
-
         if (isLook) {
           launcherFailPlayerCtrl.setTeenPattiPlayerCardsGrayMask();
         } else {
           launcherFailPlayerCtrl.setTeenPattiPlayerCardsGrayEffect();
         }
-
         ;
-
         var myPlayerSeat = _this7.getMyPlayerSeat();
-
         if (myPlayerSeat == launcherFail) {
           _this7.setTableInfoNodeActive(true);
-
           _this7.setActBtnsNodeActive(false);
         }
-
         ;
         LoggerUtil.getInstance().timeEnd("比牌动画播放时间");
       }, 0.5);
     }
-
     ;
     this.refreshMyPlayerShowBtnLabStr("比牌结果的时候");
   },
@@ -2929,7 +2433,6 @@ cc.Class({
       this.node_lianXian.setPosition(midPointPos);
       this.node_lianXian.active = true;
     }
-
     ;
   },
   clearBattleCardFangDianAnim: function clearBattleCardFangDianAnim() {
@@ -2938,40 +2441,36 @@ cc.Class({
   //根据用户Seat获取用户控制脚本
   getPlayerInfoByUserSeat: function getPlayerInfoByUserSeat(userID) {
     var playerInfo = null;
-
     for (var i = 0; i < this.userArryNode.length; i++) {
       var userNode = this.userArryNode[i];
-
       if (userNode.name != '') {
         var userInfoCtrl = userNode.getComponent('teenPattiPlayerCtrl');
-
         if (userInfoCtrl && userInfoCtrl.seatid === userID) {
           playerInfo = userInfoCtrl;
           break;
         }
       }
     }
-
     return playerInfo;
   },
   getLiangPosAngle: function getLiangPosAngle(start, end) {
     //计算出朝向
     var dx = end.x - start.x;
     var dy = end.y - start.y;
-    var dir = cc.v2(dx, dy); //根据朝向计算出夹角弧度
-
-    var angle = dir.signAngle(cc.v2(1, 0)); //将弧度转换为欧拉角
-
+    var dir = cc.v2(dx, dy);
+    //根据朝向计算出夹角弧度
+    var angle = dir.signAngle(cc.v2(1, 0));
+    //将弧度转换为欧拉角
     var degree = angle / Math.PI * 180;
     return -degree;
   },
   ////////////////////////////////////////////////////////////// 比牌展示 End ////////////////////////////////
+
   ////////////////////////////////////////////// 进入房价的玩家座位统计数组 Start ///////////////////////////////
   pushJoinedPlayerSeatObj: function pushJoinedPlayerSeatObj(seat) {
     if (this.joinedPlayerSeatObj.indexOf(seat) == -1) {
       this.joinedPlayerSeatObj.push(seat);
     }
-
     ;
   },
   removeSeatFromJoinedPlayerSeatObj: function removeSeatFromJoinedPlayerSeatObj(seat) {
@@ -2979,7 +2478,6 @@ cc.Class({
       if (item == seat) {
         arr.splice(index, 1);
       }
-
       ;
     });
   },
@@ -2990,6 +2488,7 @@ cc.Class({
     return this.joinedPlayerSeatObj;
   },
   ////////////////////////////////////////////// 进入房价的玩家座位统计数组 End ///////////////////////////////
+
   ////////////////////////////////////////////// 设置操作按钮的状态 Start ////////////////////////////////////
   setActBtnsNodeActive: function setActBtnsNodeActive(active) {
     this.node_act_btns.active = active;
@@ -3016,11 +2515,11 @@ cc.Class({
     this.btn_pack.enableAutoGrayEffect = !isInteract;
   },
   ///////////////////////////////////////////// 设置操作按钮的状态 End //////////////////////////////
+
   /////////////////////////////////////////////////////////// 不需要向服务器发送操作请求的按钮事件 Start ////////////////////////////
   dealBtnBlindOpt: function dealBtnBlindOpt(optType) {
     var btn_add = this.node_btn_add.getComponent(cc.Button);
     var btn_reduce = this.node_btn_reduce.getComponent(cc.Button);
-
     if (optType == "add") {
       btn_add.interactable = false;
       btn_add.enableAutoGrayEffect = true;
@@ -3030,18 +2529,14 @@ cc.Class({
       this.lab_chipAmount.string = this.myPlayerCanChipAmount * 2 / 100;
       var myPlayerSeat = this.getMyPlayerSeat();
       var myPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(myPlayerSeat);
-
       if (!myPlayerCtrl) {
         return;
       }
-
       ;
       var coin = myPlayerCtrl.getTeenPattiPlayerCoin();
-
       if (this.isTrialRoom == false && this.totalPay == 0 && this.myPlayerCanChipAmount * (this.isAddChipAmount ? 2 : 1) > coin) {
         CommonFun.getInstance().showSmallAddCash("teenPatti", this.curTableConfig ? this.curTableConfig.cellScore : 0);
       }
-
       ;
     } else if (optType == "reduce") {
       btn_add.interactable = true;
@@ -3051,7 +2546,6 @@ cc.Class({
       this.isAddChipAmount = false;
       this.lab_chipAmount.string = this.myPlayerCanChipAmount / 100;
     }
-
     ;
   },
   dealShowWanFaOpt: function dealShowWanFaOpt() {
@@ -3069,12 +2563,10 @@ cc.Class({
   },
   dealBtnRecharge: function dealBtnRecharge() {
     var children = this.node_hintParent.children;
-
     for (var i = 0, len = children.length; i < len; i++) {
       var node = children[i];
       node.destroy();
     }
-
     ;
     var rechargeViewNode = cc.instantiate(this.prefab_recharge);
     var ctrl = rechargeViewNode.getComponent("teenPattiRechargeCtrl");
@@ -3085,13 +2577,11 @@ cc.Class({
   setTableInfoNodeActive: function setTableInfoNodeActive(active) {
     this.node_info_bg.active = active;
     this.node_btn_changeTable.active = active;
-
     if (active == false) {
       this.node_btn_changeTable.getComponent(cc.Button).interactable = true;
       this.sprite_btn_changeTable.unscheduleAllCallbacks();
       this.sprite_btn_changeTable.fillRange = 0;
     }
-
     ;
   },
   setBlindAmountLab: function setBlindAmountLab(chipAmount) {
@@ -3100,7 +2590,9 @@ cc.Class({
     this.lab_chipAmount.string = chipAmount / 100;
   },
   /////////////////////////////////////////////////////////// 不需要向服务器发送操作请求的按钮事件 End /////////////////////////////////////////
+
   /////////////////////////////////////////////////////////// 需要向服务器发送操作请求的按钮事件 Start //////////////////////////////////////////
+
   sendLoginReq: function sendLoginReq() {
     var proroID = "gameservice.login";
     var message = "LoginReq";
@@ -3116,7 +2608,6 @@ cc.Class({
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
       return;
     }
-
     ;
     var proroID = "gameservice.enterlv";
     var message = "EnterLvReq";
@@ -3133,7 +2624,6 @@ cc.Class({
     if (this.isHavaMySeat == false) {
       return;
     }
-
     ;
     var proroID = "gameservice.changeroom";
     var message = "ChangeRoomAck";
@@ -3147,14 +2637,11 @@ cc.Class({
   sendBlindReq: function sendBlindReq() {
     var myPlayerSeat = this.getMyPlayerSeat();
     var myPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(myPlayerSeat);
-
     if (!myPlayerCtrl) {
       return;
     }
-
     ;
     var coin = myPlayerCtrl.getTeenPattiPlayerCoin();
-
     if (this.isTrialRoom == false) {
       if (this.totalPay == 0 && this.myPlayerCanChipAmount * (this.isAddChipAmount ? 2 : 1) > coin) {
         CommonFun.getInstance().showSmallAddCash("teenPatti", this.curTableConfig ? this.curTableConfig.cellScore : 0);
@@ -3163,17 +2650,14 @@ cc.Class({
         CommonFun.getInstance().showTips("Insufficient gold coins！");
         return;
       }
-
       ;
     } else if (this.isTrialRoom) {
       if (this.myPlayerCanChipAmount * (this.isAddChipAmount ? 2 : 1) > coin) {
         CommonFun.getInstance().showTips("Insufficient experience coins！");
         return;
       }
-
       ;
     }
-
     var proroID = "gameservice.chip";
     var message = "ChipReq";
     GameServerManager.send(proroID, message, {
@@ -3191,24 +2675,22 @@ cc.Class({
     GameServerManager.send(proroID, message, {});
   },
   /////////////////////////////////////////////////////////// 需要向服务器发送操作请求的按钮事件 End //////////////////////////////////////////
+
   ////////////////////////////////////////////////////////// 播放音效 Start ////////////////////////////////////////
+
   loadAudioClip: function loadAudioClip(name, func, target) {
     if (name === void 0) {
       name = "";
     }
-
     if (func === void 0) {
       func = null;
     }
-
     if (target === void 0) {
       target = null;
     }
-
     if (!name || name.length == 0) {
       return;
     }
-
     ;
     CommonFun.getInstance().loadBundle("teenPatti", function (bundle) {
       bundle.load("sound/" + name, cc.AudioClip, function (err1, audioClip) {
@@ -3217,7 +2699,6 @@ cc.Class({
         } else {
           LoggerUtil.getInstance().error(err1);
         }
-
         ;
       });
     }, function (err) {
@@ -3230,16 +2711,14 @@ cc.Class({
     }, this);
   },
   ////////////////////////////////////////////////////////// 播放音效 End ////////////////////////////////////////
+
   //  显示印地语 还是显示英语
   isShowHindi: function isShowHindi(scene) {
     var sprites = scene.getComponentsInChildren(cc.Label);
-
     for (var i = 0; i < sprites.length; i++) {
       var str = sprites[i].string;
-
       for (var k = 0; k < teenPattiLanguage.lobby.length; k++) {
         var arr = teenPattiLanguage.lobby[k];
-
         if (str == arr[1] || str == arr[2]) {
           sprites[i].string = arr[language];
         }
@@ -3250,48 +2729,38 @@ cc.Class({
   showLable: function showLable(str) {
     for (var k = 0; k < teenPattiLanguage.lobby.length; k++) {
       var arr = teenPattiLanguage.lobby[k];
-
       if (str == arr[1] || str == arr[2] || str == arr[3] || str == arr[4]) {
         return arr[language];
       }
     }
-
     return str;
   },
   isCanSendGift: function isCanSendGift() {
     var myPlayerSeat = this.getMyPlayerSeat();
     var myPlayerCtrl = this.getPlayerCtrlFromPlayersCtrlArr(myPlayerSeat);
-
     if (!myPlayerCtrl) {
       return;
     }
-
     ;
     var coin = myPlayerCtrl.getTeenPattiPlayerCoin();
-
     if (this.isTrialRoom == false && this.myPlayerCanChipAmount * (this.isAddChipAmount ? 2 : 1) > coin) {
       return false;
     }
-
     ;
     return true;
   },
   update: function update(dt) {
     if (this.showWaitNode == true) {
       this.waitTipsTime += dt;
-
       if (this.waitTipsTime > 1) {
         this.showWaitTips(this.waitTipsIndex);
         this.waitTipsIndex++;
-
         if (this.waitTipsIndex > 2) {
           this.waitTipsIndex = 0;
         }
-
         ;
         this.waitTipsTime = 0;
       }
-
       ;
     } else {
       this.nodeWaitTips.active = false;

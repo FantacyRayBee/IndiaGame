@@ -16,8 +16,8 @@ cc.Class({
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.HALLTIP);
   },
   bntclick: function bntclick(button) {
-    GlobalCfg.G_COMPONENTS.Audio.playBack(); //跳转URL
-
+    GlobalCfg.G_COMPONENTS.Audio.playBack();
+    //跳转URL
     cc.sys.openURL(GlobalCfg.Forced_Migration);
   }
 });

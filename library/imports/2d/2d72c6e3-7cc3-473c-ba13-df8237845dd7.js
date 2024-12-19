@@ -25,18 +25,17 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == "gameservice.login" && self.netReconnection == 1) {
       LoggerUtil.getInstance().log("重连后台登录了");
       var mainScript = self.node.getComponent('7upCtrl');
       var scene = cc.director.getScene();
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.NET_OPEN && notify === "GAME_SERVER" && self.netReconnection == 1) {// GlobalCfg.SMALL_GAME_DATAS.upDownData.upThisCtrl.Up7LoginReq();
+    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.NET_OPEN && notify === "GAME_SERVER" && self.netReconnection == 1) {
+      // GlobalCfg.SMALL_GAME_DATAS.upDownData.upThisCtrl.Up7LoginReq();
     }
   },
   // 游戏切回到前台
   eventShow: function eventShow() {
     var _this = this;
-
     cc.game.on(cc.game.EVENT_SHOW, function () {
       if (_this.houtai) {
         _this.netReconnection = 1;

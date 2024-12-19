@@ -9,7 +9,6 @@ cc.Class({
   properties: {},
   onLoad: function onLoad() {
     var btnArr = this.node.getComponentsInChildren(cc.Button);
-
     for (var i = 0; i < btnArr.length; i++) {
       btnArr[i].node.on("click", this.btnClick, this);
     }
@@ -18,8 +17,9 @@ cc.Class({
   btnClick: function btnClick(button) {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     this.node.destroy();
-  } // update (dt) {},
+  }
 
+  // update (dt) {},
 });
 
 cc._RF.pop();

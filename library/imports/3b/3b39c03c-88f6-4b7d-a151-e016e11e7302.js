@@ -6,7 +6,8 @@ cc._RF.push(module, '3b39cA8iPZLfaFR4BbhHnMC', '7s7xLanguageCtrl');
 
 cc.Class({
   "extends": cc.Component,
-  properties: {// lab_name : cc.Label
+  properties: {
+    // lab_name : cc.Label
   },
   onLoad: function onLoad() {
     this.AllLabelNode();
@@ -19,7 +20,6 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.NET_OPEN) {
       if (notify == 1 || notify == 2) {
         self.AllLabelNode();
@@ -28,11 +28,9 @@ cc.Class({
   },
   showLabel: function showLabel(lab) {
     var name = lab.node.name;
-
     for (var key in updownLanguage) {
       if (Object.hasOwnProperty.call(updownLanguage, key)) {
         var arr = updownLanguage[key];
-
         if (name == arr[0]) {
           lab.string = arr[language];
         }
@@ -41,7 +39,6 @@ cc.Class({
   },
   AllLabelNode: function AllLabelNode() {
     var sprites = this.node.getComponentsInChildren(cc.Label);
-
     for (var i = 0; i < sprites.length; i++) {
       var lab = sprites[i];
       this.showLabel(lab);

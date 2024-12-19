@@ -20,7 +20,6 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     this.bg_js = cc.find('bg_js', this.node);
     this.btn_gift = cc.find('btn_gift', this.node).getComponent(cc.Button);
     this.headSp = cc.find('mask/wj_tx', this.node).getComponent(cc.Sprite);
@@ -31,7 +30,6 @@ cc.Class({
     this.btn_gift.node.on('click', function () {
       var self = GlobalCfg.ACT_SCENE_CTRL;
       var myVipPos = self.getPlayerInfoByUserId(self.myVipPos);
-
       if (myVipPos) {
         CommonFun.getInstance().showGameGifInteraction(_this.seatid);
       } else {
@@ -39,7 +37,6 @@ cc.Class({
       }
     }, this);
   },
-
   /**
    * 设置玩家信息
    * @param {玩家数据} date 
@@ -49,7 +46,6 @@ cc.Class({
       LoggerUtil.getInstance().log("设置玩家信息为空");
       return;
     }
-
     this.date = date;
     this.vipPos = date.vipPos;
     this.seatid = date.vipPos;
@@ -58,33 +54,26 @@ cc.Class({
     this.lab_VIPName.string = CommonFun.getInstance().getStrByLength(this.date.nickname, 8);
     this.lab_VIPCoin.string = CommonFun.getInstance().numberToShow(this.date.diamond / 100);
     this.setVIPSeat(this.date.vipPos);
-
     if (this.date.playerId == GlobalCfg.ACT_SCENE_CTRL.myPlayerId) {
       // 获取自己在Vip的座位
       GlobalCfg.ACT_SCENE_CTRL.myVipPos = this.vipPos;
     }
-
     ;
-
     if (date.vipLevel >= 1 && date.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
       this.sprite_vipLevelIcon.node.active = true;
       this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame("" + date.vipLevel);
     } else {
       this.sprite_vipLevelIcon.node.active = false;
     }
-
     ;
     var isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(date.vipLevel);
-
     if (isCanShowVIPFont) {
       this.lab_VIPName.node.color = new cc.Color(250, 225, 76);
     } else {
       this.lab_VIPName.node.color = new cc.Color(255, 255, 255);
     }
-
     ;
   },
-
   /**
    * 设置vip的位置
    * @param {vip的位置} pos 
@@ -92,9 +81,7 @@ cc.Class({
   setVIPSeat: function setVIPSeat(pos) {
     if (pos != 0) {
       this.nodePos = this.userSeatSort[pos - 1]; // 服务器VIP位置是从1开始
-
       this.node.setPosition(this.nodePos);
-
       if (this.nodePos.x > 0) {
         var pos1 = this.btn_gift.node.getPosition();
         var pos2 = this.sprite_vipLevelIcon.node.getPosition();
@@ -103,7 +90,6 @@ cc.Class({
       }
     }
   },
-
   /**
    * @param {根据pos来获取vip的位置坐标} pos 
    * 玩家下注时需要抖动 vip背景遮罩也需要一起抖动
@@ -124,7 +110,6 @@ cc.Class({
       position: endPos
     }).start();
   },
-
   /**
   * 下注投注飞金币动作
   * @param {根据下注的类型来固定结束的坐标} betType 
@@ -135,7 +120,6 @@ cc.Class({
       return i;
     }).indexOf(amount);
     var coins = [1, 3, 5, 10, 12][index] || 3;
-
     for (var i = 0; i < coins; i++) {
       var pos = GlobalCfg.ACT_SCENE_CTRL.utils.setCoinEndPos(betType);
       var chouMa = GlobalCfg.ACT_SCENE_CTRL.utils.createEnemy(this.node.getPosition());
@@ -147,7 +131,6 @@ cc.Class({
       }).start();
     }
   },
-
   /**
    * 设置vip玩家的钱
    * @param {*} coin 
@@ -158,7 +141,6 @@ cc.Class({
   // 显示玩家赢钱的漂分
   showPlayWinCion: function showPlayWinCion(coin, score) {
     var _this2 = this;
-
     if (this.bg_js) {
       this.setVipCion(coin);
       var scoreStr = this.getFloatNum(Number(score / 100).toFixed(2));
@@ -174,12 +156,9 @@ cc.Class({
   },
   playWinCoin: function playWinCoin(arr) {
     var _this3 = this;
-
     if (!arr) return;
-
-    var _loop = function _loop(i) {
+    var _loop = function _loop() {
       var chouMa = arr[i];
-
       if (chouMa) {
         cc.tween(chouMa).delay((Math.random() / 3).toFixed(2)).to(0.3, {
           position: _this3.nodePos
@@ -190,14 +169,12 @@ cc.Class({
         }).start();
       }
     };
-
     for (var i = arr.length - 1; i >= 0; i--) {
-      _loop(i);
+      _loop();
     }
   },
   getFloatNum: function getFloatNum(num) {
     var numString = num.toString();
-
     if (numString.charAt(numString.length - 1) == '0') {
       numString = numString.substring(0, numString.length - 1);
       return this.getFloatNum(numString);
@@ -205,7 +182,6 @@ cc.Class({
       if (numString.charAt(numString.length - 1) == '.') {
         numString = numString.substring(0, numString.length - 1);
       }
-
       return numString;
     }
   }

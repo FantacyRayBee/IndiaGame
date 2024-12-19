@@ -48,38 +48,30 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
       self.setSpinLeft();
     }
-
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnCloseEvent();
         return;
-
       case "btn_spin":
         this.dealBtnSpinEvent();
         break;
-
       case "btn_reduce":
         this.dealBtnReduceEvent();
         break;
-
       case "btn_add":
         this.dealBtnAddEvent();
         break;
-
       default:
         break;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
   },
   dealBtnCloseEvent: function dealBtnCloseEvent() {
@@ -93,33 +85,25 @@ cc.Class({
   },
   setItems: function setItems() {
     var _this = this;
-
     var index = 0;
     var len = GlobalCfg.USER_DATAS.gacha.length;
-
     var addItemFun = function addItemFun() {
       if (index >= len) {
         _this.unschedule(addItemFun);
-
         return;
       }
-
       ;
       var itemData = GlobalCfg.USER_DATAS.gacha[index];
       var itemNode = cc.instantiate(_this.prefab_item);
       var scr = itemNode.getComponent("VipLuckyDrawItemCtrl");
       scr.setVipLuckyDrawItemData(itemData);
-
       _this.node_content.addChild(itemNode);
-
       index += 1;
     };
-
     this.schedule(addItemFun, 1 / Number(cc.game.getFrameRate()), len, 0);
   },
   setSelectSpinNum: function setSelectSpinNum(spinNum) {
     var miniSpinNum = GlobalCfg.USER_DATAS.userVip.gacha_quota >= 1 ? 1 : 0;
-
     if (spinNum <= miniSpinNum) {
       this.selectSpinNum = miniSpinNum;
       this.btn_reduce.interactable = false;
@@ -129,9 +113,7 @@ cc.Class({
       this.btn_reduce.interactable = true;
       this.btn_reduce.enableAutoGrayEffect = false;
     }
-
     ;
-
     if (spinNum >= GlobalCfg.USER_DATAS.userVip.gacha_quota) {
       this.selectSpinNum = GlobalCfg.USER_DATAS.userVip.gacha_quota;
       this.btn_add.interactable = false;
@@ -141,7 +123,6 @@ cc.Class({
       this.btn_add.interactable = true;
       this.btn_add.enableAutoGrayEffect = false;
     }
-
     ;
     this.lab_selectSpinNum.string = this.selectSpinNum;
   },
@@ -150,32 +131,24 @@ cc.Class({
   },
   dealBtnSpinEvent: function dealBtnSpinEvent() {
     var _this2 = this;
-
     if (this.selectSpinNum == 0) {
       CommonFun.getInstance().showTips("Insufficient number of lucky");
       return;
     }
-
     ;
-
     if (GlobalCfg.USER_DATAS.userVip.gacha_quota <= 0) {
       CommonFun.getInstance().showTips("Insufficient number of lucky");
       return;
     }
-
     ;
-
     if (this.selectSpinNum > GlobalCfg.USER_DATAS.userVip.gacha_quota) {
       CommonFun.getInstance().showTips("Exceeded the number of lucky times");
       return;
     }
-
     ;
-
     if (this.isPlayingNiuDan) {
       return;
     }
-
     ;
     this.isPlayingNiuDan = true;
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/vip/gacha";
@@ -185,23 +158,17 @@ cc.Class({
     CommonFun.getInstance().httpPost(httpUrl, httpParam, function (strInfo) {
       if (strInfo && strInfo.data) {
         var takeArr = strInfo.data.take ? strInfo.data.take : [];
-
         if (CommonFun.getInstance().isValidForScr(_this2)) {
           GlobalCfg.USER_DATAS.userVip.gacha_quota -= _this2.selectSpinNum;
-
           _this2.setSpinLeft();
-
           _this2.setSelectSpinNum(GlobalCfg.USER_DATAS.userVip.gacha_quota >= 1 ? 1 : 0);
-
           _this2.playNiuDanAnimation(takeArr);
         }
-
         ;
       } else {
         _this2.isPlayingNiuDan = false;
         CommonFun.getInstance().showTips(strInfo.msg);
       }
-
       ;
     }, function () {
       _this2.isPlayingNiuDan = false;
@@ -209,7 +176,6 @@ cc.Class({
   },
   playNiuDanAnimation: function playNiuDanAnimation(takeArr) {
     var _this3 = this;
-
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("vipSound/btnNiu", false);
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("vipSound/qiuNiu", false);
     var randomIndex = Math.floor(Math.random() * this.niuDanSkinArr.length);
@@ -218,30 +184,22 @@ cc.Class({
     this.spine_niuDan.setCompleteListener(function () {
       if (CommonFun.getInstance().isValidForScr(_this3)) {
         GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("vipSound/qiuOut", false);
-
         _this3.spine_niuDan.setSkin("default");
-
         _this3.spine_niuDan.animation = null;
-
         _this3.spine_poDan.setSkin(randomSkin);
-
         _this3.spine_poDan.setAnimation(0, "animation", false);
       }
-
       ;
     });
     this.spine_poDan.setCompleteListener(function () {
       if (CommonFun.getInstance().isValidForScr(_this3)) {
         _this3.spine_poDan.setSkin("default");
-
         _this3.spine_poDan.animation = null;
         _this3.isPlayingNiuDan = false;
-
         for (var i = 0, len = takeArr.length; i < len; i++) {
           var element = takeArr[i];
           var id = element.id;
           var amount = element.amount;
-
           if (id == 10) {
             GlobalCfg.USER_DATAS.deposit += amount;
             GlobalCfg.USER_DATAS.userDiamond += amount;
@@ -254,7 +212,6 @@ cc.Class({
             GlobalCfg.USER_DATAS.bonus += amount;
             CommonFun.getInstance().showVipRewardToast(amount / 100, true);
           }
-
           ;
           ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
             msgCode: GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO,
@@ -265,14 +222,12 @@ cc.Class({
             msgData: {}
           });
         }
-
         ;
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
           msgCode: GlobalCfg.CLIENT_MSG_ID.VIP_REWARD,
           msgData: {}
         });
       }
-
       ;
     });
     this.spine_niuDan.setSkin(randomSkin);

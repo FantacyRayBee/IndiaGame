@@ -20,23 +20,19 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnCloseEvent();
         break;
-
       case "btn_addCash":
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnAddCashEvent();
         break;
-
       case "btn_otherAmount":
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnOtherAmountEvent();
         break;
-
       default:
         break;
     }
@@ -46,15 +42,12 @@ cc.Class({
   },
   dealBtnAddCashEvent: function dealBtnAddCashEvent() {
     var _this = this;
-
     var _cb = function _cb() {
       _this.node.destroy();
     };
-
     var commoditys = [].concat(GlobalCfg.USER_DATAS.store);
     var commodityId = commoditys[0].id;
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-
     if (rechargeNeedInfo) {
       if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
         // CommonFun.getInstance().rechargeByCommodityId(commodityId, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast, _cb);
@@ -63,17 +56,14 @@ cc.Class({
         CommonFun.getInstance().showFirstRecharge();
         this.node.destroy();
       }
-
       ;
     } else {
       CommonFun.getInstance().rechargeByCommodityId(commodityId, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast, _cb);
     }
-
     ;
   },
   dealBtnOtherAmountEvent: function dealBtnOtherAmountEvent() {
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-
     if (rechargeNeedInfo) {
       if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
         CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast);
@@ -81,12 +71,10 @@ cc.Class({
         CommonFun.getInstance().showBindPhone('AddCash');
         this.node.destroy();
       }
-
       ;
     } else {
       CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast);
     }
-
     ;
   },
   onDestroy: function onDestroy() {

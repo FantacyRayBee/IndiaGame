@@ -16,18 +16,15 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnCloseEvent();
         break;
-
       case "btn_goUpgrade":
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnGoUpgradeEvent();
         break;
-
       default:
         break;
     }

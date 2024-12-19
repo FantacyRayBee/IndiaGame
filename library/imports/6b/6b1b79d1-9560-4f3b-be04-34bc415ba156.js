@@ -17,16 +17,13 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case this.btn_no.node.name:
         this.dealBtnNoAndYesEvent(false);
         break;
-
       case this.btn_yes.node.name:
         this.dealBtnNoAndYesEvent(true);
         break;
-
       default:
         break;
     }

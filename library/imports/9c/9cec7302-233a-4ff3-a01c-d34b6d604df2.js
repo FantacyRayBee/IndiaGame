@@ -8,12 +8,10 @@ cc.Class({
   "extends": cc.Component,
   properties: {
     lab_blind: cc.Label,
-
     /**
      * VIP等级图标
      */
     sprite_vipLevelIcon: cc.Sprite,
-
     /**
      * VIP等级图标图集
      */
@@ -21,7 +19,6 @@ cc.Class({
   },
   getNode: function getNode() {
     var _this = this;
-
     var mask = this.node.getChildByName("mask");
     var node = this.node.getChildByName("node");
     node.setContentSize(cc.view.getVisibleSize().width, cc.view.getVisibleSize().height);
@@ -58,7 +55,6 @@ cc.Class({
     this.initVipCard(Number(GlobalCfg.USER_DATAS.voucherCard));
     mask.on(cc.Node.EventType.TOUCH_START, function () {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
-
       _this.outAct(function () {
         _this.node.destroy();
       });
@@ -71,59 +67,48 @@ cc.Class({
     this.showPlayerInFo();
     this.showVipLevelIcon();
     var btnArr = this.node.getComponentsInChildren(cc.Button);
-
     for (var i = 0; i < btnArr.length; i++) {
       btnArr[i].node.on("click", this.btnClick, this);
     }
-
     ;
-    this.sprite_vipLevelIcon.node.on("click", this.btnClick, this); // 奖券兑换活动
+    this.sprite_vipLevelIcon.node.on("click", this.btnClick, this);
 
+    // 奖券兑换活动
     var NodebtnToBonus = cc.find('node/bg/node_user/btnToBonus', this.node);
-
     if (GlobalCfg.USER_DATAS.openModules.includes(12)) {
       NodebtnToBonus.active = true;
     } else {
       NodebtnToBonus.active = false;
-    } // 充值
-
-
+    }
+    // 充值
     var NodebtnToShop = cc.find('node/bg/node_user/btnToShop', this.node);
-
     if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
       NodebtnToShop.active = true;
     } else {
       NodebtnToShop.active = false;
-    } // 提现
-
-
+    }
+    // 提现
     var NodebtnToWithdraw = cc.find('node/bg/node_user/btnToWithdraw', this.node);
-
     if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
       NodebtnToWithdraw.active = true;
     } else {
       NodebtnToWithdraw.active = false;
     }
-
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
   initDataLobby: function initDataLobby() {
     if (!cc.isValid(this.node)) {
       return;
     }
-
     this.lab_deposited.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.deposit, 100)) : "₹" + 0;
-
     if (GlobalCfg.USER_DATAS.recharged > 0) {
       this.lab_winnings.string = GlobalCfg.USER_DATAS.winnings ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.winnings, 100)) : "₹0";
     } else {
       this.lab_winnings.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.deposit, 100)) : "₹0";
     }
-
     ;
     this.lab_totalCash.string = GlobalCfg.USER_DATAS.userDiamond ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100)) : "₹0";
     this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;
-
     if (GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
       this.lab_bnode_bonusonus.string = language == 1 ? "Chips" : "बोनास";
       this.node_totalCash.string = language == 1 ? "Total Chips" : "कुल नकद";
@@ -136,7 +121,6 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_INFO) {
       self.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
       self.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, self.headSp);
@@ -149,22 +133,17 @@ cc.Class({
     } else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
       self.showVipLevelIcon();
     }
-
     ;
   },
   btnClick: function btnClick(button) {
     var _this2 = this;
-
     var btnName = button.node.name;
-
     if (btnName === "btn_exit") {
       GlobalCfg.G_COMPONENTS.Audio.pauseMusic();
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LOGIN);
       return;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (btnName === "btn_change") {
       CommonFun.getInstance().showChangeName();
     } else if (btnName === "btn_bind") {
@@ -192,26 +171,22 @@ cc.Class({
     } else if (btnName == "btnToShop") {
       this.outAct(function () {
         CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.PersonalToShop);
-
         _this2.node.destroy();
       });
     } else if (btnName == "btnToWithdraw") {
       this.outAct(function () {
         _this2.showWithDraw();
-
         _this2.node.destroy();
       });
     } else if (btnName == "btnToBonus") {
       this.outAct(function () {
         CommonFun.getInstance().showBonusTransfer();
-
         _this2.node.destroy();
       });
     } else if (btnName == "vipLevelIcon") {
       if (CommonFun.getInstance().isOpenVipModule()) {
         this.outAct(function () {
           CommonFun.getInstance().showMyVip();
-
           _this2.node.destroy();
         });
       }
@@ -229,17 +204,17 @@ cc.Class({
   // 出场动画
   statiAct: function statiAct() {
     var _this3 = this;
-
     var node = this.node.getChildByName('node');
     cc.tween(node).to(0.3, {
       position: cc.v2(0, 0)
     }, {
       easing: 'smooth'
     }).call(function () {
-      if (_this3.lab_mobile.string == "null" && _this3.lab_name.string == "null" && _this3.lab_email.string == "null") {// this.lab_blind.string = teenPattiLanguage.lobby[2][language];
-      } else {// this.lab_blind.string = otherLanguage.modify[language];
+      if (_this3.lab_mobile.string == "null" && _this3.lab_name.string == "null" && _this3.lab_email.string == "null") {
+        // this.lab_blind.string = teenPattiLanguage.lobby[2][language];
+      } else {
+        // this.lab_blind.string = otherLanguage.modify[language];
       }
-
       ;
     }).start();
   },
@@ -268,33 +243,33 @@ cc.Class({
     this.Background01.node.active = false;
     this.Background02.node.active = false;
     this.Background03.node.active = false;
-
     if (vipType == 101) {
       this.spr_bg02.node.active = true;
       this.tx_k02.node.active = true;
       this.bg_name02.node.active = true;
-      this.Background02.node.active = true; // this.lab_ID.node.color = new cc.color(255,255,255,255)
-
+      this.Background02.node.active = true;
+      // this.lab_ID.node.color = new cc.color(255,255,255,255)
       this.lab_user_name.node.color = new cc.color(255, 255, 255, 255);
     } else if (vipType == 102) {
       this.spr_bg03.node.active = true;
       this.tx_k03.node.active = true;
       this.bg_name02.node.active = true;
-      this.Background03.node.active = true; // this.lab_ID.node.color = new cc.color(255,255,255,255)
-
+      this.Background03.node.active = true;
+      // this.lab_ID.node.color = new cc.color(255,255,255,255)
       this.lab_user_name.node.color = new cc.color(255, 255, 255, 255);
     } else if (vipType == 103) {
       this.spr_bg04.node.active = true;
       this.tx_k03.node.active = true;
       this.bg_name02.node.active = true;
-      this.Background03.node.active = true; // this.lab_ID.node.color = new cc.color(255,255,255,255)
-
+      this.Background03.node.active = true;
+      // this.lab_ID.node.color = new cc.color(255,255,255,255)
       this.lab_user_name.node.color = new cc.color(255, 255, 255, 255);
     } else {
       this.spr_bg01.node.active = true;
       this.tx_k01.node.active = true;
       this.bg_name01.node.active = true;
-      this.Background01.node.active = true; // this.lab_ID.node.color = new cc.color(153,94,39,255)
+      this.Background01.node.active = true;
+      // this.lab_ID.node.color = new cc.color(153,94,39,255)
     }
   },
   showWithDraw: function showWithDraw() {
@@ -308,7 +283,6 @@ cc.Class({
   },
   loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
     var _this4 = this;
-
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'
@@ -327,16 +301,13 @@ cc.Class({
     } else {
       this.sprite_vipLevelIcon.node.active = false;
     }
-
     ;
     var isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(GlobalCfg.USER_DATAS.userVip.level);
-
     if (isCanShowVIPFont) {
       this.lab_name.node.color = new cc.Color(250, 225, 76);
     } else {
       this.lab_name.node.color = new cc.Color(255, 255, 255);
     }
-
     ;
   }
 });

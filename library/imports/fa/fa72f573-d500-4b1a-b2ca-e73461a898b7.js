@@ -30,23 +30,19 @@ cc.Class({
   },
   btnClick: function btnClick(sender) {
     var btnName = sender.node.name;
-
     if (btnName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
     } else if (btnName == "btn_copy") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       if (cc.sys.isBrowser) {
         this.webCopyString(this.email, "Email Copied Successfully");
       } else {
         APPManager.copyToPasteBoard(this.email);
         CommonFun.getInstance().showTips("Email Copied Successfully");
       }
-
       this.node.destroy();
     }
-
     ;
   },
   webCopyString: function webCopyString(str, subsc) {
@@ -61,29 +57,23 @@ cc.Class({
 
     var selection = getSelection();
     var originalRange = false;
-
     if (selection.rangeCount > 0) {
       originalRange = selection.getRangeAt(0);
     }
-
     document.body.appendChild(el);
     el.select();
     el.selectionStart = 0;
     el.selectionEnd = input.length;
     var success = false;
-
     try {
       success = document.execCommand('copy');
       CommonFun.getInstance().showTips(subsc);
     } catch (err) {}
-
     document.body.removeChild(el);
-
     if (originalRange) {
       selection.removeAllRanges();
       selection.addRange(originalRange);
     }
-
     return success;
   }
 });

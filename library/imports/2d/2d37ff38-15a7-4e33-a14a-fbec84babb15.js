@@ -13,13 +13,11 @@ cc.Class({
   // 发送表情  消息类型 0短语 1表情
   face: function face(notify, pos) {
     var _this = this;
-
     var data = notify;
     var msgtype = notify.msgType;
     var msgid = data.name;
     this.emotion = this.node.getChildByName("emotion");
     this.chat_bg = this.node.getChildByName("chat_bg");
-
     if (msgtype == 0) {
       this.setUserPos(pos);
       this.chat_bg.active = true;
@@ -45,7 +43,6 @@ cc.Class({
   setUserPos: function setUserPos(pos) {
     var X = 0;
     var Y = pos.y + 50;
-
     if (pos.x > 0) {
       X = pos.x - 230;
       this.chat_bg.scaleX = -1;
@@ -55,7 +52,6 @@ cc.Class({
       this.chat_bg.scaleX = 1;
       this.lab_chat.node.scaleX = 1;
     }
-
     ;
     this.chat_bg.setPosition(X, Y);
   }

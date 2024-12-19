@@ -18,13 +18,10 @@ cc.Class({
   start: function start() {},
   addMask: function addMask() {
     var self = this;
-
     if (!self.mask) {
       return;
     }
-
     var maskName = self.mask.getComponent(cc.Sprite);
-
     if (!maskName || maskName.spriteFrame) {
       return;
     } else if (maskName) {
@@ -33,11 +30,9 @@ cc.Class({
           LoggerUtil.getInstance().log(err.message || err);
           return;
         }
-
         if (self.node == null) {
           return;
         }
-
         maskName.spriteFrame = spFrame;
       });
     }
@@ -63,10 +58,12 @@ cc.Class({
     this.mask.off(cc.Node.EventType.MOUSE_WHEEL, function (event) {
       event.stopPropagation();
     });
-  } // called every frame, uncomment this function to activate update callback
-  // update: function (dt) {
-  // },
+  }
 
+  // called every frame, uncomment this function to activate update callback
+  // update: function (dt) {
+
+  // },
 });
 
 cc._RF.pop();

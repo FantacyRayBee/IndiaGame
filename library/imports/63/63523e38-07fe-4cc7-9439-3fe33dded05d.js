@@ -29,18 +29,15 @@ cc.Class({
     var len = list.length <= 55 ? list.length : list.length - 55;
     this.node_content.destroyAllChildren();
     this.node_redDot.destroyAllChildren();
-
     for (var i = len; i < list.length; i++) {
       var pab_winTepy = cc.instantiate(this.pab_winTepy);
       this.node_content.addChild(pab_winTepy);
       var Ctrl = pab_winTepy.getComponent('winTepyCtrl');
       Ctrl.showNode("record", list[i]);
-
       if (i == list.length - 1) {
         pab_winTepy.getChildByName("bq_new").active = true;
       }
     }
-
     if (list.length > 27) {
       //设置红点坐标
       posX = -390;
@@ -49,16 +46,11 @@ cc.Class({
       recordLen = 0;
       posX = 520;
     }
-
     for (var _i = recordLen; _i < list.length; _i++) {
       var _pab_winTepy = cc.instantiate(this.pab_winTepy);
-
       this.node_redDot.addChild(_pab_winTepy);
-
       var _Ctrl = _pab_winTepy.getComponent('winTepyCtrl');
-
       _Ctrl.showNode("redDot", list[_i]);
-
       _pab_winTepy.x = posX + index * 35;
       index++;
     }
@@ -70,10 +62,8 @@ cc.Class({
     var COLOR = 0;
     var PAIR = 0;
     var HIGHCARD = 0;
-
     for (var i = 0; i < list.length; i++) {
       var date = list[i];
-
       if (date == 0) {
         SET++;
       } else if (date == 1) {
@@ -88,7 +78,6 @@ cc.Class({
         HIGHCARD++;
       }
     }
-
     this.labs[0].string = list.length;
     this.labs[1].string = SET;
     this.labs[2].string = PURESEQ;

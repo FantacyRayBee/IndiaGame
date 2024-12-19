@@ -14,9 +14,9 @@ cc.Class({
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
       fromid: GlobalCfg.PRODUCT_ID //平台
-
     });
   },
+
   //   获取普通玩家列表
   playerlistReq: function playerlistReq(page, rows) {
     GameServerManager.send("gameservice.playerlist", "PlayerListReq", {
