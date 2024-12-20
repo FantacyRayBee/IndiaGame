@@ -25,18 +25,17 @@ cc.Class({
     var playerlist = notify.list;
     this.allcount = notify.total;
     this.content.removeAllChildren();
-
     for (var i = 0; i < playerlist.length; i++) {
       var pab_player = cc.instantiate(this.pab_player);
       var ctrl = pab_player.getComponent("PlayerItemCtrl");
       ctrl.setPlayDate(playerlist[i]);
       this.content.addChild(pab_player);
-    } // if(this.isONE == 1){
-
-
+    }
+    // if(this.isONE == 1){
     this.allPlayer.string = this.allcount;
     this.allPage = Math.ceil(this.allcount / 12) - 1;
-    this.lab_page.string = this.page + "/" + this.allPage; // }
+    this.lab_page.string = this.page + "/" + this.allPage;
+    // }
   },
   onLoad: function onLoad() {
     this.btn_close = this.node.getChildByName("btn_close").getComponent(cc.Button);
@@ -57,18 +56,14 @@ cc.Class({
   },
   clickBtn: function clickBtn(button) {
     var btnName = button.node.name;
-
     if (btnName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
       return;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (btnName == "btn_Prev") {
       this.page--;
-
       if (this.page <= 1) {
         this.btn_next.target.color = new cc.color(255, 255, 255, 255);
         this.btn_Prev.target.color = new cc.color(106, 123, 172, 255);
@@ -88,7 +83,6 @@ cc.Class({
       }
     } else if (btnName == "btn_next") {
       this.page++;
-
       if (this.page >= this.allPage) {
         this.btn_Prev.target.color = new cc.color(255, 255, 255, 255);
         this.btn_next.target.color = new cc.color(106, 123, 172, 255);
@@ -109,7 +103,6 @@ cc.Class({
     }
   },
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

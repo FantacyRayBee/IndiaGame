@@ -18,7 +18,6 @@ cc.Class({
   },
   // onLoad () {},
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

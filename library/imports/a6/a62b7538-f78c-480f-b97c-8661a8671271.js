@@ -27,17 +27,13 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var _this = this;
-
     var btnName = button.node.name;
-
     if (btnName == 'btn_close') {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
       return;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (btnName == 'btn_send') {
       if (this.count > 0) {
         var url = GlobalCfg.HTTP_SERVER + "/v1/help/feedback";
@@ -51,7 +47,6 @@ cc.Class({
                 if (CommonFun.getInstance().isValidForScr(_this)) {
                   _this.node.destroy();
                 }
-
                 ;
               }, false);
             }
@@ -60,13 +55,11 @@ cc.Class({
               if (CommonFun.getInstance().isValidForScr(_this)) {
                 _this.node.destroy();
               }
-
               ;
             }, false);
           } else {
             CommonFun.getInstance().showTips(msg.msg);
           }
-
           ;
         }, null, GlobalCfg.USER_DATAS.BearerToken);
       } else {
@@ -82,7 +75,6 @@ cc.Class({
     this.count = this.getByteLen(lab_string);
     this.lab_strCount.string = this.count + "/400";
   },
-
   /**
    * 设置反馈次数
    * @param {Number} FeedBackCount 
@@ -92,7 +84,6 @@ cc.Class({
     this.feedBackCount = FeedBackCount;
     this.maxFeedBackCount = MaxFeedBackCount;
   },
-
   /**
    * 
    * @param {String} val 
@@ -100,17 +91,14 @@ cc.Class({
    */
   getByteLen: function getByteLen(val) {
     var len = 0;
-
     for (var i = 0; i < val.length; i++) {
       var a = val.charAt(i);
-
       if (a.match(/[^\x00-\xff]/ig) != null) {
         len += 2;
       } else {
         len += 1;
       }
     }
-
     return len;
   }
 });

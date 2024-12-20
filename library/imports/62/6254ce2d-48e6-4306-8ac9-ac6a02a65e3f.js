@@ -53,10 +53,12 @@ var GameDownloader = cc.Class({
       return;
     }
     ;
+    console.log("caojun priorLoadGame this.downLoadTaskArr.length == ", this.downLoadTaskArr.length);
     for (var i = 0, len = this.downLoadTaskArr.length; i < len; i++) {
       if (this.downLoadTaskArr[i].gameName === gameName) {
         if (this.downLoadTaskArr[i].status !== DownLoadTaskStatus.Loading) {
           this.downLoadTaskArr[i].notify = true;
+          console.log("caojun priorLoadGame 111111");
           this.loadPointGame(this.downLoadTaskArr[i]);
         } else {
           this.downLoadTaskArr[i].notify = true;
@@ -75,12 +77,14 @@ var GameDownloader = cc.Class({
       isZipFormat: cc.sys.localStorage.getItem(gameName) != null ? false : true
     };
     this.downLoadTaskArr.push(downTask);
+    console.log("caojun priorLoadGame 222222");
     this.loadPointGame(downTask);
   },
   loadPointGame: function loadPointGame(downTask) {
     var gameName = downTask.gameName;
     var isZipFormat = downTask.isZipFormat;
     downTask.status = DownLoadTaskStatus.Loading;
+    console.log("caojun priorLoadGame downTask == ", downTask);
     if (isZipFormat) {
       this.loadGameByZip(downTask);
     } else {
@@ -170,9 +174,9 @@ var GameDownloader = cc.Class({
     var needLoadFilesSize = 0;
     var loadingFilesIndex = 0;
     var loadedFilesCount = 0;
+    LoggerUtil.getInstance().log("downloading Game-no-zip is: " + downTask.gameName);
     var storagePath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'remote-asset/';
     var manifestUrl = GlobalCfg.ASSETS_UPDATE_URL + "/assets/" + gameName + "/project.manifest?version=" + GlobalCfg.ASSETS_VERSION;
-    LoggerUtil.getInstance().log("downloading Game-no-zip is: " + downTask.gameName);
     var getDownLoaderByStoragePath = function getDownLoaderByStoragePath(storagePath) {
       for (var i = 0, len = downloaderArr.length; i < len; i++) {
         var downloader = downloaderArr[i];

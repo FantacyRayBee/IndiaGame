@@ -38,7 +38,6 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     this.checkShiPei();
     this.initRecordItemNodePool();
     this.startRecordItemsListen();
@@ -59,23 +58,19 @@ cc.Class({
   },
   initRecordItemNodePool: function initRecordItemNodePool() {
     this.recordItemNodePool = new cc.NodePool();
-
     for (var i = 0; i < 8; i++) {
       var recordItemNode = cc.instantiate(this.node_item);
       this.recordItemNodePool.put(recordItemNode);
     }
-
     ;
   },
   getRecordItemNode: function getRecordItemNode() {
     var recordItemNode = null;
-
     if (this.recordItemNodePool.size() > 0) {
       recordItemNode = this.recordItemNodePool.get();
     } else {
       recordItemNode = cc.instantiate(this.node_item);
     }
-
     ;
     return recordItemNode;
   },
@@ -83,14 +78,12 @@ cc.Class({
     if (recordItemNode) {
       this.recordItemNodePool.put(recordItemNode);
     }
-
     ;
   },
   onEventMsg: function onEventMsg(webData, target) {
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_SELECTED_BET_FRESH) {
       self.dealSelectedBetEvent(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_ONCE_ERASE_FINISHED) {
@@ -107,21 +100,17 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
-
     if (this.freeCount > 0) {
       var addFree = notify.addFree;
       this.addFreeCount(addFree);
     }
-
     ;
   },
   dealAllSpinFinishedEvent: function dealAllSpinFinishedEvent(notify) {
     if (!notify) {
       return;
     }
-
     ;
     this.setFreeCount(0);
   },
@@ -129,7 +118,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     this.bet = notify.bet;
     this.setMutilPrice(this.bet * 1.25 / 100);
@@ -139,7 +127,6 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var spin = notify.spin;
     var bet = spin.bet;
@@ -151,20 +138,16 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var erase = notify.erase;
     var bet = erase.bet;
     var addFree = erase.addFree;
     var currentXMul = erase.currentXMul;
-
     if (erase.elf == 12) {
       this.setMutil(currentXMul);
     }
-
     ;
     this.addFreeCount(addFree);
-
     if (erase.elf != 0 && erase.elf != 2 && erase.elf != 12) {
       var tempObj = {
         erase: erase,
@@ -172,29 +155,22 @@ cc.Class({
       };
       this.toBeRecordItemDataArr = this.toBeRecordItemDataArr.concat([tempObj]);
     }
-
     ;
   },
   startRecordItemsListen: function startRecordItemsListen() {
     var _this2 = this;
-
     var addRecordItemNodeFun = function addRecordItemNodeFun() {
       if (_this2.toBeRecordItemDataArr.length > 0) {
         var recordItemData = _this2.toBeRecordItemDataArr.shift();
-
         _this2.addRecordItemNode(recordItemData);
       }
-
       ;
     };
-
     this.schedule(addRecordItemNodeFun, 0.5);
   },
   addRecordItemNode: function addRecordItemNode(recordItemData) {
     var _this3 = this;
-
     var len = this.recordItemNodesArr.length;
-
     if (len == 5) {
       var _loop = function _loop(i) {
         var itemNode = _this3.recordItemNodesArr[i];
@@ -203,36 +179,28 @@ cc.Class({
         }).call(function () {
           if (i == 0) {
             var firstNode = _this3.recordItemNodesArr.shift();
-
             _this3.putRecordItemNodePool(firstNode);
-
             _this3.createRecordItemNode(recordItemData);
           }
-
           ;
         }).start();
       };
-
       for (var i = 0; i < len; i++) {
         _loop(i);
       }
-
       ;
     } else {
       this.createRecordItemNode(recordItemData);
     }
-
     ;
   },
   removeAllRecordItems: function removeAllRecordItems() {
     this.toBeRecordItemDataArr = [];
     var len = this.recordItemNodesArr.length;
-
     for (var i = 0; i < len; i++) {
       var itemNode = this.recordItemNodesArr[i];
       this.putRecordItemNodePool(itemNode);
     }
-
     ;
     this.recordItemNodesArr = [];
   },
@@ -250,12 +218,10 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case this.btn_buyFree.node.name:
         this.dealBtnBuyFreeEvent();
         break;
-
       default:
         break;
     }
@@ -300,9 +266,7 @@ cc.Class({
       this.lab_freeAllMultiX.string = '';
       return;
     }
-
     ;
-
     if (mutil <= 0) {
       this.lab_freeAllMulti.string = '';
       this.lab_freeAllMultiX.string = '';
@@ -310,7 +274,6 @@ cc.Class({
       this.lab_freeAllMulti.string = "" + mutil;
       this.lab_freeAllMultiX.string = 'X';
     }
-
     ;
   },
   getTogDoubleMultiCheckedStatus: function getTogDoubleMultiCheckedStatus() {
@@ -331,7 +294,6 @@ cc.Class({
     if (freeCount < 0) {
       freeCount = 0;
     }
-
     ;
     this.lab_freeCount.string = "" + freeCount;
   },

@@ -1497,7 +1497,7 @@ cc.Class({
                     this.showGameRoomList();
                 });
             };
-        } 
+        }
         else if (btnName == "btn_zjh2") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_BUTTON);
             this.checkUpdate("tpGame", () => {

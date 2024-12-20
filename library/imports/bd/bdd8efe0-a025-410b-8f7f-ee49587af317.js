@@ -5,7 +5,6 @@ cc._RF.push(module, 'bdd8e/goCVBC49/7klYevMX', 'PromoterCtrl');
 "use strict";
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 cc.Class({
   "extends": cc.Component,
   properties: {},
@@ -14,7 +13,6 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     this.viewList = CommonFun.getInstance().getAllChildrensNodeList(this.node, "");
     this.node_bg_lab_for = this.viewList["bg/lab_for"];
@@ -75,21 +73,18 @@ cc.Class({
     this.node_opuPutTipsView.on('click', CommonFun.getInstance().debounce(this.btnClick, 0.2), this);
     this.node_inviteTipsView.on('click', CommonFun.getInstance().debounce(this.btnClick, 0.2), this);
     this.node_bonusTipsView.on('click', CommonFun.getInstance().debounce(this.btnClick, 0.2), this);
-
     if (GlobalCfg.USER_DATAS.recharged == 0) {
       // 未充值玩家
       this.showBtnWhatsApp(false);
     } else {
       this.showBtnWhatsApp(true);
     }
-
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/info";
     CommonFun.getInstance().httpGet(httpUrl, function (msg) {
       if (msg.result == 0) {
         if (CommonFun.getInstance().isValidForScr(_this) && msg.data) {
           _this.setPromoterInfo(msg.data);
         }
-
         ;
       } else {
         CommonFun.getInstance().showTips(msg.msg);
@@ -186,20 +181,16 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == "ConcactsArrStr") {}
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     if (btnName === "btn_mainClose") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.dealBtnMainCloseEvent();
       return;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (btnName === "btn_fx") {
       this.dealBtnFXEvent();
     } else if (btnName === "btn_fz") {
@@ -212,7 +203,6 @@ cc.Class({
       } else {
         CommonFun.getInstance().showTips("No team information currently available!");
       }
-
       ;
     } else if (btnName === "btn_history") {
       this.dealBtnHistoryEvent();
@@ -237,14 +227,12 @@ cc.Class({
     } else if (btnName === "bonusTipsView") {
       this.dealBtnBonusTipsViewEvent();
     }
-
     ;
   },
   setPromoterInfo: function setPromoterInfo(data) {
     if (!data) {
       return;
     }
-
     ;
     this.promoterData = data;
     this.node_lab_team.getComponent(cc.Label).string = data["team_member_num"];
@@ -265,17 +253,15 @@ cc.Class({
       APPManager.copyToPasteBoard(shareUrl);
       CommonFun.getInstance().showTips("Copy successful!");
     }
-
     ;
   },
   dealBtnSFEvent: function dealBtnSFEvent() {
     // 跳转至WhatsApp
     var channel_info = _extends({}, GlobalCfg.USER_DATAS.customerService);
-
     var whatsAppInfos = channel_info.whatsApp.split(',');
-    var mobileNum = whatsAppInfos[0].match(/\d+/g); // LoggerUtil.getInstance().log('whatsAppInfos', whatsAppInfos);
+    var mobileNum = whatsAppInfos[0].match(/\d+/g);
+    // LoggerUtil.getInstance().log('whatsAppInfos', whatsAppInfos);
     // LoggerUtil.getInstance().log('mobileNum', mobileNum);
-
     APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
   },
   dealBtnTeamEvent: function dealBtnTeamEvent() {
@@ -307,12 +293,10 @@ cc.Class({
         if (msg.data && CommonFun.getInstance().isValidForScr(self)) {
           self.setGetBonusResult(msg.data);
         }
-
         ;
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
-
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
@@ -320,7 +304,6 @@ cc.Class({
     if (!data) {
       return;
     }
-
     ;
     var income = data.income;
     var totalIncome = data.total_income;
@@ -329,7 +312,6 @@ cc.Class({
     this.node_lab_outIncome.getComponent(cc.Label).string = totalIncome / 100;
     this.node_lab_invitedIncome.getComponent(cc.Label).string = totalBonus / 100;
     this.node_lab_totalBonus.getComponent(cc.Label).string = (totalIncome + totalBonus) / 100;
-
     if (income > 0) {
       GlobalCfg.USER_DATAS.userDiamond = diamond;
       CommonFun.getInstance().showRewardsTips([{
@@ -345,7 +327,6 @@ cc.Class({
     } else {
       CommonFun.getInstance().showTips("No rewards currently, Pick it up tomorrow");
     }
-
     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
       msgCode: GlobalCfg.CLIENT_MSG_ID.HIDE_TGY_REDPOINT,
       msgData: {}

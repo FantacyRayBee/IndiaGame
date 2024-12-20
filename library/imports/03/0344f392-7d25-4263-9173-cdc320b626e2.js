@@ -18,9 +18,7 @@ cc.Class({
   //加载音效
   loadGameSound: function loadGameSound() {
     var _this = this;
-
     var url = 'rummySound';
-
     if (this.assetBundle) {
       this.assetBundle.loadDir(url, cc.AudioClip, function (err, assets) {
         if (!err) {
@@ -36,13 +34,10 @@ cc.Class({
   // 播放音效
   playGameSound: function playGameSound(name, isLoop) {
     var _this2 = this;
-
     if (isLoop === void 0) {
       isLoop = false;
     }
-
     var clip = this.gameSound.get(name);
-
     if (clip) {
       this.playSound(clip, isLoop);
     } else {
@@ -50,7 +45,6 @@ cc.Class({
         this.assetBundle.load("rummySound/" + name, cc.AudioClip, function (err, audioClip) {
           if (!err) {
             _this2.playSound(audioClip, isLoop);
-
             _this2.gameSound.set(name, audioClip);
           }
         });

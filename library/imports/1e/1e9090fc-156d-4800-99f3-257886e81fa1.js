@@ -28,32 +28,26 @@ cc.Class({
         this.dealToggleVipRulesEvent();
         this.toggle_vipRules.check();
         break;
-
       case "benefits":
         this.dealToggleBenefitsEvent();
         this.toggle_benefits.check();
         break;
-
       case "levelUpGift":
         this.dealToggleLevelUpGiftEvent();
         this.toggle_levelUpGift.check();
         break;
-
       default:
         break;
     }
-
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnCloseEvent();
         return;
-
       default:
         break;
     }
@@ -61,20 +55,16 @@ cc.Class({
   toggleCallBack: function toggleCallBack(toggle) {
     var toggleName = toggle.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     switch (toggleName) {
       case "toggle_vipRules":
         this.dealToggleVipRulesEvent();
         break;
-
       case "toggle_benefits":
         this.dealToggleBenefitsEvent();
         break;
-
       case "toggle_levelUpGift":
         this.dealToggleLevelUpGiftEvent();
         break;
-
       default:
         break;
     }
@@ -84,37 +74,31 @@ cc.Class({
   },
   dealToggleVipRulesEvent: function dealToggleVipRulesEvent() {
     var _this = this;
-
     this.unscheduleAllCallbacks();
     this.node_content.destroyAllChildren();
     var prefabPromise = CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULESRULE);
     prefabPromise.then(function (prefab) {
       var node = cc.instantiate(prefab);
-
       _this.node_content.addChild(node);
     });
   },
   dealToggleBenefitsEvent: function dealToggleBenefitsEvent() {
     var _this2 = this;
-
     this.unscheduleAllCallbacks();
     this.node_content.destroyAllChildren();
     var prefabPromise = CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULESBENEFITS);
     prefabPromise.then(function (prefab) {
       var node = cc.instantiate(prefab);
-
       _this2.node_content.addChild(node);
     });
   },
   dealToggleLevelUpGiftEvent: function dealToggleLevelUpGiftEvent() {
     var _this3 = this;
-
     this.unscheduleAllCallbacks();
     this.node_content.destroyAllChildren();
     var prefabPromise = CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULESUPGIFT);
     prefabPromise.then(function (prefab) {
       var node = cc.instantiate(prefab);
-
       _this3.node_content.addChild(node);
     });
   },

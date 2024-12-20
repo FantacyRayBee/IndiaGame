@@ -20,18 +20,13 @@ cc.Class({
     this.nodeTx = this.node.getChildByName("node_tx");
     this.nodeTxmask = this.nodeTx.getChildByName("node_txmask");
     this.userTx = this.nodeTxmask.getChildByName("user_tx").getComponent(cc.Sprite); //用户的头像
-
     this.img_dx = this.nodeTx.getChildByName("img_dx").getComponent(cc.Sprite); //断线中的图标
-
     this.img_dx.activr = false;
     this.nodeuserInfo = this.node.getChildByName("user_name_input");
     this.userName = this.nodeuserInfo.getChildByName("lab_userName").getComponent(cc.Label); //用户名
-
     this.labGold = this.nodeuserInfo.getChildByName("lab_gold").getComponent(cc.Label); //金币数量
-
     this.textBg = this.node.getChildByName("bg");
     this.lab_num = this.node.getChildByName("bg").getChildByName("lab_num").getComponent(cc.Label); //赢得的数目
-
     this.textBg.active = false;
     this.lab_num.node.active = false;
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -43,7 +38,6 @@ cc.Class({
     var btnName = button.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     LoggerUtil.getInstance().log("发送自定义消息！！！！");
-
     if (btnName == "btn_gift") {
       if (this.checkSelfIsVip() == true) {
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
@@ -59,28 +53,25 @@ cc.Class({
   },
   checkSelfIsVip: function checkSelfIsVip() {
     var playerid = this.playerid;
-
     for (var i = 0, len = GlobalCfg.ACT_SCENE_CTRL.vipPlayerScriptArr.length; i < len; i++) {
       var vipPlayerScript = GlobalCfg.ACT_SCENE_CTRL.vipPlayerScriptArr[i];
-
       if (playerid == vipPlayerScript.getPlayerID()) {
         return true;
       }
     }
-
     return false;
   },
   onEventMsg: function onEventMsg(webData, target) {
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == "gameservice.currencycovert") {
       self.setDiamond(notify.srcCurrency.Remain);
       self.setCoin(notify.dstCurrency.Remain);
       GlobalCfg.USER_DATAS.userCoin = notify.dstCurrency.Remain;
       GlobalCfg.USER_DATAS.userDiamond = notify.srcCurrency.Remain;
-    } // else if (msgId == "lobbyservice.updatesafe") {
+    }
+    // else if (msgId == "lobbyservice.updatesafe") {
     //     self.setCoin(notify.coin);
     //     GlobalCfg.USER_DATAS.userCoin = notify.coin;
     // } 
@@ -95,41 +86,33 @@ cc.Class({
   },
   setPlayerInfo: function setPlayerInfo(userinfo) {
     this.setName(GlobalCfg.USER_DATAS.userName);
-
     if (GlobalCfg.USER_DATAS.userHeadimgurl !== null) {
       this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 90, this.userTx);
     } else {
       LoggerUtil.getInstance().log("收到的头像URL为空！");
     }
-
     this.setCoin(userinfo.Diamond);
     this.setPlayerid(userinfo.PlayerId);
-
     if (userinfo.vipLevel >= 1 && userinfo.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
       this.sprite_vipLevelIcon.node.active = true;
       this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame("" + userinfo.vipLevel);
     } else {
       this.sprite_vipLevelIcon.node.active = false;
     }
-
     ;
     var isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(userinfo.vipLevel);
-
     if (isCanShowVIPFont) {
       this.userName.node.color = new cc.Color(250, 225, 76);
     } else {
       this.userName.node.color = new cc.Color(255, 255, 255);
     }
-
     ;
   },
   setWinNum: function setWinNum(num) {
     var _this = this;
-
     if (num <= 0) {
       return;
     }
-
     ;
     var number = FloatCalculation.accDiv(num, 100);
     this.lab_num.string = "+" + number;
@@ -145,7 +128,6 @@ cc.Class({
   },
   setName: function setName(name) {
     this.name = name;
-
     if (this.userName) {
       this.userName.string = CommonFun.getInstance().getStrByLength(name, 9);
       ;
@@ -153,10 +135,9 @@ cc.Class({
   },
   setCoin: function setCoin(coin) {
     this.coin = coin / 100;
-
     if (this.labGold && coin != null) {
-      this.labGold.string = CommonFun.getInstance().numberToShow(this.coin); // this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
-
+      this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
+      // this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
       GlobalCfg.USER_DATAS.userDiamond = coin;
     }
   },
@@ -174,7 +155,6 @@ cc.Class({
       LoggerUtil.getInstance().error("playerID为空");
       return;
     }
-
     this.playerid = playerid;
   },
   getPlayerid: function getPlayerid() {
@@ -182,16 +162,16 @@ cc.Class({
   },
   //设置该座位能否入座
   setVipSiteState: function setVipSiteState(state) {
-    this.vipSiteState = state; // this.nodeTxmask.getComponent(cc.Button).interactable = state;       //true时可用，false不可用
+    this.vipSiteState = state;
+    // this.nodeTxmask.getComponent(cc.Button).interactable = state;       //true时可用，false不可用
   },
+
   getVipSiteState: function getVipSiteState() {
     return this.vipSiteState;
   },
   winGoldMoveAnim: function winGoldMoveAnim(count, winGoldArr) {
     var _this2 = this;
-
     var pos = this.getVipPlayerPos();
-
     var _loop = function _loop(i) {
       cc.tween(winGoldArr[i]).to(0.15, {
         scale: 1,
@@ -200,7 +180,6 @@ cc.Class({
         _this2.removeJbNode(winGoldArr[i]);
       }).start();
     };
-
     for (var i = 0; i < count; i++) {
       _loop(i);
     }

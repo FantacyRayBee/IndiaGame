@@ -55,23 +55,18 @@ cc.Class({
   },
   start: function start() {
     var _this = this;
-
     var languagesType = I18NUtil.getInstance().getLanguageType();
     var index = 0;
     var len = this.vipRulesBenefitsDataArr.length;
-
     var addItemFun = function addItemFun() {
       if (index >= len) {
         _this.unschedule(addItemFun);
-
         return;
       }
-
       ;
       var itemData = _this.vipRulesBenefitsDataArr[index];
       var nameStr = "";
       var descriptionStr = "";
-
       if (itemData.iconIndex == 1) {
         nameStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['MyVip_Daily Withdrawal Count']);
         descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['MyVip_The maximum number of withdrawals a usercan make in a day.']);
@@ -103,19 +98,15 @@ cc.Class({
         nameStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['MyVip_Lucky Draw']);
         descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['MyVip_Each VIP level increase corresponds to an increase in the number of lucky draws.']);
       }
-
       ;
       itemData.name = nameStr;
       itemData.description = descriptionStr;
       var itemNode = cc.instantiate(_this.prefab_item);
       var scr = itemNode.getComponent("VipRulesBenefitsItemCtrl");
       scr.setVipRulesBenefitsItemData(itemData);
-
       _this.node_content.addChild(itemNode);
-
       index += 1;
     };
-
     this.schedule(addItemFun, 1 / Number(cc.game.getFrameRate()), len, 0);
   }
 });

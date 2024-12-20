@@ -42,10 +42,8 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     this.btnClose.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
-
       _this.node.destroy();
     }, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onCustomEventMsg, this);
@@ -58,7 +56,6 @@ cc.Class({
     var self = target;
     var msgId = data.msgCode;
     var notify = data.msgData;
-
     if (msgId == "GAME_CRICKET_RECORD_UPDATE") {
       self.initHistory(notify.recordData);
     }
@@ -70,27 +67,22 @@ cc.Class({
   },
   initItem: function initItem(data) {
     this.historyParent.removeAllChildren();
-
     for (var i = 0; i < data.length; i++) {
       var element = data[i] - 1;
-
       if (element < 0 || element >= 8) {
         LoggerUtil.getInstance().error("历史记录数据错误，", element);
         continue;
       }
-
       var item = cc.instantiate(this.prefabHistoryItem);
       var size = this.sprites[element].getOriginalSize();
       item.getChildByName('sp').getComponent(cc.Sprite).spriteFrame = this.sprites[element];
       item.getChildByName('sp').width = size.width * 0.09;
       item.getChildByName('sp').height = size.height * 0.09;
-
       if (i == data.length - 1) {
         item.getChildByName('new').active = true;
       } else {
         item.getChildByName('new').active = false;
       }
-
       this.historyParent.addChild(item);
     }
   },
@@ -98,33 +90,26 @@ cc.Class({
     this.tableParent.removeAllChildren();
     this.graphic.clear();
     var index = 0;
-
     for (var i = 0; i < data.length; i++) {
       var element = data[i] - 1;
-
       if (element < 0 || element >= 8) {
         LoggerUtil.getInstance().error("历史记录数据错误，", element);
         continue;
       }
-
       var item = cc.instantiate(this.prefabTableItem);
       item.x = this.tableListX[index];
       item.y = this.tableListY[element];
       item.getComponent(cc.Sprite).spriteFrame = this.sprites[element];
       this.tableParent.addChild(item);
-
       if (index == 0) {
         this.graphic.moveTo(this.tableListX[index], this.tableListY[element]);
       } else {
         this.graphic.lineTo(this.tableListX[index], this.tableListY[element]);
       }
-
       index++;
     }
-
     this.graphic.stroke();
   } // update (dt) {},
-
 });
 
 cc._RF.pop();

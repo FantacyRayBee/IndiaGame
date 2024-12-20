@@ -21,7 +21,6 @@ cc.Class({
     var paiValue = crad;
     var num = "" + paiValue % 13;
     var cardspritename = "";
-
     if (paiValue <= 12) {
       cardspritename = "fangkuai";
     } else if (paiValue > 12 && paiValue <= 25) {
@@ -35,7 +34,6 @@ cc.Class({
     } else if (paiValue == 53) {
       cardspritename = "w_";
     }
-
     if (num == "0") {
       cardspritename += 12;
     } else if (num == "1") {
@@ -63,13 +61,11 @@ cc.Class({
     } else if (num == "12") {
       cardspritename += 11;
     }
-
     this.node.getComponent(cc.Sprite).spriteFrame = this.pokseAtlas.getSpriteFrame(cardspritename);
   },
   valueTransTypeAndNum: function valueTransTypeAndNum(crad) {
     var data = {};
     var cradStr = Number(crad) % 13;
-
     if (cradStr.length == 1) {
       data.num = cradStr.substr(0, 2);
       data.type = "0";
@@ -77,7 +73,6 @@ cc.Class({
       data.num = cradStr.substr(1, 2);
       data.type = cradStr.substr(0, 1);
     }
-
     return data;
   }
 });

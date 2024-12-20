@@ -13,7 +13,6 @@ cc.Class({
   },
   setFireSpinFreeType: function setFireSpinFreeType() {
     var _this = this;
-
     this.skeleton_fireArr.forEach(function (skeleton_fire) {
       skeleton_fire.skeletonData = _this.skeletonData_fireFree;
       skeleton_fire.defaultSkin = 'default';
@@ -22,7 +21,6 @@ cc.Class({
   },
   setFireSpinNormalType: function setFireSpinNormalType() {
     var _this2 = this;
-
     this.skeleton_fireArr.forEach(function (skeleton_fire) {
       skeleton_fire.skeletonData = _this2.skeletonData_fireNormal;
       skeleton_fire.defaultSkin = 'default';

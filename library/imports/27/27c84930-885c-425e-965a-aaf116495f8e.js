@@ -37,7 +37,6 @@ cc.Class({
   // LIFE-CYCLE CALLBACKS:
   ctor: function ctor() {
     this.remainingTimes = 0; // 剩余提现次数
-
     this.address = {
       // 当前脚本主要数据
       uid: GlobalCfg.USER_DATAS.userid,
@@ -48,13 +47,13 @@ cc.Class({
       bank_code: "",
       // 银行
       email: "",
-      mobile: "" // 非必须
+      mobile: ""
+      // 非必须
       // upi: "",
       // pan: "",
-
     };
-    this.writeDataErrorList = new Set(); // 填写信息错误
 
+    this.writeDataErrorList = new Set(); // 填写信息错误
     this.errorStrArr = {
       bank_card_id: 'Must be number in Account',
       // 银行个人卡号
@@ -69,7 +68,6 @@ cc.Class({
       email: 'Error Email',
       // Email
       mobile: 'The Mobile Number is invalid' // Mobile
-
     };
   },
   onLoad: function onLoad() {
@@ -77,7 +75,6 @@ cc.Class({
     this.checkShipei(this.node);
     this.nodeWirte.account = false;
     this.nodeMain.account = true;
-
     if (GlobalCfg.USER_DATAS.recharged == 0) {
       this.remainingTimes = 3;
     } else {
@@ -88,10 +85,8 @@ cc.Class({
       } else {
         this.remainingTimes = GlobalCfg.USER_DATAS.remainWithdrawCount <= 0 ? 0 : GlobalCfg.USER_DATAS.remainWithdrawCount;
       }
-
       ;
     }
-
     ;
     this.updateWithDrawRemainingCount();
     this.togglesParent.children.forEach(function (item) {
@@ -128,13 +123,11 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.REMAIN_WITH_DRAW_UPDATE) {
       if (CommonFun.getInstance().isValidForScr(self)) {
         self.remainingTimes = GlobalCfg.USER_DATAS.remainWithdrawCount <= 0 ? 0 : GlobalCfg.USER_DATAS.remainWithdrawCount;
         self.updateWithDrawRemainingCount();
       }
-
       ;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE) {
       if (CommonFun.getInstance().isValidForScr(self)) {
@@ -143,34 +136,27 @@ cc.Class({
         self.remainingTimes = self.remainingTimes <= 0 ? 0 : self.remainingTimes;
         self.updateWithDrawRemainingCount();
       }
-
       ;
     }
   },
   clickCallback: function clickCallback(button) {
     var _this = this;
-
     var name = button.node.name;
-
     if (name == this.btnBack.node.name) {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
-
       if (this.nodeWirte.active == true) {
         this.nodeWirte.active = false;
         this.nodeMain.active = true;
       } else {
         this.node.destroy();
       }
-
       return;
     } else if (name == this.btnCLoseRule.node.name) {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.nodeRule.active = false;
       return;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (name == this.btnAddAccount.node.name) {
       this.showWriteData();
     } else if (name == this.btnWithDraw.node.name) {
@@ -185,7 +171,6 @@ cc.Class({
               CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.WithDrawPreData);
             }, false);
           }
-
           ;
         } else {
           if (CommonFun.getInstance().isOpenVipModule()) {
@@ -193,7 +178,6 @@ cc.Class({
               return a.price - b.price;
             }) : [];
             var miniWithDraw = option.length > 0 ? option[0].price : 0;
-
             if (GlobalCfg.USER_DATAS.userVip.day_withdraw_count >= GlobalCfg.USER_DATAS.userVip.day_withdraw_count_limit || GlobalCfg.USER_DATAS.userVip.withdraw_total + miniWithDraw * 100 > GlobalCfg.USER_DATAS.userVip.withdraw_total_limit) {
               CommonFun.getInstance().showVipUpgradeToast();
             } else {
@@ -202,22 +186,18 @@ cc.Class({
                 _this.node.destroy();
               });
             }
-
             ;
           } else {
             CommonFun.getInstance().showWithDraw(function () {
               _this.node.destroy();
             });
           }
-
           ;
         }
-
         ;
       } else {
         this.showWriteData();
       }
-
       ;
     } else if (name == this.btnRule.node.name) {
       this.nodeRule.active = true;
@@ -250,12 +230,11 @@ cc.Class({
           this.writeDataErrorList.add(key);
         }
       }
-    } // LoggerUtil.getInstance().warn(">>>>>>>填写信息错误>>>>>>Set====", this.writeDataErrorList);
-
+    }
+    // LoggerUtil.getInstance().warn(">>>>>>>填写信息错误>>>>>>Set====", this.writeDataErrorList);
   },
   initConfigData: function initConfigData() {
     this.labTotalBalance.string = "" + GlobalCfg.USER_DATAS.userDiamond / 100;
-
     if (GlobalCfg.USER_DATAS.recharged > 0) {
       // 已充值
       this.labWithdrawAble.string = "" + Number(GlobalCfg.USER_DATAS.winnings) / 100;
@@ -266,7 +245,6 @@ cc.Class({
   initServiceData: function initServiceData() {
     this.setBankAccount(this.address.bank_card_id);
   },
-
   /**
    * 更新提现按钮显示次数
    */
@@ -297,7 +275,6 @@ cc.Class({
   },
   saveAddress: function saveAddress() {
     var _this2 = this;
-
     if (this.writeDataErrorList.size == 0) {
       CommonFun.getInstance().showProgress();
       var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/payment/india_address";
@@ -305,23 +282,18 @@ cc.Class({
         address: this.address
       }, function (msg) {
         CommonFun.getInstance().hidProgress();
-
         if (msg.result == 0) {
           CommonFun.getInstance().showTips('Save Info Success!');
-
           if (CommonFun.getInstance().isValidForScr(_this2)) {
             _this2.initServiceData();
-
             _this2.nodeMain.active = true;
             _this2.nodeWirte.active = false;
             GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(_this2.address);
           }
-
           ;
         } else {
           CommonFun.getInstance().showTips(msg.msg);
         }
-
         ;
       }, null, GlobalCfg.USER_DATAS.BearerToken);
     } else {
@@ -335,7 +307,6 @@ cc.Class({
   checkAccound: function checkAccound(editBox) {
     var str = editBox.string;
     var pattern = new RegExp('^[0-9]+$');
-
     if (pattern.test(str) == true) {
       this.writeDataErrorList["delete"]("bank_card_id");
       this.address.bank_card_id = str;
@@ -344,10 +315,10 @@ cc.Class({
     }
   },
   checkUserName: function checkUserName(editBox) {
-    var str = editBox.string; // let pattern = new RegExp('[0-9]+');
+    var str = editBox.string;
+    // let pattern = new RegExp('[0-9]+');
     // let pattern = new RegExp('^[A-Za-z]*(\s[A-Za-z]*)*$');
     // 名字必须为英文，可包含空格
-
     if (str.length > 0) {
       this.address.name = str;
       this.writeDataErrorList["delete"]('name');
@@ -358,10 +329,8 @@ cc.Class({
   checkIFSCCode: function checkIFSCCode(editBox) {
     var str = editBox.string;
     var pattern = new RegExp('^[A-Z]{4}[0]{1}');
-
     if (pattern.test(str) == true) {
       this.writeDataErrorList["delete"]('ifsc');
-
       if (str.length == 11) {
         this.writeDataErrorList["delete"]('ifsc_1');
         this.address.ifsc = str;
@@ -374,8 +343,8 @@ cc.Class({
   },
   checkBankName: function checkBankName(editBox) {
     var str = editBox.string;
-    var pattern = /^[A-Za-z0-9]*(\s[A-Za-z0-9]*)*$/; // 纯英文 + 数字 + 空格
-
+    var pattern = /^[A-Za-z0-9]*(\s[A-Za-z0-9]*)*$/;
+    // 纯英文 + 数字 + 空格
     if (pattern.test(str) == true && str.length > 0) {
       this.address.bank_code = str;
       this.writeDataErrorList["delete"]('bank_code');
@@ -383,27 +352,24 @@ cc.Class({
       this.writeDataErrorList.add('bank_code');
     }
   },
-  checkBranchBankName: function checkBranchBankName(editBox) {// 参数暂未使用
+  checkBranchBankName: function checkBranchBankName(editBox) {
+    // 参数暂未使用
   },
   checkEmail: function checkEmail(editBox) {
     var str = editBox.string;
-
     var validateEmail = function validateEmail(email) {
       return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     };
-
     if (validateEmail(str)) {
       this.address.email = str;
       this.writeDataErrorList["delete"]('email');
     } else {
       this.writeDataErrorList.add('email');
     }
-
     ;
   },
   checkMobile: function checkMobile(editBox) {
     var str = editBox.string;
-
     if (str.length == 10) {
       this.address.mobile = "91" + str;
       this.writeDataErrorList["delete"]('mobile');

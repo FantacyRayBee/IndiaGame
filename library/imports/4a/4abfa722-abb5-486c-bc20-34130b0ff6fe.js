@@ -23,11 +23,9 @@ cc.Class({
     this.btn_close.node.on('click', this.btnClick, this);
     this.btn_ok.node.on('click', this.btnClick, this);
     this.btn_cancel.node.on('click', this.btnClick, this);
-
     for (var i = 0; i < 5; i++) {
       this["btn_" + (i + 1)].node.on('click', this.btnClick, this);
     }
-
     ;
     this.node_title01.active = this.num === 0;
     this.node_title02.active = this.num !== 0;
@@ -37,13 +35,11 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
-
     if (btnName === "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
     } else {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       if (btnName === "btn_ok") {
         cc.sys.localStorage.setItem("RateUsStorage", this.num);
         this.node.destroy();
@@ -69,17 +65,13 @@ cc.Class({
     this.btn_3.node.getChildByName('spr_star').active = false;
     this.btn_4.node.getChildByName('spr_star').active = false;
     this.btn_5.node.getChildByName('spr_star').active = false;
-
     if (this.num <= 0) {
       return;
     }
-
     ;
-
     for (var i = 0; i < num; i++) {
       this["btn_" + (i + 1)].node.getChildByName('spr_star').active = true;
     }
-
     ;
   },
   onDestroy: function onDestroy() {

@@ -16,12 +16,12 @@ cc.Class({
   setSelfOpacity: function setSelfOpacity(value, blink) {
     this.sprSelected.opacity = value;
     this.sprSelectedAnim.active = blink;
-
     if (blink) {
       this.sprSelected.active = false;
     }
-  } // update (dt) {},
+  }
 
+  // update (dt) {},
 });
 
 cc._RF.pop();

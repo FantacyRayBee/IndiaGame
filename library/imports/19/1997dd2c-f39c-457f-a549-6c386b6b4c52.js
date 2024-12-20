@@ -21,10 +21,8 @@ cc.Class({
   onLoad: function onLoad() {},
   start: function start() {
     var _this = this;
-
     this.node.on(cc.Node.EventType.TOUCH_END, function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       if (_this.node.childrenCount == 0) {
         // 当前座位无人，入座
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
@@ -48,7 +46,6 @@ cc.Class({
       }
     });
   } // update (dt) {},
-
 });
 
 cc._RF.pop();

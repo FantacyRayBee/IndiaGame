@@ -9,7 +9,6 @@ cc.Class({
   properties: {},
   onLoad: function onLoad() {} // start () {},
   // update (dt) {},
-
 });
 
 cc._RF.pop();
