@@ -51,12 +51,14 @@ let GameDownloader = cc.Class({
         if (typeof(gameName) != 'string' || gameName.length == 0) {
             return;
         };
-        console.log("caojun priorLoadGame this.downLoadTaskArr.length == ", this.downLoadTaskArr.length)
+        if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {//H5
+            this.loadGameH5(gameName)
+            return
+        }
         for (let i = 0, len = this.downLoadTaskArr.length; i < len; i++) {
             if (this.downLoadTaskArr[i].gameName === gameName) {
                 if (this.downLoadTaskArr[i].status !== DownLoadTaskStatus.Loading) {
                     this.downLoadTaskArr[i].notify = true;
-                    console.log("caojun priorLoadGame 111111")
                     this.loadPointGame(this.downLoadTaskArr[i]);
                 }
                 else {
@@ -73,7 +75,6 @@ let GameDownloader = cc.Class({
             isZipFormat: cc.sys.localStorage.getItem(gameName) != null ? false : true,
         };
         this.downLoadTaskArr.push(downTask);
-        console.log("caojun priorLoadGame 222222")
         this.loadPointGame(downTask);
     },
 
@@ -407,69 +408,29 @@ let GameDownloader = cc.Class({
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE, msgData: {subpackgeName: gameName}});
     },
 
-    loadGameByH5:function(bundleName){
-        cc.assetManager.loadBundle("http://example.com/game_bundles/myBundle", function (err, bundle) {
-            if (err) {
-                console.error("加载远程资源包失败:", err);
-                return;
-            }
-            console.log("远程资源包加载成功:", bundle);
-            
-            // 加载成功后，你可以通过 bundle 加载其中的资源
-            bundle.load("sprite", cc.SpriteFrame, function (err, spriteFrame) {
-                if (err) {
-                    console.error("加载 sprite 失败:", err);
-                } else {
-                    console.log("成功加载 spriteFrame:", spriteFrame);
-                    // 在这里将 spriteFrame 应用到一个 Sprite 组件
-                    let spriteNode = cc.find("Canvas/SpriteNode");  
-                    spriteNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-                }
-            });
+    loadGameH5(packgeName){
+        cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+            bundle.preloadDir("/", (completedCount, totalCount) => { 
+                // 更新进度条 
+                let progressStr = completedCount / totalCount; 
+                cc.log(`progress = ${progressStr}`); 
+                let msgData = {
+                    progress: (progressStr * 100).toFixed(2),
+                    subpackgeName: packgeName,
+                };
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS, msgData: msgData});
+            }, (err, resources) => { 
+                // 所有资源加载完成后的回调 
+                if (err) { 
+                    console.error(packgeName+ " 资源加载失败:", err);
+                } else { 
+                    console.log(packgeName + " 资源预加载完成!" + resources); 
+                    let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
+                    cc.sys.localStorage.setItem(packgeName, serverVersion); 
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE, msgData: {subpackgeName: packgeName}});
+                } 
+            }); 
         });
-    },
-
-    // 定义加载进度的回调函数
-    loadBundleWithProgress:function(url, bundleName, progressCallback, completeCallback) {
-        // 使用 XMLHttpRequest 作为下载器，监听下载进度
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.responseType = 'arraybuffer'; // 如果是二进制文件（如 zip 压缩包）
-
-        xhr.onprogress = function (event) {
-            if (event.lengthComputable) {
-                let percent = (event.loaded / event.total) * 100;
-                progressCallback(percent);
-            }
-        };
-
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                
-                console.log("资源包下载完成");
-
-                // 将下载的资源包加载到 Cocos 中
-                cc.assetManager.loadBundle(url, function (err, bundle) {
-                    if (err) {
-                        console.error("加载资源包失败:", err);
-                        completeCallback(err);
-                    } else {
-                        console.log("资源包加载成功:", bundle);
-                        completeCallback(null, bundle);
-                    }
-                });
-            } else {
-                console.error("下载失败，状态码:", xhr.status);
-                completeCallback(new Error("下载失败"));
-            }
-        };
-
-        xhr.onerror = function () {
-            console.error("下载出错");
-            completeCallback(new Error("下载出错"));
-        };
-
-        xhr.send();
     },
 
     httpGet: function(url, callFun, outCallFun) {

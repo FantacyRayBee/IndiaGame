@@ -1695,12 +1695,10 @@ cc.Class({
         // };
 
         if ((cc.sys.os != cc.sys.OS_ANDROID && cc.sys.isBrowser) || !GlobalCfg.IS_SMALL_GAME_UPDATE) {
-            console.log("11111 => callFun")
             callFun();
             return;
         };
 
-        console.log("222222 => callFun")
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);

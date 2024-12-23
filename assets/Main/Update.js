@@ -535,6 +535,7 @@ cc.Class({
     },
  
     start: function() {
+        LoggerUtil.getInstance().error(`GlobalCfg.SERVERRELOAD: ${GlobalCfg.SERVERRELOAD}`);
         if (GlobalCfg.SERVERRELOAD == true) {
             CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
                 window.ResourcesBundle = bundle;
@@ -554,7 +555,12 @@ cc.Class({
             this.runUpdateProcess();
         }
         else {
-            this.changeSceneToLobby();
+            if (cc.sys.os == cc.sys.OS_ANDROID) {//H5
+                this.preloadMain();                
+            }
+            else{
+                this.changeSceneToLobby();
+            }
         };
     },
 
@@ -798,6 +804,57 @@ cc.Class({
         if (downloader) {
             downloader.createDownloadFileTask(task.requestURL, task.storagePath);
         };
+    },
+
+    //预加载H5相关必要资源
+    preloadMain:function(){
+        this.node_loginLayer.active = false;
+        this.progressBar.node.active = true;
+        this.lab_updatePoint.node.active = true;
+        this.lab_updateProgress.node.active = true;
+        this.lab_updateContentTips.node.active = true;
+
+        this.setLabUpdatePointAnim(true);
+        this.setLabUpdateProgressStr("0%");
+        this.setUpdateProgressBarProgress(0);
+        this.setLabUpdateContentTipsStr("Getting Version Information");
+
+        if (CommonFun.getInstance().isNeedUpdata("ResourcesBundle")) {
+            this.checkDownloadH5Main("ResourcesBundle")
+        }
+        else{
+            this.changeSceneToLobby();
+        }
+    },
+    //下载H5端必要资源
+    checkDownloadH5Main(packgeName){
+        cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+            bundle.preloadDir("/", (completedCount, totalCount) => { 
+                // 更新进度条
+                let progressStr = completedCount / totalCount; 
+                cc.log(`progress = ${progressStr}`); 
+                this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
+                this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
+                this.setLabUpdateContentTipsStr("Downloading files");
+            }, (err, resources) => { 
+                // 所有资源加载完成后的回调 
+                if (err) { 
+                    console.error(packgeName+ " 资源加载失败:", err);
+                } else { 
+                    console.log(packgeName + " 资源预加载完成!" + resources); 
+
+
+                    let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
+                    cc.sys.localStorage.setItem(packgeName, serverVersion); 
+                    this.setLabUpdateProgressStr("100%");
+                    this.setUpdateProgressBarProgress(1);
+                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                    this.scheduleOnce(() => {
+                        this.changeSceneToLobby();
+                    }, 1);
+                } 
+            }); 
+        });
     },
 
     changeSceneToLobby: function() {

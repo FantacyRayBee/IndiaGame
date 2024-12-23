@@ -486,6 +486,7 @@ cc.Class({
     return false;
   },
   start: function start() {
+    LoggerUtil.getInstance().error("GlobalCfg.SERVERRELOAD: " + GlobalCfg.SERVERRELOAD);
     if (GlobalCfg.SERVERRELOAD == true) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
         window.ResourcesBundle = bundle;
@@ -504,7 +505,12 @@ cc.Class({
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
       this.runUpdateProcess();
     } else {
-      this.changeSceneToLobby();
+      // if (cc.sys.os == cc.sys.OS_ANDROID) {//H5
+      this.preloadMain();
+      // }
+      // else{
+      //     this.changeSceneToLobby();
+      // }
     }
     ;
   },
@@ -743,6 +749,52 @@ cc.Class({
     }
     ;
   },
+  //预加载H5相关必要资源
+  preloadMain: function preloadMain() {
+    this.node_loginLayer.active = false;
+    this.progressBar.node.active = true;
+    this.lab_updatePoint.node.active = true;
+    this.lab_updateProgress.node.active = true;
+    this.lab_updateContentTips.node.active = true;
+    this.setLabUpdatePointAnim(true);
+    this.setLabUpdateProgressStr("0%");
+    this.setUpdateProgressBarProgress(0);
+    this.setLabUpdateContentTipsStr("Getting Version Information");
+    if (CommonFun.getInstance().isNeedUpdata("ResourcesBundle")) {
+      this.checkDownloadH5Main("ResourcesBundle");
+    } else {
+      this.changeSceneToLobby();
+    }
+  },
+  //下载H5端必要资源
+  checkDownloadH5Main: function checkDownloadH5Main(packgeName) {
+    var _this4 = this;
+    cc.assetManager.loadBundle(packgeName, function (_, bundle) {
+      bundle.preloadDir("/", function (completedCount, totalCount) {
+        // 更新进度条
+        var progressStr = completedCount / totalCount;
+        cc.log("progress = " + progressStr);
+        _this4.setLabUpdateProgressStr((progressStr * 100).toFixed(2) + "%");
+        _this4.setUpdateProgressBarProgress(Number(progressStr.toFixed(2)));
+        _this4.setLabUpdateContentTipsStr("Downloading files");
+      }, function (err, resources) {
+        // 所有资源加载完成后的回调 
+        if (err) {
+          console.error(packgeName + " 资源加载失败:", err);
+        } else {
+          console.log(packgeName + " 资源预加载完成!" + resources);
+          var serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
+          cc.sys.localStorage.setItem(packgeName, serverVersion);
+          _this4.setLabUpdateProgressStr("100%");
+          _this4.setUpdateProgressBarProgress(1);
+          _this4.setLabUpdateContentTipsStr("Please Enjoy The Game");
+          _this4.scheduleOnce(function () {
+            _this4.changeSceneToLobby();
+          }, 1);
+        }
+      });
+    });
+  },
   changeSceneToLobby: function changeSceneToLobby() {
     LoggerUtil.getInstance().log("Update completed, now enter Login-view");
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_LOGIN_VIEW);
@@ -753,24 +805,24 @@ cc.Class({
     this.loadBundleAndRunScene();
   },
   loadBundleAndRunScene: function loadBundleAndRunScene() {
-    var _this4 = this;
+    var _this5 = this;
     Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()]).then(function (arr) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
         window.ResourcesBundle = bundle;
         GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
         GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
         if (!GlobalCfg.USER_DATAS.token) {
-          _this4.node_loginLayer.active = true;
+          _this5.node_loginLayer.active = true;
           var phoneToken = cc.sys.localStorage.getItem("phone_token");
           if (phoneToken) {
-            _this4.showMemoryPhoneView();
+            _this5.showMemoryPhoneView();
           } else {
-            _this4.showCommonLoginView();
+            _this5.showCommonLoginView();
           }
           ;
         } else {
           CommonFun.getInstance().showProgress('Memory login ...');
-          _this4.node_loginLayer.active = false;
+          _this5.node_loginLayer.active = false;
           var promise = SceneManager.getInstance().reqBearerToken();
           promise.then(function () {
             return SceneManager.getInstance().reqUserDataInfo();
@@ -779,8 +831,8 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
           })["catch"](function (error) {
             LoggerUtil.getInstance().log(error);
-            _this4.node_loginLayer.active = true;
-            _this4.showCommonLoginView("");
+            _this5.node_loginLayer.active = true;
+            _this5.showCommonLoginView("");
           });
         }
         ;
@@ -826,7 +878,7 @@ cc.Class({
     ;
   },
   baseBundlesHotUpdate: function baseBundlesHotUpdate() {
-    var _this5 = this;
+    var _this6 = this;
     this.loadBundlesStartTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
     LoggerUtil.getInstance().log("Start downloading baseBundles zip files!");
@@ -836,7 +888,7 @@ cc.Class({
           baseBundle: baseBundle,
           progress: 0
         };
-        _this5.baseBundlesNeedUpdateArr.push(tempObj);
+        _this6.baseBundlesNeedUpdateArr.push(tempObj);
       }
       ;
     });
@@ -848,7 +900,7 @@ cc.Class({
       this.setUpdateProgressBarProgress(1);
       this.setLabUpdateContentTipsStr("Please Enjoy The Game");
       this.scheduleOnce(function () {
-        if (_this5.isHaveUpdateForResources) {
+        if (_this6.isHaveUpdateForResources) {
           GlobalCfg.G_COMPONENTS.Audio.stopAll();
           var searchPaths = jsb.fileUtils.getSearchPaths();
           var storagePath1 = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'remote-asset/';
@@ -858,7 +910,7 @@ cc.Class({
           jsb.fileUtils.setSearchPaths(searchPaths);
           cc.game.restart();
         } else {
-          _this5.changeSceneToLobby();
+          _this6.changeSceneToLobby();
         }
         ;
       }, 1);

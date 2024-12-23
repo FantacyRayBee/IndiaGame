@@ -53,12 +53,15 @@ var GameDownloader = cc.Class({
       return;
     }
     ;
-    console.log("caojun priorLoadGame this.downLoadTaskArr.length == ", this.downLoadTaskArr.length);
+    if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
+      //H5
+      this.loadGameH5(gameName);
+      return;
+    }
     for (var i = 0, len = this.downLoadTaskArr.length; i < len; i++) {
       if (this.downLoadTaskArr[i].gameName === gameName) {
         if (this.downLoadTaskArr[i].status !== DownLoadTaskStatus.Loading) {
           this.downLoadTaskArr[i].notify = true;
-          console.log("caojun priorLoadGame 111111");
           this.loadPointGame(this.downLoadTaskArr[i]);
         } else {
           this.downLoadTaskArr[i].notify = true;
@@ -77,7 +80,6 @@ var GameDownloader = cc.Class({
       isZipFormat: cc.sys.localStorage.getItem(gameName) != null ? false : true
     };
     this.downLoadTaskArr.push(downTask);
-    console.log("caojun priorLoadGame 222222");
     this.loadPointGame(downTask);
   },
   loadPointGame: function loadPointGame(downTask) {
@@ -419,6 +421,38 @@ var GameDownloader = cc.Class({
       msgData: {
         subpackgeName: gameName
       }
+    });
+  },
+  loadGameH5: function loadGameH5(packgeName) {
+    cc.assetManager.loadBundle(packgeName, function (_, bundle) {
+      bundle.preloadDir("/", function (completedCount, totalCount) {
+        // 更新进度条 
+        var progressStr = completedCount / totalCount;
+        cc.log("progress = " + progressStr);
+        var msgData = {
+          progress: (progressStr * 100).toFixed(2),
+          subpackgeName: packgeName
+        };
+        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+          msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS,
+          msgData: msgData
+        });
+      }, function (err, resources) {
+        // 所有资源加载完成后的回调 
+        if (err) {
+          console.error(packgeName + " 资源加载失败:", err);
+        } else {
+          console.log(packgeName + " 资源预加载完成!" + resources);
+          var serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
+          cc.sys.localStorage.setItem(packgeName, serverVersion);
+          ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+            msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE,
+            msgData: {
+              subpackgeName: packgeName
+            }
+          });
+        }
+      });
     });
   },
   httpGet: function httpGet(url, callFun, outCallFun) {
