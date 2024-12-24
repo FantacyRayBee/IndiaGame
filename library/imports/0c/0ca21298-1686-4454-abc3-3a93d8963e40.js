@@ -505,12 +505,12 @@ cc.Class({
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
       this.runUpdateProcess();
     } else {
-      // if (cc.sys.os == cc.sys.OS_ANDROID) {//H5
-      this.preloadMain();
-      // }
-      // else{
-      //     this.changeSceneToLobby();
-      // }
+      if (cc.sys.os == cc.sys.OS_ANDROID) {
+        //H5
+        this.preloadMainH5();
+      } else {
+        this.changeSceneToLobby();
+      }
     }
     ;
   },
@@ -750,7 +750,7 @@ cc.Class({
     ;
   },
   //预加载H5相关必要资源
-  preloadMain: function preloadMain() {
+  preloadMainH5: function preloadMainH5() {
     this.node_loginLayer.active = false;
     this.progressBar.node.active = true;
     this.lab_updatePoint.node.active = true;
@@ -773,7 +773,7 @@ cc.Class({
       bundle.preloadDir("/", function (completedCount, totalCount) {
         // 更新进度条
         var progressStr = completedCount / totalCount;
-        cc.log("progress = " + progressStr);
+        // cc.log(`progress = ${progressStr}`); 
         _this4.setLabUpdateProgressStr((progressStr * 100).toFixed(2) + "%");
         _this4.setUpdateProgressBarProgress(Number(progressStr.toFixed(2)));
         _this4.setLabUpdateContentTipsStr("Downloading files");

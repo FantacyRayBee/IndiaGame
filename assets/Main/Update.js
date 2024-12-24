@@ -556,7 +556,7 @@ cc.Class({
         }
         else {
             if (cc.sys.os == cc.sys.OS_ANDROID) {//H5
-                this.preloadMain();                
+                this.preloadMainH5();                
             }
             else{
                 this.changeSceneToLobby();
@@ -807,7 +807,7 @@ cc.Class({
     },
 
     //预加载H5相关必要资源
-    preloadMain:function(){
+    preloadMainH5:function(){
         this.node_loginLayer.active = false;
         this.progressBar.node.active = true;
         this.lab_updatePoint.node.active = true;
@@ -832,7 +832,7 @@ cc.Class({
             bundle.preloadDir("/", (completedCount, totalCount) => { 
                 // 更新进度条
                 let progressStr = completedCount / totalCount; 
-                cc.log(`progress = ${progressStr}`); 
+                // cc.log(`progress = ${progressStr}`); 
                 this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
                 this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
                 this.setLabUpdateContentTipsStr("Downloading files");
@@ -842,7 +842,6 @@ cc.Class({
                     console.error(packgeName+ " 资源加载失败:", err);
                 } else { 
                     console.log(packgeName + " 资源预加载完成!" + resources); 
-
 
                     let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
                     cc.sys.localStorage.setItem(packgeName, serverVersion); 

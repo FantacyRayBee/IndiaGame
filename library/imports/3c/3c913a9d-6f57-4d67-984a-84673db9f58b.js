@@ -577,9 +577,10 @@ var CommonFun = cc.Class({
    * @returns 
    */
   isNeedUpdata: function isNeedUpdata(subpackgeName) {
-    // if ((cc.sys.os != cc.sys.OS_ANDROID && cc.sys.isBrowser) || !GlobalCfg.IS_SMALL_GAME_UPDATE) {
-    //     return false;
-    // };
+    if (cc.sys.os != cc.sys.OS_ANDROID && cc.sys.isBrowser || !GlobalCfg.IS_SMALL_GAME_UPDATE) {
+      return false;
+    }
+    ;
     var serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
     var localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
     LoggerUtil.getInstance().log(subpackgeName + "\u7248\u672C\u53F7\u5BF9\u6BD4===> \u8FDC\u7A0B\u7248\u672C\u53F7: " + serverVersionNum + ", \u672C\u5730\u7248\u672C\u53F7: " + localVersionNum);
