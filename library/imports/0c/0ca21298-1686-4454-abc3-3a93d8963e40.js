@@ -773,7 +773,7 @@ cc.Class({
       bundle.preloadDir("/", function (completedCount, totalCount) {
         // 更新进度条
         var progressStr = completedCount / totalCount;
-        // cc.log(`progress = ${progressStr}`); 
+        // cc.log(`progress = ${progressStr}`);
         _this4.setLabUpdateProgressStr((progressStr * 100).toFixed(2) + "%");
         _this4.setUpdateProgressBarProgress(Number(progressStr.toFixed(2)));
         _this4.setLabUpdateContentTipsStr("Downloading files");

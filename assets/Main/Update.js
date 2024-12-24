@@ -832,7 +832,7 @@ cc.Class({
             bundle.preloadDir("/", (completedCount, totalCount) => { 
                 // 更新进度条
                 let progressStr = completedCount / totalCount; 
-                // cc.log(`progress = ${progressStr}`); 
+                // cc.log(`progress = ${progressStr}`);
                 this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
                 this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
                 this.setLabUpdateContentTipsStr("Downloading files");
@@ -851,7 +851,7 @@ cc.Class({
                     this.scheduleOnce(() => {
                         this.changeSceneToLobby();
                     }, 1);
-                } 
+                }
             }); 
         });
     },
