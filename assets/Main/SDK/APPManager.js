@@ -231,6 +231,25 @@ APPManager.getUUID = function() {
     }
 }
 
+APPManager.getGAID = function() {
+    let result = "";
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getGAID, "()Ljava/lang/String;");
+        let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getGAID, "()Ljava/lang/String;");
+        let result3 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getGAID, "()Ljava/lang/String;");
+        if (result1) {
+            result = result1;
+        };
+        if (result2) {
+            result = result2;
+        };
+        if (result3) {
+            result = result3;
+        };
+    }
+    return result;
+}
+
 
 APPManager.getAdjustID = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
@@ -297,6 +316,26 @@ APPManager.getOpenInstallData = function() {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getOpenInstallData, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getOpenInstallData, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getOpenInstallData, "()V");
+
+        let device = CommonFun.getInstance().getDeviceId();
+        let gaid = APPManager.getGAID();
+        let httpParam = {
+            "device": device,
+            "channel": GlobalCfg.CHANNEL_INFO,
+            "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
+            "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+            "gaid": gaid,
+            "googleId": GlobalCfg.GOOGLE_ID,
+        };
+        /**
+         * APP启动事件上报
+         */
+        let httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/launch";
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+            if (msg) {
+                LoggerUtil.getInstance().log("launch=========>", JSON.stringify(msg));
+            };
+        });
     }
 }
 
@@ -340,12 +379,14 @@ APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
         };
         
         let device = CommonFun.getInstance().getDeviceId();
-        
+        let gaid = APPManager.getGAID();
         let httpParam = {
             "device": device,
             "channel": GlobalCfg.CHANNEL_INFO,
             "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
             "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+            "gaid": gaid,
+            "googleId": GlobalCfg.GOOGLE_ID,
         };
         /**
          * APP启动事件上报

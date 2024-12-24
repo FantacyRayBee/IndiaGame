@@ -407,8 +407,11 @@ let SceneManager = cc.Class({
         let httpParam = {};
     
         let device = CommonFun.getInstance().getDeviceId();
+        let gaid = APPManager.getGAID();
 
-        LoggerUtil.getInstance().log(`登录 device: ${device}`)
+        // LoggerUtil.getInstance().log(`登录 device: ${device} 广告id gaid: ${gaid}`)
+
+        console.log("广告id gaid:" + gaid)
 
         if (notify.loginType == "PHONE") {
             httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/phonelogin";
@@ -427,6 +430,7 @@ let SceneManager = cc.Class({
                 "afid": GlobalCfg.APPSFLYER_ID,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "token": notify.token,
+                "gaid":gaid,
                 "sign": CommonFun.getInstance().encryptByRSA(device),
             }
         } 
@@ -454,6 +458,7 @@ let SceneManager = cc.Class({
                 "userName": notify.code.UserName,
                 "userId": notify.code.UserId,
                 "token": notify.code.Token,
+                "gaid":gaid,
                 "adv": GlobalCfg.ADVERTISING_ID,
                 "adid": GlobalCfg.ADJUST_ID,
                 "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
@@ -474,6 +479,7 @@ let SceneManager = cc.Class({
                 "googleId": GlobalCfg.GOOGLE_ID,
                 "adv": GlobalCfg.ADVERTISING_ID,
                 "adid": GlobalCfg.ADJUST_ID,
+                "gaid":gaid,
                 "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
                 "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
                 "afid": GlobalCfg.APPSFLYER_ID,
@@ -495,6 +501,7 @@ let SceneManager = cc.Class({
                 "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
                 "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
                 "afid": GlobalCfg.APPSFLYER_ID,
+                "gaid":gaid,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(device),
                 "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,

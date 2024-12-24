@@ -583,7 +583,7 @@ cc.Class({
     comparisonVersionInfo: function() {
         let localVersion = Number(cc.sys.localStorage.getItem("localVersion"));
         LoggerUtil.getInstance().log(`Remote resource file version：${GlobalCfg.ASSETS_VERSION}, Local resource file version：${localVersion}`);
-        if (localVersion != GlobalCfg.ASSETS_VERSION) {
+        if (localVersion != GlobalCfg.ASSETS_VERSION && GlobalCfg.is_need_update) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_RESOURCES_UPDATE);
             LoggerUtil.getInstance().log(`The remote version that needs to be updated is：${GlobalCfg.ASSETS_VERSION}`);
             this.reqMainManifestInfo();
@@ -896,15 +896,17 @@ cc.Class({
         this.loadBundlesStartTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
         LoggerUtil.getInstance().log(`Start downloading baseBundles zip files!`);
-        this.baseBundlesCheckUpdateArr.forEach(baseBundle => {
-            if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
-                let tempObj = {
-                    baseBundle: baseBundle,
-                    progress: 0
-                };
-                this.baseBundlesNeedUpdateArr.push(tempObj);
-            }; 
-        });
+        if (GlobalCfg.is_need_update) {
+            this.baseBundlesCheckUpdateArr.forEach(baseBundle => {
+                if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
+                    let tempObj = {
+                        baseBundle: baseBundle,
+                        progress: 0
+                    };
+                    this.baseBundlesNeedUpdateArr.push(tempObj);
+                }; 
+            });
+        }
 
         if (this.baseBundlesNeedUpdateArr.length == 0) {
             let endTime = cc.sys.now();

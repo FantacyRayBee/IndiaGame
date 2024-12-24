@@ -45,6 +45,15 @@ window.GlobalCfg = {
   IS_EXIST_DIVERSIONFREETP_VIEW: false,
 
   /**
+   * 是否触发热更（测试服专用，线上服这个值必须为true）
+   */
+   is_need_update: false,
+  /**
+   * 是否强制进测试服
+   */
+   is_force_gotoTest: true,
+
+  /**
    * 自定义消息分发Id
    */
   CLIENT_MSG_ID: {
@@ -960,6 +969,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   sendSmsMessage: 'sendSmsMessageByBloom3Rummy',
   getNetWorkType: 'getNetWorkTypeByBloom3Rummy',
   getUUID: 'getUUIDByBloom3Rummy',
+  getGAID: 'getGAIDByBloom3Rummy',
   login: 'loginByBloom3Rummy',
   getAppsFlyerId: 'getAppsFlyerIdByBloom3Rummy',
   getAdvertisingId: 'getAdvertisingIdByBloom3Rummy',
@@ -993,6 +1003,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   sendSmsMessage: 'sendSmsMessageByDownloadPackage',
   getNetWorkType: 'getNetWorkTypeByDownloadPackage',
   getUUID: 'getUUIDByDownloadPackage',
+  getGAID: 'getGAIDByDownloadPackage',
   login: 'loginByDownloadPackage',
   getAppsFlyerId: 'getAppsFlyerIdByDownloadPackage',
   getAdvertisingId: 'getAdvertisingIdByDownloadPackage',
@@ -1026,6 +1037,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   sendSmsMessage: 'sendSmsMessageByOFFLINEDEVE',
   getNetWorkType: 'getNetWorkTypeByOFFLINEDEVE',
   getUUID: 'getUUIDByOFFLINEDEVE',
+  getGAID: 'getGAIDByOFFLINEDEVE',
   login: 'loginByOFFLINEDEVE',
   getAppsFlyerId: 'getAppsFlyerIdByOFFLINEDEVE',
   getAdvertisingId: 'getAdvertisingIdByOFFLINEDEVE',
@@ -1076,8 +1088,8 @@ if (GlobalCfg.isOfflineDeve == 1) {
   * 包名： com.taara.saara.master
   * 渠道名：5007
 */
-GlobalCfg.isOfflineDeve2 = 1;
-if (GlobalCfg.isOfflineDeve2 == 1) {
+// GlobalCfg.isOfflineDeve2 = 1;
+if (GlobalCfg.is_force_gotoTest == true) {
   GlobalCfg.IsDownloadPackage2 = 0;
   cc.sys.localStorage.setItem("PackageChannel", "0_7001");
   GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
