@@ -398,6 +398,7 @@ var SceneManager = cc.Class({
     // LoggerUtil.getInstance().log(`登录 device: ${device} 广告id gaid: ${gaid}`)
 
     console.log("广告id gaid:" + gaid);
+    var googleId = APPManager.getPackageName();
     if (notify.loginType == "PHONE") {
       httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/phonelogin";
       httpParam = {
@@ -405,7 +406,7 @@ var SceneManager = cc.Class({
         "code": notify.code,
         "login_product": GlobalCfg.PRODUCT_ID,
         "channel_info": GlobalCfg.CHANNEL_INFO,
-        "googleId": GlobalCfg.GOOGLE_ID,
+        "googleId": googleId,
         "admin_mode": 0,
         "device": device,
         "adv": GlobalCfg.ADVERTISING_ID,
@@ -432,7 +433,7 @@ var SceneManager = cc.Class({
         "mobile": "",
         "login_product": GlobalCfg.PRODUCT_ID,
         "channel_info": GlobalCfg.CHANNEL_INFO,
-        "googleId": GlobalCfg.GOOGLE_ID,
+        "googleId": googleId,
         "admin_mode": 0,
         "device": device,
         "headImgUrl": notify.code.HeadImgUrl,
@@ -457,7 +458,7 @@ var SceneManager = cc.Class({
         "password": notify.password,
         "admin_mode": 0,
         "channel": GlobalCfg.CHANNEL_INFO,
-        "googleId": GlobalCfg.GOOGLE_ID,
+        "googleId": googleId,
         "adv": GlobalCfg.ADVERTISING_ID,
         "adid": GlobalCfg.ADJUST_ID,
         "gaid": gaid,
@@ -475,7 +476,7 @@ var SceneManager = cc.Class({
         "device": device,
         "admin_mode": 0,
         "channel_info": GlobalCfg.CHANNEL_INFO,
-        "googleId": GlobalCfg.GOOGLE_ID,
+        "googleId": googleId,
         "adv": GlobalCfg.ADVERTISING_ID,
         "adid": GlobalCfg.ADJUST_ID,
         "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,

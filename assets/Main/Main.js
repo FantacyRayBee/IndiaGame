@@ -34,6 +34,12 @@ cc.Class({
             LoggerUtil.getInstance().setLoggerStatus(true);
         };
         console.log(`LoggerUtil Status is: ${LoggerUtil.getInstance().getLoggerStatus()}`);
+        console.log(`APP_CONFIG_URL: ${GlobalCfg.APP_CONFIG_URL}`);
+        console.log(`APP_INFO_URL: ${GlobalCfg.APP_INFO_URL}`);
+        console.log(`APP_VERSION: ${GlobalCfg.APP_VERSION}`);
+        console.log(`UpdateVersion: ${cc.sys.localStorage.getItem("UpdateVersion")}`);
+        console.log(`PackageName: ${APPManager.getPackageName()}`);
+        console.log(`PackageChannel: ${cc.sys.localStorage.getItem("PackageChannel")}`);
 
         /**
          * 常驻节点

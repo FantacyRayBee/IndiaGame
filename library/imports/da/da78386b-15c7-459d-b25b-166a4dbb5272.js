@@ -251,6 +251,13 @@ APPManager.getGAID = function () {
   }
   return result;
 };
+APPManager.getPackageName = function () {
+  var result = "";
+  if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+    result = jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "getPackageName", "()Ljava/lang/String;");
+  }
+  return result;
+};
 APPManager.getAdjustID = function () {
   if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
     var result = "";
@@ -327,26 +334,32 @@ APPManager.getOpenInstallData = function () {
     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getOpenInstallData, "()V");
     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getOpenInstallData, "()V");
     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getOpenInstallData, "()V");
-    var device = CommonFun.getInstance().getDeviceId();
-    var gaid = APPManager.getGAID();
-    var httpParam = {
-      "device": device,
-      "channel": GlobalCfg.CHANNEL_INFO,
-      "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
-      "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
-      "gaid": gaid,
-      "googleId": GlobalCfg.GOOGLE_ID
-    };
-    /**
-     * APP启动事件上报
-     */
-    var httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/launch";
-    CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
-      if (msg) {
-        LoggerUtil.getInstance().log("launch=========>", JSON.stringify(msg));
-      }
-      ;
-    });
+    if (cc.sys.localStorage.getItem("launch") == "") {
+      //每次只有首次安装会发送
+      var device = CommonFun.getInstance().getDeviceId();
+      var gaid = APPManager.getGAID();
+      var googleId = APPManager.getPackageName();
+      var channel = cc.sys.localStorage.getItem("AppChannel");
+      var httpParam = {
+        "device": device,
+        "channel": channel,
+        "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
+        "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+        "gaid": gaid,
+        "googleId": googleId
+      };
+      /**
+       * APP启动事件上报
+       */
+      var httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/launch";
+      CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
+        if (msg) {
+          cc.sys.localStorage.setItem("launch", "1");
+          LoggerUtil.getInstance().log("launch=========>", JSON.stringify(msg));
+        }
+        ;
+      });
+    }
   }
 };
 APPManager.getOpenInstallDataCallBack = function (channelCode, bindData) {
