@@ -47,11 +47,11 @@ window.GlobalCfg = {
   /**
    * 是否触发热更（测试服专用，线上服这个值必须为true）
    */
-   is_need_update: false,
+   is_need_update: true,
   /**
    * 是否强制进测试服
    */
-   is_force_gotoTest: true,
+   is_force_gotoTest: false,
 
   /**
    * 自定义消息分发Id
@@ -1425,6 +1425,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
 
       // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+
+      
 
       GlobalCfg.APP_INFO_URL_SPARE = `https://download.ltgame.in/production/AppInfo.json`;
       GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.ltgame.in/production/AppConfig.json`;
