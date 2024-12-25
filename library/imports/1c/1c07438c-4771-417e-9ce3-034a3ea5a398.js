@@ -38,21 +38,17 @@ cc.Class({
   },
   sliceStr: function sliceStr(str) {
     var _this = this;
-
     var bgNodeHeight = 50;
     var newStr = '';
     var strArr = str.split("\n");
-
     if (strArr && strArr.length > 0) {
       for (var i = 0; i < strArr.length; i++) {
         newStr += strArr[i];
         newStr += "\n";
         bgNodeHeight += 40;
       }
-
       ;
     }
-
     ;
     this.scheduleOnce(function () {
       if (str && _this && _this.label && _this.bgNode) {

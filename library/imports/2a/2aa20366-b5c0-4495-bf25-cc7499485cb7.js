@@ -37,12 +37,10 @@ cc.Class({
   showSpriteTranslate: function showSpriteTranslate(scene) {
     var languageStr = ["", "English", "Hindi", "Urdu", "Bengali"];
     this.spriteAll = scene.getComponentsInChildren(cc.Sprite);
-
     for (var i = 0; i < this.spriteAll.length; i++) {
       var sprite = this.spriteAll[i];
       var name = sprite.node.name;
       var str = name.split("@");
-
       if ((str[0] == "English" || str[0] == "Hindi" || str[0] == "Urdu" || str[0] == "Bengali") && sprite.node) {
         sprite.node.active = str[0] == languageStr[language];
       }
@@ -52,14 +50,11 @@ cc.Class({
   AllLabelNode: function AllLabelNode(scene) {
     if (andeerLanguage) {
       var sprites = scene.getComponentsInChildren(cc.Label);
-
       for (var i = 0; i < sprites.length; i++) {
         var name = sprites[i].node.name;
-
         for (var key in andeerLanguage) {
           if (Object.hasOwnProperty.call(andeerLanguage, key)) {
             var arr = andeerLanguage[key];
-
             if (name == arr[0]) {
               sprites[i].string = arr[language];
             }

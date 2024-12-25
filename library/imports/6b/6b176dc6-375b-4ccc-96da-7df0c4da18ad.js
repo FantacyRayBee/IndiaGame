@@ -14,17 +14,16 @@ cc.Class({
   // onLoad () {},
   start: function start() {
     var _this = this;
-
     this.btn_close.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
-
       _this.node.destroy();
     });
   },
   setContent: function setContent(str) {
     this.lab.string = str;
-  } // update (dt) {},
+  }
 
+  // update (dt) {},
 });
 
 cc._RF.pop();

@@ -17,9 +17,9 @@ cc.Class({
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
       fromid: GlobalCfg.PRODUCT_ID //平台
-
     });
   },
+
   exitGameReq: function exitGameReq(call) {
     GameServerManager.send("gameservice.exit", "ExitGameCallReq", {
       Call: call
@@ -28,7 +28,6 @@ cc.Class({
   gameSceneReq: function gameSceneReq() {
     GameServerManager.send("gameservice.gamescene", "GameSceneReq", {});
   },
-
   /**
    * 
    * @param {*} playerid 
@@ -38,8 +37,9 @@ cc.Class({
     GameServerManager.send("gameservice.call", "CallReq", {
       Call: call
     });
-  } // update (dt) {},
+  }
 
+  // update (dt) {},
 });
 
 cc._RF.pop();

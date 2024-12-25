@@ -12,12 +12,12 @@ cc.Class({
     Atlas_lobby: cc.SpriteAtlas
   },
   // onLoad () {},
+
   // 显示红点还是显示输赢
   showNode: function showNode(str, type) {
     if (str == "redDot") {
       this.node_redDot.active = true;
       this.node_winColor.active = false;
-
       if (type == 5) {
         this.node.y = 88;
       } else if (type == 4) {
@@ -37,7 +37,6 @@ cc.Class({
       var cardspritename = '';
       var sprite = this.node_winColor.getComponent(cc.Sprite);
       var lab_cradTpye = this.node_winColor.getChildByName("lab_cradTpye").getComponent(cc.Label);
-
       if (type == 5) {
         cardspritename = 'btn_high';
         lab_cradTpye.string = ["lab_highCard", "HIGH", "उच्च", "بلند ", "বড়"][language];
@@ -57,9 +56,7 @@ cc.Class({
         cardspritename = 'btn_set';
         lab_cradTpye.string = loToLanguage.lab_set[language];
       }
-
       sprite.spriteFrame = this.Atlas_lobby.getSpriteFrame(cardspritename);
-
       if (str == "lobbyRecord") {
         this.node_winColor.width = 88;
         this.node_winColor.height = 42;
@@ -70,7 +67,6 @@ cc.Class({
     }
   },
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

@@ -15,7 +15,6 @@ cc.Class({
   setSignItemData: function setSignItemData(gift, today, done, day) {
     this.lab_reward.string = "\u20B9" + gift / 100;
     this.lab_day.string = "Day" + day;
-
     if (today > day) {
       this.node_signed.active = true;
       this.node_unsigned.active = false;
@@ -29,7 +28,6 @@ cc.Class({
       this.node_signed.active = false;
       this.node_unsigned.active = false;
     }
-
     ;
   },
   setSignItemSigned: function setSignItemSigned() {

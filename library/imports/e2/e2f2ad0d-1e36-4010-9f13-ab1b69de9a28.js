@@ -10,6 +10,7 @@ cc.Class({
     labs: [cc.Label]
   },
   // onLoad () {},
+
   showDate: function showDate(date) {
     var sideArr = ["SET", "PURE", "SEQ", "COLOR", "PAIR", "HIGH"];
     this.labs[0].string = date.pools[0].all ? FloatCalculation.accDiv(date.pools[0].all, 100) : "X";
@@ -32,6 +33,7 @@ cc.Class({
     // let time = new Date(nS*1000);
     // time = time.toLocaleString(); 
     // return time.replace('/','-')
+
     var time = new Date(nS * 1000);
     var year = time.getFullYear();
     var month = time.getMonth() + 1;
@@ -39,31 +41,24 @@ cc.Class({
     var hours = time.getHours();
     var minute = time.getMinutes();
     var second = time.getSeconds();
-
     if (month < 10) {
       month = '0' + month;
     }
-
     if (date < 10) {
       date = '0' + date;
     }
-
     if (hours < 10) {
       hours = '0' + hours;
     }
-
     if (minute < 10) {
       minute = '0' + minute;
     }
-
     if (second < 10) {
       second = '0' + second;
     }
-
     return year + '-' + month + '-' + date + ' ' + hours + ':' + minute + ':' + second;
   },
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

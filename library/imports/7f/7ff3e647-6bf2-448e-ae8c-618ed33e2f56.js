@@ -25,10 +25,8 @@ cc.Class({
   setVipRulesRuleItemData: function setVipRulesRuleItemData(data) {
     var node1Data = data.node1Data;
     var node2Data = data.node2Data;
-
     if (node1Data) {
       this.lab_level1.string = node1Data.level;
-
       if (node1Data.level <= GlobalCfg.USER_DATAS.userVip.level) {
         this.lab_dayTake1.string = "\u20B9" + node1Data.dayTake / 100;
         this.lab_weekTake1.string = "\u20B9" + node1Data.weekTake / 100;
@@ -42,7 +40,6 @@ cc.Class({
         this.lab_dayWithdrawCountLimit1.string = "-";
         this.lab_gachaCount1.string = "-";
       }
-
       ;
     } else {
       this.lab_level1.string = "-";
@@ -52,12 +49,9 @@ cc.Class({
       this.lab_dayWithdrawCountLimit1.string = "-";
       this.lab_gachaCount1.string = "-";
     }
-
     ;
-
     if (node2Data) {
       this.lab_level2.string = node2Data.level;
-
       if (node2Data.level <= GlobalCfg.USER_DATAS.userVip.level) {
         this.lab_dayTake2.string = "\u20B9" + node2Data.dayTake / 100;
         this.lab_weekTake2.string = "\u20B9" + node2Data.weekTake / 100;
@@ -71,7 +65,6 @@ cc.Class({
         this.lab_dayWithdrawCountLimit2.string = "-";
         this.lab_gachaCount2.string = "-";
       }
-
       ;
     } else {
       this.lab_level2.string = "-";
@@ -81,7 +74,6 @@ cc.Class({
       this.lab_dayWithdrawCountLimit2.string = "-";
       this.lab_gachaCount2.string = "-";
     }
-
     ;
   }
 });

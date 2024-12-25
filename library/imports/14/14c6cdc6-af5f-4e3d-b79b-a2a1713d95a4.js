@@ -18,7 +18,6 @@ cc.Class({
   toggleCallback: function toggleCallback(toggle) {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var toggleName = toggle.node.name;
-
     if (this.node.getComponent(cc.Toggle).isChecked) {
       ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
         msgCode: GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM,
@@ -27,14 +26,12 @@ cc.Class({
         }
       });
     }
-
     ;
   },
   setNewShopItemData: function setNewShopItemData(data) {
     if (!data) {
       return;
     }
-
     ;
     this.shopItemData = data;
     var amount = Math.floor(data.amount / 100);
@@ -44,19 +41,16 @@ cc.Class({
 
     this.lab_shopCoin1.string = "\u20B9" + amount;
     this.lab_shopCoin2.string = "\u20B9" + amount;
-
     if (loop_status == 0 && gift != 0) {
       this.node_bonus.active = true;
       this.lab_bonus.string = '+₹' + Number(gift);
     } else if (loop_status == 1) {
       this.node_bonus.active = false;
     }
-
     ;
   },
   setNewShopItemChecked: function setNewShopItemChecked(isChecked) {
     this.node.getComponent(cc.Toggle).isChecked = isChecked;
-
     if (isChecked) {
       ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
         msgCode: GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM,
@@ -65,7 +59,6 @@ cc.Class({
         }
       });
     }
-
     ;
   }
 });

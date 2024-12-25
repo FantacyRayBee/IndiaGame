@@ -25,7 +25,6 @@ cc.Class({
   },
   onDestroy: function onDestroy() {
     this.node_chatArr = GlobalCfg.ACT_SCENE_CTRL.node_chat.children;
-
     if (this.node_chatArr && this.node_chatArr[this.pos]) {
       this.node_chatArr[this.pos].active = false;
     }
@@ -45,36 +44,30 @@ cc.Class({
     this.setVIPSeat(this.curSeat);
     this.inItPlayerDate();
     this.setUserBgOraLab();
-
     if (date.vipLevel >= 1 && date.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
       this.sprite_vipLevelIcon.node.active = true;
       this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame("" + date.vipLevel);
     } else {
       this.sprite_vipLevelIcon.node.active = false;
     }
-
     ;
     var isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(date.vipLevel);
-
     if (isCanShowVIPFont) {
       this.lab_name.node.color = new cc.Color(250, 225, 76);
     } else {
       this.lab_name.node.color = new cc.Color(255, 255, 255);
     }
-
     ;
   },
   // 设置玩家状态
   inItPlayerDate: function inItPlayerDate() {
     this.lab_coin.string = CommonFun.getInstance().numberToShow(this.diamond / 100);
     GlobalCfg.ACT_SCENE_CTRL.loadHeadSp(this.imgurl, 90, this.headSp);
-
     if (this.pos == -1) {
       this.lab_name.string = CommonFun.getInstance().getStrByLength(this.nickname, 12);
     } else {
       this.lab_name.string = CommonFun.getInstance().getStrByLength(this.nickname, 8);
     }
-
     if (GlobalCfg.ACT_SCENE_CTRL.my_playerid == this.playerid) {
       GlobalCfg.USER_DATAS.userDiamond = this.diamond;
     } else {}
@@ -93,7 +86,6 @@ cc.Class({
   // 显示玩家赢钱的漂分
   showPlayWinCion: function showPlayWinCion(coin, score) {
     var _this = this;
-
     if (this.lab_winCoin && score > 0) {
       this.diamond = coin;
       this.lab_coin.string = CommonFun.getInstance().numberToShow(this.diamond / 100);
@@ -106,7 +98,6 @@ cc.Class({
         _this.bg_js.active = false;
       }).start();
     }
-
     if (GlobalCfg.ACT_SCENE_CTRL.my_playerid == this.playerid) {
       GlobalCfg.USER_DATAS.userDiamond = this.diamond;
     }
@@ -115,7 +106,6 @@ cc.Class({
   showPlayCion: function showPlayCion(coin) {
     this.diamond -= coin;
     this.lab_coin.string = CommonFun.getInstance().numberToShow(this.diamond / 100);
-
     if (GlobalCfg.ACT_SCENE_CTRL.my_playerid == this.playerid) {
       GlobalCfg.USER_DATAS.userDiamond = this.diamond;
     }
@@ -135,12 +125,10 @@ cc.Class({
   // 设置玩家投金币抖动   me自己
   headAct: function headAct(str) {
     var nodePos = null;
-
     if (str == "me") {
       nodePos = cc.v2(-484, -304);
     } else {
       nodePos = this.nodePos;
-
       if (this.pos != -1 && GlobalCfg.ACT_SCENE_CTRL.ruZuoBtnArr[this.pos]) {
         var node = GlobalCfg.ACT_SCENE_CTRL.ruZuoBtnArr[this.pos];
         cc.tween(node).to(0.1, {
@@ -150,7 +138,6 @@ cc.Class({
         }).start();
       }
     }
-
     cc.tween(this.node).to(0.1, {
       position: cc.v2(nodePos.x, nodePos.y + 15)
     }).to(0.1, {
@@ -164,10 +151,9 @@ cc.Class({
   // 初始化节点
   setUserBgOraLab: function setUserBgOraLab() {
     this.emotion = this.node.getChildByName("emotion");
-    this.userQph = this.node.getChildByName("chat_bg"); // this.chat_bg_01 =  this.node.getChildByName("chat_bg").getChildByName("chat_bg_01");
-
+    this.userQph = this.node.getChildByName("chat_bg");
+    // this.chat_bg_01 =  this.node.getChildByName("chat_bg").getChildByName("chat_bg_01");
     this.lab_qph = this.node.getChildByName("chat_bg").getChildByName("lab_qph");
-
     if (this.curSeat == 0 || this.curSeat == 1 || this.curSeat == 2) {
       this.btn_gift.node.setPosition(48, 0);
       this.sprite_vipLevelIcon.node.setPosition(-48, 0);
@@ -188,18 +174,17 @@ cc.Class({
   // 发送表情  消息类型 0短语 1表情
   face: function face(notify) {
     var _this2 = this;
-
     var data = notify;
     var msgtype = notify.msgType;
     var msgid = data.name;
     this.node_chatArr = cc.find('Canvas/node_chat').children;
     var lab_qph = this.node_chatArr[this.pos].getChildByName("lab_qph");
-
     if (msgtype == 0) {
       this.node_chatArr[this.pos].stopAllActions();
       this.node_chatArr[this.pos].active = true;
       lab_qph.setPosition(156, 6);
-      lab_qph.getComponent(cc.Label).string = msgid; // this.lab_qph.stopAllActions()
+      lab_qph.getComponent(cc.Label).string = msgid;
+      // this.lab_qph.stopAllActions()
       // this.userQph.active = true;
       // this.lab_qph.setPosition(156,6)
       // this.lab_qph.getComponent(cc.Label).string = msgid;
@@ -207,7 +192,8 @@ cc.Class({
       cc.tween(lab_qph).to(3, {
         position: cc.v2(-105, 6)
       }).call(function () {
-        _this2.node_chatArr[_this2.pos].active = false; // this.userQph.active = false;
+        _this2.node_chatArr[_this2.pos].active = false;
+        // this.userQph.active = false;
       }).start();
     } else if (msgtype == 1) {
       this.emotion.stopAllActions();
@@ -226,7 +212,6 @@ cc.Class({
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var ctrl = GlobalCfg.ACT_SCENE_CTRL.setNodeCtrl(GlobalCfg.ACT_SCENE_CTRL.my_playerid);
     var myPos = GlobalCfg.ACT_SCENE_CTRL.setMyVIPPos();
-
     if (ctrl && myPos !== null) {
       CommonFun.getInstance().showGameGifInteraction(this.seatid);
     } else {
@@ -234,7 +219,6 @@ cc.Class({
     }
   },
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

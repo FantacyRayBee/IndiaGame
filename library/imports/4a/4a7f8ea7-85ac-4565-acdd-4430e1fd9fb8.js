@@ -27,26 +27,22 @@ cc.Class({
     var w = frameSize.width;
     var h = frameSize.height;
     var bi = w / h;
-
     if (bi < 2.1) {
       for (var i = 0; i < 3; i++) {
         var node = this.seatNodeList[i];
         var posX = node.x;
         node.x = posX - 60;
       }
-
       for (var _i = 3; _i < this.seatNodeList.length; _i++) {
         var _node = this.seatNodeList[_i];
         var _posX = _node.x;
         _node.x = _posX + 60;
       }
     }
-
     for (var _i2 = 0; _i2 < this.seatNodeList.length; _i2++) {
       var seatNode = this.seatNodeList[_i2];
       this.seatNodeOriginYList[_i2] = seatNode.y;
     }
-
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
@@ -59,21 +55,17 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == "GAME_CRICKET_SEAT_Site") {
       // 入座
       var seatId = notify.seatId;
       LoggerUtil.getInstance().log("\u60F3\u8981\u5165\u5EA7" + seatId);
-
       if (CommonFun.getInstance().isOpenVipModule()) {
         if (GlobalCfg.USER_DATAS.userVip.level == 0) {
           CommonFun.getInstance().showFirstRecharge();
           return;
         }
-
         ;
         var isCanSitVipSeat = CommonFun.getInstance().isCanSitVipSeatByLevel(GlobalCfg.USER_DATAS.userVip.level);
-
         if (isCanSitVipSeat) {
           if (self.selfSeatId !== -1) {
             // 自己已入座
@@ -83,10 +75,8 @@ cc.Class({
           } else {
             GlobalCfg.ACT_SCENE_CTRL.serverMsgManager.sendJoinVip(seatId);
           }
-
           return;
         }
-
         CommonFun.getInstance().showVipUpgradeToast();
         return;
       } else {
@@ -108,7 +98,9 @@ cc.Class({
     } else if (msgId == 'GAME_CRICKET_SEAT_JOINVIP_ERROR') {
       // gameservice.joinvip , 消息错误返回
       var result = notify.result;
-      var message = result.message; // CommonFun.getInstance().showTips(msg);
+      var message = result.message;
+
+      // CommonFun.getInstance().showTips(msg);
       // CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
       //     CommonFun.getInstance().showSmallAddCash()
       // }, false);
@@ -116,14 +108,12 @@ cc.Class({
       var oldSeatId = notify.from;
       var newSeatId = notify.target;
       var UserInfo = notify.user;
-
       if (oldSeatId == -1) {
         // 原座位号为-1，是新入座
         self.enterSeat(newSeatId, UserInfo);
       } else {
         self.leaveSeat(oldSeatId, UserInfo);
       }
-
       if (newSeatId == -1) {
         // 目标座位号为-1，是离座
         self.leaveSeat(oldSeatId, UserInfo);
@@ -134,30 +124,24 @@ cc.Class({
   },
   initAllPlayer: function initAllPlayer(vips) {
     var arr = [];
-
     for (var i = 0; i < vips.length; i++) {
       var playerInfo = vips[i];
       var userInfo = playerInfo.userInfo;
       var chipArr = playerInfo.chip;
       var pos = userInfo.pos;
-
       if (typeof pos == 'number') {
         this.enterSeat(pos, userInfo);
         arr[pos] = pos;
       }
     }
-
     LoggerUtil.getInstance().warn("初始化VIP", arr);
-
     for (var _i3 = 0; _i3 < this.seatNodeList.length; _i3++) {
       var seatNode = this.seatNodeList[_i3];
-
       if (arr[_i3] == undefined) {
         seatNode.removeAllChildren();
       }
     }
   },
-
   /**
    * 离座
    * @param {Number} id 座位ID
@@ -168,18 +152,14 @@ cc.Class({
       LoggerUtil.getInstance().warn("\u79BB\u5F00\u5EA7\u4F4DID" + id + "\u9519\u8BEF");
       return;
     }
-
     var userId = UserInfo.uid;
-
     if (userId == GlobalCfg.USER_DATAS.userId) {
       // 玩家自己
       this.seatNodeList[id].getComponent('cricketSeatCtrl').isSelf = false;
       this.selfSeatId = -1;
     }
-
     this.seatNodeList[id].removeAllChildren();
   },
-
   /**
    * 入座
    * @param {Number} id 座位ID
@@ -190,28 +170,23 @@ cc.Class({
       LoggerUtil.getInstance().warn("\u5165\u5EA7ID" + id + "\u9519\u8BEF");
       return;
     }
-
     if (this.seatNodeList[id].childrenCount > 0) {
       LoggerUtil.getInstance().log("\u5DF2\u6709\u73A9\u5BB6\u5728\u5EA7\u4F4D" + id);
       return;
     }
-
     var playerNode = cc.instantiate(this.prefabPlayer);
     var playerCtrl = playerNode.getComponent("cricketPlayerCtrl");
     playerCtrl.setPlayerInfo(UserInfo);
     var userId = UserInfo.uid;
-
     if (userId == GlobalCfg.USER_DATAS.userId) {
       // 玩家自己
       this.seatNodeList[id].getComponent('cricketSeatCtrl').isSelf = true;
       this.selfSeatId = id;
     }
-
     this.seatNodeList[id].addChild(playerNode);
   },
   seatNodePlayerBet: function seatNodePlayerBet(id) {
     var seatNode = this.getSeatNodeBySeatId(id);
-
     if (seatNode) {
       var y = this.seatNodeOriginYList[id];
       cc.tween(seatNode).to(0.1, {
@@ -221,7 +196,6 @@ cc.Class({
       }).start();
     }
   },
-
   /**
    * 通过座位ID获取玩家节点
    * @param {Number} id 座位ID pos
@@ -229,15 +203,12 @@ cc.Class({
    */
   getPlayerBySeatId: function getPlayerBySeatId(id) {
     var node = this.getSeatNodeBySeatId(id);
-
     if (node.childrenCount == 0) {
       LoggerUtil.getInstance().warn("\u5EA7\u4F4Did:" + id + "\u6CA1\u6709\u73A9\u5BB6");
       return null;
     }
-
     return node.children[0];
   },
-
   /**
    * 通过座位ID获取玩家节点脚本
    * @param {*} id 
@@ -245,15 +216,12 @@ cc.Class({
    */
   getPlayerCtrlBySeatId: function getPlayerCtrlBySeatId(id) {
     var playerNode = this.getPlayerBySeatId(id);
-
     if (playerNode == null) {
       LoggerUtil.getInstance().warn("\u5EA7\u4F4Did:" + id + "\u6CA1\u6709\u73A9\u5BB6");
       return null;
     }
-
     return playerNode.getComponent("cricketPlayerCtrl");
   },
-
   /**
    * 通过座位ID获取座位节点
    * @param {Number} id 座位ID pos
@@ -264,25 +232,20 @@ cc.Class({
       LoggerUtil.getInstance().warn("\u5EA7\u4F4Did:" + id + "\u5C0F\u4E8E0,\u65E0\u6CD5\u83B7\u53D6\u73A9\u5BB6");
       return null;
     }
-
     return this.seatNodeList[id];
   },
-
   /**
    * 通过座位ID获取座位节点脚本
    * @param {Number} id 
    */
   getSeatNodeCtrlBySeatId: function getSeatNodeCtrlBySeatId(id) {
     var node = this.getSeatNodeBySeatId(id);
-
     if (node == null) {
       LoggerUtil.getInstance().warn("\u5EA7\u4F4Did:" + id + "\u6CA1\u6709\u73A9\u5BB6");
       return null;
     }
-
     return node.getComponent("cricketSeatCtrl");
   } // update (dt) {},
-
 });
 
 cc._RF.pop();

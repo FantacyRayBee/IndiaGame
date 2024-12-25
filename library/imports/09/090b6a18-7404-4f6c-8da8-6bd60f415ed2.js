@@ -20,37 +20,28 @@ cc.Class({
       this.face_spriteFrame.decRef();
       this.face_spriteFrame = null;
     }
-
     ;
   },
   setGameWordInteraction: function setGameWordInteraction(type, name, targetNode, offset, parentNode) {
     var _this = this;
-
     if (type == 0) {
       this.dealWordShow(name, targetNode, offset, parentNode);
     } else if (type == 1) {
       this.dealFaceShow(name, targetNode, offset, parentNode);
     }
-
     ;
-
     var checkIsValid = function checkIsValid() {
       if (cc.isValid(targetNode, true) == false) {
         _this.unschedule(checkIsValid);
-
         _this.node.destroy();
-
         return;
       }
-
       ;
     };
-
     this.schedule(checkIsValid, 0.05);
   },
   dealWordShow: function dealWordShow(name, targetNode, offset, parentNode) {
     var _this2 = this;
-
     this.node_face.active = false;
     this.node_word.active = true;
     this.lab_content.string = name;
@@ -67,7 +58,6 @@ cc.Class({
   },
   dealFaceShow: function dealFaceShow(name, targetNode, offset, parentNode) {
     var _this3 = this;
-
     this.node_face.active = true;
     this.node_word.active = false;
     var targetNodeWorldPos = targetNode.parent.convertToWorldSpaceAR(new cc.Vec2(targetNode.x, targetNode.y));
@@ -84,12 +74,10 @@ cc.Class({
           spriteFrame.decRef();
           spriteFrame = null;
         }
-
         ;
       } else {
         LoggerUtil.getInstance().error(err);
       }
-
       ;
     });
     cc.tween(this.node_face).repeat(4, cc.tween().by(0.5, {

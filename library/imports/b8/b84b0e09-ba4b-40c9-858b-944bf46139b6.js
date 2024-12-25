@@ -18,16 +18,13 @@ cc.Class({
   btnClickCall: function btnClickCall(btn) {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var btnName = btn.node.name;
-
     switch (btnName) {
       case this.btn_pack.node.name:
         this.dealBtnPackEvent();
         break;
-
       case this.btn_continue.node.name:
         this.node.destroy();
         break;
-
       default:
         break;
     }

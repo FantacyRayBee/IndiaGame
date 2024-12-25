@@ -25,16 +25,12 @@ cc.Class({
     if (!recordItemData) {
       return;
     }
-
     ;
     var erase = recordItemData.erase;
     var bet = recordItemData.bet;
     var elf = erase.elf; // 消除元素
-
     var num = erase.num; // 元素个数
-
     var mul = erase.mul; // 倍数
-
     this.lab_num.string = "" + num;
     this.lab_winCoin.string = "$" + this.changeNumToK(bet * mul / 2000);
     this.sprite_icon.spriteFrame = this["spriteFrame_icon" + elf];

@@ -35,21 +35,17 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
-
     if (btnName === "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
     } else {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       if (btnName === "btn_yes") {
         this.yesCallFun && this.yesCallFun();
       } else if (btnName === "btn_no") {
         this.noCallFun && this.noCallFun();
       }
-
       ;
     }
-
     ;
     this.node.destroy();
   },
@@ -61,7 +57,6 @@ cc.Class({
     var btnStr_ON = this.btn_no.target.getChildByName("lab_MsgBox_ON").getComponent(cc.Label);
     this.lab_content.string = content;
     var typeUpperCase = msgBoxType.toUpperCase();
-
     if (typeUpperCase === "YES") {
       this.btn_no.node.active = false;
       this.btn_yes.node.active = true;
