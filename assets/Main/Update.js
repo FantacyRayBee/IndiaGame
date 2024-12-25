@@ -820,39 +820,78 @@ cc.Class({
         this.setLabUpdateContentTipsStr("Getting Version Information");
 
         if (CommonFun.getInstance().isNeedUpdata("ResourcesBundle")) {
-            this.checkDownloadH5Main("ResourcesBundle")
+            this.checkDownloadH5Main(()=>{
+                let packgeName = "ResourcesBundle";
+                cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+                    bundle.preloadDir("/", (completedCount, totalCount) => { 
+                        // 更新进度条
+                        let progressStr = completedCount / totalCount; 
+                        // cc.log(`progress = ${progressStr}`);
+                        this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
+                        this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
+                        this.setLabUpdateContentTipsStr("Downloading files");
+                    }, (err, resources) => { 
+                        // 所有资源加载完成后的回调 
+                        if (err) { 
+                            console.error(packgeName+ " 资源加载失败:", err);
+                        } else { 
+                            console.log(packgeName + " 资源预加载完成!" + resources); 
+        
+                            let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
+                            cc.sys.localStorage.setItem(packgeName, serverVersion); 
+                            this.setLabUpdateProgressStr("100%");
+                            this.setUpdateProgressBarProgress(1);
+                            this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                            this.scheduleOnce(() => {
+                                this.changeSceneToLobby();
+                            }, 1);
+                        }
+                    }); 
+                });
+            })
         }
         else{
             this.changeSceneToLobby();
         }
     },
-    //下载H5端必要资源
-    checkDownloadH5Main(packgeName){
-        cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
-            bundle.preloadDir("/", (completedCount, totalCount) => { 
-                // 更新进度条
-                let progressStr = completedCount / totalCount; 
-                // cc.log(`progress = ${progressStr}`);
-                this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
-                this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
-                this.setLabUpdateContentTipsStr("Downloading files");
-            }, (err, resources) => { 
-                // 所有资源加载完成后的回调 
-                if (err) { 
-                    console.error(packgeName+ " 资源加载失败:", err);
-                } else { 
-                    console.log(packgeName + " 资源预加载完成!" + resources); 
+    // //下载H5端必要资源
+    // checkDownloadH5Main(packgeName){
+    //     cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+    //         bundle.preloadDir("/", (completedCount, totalCount) => { 
+    //             // 更新进度条
+    //             let progressStr = completedCount / totalCount; 
+    //             // cc.log(`progress = ${progressStr}`);
+    //             this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
+    //             this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
+    //             this.setLabUpdateContentTipsStr("Downloading files");
+    //         }, (err, resources) => { 
+    //             // 所有资源加载完成后的回调 
+    //             if (err) { 
+    //                 console.error(packgeName+ " 资源加载失败:", err);
+    //             } else { 
+    //                 console.log(packgeName + " 资源预加载完成!" + resources); 
 
-                    let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
-                    cc.sys.localStorage.setItem(packgeName, serverVersion); 
-                    this.setLabUpdateProgressStr("100%");
-                    this.setUpdateProgressBarProgress(1);
-                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
-                    this.scheduleOnce(() => {
-                        this.changeSceneToLobby();
-                    }, 1);
-                }
-            }); 
+    //                 let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
+    //                 cc.sys.localStorage.setItem(packgeName, serverVersion); 
+    //                 this.setLabUpdateProgressStr("100%");
+    //                 this.setUpdateProgressBarProgress(1);
+    //                 this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+    //                 this.scheduleOnce(() => {
+    //                     this.changeSceneToLobby();
+    //                 }, 1);
+    //             }
+    //         }); 
+    //     });
+    // },
+    checkDownloadH5Main(callback = null){
+        cc.assetManager.loadBundle('LanguageEnglish', function(err, bundle) {
+            if (err) {
+                console.error("加载 LanguageEnglish 失败:", err);
+                return;
+            }
+            if(callback){
+                callback()
+            }
         });
     },
 
