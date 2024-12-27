@@ -1317,7 +1317,7 @@ cc.Class({
     }).start();
   },
   //移动记录球
-  moveHistoryBall: function moveHistoryBall(id) {
+  moveHistoryBall: function moveHistoryBall(id, callback) {
     var _this9 = this;
     this.horseRaceAudioCtrl.playGameSound("moveRecord");
     this.recordBall = cc.instantiate(this.record_ball);
@@ -1339,6 +1339,9 @@ cc.Class({
         _this9.lab_betSelf[index].node.color = new cc.color(255, 255, 255, 255);
         _this9.lab_betSelf[index].string = '0';
         _this9.lab_betAll[index].string = '0';
+      }
+      if (callback) {
+        callback();
       }
     }).start();
   },
@@ -1834,9 +1837,10 @@ cc.Class({
         _this14.ske_endWin.addAnimation(0, 'loop', true);
         _this14.ske_endWin.setAnimation(0, 'out', false, 4);
       } else if (name == "loop") {} else if (name == "out") {
-        _this14.ske_endWin.skeletonData = null;
-        _this14.ske_endWin.node.active = false;
-        _this14.moveHistoryBall(winType);
+        _this14.moveHistoryBall(winType, function () {
+          _this14.ske_endWin.skeletonData = null;
+          _this14.ske_endWin.node.active = false;
+        });
       }
     });
     this.ske_endWin.setStartListener(function (trackEntry, loopCount) {
