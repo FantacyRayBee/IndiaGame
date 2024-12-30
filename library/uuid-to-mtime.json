@@ -23934,11 +23934,6 @@
     "meta": 1735523723629,
     "relativePath": "Main\\Main.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1735523712267,
-    "meta": 1735523723569,
-    "relativePath": "Main\\Global.js"
-  },
   "243f82ba-11e0-4389-a16c-0d634876160d": {
     "asset": 1735524289330,
     "meta": 1735524291670,
@@ -23965,8 +23960,13 @@
     "relativePath": "ResourcesBundle\\NewPlan\\MyVip\\VipForOnceToastCtrl.js"
   },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1735537292075,
-    "meta": 1735537301814,
+    "asset": 1735537323171,
+    "meta": 1735537404765,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1735544005176,
+    "meta": 1735544329232,
+    "relativePath": "Main\\Global.js"
   }
 }
