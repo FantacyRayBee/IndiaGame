@@ -53,25 +53,28 @@ cc.Class({
     },
 
     dealBtnPayEvent: function() {
-        SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.VipOnceToast;;
-        let _cb = ()=>{
-            if (CommonFun.getInstance().isValidForScr(this)) {
-                this.node.destroy();
+        let str = GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100
+        CommonFun.getInstance().ShowTipsBeforeBuy(str, ()=>{
+            SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.VipOnceToast;;
+            let _cb = ()=>{
+                if (CommonFun.getInstance().isValidForScr(this)) {
+                    this.node.destroy();
+                };
             };
-        };
-        
-        let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-        if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
+            
+            let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+            if (rechargeNeedInfo) {
+                if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                    CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
+                }
+                else {
+                    CommonFun.getInstance().showBindPhone('AddCash');
+                };
             }
             else {
-                CommonFun.getInstance().showBindPhone('AddCash');
+                CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
             };
-        }
-        else {
-            CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
-        };
+        })
     },
 
     onDestroy: function() {

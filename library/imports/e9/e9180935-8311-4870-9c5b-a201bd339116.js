@@ -74,50 +74,65 @@ cc.Class({
     var _this = this;
     var btnName = btn.node.name;
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+    var commodity = GlobalCfg.USER_DATAS.first_pay_product.sort(function (a, b) {
+      return a.amount - b.amount;
+    });
+    var price = 500;
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.node.destroy();
         return;
       case "btn_item0":
-        if (rechargeNeedInfo) {
-          if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-            // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
-            CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+        if (commodity[0]) {
+          price = Math.floor(Number(commodity[0].amount) / 100);
+        }
+        CommonFun.getInstance().ShowTipsBeforeBuy(price, function () {
+          if (rechargeNeedInfo) {
+            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+              // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
+              CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+                _this.node.destroy();
+              });
+            } else {
+              CommonFun.getInstance().showBindPhone('AddCash');
+              SHOPPING.cashID = _this.firstCommodityId;
+              _this.node.destroy();
+            }
+            ;
+          } else {
+            CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
               _this.node.destroy();
             });
-          } else {
-            CommonFun.getInstance().showBindPhone('AddCash');
-            SHOPPING.cashID = this.firstCommodityId;
-            this.node.destroy();
           }
           ;
-        } else {
-          CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
-            _this.node.destroy();
-          });
-        }
-        ;
+        });
         break;
       case "btn_item1":
-        if (rechargeNeedInfo) {
-          if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-            // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
-            CommonFun.getInstance().rechargeByCommodityId(this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+        price = 1000;
+        if (commodity[1]) {
+          price = Math.floor(Number(commodity[1].amount) / 100);
+        }
+        CommonFun.getInstance().ShowTipsBeforeBuy(price, function () {
+          if (rechargeNeedInfo) {
+            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+              // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
+              CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+                _this.node.destroy();
+              });
+            } else {
+              CommonFun.getInstance().showBindPhone('AddCash');
+              SHOPPING.cashID = _this.secondCommodityId;
+              _this.node.destroy();
+            }
+            ;
+          } else {
+            CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
               _this.node.destroy();
             });
-          } else {
-            CommonFun.getInstance().showBindPhone('AddCash');
-            SHOPPING.cashID = this.secondCommodityId;
-            this.node.destroy();
           }
           ;
-        } else {
-          CommonFun.getInstance().rechargeByCommodityId(this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
-            _this.node.destroy();
-          });
-        }
-        ;
+        });
         break;
       case "btn_otherAmount":
         if (rechargeNeedInfo) {

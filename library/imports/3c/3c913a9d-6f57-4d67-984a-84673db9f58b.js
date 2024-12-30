@@ -2744,6 +2744,17 @@ var CommonFun = cc.Class({
     return true;
   },
   /**
+   * 购买之前显示提示框
+   */
+  ShowTipsBeforeBuy: function ShowTipsBeforeBuy(msg, callback) {
+    var str = 'Go to Recharge ₹ ' + msg + '?';
+    CommonFun.getInstance().showMsgBox(str, "SHOP", function () {
+      if (callback) {
+        callback();
+      }
+    }, false);
+  },
+  /**
    * 是否需要显示TP手指提示
    * @returns {boolean}
    */

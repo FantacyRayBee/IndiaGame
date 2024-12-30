@@ -77,7 +77,7 @@ cc.Class({
         var node_btn = cardNode.getChildByName("btn");
         if (GlobalCfg.USER_DATAS.voucherCard == 0) {
           node_btn.on("click", CommonFun.getInstance().debounce(function () {
-            _this2.bonusRecharge(id);
+            _this2.bonusRecharge(id, price);
           }, 1), _this2);
         } else {
           node_btn.getComponent(cc.Button).interactable = false;
@@ -101,21 +101,24 @@ cc.Class({
     }
     ;
   },
-  bonusRecharge: function bonusRecharge(id) {
-    SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.DailyBonusCard;
-    var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-    if (rechargeNeedInfo) {
-      if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-        CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from);
+  bonusRecharge: function bonusRecharge(id, price) {
+    var _this3 = this;
+    CommonFun.getInstance().ShowTipsBeforeBuy(price / 100, function () {
+      SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.DailyBonusCard;
+      var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+      if (rechargeNeedInfo) {
+        if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+          CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from);
+        } else {
+          CommonFun.getInstance().showBindPhone('AddCash');
+          _this3.node.destroy();
+        }
+        ;
       } else {
-        CommonFun.getInstance().showBindPhone('AddCash');
-        this.node.destroy();
+        CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from);
       }
       ;
-    } else {
-      CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from);
-    }
-    ;
+    });
   },
   onEventMsg: function onEventMsg(webData, target) {
     var self = target;
