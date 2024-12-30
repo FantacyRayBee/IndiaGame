@@ -1007,7 +1007,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.isOfflineDeve2 == 1) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_7001");
+  cc.sys.localStorage.setItem("PackageChannel", "0_5030");
   GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
   GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
 }
@@ -1312,6 +1312,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   var packageChannelArr = packageChannel.split("_");
   var server = packageChannelArr[0];
   GlobalCfg.server_id = server;
+  console.error("caojun server === " + server);
   switch (server) {
     case "0":
       // 测试服

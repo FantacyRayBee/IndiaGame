@@ -114,6 +114,10 @@ APPManager.Share = function (Url) {
     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.Share, "(Ljava/lang/String;)V", Url);
     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.Share, "(Ljava/lang/String;)V", Url);
   }
+  if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
+    //H5
+    AndroidBridge.shareByUrl(Url);
+  }
 };
 
 //横竖屏切换

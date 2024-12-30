@@ -27,7 +27,7 @@ cc.Class({
     }
     ;
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);
-    cc.assetManager.downloader.maxConcurrency = 10; //用于设置下载的最大并发连接数，若当前连接数超过限制，将会进入等待队列。
+    cc.assetManager.downloader.maxConcurrency = 20; //用于设置下载的最大并发连接数，若当前连接数超过限制，将会进入等待队列。
     /**
      * 日志开关
      */
@@ -39,6 +39,14 @@ cc.Class({
     }
     ;
     console.log("LoggerUtil Status is: " + LoggerUtil.getInstance().getLoggerStatus());
+    console.log("APP_CONFIG_URL: " + GlobalCfg.APP_CONFIG_URL);
+    console.log("APP_INFO_URL: " + GlobalCfg.APP_INFO_URL);
+    console.log("APP_VERSION: " + GlobalCfg.APP_VERSION);
+    console.log("UpdateVersion: " + cc.sys.localStorage.getItem("UpdateVersion"));
+    console.log("PackageChannel: " + cc.sys.localStorage.getItem("PackageChannel"));
+    console.log("AndroidBridge.getUUID: " + AndroidBridge.getUUID());
+    console.log("AndroidBridge.getPackageName: " + AndroidBridge.getPackageName());
+    console.log("AndroidBridge.getChannel: " + AndroidBridge.getChannel());
 
     /**
      * 常驻节点
@@ -119,15 +127,15 @@ cc.Class({
   start: function start() {
     var _this2 = this;
     APPManager.getFirebaseToken();
-    var packageChannel = "";
     var channel = 0;
+    var packageChannel = "";
     if (window.parent && window.parent.uni) {
       // H5端
-      packageChannel = window.parent.channel;
+      console.log("\u8FDB\u4E86H5\u7AEF");
+      packageChannel = AndroidBridge.getChannel();
       cc.sys.localStorage.setItem("PackageChannel", packageChannel);
-      // const systemInfo = window.parent.uni.getSystemInfoSync();
-      // console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
     } else {
+      console.log("\u6CA1\u8FDBH5\u7AEF");
       packageChannel = cc.sys.localStorage.getItem("PackageChannel");
     }
     if (packageChannel && packageChannel.indexOf("_") != -1) {
