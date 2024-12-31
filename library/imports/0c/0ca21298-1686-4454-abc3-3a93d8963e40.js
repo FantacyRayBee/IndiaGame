@@ -762,6 +762,7 @@ cc.Class({
     this.setUpdateProgressBarProgress(0);
     this.setLabUpdateContentTipsStr("Getting Version Information");
     if (CommonFun.getInstance().isNeedUpdata("ResourcesBundle")) {
+      console.log("caojun ResourcesBundle is need update");
       this.checkDownloadH5Main(function () {
         var packgeName = "ResourcesBundle";
         cc.assetManager.loadBundle(packgeName, function (_, bundle) {

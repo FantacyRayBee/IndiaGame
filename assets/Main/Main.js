@@ -41,9 +41,9 @@ cc.Class({
         console.log(`APP_VERSION: ${GlobalCfg.APP_VERSION}`); 
         console.log(`UpdateVersion: ${cc.sys.localStorage.getItem("UpdateVersion")}`); 
         console.log(`PackageChannel: ${cc.sys.localStorage.getItem("PackageChannel")}`); 
-        console.log(`AndroidBridge.getUUID: ${AndroidBridge.getUUID()}`); 
-        console.log(`AndroidBridge.getPackageName: ${AndroidBridge.getPackageName()}`)
-        console.log(`AndroidBridge.getChannel: ${AndroidBridge.getChannel()}`)
+        // console.log(`AndroidBridge.getUUID: ${AndroidBridge.getUUID()}`); 
+        // console.log(`AndroidBridge.getPackageName: ${AndroidBridge.getPackageName()}`)
+        // console.log(`AndroidBridge.getChannel: ${AndroidBridge.getChannel()}`)
         
 
         /**
@@ -137,7 +137,7 @@ cc.Class({
         APPManager.getFirebaseToken();
         let channel = 0;
         let packageChannel = "";
-        if(window.parent && window.parent.uni){// H5端
+        if(cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative){// H5端
             console.log(`进了H5端`)
             packageChannel = AndroidBridge.getChannel();
             cc.sys.localStorage.setItem("PackageChannel", packageChannel);

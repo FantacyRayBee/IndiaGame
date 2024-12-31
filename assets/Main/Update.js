@@ -820,6 +820,7 @@ cc.Class({
         this.setLabUpdateContentTipsStr("Getting Version Information");
 
         if (CommonFun.getInstance().isNeedUpdata("ResourcesBundle")) {
+            console.log("caojun ResourcesBundle is need update")
             this.checkDownloadH5Main(()=>{
                 let packgeName = "ResourcesBundle";
                 cc.assetManager.loadBundle(packgeName, (_, bundle) => { 

@@ -44,9 +44,9 @@ cc.Class({
     console.log("APP_VERSION: " + GlobalCfg.APP_VERSION);
     console.log("UpdateVersion: " + cc.sys.localStorage.getItem("UpdateVersion"));
     console.log("PackageChannel: " + cc.sys.localStorage.getItem("PackageChannel"));
-    console.log("AndroidBridge.getUUID: " + AndroidBridge.getUUID());
-    console.log("AndroidBridge.getPackageName: " + AndroidBridge.getPackageName());
-    console.log("AndroidBridge.getChannel: " + AndroidBridge.getChannel());
+    // console.log(`AndroidBridge.getUUID: ${AndroidBridge.getUUID()}`); 
+    // console.log(`AndroidBridge.getPackageName: ${AndroidBridge.getPackageName()}`)
+    // console.log(`AndroidBridge.getChannel: ${AndroidBridge.getChannel()}`)
 
     /**
      * 常驻节点
@@ -129,7 +129,7 @@ cc.Class({
     APPManager.getFirebaseToken();
     var channel = 0;
     var packageChannel = "";
-    if (window.parent && window.parent.uni) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
       // H5端
       console.log("\u8FDB\u4E86H5\u7AEF");
       packageChannel = AndroidBridge.getChannel();
