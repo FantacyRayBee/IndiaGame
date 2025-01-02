@@ -131,11 +131,9 @@ cc.Class({
     var packageChannel = "";
     if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
       // H5端
-      console.log("\u8FDB\u4E86H5\u7AEF");
       packageChannel = AndroidBridge.getChannel();
       cc.sys.localStorage.setItem("PackageChannel", packageChannel);
     } else {
-      console.log("\u6CA1\u8FDBH5\u7AEF");
       packageChannel = cc.sys.localStorage.getItem("PackageChannel");
     }
     if (packageChannel && packageChannel.indexOf("_") != -1) {

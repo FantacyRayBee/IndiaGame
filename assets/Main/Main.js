@@ -138,12 +138,10 @@ cc.Class({
         let channel = 0;
         let packageChannel = "";
         if(cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative){// H5端
-            console.log(`进了H5端`)
             packageChannel = AndroidBridge.getChannel();
             cc.sys.localStorage.setItem("PackageChannel", packageChannel);
         }
         else{
-            console.log(`没进H5端`)
             packageChannel = cc.sys.localStorage.getItem("PackageChannel");
         }
 

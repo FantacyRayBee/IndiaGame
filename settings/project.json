@@ -1,6 +1,6 @@
 {
   "start-scene": "eeef25ac-93ef-4201-8e43-ea568e9277d1",
-  "last-module-event-record-time": 1735092250779,
+  "last-module-event-record-time": 1735783540625,
   "group-list": [
     "default"
   ],
@@ -14,7 +14,6 @@
     "Geom Utils",
     "Intersection",
     "Mesh",
-    "MotionStreak",
     "Physics",
     "ParticleSystem",
     "StudioComponent",
@@ -28,7 +27,7 @@
   "preview-port": 7456,
   "design-resolution-width": 960,
   "design-resolution-height": 640,
-  "fit-width": false,
+  "fit-width": true,
   "fit-height": true,
   "use-project-simulator-setting": false,
   "simulator-orientation": false,
