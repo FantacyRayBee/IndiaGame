@@ -960,13 +960,13 @@ cc.Class({
             this.updateToastLocalStorageByHours("FirstRecharge", 1);
             this.showFirstRechargeToast();
         }
-        /**
-         * 金钻卡
-         */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(11) && GlobalCfg.USER_DATAS.voucherCard == 0 && this.isNeedShowPointToastByHours("BonusCard", BonusCardFrequency)) {
-            this.updateToastLocalStorageByHours("BonusCard", BonusCardFrequency);
-            this.showBonusCardToast();
-        }
+        // /**
+        //  * 金钻卡
+        //  */
+        // else if (GlobalCfg.USER_DATAS.openModules.includes(11) && GlobalCfg.USER_DATAS.voucherCard == 0 && this.isNeedShowPointToastByHours("BonusCard", BonusCardFrequency)) {
+        //     this.updateToastLocalStorageByHours("BonusCard", BonusCardFrequency);
+        //     this.showBonusCardToast();
+        // }
         /**
          * 推广员
          */
@@ -1002,13 +1002,13 @@ cc.Class({
             // this.showSecondRechargeToast();
             CommonFun.getInstance().showBankruptcy();
         }
-        /**
-         * 金钻卡
-         */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(11) && GlobalCfg.USER_DATAS.voucherCard == 0 && this.isNeedShowPointToastByHours("BonusCard", BonusCardFrequency)) {
-            this.updateToastLocalStorageByHours("BonusCard", BonusCardFrequency);
-            this.showBonusCardToast();
-        }
+        // /**
+        //  * 金钻卡
+        //  */
+        // else if (GlobalCfg.USER_DATAS.openModules.includes(11) && GlobalCfg.USER_DATAS.voucherCard == 0 && this.isNeedShowPointToastByHours("BonusCard", BonusCardFrequency)) {
+        //     this.updateToastLocalStorageByHours("BonusCard", BonusCardFrequency);
+        //     this.showBonusCardToast();
+        // }
         /**
          * 有可领取的Bonus
          */
