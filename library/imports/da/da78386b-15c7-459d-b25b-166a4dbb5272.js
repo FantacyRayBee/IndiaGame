@@ -36,6 +36,9 @@ APPManager.skipToOtherApp = function (packageName, url) {
   }
   if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
     //H5
+    if (url == null) {
+      url = "";
+    }
     AndroidBridge.skipToOtherApp(packageName, url);
   }
 };
