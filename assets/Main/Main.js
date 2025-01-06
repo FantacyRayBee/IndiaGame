@@ -34,8 +34,11 @@ cc.Class({
         else {
             LoggerUtil.getInstance().setLoggerStatus(true);
         };
-        console.log(`LoggerUtil Status is: ${LoggerUtil.getInstance().getLoggerStatus()}`);
 
+        cc.sys.localStorage.setItem("caojuntest:", 32)
+        console.log(`caojuntest: ${cc.sys.localStorage.getItem("caojuntest")}`); 
+
+        console.log(`LoggerUtil Status is: ${LoggerUtil.getInstance().getLoggerStatus()}`);
         console.log(`APP_CONFIG_URL: ${GlobalCfg.APP_CONFIG_URL}`); 
         console.log(`APP_INFO_URL: ${GlobalCfg.APP_INFO_URL}`); 
         console.log(`APP_VERSION: ${GlobalCfg.APP_VERSION}`); 
