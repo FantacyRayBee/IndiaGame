@@ -785,7 +785,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -367,
+        -300,
         16,
         0,
         0,
@@ -1405,7 +1405,7 @@
         "__id__": 40
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 51
@@ -2087,7 +2087,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        122,
+        0,
         15,
         0,
         0,
@@ -2735,7 +2735,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        367,
+        300,
         15,
         0,
         0,
