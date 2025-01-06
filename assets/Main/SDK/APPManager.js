@@ -30,6 +30,12 @@ APPManager.skipToOtherApp = function (packageName, url) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.skipToOtherApp, "(Ljava/lang/String;Ljava/lang/String;)V", packageName, url);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.skipToOtherApp, "(Ljava/lang/String;Ljava/lang/String;)V", packageName, url);
     }
+    if(cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative){ //H5
+        if(url == null){
+            url = "";
+        }
+        AndroidBridge.skipToOtherApp(packageName, url)
+    }
 }
 
 APPManager.setFaceBookID = function (fbid) {
