@@ -34,6 +34,11 @@ var GameDownloader = cc.Class({
       ;
     }
     ;
+    if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
+      //H5
+      this.loadGameH5(gameName, false);
+      return;
+    }
     var downTask = {
       notify: false,
       gameName: gameName,
@@ -55,7 +60,7 @@ var GameDownloader = cc.Class({
     ;
     if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
       //H5
-      this.loadGameH5(gameName);
+      this.loadGameH5(gameName, true);
       return;
     }
     for (var i = 0, len = this.downLoadTaskArr.length; i < len; i++) {
@@ -86,7 +91,6 @@ var GameDownloader = cc.Class({
     var gameName = downTask.gameName;
     var isZipFormat = downTask.isZipFormat;
     downTask.status = DownLoadTaskStatus.Loading;
-    console.log("caojun priorLoadGame downTask == ", downTask);
     if (isZipFormat) {
       this.loadGameByZip(downTask);
     } else {
@@ -423,20 +427,22 @@ var GameDownloader = cc.Class({
       }
     });
   },
-  loadGameH5: function loadGameH5(packgeName) {
+  loadGameH5: function loadGameH5(packgeName, showProgress) {
     cc.assetManager.loadBundle(packgeName, function (_, bundle) {
       bundle.preloadDir("/", function (completedCount, totalCount) {
         // 更新进度条 
-        var progressStr = completedCount / totalCount;
-        cc.log("progress = " + progressStr);
-        var msgData = {
-          progress: (progressStr * 100).toFixed(2),
-          subpackgeName: packgeName
-        };
-        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
-          msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS,
-          msgData: msgData
-        });
+        if (showProgress) {
+          var progressStr = completedCount / totalCount;
+          cc.log("progress = " + progressStr);
+          var msgData = {
+            progress: (progressStr * 100).toFixed(2),
+            subpackgeName: packgeName
+          };
+          ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+            msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS,
+            msgData: msgData
+          });
+        }
       }, function (err, resources) {
         // 所有资源加载完成后的回调 
         if (err) {
@@ -445,12 +451,14 @@ var GameDownloader = cc.Class({
           console.log(packgeName + " 资源预加载完成!" + resources);
           var serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
           cc.sys.localStorage.setItem(packgeName, serverVersion);
-          ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
-            msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE,
-            msgData: {
-              subpackgeName: packgeName
-            }
-          });
+          if (showProgress) {
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+              msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE,
+              msgData: {
+                subpackgeName: packgeName
+              }
+            });
+          }
         }
       });
     });
