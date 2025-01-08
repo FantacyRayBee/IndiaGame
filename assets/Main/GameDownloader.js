@@ -29,10 +29,10 @@ let GameDownloader = cc.Class({
                 return;
             };
         };
-        if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {//H5
-            this.loadGameH5(gameName, false)
-            return
-        }
+        // if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {//H5
+        //     this.loadGameH5(gameName, false)
+        //     return
+        // }
         let downTask = {
             notify: false,
             gameName: gameName,
@@ -410,18 +410,19 @@ let GameDownloader = cc.Class({
     },
 
     loadGameH5(packgeName, showProgress){
+        console.log(`caojun loadGameH5 ${packgeName} 1`); 
         cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+            console.log(`caojun loadGameH5 ${packgeName} 2`); 
             bundle.preloadDir("/", (completedCount, totalCount) => { 
+                console.log(`caojun loadGameH5 ${packgeName} 3`); 
                 // 更新进度条 
-                if (showProgress) {
-                    let progressStr = completedCount / totalCount; 
-                    cc.log(`progress = ${progressStr}`); 
-                    let msgData = {
-                        progress: (progressStr * 100).toFixed(2),
-                        subpackgeName: packgeName,
-                    };
-                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS, msgData: msgData});
-                }
+                let progressStr = completedCount / totalCount; 
+                console.log(`caojun packgeName: ${packgeName}, progressStr : ${progressStr}`); 
+                let msgData = {
+                    progress: (progressStr * 100).toFixed(2),
+                    subpackgeName: packgeName,
+                };
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS, msgData: msgData});
             }, (err, resources) => { 
                 // 所有资源加载完成后的回调 
                 if (err) { 
@@ -430,9 +431,7 @@ let GameDownloader = cc.Class({
                     console.log(packgeName + " 资源预加载完成!" + resources); 
                     let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
                     cc.sys.localStorage.setItem(packgeName, serverVersion);
-                    if (showProgress) {
-                        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE, msgData: {subpackgeName: packgeName}});
-                    } 
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE, msgData: {subpackgeName: packgeName}});
                 } 
             }); 
         });

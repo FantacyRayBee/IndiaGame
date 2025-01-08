@@ -34,11 +34,10 @@ var GameDownloader = cc.Class({
       ;
     }
     ;
-    if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {
-      //H5
-      this.loadGameH5(gameName, false);
-      return;
-    }
+    // if (cc.sys.os == cc.sys.OS_ANDROID && !cc.sys.isNative) {//H5
+    //     this.loadGameH5(gameName, false)
+    //     return
+    // }
     var downTask = {
       notify: false,
       gameName: gameName,
@@ -428,21 +427,22 @@ var GameDownloader = cc.Class({
     });
   },
   loadGameH5: function loadGameH5(packgeName, showProgress) {
+    console.log("caojun loadGameH5 " + packgeName + " 1");
     cc.assetManager.loadBundle(packgeName, function (_, bundle) {
+      console.log("caojun loadGameH5 " + packgeName + " 2");
       bundle.preloadDir("/", function (completedCount, totalCount) {
+        console.log("caojun loadGameH5 " + packgeName + " 3");
         // 更新进度条 
-        if (showProgress) {
-          var progressStr = completedCount / totalCount;
-          cc.log("progress = " + progressStr);
-          var msgData = {
-            progress: (progressStr * 100).toFixed(2),
-            subpackgeName: packgeName
-          };
-          ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
-            msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS,
-            msgData: msgData
-          });
-        }
+        var progressStr = completedCount / totalCount;
+        console.log("caojun packgeName: " + packgeName + ", progressStr : " + progressStr);
+        var msgData = {
+          progress: (progressStr * 100).toFixed(2),
+          subpackgeName: packgeName
+        };
+        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+          msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS,
+          msgData: msgData
+        });
       }, function (err, resources) {
         // 所有资源加载完成后的回调 
         if (err) {
@@ -451,14 +451,12 @@ var GameDownloader = cc.Class({
           console.log(packgeName + " 资源预加载完成!" + resources);
           var serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
           cc.sys.localStorage.setItem(packgeName, serverVersion);
-          if (showProgress) {
-            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
-              msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE,
-              msgData: {
-                subpackgeName: packgeName
-              }
-            });
-          }
+          ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+            msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE,
+            msgData: {
+              subpackgeName: packgeName
+            }
+          });
         }
       });
     });

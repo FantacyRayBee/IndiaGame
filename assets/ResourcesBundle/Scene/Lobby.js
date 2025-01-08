@@ -555,7 +555,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.andeerData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("andaerGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("andaerGame");
                         }
                     };
@@ -568,7 +568,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.benZData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("Benz");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("Benz");
                         }
                     };
@@ -581,7 +581,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.mundaData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("munda");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("munda");
                         }
                     };
@@ -594,7 +594,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.lhdData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("lhdGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("lhdGame");
                         }
                     };
@@ -607,7 +607,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.sscData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("sscGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("sscGame");
                         }
                     };
@@ -620,7 +620,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.rummyData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("Rummy");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("Rummy");
                         }
                     };
@@ -633,7 +633,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.horseRaceData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("horseRaceGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("horseRaceGame");
                         }
                     };
@@ -646,7 +646,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.upDownData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("7up7downGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("7up7downGame");
                         };
                     };
@@ -659,7 +659,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("fruitMachine");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("fruitMachine");
                         };
                     };
@@ -672,7 +672,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("mayaMachine");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("mayaMachine");
                         };
                     };
@@ -683,7 +683,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
                         GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.product = gameProduct;
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("indiaMachine");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("indiaMachine");
                         };
                     };
@@ -705,7 +705,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
                         GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product = gameProduct;
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("tpGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("tpGame");
                         };
                     };
@@ -718,7 +718,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.baccaratData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("baccarat3PattiGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("baccarat3PattiGame");
                         }
                     };
@@ -731,7 +731,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.rocketData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("rocket");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("rocket");
                         }
                     }
@@ -744,7 +744,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.zooData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("zooGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("zooGame");
                         }
                     }
@@ -757,7 +757,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.cricketData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("cricketGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("cricketGame");
                         }
                     }
@@ -770,7 +770,7 @@ cc.Class({
                         GlobalCfg.SMALL_GAME_DATAS.zeusData.product = gameProduct;
 
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("zeusGame");
-                        if (isNeedUpdata && (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.isNative)) {
+                        if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("zeusGame");
                         }
                     }
@@ -1690,16 +1690,10 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-        //     callFun();
-        //     return;
-        // };
-
         if ((cc.sys.os != cc.sys.OS_ANDROID && cc.sys.isBrowser) || !GlobalCfg.IS_SMALL_GAME_UPDATE) {
             callFun();
             return;
         };
-
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
@@ -1710,12 +1704,15 @@ cc.Class({
     },
 
     setSmallGameLoadProgress: function(notify) {
+        console.log(`caojun setSmallGameLoadProgress  1`); 
         if (!notify) {
             return;
         };
         let progress = notify.progress;
         let subpackgeName = notify.subpackgeName;
         let upDateMaskNode = null;
+        console.log(`caojun setSmallGameLoadProgress  progress : ${progress}`); 
+        console.log(`caojun setSmallGameLoadProgress  subpackgeName : ${subpackgeName}`); 
         switch (subpackgeName) {
             case "7up7downGame":
                 upDateMaskNode = this.btn_miniseven.node.getChildByName("upDateMask");
