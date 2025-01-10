@@ -411,7 +411,11 @@ let GameDownloader = cc.Class({
 
     loadGameH5(packgeName, showProgress){
         console.log(`caojun loadGameH5 ${packgeName} 1`); 
-        cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+        cc.assetManager.loadBundle(packgeName, (err, bundle) => { 
+            if (err) {
+                console.error(`加载 Bundle ${packgeName} 失败:`, err);
+                return; // 加载失败时直接退出，不执行后续逻辑
+            }
             console.log(`caojun loadGameH5 ${packgeName} 2`); 
             bundle.preloadDir("/", (completedCount, totalCount) => { 
                 console.log(`caojun loadGameH5 ${packgeName} 3`); 

@@ -428,7 +428,12 @@ var GameDownloader = cc.Class({
   },
   loadGameH5: function loadGameH5(packgeName, showProgress) {
     console.log("caojun loadGameH5 " + packgeName + " 1");
-    cc.assetManager.loadBundle(packgeName, function (_, bundle) {
+    cc.assetManager.loadBundle(packgeName, function (err, bundle) {
+      if (err) {
+        console.error("\u52A0\u8F7D Bundle " + packgeName + " \u5931\u8D25:", err);
+        return; // 加载失败时直接退出，不执行后续逻辑
+      }
+
       console.log("caojun loadGameH5 " + packgeName + " 2");
       bundle.preloadDir("/", function (completedCount, totalCount) {
         console.log("caojun loadGameH5 " + packgeName + " 3");
