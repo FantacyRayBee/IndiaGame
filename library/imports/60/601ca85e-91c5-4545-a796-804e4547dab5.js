@@ -10,6 +10,7 @@ cc._RF.push(module, '601cahekcVFRaeWgE5FR9q1', 'touziCtrl');
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
+
 cc.Class({
   "extends": cc.Component,
   properties: {},
@@ -24,7 +25,6 @@ cc.Class({
     return this.touziDice;
   },
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

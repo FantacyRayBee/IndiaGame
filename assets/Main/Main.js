@@ -34,6 +34,12 @@ cc.Class({
             LoggerUtil.getInstance().setLoggerStatus(true);
         };
         console.log(`LoggerUtil Status is: ${LoggerUtil.getInstance().getLoggerStatus()}`);
+        console.log(`APP_CONFIG_URL: ${GlobalCfg.APP_CONFIG_URL}`);
+        console.log(`APP_INFO_URL: ${GlobalCfg.APP_INFO_URL}`);
+        console.log(`APP_VERSION: ${GlobalCfg.APP_VERSION}`);
+        console.log(`UpdateVersion: ${cc.sys.localStorage.getItem("UpdateVersion")}`);
+        console.log(`PackageName: ${APPManager.getPackageName()}`);
+        console.log(`PackageChannel: ${cc.sys.localStorage.getItem("PackageChannel")}`);
 
         /**
          * 常驻节点
@@ -126,16 +132,23 @@ cc.Class({
         APPManager.getFirebaseToken();
         let packageChannel = "";
         let channel = 0;
-        // if(window.parent && window.parent.uni){// H5端
-        //     packageChannel = window.parent.channel;
-        //     cc.sys.localStorage.setItem("PackageChannel", packageChannel);
 
-        //     const systemInfo = window.parent.uni.getSystemInfoSync();
-        //     console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
-        // }
-        // else{
+        if(window.parent && window.parent.uni){// H5端
             packageChannel = cc.sys.localStorage.getItem("PackageChannel");
-        // }
+            window.postMessage({
+                action: 'getChannel',  // 动作类型，可以根据需要传递不同的 action
+                data: {}  // 发送的数据
+            }, '*');
+
+            // window.addEventListener('message', function(event) {
+            //     if (event.data.action === 'sendChannel') {
+            //         console.log('Received channel:', channel);
+            //     }
+            // });
+        }
+        else{
+            packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+        }
 
         if (packageChannel && packageChannel.indexOf("_") != -1) {
             let packageChannelArr = packageChannel.split("_"); 

@@ -24,7 +24,6 @@ cc.Class({
     this.BtnClose.node.on('click', this.btnClick, this);
     this.BtnFuZhi.node.on('click', this.btnClick, this);
     var url = "https://redpacket.aivined.com/#";
-
     if (cc.sys.isBrowser) {
       url = GlobalCfg.DOWN_H5_URL;
     } else if (cc.sys.os == cc.sys.OS_ANDROID) {
@@ -32,14 +31,12 @@ cc.Class({
     } else if (cc.sys.os == cc.sys.OS_IOS || cc.sys.os == cc.sys.OS_OSX) {
       url = GlobalCfg.DOWN_IPA_URL;
     }
-
     this.LabWXH.string = url;
     this.weixinhao = url;
   },
   btnClick: function btnClick(sender) {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var btnName = sender.node.name;
-
     if (btnName == "btn_close") {
       this.node.destroy();
     } else if (btnName == "btn_fuzhi") {
@@ -63,29 +60,23 @@ cc.Class({
 
     var selection = getSelection();
     var originalRange = false;
-
     if (selection.rangeCount > 0) {
       originalRange = selection.getRangeAt(0);
     }
-
     document.body.appendChild(el);
     el.select();
     el.selectionStart = 0;
     el.selectionEnd = input.length;
     var success = false;
-
     try {
       success = document.execCommand('copy');
       CommonFun.getInstance().showTips("Copy successfully!");
     } catch (err) {}
-
     document.body.removeChild(el);
-
     if (originalRange) {
       selection.removeAllRanges();
       selection.addRange(originalRange);
     }
-
     return success;
   }
 });

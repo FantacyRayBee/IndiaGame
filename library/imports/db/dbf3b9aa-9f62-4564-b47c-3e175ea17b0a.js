@@ -22,7 +22,6 @@ var LobbyServerManager = {
     DisConnecting: 2,
     // 连接正在关闭
     DisConnected: 3 // 连接已关闭或者没有链接成功
-
   }
 };
 
@@ -31,71 +30,55 @@ LobbyServerManager.setProtoCfgAndUrl = function (protoCfg, websocketUrl) {
   LobbyServerManager.WEB_SOCKET = websocketUrl;
   LobbyServerManager.clientCloseWSState = false;
 };
-
 LobbyServerManager.connectServer = function (isFirstConnect) {
   if (isFirstConnect === void 0) {
     isFirstConnect = true;
   }
-
   return new Promise(function (resolve, reject) {
     LoggerUtil.getInstance().log("Is LobbyServer a first-time connect ?", isFirstConnect);
-
     if (LobbyServerManager.WEB_SOCKET === null) {
       reject('LobbyService WebSocket Url is null');
       return;
     }
-
     ;
     LoggerUtil.getInstance().log("LobbyService WebSocket Url is\uFF1A" + LobbyServerManager.WEB_SOCKET);
-
     if (LobbyServerManager.socket) {
       reject('Do not repeat the creation LobbyService WebSocket');
       return;
     }
-
     ;
     LobbyServerManager.needReconnect = true;
-
     try {
       if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         var cacert = cc.url.raw('resources/pem/cacert.pem');
-
         if (cc.loader && cc.loader.md5Pipe) {
           cacert = cc.loader.md5Pipe.transformURL(cacert);
         }
-
         ;
         LobbyServerManager.socket = new WebSocket(LobbyServerManager.WEB_SOCKET, null, cacert);
       } else {
         LobbyServerManager.socket = new WebSocket(LobbyServerManager.WEB_SOCKET);
       }
-
       ;
     } catch (error) {
       reject(error);
       return;
     }
-
     ;
     LobbyServerManager.socket.binaryType = 'arraybuffer';
-
     LobbyServerManager.socket.onopen = function (evt) {
       if (LobbyServerManager.onOpen) {
         LobbyServerManager.onOpen(evt, isFirstConnect);
-
         if (!LobbyServerManager.isHaveGameEventShowListener) {
           LobbyServerManager.isHaveGameEventShowListener = true;
           cc.game.on(cc.game.EVENT_SHOW, function () {
             LoggerUtil.getInstance().log("Switch back to the front desk, LobbyServerManager.isTriggerGameEventHid: " + LobbyServerManager.isTriggerGameEventHid);
-
             if (!LobbyServerManager.isTriggerGameEventHid) {
               return;
             }
-
             ;
             LobbyServerManager.isTriggerGameEventHid = false;
             LoggerUtil.getInstance().timeEnd("Switching front-end and back-end duration-LobbyServer");
-
             if (LobbyServerManager.socket && LobbyServerManager.socket.readyState == 1) {
               LoggerUtil.getInstance().log("Switch back to the front desk, LobbyServer network is normal, start heartbeat detection！");
               LobbyServerManager.send("lobbyservice.pingpang", "PingPang", {
@@ -103,16 +86,13 @@ LobbyServerManager.connectServer = function (isFirstConnect) {
               }, "LOBBY_HEART");
             } else {
               LoggerUtil.getInstance().log("Switch back to the front desk, LobbyServer network is abnormal, starting to shut down the network for reconnection！");
-
               if (LobbyServerManager.socket) {
                 LobbyServerManager.socket.close();
               } else {
                 LobbyServerManager.onClose(customizeCloseEvent, false);
               }
-
               ;
             }
-
             ;
           });
           cc.game.on(cc.game.EVENT_HIDE, function () {
@@ -121,42 +101,33 @@ LobbyServerManager.connectServer = function (isFirstConnect) {
             LobbyServerManager.stopHeartBeat();
           });
         }
-
         ;
       }
-
       ;
       isFirstConnect = false;
       resolve();
     };
-
     LobbyServerManager.socket.onmessage = function (evt) {
       if (LobbyServerManager.onReceive) {
         LobbyServerManager.onReceive(evt);
       }
-
       ;
     };
-
     LobbyServerManager.socket.onerror = function (evt) {
       if (LobbyServerManager.onError) {
         LobbyServerManager.onError(evt);
       }
-
       ;
     };
-
     LobbyServerManager.socket.onclose = function (evt) {
       if (LobbyServerManager.onClose) {
         LobbyServerManager.onClose(evt, isFirstConnect);
       }
-
       ;
       reject("Lobby network connection failed, please enter later");
     };
   });
 };
-
 LobbyServerManager.startHeartBeat = function () {
   // 设定时间之后发心跳消息
   LobbyServerManager.hearbeatTimer = setTimeout(function () {
@@ -170,25 +141,20 @@ LobbyServerManager.startHeartBeat = function () {
     } else {
       LobbyServerManager.onClose(customizeCloseEvent, false);
     }
-
     ;
     LoggerUtil.getInstance().log('LobbyService WebSocket status when the heartbeat detection timeout is: ', LobbyServerManager.socket && LobbyServerManager.socket.readyState);
   }, LobbyServerManager.hearbeatTimeInterval * 3);
 };
-
 LobbyServerManager.stopHeartBeat = function () {
   LobbyServerManager.hearbeatTimer !== null && clearTimeout(LobbyServerManager.hearbeatTimer);
   LobbyServerManager.hearbeatTimer = null;
   LobbyServerManager.hearbeatOutTimer !== null && clearTimeout(LobbyServerManager.hearbeatOutTimer);
   LobbyServerManager.hearbeatOutTimer = null;
 };
-
 LobbyServerManager.send = function (command, messageKey, jsonData, heartType) {
   LoggerUtil.getInstance().log("LobbyService WebSocket status when send message is", LobbyServerManager.socket && LobbyServerManager.socket.readyState);
-
   if (LobbyServerManager.socket && LobbyServerManager.socket.readyState == 1) {
     var buff = ProtobufManager.packProtobuf(command, messageKey, jsonData, heartType);
-
     if (command !== "baseproto.pingpang") {
       if (cc.sys.isBrowser) {
         LoggerUtil.getInstance().log("LobbyService send ***********>", command, jsonData);
@@ -196,7 +162,6 @@ LobbyServerManager.send = function (command, messageKey, jsonData, heartType) {
         LoggerUtil.getInstance().log("LobbyService send ***********>", command, JSON.stringify(jsonData));
       }
     }
-
     ;
     LobbyServerManager.socket.send(buff);
   } else if (LobbyServerManager.socket && LobbyServerManager.socket.readyState == 0) {
@@ -205,16 +170,13 @@ LobbyServerManager.send = function (command, messageKey, jsonData, heartType) {
     }, 1000);
   } else {
     LobbyServerManager.stopHeartBeat();
-
     if (LobbyServerManager.socket) {
       LobbyServerManager.socket.close();
     } else {
       LobbyServerManager.onClose(customizeCloseEvent, false);
     }
-
     ;
   }
-
   ;
 }, LobbyServerManager.onOpen = function (evt, isFirstConnect) {
   LoggerUtil.getInstance().log("LobbyService WebSocket onOpen***********>", JSON.stringify(evt));
@@ -225,41 +187,36 @@ LobbyServerManager.send = function (command, messageKey, jsonData, heartType) {
     userId: GlobalCfg.USER_DATAS.userId,
     token: GlobalCfg.USER_DATAS.token,
     channel: GlobalCfg.CHANNEL_INFO // 渠道包名
-
   });
 };
 
 LobbyServerManager.onError = function (evt) {
   LoggerUtil.getInstance().warn("LobbyService WebSocket onerror***********>", JSON.stringify(evt));
 };
-
 LobbyServerManager.onClose = function (evt, isFirstConnect) {
   if (evt) {
     LoggerUtil.getInstance().warn("LobbyService WebSocket onClose With Event", JSON.stringify(evt));
   } else {
     LoggerUtil.getInstance().warn("LobbyService WebSocket onClose ***********>");
   }
+  ;
 
-  ; // 关闭心跳检测
-
-  LobbyServerManager.stopHeartBeat(); // 清除ws实例对象
-
-  LobbyServerManager.socket = null; // 是否需要重新连接
-
+  // 关闭心跳检测
+  LobbyServerManager.stopHeartBeat();
+  // 清除ws实例对象
+  LobbyServerManager.socket = null;
+  // 是否需要重新连接
   if (LobbyServerManager.needReconnect && isFirstConnect == false) {
     LoggerUtil.getInstance().warn('LobbyService WebSocket tryReconnect...');
     LobbyServerManager.tryReconnect();
   }
-
   ;
 };
-
 LobbyServerManager.tryReconnect = function () {
   LobbyServerManager.reconnectAcount += 1;
   LoggerUtil.getInstance().log('The number of times LobbyService reconnects: ', LobbyServerManager.reconnectAcount);
   var networkType = APPManager.getNetWorkType();
   LoggerUtil.getInstance().log("The current network type is: " + networkType + ".  0-\u65E0\u7F51\u7EDC; 1-\u79FB\u52A8\u7F51\u7EDC; 2-\u65E0\u7EBF\u7F51\u7EDC");
-
   if (networkType == 0 && LobbyServerManager.reconnectAcount > 30) {
     CommonFun.getInstance().showProgress("Please open the device's network !");
   } else if (networkType != 0 && LobbyServerManager.reconnectAcount > 60) {
@@ -267,24 +224,19 @@ LobbyServerManager.tryReconnect = function () {
   } else {
     CommonFun.getInstance().showProgress('The network is reconnected ...');
   }
-
   ;
   LobbyServerManager.connectServer(false);
 };
-
 LobbyServerManager.clientCloseServer = function () {
   LoggerUtil.getInstance().log("LobbyService WebSocket Close By Client");
   LobbyServerManager.needReconnect = false;
   LobbyServerManager.stopHeartBeat();
-
   if (LobbyServerManager.socket) {
     LobbyServerManager.socket.close();
     LobbyServerManager.socket = null;
   }
-
   ;
 };
-
 LobbyServerManager.onReceive = function (evt) {
   LobbyServerManager.stopHeartBeat();
   var bufferStr = evt.data;
@@ -292,13 +244,11 @@ LobbyServerManager.onReceive = function (evt) {
   var msgTransPack = ProtobufManager.decode("baseproto", "baseproto.TransPack", buffer);
   LoggerUtil.getInstance().log("LobbyService WebSocket onReceive: " + msgTransPack.id);
   LobbyServerManager.startHeartBeat();
-
   if (msgTransPack.id != "lobbyservice.pingpang") {
     if (!LobbyServerManager.ProtoCfg[msgTransPack.id]) {
       LoggerUtil.getInstance().error("\u81EA\u5B9A\u4E49\u7684ProtoCfg\u6587\u4EF6\u4E2D\u6CA1\u6709" + msgTransPack.id + "\u6240\u6620\u5C04\u7684\u7ED3\u6784\u540D");
       return;
     }
-
     ;
     var messageNameArry = msgTransPack.id.split(".");
     var protoRootName = messageNameArry[0];
@@ -308,35 +258,27 @@ LobbyServerManager.onReceive = function (evt) {
       msgCode: msgTransPack.id,
       msgData: msgData
     };
-
     if (cc.sys.isBrowser) {
       LoggerUtil.getInstance().log("Lobbyservice receives and distributes internal package data ===> ", msgData);
     } else {
       LoggerUtil.getInstance().log("Lobbyservice receives and distributes internal package data ===> ", JSON.stringify(msgData));
     }
-
     ;
-
     if (LobbyServerManager.checkDistributed(data)) {
       ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, data);
     }
-
     ;
   }
 };
-
 LobbyServerManager.checkDistributed = function (webData) {
   var msgId = webData.msgCode;
   var notify = webData.msgData;
   LoggerUtil.getInstance().log("checkDistributed msgId ===> ", msgId);
-
   if (msgId === 'lobbyservice.kickout') {
     LobbyServerManager.clientCloseServer();
     GameServerManager.clientCloseServer();
     var reason = notify.reason; // 踢出原因,  0：通用-未知(读msg展示即可), 1: 封禁踢出(可不读msg),
-
     var msg = notify.msg;
-
     if (reason == 0) {
       CommonFun.getInstance().showMsgBox(msg, 'YES', function () {
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.UPDATE);
@@ -347,50 +289,38 @@ LobbyServerManager.checkDistributed = function (webData) {
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.UPDATE);
       });
     }
-
     return false;
   } else if (msgId == "lobbyservice.pushcurrencychanged") {
     var _reason = notify.reason; // 原因
-
     var changed = notify.changed; // 变化值
-
     var winnings = notify.winnings; // winnings(后)
-
     var deposit = notify.deposit; // deposit(后)
-
     var voucher = notify.voucher; // 代金券(后)
-
     var firstRecharge = notify.firstRecharge; // 是否是首次充值清除金币
-
     var firstRechargeRetainBonus = notify.firstRechargeRetainBonus; // 首次清0后保留的bonus
-
     var firstRechargeCleanWallet = notify.firstRechargeCleanWallet; // 首充清空钱包
 
     if (firstRecharge) {
       GlobalCfg.USER_DATAS.oldUserDiamond = GlobalCfg.USER_DATAS.userDiamond;
       GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS = firstRechargeRetainBonus;
     }
+    ;
 
-    ; // 刷新玩家金币
-
+    // 刷新玩家金币
     GlobalCfg.USER_DATAS.userDiamond = deposit + winnings;
     GlobalCfg.USER_DATAS.deposit = notify.deposit;
     GlobalCfg.USER_DATAS.winnings = notify.winnings;
     GlobalCfg.USER_DATAS.bonus = notify.voucher;
     GlobalCfg.USER_DATAS.firstGetBonus = 0; // 首次充值后获取的代金券
-
     if (changed > GlobalCfg.USER_DATAS.highestRecharged) {
       GlobalCfg.USER_DATAS.highestRecharged = changed;
     }
-
     ;
-
     if (_reason == 102) {
       // 充值事件
       GlobalCfg.USER_DATAS.isNotCharge = false;
       GlobalCfg.USER_DATAS.recharged += changed;
       GlobalCfg.USER_DATAS.lastRecharged = changed;
-
       if (firstRecharge == true) {
         if (firstRechargeCleanWallet) {
           // 是否展示首充清金币的动画
@@ -400,13 +330,11 @@ LobbyServerManager.checkDistributed = function (webData) {
             msgData: {}
           });
         }
-
         ;
       }
-
-      ; // 上传充值数据到FB账号后台
+      ;
+      // 上传充值数据到FB账号后台
       // 此处 标准事件 参数命名需参照官方标准，不可自行定义，https://developers.facebook.com/docs/app-events/reference ，AppEventsConstants类中定义
-
       var content = {
         fb_content: 'Recharge',
         fb_currency: 'INR'
@@ -416,8 +344,9 @@ LobbyServerManager.checkDistributed = function (webData) {
         valueToSum: Math.ceil(changed / 100),
         eventContent: content
       };
-      APPManager.faceBookLogEvent(JSON.stringify(obj)); // 刷新商城商品列表
+      APPManager.faceBookLogEvent(JSON.stringify(obj));
 
+      // 刷新商城商品列表
       var url = GlobalCfg.HTTP_SERVER + "/v1/payment/commodity/storelist";
       CommonFun.getInstance().httpGet(url, function (json) {
         if (json && json.result == 0 && json.data) {
@@ -428,10 +357,8 @@ LobbyServerManager.checkDistributed = function (webData) {
             msgData: {}
           });
         }
-
         ;
       }, null, GlobalCfg.USER_DATAS.BearerToken);
-
       if (CommonFun.getInstance().isOpenVipModule()) {
         // 刷新VIP系统
         var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/vip/info";
@@ -443,22 +370,17 @@ LobbyServerManager.checkDistributed = function (webData) {
               msgData: {}
             });
           }
-
           ;
         }, null, GlobalCfg.USER_DATAS.BearerToken);
       }
-
       ;
     }
-
     ;
-
     if (_reason == 120) {
       //送蓝钻（代金券）
       GlobalCfg.USER_DATAS.firstGetBonus = changed;
-    } // 自己充值消息下发到每个游戏中
-
-
+    }
+    // 自己充值消息下发到每个游戏中
     ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
       msgCode: GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO,
       msgData: notify
@@ -470,7 +392,6 @@ LobbyServerManager.checkDistributed = function (webData) {
     } else if (notify.currencyid == 3 && notify.balance != null) {
       GlobalCfg.USER_DATAS.userDiamond = notify.balance;
     }
-
     ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, webData);
     return true;
   } else if (msgId == "lobbyservice.withdrawcallback") {
@@ -483,11 +404,9 @@ LobbyServerManager.checkDistributed = function (webData) {
         _obj['createTime'] = notify.createTime;
         _obj['errMsg'] = notify.errMsg;
         CommonFun.getInstance().showWithDrawError(_obj);
-
         if (CommonFun.getInstance().isOpenVipModule()) {
           // VIP系统
           var _httpUrl = GlobalCfg.HTTP_SERVER + "/v1/vip/info";
-
           CommonFun.getInstance().httpGet(_httpUrl, function (strInfo) {
             if (strInfo && strInfo.data) {
               GlobalCfg.USER_DATAS.userVip = strInfo.data.user_vip;
@@ -496,7 +415,6 @@ LobbyServerManager.checkDistributed = function (webData) {
                 msgData: {}
               });
             }
-
             ;
           }, null, GlobalCfg.USER_DATAS.BearerToken);
         } else {
@@ -507,13 +425,10 @@ LobbyServerManager.checkDistributed = function (webData) {
             msgData: {}
           });
         }
-
         ;
       }
-
       ;
     }
-
     ;
     return false;
   } else if (msgId == "lobbyservice.pushnotice") {
@@ -525,13 +440,9 @@ LobbyServerManager.checkDistributed = function (webData) {
   } else if (msgId == "lobbyservice.onseriescardopened") {
     // 钻卡开通通知
     var cardId = notify.cardId; // 钻卡id
-
     var _changed = notify.changed; // 变化值 Array[]
-
     var _winnings = notify.winnings; // winnings(后)
-
     var _deposit = notify.deposit; // deposit(后)
-
     var _voucher = notify.voucher; // 代金券(后)
 
     GlobalCfg.USER_DATAS.voucherCard = cardId;
@@ -547,15 +458,12 @@ LobbyServerManager.checkDistributed = function (webData) {
   } else if (msgId == "lobbyservice.firstchargenotification") {
     // 首充通知
     GlobalCfg.USER_DATAS.changed = notify.deposit; // 变化值
-
     return false;
   } else {
     return true;
   }
-
   ;
 };
-
 window.LobbyServerManager = LobbyServerManager;
 
 cc._RF.pop();

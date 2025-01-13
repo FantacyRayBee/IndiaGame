@@ -19,7 +19,6 @@ cc.Class({
       this.lab_myCoin.string = "$0";
       return;
     }
-
     ;
     this.myCoin = coin;
     GlobalCfg.USER_DATAS.userDiamond = coin;

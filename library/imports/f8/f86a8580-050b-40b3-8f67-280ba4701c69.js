@@ -34,7 +34,6 @@ cc.Class({
       LoggerUtil.getInstance().log("~~~~~~~~~~~~~~~~~", false);
       return;
     }
-
     ;
     this.nodePosX = this.node.x;
     this.orginPos = this.node.getPosition();
@@ -46,19 +45,16 @@ cc.Class({
       LoggerUtil.getInstance().log("~~~~~~~~~~~~~~~~~", false);
       return;
     }
-
     ;
     this.isClick = false;
     var delta = event.getDelta();
     this.node.x += delta.x;
     this.node.y += delta.y;
     this.node.setSiblingIndex(60);
-
     if (this.node.y >= this.nodePosY - 5 && this.node.y <= this.nodePosY + 5 && this.node.x >= this.nodePosX - 5 && this.node.x <= this.nodePosX + 5) {
       this.isClick = true;
       this.setOrignStatus();
     }
-
     if (this.node.y >= this.upLimitDistance) {
       var data = {
         paiValue: this.paiValue,
@@ -70,7 +66,6 @@ cc.Class({
         msgData: data
       });
     }
-
     if (this.node.y < this.upLimitDistance) {
       var _data = {
         paiValue: this.paiValue,
@@ -88,13 +83,11 @@ cc.Class({
       LoggerUtil.getInstance().log("~~~~~~~~~~~~~~~~~", false);
       return;
     }
-
     ;
     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
       msgCode: "touchEnd",
       msgData: {}
     });
-
     if (this.isClick) {
       // 点击
       GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("selectCard");
@@ -112,14 +105,12 @@ cc.Class({
     } else {
       // 移动
       GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("yipai");
-
       if (this.node.y <= this.nodePosY + this.upLimitDistance) {
         // 插入牌组
         if (this.node.x >= this.orginPos - this.paiDistance && this.node.x <= this.orginPos + this.paiDistance) {
           this.setOrignStatus();
           return;
         }
-
         var _data2 = {
           paiValue: this.paiValue,
           groupTag: this.groupTag,
@@ -137,7 +128,6 @@ cc.Class({
           groupTag: this.groupTag,
           groupIndex: this.groupIndex
         };
-
         if (this.node.x < 54 && this.node.x > -49 && this.node.y > 130 && this.node.y < 263) {
           //结算
           ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
@@ -152,7 +142,6 @@ cc.Class({
         }
       }
     }
-
     this.isClick = true;
   },
   setOrignStatus: function setOrignStatus() {
@@ -168,18 +157,14 @@ cc.Class({
       LoggerUtil.getInstance().log("~~~~~~~~~~~~~~~~~", false);
       return;
     }
-
     this.isClick = true;
     LoggerUtil.getInstance().log("ZZZZZZZZaaaaaaaaaaaaaZZZZZZ", this.orginPos);
-
     if (!this.orginPos.x) {
       this.orginPos.x = 0;
     }
-
     if (!this.orginPos.y) {
       this.orginPos.y = 0;
     }
-
     LoggerUtil.getInstance().log("ZZZZZZZZbbbbbbbbbbbbbZZZZZZ", this.orginPos);
     this.setOrignStatus();
   },
@@ -201,7 +186,6 @@ cc.Class({
   },
   setPaiValue: function setPaiValue(paiValue) {
     this.paiValue = paiValue;
-
     if (paiValue == 52 || paiValue == 53) {
       this.node_lai.getChildByName('img').active = false;
     }

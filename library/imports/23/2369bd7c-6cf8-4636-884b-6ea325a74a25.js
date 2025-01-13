@@ -19,13 +19,11 @@ cc.Class({
   },
   playRoleDongZuoAnim: function playRoleDongZuoAnim() {
     var _this = this;
-
     this.skeleton_role.defaultSkin = 'default';
     this.skeleton_role.timeScale = 0.8;
     this.skeleton_role.setAnimation(0, 'dongzuo', false);
     this.skeleton_role.setCompleteListener(function (trackEntry, loopCount) {
       var name = trackEntry.animation.name;
-
       if (name == 'dongzuo') {
         _this.playRoleDaiJiAnim();
       }

@@ -17,12 +17,9 @@ cc.Class({
   //加载音效
   loadGameSound: function loadGameSound() {
     var _this = this;
-
     var soundArr = ['7upSound'];
-
     for (var index = 0; index < soundArr.length; index++) {
       var url = soundArr[index];
-
       if (this.assetBundle) {
         this.assetBundle.loadDir(url, cc.AudioClip, function (err, assets) {
           if (!err) {
@@ -38,9 +35,7 @@ cc.Class({
   },
   playGameSound: function playGameSound(name, isLoop) {
     var _this2 = this;
-
     var clip = this.gameSound.get(name);
-
     if (clip) {
       this.playSound(clip, isLoop);
     } else {
@@ -48,7 +43,6 @@ cc.Class({
         this.assetBundle.load("7upSound/" + name, cc.AudioClip, function (err, audioClip) {
           if (!err) {
             _this2.playSound(audioClip, isLoop);
-
             _this2.gameSound.set(name, audioClip);
           }
         });
@@ -57,9 +51,7 @@ cc.Class({
   },
   playGameMusic: function playGameMusic(name) {
     var _this3 = this;
-
     var clip = this.gameSound.get(name);
-
     if (clip) {
       this.playMusic(clip, true);
     } else {
@@ -67,7 +59,6 @@ cc.Class({
         this.assetBundle.load("7upSound/" + name, cc.AudioClip, function (err, audioClip) {
           if (!err) {
             _this3.playMusic(audioClip, true);
-
             _this3.gameSound.set(name, audioClip);
           }
         });

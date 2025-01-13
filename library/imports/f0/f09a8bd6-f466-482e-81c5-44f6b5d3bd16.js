@@ -15,16 +15,13 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     this.webView.url = this.url;
     this.btn_close.node.on("click", function () {
       if (GlobalCfg.G_COMPONENTS.Audio) {
         GlobalCfg.G_COMPONENTS.Audio.playBack();
       }
-
       ;
       CommonFun.getInstance().decVerticalAcc();
-
       _this.node.destroy();
     }, this);
   },

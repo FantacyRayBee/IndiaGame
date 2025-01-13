@@ -24,7 +24,6 @@ cc.Class({
     this.lab_tishi.string = content;
   },
   start: function start() {} // update (dt) {},
-
 });
 
 cc._RF.pop();

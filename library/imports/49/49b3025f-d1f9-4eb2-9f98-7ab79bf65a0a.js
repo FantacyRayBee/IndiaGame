@@ -11,6 +11,7 @@ cc._RF.push(module, '49b30Jf0flOsp+Yereb9loK', 'teenPattiWanFaCtrl');
  * @LastEditors: Please set LastEditors
  * @FilePath: \rummy_zjh\assets\teenPatti\src\teenPattiWanFaCtrl.js
  */
+
 cc.Class({
   "extends": cc.Component,
   properties: {},
@@ -37,7 +38,6 @@ cc.Class({
     if (!data) {
       return;
     }
-
     ;
     var language = cc.sys.localStorage.getItem("language");
     language = language == null ? 1 : language;
@@ -48,7 +48,6 @@ cc.Class({
   },
   btnClickCall: function btnClickCall(btn) {
     var btnName = btn.node.name;
-
     if (btnName == "btn_ok") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.node.destroy();

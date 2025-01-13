@@ -14,14 +14,11 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     var defaultWithDrawNum = 100;
     var curDiamond = GlobalCfg.USER_DATAS.userDiamond;
-
     if (curDiamond > 10000) {
       defaultWithDrawNum = Math.floor(curDiamond / 10000) * 100;
     }
-
     ;
     this.setConfig(defaultWithDrawNum);
     this.btn_close.node.on("click", CommonFun.getInstance().debounce(function () {
@@ -31,10 +28,8 @@ cc.Class({
   },
   start: function start() {
     var _this2 = this;
-
     this.btnWithDraw.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-
       _this2.showWithDraw();
     }, this);
   },
@@ -49,7 +44,6 @@ cc.Class({
       window["isNeedShowWithDrawPreData"] = true;
       SceneManager.getInstance().changeScene(SceneManager.getInstance().curSceneType, SceneManager.getInstance().sceneType.LOBBY);
     }
-
     ;
     this.node.destroy();
   },

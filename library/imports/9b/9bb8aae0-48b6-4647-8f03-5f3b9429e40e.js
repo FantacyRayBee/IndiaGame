@@ -42,7 +42,6 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.ACTIVITY_CLOSE_VIEW) {
       self.node.destroy();
     }
@@ -52,74 +51,63 @@ cc.Class({
   },
   start: function start() {
     var _this = this;
-
     var curToggleName = null;
     var data = GlobalCfg.USER_DATAS.openModules;
-    var couldShowModel = new Map(); // 签到活动
-
+    var couldShowModel = new Map();
+    // 签到活动
     if (data.includes(8)) {
       couldShowModel.set("Daily", true);
       this.toggle_daily.node.active = true;
     } else {
       this.toggle_daily.node.active = false;
     }
-
-    ; // 转盘活动
-
+    ;
+    // 转盘活动
     if (data.includes(9)) {
       couldShowModel.set("Turntable", true);
       this.toggle_turntable.node.active = true;
     } else {
       this.toggle_turntable.node.active = false;
     }
-
-    ; // 首充活动
-
+    ;
+    // 首充活动
     if (GlobalCfg.USER_DATAS.recharged == 0 && data.includes(10)) {
       couldShowModel.set("Bonus", true);
       this.toggle_bonus.node.active = true;
     } else {
       this.toggle_bonus.node.active = false;
     }
-
-    ; // 挑战任务
-
+    ;
+    // 挑战任务
     if (GlobalCfg.USER_DATAS.challengeRunning && data.includes(17)) {
       couldShowModel.set("Challenges", true);
       this.toggle_challenges.node.active = true;
     } else {
       this.toggle_challenges.node.active = false;
     }
-
     ;
-
     var func = function func(type) {
       switch (type) {
         case "Daily":
           _this.toggle_daily.isChecked = true;
           curToggleName = _this.toggle_daily.node.name;
           break;
-
         case "Challenges":
           _this.toggle_challenges.isChecked = true;
           curToggleName = _this.toggle_challenges.node.name;
           break;
-
         case "Bonus":
           _this.toggle_bonus.isChecked = true;
           curToggleName = _this.toggle_bonus.node.name;
           break;
-
         case "TurnTable":
           _this.toggle_turntable.isChecked = true;
           curToggleName = _this.toggle_turntable.node.name;
           break;
-
         default:
           break;
       }
     };
-
     var funcShowCurrentCouldShowModel = function funcShowCurrentCouldShowModel() {
       couldShowModel.forEach(function (value, key) {
         if (value) {
@@ -128,12 +116,11 @@ cc.Class({
         }
       });
     };
+
     /**
      * 
      * @param {string} pointView 值：Daily  Challenges  Bonus  TurnTable
      */
-
-
     var func_CheckPointView = function func_CheckPointView(pointView) {
       if (couldShowModel.has(pointView)) {
         func(pointView);
@@ -141,24 +128,19 @@ cc.Class({
         funcShowCurrentCouldShowModel();
       }
     };
-
     func_CheckPointView(this.pointView);
-
     if (curToggleName) {
       this.setViewByToggleName(curToggleName);
     }
-
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.node.destroy();
         break;
-
       default:
         break;
     }
@@ -170,32 +152,23 @@ cc.Class({
   },
   setViewByToggleName: function setViewByToggleName(toggleName) {
     var _this2 = this;
-
     if (this.node_challenges) {
       this.node_challenges.active = toggleName == "toggle_challenges";
     }
-
     ;
-
     if (this.node_turntable) {
       this.node_turntable.active = toggleName == "toggle_turntable";
     }
-
     ;
-
     if (this.node_bonus) {
       this.node_bonus.active = toggleName == "toggle_bonus";
     }
-
     ;
-
     if (this.node_daily) {
       this.node_daily.active = toggleName == "toggle_daily";
     }
-
     ;
     var prefabPath = null;
-
     if (toggleName == "toggle_daily" && !this.node_daily) {
       prefabPath = GlobalCfg.PREFAB_PATH.ACTIVITYSIGN;
     } else if (toggleName == "toggle_turntable" && !this.node_turntable) {
@@ -205,69 +178,51 @@ cc.Class({
     } else if (toggleName == "toggle_challenges" && !this.node_challenges) {
       prefabPath = GlobalCfg.PREFAB_PATH.ACTIVITYCHALLENGES;
     }
-
     ;
-
     if (prefabPath) {
       var promise = CommonFun.getInstance().loadPrefabByPromise(prefabPath);
       promise.then(function (prefab) {
         if (CommonFun.getInstance().isValidForScr(_this2)) {
           var node = cc.instantiate(prefab);
-
           switch (toggleName) {
             case "toggle_daily":
               _this2.node_daily = node;
               break;
-
             case "toggle_challenges":
               _this2.node_challenges = node;
               break;
-
             case "toggle_bonus":
               _this2.node_bonus = node;
               break;
-
             case "toggle_turntable":
               _this2.node_turntable = node;
               break;
-
             default:
               break;
           }
-
           _this2.node_content.addChild(node);
-
           if (_this2.node_challenges) {
             _this2.node_challenges.active = toggleName == "toggle_challenges";
           }
-
           ;
-
           if (_this2.node_turntable) {
             _this2.node_turntable.active = toggleName == "toggle_turntable";
           }
-
           ;
-
           if (_this2.node_bonus) {
             _this2.node_bonus.active = toggleName == "toggle_bonus";
           }
-
           ;
-
           if (_this2.node_daily) {
             _this2.node_daily.active = toggleName == "toggle_daily";
           }
-
           ;
         }
-
         ;
       })["catch"](function (error) {
         LoggerUtil.getInstance().log(error);
       });
     }
-
     ;
   }
 });

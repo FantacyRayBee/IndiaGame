@@ -13,7 +13,6 @@ cc.Class({
     if (CommonFun.getInstance().isValidForScr(this) && this.node.getChildByName("num_0" + id)) {
       this.node.getChildByName("num_0" + id).active = true;
     }
-
     ;
   },
   setNewState: function setNewState(state) {

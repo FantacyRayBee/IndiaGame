@@ -32,7 +32,6 @@ cc.Class({
       GameServerManager.send("gameservice.exit", "ExitReq", {});
     }
   },
-
   /**
    * 获取玩家列表
    * @param {Number} page 页数，0 开始
@@ -44,23 +43,19 @@ cc.Class({
       rows: _rows
     });
   },
-
   /**
    * 下注
    * @param {Array<{ani,amount}>} chips 
    */
   sendBetMsg: function sendBetMsg(chips) {
     var _this = this;
-
     if (GlobalCfg.ACT_SCENE_CTRL.gameState == 0) {
       var allBet = 0;
-
       for (var i = 0; i < chips.length; i++) {
         var chip = chips[i];
         var amount = chip.amount;
         allBet += amount;
       }
-
       if (allBet > GlobalCfg.USER_DATAS.userDiamond) {
         CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
           if (_this.paymentSwitch) {

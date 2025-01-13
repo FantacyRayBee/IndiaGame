@@ -24,14 +24,12 @@ cc.Class({
     this.btn_changeBank = this.node.getChildByName("btn_changeBank").getComponent(cc.Button);
     this.btn_changeBank.node.on('click', this.btnClick, this);
     this.bankScrollView = this.node.getChildByName("bankScrollView"); // 展示银行列表
-
     this.content = this.bankScrollView.getChildByName("view").getChildByName("content");
     this.item = this.content.getChildByName("item");
     this.bankScrollView.active = false;
   },
   btnClick: function btnClick(Button) {
     var btnName = Button.node.name;
-
     if (btnName == "bg") {
       this.bankScrollView.active = false;
     } else if (btnName == "btn_changeBank") {
@@ -62,7 +60,6 @@ cc.Class({
     var bankList = ["AKHAND ANAND CO-OP BANK", "AU Small Finance Bank", "Aditya Birla payment bank", "Airtel Payment Bank", "Allahabad Bank", "Andhra Bank", "Andhra Pragathi Grameena Bank", "Axis Bank", "Bandhan Bank", "Bank of Baroda", "Bank of India", "Bank of Maharashtra", "Bhavana Bank", "CSB Bank", "Canara Bank", "Central Bank of India", "City Union Bank", "Corporation Bank", "DBS Bank", "DCB Bank", "Dena Bank", "Deutsche Bank", "Dhanlaxmi Bank", "Federal Bank", "HDFC Bank", "ICICI Bank", "IDBI Bank", "IDFC Bank", "Indian Bank", "Indian Overseas Bank", "IndusInd Bank", "Jammu & Kashmir Bank", "Karnataka Bank", "Karur Vysya Bank", "Kotak Bank", "Laxmi Vilas Bank", "Oriental Bank of Commerce", "Punjab National Bank", "Punjab & Sind Bank", "RUPEEO Online Bank", "Saraswat Bank", "Shamrao Vitthal Co-operative Bank", "South Indian Bank", "State Bank of Bikaner & Jaipur", "State Bank of Hyderabad", "State Bank of India", "State Bank of Mysore", "State Bank of Patiala", "State Bank of Travancore", "Syndicate Bank", "Tamilnadu Mercantile Bank", "Union Bank of India", "United Bank of India", "Bank of Maharashtra", "Bank of Baroda", "Bank of Maharashtra", "Bank of Rajasthan", "Canara Bank", "Catholic Syrian Bank", "Suco Bank", "Syndicate Bank", "TJSB Sahakari Bank Ltd", "Tamilnad Mercantile Bank", "Telangana Grameena Bank", "The Akola Urban Co-operative Bank LTD", "The Kalupur Commercial Co-operative Bank", "The Nasik Merchants Co-operative Bank", "UCO Bank", "Ujjivan Small Finance Bank", "United Commercial Bank", "Utkarsh Small Finance Bank", "Uttar Bihar Gramin Bank", "Vijaya Bank", "Vijaya Bank", "Yes Bank", "Zagros Bank"];
     var item = this.item;
     this.content.removeAllChildren();
-
     for (var i = 0; i < bankList.length; i++) {
       var element = bankList[i];
       var itemNode = cc.instantiate(item);
@@ -71,7 +68,6 @@ cc.Class({
       var btn_itemNode = itemNode.getComponent(cc.Button);
       btn_itemNode.node.on('click', this.itemButtonClick, this);
     }
-
     this.bankScrollView.active = true;
   },
   itemButtonClick: function itemButtonClick(Button) {
@@ -88,8 +84,9 @@ cc.Class({
     cc.sys.localStorage.setItem("bankCradInfo", JSON.stringify(obj));
     this.lab_bank.string = bankName;
     this.bankScrollView.active = false;
-  } // update (dt) {},
+  }
 
+  // update (dt) {},
 });
 
 cc._RF.pop();

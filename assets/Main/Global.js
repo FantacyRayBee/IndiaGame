@@ -45,6 +45,15 @@ window.GlobalCfg = {
   IS_EXIST_DIVERSIONFREETP_VIEW: false,
 
   /**
+   * 是否触发热更（测试服专用，线上服这个值必须为true）
+   */
+   is_need_update: true,
+  /**
+   * 是否强制进测试服
+   */
+   is_force_gotoTest: false,
+
+  /**
    * 自定义消息分发Id
    */
   CLIENT_MSG_ID: {
@@ -960,6 +969,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   sendSmsMessage: 'sendSmsMessageByBloom3Rummy',
   getNetWorkType: 'getNetWorkTypeByBloom3Rummy',
   getUUID: 'getUUIDByBloom3Rummy',
+  getGAID: 'getGAIDByBloom3Rummy',
   login: 'loginByBloom3Rummy',
   getAppsFlyerId: 'getAppsFlyerIdByBloom3Rummy',
   getAdvertisingId: 'getAdvertisingIdByBloom3Rummy',
@@ -993,6 +1003,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   sendSmsMessage: 'sendSmsMessageByDownloadPackage',
   getNetWorkType: 'getNetWorkTypeByDownloadPackage',
   getUUID: 'getUUIDByDownloadPackage',
+  getGAID: 'getGAIDByDownloadPackage',
   login: 'loginByDownloadPackage',
   getAppsFlyerId: 'getAppsFlyerIdByDownloadPackage',
   getAdvertisingId: 'getAdvertisingIdByDownloadPackage',
@@ -1026,6 +1037,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   sendSmsMessage: 'sendSmsMessageByOFFLINEDEVE',
   getNetWorkType: 'getNetWorkTypeByOFFLINEDEVE',
   getUUID: 'getUUIDByOFFLINEDEVE',
+  getGAID: 'getGAIDByOFFLINEDEVE',
   login: 'loginByOFFLINEDEVE',
   getAppsFlyerId: 'getAppsFlyerIdByOFFLINEDEVE',
   getAdvertisingId: 'getAdvertisingIdByOFFLINEDEVE',
@@ -1052,8 +1064,12 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
 GlobalCfg.IsDownloadPackage2 = 1;
 if (GlobalCfg.IsDownloadPackage2 == 1) {
   GlobalCfg.APP_VERSION = "2.2.2.8";
-  GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/DownloadPackage2/AppInfo.json`;
-  GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/DownloadPackage2/AppConfig.json`;
+  // GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/DownloadPackage2/AppInfo.json`;
+  // GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/DownloadPackage2/AppConfig.json`;
+
+
+  GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/AppInfo.json`;
+  GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/AppConfig.json`;
 };
 
 /* 
@@ -1077,9 +1093,9 @@ if (GlobalCfg.isOfflineDeve == 1) {
   * 渠道名：5007
 */
 // GlobalCfg.isOfflineDeve2 = 1;
-if (GlobalCfg.isOfflineDeve2 == 1) {
+if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "2_7001");
+  cc.sys.localStorage.setItem("PackageChannel", "0_7001");
   GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };
@@ -1376,6 +1392,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   let packageChannelArr = packageChannel.split("_"); 
   let server = packageChannelArr[0];
+  console.log("packageChannelArr == " , packageChannelArr)
+  console.log("server == " , server)
   GlobalCfg.server_id = server;
   switch (server) {
     case "0":     // 测试服
@@ -1407,16 +1425,17 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
       break;
     case "5":     // 5服
-      GlobalCfg.APP_VERSION = "5.0.0.2"; 
+      GlobalCfg.APP_VERSION = "5.0.0.32"; 
       GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/AppInfo.json`;
       GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/AppConfig.json`;
-
-      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
         GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/v1/AppInfo.json`;
       }
-      
+      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+
+
+
       GlobalCfg.APP_INFO_URL_SPARE = `https://download.ltgame.in/production/AppInfo.json`;
       GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.ltgame.in/production/AppConfig.json`;
       break;

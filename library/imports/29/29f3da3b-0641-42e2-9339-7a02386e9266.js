@@ -5,7 +5,6 @@ cc._RF.push(module, '29f3do7BkFC4pM5egI4bpJm', 'MyVipCtrl');
 "use strict";
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -59,7 +58,6 @@ cc.Class({
       clearInterval(this.expiresTimer);
       this.expiresTimer = null;
     }
-
     ;
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.MYVIP);
@@ -71,17 +69,13 @@ cc.Class({
   setVipInfo: function setVipInfo() {
     this.lab_vipLevel.string = "VIP " + GlobalCfg.USER_DATAS.userVip.level;
     this.selectVipLevel = GlobalCfg.USER_DATAS.userVip.level;
-
     for (var i = 0, len = GlobalCfg.USER_DATAS.vipLevels.length; i < len; i++) {
       var element = GlobalCfg.USER_DATAS.vipLevels[i];
-
       if (element.level >= GlobalCfg.USER_DATAS.userVip.level) {
         this.vipDataList.push(element);
       }
-
       ;
     }
-
     ;
     this.vipDataList.sort(function (a, b) {
       return a.level - b.level;
@@ -93,19 +87,15 @@ cc.Class({
   },
   setUpgradeVipAnim: function setUpgradeVipAnim() {
     var _this = this;
-
     var localStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_VipUpgrade_LocalStorage");
-
     if (!localStorage) {
       this.sprite_icon.spriteFrame = this.atlas_icon.getSpriteFrame('1');
       this.spine_upgrade.setCompleteListener(function () {
         if (CommonFun.getInstance().isValidForScr(_this)) {
           _this.spine_upgrade.setSkin("default");
-
           _this.spine_upgrade.animation = null;
           _this.sprite_icon.spriteFrame = _this.atlas_icon.getSpriteFrame("" + GlobalCfg.USER_DATAS.userVip.level);
         }
-
         ;
       });
       GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("vipSound/vipUpgrade", false);
@@ -113,17 +103,14 @@ cc.Class({
       cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_VipUpgrade_LocalStorage", "" + GlobalCfg.USER_DATAS.userVip.level);
     } else {
       var level = Number(localStorage);
-
       if (GlobalCfg.USER_DATAS.userVip.level > level) {
         this.sprite_icon.spriteFrame = this.atlas_icon.getSpriteFrame("" + level);
         this.spine_upgrade.setCompleteListener(function () {
           if (CommonFun.getInstance().isValidForScr(_this)) {
             _this.spine_upgrade.setSkin("default");
-
             _this.spine_upgrade.animation = null;
             _this.sprite_icon.spriteFrame = _this.atlas_icon.getSpriteFrame("" + GlobalCfg.USER_DATAS.userVip.level);
           }
-
           ;
         });
         GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("vipSound/vipUpgrade", false);
@@ -133,72 +120,57 @@ cc.Class({
         this.sprite_icon.spriteFrame = this.atlas_icon.getSpriteFrame("" + GlobalCfg.USER_DATAS.userVip.level);
       }
     }
-
     ;
   },
   onEventMsg: function onEventMsg(webData, target) {
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (GlobalCfg.CLIENT_MSG_ID.VIP_TAKE_WELFARE === msgId) {
       self.dealVipTakeWelfare(notify);
     } else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
       self.setVipInfo();
       self.setUpgradeVipAnim();
     }
-
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnCloseEvent();
         return;
-
       case "btn_vipService":
         this.dealBtnVipServiceEvent();
         break;
-
       case "btn_vipRight":
         this.dealBtnVipRightEvent();
         break;
-
       case "btn_vipLeft":
         this.dealBtnVipLeftEvent();
         break;
-
       case "btn_luckyDraw":
         this.dealBtnLuckyDrawEvent();
         break;
-
       case "btn_forOnce":
         this.dealBtnForOnceEvent();
         break;
-
       case "btn_addCash":
         this.dealBtnAddCashEvent();
         break;
-
       case "btn_toBet":
         this.dealBtnToBetEvent();
         break;
-
       case "btn_rules":
         this.dealBtnRulesEvent();
         break;
-
       case "btn_benefitsTips":
         this.dealBtnBenefitsEvent();
         break;
-
       default:
         break;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
   },
   dealBtnCloseEvent: function dealBtnCloseEvent() {
@@ -206,7 +178,6 @@ cc.Class({
   },
   dealBtnVipServiceEvent: function dealBtnVipServiceEvent() {
     var channel_info = _extends({}, GlobalCfg.USER_DATAS.customerService);
-
     var whatsAppInfos = channel_info.whatsApp.split(',');
     var mobileNum = whatsAppInfos[0].match(/\d+/g);
     APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
@@ -228,7 +199,6 @@ cc.Class({
       CommonFun.getInstance().showMsgBox("Not yet open", "YES_ON", function () {}, false);
       return;
     }
-
     ;
     CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.MyVipAddCash);
   },
@@ -243,57 +213,42 @@ cc.Class({
   },
   showBenifitsByLevel: function showBenifitsByLevel(level, isShowLevelIcon) {
     var _this2 = this;
-
     this.node_benifits.destroyAllChildren();
     var lastBenifits = null;
     var curBenifits = null;
     var nextBenifits = null;
-
     for (var i = 0, len = this.vipDataList.length; i < len; i++) {
       var element = this.vipDataList[i];
-
       if (element.level === level - 1) {
         lastBenifits = element;
       }
-
       ;
-
       if (element.level === level) {
         curBenifits = element;
       }
-
       ;
-
       if (element.level === level + 1) {
         nextBenifits = element;
       }
-
       ;
     }
-
     ;
-
     if (!curBenifits) {
       return;
     }
-
     ;
     this.selectVipLevel = curBenifits.level;
     var timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
-
     if (GlobalCfg.USER_DATAS.userVip.level == curBenifits.level && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time) {
       this.btn_icon.interactable = true;
       this.btn_icon.enableAutoGrayEffect = false;
-
       if (this.expiresTimer) {
         clearInterval(this.expiresTimer);
         this.expiresTimer = null;
       }
-
       ;
       this.expiresTimer = setInterval(function () {
         timestamp += 1;
-
         if (timestamp >= GlobalCfg.USER_DATAS.userVip.expires_time) {
           if (CommonFun.getInstance().isValidForScr(_this2)) {
             _this2.btn_icon.interactable = false;
@@ -302,164 +257,117 @@ cc.Class({
             _this2.expiresTimer = null;
             CommonFun.getInstance().showTips("Your VIP has expired, you can activate it after recharging!");
           }
-
           ;
           return;
         }
-
         ;
       }, 1000);
     } else {
       this.btn_icon.interactable = false;
       this.btn_icon.enableAutoGrayEffect = true;
-
       if (this.expiresTimer) {
         clearInterval(this.expiresTimer);
         this.expiresTimer = null;
       }
-
       ;
     }
-
     ;
+
     /**
      *  日领取
      */
-
     if (curBenifits.dayTake > 0) {
       var node = cc.instantiate(this.prefab_benifitsItem);
       var scr = node.getComponent("BenefitsItemCtrl");
       scr.setBenifitsItemData(5, curBenifits);
       this.node_benifits.addChild(node);
     }
-
     ;
     /**
      *  周领取
      */
-
     if (curBenifits.weekTake > 0) {
       var _node = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr = _node.getComponent("BenefitsItemCtrl");
-
       _scr.setBenifitsItemData(4, curBenifits);
-
       this.node_benifits.addChild(_node);
     }
-
     ;
     /**
      *  月领取
      */
-
     if (curBenifits.monthTake > 0) {
       var _node2 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr2 = _node2.getComponent("BenefitsItemCtrl");
-
       _scr2.setBenifitsItemData(3, curBenifits);
-
       this.node_benifits.addChild(_node2);
     }
-
     ;
     /**
      *  提现总额
      */
-
     if (curBenifits.withdrawTotalLimit > 0) {
       var _node3 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr3 = _node3.getComponent("BenefitsItemCtrl");
-
       _scr3.setBenifitsItemData(2, curBenifits);
-
       this.node_benifits.addChild(_node3);
     }
-
     ;
     /**
      * 提现次数
      */
-
     if (curBenifits.dayWithdrawCountLimit > 0) {
       var _node4 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr4 = _node4.getComponent("BenefitsItemCtrl");
-
       _scr4.setBenifitsItemData(1, curBenifits);
-
       this.node_benifits.addChild(_node4);
     }
-
     ;
     /** 
      * 扭蛋机次数
      */
-
     if (curBenifits.gachaCount > 0) {
       var _node5 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr5 = _node5.getComponent("BenefitsItemCtrl");
-
       _scr5.setBenifitsItemData(11, curBenifits);
-
       this.node_benifits.addChild(_node5);
     }
-
     ;
     /**
      *  快速升级礼包
      */
-
     if (curBenifits.upgradeBagId > 0) {
       var _node6 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr6 = _node6.getComponent("BenefitsItemCtrl");
-
       _scr6.setBenifitsItemData(10, curBenifits);
-
       this.node_benifits.addChild(_node6);
     }
-
     ;
     /**
      * 专属客服
      */
-
     if (curBenifits.exService) {
       var _node7 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr7 = _node7.getComponent("BenefitsItemCtrl");
-
       _scr7.setBenifitsItemData(7, curBenifits);
-
       this.node_benifits.addChild(_node7);
       this.btn_vipService.node.active = Object.values(GlobalCfg.USER_DATAS.customerService).length > 0 && Object.values(GlobalCfg.USER_DATAS.customerService).join("").length > 0 ? true : false;
     } else {
       this.btn_vipService.node.active = false;
     }
-
     ;
     /**
      * 贵宾席
      */
-
     if (curBenifits.vipSeats) {
       var _node8 = cc.instantiate(this.prefab_benifitsItem);
-
       var _scr8 = _node8.getComponent("BenefitsItemCtrl");
-
       _scr8.setBenifitsItemData(6, curBenifits);
-
       this.node_benifits.addChild(_node8);
     }
-
     ;
     this.sprite_icon.spriteFrame = isShowLevelIcon == true ? this.atlas_icon.getSpriteFrame("" + curBenifits.level) : null;
     this.lab_vipLevel.string = "VIP " + curBenifits.level;
-
     if (nextBenifits) {
       this.btn_vipRight.interactable = true;
       this.btn_vipRight.enableAutoGrayEffect = false;
@@ -473,10 +381,8 @@ cc.Class({
       this.lab_nextLevelProgress.string = GlobalCfg.USER_DATAS.userVip.recharged / 100 + "/-";
       this.progressBar_nextLevel.progress = 0;
     }
-
     ;
     this.lab_nextLevelProgress.node.active = false;
-
     if (lastBenifits) {
       this.btn_vipLeft.interactable = true;
       this.btn_vipLeft.enableAutoGrayEffect = false;
@@ -484,33 +390,27 @@ cc.Class({
       this.btn_vipLeft.interactable = false;
       this.btn_vipLeft.enableAutoGrayEffect = true;
     }
-
     ;
   },
   dealVipTakeWelfare: function dealVipTakeWelfare(notify) {
     var timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
-
     if (timestamp >= GlobalCfg.USER_DATAS.userVip.expires_time) {
       CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate itafter recharging !', 'ADDCASH', function () {
         CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
       }, false);
       return;
     }
-
     ;
-
     if (notify.type == "day" || notify.type == "week" || notify.type == "month") {
       var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/vip/takewelfare/" + notify.type;
       var httpParam = {};
       CommonFun.getInstance().httpPost(httpUrl, httpParam, function (strInfo) {
         if (strInfo && strInfo.data) {
           var take = strInfo.data.take;
-
           for (var i = 0, len = take.length; i < len; i++) {
             var element = take[i];
             var id = element.id;
             var amount = element.amount;
-
             if (id == 10) {
               GlobalCfg.USER_DATAS.deposit += amount;
               GlobalCfg.USER_DATAS.userDiamond += amount;
@@ -523,10 +423,8 @@ cc.Class({
               GlobalCfg.USER_DATAS.bonus += amount;
               CommonFun.getInstance().showVipRewardToast(amount / 100, true);
             }
-
             ;
           }
-
           ;
           ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
             msgCode: GlobalCfg.CLIENT_MSG_ID.VIP_REWARD,
@@ -535,7 +433,6 @@ cc.Class({
         } else {
           CommonFun.getInstance().showTips(strInfo.msg);
         }
-
         ;
         httpUrl = GlobalCfg.HTTP_SERVER + "/v1/vip/info";
         CommonFun.getInstance().httpGet(httpUrl, function (strInfo) {
@@ -546,12 +443,10 @@ cc.Class({
               msgData: {}
             });
           }
-
           ;
         }, null, GlobalCfg.USER_DATAS.BearerToken);
       }, null, GlobalCfg.USER_DATAS.BearerToken);
     }
-
     ;
   }
 });

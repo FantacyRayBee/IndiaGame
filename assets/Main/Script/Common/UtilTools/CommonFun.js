@@ -2769,6 +2769,18 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 购买之前显示提示框
+     */
+    ShowTipsBeforeBuy: function(msg, callback) {
+        let str = 'Go to Recharge ₹ '+ msg + '?'
+        CommonFun.getInstance().showMsgBox(str, "SHOP", () => {
+            if(callback){
+                callback()
+            }
+        }, false);
+    },
+
+    /**
      * 是否需要显示TP手指提示
      * @returns {boolean}
      */

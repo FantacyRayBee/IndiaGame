@@ -9,19 +9,12 @@ cc.Class({
   properties: {},
   ctor: function ctor() {
     this.reqComparisonMainMD5InfoAcount = 0; // 请求远程assets下的manifest文件的次数（请求次数超过3次，判定为异常）
-
     this.needUpdateFileArr = []; // 存放需要更新的文件的容器
-
     this.simulationCheckFileAcount = 0; // 模拟远程和本地文件比较差异的次数
-
     this.totalNumberOfRemoteMainFiles = 0; // 远程assets下的manifest文件中记录的文件总数
-
     this.totalNumberOfFilesDownloaded = 0; // 已更新完成的文件数量
-
     this.curNumberOfJoinedDownloader = 0; // 当前添加到下载器的需下载文件数量
-
     this.updateStatusPoints = 0; // 更新状态圆点的个数  
-
     this.downloaderArr = []; // 热更新下载器容器（实现多管道下载）
 
     this.sendVerifyCodeReqAcount = 0;
@@ -47,13 +40,15 @@ cc.Class({
     CommonFun.getInstance().initVerticalAcc();
     CommonFun.getInstance().hidProgress();
     CommonFun.getInstance().removeCarouselStrip();
-    CommonFun.getInstance().removeSidebar(); // Update节点部分
+    CommonFun.getInstance().removeSidebar();
 
+    // Update节点部分
     this.progressBar = this.node.getChildByName("updateLayer").getComponent(cc.ProgressBar);
     this.lab_updateContentTips = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_up").getComponent(cc.Label);
     this.lab_updatePoint = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_point").getComponent(cc.Label);
-    this.lab_updateProgress = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_%").getComponent(cc.Label); // login节点部分
+    this.lab_updateProgress = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_%").getComponent(cc.Label);
 
+    // login节点部分
     this.node_loginLayer = this.node.getChildByName("loginLayer");
     this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
     this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
@@ -72,44 +67,34 @@ cc.Class({
     this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
     var languagesType = I18NUtil.getInstance().getLanguageType();
     var checkedName = "";
-
     switch (languagesType) {
       case I18NLanguagesEnum.English:
         checkedName = "toggle_English";
         break;
-
       case I18NLanguagesEnum.Hindi:
         checkedName = "toggle_Hindi";
         break;
-
       case I18NLanguagesEnum.Urdu:
         checkedName = "toggle_Urdu";
         break;
-
       case I18NLanguagesEnum.Bengali:
         checkedName = "toggle_Bengali";
         break;
-
       default:
         checkedName = "toggle_English";
         break;
     }
-
     ;
     this.toggleContainer_language = this.node_loginLayer.getChildByName("toggleContainer_language").getComponent(cc.ToggleContainer);
     var toggleItems = this.toggleContainer_language.toggleItems;
-
     for (var i = 0, len = toggleItems.length; i < len; i++) {
       var toggle = toggleItems[i];
-
       if (toggle.node.name == checkedName) {
         toggle.isChecked = true;
       }
-
       ;
       toggle.node.on('toggle', this.toggleLanguageCallback, this);
     }
-
     ;
     this.progressBar.node.active = false;
     this.lab_updateContentTips.node.active = false;
@@ -132,7 +117,6 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.FAILURE_TO_OBTAIN_USER_INFO) {
       CommonFun.getInstance().hidProgress();
       CommonFun.getInstance().showTips(notify.msgTips);
@@ -159,25 +143,20 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     LoggerUtil.getInstance().log("\u6B63\u5728\u4E0B\u8F7D\u7684BUNDLE\u662F: " + notify.subpackgeName);
     var baseBundle = notify.subpackgeName;
     var progress = Number(notify.progress);
     var allProgress = 0;
     var len = this.baseBundlesNeedUpdateArr.length;
-
     for (var i = 0; i < len; i++) {
       var tempObj = this.baseBundlesNeedUpdateArr[i];
-
       if (tempObj.baseBundle == baseBundle) {
         tempObj.progress = progress;
       }
-
       ;
       allProgress += tempObj.progress;
     }
-
     ;
     var tempProgress = allProgress / (len * 100);
     this.setLabUpdateProgressStr((20 + tempProgress * 80).toFixed(2) + "%");
@@ -188,16 +167,12 @@ cc.Class({
     if (!notify) {
       return;
     }
-
     ;
     var baseBundle = notify.subpackgeName;
-
     if (!this.baseBundlesUpdateCompleteArr.includes(baseBundle)) {
       this.baseBundlesUpdateCompleteArr.push(baseBundle);
     }
-
     ;
-
     if (this.baseBundlesUpdateCompleteArr.length == this.baseBundlesNeedUpdateArr.length) {
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_WITH_LOADED_END, endTime - this.loadBundlesStartTime);
@@ -216,23 +191,19 @@ cc.Class({
         cc.game.restart();
       }, 1);
     }
-
     ;
   },
   editBoxCallback: function editBoxCallback(editBox) {
     var editBoxName = editBox.node.name;
-
     if (editBoxName === "editBox_account") {
       this.node_lab_accountTips.active = false;
     } else if (editBoxName === "editBox_password") {
       this.node_lab_passwordTips.active = false;
     }
-
     ;
   },
   clickCallBack: function clickCallBack(btn) {
     var btnName = btn.node.name;
-
     if (btnName == "btn_accountDelete") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.editBox_account.string = "";
@@ -261,19 +232,15 @@ cc.Class({
     } else if (btnName === "btn_reqVerify") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       var accountOrPhoneStr = this.editBox_account.string;
-
       if (accountOrPhoneStr.length == 0) {
         this.node_lab_accountTips.active = true;
         return;
       }
-
       ;
-
       if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
         this.node_lab_accountTips.active = true;
         return;
       }
-
       ;
       CommonFun.getInstance().showProgress("Sending SMS request ...");
       this.dealReqVerifyEvent(accountOrPhoneStr);
@@ -289,29 +256,23 @@ cc.Class({
     var toggleName = toggle.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var languageType = I18NLanguagesEnum.English;
-
     switch (toggleName) {
       case "toggle_English":
         languageType = I18NLanguagesEnum.English;
         break;
-
       case "toggle_Hindi":
         languageType = I18NLanguagesEnum.Hindi;
         break;
-
       case "toggle_Urdu":
         languageType = I18NLanguagesEnum.Urdu;
         break;
-
       case "toggle_Bengali":
         languageType = I18NLanguagesEnum.Bengali;
         break;
-
       default:
         languageType = I18NLanguagesEnum.English;
         break;
     }
-
     ;
     I18NUtil.getInstance().setLanguageType(languageType);
   },
@@ -319,10 +280,8 @@ cc.Class({
     if (!cc.sys.isNative) {
       return;
     }
-
     ;
     this.btnWenZiClickTimes += 1;
-
     if (this.btnWenZiClickTimes >= 3) {
       this.btnWenZiClickTimes = 0;
       var loggerStatus = LoggerUtil.getInstance().getLoggerStatus();
@@ -330,12 +289,10 @@ cc.Class({
       LoggerUtil.getInstance().setLoggerStatus(!loggerStatus);
       cc.sys.localStorage.setItem("LOGGERUTIL_STATUS", loggerStatus ? 0 : 1);
     }
-
     ;
   },
   dealReqVerifyEvent: function dealReqVerifyEvent(accountOrPhoneStr) {
     var _this = this;
-
     if (this.sendVerifyCodeReqAcount == 3) {
       this.sendVerifyCodeReqAcount = 0;
       this.btn_reqVerify.interactable = true;
@@ -346,60 +303,47 @@ cc.Class({
       CommonFun.getInstance().showTips("Server SMS interface exception");
       return;
     }
-
     ;
     this.sendVerifyCodeReqAcount += 1;
-
     if (this.sendVerifyCodeReqAcount == 1) {
       this.btn_reqVerify.interactable = false;
       this.btn_reqVerify.enableAutoGrayEffect = true;
-
       if (this.verifyTimer) {
         clearInterval(this.verifyTimer);
         this.verifyTimer = null;
       }
-
       ;
       var waitTime = 180;
       this.lab_otpTips.string = waitTime + "S";
       this.verifyTimer = setInterval(function () {
         waitTime -= 1;
-
         if (waitTime == 0) {
           if (_this && _this.verifyTimer) {
             clearInterval(_this.verifyTimer);
             _this.verifyTimer = null;
           }
-
           ;
-
           if (_this && _this.btn_reqVerify) {
             _this.btn_reqVerify.interactable = true;
             _this.btn_reqVerify.enableAutoGrayEffect = false;
           }
-
           if (_this && _this.lab_otpTips) {
             _this.lab_otpTips.string = 'OTP';
           }
-
           return;
         }
-
         if (_this && _this.lab_otpTips) {
           _this.lab_otpTips.string = waitTime + "S";
         }
       }, 1000);
     }
-
     ;
     var packageChannel = cc.sys.localStorage.getItem("PackageChannel");
     var channel = 0;
-
     if (packageChannel && packageChannel.indexOf("_") != -1) {
       var packageChannelArr = packageChannel.split("_");
       channel = packageChannelArr[1];
     }
-
     var device = CommonFun.getInstance().getDeviceId();
     var reqVerifyCodeParamObj = {
       phone: "",
@@ -410,11 +354,9 @@ cc.Class({
     var url = GlobalCfg.HTTP_USER_LOGIN + "/v1/sendverificationcode";
     CommonFun.getInstance().httpPost(url, reqVerifyCodeParamObj, function (msg) {
       CommonFun.getInstance().hidProgress();
-
       if (msg.result != 0) {
         CommonFun.getInstance().showTips(msg.msg);
       }
-
       ;
     }, function () {
       _this.dealReqVerifyEvent(accountOrPhoneStr);
@@ -422,22 +364,17 @@ cc.Class({
   },
   dealAccountLoginEvent: function dealAccountLoginEvent() {
     var accountOrPhoneStr = this.editBox_account.string;
-
     if (accountOrPhoneStr.length == 0) {
       this.node_lab_accountTips.active = true;
       return;
     }
-
     ;
     var passwordOrVerCodeStr = this.editBox_password.string;
-
     if (passwordOrVerCodeStr.length == 0) {
       this.node_lab_passwordTips.active = true;
       return;
     }
-
     ;
-
     if (this.isCustomAccount(accountOrPhoneStr)) {
       CommonFun.getInstance().showProgress();
       var obj = {
@@ -464,9 +401,7 @@ cc.Class({
         code: passwordOrVerCodeStr,
         token: ""
       };
-
       var _promise = SceneManager.getInstance().reqTokenInfo(_obj);
-
       _promise.then(function () {
         return SceneManager.getInstance().reqBearerToken();
       }).then(function () {
@@ -480,22 +415,17 @@ cc.Class({
     } else {
       this.node_lab_accountTips.active = true;
     }
-
     ;
   },
   dealQuickLoginEvent: function dealQuickLoginEvent() {
     var _this2 = this;
-
     GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
     var accountOrPhoneStr = this.editBox_account.string;
-
     if (accountOrPhoneStr.length == 0) {
       this.node_lab_accountTips.active = true;
       return;
     }
-
     ;
-
     if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
       CommonFun.getInstance().showProgress();
       var phoneToken = cc.sys.localStorage.getItem("phone_token");
@@ -515,13 +445,11 @@ cc.Class({
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
       })["catch"](function (error) {
         _this2.showCommonLoginView();
-
         LoggerUtil.getInstance().log(error);
       });
     } else {
       this.node_lab_accountTips.active = true;
     }
-
     ;
   },
   dealFacebookLoginEvent: function dealFacebookLoginEvent() {
@@ -551,11 +479,9 @@ cc.Class({
   },
   isCustomAccount: function isCustomAccount(account) {
     var str = account.substring(0, 5);
-
     if (str == "00000") {
       return true;
     }
-
     ;
     return false;
   },
@@ -572,9 +498,7 @@ cc.Class({
       });
       return;
     }
-
     ;
-
     if (cc.sys.isNative) {
       this.updateStartTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
@@ -582,7 +506,6 @@ cc.Class({
     } else {
       this.changeSceneToLobby();
     }
-
     ;
   },
   onDestroy: function onDestroy() {
@@ -606,8 +529,7 @@ cc.Class({
   comparisonVersionInfo: function comparisonVersionInfo() {
     var localVersion = Number(cc.sys.localStorage.getItem("localVersion"));
     LoggerUtil.getInstance().log("Remote resource file version\uFF1A" + GlobalCfg.ASSETS_VERSION + ", Local resource file version\uFF1A" + localVersion);
-
-    if (localVersion != GlobalCfg.ASSETS_VERSION) {
+    if (localVersion != GlobalCfg.ASSETS_VERSION && GlobalCfg.is_need_update) {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_RESOURCES_UPDATE);
       LoggerUtil.getInstance().log("The remote version that needs to be updated is\uFF1A" + GlobalCfg.ASSETS_VERSION);
       this.reqMainManifestInfo();
@@ -616,18 +538,15 @@ cc.Class({
       LoggerUtil.getInstance().log("Remote versions that are consistent and do not require updates at this time!");
       this.baseBundlesHotUpdate();
     }
-
     ;
   },
   reqMainManifestInfo: function reqMainManifestInfo() {
     var _this3 = this;
-
     if (this.reqComparisonMainMD5InfoAcount == 5) {
       LoggerUtil.getInstance().error("Exception in requesting manifest file under remote resource file assets!");
       this.setLabUpdateContentTipsStr("Getting Assets Manifest File Error");
       return;
     }
-
     ;
     var startTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_START);
@@ -637,12 +556,10 @@ cc.Class({
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_SUCCESS, endTime - startTime);
       LoggerUtil.getInstance().log("httpGet has requested data from manifest!");
-
       _this3.comparisonFilesByMainManifestInfo(json);
     }, function () {
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_FAIL, endTime - startTime);
-
       _this3.reqMainManifestInfo();
     });
   },
@@ -656,42 +573,34 @@ cc.Class({
     this.simulationCheckFileAcount = 0;
     this.totalNumberOfRemoteMainFiles = json.length;
     this.storagePath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'remote-asset/';
-
     for (var i = 1; i <= this.totalNumberOfRemoteMainFiles; i++) {
       var item = json[i + ""];
-
       if (!item) {
         continue;
       }
-
       ;
       var itemArr = item.filename.split("/");
       var serverMd5 = item.md5;
       var fileDir = "";
-
       for (var k = 0, itemArrLen = itemArr.length; k < itemArrLen - 1; k++) {
         fileDir = fileDir + itemArr[k] + "/";
       }
-
       ;
       var sourceName = jsb.fileUtils.fullPathForFilename(item.filename);
       var localMd5 = jsb.extensFunction.getMd5File(sourceName);
-
       if (localMd5 !== serverMd5) {
         LoggerUtil.getInstance().log("The file that need to be updated is\uFF1A" + item.filename);
         var isExist = jsb.fileUtils.isDirectoryExist(this.storagePath + fileDir);
-
         if (!isExist) {
           jsb.fileUtils.createDirectory(this.storagePath + fileDir);
         }
-
         ;
         this.needUpdateFileArr.push(item);
       }
-
       ;
-      this.simulationCheckFileAcount += 1; // 模拟校验文件数据的进度过程
+      this.simulationCheckFileAcount += 1;
 
+      // 模拟校验文件数据的进度过程
       if (this.simulationCheckFileAcount >= this.totalNumberOfRemoteMainFiles) {
         var endTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_COMPARE_FILES_END, endTime - startTime);
@@ -699,24 +608,20 @@ cc.Class({
         this.setUpdateProgressBarProgress(1);
         this.prepareDownDifferenceFiles();
       }
-
       ;
     }
-
     ;
   },
   setUpdateProgressBarProgress: function setUpdateProgressBarProgress(progress) {
     if (progress === void 0) {
       progress = 0;
     }
-
     this.progressBar.progress = progress;
   },
   setLabUpdateContentTipsStr: function setLabUpdateContentTipsStr(str) {
     if (str === void 0) {
       str = "";
     }
-
     this.lab_updateContentTips.string = str;
   },
   setLabUpdateProgressStr: function setLabUpdateProgressStr(str) {
@@ -726,7 +631,6 @@ cc.Class({
     if (isAct === void 0) {
       isAct = false;
     }
-
     if (isAct == false) {
       this.unschedule(this.setDianTipsAnima);
       this.updateStatusPoints = 0;
@@ -735,14 +639,12 @@ cc.Class({
       this.updateStatusPoints = 0;
       this.schedule(this.setDianTipsAnima, 0.5);
     }
-
     ;
   },
   setDianTipsAnima: function setDianTipsAnima() {
     if (this.updateStatusPoints == 5) {
       this.updateStatusPoints = 0;
     }
-
     ;
     var updateStatusPoints = ["", ".", "..", "...", "...."][this.updateStatusPoints];
     this.lab_updatePoint.string = updateStatusPoints;
@@ -753,7 +655,6 @@ cc.Class({
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_START);
     var needUpdateFileArrLen = this.needUpdateFileArr.length;
     LoggerUtil.getInstance().log("Starting to download differentiated files, the number of files that need to be downloaded is " + needUpdateFileArrLen);
-
     if (needUpdateFileArrLen == 0) {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_NO_LOADED_END);
       this.setLabUpdatePointAnim(false);
@@ -766,7 +667,6 @@ cc.Class({
       this.setLabUpdateProgressStr("0%");
       this.setUpdateProgressBarProgress(0);
       this.setLabUpdateContentTipsStr("Update Version Files");
-
       for (var i = 0; i < 30; i++) {
         var downloader = new jsb.Downloader();
         downloader.storagePath = '';
@@ -774,20 +674,16 @@ cc.Class({
         downloader.setOnTaskError(this.setOnTaskError.bind(this));
         this.downloaderArr.push(downloader);
       }
-
       ;
       this.downDifferenceFiles();
     }
-
     ;
   },
   downDifferenceFiles: function downDifferenceFiles() {
     for (var i = 0, len = this.downloaderArr.length; i < len; i++) {
       var downloader = this.downloaderArr[i];
-
       if (downloader.storagePath.length == 0) {
         var fileInfo = this.needUpdateFileArr[this.curNumberOfJoinedDownloader];
-
         if (fileInfo) {
           LoggerUtil.getInstance().log("The file being updated is " + fileInfo.filename);
           var md5 = fileInfo.md5;
@@ -796,26 +692,20 @@ cc.Class({
           downloader.createDownloadFileTask(url, this.storagePath + fileInfo.filename);
           this.curNumberOfJoinedDownloader += 1;
         }
-
         ;
       }
-
       ;
     }
-
     ;
   },
   getDownLoaderByStoragePath: function getDownLoaderByStoragePath(storagePath) {
     for (var i = 0, len = this.downloaderArr.length; i < len; i++) {
       var downloader = this.downloaderArr[i];
-
       if (downloader.storagePath == storagePath) {
         return downloader;
       }
-
       ;
     }
-
     ;
   },
   setOnFileTaskSuccess: function setOnFileTaskSuccess(task) {
@@ -823,13 +713,10 @@ cc.Class({
     var needUpdateFileArrLen = this.needUpdateFileArr.length;
     LoggerUtil.getInstance().log("The number of successful file updates is: " + this.totalNumberOfFilesDownloaded + ", The total number of updates needed is: " + needUpdateFileArrLen);
     var downloader = this.getDownLoaderByStoragePath(task.storagePath);
-
     if (downloader) {
       downloader.storagePath = '';
     }
-
     ;
-
     if (this.totalNumberOfFilesDownloaded >= needUpdateFileArrLen) {
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_LOADED_END, endTime - this.loadDiffFilesStartTime);
@@ -846,17 +733,14 @@ cc.Class({
       this.setUpdateProgressBarProgress(Number((percent * 0.2).toFixed(2)));
       this.downDifferenceFiles();
     }
-
     ;
   },
   setOnTaskError: function setOnTaskError(task, errorCode, errorCodeInternal, errorStr) {
     LoggerUtil.getInstance().log("An error occurred while updating the file, and the error code is " + errorCode + ", The reason for the error is " + errorStr);
     var downloader = this.getDownLoaderByStoragePath(task.storagePath);
-
     if (downloader) {
       downloader.createDownloadFileTask(task.requestURL, task.storagePath);
     }
-
     ;
   },
   changeSceneToLobby: function changeSceneToLobby() {
@@ -870,23 +754,19 @@ cc.Class({
   },
   loadBundleAndRunScene: function loadBundleAndRunScene() {
     var _this4 = this;
-
     Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()]).then(function (arr) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
         window.ResourcesBundle = bundle;
         GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
         GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
-
         if (!GlobalCfg.USER_DATAS.token) {
           _this4.node_loginLayer.active = true;
           var phoneToken = cc.sys.localStorage.getItem("phone_token");
-
           if (phoneToken) {
             _this4.showMemoryPhoneView();
           } else {
             _this4.showCommonLoginView();
           }
-
           ;
         } else {
           CommonFun.getInstance().showProgress('Memory login ...');
@@ -900,11 +780,9 @@ cc.Class({
           })["catch"](function (error) {
             LoggerUtil.getInstance().log(error);
             _this4.node_loginLayer.active = true;
-
             _this4.showCommonLoginView("");
           });
         }
-
         ;
       }, function (err) {
         LoggerUtil.getInstance().error("\u52A0\u8F7DResourcesBundle-Bundle\u5F02\u5E38: " + JSON.stringify(err));
@@ -923,13 +801,11 @@ cc.Class({
     this.node_or_sprite.setPosition(this.or_sprite_pos1);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
-
     if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK == 1) {
       this.node_btn_facebookLogin.active = false;
       this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
       this.node_btn_guestLogin.setContentSize(512, 79);
     }
-
     ;
   },
   showCommonLoginView: function showCommonLoginView() {
@@ -942,34 +818,30 @@ cc.Class({
     this.node_or_sprite.setPosition(this.or_sprite_pos);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
-
     if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK == 1) {
       this.node_btn_facebookLogin.active = false;
       this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
       this.node_btn_guestLogin.setContentSize(512, 79);
     }
-
     ;
   },
   baseBundlesHotUpdate: function baseBundlesHotUpdate() {
     var _this5 = this;
-
     this.loadBundlesStartTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
     LoggerUtil.getInstance().log("Start downloading baseBundles zip files!");
-    this.baseBundlesCheckUpdateArr.forEach(function (baseBundle) {
-      if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
-        var tempObj = {
-          baseBundle: baseBundle,
-          progress: 0
-        };
-
-        _this5.baseBundlesNeedUpdateArr.push(tempObj);
-      }
-
-      ;
-    });
-
+    if (GlobalCfg.is_need_update) {
+      this.baseBundlesCheckUpdateArr.forEach(function (baseBundle) {
+        if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
+          var tempObj = {
+            baseBundle: baseBundle,
+            progress: 0
+          };
+          _this5.baseBundlesNeedUpdateArr.push(tempObj);
+        }
+        ;
+      });
+    }
     if (this.baseBundlesNeedUpdateArr.length == 0) {
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_WITH_NO_LOADED_END);
@@ -990,7 +862,6 @@ cc.Class({
         } else {
           _this5.changeSceneToLobby();
         }
-
         ;
       }, 1);
     } else {
@@ -998,7 +869,6 @@ cc.Class({
         GameDownloader.getInstance().priorLoadGame(tempObj.baseBundle);
       });
     }
-
     ;
   }
 });

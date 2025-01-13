@@ -22,7 +22,6 @@ cc.Class({
       this.icon_spriteFrame.decRef();
       this.icon_spriteFrame = null;
     }
-
     ;
   },
   btnClick: function btnClick() {
@@ -36,7 +35,6 @@ cc.Class({
   },
   setGameGiftItemData: function setGameGiftItemData(data) {
     var _this = this;
-
     var price = data.price;
     var name = data.name;
     this.itemData = data;
@@ -53,12 +51,10 @@ cc.Class({
           spriteFrame.decRef();
           spriteFrame = null;
         }
-
         ;
       } else {
         LoggerUtil.getInstance().error(err);
       }
-
       ;
     });
   }

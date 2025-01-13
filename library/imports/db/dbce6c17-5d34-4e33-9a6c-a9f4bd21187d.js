@@ -15,13 +15,11 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     this.btnOk.node.on('click', function () {
       _this.node.destroy();
     }, this);
   },
   start: function start() {},
-
   /**
    * 
    * @param {String} orderId 订单ID
@@ -37,7 +35,6 @@ cc.Class({
       this.labMsg.string = "\n" + "Order Amount: " + Number(orderAmount / 100) + "\n\n" + "Withdrawal Time: " + time + "\n\n" + "Error Message: " + msg + "\n\n" + "Your withdrawal order has failed." + "\n" + "Please check if your withdrawal information is correct.";
     }
   } // update (dt) {},
-
 });
 
 cc._RF.pop();

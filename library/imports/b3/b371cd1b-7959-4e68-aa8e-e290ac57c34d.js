@@ -43,23 +43,18 @@ cc.Class({
     if (!cellData) {
       return;
     }
-
     ;
     this.cellData = cellData;
     var elf = cellData.elf; // 元素内容
-
     var x = cellData.x; // 附加属性:X倍数
-
     var read = cellData.read; // 已读
 
     if (elf == 0 || elf == 2) {
       LoggerUtil.getInstance().warn("setItemData: Elf " + elf + " exceeds the scope of use");
       return;
     }
-
     ;
     var animationName = 'Standby';
-
     if (elf == 12) {
       if (x <= 8) {
         animationName = 'VStandby';
@@ -71,19 +66,16 @@ cc.Class({
         animationName = 'ZiStandby';
       }
     }
-
     ;
     this.skeleton_animIcon.node.active = true;
     this.skeleton_animIcon.skeletonData = this["skeletonData_" + elf];
     this.skeleton_animIcon.defaultSkin = 'default';
     this.skeleton_animIcon.setAnimation(0, animationName, true);
-
     if (elf == 12 && x > 1) {
       this.lab_mul.string = x + "X";
     } else {
       this.lab_mul.string = "";
     }
-
     ;
   },
   playScatterShowAnim: function playScatterShowAnim() {
@@ -91,11 +83,9 @@ cc.Class({
   },
   playAccumulatePowerAnims: function playAccumulatePowerAnims() {
     var _this = this;
-
     if (this.cellData.elf != 1) {
       this.playSkeletonOutLineAnim();
     }
-
     ;
     var animArr = [this.playSkeletonIconTriggerAnim(this.cellData.elf, this.cellData.x)];
     return new Promise(function (resolve, reject) {
@@ -108,29 +98,23 @@ cc.Class({
   },
   playBoomAnim: function playBoomAnim() {
     var _this2 = this;
-
     return new Promise(function (resolve, reject) {
       _this2.skeleton_boom.node.active = true;
-
       _this2.skeleton_boom.setCompleteListener(function (trackEntry, loopCount) {
         resolve();
       });
-
       _this2.skeleton_boom.timeScale = 0.67;
       _this2.skeleton_boom.defaultSkin = 'default';
-
       _this2.skeleton_boom.setAnimation(0, 'animation', false);
     });
   },
   playMulAnims: function playMulAnims() {
     var _this3 = this;
-
     return new Promise(function (resolve, reject) {
       if (_this3.cellData.elf != 12) {
         resolve();
         return;
       }
-
       ;
       var animArr = [_this3.playSkeletonIconTriggerAnim(_this3.cellData.elf, _this3.cellData.x)];
       Promise.all(animArr).then(function () {
@@ -146,16 +130,13 @@ cc.Class({
   },
   playSkeletonIconTriggerAnim: function playSkeletonIconTriggerAnim(elf, x) {
     var _this4 = this;
-
     return new Promise(function (resolve, reject) {
       if (elf == 0) {
         resolve();
         return;
       }
-
       ;
       var animationName = 'Pay';
-
       if (elf == 1) {
         animationName = 'Trigger';
       } else if (elf == 12) {
@@ -169,18 +150,14 @@ cc.Class({
           animationName = 'Zi';
         }
       }
-
       ;
       _this4.skeleton_animIcon.node.active = true;
-
       _this4.skeleton_animIcon.setCompleteListener(function (trackEntry, loopCount) {
         resolve();
       });
-
       _this4.skeleton_animIcon.timeScale = 1.3;
       _this4.skeleton_animIcon.skeletonData = _this4["skeletonData_" + elf];
       _this4.skeleton_animIcon.defaultSkin = 'default';
-
       _this4.skeleton_animIcon.setAnimation(0, animationName, false);
     });
   },

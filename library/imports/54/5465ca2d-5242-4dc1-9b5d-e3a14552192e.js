@@ -89,12 +89,10 @@ cc.Class({
   },
   update: function update(dt) {
     this.updateInterval += dt;
-
     if (this.updateInterval >= 1) {
       this.updateInterval = 0;
       this.lab_userDiamond.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
     }
-
     ;
   },
   initGameRoomInfo: function initGameRoomInfo() {
@@ -102,13 +100,11 @@ cc.Class({
     teenPattiRoomInfo = teenPattiRoomInfo.sort(function (a, b) {
       return a.entrycondition - b.entrycondition;
     });
-
     for (var i = 0, len = teenPattiRoomInfo.length; i < len; i++) {
       var roomItem = teenPattiRoomInfo[i];
       var isBlind = roomItem.isblind;
       var isTrial = roomItem.trial;
       var level = roomItem.level;
-
       if (isTrial) {
         this.gameRoomInfo.teenpatti.practice.push(roomItem);
       } else {
@@ -120,7 +116,6 @@ cc.Class({
           } else if (level == 3) {
             this.gameRoomInfo.teenpatti.cash.potBlind.high.push(roomItem);
           }
-
           ;
         } else {
           if (level == 1) {
@@ -130,29 +125,23 @@ cc.Class({
           } else if (level == 3) {
             this.gameRoomInfo.teenpatti.cash.patti3.high.push(roomItem);
           }
-
           ;
         }
-
         ;
       }
-
       ;
     }
-
     ;
     var rummyRoomInfo = GlobalCfg.USER_DATAS.gameRoomList.rummy;
     var rummy2Count = 0,
-        rummy6Count = 0;
+      rummy6Count = 0;
     rummyRoomInfo = rummyRoomInfo.sort(function (a, b) {
       return a.entrycondition - b.entrycondition;
     });
-
     for (var _i = 0, _len = rummyRoomInfo.length; _i < _len; _i++) {
       var _roomItem = rummyRoomInfo[_i];
       var _isTrial = _roomItem.trial;
       var playerNum = _roomItem.num;
-
       if (_isTrial) {
         this.gameRoomInfo.rummy.practice.push(_roomItem);
       } else {
@@ -163,65 +152,50 @@ cc.Class({
           rummy6Count++;
           this.gameRoomInfo.rummy.cash.player6.push(_roomItem);
         }
-
         ;
       }
-
       ;
     }
-
     ;
-
     if (rummy2Count == 0 || rummy6Count == 0) {
       this.toggle_player2.node.active = false;
       this.toggle_player6.node.active = false;
     }
-
     var andarRoomInfo = GlobalCfg.USER_DATAS.gameRoomList.andarbahar;
     andarRoomInfo = andarRoomInfo.sort(function (a, b) {
       return a.entrycondition - b.entrycondition;
     });
-
     for (var _i2 = 0, _len2 = andarRoomInfo.length; _i2 < _len2; _i2++) {
       var _roomItem2 = andarRoomInfo[_i2];
       var _isTrial2 = _roomItem2.trial;
-
       if (_isTrial2) {
         this.gameRoomInfo.andar.practice.push(_roomItem2);
       } else {
         this.gameRoomInfo.andar.cash.push(_roomItem2);
       }
-
       ;
     }
-
     ;
   },
   setOpenModules: function setOpenModules() {
     this.btn_setting.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
-
     if (CommonFun.getInstance().isNeedUpdata("Rummy") == false && (GlobalCfg.USER_DATAS.openModules.includes(102) || GlobalCfg.USER_DATAS.openModules.includes(103))) {
       this.toggle_rummy.node.active = true;
     } else {
       this.toggle_rummy.node.active = false;
     }
-
     ;
-
     if (CommonFun.getInstance().isNeedUpdata("tpGame") == false && GlobalCfg.USER_DATAS.openModules.includes(100) || GlobalCfg.USER_DATAS.openModules.includes(101)) {
       this.toggle_teenpatti.node.active = true;
     } else {
       this.toggle_teenpatti.node.active = false;
     }
-
     ;
-
     if (CommonFun.getInstance().isNeedUpdata("andaerGame") == false && (GlobalCfg.USER_DATAS.openModules.includes(104) || GlobalCfg.USER_DATAS.openModules.includes(105))) {
       this.toggle_andar.node.active = true;
     } else {
       this.toggle_andar.node.active = false;
     }
-
     ;
   },
   setBtnToggleClick: function setBtnToggleClick() {
@@ -243,7 +217,6 @@ cc.Class({
   },
   showPointGameRoom: function showPointGameRoom() {
     LoggerUtil.getInstance().log("isNeedShowRoomList : ", window.isNeedShowRoomList);
-
     if (window.isNeedShowRoomList == "andar") {
       this.toggle_andar.isChecked = true;
     } else if (window.isNeedShowRoomList == "tpGame") {
@@ -251,7 +224,6 @@ cc.Class({
     } else if (window.isNeedShowRoomList == "rummy") {
       this.toggle_rummy.isChecked = true;
     }
-
     ;
     this.freshGameRoom();
   },
@@ -263,16 +235,13 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId == GlobalCfg.CLIENT_MSG_ID.ENTER_GAME_FROM_SELECT_ROOM) {
       self.dealSelectRoomItemEvent(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.EXIT_GAME) {
       window.isNeedShowRoomList = null;
-
       if (CommonFun.getInstance().isValidForScr(self)) {
         self.node.destroy();
       }
-
       ;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO || msgId == GlobalCfg.CLIENT_MSG_ID.GET_RELIEF_REWARD) {
       self.freshGameRoom();
@@ -281,7 +250,6 @@ cc.Class({
   dealSelectRoomItemEvent: function dealSelectRoomItemEvent(notify) {
     var itemType = notify.itemType;
     var itemData = notify.itemData;
-
     if (itemType == "rummy") {
       this.dealRummyRoomItemEvent(itemData);
     } else if (itemType == "andar") {
@@ -319,50 +287,41 @@ cc.Class({
   isAvailableToUpRoom: function isAvailableToUpRoom(gameType) {
     var todayZeroTimeStamp = new Date(new Date().toLocaleDateString()).getTime();
     var toastLocalStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_" + gameType + "_UpRoom_LocalStorage");
-
     if (toastLocalStorage) {
       try {
         var toastLocalData = JSON.parse(toastLocalStorage);
         var showTag = toastLocalData.showTag;
-
         if (showTag != "" + todayZeroTimeStamp) {
           return true;
         } else {
           return false;
         }
-
         ;
       } catch (error) {
         LoggerUtil.getInstance().error(toastType + "\u672C\u5730\u7F13\u5B58\u7684\u6570\u636E\u5F02\u5E38\uFF1A", cc.sys.isNative ? JSON.stringify(error) : error);
         return false;
       }
-
       ;
     } else {
       return true;
     }
-
     ;
   },
   updateToUpRoomLocalStorage: function updateToUpRoomLocalStorage(gameType) {
     var todayZeroTimeStamp = new Date(new Date().toLocaleDateString()).getTime();
     var toastLocalStorage = cc.sys.localStorage.getItem(GlobalCfg.USER_DATAS.userId + "_" + gameType + "_UpRoom_LocalStorage");
-
     if (toastLocalStorage) {
       try {
         var toastLocalData = JSON.parse(toastLocalStorage);
         var showTag = toastLocalData.showTag;
-
         if (showTag != "" + todayZeroTimeStamp) {
           toastLocalData.showTag = "" + todayZeroTimeStamp;
           cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_" + gameType + "_UpRoom_LocalStorage", JSON.stringify(toastLocalData));
         }
-
         ;
       } catch (error) {
         LoggerUtil.getInstance().error(toastType + "\u672C\u5730\u7F13\u5B58\u7684\u6570\u636E\u5F02\u5E38\uFF1A", cc.sys.isNative ? JSON.stringify(error) : error);
       }
-
       ;
     } else {
       var _toastLocalData = {
@@ -370,27 +329,22 @@ cc.Class({
       };
       cc.sys.localStorage.setItem(GlobalCfg.USER_DATAS.userId + "_" + gameType + "_UpRoom_LocalStorage", JSON.stringify(_toastLocalData));
     }
-
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     if (btnName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       window.isNeedShowRoomList = null;
       CommonFun.getInstance().hideSelectRoom();
       return;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (btnName == "btn_add") {
       CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.SelectRoom);
     } else if (btnName == "btn_setting") {
       CommonFun.getInstance().showSetting();
     }
-
     ;
   },
   toggleClick: function toggleClick(toggle) {
@@ -408,7 +362,6 @@ cc.Class({
     } else {
       return "none";
     }
-
     ;
   },
   getCurrencyType: function getCurrencyType() {
@@ -419,7 +372,6 @@ cc.Class({
     } else {
       return "none";
     }
-
     ;
   },
   getBlindType: function getBlindType() {
@@ -430,28 +382,22 @@ cc.Class({
     } else {
       return "none";
     }
-
     ;
   },
   freshGameRoom: function freshGameRoom() {
     var _this = this;
-
     this.roomItemBtnState = [];
     var smallGameType = this.getSmallGameType();
-
     if (smallGameType == "none") {
       CommonFun.getInstance().showTips("There is currently no game room list data available!");
       return;
     }
-
     ;
     var currencyType = this.getCurrencyType();
-
     if (currencyType == "none") {
       CommonFun.getInstance().showTips("There is currently no game room list data available!");
       return;
     }
-
     ;
     this.node_titleTeenpatti.active = false;
     this.node_titleRummy.active = false;
@@ -463,21 +409,18 @@ cc.Class({
     this.node_containerLevel.active = false;
     this.node_containerPlayer.active = false;
     var smallGameRoomInfo = [];
-
     var checkToggleCashAndChips = function checkToggleCashAndChips() {
       if (_this.toggle_cash.node.active == true && _this.toggle_practice.node.active == false) {
         _this.toggle_cash.isChecked = true;
         _this.toggle_practice.isChecked = false;
         currencyType = "cash";
       }
-
       if (_this.toggle_cash.node.active == false && _this.toggle_practice.node.active == true) {
         _this.toggle_cash.isChecked = false;
         _this.toggle_practice.isChecked = true;
         currencyType = "practice";
       }
     };
-
     if (smallGameType == "teenpatti") {
       this.toggle_cash.node.active = GlobalCfg.USER_DATAS.openModules.includes(100);
       this.toggle_practice.node.active = GlobalCfg.USER_DATAS.openModules.includes(101);
@@ -485,54 +428,41 @@ cc.Class({
       this.node_headerTeenpatti.active = true;
       checkToggleCashAndChips();
       smallGameRoomInfo = this.gameRoomInfo[smallGameType][currencyType];
-
       if (currencyType == "cash") {
         this.node_containerBlind.active = true;
         this.node_containerLevel.active = true;
         var blindType = this.getBlindType();
-
         if (blindType == "none") {
           CommonFun.getInstance().showTips("There is currently no game room list data available!");
           return;
         }
-
         ;
         var gameRoomInfo = smallGameRoomInfo[blindType];
         var lowArr = gameRoomInfo["low"];
         var midArr = gameRoomInfo["mid"];
         var highArr = gameRoomInfo["high"];
         var curRoomInfo = [];
-
         if (this.toggle_low.isChecked) {
           curRoomInfo = curRoomInfo.concat(lowArr);
         }
-
         ;
-
         if (this.toggle_mid.isChecked) {
           curRoomInfo = curRoomInfo.concat(midArr);
         }
-
         ;
-
         if (this.toggle_high.isChecked) {
           curRoomInfo = curRoomInfo.concat(highArr);
         }
-
         ;
-
         if (this.toggle_low.isChecked == false && this.toggle_mid.isChecked == false && this.toggle_high.isChecked == false) {
           curRoomInfo = [].concat(lowArr).concat(midArr).concat(highArr);
         }
-
         ;
         this.addGameRoomItem(curRoomInfo, smallGameType);
       } else if (currencyType == "practice") {
         var _curRoomInfo = [].concat(smallGameRoomInfo);
-
         this.addGameRoomItem(_curRoomInfo, smallGameType);
       }
-
       ;
     } else if (smallGameType == "rummy") {
       this.toggle_cash.node.active = GlobalCfg.USER_DATAS.openModules.includes(102);
@@ -541,37 +471,28 @@ cc.Class({
       this.node_headerRummy.active = true;
       checkToggleCashAndChips();
       smallGameRoomInfo = this.gameRoomInfo[smallGameType][currencyType];
-
       if (currencyType == "cash") {
         this.node_containerPlayer.active = true;
         var player2Arr = smallGameRoomInfo["player2"];
         var player6Arr = smallGameRoomInfo["player6"];
         var _curRoomInfo2 = [];
-
         if (this.toggle_player2.isChecked) {
           _curRoomInfo2 = _curRoomInfo2.concat(player2Arr);
         }
-
         ;
-
         if (this.toggle_player6.isChecked) {
           _curRoomInfo2 = _curRoomInfo2.concat(player6Arr);
         }
-
         ;
-
         if (this.toggle_player2.isChecked == false && this.toggle_player6.isChecked == false) {
           _curRoomInfo2 = [].concat(player2Arr).concat(player6Arr);
         }
-
         ;
         this.addGameRoomItem(_curRoomInfo2, smallGameType);
       } else if (currencyType == "practice") {
         var _curRoomInfo3 = [].concat(smallGameRoomInfo);
-
         this.addGameRoomItem(_curRoomInfo3, smallGameType);
       }
-
       ;
     } else if (smallGameType == "andar") {
       this.toggle_cash.node.active = GlobalCfg.USER_DATAS.openModules.includes(104);
@@ -580,50 +501,37 @@ cc.Class({
       this.node_headerAndar.active = true;
       checkToggleCashAndChips();
       smallGameRoomInfo = this.gameRoomInfo[smallGameType][currencyType];
-
       var _curRoomInfo4 = [].concat(smallGameRoomInfo);
-
       this.addGameRoomItem(_curRoomInfo4, smallGameType);
     }
-
     ;
   },
   addGameRoomItem: function addGameRoomItem(roomList, smallGameType) {
     var _this2 = this;
-
     if (!Array.isArray(roomList)) {
       return;
     }
-
     ;
     var children = this.node_gameRoomContent.children;
-
     for (var i = 0, _len3 = children.length; i < _len3; i++) {
       var node = children[i];
       node.destroy();
     }
-
     ;
-
     if (roomList.length == 0) {
       CommonFun.getInstance().showTips("There is currently no game room list data available!");
       return;
     }
-
     ;
     this.unscheduleAllCallbacks();
     var index = 0;
     var len = roomList.length;
-
     var addItemFun = function addItemFun() {
       if (index >= len) {
         _this2.unschedule(addItemFun);
-
         _this2.scrollToHideGrey([].concat(_this2.roomItemBtnState));
-
         return;
       }
-
       ;
       var roomItemData = roomList[index];
       var roomItemNode = cc.instantiate(_this2.prefab_RoomItem);
@@ -632,15 +540,11 @@ cc.Class({
         var len = _this2.roomItemBtnState.length;
         _this2.roomItemBtnState[len] = btnState;
       });
-
       _this2.node_gameRoomContent.addChild(roomItemNode);
-
       index += 1;
     };
-
     this.schedule(addItemFun, 1 / Number(cc.game.getFrameRate()), len, 0);
   },
-
   /**
    * 
    * @param {Array<btnState>} arr 
@@ -649,24 +553,19 @@ cc.Class({
     var greyCount = 0;
     var roomItemHeight = this.node_gameRoomContent.children[0].height;
     var layout = this.node_gameRoomContent.getComponent(cc.Layout);
-
     for (var i = 0; i < arr.length; i++) {
       var element = arr[i];
-
       if (element == btnState.Grey) {
         greyCount += 1;
       }
     }
-
     if (greyCount == 0) {
       return;
     }
-
     var offset = greyCount * roomItemHeight + layout.spacingY * (greyCount - 1);
     var scrollNode = this.node_gameRoomContent.parent.parent;
     var scrollView = scrollNode.getComponent(cc.ScrollView);
     var max = scrollView.getMaxScrollOffset();
-
     if (offset > max.y) {
       scrollView.scrollToBottom(0.1);
     } else {

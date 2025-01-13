@@ -15,7 +15,6 @@ cc.Class({
   toggleClick: function toggleClick(toggle) {
     var togName = toggle.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-
     if (togName == "toggle_qiaoPiHua") {
       this.nodeQPH.active = true;
       this.nodeTP.active = false;
@@ -58,23 +57,21 @@ cc.Class({
     this.btnChildrenTP = this.nodeTP.getChildByName("view").getChildByName("content").children;
     this.btn_mask = this.node.getChildByName("btn_mask").getComponent(cc.Button);
     this.btn_mask.node.on('click', this.toggleClick, this);
-
     for (var i = 0; i < this.togg_btnArr.length; i++) {
       var tog = this.togg_btnArr[i];
       tog.node.on('click', this.toggleClick, this);
     }
-
     for (var k = 0; k < this.btnChildrenQPH.length; k++) {
       var btnQPH = this.btnChildrenQPH[k].getComponent(cc.Button);
       btnQPH.node.on('click', this.btnClickQPH, this);
     }
-
     for (var j = 0; j < this.btnChildrenTP.length; j++) {
       var btnTP = this.btnChildrenTP[j].getComponent(cc.Button);
       btnTP.node.on('click', this.btnClickTP, this);
     }
-  } // update (dt) {},   start () {},
+  }
 
+  // update (dt) {},   start () {},
 });
 
 cc._RF.pop();

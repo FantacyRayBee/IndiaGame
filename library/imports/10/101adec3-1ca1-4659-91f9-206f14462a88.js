@@ -19,7 +19,6 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
-
     var w = cc.view.getVisibleSize().width;
     this.node_openMenuBg_initX = -(w / 2 - this.node_openMenuBg.width / 2);
     this.node_openMenuBg.setPosition(cc.v2(this.node_openMenuBg_initX, 780));
@@ -36,34 +35,27 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
-
     switch (btnName) {
       case this.btn_closeMenu.node.name:
         this.dealBtnCloseMenuEvent();
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         return;
-
       case this.btn_outToLobby.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnOutToLobbyEvent();
         return;
-
       case this.btn_switchTable.node.name:
         this.dealBtnSwitchTableEvent();
         break;
-
       case this.btn_howToPlay.node.name:
         this.dealBtnHowToPlayEvent();
         break;
-
       case this.btn_setting.node.name:
         this.dealBtnSettingEvent();
         break;
-
       default:
         break;
     }
-
     GlobalCfg.G_COMPONENTS.Audio.playButton();
   },
   dealBtnCloseMenuEvent: function dealBtnCloseMenuEvent() {
@@ -99,14 +91,12 @@ cc.Class({
   },
   closeMenuAct: function closeMenuAct(callback) {
     var _this2 = this;
-
     cc.tween(this.node_openMenuBg).to(0.1, {
       position: cc.v2(this.node_openMenuBg_initX, 780)
     }, {
       easing: 'smooth'
     }).call(function () {
       callback && callback();
-
       _this2.node.destroy();
     }).start();
   },

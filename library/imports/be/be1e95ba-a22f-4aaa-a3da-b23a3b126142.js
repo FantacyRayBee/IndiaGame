@@ -19,7 +19,6 @@ cc.Class({
     this.btn_next = this.node.getChildByName('btn_next').getComponent(cc.Button);
     this.scrollView = this.node.getChildByName('scrollView');
     this.lab_total = this.node.getChildByName('lab_total').getComponent(cc.Label); //同场玩家总人数
-
     this.content = this.scrollView.getChildByName('view').getChildByName('content');
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.btn_close.node.on('click', this.btnClick, this);
@@ -29,7 +28,6 @@ cc.Class({
   start: function start() {},
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
-
     if (btnName === 'btn_close') {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
@@ -45,7 +43,6 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
-
     if (msgId === "gameservice.playerlist") {
       self.lab_total.string = notify.total;
       self.setTCWJData(notify.list, notify.total);
@@ -56,11 +53,9 @@ cc.Class({
       LoggerUtil.getInstance().error("同场玩家的list为空");
       return;
     }
-
     this.playerListArr = [];
     this.playerTotal = total;
     this.content.removeAllChildren(true);
-
     for (var i = 0, len = list.length; i < len; i++) {
       var playerItem = cc.instantiate(this.pab_playerItem);
       var script = playerItem.getComponent('mundaPlayerItemCtrl');
@@ -68,7 +63,6 @@ cc.Class({
       this.playerListArr.push(playerItem);
       this.content.addChild(playerItem);
     }
-
     if (list.length > 0) {
       this.lab_playerNun.string = this.pageNun + "/" + Math.ceil(total / 12);
       this.showPageBtn();
@@ -80,7 +74,6 @@ cc.Class({
     } else if (str == "btn_next") {
       this.pageNun++;
     }
-
     if (Math.ceil(this.playerTotal / 12) == 1) {
       this.btn_Prev.interactable = false;
       this.btn_Prev.enableAutoGrayEffect = true;
@@ -110,18 +103,18 @@ cc.Class({
       this.btn_next.target.color = new cc.color(255, 255, 255, 255);
       this.btn_Prev.target.color = new cc.color(255, 255, 255, 255);
     }
-
     this.lab_playerNun.string = this.pageNun + "/" + Math.ceil(this.playerTotal / 12);
-
     if (str) {
       this.reqPlayerlist(this.pageNun - 1, 12);
-    } // for (let i = 0; i < this.playerListArr.length; i++) {
+    }
+    // for (let i = 0; i < this.playerListArr.length; i++) {
     //     if(){
     //         this.pageNun
     //     }
-    // }
 
+    // }
   },
+
   reqPlayerlist: function reqPlayerlist(pageIndex, num) {
     GameServerManager.send("gameservice.playerlist", "PlayerListReq", {
       page: pageIndex,
