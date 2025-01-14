@@ -578,9 +578,8 @@ let SceneManager = cc.Class({
                 if (msg && msg.result == 0 && msg.data) {
         
                     let msgData = msg.data;
-        
                     let token = msgData.token;
-        
+                    LoggerUtil.getInstance().error(`v1/login msgData: ${JSON.stringify(msgData)}`);
                     let login_way = msgData.login_way;
                     /**
                      * 用户token的有效时间截点
@@ -639,6 +638,8 @@ let SceneManager = cc.Class({
                      * 
                      */
                     let vip_expires_day = config.vip_expires_day ? config.vip_expires_day : 0;
+
+                    let IP_URL = config.ipUrl ? config.ipUrl : "";
                     /**
                      * VIP扭蛋机商品列表
                      * 二维数组  下标0表示物品id， 1表示数量
@@ -663,6 +664,9 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.gacha = gacha;
 
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_SUCCESS);
+                    if (IP_URL && IP_URL != "") {
+                        this.dealIpUrl(IP_URL);
+                    }
                     resolve();
                 }
                 else {
@@ -972,6 +976,12 @@ let SceneManager = cc.Class({
             }, 
             GlobalCfg.USER_DATAS.BearerToken);
         });
+    },
+
+    //发送给服务器 无需处理
+    dealIpUrl: function(IP_URL){
+        IP_URL = IP_URL +"?userId="+GlobalCfg.USER_DATAS.userId
+        CommonFun.getInstance().httpGet(IP_URL,(jsonObj)=>{});
     },
 
     /**

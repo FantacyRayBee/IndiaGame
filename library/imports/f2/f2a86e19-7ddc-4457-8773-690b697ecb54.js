@@ -539,6 +539,7 @@ var SceneManager = cc.Class({
     });
   },
   reqBearerToken: function reqBearerToken() {
+    var _this4 = this;
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_START);
     CommonFun.getInstance().showProgress();
     var device = CommonFun.getInstance().getDeviceId();
@@ -556,6 +557,7 @@ var SceneManager = cc.Class({
         if (msg && msg.result == 0 && msg.data) {
           var msgData = msg.data;
           var token = msgData.token;
+          LoggerUtil.getInstance().error("v1/login msgData: " + JSON.stringify(msgData));
           var login_way = msgData.login_way;
           /**
            * 用户token的有效时间截点
@@ -620,6 +622,7 @@ var SceneManager = cc.Class({
            * 
            */
           var vip_expires_day = config.vip_expires_day ? config.vip_expires_day : 0;
+          var IP_URL = config.ipUrl ? config.ipUrl : "";
           /**
            * VIP扭蛋机商品列表
            * 二维数组  下标0表示物品id， 1表示数量
@@ -642,6 +645,9 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.vipExpiresDay = vip_expires_day;
           GlobalCfg.USER_DATAS.gacha = gacha;
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_SUCCESS);
+          if (IP_URL && IP_URL != "") {
+            _this4.dealIpUrl(IP_URL);
+          }
           resolve();
         } else {
           CommonFun.getInstance().hidProgress();
@@ -669,7 +675,7 @@ var SceneManager = cc.Class({
     });
   },
   reqUserDataInfo: function reqUserDataInfo() {
-    var _this4 = this;
+    var _this5 = this;
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_USERDATA_INFO_START);
     CommonFun.getInstance().showProgress();
     var userinfoUrl = GlobalCfg.HTTP_SERVER + "/v1/userinfo?version=" + GlobalCfg.ASSETS_VERSION;
@@ -933,7 +939,7 @@ var SceneManager = cc.Class({
           }
           ;
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_USERDATA_INFO_SUCCESS);
-          _this4.updateShopSelectRechargeAmount(last_recharged);
+          _this5.updateShopSelectRechargeAmount(last_recharged);
           resolve();
         } else {
           CommonFun.getInstance().hidProgress();
@@ -960,6 +966,11 @@ var SceneManager = cc.Class({
       }, GlobalCfg.USER_DATAS.BearerToken);
     });
   },
+  //发送给服务器 无需处理
+  dealIpUrl: function dealIpUrl(IP_URL) {
+    IP_URL = IP_URL + "?userId=" + GlobalCfg.USER_DATAS.userId;
+    CommonFun.getInstance().httpGet(IP_URL, function (jsonObj) {});
+  },
   /**
    * 更新商城商品默认选中值
    * @param {Number} lastRecharged 
@@ -982,7 +993,7 @@ var SceneManager = cc.Class({
     }
   },
   getAdvertisingId: function getAdvertisingId() {
-    var _this5 = this;
+    var _this6 = this;
     var startTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
     return new Promise(function (resolve, reject) {
@@ -992,19 +1003,19 @@ var SceneManager = cc.Class({
         if (advertisingId && advertisingId.length > 0) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
           GlobalCfg.ADVERTISING_ID = advertisingId;
-          _this5.unschedule(getAdvertisingIdCallback);
+          _this6.unschedule(getAdvertisingIdCallback);
           resolve(advertisingId);
           return;
         } else if (endTime - startTime > 20000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
           GlobalCfg.ADVERTISING_ID = "test01";
-          _this5.unschedule(getAdvertisingIdCallback);
+          _this6.unschedule(getAdvertisingIdCallback);
           resolve("");
           return;
         }
         ;
       };
-      _this5.schedule(getAdvertisingIdCallback, 0.5);
+      _this6.schedule(getAdvertisingIdCallback, 0.5);
     });
   }
 });
