@@ -34,8 +34,10 @@ cc.Class({
         lab_jb: cc.Label,
 
         pab_setting: cc.Prefab, 
-        FG_anim1: cc.Node,
-        FG_anim2: cc.Node,
+        MG_root: cc.Node,
+        FG_root: cc.Node,
+        img_lines: [cc.Node],
+        lineSpriteArr:[cc.SpriteFrame]
     },
 
     ctor: function () {
@@ -130,6 +132,11 @@ cc.Class({
         this.autoSpineNode.active = false;
 
         this.lab_betAmount.string = this.betAmountArr[0];
+
+
+        for (let index = 1; index < 5; index++) {
+            this.autoSpineNode = this.btn_auto.node.getChildByName('uiquan');       
+        }
 
         //自动下注次数选择的展示
         this.node_tcBg.active = false;
@@ -851,11 +858,10 @@ cc.Class({
                     this.isHaveMianFeiRecord = true;
                     this.selectAutoBetStr = this.lab_autoBetCiShu.string;
                     this.selectAutoStatus = this.toggle_auto.isChecked;
-                    this.FG_anim1.active = true;
-                    this.FG_anim2.active = true;
-                    this.scheduleOnce(() => {
+                    this.setFGplane(true)
+                    // this.scheduleOnce(() => {
                         this.dealFreeGame(true);
-                    }, 3);
+                    // }, 3);
                 }
                 else{
                     this.dealFreeGame();
@@ -886,6 +892,16 @@ cc.Class({
             };
         };
         this.schedule(startNextSpin, 0.01); 
+    },
+
+    setFGplane:function(showFG){
+        let lineIndex = showFG == true ? 1 : 0
+        for (let index = 0; index < 4; index++) {
+            this.img_lines[index].spriteFrame = this.lineSpriteArr[lineIndex];                
+        }
+
+        this.MG_root.active = !showFG;
+        this.FG_root.active = showFG;
     },
 
     dealFreeGame: function(isHideAnim = false) {

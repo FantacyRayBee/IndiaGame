@@ -33,6 +33,7 @@ var AudioBase = cc.Class({
    * @returns {number} audioID
    */
   playSound: function playSound(clip, loop, volume) {
+    LoggerUtil.getInstance().error("clip == " + clip + ", loop == " + loop + ", volume == " + volume + ",");
     if (!clip) {
       return;
     }
