@@ -219,8 +219,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 208.8350830078125,
-      "height": 208.83505249023438
+      "width": 488.87,
+      "height": 451.12
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -238,8 +238,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.34,
+        0.34,
         1
       ]
     },
@@ -271,7 +271,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "jing",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -288,7 +288,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "e6efd503-2b03-48b2-bf6c-c69e99fe5778"
+      "__uuid__": "04e7e52c-c23f-4569-9a6b-7c5c12703a4c"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -438,9 +438,7 @@
     "skeleton_kuang": {
       "__id__": 9
     },
-    "spriteAtlas_icon": {
-      "__uuid__": "6ed44b5b-6b6f-4f8b-aab5-8823722c7c61"
-    },
+    "spriteAtlas_icon": null,
     "icon_node": {
       "__id__": 2
     },

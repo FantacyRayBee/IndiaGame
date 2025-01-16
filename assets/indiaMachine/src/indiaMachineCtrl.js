@@ -37,7 +37,12 @@ cc.Class({
         MG_root: cc.Node,
         FG_root: cc.Node,
         img_lines: [cc.Node],
-        lineSpriteArr:[cc.SpriteFrame]
+        lineSpriteArr:[cc.SpriteFrame],
+        MG_zc: sp.Skeleton,
+        FG_zc: sp.Skeleton,
+
+        btn_test1: cc.Button,
+        btn_test2: cc.Button,
     },
 
     ctor: function () {
@@ -125,6 +130,11 @@ cc.Class({
         this.btn_betCiShu20.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_auto.node.on('click', this.debounce(this.componentClickCall, 0.5), this);
         this.btn_spin.node.on('click', this.debounce(this.componentClickCall, 1), this);
+
+        this.btn_test1.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        this.btn_test2.node.on('click', this.debounce(this.componentClickCall, 1), this);
+
+        
 
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
 
@@ -464,6 +474,12 @@ cc.Class({
         }
         else if (componentName == "btn_spin") {
             this.sendCallReq();
+        }
+        else if (componentName == "btn_test1") {
+            this.showZhuanChangAnim(1);
+        }
+        else if (componentName == "btn_test2") {
+            this.showZhuanChangAnim(2);
         }
     },
 
@@ -858,9 +874,11 @@ cc.Class({
                     this.isHaveMianFeiRecord = true;
                     this.selectAutoBetStr = this.lab_autoBetCiShu.string;
                     this.selectAutoStatus = this.toggle_auto.isChecked;
-                    this.setFGplane(true)
-                    // this.scheduleOnce(() => {
+                    this.showZhuanChangAnim(1, ()=>{
+                        this.setFGplane(true)
                         this.dealFreeGame(true);
+                    })
+                    // this.scheduleOnce(() => {
                     // }, 3);
                 }
                 else{
@@ -871,16 +889,28 @@ cc.Class({
             else {
                 if (this.isHaveMianFeiRecord) {
                     this.isHaveMianFeiRecord = false;
-                    this.toggle_auto.isChecked = this.selectAutoStatus;
-                    this.lab_autoBetCiShu.string = this.selectAutoBetStr;
+                    this.showZhuanChangAnim(2, ()=>{
+                        this.setFGplane(false)
+                        this.toggle_auto.isChecked = this.selectAutoStatus;
+                        this.lab_autoBetCiShu.string = this.selectAutoBetStr;
+
+                        this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+                        this.toggle_auto.interactable = true;
+                        this.autoSpineNode.active = false;
+                        this.curRoundAddCoinFinish();
+                        let isAuto = this.toggle_auto.isChecked;
+                        if (isAuto) {
+                            this.sendCallReq();
+                        }
+                        else {
+                            this.recoverySpinBtnEvent();
+                        };
+                    })
+                    return
                 };
-
                 this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-                
                 this.toggle_auto.interactable = true;
-
                 this.autoSpineNode.active = false;
-
                 this.curRoundAddCoinFinish();
                 let isAuto = this.toggle_auto.isChecked;
                 if (isAuto) {
@@ -1149,6 +1179,30 @@ cc.Class({
         GameServerManager.send(proroID, message, {              
             amount: betAmount
         });
+    },
+
+
+    showZhuanChangAnim:function(type, callback){
+        if (type == 1) {
+            this.FG_zc.node.active = true
+            this.FG_zc.setAnimation(0, "event", false);
+            this.scheduleOnce(() => {
+                this.FG_zc.node.active = false
+                if(callback){
+                    callback()
+                }
+            }, 6);
+        }
+        if (type == 2) {
+            this.MG_zc.node.active = true
+            this.MG_zc.setAnimation(0, "event", false);
+            this.scheduleOnce(() => {
+                this.MG_zc.node.active = false
+                if(callback){
+                    callback()
+                }
+            }, 6);
+        }
     },
     
     getCoinFormatStr: function(coin) {

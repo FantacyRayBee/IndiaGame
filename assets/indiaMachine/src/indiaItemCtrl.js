@@ -13,11 +13,10 @@ cc.Class({
         this.skeletonUrl = "spine/sysboms/";
 
         this.skeletonNameArr = [
-            'l1.skel38','L2.skel','l3.skel38','l4.skel38',
-            'H7.skel','h1.skel38','H2.skel','h3.skel38',
-            'h5.skel38','wild','scatter.skel',
+            'G007_J_YS1','G007_Q_YS1','G007_K_YS1','G007_A_YS1',
+            'G007_shizijia_YS7','G007_jiubei_YS4','G007_bianfu_YS2','G007_langtou_YS.skel',
+            'G007_xixuegui_YS8','G007_meigui_YS6','G007_langrenyl_YS5',
         ];
-
     },
 
     setSkeletonJing: function(type) {
@@ -28,23 +27,14 @@ cc.Class({
         };
         this.icon_node.active = false;
         this.skeleton_icon.node.active = true;
-        if (type == 10) { //wild元素特殊判断 因为没有sprite只能用spine的静态动画当做图片
-            this.loadMayaSkeletonData('wild', (skeletonData, self) => {
-                if (self && this.skeleton_icon) {
-                    this.skeleton_icon.skeletonData = skeletonData;
-                    this.skeleton_icon.setAnimation(0, "jing", false);
-                };
-            }, this);
-            return;
-        };
         let spriteName = "icon_" + type;
         this.loadMayaSkeletonData(skeletonName, (skeletonData, self) => {
             if (self && this.skeleton_icon) {
                 this.skeleton_icon.skeletonData = skeletonData;
-                if (type == 11) {
-                    this.skeleton_icon.setAnimation(0, "act", false);
+                if (type == 8) {
+                    this.skeleton_icon.setAnimation(0, "animation", true);
                 }else{
-                    this.skeleton_icon.setAnimation(0, "act", true);
+                    this.skeleton_icon.setAnimation(0, "circulate", true);
                 }
             };
         }, this);
@@ -53,22 +43,14 @@ cc.Class({
             return;
         };
         this.icon_node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-        if (type == 11) {
-            return;
-        };
         this.skeleton_icon.node.active = false;
         this.icon_node.active = true;
     },
 
     setSkeletonDong: function() {
         if (this.skeleton_icon) {
-            if (this.typeId == 10) {
-                this.skeleton_icon.setAnimation(0, "dong", true);
-            }
-            else{
-                this.icon_node.active = false;
-                this.skeleton_icon.node.active = true;
-            }
+            this.icon_node.active = false;
+            this.skeleton_icon.node.active = true;
         };
     },
 
@@ -82,13 +64,8 @@ cc.Class({
 
     setCloseSkeletonDong: function(time = 2) {
         this.scheduleOnce(()=>{
-            if (this.typeId == 10) {
-                this.skeleton_icon.setAnimation(0, "jing", false);
-            }
-            else{
-                this.skeleton_icon.node.active = false;
-                this.icon_node.active = true;
-            }
+            this.skeleton_icon.node.active = false;
+            this.icon_node.active = true;
             if (this && this.skeleton_kuang) {
                 this.skeleton_kuang.node.active = false;
             };
