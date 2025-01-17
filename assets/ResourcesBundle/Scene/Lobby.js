@@ -697,11 +697,11 @@ cc.Class({
                         else {
                             this.node_tpFinger.active = false;
                         };
-
-                        if (GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
-                            this.btn_miniteenpatti2.node.active = true;
-                            this.teenPatti2Endpoint = GlobalCfg.WEB_SOCKET_GAME + "teenpattip2" + "/echo";
-                        };
+                        this.btn_miniteenpatti2.node.active = false;
+                        // if (GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
+                        //     this.btn_miniteenpatti2.node.active = true;
+                        //     this.teenPatti2Endpoint = GlobalCfg.WEB_SOCKET_GAME + "teenpattip2" + "/echo";
+                        // };
                         GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
                         GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product = gameProduct;
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("tpGame");
