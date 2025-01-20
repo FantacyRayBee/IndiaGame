@@ -720,11 +720,11 @@ cc.Class({
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
             if (bigWinLevel > 0) {
                 CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
-                    bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
+                    bundle.load("prefab/vampireRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
                             let scene = cc.director.getScene();
                             let RewardTipsNode = cc.instantiate(prefab);
-                            let RewardTipsCtrl = RewardTipsNode.getComponent("slotRewardTipsCtrl");
+                            let RewardTipsCtrl = RewardTipsNode.getComponent("vampireRewardTipsCtrl");
                             scene.addChild(RewardTipsNode);
                             RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
                             .then(() => {
