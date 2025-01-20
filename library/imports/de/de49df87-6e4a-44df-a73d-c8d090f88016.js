@@ -446,6 +446,12 @@ cc.Class({
       //登录
       "gameservice.call": "CallAck" //下注    
     };
+    //吸血鬼机台
+    this.protoVampire = {
+      "gameservice.login": "LoginAck",
+      //登录
+      "gameservice.call": "CallAck" //下注    
+    };
 
     //猫王游戏协议
     this.protoMW = {
@@ -599,6 +605,8 @@ cc.Class({
       return this.protoMaya;
     } else if (gameName == "INDIA") {
       return this.protoIndia;
+    } else if (gameName == "VAMPIRE") {
+      return this.protoVampire;
     } else if (gameName == "MW") {
       return this.protoMW;
     } else if (gameName == "Benz") {

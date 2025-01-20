@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "32957fbf-0400-4633-90ff-1775c03b7349",
+  "uuid": "7aa6650e-fee5-46a3-97e1-c20f4cd4738d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "winFont": {
       "ver": "1.0.6",
-      "uuid": "85eda947-6fb1-4826-b501-b1cd815187c2",
+      "uuid": "b8eddc10-ccd0-4738-828e-a1a1d5dc133d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "32957fbf-0400-4633-90ff-1775c03b7349",
+      "rawTextureUuid": "7aa6650e-fee5-46a3-97e1-c20f4cd4738d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

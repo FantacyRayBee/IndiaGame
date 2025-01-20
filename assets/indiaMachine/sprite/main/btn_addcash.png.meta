@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "3b8263a1-8fb2-4548-9bb6-2b445e37d52e",
+  "uuid": "41641b2e-c11d-4edc-8e70-5f5f1b110f51",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "btn_addcash": {
       "ver": "1.0.6",
-      "uuid": "9d40eae9-26c9-412b-9fb8-62b9a11419bd",
+      "uuid": "e316f58c-1a89-4505-a5f5-5490f91284b9",
       "importer": "sprite-frame",
-      "rawTextureUuid": "3b8263a1-8fb2-4548-9bb6-2b445e37d52e",
+      "rawTextureUuid": "41641b2e-c11d-4edc-8e70-5f5f1b110f51",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

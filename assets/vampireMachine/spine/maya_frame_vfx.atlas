@@ -1,0 +1,104 @@
+
+maya_frame_vfx.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+C_Lightning_01
+  rotate: false
+  xy: 166, 358
+  size: 142, 142
+  orig: 142, 142
+  offset: 0, 0
+  index: -1
+C_Lightning_02
+  rotate: false
+  xy: 0, 66
+  size: 142, 142
+  orig: 142, 142
+  offset: 0, 0
+  index: -1
+C_Lightning_03
+  rotate: false
+  xy: 166, 214
+  size: 142, 142
+  orig: 142, 142
+  offset: 0, 0
+  index: -1
+C_Lightning_04
+  rotate: false
+  xy: 310, 358
+  size: 142, 142
+  orig: 142, 142
+  offset: 0, 0
+  index: -1
+Maya_Frame_Blue
+  rotate: false
+  xy: 0, 356
+  size: 164, 144
+  orig: 164, 144
+  offset: 0, 0
+  index: -1
+Maya_Frame_Pup
+  rotate: false
+  xy: 0, 210
+  size: 164, 144
+  orig: 164, 144
+  offset: 0, 0
+  index: -1
+Maya_Lightning_01
+  rotate: false
+  xy: 0, 0
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_02
+  rotate: false
+  xy: 310, 292
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_03
+  rotate: false
+  xy: 310, 226
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_04
+  rotate: false
+  xy: 310, 160
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_05
+  rotate: false
+  xy: 166, 148
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_06
+  rotate: false
+  xy: 144, 82
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_07
+  rotate: false
+  xy: 144, 16
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+Maya_Lightning_08
+  rotate: false
+  xy: 296, 94
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1

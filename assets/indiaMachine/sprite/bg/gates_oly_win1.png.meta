@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "7d6bbf47-1179-437a-b800-d2f31e52c92c",
+  "uuid": "a0ef983f-ae6a-436b-bf9b-667c05d990ba",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "gates_oly_win1": {
       "ver": "1.0.6",
-      "uuid": "4afcb4cc-c7ed-49bc-bf40-a2ad24459479",
+      "uuid": "b491ee60-7a59-4120-b7bd-b2045aa9ef4b",
       "importer": "sprite-frame",
-      "rawTextureUuid": "7d6bbf47-1179-437a-b800-d2f31e52c92c",
+      "rawTextureUuid": "a0ef983f-ae6a-436b-bf9b-667c05d990ba",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
