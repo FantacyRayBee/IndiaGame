@@ -39,6 +39,7 @@ cc.Class({
             "fruitMachine": 'minishuiguo',
             "mayaMachine": 'minimaya',
             "indiaMachine": 'miniindia',
+            "vampireMachine": 'minivampire',
             "baccarat3Patti": 'miniteenpattibaccarat',
             "rocket": 'minirocket',
             "zoo": 'minizoo',

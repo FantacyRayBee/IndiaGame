@@ -40,9 +40,9 @@ cc.Class({
                 this.audioIdMap.set(audioClipName, audioId);
                 return;
             };
-            
-            CommonFun.getInstance().loadBundle('main', (bundle) => {
-                bundle.load(`res/Audios/${audioClipName}`, cc.AudioClip, (err, audioClip) => {
+            let assetBundle = cc.assetManager.getBundle('ResourcesBundle');
+            if (assetBundle) {
+                assetBundle.load(`res/Audios/${audioClipName}`, cc.AudioClip, (err, audioClip) => {
                     if (!err) {
                         let audioClipName = audioClip.name;
                         this.audioClipMap.set(audioClipName, audioClip);
@@ -50,12 +50,13 @@ cc.Class({
                         this.audioIdMap.set(audioClipName, audioId);
                     }
                     else {
-                        LoggerUtil.getInstance().error(`加载main-${audioClipName}异常1: ${JSON.stringify(err)}`);
+                        LoggerUtil.getInstance().error(`加载main Audios-${audioClipName}异常1: ${JSON.stringify(err)}`);
                     };
                 });
-            }, (err) => {
-                LoggerUtil.getInstance().error(`加载main-${audioClipName}异常: ${JSON.stringify(err)}`);
-            });
+            }
+            else{
+                LoggerUtil.getInstance().error(`加载Main 异常`);
+            }
         };
     },
 
