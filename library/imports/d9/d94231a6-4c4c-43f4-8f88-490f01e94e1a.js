@@ -383,6 +383,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
     fruitMachineData: {},
     mayaMachineData: {},
     indiaMachineData: {},
+    vampireMachineData: {},
     mwData: {},
     baccaratData: {},
     rocketData: {},

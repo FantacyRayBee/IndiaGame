@@ -9,7 +9,7 @@ cc.Class({
     },
 
     ctor: function() {
-        this.loadBundleName = "indiaMachine";
+        this.loadBundleName = "vampireMachine";
         this.skeletonUrl = "spine/sysboms/";
 
         this.skeletonNameArr = [

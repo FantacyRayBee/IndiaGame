@@ -71,6 +71,10 @@ cc.Class({
          */
         btn_miniindia: cc.Button,
         /**
+         * 吸血鬼机台
+         */
+        btn_minivampire: cc.Button,
+        /**
          * TP
          */
         btn_miniteenpatti: cc.Button,
@@ -317,6 +321,7 @@ cc.Class({
             "minishuiguo": this.btn_minishuiguo,
             "minimaya": this.btn_minimaya,
             "miniindia": this.btn_miniindia,
+            "minivampire": this.btn_minivampire,
             "minisaima": this.btn_minisaima,
             "minibenzbmw": this.btn_minibenzbmw,
             "minirummy": this.btn_minirummy,
@@ -368,6 +373,7 @@ cc.Class({
         this.btn_minishuiguo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minimaya.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniindia.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_minivampire.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpatti.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpatti2.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpattibaccarat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -524,6 +530,7 @@ cc.Class({
         this.btn_minishuiguo.node.active = false;
         this.btn_minimaya.node.active = false;
         this.btn_miniindia.node.active = false;
+        this.btn_minivampire.node.active = false;
         this.btn_miniteenpatti.node.active = false;
         this.btn_miniteenpatti2.node.active = false;
         this.btn_miniteenpattibaccarat.node.active = false;
@@ -545,7 +552,7 @@ cc.Class({
             let gameData = GlobalCfg.USER_DATAS.games[i];
             let gameProduct = gameData.product;
             let gameHost = gameData.host;
-            // LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.gameProduct == ", gameProduct);
+            LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.gameProduct == ", gameProduct);
             switch (gameProduct) {
                 case "miniandar":
                     if (GlobalCfg.USER_DATAS.openModules.includes(104) || GlobalCfg.USER_DATAS.openModules.includes(105)) {
@@ -688,6 +695,17 @@ cc.Class({
                         };
                     };
                     break;
+                case "minivampire":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(121)) {
+                        this.btn_minivampire.node.active = true;
+                        GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.product = gameProduct;
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("vampireMachine");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("vampireMachine");
+                        };
+                    };
+                    break;
                 case "miniteenpatti":
                     if (GlobalCfg.USER_DATAS.openModules.includes(100) || GlobalCfg.USER_DATAS.openModules.includes(101)) {
                         this.btn_miniteenpatti.node.active = true;
@@ -792,6 +810,7 @@ cc.Class({
                 "minishuiguo": "fruitMachine",
                 "minimaya": "mayaMachine",
                 "miniindia": "indiaMachine",
+                "minivampire": "vampireMachine",
                 "minisaima": "horseRaceGame",
                 "minibenzbmw": "Benz",
                 "minirummy": "Rummy",
@@ -1580,6 +1599,14 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.INDIA);
             });
         } 
+        else if (btnName == "btn_vampireMachine") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
+            this.checkUpdate("vampireMachine", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.VAMPIRE);
+            });
+        } 
         else if (btnName == "btn_Benz") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_BENZ_GAME);
             this.checkUpdate("Benz", () => {
@@ -1744,6 +1771,9 @@ cc.Class({
             case "indiaMachine":
                 upDateMaskNode = this.btn_miniindia.node.getChildByName("upDateMask");
                 break;
+            case "vampireMachine":
+                upDateMaskNode = this.btn_minivampire.node.getChildByName("upDateMask");
+                break;
             case "baccarat3PattiGame":
                 upDateMaskNode = this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask");
                 break;
@@ -1814,6 +1844,9 @@ cc.Class({
                 break;
             case "indiaMachine":
                 this.btn_miniindia.node.getChildByName("upDateMask").active = false;
+                break;
+            case "vampireMachine":
+                this.btn_minivampire.node.getChildByName("upDateMask").active = false;
                 break;
             case "baccarat3PattiGame":
                 this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask").active = false;
@@ -1969,6 +2002,12 @@ cc.Class({
         };
         if (this.btn_miniindia.node.active) {
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            // skeleton.setSkin(skinName);
+            skeleton.setAnimation(0, 'idle', true);
+        };
+        if (this.btn_minivampire.node.active) {
+            skeleton = this.btn_minivampire.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'idle', true);

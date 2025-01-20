@@ -29,7 +29,7 @@ let AudioBase = cc.Class({
      * @returns {number} audioID
      */
     playSound(clip, loop, volume) {
-        LoggerUtil.getInstance().error(`clip == ${clip}, loop == ${loop}, volume == ${volume},`);
+        // LoggerUtil.getInstance().error(`clip == ${clip}, loop == ${loop}, volume == ${volume},`);
         if (!clip) {
             return;
         }

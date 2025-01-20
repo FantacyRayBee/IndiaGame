@@ -36,7 +36,7 @@ cc.Class({
         pab_setting: cc.Prefab, 
         MG_root: cc.Node,
         FG_root: cc.Node,
-        img_lines: [cc.Node],
+        img_lines: [cc.Sprite],
         lineSpriteArr:[cc.SpriteFrame],
         MG_zc: sp.Skeleton,
         FG_zc: sp.Skeleton,
@@ -81,7 +81,7 @@ cc.Class({
             return;
         };
         
-        CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
+        CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
             bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
                 if (!err1) {
                     func && func(audioClip, target);
@@ -226,23 +226,23 @@ cc.Class({
             self.setUserDiamond(coin);
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.VAMPIRE, SceneManager.getInstance().sceneType.LOBBY);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isRunningMayaAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
-                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.VAMPIRE, SceneManager.getInstance().sceneType.LOBBY);
                 },  false);
             }
             else {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.VAMPIRE, SceneManager.getInstance().sceneType.LOBBY);
             };
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
             CommonFun.getInstance().showRule("fruitMachine");
         }
         else if (msgId == "lobbyservice.kicktolobby") {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.VAMPIRE, SceneManager.getInstance().sceneType.LOBBY);
         }
     },
 
@@ -263,7 +263,7 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);           
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.VAMPIRE, SceneManager.getInstance().sceneType.LOBBY);           
             }, false);
         }
         else if (msgId === "gameservice.call") {
@@ -332,7 +332,7 @@ cc.Class({
         for (let j = 0, len1 = this.node_mayaContentArr.length; j < len1; j++) {
             let children = this.node_mayaContentArr[j].children;
             for (let k = 0, len2 = children.length; k < len2; k++) {
-                let src = children[k].getComponent('indiaItemCtrl');
+                let src = children[k].getComponent('vampireItemCtrl');
                 src.initIcon();
             };
         };
@@ -388,7 +388,7 @@ cc.Class({
         for (let j = 0, len1 = this.node_mayaContentArr.length; j < len1; j++) {
             let children = this.node_mayaContentArr[j].children;
             for (let k = 0, len2 = children.length; k < len2; k++) {
-                let src = children[k].getComponent('indiaItemCtrl');
+                let src = children[k].getComponent('vampireItemCtrl');
                 src.setCloseSkeletonDong(0);
             };
         };
@@ -403,7 +403,7 @@ cc.Class({
             let diamond = GlobalCfg.USER_DATAS.userDiamond - parseInt(this.lab_betAmount.string) * 100;
             let num = FloatCalculation.accDiv(diamond, 100);
             this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
-        };
+        }
 
         if (this.gameResult.rewardtype == 1) {
             this.lab_totalWin.string = 0;
@@ -632,7 +632,7 @@ cc.Class({
                 return;
             };
             if (endedPositionY >= this.height * 2) {
-                let src = node.getComponent('indiaItemCtrl');
+                let src = node.getComponent('vampireItemCtrl');
                 if (repeat == 17 && index == 0) {
                     let fruitType = self.gameResult.cards[shu].cards[0];
                     src.setSkeletonJing(fruitType);
@@ -719,7 +719,7 @@ cc.Class({
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
             if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
+                CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
                     bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
                             let scene = cc.director.getScene();
@@ -734,7 +734,7 @@ cc.Class({
                         };
                     });
                 }, (err) => {
-                    LoggerUtil.getInstance().error(`加载indiaMachine-Bundle异常: ${JSON.stringify(err)}`);
+                    LoggerUtil.getInstance().error(`加载vampireMachine-Bundle异常: ${JSON.stringify(err)}`);
                 });
             }
             else {
@@ -876,7 +876,7 @@ cc.Class({
                     this.selectAutoStatus = this.toggle_auto.isChecked;
                     this.showZhuanChangAnim(1, ()=>{
                         this.setFGplane(true)
-                        this.dealFreeGame(true);
+                        this.dealFreeGame();
                     })
                     // this.scheduleOnce(() => {
                     // }, 3);
@@ -934,7 +934,7 @@ cc.Class({
         this.FG_root.active = showFG;
     },
 
-    dealFreeGame: function(isHideAnim = false) {
+    dealFreeGame: function() {
         this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
         this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
         this.toggle_auto.interactable = false;
@@ -945,10 +945,6 @@ cc.Class({
         GameServerManager.send(proroID, message, {              
             amount: amount * 100
         });
-        if (isHideAnim) {
-            this.FG_anim1.active = false;
-            this.FG_anim2.active = false;
-        }
     },
 
     curRoundAddCoinFinish(){
@@ -1093,10 +1089,10 @@ cc.Class({
                     for (let k = 0, len1 = typeArr.length; k < len1 - 1; k++) {
                         let itemNode1 = typeArr[k];
                         let itemNode2 = typeArr[k + 1];
-                        let src1 = itemNode1.getComponent('indiaItemCtrl');
+                        let src1 = itemNode1.getComponent('vampireItemCtrl');
                         src1.setSkeletonDong();
                         src1.setKuangSkeletonDong();
-                        let src2 = itemNode2.getComponent('indiaItemCtrl');
+                        let src2 = itemNode2.getComponent('vampireItemCtrl');
                         src2.setSkeletonDong();
                         src2.setKuangSkeletonDong();
                     };
@@ -1124,7 +1120,7 @@ cc.Class({
         graphics.strokeColor = cc.Color.RED;
 
         graphics.moveTo(localPos1.x, localPos1.y);
-        let src1 = startNode.getComponent('indiaItemCtrl');
+        let src1 = startNode.getComponent('vampireItemCtrl');
         src1.setSkeletonDong();
         src1.setKuangSkeletonDong();
 
@@ -1132,7 +1128,7 @@ cc.Class({
             graphics.lineTo(localPos2.x, localPos2.y);
             graphics.stroke();
 
-            let src2 = endNode.getComponent('indiaItemCtrl');
+            let src2 = endNode.getComponent('vampireItemCtrl');
             src2.setSkeletonDong();
             src2.setKuangSkeletonDong();
         }, time);
@@ -1187,20 +1183,24 @@ cc.Class({
             this.FG_zc.node.active = true
             this.FG_zc.setAnimation(0, "event", false);
             this.scheduleOnce(() => {
-                this.FG_zc.node.active = false
                 if(callback){
                     callback()
                 }
+            }, 1);
+            this.scheduleOnce(() => {
+                this.FG_zc.node.active = false
             }, 6);
         }
         if (type == 2) {
             this.MG_zc.node.active = true
             this.MG_zc.setAnimation(0, "event", false);
             this.scheduleOnce(() => {
-                this.MG_zc.node.active = false
                 if(callback){
                     callback()
                 }
+            }, 1);
+            this.scheduleOnce(() => {
+                this.MG_zc.node.active = false
             }, 6);
         }
     },
