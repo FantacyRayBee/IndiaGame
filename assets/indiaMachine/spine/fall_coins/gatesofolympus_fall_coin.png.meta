@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "98641de6-2e2d-4dad-ada8-f111c846e42f",
+  "importer": "image",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 64,
+  "platformSettings": {},
+  "subMetas": {
+    "gatesofolympus_fall_coin": {
+      "ver": "1.0.6",
+      "uuid": "9c89616a-4c22-448f-9aaa-f9793548cbfd",
+      "importer": "texture",
+      "rawTextureUuid": "98641de6-2e2d-4dad-ada8-f111c846e42f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -90,
+      "offsetY": 2,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 332,
+      "height": 60,
+      "rawWidth": 512,
+      "rawHeight": 64,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
