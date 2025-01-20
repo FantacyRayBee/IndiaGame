@@ -23954,11 +23954,6 @@
     "meta": 1737358394974,
     "relativePath": "Main\\ClientNotify.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1737358635288,
-    "meta": 1737358660590,
-    "relativePath": "Main\\Global.js"
-  },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
     "asset": 1737078790391,
     "meta": 1737358397454,
@@ -24643,5 +24638,10 @@
     "asset": 1737358635297,
     "meta": 1737358662754,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\mipmap_hdpi_icon.json"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1737360569958,
+    "meta": 1737360574318,
+    "relativePath": "Main\\Global.js"
   }
 }
