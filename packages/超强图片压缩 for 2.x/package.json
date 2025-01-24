@@ -1,0 +1,23 @@
+{
+  "name": "imager2x",
+  "version": "1.0.0",
+  "description": "免KEY无限使用的图片压缩神器",
+  "author": "楚游香",
+  "main": "./dist/main.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/超强图片压缩/开始压缩": {
+      "message": "imager2x:start-compress"
+    },
+    "i18n:MAIN_MENU.package.title/超强图片压缩/打开设置面板": {
+      "message": "imager2x:open-panel"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "超强图片压缩",
+    "width": 800,
+    "height": 600
+  },
+  "_storeId": "5b0625ac8f136c5bc4cc510312808572"
+}

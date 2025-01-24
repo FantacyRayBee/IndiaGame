@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>设置面板</h2>
+    <ui-box-container class="layout vertical">
+        <div>
+            <ui-prop name="开启自动压缩" type="boolean" v-value="isAutoStart" tooltip="项目构建后自动开始压缩"></ui-prop>
+            <hr />
+            <ui-prop name="要压缩的资源目录" type="string" v-value="inputDir"
+                tooltip="需为本机完整路径&#10;默认 build/wechatgame"></ui-prop>
+            <ui-prop name="输出的缓存目录" type="string" v-value="cacheDir"
+                tooltip="需为本机完整路径&#10;默认 build/imageCache"></ui-prop>
+            <hr />
+            <ui-prop name="要压缩的图片类型" type="string" v-value="imageType" tooltip="中间以,分隔，例如：png,jpg"
+                placeholder="png,jpg">
+            </ui-prop>
+            <ui-prop name="单张图片最小不低于(单位:MB)" type="number" v-value="imageMin" tooltip="默认仅压缩10K-10M之间的图片"
+                placeholder="0.01">
+            </ui-prop>
+            <ui-prop name="单张图片最大不超过(单位:MB)" type="number" v-value="imageMax" tooltip="默认仅压缩10K-10M之间的图片"
+                placeholder="10">
+            </ui-prop>
+            <ui-prop name="要排除的文件" tooltip="无需全名，关键字即可&#10;多个值之间必须用,隔开" auto-height>
+                <ui-text-area class="flex-1" type="string" size="big" v-value="excludeFiles"
+                    placeholder="texture/111.png,&#10;texture/222.png">
+                </ui-text-area>
+            </ui-prop>
+            <hr />
+        </div>
+        <ui-button class="button blue big" v-disabled="isProcessing" @click="saveConfig()">保存</ui-button>
+    </ui-box-container>
+</div>
