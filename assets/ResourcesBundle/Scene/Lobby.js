@@ -230,12 +230,7 @@ cc.Class({
         CommonFun.getInstance().addCarouselStrip();
         CommonFun.getInstance().addSidebar();
         CommonFun.getInstance().updateSidebarData(true);
-
-        // LoggerUtil.getInstance().log("GlobalCfg.Forced_Migration: ", GlobalCfg.Forced_Migration);
-        // // //需求：强制引导用户点击跳转
-        // if  (GlobalCfg.Forced_Migration){
-        //     CommonFun.getInstance().showHallTip();
-        // }
+        CommonFun.getInstance().showHallTip();
         
         if (window.isNeedShowRoomList) {
             this.showGameRoomList();

@@ -1320,11 +1320,34 @@ var CommonFun = cc.Class({
    */
   showHallTip: function showHallTip() {
     var _this19 = this;
-    var hallTipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.HALLTIP);
-    hallTipPrefabPromise.then(function (prefab) {
-      var bhallTipNode = cc.instantiate(prefab);
-      _this19.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
-    });
+    LoggerUtil.getInstance().log("showHallTip GlobalCfg.Forced_Migration: ", GlobalCfg.Forced_Migration);
+    // //需求：强制引导用户点击跳转
+    var NeedShowForceVersion = cc.sys.localStorage.getItem("NeedShowForceVersion");
+    if (NeedShowForceVersion == null) {
+      NeedShowForceVersion = 0;
+    }
+    LoggerUtil.getInstance().log("showHallTip NeedShowForceVersion: ", NeedShowForceVersion);
+    var packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+    var Channel = "";
+    if (packageChannel && packageChannel.indexOf("_") != -1) {
+      var packageChannelArr = packageChannel.split("_");
+      Channel = Number(packageChannelArr[1]);
+    }
+    LoggerUtil.getInstance().log("showHallTip Channel: ", Channel);
+    if (GlobalCfg.Forced_Migration && Channel != "") {
+      var data = GlobalCfg.Forced_Migration[Channel]; //指定渠道号
+      LoggerUtil.getInstance().log("showHallTip data: ", data);
+      if (data && data.version >= NeedShowForceVersion) {
+        //低于服务器设定的需要弹窗的版本号 则弹窗
+        var hallTipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.HALLTIP);
+        hallTipPrefabPromise.then(function (prefab) {
+          var bhallTipNode = cc.instantiate(prefab);
+          var bhallTipCtrl = bhallTipNode.getComponent('HallTipCtrl');
+          bhallTipCtrl.setHallTipData(data);
+          _this19.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
+        });
+      }
+    }
   },
   /**
    * 显示绑定手机界面
