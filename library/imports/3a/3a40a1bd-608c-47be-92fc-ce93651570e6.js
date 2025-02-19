@@ -24,7 +24,7 @@ cc.Class({
     this.remaining = -1; // 等待游戏开始的时间 
     this.startBetTime = 0; // 下注时间
     this.isBackStage = true; // 是否切后台进入游戏
-    this.LotteryRecord = null; // 开奖记录
+    this.LotteryRecord = null; // 开奖记录f
     this.betIndex = 0; //玩家下注的下标
     this.betCion = 1; //玩家下注的金额
     this.myBetCoinAll = 0; //统计自己下注全部金额

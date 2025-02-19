@@ -1367,16 +1367,28 @@ var CommonFun = cc.Class({
       _this20.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
     });
   },
+  // /**
+  //  * 显示推广员界面
+  //  */
+  // showPromoter: function() {
+  //     let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+  //     promoterPrefabPromise.then((prefab) => {
+  //         let promoterNode = cc.instantiate(prefab);
+  //         let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+  //         this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+  //     });
+  // },
+
   /**
    * 显示推广员界面
    */
   showPromoter: function showPromoter() {
     var _this21 = this;
-    var promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+    var promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
     promoterPrefabPromise.then(function (prefab) {
       var promoterNode = cc.instantiate(prefab);
-      var promoterCtrl = promoterNode.getComponent('PromoterCtrl');
-      _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);
+      var promoterCtrl = promoterNode.getComponent('PromoterMainCtrl');
+      _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);
     });
   },
   /**

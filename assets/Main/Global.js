@@ -633,6 +633,8 @@ window.GlobalCfg = {
      * 推广员
      */
     PROMOTER: "ResourcesBundle/NewPlan/Promoter/Promoter",
+    PROMOTERMAIN: "ResourcesBundle/NewPlan/Promoter/PromoterMain",
+    PROMOTERRULE: "ResourcesBundle/NewPlan/Promoter/PromoterRule",
     /**
      * 推广员左侧详情
      */
@@ -837,6 +839,7 @@ window.GlobalCfg = {
     SETTING: "FirstLayer",
     CHATACT: "FirstLayer",
     PROMOTER: "FirstLayer",
+    PROMOTERMAIN: "FirstLayer",
     SELECTROOM: "FirstLayer",
     MYVIP: "FirstLayer",
     GAMESTARTMASK: "FirstLayer",
@@ -855,6 +858,7 @@ window.GlobalCfg = {
     BINDPHONEREWARDS: "SecondLayer",
     BINDPHONE: "SecondLayer",
     PROMOTERLEFTVIEW: "SecondLayer",
+    PROMOTERRULE: "FirstLayer",
     RELIEF: "SecondLayer",
     EMAIL: "SecondLayer",
     FEEDBACKEMAIL: "SecondLayer",
