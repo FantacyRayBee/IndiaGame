@@ -350,7 +350,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        133.384,
+        118.433,
         0,
         0,
         0,
@@ -464,7 +464,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 620,
-      "height": 210.39999999999998
+      "height": 170.39999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -515,8 +515,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "New adress：\"https://dekerty.in\"\nDue to server upgrade, a new installation package needs to be downloaded. Please go to \"tmaxter. in\" to download the new installation package.",
-    "_N$string": "New adress：\"https://dekerty.in\"\nDue to server upgrade, a new installation package needs to be downloaded. Please go to \"tmaxter. in\" to download the new installation package.",
+    "_string": "Due to service upgrades, please download the latest version. If you cannot install it after downloading, please uninstall the old version and install it again.",
+    "_N$string": "Due to service upgrades, please download the latest version. If you cannot install it after downloading, please uninstall the old version and install it again.",
     "_fontSize": 32,
     "_lineHeight": 40,
     "_enableWrapText": true,

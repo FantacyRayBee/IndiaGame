@@ -18,7 +18,7 @@ cc.Class({
   },
   setHallTipData: function setHallTipData(data) {
     this.data = data;
-    var txtstring = "New adress：'" + data.url + "' \n Due to server upgrade, a new installation package needs to be downloaded. Please go to 'tmaxter. in' to download the new installation package.";
+    var txtstring = "Due to service upgrades, please download the latest version. If you cannot install it after downloading, please uninstall the old version and install it again.";
     this.txt_content.string = txtstring;
   },
   bntclick: function bntclick(button) {
