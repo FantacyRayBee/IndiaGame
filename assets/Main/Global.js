@@ -51,7 +51,7 @@ window.GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-   is_force_gotoTest: false,
+   is_force_gotoTest: true,
 
   /**
    * 自定义消息分发Id
@@ -839,7 +839,6 @@ window.GlobalCfg = {
     SETTING: "FirstLayer",
     CHATACT: "FirstLayer",
     PROMOTER: "FirstLayer",
-    PROMOTERMAIN: "FirstLayer",
     SELECTROOM: "FirstLayer",
     MYVIP: "FirstLayer",
     GAMESTARTMASK: "FirstLayer",
@@ -850,6 +849,7 @@ window.GlobalCfg = {
     GAMEMENU: "FirstLayer",
     SIGN: "FirstLayer",
     WITHDRAWPREDATA: "FirstLayer",
+    PROMOTERMAIN: "FirstLayer",
 
     ACTIVITY: "SecondLayer",
     FIRSTRECHARGE: "SecondLayer",

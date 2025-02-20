@@ -15,8 +15,9 @@ cc.Class({
 
     ctor: function () {
         this.promoterData = null;
-        this.speed = 0.3;
-        this.direction = cc.v2(0, 1);
+        this.speed = 1;
+        this.randomAllNum = 30;
+        this.shareStr = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！ https://www.tmaxter.in/?inviteCode=5010_0047537101"
     },
 
     onLoad: function () {
@@ -28,7 +29,7 @@ cc.Class({
         this.btn_share.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
         this.setRandomData()
-        this.insHistoricalRecords()
+        this.insPlayerRecords()
     },
     
     start: function() {
@@ -53,21 +54,20 @@ cc.Class({
 
     //生成当天的随机数据
     setRandomData:function(){
-        // let nowTime = Math.floor(new Date().getTime()/1000/3600/24) //以天为单位每天自动生成全新的假数据
-        // let PromoterRuleUserList = cc.sys.localStorage.getItem(`PromoterRuleUserList_${nowTime}`);
-        // if(PromoterRuleUserList){ //如果缓存有 则不生成
-        //     this.userList = JSON.parse(PromoterRuleUserList);
-        //     return
-        // }
+        let nowTime = Math.floor(new Date().getTime()/1000/3600/24) //以天为单位每天自动生成全新的假数据
+        let PromoterRuleUserList = cc.sys.localStorage.getItem(`PromoterRuleUserList_${nowTime}`);
+        if(PromoterRuleUserList){ //如果缓存有 则不生成
+            this.userList = JSON.parse(PromoterRuleUserList);
+            return
+        }
         let miaosData = 
         {
             [0]:"Received the recharge reward ",
             [1]:"Received the bet reward ",
             [2]:"Received the tax reward ",
         }
-        let num = 30
         let userList = [];
-        for (let index = 0; index < num; index++) {
+        for (let index = 0; index < this.randomAllNum; index++) {
             let imgIndex = Math.floor(Math.random() * 13) + 1; // 1 到 13
             let imgUrl = `https://aug6.s3.ap-south-1.amazonaws.com/avatar/${imgIndex}.png`;
             let infoNum = Math.floor(Math.random() * 300) + 1; // 1 到 300
@@ -81,14 +81,11 @@ cc.Class({
             userList.push(user);
         }
         this.userList = userList
-        // cc.sys.localStorage.setItem(`PromoterRuleUserList_${nowTime}`, JSON.stringify(userList));
+        cc.sys.localStorage.setItem(`PromoterRuleUserList_${nowTime}`, JSON.stringify(userList));
     },
 
     //实例化玩家领奖情况的预制
-    insHistoricalRecords:function(){
-        LoggerUtil.getInstance().log("insHistoricalRecords this.userList: ", this.userList);
-        LoggerUtil.getInstance().log("insHistoricalRecords length: ", this.userList.length);
-
+    insPlayerRecords:function(){
         this.content.removeAllChildren();
         for (let i = 0; i < 30; i++) {
             let pab_player = cc.instantiate(this.item);
@@ -128,27 +125,13 @@ cc.Class({
     btnClick: function (btn) {
         let btnName = btn.node.name;
         if (btnName == 'btn_telegram') {
-            // Skip TO Telegram
-            let str = this.channel_info.telegram;
-            let arr = str.split('/');
-            let pageid = arr[arr.length - 1];
-            APPManager.skipToOtherApp('org.telegram.messenger', pageid);
+            APPManager.skipToOtherApp('org.telegram.messenger', this.shareStr);
         } 
         if (btnName == 'btn_whatsapp') {
-            // Skip to WhatsApp
-            let channel_info = {...GlobalCfg.USER_DATAS.customerService};
-            let whatsAppInfos = channel_info.whatsApp.split(',');
-            let mobileNum = whatsAppInfos[0].match(/\d+/g);
-            APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
-        }
-        if (btnName == 'btn_fb') {
-            let whatsAppInfos = this.channel_info.whatsApp.split(',');
-            let channelLink = whatsAppInfos[1];
-            APPManager.skipToOtherApp("com.facebook", channelLink);
+            APPManager.skipToOtherApp("com.whatsapp", this.shareStr);
         }
         if (btnName == 'btn_share') {
-            let shareUrl = `Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
-            APPManager.Share(shareUrl);
+            APPManager.Share(this.shareStr);
         }
     },
 
@@ -162,10 +145,10 @@ cc.Class({
     update() {
         // // 每帧更新位置
         let pos = this.content.position;
-        if(pos.y > 100){
-            this.content.setPosition(0,0);
-        }
         let y = pos.y + this.speed
         this.content.setPosition(cc.v2(0, y));
+        if(pos.y > (this.randomAllNum * 60)){
+            this.content.setPosition(0,0);
+        }
     }
 });

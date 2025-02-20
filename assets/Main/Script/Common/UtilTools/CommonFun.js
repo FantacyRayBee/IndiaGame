@@ -632,6 +632,13 @@ let CommonFun = cc.Class({
         };
     },
 
+    // 货币显示规范美术字 需要把.替换成x,美术字没有.
+    numberToShow_byColor: function(label, num) {
+        let cash = num / 100
+        let str = CommonFun.getInstance().numberToShow(cash);
+        label.string = str.toString().replace(".","x");
+    },
+
     getStrLength: function(str) {
         let realLength = 0,
             len = str.length,
@@ -1386,12 +1393,21 @@ let CommonFun = cc.Class({
      * 显示推广员界面
      */
     showPromoter: function() {
-        let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
-        promoterPrefabPromise.then((prefab) => {
-            let promoterNode = cc.instantiate(prefab);
-            let promoterCtrl = promoterNode.getComponent('PromoterMainCtrl');    
-            this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
-        });
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+        CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+            LoggerUtil.getInstance().log("caojun msg === " , msg);
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.promoterMainData = msg.data
+                let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
+                promoterPrefabPromise.then((prefab) => {
+                    let promoterNode = cc.instantiate(prefab);
+                    this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
+                });
+            }
+            else {
+                CommonFun.getInstance().showTips(msg.msg);
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
     /**
@@ -2487,6 +2503,20 @@ let CommonFun = cc.Class({
         });
     },
 
+    // 设置昵称
+    setNickname: function(nickname) {
+        const MAX_LENGTH = 9; // 昵称最大长度
+        const DISPLAY_LENGTH = 7; // 超过最大长度时显示的长度
+        let name = ""
+        if (nickname.length > MAX_LENGTH) {
+            // 超过 7 位，截取前 5 位并加上省略号
+            name = nickname.substring(0, DISPLAY_LENGTH) + "...";
+        } else {
+            // 不超过 7 位，直接显示
+            name = nickname;
+        }
+        return name
+    },
 
     /**
      * 初始化竖屏次数

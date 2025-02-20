@@ -11,6 +11,18 @@ cc.Class({
     },
     onLoad: function () {
         this.btn_close.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.setRewardNum()
+    },
+
+    setRewardNum: function () {
+        let cfg = JSON.parse(GlobalCfg.USER_DATAS.promoterMainData.rank_reward_cfg)
+        LoggerUtil.getInstance().log("caojun cfg === " , cfg);
+        
+        this.txt_num1.string = CommonFun.getInstance().numberToShow(cfg[1] / 100)
+        this.txt_num2.string = CommonFun.getInstance().numberToShow(cfg[2] / 100)
+        this.txt_num3.string = CommonFun.getInstance().numberToShow(cfg[3] / 100)
+        this.txt_num4.string = CommonFun.getInstance().numberToShow(cfg[4] / 100)
+        this.txt_num5.string = CommonFun.getInstance().numberToShow(cfg[11] / 100)
     },
 
     onDestroy: function () {

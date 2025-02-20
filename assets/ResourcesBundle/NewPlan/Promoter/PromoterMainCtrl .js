@@ -11,10 +11,12 @@ cc.Class({
         btn_whatsapp: cc.Button,
         btn_telegram: cc.Button,
         btn_share: cc.Button,
+        btn_withdraw: cc.Button,
+
     },
 
     ctor: function () {
-        this.promoterData = null;
+        this.shareStr = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！ https://www.tmaxter.in/?inviteCode=5010_0047537101"
     },
 
     onLoad: function () {
@@ -26,25 +28,35 @@ cc.Class({
         this.node_root_rewards = this.viewList["bg/root_rewards"];
         this.node_root_referral = this.viewList["bg/root_referral"];
         this.node_btn_mainClose = this.viewList["bg/up/btn_mainClose"];
-        this.node_btn_withdraw = this.viewList["bg/up/money/btn_withdraw"];
 
         this.node_btn_mainClose.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_fb.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_whatsapp.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_telegram.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_share.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_withdraw.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
         this.toggle_rank.node.on('toggle', this.toggleClick, this);
         this.toggle_rule.node.on('toggle', this.toggleClick, this);
         this.toggle_reward.node.on('toggle', this.toggleClick, this);
         this.toggle_referral.node.on('toggle', this.toggleClick, this);
 
-        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/info";
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/income/recordV1";
         CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+            LoggerUtil.getInstance().log("caojun msg === " , msg);
             if (msg.result == 0) {
-                if (CommonFun.getInstance().isValidForScr(this) && msg.data) {
-                    // this.setPromoterInfo(msg.data);
-                };
+                GlobalCfg.USER_DATAS.promoterRewardsData = msg.data
+            }
+            else {
+                CommonFun.getInstance().showTips(msg.msg);
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+
+        let httpUrl2 = GlobalCfg.HTTP_SERVER + "/v1/promoter/makemoneyreferrals";
+        CommonFun.getInstance().httpGet(httpUrl2, (msg) => {
+            LoggerUtil.getInstance().log("caojun msg === " , msg);
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.promoterReferralData = msg.data
             }
             else {
                 CommonFun.getInstance().showTips(msg.msg);
@@ -55,23 +67,26 @@ cc.Class({
     start: function() {
         this.NowToggleName = "toggle_rank"
         this.setViewByToggleName(this.NowToggleName)
+        this.txt_num.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
     },
-
 
     onDestroy: function () {
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
     },
 
-    onEventMsg: function (webData, target) {
+    onEventMsg: function(webData, target) {
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
-        if (msgId == "ConcactsArrStr") {
-            
-        }
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
+            this.txt_num.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        } 
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_TGY_REWARD 
+            || msgId == GlobalCfg.CLIENT_MSG_ID.GET_CHALLENGES_REWARD) {
+                this.txt_num.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        } 
     },
-
 
     toggleClick: function(toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -88,32 +103,25 @@ cc.Class({
         } 
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == 'btn_telegram') {
-            // Skip TO Telegram
-            let str = this.channel_info.telegram;
-            let arr = str.split('/');
-            let pageid = arr[arr.length - 1];
-            APPManager.skipToOtherApp('org.telegram.messenger', pageid);
+            APPManager.skipToOtherApp('org.telegram.messenger', this.shareStr);
         } 
         if (btnName == 'btn_whatsapp') {
-            // Skip to WhatsApp
-            let channel_info = {...GlobalCfg.USER_DATAS.customerService};
-            let whatsAppInfos = channel_info.whatsApp.split(',');
-            let mobileNum = whatsAppInfos[0].match(/\d+/g);
-            APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
-        }
-        if (btnName == 'btn_fb') {
-            let whatsAppInfos = this.channel_info.whatsApp.split(',');
-            let channelLink = whatsAppInfos[1];
-            APPManager.skipToOtherApp("com.facebook", channelLink);
+            APPManager.skipToOtherApp("com.whatsapp", this.shareStr);
         }
         if (btnName == 'btn_share') {
-            let shareUrl = `Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
-            APPManager.Share(shareUrl);
+            APPManager.Share(this.shareStr);
+        }
+        if(btnName = 'btn_withdraw'){
+            this.dealBtnWithDrawEvent();
         }
     },
 
     dealBtnMainCloseEvent: function () {
         this.node.destroy();
+    },
+
+    dealBtnWithDrawEvent: function() {
+        CommonFun.getInstance().showWithDrawPreData();
     },
 
     setViewByToggleName(toggleName) {
