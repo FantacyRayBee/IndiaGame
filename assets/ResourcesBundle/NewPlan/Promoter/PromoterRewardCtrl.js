@@ -27,7 +27,7 @@ cc.Class({
 
     ctor: function () {
         this.promoterData = null;
-        this.userList = null;
+        this.userList = [];
         this.dateIndex = 0
         this.shareStr = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！ https://www.tmaxter.in/?inviteCode=5010_0047537101"
     },
@@ -43,18 +43,30 @@ cc.Class({
 
         this.tog_total.node.on('toggle', this.toggleClick, this);
         this.tog_yesterday.node.on('toggle', this.toggleClick, this);
-
         this.insPlayerRecords()
-    },
-    
-    start: function() {
-        this.NowToggleName = "tog_total"
-        this.promoterData = GlobalCfg.USER_DATAS.promoterRewardsData.total
-        CommonFun.getInstance().numberToShow_byColor(this.claim_num, GlobalCfg.USER_DATAS.promoterRewardsData.total.total_income)
-        this.btn_claim.interactable = false;
-        this.setData()
-        this.setPanel()
 
+        if (GlobalCfg.USER_DATAS.promoterRewardsData == null) {
+            let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/income/recordV1";
+            CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+                if (msg.result == 0) {
+                    GlobalCfg.USER_DATAS.promoterRewardsData = msg.data
+                    this.setViewByToggleName(this.NowToggleName)
+                    this.setData()
+                }
+                else {
+                    CommonFun.getInstance().showTips(msg.msg);
+                }
+            }, null, GlobalCfg.USER_DATAS.BearerToken);
+        }
+    },
+    start: function() {
+        this.NowToggleName = "tog_yesterday"
+        this.tog_yesterday.isChecked = true;
+        if (GlobalCfg.USER_DATAS.promoterRewardsData == null) {
+            return;
+        }
+        this.setViewByToggleName(this.NowToggleName)
+        this.setData()
     },
 
     setPanel:function(){
@@ -89,7 +101,7 @@ cc.Class({
         for (let index = 0; index < this.playerData.length; index++) {
             this.playerData[index].obj.active = false
         }
-        if(this.userList == null || dataIndex > this.userList.length || dataIndex < 0){
+        if(this.userList == null || this.userList.length == 0 || dataIndex > this.userList.length || dataIndex < 0){
             this.yeshu_num.string = `1/1`
             return
         }
@@ -217,11 +229,12 @@ cc.Class({
         if (toggleName == "tog_today") {
             this.promoterData = GlobalCfg.USER_DATAS.promoterRewardsData.total
             CommonFun.getInstance().numberToShow_byColor(this.claim_num, GlobalCfg.USER_DATAS.promoterRewardsData.total.total_income)
-            this.btn_claim.interactable = false;
+            this.btn_claim.node.active = false;
         }
         else{
             this.promoterData = GlobalCfg.USER_DATAS.promoterRewardsData.yesterday
             CommonFun.getInstance().numberToShow_byColor(this.claim_num, GlobalCfg.USER_DATAS.promoterRewardsData.current_cash)
+            this.btn_claim.node.active = true;
             this.btn_claim.interactable = GlobalCfg.USER_DATAS.promoterRewardsData.current_cash > 0;
         }
         this.setPanel()

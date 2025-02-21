@@ -38,10 +38,28 @@ cc.Class({
         this.toggle_my.node.on('toggle', this.toggleClick, this);
         this.toggle_friend.node.on('toggle', this.toggleClick, this);
         this.insPlayerRecords()
+
+        if (GlobalCfg.USER_DATAS.promoterReferralData == null) {
+            let httpUrl2 = GlobalCfg.HTTP_SERVER + "/v1/promoter/makemoneyreferrals";
+            CommonFun.getInstance().httpGet(httpUrl2, (msg) => {
+                if (msg.result == 0) {
+                    GlobalCfg.USER_DATAS.promoterReferralData = msg.data
+                    this.promoterData = GlobalCfg.USER_DATAS.promoterReferralData.my_referrals
+                    this.setData()
+                    this.setPanel()
+                }
+                else {
+                    CommonFun.getInstance().showTips(msg.msg);
+                }
+            }, null, GlobalCfg.USER_DATAS.BearerToken);
+        }
     },
     
     start: function() {
         this.NowToggleName = "tog_my"
+        if (GlobalCfg.USER_DATAS.promoterReferralData == null) {
+            return
+        }
         this.promoterData = GlobalCfg.USER_DATAS.promoterReferralData.my_referrals
         this.setData()
         this.setPanel()
@@ -94,7 +112,7 @@ cc.Class({
         for (let index = 0; index < this.playerData.length; index++) {
             this.playerData[index].obj.active = false
         }
-        if(this.userList == null || dataIndex > this.userList.length || dataIndex < 0){
+        if(this.userList == null || this.userList.length == 0 || dataIndex > this.userList.length || dataIndex < 0){
             this.yeshu_num.string = `1/1`
             return
         }

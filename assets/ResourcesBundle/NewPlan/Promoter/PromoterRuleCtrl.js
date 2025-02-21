@@ -54,25 +54,25 @@ cc.Class({
 
     //生成当天的随机数据
     setRandomData:function(){
-        let nowTime = Math.floor(new Date().getTime()/1000/3600/24) //以天为单位每天自动生成全新的假数据
-        let PromoterRuleUserList = cc.sys.localStorage.getItem(`PromoterRuleUserList_${nowTime}`);
-        if(PromoterRuleUserList){ //如果缓存有 则不生成
-            this.userList = JSON.parse(PromoterRuleUserList);
-            return
-        }
-        let miaosData = 
+        // let nowTime = Math.floor(new Date().getTime()/1000/3600/24) //以天为单位每天自动生成全新的假数据
+        // let PromoterRuleUserList = cc.sys.localStorage.getItem(`PromoterRuleUserList_${nowTime}`);
+        // if(PromoterRuleUserList){ //如果缓存有 则不生成
+        //     this.userList = JSON.parse(PromoterRuleUserList);
+        //     return
+        // }
+        let miaosData =
         {
             [0]:"Received the recharge reward ",
             [1]:"Received the bet reward ",
             [2]:"Received the tax reward ",
         }
         let userList = [];
+        this.userList =[];
         for (let index = 0; index < this.randomAllNum; index++) {
             let imgIndex = Math.floor(Math.random() * 13) + 1; // 1 到 13
             let imgUrl = `https://aug6.s3.ap-south-1.amazonaws.com/avatar/${imgIndex}.png`;
-            let infoNum = Math.floor(Math.random() * 300) + 1; // 1 到 300
-            let randomMsgIndex = Math.floor(Math.random() * 2); // 0 到 2
-    
+            let randomMsgIndex = Math.floor(Math.random() * 3); // 0 到 2
+            let infoNum = this.RandomReferNum(randomMsgIndex);
             let user = {
                 imgUrl: imgUrl,
                 infoNum: infoNum,
@@ -81,8 +81,54 @@ cc.Class({
             userList.push(user);
         }
         this.userList = userList
-        cc.sys.localStorage.setItem(`PromoterRuleUserList_${nowTime}`, JSON.stringify(userList));
+        // cc.sys.localStorage.setItem(`PromoterRuleUserList_${nowTime}`, JSON.stringify(userList));
     },
+
+    RandomReferNum:function(index){
+        let infoNum = 0;
+        if(index == 0){ //recharge
+            let input = Math.floor(Math.random() * 100) + 1; // 1 到 100
+            if(input <= 70){
+                infoNum = 10
+            }
+            else if(input > 70 && input <= 80){
+                infoNum = 15
+            }
+            else if(input > 80 && input <= 90){
+                infoNum = 25
+            }
+            else if(input > 90 && input <= 95){
+                infoNum = 50
+            }
+            else if(input > 95 && input <= 100){
+                infoNum = 100
+            }
+        } else if(index == 1){//bet
+            let input = Math.floor(Math.random() * 90) + 1; // 1 到 90
+            if(input <= 70){
+                infoNum = 5
+            }
+            else if(input > 70 && input <= 80){
+                infoNum = 10
+            }
+            else if(input > 80 && input <= 90){
+                infoNum = 20
+            }
+        } else if(index == 2){//reward
+            let input = Math.floor(Math.random() * 70) + 1; // 1 到 70
+            if(input <= 50){
+                infoNum = 10
+            }
+            else if(input > 50 && input <= 60){
+                infoNum = 10
+            }
+            else if(input > 60 && input <= 70){
+                infoNum = 20
+            }
+        }
+        return infoNum
+    },
+
 
     //实例化玩家领奖情况的预制
     insPlayerRecords:function(){
@@ -147,7 +193,7 @@ cc.Class({
         let pos = this.content.position;
         let y = pos.y + this.speed
         this.content.setPosition(cc.v2(0, y));
-        if(pos.y > (this.randomAllNum * 60)){
+        if(pos.y > ((this.randomAllNum - 4) * 60)){
             this.content.setPosition(0,0);
         }
     }

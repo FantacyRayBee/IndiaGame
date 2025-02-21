@@ -111,7 +111,7 @@ cc.Class({
         if (btnName == 'btn_share') {
             APPManager.Share(this.shareStr);
         }
-        if(btnName = 'btn_withdraw'){
+        if(btnName == 'btn_withdraw'){
             this.dealBtnWithDrawEvent();
         }
     },
