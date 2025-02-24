@@ -1409,6 +1409,35 @@ let CommonFun = cc.Class({
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
+    /**
+     * 推广员界面分享
+     */
+    promoterSkipToOtherApp:function(btnName) {
+        let inviteCode = `?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+        let shareStrtmp = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！";
+        let shareUrls = GlobalCfg.APP_SHARE_URL + inviteCode;
+        if (btnName == 'btn_telegram') {
+            let str = "https://t.me/share/url?text=" +  encodeURIComponent(shareStrtmp)+ "&url="+ encodeURIComponent(shareUrls);
+            LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
+            cc.sys.openURL(str);
+        } 
+        if (btnName == 'btn_fb') {
+            let str = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrls);
+            LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
+            cc.sys.openURL(str);
+        } 
+        if (btnName == 'btn_whatsapp') {
+            let str = "https://wa.me/?text=" + encodeURIComponent(shareStrtmp+"    "+shareUrls);
+            cc.sys.openURL(str);
+        }
+        if (btnName == 'btn_share') {
+            let shareUrl = `Your cash will expire in three hours, download the No.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+            APPManager.copyToPasteBoard(shareUrl);
+            CommonFun.getInstance().showTips("Copy successful!");
+            APPManager.Share(shareUrl);
+        }
+    },
+
 
     /**
      * 显示推广员左侧界面

@@ -151,14 +151,17 @@ cc.Class({
             this.dealChangeIndexEvent(2)
         } 
         if (btnName == 'btn_telegram') {
-            APPManager.skipToOtherApp('org.telegram.messenger', this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         } 
         if (btnName == 'btn_whatsapp') {
-            APPManager.skipToOtherApp("com.whatsapp", this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         }
         if (btnName == 'btn_share') {
-            APPManager.Share(this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         }
+        if (btnName == 'btn_fb') {
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
+        } 
     },
 
     dealChangeIndexEvent: function (type) {

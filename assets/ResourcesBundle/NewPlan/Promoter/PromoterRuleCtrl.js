@@ -17,7 +17,6 @@ cc.Class({
         this.promoterData = null;
         this.speed = 1;
         this.randomAllNum = 30;
-        this.shareStr = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！ https://www.tmaxter.in/?inviteCode=5010_0047537101"
     },
 
     onLoad: function () {
@@ -170,14 +169,18 @@ cc.Class({
 
     btnClick: function (btn) {
         let btnName = btn.node.name;
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        if (btnName == 'btn_fb') {
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
+        } 
         if (btnName == 'btn_telegram') {
-            APPManager.skipToOtherApp('org.telegram.messenger', this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         } 
         if (btnName == 'btn_whatsapp') {
-            APPManager.skipToOtherApp("com.whatsapp", this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         }
         if (btnName == 'btn_share') {
-            APPManager.Share(this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         }
     },
 

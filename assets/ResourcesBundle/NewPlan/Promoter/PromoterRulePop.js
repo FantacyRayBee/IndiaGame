@@ -31,6 +31,7 @@ cc.Class({
 
     btnClick: function (btn) {
         let btnName = btn.node.name;
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName === "btn_close") {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.node.destroy();

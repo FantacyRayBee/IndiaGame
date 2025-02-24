@@ -7,10 +7,6 @@ cc.Class({
         toggle_rule: cc.Toggle,
         toggle_reward: cc.Toggle,
         toggle_referral: cc.Toggle,
-        btn_fb: cc.Button,
-        btn_whatsapp: cc.Button,
-        btn_telegram: cc.Button,
-        btn_share: cc.Button,
         btn_withdraw: cc.Button,
 
     },
@@ -23,17 +19,13 @@ cc.Class({
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.viewList = CommonFun.getInstance().getAllChildrensNodeList(this.node, "");
 
-        this.node_root_rank = this.viewList["bg/root_rank"];
-        this.node_root_rule = this.viewList["bg/root_rule"];
-        this.node_root_rewards = this.viewList["bg/root_rewards"];
-        this.node_root_referral = this.viewList["bg/root_referral"];
-        this.node_btn_mainClose = this.viewList["bg/up/btn_mainClose"];
+        this.node_root_rank = this.viewList["root_rank"];
+        this.node_root_rule = this.viewList["root_rule"];
+        this.node_root_rewards = this.viewList["root_rewards"];
+        this.node_root_referral = this.viewList["root_referral"];
+        this.node_btn_mainClose = this.viewList["up/btn_mainClose"];
 
         this.node_btn_mainClose.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_fb.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_whatsapp.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_telegram.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_share.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_withdraw.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
         this.toggle_rank.node.on('toggle', this.toggleClick, this);
@@ -102,18 +94,6 @@ cc.Class({
             return;
         } 
         GlobalCfg.G_COMPONENTS.Audio.playButton();
-        if (btnName == 'btn_telegram') {
-            APPManager.skipToOtherApp('org.telegram.messenger', this.shareStr);
-        } 
-        if (btnName == 'btn_whatsapp') {
-            APPManager.skipToOtherApp("com.whatsapp", this.shareStr);
-        }
-        if (btnName == 'btn_share') {
-            APPManager.Share(this.shareStr);
-        }
-        if(btnName == 'btn_withdraw'){
-            this.dealBtnWithDrawEvent();
-        }
     },
 
     dealBtnMainCloseEvent: function () {

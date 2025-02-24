@@ -54,6 +54,14 @@ window.GlobalCfg = {
    is_force_gotoTest: true,
 
   /**
+   * 渠道信息
+   */
+  CHANNEL_INFO_TEST: '',
+  /**
+   * 邀请码信息
+   */
+  OPENINSTALL_INVITE_CODE_TEST: '',
+  /**
    * 自定义消息分发Id
    */
   CLIENT_MSG_ID: {

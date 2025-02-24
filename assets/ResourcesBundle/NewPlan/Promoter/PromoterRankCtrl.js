@@ -11,6 +11,8 @@ cc.Class({
 
         btn_whatsapp: cc.Button,
         btn_telegram: cc.Button,
+        btn_fb: cc.Button,
+        btn_share: cc.Button,
         btn_help: cc.Button,
 
         item: cc.Node,
@@ -26,13 +28,14 @@ cc.Class({
     ctor: function () {
         this.promoterMainData = null;
         this.userList = null;
-        this.shareStr = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！ https://www.tmaxter.in/?inviteCode=5010_0047537101"
     },
 
     onLoad: function () {
         this.setRandomData()
         this.btn_whatsapp.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_telegram.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_share.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_fb.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_help.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
         this.toggle_thisweek.node.on('toggle', this.toggleClick, this);
@@ -192,12 +195,17 @@ cc.Class({
                 CommonFun.getInstance().addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERRULE);  
             });
         } 
+        if (btnName == 'btn_fb') {
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
+        } 
         if (btnName == 'btn_telegram') {
-            // Skip TO Telegram
-            APPManager.skipToOtherApp('org.telegram.messenger', this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         } 
         if (btnName == 'btn_whatsapp') {
-            APPManager.skipToOtherApp("com.whatsapp", this.shareStr);
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
+        }
+        if (btnName == 'btn_share') {
+            CommonFun.getInstance().promoterSkipToOtherApp(btnName);
         }
     },
 

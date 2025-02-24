@@ -578,7 +578,7 @@ let SceneManager = cc.Class({
             "channel_info": GlobalCfg.CHANNEL_INFO,
             "login_product": GlobalCfg.PRODUCT_ID
         };
-
+        LoggerUtil.getInstance().error(`caojun httpParam: ${JSON.stringify(httpParam)}`);
         return new Promise((resolve, reject) => {
             CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
                 if (msg && msg.result == 0 && msg.data) {

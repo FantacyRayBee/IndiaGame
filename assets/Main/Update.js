@@ -1,7 +1,11 @@
 cc.Class({
     extends: cc.Component,
 
-    properties: {},
+    properties: {
+        btn_test1:cc.Button,
+        editBox_invited_test:cc.EditBox,
+        editBox_chanel_test:cc.EditBox,
+    },
 
     ctor: function () {   
         this.reqComparisonMainMD5InfoAcount = 0;        // 请求远程assets下的manifest文件的次数（请求次数超过3次，判定为异常）
@@ -12,7 +16,8 @@ cc.Class({
         this.curNumberOfJoinedDownloader = 0;           // 当前添加到下载器的需下载文件数量
         this.updateStatusPoints = 0;                    // 更新状态圆点的个数  
         this.downloaderArr = [];                        // 热更新下载器容器（实现多管道下载）
-
+        this.testButtonIsActive = false;                // 测试按钮是否激活
+        this.testIndexNum = 0;                          // 测试按钮点击次数
         this.sendVerifyCodeReqAcount = 0;
 
         this.verifyTimer = null;
@@ -133,6 +138,9 @@ cc.Class({
 
         this.editBox_account.node.on('editing-did-began', this.editBoxCallback, this);
         this.editBox_password.node.on('editing-did-began', this.editBoxCallback, this);
+
+        this.editBox_invited_test.node.on('editing-did-began', this.editBoxCallback, this);
+        this.editBox_chanel_test.node.on('editing-did-began', this.editBoxCallback, this);
   
         this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
         this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
@@ -142,6 +150,7 @@ cc.Class({
         this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
+        this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
 
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     },
@@ -299,6 +308,21 @@ cc.Class({
         }
         else if (btnName === "btn_wenZi") {
             this.dealBtnWenZiEvent();
+        }
+        else if (btnName === "btn_test1") {
+            this.testIndexNum++;
+            if (this.testIndexNum > 2) {
+                let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+                if (packageChannel && packageChannel.indexOf("_") != -1) {
+                    let packageChannelArr = packageChannel.split("_"); 
+                    let server = packageChannelArr[0];
+                    if (server == "0") { //只有测试服才能打开测试按钮
+                        this.testButtonIsActive = true;
+                        this.editBox_invited_test.node.active = true
+                        this.editBox_chanel_test.node.active = true
+                    }
+                }
+            }
         }
     },
 
@@ -505,6 +529,10 @@ cc.Class({
     },
 
     dealGuestLoginEvent: function() {
+        if (this.testButtonIsActive) {
+            GlobalCfg.OPENINSTALL_INVITE_CODE = this.editBox_invited_test.string;
+            GlobalCfg.CHANNEL_INFO = this.editBox_chanel_test.string;
+        }
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         let obj = {
             loginType: "GUEST"

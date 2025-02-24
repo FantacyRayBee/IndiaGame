@@ -1308,8 +1308,8 @@ cc.Class({
         let btnName = btn.node.name;
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_setting") {
-            // CommonFun.getInstance().showSetting();
-            CommonFun.getInstance().showPromoter();
+            CommonFun.getInstance().showSetting();
+            // CommonFun.getInstance().showPromoter();
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ADD_BUTTON);
@@ -1319,7 +1319,8 @@ cc.Class({
             this.dealBtnWithDrawEvent();
         } 
         else if (btnName == "btn_tx") {
-            this.dealBtnTxEvent();
+            // this.dealBtnTxEvent();
+            CommonFun.getInstance().showPromoter();
         }  
         else if (btnName == 'btn_getNow') {
             this.dealBtnActivityEvent(btnName);
