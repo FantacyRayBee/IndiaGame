@@ -31,6 +31,7 @@ cc.Class({
 
     // 设置玩家数据
     setUserData :function(date, pos) {
+        LoggerUtil.getInstance().log("setUserData date", date);
         this.playerid = date.playerId;
         this.imgurl = date.imgUrl;
         this.nickname = date.nickname;
@@ -68,6 +69,8 @@ cc.Class({
     inItPlayerDate:function(){
         this.lab_name.string =  CommonFun.getInstance().getStrByLength(this.nickname, 8);
         this.lab_coin.string = CommonFun.getInstance().numberToShow(this.diamond/100);
+
+
         GlobalCfg.ACT_SCENE_CTRL.loadHeadSp(this.imgurl, 90, this.headSp);
         if(GlobalCfg.ACT_SCENE_CTRL.my_playerId == this.playerid) {
             GlobalCfg.USER_DATAS.userDiamond = this.diamond; 

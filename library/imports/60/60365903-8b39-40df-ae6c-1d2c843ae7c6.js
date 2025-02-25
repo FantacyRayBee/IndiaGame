@@ -32,6 +32,7 @@ cc.Class({
   },
   // 设置玩家数据
   setUserData: function setUserData(date, pos) {
+    LoggerUtil.getInstance().log("setUserData date", date);
     this.playerid = date.playerId;
     this.imgurl = date.imgUrl;
     this.nickname = date.nickname;

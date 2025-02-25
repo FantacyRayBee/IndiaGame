@@ -493,6 +493,26 @@ var SceneManager = cc.Class({
         "sign": CommonFun.getInstance().encryptByRSA(device),
         "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD
       };
+    } else if (notify.loginType == "USERID") {
+      // httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/visitorlogin"
+      httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/testxiaowei";
+      httpParam = {
+        "login_product": GlobalCfg.PRODUCT_ID,
+        "device": device,
+        "admin_mode": 0,
+        "channel_info": GlobalCfg.CHANNEL_INFO,
+        "googleId": googleId,
+        "adv": GlobalCfg.ADVERTISING_ID,
+        "adid": GlobalCfg.ADJUST_ID,
+        "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
+        "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+        "afid": GlobalCfg.APPSFLYER_ID,
+        "gaid": gaid,
+        "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
+        "sign": CommonFun.getInstance().encryptByRSA(device),
+        "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,
+        "user_id": notify.userid
+      };
     }
     ;
     return new Promise(function (resolve, reject) {
@@ -558,6 +578,7 @@ var SceneManager = cc.Class({
       "channel_info": GlobalCfg.CHANNEL_INFO,
       "login_product": GlobalCfg.PRODUCT_ID
     };
+    LoggerUtil.getInstance().error("caojun httpParam: " + JSON.stringify(httpParam));
     return new Promise(function (resolve, reject) {
       CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
         if (msg && msg.result == 0 && msg.data) {

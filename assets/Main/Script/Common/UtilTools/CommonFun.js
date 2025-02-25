@@ -632,6 +632,13 @@ let CommonFun = cc.Class({
         };
     },
 
+    // 货币显示规范美术字 需要把.替换成x,美术字没有.
+    numberToShow_byColor: function(label, num) {
+        let cash = num / 100
+        let str = CommonFun.getInstance().numberToShow(cash);
+        label.string = str.toString().replace(".","x");
+    },
+
     getStrLength: function(str) {
         let realLength = 0,
             len = str.length,
@@ -1370,17 +1377,70 @@ let CommonFun = cc.Class({
         });
     },
 
+    // /**
+    //  * 显示推广员界面
+    //  */
+    // showPromoter: function() {
+    //     let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+    //     promoterPrefabPromise.then((prefab) => {
+    //         let promoterNode = cc.instantiate(prefab);
+    //         let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+    //         this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+    //     });
+    // },
+    
     /**
      * 显示推广员界面
      */
     showPromoter: function() {
-        let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-        promoterPrefabPromise.then((prefab) => {
-            let promoterNode = cc.instantiate(prefab);
-            let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
-            this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
-        });
+        CommonFun.getInstance().showProgress();
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+        CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+            
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.promoterMainData = msg.data
+                let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
+                promoterPrefabPromise.then((prefab) => {
+                    let promoterNode = cc.instantiate(prefab);
+                    this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
+                    CommonFun.getInstance().hidProgress();
+                });
+            }
+            else {
+                CommonFun.getInstance().showTips(msg.msg);
+                CommonFun.getInstance().hidProgress();
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
+    /**
+     * 推广员界面分享
+     */
+    promoterSkipToOtherApp:function(btnName) {
+        let inviteCode = `?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+        let shareStrtmp = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！";
+        let shareUrls = GlobalCfg.APP_SHARE_URL + inviteCode;
+        if (btnName == 'btn_telegram') {
+            let str = "https://t.me/share/url?text=" +  encodeURIComponent(shareStrtmp)+ "&url="+ encodeURIComponent(shareUrls);
+            LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
+            cc.sys.openURL(str);
+        } 
+        if (btnName == 'btn_fb') {
+            let str = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrls);
+            LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
+            cc.sys.openURL(str);
+        } 
+        if (btnName == 'btn_whatsapp') {
+            let str = "https://wa.me/?text=" + encodeURIComponent(shareStrtmp+"    "+shareUrls);
+            cc.sys.openURL(str);
+        }
+        if (btnName == 'btn_share') {
+            let shareUrl = `Your cash will expire in three hours, download the No.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+            APPManager.copyToPasteBoard(shareUrl);
+            CommonFun.getInstance().showTips("Copy successful!");
+            APPManager.Share(shareUrl);
+        }
+    },
+
 
     /**
      * 显示推广员左侧界面
@@ -2475,6 +2535,20 @@ let CommonFun = cc.Class({
         });
     },
 
+    // 设置昵称
+    setNickname: function(nickname) {
+        const MAX_LENGTH = 9; // 昵称最大长度
+        const DISPLAY_LENGTH = 7; // 超过最大长度时显示的长度
+        let name = ""
+        if (nickname.length > MAX_LENGTH) {
+            // 超过 7 位，截取前 5 位并加上省略号
+            name = nickname.substring(0, DISPLAY_LENGTH) + "...";
+        } else {
+            // 不超过 7 位，直接显示
+            name = nickname;
+        }
+        return name
+    },
 
     /**
      * 初始化竖屏次数

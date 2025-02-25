@@ -51,8 +51,16 @@ window.GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-   is_force_gotoTest: false,
+   is_force_gotoTest: true,
 
+  /**
+   * 渠道信息
+   */
+  CHANNEL_INFO_TEST: '',
+  /**
+   * 邀请码信息
+   */
+  OPENINSTALL_INVITE_CODE_TEST: '',
   /**
    * 自定义消息分发Id
    */
@@ -633,6 +641,8 @@ window.GlobalCfg = {
      * 推广员
      */
     PROMOTER: "ResourcesBundle/NewPlan/Promoter/Promoter",
+    PROMOTERMAIN: "ResourcesBundle/NewPlan/Promoter/PromoterMain",
+    PROMOTERRULE: "ResourcesBundle/NewPlan/Promoter/PromoterRule",
     /**
      * 推广员左侧详情
      */
@@ -847,6 +857,7 @@ window.GlobalCfg = {
     GAMEMENU: "FirstLayer",
     SIGN: "FirstLayer",
     WITHDRAWPREDATA: "FirstLayer",
+    PROMOTERMAIN: "FirstLayer",
 
     ACTIVITY: "SecondLayer",
     FIRSTRECHARGE: "SecondLayer",
@@ -855,6 +866,7 @@ window.GlobalCfg = {
     BINDPHONEREWARDS: "SecondLayer",
     BINDPHONE: "SecondLayer",
     PROMOTERLEFTVIEW: "SecondLayer",
+    PROMOTERRULE: "FirstLayer",
     RELIEF: "SecondLayer",
     EMAIL: "SecondLayer",
     FEEDBACKEMAIL: "SecondLayer",

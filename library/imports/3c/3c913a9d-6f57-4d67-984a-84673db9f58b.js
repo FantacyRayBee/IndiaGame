@@ -628,6 +628,12 @@ var CommonFun = cc.Class({
     }
     ;
   },
+  // 货币显示规范美术字 需要把.替换成x,美术字没有.
+  numberToShow_byColor: function numberToShow_byColor(label, num) {
+    var cash = num / 100;
+    var str = CommonFun.getInstance().numberToShow(cash);
+    label.string = str.toString().replace(".", "x");
+  },
   getStrLength: function getStrLength(str) {
     var realLength = 0,
       len = str.length,
@@ -1367,17 +1373,67 @@ var CommonFun = cc.Class({
       _this20.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
     });
   },
+  // /**
+  //  * 显示推广员界面
+  //  */
+  // showPromoter: function() {
+  //     let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+  //     promoterPrefabPromise.then((prefab) => {
+  //         let promoterNode = cc.instantiate(prefab);
+  //         let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+  //         this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+  //     });
+  // },
+
   /**
    * 显示推广员界面
    */
   showPromoter: function showPromoter() {
     var _this21 = this;
-    var promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-    promoterPrefabPromise.then(function (prefab) {
-      var promoterNode = cc.instantiate(prefab);
-      var promoterCtrl = promoterNode.getComponent('PromoterCtrl');
-      _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);
-    });
+    CommonFun.getInstance().showProgress();
+    var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+    CommonFun.getInstance().httpGet(httpUrl, function (msg) {
+      if (msg.result == 0) {
+        GlobalCfg.USER_DATAS.promoterMainData = msg.data;
+        var promoterPrefabPromise = _this21.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
+        promoterPrefabPromise.then(function (prefab) {
+          var promoterNode = cc.instantiate(prefab);
+          _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);
+          CommonFun.getInstance().hidProgress();
+        });
+      } else {
+        CommonFun.getInstance().showTips(msg.msg);
+        CommonFun.getInstance().hidProgress();
+      }
+    }, null, GlobalCfg.USER_DATAS.BearerToken);
+  },
+  /**
+   * 推广员界面分享
+   */
+  promoterSkipToOtherApp: function promoterSkipToOtherApp(btnName) {
+    var inviteCode = "?inviteCode=" + GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
+    var shareStrtmp = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！";
+    var shareUrls = GlobalCfg.APP_SHARE_URL + inviteCode;
+    if (btnName == 'btn_telegram') {
+      var str = "https://t.me/share/url?text=" + encodeURIComponent(shareStrtmp) + "&url=" + encodeURIComponent(shareUrls);
+      LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
+      cc.sys.openURL(str);
+    }
+    if (btnName == 'btn_fb') {
+      var _str = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrls);
+      LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", _str);
+      cc.sys.openURL(_str);
+    }
+    if (btnName == 'btn_whatsapp') {
+      var _str2 = "https://wa.me/?text=" + encodeURIComponent(shareStrtmp + "    " + shareUrls);
+      cc.sys.openURL(_str2);
+    }
+    if (btnName == 'btn_share') {
+      var shareUrl = "Your cash will expire in three hours, download the No.1 card game in India to receive your cash, do not let it go\uFF01 " + GlobalCfg.APP_SHARE_URL + "?inviteCode=" + GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
+      APPManager.copyToPasteBoard(shareUrl);
+      CommonFun.getInstance().showTips("Copy successful!");
+      APPManager.Share(shareUrl);
+    }
   },
   /**
    * 显示推广员左侧界面
@@ -2462,6 +2518,20 @@ var CommonFun = cc.Class({
       gameMenuCtrl.setSwitchTableBtnActive(isShowSwitchBtn);
       _this68.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
     });
+  },
+  // 设置昵称
+  setNickname: function setNickname(nickname) {
+    var MAX_LENGTH = 9; // 昵称最大长度
+    var DISPLAY_LENGTH = 7; // 超过最大长度时显示的长度
+    var name = "";
+    if (nickname.length > MAX_LENGTH) {
+      // 超过 7 位，截取前 5 位并加上省略号
+      name = nickname.substring(0, DISPLAY_LENGTH) + "...";
+    } else {
+      // 不超过 7 位，直接显示
+      name = nickname;
+    }
+    return name;
   },
   /**
    * 初始化竖屏次数
