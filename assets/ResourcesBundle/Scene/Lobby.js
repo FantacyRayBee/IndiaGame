@@ -1319,8 +1319,7 @@ cc.Class({
             this.dealBtnWithDrawEvent();
         } 
         else if (btnName == "btn_tx") {
-            // this.dealBtnTxEvent();
-            CommonFun.getInstance().showPromoter();
+            this.dealBtnTxEvent();
         }  
         else if (btnName == 'btn_getNow') {
             this.dealBtnActivityEvent(btnName);

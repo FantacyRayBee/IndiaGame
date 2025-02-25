@@ -1390,18 +1390,20 @@ var CommonFun = cc.Class({
    */
   showPromoter: function showPromoter() {
     var _this21 = this;
+    CommonFun.getInstance().showProgress();
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
     CommonFun.getInstance().httpGet(httpUrl, function (msg) {
-      LoggerUtil.getInstance().log("caojun msg === ", msg);
       if (msg.result == 0) {
         GlobalCfg.USER_DATAS.promoterMainData = msg.data;
         var promoterPrefabPromise = _this21.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
         promoterPrefabPromise.then(function (prefab) {
           var promoterNode = cc.instantiate(prefab);
           _this21.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);
+          CommonFun.getInstance().hidProgress();
         });
       } else {
         CommonFun.getInstance().showTips(msg.msg);
+        CommonFun.getInstance().hidProgress();
       }
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },

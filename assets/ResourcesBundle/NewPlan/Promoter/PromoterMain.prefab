@@ -7192,7 +7192,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 103.13,
+      "width": 94.53,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -7205,7 +7205,7 @@
       "ctor": "Float64Array",
       "array": [
         -59.221,
-        184.345,
+        178.233,
         0,
         0,
         0,
@@ -7246,7 +7246,7 @@
     "_dstBlendFactor": 771,
     "_string": "Time Per:",
     "_N$string": "Time Per:",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -16895,7 +16895,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "fadc6472-508d-4600-b343-0ab448f141a4"
+      "__uuid__": "1c699bf6-e173-4d99-be44-4ece2f8b3e58"
     },
     "_type": 0,
     "_sizeMode": 2,

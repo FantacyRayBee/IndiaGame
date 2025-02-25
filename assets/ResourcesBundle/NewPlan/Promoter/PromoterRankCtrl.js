@@ -47,9 +47,9 @@ cc.Class({
         this.userList = GlobalCfg.USER_DATAS.promoterMainData.rank
         this.promoterMainData = GlobalCfg.USER_DATAS.promoterMainData.this_week_player
         this.setPanel()
-        const mondayDate = this.getMondayOfCurrentWeek();
-        const sundayDate = this.getSundayOfCurrentWeek();
-        this.txt_date.string = "Time Per: " + mondayDate.toLocaleDateString() + " ~ " + sundayDate.toLocaleDateString()
+        const mondayDate = this.getMondayOfCurrentWeek()
+        const sundayDate = this.getSundayOfCurrentWeek()
+        this.txt_date.string = "Time Per: " + mondayDate + " ~ " + sundayDate;
         this.insPlayerRecords()
     },
 
@@ -80,7 +80,13 @@ cc.Class({
         const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // 计算周一的日期差值
 
         const monday = new Date(today.setDate(diff)); // 设置日期为周一
-        return monday;
+        const year = monday.getFullYear(); // 获取年份
+        const month = String(monday.getMonth() + 1).padStart(2, '0'); // 获取月份（注意补零）
+        const day = String(monday.getDate()).padStart(2, '0'); // 获取日期（注意补零）
+
+        const formattedDate = `${year}-${month}-${day}`;
+        console.log(formattedDate); // 例如：2023-10-05
+        return formattedDate;
     },
 
     getSundayOfCurrentWeek:function() {
@@ -89,7 +95,13 @@ cc.Class({
         const diff = today.getDate() + (6 - dayOfWeek); // 计算周日的日期差值
     
         const sunday = new Date(today.setDate(diff)); // 设置日期为周日
-        return sunday;
+        const year = sunday.getFullYear(); // 获取年份
+        const month = String(sunday.getMonth() + 1).padStart(2, '0'); // 获取月份（注意补零）
+        const day = String(sunday.getDate()).padStart(2, '0'); // 获取日期（注意补零）
+        const formattedDate = `${year}-${month}-${day}`;
+        console.log(formattedDate); // 例如：2023-10-05
+
+        return formattedDate;
     },
 
     //设置前三名
@@ -98,6 +110,9 @@ cc.Class({
         if (this.userList == null) return;
 
         for (let index = 0; index < this.userList.length; index++) {
+            if (index > 2) {
+                return;
+            }
             this.loadHeadSp(this.userList[index].player_head, 120, this.top_head[index]);
             this.top_id[index].string = CommonFun.getInstance().getStrByLength(this.userList[index].player_name, 11);
             CommonFun.getInstance().numberToShow_byColor(this.top_prize[index], this.userList[index].prize)

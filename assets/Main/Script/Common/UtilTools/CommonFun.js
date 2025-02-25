@@ -1393,19 +1393,22 @@ let CommonFun = cc.Class({
      * 显示推广员界面
      */
     showPromoter: function() {
+        CommonFun.getInstance().showProgress();
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
         CommonFun.getInstance().httpGet(httpUrl, (msg) => {
-            LoggerUtil.getInstance().log("caojun msg === " , msg);
+            
             if (msg.result == 0) {
                 GlobalCfg.USER_DATAS.promoterMainData = msg.data
                 let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
                 promoterPrefabPromise.then((prefab) => {
                     let promoterNode = cc.instantiate(prefab);
                     this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
+                    CommonFun.getInstance().hidProgress();
                 });
             }
             else {
                 CommonFun.getInstance().showTips(msg.msg);
+                CommonFun.getInstance().hidProgress();
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },

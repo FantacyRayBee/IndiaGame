@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         btn_test1:cc.Button,
+        btn_testLogin:cc.Button,
         editBox_invited_test:cc.EditBox,
         editBox_chanel_test:cc.EditBox,
     },
@@ -151,6 +152,7 @@ cc.Class({
         this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
         this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
+        this.btn_testLogin.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
 
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     },
@@ -321,6 +323,21 @@ cc.Class({
                         this.editBox_invited_test.node.active = true
                         this.editBox_chanel_test.node.active = true
                     }
+                }
+            }
+        }
+        else if (btnName === "btn_testLogin") {
+            let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+            if (packageChannel && packageChannel.indexOf("_") != -1) {
+                let packageChannelArr = packageChannel.split("_"); 
+                let server = packageChannelArr[0];
+                if (server == "0") { //只有测试服才能打开测试按钮
+                    if (this.editBox_account.string == "") {
+                        return;
+                    }
+                    GlobalCfg.G_COMPONENTS.Audio.playButton();
+                    CommonFun.getInstance().showProgress();
+                    this.dealTestLoginEvent();
                 }
             }
         }
@@ -526,6 +543,25 @@ cc.Class({
     dealFacebookLoginEvent: function() {
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         WXManager.login();
+    },
+
+    dealTestLoginEvent: function() {
+        let obj = {
+            loginType: "USERID",
+            userid: this.editBox_account.string,
+        };
+        GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
+        let promise = SceneManager.getInstance().reqTokenInfo(obj);
+        promise.then(() => {
+            return SceneManager.getInstance().reqBearerToken();
+        }).then(() => {
+            return SceneManager.getInstance().reqUserDataInfo();
+        }).then(() => {
+            CommonFun.getInstance().showProgress();
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+        }).catch(error => {
+            LoggerUtil.getInstance().log(error);
+        });
     },
 
     dealGuestLoginEvent: function() {

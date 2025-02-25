@@ -8,6 +8,7 @@ cc.Class({
   "extends": cc.Component,
   properties: {
     btn_test1: cc.Button,
+    btn_testLogin: cc.Button,
     editBox_invited_test: cc.EditBox,
     editBox_chanel_test: cc.EditBox
   },
@@ -119,6 +120,7 @@ cc.Class({
     this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
     this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
+    this.btn_testLogin.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
   onEventMsg: function onEventMsg(webData, target) {
@@ -271,6 +273,21 @@ cc.Class({
             this.editBox_invited_test.node.active = true;
             this.editBox_chanel_test.node.active = true;
           }
+        }
+      }
+    } else if (btnName === "btn_testLogin") {
+      var _packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+      if (_packageChannel && _packageChannel.indexOf("_") != -1) {
+        var _packageChannelArr = _packageChannel.split("_");
+        var _server = _packageChannelArr[0];
+        if (_server == "0") {
+          //只有测试服才能打开测试按钮
+          if (this.editBox_account.string == "") {
+            return;
+          }
+          GlobalCfg.G_COMPONENTS.Audio.playButton();
+          CommonFun.getInstance().showProgress();
+          this.dealTestLoginEvent();
         }
       }
     }
@@ -478,6 +495,24 @@ cc.Class({
   dealFacebookLoginEvent: function dealFacebookLoginEvent() {
     GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
     WXManager.login();
+  },
+  dealTestLoginEvent: function dealTestLoginEvent() {
+    var obj = {
+      loginType: "USERID",
+      userid: this.editBox_account.string
+    };
+    GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
+    var promise = SceneManager.getInstance().reqTokenInfo(obj);
+    promise.then(function () {
+      return SceneManager.getInstance().reqBearerToken();
+    }).then(function () {
+      return SceneManager.getInstance().reqUserDataInfo();
+    }).then(function () {
+      CommonFun.getInstance().showProgress();
+      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+    })["catch"](function (error) {
+      LoggerUtil.getInstance().log(error);
+    });
   },
   dealGuestLoginEvent: function dealGuestLoginEvent() {
     if (this.testButtonIsActive) {
