@@ -80,7 +80,7 @@ var SceneManager = cc.Class({
     // 从小游戏场景跳转到大厅场景
     else if (fromSceneName !== this.sceneType.UPDATE && fromSceneName !== this.sceneType.LOBBY && toSceneName === this.sceneType.LOBBY) {
       GameServerManager.clientCloseServer();
-      Promise.all([this.reqUserDataInfo(), this.loadBundleScene(toSceneName)]).then(function (arr) {
+      Promise.all([this.reqUserDataInfo(), this.getPromoterData(), this.loadBundleScene(toSceneName)]).then(function (arr) {
         var scene = arr[1];
         _this.curSceneType = toSceneName;
         cc.director.runScene(scene, function () {}, function () {
@@ -990,6 +990,25 @@ var SceneManager = cc.Class({
         });
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_USERDATA_INFO_FAIL);
         reject("/V1/userinfo interface, request for server data timeout!");
+      }, GlobalCfg.USER_DATAS.BearerToken);
+    });
+  },
+  // 获取推广员数据
+  getPromoterData: function getPromoterData() {
+    return new Promise(function (resolve, reject) {
+      var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+      CommonFun.getInstance().httpGet(httpUrl, function (msg) {
+        if (msg.result == 0) {
+          GlobalCfg.USER_DATAS.promoterMainData = msg.data;
+          resolve();
+        } else {
+          CommonFun.getInstance().showTips(msg.msg);
+          CommonFun.getInstance().hidProgress();
+          reject("/V1/promoter interface, server returned abnormal data!");
+        }
+      }, function (msg) {
+        CommonFun.getInstance().hidProgress();
+        reject("/V1/promoter interface, request for server data timeout!");
       }, GlobalCfg.USER_DATAS.BearerToken);
     });
   },
