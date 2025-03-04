@@ -15,6 +15,7 @@ cc.Class({
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
       fromid: GlobalCfg.PRODUCT_ID //平台
+      // isFree: true,       //是否进入免费场
     });
   },
 

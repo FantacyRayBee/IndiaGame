@@ -1460,8 +1460,8 @@
     "relativePath": "ResourcesBundle\\res"
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
-    "asset": 1740474067709,
-    "meta": 1740474096438,
+    "asset": 1741077672818,
+    "meta": 1741077682985,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -5884,11 +5884,6 @@
     "meta": 1740121885447,
     "relativePath": "lhdGame\\lhdScr\\lhdPlayerItemCtrl.js"
   },
-  "6abf487a-dc40-4669-8e58-c6b8d1f87898": {
-    "asset": 1724821647000,
-    "meta": 1734679077421,
-    "relativePath": "lhdGame\\lhdScr\\lhdSendReq.js"
-  },
   "cd3cbd40-bbe4-48fd-b242-0a2346a11144": {
     "asset": 1724821647000,
     "meta": 1734679077436,
@@ -6930,8 +6925,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\FirstGiftDiamond"
   },
   "aa65b733-0726-45a2-806f-991f857da074": {
-    "asset": 1736752997264,
-    "meta": 1736753308074,
+    "asset": 1741077672814,
+    "meta": 1741077683009,
     "relativePath": "ResourcesBundle\\NewPlan\\FirstRecharge"
   },
   "2f3e5cf0-171d-4fc7-b61d-a8ff42efe58c": {
@@ -7115,8 +7110,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawErrorTips"
   },
   "25d774f7-d09d-47ea-9ba2-117fa584232d": {
-    "asset": 1728960021247,
-    "meta": 1736753308103,
+    "asset": 1741077672816,
+    "meta": 1741077683009,
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawPreData"
   },
   "73504a68-2356-46f0-b04a-8f3f8bcd24fe": {
@@ -10835,8 +10830,8 @@
     "relativePath": "Main\\res\\updateScene\\btn_hw_0.png"
   },
   "8a967505-2829-4dcf-9447-4a81c44ace84": {
-    "asset": 1737358635289,
-    "meta": 1737358661996,
+    "asset": 1741077672811,
+    "meta": 1741077683419,
     "relativePath": "Main\\Script\\Common\\Config"
   },
   "ca29df22-e887-4f1b-b0ae-1fa7f30e3393": {
@@ -10855,8 +10850,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1740972865478,
-    "meta": 1740972946068,
+    "asset": 1741077672812,
+    "meta": 1741077683420,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
@@ -11815,8 +11810,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\FirstRecharge\\firstRecharge_V.prefab"
   },
   "fbbb36fb-2bb9-4616-905b-3a98adf4d9e7": {
-    "asset": 1740981919956,
-    "meta": 1740981919967,
+    "asset": 1741077672814,
+    "meta": 1741077683898,
     "relativePath": "ResourcesBundle\\NewPlan\\FirstRecharge\\FirstRecharge.prefab"
   },
   "e7a055a5-9cfe-4ec0-9694-937be573b582": {
@@ -12650,8 +12645,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawShare\\WithDrawShare.prefab"
   },
   "34efa4d7-86b7-49d3-a599-728840277159": {
-    "asset": 1740984900346,
-    "meta": 1740984900353,
+    "asset": 1741077672817,
+    "meta": 1741077683902,
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawPreData\\WithDrawPreData.prefab"
   },
   "d7e6392d-dc1a-4e65-bedf-df408f06a498": {
@@ -22026,17 +22021,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1740972946081,
+    "meta": 1741077683929,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1740972946081,
+    "meta": 1741077683925,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1740972946079,
+    "meta": 1741077683928,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -22061,7 +22056,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1740972946082,
+    "meta": 1741077683928,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -22076,7 +22071,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1740972946083,
+    "meta": 1741077683926,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22086,7 +22081,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1740972946084,
+    "meta": 1741077683927,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22096,7 +22091,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1740972946086,
+    "meta": 1741077683931,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22111,7 +22106,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1740972946084,
+    "meta": 1741077683930,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22136,7 +22131,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1740972946087,
+    "meta": 1741077683935,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22151,7 +22146,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1740972946086,
+    "meta": 1741077683934,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22161,7 +22156,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1740972946085,
+    "meta": 1741077683932,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22196,12 +22191,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1740972946088,
+    "meta": 1741077683936,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1740972946089,
+    "meta": 1741077683937,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22465,8 +22460,8 @@
     "relativePath": "vampireMachine"
   },
   "c30ad3b4-015c-4c36-9f30-502635e3bfb5": {
-    "asset": 1733211622066,
-    "meta": 1734679071177,
+    "asset": 1741077672821,
+    "meta": 1741077682984,
     "relativePath": "mayaMachine"
   },
   "8b6d7314-598e-4fd6-8742-afdf4126738b": {
@@ -22490,8 +22485,8 @@
     "relativePath": "vampireMachine\\spine"
   },
   "bae97c7f-3ad6-478d-8c5e-f87c1e133e9d": {
-    "asset": 1737358635614,
-    "meta": 1737358660733,
+    "asset": 1741072110912,
+    "meta": 1741077682986,
     "relativePath": "vampireMachine\\sprite"
   },
   "b8469afe-1827-4f0b-bcbe-4059a1bfde8c": {
@@ -22535,8 +22530,8 @@
     "relativePath": "mayaMachine\\src"
   },
   "2036f362-7780-4f77-b9f6-7dcc43fa7374": {
-    "asset": 1732694345354,
-    "meta": 1734679071841,
+    "asset": 1741077672822,
+    "meta": 1741077682998,
     "relativePath": "mayaMachine\\mayaMachine.fire"
   },
   "62d8eec4-8a74-4c2e-a345-b2d37ac21a7a": {
@@ -22835,8 +22830,8 @@
     "relativePath": "mayaMachine\\font\\winFont.png"
   },
   "28209d43-4164-4a4a-b452-7060456c107f": {
-    "asset": 1737705665187,
-    "meta": 1737705681260,
+    "asset": 1741077672824,
+    "meta": 1741077683005,
     "relativePath": "mayaMachine\\sprite\\bg"
   },
   "a9c116e3-86b9-4c70-a6b7-8b420e86ecd0": {
@@ -22850,8 +22845,8 @@
     "relativePath": "mayaMachine\\sprite\\main"
   },
   "25c40f13-85e9-45a7-a99e-6422da4ca17a": {
-    "asset": 1737705665195,
-    "meta": 1737705681262,
+    "asset": 1741077672808,
+    "meta": 1741077683007,
     "relativePath": "mayaMachine\\sprite\\sysboms"
   },
   "67ded5e5-a8c2-4a3b-b34c-34eb4a3b27b7": {
@@ -23151,7 +23146,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1737357038117,
-    "meta": 1740972946089,
+    "meta": 1741077683938,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
@@ -23460,8 +23455,8 @@
     "relativePath": "mayaMachine\\sprite\\bg\\my_grand.png"
   },
   "db36962e-878f-48d5-bd87-dfb4e7c52680": {
-    "asset": 1737705665178,
-    "meta": 1737705682082,
+    "asset": 1741077672824,
+    "meta": 1741077683923,
     "relativePath": "mayaMachine\\sprite\\bg\\gates_oly_bg.png"
   },
   "12846bff-9647-48de-aa85-9b02cac69083": {
@@ -25076,22 +25071,27 @@
   },
   "f2a86e19-7ddc-4457-8773-690b697ecb54": {
     "asset": 1740972865478,
-    "meta": 1740972931433,
+    "meta": 1741077683890,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
   "fd6eade7-b80a-4002-bcab-4dec7f9b556e": {
-    "asset": 1740982958040,
-    "meta": 1740982963793,
+    "asset": 1741077672811,
+    "meta": 1741077683532,
     "relativePath": "Main\\Script\\Common\\Config\\english.js"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1740989564307,
-    "meta": 1740989581031,
+    "asset": 1741077672812,
+    "meta": 1741077683799,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1740992323899,
-    "meta": 1740992376223,
+    "asset": 1741077672818,
+    "meta": 1741077683417,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "6abf487a-dc40-4669-8e58-c6b8d1f87898": {
+    "asset": 1741077968927,
+    "meta": 1741077973836,
+    "relativePath": "lhdGame\\lhdScr\\lhdSendReq.js"
   }
 }
