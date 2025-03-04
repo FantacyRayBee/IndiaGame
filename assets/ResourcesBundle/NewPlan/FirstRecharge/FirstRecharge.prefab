@@ -5277,8 +5277,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 383.54,
-      "height": 27.72
+      "width": 509,
+      "height": 61
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -5289,8 +5289,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -66.776,
-        -170.83,
+        -91.701,
+        -187,
         0,
         0,
         0,
@@ -5329,10 +5329,10 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Only one chance. choose any one to buy. ",
-    "_N$string": "Only one chance. choose any one to buy. ",
+    "_string": "After you complete your first deposit, all your winning coins can be withdrawn",
+    "_N$string": "After you complete your first deposit, all your winning coins can be withdrawn",
     "_fontSize": 22,
-    "_lineHeight": 22,
+    "_lineHeight": 28,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "74b6746e-9573-40e3-b82d-3ec3123b6eed"
@@ -5345,7 +5345,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 1,
     "_N$cacheMode": 1,
     "_id": ""
   },

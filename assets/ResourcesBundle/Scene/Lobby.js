@@ -929,7 +929,10 @@ cc.Class({
          * 新人奖励
          */
         if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
-            this.showFirstGiftToast();
+            // this.showFirstGiftToast();
+            GlobalCfg.USER_DATAS.firstGiftDiamond = 0;
+            this.updateToastLocalStorageByHours("FirstRecharge", 1); //原先弹出领取50金币的弹窗，现在改为弹出首充界面
+            this.showFirstRechargeToast();
             return;
         };
 
@@ -964,8 +967,8 @@ cc.Class({
          */
         else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
                 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-            this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
-            this.showWithDrawToast();
+            // this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+            // this.showWithDrawToast();
         }
         /** 
          * 首充
