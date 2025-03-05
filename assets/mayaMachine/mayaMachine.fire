@@ -12684,7 +12684,7 @@
         "__id__": 374
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -22031,10 +22031,10 @@
       "__uuid__": "2bbeaff6-4be9-4b38-aefb-61c1c2f777b4"
     },
     "_N$hoverSprite": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "c55c2dd1-4b84-484b-bcef-5439e3e05060"
     },
     "hoverSprite": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "c55c2dd1-4b84-484b-bcef-5439e3e05060"
     },
     "_N$disabledSprite": {
       "__uuid__": "2bbeaff6-4be9-4b38-aefb-61c1c2f777b4"
@@ -26884,7 +26884,7 @@
     },
     "_enabled": true,
     "btn_back": {
-      "__id__": 425
+      "__id__": 543
     },
     "btn_add": {
       "__id__": 401
@@ -26920,13 +26920,13 @@
       "__id__": 473
     },
     "btn_auto": {
-      "__id__": 481
+      "__id__": 511
     },
     "btn_spin": {
-      "__id__": 454
+      "__id__": 518
     },
     "toggle_fast": {
-      "__id__": 460
+      "__id__": 504
     },
     "toggle_auto": {
       "__id__": 486
@@ -26941,22 +26941,30 @@
       {
         "__id__": 20
       },
-      null,
-      null,
-      null,
-      null
+      {
+        "__id__": 81
+      },
+      {
+        "__id__": 142
+      },
+      {
+        "__id__": 203
+      },
+      {
+        "__id__": 264
+      }
     ],
     "lab_autoBetCiShu": {
       "__id__": 488
     },
     "lab_betAmount": {
-      "__id__": 495
+      "__id__": 532
     },
     "lab_totalWin": {
-      "__id__": 493
+      "__id__": 530
     },
     "lab_jb": {
-      "__id__": 427
+      "__id__": 535
     },
     "pab_setting": {
       "__uuid__": "f92f7d15-4274-42b8-a6fe-e77bbd08429f"
