@@ -224,9 +224,9 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
         };
-        if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
-            GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
-        };
+        // if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
+        //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
+        // };
     
         this.checkShiPei();
         this.setBtnsClick();
@@ -1778,29 +1778,27 @@ cc.Class({
         let localPos = this.btn_enterGameMask.node.convertToNodeSpaceAR(worldPos);
         this.node_enterGame.position = localPos;
 
-        playnowClick = () => {
+        this.btn_playnow.node.targetOff(this);
+        this.btn_free.node.targetOff(this);
+
+        this.btn_playnow.node.on("click", ()=>{
             GlobalCfg.GAME_ENTER_ISFREE = false;
             if(callback){
                 callback();
             }
             this.btn_enterGameMask.node.active = false;
             this.node_enterGame.active = false;
-            LoggerUtil.getInstance().log("playnowClick");
-        }
-        freeClick = () => {
+        }, this);
+
+        this.btn_free.node.on("click", ()=>{
             GlobalCfg.GAME_ENTER_ISFREE = true;
             if(callback){
                 callback();
             }
             this.btn_enterGameMask.node.active = false;
             this.node_enterGame.active = false;
-            LoggerUtil.getInstance().log("freeClick");
         }
-        this.btn_playnow.node.targetOff(this);
-        this.btn_free.node.targetOff(this);
-
-        this.btn_playnow.node.on("click", playnowClick, this);
-        this.btn_free.node.on("click", freeClick, this);
+        , this);
     },
 
     showGameRoomList: function() { 
