@@ -433,6 +433,10 @@ window.GlobalCfg = {
    * 用户数据
    */
   USER_DATAS: {},
+  /**
+   * 游戏是否是免费场
+   */
+  GAME_ENTER_ISFREE: false,
 
   /**
    * 应用配置数据

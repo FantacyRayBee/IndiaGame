@@ -372,6 +372,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
    */
   USER_DATAS: {},
   /**
+   * 游戏是否是免费场
+   */
+  GAME_ENTER_ISFREE: false,
+  /**
    * 应用配置数据
    */
   APP_CONFIG_DATAS: [],

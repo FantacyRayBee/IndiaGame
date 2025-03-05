@@ -111,7 +111,9 @@ cc.Class({
     GameServerManager.send("gameservice.login", "LoginReq", {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
-      fromid: GlobalCfg.PRODUCT_ID //平台ID
+      fromid: GlobalCfg.PRODUCT_ID,
+      //平台ID
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
 
@@ -325,6 +327,11 @@ cc.Class({
   },
   checkCoin: function checkCoin(coin, danzhu) {
     var _this3 = this;
+    //playnow模式下 首充玩家 弹VIP弹框
+    if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+      CommonFun.getInstance().showVipRechargeToast();
+      return false;
+    }
     if (coin < danzhu) {
       CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
         if (_this3.paymentSwitch) {
@@ -1714,7 +1721,9 @@ cc.Class({
       //用户ID
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
-      fromid: GlobalCfg.PRODUCT_ID //平台
+      fromid: GlobalCfg.PRODUCT_ID,
+      //平台
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
 

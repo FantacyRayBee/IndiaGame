@@ -36,6 +36,11 @@ cc.Class({
     },
 
     onSignClick: function() {
+        //playnow模式下 首充玩家 弹VIP弹框
+        if (GlobalCfg.USER_DATAS.recharged == 0) {
+            CommonFun.getInstance().showVipRechargeToast();
+            return;
+        }
         GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
         CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {

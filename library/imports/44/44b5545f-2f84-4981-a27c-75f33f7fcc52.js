@@ -13,10 +13,9 @@ cc.Class({
     GameServerManager.send("gameservice.login", "LoginReq", {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
-      fromid: GlobalCfg.PRODUCT_ID //平台ID
+      fromid: GlobalCfg.PRODUCT_ID
     });
   },
-
   QueryGameEndInfoReq: function QueryGameEndInfoReq() {
     GameServerManager.send("gameservice.querygameendinfo", "QueryGameEndInfoReq", {});
   },
@@ -43,6 +42,11 @@ cc.Class({
       LoggerUtil.getInstance().log("非下注状态");
       CommonFun.getInstance().showTips('non betting stage');
     } else {
+      //playnow模式下 首充玩家 弹VIP弹框
+      if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+        CommonFun.getInstance().showVipRechargeToast();
+        return;
+      }
       if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
         //未曾充值
         CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {

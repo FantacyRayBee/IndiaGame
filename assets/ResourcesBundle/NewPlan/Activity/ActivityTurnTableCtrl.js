@@ -42,6 +42,11 @@ cc.Class({
     },
 
     btnClick: function(btn) {
+        //playnow模式下 首充玩家 弹VIP弹框
+        if (GlobalCfg.USER_DATAS.recharged == 0) {
+            CommonFun.getInstance().showVipRechargeToast();
+            return;
+        }
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.btn_go.interactable = false;
         let url =  GlobalCfg.HTTP_SERVER + "/v1/turntabledraw";

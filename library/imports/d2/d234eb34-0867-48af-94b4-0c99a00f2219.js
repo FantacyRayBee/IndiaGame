@@ -472,6 +472,11 @@ cc.Class({
       return;
     }
     if (this.betStatus) {
+      //playnow模式下 首充玩家 弹VIP弹框
+      if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+        CommonFun.getInstance().showVipRechargeToast();
+        return;
+      }
       this.playGameSound('Sound/s' + types);
       if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
         //未曾充值

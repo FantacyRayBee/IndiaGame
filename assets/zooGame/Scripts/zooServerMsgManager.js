@@ -19,6 +19,7 @@ cc.Class({
         GameServerManager.send("gameservice.login", "LoginReq", {
             userid: GlobalCfg.USER_DATAS.userId,
             token: GlobalCfg.USER_DATAS.token,
+            isFree: GlobalCfg.GAME_ENTER_ISFREE,       //是否进入免费场
         });
     },
 
@@ -56,6 +57,11 @@ cc.Class({
      */
     sendBetMsg(chips) {
         if(GlobalCfg.ACT_SCENE_CTRL.gameState == 0){
+            //playnow模式下 首充玩家 弹VIP弹框
+            if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+                CommonFun.getInstance().showVipRechargeToast();
+                return;
+            }
             let allBet = 0;
             for (let i = 0; i < chips.length; i++) {
                 let chip = chips[i];

@@ -65,6 +65,7 @@ message LoginReq {
   string userid = 1;
   string token = 2;
   uint32 fromid = 3;
+  bool isFree = 4;  // 是否免费
 }
 message LoginAck {
   ResponseBase result = 1;

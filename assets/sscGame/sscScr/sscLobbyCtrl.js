@@ -62,7 +62,8 @@ cc.Class({
         GameServerManager.send("gameservice.login", "LoginReq", {
             userid: GlobalCfg.USER_DATAS.userId,
             token: GlobalCfg.USER_DATAS.token,
-            fromid: GlobalCfg.PRODUCT_ID //平台ID
+            fromid: GlobalCfg.PRODUCT_ID,
+            isFree: GlobalCfg.GAME_ENTER_ISFREE,       //是否进入免费场
         });
     },
 
@@ -751,11 +752,17 @@ cc.Class({
         GameServerManager.send("gameservice.login", "LoginReq", {
             userid: GlobalCfg.USER_DATAS.userId, 
             token : GlobalCfg.USER_DATAS.token,  
-            fromid: GlobalCfg.PRODUCT_ID    //平台ID
+            fromid: GlobalCfg.PRODUCT_ID,
+            isFree: GlobalCfg.GAME_ENTER_ISFREE,       //是否进入免费场
         });
     },
 
     callReq:function(CardType,coin){
+        //playnow模式下 首充玩家 弹VIP弹框
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+            CommonFun.getInstance().showVipRechargeToast();
+            return false;
+        }
         let amount = 0
         if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
