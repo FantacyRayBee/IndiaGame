@@ -695,29 +695,29 @@ cc.Class({
             let freeCount = this.gameResult.mianfeinum;
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
-                    bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
-                            let scene = cc.director.getScene();
-                            let RewardTipsNode = cc.instantiate(prefab);
-                            let RewardTipsCtrl = RewardTipsNode.getComponent("slotRewardTipsCtrl");
-                            scene.addChild(RewardTipsNode);
-                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-                            .then(() => {
-                                this.showSpinResult(totalMultiple);
-                                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-                            });
-                        };
-                    });
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载indiaMachine-Bundle异常: ${JSON.stringify(err)}`);
-                });
-            }
-            else {
+            // if (bigWinLevel > 0) {
+            //     CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
+            //         bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
+            //             if (!err) {
+            //                 let scene = cc.director.getScene();
+            //                 let RewardTipsNode = cc.instantiate(prefab);
+            //                 let RewardTipsCtrl = RewardTipsNode.getComponent("slotRewardTipsCtrl");
+            //                 scene.addChild(RewardTipsNode);
+            //                 RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+            //                 .then(() => {
+            //                     this.showSpinResult(totalMultiple);
+            //                     this.runChangeTotalWinScore(startScore, endedScore, freeCount);
+            //                 });
+            //             };
+            //         });
+            //     }, (err) => {
+            //         LoggerUtil.getInstance().error(`加载indiaMachine-Bundle异常: ${JSON.stringify(err)}`);
+            //     });
+            // }
+            // else {
                 this.showSpinResult(totalMultiple);
                 this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            };
+            // };
 
         };
     },

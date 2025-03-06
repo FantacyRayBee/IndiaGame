@@ -172,8 +172,12 @@ cc.Class({
     },
 
     dealBtnSpinEvent: function() {
+        //playnow模式下 首充玩家 弹VIP弹框
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+            CommonFun.getInstance().showVipRechargeToast();
+            return;
+        }
         this.setBtnSpinInteractableStatus(false);
-        
         let bet = this.betArr[this.betIndex];
         ClientNotify.send(
             GlobalCfg.MSG_TYPE.clientMsg, 

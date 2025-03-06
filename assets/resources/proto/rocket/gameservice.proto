@@ -39,7 +39,8 @@ enum RoomStatus {
 message LoginReq {
   string userid = 1;  // 用户ID
   string token = 2;   // 登录服拿到的token
-  bool isFree = 3;  // 是否免费
+  uint32 fromid = 3; //来源平台ID
+  bool isFree = 4;  // 是否免费
 }
 message LoginAck {
   ResponseBase result = 1;

@@ -693,29 +693,29 @@ cc.Class({
             let freeCount = this.gameResult.mianfeinum;
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
-                    bundle.load("prefab/mayaRewardTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
-                            let scene = cc.director.getScene();
-                            let mayaRewardTipsNode = cc.instantiate(prefab);
-                            let mayaRewardTipsCtrl = mayaRewardTipsNode.getComponent("mayaRewardTipsCtrl");
-                            scene.addChild(mayaRewardTipsNode);
-                            mayaRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-                            .then(() => {
-                                this.showSpinResult(totalMultiple);
-                                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-                            });
-                        };
-                    });
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载mayaMachine-Bundle异常: ${JSON.stringify(err)}`);
-                });
-            }
-            else {
+            // if (bigWinLevel > 0) {
+            //     CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
+            //         bundle.load("prefab/mayaRewardTips", cc.Prefab, (err, prefab) => {
+            //             if (!err) {
+            //                 let scene = cc.director.getScene();
+            //                 let mayaRewardTipsNode = cc.instantiate(prefab);
+            //                 let mayaRewardTipsCtrl = mayaRewardTipsNode.getComponent("mayaRewardTipsCtrl");
+            //                 scene.addChild(mayaRewardTipsNode);
+            //                 mayaRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+            //                 .then(() => {
+            //                     this.showSpinResult(totalMultiple);
+            //                     this.runChangeTotalWinScore(startScore, endedScore, freeCount);
+            //                 });
+            //             };
+            //         });
+            //     }, (err) => {
+            //         LoggerUtil.getInstance().error(`加载mayaMachine-Bundle异常: ${JSON.stringify(err)}`);
+            //     });
+            // }
+            // else {
                 this.showSpinResult(totalMultiple);
                 this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            };
+            // };
 
         };
     },

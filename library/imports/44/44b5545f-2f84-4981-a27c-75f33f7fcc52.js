@@ -13,9 +13,11 @@ cc.Class({
     GameServerManager.send("gameservice.login", "LoginReq", {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
-      fromid: GlobalCfg.PRODUCT_ID
+      fromid: GlobalCfg.PRODUCT_ID,
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
+
   QueryGameEndInfoReq: function QueryGameEndInfoReq() {
     GameServerManager.send("gameservice.querygameendinfo", "QueryGameEndInfoReq", {});
   },

@@ -1347,7 +1347,8 @@ cc.Class({
         GameServerManager.send(proroID, message, {
             userid: GlobalCfg.USER_DATAS.userId,
             token: GlobalCfg.USER_DATAS.token,
-            fromid: 2001
+            fromid: 2001,
+            isFree: GlobalCfg.GAME_ENTER_ISFREE,       //是否进入免费场
         });
     },
 

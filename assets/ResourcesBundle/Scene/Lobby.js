@@ -272,6 +272,8 @@ cc.Class({
         }
         else {
             this.showTransBounsRedPoint();
+            LoggerUtil.getInstance().log("caojun  GlobalCfg.FIRST_RECHARGE_TIPS_SHOW ===> ", GlobalCfg.FIRST_RECHARGE_TIPS_SHOW);
+            LoggerUtil.getInstance().log("caojun  GlobalCfg.FIRST_RECHARGE_REWARD_SHOW ===> ", GlobalCfg.FIRST_RECHARGE_REWARD_SHOW);
             if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
                 let shopParentNode = CommonFun.getInstance().getLayerNode(GlobalCfg.PREFAB_PARENT.SHOP);
                 if(cc.isValid(shopParentNode.getChildByName("newshop"))){
@@ -281,7 +283,19 @@ cc.Class({
                     shopParentNode.getChildByName("newWithdrawal").destroy(); 
                 };
                 this.showFirstRechargeTipPopup();
-            };
+            }
+            if (GlobalCfg.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
+                let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
+                let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+                let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
+                GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
+                if (getBouns > 0) {
+                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);
+                }
+                else {
+                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }]);
+                }
+            }
                   
             if (window["isNeedShowWithDrawPreData"]) {
                 window["isNeedShowWithDrawPreData"] = false;
@@ -1009,17 +1023,6 @@ cc.Class({
             this.updateToastLocalStorageByHours("Promoter", 1);
             this.showPromoterToast();
         };
-
-        /**
-         * 救济金
-         * 
-         */
-        if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
-            this.scheduleOnce(() => {
-                this.showReliefToast();
-            }, 0.5);
-        };
-        
     },
 
     dealRechargeToast: function() {
@@ -1059,6 +1062,15 @@ cc.Class({
             CommonFun.getInstance().showRewardsTips(voucherDayGift);
             GlobalCfg.USER_DATAS.voucherDayGift = [];
         }
+        /**
+         * 救济金
+         * 
+         */
+        if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
+            this.scheduleOnce(() => {
+                this.showReliefToast();
+            }, 0.5);
+        };
     },
 
     /**
@@ -1555,11 +1567,9 @@ cc.Class({
         else if (btnName == "btn_andeer") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ANDAR_BUTTON);
             this.checkUpdate("andaerGame", () => {
-                this.showEnterGame(button.node, () =>{
-                    window.isNeedShowRoomList = "andar";
-                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.andeerData.product;
-                    this.showGameRoomList();
-                });
+                window.isNeedShowRoomList = "andar";
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.andeerData.product;
+                this.showGameRoomList();
             });
         } 
         else if( btnName == "btn_rummy") {
@@ -2202,7 +2212,9 @@ cc.Class({
         let defaultType = CommonFun.getInstance().getAppConfigValueByKey('POPUP_RechargeTip_Type', 1);
         switch (defaultType) {
             case 1:
-                CommonFun.getInstance().showAdvancedMode(false);
+                if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
+                    CommonFun.getInstance().showAdvancedMode(false);
+                }
                 break;
             case 2:
                 CommonFun.getInstance().showNewRechargeTip();

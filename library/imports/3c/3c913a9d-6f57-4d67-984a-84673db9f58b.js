@@ -1131,6 +1131,7 @@ var CommonFun = cc.Class({
    */
   showRewardsTips: function showRewardsTips(coin) {
     var _this10 = this;
+    LoggerUtil.getInstance().error("caojun showHallTip coin: ", coin);
     var count = 0;
     for (var i = 0; i < coin.length; i++) {
       count += coin[i].amount;

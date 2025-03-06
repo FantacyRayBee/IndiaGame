@@ -1324,9 +1324,11 @@ cc.Class({
     GameServerManager.send(proroID, message, {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
-      fromid: 2001
+      fromid: 2001,
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
+
   choiceBetButton: function choiceBetButton(button) {
     var scale = 1.1;
     var btnArr = ['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100'];

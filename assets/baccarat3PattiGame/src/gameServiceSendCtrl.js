@@ -11,6 +11,7 @@ cc.Class({
             userid: GlobalCfg.USER_DATAS.userId, 
             token : GlobalCfg.USER_DATAS.token,  
             fromid: GlobalCfg.PRODUCT_ID,
+            isFree: GlobalCfg.GAME_ENTER_ISFREE,       //是否进入免费场
         });
     },
 
