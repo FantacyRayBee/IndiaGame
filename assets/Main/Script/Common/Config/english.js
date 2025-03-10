@@ -62,7 +62,6 @@ window.activityLanguage = {
     lab_cash:["lab_cash","Cash","जमा","کیش","নগদ"],
     lab_bonus:["lab_bonus","Bonus","बोनस","بونس","বোনাস"],
     lab_otheramount:["lab_otheramount","Other Amount >>","अन्य राशि >>","دیگر رقم >>","অন্যান্য পরিমাণ >>"],
-    lab_onlyone:["lab_onlyone","Only one chance. choose any one to buy.","सिर्फ एक मौका। खरीदने के लिए कोई एक चुनें","صرف ایک موقع ۔ خریداری کے لیے کوئی بھی ایک منتخب کریں","শুধু একটি সুযোগ। ক্রয় করার জন্য যেকোনো একটি বেছে নিন"],
     lab_addcash:["lab_addcash","ADD CASH","कैश जोड़े","کیش شامل کریں","নগদ যোগ করুন"],
     lab_TotalGet:["lab_TotalGet","Total Get","कुल सिक्का","مجموعی حصول","মোট প্রাপ্তি"],
     lab_get:["lab_get","Get","प्राप्त करें","حاصل کریں","পান"],

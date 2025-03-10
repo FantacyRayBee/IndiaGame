@@ -42,7 +42,6 @@ cc.Class({
 
     dealBtnAddCashEvent: function() {
         let _cb = ()=>{
-            this.node.destroy();
         };
         let commoditys = [...GlobalCfg.USER_DATAS.store];
         let commodityId = commoditys[0].id;
@@ -55,12 +54,12 @@ cc.Class({
             }
             else {
                 CommonFun.getInstance().showFirstRecharge();
-                this.node.destroy();
             };
         }
         else {
             CommonFun.getInstance().rechargeByCommodityId(commodityId, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast, _cb);
         };
+        this.node.destroy();
     },
 
     dealBtnOtherAmountEvent: function() {

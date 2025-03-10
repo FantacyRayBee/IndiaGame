@@ -17,7 +17,10 @@ cc.Class({
   sendLoginMessage: function sendLoginMessage() {
     GameServerManager.send("gameservice.login", "LoginReq", {
       userid: GlobalCfg.USER_DATAS.userId,
-      token: GlobalCfg.USER_DATAS.token
+      token: GlobalCfg.USER_DATAS.token,
+      fromid: 2001,
+      //平台
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
   /**

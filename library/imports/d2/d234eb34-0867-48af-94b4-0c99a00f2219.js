@@ -472,6 +472,11 @@ cc.Class({
       return;
     }
     if (this.betStatus) {
+      //playnow模式下 首充玩家 弹VIP弹框
+      if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+        CommonFun.getInstance().showVipRechargeToast();
+        return;
+      }
       this.playGameSound('Sound/s' + types);
       if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
         //未曾充值
@@ -1319,9 +1324,11 @@ cc.Class({
     GameServerManager.send(proroID, message, {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
-      fromid: 2001
+      fromid: 2001,
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
+
   choiceBetButton: function choiceBetButton(button) {
     var scale = 1.1;
     var btnArr = ['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100'];

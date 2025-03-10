@@ -15,7 +15,10 @@ cc.Class({
   sendLoginMsg: function sendLoginMsg() {
     GameServerManager.send("gameservice.login", "LoginReq", {
       userid: GlobalCfg.USER_DATAS.userId,
-      token: GlobalCfg.USER_DATAS.token
+      token: GlobalCfg.USER_DATAS.token,
+      fromid: 2001,
+      //平台
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
   // 刷新游戏场景
@@ -50,6 +53,11 @@ cc.Class({
   sendBetMsg: function sendBetMsg(chips) {
     var _this = this;
     if (GlobalCfg.ACT_SCENE_CTRL.gameState == 0) {
+      //playnow模式下 首充玩家 弹VIP弹框
+      if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+        CommonFun.getInstance().showVipRechargeToast();
+        return;
+      }
       // 0 下注中
       var allBet = 0;
       for (var i = 0; i < chips.length; i++) {

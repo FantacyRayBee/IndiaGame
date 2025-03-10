@@ -14,7 +14,9 @@ cc.Class({
       //用户ID
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
-      fromid: GlobalCfg.PRODUCT_ID //平台
+      fromid: GlobalCfg.PRODUCT_ID,
+      //平台
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
 

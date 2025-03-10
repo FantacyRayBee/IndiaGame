@@ -1131,6 +1131,7 @@ var CommonFun = cc.Class({
    */
   showRewardsTips: function showRewardsTips(coin) {
     var _this10 = this;
+    LoggerUtil.getInstance().error("caojun showHallTip coin: ", coin);
     var count = 0;
     for (var i = 0; i < coin.length; i++) {
       count += coin[i].amount;
@@ -2770,8 +2771,8 @@ var CommonFun = cc.Class({
     console.log("toastWithDrawFrequency2: ", GlobalCfg.USER_DATAS.userDiamond > defaultPopupWithdrawLimit * 100);
     console.log("toastWithDrawFrequency3: ", isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency));
     if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > defaultPopupWithdrawLimit * 100 && isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-      updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
-      CommonFun.getInstance().showPopUpWithDraw();
+      // updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+      // CommonFun.getInstance().showPopUpWithDraw();
     }
     ;
   },

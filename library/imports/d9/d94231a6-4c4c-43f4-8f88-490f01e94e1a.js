@@ -46,6 +46,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 当前场景方向 horizontal， vertical
   FIRST_RECHARGE_TIPS_SHOW: false,
   // 是否展示首充之后的提示弹窗
+  FIRST_RECHARGE_REWARD_SHOW: false,
+  // 是否展示首充之后获得的金币 弹窗
   /**
    * 是否存在 divertFreeTp界面
    */
@@ -371,6 +373,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
    * 用户数据
    */
   USER_DATAS: {},
+  /**
+   * 游戏是否是免费场
+   */
+  GAME_ENTER_ISFREE: false,
   /**
    * 应用配置数据
    */

@@ -519,6 +519,11 @@ cc.Class({
 
     clickBtnBetCallback(num) {
         if (this.isDuringBet == true) {
+            //playnow模式下 首充玩家 弹VIP弹框
+            if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+                CommonFun.getInstance().showVipRechargeToast();
+                return false;
+            }
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
                 CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()

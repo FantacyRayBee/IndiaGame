@@ -41,10 +41,7 @@ cc.Class({
     this.node.destroy();
   },
   dealBtnAddCashEvent: function dealBtnAddCashEvent() {
-    var _this = this;
-    var _cb = function _cb() {
-      _this.node.destroy();
-    };
+    var _cb = function _cb() {};
     var commoditys = [].concat(GlobalCfg.USER_DATAS.store);
     var commodityId = commoditys[0].id;
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
@@ -54,13 +51,13 @@ cc.Class({
         CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast);
       } else {
         CommonFun.getInstance().showFirstRecharge();
-        this.node.destroy();
       }
       ;
     } else {
       CommonFun.getInstance().rechargeByCommodityId(commodityId, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast, _cb);
     }
     ;
+    this.node.destroy();
   },
   dealBtnOtherAmountEvent: function dealBtnOtherAmountEvent() {
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);

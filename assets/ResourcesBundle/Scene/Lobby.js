@@ -174,6 +174,22 @@ cc.Class({
          * tp引导手指
          */
         node_tpFinger: cc.Node,
+        /**
+         * 游戏入口弹窗
+         */
+        node_enterGame: cc.Node,
+        /**
+         * 游戏入口弹窗挡板
+         */
+        btn_enterGameMask: cc.Button,
+        /**
+         * 真金入口
+         */
+        btn_playnow: cc.Button,
+        /**
+         * 免费入口
+         */
+        btn_free: cc.Button,
     },
 
     ctor: function() {
@@ -208,9 +224,9 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
         };
-        if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
-            GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
-        };
+        // if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
+        //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
+        // };
     
         this.checkShiPei();
         this.setBtnsClick();
@@ -256,6 +272,8 @@ cc.Class({
         }
         else {
             this.showTransBounsRedPoint();
+            LoggerUtil.getInstance().log("caojun  GlobalCfg.FIRST_RECHARGE_TIPS_SHOW ===> ", GlobalCfg.FIRST_RECHARGE_TIPS_SHOW);
+            LoggerUtil.getInstance().log("caojun  GlobalCfg.FIRST_RECHARGE_REWARD_SHOW ===> ", GlobalCfg.FIRST_RECHARGE_REWARD_SHOW);
             if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
                 let shopParentNode = CommonFun.getInstance().getLayerNode(GlobalCfg.PREFAB_PARENT.SHOP);
                 if(cc.isValid(shopParentNode.getChildByName("newshop"))){
@@ -265,7 +283,19 @@ cc.Class({
                     shopParentNode.getChildByName("newWithdrawal").destroy(); 
                 };
                 this.showFirstRechargeTipPopup();
-            };
+            }
+            if (GlobalCfg.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
+                let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
+                let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+                let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
+                GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
+                if (getBouns > 0) {
+                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);
+                }
+                else {
+                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }]);
+                }
+            }
                   
             if (window["isNeedShowWithDrawPreData"]) {
                 window["isNeedShowWithDrawPreData"] = false;
@@ -355,6 +385,8 @@ cc.Class({
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_quickRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_enterGameMask.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+
 
 
         this.btn_miniandar.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -929,7 +961,10 @@ cc.Class({
          * 新人奖励
          */
         if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
-            this.showFirstGiftToast();
+            // this.showFirstGiftToast();
+            GlobalCfg.USER_DATAS.firstGiftDiamond = 0;
+            this.updateToastLocalStorageByHours("FirstRecharge", 1); //原先弹出领取50金币的弹窗，现在改为弹出首充界面
+            this.showFirstRechargeToast();
             return;
         };
 
@@ -964,8 +999,8 @@ cc.Class({
          */
         else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
                 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-            this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
-            this.showWithDrawToast();
+            // this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+            // this.showWithDrawToast();
         }
         /** 
          * 首充
@@ -988,17 +1023,6 @@ cc.Class({
             this.updateToastLocalStorageByHours("Promoter", 1);
             this.showPromoterToast();
         };
-
-        /**
-         * 救济金
-         * 
-         */
-        if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
-            this.scheduleOnce(() => {
-                this.showReliefToast();
-            }, 0.5);
-        };
-        
     },
 
     dealRechargeToast: function() {
@@ -1038,6 +1062,15 @@ cc.Class({
             CommonFun.getInstance().showRewardsTips(voucherDayGift);
             GlobalCfg.USER_DATAS.voucherDayGift = [];
         }
+        /**
+         * 救济金
+         * 
+         */
+        if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
+            this.scheduleOnce(() => {
+                this.showReliefToast();
+            }, 0.5);
+        };
     },
 
     /**
@@ -1342,6 +1375,14 @@ cc.Class({
         else if (btnName == "btn_vip") {
             CommonFun.getInstance().showMyVip();
         }
+        else if (btnName == "btn_enterGameMask") {
+            this.btn_enterGameMask.node.active = false;
+            this.node_enterGame.active = false;
+        }
+        else if (btnName == "btn_playnow") {
+        }
+        else if (btnName == "btn_free") {
+        }
         else if(btnName == this.btn_goBetiing.node.name){
             CommonFun.getInstance().showGoBetting();
         }
@@ -1512,8 +1553,8 @@ cc.Class({
                     this.showGameRoomList();
                 });
             };
-        } 
-        else if (btnName == "btn_zjh2") {  
+        }
+        else if (btnName == "btn_zjh2") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_BUTTON);
             this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
@@ -1542,121 +1583,151 @@ cc.Class({
         else if (btnName == "btn_upDown") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_UPDOWN_GAME);
             this.checkUpdate("7up7downGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.upDownData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SEVENUPDOWN);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.upDownData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SEVENUPDOWN);
+                });
             });
         } 
         else if (btnName == "btn_lhd") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_LHD_GAME);
             this.checkUpdate("lhdGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.lhdData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LHD);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.lhdData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LHD);
+                });
             });
         } 
         else if(btnName == "btn_munda") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MUNDA_GAME);
             this.checkUpdate("munda", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mundaData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MUNDA);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mundaData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MUNDA);
+                });
             });
         } 
         else if (btnName == "btn_horseRace") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_HORSE_GAME);
             this.checkUpdate("horseRaceGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.horseRaceData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.HORSERACE);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.horseRaceData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.HORSERACE);
+                });
             });
         } 
         else if (btnName == "btn_fruitMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_FRUIT_GAME);
             this.checkUpdate("fruitMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SGJ);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SGJ);
+                });
             });
         } 
         else if (btnName == "btn_mayaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
             this.checkUpdate("mayaMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MAYA);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MAYA);
+                });
             });
         } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
             this.checkUpdate("indiaMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.INDIA);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.INDIA);
+                });
             });
         } 
         else if (btnName == "btn_vampireMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
             this.checkUpdate("vampireMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.VAMPIRE);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.VAMPIRE);
+                });
             });
         } 
         else if (btnName == "btn_Benz") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_BENZ_GAME);
             this.checkUpdate("Benz", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.benZData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.BENZ);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.benZData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.BENZ);
+                });
             });
         } 
         else if (btnName == "btn_baccarat3Patti") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_3PATTI_GAME);
             this.checkUpdate("baccarat3PattiGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.baccaratData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.BACCARAT);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.baccaratData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.BACCARAT);
+                });
             });
         }
         else if (btnName == "btn_ssc") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_SSC_GAME);
             this.checkUpdate("sscGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.sscData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SSC);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.sscData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SSC);
+                });
             });
         }
         else if (btnName == 'btn_rocket'){
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_CRASH_GAME);
             this.checkUpdate("rocket", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.rocketData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ROCKET);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.rocketData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ROCKET);
+                });
             });
         } 
         else if (btnName == 'btn_zoo'){
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ZOO_GAME);
             this.checkUpdate("zooGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.zooData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ZOO);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.zooData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ZOO);
+                });
             });
         } 
         else if (btnName == 'btn_cricket'){
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_CRICKET_GAME);
             this.checkUpdate("cricketGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.cricketData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CRICKET);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.cricketData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CRICKET);
+                });
             });
         } 
         else if (btnName == 'btn_zeus'){
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ZEUS_GAME);
             this.checkUpdate("zeusGame", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.zeusData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ZEUS);
+                this.showEnterGame(button.node, () =>{
+                    CommonFun.getInstance().showProgress();
+                    GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.zeusData.product;
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ZEUS);
+                });
             });
         } 
     },
@@ -1705,6 +1776,39 @@ cc.Class({
             //@ts-ignore
             GameDownloader.getInstance().priorLoadGame("tpGame");
         };
+    },
+
+    showEnterGame: function(node, callback) {
+        this.btn_enterGameMask.node.active = true;
+        this.node_enterGame.active = true;
+        // 设置预制体实例的父节点
+        this.node_enterGame.setParent(node);
+        let worldPos = node.convertToWorldSpaceAR(cc.v2(0, 0));
+        this.node_enterGame.setParent(this.btn_enterGameMask.node);
+        let localPos = this.btn_enterGameMask.node.convertToNodeSpaceAR(worldPos);
+        this.node_enterGame.position = localPos;
+
+        this.btn_playnow.node.targetOff(this);
+        this.btn_free.node.targetOff(this);
+
+        this.btn_playnow.node.on("click", ()=>{
+            GlobalCfg.GAME_ENTER_ISFREE = false;
+            if(callback){
+                callback();
+            }
+            this.btn_enterGameMask.node.active = false;
+            this.node_enterGame.active = false;
+        }, this);
+
+        this.btn_free.node.on("click", ()=>{
+            GlobalCfg.GAME_ENTER_ISFREE = true;
+            if(callback){
+                callback();
+            }
+            this.btn_enterGameMask.node.active = false;
+            this.node_enterGame.active = false;
+        }
+        , this);
     },
 
     showGameRoomList: function() { 
@@ -2108,7 +2212,9 @@ cc.Class({
         let defaultType = CommonFun.getInstance().getAppConfigValueByKey('POPUP_RechargeTip_Type', 1);
         switch (defaultType) {
             case 1:
-                CommonFun.getInstance().showAdvancedMode(false);
+                if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
+                    CommonFun.getInstance().showAdvancedMode(false);
+                }
                 break;
             case 2:
                 CommonFun.getInstance().showNewRechargeTip();

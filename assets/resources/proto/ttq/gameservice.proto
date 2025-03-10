@@ -48,6 +48,7 @@ message LoginReq {
     string token = 2;    //登录服拿到的token
     uint32 fromid = 3; //来源平台ID
     bool   isnew = 4;
+    bool isFree = 5;  // 是否免费
 }
 message LoginAck {
     ResponseBase result = 1;

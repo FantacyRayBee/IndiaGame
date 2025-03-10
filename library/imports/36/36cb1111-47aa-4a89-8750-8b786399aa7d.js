@@ -143,9 +143,11 @@ cc.Class({
     GameServerManager.send("gameservice.login", "LoginReq", {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
-      fromid: GlobalCfg.PRODUCT_ID
+      fromid: GlobalCfg.PRODUCT_ID,
+      isFree: GlobalCfg.GAME_ENTER_ISFREE //是否进入免费场
     });
   },
+
   onDestroy: function onDestroy() {
     GlobalCfg.ACT_SCENE_CTRL = null;
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
@@ -178,12 +180,18 @@ cc.Class({
     this.lab_A.string = curBetNum;
     this.lab_B.string = curBetNum;
   },
+  //玩家点击下注
   btnAckClick: function btnAckClick(button) {
     var btnName = button.node.name;
     if (this.isCanClickToAct == false) {
       return;
     }
     ;
+    //playnow模式下 首充玩家 弹VIP弹框
+    if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+      CommonFun.getInstance().showVipRechargeToast();
+      return;
+    }
     if (btnName == "btn_aBet") {
       GlobalCfg.ACT_SCENE_CTRL.AndererAudioCtrl.playGameSound("bet");
       var num = Number(this.lab_A.string);

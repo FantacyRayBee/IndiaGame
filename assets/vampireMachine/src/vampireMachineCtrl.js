@@ -718,29 +718,29 @@ cc.Class({
             let freeCount = this.gameResult.mianfeinum;
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
-                    bundle.load("prefab/vampireRewardTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
-                            let scene = cc.director.getScene();
-                            let RewardTipsNode = cc.instantiate(prefab);
-                            let RewardTipsCtrl = RewardTipsNode.getComponent("vampireRewardTipsCtrl");
-                            scene.addChild(RewardTipsNode);
-                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-                            .then(() => {
-                                this.showSpinResult(totalMultiple);
-                                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-                            });
-                        };
-                    });
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载vampireMachine-Bundle异常: ${JSON.stringify(err)}`);
-                });
-            }
-            else {
+            // if (bigWinLevel > 0) {
+            //     CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
+            //         bundle.load("prefab/vampireRewardTips", cc.Prefab, (err, prefab) => {
+            //             if (!err) {
+            //                 let scene = cc.director.getScene();
+            //                 let RewardTipsNode = cc.instantiate(prefab);
+            //                 let RewardTipsCtrl = RewardTipsNode.getComponent("vampireRewardTipsCtrl");
+            //                 scene.addChild(RewardTipsNode);
+            //                 RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+            //                 .then(() => {
+            //                     this.showSpinResult(totalMultiple);
+            //                     this.runChangeTotalWinScore(startScore, endedScore, freeCount);
+            //                 });
+            //             };
+            //         });
+            //     }, (err) => {
+            //         LoggerUtil.getInstance().error(`加载vampireMachine-Bundle异常: ${JSON.stringify(err)}`);
+            //     });
+            // }
+            // else {
                 this.showSpinResult(totalMultiple);
                 this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            };
+            // };
 
         };
     },
@@ -1140,11 +1140,17 @@ cc.Class({
         GameServerManager.send(proroID, message, {
             userid: GlobalCfg.USER_DATAS.userId,
             token: GlobalCfg.USER_DATAS.token,
-            fromid: 2001
+            fromid: 2001,
+            isFree: GlobalCfg.GAME_ENTER_ISFREE,       //是否进入免费场
         });
     },
 
     sendCallReq: function() {
+        //playnow模式下 首充玩家 弹VIP弹框
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+            CommonFun.getInstance().showVipRechargeToast();
+            return;
+        }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 if (this.paymentSwitch) {
