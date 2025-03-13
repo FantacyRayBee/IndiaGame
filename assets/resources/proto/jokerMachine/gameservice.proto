@@ -1,0 +1,76 @@
+syntax = "proto3";
+package gameservice;
+
+//返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+//用户信息
+message UserInfoAck {
+  uint64 playerid = 1;    //玩家Id
+  string displayname = 2; //用于显示的数字ID
+  string imgurl = 3;      //头像
+  string nickname = 4;    //昵称
+  int64 diamond = 5;      //金币
+  int32 pos = 6;          //位置
+  uint32 vipLevel = 7;
+}
+
+message Free {
+  int64 amount = 1;     //下注倍数
+  int64 freeCount = 2;  //免费次数
+  int64 freePool = 3;   //免费奖池
+}
+
+//登录 gameservice.login
+message LoginReq {
+  string userid = 1;  //用户ID
+  string token = 2;   //登录服拿到的token
+  uint32 fromid = 3;  //来源平台ID
+  bool isFree = 4;  // 是否免费
+}
+
+message LoginAck {
+  ResponseBase result = 1;
+  UserInfoAck userinfo = 2;   //用户信息
+  repeated Free frees = 3;    //免费信息(因为存在多个下注 登录推送的时候我吧所有有的免费信息全部推送,自行选择)
+}
+
+
+
+//下注   gameservice.call
+message CallReq {
+  int64 amount = 1;     //金额
+}
+
+
+message Card {
+  repeated int32 cards = 1;
+}
+
+message XianInfo {
+  int32 card = 1;     //中奖的牌
+  int32 num = 2;      //线的数量
+  int32 len = 3;      //线的长度
+  int32 multiple = 4; //线倍数(单个的)
+  int32 xianID = 5;   //线ID
+}
+
+
+message CallAck {
+  ResponseBase result = 1;
+  UserInfoAck userinfo = 2;         //用户信息
+  repeated Card cards = 3;          //牌组(是个3*6的二维数组因为pb协议不支持二维数组)
+  repeated XianInfo xiannum = 4;    //线的数量1 第一个 2第二个 3第三个
+  int32 mianfeinum = 5;             //免费次数  (剩余的免费次数)
+  int32 rewardtype = 6;             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
+  int64 freePool = 7;               //免费奖池 (这一轮后三叶草免费奖池)
+}

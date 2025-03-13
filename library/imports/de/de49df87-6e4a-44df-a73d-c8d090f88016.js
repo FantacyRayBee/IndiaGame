@@ -446,6 +446,12 @@ cc.Class({
       //登录
       "gameservice.call": "CallAck" //下注    
     };
+    //小丑机台
+    this.protoJoker = {
+      "gameservice.login": "LoginAck",
+      //登录
+      "gameservice.call": "CallAck" //下注    
+    };
     //吸血鬼机台
     this.protoVampire = {
       "gameservice.login": "LoginAck",
@@ -605,6 +611,8 @@ cc.Class({
       return this.protoMaya;
     } else if (gameName == "INDIA") {
       return this.protoIndia;
+    } else if (gameName == "JOKER") {
+      return this.protoJoker;
     } else if (gameName == "VAMPIRE") {
       return this.protoVampire;
     } else if (gameName == "MW") {
