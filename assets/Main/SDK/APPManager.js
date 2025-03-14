@@ -439,6 +439,42 @@ APPManager.getAppsFlyerId = function () {
 };
 
 /**
+ * 获取AppsFlyerConversionListener
+ * @returns {string}
+ */
+APPManager.getAppsFlyerConversionListener = function () {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        let result = "";
+
+        // 定义一个辅助函数，用于安全调用 Java 方法
+        const callJavaMethod = (className, methodName, methodSignature) => {
+            try {
+                return jsb.reflection.callStaticMethod(className, methodName, methodSignature);
+            } catch (error) {
+                console.error(`调用 Java 方法失败: ${className}.${methodName}`, error);
+                return null; // 返回 null 表示调用失败
+            }
+        };
+
+        // 依次调用 Java 方法
+        let result1 = callJavaMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAppsFlyerConversionListener, "()Ljava/lang/String;");
+        let result2 = callJavaMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getAppsFlyerConversionListener, "()Ljava/lang/String;");
+        let result3 = callJavaMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getAppsFlyerConversionListener, "()Ljava/lang/String;");
+
+        // 处理结果
+        if (result1) {
+            result = result1;
+        } else if (result2) {
+            result = result2;
+        } else if (result3) {
+            result = result3;
+        }
+
+        return result;
+    }
+};
+
+/**
  * 获取AdvertisingId
  * @returns {string}
  */

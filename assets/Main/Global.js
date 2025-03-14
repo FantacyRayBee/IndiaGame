@@ -51,7 +51,7 @@ window.GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-   is_force_gotoTest: true,
+   is_force_gotoTest: false,
 
   /**
    * 渠道信息
@@ -985,6 +985,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   getGAID: 'getGAIDByBloom3Rummy',
   login: 'loginByBloom3Rummy',
   getAppsFlyerId: 'getAppsFlyerIdByBloom3Rummy',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByBloom3Rummy',
   getAdvertisingId: 'getAdvertisingIdByBloom3Rummy',
   getFirebaseToken: 'getFirebaseTokenByBloom3Rummy',
   downloadApkByApkUrl: 'downloadApkByApkUrlByBloom3Rummy',
@@ -1019,6 +1020,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   getGAID: 'getGAIDByDownloadPackage',
   login: 'loginByDownloadPackage',
   getAppsFlyerId: 'getAppsFlyerIdByDownloadPackage',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByDownloadPackage',
   getAdvertisingId: 'getAdvertisingIdByDownloadPackage',
   getFirebaseToken: 'getFirebaseTokenByDownloadPackage',
   downloadApkByApkUrl: 'downloadApkByApkUrlByDownloadPackage',
@@ -1053,6 +1055,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   getGAID: 'getGAIDByOFFLINEDEVE',
   login: 'loginByOFFLINEDEVE',
   getAppsFlyerId: 'getAppsFlyerIdByOFFLINEDEVE',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByOFFLINEDEVE',
   getAdvertisingId: 'getAdvertisingIdByOFFLINEDEVE',
   getFirebaseToken: 'getFirebaseTokenByOFFLINEDEVE',
   downloadApkByApkUrl: 'downloadApkByApkUrlByOFFLINEDEVE',
@@ -1446,8 +1449,6 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       }
       // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-
-
 
       GlobalCfg.APP_INFO_URL_SPARE = `https://download.ltgame.in/production/AppInfo.json`;
       GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.ltgame.in/production/AppConfig.json`;

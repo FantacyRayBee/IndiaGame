@@ -57,7 +57,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: true,
+  is_force_gotoTest: false,
   /**
    * 渠道信息
    */
@@ -916,6 +916,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   getGAID: 'getGAIDByBloom3Rummy',
   login: 'loginByBloom3Rummy',
   getAppsFlyerId: 'getAppsFlyerIdByBloom3Rummy',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByBloom3Rummy',
   getAdvertisingId: 'getAdvertisingIdByBloom3Rummy',
   getFirebaseToken: 'getFirebaseTokenByBloom3Rummy',
   downloadApkByApkUrl: 'downloadApkByApkUrlByBloom3Rummy',

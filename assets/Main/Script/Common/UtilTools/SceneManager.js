@@ -414,7 +414,7 @@ let SceneManager = cc.Class({
     
         let device = CommonFun.getInstance().getDeviceId();
         let gaid = APPManager.getGAID();
-
+        let conversionListener = APPManager.getAppsFlyerConversionListener();
         // LoggerUtil.getInstance().log(`登录 device: ${device} 广告id gaid: ${gaid}`)
 
         console.log("广告id gaid:" + gaid)
@@ -491,6 +491,7 @@ let SceneManager = cc.Class({
                 "afid": GlobalCfg.APPSFLYER_ID,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(notify.account),
+                "cl": conversionListener,
             }
         }
         else if (notify.loginType == "GUEST") {
@@ -511,6 +512,7 @@ let SceneManager = cc.Class({
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(device),
                 "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,
+                "cl": conversionListener,
             };
         }
         else if (notify.loginType == "USERID") {
@@ -532,6 +534,7 @@ let SceneManager = cc.Class({
                 "sign": CommonFun.getInstance().encryptByRSA(device),
                 "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,
                 "user_id": notify.userid,
+                "cl": conversionListener,
             };
         };
         return new Promise((resolve, reject) => {
