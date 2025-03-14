@@ -8,31 +8,48 @@ cc.Class({
         lb_normal: cc.Label,
         lb_win: cc.Label,
     },
-
-    setItemData: function(itemID) {
-        this.typeId = itemID;
-        this.lb_win.string = "X" + itemID;
-        this.lb_normal.string = "X" + itemID;
+    ctor: function () {
+        this.multArr = [1, 2, 3, 5, 10, 15];
     },
 
-    getSpriteFrameByType(type) {
-        let sp = null;
-        switch (type) {
-            case 'win1': //蓝色底 赢
-                sp = this.sprites[0];
-                break;
-            case 'lose1': //蓝色底 输
-                sp = this.sprites[1];
-                break;
-            case 'win2': //红色底 赢
-                sp = this.sprites[2];
-                break;
-            case 'lose2': //红色底 输
-                sp = this.sprites[3];
-                break;
-            default:
-                break;
+    initIcon: function() {
+        let index = Math.floor(Math.random() * 6);
+        this.lb_win.string = "X" + this.multArr[index];
+        this.lb_normal.string = "X" + this.multArr[index];
+        this.lb_win.node.active = false;
+        this.lb_normal.node.active = true;
+        this.setSpriteFrameByIndex(index, false);
+    },
+
+    setItemData: function(multIndex, isShowGold) {
+        this.lb_win.string = "X" + this.multArr[multIndex];
+        this.lb_normal.string = "X" + this.multArr[multIndex];
+        this.lb_win.node.active = isShowGold;
+        this.lb_normal.node.active = !isShowGold;
+        this.setSpriteFrameByIndex(multIndex, isShowGold);
+    },
+
+    setSpriteFrameByIndex: function(multIndex, isShowGold) {
+        if (multIndex < 4) {
+            this.bg.active = false;
+            return;
         }
-        return sp;
-    },
+        this.bg.active = true;
+        if (multIndex == 4) {
+            if (isShowGold) { //中奖的时候 底的颜色为亮色
+                this.bg.getComponent(cc.Sprite).spriteFrame = this.sprites[1];
+            }
+            else{
+                this.bg.getComponent(cc.Sprite).spriteFrame = this.sprites[0];
+            }
+        } else{
+            if (isShowGold) { //中奖的时候 底的颜色为亮色
+                this.bg.getComponent(cc.Sprite).spriteFrame = this.sprites[3];
+            }
+            else{
+                this.bg.getComponent(cc.Sprite).spriteFrame = this.sprites[2];
+            }
+        }
+    }
+
 });

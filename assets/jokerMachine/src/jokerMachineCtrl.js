@@ -23,6 +23,8 @@ cc.Class({
         lab_totalWin: cc.Label,
         lab_jb: cc.Label,
         lab_autoBetCiShu: cc.Label,
+        lab_reward: cc.Label,
+        lab_winMul: cc.Label,
 
         node_help: cc.Node,
         node_setting: cc.Node,
@@ -30,6 +32,13 @@ cc.Class({
         node_extra: cc.Node,
         node_helpcontent: cc.Node,
         node_skel_extra: cc.Node,
+        node_reward: cc.Node,
+        node_winMulStartPos: cc.Node,
+        node_winMulEndPos: cc.Node,
+        node_jackpot_joker: cc.Node,
+        node_jackpot_grand: cc.Node,
+        node_jackpot_major: cc.Node,
+        node_jackpot_minor: cc.Node,
 
         node_lines:[cc.Node],
         anim_extraInfo: cc.Animation,
@@ -52,11 +61,14 @@ cc.Class({
         ];
         this.finishedSlotItemNum = 0; //已经滚动停止的item数量
         this.isRunningSlotAnim = false; 
+        this.isRunningMultAnim = false; 
         //投注额度数组
-        this.betAmountArr = ['0.5', '1', '2', '3', '5', '10', '20', '30', '40', '50', '80', '100', '200', '500', '1000'];
+        this.betAmountArr = ['1', '2', '3', '5', '10', '20', '30', '40', '50', '80', '100', '200', '500', '800', '1000'];
+        this.jackpotArr = [5, 10, 15, 30, 50, 200, 1000]; //分别对应的是minor 5-10倍 major 15-30倍 grand 50-200倍 joker 1000倍
+        this.multArr = [1, 2, 3, 5, 10, 15];
         this.betAmountArrIndex = 0;
         this.itemHeight = 138; // 每个slotitem的高度
-        this.itemWidth = 160; // 每个multitem的宽度
+        this.itemWidth = 162; // 每个multitem的宽度
         this.extraAnimIsComplete = true // extar动画是否播放完成
         this.paymentSwitch = false;
 
@@ -66,6 +78,10 @@ cc.Class({
         this.selectAutoBetStr = 'AUTO';
         this.selectAutoStatus = false;
         this.freeTotalWinNum = 0;           // 三叶草免费时，总获取金额
+
+
+        this.moveMulTween = null;            // 移动倍数动画
+        this.coinRunAnimTween = null;
     },
 
     loadAudioClip: function(audioClipUrl = "", func = null, target = null) {
@@ -293,6 +309,11 @@ cc.Class({
                 src.initIcon();
             };
         };
+        let multChildrens = this.node_multItemContent.children;
+        for (let j = 0, len1 = multChildrens.length; j < len1; j++) {
+            let src = multChildrens[j].getComponent('jokerMultItemCtrl');
+            src.initIcon();
+        };
 
         for (let i = 0, len = 15; i < len; i++) {
             this.node_betInfos[i] = {};
@@ -300,14 +321,56 @@ cc.Class({
             let button = this.node_bet.children[i].getComponent(cc.Button);
             this.node_betInfos[i].label = this.node_bet.children[i].getChildByName("num").getComponent(cc.Label);
             this.node_betInfos[i].label.string = this.betAmountArr[i];
-            button.node.on('click', this.debounce(this.betClickCall, 1), this);
+            button.node.on('click', this.debounce(this.betClickCall, 0.5), this);
         }
+        this.setJackPotNum();
+    },
+
+    //设置jackpot奖池
+    setJackPotNum: function(ShowAnim = false) {
+        if (ShowAnim) {
+            // this.lab_jackpotNum.node.runAction(cc.sequence(cc.scaleTo(0.3, 1.2), cc.scaleTo(0.3, 1)));
+            let skel_jp_joker = this.node_jackpot_joker.getChildByName("skel").getComponent(sp.Skeleton)
+            skel_jp_joker.node.active = true;
+            skel_jp_joker.setAnimation(0, "JOKER_Start", false);
+            skel_jp_joker.setCompleteListener((trackEntry, loopCount) => {
+                skel_jp_joker.node.active = false;
+            })
+            let skel_jp_grand = this.node_jackpot_grand.getChildByName("skel").getComponent(sp.Skeleton)
+            skel_jp_grand.node.active = true;
+            skel_jp_grand.setAnimation(0, "GRAND_Start", false);
+            skel_jp_grand.setCompleteListener((trackEntry, loopCount) => {
+                skel_jp_grand.node.active = false;
+            })
+            let skel_jp_major = this.node_jackpot_major.getChildByName("skel").getComponent(sp.Skeleton)
+            skel_jp_major.node.active = true;
+            skel_jp_major.setAnimation(0, "MAJOR_Start", false);
+            skel_jp_major.setCompleteListener((trackEntry, loopCount) => {
+                skel_jp_major.node.active = false;
+            })
+            let skel_jp_minor = this.node_jackpot_minor.getChildByName("skel").getComponent(sp.Skeleton)
+            skel_jp_minor.node.active = true;
+            skel_jp_minor.setAnimation(0, "MINOR_Start", false);
+            skel_jp_minor.setCompleteListener((trackEntry, loopCount) => {
+                skel_jp_minor.node.active = false;
+            })
+        }
+        let bet = parseFloat(this.lab_betAmount.string);
+        this.node_jackpot_joker.getChildByName("lb").getComponent(cc.Label).string = CommonFun.getInstance().numberToShow2(this.jackpotArr[6] * bet);
+        this.node_jackpot_grand.getChildByName("lb").getComponent(cc.Label).string = 
+        CommonFun.getInstance().numberToShow2(this.jackpotArr[4] * bet) + "-" + CommonFun.getInstance().numberToShow2(this.jackpotArr[5] * bet);
+        this.node_jackpot_major.getChildByName("lb").getComponent(cc.Label).string = 
+        CommonFun.getInstance().numberToShow2(this.jackpotArr[2] * bet) + "-" + CommonFun.getInstance().numberToShow2(this.jackpotArr[3] * bet);
+        this.node_jackpot_minor.getChildByName("lb").getComponent(cc.Label).string = 
+        CommonFun.getInstance().numberToShow2(this.jackpotArr[0] * bet) + "-" + CommonFun.getInstance().numberToShow2(this.jackpotArr[1] * bet);
     },
 
     setUserDiamond: function(diamond) {
         GlobalCfg.USER_DATAS.userDiamond = diamond;
         let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
         this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
+
+        
     },
 
     setFreesList: function(frees) {
@@ -356,7 +419,7 @@ cc.Class({
 
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
-            let diamond = GlobalCfg.USER_DATAS.userDiamond - parseInt(this.lab_betAmount.string) * 100;
+            let diamond = GlobalCfg.USER_DATAS.userDiamond - parseFloat(this.lab_betAmount.string) * 100;
             let num = FloatCalculation.accDiv(diamond, 100);
             this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
         };
@@ -380,6 +443,7 @@ cc.Class({
 
         this.dealSpinBtnEvent();
         this.startSlotsAnim();
+        this.startMultAnim();
     },
 
     componentClickCall: function (component) {
@@ -422,10 +486,12 @@ cc.Class({
 
     betClickCall: function (component) {
         let label = component.node.getChildByName("num").getComponent(cc.Label);
+        this.btn_db.node.active = false;
         this.lab_betAmount.string = label.string;
         //TODO 切换下注的时候 需要刷新界面上的各种相关金额
         this.anim_root_bet.play("popCloseAnim");
         this.betrootIsOpen = false;
+        this.setJackPotNum(true);
     },
 
     dealbetBtnEvent: function (btnType) {
@@ -545,29 +611,28 @@ cc.Class({
      * @param {Number} freeCount 免费次数
      * @param {*} time 
      */
-    runChangeTotalWinScore: function (startScore, endedScore, freeCount, time = 0.5) {
+    runChangeTotalWinScore: function (label, startScore, endedScore, freeCount, time = 0.5) {
         let obj = {};
         obj.num = startScore;
-        this.lab_totalWin.string = obj.num == 0 ? obj.num : obj.num.toFixed(1);
+        label.string = obj.num == 0 ? obj.num : obj.num.toFixed(1);
         cc.tween(obj)
         .to(
             time,
             {num: endedScore},
             {
                 progress: (start, end, current, t) => {
-                    if (this && this.lab_totalWin) {
+                    if (this && label) {
                         if(freeCount > 0){
-                            this.lab_totalWin.string = (end - start == 0) ? (endedScore == 0 ? endedScore : endedScore.toFixed(1)) : Number(start + (end - start) * t).toFixed(1); 
+                            label.string = (end - start == 0) ? (endedScore == 0 ? endedScore : endedScore.toFixed(1)) : Number(start + (end - start) * t).toFixed(1); 
                         }
                         else{
-                            this.lab_totalWin.string = (end - start == 0) ? 0 : Number(start + (end - start) * t).toFixed(1); 
+                            label.string = (end - start == 0) ? 0 : Number(start + (end - start) * t).toFixed(1); 
                         }
                     };
                     return start + (end - start) * t;
                 }
             }
-        )
-        .start();
+        ).start();
     },
 
     startSlotsAnim: function() {
@@ -626,11 +691,12 @@ cc.Class({
                 return;
             };
             if (endedPositionY >= this.itemHeight * 2) {
-                let multiple = self.gameResult.cards[3].cards[0];
-                let src = node.getComponent('jokerMultItemCtrl');
-
+                let src = node.getComponent('jokerIconItemCtrl');
+                let src2 = skelNode.getComponent('jokerSkelItemCtrl');
                 if (repeat == (targetNum - 3) && index == 0) {
+                    let itemID = self.gameResult.cards[shu].cards[0];
                     src.setItemData(itemID);
+                    src2.setItemData(itemID);
                     node.itemID = itemID;
                 }
                 else if (repeat == (targetNum - 2) && index == 1) {
@@ -682,17 +748,16 @@ cc.Class({
             item.index = k;
             this.scheduleOnce(() => {
                 this.runMultItemAnim(item, item.x, item.x + this.itemWidth);
-            }, slotContentTime * i);
+            }, slotContentTime);
         };
     },
 
     runMultItemAnim: function(node, statrPositionX, endedPositionX) {
         let self = this;
         node.repeat += 1;
-        node.setPosition(cc.v2(0, statrPositionX));
+        node.setPosition(cc.v2(statrPositionX, 0));
         let repeat = node.repeat;
         let index = node.index;
-        let shu = node.shu;
         let easeType = '';
         let runTime = 0.08 * self.kRate;
         let isFast = this.toggle_fast.isChecked;
@@ -705,49 +770,49 @@ cc.Class({
         cc.tween(node)
         .to(
             runTime, 
-            {position: cc.v2(0, endedPositionX)}, 
+            {position: cc.v2(endedPositionX, 0)}, 
             {easing: easeType}
         )
         .call(() => {
             if (repeat == targetNum) {
                 if (endedPositionX >= this.itemWidth * 2) {
-                    node.setPosition(cc.v2(0, -(this.itemWidth * 2)));
+                    node.setPosition(cc.v2(-(this.itemWidth * 2), 0));
                 };
                 self.checkAnimFinish();
                 return;
             };
             if (endedPositionX >= this.itemWidth * 2) {
-                let src = node.getComponent('jokerIconItemCtrl');
-                if (repeat == (targetNum - 3) && index == 0) {
-                    let itemID = self.gameResult.cards[shu].cards[0];
-                    src.setItemData(itemID);
-                    node.itemID = itemID;
+                let src = node.getComponent('jokerMultItemCtrl');
+                let multiple = self.gameResult.cards[3].cards[0]; //取得第4个位置上的元素（[0,0,0], 第一个元素代表这次转到的倍数）
+                let xiannumArr = this.gameResult.xiannum;
+                let isNeedShowAnim = false; //这次spin是否赢钱了
+                for (let i = 0, len = xiannumArr.length; i < len; i++) {
+                    let xiannum = xiannumArr[i];
+                    let xiannumLen = xiannum.len;
+                    if (xiannumLen >= 3) {
+                        isNeedShowAnim = true;
+                        break;
+                    };
+                };
+                if (repeat == (targetNum - 3) && index == 1) {
+                    let index = Math.floor(Math.random() * 6); // （0-5）一共有6个倍数，随机一个用来显示另外两个位置上的倍数
+                    src.setItemData(index, false);
                 }
-                else if (repeat == (targetNum - 2) && index == 1) {
-                    let itemID = self.gameResult.cards[shu].cards[1];
-                    src.setItemData(itemID);
-                    node.itemID = itemID;
+                else if (repeat == (targetNum - 2) && index == 2) { //中间位置上的为本次中奖的倍数
+                    src.setItemData(multiple, isNeedShowAnim);
                 }
-                else if (repeat == (targetNum - 1) && index == 2) {
-                    let itemID = self.gameResult.cards[shu].cards[2];
-                    src.setItemData(itemID);
-                    node.itemID = itemID;
+                else if (repeat == (targetNum - 1) && index == 3) {
+                    let index = Math.floor(Math.random() * 6); // 0-5）一共有6个倍数，随机一个用来显示另外两个位置上的倍数
+                    src.setItemData(index, false);
                 }
                 else {
-                    let num = Math.floor(Math.random() * 9 + 1);
-                    if (shu == 0 && num == 8) {
-                        num = 7;
-                    }
-                    else if (shu >= 3 && num == 9) {
-                        num = 8;
-                    }
-                    src.setItemData(num);
-                    node.itemID = num;
+                    let index = Math.floor(Math.random() * 4 + 2); // （2-5）假轴滚动的时候，随机的倍数尽可能偏大一点，让玩家看着更容易中奖
+                    src.setItemData(index, false);
                 };
-                self.runSlotsItemAnim(node, -(this.itemWidth * 2), -this.itemWidth);
+                self.runMultItemAnim(node, -(this.itemWidth * 2), -this.itemWidth);
             }
             else {
-                self.runSlotsItemAnim(node, endedPositionX, endedPositionX + this.itemWidth);
+                self.runMultItemAnim(node, endedPositionX, endedPositionX + this.itemWidth);
             };
         })
         .start();
@@ -770,25 +835,27 @@ cc.Class({
 
         this.toggle_auto.interactable = true;
 
-        let betAmount = parseInt(this.lab_betAmount.string);
+        let betAmount = parseFloat(this.lab_betAmount.string);
     },
 
     showResultAnima: function() {
         if (this.gameResult) {
             this.setUserDiamond(this.gameResult.userinfo.diamond);
-
             let totalMultiple = 0;
             for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
                 let multiple = this.gameResult.xiannum[i].multiple;
-                let num = this.gameResult.xiannum[i].num;
+                // let num = this.gameResult.xiannum[i].num;
+                let num = 1; //该机台比较特殊 只会中一次线
                 totalMultiple += (multiple * num);
             };
-         
             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
             let startScore = Number(this.freeTotalWinNum);
             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let bet = parseInt(this.lab_betAmount.string)
-            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple *  bet / 10 + startScore;
+            let bet = parseFloat(this.lab_betAmount.string)
+            let curSpinmultIndex = this.gameResult.cards[3].cards[0]
+            let curSpinmult = this.multArr[curSpinmultIndex]; //当前spin中的倍数
+            let winScore = totalMultiple *  bet / 10 + startScore
+            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : winScore;
             this.freeTotalWinNum = endedScore;
             let freeCount = this.gameResult.mianfeinum;
             let isNormal = this.gameResult.rewardtype == 1;
@@ -814,10 +881,75 @@ cc.Class({
             // }
             // else {
                 this.showSpinResult(totalMultiple);
-                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            // };
+                this.node_reward.active = true;
+                this.lab_reward.string = '';
+                let time = 0.8;
+                let self = this;
+                if (endedScore < 1) {
+                    time = 0.3
+                }
+                // CommonFun.getInstance().startTextAnimation(this.lab_reward, 0, endedScore, ()=>{
+                //     if (curSpinmult > 1 ) {
+                //         this.lab_winMul.node.active = true;
+                //         this.lab_winMul.string = "X" + curSpinmult;
+                //         cc.tween(this.lab_winMul.node)
+                //         .to(
+                //             0.6,
+                //             {position: cc.v2(0, this.node_winMulEndPos.y)}, 
+                //         ).start();
+                //         //不要问为什么不用cc.tween的回调，因为回调里this指向有问题
+                //         this.scheduleOnce(() => {
+                //             this.lab_winMul.node.active = false;
+                //             this.lab_winMul.node.position = this.node_winMulStartPos.position;
+                //             this.lab_reward.string = (endedScore * curSpinmult).toFixed(1)
+                //         }, 0.65);
+                //     }
+                // }, time);
 
+                this.jinbigundong(this.lab_reward, 0, endedScore, time, ()=>{
+                    if (curSpinmult > 1 ) {
+                        if (this.moveMulTween) {
+                            this.moveMulTween.stop();
+                            this.moveMulTween = null; // 清空引用
+                        }
+                        this.lab_winMul.node.active = true;
+                        this.lab_winMul.node.position = this.node_winMulStartPos.position;
+                        this.lab_winMul.string = "X" + curSpinmult;
+                        this.moveMulTween = cc.tween(self.lab_winMul.node)
+                        .to(
+                            0.6,
+                            {position: cc.v2(0, this.node_winMulEndPos.y)}, 
+                        ).start();
+                        //不要问为什么不用cc.tween的回调，因为回调里this指向有问题
+                        this.scheduleOnce(() => {
+                            this.lab_winMul.node.active = false;
+                            this.lab_reward.string = (endedScore * curSpinmult).toFixed(1)
+                        }, 0.65);
+                    }
+                })
+            // };
         };
+    },
+
+    jinbigundong: function(label, startValue, endValue, time, callback) {
+        if (this.coinRunAnimTween) {
+            this.coinRunAnimTween.stop();
+            this.coinRunAnimTween = null; // 清空引用
+        }
+        let obj = {};
+        obj.currentValue = startValue;
+        this.coinRunAnimTween = cc.tween(obj)
+        .to(time, { currentValue: endValue }, {
+            onUpdate: (target, ratio) => {
+                const value = startValue + (endValue - startValue) * ratio;
+                label.string = value.toFixed(2);
+            }
+        }).call(() => {
+            label.string = endValue.toFixed(1); //最后要显示的值
+            if (callback) {
+                callback();
+            }
+        }).start();
     },
 
     getBigWinLevel: function(isNormal, bet, betMul) {
@@ -930,16 +1062,17 @@ cc.Class({
         if (isNeedShowAnim) {
             let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
             // this.playGameSound(winClipName);
-            this.showXianNum(totalMultiple / 10, isFast);
+            this.showXianNum();
         }
         else {
             this.isRunningSlotAnim = false; 
+            this.isRunningMultAnim = false; 
         };
 
         let startNextSpin = () => {
             // this.isRunningSlotAnim = false;
             LoggerUtil.getInstance().log('caojun this.isRunningSlotAnim: ' + this.isRunningSlotAnim);
-            if (this.isRunningSlotAnim) {
+            if (this.isRunningSlotAnim || this.isRunningMultAnim) {
                 return;
             };
             this.unschedule(startNextSpin);
@@ -956,7 +1089,7 @@ cc.Class({
 
                 this.toggle_auto.interactable = false;
 
-                let amount = parseInt(this.lab_betAmount.string);
+                let amount = parseFloat(this.lab_betAmount.string);
                 let proroID = 'gameservice.call';
                 let message = 'CallReq';
                 GameServerManager.send(proroID, message, {              
@@ -1001,7 +1134,7 @@ cc.Class({
         }
     },
 
-    showXianNum: function(totalMultiple, isFast) {
+    showXianNum: function() {
         if (this.gameResult) {
             for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
                 let xiannum = this.gameResult.xiannum[i];
@@ -1016,6 +1149,8 @@ cc.Class({
             this.setItemState()
             this.scheduleOnce(() => {
                 this.isRunningSlotAnim = false;
+                //TODO 播放加倍动画
+                this.isRunningMultAnim = false;
             }, 1);
         };
     },
@@ -1081,6 +1216,11 @@ cc.Class({
                 src2.stopAnimation(0);
             };
         };
+        this.node_reward.active = false;
+        this.lab_reward.string = '';
+        this.lab_winMul.string = '';
+        this.lab_winMul.node.active = false;
+        this.lab_winMul.node.position = this.node_winMulStartPos.position;
     },
 
     sendLoginReq: function() {
@@ -1109,7 +1249,7 @@ cc.Class({
             return;
         };
 
-        let betAmount = parseInt(this.lab_betAmount.string) * 100;
+        let betAmount = parseFloat(this.lab_betAmount.string) * 100;
 
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;
