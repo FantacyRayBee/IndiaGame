@@ -332,10 +332,6 @@ LobbyServerManager.checkDistributed = function(webData) {
                 }else{
                     GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
                 }
-                ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
-                    msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
-                    msgData: {}
-                }); 
             };
             // 上传充值数据到FB账号后台
             // 此处 标准事件 参数命名需参照官方标准，不可自行定义，https://developers.facebook.com/docs/app-events/reference ，AppEventsConstants类中定义
@@ -375,6 +371,10 @@ LobbyServerManager.checkDistributed = function(webData) {
         if(reason == 120) {
             //送蓝钻（代金券）
             GlobalCfg.USER_DATAS.firstGetBonus = changed;
+            ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
+                msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
+                msgData: {}
+            }); 
         }
         // 自己充值消息下发到每个游戏中
         ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {

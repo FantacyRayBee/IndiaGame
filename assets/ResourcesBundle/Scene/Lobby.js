@@ -256,6 +256,7 @@ cc.Class({
         }
         else {
             this.showTransBounsRedPoint();
+            LoggerUtil.getInstance().log(`caojun 222 FIRST_RECHARGE_TIPS_SHOW = ${GlobalCfg.FIRST_RECHARGE_TIPS_SHOW} FIRST_RECHARGE_REWARD_SHOW = ${GlobalCfg.FIRST_RECHARGE_REWARD_SHOW}`);
             if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
                 let shopParentNode = CommonFun.getInstance().getLayerNode(GlobalCfg.PREFAB_PARENT.SHOP);
                 if(cc.isValid(shopParentNode.getChildByName("newshop"))){
@@ -267,10 +268,10 @@ cc.Class({
                 this.showFirstRechargeTipPopup();
             }
             if (GlobalCfg.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
-                let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
-                let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
-                let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
+                let coin = GlobalCfg.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
+                let getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 //本次充值获得的代金券
                 GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
+                LoggerUtil.getInstance().log(`caojun changed 222 = ${changed} coin = ${coin} firstGetBonus = ${GlobalCfg.USER_DATAS.firstGetBonus}`);
                 if (getBouns > 0) {
                     CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);
                 }
@@ -1268,13 +1269,13 @@ cc.Class({
             self.showNewEmailRedDot(bool);
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+            LoggerUtil.getInstance().log(`caojun 222 FIRST_RECHARGE_TIPS_SHOW = ${GlobalCfg.FIRST_RECHARGE_TIPS_SHOW} FIRST_RECHARGE_REWARD_SHOW = ${GlobalCfg.FIRST_RECHARGE_REWARD_SHOW}`);
             if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
                 this.showFirstRechargeTipPopup();
             }
             if (GlobalCfg.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
-                let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
-                let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
-                let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
+                let coin = GlobalCfg.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
+                let getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 //本次充值获得的代金券
                 GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
                 if (getBouns > 0) {
                     CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);

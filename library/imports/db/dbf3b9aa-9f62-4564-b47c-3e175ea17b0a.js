@@ -328,10 +328,6 @@ LobbyServerManager.checkDistributed = function (webData) {
         } else {
           GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
         }
-        ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
-          msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
-          msgData: {}
-        });
       }
       ;
       // 上传充值数据到FB账号后台
@@ -380,6 +376,10 @@ LobbyServerManager.checkDistributed = function (webData) {
     if (_reason == 120) {
       //送蓝钻（代金券）
       GlobalCfg.USER_DATAS.firstGetBonus = changed;
+      ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
+        msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
+        msgData: {}
+      });
     }
     // 自己充值消息下发到每个游戏中
     ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
