@@ -880,7 +880,7 @@ cc.Class({
                         //判断是否需要显示大赢提示
                         this.bigWinLevel = this.getBigWinLevel(winNumFinal / bet);
                         if (this.bigWinLevel > 0) {
-                            this.showBigWinTips(bigWinLevel, winNumFinal);
+                            this.showBigWinTips(winNumFinal);
                         }
                     }, 0.65);
                 }

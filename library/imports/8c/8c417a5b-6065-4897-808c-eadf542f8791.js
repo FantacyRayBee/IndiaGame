@@ -749,11 +749,11 @@ cc.Class({
   // 玩家点击下注
   touchstart: function touchstart(event) {
     var _this3 = this;
-    //playnow模式下 首充玩家 弹VIP弹框
-    if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
-      CommonFun.getInstance().showVipRechargeToast();
-      return;
-    }
+    // //playnow模式下 首充玩家 弹VIP弹框
+    // if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+    //     CommonFun.getInstance().showVipRechargeToast();
+    //     return;
+    // }
     var name = event.currentTarget.name;
     var types = null;
     if (name == "node_dragonChip") {

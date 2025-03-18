@@ -331,6 +331,7 @@ LobbyServerManager.checkDistributed = function (webData) {
         } else {
           GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
         }
+        LoggerUtil.getInstance().log("caojun  firstRecharge2222222 ===> ", firstRecharge);
         ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
           msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
           msgData: {}

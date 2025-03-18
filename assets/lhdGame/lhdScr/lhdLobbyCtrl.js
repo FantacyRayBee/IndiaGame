@@ -817,11 +817,11 @@ cc.Class({
 
     // 玩家点击下注
     touchstart:function(event){
-        //playnow模式下 首充玩家 弹VIP弹框
-        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
-            CommonFun.getInstance().showVipRechargeToast();
-            return;
-        }
+        // //playnow模式下 首充玩家 弹VIP弹框
+        // if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
+        //     CommonFun.getInstance().showVipRechargeToast();
+        //     return;
+        // }
         let name = event.currentTarget.name;
         let types = null;
         if( name == "node_dragonChip") {
