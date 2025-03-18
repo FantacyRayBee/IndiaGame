@@ -717,8 +717,10 @@ cc.Class({
             this.freeTotalWinNum = endedScore;
             let freeCount = this.gameResult.mianfeinum;
             let isNormal = this.gameResult.rewardtype == 1;
-            let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            if (bigWinLevel > 0) {
+            // let testMult = 110
+            let bigWinLevel = this.getBigWinLevel(endedScore / bet);
+            // let bigWinLevel = this.getBigWinLevel(testMult);
+            if (freeCount == 0 && bigWinLevel > 0) {
                 CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
                     bundle.load("prefab/vampireRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
@@ -728,7 +730,8 @@ cc.Class({
                             scene.addChild(RewardTipsNode);
                             RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
                             .then(() => {
-                                this.showSpinResult(totalMultiple);
+                                let showFGtoMGAnim = (bigWinLevel == 5);
+                                this.showSpinResult(totalMultiple, showFGtoMGAnim); //level=5的时候 需要显示FG转MG动画
                                 this.runChangeTotalWinScore(startScore, endedScore, freeCount);
                             });
                         };
@@ -745,101 +748,28 @@ cc.Class({
         };
     },
 
-    getBigWinLevel: function(isNormal, bet, betMul) {
+    getBigWinLevel: function(betMul) {
         let level = 0;
-        if (isNormal == true) {
-            if (bet <= 10) {
-                if (5 <= betMul && betMul < 10) {
-                    level = 1;
-                }
-                else if (10 <= betMul && betMul < 50) {
-                    level = 2;
-                }
-                else if (50 <= betMul && betMul < 150) {
-                    level = 3;
-                }
-                else if (150 <= betMul && betMul < 500) {
-                    level = 4;
-                }
-                else if (500 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (10 < bet && bet <= 100) {
-                if (4 <= betMul && betMul < 8) {
-                    level = 1;
-                }
-                else if (8 <= betMul && betMul < 40) {
-                    level = 2;
-                }
-                else if (40 <= betMul && betMul < 120) {
-                    level = 3;
-                }
-                else if (120 <= betMul && betMul < 400) {
-                    level = 4;
-                }
-                else if (400 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (100 < bet && bet <= 300) {
-                if (3 <= betMul && betMul < 6) {
-                    level = 1;
-                }
-                else if (6 <= betMul && betMul < 30) {
-                    level = 2;
-                }
-                else if (30 <= betMul && betMul < 80) {
-                    level = 3;
-                }
-                else if (80 <= betMul && betMul < 300) {
-                    level = 4;
-                }
-                else if (300 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (300 < bet) {
-                if (3 <= betMul && betMul < 5) {
-                    level = 1;
-                }
-                else if (5 <= betMul && betMul < 20) {
-                    level = 2;
-                }
-                else if (20 <= betMul && betMul < 60) {
-                    level = 3;
-                }
-                else if (60 <= betMul && betMul < 200) {
-                    level = 4;
-                }
-                else if (200 <= betMul) {
-                    level = 5;
-                }
-            }
+        if (10 <= betMul && betMul < 20) {
+            level = 1;
         }
-        else {
-            if (10 <= betMul && betMul < 20) {
-                level = 1;
-            }
-            else if (20 <= betMul && betMul < 60) {
-                level = 2;
-            }
-            else if (60 <= betMul && betMul < 200) {
-                level = 3;
-            }
-            else if (200 <= betMul && betMul < 500) {
-                level = 4;
-            }
-            else if (500 <= betMul) {
-                level = 5;
-            }
+        else if (20 <= betMul && betMul < 40) {
+            level = 2;
         }
-
+        else if (40 <= betMul && betMul < 60) {
+            level = 3;
+        }
+        else if (60 <= betMul && betMul < 100) {
+            level = 4;
+        }
+        else if (100 <= betMul) {
+            level = 5;
+        }
         return level;
     },
 
 
-    showSpinResult: function(totalMultiple) {
+    showSpinResult: function(totalMultiple, showFGtoMGAnim = false) {
         let isNeedShowAnim = false;
         let xiannumArr = this.gameResult.xiannum;
         for (let i = 0, len = xiannumArr.length; i < len; i++) {
@@ -875,11 +805,8 @@ cc.Class({
                     this.selectAutoBetStr = this.lab_autoBetCiShu.string;
                     this.selectAutoStatus = this.toggle_auto.isChecked;
                     this.showZhuanChangAnim(1, ()=>{
-                        this.setFGplane(true)
                         this.dealFreeGame();
                     })
-                    // this.scheduleOnce(() => {
-                    // }, 3);
                 }
                 else{
                     this.dealFreeGame();
@@ -889,7 +816,7 @@ cc.Class({
             else {
                 if (this.isHaveMianFeiRecord) {
                     this.isHaveMianFeiRecord = false;
-                    this.showZhuanChangAnim(2, ()=>{
+                    let callback = ()=>{
                         this.setFGplane(false)
                         this.toggle_auto.isChecked = this.selectAutoStatus;
                         this.lab_autoBetCiShu.string = this.selectAutoBetStr;
@@ -905,7 +832,12 @@ cc.Class({
                         else {
                             this.recoverySpinBtnEvent();
                         };
-                    })
+                    }
+                    if (!showFGtoMGAnim) {
+                        callback()
+                    }else{
+                        this.showZhuanChangAnim(2, callback)
+                    }
                     return
                 };
                 this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
@@ -1182,26 +1114,28 @@ cc.Class({
         if (type == 1) {
             this.FG_zc.node.active = true
             this.FG_zc.setAnimation(0, "event", false);
-            this.scheduleOnce(() => {
-                if(callback){
+            this.FG_zc.setCompleteListener((trackEntry, loopCount) => {
+                this.FG_zc.node.active = false
+                if (callback) {
                     callback()
                 }
-            }, 1);
+            })
             this.scheduleOnce(() => {
-                this.FG_zc.node.active = false
-            }, 6);
+                this.setFGplane(true)
+            }, 1);
         }
         if (type == 2) {
             this.MG_zc.node.active = true
             this.MG_zc.setAnimation(0, "event", false);
-            this.scheduleOnce(() => {
-                if(callback){
+            this.MG_zc.setCompleteListener((trackEntry, loopCount) => {
+                this.MG_zc.node.active = false
+                if (callback) {
                     callback()
                 }
-            }, 1);
+            })
             this.scheduleOnce(() => {
-                this.MG_zc.node.active = false
-            }, 6);
+                this.setFGplane(false)
+            }, 1);
         }
     },
     
