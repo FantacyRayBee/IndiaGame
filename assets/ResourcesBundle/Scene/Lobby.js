@@ -1268,7 +1268,21 @@ cc.Class({
             self.showNewEmailRedDot(bool);
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            self.showFirstRechargeTipPopup();
+            if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
+                this.showFirstRechargeTipPopup();
+            }
+            if (GlobalCfg.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
+                let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
+                let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+                let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
+                GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
+                if (getBouns > 0) {
+                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);
+                }
+                else {
+                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }]);
+                }
+            }
         }
         else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
             self.showVipLevelIcon();
