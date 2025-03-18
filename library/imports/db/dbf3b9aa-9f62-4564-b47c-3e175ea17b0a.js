@@ -325,12 +325,13 @@ LobbyServerManager.checkDistributed = function (webData) {
         if (firstRechargeCleanWallet) {
           // 是否展示首充清金币的动画
           GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = true;
-          ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
-            msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
-            msgData: {}
-          });
+        } else {
+          GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
         }
-        ;
+        ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
+          msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
+          msgData: {}
+        });
       }
       ;
       // 上传充值数据到FB账号后台
