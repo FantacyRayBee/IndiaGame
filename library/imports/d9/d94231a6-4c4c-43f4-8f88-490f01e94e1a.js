@@ -47,7 +47,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   FIRST_RECHARGE_TIPS_SHOW: false,
   // 是否展示首充之后的提示弹窗
   FIRST_RECHARGE_REWARD_SHOW: false,
-  // 是否展示首充之后的提示弹窗
+  // 是否展示首充之后获得的金币 弹窗
   /**
    * 是否存在 divertFreeTp界面
    */

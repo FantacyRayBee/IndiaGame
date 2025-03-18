@@ -329,8 +329,7 @@ LobbyServerManager.checkDistributed = function(webData) {
                 if (firstRechargeCleanWallet) {
                     // 是否展示首充清金币的动画
                     GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = true;
-                }
-                else{
+                }else{
                     GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
                 }
                 ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
