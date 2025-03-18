@@ -96,6 +96,8 @@ let AudioBase = cc.Class({
         volume = cc.misc.clamp01(volume);
 
         cc.audioEngine.setMusicVolume(volume);
+
+        this.setLocalData("value_musicSound", volume);
     },
 
     getMusicVolume() {
@@ -106,6 +108,7 @@ let AudioBase = cc.Class({
         volume = cc.misc.clamp01(volume);
 
         cc.audioEngine.setEffectsVolume(volume);
+        this.setLocalData("value_effectSound", volume);
     },
 
     getSoundVolume() {

@@ -2533,13 +2533,21 @@ let CommonFun = cc.Class({
     /**
      * 显示游戏中的设置界面
      */
-    showGameSetting: function() {
-        let gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
-        gameSettingPrefabPromise.then((prefab) => {
-            let gameSettingNode = cc.instantiate(prefab);
-            let gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
-            this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
-        });
+    showGameSetting: function(type = 1) {
+        if (type == 1) {
+            let gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
+            gameSettingPrefabPromise.then((prefab) => {
+                let gameSettingNode = cc.instantiate(prefab);
+                this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+            });
+        }
+        else{
+            let gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTINGNEW);
+            gameSettingPrefabPromise.then((prefab) => {
+                let gameSettingNode = cc.instantiate(prefab);
+                this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTINGNEW);
+            });
+        }
     },
 
 

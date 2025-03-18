@@ -8,9 +8,15 @@ cc.Class({
         btn_back: cc.Button,
         btn_exInfo: cc.Button,
         btn_setting: cc.Button,
+        btn_sound: cc.Button,
         btn_bet: cc.Button,
         btn_db: cc.Button,
         btn_spin: cc.Button,
+        btn_spin2: cc.Button,
+        btn_jpSpin0: cc.Button,
+        btn_jpSpin1: cc.Button,
+        btn_jpSpin2: cc.Button,
+        btn_bigwin_end: cc.Button,
 
         toggle_fast: cc.Toggle,
         toggle_auto: cc.Toggle,
@@ -25,6 +31,7 @@ cc.Class({
         lab_autoBetCiShu: cc.Label,
         lab_reward: cc.Label,
         lab_winMul: cc.Label,
+        lab_bigwin: cc.Label,
 
         node_help: cc.Node,
         node_setting: cc.Node,
@@ -39,6 +46,7 @@ cc.Class({
         node_jackpot_grand: cc.Node,
         node_jackpot_major: cc.Node,
         node_jackpot_minor: cc.Node,
+        node_bigwin_pop: cc.Node,
 
         node_lines:[cc.Node],
         anim_extraInfo: cc.Animation,
@@ -48,6 +56,8 @@ cc.Class({
 
         skel_extra: cc.Node,
         skel_FG: sp.Skeleton,
+        skel_bigWin_character: sp.Skeleton,
+        skel_bigwin_title: sp.Skeleton,
     },
 
     ctor: function () {
@@ -129,9 +139,12 @@ cc.Class({
         this.btn_helpclose.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_setting.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_spin.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        this.btn_spin2.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        this.btn_bigwin_end.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_db.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_bet.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_exInfo.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        this.btn_sound.node.on('click', this.debounce(this.componentClickCall, 1), this);
         
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
         this.toggle_auto.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
@@ -142,6 +155,8 @@ cc.Class({
         this.lab_totalWin.string = 0;
         this.extraInfoIsOpen = false; //extra详情信息是否打开
         this.helprootIsOpen = false; //help详情信息是否打开
+        this.bigWinLevel = 0;
+        this.stopNumScroll = false;
         this.setBetCiShuAutoTips();
 
     },
@@ -451,12 +466,17 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (componentName == "btn_back") {
             CommonFun.getInstance().showGameMenu(false);
+            this.dealbetBtnEvent("db");
         }
         else if (componentName == "btn_help") {
             this.dealhelpBtnEvent();
         }
         else if (componentName == "btn_helpclose") {
             this.dealhelpBtnEvent();
+        }
+        else if (componentName == "btn_sound") {
+            CommonFun.getInstance().showGameSetting(2);
+            this.dealbetBtnEvent("db");
         }
         else if (componentName == "btn_set") {
             this.dealbetBtnEvent("set");
@@ -479,7 +499,10 @@ cc.Class({
         else if (componentName == "toggle_ex") {
             this.dealExtraEvent();
         }
-        else if (componentName == "btn_spin") {
+        else if (componentName == "btn_bigwin_end") {
+            this.dealBigWinEndEvent();
+        }
+        else if (componentName == "btn_spin" || componentName == "btn_spin2") {
             this.sendCallReq();
         }
     },
@@ -604,36 +627,6 @@ cc.Class({
         this.toggle_auto.interactable = false;
     },
 
-    /**
-     * 
-     * @param {Number} startScore 开始分数
-     * @param {Number} endedScore 结束分数
-     * @param {Number} freeCount 免费次数
-     * @param {*} time 
-     */
-    runChangeTotalWinScore: function (label, startScore, endedScore, freeCount, time = 0.5) {
-        let obj = {};
-        obj.num = startScore;
-        label.string = obj.num == 0 ? obj.num : obj.num.toFixed(1);
-        cc.tween(obj)
-        .to(
-            time,
-            {num: endedScore},
-            {
-                progress: (start, end, current, t) => {
-                    if (this && label) {
-                        if(freeCount > 0){
-                            label.string = (end - start == 0) ? (endedScore == 0 ? endedScore : endedScore.toFixed(1)) : Number(start + (end - start) * t).toFixed(1); 
-                        }
-                        else{
-                            label.string = (end - start == 0) ? 0 : Number(start + (end - start) * t).toFixed(1); 
-                        }
-                    };
-                    return start + (end - start) * t;
-                }
-            }
-        ).start();
-    },
 
     startSlotsAnim: function() {
         if (this.isRunningSlotAnim) {
@@ -827,8 +820,6 @@ cc.Class({
         };
     },
 
-    
-
     recoverySpinBtnEvent: function() {
         this.btn_spin.interactable = true;
         this.btn_spin.enableAutoGrayEffect = false;
@@ -857,81 +848,54 @@ cc.Class({
             let winScore = totalMultiple *  bet / 10 + startScore
             let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : winScore;
             this.freeTotalWinNum = endedScore;
-            let freeCount = this.gameResult.mianfeinum;
-            let isNormal = this.gameResult.rewardtype == 1;
-            let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            // if (bigWinLevel > 0) {
-            //     CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
-            //         bundle.load("prefab/mayaRewardTips", cc.Prefab, (err, prefab) => {
-            //             if (!err) {
-            //                 let scene = cc.director.getScene();
-            //                 let mayaRewardTipsNode = cc.instantiate(prefab);
-            //                 let mayaRewardTipsCtrl = mayaRewardTipsNode.getComponent("mayaRewardTipsCtrl");
-            //                 scene.addChild(mayaRewardTipsNode);
-            //                 mayaRewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-            //                 .then(() => {
-            //                     this.showSpinResult(totalMultiple);
-            //                     this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            //                 });
-            //             };
-            //         });
-            //     }, (err) => {
-            //         LoggerUtil.getInstance().error(`加载mayaMachine-Bundle异常: ${JSON.stringify(err)}`);
-            //     });
-            // }
-            // else {
-                this.showSpinResult(totalMultiple);
-                this.node_reward.active = true;
-                this.lab_reward.string = '';
-                let time = 0.8;
-                let self = this;
-                if (endedScore < 1) {
-                    time = 0.3
-                }
-                // CommonFun.getInstance().startTextAnimation(this.lab_reward, 0, endedScore, ()=>{
-                //     if (curSpinmult > 1 ) {
-                //         this.lab_winMul.node.active = true;
-                //         this.lab_winMul.string = "X" + curSpinmult;
-                //         cc.tween(this.lab_winMul.node)
-                //         .to(
-                //             0.6,
-                //             {position: cc.v2(0, this.node_winMulEndPos.y)}, 
-                //         ).start();
-                //         //不要问为什么不用cc.tween的回调，因为回调里this指向有问题
-                //         this.scheduleOnce(() => {
-                //             this.lab_winMul.node.active = false;
-                //             this.lab_winMul.node.position = this.node_winMulStartPos.position;
-                //             this.lab_reward.string = (endedScore * curSpinmult).toFixed(1)
-                //         }, 0.65);
-                //     }
-                // }, time);
-
-                this.jinbigundong(this.lab_reward, 0, endedScore, time, ()=>{
-                    if (curSpinmult > 1 ) {
-                        if (this.moveMulTween) {
-                            this.moveMulTween.stop();
-                            this.moveMulTween = null; // 清空引用
-                        }
-                        this.lab_winMul.node.active = true;
-                        this.lab_winMul.node.position = this.node_winMulStartPos.position;
-                        this.lab_winMul.string = "X" + curSpinmult;
-                        this.moveMulTween = cc.tween(self.lab_winMul.node)
-                        .to(
-                            0.6,
-                            {position: cc.v2(0, this.node_winMulEndPos.y)}, 
-                        ).start();
-                        //不要问为什么不用cc.tween的回调，因为回调里this指向有问题
-                        this.scheduleOnce(() => {
-                            this.lab_winMul.node.active = false;
-                            this.lab_reward.string = (endedScore * curSpinmult).toFixed(1)
-                        }, 0.65);
+            // let freeCount = this.gameResult.mianfeinum;
+            this.showSpinResult(totalMultiple);
+            this.node_reward.active = true;
+            this.lab_reward.string = '';
+            let time = 0.8;
+            let self = this;
+            if (endedScore < 1) {
+                time = 0.3
+            }
+            this.runChangeTotalWinScore(this.lab_reward, 0, endedScore, time, ()=>{
+                if (curSpinmult > 1 ) {
+                    if (this.moveMulTween) {
+                        this.moveMulTween.stop();
+                        this.moveMulTween = null; // 清空引用
                     }
-                })
-            // };
+                    this.lab_winMul.node.active = true;
+                    this.lab_winMul.node.position = this.node_winMulStartPos.position;
+                    this.lab_winMul.string = "X" + curSpinmult;
+                    this.moveMulTween = cc.tween(self.lab_winMul.node)
+                    .to(
+                        0.6,
+                        {position: cc.v2(0, this.node_winMulEndPos.y)}, 
+                    ).start();
+                    //不要问为什么不用cc.tween的回调，因为回调里this指向有问题
+                    this.scheduleOnce(() => {
+                        this.lab_winMul.node.active = false;
+                        let winNumFinal = endedScore * curSpinmult
+                        this.lab_reward.string = winNumFinal.toFixed(1)
+
+                        //判断是否需要显示大赢提示
+                        this.bigWinLevel = this.getBigWinLevel(winNumFinal / bet);
+                        if (this.bigWinLevel > 0) {
+                            this.showBigWinTips(bigWinLevel, winNumFinal);
+                        }
+                    }, 0.65);
+                }
+            })
+            
         };
     },
 
-    jinbigundong: function(label, startValue, endValue, time, callback) {
+    /**
+     * 分数变化动画
+     * @param {Number} startValue 开始分数
+     * @param {Number} endValue 结束分数
+     * @param {*} time 动画时间
+     */
+    runChangeTotalWinScore: function(label, startValue, endValue, time, callback) {
         if (this.coinRunAnimTween) {
             this.coinRunAnimTween.stop();
             this.coinRunAnimTween = null; // 清空引用
@@ -941,8 +905,13 @@ cc.Class({
         this.coinRunAnimTween = cc.tween(obj)
         .to(time, { currentValue: endValue }, {
             onUpdate: (target, ratio) => {
-                const value = startValue + (endValue - startValue) * ratio;
-                label.string = value.toFixed(2);
+                if (this.stopNumScroll == false) {
+                    const value = startValue + (endValue - startValue) * ratio;
+                    label.string = value.toFixed(2);
+                }
+                else { //如果停止了，则直接显示最终值
+                    label.string = endValue.toFixed(1);
+                }
             }
         }).call(() => {
             label.string = endValue.toFixed(1); //最后要显示的值
@@ -952,99 +921,68 @@ cc.Class({
         }).start();
     },
 
-    getBigWinLevel: function(isNormal, bet, betMul) {
+    getBigWinLevel: function(betMul) {
         let level = 0;
-        if (isNormal == true) {
-            if (bet <= 10) {
-                if (5 <= betMul && betMul < 10) {
-                    level = 1;
-                }
-                else if (10 <= betMul && betMul < 50) {
-                    level = 2;
-                }
-                else if (50 <= betMul && betMul < 150) {
-                    level = 3;
-                }
-                else if (150 <= betMul && betMul < 500) {
-                    level = 4;
-                }
-                else if (500 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (10 < bet && bet <= 100) {
-                if (4 <= betMul && betMul < 8) {
-                    level = 1;
-                }
-                else if (8 <= betMul && betMul < 40) {
-                    level = 2;
-                }
-                else if (40 <= betMul && betMul < 120) {
-                    level = 3;
-                }
-                else if (120 <= betMul && betMul < 400) {
-                    level = 4;
-                }
-                else if (400 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (100 < bet && bet <= 300) {
-                if (3 <= betMul && betMul < 6) {
-                    level = 1;
-                }
-                else if (6 <= betMul && betMul < 30) {
-                    level = 2;
-                }
-                else if (30 <= betMul && betMul < 80) {
-                    level = 3;
-                }
-                else if (80 <= betMul && betMul < 300) {
-                    level = 4;
-                }
-                else if (300 <= betMul) {
-                    level = 5;
-                }
-            }
-            else if (300 < bet) {
-                if (3 <= betMul && betMul < 5) {
-                    level = 1;
-                }
-                else if (5 <= betMul && betMul < 20) {
-                    level = 2;
-                }
-                else if (20 <= betMul && betMul < 60) {
-                    level = 3;
-                }
-                else if (60 <= betMul && betMul < 200) {
-                    level = 4;
-                }
-                else if (200 <= betMul) {
-                    level = 5;
-                }
-            }
+        if (5 <= betMul && betMul < 20) { //bigwin
+            level = 1;
         }
-        else {
-            if (10 <= betMul && betMul < 20) {
-                level = 1;
-            }
-            else if (20 <= betMul && betMul < 60) {
-                level = 2;
-            }
-            else if (60 <= betMul && betMul < 200) {
-                level = 3;
-            }
-            else if (200 <= betMul && betMul < 500) {
-                level = 4;
-            }
-            else if (500 <= betMul) {
-                level = 5;
-            }
+        else if (20 <= betMul && betMul < 100) { //megawin
+            level = 2;
         }
-
+        else if (100 <= betMul) { //superwin
+            level = 3;
+        }
         return level;
     },
+    
+    showBigWinTips: function(winNumFinal) {
+        if (this.bigWinLevel == 0) return;
+        this.node_bigwin_pop.active = true;
+        this.runChangeTotalWinScore(this.lab_bigwin, 0, winNumFinal, 3)
+        let skel_name_start = ""
+        if (this.bigWinLevel == 1) {
+            skel_name_start = "BigWin_Start";
+        }
+        else if (this.bigWinLevel == 2) {
+            skel_name_start = "MageWin_Start";
+        }
+        else if (this.bigWinLevel == 3) {
+            skel_name_start = "SuperWin_Start";
+        }
+        this.skel_bigWin_character.setAnimation(0, skel_name_start, false);
+        this.skel_bigwin_title.setAnimation(0, skel_name_start, false);
 
+        this.skel_bigwin_title.setCompleteListener((trackEntry, loopCount) => {
+            if(this.stopNumScroll == false){
+                this.btn_bigwin_end.interactable = true;
+                this.node_bigwin_pop.active = false;
+                this.stopNumScroll = false;
+            }
+        })
+    },
+
+    dealBigWinEndEvent: function() {
+        this.btn_bigwin_end.interactable = false;
+        this.stopNumScroll = true;
+        let skel_name_end = ""
+        if (this.bigWinLevel == 1) {
+            skel_name_end = "BigWin_End";
+        }
+        else if (this.bigWinLevel == 2) {
+            skel_name_end = "MageWin_End";
+        }
+        else if (this.bigWinLevel == 3) {
+            skel_name_end = "SuperWin_End";
+        }
+        this.skel_bigWin_character.setAnimation(0, skel_name_end, false);
+        this.skel_bigwin_title.setAnimation(0, skel_name_end, false);
+
+        this.skel_bigwin_title.setCompleteListener((trackEntry, loopCount) => {
+            this.btn_bigwin_end.interactable = true;
+            this.node_bigwin_pop.active = false;
+            this.stopNumScroll = false;
+        })
+    },
 
     showSpinResult: function(totalMultiple) {
         let isNeedShowAnim = false;

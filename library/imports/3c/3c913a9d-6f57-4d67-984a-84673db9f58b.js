@@ -2518,14 +2518,24 @@ var CommonFun = cc.Class({
   /**
    * 显示游戏中的设置界面
    */
-  showGameSetting: function showGameSetting() {
+  showGameSetting: function showGameSetting(type) {
     var _this67 = this;
-    var gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
-    gameSettingPrefabPromise.then(function (prefab) {
-      var gameSettingNode = cc.instantiate(prefab);
-      var gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
-      _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
-    });
+    if (type === void 0) {
+      type = 1;
+    }
+    if (type == 1) {
+      var gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
+      gameSettingPrefabPromise.then(function (prefab) {
+        var gameSettingNode = cc.instantiate(prefab);
+        _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+      });
+    } else {
+      var _gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTINGNEW);
+      _gameSettingPrefabPromise.then(function (prefab) {
+        var gameSettingNode = cc.instantiate(prefab);
+        _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTINGNEW);
+      });
+    }
   },
   /**
    * 显示游戏的菜单界面

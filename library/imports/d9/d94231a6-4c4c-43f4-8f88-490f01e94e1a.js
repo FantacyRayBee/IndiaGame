@@ -773,6 +773,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
    * 游戏中的设置
    */
   GAMESETTING: "ResourcesBundle/NewPlan/GameSetting/GameSetting",
+  GAMESETTINGNEW: "ResourcesBundle/NewPlan/GameSetting/GameSettingNew",
   /**
    * 游戏中的菜单
    */
@@ -840,6 +841,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   VIPLUCKYDRAW: "SecondLayer",
   VIPRULES: "SecondLayer",
   GAMESETTING: "SecondLayer",
+  GAMESETTINGNEW: "SecondLayer",
   ACTIVITY_GOBETTING: "SecondLayer",
   DIVERSIONFREETP: "SecondLayer",
   BANKRUPTCY_GIFT: "SecondLayer",

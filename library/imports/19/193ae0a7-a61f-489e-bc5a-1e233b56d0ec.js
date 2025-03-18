@@ -90,6 +90,7 @@ var AudioBase = cc.Class({
   setMusicVolume: function setMusicVolume(volume) {
     volume = cc.misc.clamp01(volume);
     cc.audioEngine.setMusicVolume(volume);
+    this.setLocalData("value_musicSound", volume);
   },
   getMusicVolume: function getMusicVolume() {
     return cc.audioEngine.getMusicVolume();
@@ -97,6 +98,7 @@ var AudioBase = cc.Class({
   setSoundVolume: function setSoundVolume(volume) {
     volume = cc.misc.clamp01(volume);
     cc.audioEngine.setEffectsVolume(volume);
+    this.setLocalData("value_effectSound", volume);
   },
   getSoundVolume: function getSoundVolume() {
     return cc.audioEngine.getEffectsVolume();
