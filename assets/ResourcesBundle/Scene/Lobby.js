@@ -271,7 +271,6 @@ cc.Class({
                 let coin = GlobalCfg.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
                 let getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 //本次充值获得的代金券
                 GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
-                LoggerUtil.getInstance().log(`caojun changed 222 = ${changed} coin = ${coin} firstGetBonus = ${GlobalCfg.USER_DATAS.firstGetBonus}`);
                 if (getBouns > 0) {
                     CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);
                 }
