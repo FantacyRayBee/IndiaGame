@@ -166,7 +166,7 @@ cc.Class({
     },
 
     onLoad: function() {
-        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MAYA_GAME);
+        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_JOKER_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this,
         this.jokerAudiosCtrl = this.node.getComponent("jokerAudiosCtrl");
@@ -271,23 +271,23 @@ cc.Class({
             self.setUserDiamond(coin);
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
-            if (self.isRunningMayaAnim) {
+            if (self.isRunningSlotAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
-                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);
                 },  false);
             }
             else {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);
             };
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
             CommonFun.getInstance().showRule("fruitMachine");
         }
         else if (msgId == "lobbyservice.kicktolobby") {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.SAVE_AUTOSPIN) {
             this.autoSpinTypeNumArr = notify.autoSpinTypeNumArr;
@@ -316,7 +316,7 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MAYA, SceneManager.getInstance().sceneType.LOBBY);           
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);           
             }, false);
         }
         else if (msgId === "gameservice.call") {
@@ -2041,6 +2041,17 @@ cc.Class({
     },
 
     jpSlotClickCall: function() {
+        let curSpinmult = this.gameResult.cards[3].cards[0]
+        let betAmount = parseFloat(this.curBetAmount) * 100 * 10 * curSpinmult;
+        if (betAmount > GlobalCfg.USER_DATAS.userDiamond) {
+            this.recoverySpinBtnEvent();
+            CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        };
         this.btn_jpSpinArr[this.curNeedBuyJpObj.index].node.active = false;
         this.btn_spin2.interactable = false; //防止多次点击屏幕 发送两次spin请求
         if (this.curNeedBuyJpObj) {
@@ -2070,6 +2081,9 @@ cc.Class({
             return;
         };
         let betAmount = parseFloat(this.curBetAmount) * 100;
+        if (this.toggle_extra.isChecked) {
+            betAmount = betAmount / 1.5;
+        };
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond) {
             this.recoverySpinBtnEvent();
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {

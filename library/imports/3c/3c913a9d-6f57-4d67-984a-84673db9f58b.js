@@ -634,6 +634,30 @@ var CommonFun = cc.Class({
     var str = CommonFun.getInstance().numberToShow(cash);
     label.string = str.toString().replace(".", "x");
   },
+  // 货币显示规范 超过100万显示为xx.xM 超过1000显示为xx.xK
+  numberToShow2: function numberToShow2(number, entrycondition) {
+    if (entrycondition == 0) {
+      return number; // 如果 entrycondition 为 0，直接返回原数字
+    }
+
+    var coin = parseInt(number); // 将输入转换为整数
+    if (isNaN(coin)) {
+      return number; // 如果转换失败，返回原数字
+    }
+
+    if (coin >= 1000000) {
+      // 大于等于 100 万，转换为 "M" 单位
+      var tcoin1 = (coin / 1000000).toFixed(2); // 保留两位小数
+      return tcoin1.replace(/\.?0+$/, '') + 'M'; // 去掉末尾的 0 和小数点
+    } else if (coin >= 1000) {
+      // 大于等于 1000，转换为 "K" 单位
+      var tcoin2 = (coin / 1000).toFixed(1); // 保留一位小数
+      return tcoin2.replace(/\.?0+$/, '') + 'K'; // 去掉末尾的 0 和小数点
+    }
+
+    return number; // 其他情况返回原数字
+  },
+
   getStrLength: function getStrLength(str) {
     var realLength = 0,
       len = str.length,

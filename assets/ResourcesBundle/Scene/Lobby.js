@@ -2058,10 +2058,12 @@ cc.Class({
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minijoker.node.active) {
-            skeleton = this.btn_minijoker.node.getChildByName('Background').getComponent(sp.Skeleton);
+            let anim = this.btn_minijoker.node.getChildByName('mask').getChildByName('guang').getComponent(cc.Animation);
+            anim.play('guang');
+            skeleton = this.btn_minijoker.node.getChildByName('mask').getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'animation', true);
+            skeleton.setAnimation(0, 'Idle', true);
         };
         if (this.btn_miniindia.node.active) {
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);

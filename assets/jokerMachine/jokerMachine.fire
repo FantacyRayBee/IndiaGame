@@ -84,9 +84,6 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 1302
-      },
-      {
         "__id__": 1303
       },
       {
@@ -94,6 +91,9 @@
       },
       {
         "__id__": 1305
+      },
+      {
+        "__id__": 1306
       }
     ],
     "_prefab": null,
@@ -41486,8 +41486,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 713.2695922851562,
-      "height": 480.0205993652344
+      "width": 709.6695556640625,
+      "height": 479.0575866699219
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -41555,7 +41555,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "5f18e34c-2cdf-49b8-ac5b-6d4234d6adef"
+      "__uuid__": "fd90c990-f5d3-4c25-a46c-40f89fef898c"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -54498,7 +54498,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 1301
+        "__id__": 1302
       }
     ],
     "_prefab": null,
@@ -64791,6 +64791,9 @@
     "_components": [
       {
         "__id__": 1300
+      },
+      {
+        "__id__": 1301
       }
     ],
     "_prefab": null,
@@ -64978,6 +64981,16 @@
       "__uuid__": "c2c9ac2d-8b28-4254-8775-45071f6f965b"
     },
     "_id": "2beZCcDvtGLqb2cZYEpnyQ"
+  },
+  {
+    "__type__": "cc.BlockInputEvents",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1297
+    },
+    "_enabled": true,
+    "_id": "8a+JeNhQBMjrOYWtp5TTiw"
   },
   {
     "__type__": "cc.Widget",
