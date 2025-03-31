@@ -12,6 +12,7 @@ let SceneManager = cc.Class({
             BENZ: 'Benz/benz',
             SGJ: 'fruitMachine/fruitMachine',
             MAYA: 'mayaMachine/mayaMachine',
+            JOKER: 'jokerMachine/jokerMachine',
             INDIA: 'indiaMachine/indiaMachine',
             VAMPIRE: 'vampireMachine/vampireMachine',
             HORSERACE: 'horseRaceGame/horseRace',
@@ -182,6 +183,11 @@ let SceneManager = cc.Class({
                 protoCfg = ProtoObj.getProto("MAYA");
                 protoPathArr = ["proto/mayaMachine/gameservice"];
                 websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.endpoint;
+                break;
+            case this.sceneType.JOKER:
+                protoCfg = ProtoObj.getProto("JOKER");
+                protoPathArr = ["proto/jokerMachine/gameservice"];
+                websocketUrl = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.endpoint;
                 break;
             case this.sceneType.INDIA:
                 protoCfg = ProtoObj.getProto("INDIA");

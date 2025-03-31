@@ -440,6 +440,12 @@ cc.Class({
       //登录
       "gameservice.call": "CallAck" //下注    
     };
+    //小丑机台
+    this.protoJoker = {
+      "gameservice.login": "LoginAck",
+      //登录
+      "gameservice.call": "CallAck" //下注    
+    };
     //印度舞娘机台
     this.protoIndia = {
       "gameservice.login": "LoginAck",
@@ -603,6 +609,8 @@ cc.Class({
       return this.protoSGJ;
     } else if (gameName == "MAYA") {
       return this.protoMaya;
+    } else if (gameName == "JOKER") {
+      return this.protoJoker;
     } else if (gameName == "INDIA") {
       return this.protoIndia;
     } else if (gameName == "VAMPIRE") {
