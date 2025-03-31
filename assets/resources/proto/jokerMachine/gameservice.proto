@@ -49,6 +49,8 @@ message LoginAck {
 //下注   gameservice.call
 message CallReq {
   int64 amount = 1;     //金额
+  bool isExtra = 2;     //是否为加倍
+  bool buy = 3;       //是否购买免费
 }
 
 
@@ -64,13 +66,11 @@ message XianInfo {
   int32 xianID = 5;   //线ID
 }
 
-
 message CallAck {
   ResponseBase result = 1;
   UserInfoAck userinfo = 2;         //用户信息
-  repeated Card cards = 3;          //牌组(是个3*6的二维数组因为pb协议不支持二维数组)
-  repeated XianInfo xiannum = 4;    //线的数量1 第一个 2第二个 3第三个
-  int32 mianfeinum = 5;             //免费次数  (剩余的免费次数)
-  int32 rewardtype = 6;             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-  int64 freePool = 7;               //免费奖池 (这一轮后三叶草免费奖池)
+  repeated Card cards = 3;          //牌组(是个4*3的二维数组因为pb协议不支持二维数组)
+  repeated XianInfo xiannum = 4;     //线的数量1 第一个 2第二个 3第三个
+  bool     buy = 5;                  //是否是购买局
+  repeated Card restartCards = 6;    //重转牌组(是个4*3的二维数组因为pb协议不支持二维数组)
 }

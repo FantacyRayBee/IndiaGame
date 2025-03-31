@@ -148,6 +148,8 @@ window.GlobalCfg = {
 
     TPGAME_CLICK_RECHARGE: "TPGAME_CLICK_RECHARGE",
     TPGAME_CLICK_LUCKYPLAYER_GET: "TPGAME_CLICK_LUCKYPLAYER_GET",
+
+    SAVE_AUTOSPIN: "SAVE_AUTOSPIN",
   },
 
   
@@ -819,6 +821,7 @@ window.GlobalCfg = {
      */
     GAMESETTING: "ResourcesBundle/NewPlan/GameSetting/GameSetting",
     GAMESETTINGNEW: "ResourcesBundle/NewPlan/GameSetting/GameSettingNew",
+    AUTOSPINSETTING: "ResourcesBundle/NewPlan/GameSetting/autoSpinSetting",
     /**
      * 游戏中的菜单
      */
@@ -895,6 +898,7 @@ window.GlobalCfg = {
     VIPRULES: "SecondLayer",
     GAMESETTING: "SecondLayer",
     GAMESETTINGNEW: "SecondLayer",
+    AUTOSPINSETTING: "SecondLayer",
     ACTIVITY_GOBETTING: "SecondLayer",
     DIVERSIONFREETP: "SecondLayer",
     BANKRUPTCY_GIFT: "SecondLayer",

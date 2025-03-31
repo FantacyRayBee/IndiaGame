@@ -28,6 +28,43 @@ cc.Class({
         };
     },
 
+    playJpStartAnimation: function(skelName1, skelName2) {
+        let self = this;
+        if (self.skeleton_icon) {
+            self.skeleton_icon.node.active = true;
+            self.skeleton_icon.setAnimation(0, "Stop", false);
+            self.skeleton_icon.setCompleteListener(function() {
+                if (skelName1 != "") {
+                    self.skeleton_icon.setAnimation(0, skelName1, false);
+                    self.skeleton_icon.setCompleteListener(function() {
+                        self.skeleton_icon.setAnimation(0, skelName2, true);
+                    })
+                }else{
+                    self.skeleton_icon.setAnimation(0, skelName2, true);
+                }
+            })
+        };
+    },
+
+    playJpWinAnimation: function(skelName1, skelName2) {
+        let self = this;
+        if (self.skeleton_icon) {
+            self.skeleton_icon.node.active = true;
+            self.skeleton_icon.setAnimation(0, skelName1, false);
+            self.skeleton_icon.setCompleteListener(function() {
+                self.skeleton_icon.setAnimation(0, skelName2, false);
+            })
+        };
+    },
+
+    playJpWowAnimation: function(skelName) {
+        let self = this;
+        if (self.skeleton_icon) {
+            self.skeleton_icon.node.active = true;
+            self.skeleton_icon.setAnimation(0, skelName, true);
+        };
+    },
+
     stopAnimation: function(time = 2) {
         this.scheduleOnce(()=>{
             this.skeleton_icon.node.active = false;

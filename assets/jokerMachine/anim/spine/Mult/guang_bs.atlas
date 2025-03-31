@@ -1,0 +1,27 @@
+
+guang_bs.png
+size: 250,333
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+G_w_yuan
+  rotate: true
+  xy: 2, 2
+  size: 120, 153
+  orig: 512, 512
+  offset: 196, 180
+  index: -1
+bd_yel
+  rotate: true
+  xy: 157, 30
+  size: 92, 91
+  orig: 102, 96
+  offset: 5, 0
+  index: -1
+ring_yel
+  rotate: false
+  xy: 2, 124
+  size: 240, 207
+  orig: 259, 229
+  offset: 11, 11
+  index: -1

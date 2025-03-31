@@ -2529,7 +2529,7 @@ var CommonFun = cc.Class({
         var gameSettingNode = cc.instantiate(prefab);
         _this67.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
       });
-    } else {
+    } else if (type == 2) {
       var _gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTINGNEW);
       _gameSettingPrefabPromise.then(function (prefab) {
         var gameSettingNode = cc.instantiate(prefab);

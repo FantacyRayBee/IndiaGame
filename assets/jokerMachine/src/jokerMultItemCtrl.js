@@ -9,33 +9,42 @@ cc.Class({
         lb_win: cc.Label,
     },
     ctor: function () {
-        this.multArr = [1, 2, 3, 5, 10, 15];
     },
 
-    initIcon: function() {
-        let index = Math.floor(Math.random() * 6);
-        this.lb_win.string = "X" + this.multArr[index];
-        this.lb_normal.string = "X" + this.multArr[index];
+    initIcon: function(mult) {
+        this.lb_win.string = "X" + mult;
+        this.lb_normal.string = "X" + mult;
         this.lb_win.node.active = false;
         this.lb_normal.node.active = true;
-        this.setSpriteFrameByIndex(index, false);
+        this.setSpriteFrameByMult(mult, false);
+        let anim = this.lb_win.getComponent(cc.Animation)
+        if (anim) {
+            anim.stop();
+        }
     },
 
-    setItemData: function(multIndex, isShowGold) {
-        this.lb_win.string = "X" + this.multArr[multIndex];
-        this.lb_normal.string = "X" + this.multArr[multIndex];
+    setItemData: function(mult, isShowGold) {
+        this.lb_win.string = "X" + mult;
+        this.lb_normal.string = "X" + mult;
         this.lb_win.node.active = isShowGold;
         this.lb_normal.node.active = !isShowGold;
-        this.setSpriteFrameByIndex(multIndex, isShowGold);
+        this.setSpriteFrameByMult(mult, isShowGold);
     },
 
-    setSpriteFrameByIndex: function(multIndex, isShowGold) {
-        if (multIndex < 4) {
+    playAnimation: function() {
+        let anim = this.lb_win.getComponent(cc.Animation)
+        if (anim) {
+            anim.play("multIdle");
+        }
+    },
+
+    setSpriteFrameByMult: function(mult, isShowGold) {
+        if (mult < 10) {
             this.bg.active = false;
             return;
         }
         this.bg.active = true;
-        if (multIndex == 4) {
+        if (mult == 10) {
             if (isShowGold) { //中奖的时候 底的颜色为亮色
                 this.bg.getComponent(cc.Sprite).spriteFrame = this.sprites[1];
             }

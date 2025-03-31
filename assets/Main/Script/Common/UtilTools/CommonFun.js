@@ -2528,6 +2528,8 @@ let CommonFun = cc.Class({
             gameWordInteractionShowCtrl.setGameWordInteraction(type, name, targetNode, offset, parentNode);
             this.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
         });
+
+
     },
 
     /**
@@ -2541,7 +2543,7 @@ let CommonFun = cc.Class({
                 this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
             });
         }
-        else{
+        else if (type == 2){
             let gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTINGNEW);
             gameSettingPrefabPromise.then((prefab) => {
                 let gameSettingNode = cc.instantiate(prefab);
