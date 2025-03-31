@@ -313,7 +313,7 @@ cc.Class({
             "minicricket": 15,
             "miniluckyloto": 16,
             "minizeus": 17,
-            "minijoker": 18,
+            "miniclown": 18,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -331,7 +331,7 @@ cc.Class({
             "minilonghu": this.btn_minilonghu,
             "minishuiguo": this.btn_minishuiguo,
             "minimaya": this.btn_minimaya,
-            "minijoker": this.btn_minijoker,
+            "miniclown": this.btn_minijoker,
             "miniindia": this.btn_miniindia,
             "minivampire": this.btn_minivampire,
             "minisaima": this.btn_minisaima,
@@ -698,7 +698,7 @@ cc.Class({
                         };
                     };
                     break;
-                case "minijoker":
+                case "miniclown":
                     if (GlobalCfg.USER_DATAS.openModules.includes(122)) {
                         this.btn_minijoker.node.active = true;
 
@@ -836,7 +836,7 @@ cc.Class({
                 "minilonghu": "lhdGame",
                 "minishuiguo": "fruitMachine",
                 "minimaya": "mayaMachine",
-                "minijoker": "jokerMachine",
+                "miniclown": "jokerMachine",
                 "miniindia": "indiaMachine",
                 "minivampire": "vampireMachine",
                 "minisaima": "horseRaceGame",
