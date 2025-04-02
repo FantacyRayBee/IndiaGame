@@ -59,7 +59,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: true,
+  is_force_gotoTest: false,
   /**
    * 渠道信息
    */
@@ -769,6 +769,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
    * 游戏中的设置
    */
   GAMESETTING: "ResourcesBundle/NewPlan/GameSetting/GameSetting",
+  GAMESETTINGNEW: "ResourcesBundle/NewPlan/GameSetting/GameSettingNew",
+  AUTOSPINSETTING: "ResourcesBundle/NewPlan/GameSetting/autoSpinSetting",
   /**
    * 游戏中的菜单
    */
@@ -836,6 +838,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   VIPLUCKYDRAW: "SecondLayer",
   VIPRULES: "SecondLayer",
   GAMESETTING: "SecondLayer",
+  GAMESETTINGNEW: "SecondLayer",
+  AUTOSPINSETTING: "SecondLayer",
   ACTIVITY_GOBETTING: "SecondLayer",
   DIVERSIONFREETP: "SecondLayer",
   BANKRUPTCY_GIFT: "SecondLayer",

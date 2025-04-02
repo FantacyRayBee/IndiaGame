@@ -1,188 +1,188 @@
 
 JP_Declare.png
-size:896,896
-format:RGBA8888
-filter:Linear,Linear
-repeat:none
+size: 2872,774
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 FG_Declare/Grand_Board
-rotate:false
-xy:296,344
-size:294,74
-orig:294,74
-offset:0,0
-index:-1
+  rotate: false
+  xy: 2438, 498
+  size: 294, 74
+  orig: 294, 74
+  offset: 0, 0
+  index: -1
 FG_Declare/JOKER_Board
-rotate:false
-xy:2,4
-size:460,112
-orig:460,112
-offset:0,0
-index:-1
-FG_Declare/JP_back
-rotate:false
-xy:2,362
-size:292,297
-orig:292,297
-offset:0,0
-index:-1
+  rotate: false
+  xy: 1926, 422
+  size: 460, 112
+  orig: 460, 112
+  offset: 0, 0
+  index: -1
+FG_Declare/JP_back2
+  rotate: false
+  xy: 3, 3
+  size: 1920, 768
+  orig: 1920, 768
+  offset: 0, 0
+  index: -1
 FG_Declare/MAJOR_Board
-rotate:true
-xy:786,599
-size:295,74
-orig:295,74
-offset:0,0
-index:-1
+  rotate: false
+  xy: 2551, 697
+  size: 295, 74
+  orig: 295, 74
+  offset: 0, 0
+  index: -1
 FG_Declare/MINOR_Board
-rotate:false
-xy:264,268
-size:294,74
-orig:294,74
-offset:0,0
-index:-1
+  rotate: false
+  xy: 2429, 421
+  size: 294, 74
+  orig: 294, 74
+  offset: 0, 0
+  index: -1
 FG_Declare/WINUP_back
-rotate:false
-xy:2,825
-size:622,69
-orig:640,69
-offset:9,0
-index:-1
+  rotate: false
+  xy: 1926, 702
+  size: 622, 69
+  orig: 640, 69
+  offset: 9, 0
+  index: -1
 FG_Declare/add/Color_W00
-rotate:false
-xy:799,383
-size:64,64
-orig:64,64
-offset:0,0
-index:-1
+  rotate: false
+  xy: 2741, 294
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 FG_Declare/add/FG_Glow01_00
-rotate:true
-xy:464,2
-size:75,144
-orig:90,153
-offset:9,9
-index:-1
+  rotate: false
+  xy: 2645, 116
+  size: 75, 144
+  orig: 90, 153
+  offset: 9, 9
+  index: -1
 FG_Declare/add/FX_spot01
-rotate:false
-xy:803,317
-size:64,64
-orig:64,64
-offset:0,0
-index:-1
+  rotate: false
+  xy: 2741, 227
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 FG_Declare/add/GRAND_Glow
-rotate:false
-xy:2,661
-size:509,162
-orig:512,165
-offset:2,1
-index:-1
+  rotate: false
+  xy: 1926, 537
+  size: 509, 162
+  orig: 512, 165
+  offset: 2, 1
+  index: -1
 FG_Declare/add/Light_BG
-rotate:true
-xy:749,162
-size:98,100
-orig:100,100
-offset:1,0
-index:-1
+  rotate: false
+  xy: 2735, 472
+  size: 98, 100
+  orig: 100, 100
+  offset: 1, 0
+  index: -1
 FG_Declare/add/OpenShot-Lens-Flare2
-rotate:true
-xy:535,449
-size:374,119
-orig:374,119
-offset:0,0
-index:-1
+  rotate: false
+  xy: 2438, 575
+  size: 374, 119
+  orig: 374, 119
+  offset: 0, 0
+  index: -1
 FG_Declare/add/Other_Glow
-rotate:true
-xy:656,551
-size:343,128
-orig:347,130
-offset:2,1
-index:-1
+  rotate: false
+  xy: 1926, 46
+  size: 343, 128
+  orig: 347, 130
+  offset: 2, 1
+  index: -1
 FG_Declare/add/Star_21
-rotate:true
-xy:296,420
-size:239,237
-orig:256,256
-offset:11,2
-index:-1
+  rotate: true
+  xy: 2189, 180
+  size: 239, 237
+  orig: 256, 256
+  offset: 11, 2
+  index: -1
 FG_Declare/add/Wipe_01
-rotate:true
-xy:626,863
-size:31,23
-orig:250,200
-offset:29,155
-index:-1
+  rotate: false
+  xy: 2389, 511
+  size: 31, 23
+  orig: 250, 200
+  offset: 29, 155
+  index: -1
 FG_Declare/add/Wipe_02
-rotate:false
-xy:573,89
-size:195,70
-orig:250,200
-offset:17,123
-index:-1
+  rotate: false
+  xy: 2272, 4
+  size: 195, 70
+  orig: 250, 200
+  offset: 17, 123
+  index: -1
 FG_Declare/add/Wipe_03
-rotate:false
-xy:592,262
-size:209,85
-orig:250,200
-offset:15,113
-index:-1
+  rotate: false
+  xy: 2660, 28
+  size: 209, 85
+  orig: 250, 200
+  offset: 15, 113
+  index: -1
 FG_Declare/add/Wipe_04
-rotate:false
-xy:592,349
-size:205,98
-orig:250,200
-offset:26,100
-index:-1
+  rotate: false
+  xy: 2429, 211
+  size: 205, 98
+  orig: 250, 200
+  offset: 26, 100
+  index: -1
 FG_Declare/add/Wipe_05
-rotate:true
-xy:473,79
-size:187,98
-orig:250,200
-offset:31,100
-index:-1
+  rotate: false
+  xy: 2470, 8
+  size: 187, 98
+  orig: 250, 200
+  offset: 31, 100
+  index: -1
 FG_Declare/add/Wipe_06
-rotate:false
-xy:573,161
-size:174,99
-orig:250,200
-offset:38,99
-index:-1
+  rotate: false
+  xy: 2468, 109
+  size: 174, 99
+  orig: 250, 200
+  offset: 38, 99
+  index: -1
 FG_Declare/add/Wipe_07
-rotate:true
-xy:770,5
-size:155,99
-orig:250,200
-offset:67,99
-index:-1
+  rotate: true
+  xy: 2639, 263
+  size: 155, 99
+  orig: 250, 200
+  offset: 67, 99
+  index: -1
 FG_Declare/add/Wipe_08
-rotate:false
-xy:656,449
-size:193,100
-orig:250,200
-offset:44,100
-index:-1
+  rotate: false
+  xy: 2272, 77
+  size: 193, 100
+  orig: 250, 200
+  offset: 44, 100
+  index: -1
 FG_Declare/add/Wipe_09
-rotate:false
-xy:264,160
-size:207,106
-orig:250,200
-offset:30,94
-index:-1
+  rotate: false
+  xy: 2429, 312
+  size: 207, 106
+  orig: 250, 200
+  offset: 30, 94
+  index: -1
 FG_Declare/add/Wipe_10
-rotate:true
-xy:610,9
-size:78,108
-orig:250,200
-offset:158,85
-index:-1
+  rotate: false
+  xy: 2741, 361
+  size: 78, 108
+  orig: 250, 200
+  offset: 158, 85
+  index: -1
 FX/Particle/Add_Particles0
-rotate:false
-xy:2,118
-size:260,242
-orig:300,300
-offset:18,35
-index:-1
+  rotate: false
+  xy: 1926, 177
+  size: 260, 242
+  orig: 300, 300
+  offset: 18, 35
+  index: -1
 FX/Particle/Eye_Flash
-rotate:true
-xy:720,38
-size:49,48
-orig:50,50
-offset:1,1
-index:-1
+  rotate: true
+  xy: 2815, 645
+  size: 49, 48
+  orig: 50, 50
+  offset: 1, 1
+  index: -1

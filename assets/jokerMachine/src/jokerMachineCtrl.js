@@ -54,6 +54,7 @@ cc.Class({
         node_winMulEndPos: cc.Node,
         node_winJpEndPos: cc.Node,
         node_jackpotArr: [cc.Node],
+        node_skel_jackpotArr: [sp.Skeleton],
         node_bigwin_pop: cc.Node,
         node_jp_pop: cc.Node,
         node_top_extra: cc.Node,
@@ -119,7 +120,7 @@ cc.Class({
         this.selectAutoStatus = false;
         this.curNeedBuyJpObj = null;        // 当前需要购买的jp轴对象
         this.isHopeSlotRunAnim = false;     // 是否出现第三轴期待动画
-
+        this.curSendSpin = false;           // 当前是否在发送spin请求
         this.coinRunAnimTween = null;
         this.fakeSlotRunTween = {};
     },
@@ -194,9 +195,9 @@ cc.Class({
         this.btn_rule_close.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_autoSpinSet.node.on('click', this.debounce(this.componentClickCall, 1), this);
         
-        this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
-        this.toggle_auto.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
-        this.toggle_extra.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
+        this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
+        this.toggle_auto.node.on('toggle', this.debounce(this.componentClickCall, 1.5), this);
+        this.toggle_extra.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
         this.betIndex = 0;
         this.curBetAmount = this.betAmountArr[this.betIndex];
         this.lab_betAmount.string = "bet " + this.betAmountArr[this.betIndex];
@@ -240,7 +241,7 @@ cc.Class({
         this.node_entry.active = true;
 
         let skel_entry = this.node_entry.getChildByName('rw').getComponent(sp.Skeleton);
-        this.playGameSound('Play_Ready');
+        this.playGameMusic('Play_Ready');
         skel_entry.setAnimation(0, 'GameIntro_L', false);
         skel_entry.setCompleteListener(function() {
             self.node_entry.active = false;
@@ -440,9 +441,8 @@ cc.Class({
 
     playJackpotAnimation: function(index, animName, isLoop) {
         let nameArr = ["MINOR_","MAJOR_","GRAND_","JOKER_"]
-        let skel_jp = this.node_jackpotArr[index].getChildByName("skel").getComponent(sp.Skeleton)
+        let skel_jp = this.node_skel_jackpotArr[index]
         let skelName = nameArr[index] + animName;
-        LoggerUtil.getInstance().log(`caojun playJackpotAnimation index = ${index} skelName = ${skelName}`);
         skel_jp.node.active = true;
         skel_jp.setAnimation(0, skelName, isLoop);
         if (!isLoop) {
@@ -467,6 +467,7 @@ cc.Class({
     },
 
     setCallNotify: function(notify) {
+        this.curSendSpin = false; //当前是否在发送请求 如果收到服务器回复，说明请求已经发送 避免多次发送
         this.gameResult = {};
         this.gameResult.userinfo = notify.userinfo;
         this.gameResult.xiannum = notify.xiannum;
@@ -2067,6 +2068,9 @@ cc.Class({
     },
 
     sendCallReq: function(jpMult = 1) {
+        if (this.curSendSpin == true) { //避免重复发送请求
+            return;
+        }
         //playnow模式下 首充玩家 弹VIP弹框
         if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
             CommonFun.getInstance().showVipRechargeToast();
@@ -2108,6 +2112,7 @@ cc.Class({
             this.initSlotPos(this.curNeedBuyJpObj.index, true);
             this.curNeedBuyJpObj = null;
         }
+        this.curSendSpin = true;
         let proroID = 'gameservice.call';
         let message = 'CallReq';
         GameServerManager.send(proroID, message, {              
