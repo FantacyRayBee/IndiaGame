@@ -93,6 +93,9 @@ cc.Class({
             this.dealBtnMainCloseEvent();
             return;
         } 
+        if (btnName === "btn_withdraw") {
+            this.dealBtnWithDrawEvent();
+        } 
         GlobalCfg.G_COMPONENTS.Audio.playButton();
     },
 

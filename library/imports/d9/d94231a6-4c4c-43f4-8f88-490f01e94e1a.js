@@ -795,7 +795,11 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 强制引导弹窗
    */
-  HALLTIP: "ResourcesBundle/NewPlan/HallTip/HallTip"
+  HALLTIP: "ResourcesBundle/NewPlan/HallTip/HallTip",
+  /**
+   * 第三方游戏跳转内嵌网页
+   */
+  GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview"
 }, _window$GlobalCfg.PREFAB_PARENT = {
   CAROUSELSTRIP: "CarouselLayer",
   SIDEBAR: "FirstLayer",
@@ -869,7 +873,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SHOPNEWTIP: "SecondLayer",
   PROGRESS: "ProgressLayer",
   TIPS: "TipsLayer",
-  HALLTIP: "TipsLayer"
+  HALLTIP: "TipsLayer",
+  GAMEWEBVIEW: "TipsLayer"
 }, _window$GlobalCfg.LAYER_TAG = {
   CAROUSELLAYER: "CarouselLayer",
   // 跑马灯
@@ -936,7 +941,8 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   checkSendSmsPermission: 'checkSendSmsPermissionByBloom3Rummy',
   hwLogin: 'hwLoginByBloom3Rummy',
   hwPay: 'hwPayByBloom3Rummy',
-  hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByBloom3Rummy'
+  hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByBloom3Rummy',
+  showWebView: 'showWebViewByBloom3Rummy'
 };
 GlobalCfg.NATIVE_CALL_URL1 = "com/baggy/ranistan/JSCallJavaByDownloadPackage";
 GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
@@ -969,7 +975,8 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   checkSendSmsPermission: 'checkSendSmsPermissionByDownloadPackage',
   hwLogin: 'hwLoginByDownloadPackage',
   hwPay: 'hwPayByDownloadPackage',
-  hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByDownloadPackage'
+  hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByDownloadPackage',
+  showWebView: 'showWebViewByDownloadPackage'
 };
 GlobalCfg.NATIVE_CALL_URL2 = "com/gugu/testteenpatti/JSCallJavaByOFFLINEDEVE";
 GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
@@ -1002,7 +1009,8 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   checkSendSmsPermission: 'checkSendSmsPermissionByOFFLINEDEVE',
   hwLogin: 'hwLoginByOFFLINEDEVE',
   hwPay: 'hwPayByOFFLINEDEVE',
-  hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByOFFLINEDEVE'
+  hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByOFFLINEDEVE',
+  showWebView: 'showWebViewByOFFLINEDEVE'
 };
 
 // ----------------------------------------------------------------------------------------

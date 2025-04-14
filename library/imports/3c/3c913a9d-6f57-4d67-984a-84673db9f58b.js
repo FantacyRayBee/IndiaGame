@@ -1231,6 +1231,29 @@ var CommonFun = cc.Class({
     });
   },
   /**
+   * 显示内嵌网页界面
+   */
+  showGameWebview: function showGameWebview(gameId, isVertical) {
+    var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/pg/game_url";
+    var httpParam = {
+      game_id: gameId
+    };
+    CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
+      // if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+      APPManager.showWebView(msg.data.Url, isVertical);
+      // }
+      // else{
+      //     let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
+      //     PrefabPromise.then((prefab) => {
+      //         let Node = cc.instantiate(prefab);
+      //         let Ctrl = Node.getComponent('gameWebview');   
+      //         Ctrl.setURL(msg.data.Url) 
+      //         this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+      //     });
+      // }
+    }, null, GlobalCfg.USER_DATAS.BearerToken);
+  },
+  /**
    * 添加跑马灯
    */
   addCarouselStrip: function addCarouselStrip() {

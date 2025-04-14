@@ -25,6 +25,7 @@ let SceneManager = cc.Class({
             ZOO:'zooGame/zoo',
             CRICKET: 'cricketGame/cricket',
             ZEUS: "zeusGame/zeus",
+            WEBVIEW:'webview',
         };
     
         this.curSceneType = null;
@@ -76,6 +77,23 @@ let SceneManager = cc.Class({
         // 从大厅场景跳转到小游戏场景
         else if (fromSceneName === this.sceneType.LOBBY && toSceneName !== this.sceneType.UPDATE) {
             this.dealEnterGameScene(toSceneName);
+        }
+        // 从内嵌小游戏网页场景跳转到大厅场景 刷新玩家身上的数据
+        else if(fromSceneName == this.sceneType.WEBVIEW && toSceneName === this.sceneType.LOBBY){
+            Promise.all([this.reqUserDataInfo()])
+            .then((arr) => {
+                this.isLoadingScene = false;
+                CommonFun.getInstance().hidProgress();
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                    msgCode: GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY,
+                    msgData: {}
+                });
+            })
+            .catch((err) => {
+                this.isLoadingScene = false;
+                CommonFun.getInstance().hidProgress();
+                CommonFun.getInstance().showTips(err);
+            });
         }
         // 从小游戏场景跳转到大厅场景
         else if (fromSceneName !== this.sceneType.UPDATE && fromSceneName !== this.sceneType.LOBBY && toSceneName === this.sceneType.LOBBY) {

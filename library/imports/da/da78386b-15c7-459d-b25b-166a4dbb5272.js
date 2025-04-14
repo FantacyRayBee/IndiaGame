@@ -116,6 +116,18 @@ APPManager.Share = function (Url) {
   }
 };
 
+//安卓内嵌网页调起
+APPManager.showWebView = function (Url, isPortrait) {
+  if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+    GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.closeMusic(); //关闭背景音乐
+    var data = {
+      url: Url,
+      isPortrait: isPortrait
+    };
+    jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "showWebViewByBloom3Rummy", "(Ljava/lang/String;)V", JSON.stringify(data));
+  }
+};
+
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
   if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
@@ -159,6 +171,11 @@ APPManager.getConcactsArrStrCallback = function (concactsArrStr) {
       }
     });
   }
+};
+APPManager.closeWebViewCallBack = function () {
+  APPManager.setOrientation("H");
+  GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.openMusic();
+  SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.WEBVIEW, SceneManager.getInstance().sceneType.LOBBY);
 };
 APPManager.checkSendSmsPermission = function () {
   if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {

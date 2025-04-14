@@ -841,6 +841,10 @@ window.GlobalCfg = {
      * 强制引导弹窗
      */
     HALLTIP: "ResourcesBundle/NewPlan/HallTip/HallTip",
+    /**
+     * 第三方游戏跳转内嵌网页
+     */
+    GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview",
   },
 
 
@@ -924,12 +928,11 @@ window.GlobalCfg = {
     ADVANCEDMODE: "ShopLayer",
     SHOPNEWTIP: "SecondLayer",
 
-
     PROGRESS: "ProgressLayer",
 
     TIPS: "TipsLayer",
     HALLTIP: "TipsLayer",
-
+    GAMEWEBVIEW: "TipsLayer",
   },
 
   /**
@@ -1006,6 +1009,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   hwLogin: 'hwLoginByBloom3Rummy',
   hwPay: 'hwPayByBloom3Rummy',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByBloom3Rummy',
+  showWebView: 'showWebViewByBloom3Rummy',
 };
 
 GlobalCfg.NATIVE_CALL_URL1 = "com/baggy/ranistan/JSCallJavaByDownloadPackage";
@@ -1041,6 +1045,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   hwLogin: 'hwLoginByDownloadPackage',
   hwPay: 'hwPayByDownloadPackage',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByDownloadPackage',
+  showWebView: 'showWebViewByDownloadPackage',
 };
 
 GlobalCfg.NATIVE_CALL_URL2 = "com/gugu/testteenpatti/JSCallJavaByOFFLINEDEVE";
@@ -1076,6 +1081,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   hwLogin: 'hwLoginByOFFLINEDEVE',
   hwPay: 'hwPayByOFFLINEDEVE',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByOFFLINEDEVE',
+  showWebView: 'showWebViewByOFFLINEDEVE',
 };
 
 // ----------------------------------------------------------------------------------------

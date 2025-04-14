@@ -178,6 +178,7 @@ cc.Class({
          * tp引导手指
          */
         node_tpFinger: cc.Node,
+        node_webview: cc.Node,
     },
 
     ctor: function() {
@@ -197,8 +198,8 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 510, 20);
-        this.node_gameScollview.setContentSize(w - 510 - 30, 480);
+        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setContentSize(w - 150 - 30, 480);
     },
 
     onLoad: function() {
@@ -220,7 +221,7 @@ cc.Class({
         this.setBtnsClick();
         this.setGameOrder();
         this.showUserInfo();
-        this.showBanner();
+        // this.showBanner();
         this.showOtherModules(); 
         this.showVipLevelIcon();
         this.showSmallGameBtns();
@@ -236,6 +237,7 @@ cc.Class({
         CommonFun.getInstance().updateSidebarData(true);
         CommonFun.getInstance().showHallTip();
         
+
         if (window.isNeedShowRoomList) {
             this.showGameRoomList();
         };
@@ -523,9 +525,9 @@ cc.Class({
         };
 
         let w = cc.view.getVisibleSize().width;
-        this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 510 - 30 + 132, 480);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30 + 132, 480);
+        // this.node_middles.setPosition(cc.v2(-132, -20));
+        this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 480);
+        this.node_gameScollview.getChildByName("view").setContentSize(w - 130 - 30 + 132, 480);
     },
 
     /**
@@ -1229,6 +1231,7 @@ cc.Class({
             self.setSmallGameLoadComplete(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
+            LoggerUtil.getInstance().log("caojun CURRENCY_CHANGED_USER_INFO");
             self.showUserInfo();
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_TGY_REWARD 
@@ -1268,21 +1271,24 @@ cc.Class({
             self.showUserInfo();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY) {
+            LoggerUtil.getInstance().log('收到关闭ssc刷新lobby GlobalCfg.USER_DATAS = ', GlobalCfg.USER_DATAS);
             // 救济金
             if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
                 GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
             };
             self.showUserInfo();
-            self.showBanner();
-            self.showOtherModules();  
+            // self.showBanner();
+            self.showOtherModules();
             self.showSmallGameBtns();
             self.showToastViews();
             self.showTransBounsRedPoint();
             CommonFun.getInstance().hidProgress();
         }
         else if (msgId == 'lobbyservice.newmail') {
-            // 新邮件通知，消息体无内容
-            self.showNewEmailRedDot(true); 
+            destroy()
+        }
+        else if (msgId == 'GAME_WEBVIEW_BACK') {
+            this.node_webview.active = false;
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.READ_EMAIL){
             // 读取邮件，更新邮件按钮状态
@@ -1356,7 +1362,6 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_setting") {
             CommonFun.getInstance().showSetting();
-            // CommonFun.getInstance().showPromoter();
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ADD_BUTTON);
@@ -1457,8 +1462,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(0, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 510 - 30, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30, 480);
+                this.node_gameScollview.setContentSize(w - 150 - 30, 480);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30, 480);
             })
             .start();
         }
@@ -1466,8 +1471,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(-132, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 510 - 30 + 132, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30 + 132, 480);
+                this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
             })
             .start();
         };
