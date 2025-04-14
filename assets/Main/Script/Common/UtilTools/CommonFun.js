@@ -1254,7 +1254,7 @@ let CommonFun = cc.Class({
             //     });
             // }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
-    },    
+    },
 
     /**
      * 添加跑马灯
