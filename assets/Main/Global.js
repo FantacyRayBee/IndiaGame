@@ -849,6 +849,10 @@ window.GlobalCfg = {
      * 第三方游戏跳转内嵌网页
      */
     GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview",
+    /**
+     * 俱乐部
+     */
+    CLUB: "ResourcesBundle/NewPlan/Club/ClubMain",
   },
 
 
@@ -874,6 +878,7 @@ window.GlobalCfg = {
     SIGN: "FirstLayer",
     WITHDRAWPREDATA: "FirstLayer",
     PROMOTERMAIN: "FirstLayer",
+    CLUB: "FirstLayer",
 
     ACTIVITY: "SecondLayer",
     FIRSTRECHARGE: "SecondLayer",

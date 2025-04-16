@@ -803,7 +803,11 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 第三方游戏跳转内嵌网页
    */
-  GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview"
+  GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview",
+  /**
+   * 俱乐部
+   */
+  CLUB: "ResourcesBundle/NewPlan/Club/ClubMain"
 }, _window$GlobalCfg.PREFAB_PARENT = {
   CAROUSELSTRIP: "CarouselLayer",
   SIDEBAR: "FirstLayer",
@@ -822,6 +826,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SIGN: "FirstLayer",
   WITHDRAWPREDATA: "FirstLayer",
   PROMOTERMAIN: "FirstLayer",
+  CLUB: "FirstLayer",
   ACTIVITY: "SecondLayer",
   FIRSTRECHARGE: "SecondLayer",
   CONTACTUS: "SecondLayer",

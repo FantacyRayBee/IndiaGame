@@ -1257,6 +1257,25 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 打开俱乐部
+     */
+    showClub: function() {
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_club_info`;
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.clubInfo = msg.data;
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
+                prefabPromise.then((prefab) => {
+                    let Node = cc.instantiate(prefab);
+                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+
+    },    
+
+    /**
      * 添加跑马灯
      */
     addCarouselStrip: function() {

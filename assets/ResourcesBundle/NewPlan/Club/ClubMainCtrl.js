@@ -3,7 +3,6 @@ cc.Class({
 
     properties: {
         //main
-        lb_my_code: cc.Label,
         lb_club_coin: cc.Label,
         btn_invited: cc.Button,
         btn_manager: cc.Button,
@@ -16,7 +15,7 @@ cc.Class({
         root_operate: cc.Node,
         // root_invited
         btn_invitedClose: cc.Button,
-        btn_invited: cc.Button,
+        btn_bind: cc.Button,
         editBox_invited:cc.EditBox,
         // root_operate
         editBox_addcoin:cc.EditBox,
@@ -47,7 +46,7 @@ cc.Class({
         this.btn_server.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         // root_invited
         this.btn_invitedClose.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_invited.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_bind.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         // root_operate
         this.btn_addcoin.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_withdraw.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -56,7 +55,7 @@ cc.Class({
     },
     
     start: function() {
-        
+        this.lb_club_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
     },
 
     onDestroy: function () {
@@ -68,6 +67,9 @@ cc.Class({
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
+        if (msgId === "OPEN_CLUB_MEMBER_OPERATE") {
+            self.dealMemberOperateEvent(notify.userData);
+        }
     },
 
     btnClick: function (btn) {
@@ -82,16 +84,18 @@ cc.Class({
         } 
         if (btnName === "btn_manager") {
             this.root_manage.active = true;
+            this.dealBtnManageEvent();
         } 
         if (btnName === "btn_record") {
             this.root_record.active = true;
         } 
         if (btnName === "btn_server") {
         } 
-        if (btnName === "btn_invitedClose") {
+        if (btnName === "btn_cancel") {
             this.root_invited.active = false;
         } 
-        if (btnName === "btn_invited") {
+        if (btnName === "btn_bind") {
+            this.dealBtnInvitedBindEvent();
         } 
         if (btnName === "btn_addcoin") {
         } 
@@ -106,6 +110,48 @@ cc.Class({
     dealBtnMainCloseEvent: function () {
         this.node.destroy();
     },
+
+    dealMemberOperateEvent: function (data) {
+        this.root_operate.active = true;
+        //TODO
+    },
+
+    dealBtnManageEvent: function () {
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_down`;
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.clubMembers = msg.data.infos;
+                this.root_manage.active = true;
+                this.root_manage.getComponent("ClubManageCtrl").initData();
+            } else {
+                CommonFun.getInstance().showTips(msg.msg);
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+    
     // root_invited
+    dealBtnInvitedBindEvent: function () {
+        if (this.editBox_invited.string == "") {
+            CommonFun.getInstance().showTips("gameID is empty");
+            return;
+        }
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/bind_club_req`;
+        let httpParam = {
+            bindUid: this.editBox_invited.string,
+        };
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                CommonFun.getInstance().showTips("invite success");
+                this.editBox_invited.string = ""
+                this.root_invited.active = false;
+            }
+            if (msg.result != 0) {
+                CommonFun.getInstance().showTips(msg.msg);
+            };
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+    
     // root_operate
 });
