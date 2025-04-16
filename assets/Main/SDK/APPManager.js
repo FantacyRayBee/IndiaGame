@@ -179,7 +179,7 @@ APPManager.getConcactsArrStrCallback = function (concactsArrStr) {
 }
 
 APPManager.closeWebViewCallBack = function () {
-    APPManager.setOrientation("H");
+    // APPManager.setOrientation("H");
     GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.openMusic();
     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.WEBVIEW, SceneManager.getInstance().sceneType.LOBBY);
 }

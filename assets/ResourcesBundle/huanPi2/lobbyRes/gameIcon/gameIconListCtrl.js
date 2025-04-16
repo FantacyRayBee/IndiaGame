@@ -18,6 +18,8 @@ cc.Class({
     },
 
     onLoad: function () {
+        this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+
         for (var i = 0; i < this.toggles.length; i++) {
             this.toggles[i].node.on('toggle', this.toggleClick, this);
         }
@@ -36,7 +38,16 @@ cc.Class({
         this.setViewByToggleName(this.NowToggleName)
     },
 
+    onEventMsg: function(webData, target) {
+        let msgId = webData.msgCode;
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY) {
+            this.lb_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        }
+    },
+
     onDestroy: function () {
+        ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
+        CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.GAMEICONLIST);
     },
 
     loadItem: function () {
@@ -110,6 +121,10 @@ cc.Class({
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.node.destroy();
             CommonFun.getInstance().decVerticalAcc();
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                msgCode: "CLOSE_GAMEICONLIST",
+                msgData: {}
+            });
             return;
         } 
         if (btnName === "btn_add") {

@@ -198,8 +198,8 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 510, 20);
-        this.node_gameScollview.setContentSize(w - 510 - 30, 480);
+        this.node_gameScollview.setPosition(-(w / 2) + 150, 20);
+        this.node_gameScollview.setContentSize(w - 150 - 30, 480);
     },
 
     onLoad: function() {
@@ -221,7 +221,7 @@ cc.Class({
         this.setBtnsClick();
         this.setGameOrder();
         this.showUserInfo();
-        this.showBanner();
+        // this.showBanner();
         this.showOtherModules(); 
         this.showVipLevelIcon();
         this.showSmallGameBtns();
@@ -525,9 +525,9 @@ cc.Class({
         };
 
         let w = cc.view.getVisibleSize().width;
-        this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 510 - 30 + 132, 480);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30 + 132, 480);
+        // this.node_middles.setPosition(cc.v2(-132, -20));
+        this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
+        this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
     },
 
     /**
@@ -1277,12 +1277,15 @@ cc.Class({
                 GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
             };
             self.showUserInfo();
-            self.showBanner();
+            // self.showBanner();
             self.showOtherModules();
             self.showSmallGameBtns();
             self.showToastViews();
             self.showTransBounsRedPoint();
             CommonFun.getInstance().hidProgress();
+        }
+        else if (msgId == 'CLOSE_GAMEICONLIST'){ //关闭游戏列表 刷新一下界面的位置 因为触发了横竖屏切换
+            self.showOtherModules();
         }
         else if (msgId == 'lobbyservice.newmail') {
             destroy()
@@ -1462,8 +1465,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(0, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 510 - 30, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30, 480);
+                this.node_gameScollview.setContentSize(w - 150 - 30, 480);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30, 480);
             })
             .start();
         }
@@ -1471,8 +1474,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(-132, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 510 - 30 + 132, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30 + 132, 480);
+                this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
             })
             .start();
         };

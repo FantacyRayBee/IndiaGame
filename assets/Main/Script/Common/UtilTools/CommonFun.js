@@ -1253,18 +1253,18 @@ let CommonFun = cc.Class({
             game_id: gameId,
         };
         CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
-            // if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+            if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
                 APPManager.showWebView(msg.data.Url, isVertical);
-            // }
-            // else{
-            //     let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
-            //     PrefabPromise.then((prefab) => {
-            //         let Node = cc.instantiate(prefab);
-            //         let Ctrl = Node.getComponent('gameWebview');   
-            //         Ctrl.setURL(msg.data.Url) 
-            //         this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
-            //     });
-            // }
+            }
+            else{
+                let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
+                PrefabPromise.then((prefab) => {
+                    let Node = cc.instantiate(prefab);
+                    let Ctrl = Node.getComponent('gameWebview');   
+                    Ctrl.setURL(msg.data.Url) 
+                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+                });
+            }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
