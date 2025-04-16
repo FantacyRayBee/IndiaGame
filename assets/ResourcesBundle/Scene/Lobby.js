@@ -198,8 +198,8 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
-        this.node_gameScollview.setContentSize(w - 150 - 30, 480);
+        this.node_gameScollview.setPosition(-(w / 2) + 510, 20);
+        this.node_gameScollview.setContentSize(w - 510 - 30, 480);
     },
 
     onLoad: function() {
@@ -221,7 +221,7 @@ cc.Class({
         this.setBtnsClick();
         this.setGameOrder();
         this.showUserInfo();
-        // this.showBanner();
+        this.showBanner();
         this.showOtherModules(); 
         this.showVipLevelIcon();
         this.showSmallGameBtns();
@@ -525,9 +525,9 @@ cc.Class({
         };
 
         let w = cc.view.getVisibleSize().width;
-        // this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 480);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 130 - 30 + 132, 480);
+        this.node_middles.setPosition(cc.v2(-132, -20));
+        this.node_gameScollview.setContentSize(w - 510 - 30 + 132, 480);
+        this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30 + 132, 480);
     },
 
     /**
@@ -1277,7 +1277,7 @@ cc.Class({
                 GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
             };
             self.showUserInfo();
-            // self.showBanner();
+            self.showBanner();
             self.showOtherModules();
             self.showSmallGameBtns();
             self.showToastViews();
@@ -1462,8 +1462,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(0, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 150 - 30, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30, 480);
+                this.node_gameScollview.setContentSize(w - 510 - 30, 480);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30, 480);
             })
             .start();
         }
@@ -1471,8 +1471,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(-132, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
+                this.node_gameScollview.setContentSize(w - 510 - 30 + 132, 480);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 510 - 30 + 132, 480);
             })
             .start();
         };
@@ -1640,12 +1640,13 @@ cc.Class({
             });
         } 
         else if (btnName == "btn_jokerMachine") {
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
-            this.checkUpdate("jokerMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.JOKER);
-            });
+            // CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
+            // this.checkUpdate("jokerMachine", () => {
+            //     CommonFun.getInstance().showProgress();
+            //     GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.product;
+            //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.JOKER);
+            // });
+            CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);

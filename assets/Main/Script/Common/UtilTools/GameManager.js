@@ -50,10 +50,6 @@ let GameManager = cc.Class({
         ];
     },
 
-    statics: {
-        _instance: null
-    },
-
     getGameConfig: function() {
         let tmpCfg = {};
         for (let item of this.gameConfig) {
@@ -63,8 +59,24 @@ let GameManager = cc.Class({
             }
             tmpCfg[type].push(item); // 把当前项加入对应 type 的数组
         }
+        // 2. 创建 'quente' 类型，包含每个原始类型的前4个游戏
+        tmpCfg['quente'] = [];
+        // 遍历所有原始类型（PG、JL、PP）
+        for (const type in tmpCfg) {
+            // 跳过刚添加的 'quente' 类型本身
+            if (type === 'quente') continue;
+            // 取当前类型的前4个游戏（如果不足4个则全部取）
+            const hotGames = tmpCfg[type].slice(0, 4);
+            // 添加到 'quente' 数组
+            tmpCfg['quente'].push(...hotGames);
+        }
         return tmpCfg;
     },
+
+    statics: {
+        _instance: null
+    },
+
 });
 
 GameManager.getInstance = () => {

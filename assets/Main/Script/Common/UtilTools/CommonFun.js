@@ -1093,6 +1093,18 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 打开游戏列表界面
+     */
+    showGameIconList: function() {
+        let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEICONLIST);
+        PrefabPromise.then((prefab) => {
+            CommonFun.getInstance().addVerticalAcc();
+            let Node = cc.instantiate(prefab);
+            this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.GAMEICONLIST);
+        });
+    },
+
+    /**
      * 小游戏中显示加金币
      * @param {string} gameName 游戏名称
      * @param {number} gameCoin 游戏底分

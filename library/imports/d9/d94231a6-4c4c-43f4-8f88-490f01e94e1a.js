@@ -799,7 +799,11 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 第三方游戏跳转内嵌网页
    */
-  GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview"
+  GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview",
+  /**
+   * 第三方游戏跳转内嵌网页
+   */
+  GAMEICONLIST: "ResourcesBundle/huanPi2/lobbyRes/gameIcon/gameIconList"
 }, _window$GlobalCfg.PREFAB_PARENT = {
   CAROUSELSTRIP: "CarouselLayer",
   SIDEBAR: "FirstLayer",
@@ -847,6 +851,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   ACTIVITY_GOBETTING: "SecondLayer",
   DIVERSIONFREETP: "SecondLayer",
   BANKRUPTCY_GIFT: "SecondLayer",
+  GAMEICONLIST: "SecondLayer",
   SMALLADDCASH: "ThirdLayer",
   SMALLADDEXPERIENCE: "ThirdLayer",
   USERHEAD: "ThirdLayer",

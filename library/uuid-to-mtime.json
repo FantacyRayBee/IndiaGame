@@ -555,8 +555,8 @@
     "relativePath": "lhdGame"
   },
   "a8eacbcf-fbef-4465-84b3-524340df9455": {
-    "asset": 1743415973398,
-    "meta": 1743416094237,
+    "asset": 1744769062121,
+    "meta": 1744769104125,
     "relativePath": "Main"
   },
   "8fc902c6-4301-45e4-a71d-b923f1634160": {
@@ -1440,8 +1440,8 @@
     "relativePath": "ResourcesBundle\\huanPi2"
   },
   "5bbffecd-f0fe-4e1c-9cf9-37c5eed996a9": {
-    "asset": 1743995750692,
-    "meta": 1744340075420,
+    "asset": 1744769062117,
+    "meta": 1744769104919,
     "relativePath": "ResourcesBundle\\NewPlan"
   },
   "61a5f0c4-c0da-44c9-a366-79b66c19c855": {
@@ -1460,8 +1460,8 @@
     "relativePath": "ResourcesBundle\\res"
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
-    "asset": 1744181097348,
-    "meta": 1744340075421,
+    "asset": 1744784129603,
+    "meta": 1744784166590,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -1505,8 +1505,8 @@
     "relativePath": "Rummy\\rummyPab"
   },
   "23c8e7a2-ccf8-40c5-bea3-7b674ab2663b": {
-    "asset": 1744352571123,
-    "meta": 1744352571136,
+    "asset": 1744682864904,
+    "meta": 1744769104949,
     "relativePath": "Main\\Update.fire"
   },
   "f5da5873-68cc-4735-80ab-3dea8a387052": {
@@ -6820,8 +6820,8 @@
     "relativePath": "resources\\proto\\zoo"
   },
   "f08462dd-f70e-4c9e-8dea-4203e05b5633": {
-    "asset": 1744182872728,
-    "meta": 1744340075442,
+    "asset": 1744769797752,
+    "meta": 1744784029744,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes"
   },
   "c0777580-35ff-485e-ae37-a1253108b39d": {
@@ -6875,8 +6875,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\CarouselStrip"
   },
   "ad60fac8-7058-4810-b02b-2ce316e0ee6b": {
-    "asset": 1728960018018,
-    "meta": 1743401029290,
+    "asset": 1744619194837,
+    "meta": 1744769104970,
     "relativePath": "ResourcesBundle\\NewPlan\\ChatAct"
   },
   "ff2a6fc0-2a9f-46d6-ab76-58baae440a89": {
@@ -11403,11 +11403,6 @@
     "asset": 1737705664280,
     "meta": 1743401034092,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\res"
-  },
-  "9cae3e49-7192-4ac9-ad30-1868c7257c2e": {
-    "asset": 1741230463435,
-    "meta": 1743401034104,
-    "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode\\AdvancedModeCtrl.js"
   },
   "d8c68fc6-9921-4a55-bb7a-5bf07ef16271": {
     "asset": 1737705664307,
@@ -21946,17 +21941,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1744340075524,
+    "meta": 1744784166772,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1744340075522,
+    "meta": 1744784166776,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1744340075528,
+    "meta": 1744784166775,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -21981,7 +21976,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1744340075521,
+    "meta": 1744784166778,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -21996,7 +21991,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1744340075523,
+    "meta": 1744784166771,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -22006,7 +22001,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1744340075526,
+    "meta": 1744784166779,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22016,7 +22011,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1744340075530,
+    "meta": 1744784166774,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22031,7 +22026,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1744340075527,
+    "meta": 1744784166780,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22056,7 +22051,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1744340075532,
+    "meta": 1744784166781,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22071,7 +22066,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1744340075531,
+    "meta": 1744784166782,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22081,7 +22076,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1744340075530,
+    "meta": 1744784166781,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22116,12 +22111,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1744340075532,
+    "meta": 1744784166777,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1744340075534,
+    "meta": 1744784166783,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22814,11 +22809,6 @@
     "meta": 1743401028909,
     "relativePath": "mayaMachine\\spine\\maya_icon_1.atlas"
   },
-  "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1744340004361,
-    "meta": 1744340004375,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
-  },
   "0a007788-708c-45b7-a4f1-2acfbec2565d": {
     "asset": 1732694345390,
     "meta": 1743401028914,
@@ -23066,7 +23056,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1737357038117,
-    "meta": 1744340075533,
+    "meta": 1744784166784,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
@@ -23605,8 +23595,8 @@
     "relativePath": "ResourcesBundle\\prefab\\lobby\\shop\\shopAndWithDrawHelp.prefab"
   },
   "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
-    "asset": 1736752997255,
-    "meta": 1743401023573,
+    "asset": 1744769062120,
+    "meta": 1744769104728,
     "relativePath": "Main\\Main.js"
   },
   "243f82ba-11e0-4389-a16c-0d634876160d": {
@@ -24949,11 +24939,6 @@
     "meta": 1743416096472,
     "relativePath": "vampireMachine\\src\\vampireMachineCtrl.js"
   },
-  "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
-    "asset": 1742286877025,
-    "meta": 1743401035117,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
-  },
   "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
     "asset": 1743415973394,
     "meta": 1743416096810,
@@ -25621,7 +25606,7 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1743391864212,
-    "meta": 1744340075539,
+    "meta": 1744784166790,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "97749dfa-eacb-4fdb-8a47-57b8f7ded8aa": {
@@ -25636,7 +25621,7 @@
   },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1743391864206,
-    "meta": 1744340075538,
+    "meta": 1744784166790,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
   },
   "b1df4b90-791e-4d29-a9d1-b6a0fc9fdcb9": {
@@ -25661,17 +25646,17 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1743391864181,
-    "meta": 1744340075536,
+    "meta": 1744784166786,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1743391864181,
-    "meta": 1744340075535,
+    "meta": 1744784166786,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1743391864211,
-    "meta": 1744340075541,
+    "meta": 1744784166793,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "8ddc87ee-ee4a-49bd-b2a2-b0b2917e22fc": {
@@ -25691,12 +25676,12 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1743391864181,
-    "meta": 1744340075538,
+    "meta": 1744784166788,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1743391864181,
-    "meta": 1744340075536,
+    "meta": 1744784166786,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
   },
   "652ba1d0-dd36-4ab8-aca8-496a181d7227": {
@@ -25801,7 +25786,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1743391864187,
-    "meta": 1744340075539,
+    "meta": 1744784166789,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "7a241750-4b99-4026-a977-2d71ddbc3038": {
@@ -25816,7 +25801,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1743391864187,
-    "meta": 1744340075541,
+    "meta": 1744784166793,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "85f8c995-21fd-4a75-a710-535f628606cd": {
@@ -25826,12 +25811,12 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1743391864187,
-    "meta": 1744340075542,
+    "meta": 1744784166794,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1743391864187,
-    "meta": 1744340075544,
+    "meta": 1744784166796,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "1e39b532-7ce2-4248-a526-8a07f492fe22": {
@@ -25841,7 +25826,7 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1743391864187,
-    "meta": 1744340075543,
+    "meta": 1744784166796,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "1ba3209c-364d-488d-83a1-8d375861db8c": {
@@ -25851,7 +25836,7 @@
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1743391864188,
-    "meta": 1744340075545,
+    "meta": 1744784166797,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -25861,7 +25846,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1743391864187,
-    "meta": 1744340075547,
+    "meta": 1744784166798,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -25871,7 +25856,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1743391864188,
-    "meta": 1744340075546,
+    "meta": 1744784166800,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -25881,7 +25866,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1743391864207,
-    "meta": 1744340075548,
+    "meta": 1744784166801,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "b8156e81-ec1d-4306-a6e2-c62ba3058b2b": {
@@ -25895,8 +25880,8 @@
     "relativePath": "resources\\proto\\jokerMachine\\gameservice.proto"
   },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1743415973398,
-    "meta": 1743416094646,
+    "asset": 1744769062121,
+    "meta": 1744769104918,
     "relativePath": "Main\\Update.js"
   },
   "5d62c6df-d958-4f21-ac4a-dfd75b77d6ac": {
@@ -25906,7 +25891,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1743415973446,
-    "meta": 1744340075540,
+    "meta": 1744784166792,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "eb149c8e-a00b-486a-81b0-0cbde6cb7d7d": {
@@ -25941,7 +25926,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1743415973460,
-    "meta": 1744340075535,
+    "meta": 1744784166787,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "a5f88e66-1b8a-4fc8-a854-2104b5a3938d": {
@@ -26369,30 +26354,15 @@
     "meta": 1744177300064,
     "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
   },
-  "e70776a5-e3a8-4247-8733-0cf8c9fffa48": {
-    "asset": 1744180834438,
-    "meta": 1744180834452,
-    "relativePath": "ResourcesBundle\\Scene\\btn_gameEntry.prefab"
-  },
   "4f357ffe-e804-4e7d-88b9-a807807d8d1c": {
     "asset": 1744339962595,
     "meta": 1744340075452,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\game"
   },
-  "ab9957bb-aedc-4d57-af62-fdb2cd7414cf": {
-    "asset": 1744184995429,
-    "meta": 1744338694805,
-    "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterMainCtrl.js"
-  },
   "4be76efb-3435-4622-9c5d-02784c775bd9": {
     "asset": 1744185972662,
     "meta": 1744186292905,
     "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterRankCtrl.js"
-  },
-  "092e16b2-995f-4603-8578-23a11ffd032f": {
-    "asset": 1744187032451,
-    "meta": 1744187034392,
-    "relativePath": "ResourcesBundle\\Scene\\gameRootCtrl.js"
   },
   "c8033f15-b8d0-4f77-8ba8-b8575b377b99": {
     "asset": 1744222398000,
@@ -26444,11 +26414,6 @@
     "meta": 1744271344291,
     "relativePath": "Main\\AudioBase.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1744273706940,
-    "meta": 1744273776853,
-    "relativePath": "Main\\Global.js"
-  },
   "da78386b-15c7-459d-b25b-166a4dbb5272": {
     "asset": 1744274491964,
     "meta": 1744274507489,
@@ -26458,16 +26423,6 @@
     "asset": 1744274501045,
     "meta": 1744274507513,
     "relativePath": "ResourcesBundle\\NewPlan\\webview\\gameWebview.js"
-  },
-  "7e09c817-e1c1-4e25-a182-dbe5a6dd132c": {
-    "asset": 1744337861270,
-    "meta": 1744337873284,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\GameManager.js"
-  },
-  "ce35b2ea-7d54-437a-a4ee-cc59e9bcc1cd": {
-    "asset": 1744338587197,
-    "meta": 1744338588174,
-    "relativePath": "ResourcesBundle\\Scene\\gameIconCtrl.js"
   },
   "6aceef8b-2ad8-476b-9150-c3bd9e8490fd": {
     "asset": 1744339962577,
@@ -26484,14 +26439,169 @@
     "meta": 1744352544078,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
+  "7e09c817-e1c1-4e25-a182-dbe5a6dd132c": {
+    "asset": 1744769421364,
+    "meta": 1744769562991,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\GameManager.js"
+  },
+  "1c8ddbf5-b7ee-4a33-bef2-184ee8b17b6a": {
+    "asset": 1744773559987,
+    "meta": 1744784029751,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon"
+  },
+  "ff4a1e65-4bca-48bb-adc9-db767f9a3c9c": {
+    "asset": 1744773559987,
+    "meta": 1744784029809,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res"
+  },
+  "67af6d4f-ff9e-4fee-85f1-d0fcdf9c64b2": {
+    "asset": 1744741274000,
+    "meta": 1744770107670,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\ADD_btn.png"
+  },
+  "17549398-2759-4308-a7c6-a612279001b3": {
+    "asset": 1744741274000,
+    "meta": 1744770107675,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\金币.png"
+  },
+  "a1ab6ab4-0ad0-4a34-9996-382238f8ec6a": {
+    "asset": 1744741274000,
+    "meta": 1744770107680,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\icon_back.png"
+  },
+  "5d0be4b9-543d-4207-90d4-3613626eafe4": {
+    "asset": 1744741274000,
+    "meta": 1744770107692,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\Rectangle 5.png"
+  },
+  "9108dc47-5ee6-472e-80c3-653bc2c31ecd": {
+    "asset": 1744741274000,
+    "meta": 1744770107693,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\title_pg.png"
+  },
+  "e6b5b31d-9e37-4929-9b5f-59094c10e233": {
+    "asset": 1744741274000,
+    "meta": 1744770107695,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\title_jili.png"
+  },
+  "8fd06341-b4de-498d-a614-d89d6048ac8a": {
+    "asset": 1744741274000,
+    "meta": 1744770107698,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\bg_up.png"
+  },
+  "53adc597-1be5-4b1d-9d27-2b97723a4d4e": {
+    "asset": 1744741274000,
+    "meta": 1744770107716,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\title_pp.png"
+  },
+  "5d3ed06d-7682-4787-8b5b-4f05ec895eb0": {
+    "asset": 1744741274000,
+    "meta": 1744770107722,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\wiyhdraw_btn.png"
+  },
+  "a41843ce-bb68-41ff-af9c-ede8be28763c": {
+    "asset": 1744741274000,
+    "meta": 1744770107723,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\title_quente.png"
+  },
+  "ce32731d-23bb-49f9-9307-6e6bb032524d": {
+    "asset": 1744741274000,
+    "meta": 1744770107757,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\bg_down.png"
+  },
+  "3e18caf1-a406-4f37-9f5e-3211684fccb9": {
+    "asset": 1744787500666,
+    "meta": 1744787500678,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\gameIconList.prefab"
+  },
+  "16293e47-caff-4c93-95ef-d270e2ae4d87": {
+    "asset": 1744773506655,
+    "meta": 1744773506659,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\btn_gameEntry.prefab"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1744783681666,
+    "meta": 1744783684600,
+    "relativePath": "Main\\Global.js"
+  },
+  "cb20fc61-7404-4162-86b3-fe27621912c7": {
+    "asset": 1744784402624,
+    "meta": 1744784402647,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
+  },
+  "66ad10d3-034f-448d-812b-5db931a14829": {
+    "asset": 1744757498000,
+    "meta": 1744786338063,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\pg.png"
+  },
+  "5acbb6ef-647d-4f51-91ad-0f127735017f": {
+    "asset": 1744757498000,
+    "meta": 1744786338064,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\jili.png"
+  },
+  "5e67c2c2-2180-4ea6-b94d-b96717c12b54": {
+    "asset": 1744757498000,
+    "meta": 1744786338066,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\popular.png"
+  },
+  "f28129bd-b8ab-428a-b5ef-02db70b70b72": {
+    "asset": 1744757498000,
+    "meta": 1744786338067,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\popular-active.png"
+  },
+  "61c0a30d-fceb-40ac-a3c7-8ce404307b33": {
+    "asset": 1744757498000,
+    "meta": 1744786338068,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\jili-active.png"
+  },
+  "1e0b51d9-a1d2-4fca-9de3-a6dea8dc443f": {
+    "asset": 1744757498000,
+    "meta": 1744786338069,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\pg-active.png"
+  },
+  "f218dcbd-ba49-4e74-8d9a-4fab0055b4ec": {
+    "asset": 1744757498000,
+    "meta": 1744786338071,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\pp.png"
+  },
+  "90b12aa6-b909-4ef4-bbf2-10ea81c71fcf": {
+    "asset": 1744757498000,
+    "meta": 1744786338072,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\res\\pp-active.png"
+  },
+  "9cae3e49-7192-4ac9-ad30-1868c7257c2e": {
+    "asset": 1744786564706,
+    "meta": 1744786797446,
+    "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode\\AdvancedModeCtrl.js"
+  },
+  "ab9957bb-aedc-4d57-af62-fdb2cd7414cf": {
+    "asset": 1744786532409,
+    "meta": 1744786797487,
+    "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterMainCtrl.js"
+  },
+  "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
+    "asset": 1744786650333,
+    "meta": 1744786797580,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
+  },
+  "ce35b2ea-7d54-437a-a4ee-cc59e9bcc1cd": {
+    "asset": 1744787199803,
+    "meta": 1744787210370,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\gameIconCtrl.js"
+  },
+  "2362eb0d-a5d5-44d9-a294-48aae38897a3": {
+    "asset": 1744787289362,
+    "meta": 1744787291458,
+    "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\gameIconListCtrl.js"
+  },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1744353576253,
-    "meta": 1744353579844,
+    "asset": 1744787492075,
+    "meta": 1744787498574,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1744597510630,
-    "meta": 1744598723844,
+    "asset": 1744787517875,
+    "meta": 1744787523824,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   }
 }

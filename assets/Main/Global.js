@@ -845,6 +845,11 @@ window.GlobalCfg = {
      * 第三方游戏跳转内嵌网页
      */
     GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview",
+
+    /**
+     * 第三方游戏跳转内嵌网页
+     */
+    GAMEICONLIST: "ResourcesBundle/huanPi2/lobbyRes/gameIcon/gameIconList",
   },
 
 
@@ -900,7 +905,8 @@ window.GlobalCfg = {
     ACTIVITY_GOBETTING: "SecondLayer",
     DIVERSIONFREETP: "SecondLayer",
     BANKRUPTCY_GIFT: "SecondLayer",
-    
+    GAMEICONLIST: "SecondLayer",
+
     SMALLADDCASH: "ThirdLayer",
     SMALLADDEXPERIENCE: "ThirdLayer",
     USERHEAD: "ThirdLayer",
