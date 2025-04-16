@@ -51,7 +51,7 @@ cc.Class({
         this.btn_addcoin.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_withdraw.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_note.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.tog_setManage.node.on('toggle', this.toggleClick, this);
+        this.tog_setManage.node.on('toggle', CommonFun.getInstance().debounce(this.toggleClick, 0), this);
     },
     
     start: function() {
@@ -105,6 +105,10 @@ cc.Class({
         } 
         
         GlobalCfg.G_COMPONENTS.Audio.playButton();
+    },
+
+    toggleClick: function (btn) {
+        
     },
 
     dealBtnMainCloseEvent: function () {

@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {
         //root_manage
-        btn_manageClose_manage: cc.Button,
+        btn_manageClose: cc.Button,
         btn_search_manage: cc.Button,
         btn_last_manage: cc.Button,
         btn_next_manage: cc.Button,
@@ -39,8 +39,8 @@ cc.Class({
         this.node_manage_item.active = false;
         this.editBox_manage.string = "";
         this.pageIndex = 0; //当前页码
-        this.setData();
         this.insPlayerRecords();
+        this.setData();
     },
 
     onDestroy: function () {
@@ -73,7 +73,7 @@ cc.Class({
     },
 
     dealBtnCloseEvent: function () {
-        this.node.destroy();
+        this.node.active = false;
     },
 
     setData:function(){
@@ -101,9 +101,9 @@ cc.Class({
     insPlayerRecords:function(){
         this.playerData = []
         for (let i = 0; i < this.prefabMaxNum; i++) {
-            let pab_player = cc.instantiate(this.item);
+            let pab_player = cc.instantiate(this.node_manage_item);
             pab_player.setPosition(0, 0);
-            this.content.addChild(pab_player);
+            this.node_manage_content.addChild(pab_player);
             let player = this.getItem(pab_player);
             this.playerData.push(player)
         }
