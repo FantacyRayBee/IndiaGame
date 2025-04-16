@@ -93,8 +93,8 @@ cc.Class({
         this.node_btn_passwordDelete = this.node_loginLayer.getChildByName("btn_passwordDelete");
         this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
         this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
-        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
         this.node_btn_accountLogin = this.node_loginLayer.getChildByName("btn_accountLogin");
+        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
         this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
         this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
         this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
@@ -937,6 +937,11 @@ cc.Class({
             this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
+
+        if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
+            this.node_btn_guestLogin.active = false;
+            this.node_or_sprite.active = false;
+        }
     },
 
     showCommonLoginView: function() {
@@ -956,6 +961,11 @@ cc.Class({
             this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
+
+        if (GlobalCfg.CLUB_MODE == 1) { //代理模式不显示游客登录
+            this.node_btn_guestLogin.active = false;
+            this.node_or_sprite.active = false;
+        }
     },
 
     baseBundlesHotUpdate: function() {

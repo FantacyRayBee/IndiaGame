@@ -36,6 +36,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
   */
   UNUSE_FACEBOOK: 0,
   /**
+  * 是否是代理模式, 0:不是; 1:表示是
+  */
+  IS_CLUB_MODE: 0,
+  /**
    * 消息订阅的大类型
    */
   MSG_TYPE: {
