@@ -1071,12 +1071,12 @@ let CommonFun = cc.Class({
      * @param {string} title 标题
      * @param {function} callFun2 回调函数
      */    
-    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2) {
+    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal = cc.Label.HorizontalAlign.CENTER) {
         let msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
         msgBoxPrefabPromise.then((prefab) => {
             let msgBoxNode = cc.instantiate(prefab);
             let msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
-            msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2);
+            msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal);
             this.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
         });
     },
@@ -1257,22 +1257,43 @@ let CommonFun = cc.Class({
     },
 
     /**
-     * 打开俱乐部
+     * 获取俱乐部信息
      */
-    showClub: function() {
+    getClubData: function(callback) {
+        CommonFun.getInstance().showProgress();
         let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_club_info`;
         CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
             CommonFun.getInstance().hidProgress();
             if (msg.result == 0) {
                 GlobalCfg.USER_DATAS.clubInfo = msg.data;
-                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
-                prefabPromise.then((prefab) => {
-                    let Node = cc.instantiate(prefab);
-                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
-                });
+                callback && callback();
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+    /**
+     * 打开钱包
+     */
+    showWalletPanel: function() {
+        this.getClubData(() => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WALLET);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.WALLET);
+            });
+        })
+    }, 
 
+    /**
+     * 打开俱乐部
+     */
+    showClub: function() {
+        this.getClubData(() => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
+            });
+        })
     },    
 
     /**

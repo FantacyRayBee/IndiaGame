@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {
         //root_manage
-        btn_manageClose: cc.Button,
+        btn_close: cc.Button,
         btn_search_manage: cc.Button,
         btn_last_manage: cc.Button,
         btn_next_manage: cc.Button,
@@ -14,15 +14,16 @@ cc.Class({
     },
 
     ctor: function () {
-        this.shareStr = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！ https://www.tmaxter.in/?inviteCode=5010_0047537101"
         this.prefabMaxNum = 10; //预制体最大数量
         this.members = {};
+        this.isAllData = true; //是否展示所有数据
+        this.allMemberCount = 0;
     },
 
     onLoad: function () {
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         //root_manage
-        this.btn_manageClose.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_close.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_search_manage.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_last_manage.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_next_manage.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -35,7 +36,6 @@ cc.Class({
     initData: function () {
         this.userList = []; //用户列表
         this.node_manage_content.removeAllChildren();
-        this.members = GlobalCfg.USER_DATAS.clubMembers;
         this.node_manage_item.active = false;
         this.editBox_manage.string = "";
         this.pageIndex = 0; //当前页码
@@ -45,7 +45,6 @@ cc.Class({
 
     onDestroy: function () {
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
-        CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
     },
 
     onEventMsg: function(webData, target) {
@@ -56,12 +55,13 @@ cc.Class({
 
     btnClick: function (btn) {
         let btnName = btn.node.name;
-        if (btnName === "btn_manageClose") {
+        if (btnName === "btn_close") {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.dealBtnCloseEvent();
             return;
         } 
         if (btnName === "btn_search_manage") {
+            this.dealSearchEvent();
         } 
         if (btnName === "btn_last_manage") {
             this.dealChangeIndexEvent(1)
@@ -77,25 +77,31 @@ cc.Class({
     },
 
     setData:function(){
-        if (this.members) {
-            let userList = this.members;
-            //按照10个一组分
-            let tmpUser = []
-            for (let index = 0; index < userList.length; index++) {
-                tmpUser.push(userList[index]);
-                if (index % this.prefabMaxNum == (this.prefabMaxNum - 1)) //每10个一组
-                {
-                    this.userList.push(tmpUser)
-                    tmpUser = []
-                }
-            }
-            this.userList.push(tmpUser)
-            LoggerUtil.getInstance().log("caojun promoterreward this.userList", this.userList);
-        }
-        this.lb_yeshu_manage.string = `${this.pageIndex + 1}/${this.userList.length}`
+        this.userList = GlobalCfg.USER_DATAS.clubMembers;
+        this.allMemberCount = GlobalCfg.USER_DATAS.clubMemberCount;
+        let allCount = Math.ceil(this.allMemberCount / this.prefabMaxNum); //总页数
+        this.lb_yeshu_manage.string = `${this.pageIndex + 1}/${allCount = allCount > 0 ? allCount : 1}`
         this.setItem()
     },
 
+    searchData:function(userId){
+        if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+            this.setItem();
+            return;
+        }
+        this.userList = [];
+        for (let i = 0; i < GlobalCfg.USER_DATAS.clubMembers.length; i++) {
+            if (GlobalCfg.USER_DATAS.clubMembers[i].userId === userId) {
+                this.userList.push(GlobalCfg.USER_DATAS.clubMembers[i]);
+            }
+        }
+        LoggerUtil.getInstance().log('caojun 11 this.userList = ', this.userList);
+        this.allMemberCount = 1;
+        this.pageIndex = 0; // 重置页码
+        this.isAllData = false;
+        this.lb_yeshu_manage.string = `${this.pageIndex + 1}/1`;
+        this.setItem();
+    },
 
     //实例化玩家预制
     insPlayerRecords:function(){
@@ -122,16 +128,19 @@ cc.Class({
         obj.state1 = node.getChildByName("state1"); //online
         obj.state2 = node.getChildByName("state2"); //offline
         obj.btn_operate = node.getChildByName("btn_operate").getComponent(cc.Button);
-
+        obj.self = this;
         obj.data = {}
         
         obj.setData = function(data){
             obj.data = data;
             obj.obj.active = true;
-            // this.loadHeadSp(data.player_head, 120, imgHead);
+            obj.self.loadHeadSp(data.head, 200, obj.imgHead);
             obj.id.string = CommonFun.getInstance().getStrByLength("ID:" + data.userId, 12);
-            obj.jointime.string = data.creationTime
+            obj.jointime.string = data.creationTime.split('T')[0];
             obj.wallet.string = CommonFun.getInstance().numberToShow(data.safe / 100);
+            obj.coin.string = CommonFun.getInstance().numberToShow(data.amount / 100);
+            obj.nick.string = data.nickname;
+            obj.record.string = data.notes;
         }
 
         obj.btnClick = function () {
@@ -150,9 +159,10 @@ cc.Class({
             this.lb_yeshu_manage.string = `1/1`
             return
         }
-        this.lb_yeshu_manage.string = `${this.pageIndex + 1}/${this.userList.length}`
-        for (let index = 0; index < this.userList[this.pageIndex].length; index++) {
-            this.playerData[index].setData(this.userList[this.pageIndex][index])
+        let allCount = Math.ceil(this.allMemberCount / this.prefabMaxNum); //总页数
+        this.lb_yeshu_manage.string = `${this.pageIndex + 1}/${allCount = allCount > 0 ? allCount : 1}`
+        for (let index = 0; index < this.userList.length; index++) {
+            this.playerData[index].setData(this.userList[index])
         }
     },
 
@@ -168,16 +178,54 @@ cc.Class({
         }
     },
 
+    //搜索用户
+    dealSearchEvent: function () {
+        let userID = this.editBox_manage.string;
+        if (this.isAllData){
+            if (userID == "") return;
+            this.searchData(userID);
+        }
+        else{
+            if (userID == ""){ //如果输入框为空，则重新加载全部数据
+                this.pageIndex = 0;
+                this.isAllData = true;
+                this.setData();
+            }
+            else{
+                this.searchData(userID);
+            }
+        }
+    },
+
+    //切页获取数据
+    getMemberInfo: function () {
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_down`;
+        CommonFun.getInstance().httpPost(httpUrl, {page:this.pageIndex}, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.clubMembers = msg.data.infos;
+                GlobalCfg.USER_DATAS.clubMemberCount = msg.data.count;
+                this.allMemberCount = msg.data.count;
+                this.setData()
+            } else {
+                CommonFun.getInstance().showTips(msg.msg);
+                this.node.active = false;
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
     dealChangeIndexEvent: function (type) {
         if(type == 1){
             if (this.pageIndex == 0) 
                 return
             this.pageIndex -= 1
         }else{
-            if (this.pageIndex == (this.userList.length - 1)) 
+            let allCount = Math.ceil(this.allMemberCount / this.prefabMaxNum); //总页数
+            allCount = allCount > 0 ? allCount : 1
+            if (this.pageIndex == (allCount - 1)) 
                 return
             this.pageIndex += 1
         }
-        this.setData()
+        this.getMemberInfo();
     },
 });

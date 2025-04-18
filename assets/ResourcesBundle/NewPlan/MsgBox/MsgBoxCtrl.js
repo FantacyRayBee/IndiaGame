@@ -50,7 +50,7 @@ cc.Class({
         this.node.destroy();
     },
 
-    setContent: function(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2) {
+    setContent: function(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal) {
 
         this.yesCallFun = callFun;
 
@@ -63,6 +63,7 @@ cc.Class({
         let btnStr_ON = this.btn_no.target.getChildByName("lab_MsgBox_ON").getComponent(cc.Label);
 
         this.lab_content.string = content;
+        this.lab_content.horizontalAlign = horizontal;
 
         let typeUpperCase = msgBoxType.toUpperCase();
         if (typeUpperCase === "YES") {

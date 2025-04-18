@@ -807,7 +807,11 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 俱乐部
    */
-  CLUB: "ResourcesBundle/NewPlan/Club/ClubMain"
+  CLUB: "ResourcesBundle/NewPlan/Club/ClubMain",
+  /**
+   * 俱乐部
+   */
+  WALLET: "ResourcesBundle/NewPlan/Club/walletMain"
 }, _window$GlobalCfg.PREFAB_PARENT = {
   CAROUSELSTRIP: "CarouselLayer",
   SIDEBAR: "FirstLayer",
@@ -827,6 +831,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   WITHDRAWPREDATA: "FirstLayer",
   PROMOTERMAIN: "FirstLayer",
   CLUB: "FirstLayer",
+  WALLET: "FirstLayer",
   ACTIVITY: "SecondLayer",
   FIRSTRECHARGE: "SecondLayer",
   CONTACTUS: "SecondLayer",

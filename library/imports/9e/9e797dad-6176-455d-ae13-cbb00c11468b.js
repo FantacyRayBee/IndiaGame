@@ -49,13 +49,14 @@ cc.Class({
     ;
     this.node.destroy();
   },
-  setContent: function setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2) {
+  setContent: function setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal) {
     this.yesCallFun = callFun;
     this.noCallFun = callFun2;
     this.btn_close.node.active = isShowCloseBtn;
     var btnStr_YES = this.btn_yes.target.getChildByName("lab_MsgBox_YES").getComponent(cc.Label);
     var btnStr_ON = this.btn_no.target.getChildByName("lab_MsgBox_ON").getComponent(cc.Label);
     this.lab_content.string = content;
+    this.lab_content.horizontalAlign = horizontal;
     var typeUpperCase = msgBoxType.toUpperCase();
     if (typeUpperCase === "YES") {
       this.btn_no.node.active = false;
