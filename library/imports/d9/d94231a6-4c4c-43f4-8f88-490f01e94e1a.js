@@ -36,6 +36,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
   */
   UNUSE_FACEBOOK: 0,
   /**
+  * 是否是代理模式, 0:不是; 1:表示是
+  */
+  IS_CLUB_MODE: 0,
+  /**
    * 消息订阅的大类型
    */
   MSG_TYPE: {
@@ -59,7 +63,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: false,
+  is_force_gotoTest: true,
   /**
    * 渠道信息
    */
@@ -327,6 +331,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   ADVERTISING_ID: "",
   // 商城角标
   PAY_CHANNEL: "",
+  // 支付渠道
+  PAY_CHANNEL2: "",
   /* APP_STATUS说明
     0: 未设置状态; 
     1：正式服谷歌审核状态, 俗称马甲状态; 
@@ -803,7 +809,15 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 第三方游戏跳转内嵌网页
    */
-  GAMEICONLIST: "ResourcesBundle/huanPi2/lobbyRes/gameIcon/gameIconList"
+  GAMEICONLIST: "ResourcesBundle/huanPi2/lobbyRes/gameIcon/gameIconList",
+  /**
+   * 俱乐部
+   */
+  CLUB: "ResourcesBundle/NewPlan/Club/ClubMain",
+  /**
+   * 俱乐部
+   */
+  WALLET: "ResourcesBundle/NewPlan/Club/walletMain"
 }, _window$GlobalCfg.PREFAB_PARENT = {
   CAROUSELSTRIP: "CarouselLayer",
   SIDEBAR: "FirstLayer",
@@ -822,6 +836,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SIGN: "FirstLayer",
   WITHDRAWPREDATA: "FirstLayer",
   PROMOTERMAIN: "FirstLayer",
+  CLUB: "FirstLayer",
+  WALLET: "FirstLayer",
   ACTIVITY: "SecondLayer",
   FIRSTRECHARGE: "SecondLayer",
   CONTACTUS: "SecondLayer",
@@ -1060,9 +1076,9 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_7001");
-  GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
-  GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+  // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }
 ;
 
@@ -1417,10 +1433,10 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       GlobalCfg.APP_CONFIG_URL_SPARE = "https://download.ltgame.in/production/AppConfig.json";
       break;
     case "6":
-      // jim服 
-      GlobalCfg.APP_VERSION = "6.1.6.21";
-      GlobalCfg.APP_INFO_URL = "https://resource.teengatti.in/Release/AppInfo.json";
-      GlobalCfg.APP_CONFIG_URL = "https://resource.teengatti.in/Release/AppConfig.json";
+      // 代理服
+      GlobalCfg.APP_VERSION = "6.0.1";
+      GlobalCfg.APP_INFO_URL = "https://download.tkptat.in/production/s2AppInfo.json";
+      GlobalCfg.APP_CONFIG_URL = "https://download.tkptat.in/production/s2AppConfig.json";
       break;
     case "11":
       // 1服(RummyClassic)
