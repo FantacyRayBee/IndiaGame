@@ -57,11 +57,15 @@ cc.Class({
         allBet += amount;
       }
       if (allBet > GlobalCfg.USER_DATAS.userDiamond) {
-        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
-          if (_this.paymentSwitch) {
-            CommonFun.getInstance().showSmallAddCash();
-          }
-        }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1)
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);else {
+          CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+            if (_this.paymentSwitch) {
+              CommonFun.getInstance().showSmallAddCash();
+            }
+          }, false);
+        }
         return;
       } else {
         GameServerManager.send("gameservice.bet", "BetReq", {

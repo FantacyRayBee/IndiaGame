@@ -73,7 +73,6 @@ cc.Class({
     // this.zeusAudiosCtrl.setMusicVolume(0.6);
     this.zeusAudiosCtrl.setSoundVolume(1);
     this.zeusAudiosCtrl.playNormalStateBg();
-
     /**
      * 注册按钮点击事件
      */
@@ -81,6 +80,7 @@ cc.Class({
     this.btn_getCoin.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+    this.btn_getCoin.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
 
     /**
      * 监听后台切换事件
@@ -583,7 +583,9 @@ cc.Class({
       this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
       this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
       this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
-      CommonFun.getInstance().showSmallAddCash();
+      if (GlobalCfg.IS_CLUB_MODE == 1)
+        //代理模式不跳转商城
+        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);else CommonFun.getInstance().showSmallAddCash();
       return;
     }
     ;
@@ -649,12 +651,14 @@ cc.Class({
       var coin = this.myCoinCtrl.getMyCoin();
       if (coin < notify.bet * 100) {
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBuyFreeTipsHideEffect();
-        CommonFun.getInstance().showSmallAddCash();
         this.leftAreaCtrl.setBuyFreeState(false);
         this.leftAreaCtrl.playBtnFreeAnim(true);
         this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
         this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
+        if (GlobalCfg.IS_CLUB_MODE == 1)
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);else CommonFun.getInstance().showSmallAddCash();
         return;
       }
       ;

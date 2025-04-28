@@ -20,6 +20,7 @@ cc.Class({
         btn_jpPop_end: cc.Button,
         btn_autoSpinSet: cc.Button,
 
+        btn_auto: cc.Button,
         toggle_fast: cc.Toggle,
         toggle_auto: cc.Toggle,
         toggle_extra: cc.Toggle,
@@ -194,9 +195,9 @@ cc.Class({
         this.btn_rule.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_rule_close.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_autoSpinSet.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        this.btn_auto.node.on('click', this.debounce(this.componentClickCall, 2), this);
         
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
-        this.toggle_auto.node.on('toggle', this.debounce(this.componentClickCall, 1.5), this);
         this.toggle_extra.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
         this.betIndex = 0;
         this.curBetAmount = this.betAmountArr[this.betIndex];
@@ -557,7 +558,7 @@ cc.Class({
         else if (componentName == "toggle_fast") {
             this.dealFastBtnEvent();
         }
-        else if (componentName == "toggle_auto") {
+        else if (componentName == "btn_auto") {
             this.dealAutoBtnEvent();
         }
         else if (componentName == "toggle_ex") {
@@ -874,16 +875,20 @@ cc.Class({
         this.lab_autoBetCiShu.string = ciShuType;
         this.toggle_auto.isChecked = true;
         this.toggle_auto.interactable = true;
+        this.btn_auto.interactable = true;
         this.anim_rotate.active = false;
     },
 
     dealAutoBtnEvent: function () {
+        this.toggle_auto.isChecked = !this.toggle_auto.isChecked
+
         if (this.toggle_auto.isChecked) {
             this.dealAutoBetCiShuBtnEvent("50");
             this.sendCallReq(); //新需求：点击自动下注的时候 直接开始spin
         }
         if (!this.toggle_auto.isChecked) {
             this.toggle_auto.interactable = this.btn_spin.interactable;
+            this.btn_auto.interactable = this.btn_spin.interactable;
         }
     },
     dealExtraEvent: function () {
@@ -920,6 +925,7 @@ cc.Class({
         this.btn_spin.enableAutoGrayEffect = true;
         if (!this.toggle_auto.isChecked) { //如果不是自动spin 此时不让开启自动spin
             this.toggle_auto.interactable = false;
+            this.btn_auto.interactable = false;
         }
     },
 
@@ -1293,6 +1299,7 @@ cc.Class({
         this.btn_spin2.interactable = true;
         this.btn_spin.enableAutoGrayEffect = false;
         this.toggle_auto.interactable = true;
+        this.btn_auto.interactable = true;
     },
 
     //停轴之后检查本次是否中了JP
@@ -1878,6 +1885,7 @@ cc.Class({
 
     startNextSpin:function () {
         this.toggle_auto.interactable = true;
+        this.btn_auto.interactable = true;
         let StartNextSpin = () => {
             if (this.isRunningSlotAnim || this.isRunningMultAnim) {
                 return;
@@ -2069,11 +2077,6 @@ cc.Class({
 
     sendCallReq: function(jpMult = 1) {
         if (this.curSendSpin == true) { //避免重复发送请求
-            return;
-        }
-        //playnow模式下 首充玩家 弹VIP弹框
-        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.GAME_ENTER_ISFREE == false) {
-            CommonFun.getInstance().showVipRechargeToast();
             return;
         }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
