@@ -94,9 +94,9 @@ cc.Class({
                 GlobalCfg.USER_DATAS.userDiamond -= httpdata.amount;
                 this.refreshView();
                 if (type == 1) {
-                    CommonFun.getInstance().showTips("TakeIn success");
+                    CommonFun.getInstance().showTips("Take In success");
                 } else {
-                    CommonFun.getInstance().showTips("TakeOut success");
+                    CommonFun.getInstance().showTips("Take Out success");
                 }
                 ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GET_FIRST_GIFT_REWARD, msgData: {}});
             } else {

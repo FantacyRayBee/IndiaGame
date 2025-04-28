@@ -448,7 +448,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 560,
-      "height": 97.8
+      "height": 130.39999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -502,7 +502,7 @@
     "_string": "Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?",
     "_N$string": "Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?",
     "_fontSize": 26,
-    "_lineHeight": 30,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "74b6746e-9573-40e3-b82d-3ec3123b6eed"

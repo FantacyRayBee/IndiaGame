@@ -113,6 +113,7 @@ cc.Class({
         }
         this.selfPlayerNode.getChildByName('WinLabel').active = false;
 
+        this.btnAddCash.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
         this.clockNode.active = false;
         this.initJbPool();
         this.endAnimationNode.active = false;

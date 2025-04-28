@@ -26,6 +26,10 @@ cc.Class({
         this.btn_last_record.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_next_record.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     },
+
+    start: function() {
+        CommonFun.getInstance().setEditBoxEvent(this.editBox_record, this.node);
+    },
     
     initData: function () {
         this.userList = []; //用户列表
@@ -81,7 +85,7 @@ cc.Class({
             if (userID == "") {//如果输入框为空，则重新加载全部数据
                 this.pageIndex = 0;
                 this.isAllData = true;
-                this.setData();
+                this.getRecordInfo();
             }else{
                 this.searchData(userID, 0);  
             }
@@ -96,18 +100,18 @@ cc.Class({
         }
         CommonFun.getInstance().httpPost(httpUrl, httpData, (msg) => {
             CommonFun.getInstance().hidProgress();
-            if (msg.result == 0) {
+            if (msg.result == 0 && msg.data.infos) {
                 if (msg.data.infos.length > 0) 
                     this.pageIndex = pageIndex;
                 else
                     this.pageIndex = 0;
-                
+                CommonFun.getInstance().showTips("Search Success");
                 GlobalCfg.USER_DATAS.clubRecords = msg.data.infos;
                 GlobalCfg.USER_DATAS.clubRecordCount = msg.data.count;
                 this.isAllData = false;
                 this.setData()
             } else {
-                CommonFun.getInstance().showTips(msg.msg);
+                CommonFun.getInstance().showTips("Invalid Game ID");
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
@@ -116,6 +120,10 @@ cc.Class({
         this.userList = GlobalCfg.USER_DATAS.clubRecords;
         let allCount = Math.ceil(GlobalCfg.USER_DATAS.clubRecordCount / this.prefabMaxNum); //总页数
         this.lb_yeshu_record.string = `${this.pageIndex + 1}/${allCount>0 ? allCount : 1}`
+
+        LoggerUtil.getInstance().log("caojun this.userList:", this.userList)
+        LoggerUtil.getInstance().log("caojun allCount:", allCount)
+
         this.setItem()
     },
 
@@ -150,10 +158,15 @@ cc.Class({
             obj.self.loadHeadSp(data.to_head, 200, obj.imgHead);
             obj.jointime.string = data.creationTime.split('T')[0];
             obj.bf_coin.string = CommonFun.getInstance().numberToShow(data.beforeCoins / 100);
-            obj.cg_coin.string = CommonFun.getInstance().numberToShow(data.amount / 100);
+            let change = data.amount / 100;
+            if(change > 0){
+                obj.cg_coin.string = "+" + CommonFun.getInstance().numberToShow(change);
+            }else{
+                obj.cg_coin.string = CommonFun.getInstance().numberToShow(change);
+            }
             obj.af_coin.string = CommonFun.getInstance().numberToShow(data.afterCoins / 100);
-            obj.opor.string = CommonFun.getInstance().getStrByLength("Operator:" + data.from_nickname, 24);
-            obj.oped.string = CommonFun.getInstance().getStrByLength("Operated:" + data.to_nickname, 24);
+            obj.opor.string = CommonFun.getInstance().getStrByLength("Operator:" + data.uid, 24);
+            obj.oped.string = CommonFun.getInstance().getStrByLength("Operated:" + data.transferUid, 24);
         }
         return obj;
     },
@@ -162,7 +175,7 @@ cc.Class({
         for (let index = 0; index < this.playerData.length; index++) {
             this.playerData[index].obj.active = false
         }
-        if(this.userList == null || this.userList.length == 0 || this.pageIndex > this.userList.length || this.pageIndex < 0){
+        if(this.userList == null || this.userList.length == 0 || this.pageIndex < 0){
             this.lb_yeshu_record.string = `1/1`
             return
         }

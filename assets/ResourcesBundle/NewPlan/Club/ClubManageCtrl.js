@@ -30,7 +30,7 @@ cc.Class({
     },
     
     start: function() {
-        
+        CommonFun.getInstance().setEditBoxEvent(this.editBox_manage, this.node);
     },
 
     initData: function () {
@@ -95,7 +95,12 @@ cc.Class({
                 this.userList.push(GlobalCfg.USER_DATAS.clubMembers[i]);
             }
         }
-        LoggerUtil.getInstance().log('caojun 11 this.userList = ', this.userList);
+        if (this.userList.length === 0) {
+            CommonFun.getInstance().showTips("Invalid Game ID");
+        }
+        else {
+            CommonFun.getInstance().showTips("Search Success");
+        }
         this.allMemberCount = 1;
         this.pageIndex = 0; // 重置页码
         this.isAllData = false;
@@ -144,6 +149,12 @@ cc.Class({
         }
 
         obj.btnClick = function () {
+            // CommonFun.getInstance().showProgress();
+            // this.getMemberInfo(()=>{ //操作成员之前需要拉取最新的数据
+            //     if (this.getDataByUserId(obj.data.userId) != null) {
+            //         obj.data = this.getDataByUserId(obj.data.userId);
+            //     }
+            // });
             //打开成员操作界面
             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: "OPEN_CLUB_MEMBER_OPERATE", msgData: { userData: obj.data} });   
         }
@@ -165,6 +176,16 @@ cc.Class({
             this.playerData[index].setData(this.userList[index])
         }
     },
+
+    getDataByUserId:function(userId){
+        for (let i = 0; i < GlobalCfg.USER_DATAS.clubMembers.length; i++) {
+            if (GlobalCfg.USER_DATAS.clubMembers[i].userId === userId) {
+                return GlobalCfg.USER_DATAS.clubMembers[i]
+            }
+        }
+        return null;
+    },
+
 
     //添加加载头像
     loadHeadSp: function (headUrl,realWidth,heaSprite) {
@@ -198,7 +219,7 @@ cc.Class({
     },
 
     //切页获取数据
-    getMemberInfo: function () {
+    getMemberInfo: function (callback) {
         let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_down`;
         CommonFun.getInstance().httpPost(httpUrl, {page:this.pageIndex}, (msg) => {
             CommonFun.getInstance().hidProgress();
@@ -206,7 +227,7 @@ cc.Class({
                 GlobalCfg.USER_DATAS.clubMembers = msg.data.infos;
                 GlobalCfg.USER_DATAS.clubMemberCount = msg.data.count;
                 this.allMemberCount = msg.data.count;
-                this.setData()
+                callback && callback();
             } else {
                 CommonFun.getInstance().showTips(msg.msg);
                 this.node.active = false;
@@ -226,6 +247,8 @@ cc.Class({
                 return
             this.pageIndex += 1
         }
-        this.getMemberInfo();
+        this.getMemberInfo(()=>{
+            this.setData();
+        });
     },
 });

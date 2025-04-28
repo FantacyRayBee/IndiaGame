@@ -177,6 +177,8 @@ cc.Class({
         this.betArea.on('click', this.btnClick, this);
         this.btnReBet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnReBet.interactable = false;
+
+        this.btnShop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
     /**
@@ -432,17 +434,25 @@ cc.Class({
                 }
                 else {
                     if (notify.result.result == 19) {         // 余额不足
-                        CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
-                            CommonFun.getInstance().showSmallAddCash()
-                        }, false);
+                        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                        else {
+                            CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                                CommonFun.getInstance().showSmallAddCash()
+                            }, false);
+                        }
                     }
                 };
             }
             else {
                 if (notify.result.result == 19) {         // 余额不足
-                    CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }, false);
+                    if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    else {
+                        CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                            CommonFun.getInstance().showSmallAddCash()
+                        }, false);
+                    }
                 }
             };
         }
@@ -520,9 +530,13 @@ cc.Class({
     clickBtnBetCallback(num) {
         if (this.isDuringBet == true) {
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
-                CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash()
-                }, false);
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }, false);
+                }
             } else {
                 this.rocketMessageManager.sendBetMessage(num);
             }

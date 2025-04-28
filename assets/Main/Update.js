@@ -98,6 +98,7 @@ cc.Class({
         this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
         this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
         this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
+        this.node_bg_title = this.node_loginLayer.getChildByName("bg_title");
         this.node_lab_accountTips = this.node_loginLayer.getChildByName("lab_accountTips");
         this.node_lab_passwordTips = this.node_loginLayer.getChildByName("lab_passwordTips");
         this.node_btn_wenZi = this.node_loginLayer.getChildByName("btn_wenZi");
@@ -911,6 +912,11 @@ cc.Class({
                         this.showCommonLoginView("");
                     });
                 };
+                if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
+                    this.node_btn_guestLogin.active = false;
+                    this.node_or_sprite.active = false;
+                    this.node_bg_title.active = false;
+                }
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
             });
@@ -938,10 +944,6 @@ cc.Class({
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
 
-        if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
-            this.node_btn_guestLogin.active = false;
-            this.node_or_sprite.active = false;
-        }
     },
 
     showCommonLoginView: function() {
@@ -961,11 +963,6 @@ cc.Class({
             this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
-
-        if (GlobalCfg.CLUB_MODE == 1) { //代理模式不显示游客登录
-            this.node_btn_guestLogin.active = false;
-            this.node_or_sprite.active = false;
-        }
     },
 
     baseBundlesHotUpdate: function() {

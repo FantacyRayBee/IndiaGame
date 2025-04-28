@@ -14,6 +14,7 @@ cc.Class({
         root_record: cc.Node,
         root_invited: cc.Node,
         root_operate: cc.Node,
+        root_show: cc.Node,
         lb_desc: cc.RichText,
         // root_invited
         btn_invitedClose: cc.Button,
@@ -31,6 +32,9 @@ cc.Class({
         lb_id_operate: cc.Label,
         lb_coin_operate: cc.Label,
         sp_head_operate: cc.Sprite,
+        // root_show
+        btn_showClose: cc.Button,
+        btn_share: cc.Button,
     },
 
     ctor: function () {
@@ -56,18 +60,25 @@ cc.Class({
         this.btn_withdraw.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_note.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.tog_setManage.node.on('toggle', CommonFun.getInstance().debounce(this.toggleClick, 1), this);
+        // root_show
+        this.btn_showClose.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_share.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     },
     
     start: function() {
         this.lb_club_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.clubInfo.safe / 100);
-
-        let descString = `<color=#cccccc><size=29><b>
-            1. Invite your friends to download the game: <color=#fbbd4d>${GlobalCfg.USER_DATAS.clubInfo.downUrl}</color>, Ask your friend to tell you his game ID.
-            2. If your friend has not bound an invitation code, you can manually bind his game ID to your club through the invitation function
-            3. Your friend transfers money to you, you recharge his coins, and when he needs to withdraw money, you deduct his coins and then transfer the money to your friend. All the income he generates belongs to you
-            4. If you don't have enough available coins, please contact customer service to purchase coins.
+        let url = GlobalCfg.USER_DATAS.customerService.landingPage == '' ? 'https://02.haathee.net' : GlobalCfg.USER_DATAS.customerService.landingPage;
+        let descString = `<color=#cccccc><size=23><b>
+1.Invite your friends to download the game: <color=#fbbd4d>${url}</color>, Ask your friend to tell you his game ID.
+2.Click the Invite function in the Club and enter his game ID, so that he will join your Club.
+3.Your friend transfers money to you, you recharge his coins, and when he needs to withdraw money,you deduct his wallet coins and then transfer the money to your friend. All the income he generates belongs to you.
+4.You can also give your subordinate the authority to control his subordinates in Management, so that he will become your subordinate agent
+5.If you don’t have enough available coins, please contact customer service to purchase coins.
             </b></size></color>`
         this.lb_desc.string = descString;
+        
+        this.root_show.active = (GlobalCfg.IS_CLUB_MODE == 0);
+        CommonFun.getInstance().setEditBoxEvent(this.editBox_invited, this.root_invited);
     },
 
     onDestroy: function () {
@@ -82,11 +93,15 @@ cc.Class({
         if (msgId === "OPEN_CLUB_MEMBER_OPERATE") {
             self.dealMemberOperateEvent(notify.userData);
         }
+        if (msgId === "REFRESH_CLUB") {
+        }
     },
+
+
 
     btnClick: function (btn) {
         let btnName = btn.node.name;
-        if (btnName === "btn_mainClose") {
+        if (btnName == "btn_mainClose" || btnName == "btn_showClose") {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.dealBtnMainCloseEvent();
             return;
@@ -121,15 +136,18 @@ cc.Class({
         if (btnName === "btn_note") {
             this.dealMemberNoteEvent();
         } 
+        if (btnName === "btn_share") {
+            this.dealShareEvent();
+        } 
         
         GlobalCfg.G_COMPONENTS.Audio.playButton();
     },
 
     toggleClick: function (tog) {
         if (tog.isChecked) {
-            setMemberInfo(1, 1); //设置成管理员
+            this.setMemberInfo(1, "1"); //设置成管理员
           } else {
-            setMemberInfo(1, 0); //设置成普通成员
+            this.setMemberInfo(1, "0"); //设置成普通成员
           }
     },
 
@@ -179,7 +197,12 @@ cc.Class({
             for (let i = 0; i < GlobalCfg.USER_DATAS.clubMembers.length; i++) {
                 let member = GlobalCfg.USER_DATAS.clubMembers[i];
                 if (member.userId == this.curMemberOperateData.userId) {
-                    member.position = parseInt(desc);
+                    if (desc == "0") {
+                        member.position = 1;
+                    }
+                    if (desc == "1") {
+                        member.position = 2;
+                    }
                     break;
                 }
             }
@@ -192,8 +215,8 @@ cc.Class({
                     break;
                 }
             }
-            this.root_manage.getComponent('ClubManageCtrl').setData();
         }
+        this.root_manage.getComponent('ClubManageCtrl').setData();
     },
 
     //添加加载头像
@@ -269,6 +292,7 @@ cc.Class({
     
     // root_operate
     dealMemberOperateEvent: function (data) {
+        LoggerUtil.getInstance().log("caojun dealMemberOperateEvent =", data);
         this.curMemberOperateData = data;
         this.root_operate.active = true;
         this.loadHeadSp(data.head, 200, this.sp_head_operate);
@@ -277,28 +301,48 @@ cc.Class({
         this.lb_nick_operate.string = data.nickname;
         this.editBox_addcoin.string = "";
         this.editBox_withdraw.string = "";
+        this.editBox_note.string = "";
         if (data.notes != "") {
-            this.editBox_note.placeholder = data.notes;
+            this.editBox_note.string = data.notes;
         }
         this.tog_setManage.isChecked = data.position == 2; //是否是管理员
     },
 
     dealMemberCoinEvent: function (type) {
         let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/club_transfer`;
-        let amounts = parseInt(this.editBox_addcoin.string) * 100
+        let amounts = 0;
         if (type == 1) { //上分
+            if (this.editBox_addcoin.string == '') { 
+                CommonFun.getInstance().showTips("Operation Failed");
+                return;
+            }
             amounts = parseInt(this.editBox_addcoin.string) * 100
-            if (amounts > (GlobalCfg.USER_DATAS.clubInfo.safe * 100)) {
-                CommonFun.getInstance().showTips("coins not enough");
+            if (amounts < 100 * 100) {  //最小上分金额100起
+                CommonFun.getInstance().showTips("Operation Failed");
+                return;
+            }
+            LoggerUtil.getInstance().log(`caojun amounts = ${amounts}, safe = ${GlobalCfg.USER_DATAS.clubInfo.safe * 100}`);
+            if (amounts > (GlobalCfg.USER_DATAS.clubInfo.safe) || amounts < 100*100) {
+                CommonFun.getInstance().showTips("Insufficient available coins");
                 return;
             }
         }
         if (type == 2) { //下分
-            amounts = - parseInt(this.editBox_withdraw.string) * 100
-            if (amounts > (this.curMemberOperateData.safe * 100)) { //如果下分金额大于当前用户余额
-                CommonFun.getInstance().showTips("this user wallet not enough");
+            if (this.editBox_withdraw.string == '') { 
+                CommonFun.getInstance().showTips("Operation Failed");
                 return;
             }
+            amounts = parseInt(this.editBox_withdraw.string) * 100
+            if (amounts < 100 * 100) {  //最小下分金额100起
+                CommonFun.getInstance().showTips("Operation Failed");
+                return;
+            }
+            LoggerUtil.getInstance().log(`caojun amounts = ${amounts}, safe = ${this.curMemberOperateData.safe}`);
+            if (amounts > (this.curMemberOperateData.safe)) { //如果下分金额大于当前用户余额
+                CommonFun.getInstance().showTips("Insufficient available coins");
+                return;
+            }
+            amounts = -amounts;
         }
         let httpdata = {
             to: this.curMemberOperateData.userId,
@@ -308,14 +352,20 @@ cc.Class({
             CommonFun.getInstance().hidProgress();
             if (msg.result == 0) {
                 let data = msg.data;
-                CommonFun.getInstance().showTips("success");
+                CommonFun.getInstance().showTips("Operation success");
                 this.editBox_addcoin.string = "";
                 this.editBox_withdraw.string = "";
                 this.refreshMemberListByAmount(data.to_amount);
+                this.lb_club_coin.string = CommonFun.getInstance().numberToShow(data.amount / 100);
             } else {
                 CommonFun.getInstance().showTips(msg.msg);
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    //跳转
+    dealShareEvent: function () {
+        cc.sys.openURL(GlobalCfg.USER_DATAS.service_help_url);
     },
 
     dealMemberNoteEvent: function () {

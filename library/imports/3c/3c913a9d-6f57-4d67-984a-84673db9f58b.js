@@ -718,6 +718,11 @@ var CommonFun = cc.Class({
     if (from === void 0) {
       from = '';
     }
+    if (GlobalCfg.IS_CLUB_MODE == 1) {
+      //代理模式不跳转商城
+      CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+      return;
+    }
     if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
       CommonFun.getInstance().showMsgBox("Not yet open", "NO", function () {}, false);
       return;
@@ -1623,11 +1628,13 @@ var CommonFun = cc.Class({
    */
   showPersonal: function showPersonal() {
     var _this31 = this;
-    var personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
-    personalPrefabPromise.then(function (prefab) {
-      var personalNode = cc.instantiate(prefab);
-      var personalCtrl = personalNode.getComponent('PersonalCtrl');
-      _this31.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);
+    this.getClubData(function () {
+      var personalPrefabPromise = _this31.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
+      personalPrefabPromise.then(function (prefab) {
+        var personalNode = cc.instantiate(prefab);
+        var personalCtrl = personalNode.getComponent('PersonalCtrl');
+        _this31.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);
+      });
     });
   },
   /**
@@ -1763,13 +1770,13 @@ var CommonFun = cc.Class({
   },
   _showShop: function _showShop(from) {
     var _this40 = this;
-    this.getPayChannel(function (payChannels) {
+    this.getPayChannel(function (payData) {
       var shopPrefabPromise = _this40.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
       shopPrefabPromise.then(function (prefab) {
         CommonFun.getInstance().addVerticalAcc();
         var shopNode = cc.instantiate(prefab);
         var shopCtrl = shopNode.getComponent("ShopCtrl");
-        shopCtrl.setPayChannel(payChannels);
+        shopCtrl.setPayChannel(payData);
         shopCtrl.setJumpFrom(from);
         _this40.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP);
       });
@@ -2406,8 +2413,8 @@ var CommonFun = cc.Class({
     }
     if (PAY_CHANNEL == 0) {
       //如果传进来的支付渠道ID为0，则获取支付渠道ID
-      this.getPayChannel(function (payChannels) {
-        GlobalCfg.PAY_CHANNEL = payChannels[0];
+      this.getPayChannel(function (payData) {
+        GlobalCfg.PAY_CHANNEL = payData.pay_channels[0];
         _this63.PayHttp(commodityId, from, callback);
       });
       return;
@@ -2422,6 +2429,8 @@ var CommonFun = cc.Class({
     url += "&id=" + commodityId;
     url += "&from=" + from;
     url += "&pay_channel=" + GlobalCfg.PAY_CHANNEL;
+    url += "&types=" + GlobalCfg.PAY_CHANNEL2;
+    // url += "&server_id=" + GlobalCfg.server_id;
     CommonFun.getInstance().showProgress();
     CommonFun.getInstance().httpGet(url, function (strInfo) {
       CommonFun.getInstance().hidProgress();
@@ -2449,7 +2458,7 @@ var CommonFun = cc.Class({
     CommonFun.getInstance().httpGet(url, function (strInfo) {
       CommonFun.getInstance().hidProgress();
       if (strInfo && strInfo.result == 0) {
-        callback && callback(strInfo.data.pay_channels);
+        callback && callback(strInfo.data);
       } else {
         CommonFun.getInstance().showTips(strInfo.msg);
       }
@@ -2591,6 +2600,34 @@ var CommonFun = cc.Class({
       var gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
       _this69.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
     });
+  },
+  setEditBoxEvent: function setEditBoxEvent(editBox, node) {
+    if (cc.sys.os === cc.sys.OS_ANDROID && cc.sys.isNative) {
+      // 保存原始位置
+      var _originalY = node.y;
+
+      // 计算合适的键盘高度（可根据需要调整）
+      var KEYBOARD_HEIGHT = cc.view.getVisibleSize().height * 0.4;
+      editBox.node.on('editing-did-began', function () {
+        // 获取输入框底部位置
+        var pos = editBox.node.convertToWorldSpaceAR(cc.v2(0, -editBox.node.height / 2));
+        var screenHeight = cc.view.getVisibleSize().height;
+
+        // 计算需要上移的距离（只移动必要距离）
+        var moveDistance = Math.max(0, pos.y - KEYBOARD_HEIGHT);
+
+        // 限制最大上移距离（例如不超过屏幕的50%）
+        moveDistance = Math.min(moveDistance, screenHeight * 0.5);
+        cc.tween(node).to(0.2, {
+          y: _originalY + moveDistance
+        }).start();
+      }.bind(this));
+      editBox.node.on('editing-did-ended', function () {
+        cc.tween(node).to(0.2, {
+          y: _originalY
+        }).start();
+      }.bind(this));
+    }
   },
   /**
    * 显示游戏的菜单界面

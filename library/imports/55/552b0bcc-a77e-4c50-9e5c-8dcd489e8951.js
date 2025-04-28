@@ -74,8 +74,7 @@ cc.Class({
     var UnUseFacebook = Number(cc.sys.localStorage.getItem("UnUseFacebook"));
     LoggerUtil.getInstance().log("UnUseFacebook: ", UnUseFacebook);
     GlobalCfg.UNUSE_FACEBOOK = UnUseFacebook;
-    var clubMode = Number(cc.sys.localStorage.getItem("isClubMode")); //是否是代理模式 0:不是 1:是
-    LoggerUtil.getInstance().log("clubMode: ", clubMode);
+    var clubMode = Number(cc.sys.localStorage.getItem("IsClubMode")); //是否是代理模式 0:不是 1:是
     GlobalCfg.IS_CLUB_MODE = clubMode;
     var needToLogEncrypt = false;
     if (needToLogEncrypt) {
