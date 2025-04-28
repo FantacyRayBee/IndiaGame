@@ -485,9 +485,13 @@ cc.Class({
                 }
                 else {
                     if (result.result == 19) {
-                        CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
-                            CommonFun.getInstance().showSmallAddCash()
-                        }, false);
+                        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                        else {
+                            CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
+                                CommonFun.getInstance().showSmallAddCash()
+                            }, false);
+                        }
                     }
                     else {
                         CommonFun.getInstance().showTips(result.message);
@@ -496,9 +500,13 @@ cc.Class({
             }
             else {
                 if (result.result == 19) {
-                    CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }, false);
+                    if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    else {
+                        CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
+                            CommonFun.getInstance().showSmallAddCash()
+                        }, false);
+                    }
                 }
                 else {
                     CommonFun.getInstance().showTips(result.message);
@@ -1465,11 +1473,15 @@ cc.Class({
         }
         LoggerUtil.getInstance().log(`当前阶段重复下注金额: ${amount}`);
         if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
-            CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-            }, false);
+            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            else {
+                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+            }
         } else {
             this.currentBetNum = this.getCurrentBetNum();
             let repeatBetNum = 0;
@@ -1569,9 +1581,13 @@ cc.Class({
 
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
-            CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
-                CommonFun.getInstance().showSmallAddCash()
-            }, false);
+            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            else {
+                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                    CommonFun.getInstance().showSmallAddCash()
+                }, false);
+            }
             return;
         };
 
@@ -1736,18 +1752,22 @@ cc.Class({
     betting: function (amount, type) {
         this.currentBetNum = this.getCurrentBetNum();
         if (this.betBtnState == true) {
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+            if(GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
                     }
                 }, false);
             } else if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                        if (this.paymentSwitch) {
+                            CommonFun.getInstance().showSmallAddCash()
+                        }
+                    }, false);
+                }
             } else {
                 LoggerUtil.getInstance().log(`当前下注的数目：${this.currentBetNum}`);
                 if (this.currentBetNum + amount * 100 > this.limitMaxBetNum) {

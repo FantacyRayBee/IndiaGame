@@ -77,6 +77,8 @@ cc.Class({
         LoggerUtil.getInstance().log("UnUseFacebook: ", UnUseFacebook);
         GlobalCfg.UNUSE_FACEBOOK = UnUseFacebook;
 
+        let clubMode = Number(cc.sys.localStorage.getItem("IsClubMode")); //是否是代理模式 0:不是 1:是
+        GlobalCfg.IS_CLUB_MODE = clubMode;
         let needToLogEncrypt = false;
         if(needToLogEncrypt) {
             let appConfigPathObj = {

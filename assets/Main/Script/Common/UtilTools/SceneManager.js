@@ -650,7 +650,7 @@ let SceneManager = cc.Class({
                      * 客服信息
                      */
                     let customer_service = config.customer_service ? config.customer_service : "";    // 旧字段
-                    let support = config.support ? config.support : {whatsApp: '', email: '', facebook: '', telegram: '', cloud: ''};
+                    let support = config.support ? config.support : {whatsApp: '', email: '', facebook: '', telegram: '', cloud: '', landingPage:''};
                     /**
                      *  游戏模式，特殊渠道百人加一分场，另一套数值
                      */
@@ -715,6 +715,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.vipLevels = vip_levels;
                     GlobalCfg.USER_DATAS.vipExpiresDay = vip_expires_day;
                     GlobalCfg.USER_DATAS.gacha = gacha;
+                    
 
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_SUCCESS);
                     if (IP_URL && IP_URL != "") {
@@ -1000,6 +1001,9 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.userLevel = user_level;
                     GlobalCfg.USER_DATAS.betrebate = betrebate;
                     GlobalCfg.USER_DATAS.lastRecharged = last_recharged;
+                    GlobalCfg.USER_DATAS.is_club = msgData.is_club;
+                    GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
+
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
                     };

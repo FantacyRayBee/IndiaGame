@@ -175,6 +175,14 @@ cc.Class({
          */
         btn_pdd: cc.Button,
         /**
+         * 保险箱
+         */
+        btn_wallet: cc.Button,
+        /**
+         * 俱乐部
+         */
+        btn_club: cc.Button,
+        /**
          * tp引导手指
          */
         node_tpFinger: cc.Node,
@@ -370,7 +378,9 @@ cc.Class({
         this.btn_addCash.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_goBetiing.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_pdd.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-
+        this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_quickRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -491,15 +501,8 @@ cc.Class({
             this.btn_service.node.active = false;
         };
 
-        /**
-         * 拼多多
-         */
-        if (GlobalCfg.USER_DATAS.pddRemainCount != -1 && GlobalCfg.USER_DATAS.openModules.includes(14)) {
-            // this.btn_pdd.node.active = true;
-        }
-        else {
-            this.btn_pdd.node.active = false;
-        };
+        this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
+        this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
 
         /**
          * 邮箱
@@ -1394,6 +1397,12 @@ cc.Class({
         else if (btnName == 'btn_pdd') {
             this.dealPddBtnEvent();
         }
+        else if (btnName == 'btn_wallet') {
+            this.dealWalletBtnEvent();
+        }
+        else if (btnName == 'btn_club') {
+            CommonFun.getInstance().showClub();
+        }
         else if (btnName == "btn_vip") {
             CommonFun.getInstance().showMyVip();
         }
@@ -1456,6 +1465,10 @@ cc.Class({
                 firstCtrl.setData(pdd_api_data);
                 CommonFun.getInstance().addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
             });
+    },
+
+    dealWalletBtnEvent: function() {
+        CommonFun.getInstance().showWalletPanel();
     },
 
     dealToggleModules: function(isShow) {
@@ -1540,7 +1553,7 @@ cc.Class({
     },
 
     loadHeadSp: function() {
-        if (GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
+        if (GlobalCfg.USER_DATAS.userHeadimgurl == null || GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
             return;
         };
         cc.loader.load({url: GlobalCfg.USER_DATAS.userHeadimgurl, type: 'png' },  (err, img) => {

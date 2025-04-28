@@ -19,11 +19,15 @@ cc.Class({
         node_bonusTips: cc.Node,
         node_shopItemContent: cc.Node,
         node_shopTogItemContent: cc.Node,
+
+        node_tog: cc.Node,
+        togList: [cc.Toggle],
     },
 
     ctor: function() {
         this.haveFromData = false;  // 是否有跳转来源数据
         this.upiChannel = 1;    // upi渠道
+        this.entryStrList = ['paytm','upi','phonepe']
     },
 
     onLoad: function() {
@@ -36,6 +40,9 @@ cc.Class({
         this.btn_addCash.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_bonusTips.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 0), this);
 
+        for (let i = 0; i < 3; i++) {
+            this.togList[i].node.on("toggle", CommonFun.getInstance().debounce(this.togClick, 1), this);
+        }
         this.lab_userDiamond.string = `₹${FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100)}`;
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -57,6 +64,8 @@ cc.Class({
     },
 
     start: function() {
+        this.togList[0].isChecked = true;
+        GlobalCfg.PAY_CHANNEL2 = this.entryStrList[0];
         this.setShopItems();
     },
 
@@ -66,7 +75,6 @@ cc.Class({
         let notify = webData.msgData;
         LoggerUtil.getInstance().log("onEventMsg msgId ===> ",  msgId);
         LoggerUtil.getInstance().log("onEventMsg notify ===> ",  JSON.stringify(notify));
-
         if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) { 
             let reason = notify.reason;         // 原因
             let changed = notify.changed;       // 变化值
@@ -143,6 +151,12 @@ cc.Class({
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.REFRESH_SHOP_COMMODITY) {
             self.setShopItems();
+        }
+        else if (msgId == "REFRESH_SHOP_ITEM") {
+            self.node_tog.active = notify.isShow; //显示/隐藏
+            if (!notify.isShow) {
+                GlobalCfg.PAY_CHANNEL2 = '';
+            }
         }
     },
 
@@ -233,35 +247,31 @@ cc.Class({
     },
 
 
-    addShopTogItems : function(arr, itemPrefab) {
+    addShopTogItems : function(data, itemPrefab) {
         let children = this.node_shopTogItemContent.children;
         for (let i = 0, len = children.length; i < len; i++) {
             const node = children[i];
             node.destroy();
         };
-
-        let len = arr.length;
-        if (len == 0) {
+        let lens = data.pay_channels.length;
+        if (lens == 0) {
             return;
         };
-        let index = 0;
-        let addtogItem = () => {
+        for (let i = 0; i < lens; i++) {
             let shopItemNode = cc.instantiate(itemPrefab);
             let shopItemCtrl = shopItemNode.getComponent("ShopTogItemCtrl");
-            if (index == 0) {
+            if (i == 0) {
                 shopItemCtrl.setNewShopItemChecked(true);
-                GlobalCfg.PAY_CHANNEL = arr[0]; //角标默认选择第一个
+                GlobalCfg.PAY_CHANNEL = data.pay_channels[0]; //角标默认选择第一个
+                this.node_tog.active = data.pay_channels_name[0].is_multichannel; //是否显示多渠道
+                GlobalCfg.PAY_CHANNEL2 = this.entryStrList[0];
+                if (!data.pay_channels_name[0].is_multichannel) {
+                    GlobalCfg.PAY_CHANNEL2 = '';
+                }
             };
-            shopItemCtrl.setLabel(index + 1, arr[index]);
+            shopItemCtrl.setLabel(data.pay_channels_name[i], data.pay_channels[i]);
             this.node_shopTogItemContent.addChild(shopItemNode);
-
-            index += 1;
-            if (index == arr.length) {
-                this.unschedule(addtogItem);
-                return;
-            }; 
-        };
-        this.schedule(addtogItem, 1/cc.game.getFrameRate(), 3, 0);
+        }
     },
 
     getStoreListInfo: function() {
@@ -313,6 +323,13 @@ cc.Class({
                 break;
             default:
                 break;
+        }
+    },
+
+    togClick: function(tog) {
+        if (tog.isChecked) {
+            let index = parseInt(tog.node.name);
+            GlobalCfg.PAY_CHANNEL2 = this.entryStrList[index];
         }
     },
 

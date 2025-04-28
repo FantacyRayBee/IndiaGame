@@ -480,9 +480,13 @@ cc.Class({
         }
       }
     } else {
-      CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", function () {
-        CommonFun.getInstance().showSmallAddCash();
-      }, false);
+      if (GlobalCfg.IS_CLUB_MODE == 1)
+        //代理模式不跳转商城
+        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);else {
+        CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", function () {
+          CommonFun.getInstance().showSmallAddCash();
+        }, false);
+      }
     }
   },
   //显示离上一次头奖时间
@@ -694,7 +698,7 @@ cc.Class({
 
   callReq: function callReq(CardType, coin) {
     var amount = 0;
-    if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+    if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", function () {
         CommonFun.getInstance().showSmallAddCash();
@@ -707,9 +711,13 @@ cc.Class({
     } else {
       amount = this.betCion * 100;
       if (amount > GlobalCfg.USER_DATAS.userDiamond) {
-        CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", function () {
-          CommonFun.getInstance().showSmallAddCash();
-        }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1)
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);else {
+          CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", function () {
+            CommonFun.getInstance().showSmallAddCash();
+          }, false);
+        }
         return;
       }
     }

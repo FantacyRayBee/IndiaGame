@@ -21,13 +21,15 @@ cc.Class({
     lab_addMarkTips: cc.Label,
     node_bonusTips: cc.Node,
     node_shopItemContent: cc.Node,
-    node_shopTogItemContent: cc.Node
+    node_shopTogItemContent: cc.Node,
+    node_tog: cc.Node,
+    togList: [cc.Toggle]
   },
   ctor: function ctor() {
     this.haveFromData = false; // 是否有跳转来源数据
     this.upiChannel = 1; // upi渠道
+    this.entryStrList = ['paytm', 'upi', 'phonepe'];
   },
-
   onLoad: function onLoad() {
     SHOPPING.cashID = -1;
     this.node_bonusTips.active = false;
@@ -36,6 +38,9 @@ cc.Class({
     this.btn_record.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btn_addCash.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btn_bonusTips.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 0), this);
+    for (var i = 0; i < 3; i++) {
+      this.togList[i].node.on("toggle", CommonFun.getInstance().debounce(this.togClick, 1), this);
+    }
     this.lab_userDiamond.string = "\u20B9" + FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
@@ -54,6 +59,8 @@ cc.Class({
     ;
   },
   start: function start() {
+    this.togList[0].isChecked = true;
+    GlobalCfg.PAY_CHANNEL2 = this.entryStrList[0];
     this.setShopItems();
   },
   onEventMsg: function onEventMsg(webData, target) {
@@ -134,6 +141,11 @@ cc.Class({
       self.lab_addCash.string = descriptionStr + " \u20B9" + amount;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.REFRESH_SHOP_COMMODITY) {
       self.setShopItems();
+    } else if (msgId == "REFRESH_SHOP_ITEM") {
+      self.node_tog.active = notify.isShow; //显示/隐藏
+      if (!notify.isShow) {
+        GlobalCfg.PAY_CHANNEL2 = '';
+      }
     }
   },
   onDestroy: function onDestroy() {
@@ -218,38 +230,34 @@ cc.Class({
     };
     this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
   },
-  addShopTogItems: function addShopTogItems(arr, itemPrefab) {
-    var _this4 = this;
+  addShopTogItems: function addShopTogItems(data, itemPrefab) {
     var children = this.node_shopTogItemContent.children;
-    for (var i = 0, _len2 = children.length; i < _len2; i++) {
+    for (var i = 0, len = children.length; i < len; i++) {
       var node = children[i];
       node.destroy();
     }
     ;
-    var len = arr.length;
-    if (len == 0) {
+    var lens = data.pay_channels.length;
+    if (lens == 0) {
       return;
     }
     ;
-    var index = 0;
-    var addtogItem = function addtogItem() {
+    for (var _i = 0; _i < lens; _i++) {
       var shopItemNode = cc.instantiate(itemPrefab);
       var shopItemCtrl = shopItemNode.getComponent("ShopTogItemCtrl");
-      if (index == 0) {
+      if (_i == 0) {
         shopItemCtrl.setNewShopItemChecked(true);
-        GlobalCfg.PAY_CHANNEL = arr[0]; //角标默认选择第一个
+        GlobalCfg.PAY_CHANNEL = data.pay_channels[0]; //角标默认选择第一个
+        this.node_tog.active = data.pay_channels_name[0].is_multichannel; //是否显示多渠道
+        GlobalCfg.PAY_CHANNEL2 = this.entryStrList[0];
+        if (!data.pay_channels_name[0].is_multichannel) {
+          GlobalCfg.PAY_CHANNEL2 = '';
+        }
       }
       ;
-      shopItemCtrl.setLabel(index + 1, arr[index]);
-      _this4.node_shopTogItemContent.addChild(shopItemNode);
-      index += 1;
-      if (index == arr.length) {
-        _this4.unschedule(addtogItem);
-        return;
-      }
-      ;
-    };
-    this.schedule(addtogItem, 1 / cc.game.getFrameRate(), 3, 0);
+      shopItemCtrl.setLabel(data.pay_channels_name[_i], data.pay_channels[_i]);
+      this.node_shopTogItemContent.addChild(shopItemNode);
+    }
   },
   getStoreListInfo: function getStoreListInfo() {
     return new Promise(function (resolve, reject) {
@@ -298,6 +306,12 @@ cc.Class({
         break;
       default:
         break;
+    }
+  },
+  togClick: function togClick(tog) {
+    if (tog.isChecked) {
+      var index = parseInt(tog.node.name);
+      GlobalCfg.PAY_CHANNEL2 = this.entryStrList[index];
     }
   },
   dealBtnBackEvent: function dealBtnBackEvent() {
