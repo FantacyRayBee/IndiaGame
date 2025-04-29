@@ -632,7 +632,8 @@ var SceneManager = cc.Class({
             email: '',
             facebook: '',
             telegram: '',
-            cloud: ''
+            cloud: '',
+            landingPage: ''
           };
           /**
            *  游戏模式，特殊渠道百人加一分场，另一套数值
@@ -986,6 +987,8 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.userLevel = user_level;
           GlobalCfg.USER_DATAS.betrebate = betrebate;
           GlobalCfg.USER_DATAS.lastRecharged = last_recharged;
+          GlobalCfg.USER_DATAS.is_club = msgData.is_club;
+          GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
           if (channel.length > 0) {
             GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
           }

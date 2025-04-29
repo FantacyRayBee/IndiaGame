@@ -175,6 +175,14 @@ cc.Class({
          */
         btn_pdd: cc.Button,
         /**
+         * 保险箱
+         */
+        btn_wallet: cc.Button,
+        /**
+         * 俱乐部
+         */
+        btn_club: cc.Button,
+        /**
          * tp引导手指
          */
         node_tpFinger: cc.Node,
@@ -198,7 +206,7 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setPosition(-(w / 2) + 150, 20);
         this.node_gameScollview.setContentSize(w - 150 - 30, 480);
     },
 
@@ -370,7 +378,9 @@ cc.Class({
         this.btn_addCash.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_goBetiing.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_pdd.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-
+        this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_quickRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -491,15 +501,8 @@ cc.Class({
             this.btn_service.node.active = false;
         };
 
-        /**
-         * 拼多多
-         */
-        if (GlobalCfg.USER_DATAS.pddRemainCount != -1 && GlobalCfg.USER_DATAS.openModules.includes(14)) {
-            // this.btn_pdd.node.active = true;
-        }
-        else {
-            this.btn_pdd.node.active = false;
-        };
+        this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
+        this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
 
         /**
          * 邮箱
@@ -526,8 +529,8 @@ cc.Class({
 
         let w = cc.view.getVisibleSize().width;
         // this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 480);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 130 - 30 + 132, 480);
+        this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
+        this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
     },
 
     /**
@@ -1284,6 +1287,9 @@ cc.Class({
             self.showTransBounsRedPoint();
             CommonFun.getInstance().hidProgress();
         }
+        else if (msgId == 'CLOSE_GAMEICONLIST'){ //关闭游戏列表 刷新一下界面的位置 因为触发了横竖屏切换
+            self.showOtherModules();
+        }
         else if (msgId == 'lobbyservice.newmail') {
             destroy()
         }
@@ -1391,6 +1397,12 @@ cc.Class({
         else if (btnName == 'btn_pdd') {
             this.dealPddBtnEvent();
         }
+        else if (btnName == 'btn_wallet') {
+            this.dealWalletBtnEvent();
+        }
+        else if (btnName == 'btn_club') {
+            CommonFun.getInstance().showClub();
+        }
         else if (btnName == "btn_vip") {
             CommonFun.getInstance().showMyVip();
         }
@@ -1453,6 +1465,10 @@ cc.Class({
                 firstCtrl.setData(pdd_api_data);
                 CommonFun.getInstance().addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
             });
+    },
+
+    dealWalletBtnEvent: function() {
+        CommonFun.getInstance().showWalletPanel();
     },
 
     dealToggleModules: function(isShow) {
@@ -1537,7 +1553,7 @@ cc.Class({
     },
 
     loadHeadSp: function() {
-        if (GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
+        if (GlobalCfg.USER_DATAS.userHeadimgurl == null || GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
             return;
         };
         cc.loader.load({url: GlobalCfg.USER_DATAS.userHeadimgurl, type: 'png' },  (err, img) => {
@@ -1640,12 +1656,13 @@ cc.Class({
             });
         } 
         else if (btnName == "btn_jokerMachine") {
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
-            this.checkUpdate("jokerMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.JOKER);
-            });
+            // CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
+            // this.checkUpdate("jokerMachine", () => {
+            //     CommonFun.getInstance().showProgress();
+            //     GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.product;
+            //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.JOKER);
+            // });
+            CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);

@@ -159,7 +159,6 @@ cc.Class({
             9: this.labSelfBetBeast,         // 走兽
             10: this.labSelfBetBird,       // 飞禽
         };
-
         this.labAllPlayer = this.btnAllWj.node.getChildByName('playersNum').getChildByName('Label').getComponent(cc.Label);
         this.btnAllWj.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnAddCash.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -176,6 +175,7 @@ cc.Class({
 
         this.endAnimationNode.active = false;
         this.betStartEndAnimationNode.active = false;
+        this.btnAddCash.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onCustomEventMsg, this);

@@ -21,8 +21,8 @@ cc.Class({
         node.setContentSize(cc.view.getVisibleSize().width, cc.view.getVisibleSize().height);
 
         let node_user = node.getChildByName("bg").getChildByName("node_user");
-        this.lab_deposited = node_user.getChildByName("lab_deposited").getComponent(cc.Label);
-        this.lab_winnings = node_user.getChildByName("lab_winnings").getComponent(cc.Label);
+        this.lab_gamecash = node_user.getChildByName("lab_gamecash").getComponent(cc.Label);
+        this.lab_walletcash = node_user.getChildByName("lab_walletcash").getComponent(cc.Label);
         this.lab_totalCash = node_user.getChildByName("lab_totalCash").getComponent(cc.Label);
         this.lab_bonus = node_user.getChildByName("lab_bonus").getComponent(cc.Label);
         this.node_totalCash = node_user.getChildByName("node_totalCash").getComponent(cc.Label);
@@ -106,15 +106,11 @@ cc.Class({
 
     initDataLobby: function () {
         if(!cc.isValid(this.node)) { return }
-        this.lab_deposited.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit, 100)) : "₹" +0;
-        if (GlobalCfg.USER_DATAS.recharged > 0) {
-            this.lab_winnings.string = GlobalCfg.USER_DATAS.winnings ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.winnings,100)) : "₹0";
-        }
-        else {
-            this.lab_winnings.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit, 100)) : "₹0";
-        };
-        this.lab_totalCash.string = GlobalCfg.USER_DATAS.userDiamond ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.userDiamond,100)) : "₹0";
-        this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;
+        this.lab_gamecash.string = "₹" + CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        this.lab_walletcash.string = "₹" + CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.clubInfo.safe / 100);
+        let total = GlobalCfg.USER_DATAS.userDiamond + GlobalCfg.USER_DATAS.clubInfo.safe;
+        this.lab_totalCash.string = "₹" + CommonFun.getInstance().numberToShow(total / 100);
+        // this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;
 
         if( GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
             this.lab_bnode_bonusonus.string = language==1 ? "Chips" : "बोनास";
@@ -138,7 +134,7 @@ cc.Class({
             self.lab_name.string = CommonFun.getInstance().getStrByLength(data.realname, 10);
             self.lab_mobile.string = data.phone.slice(2, data.phone.length);
             self.lab_email.string = CommonFun.getInstance().getStrByLength(data.mail, 15);
-            self.lab_bonus.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.bonus, 100);
+            // self.lab_bonus.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.bonus, 100);
         }
         else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
             self.showVipLevelIcon();

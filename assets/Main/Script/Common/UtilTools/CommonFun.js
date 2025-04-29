@@ -726,6 +726,10 @@ let CommonFun = cc.Class({
      * @returns 
      */
     showNewShop: function(isFromFirstRecharge, from = '') {          
+        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            return;
+        }
         if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
             CommonFun.getInstance().showMsgBox("Not yet open", "NO", () => { }, false);
             return
@@ -1071,12 +1075,12 @@ let CommonFun = cc.Class({
      * @param {string} title 标题
      * @param {function} callFun2 回调函数
      */    
-    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2) {
+    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal = cc.Label.HorizontalAlign.CENTER) {
         let msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
         msgBoxPrefabPromise.then((prefab) => {
             let msgBoxNode = cc.instantiate(prefab);
             let msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
-            msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2);
+            msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal);
             this.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
         });
     },
@@ -1089,6 +1093,18 @@ let CommonFun = cc.Class({
         settingPrefabPromise.then((prefab) => {
             let settingNode = cc.instantiate(prefab);
             this.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
+        });
+    },
+
+    /**
+     * 打开游戏列表界面
+     */
+    showGameIconList: function() {
+        let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEICONLIST);
+        PrefabPromise.then((prefab) => {
+            CommonFun.getInstance().addVerticalAcc();
+            let Node = cc.instantiate(prefab);
+            this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.GAMEICONLIST);
         });
     },
 
@@ -1241,19 +1257,59 @@ let CommonFun = cc.Class({
             game_id: gameId,
         };
         CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
-            // if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+            if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
                 APPManager.showWebView(msg.data.Url, isVertical);
-            // }
-            // else{
-            //     let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
-            //     PrefabPromise.then((prefab) => {
-            //         let Node = cc.instantiate(prefab);
-            //         let Ctrl = Node.getComponent('gameWebview');   
-            //         Ctrl.setURL(msg.data.Url) 
-            //         this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
-            //     });
-            // }
+            }
+            else{
+                let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
+                PrefabPromise.then((prefab) => {
+                    let Node = cc.instantiate(prefab);
+                    let Ctrl = Node.getComponent('gameWebview');   
+                    Ctrl.setURL(msg.data.Url) 
+                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+                });
+            }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
+     * 获取俱乐部信息
+     */
+    getClubData: function(callback) {
+        CommonFun.getInstance().showProgress();
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_club_info`;
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.clubInfo = msg.data;
+                callback && callback();
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+    /**
+     * 打开钱包
+     */
+    showWalletPanel: function() {
+        this.getClubData(() => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WALLET);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.WALLET);
+            });
+        })
+    }, 
+
+    /**
+     * 打开俱乐部
+     */
+    showClub: function() {
+        this.getClubData(() => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
+            });
+        })
     },    
 
     /**
@@ -1583,12 +1639,14 @@ let CommonFun = cc.Class({
      * 显示个人中心界面
      */
     showPersonal: function() {
-        let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
-        personalPrefabPromise.then((prefab) => {
-            let personalNode = cc.instantiate(prefab);
-            let personalCtrl = personalNode.getComponent('PersonalCtrl');    
-            this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);      
-        }); 
+        this.getClubData(()=>{
+            let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
+            personalPrefabPromise.then((prefab) => {
+                let personalNode = cc.instantiate(prefab);
+                let personalCtrl = personalNode.getComponent('PersonalCtrl');    
+                this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);      
+            }); 
+        });
     },
     
     /**
@@ -1727,13 +1785,13 @@ let CommonFun = cc.Class({
     },
 
     _showShop: function(from){
-        this.getPayChannel((payChannels) => {
+        this.getPayChannel((payData) => {
             let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
             shopPrefabPromise.then((prefab) => {
                 CommonFun.getInstance().addVerticalAcc();
                 let shopNode = cc.instantiate(prefab);
                 let shopCtrl = shopNode.getComponent("ShopCtrl");
-                shopCtrl.setPayChannel(payChannels);
+                shopCtrl.setPayChannel(payData);
                 shopCtrl.setJumpFrom(from);
                 this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP); 
             });   
@@ -2380,8 +2438,8 @@ let CommonFun = cc.Class({
     rechargeByCommodityId: function (commodityId, from, callback, PAY_CHANNEL = 0) {
         if (PAY_CHANNEL == 0) {
             //如果传进来的支付渠道ID为0，则获取支付渠道ID
-            this.getPayChannel((payChannels) => {
-                GlobalCfg.PAY_CHANNEL = payChannels[0]
+            this.getPayChannel((payData) => {
+                GlobalCfg.PAY_CHANNEL = payData.pay_channels[0]
                 this.PayHttp(commodityId, from, callback);
             });
             return;
@@ -2396,6 +2454,8 @@ let CommonFun = cc.Class({
         url += "&id=" + commodityId;
         url += "&from=" + from;
         url += "&pay_channel=" + GlobalCfg.PAY_CHANNEL;
+        url += "&types=" + GlobalCfg.PAY_CHANNEL2;
+        // url += "&server_id=" + GlobalCfg.server_id;
         CommonFun.getInstance().showProgress();
         CommonFun.getInstance().httpGet(url, (strInfo) => {
             CommonFun.getInstance().hidProgress();
@@ -2425,7 +2485,7 @@ let CommonFun = cc.Class({
         CommonFun.getInstance().httpGet(url, (strInfo) => {
             CommonFun.getInstance().hidProgress();
             if (strInfo && strInfo.result == 0) {
-                callback && callback(strInfo.data.pay_channels);
+                callback && callback(strInfo.data);
             }
             else {
                 CommonFun.getInstance().showTips(strInfo.msg);
@@ -2563,6 +2623,38 @@ let CommonFun = cc.Class({
             let gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
             this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
         });
+    },
+
+    setEditBoxEvent: function (editBox, node) {
+        if (cc.sys.os === cc.sys.OS_ANDROID && cc.sys.isNative) {
+            // 保存原始位置
+            let _originalY = node.y;
+            
+            // 计算合适的键盘高度（可根据需要调整）
+            var KEYBOARD_HEIGHT = cc.view.getVisibleSize().height * 0.4;
+            
+            editBox.node.on('editing-did-began', function() {
+                // 获取输入框底部位置
+                var pos = editBox.node.convertToWorldSpaceAR(cc.v2(0, -editBox.node.height/2));
+                var screenHeight = cc.view.getVisibleSize().height;
+                
+                // 计算需要上移的距离（只移动必要距离）
+                var moveDistance = Math.max(0, (pos.y - KEYBOARD_HEIGHT));
+                
+                // 限制最大上移距离（例如不超过屏幕的50%）
+                moveDistance = Math.min(moveDistance, screenHeight * 0.5);
+                
+                cc.tween(node)
+                    .to(0.2, { y: _originalY + moveDistance })
+                    .start();
+            }.bind(this));
+    
+            editBox.node.on('editing-did-ended', function() {
+                cc.tween(node)
+                    .to(0.2, { y: _originalY })
+                    .start();
+            }.bind(this));
+        }
     },
 
 

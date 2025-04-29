@@ -89,6 +89,7 @@ cc.Class({
         this.lab_userDiamond.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
         this.clientMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg,this.onEventMsg,this);
+
     },
 
 
@@ -191,6 +192,7 @@ cc.Class({
 
     setOpenModules: function() {
         this.btn_setting.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
+        this.btn_add.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
 
         if (CommonFun.getInstance().isNeedUpdata("Rummy") == false && (GlobalCfg.USER_DATAS.openModules.includes(102) || GlobalCfg.USER_DATAS.openModules.includes(103))) {
             this.toggle_rummy.node.active = true;

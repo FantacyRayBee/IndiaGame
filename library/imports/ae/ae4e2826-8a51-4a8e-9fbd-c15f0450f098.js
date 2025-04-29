@@ -517,7 +517,7 @@ cc.Class({
       types = 6;
     }
     if (this.betStatus) {
-      if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+      if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
         //未曾充值
         CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
           if (_this2.paymentSwitch) {
@@ -526,11 +526,16 @@ cc.Class({
         }, false);
         return;
       } else if (this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond) {
-        CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-          if (_this2.paymentSwitch) {
-            CommonFun.getInstance().showSmallAddCash();
-          }
-        }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1) {
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+        } else {
+          CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
+            if (_this2.paymentSwitch) {
+              CommonFun.getInstance().showSmallAddCash();
+            }
+          }, false);
+        }
       } else {
         var betCoinAll = this.userBtnCion;
         for (var i = 1; i < this.myBetCoin.length; i++) {
@@ -1741,11 +1746,16 @@ cc.Class({
     var betCoinAll = this.repeatBetArr[0] + this.repeatBetArr[1] + this.repeatBetArr[2] + this.repeatBetArr[3] + this.repeatBetArr[4] + this.repeatBetArr[5];
     if (str == "bet") {
       if (betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond == 0) {
-        CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-          if (_this12.paymentSwitch) {
-            CommonFun.getInstance().showSmallAddCash();
-          }
-        }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1) {
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+        } else {
+          CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
+            if (_this12.paymentSwitch) {
+              CommonFun.getInstance().showSmallAddCash();
+            }
+          }, false);
+        }
       } else {
         for (var i = 1; i < this.myBetCoin.length; i++) {
           betCoinAll += this.myBetCoin[i];
@@ -1812,9 +1822,14 @@ cc.Class({
     }
     ;
     if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
-      CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
-        CommonFun.getInstance().showSmallAddCash();
-      }, false);
+      if (GlobalCfg.IS_CLUB_MODE == 1) {
+        //代理模式不跳转商城
+        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+      } else {
+        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+          CommonFun.getInstance().showSmallAddCash();
+        }, false);
+      }
       return;
     }
     ;

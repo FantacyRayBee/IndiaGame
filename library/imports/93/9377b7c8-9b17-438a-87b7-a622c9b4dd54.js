@@ -891,7 +891,7 @@ cc.Class({
   },
   sendCallReq: function sendCallReq() {
     var _this6 = this;
-    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+    if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
         if (_this6.paymentSwitch) {
@@ -906,11 +906,16 @@ cc.Class({
     var freeCount = freesItem.freeCount;
     if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
       this.recoverySpinBtnEvent();
-      CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-        if (_this6.paymentSwitch) {
-          CommonFun.getInstance().showSmallAddCash();
-        }
-      }, false);
+      if (GlobalCfg.IS_CLUB_MODE == 1) {
+        //代理模式不跳转商城
+        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+      } else {
+        CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
+          if (_this6.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+      }
       return;
     }
     ;

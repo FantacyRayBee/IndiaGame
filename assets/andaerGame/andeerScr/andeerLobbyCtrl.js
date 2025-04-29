@@ -372,9 +372,13 @@ cc.Class({
                             }, false);
                         } 
                         else {
-                            CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
-                                CommonFun.getInstance().showSmallAddCash()
-                            }, false);
+                            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                            else {
+                                CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
+                                    CommonFun.getInstance().showSmallAddCash()
+                                }, false);
+                            }
                         };
                     }
                     else {
@@ -390,9 +394,13 @@ cc.Class({
                         }, false);
                     } 
                     else {
-                        CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
-                            CommonFun.getInstance().showSmallAddCash()
-                        }, false);
+                        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                        else {
+                            CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
+                                CommonFun.getInstance().showSmallAddCash()
+                            }, false);
+                        }
                     };
                 }
                 else {

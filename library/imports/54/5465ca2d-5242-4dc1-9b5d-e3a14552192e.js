@@ -179,6 +179,7 @@ cc.Class({
   },
   setOpenModules: function setOpenModules() {
     this.btn_setting.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
+    this.btn_add.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
     if (CommonFun.getInstance().isNeedUpdata("Rummy") == false && (GlobalCfg.USER_DATAS.openModules.includes(102) || GlobalCfg.USER_DATAS.openModules.includes(103))) {
       this.toggle_rummy.node.active = true;
     } else {
