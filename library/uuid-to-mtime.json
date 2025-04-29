@@ -21936,17 +21936,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1745820117793,
+    "meta": 1745910266951,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1745820117786,
+    "meta": 1745910266950,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1745820117790,
+    "meta": 1745910266951,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -21971,7 +21971,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1745820117788,
+    "meta": 1745910266953,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -21986,7 +21986,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1745820117798,
+    "meta": 1745910266955,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -21996,7 +21996,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1745820117796,
+    "meta": 1745910266949,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -22006,7 +22006,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1745820117807,
+    "meta": 1745910266952,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -22021,7 +22021,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1745820117800,
+    "meta": 1745910266952,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -22046,7 +22046,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1745820117811,
+    "meta": 1745910266956,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -22061,7 +22061,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1745820117814,
+    "meta": 1745910266956,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -22071,7 +22071,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1745820117817,
+    "meta": 1745910266953,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -22106,12 +22106,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1745820117821,
+    "meta": 1745910266955,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1745820117830,
+    "meta": 1745910266957,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -23051,7 +23051,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1737357038117,
-    "meta": 1745820117830,
+    "meta": 1745910266957,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
@@ -24960,8 +24960,8 @@
     "relativePath": "jokerMachine\\sound"
   },
   "5bbc1a54-4e56-4e96-88ee-4e8d147fde9e": {
-    "asset": 1743391864092,
-    "meta": 1743401023137,
+    "asset": 1745824844746,
+    "meta": 1745824883538,
     "relativePath": "jokerMachine\\sprite"
   },
   "31008a04-bba8-4383-87c7-430cdc2d4c84": {
@@ -25198,11 +25198,6 @@
     "asset": 1743391864136,
     "meta": 1743401027317,
     "relativePath": "jokerMachine\\sprite\\down"
-  },
-  "f1718607-7390-41cd-8fbb-2811c7a343cd": {
-    "asset": 1743495154556,
-    "meta": 1743560720060,
-    "relativePath": "jokerMachine\\sprite\\main"
   },
   "8c9eb00d-5735-4a7b-98cd-c0387ed4741b": {
     "asset": 1743415973467,
@@ -25494,40 +25489,20 @@
     "meta": 1743401033137,
     "relativePath": "jokerMachine\\sprite\\down\\积分按钮暗.png"
   },
-  "9a35ff81-1237-4dea-9573-c3a1fc4fcca1": {
-    "asset": 1743391864143,
-    "meta": 1743401044208,
-    "relativePath": "jokerMachine\\sprite\\main\\120bd80a0.4d078.plist"
-  },
   "77604e10-cadc-4327-8577-b48c5113701b": {
     "asset": 1743391864143,
     "meta": 1743401033130,
     "relativePath": "jokerMachine\\sprite\\down\\积分按钮最亮.png"
-  },
-  "7d4de1b3-8932-490d-a545-0d69c3f1fc04": {
-    "asset": 1743391864143,
-    "meta": 1743401044216,
-    "relativePath": "jokerMachine\\sprite\\main\\159066660.9b14e.plist"
   },
   "6dfe156e-2385-4cd6-988f-a9f31e79a96b": {
     "asset": 1743391864143,
     "meta": 1743401033140,
     "relativePath": "jokerMachine\\sprite\\down\\积分按钮高亮.png"
   },
-  "41b7e3e7-6ffa-40aa-a425-caafa0911576": {
-    "asset": 1743391864143,
-    "meta": 1743401044222,
-    "relativePath": "jokerMachine\\sprite\\main\\16d1fd2f0.eb8b9.plist"
-  },
   "b9bfb03b-0e2d-4a02-b3bc-2ca5a2ff56e1": {
     "asset": 1743391864143,
     "meta": 1743401033144,
     "relativePath": "jokerMachine\\sprite\\down\\设置按钮.png"
-  },
-  "c2c9ac2d-8b28-4254-8775-45071f6f965b": {
-    "asset": 1743391864143,
-    "meta": 1743401044255,
-    "relativePath": "jokerMachine\\sprite\\main\\1c41e883f.937b9.plist"
   },
   "d8617c5b-fbe8-4d20-8566-fbddd61e0528": {
     "asset": 1743391864143,
@@ -25596,7 +25571,7 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1743391864212,
-    "meta": 1745820117838,
+    "meta": 1745910266962,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "97749dfa-eacb-4fdb-8a47-57b8f7ded8aa": {
@@ -25604,30 +25579,15 @@
     "meta": 1743401037346,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.atlas"
   },
-  "af802f07-ef3d-404f-8016-4c4ead749feb": {
-    "asset": 1743391864212,
-    "meta": 1743401033185,
-    "relativePath": "jokerMachine\\sprite\\main\\16d1fd2f0.eb8b9.png"
-  },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1743391864206,
-    "meta": 1745820117835,
+    "meta": 1745910266961,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
-  },
-  "b1df4b90-791e-4d29-a9d1-b6a0fc9fdcb9": {
-    "asset": 1743391864217,
-    "meta": 1743401033193,
-    "relativePath": "jokerMachine\\sprite\\main\\159066660.9b14e.png"
   },
   "32978865-0c6d-4f9f-8785-c2886404db76": {
     "asset": 1743391864181,
     "meta": 1743401037350,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.atlas"
-  },
-  "22be0fc8-3270-4e62-8d80-8eebf654cf03": {
-    "asset": 1743391864220,
-    "meta": 1743401033202,
-    "relativePath": "jokerMachine\\sprite\\main\\120bd80a0.4d078.png"
   },
   "52aa9383-b0f5-4f83-9134-cdbb7ae0b209": {
     "asset": 1743391864181,
@@ -25636,17 +25596,17 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1743391864181,
-    "meta": 1745820117833,
+    "meta": 1745910266959,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1743391864181,
-    "meta": 1745820117833,
+    "meta": 1745910266958,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1743391864211,
-    "meta": 1745820117843,
+    "meta": 1745910266963,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "8ddc87ee-ee4a-49bd-b2a2-b0b2917e22fc": {
@@ -25666,18 +25626,13 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1743391864181,
-    "meta": 1745820117835,
+    "meta": 1745910266961,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1743391864181,
-    "meta": 1745820117836,
+    "meta": 1745910266959,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
-  },
-  "652ba1d0-dd36-4ab8-aca8-496a181d7227": {
-    "asset": 1743391864248,
-    "meta": 1743401033272,
-    "relativePath": "jokerMachine\\sprite\\main\\1c41e883f.937b9.png"
   },
   "0ae2826c-e6dc-4ba5-83d4-c83f80159e16": {
     "asset": 1743391864230,
@@ -25776,7 +25731,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1743391864187,
-    "meta": 1745820117841,
+    "meta": 1745910266960,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "7a241750-4b99-4026-a977-2d71ddbc3038": {
@@ -25791,7 +25746,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1743391864187,
-    "meta": 1745820117841,
+    "meta": 1745910266965,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "85f8c995-21fd-4a75-a710-535f628606cd": {
@@ -25801,12 +25756,12 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1743391864187,
-    "meta": 1745820117846,
+    "meta": 1745910266966,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1743391864187,
-    "meta": 1745820117849,
+    "meta": 1745910266963,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "1e39b532-7ce2-4248-a526-8a07f492fe22": {
@@ -25816,7 +25771,7 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1743391864187,
-    "meta": 1745820117849,
+    "meta": 1745910266964,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "1ba3209c-364d-488d-83a1-8d375861db8c": {
@@ -25826,7 +25781,7 @@
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1743391864188,
-    "meta": 1745820117850,
+    "meta": 1745910266964,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -25836,7 +25791,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1743391864187,
-    "meta": 1745820117851,
+    "meta": 1745910266967,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -25846,7 +25801,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1743391864188,
-    "meta": 1745820117852,
+    "meta": 1745910266966,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -25856,7 +25811,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1743391864207,
-    "meta": 1745820117852,
+    "meta": 1745910266967,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "b8156e81-ec1d-4306-a6e2-c62ba3058b2b": {
@@ -25881,7 +25836,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1743415973446,
-    "meta": 1745820117832,
+    "meta": 1745910266962,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "eb149c8e-a00b-486a-81b0-0cbde6cb7d7d": {
@@ -25911,7 +25866,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1743415973460,
-    "meta": 1745820117836,
+    "meta": 1745910266958,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "a5f88e66-1b8a-4fc8-a854-2104b5a3938d": {
@@ -26993,5 +26948,210 @@
     "asset": 1745820037996,
     "meta": 1745820117892,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\wallet\\icon_wallet.json"
+  },
+  "43b5fb08-5626-482d-a8cb-833ef8fc8034": {
+    "asset": 1745895742076,
+    "meta": 1745905206602,
+    "relativePath": "bullMachine"
+  },
+  "cd9001ab-8d28-419d-a76b-02d08bfca539": {
+    "asset": 1745893666701,
+    "meta": 1745905206604,
+    "relativePath": "bullMachine\\font"
+  },
+  "f29f8471-d439-4d79-b84f-983f9c0603d2": {
+    "asset": 1745822283422,
+    "meta": 1745822743775,
+    "relativePath": "bullMachine\\prefab"
+  },
+  "0da4e386-29f3-4a53-b138-84230f473f17": {
+    "asset": 1745895989809,
+    "meta": 1745905206606,
+    "relativePath": "bullMachine\\spine"
+  },
+  "d2d9af50-a275-40b9-931d-1262a46796b7": {
+    "asset": 1745822296612,
+    "meta": 1745822743777,
+    "relativePath": "bullMachine\\sound"
+  },
+  "5b2f0120-dd28-41a3-bbaa-129ce4498605": {
+    "asset": 1745827715802,
+    "meta": 1745905206608,
+    "relativePath": "bullMachine\\sprite"
+  },
+  "e3d87fc1-b607-41db-b5e4-eb23ba947a70": {
+    "asset": 1745895288322,
+    "meta": 1745905206609,
+    "relativePath": "bullMachine\\src"
+  },
+  "f1718607-7390-41cd-8fbb-2811c7a343cd": {
+    "asset": 1745824844821,
+    "meta": 1745824848255,
+    "relativePath": "jokerMachine\\sprite\\main"
+  },
+  "9a35ff81-1237-4dea-9573-c3a1fc4fcca1": {
+    "asset": 1745824844747,
+    "meta": 1745824848471,
+    "relativePath": "jokerMachine\\sprite\\main\\120bd80a0.4d078.plist"
+  },
+  "7d4de1b3-8932-490d-a545-0d69c3f1fc04": {
+    "asset": 1745824844766,
+    "meta": 1745824848480,
+    "relativePath": "jokerMachine\\sprite\\main\\159066660.9b14e.plist"
+  },
+  "41b7e3e7-6ffa-40aa-a425-caafa0911576": {
+    "asset": 1745824844783,
+    "meta": 1745824848500,
+    "relativePath": "jokerMachine\\sprite\\main\\16d1fd2f0.eb8b9.plist"
+  },
+  "c2c9ac2d-8b28-4254-8775-45071f6f965b": {
+    "asset": 1745824844793,
+    "meta": 1745824848580,
+    "relativePath": "jokerMachine\\sprite\\main\\1c41e883f.937b9.plist"
+  },
+  "af802f07-ef3d-404f-8016-4c4ead749feb": {
+    "asset": 1745824844791,
+    "meta": 1745824848401,
+    "relativePath": "jokerMachine\\sprite\\main\\16d1fd2f0.eb8b9.png"
+  },
+  "b1df4b90-791e-4d29-a9d1-b6a0fc9fdcb9": {
+    "asset": 1745824844781,
+    "meta": 1745824848406,
+    "relativePath": "jokerMachine\\sprite\\main\\159066660.9b14e.png"
+  },
+  "22be0fc8-3270-4e62-8d80-8eebf654cf03": {
+    "asset": 1745824844763,
+    "meta": 1745824848410,
+    "relativePath": "jokerMachine\\sprite\\main\\120bd80a0.4d078.png"
+  },
+  "652ba1d0-dd36-4ab8-aca8-496a181d7227": {
+    "asset": 1745824844820,
+    "meta": 1745824848424,
+    "relativePath": "jokerMachine\\sprite\\main\\1c41e883f.937b9.png"
+  },
+  "1d45437c-ca80-4578-8c42-f536dd1aca03": {
+    "asset": 1745826428230,
+    "meta": 1745826428257,
+    "relativePath": "bullMachine\\sprite\\symbol\\symbol_pl.plist"
+  },
+  "99b1d4e5-679f-4b75-b8a5-41cf57ba1aef": {
+    "asset": 1745826428231,
+    "meta": 1745826428249,
+    "relativePath": "bullMachine\\sprite\\symbol\\symbol_pl.png"
+  },
+  "05e2af99-5f4a-46eb-8bb0-57545dc5aa53": {
+    "asset": 1745827202516,
+    "meta": 1745905206614,
+    "relativePath": "bullMachine\\sprite\\symbol"
+  },
+  "56ffccc4-f8ac-4e1a-9600-8a3c18988bb7": {
+    "asset": 1745893145643,
+    "meta": 1745905206612,
+    "relativePath": "bullMachine\\sprite\\main"
+  },
+  "25f14735-b37f-491d-8639-06e113028a5e": {
+    "asset": 1745828042779,
+    "meta": 1745828042843,
+    "relativePath": "bullMachine\\sprite\\main\\游戏框.png"
+  },
+  "d1e34769-0035-45ce-912c-79576a210533": {
+    "asset": 1745828042784,
+    "meta": 1745828042874,
+    "relativePath": "bullMachine\\sprite\\main\\背景.png"
+  },
+  "7548b30e-1c61-4422-a7dd-692e73cf5df0": {
+    "asset": 1745914986790,
+    "meta": 1745914986798,
+    "relativePath": "bullMachine\\bullMachine.fire"
+  },
+  "0ba85aff-2466-4076-90c6-8e79c0a4e3e7": {
+    "asset": 1745829579617,
+    "meta": 1745829579648,
+    "relativePath": "bullMachine\\sprite\\main\\设置按钮.png"
+  },
+  "4166d60a-a842-4193-b942-7687f9fc6eb0": {
+    "asset": 1745829579617,
+    "meta": 1745829579649,
+    "relativePath": "bullMachine\\sprite\\main\\循环按钮.png"
+  },
+  "1a82a076-4530-4f41-9dbd-5f9ba94b652d": {
+    "asset": 1745831748917,
+    "meta": 1745831748937,
+    "relativePath": "bullMachine\\sprite\\main\\积分按钮.png"
+  },
+  "b7398b12-f152-481c-a0a0-bf5e7015b56b": {
+    "asset": 1745831759895,
+    "meta": 1745831759911,
+    "relativePath": "bullMachine\\sprite\\main\\加速按钮.png"
+  },
+  "5310acea-58be-4ed5-be95-cd0c8d416f41": {
+    "asset": 1745832040876,
+    "meta": 1745832040923,
+    "relativePath": "bullMachine\\sprite\\main\\JILI.png"
+  },
+  "7a9c9444-8a5e-4d66-8561-df7a76bed1d4": {
+    "asset": 1745832040877,
+    "meta": 1745832040926,
+    "relativePath": "bullMachine\\sprite\\main\\按钮亮.png"
+  },
+  "5a6b7d5b-2898-490c-b68c-78df37dfcbe4": {
+    "asset": 1745893010496,
+    "meta": 1745893010526,
+    "relativePath": "bullMachine\\sprite\\main\\英3.png"
+  },
+  "276f4a3d-ab3d-44ab-a369-3b6598c66b72": {
+    "asset": 1745893131356,
+    "meta": 1745893131374,
+    "relativePath": "bullMachine\\sprite\\main\\计数板.png"
+  },
+  "63b3d199-123f-48b3-bf64-15c49ee71439": {
+    "asset": 1745893145641,
+    "meta": 1745893145658,
+    "relativePath": "bullMachine\\sprite\\main\\英1.png"
+  },
+  "f31bb8a6-6408-4242-a17b-e811eecc6f76": {
+    "asset": 1745893666698,
+    "meta": 1745893666721,
+    "relativePath": "bullMachine\\font\\slotnum1Font_ret_max_x1.fnt"
+  },
+  "437bbd0b-5bfa-485b-9986-fb62dcad047a": {
+    "asset": 1745893666698,
+    "meta": 1745893666718,
+    "relativePath": "bullMachine\\font\\slotnum1Font_ret_max_x1_0.png"
+  },
+  "93ec4460-0850-42b8-ba53-cf61f3aa62e5": {
+    "asset": 1745895989804,
+    "meta": 1745895989846,
+    "relativePath": "bullMachine\\spine\\jqka.json"
+  },
+  "b1ea2b63-798f-4bf0-ab43-4a42071853c1": {
+    "asset": 1745895989805,
+    "meta": 1745895989815,
+    "relativePath": "bullMachine\\spine\\jqka.atlas"
+  },
+  "51ed7812-a060-4f25-8010-e4b8693a58be": {
+    "asset": 1745895989805,
+    "meta": 1745895989843,
+    "relativePath": "bullMachine\\spine\\jqka.png"
+  },
+  "bc6d358b-657b-488b-a3c1-421fa8ef6024": {
+    "asset": 1745911716318,
+    "meta": 1745911719485,
+    "relativePath": "bullMachine\\src\\bullIconItemCtrl.js"
+  },
+  "0cc0c273-5795-4fc5-9cc9-0bfa8a40ea48": {
+    "asset": 1745916895248,
+    "meta": 1745916895315,
+    "relativePath": "bullMachine\\spine\\big mega super win.json"
+  },
+  "c97f8890-0174-45b6-8e9c-2e15a2d39839": {
+    "asset": 1745916895248,
+    "meta": 1745916895259,
+    "relativePath": "bullMachine\\spine\\big mega super win.atlas"
+  },
+  "406faac3-fb25-4d62-8215-bf1934cbf390": {
+    "asset": 1745916895250,
+    "meta": 1745916895312,
+    "relativePath": "bullMachine\\spine\\big mega super win.png"
   }
 }
