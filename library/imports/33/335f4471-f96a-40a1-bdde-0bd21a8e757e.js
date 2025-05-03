@@ -17,7 +17,8 @@ cc.Class({
     this.btn_copy_email = root.getChildByName('node_email').getChildByName('btn_copy_email').getComponent(cc.Button);
     this.btn_copy_fb = root.getChildByName('node_facebook').getChildByName('btn_copy_fb').getComponent(cc.Button);
     this.btn_go_feedback = root.getChildByName('node_feedback').getChildByName('btn_go_feedback').getComponent(cc.Button);
-    var arr = [this.btn_close, this.btn_go_whatsApp, this.btn_copy_fb, this.btn_copy_email, this.btn_go_feedback];
+    this.btn_service = root.getChildByName('node_service').getChildByName('btn_service').getComponent(cc.Button);
+    var arr = [this.btn_close, this.btn_service, this.btn_go_whatsApp, this.btn_copy_fb, this.btn_copy_email, this.btn_go_feedback];
     for (var i = 0, len = arr.length; i < len; i++) {
       var element = arr[i];
       element.node.on('click', this.btnClick, this);
@@ -55,6 +56,15 @@ cc.Class({
       var mobileNum = whatsAppInfos[0].match(/\d+/g);
       var channelLink = whatsAppInfos[1];
       APPManager.skipToOtherApp("com.whatsapp", channelLink);
+    } else if (btnName == 'btn_service') {
+      // Skip to service
+      var _str2 = GlobalCfg.USER_DATAS.web_customer_service;
+      _str2 += "?userId=" + GlobalCfg.USER_DATAS.userId;
+      _str2 += "&nickname=" + GlobalCfg.USER_DATAS.userName;
+      _str2 += "&mobile=" + GlobalCfg.USER_DATAS.phone;
+      _str2 += "&email=" + GlobalCfg.USER_DATAS.mail;
+      LoggerUtil.getInstance().log('btn_service str:', _str2);
+      cc.sys.openURL(_str2);
     } else if (btnName == 'btn_go_feedback') {
       CommonFun.getInstance().showFastFeedBack();
     }

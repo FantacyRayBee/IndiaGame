@@ -1522,7 +1522,6 @@ let CommonFun = cc.Class({
         let shareUrls = GlobalCfg.APP_SHARE_URL + inviteCode;
         if (btnName == 'btn_telegram') {
             let str = "https://t.me/share/url?text=" +  encodeURIComponent(shareStrtmp)+ "&url="+ encodeURIComponent(shareUrls);
-            LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
             cc.sys.openURL(str);
         } 
         if (btnName == 'btn_fb') {

@@ -1003,7 +1003,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.lastRecharged = last_recharged;
                     GlobalCfg.USER_DATAS.is_club = msgData.is_club;
                     GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
-
+                    GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
                     };
