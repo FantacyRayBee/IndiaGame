@@ -10,6 +10,10 @@ cc.Class({
     ctor: function() {
         this.loadBundleName = "bullMachine";
         this.skeletonUrl = "spine/";
+
+        this.skeletonNameArr = [
+            '9','10','J','Q','K','A','milu','lang','xiong','laoying','wild','jb'
+        ];
     },
 
     setItemData: function(itemID) {
@@ -24,15 +28,18 @@ cc.Class({
     },
 
     playAnimation: function() {
-        let skeletonName = "";
+        let skeletonName = this.skeletonNameArr[this.typeId - 1];
         if (!skeletonName || skeletonName == "") {
             return;
         };
         this.icon_node.active = false;
         this.skeleton_item.node.active = true;
-        let spriteName = "icon_" + (type * 10);
-        let animName = "icon_" + (type * 10);
-        this.loadMayaSkeletonData(skeletonName, (skeletonData, self) => {
+        let spriteName = "Symbol_" + this.typeId;
+        let animName = "animation";
+        if (this.typeId == 11) {
+            animName = "wild";
+        }
+        this.loadSkeletonData(skeletonName, (skeletonData, self) => {
             if (self && this.skeleton_item) {
                 this.skeleton_item.skeletonData = skeletonData;
                 this.skeleton_item.setAnimation(0, animName, false);
@@ -44,7 +51,7 @@ cc.Class({
             return;
         };
         this.icon_node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-        if(type == 11) return; //scatter元素出现时需要播放动画
+        if(this.typeId == 12) return; //scatter元素出现时需要播放动画
         this.skeleton_item.node.active = false;
         this.icon_node.active = true;
     },
@@ -72,9 +79,19 @@ cc.Class({
         }, target);
     },
 
+    loadGameAssets: function (gameBundleName, func, target) {
+        if (gameBundleName) {
+            CommonFun.getInstance().loadBundle(gameBundleName, (bundle) => {
+                func && func(bundle, target);
+            }, (err) => {
+                LoggerUtil.getInstance().error(err);
+            });
+        }
+    },
+
     initIcon: function() {
         let type = Math.floor(Math.random() * 8);
-        let spriteName = "Symbol_0" + type;
+        let spriteName = "Symbol_" + type;
         let spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);
         if (!spriteFrame) {
             return;

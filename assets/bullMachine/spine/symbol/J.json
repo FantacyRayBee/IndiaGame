@@ -1,0 +1,37 @@
+{
+"skeleton": { "hash": "TcWotrJ3oO6HbxF1hPRao6XT1gQ", "spine": "3.8.99", "x": -69.5, "y": -68, "width": 139, "height": 136 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root" }
+],
+"slots": [
+	{ "name": "images/shuzi1", "bone": "bone", "attachment": "images/shuzi4" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"images/shuzi1": {
+				"images/shuzi4": { "width": 139, "height": 136 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"bone": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1667, "x": 1.52, "y": 1.52, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333, "x": 0.87, "y": 0.87, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4333 }
+				],
+				"shear": [
+					{ "time": 0.9 }
+				]
+			}
+		}
+	}
+}
+}

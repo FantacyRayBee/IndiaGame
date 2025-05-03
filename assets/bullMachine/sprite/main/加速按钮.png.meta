@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "b7398b12-f152-481c-a0a0-bf5e7015b56b",
+  "uuid": "26dfc6be-b7ba-4b66-a953-d35033ee46f6",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "加速按钮": {
       "ver": "1.0.6",
-      "uuid": "8eac8ab9-7ae9-435b-97e6-4bfd6b9d6d10",
+      "uuid": "a9428f9d-ffcd-4c2a-b38d-aca8c5628d64",
       "importer": "sprite-frame",
-      "rawTextureUuid": "b7398b12-f152-481c-a0a0-bf5e7015b56b",
+      "rawTextureUuid": "26dfc6be-b7ba-4b66-a953-d35033ee46f6",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

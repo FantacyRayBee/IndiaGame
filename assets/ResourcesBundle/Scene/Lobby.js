@@ -79,6 +79,11 @@ cc.Class({
          */
         btn_minivampire: cc.Button,
         /**
+         * 野牛机台
+         */
+        btn_minibull: cc.Button,
+        /**
+        /**
          * TP
          */
         btn_miniteenpatti: cc.Button,
@@ -344,6 +349,7 @@ cc.Class({
             "miniclown": this.btn_minijoker,
             "miniindia": this.btn_miniindia,
             "minivampire": this.btn_minivampire,
+            "minibull": this.btn_minibull,
             "minisaima": this.btn_minisaima,
             "minibenzbmw": this.btn_minibenzbmw,
             "minirummy": this.btn_minirummy,
@@ -399,6 +405,7 @@ cc.Class({
         this.btn_minijoker.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniindia.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minivampire.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_minibull.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpatti.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpatti2.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniteenpattibaccarat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -550,6 +557,7 @@ cc.Class({
         this.btn_minijoker.node.active = false;
         this.btn_miniindia.node.active = false;
         this.btn_minivampire.node.active = false;
+        this.btn_minibull.node.active = false;
         this.btn_miniteenpatti.node.active = false;
         this.btn_miniteenpatti2.node.active = false;
         this.btn_miniteenpattibaccarat.node.active = false;
@@ -738,6 +746,19 @@ cc.Class({
                         };
                     };
                     break;
+                case "minibull":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(123)) {
+                        this.btn_minibull.node.active = true;
+
+                        GlobalCfg.SMALL_GAME_DATAS.bullMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.bullMachineData.product = gameProduct;
+
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("bullMachine");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("bullMachine");
+                        };
+                    };
+                    break;
                 case "miniteenpatti":
                     if (GlobalCfg.USER_DATAS.openModules.includes(100) || GlobalCfg.USER_DATAS.openModules.includes(101)) {
                         this.btn_miniteenpatti.node.active = true;
@@ -844,6 +865,7 @@ cc.Class({
                 "miniclown": "jokerMachine",
                 "miniindia": "indiaMachine",
                 "minivampire": "vampireMachine",
+                "minibull": "bullMachine",
                 "minisaima": "horseRaceGame",
                 "minibenzbmw": "Benz",
                 "minirummy": "Rummy",
@@ -1665,7 +1687,7 @@ cc.Class({
             CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_indiaMachine") {
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_INDIA_GAME);
             this.checkUpdate("indiaMachine", () => {
                 CommonFun.getInstance().showProgress();
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.product;
@@ -1673,11 +1695,19 @@ cc.Class({
             });
         } 
         else if (btnName == "btn_vampireMachine") {
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_VAMPIRE_GAME);
             this.checkUpdate("vampireMachine", () => {
                 CommonFun.getInstance().showProgress();
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.product;
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.VAMPIRE);
+            });
+        } 
+        else if (btnName == "btn_bullMachine") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_BULL_GAME);
+            this.checkUpdate("bullMachine", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.bullMachineData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.BULL);
             });
         } 
         else if (btnName == "btn_Benz") {
@@ -1850,6 +1880,9 @@ cc.Class({
             case "vampireMachine":
                 upDateMaskNode = this.btn_minivampire.node.getChildByName("upDateMask");
                 break;
+            case "bullMachine":
+                upDateMaskNode = this.btn_minibull.node.getChildByName("upDateMask");
+                break;
             case "baccarat3PattiGame":
                 upDateMaskNode = this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask");
                 break;
@@ -1926,6 +1959,9 @@ cc.Class({
                 break;
             case "vampireMachine":
                 this.btn_minivampire.node.getChildByName("upDateMask").active = false;
+                break;
+            case "bullMachine":
+                this.btn_minibull.node.getChildByName("upDateMask").active = false;
                 break;
             case "baccarat3PattiGame":
                 this.btn_miniteenpattibaccarat.node.getChildByName("upDateMask").active = false;
@@ -2098,6 +2134,11 @@ cc.Class({
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'idle', true);
+        };
+        if (this.btn_minibull.node.active) {
+            skeleton = this.btn_minibull.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            skeleton.setAnimation(0, 'animation2', true);
         };
         if (this.btn_miniteenpatti.node.active) {
             skeleton = this.btn_miniteenpatti.node.getChildByName('Background').getComponent(sp.Skeleton);
