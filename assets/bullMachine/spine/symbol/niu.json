@@ -1,8 +1,8 @@
 {
-"skeleton": { "hash": "DMAqv6EDojU3sYDkE+vT+qBhwFI", "spine": "3.8.99", "x": -94.05, "y": -61.12, "width": 173.1, "height": 158.6 },
+"skeleton": { "hash": "4gMrHYogobokQQO+8kyxjI/yqPo", "spine": "3.8.99", "x": -89.37, "y": -96.96, "width": 186.9, "height": 196.9 },
 "bones": [
 	{ "name": "root" },
-	{ "name": "all", "parent": "root", "x": -11.69, "y": -56.78, "scaleX": 0.35, "scaleY": 0.35 },
+	{ "name": "all", "parent": "root", "x": -2.19, "y": -71.64, "scaleX": 0.35, "scaleY": 0.35 },
 	{ "name": "niu0", "parent": "all", "x": 9.21, "y": 265.69 },
 	{ "name": "niu1", "parent": "niu0", "length": 47.48, "rotation": -9.4, "x": 108.23, "y": 6.48 },
 	{ "name": "niu2", "parent": "niu1", "length": 46.29, "rotation": 5.22, "x": 47.48 },

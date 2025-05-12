@@ -1,26 +1,18 @@
 {
-"skeleton": {
-	"hash": "bH7T1I7b624KE/rvRIZy9ZsCx9U",
-	"spine": "3.8.99",
-	"x": -259.5,
-	"y": -252,
-	"width": 519,
-	"height": 504,
-	"images": "",
-	"audio": ""
-},
+"skeleton": { "hash": "B/sBohsCfZU1BN3EP+HpQwIw1rE", "spine": "3.8.99", "x": -86.93, "y": -77, "width": 173.87, "height": 168.84 },
 "bones": [
-	{ "name": "root" },
-	{ "name": "images/kuang", "parent": "root" },
-	{ "name": "images/glow", "parent": "root" },
-	{ "name": "images/glow2", "parent": "root" },
-	{ "name": "images/wild", "parent": "root", "x": 1.94, "y": -18.99 },
-	{ "name": "images/wild2", "parent": "root", "x": 3.43, "y": -70.94 },
-	{ "name": "images/guang", "parent": "root" }
+	{ "name": "root", "scaleX": 0.5, "scaleY": 0.5 },
+	{ "name": "zong", "parent": "root", "y": 14.84, "scaleX": 0.67, "scaleY": 0.67 },
+	{ "name": "images/kuang", "parent": "zong" },
+	{ "name": "images/glow", "parent": "zong" },
+	{ "name": "images/glow2", "parent": "zong" },
+	{ "name": "images/wild", "parent": "zong", "x": 1.94, "y": -18.99 },
+	{ "name": "images/wild2", "parent": "zong", "x": 3.43, "y": -70.94 },
+	{ "name": "images/guang", "parent": "zong" }
 ],
 "slots": [
 	{ "name": "images/guang", "bone": "images/guang", "color": "d100ffff", "attachment": "images/guang", "blend": "additive" },
-	{ "name": "images/cc", "bone": "root", "attachment": "images/cc" },
+	{ "name": "images/cc", "bone": "zong", "attachment": "images/cc" },
 	{ "name": "images/glow", "bone": "images/glow" },
 	{ "name": "images/glow2", "bone": "images/glow2" },
 	{ "name": "images/kuang", "bone": "images/kuang", "attachment": "images/kuang", "blend": "additive" },

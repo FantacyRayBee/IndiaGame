@@ -18,23 +18,27 @@ cc.Class({
         toggle_fast: cc.Toggle,
         toggle_auto: cc.Toggle,
         node_itemContentArr: [cc.Node],
+        node_skelContentArr: [cc.Node],
+        lab_bigwin: [cc.Label],
 
         lab_betAmount: cc.Label,
         lab_totalWin: cc.Label,
         lab_jb: cc.Label,
         lab_autoBetCiShu: cc.Label,
-        lab_bigwin: cc.Label,
 
         node_bet: cc.Node,
+        node_windb: cc.Node,
 
         node_bigwin_pop: cc.Node,
+        node_bigwin: cc.Node,
+        node_megawin: cc.Node,
+        node_superwin: cc.Node,
         node_rule: cc.Node,
         node_entry: cc.Node,
         anim_rotate: cc.Node,
         
         anim_root_set: cc.Animation,
         anim_root_bet: cc.Animation,
-        skel_bigWin: sp.Skeleton,
 
         title_logo1: cc.Sprite,
         title_logo2: cc.Sprite,
@@ -70,6 +74,8 @@ cc.Class({
         this.fakeSlotRunTween = {};
         this.currentSpriteIndex = 0;
         this.isShowLogo1 = true;
+        this.wildId = 12; // 癞子牌ID
+        this.freeTotalWinNum = 0;           // 三叶草免费时，总获取金额
     },
 
     loadAudioClip: function(audioClipUrl = "", func = null, target = null) {
@@ -167,7 +173,7 @@ cc.Class({
     }, 
 
     start: function() {
-        this.playEntryAnim()
+        // this.playEntryAnim()
         this.sendLoginReq();
         this.initSlotData();
         // 定时切换
@@ -274,9 +280,24 @@ cc.Class({
         if (!notify) {
             return;
         }
-
         this.setFreesList(notify.frees);
         this.setUserDiamond(notify.userinfo.diamond);
+        let freeCountItem = this.getFreesItemOfFreeCount();
+        if (freeCountItem) {
+            let amount = freeCountItem.amount/100;
+            let freeCount = freeCountItem.freeCount;
+            let freePool = freeCountItem.freePool/100;
+            this.lab_betAmount.string = amount;
+            this.lab_totalWin.string = freePool.toFixed(1);
+            this.freeTotalWinNum = freePool;
+            this.dealAutoBetCiShuBtnEvent(freeCount);
+            let proroID = 'gameservice.call';
+            let message = 'CallReq';
+            GameServerManager.send(proroID, message, {              
+                amount: amount * 100
+            });
+            return;
+        }
 
         let betStr = this.lab_autoBetCiShu.string;
         let isAuto = this.toggle_auto.isChecked;
@@ -287,6 +308,26 @@ cc.Class({
             this.btn_spin.interactable = true;
             this.btn_spin2.interactable = true;
             this.btn_spin.enableAutoGrayEffect = false;
+        }
+    },
+
+    // 通过下注倍数，获取对应的免费情况
+    getFreesItem: function(amount) {
+        for (let i = 0, len = this.frees.length; i < len; i++) {
+            const element = this.frees[i];
+            if (element.amount == amount) {
+                return element;
+            }
+        }
+        return {};
+    },
+
+    getFreesItemOfFreeCount: function() {
+        for (let i = 0, len = this.frees.length; i < len; i++) {
+            const element = this.frees[i];
+            if (element.freeCount > 0) {
+                return element;
+            }
         }
     },
 
@@ -342,14 +383,27 @@ cc.Class({
         this.gameResult.userinfo = notify.userinfo;
         this.gameResult.xiannum = notify.xiannum;
         this.gameResult.cards = notify.cards;
-        this.gameResult.buy = notify.buy;
-        this.gameResult.restartCards = notify.restartCards;
+        this.gameResult.mianfeinum = notify.mianfeinum;
+        this.gameResult.rewardtype = notify.rewardtype;
+        this.gameResult.freePool = notify.freePool;
 
         this.unscheduleAllCallbacks();
         this.startAutoRotateAnim();
-        
         //设置转动的音效
         this.playGameSound("Reel_Spin");
+
+        //先扣除下注的金额
+        if (this.gameResult.mianfeinum == 0) {
+            let diamond = GlobalCfg.USER_DATAS.userDiamond - (parseFloat(this.curBetAmount) * 100);
+            let num = FloatCalculation.accDiv(diamond, 100);
+            this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
+        };
+
+        if (this.gameResult.rewardtype == 1) {
+            this.lab_totalWin.string = 0;
+            this.freeTotalWinNum = 0;
+        };
+
         //次数递减
         let betStr = this.lab_autoBetCiShu.string;
         if (betStr != 'AUTO') {
@@ -365,6 +419,18 @@ cc.Class({
         this.lab_totalWin.string = 0;
         this.dealSpinBtnEvent();
         this.startSlotsAnim();
+    },
+
+    clearSlot: function () {
+        this.node_windb.active = false;
+        for (let i = 0, len = this.node_skelContentArr.length; i < len; i++) {
+            let children = this.node_itemContentArr[i].children;
+            let children2 = this.node_skelContentArr[i].children;
+            for (let k = 0, lenk = children.length; k < lenk; k++) {
+                children[k].getComponent('bullIconItemCtrl').stopAnimation();
+                children2[k].getComponent('bullSkelItemCtrl').stopAnimation();
+            };
+        };
     },
 
     componentClickCall: function (component) {
@@ -518,6 +584,7 @@ cc.Class({
         let slotContentTime = 0.1 * this.kRate;
         for (let i = 0, len = this.node_itemContentArr.length; i < len; i++) {
             let children = this.node_itemContentArr[i].children;
+            let children2 = this.node_skelContentArr[i].children;
             for (let k = 0, lenk = children.length; k < lenk; k++) {
                 let item = children[k];
                 item.repeat = 0;
@@ -525,12 +592,12 @@ cc.Class({
                 item.shu = i;
                 if (isFast) {
                     // this.scheduleOnce(() => {
-                        this.runSlotsItemAnim(item, item.y, item.y + this.itemHeight);
+                        this.runSlotsItemAnim(item, children2[k], item.y, item.y + this.itemHeight);
                     // }, slotContentTime);
                 }
                 else{
                     this.scheduleOnce(() => {
-                        this.runSlotsItemAnim(item, item.y, item.y + this.itemHeight);
+                        this.runSlotsItemAnim(item, children2[k], item.y, item.y + this.itemHeight);
                     }, (slotContentTime * i * 3));
                 }
 
@@ -557,7 +624,7 @@ cc.Class({
         }
     },
     
-    runSlotsItemAnim: function(node, statrPositionY, endedPositionY, curTargetNum = 10) {
+    runSlotsItemAnim: function(node, skelnode, statrPositionY, endedPositionY, curTargetNum = 20) {
         let self = this;
         node.repeat += 1;
         node.setPosition(cc.v2(0, statrPositionY));
@@ -590,25 +657,34 @@ cc.Class({
             };
             if (endedPositionY >= this.itemHeight * 3) {
                 let src = node.getComponent('bullIconItemCtrl');
+                let src2 = skelnode.getComponent('bullSkelItemCtrl');
                 if (repeat == (targetNum - 4) && index == 0) {
                     let itemID = this.gameResult.cards[shu].cards[0];
                     src.setItemData(itemID);
+                    src2.setItemData(itemID);
                     node.itemID = itemID;
+                    skelnode.itemID = itemID;
                 }
                 else if (repeat == (targetNum - 3) && index == 1) {
                     let itemID = this.gameResult.cards[shu].cards[1];
                     src.setItemData(itemID);
+                    src2.setItemData(itemID);
                     node.itemID = itemID;
+                    skelnode.itemID = itemID;
                 }
                 else if (repeat == (targetNum - 2) && index == 2) {
                     let itemID = this.gameResult.cards[shu].cards[2];
                     src.setItemData(itemID);
+                    src2.setItemData(itemID);
                     node.itemID = itemID;
+                    skelnode.itemID = itemID;
                 }
                 else if (repeat == (targetNum - 1) && index == 3) {
                     let itemID = this.gameResult.cards[shu].cards[3];
                     src.setItemData(itemID);
+                    src2.setItemData(itemID);
                     node.itemID = itemID;
+                    skelnode.itemID = itemID;
                 }
                 else {
                     let num = Math.floor(Math.random() * 9 + 1);
@@ -621,10 +697,10 @@ cc.Class({
                     src.setItemData(num);
                     node.itemID = num;
                 };
-                self.runSlotsItemAnim(node, -(this.itemHeight * 2), -this.itemHeight, curTargetNum);
+                self.runSlotsItemAnim(node,skelnode, -(this.itemHeight * 2), -this.itemHeight, curTargetNum);
             }
             else {
-                self.runSlotsItemAnim(node, endedPositionY, endedPositionY + this.itemHeight, curTargetNum);
+                self.runSlotsItemAnim(node,skelnode, endedPositionY, endedPositionY + this.itemHeight, curTargetNum);
             };
         })
         .start();
@@ -666,20 +742,29 @@ cc.Class({
         for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
             let multiple = this.gameResult.xiannum[i].multiple;
             let num = this.gameResult.xiannum[i].num;
+            if (multiple == null) {
+                multiple = 0;
+            }
             totalMultiple += (multiple * num);
         };
-
-        let bet = parseFloat(this.curBetAmount)
-        let endedScore = totalMultiple *  bet / 10
+        let startScore = Number(this.freeTotalWinNum);
+        let bet = parseFloat(this.curBetAmount); //下注金额
+        //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
+        let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool / 100 : totalMultiple * bet / 10 + startScore;
+        this.freeTotalWinNum = endedScore;
+        this.bigWinLevel = this.getBigWinLevel(endedScore / bet);
         this.checkAutoSpinSet(totalMultiple);
         this.showSpinResult();
         if (endedScore > 0) {
-            if (this.bigWinLevel > 0) { //如果有big弹窗 则需要在弹窗之后再结算
-                this.showBigWinTips();
-            }
-            else{
-                this.startNextSpin();
-            }
+            let time = endedScore < 1 ? 0.3 : 0.8; //低于1分，因为有小数点的滚动所以时间要短一些
+            this.runChangeTotalWinScore(this.lab_totalWin, startScore, endedScore, time, ()=>{
+                if (this.bigWinLevel > 0) { //如果有big弹窗 则需要在弹窗之后再结算
+                    this.showBigWinTips(endedScore);
+                }
+                else{
+                    this.startNextSpin();
+                }
+            })
             return;
         }
         this.startNextSpin();
@@ -777,19 +862,43 @@ cc.Class({
         return level;
     },
     
-    showBigWinTips: function(winNumFinal) {
+    showBigWinTips: function(endScore) {
         if (this.bigWinLevel == 0) return;
         this.node_bigwin_pop.active = true;
         this.playGameMusic('Big_win');
-        let time = this.bigWinLevel * 1.8; //因为要从bigwin开始播放，每个动画时间3秒
-        this.runChangeTotalWinScore(this.lab_bigwin, 0, winNumFinal, time)
-        this.curBigWinAnimIndex = 0;
-        this.playBigWinAnim("start", false)
+        this.node_bigwin.active = false;
+        this.node_megawin.active = false;
+        this.node_superwin.active = false;
+        this.playBigWinAnim("1")
+        this.runChangeTotalWinScore(this.lab_bigwin[this.bigWinLevel - 1], 0, endScore, 2)
     },
 
     playBigWinAnim: function(skelName, callback) {
         let self = this;
-        self.skel_bigWin_bg.setAnimation(0, skelName, false);
+        if (self.bigWinLevel == 1) {
+            self.node_bigwin.active = true;
+            self.node_bigwin.getComponent(sp.Skeleton).setAnimation(0, skelName, false);
+            if (skelName == "1") {
+                self.node_bigwin.getComponent(sp.Skeleton).setCompleteListener(function() {
+                    self.playBigWinAnim("2");})
+                return;}
+        }
+        else if (self.bigWinLevel == 2) {
+            self.node_megawin.active = true;
+            self.node_megawin.getComponent(sp.Skeleton).setAnimation(0, skelName, false);
+            if (skelName == "1") {
+                self.node_megawin.getComponent(sp.Skeleton).setCompleteListener(function() {
+                    self.playBigWinAnim("2");})
+                return;}
+        }
+        else if (self.bigWinLevel == 3) {
+            self.node_superwin.active = true;
+            self.node_superwin.getComponent(sp.Skeleton).setAnimation(0, skelName, false);
+            if (skelName == "1") {
+                self.node_superwin.getComponent(sp.Skeleton).setCompleteListener(function() {
+                    self.playBigWinAnim("2");})
+                return;}
+        }
 
         if (callback) { //结束bigwin播放结束音效
             self.playGameMusic('Big_Win_End');
@@ -801,13 +910,13 @@ cc.Class({
                 return;
             }
             self.onBigWinAnimComplete();
-        }, 1.8); 
+        }, 2);
     },
 
     onBigWinAnimComplete: function() {
         if (this.stopNumScroll) return;
         let self = this;
-        this.playBigWinAnim("end", false, ()=>{
+        this.playBigWinAnim("3", ()=>{
             self.node_bigwin_pop.active = false;
             self.btn_bigwin_end.interactable = true;
             self.stopNumScroll = false;
@@ -820,10 +929,8 @@ cc.Class({
             this.popCoinIsRun = false;
             this.stopNumScroll = true; //停止金币滚动
             this.btn_bigwin_end.interactable = false;
-
-            this.skel_bigWin.setCompleteListener(null); // 清除之前的回调
             //如果中断
-            this.playBigWinAnim("end", false, ()=>{
+            this.playBigWinAnim("3", ()=>{
                 this.node_bigwin_pop.active = false;
                 this.btn_bigwin_end.interactable = true;
                 this.stopNumScroll = false;
@@ -838,15 +945,17 @@ cc.Class({
         let xiannumArr = this.gameResult.xiannum;
         for (let i = 0, len = xiannumArr.length; i < len; i++) {
             let xiannum = xiannumArr[i];
-            let xiannumLen = xiannum.len;   //线的长度
-            if (xiannumLen >= 3) {
+            let score = xiannum.multiple;   //是否有得分
+            if (score && score > 0) {
                 isNeedShowAnim = true;
                 break;
             };
         };
 
+        this.showScatter();
         if (isNeedShowAnim) {
             this.showXianNum();
+            this.node_windb.active = true;
         }
         else {
             this.isRunningSlotAnim = false; 
@@ -889,43 +998,52 @@ cc.Class({
         }
     },
 
+    showScatter: function() {
+        for (let j = 0, len1 = this.node_itemContentArr.length; j < len1; j++) {
+            let children = this.node_itemContentArr[j].children;
+            let children2 = this.node_skelContentArr[j].children;
+            for (let k = 0, len2 = children.length; k < len2; k++) {
+                if (children[k].itemID && children[k].itemID == 13) { //scatter元素停轴时需要播放动画
+                    children[k].getComponent('bullIconItemCtrl').playAnimation();
+                    children2[k].getComponent('bullSkelItemCtrl').playAnimation();
+                }
+            };
+        };
+    },
+
     /**
      * 显示中奖线动画
-     * @param {number} totalMultiple - 总倍数
-     * @param {boolean} isFast - 是否快速播放
      */
-    showXianNum: function(totalMultiple, isFast) {
+    showXianNum: function() {
         if (!this.gameResult) return;
         // 构建所有中奖线的节点数组
-        const lineArr = this.buildLineArray();
-        if (totalMultiple >= 5) {
-            // 高倍数时播放序列动画（带延迟效果）
-            this.playAnimatedSequence(lineArr, isFast);
-        } else {
-            // 低倍数时立即播放所有动画
-            this.playInstantAnimation(lineArr);
-        }
+        const lineArr1 = this.buildLineArray(1);
+        const lineArr2 = this.buildLineArray(2);
+        this.playInstantAnimation(lineArr1,1);
+        this.playInstantAnimation(lineArr2,2);
     },
 
     /**
      * 构建所有中奖线的节点数组
+     * @param {number} type - 1:icon节点 2:skel节点
      * @returns {Array} 包含所有中奖线节点组合的数组
      */
-    buildLineArray: function() {
+    buildLineArray: function(type) {
         const lineArr = [];
         const { xiannum } = this.gameResult;  // 解构获取中奖线数据
         // 遍历每条中奖线
         for (let i = 0; i < xiannum.length; i++) {
             // 解构获取当前线的卡牌、长度和数量
-            const { card, len: xiannumLen, num: xiannumNum } = xiannum[i];
-            // 只处理长度≥3的中奖线
-            if (xiannumLen < 3) continue;
-            // 根据线的数量循环
+            const { card, num: xiannumNum,  len: xiannumLen, multiple: multiple} = xiannum[i];
+            if (multiple == null || multiple == 0) continue;
             for (let j = 0; j < xiannumNum; j++) {
                 // 获取第一列的节点（固定位置）
-                const node0 = this.node_itemContentArr[0].children[i];
+                let node0 = this.node_itemContentArr[0].children[i];
+                if (type == 2) {
+                    node0 = this.node_skelContentArr[0].children[i];
+                }
                 // 收集后续列中匹配的节点（卡牌相同或是万能牌10）
-                const matchingNodes = this.collectMatchingNodes(card, xiannumLen);
+                const matchingNodes = this.collectMatchingNodes(card, xiannumLen, type);
                 // 生成所有可能的线路组合
                 this.generateLineCombinations(node0, matchingNodes, lineArr);
             }
@@ -934,22 +1052,26 @@ cc.Class({
     },
 
     /**
-     * 收集匹配的节点（卡牌相同或是万能牌10）
+     * 收集匹配的节点（卡牌相同或是万能牌12）
      * @param {number} card - 目标卡牌ID
      * @param {number} xiannumLen - 中奖线长度
+     * @param {number} type - 1:icon节点 2:skel节点
      * @returns {Array} 每列匹配的节点数组
      */
-    collectMatchingNodes: function(card, xiannumLen) {
+    collectMatchingNodes: function(card, xiannumLen, type) {
         const matchingNodes = [];
         // 从第2列开始遍历（第1列已固定）
-        for (let col = 1; col < Math.min(xiannumLen + 1, this.node_itemContentArr.length); col++) {
+        for (let col = 1; col < Math.min(xiannumLen, this.node_itemContentArr.length); col++) {
             const columnNodes = [];
-            const shu = this.node_itemContentArr[col];  // 当前列的所有节点
+            let shu = this.node_itemContentArr[col];  // 当前列的所有节点
+            if (type == 2) {
+                shu = this.node_skelContentArr[col];
+            }
             // 遍历当前列的4个节点
             for (let j = 0; j < 4; j++) {
                 const itemNode = shu.children[j];
-                // 如果节点卡牌匹配目标卡牌或是万能牌(10)
-                if (itemNode.itemID === card || itemNode.itemID === 10) {
+                // 如果节点卡牌匹配目标卡牌或是万能牌(12)
+                if (itemNode.itemID === card || itemNode.itemID === this.wildId) {
                     columnNodes.push(itemNode);
                 }
             }
@@ -988,51 +1110,27 @@ cc.Class({
     },
 
     /**
-     * 播放带延迟的序列动画（用于高倍数）
-     * @param {Array} lineArr - 所有中奖线节点数组
-     * @param {boolean} isFast - 是否快速播放
-     */
-    playAnimatedSequence: function(lineArr, isFast) {
-        const pointTime = isFast ? 0.1 : 0.2;  // 每个节点的动画间隔时间
-        let allTime = 0;  // 累计时间
-        
-        for (let i = 0; i < lineArr.length; i++) {
-            const typeArr = lineArr[i];
-            // 计算当前线的开始时间（前一条线的长度影响延迟）
-            const lineTime = i === 0 ? 0 : (pointTime * 2.5 * (lineArr[i - 1].length - 1));
-            allTime += lineTime;
-            
-            // 调度当前线的动画
-            this.scheduleOnce(() => {
-                const lastIndex = typeArr.length - 1;
-                // 如果不是单节点线，则在动画结束后设置运行状态为false
-                if (lastIndex > 0) {
-                    this.scheduleOnce(() => {
-                        this.isRunningSlotAnim = false;
-                    }, pointTime * (lastIndex - 1) + 3);  // 3秒额外延迟
-                }
-            }, lineTime);
-        }
-    },
-
-    /**
-     * 立即播放所有动画（用于低倍数）
+     * 立即播放所有动画
      * @param {Array} lineArr - 所有中奖线节点数组
      */
-    playInstantAnimation: function(lineArr) {
+    playInstantAnimation: function(lineArr, type) {
         // 遍历所有线
         for (const typeArr of lineArr) {
             // 遍历线中的每个相邻节点对
             for (let k = 0; k < typeArr.length - 1; k++) {
                 const itemNode1 = typeArr[k];
                 const itemNode2 = typeArr[k + 1];
-                
                 // 播放两个节点的动画
-                itemNode1.getComponent('bullIconItemCtrl').playAnimation();
-                itemNode2.getComponent('bullIconItemCtrl').playAnimation();
+                if (type == 1) {
+                    itemNode1.getComponent('bullIconItemCtrl').playAnimation();
+                    itemNode2.getComponent('bullIconItemCtrl').playAnimation();
+                }
+                if (type == 2) {
+                    itemNode1.getComponent('bullSkelItemCtrl').playAnimation();
+                    itemNode2.getComponent('bullSkelItemCtrl').playAnimation();
+                }
             }
         }
-        
         // 1秒后设置动画状态为结束
         this.scheduleOnce(() => {
             this.isRunningSlotAnim = false;
@@ -1074,7 +1172,9 @@ cc.Class({
             return;
         };
         let betAmount = parseFloat(this.curBetAmount) * 100;
-        if (betAmount > GlobalCfg.USER_DATAS.userDiamond) {
+        let freesItem = this.getFreesItem(betAmount);
+        let freeCount = freesItem.freeCount;
+        if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
                 if (this.paymentSwitch) {
@@ -1083,7 +1183,7 @@ cc.Class({
             }, false);
             return;
         };
-
+        this.clearSlot();
         this.curSendSpin = true;
         let proroID = 'gameservice.call';
         let message = 'CallReq';
@@ -1091,7 +1191,6 @@ cc.Class({
             amount: betAmount,
         });
     },
-
 
     switchSprite() {
         // 设置当前图片

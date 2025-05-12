@@ -1,41 +1,41 @@
 
 laoying.png
-size: 431,431
+size: 482,482
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 ly0
   rotate: false
-  xy: 2, 186
-  size: 186, 125
-  orig: 201, 125
-  offset: 2, 0
+  xy: 192, 136
+  size: 264, 177
+  orig: 287, 179
+  offset: 4, 1
   index: -1
 ly1
-  rotate: false
-  xy: 284, 188
-  size: 99, 30
-  orig: 104, 33
-  offset: 3, 2
+  rotate: true
+  xy: 423, 339
+  size: 141, 42
+  orig: 149, 47
+  offset: 4, 4
   index: -1
 ly2
-  rotate: false
-  xy: 190, 204
-  size: 92, 107
-  orig: 94, 109
+  rotate: true
+  xy: 192, 2
+  size: 132, 153
+  orig: 134, 155
   offset: 1, 1
   index: -1
 ly3
   rotate: true
-  xy: 297, 220
-  size: 209, 132
-  orig: 211, 133
-  offset: 2, 0
+  xy: 2, 14
+  size: 299, 188
+  orig: 302, 190
+  offset: 3, 1
   index: -1
 ly4
   rotate: false
-  xy: 2, 313
-  size: 293, 116
-  orig: 293, 117
+  xy: 2, 315
+  size: 419, 165
+  orig: 419, 167
   offset: 0, 0
   index: -1

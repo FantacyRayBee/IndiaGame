@@ -1,8 +1,8 @@
 {
-"skeleton": { "hash": "qPnW4xmjCuhiQq1d9B/jQ2ObNdc", "spine": "3.8.99", "x": -80, "y": -67.5, "width": 160, "height": 135 },
+"skeleton": { "hash": "gHbJptyCm184K300BzxTkYldeP8", "spine": "3.8.99", "x": -53.6, "y": -45.5, "width": 107.2, "height": 90.99 },
 "bones": [
 	{ "name": "root" },
-	{ "name": "bone", "parent": "root" }
+	{ "name": "bone", "parent": "root", "scaleX": 0.67, "scaleY": 0.674 }
 ],
 "slots": [
 	{ "name": "images/shuzi1", "bone": "bone", "attachment": "images/shuzi2" }

@@ -2030,9 +2030,6 @@ var CommonFun = cc.Class({
     }
     var BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
     if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
-      LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userDiamond = ", GlobalCfg.USER_DATAS.userDiamond);
-      LoggerUtil.getInstance().log("curGameMinEnter = ", curGameMinEnter);
-      LoggerUtil.getInstance().log("xxxx = ", GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate);
       if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate) {
         this.showBankruptcy();
         if (callback) {

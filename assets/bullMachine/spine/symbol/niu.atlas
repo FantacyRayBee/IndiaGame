@@ -1,55 +1,55 @@
 
 niu.png
-size: 1029,1029
+size: 1459,1459
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 niu0
   rotate: true
-  xy: 796, 745
-  size: 282, 225
-  orig: 283, 228
+  xy: 1135, 1055
+  size: 402, 321
+  orig: 404, 326
   offset: 1, 1
   index: -1
 niu1
   rotate: false
-  xy: 796, 348
-  size: 172, 129
-  orig: 172, 140
-  offset: 0, 9
+  xy: 1135, 489
+  size: 245, 185
+  orig: 245, 200
+  offset: 0, 12
   index: -1
 niu2
-  rotate: true
-  xy: 970, 368
-  size: 109, 57
-  orig: 110, 57
+  rotate: false
+  xy: 1135, 405
+  size: 156, 82
+  orig: 157, 82
   offset: 1, 0
   index: -1
 niu3
-  rotate: true
-  xy: 970, 257
-  size: 109, 57
-  orig: 110, 58
+  rotate: false
+  xy: 1293, 406
+  size: 156, 81
+  orig: 157, 83
   offset: 0, 0
   index: -1
 niu4
   rotate: true
-  xy: 796, 479
-  size: 264, 203
-  orig: 264, 204
+  xy: 1135, 676
+  size: 377, 291
+  orig: 377, 292
   offset: 0, 1
   index: -1
 q
   rotate: false
-  xy: 2, 248
-  size: 792, 779
-  orig: 794, 796
-  offset: 0, 17
+  xy: 2, 344
+  size: 1131, 1113
+  orig: 1134, 1137
+  offset: 0, 24
   index: -1
 w
   rotate: true
-  xy: 796, 295
-  size: 51, 53
-  orig: 53, 53
+  xy: 1382, 602
+  size: 72, 75
+  orig: 75, 75
   offset: 0, 0
   index: -1
