@@ -25,6 +25,7 @@ cc.Class({
         lab_totalWin: cc.Label,
         lab_jb: cc.Label,
         lab_autoBetCiShu: cc.Label,
+        lab_curWin: cc.Label,
 
         node_bet: cc.Node,
         node_windb: cc.Node,
@@ -144,6 +145,8 @@ cc.Class({
         this.btn_auto.node.on('click', this.debounce(this.componentClickCall, 2), this);
         
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
+        this.anim_curwin = this.lab_curWin.node.getComponent(cc.Animation);
+
         this.betIndex = 0;
         this.curBetAmount = this.betAmountArr[this.betIndex];
         this.lab_betAmount.string = "bet " + this.betAmountArr[this.betIndex];
@@ -401,6 +404,7 @@ cc.Class({
 
         if (this.gameResult.rewardtype == 1) {
             this.lab_totalWin.string = 0;
+            this.lab_curWin.string = 0;
             this.freeTotalWinNum = 0;
         };
 
@@ -417,6 +421,7 @@ cc.Class({
             };
         };
         this.lab_totalWin.string = 0;
+        this.lab_curWin.string = 0;
         this.dealSpinBtnEvent();
         this.startSlotsAnim();
     },
@@ -715,6 +720,7 @@ cc.Class({
     },
 
     recoverySpinBtnEvent: function() {
+        LoggerUtil.getInstance().log("caojun recoverySpinBtnEvent");
         this.btn_spin.interactable = true;
         this.btn_spin2.interactable = true;
         this.btn_spin.enableAutoGrayEffect = false;
@@ -756,7 +762,7 @@ cc.Class({
         this.checkAutoSpinSet(totalMultiple);
         this.showSpinResult();
         if (endedScore > 0) {
-            let time = endedScore < 1 ? 0.3 : 0.8; //低于1分，因为有小数点的滚动所以时间要短一些
+            let time = endedScore < 1 ? 0.6 : 1; //低于1分，因为有小数点的滚动所以时间要短一些
             this.runChangeTotalWinScore(this.lab_totalWin, startScore, endedScore, time, ()=>{
                 if (this.bigWinLevel > 0) { //如果有big弹窗 则需要在弹窗之后再结算
                     this.showBigWinTips(endedScore);
@@ -765,6 +771,11 @@ cc.Class({
                     this.startNextSpin();
                 }
             })
+            if (endedScore >= 1) {
+                this.lab_curWin.node.active = true;
+                this.anim_curwin.play("fontbig");
+                this.runChangeTotalWinScore(this.lab_curWin, startScore, endedScore, time)
+            }
             return;
         }
         this.startNextSpin();
@@ -966,6 +977,7 @@ cc.Class({
         this.toggle_auto.interactable = true;
         this.btn_auto.interactable = true;
         let StartNextSpin = () => {
+            LoggerUtil.getInstance().log("startNextSpin this.isRunningSlotAnim == ",this.isRunningSlotAnim);
             if (this.isRunningSlotAnim) {
                 return;
             };
@@ -973,6 +985,7 @@ cc.Class({
             this.unschedule(StartNextSpin);
             this.curRoundAddCoinFinish();
             let isAuto = this.toggle_auto.isChecked;
+            LoggerUtil.getInstance().log("startNextSpin isAuto == ", isAuto);
             if (isAuto) {
                 this.sendCallReq();
             }
@@ -1160,6 +1173,7 @@ cc.Class({
     },
 
     sendCallReq: function() {
+        LoggerUtil.getInstance().log("caojun sendCallReq");
         if (this.curSendSpin == true) { //避免重复发送请求
             return;
         }
@@ -1171,6 +1185,7 @@ cc.Class({
             }, false);
             return;
         };
+        this.lab_curWin.node.active = false;
         let betAmount = parseFloat(this.curBetAmount) * 100;
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;
