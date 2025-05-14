@@ -927,6 +927,8 @@ var SceneManager = cc.Class({
            * superDiscount 活动列表
            */
           var disco_list = msgData.disco_list ? msgData.disco_list : [];
+          var only_pay = msgData.only_pay ? msgData.only_pay : [];
+          var only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
           /**
            * VIP信息
            */
@@ -983,6 +985,9 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.nextDisco = next_disco;
           GlobalCfg.USER_DATAS.registerTime = register_time;
           GlobalCfg.USER_DATAS.discoList = disco_list;
+          GlobalCfg.USER_DATAS.onlyPay = only_pay;
+          GlobalCfg.USER_DATAS.only_pay_countDownTime = only_pay_time + Date.now();
+          GlobalCfg.USER_DATAS.only_pay_time = only_pay_time;
           GlobalCfg.USER_DATAS.userVip = user_vip;
           GlobalCfg.USER_DATAS.userLevel = user_level;
           GlobalCfg.USER_DATAS.betrebate = betrebate;

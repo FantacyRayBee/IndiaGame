@@ -2035,24 +2035,42 @@ let CommonFun = cc.Class({
      */
     gameShowSecondRecharge: function(curGameMinEnter, curGameCurRoundBetNum = 0, callback){
         let BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
-        if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
-            LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userDiamond = ",GlobalCfg.USER_DATAS.userDiamond);
-            LoggerUtil.getInstance().log("curGameMinEnter = ", curGameMinEnter);
-            LoggerUtil.getInstance().log("xxxx = ",GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate);
-            if (GlobalCfg.USER_DATAS.userDiamond <curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate) {
+        let rate = GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate
+        LoggerUtil.getInstance().log(`caojun GlobalCfg.USER_DATAS.recharged = ${GlobalCfg.USER_DATAS.recharged}\n 
+            curGameCurRoundBetNum = ${curGameCurRoundBetNum}\n 
+            GlobalCfg.USER_DATAS.only_pay_time = ${GlobalCfg.USER_DATAS.only_pay_time} \n 
+            rate = ${rate} \n 
+            GlobalCfg.USER_DATAS.openModules.includes(23) = ${GlobalCfg.USER_DATAS.openModules.includes(23)}\n 
+            GlobalCfg.USER_DATAS.userDiamond = ${GlobalCfg.USER_DATAS.userDiamond}`);
+        if (GlobalCfg.USER_DATAS.openModules.includes(23) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0 && GlobalCfg.USER_DATAS.only_pay_time == 0) {
+            if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
+                this.checkCanShowOnlyPay(callback, ()=> {
+                    LoggerUtil.getInstance().log(`
+                        caojun GlobalCfg.USER_DATAS.recharged = ${GlobalCfg.USER_DATAS.recharged}
+                        curGameCurRoundBetNum = ${curGameCurRoundBetNum}
+                        curGameMinEnter = ${curGameMinEnter} 
+                        rate = ${rate}
+                        GlobalCfg.USER_DATAS.openModules.includes(20) = ${GlobalCfg.USER_DATAS.openModules.includes(20)}`);
+                    if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
+                        if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
+                            LoggerUtil.getInstance().log("caojun showBankruptcy");
+                            this.showBankruptcy();
+                            if (callback) {
+                                callback();
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        else if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
+            if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
                 this.showBankruptcy();
                 if (callback) {
                     callback();
                 }
             }
         }
-        // if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && curGameCurRoundBetNum > 0 &&
-        // (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.lastRecharged * BrokeGift_ShowInGame_Rate)) {
-        //     this.showBankruptcy();
-        //     if (callback) {
-        //         callback();
-        //     }
-        // }
     },
 
     updateToastLocalStorageByHours: function(toastType, hours) {
@@ -3027,13 +3045,13 @@ let CommonFun = cc.Class({
      * 显示破产弹窗
      */
     showBankruptcy: function (isClick = false) {
-        if  (isClick == false){ //手动点击的时候不需要加入破产cd
+        LoggerUtil.getInstance().log("caojun showBankruptcy GlobalCfg.BANKRUPT_CD:", GlobalCfg.BANKRUPT_CD);
+        if (isClick == false){ //手动点击的时候不需要加入破产cd
             if (GlobalCfg.BANKRUPT_CD == 0){
                 GlobalCfg.BANKRUPT_CD = new Date().getTime();
             }
             else{
                 let shengyuTime = (new Date().getTime() - GlobalCfg.BANKRUPT_CD) / 1000;
-                LoggerUtil.getInstance().log("333 破产礼包，游戏内显示 shengyuTime = ", shengyuTime);
                 if (shengyuTime < 1800){//半小时CD才会弹出破产面板
                     return;
                 }
@@ -3042,11 +3060,12 @@ let CommonFun = cc.Class({
                 }
             }
         }
-        GlobalCfg.IS_SHOW_BANKRUPT = true;
         let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+        LoggerUtil.getInstance().log("caojun showBankruptcy isExist:", isExist);
         if (isExist) {
             return;
         };
+        GlobalCfg.IS_SHOW_BANKRUPT = true;
         let curScene = SceneManager.getInstance().curSceneType;
         let bankruptcyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
         bankruptcyPrefabPromise.then((prefab) => {
@@ -3057,6 +3076,48 @@ let CommonFun = cc.Class({
             let BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
             BankruptcyGiftCtrl.init();
             this.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+        });
+    },
+
+    checkCanShowOnlyPay: function (callback, callback2) {
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/payment/useonlypay`;
+        let httpParam = {
+        };
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (strInfo) => {
+            CommonFun.getInstance().hidProgress();
+            if (strInfo && strInfo.data) {
+                if (strInfo.data.code == 0) {
+                    GlobalCfg.USER_DATAS.only_pay_time = strInfo.data.timer;
+                    GlobalCfg.USER_DATAS.only_pay_countDownTime = strInfo.data.timer + Date.now();
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'show_Only_Pay', msgData: {}});
+                    this.showOnlyPay();
+                    callback && callback();
+                }
+                else {
+                    callback2 && callback2();
+                }
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
+     * 显示onlypay
+     */
+    showOnlyPay: function () {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.ONLY_PAY, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
+        if (isExist) {
+            return;
+        };
+        if(SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.BENZ){
+            return;
+        }
+        GlobalCfg.IS_SHOW_BANKRUPT = true;
+        let OnlyPayPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ONLY_PAY);
+        OnlyPayPromise.then((prefab) => {
+            let OnlyPayNode = cc.instantiate(prefab);
+            let OnlyPayCtrl = OnlyPayNode.getComponent("OnlyPayCtrl");
+            OnlyPayCtrl.init();
+            this.addToPointParent(OnlyPayNode, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
         });
     },
 });

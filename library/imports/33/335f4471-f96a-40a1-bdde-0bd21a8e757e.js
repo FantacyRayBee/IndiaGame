@@ -13,12 +13,12 @@ cc.Class({
   onLoad: function onLoad() {
     var root = this.node.getChildByName('root');
     this.btn_close = root.getChildByName('btn_close').getComponent(cc.Button);
-    this.btn_go_whatsApp = root.getChildByName('node_whatsApp').getChildByName('btn_go_whatsApp').getComponent(cc.Button);
+    this.btn_go_telegram = root.getChildByName('node_telegram').getChildByName('btn_go_telegram').getComponent(cc.Button);
     this.btn_copy_email = root.getChildByName('node_email').getChildByName('btn_copy_email').getComponent(cc.Button);
-    this.btn_copy_fb = root.getChildByName('node_facebook').getChildByName('btn_copy_fb').getComponent(cc.Button);
+    this.btn_twitter = root.getChildByName('node_twitter').getChildByName('btn_twitter').getComponent(cc.Button);
     this.btn_go_feedback = root.getChildByName('node_feedback').getChildByName('btn_go_feedback').getComponent(cc.Button);
     this.btn_service = root.getChildByName('node_service').getChildByName('btn_service').getComponent(cc.Button);
-    var arr = [this.btn_close, this.btn_service, this.btn_go_whatsApp, this.btn_copy_fb, this.btn_copy_email, this.btn_go_feedback];
+    var arr = [this.btn_close, this.btn_service, this.btn_go_telegram, this.btn_twitter, this.btn_copy_email, this.btn_go_feedback];
     for (var i = 0, len = arr.length; i < len; i++) {
       var element = arr[i];
       element.node.on('click', this.btnClick, this);
@@ -38,13 +38,13 @@ cc.Class({
       return;
     }
     GlobalCfg.G_COMPONENTS.Audio.playButton();
-    if (btnName == 'btn_go_whatsApp') {
+    if (btnName == 'btn_go_telegram') {
       // Skip TO Telegram
       var str = this.channel_info.telegram;
       var arr = str.split('/');
       var pageid = arr[arr.length - 1];
       APPManager.skipToOtherApp('org.telegram.messenger', pageid);
-    } else if (btnName == 'btn_copy_fb') {
+    } else if (btnName == 'btn_twitter') {
       // Skip to Twitter
       var _str = this.channel_info.facebook;
       var _arr = _str.split('/');
@@ -75,15 +75,13 @@ cc.Class({
   setContactData: function setContactData() {
     this.channel_info = _extends({}, GlobalCfg.USER_DATAS.customerService);
     LoggerUtil.getInstance().log('ContactData', this.channel_info);
-    var whatsAppInfos = this.channel_info.whatsApp.split(',');
-    var whatsAppChannel = whatsAppInfos[1];
     for (var i = 0, len = this.lab_nums.length; i < len; i++) {
       switch (i) {
         case 0:
-          this.lab_nums[i].string = this.channel_info.telegram;
+          this.lab_nums[i].string = GlobalCfg.USER_DATAS.web_customer_service;
           break;
         case 1:
-          this.lab_nums[i].string = whatsAppChannel;
+          this.lab_nums[i].string = this.channel_info.telegram;
           break;
         case 2:
           this.lab_nums[i].string = this.channel_info.facebook;

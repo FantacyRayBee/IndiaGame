@@ -118,6 +118,7 @@ cc.Class({
             });
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_LOGOUT_BUTTON);
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.UPDATE);
+            GlobalCfg.BANKRUPT_CD = 0;
         } 
         else if (senderName == "btn_confacf") {
             CommonFun.getInstance().showContactUs();

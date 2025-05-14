@@ -83,8 +83,6 @@ cc.Class({
         return index;
     },
 
-
-
     /**
      * 
      * @param {Array<PaymentProduct>} options 

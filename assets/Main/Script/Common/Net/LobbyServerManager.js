@@ -339,6 +339,8 @@ LobbyServerManager.checkDistributed = function(webData) {
             let obj = {eventName: 'fb_mobile_purchase', valueToSum: Math.ceil(changed / 100), eventContent: content};
             APPManager.faceBookLogEvent(JSON.stringify(obj));
 
+            //充值了 就发送关闭一次支付面板的指令
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'close_Only_Pay', msgData: {}});
             // 刷新商城商品列表
             let url = `${GlobalCfg.HTTP_SERVER}/v1/payment/commodity/storelist`;
             CommonFun.getInstance().httpGet(url, (json) => {  
@@ -351,7 +353,6 @@ LobbyServerManager.checkDistributed = function(webData) {
                     }); 
                 }; 
             }, null, GlobalCfg.USER_DATAS.BearerToken);
-
 
             if (CommonFun.getInstance().isOpenVipModule()) {
                 // 刷新VIP系统

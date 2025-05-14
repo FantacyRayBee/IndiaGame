@@ -49,6 +49,12 @@ cc.Class({
       tooltip: "推广员",
       visible: true
     },
+    btn_club: {
+      "default": null,
+      type: cc.Button,
+      tooltip: "俱乐部",
+      visible: true
+    },
     node_btnDirection: {
       "default": null,
       type: cc.Node,
@@ -90,9 +96,12 @@ cc.Class({
     this.btnBrokeGift.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btnSuperDiscount.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btnNewTGY.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+    this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
+    this.btn_club.node.active = GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0; //已经加入过俱乐部或者不是代理包展示俱乐部入口
   },
+
   onDestroy: function onDestroy() {
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
@@ -136,6 +145,8 @@ cc.Class({
       this.dealBtnBrokeGiftEvent();
     } else if (name == this.btnNewTGY.node.name) {
       this.showPromoterToast();
+    } else if (name == this.btn_club.node.name) {
+      CommonFun.getInstance().showClub();
     }
   },
   setShowState: function setShowState(bool) {
@@ -341,6 +352,7 @@ cc.Class({
   showPromoterToast: function showPromoterToast() {
     CommonFun.getInstance().showPromoter();
   },
+  dealClubEvent: function dealClubEvent() {},
   dealBtnSuperDiscountferEvent: function dealBtnSuperDiscountferEvent() {
     this.showSecondRechargeToast();
   },

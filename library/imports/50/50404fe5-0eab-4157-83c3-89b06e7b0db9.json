@@ -744,7 +744,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "node_whatsApp",
+    "_name": "node_telegram",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -788,7 +788,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -367,
+        -122.941,
         16,
         0,
         0,
@@ -925,7 +925,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_go_whatsApp",
+    "_name": "btn_go_telegram",
     "_objFlags": 0,
     "_parent": {
       "__id__": 19
@@ -1439,7 +1439,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -122.941,
+        -367,
         16,
         0,
         0,
@@ -1571,7 +1571,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "18QqfxaShPALeFUUArbKRa",
+    "fileId": "a1NHBu/ahOPbNiu33DnThq",
     "sync": false
   },
   {
@@ -2017,10 +2017,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "057b2519-0e9a-4189-9ae4-7d3f0b0fab59"
+      "__uuid__": "4cf5b908-474f-43ea-ba1a-d389e753c62f"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -2697,7 +2697,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "node_facebook",
+    "_name": "node_twitter",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -2878,7 +2878,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_copy_fb",
+    "_name": "btn_twitter",
     "_objFlags": 0,
     "_parent": {
       "__id__": 70
@@ -4216,10 +4216,10 @@
     "_enabled": true,
     "lab_nums": [
       {
-        "__id__": 21
+        "__id__": 38
       },
       {
-        "__id__": 55
+        "__id__": 21
       },
       {
         "__id__": 72

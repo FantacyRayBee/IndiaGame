@@ -844,6 +844,10 @@ window.GlobalCfg = {
      */
     BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
     /**
+     * 破产礼包
+     */
+    ONLY_PAY: "ResourcesBundle/NewPlan/OnlyPay/OnlyPay",
+    /**
      * 强制引导弹窗
      */
     HALLTIP: "ResourcesBundle/NewPlan/HallTip/HallTip",
@@ -921,6 +925,7 @@ window.GlobalCfg = {
     ACTIVITY_GOBETTING: "SecondLayer",
     DIVERSIONFREETP: "SecondLayer",
     BANKRUPTCY_GIFT: "SecondLayer",
+    ONLY_PAY: "SecondLayer",
     GAMEICONLIST: "SecondLayer",
 
     SMALLADDCASH: "ThirdLayer",
@@ -994,6 +999,7 @@ window.GlobalCfg = {
     TeenPattiRecharge: "TP剧情充值",
     DiversionFreeTP: "免费玩家引导到TP的弹框充值",
     BankruptcyGift: "破产礼包",
+    OnlyPay: "终身一次支付",
   },
 }; 
 

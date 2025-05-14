@@ -2011,6 +2011,7 @@ cc.Class({
     },
 
     curRoundAddCoinFinish(){
+        LoggerUtil.getInstance().log("caojun curRoundAddCoinFinish");
         if(cc.isValid(this)){
             let minLimit = this.RoomConfig.entryCondition || 0;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER);

@@ -1834,6 +1834,7 @@ cc.Class({
     }, 6);
   },
   curRoundAddCoinFinish: function curRoundAddCoinFinish() {
+    LoggerUtil.getInstance().log("caojun curRoundAddCoinFinish");
     if (cc.isValid(this)) {
       var minLimit = this.RoomConfig.entryCondition || 0;
       CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER);

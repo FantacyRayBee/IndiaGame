@@ -343,6 +343,11 @@ LobbyServerManager.checkDistributed = function (webData) {
       };
       APPManager.faceBookLogEvent(JSON.stringify(obj));
 
+      //充值了 就发送关闭一次支付面板的指令
+      ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+        msgCode: 'close_Only_Pay',
+        msgData: {}
+      });
       // 刷新商城商品列表
       var url = GlobalCfg.HTTP_SERVER + "/v1/payment/commodity/storelist";
       CommonFun.getInstance().httpGet(url, function (json) {

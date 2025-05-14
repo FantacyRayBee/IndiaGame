@@ -799,6 +799,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
    */
   BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
   /**
+   * 破产礼包
+   */
+  ONLY_PAY: "ResourcesBundle/NewPlan/OnlyPay/OnlyPay",
+  /**
    * 强制引导弹窗
    */
   HALLTIP: "ResourcesBundle/NewPlan/HallTip/HallTip",
@@ -867,6 +871,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   ACTIVITY_GOBETTING: "SecondLayer",
   DIVERSIONFREETP: "SecondLayer",
   BANKRUPTCY_GIFT: "SecondLayer",
+  ONLY_PAY: "SecondLayer",
   GAMEICONLIST: "SecondLayer",
   SMALLADDCASH: "ThirdLayer",
   SMALLADDEXPERIENCE: "ThirdLayer",
@@ -928,7 +933,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SuperDiscount: "SuperDiscount",
   TeenPattiRecharge: "TP剧情充值",
   DiversionFreeTP: "免费玩家引导到TP的弹框充值",
-  BankruptcyGift: "破产礼包"
+  BankruptcyGift: "破产礼包",
+  OnlyPay: "终身一次支付"
 }, _window$GlobalCfg);
 GlobalCfg.NATIVE_CALL_URL = "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy";
 GlobalCfg.NATIVE_CALL_NAME_OBJ = {

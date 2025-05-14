@@ -179,14 +179,16 @@ cc.Class({
          */
         btn_wallet: cc.Button,
         /**
-         * 俱乐部
+         * 一次支付
          */
-        btn_club: cc.Button,
+        btn_onlypay: cc.Button,
         /**
          * tp引导手指
          */
         node_tpFinger: cc.Node,
         node_webview: cc.Node,
+
+        lab_onlypayTime: cc.Label,
     },
 
     ctor: function() {
@@ -301,6 +303,9 @@ cc.Class({
                 this.showActivityGoBetting();
             };
         }
+
+        LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.onlyPay : ", GlobalCfg.USER_DATAS.onlyPay);
+        LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.only_pay_time : ", GlobalCfg.USER_DATAS.only_pay_time);
     },
 
     setGameOrder: function() {
@@ -379,7 +384,7 @@ cc.Class({
         this.btn_goBetiing.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_pdd.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-        this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -502,8 +507,8 @@ cc.Class({
         };
 
         this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
-        this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
-
+        this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
+        this.dealShowOnlyPayEvent();
         /**
          * 邮箱
          */
@@ -919,6 +924,61 @@ cc.Class({
         };
     },
 
+    dealShowOnlyPayEvent: function() {
+        let countdownTime = GlobalCfg.USER_DATAS.only_pay_countDownTime - Date.now();
+        if (countdownTime <= 0) {
+            return;
+        }
+        // 清除之前的倒计时（避免重复）
+        if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+        }
+        let time = Math.floor(countdownTime / 1000);
+        let self = this;
+        this.btn_onlypay.node.active = true;
+
+        // 计算时分秒
+        let hours = Math.floor(time / 3600);
+        let minutes = Math.floor((time % 3600) / 60);
+        let seconds = time % 60;
+
+        // 格式化为 23:59:59 样式（补零）
+        let timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        this.lab_onlypayTime.string = timeString;
+
+        // 每秒更新一次时间显示
+        this.countdownInterval = setInterval(() => {
+            if (time <= 0) {
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'close_Only_Pay', msgData: {}});
+                return;
+            }
+            // 计算时分秒
+            hours = Math.floor(time / 3600);
+            minutes = Math.floor((time % 3600) / 60);
+            seconds = time % 60;
+
+            // 格式化为 23:59:59 样式（补零）
+            timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            self.lab_onlypayTime.string = timeString;
+
+            // 减少剩余秒数
+            time--;
+        }, 1000); // 每秒执行一次
+    },
+
+    dealCloseOnlyPayEvent() {
+        if (this.btn_onlypay.node.active == false) {
+            return;
+        }
+        this.lab_onlypayTime.string = "00:00:00";
+        this.btn_onlypay.node.active = false;
+        GlobalCfg.USER_DATAS.only_pay_time = 0;
+        GlobalCfg.USER_DATAS.only_pay_countDownTime = 0;
+        if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+        }
+    },
+
     showActivityGoBetting() {
         if(GlobalCfg.USER_DATAS.openModules.includes(22) == false){
             this.btn_goBetiing.node.active = false;
@@ -1236,7 +1296,7 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             LoggerUtil.getInstance().log("caojun CURRENCY_CHANGED_USER_INFO");
             self.showUserInfo();
-        } 
+        }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_TGY_REWARD 
             || msgId == GlobalCfg.CLIENT_MSG_ID.GET_CHALLENGES_REWARD) {
             let price = notify.price;
@@ -1291,7 +1351,7 @@ cc.Class({
             self.showOtherModules();
         }
         else if (msgId == 'lobbyservice.newmail') {
-            destroy()
+            // destroy()
         }
         else if (msgId == 'GAME_WEBVIEW_BACK') {
             this.node_webview.active = false;
@@ -1352,6 +1412,12 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
             self.dealChangeLanguageEvent(notify);
         }
+        else if (msgId == 'show_Only_Pay') {
+            self.dealShowOnlyPayEvent();
+        }
+        else if (msgId == 'close_Only_Pay') {
+            self.dealCloseOnlyPayEvent();
+        }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.ACTIVITY_GOBETTING_GET) {
             self.showActivityGoBetting();
             self.showUserInfo();
@@ -1400,14 +1466,14 @@ cc.Class({
         else if (btnName == 'btn_wallet') {
             this.dealWalletBtnEvent();
         }
-        else if (btnName == 'btn_club') {
-            CommonFun.getInstance().showClub();
-        }
         else if (btnName == "btn_vip") {
             CommonFun.getInstance().showMyVip();
         }
         else if(btnName == this.btn_goBetiing.node.name){
             CommonFun.getInstance().showGoBetting();
+        }
+        else if (btnName == 'btn_onlypay') {
+            CommonFun.getInstance().showOnlyPay(true);
         }
     },
 
@@ -1954,6 +2020,10 @@ cc.Class({
         CommonFun.getInstance().removeCarouselStrip();
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
+        // 清除之前的倒计时（避免重复）
+        if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+        }
     },
 
     // 提现弹窗
