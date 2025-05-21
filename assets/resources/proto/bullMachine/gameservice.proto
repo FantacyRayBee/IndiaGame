@@ -71,4 +71,6 @@ message CallAck {
   int32 mianfeinum = 5;             //免费次数  (剩余的免费次数)
   int32 rewardtype = 6;             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
   int64 freePool = 7;               //免费奖池 (这一轮后三叶草免费奖池)
+  int32  execNum = 8;               //执行次数
+  int32 addFgCount = 9;             //在fg中增加Fg次数
 }

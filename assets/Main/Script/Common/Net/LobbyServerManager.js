@@ -332,7 +332,9 @@ LobbyServerManager.checkDistributed = function(webData) {
                 }else{
                     GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
                 }
-            };
+            }else{
+                GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
+            }
             // 上传充值数据到FB账号后台
             // 此处 标准事件 参数命名需参照官方标准，不可自行定义，https://developers.facebook.com/docs/app-events/reference ，AppEventsConstants类中定义
             let content = {fb_content: 'Recharge', fb_currency: 'INR'};

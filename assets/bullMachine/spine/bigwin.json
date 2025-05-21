@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "HKkxTJekpcmWck9QZHBIv1AHArY",
+	"hash": "EQdk1q4smNFjWRcPiA78KpsuaSI",
 	"spine": "3.8.99",
 	"x": -402.53,
 	"y": -427.67,
@@ -17,19 +17,19 @@
 	{ "name": "images/q3", "parent": "qqqqqq", "rotation": 90.32, "x": 27.76, "y": -6.65, "scaleY": 6.7204 },
 	{ "name": "images/q10", "parent": "qqqqqq", "x": 34.31, "y": -6.44, "scaleX": 2.3077, "scaleY": 2.3077 },
 	{ "name": "images/q9", "parent": "qqqqqq", "x": 27.11, "y": -12.44 },
-	{ "name": "images/q8", "parent": "all", "x": -18.74, "y": -9.17 },
+	{ "name": "images/q1", "parent": "all", "x": -18.74, "y": -9.17 },
 	{ "name": "number", "parent": "root", "y": -270 }
 ],
 "slots": [
 	{ "name": "images/q9", "bone": "images/q9", "attachment": "images/q9", "blend": "additive" },
 	{ "name": "images/q10", "bone": "images/q10", "attachment": "images/q10" },
-	{ "name": "images/q1", "bone": "bone", "attachment": "images/q8" },
+	{ "name": "images/q2", "bone": "bone", "attachment": "images/q8" },
 	{ "name": "images/q4", "bone": "bone", "color": "ff0000ff", "attachment": "images/q4", "blend": "additive" },
 	{ "name": "images/q3", "bone": "images/q3", "attachment": "images/q3", "blend": "additive" },
-	{ "name": "images/q6", "bone": "images/q8", "attachment": "images/q6" },
-	{ "name": "images/q8", "bone": "images/q8", "attachment": "images/q6" },
-	{ "name": "images/q11", "bone": "images/q8", "attachment": "images/q6" },
-	{ "name": "images/q12", "bone": "images/q8", "attachment": "images/q6" },
+	{ "name": "images/q6", "bone": "images/q1", "attachment": "images/q6" },
+	{ "name": "images/q1", "bone": "images/q1", "attachment": "images/q6" },
+	{ "name": "images/q11", "bone": "images/q1", "attachment": "images/q6" },
+	{ "name": "images/q12", "bone": "images/q1", "attachment": "images/q6" },
 	{ "name": "images_number", "bone": "number" }
 ],
 "skins": [
@@ -37,6 +37,9 @@
 		"name": "default",
 		"attachments": {
 			"images/q1": {
+				"images/q6": { "x": 170.58, "y": 145.4, "scaleX": -1, "width": 435, "height": 390 }
+			},
+			"images/q2": {
 				"images/q8": { "width": 666, "height": 591 }
 			},
 			"images/q3": {
@@ -47,9 +50,6 @@
 			},
 			"images/q6": {
 				"images/q6": { "x": -180.37, "y": 185.56, "width": 435, "height": 390 }
-			},
-			"images/q8": {
-				"images/q6": { "x": 170.58, "y": 145.4, "scaleX": -1, "width": 435, "height": 390 }
 			},
 			"images/q9": {
 				"images/q9": { "x": 3.72, "y": 6.92, "width": 585, "height": 588 }
@@ -69,13 +69,13 @@
 "animations": {
 	"1": {
 		"slots": {
-			"images/q6": {
+			"images/q1": {
 				"color": [
 					{ "time": 0.2667, "color": "ffffffff" },
 					{ "time": 0.5, "color": "ffffff00" }
 				]
 			},
-			"images/q8": {
+			"images/q6": {
 				"color": [
 					{ "time": 0.2667, "color": "ffffffff" },
 					{ "time": 0.5, "color": "ffffff00" }
@@ -128,7 +128,7 @@
 					{ "time": 0.5333, "x": 1.751, "y": 1.751 }
 				]
 			},
-			"images/q8": {
+			"images/q1": {
 				"translate": [
 					{ "x": 18.9, "y": 14.85 }
 				],
@@ -161,12 +161,12 @@
 	},
 	"2": {
 		"slots": {
-			"images/q6": {
+			"images/q1": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"images/q8": {
+			"images/q6": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -217,7 +217,7 @@
 					{ "time": 4.8, "x": 1.857, "y": 1.857 }
 				]
 			},
-			"images/q8": {
+			"images/q1": {
 				"translate": [
 					{ "x": 18.9, "y": 14.85 }
 				],
@@ -243,6 +243,11 @@
 		"slots": {
 			"images/q1": {
 				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"images/q2": {
+				"color": [
 					{ "time": 0.5333, "color": "ffffffff" },
 					{ "time": 0.6333, "color": "ffffff00" }
 				]
@@ -260,11 +265,6 @@
 				]
 			},
 			"images/q6": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"images/q8": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -317,7 +317,7 @@
 					{ "time": 0.5667, "x": 2.194, "y": 2.194 }
 				]
 			},
-			"images/q8": {
+			"images/q1": {
 				"translate": [
 					{ "x": 18.9, "y": 14.85 }
 				],
@@ -336,7 +336,7 @@
 				"translate": [
 					{},
 					{ "time": 0.3, "y": 25.46 },
-					{ "time": 0.6333, "y": -84.88 }
+					{ "time": 0.5333, "y": -51.78 }
 				],
 				"scale": [
 					{ "curve": 0.25, "c3": 0.75 },

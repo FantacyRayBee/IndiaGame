@@ -94,9 +94,10 @@ cc.Class({
             let myVIPCtrl = self.setNodeCtrl(self.my_playerid);
             self.myNodeCtrl.shePlayCion(coin);
             if(myVIPCtrl) myVIPCtrl.shePlayCion(coin);
-        } else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        } 
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             //退出游戏
             let betCoin = 0;

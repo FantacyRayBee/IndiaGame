@@ -275,7 +275,6 @@ cc.Class({
         }
         else {
             this.showTransBounsRedPoint();
-            LoggerUtil.getInstance().log(`caojun 222 FIRST_RECHARGE_TIPS_SHOW = ${GlobalCfg.FIRST_RECHARGE_TIPS_SHOW} FIRST_RECHARGE_REWARD_SHOW = ${GlobalCfg.FIRST_RECHARGE_REWARD_SHOW}`);
             if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
                 let shopParentNode = CommonFun.getInstance().getLayerNode(GlobalCfg.PREFAB_PARENT.SHOP);
                 if(cc.isValid(shopParentNode.getChildByName("newshop"))){
@@ -1313,7 +1312,7 @@ cc.Class({
             self.showOtherModules();
         }
         else if (msgId == 'lobbyservice.newmail') {
-            destroy()
+            // destroy()
         }
         else if (msgId == 'GAME_WEBVIEW_BACK') {
             this.node_webview.active = false;

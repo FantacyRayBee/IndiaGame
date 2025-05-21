@@ -361,11 +361,11 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.updateSelfCoin();
         }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            self.unscheduleAll();
-            self.rouletteManager.unscheduleAll();
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CRICKET, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+            // self.unscheduleAll();
+            // self.rouletteManager.unscheduleAll();
+            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CRICKET, SceneManager.getInstance().sceneType.LOBBY);
+        // }
 
     },
 

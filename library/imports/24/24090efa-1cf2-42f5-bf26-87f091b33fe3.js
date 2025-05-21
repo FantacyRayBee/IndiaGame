@@ -409,11 +409,12 @@ cc.Class({
       self.shortmessagenotify(notify); // 发送表情
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
       self.updateSelfCoin();
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      self.unscheduleAll();
-      self.zooRouletteManager.unscheduleAll();
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZOO, SceneManager.getInstance().sceneType.LOBBY);
     }
+    // else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     self.unscheduleAll();
+    //     self.zooRouletteManager.unscheduleAll();
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZOO, SceneManager.getInstance().sceneType.LOBBY);
+    // }
   },
   onCustomEventMsg: function onCustomEventMsg(webData, target) {
     var self = target;

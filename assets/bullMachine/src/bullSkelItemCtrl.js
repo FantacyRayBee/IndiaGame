@@ -20,13 +20,18 @@ cc.Class({
     },
 
     playAnimation: function() {
-        let skeletonName = this.skeletonNameArr[this.typeId - 1];
+        let skelName = this.typeId > 100 ? 12: this.typeId;
+        let skeletonName = this.skeletonNameArr[skelName - 1];
         if (!skeletonName || skeletonName == "") {
             return;
         };
         let animName = "animation";
         if (this.typeId == 12) {
             animName = "wild";
+        }
+        else if (this.typeId > 100) {
+            //说明是带倍数的wild，百位是倍数
+            animName = Math.floor(this.typeId / 100) + "x";
         }
         this.loadSkeletonData(skeletonName, (skeletonData, self) => {
             if (self && self.skeleton_item) {

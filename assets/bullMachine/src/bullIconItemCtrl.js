@@ -10,8 +10,8 @@ cc.Class({
     },
 
     setItemData: function(itemID) {
-        this.typeId = itemID;
-        let spriteName = "Symbol_" + itemID;
+        this.typeId = itemID > 100 ? 12: itemID;
+        let spriteName = "Symbol_" + this.typeId;
         let spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);
         if (!spriteFrame) {
             return;
