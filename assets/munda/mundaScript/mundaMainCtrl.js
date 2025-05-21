@@ -434,9 +434,10 @@ cc.Class({
         }else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             let coin = notify.deposit + notify.winnings;
             self.selfNodeCtrl.setCoin(coin);
-        } else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MUNDA, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        } 
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MUNDA, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             let betCoinAll = 0;
             for (let i = 0; i < self.selfBetAmount.length; i++) {

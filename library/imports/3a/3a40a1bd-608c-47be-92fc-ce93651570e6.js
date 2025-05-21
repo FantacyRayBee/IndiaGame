@@ -149,9 +149,11 @@ cc.Class({
       GlobalCfg.USER_DATAS.userDiamond = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.userDiamond, 0);
       var coin = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
       self.lab_coin.string = CommonFun.getInstance().numberToShow(coin);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
-    } else if (msgId == "lobbyservice.kicktolobby") {
+    }
+    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
+    // }
+    else if (msgId == "lobbyservice.kicktolobby") {
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
     }
   },

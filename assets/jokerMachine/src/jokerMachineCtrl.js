@@ -272,9 +272,9 @@ cc.Class({
             let coin = notify.deposit + notify.winnings;
             self.setUserDiamond(coin);
         }
-        else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.JOKER, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isRunningSlotAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{

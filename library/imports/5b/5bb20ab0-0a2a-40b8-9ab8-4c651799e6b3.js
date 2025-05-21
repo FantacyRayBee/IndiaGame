@@ -420,7 +420,7 @@ cc.Class({
       var coin = notify.deposit + notify.winnings;
       self.userInfoCtrl.setCoin(coin);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SEVENUPDOWN, SceneManager.getInstance().sceneType.LOBBY);
+      // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SEVENUPDOWN, SceneManager.getInstance().sceneType.LOBBY);
     } else if (msgId == "gameservice.shortmessagenotify") {
       self.shortmessagenotify(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {

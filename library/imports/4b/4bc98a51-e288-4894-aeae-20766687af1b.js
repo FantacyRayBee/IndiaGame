@@ -228,9 +228,11 @@ cc.Class({
       self.dealOnceEraseFinishedEvent(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_TRIGGER_DOUBLE_TOGGLE) {
       self.dealTriggerDoubleToggleEvent(notify);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_ENTER_FREE_STATUS) {
+    }
+    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS){
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
+    // }
+    else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_ENTER_FREE_STATUS) {
       self.dealEnterFreeStatusEvent(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
       var proroID = "gameservice.exit";

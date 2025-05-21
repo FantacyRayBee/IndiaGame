@@ -259,6 +259,10 @@ window.GlobalCfg = {
     SHOW_JOKER_GAME: "显示JOKER界面",
     EXIT_JOKER_GAME: "点击退出JOKER",
 
+    CLICK_BULL_GAME: "点击BULL游戏按钮",
+    SHOW_BULL_GAME: "显示BULL界面",
+    EXIT_BULL_GAME: "点击退出BULL",
+
     CLICK_ZOO_GAME: "点击ZOO游戏按钮",
     SHOW_ZOO_GAME: "显示ZOO界面",
     EXIT_ZOO_GAME: "点击退出ZOO",
@@ -464,6 +468,7 @@ window.GlobalCfg = {
     andeerData: {},
     fruitMachineData: {},
     mayaMachineData: {},
+    bullMachineData: {},
     jokerMachineData: {},
     indiaMachineData: {},
     vampireMachineData: {},

@@ -2036,24 +2036,11 @@ let CommonFun = cc.Class({
     gameShowSecondRecharge: function(curGameMinEnter, curGameCurRoundBetNum = 0, callback){
         let BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
         let rate = GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate
-        LoggerUtil.getInstance().log(`caojun GlobalCfg.USER_DATAS.recharged = ${GlobalCfg.USER_DATAS.recharged}\n 
-            curGameCurRoundBetNum = ${curGameCurRoundBetNum}\n 
-            GlobalCfg.USER_DATAS.only_pay_time = ${GlobalCfg.USER_DATAS.only_pay_time} \n 
-            rate = ${rate} \n 
-            GlobalCfg.USER_DATAS.openModules.includes(23) = ${GlobalCfg.USER_DATAS.openModules.includes(23)}\n 
-            GlobalCfg.USER_DATAS.userDiamond = ${GlobalCfg.USER_DATAS.userDiamond}`);
         if (GlobalCfg.USER_DATAS.openModules.includes(23) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0 && GlobalCfg.USER_DATAS.only_pay_time == 0) {
             if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
                 this.checkCanShowOnlyPay(callback, ()=> {
-                    LoggerUtil.getInstance().log(`
-                        caojun GlobalCfg.USER_DATAS.recharged = ${GlobalCfg.USER_DATAS.recharged}
-                        curGameCurRoundBetNum = ${curGameCurRoundBetNum}
-                        curGameMinEnter = ${curGameMinEnter} 
-                        rate = ${rate}
-                        GlobalCfg.USER_DATAS.openModules.includes(20) = ${GlobalCfg.USER_DATAS.openModules.includes(20)}`);
                     if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
                         if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
-                            LoggerUtil.getInstance().log("caojun showBankruptcy");
                             this.showBankruptcy();
                             if (callback) {
                                 callback();
@@ -2064,7 +2051,7 @@ let CommonFun = cc.Class({
             }
         }
         else if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
-            if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
+            if (GlobalCfg.USER_DATAS.userDiamond <curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate) {
                 this.showBankruptcy();
                 if (callback) {
                     callback();

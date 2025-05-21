@@ -126,9 +126,11 @@ cc.Class({
       var ctrl = GlobalCfg.ACT_SCENE_CTRL.setNodeCtrl(self.my_playerId);
       ctrl && ctrl.shePlayCion(coin);
       self.myNodeCtrl.shePlayCion(coin);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
+    }
+    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
+    // }
+    else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
       var betCoinAll = self.myDragonCoin + self.mytieCoin + self.mytigerCoin;
       if (betCoinAll > 0 && self.isGameEndStatus == false) {
         CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", function () {

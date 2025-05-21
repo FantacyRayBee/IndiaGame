@@ -423,10 +423,12 @@ cc.Class({
         }
       }
       ;
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
-      CommonFun.getInstance().decVerticalAcc();
-    } else if (msgId == "lobbyservice.kicktolobby") {
+    }
+    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
+    //     CommonFun.getInstance().decVerticalAcc();
+    // }
+    else if (msgId == "lobbyservice.kicktolobby") {
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
       CommonFun.getInstance().decVerticalAcc();
     }

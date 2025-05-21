@@ -789,9 +789,11 @@ cc.Class({
       if (self.isSelfTurn == true && self.isPickOneCard == true) {
         self.line.active = false;
       }
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.RUMMY, SceneManager.getInstance().sceneType.LOBBY);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
+    }
+    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.RUMMY, SceneManager.getInstance().sceneType.LOBBY);
+    // }
+    else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
       self.isTuiChu = true;
       var lab_drop = self.btn_drop.node.getChildByName("lab").getComponent(cc.Label);
       if (self.tableStatus == 0 || self.tableStatus == 1) {
