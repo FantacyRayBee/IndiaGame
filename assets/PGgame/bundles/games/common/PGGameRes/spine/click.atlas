@@ -1,0 +1,27 @@
+
+click.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+click_a
+  rotate: false
+  xy: 0, 0
+  size: 196, 196
+  orig: 198, 198
+  offset: 1, 1
+  index: -1
+click_b
+  rotate: false
+  xy: 198, 46
+  size: 150, 150
+  orig: 170, 170
+  offset: 10, 10
+  index: -1
+click_c
+  rotate: true
+  xy: 350, 47
+  size: 149, 147
+  orig: 192, 192
+  offset: 21, 23
+  index: -1

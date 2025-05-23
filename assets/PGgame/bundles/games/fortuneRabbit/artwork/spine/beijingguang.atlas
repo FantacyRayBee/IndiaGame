@@ -1,0 +1,48 @@
+
+beijingguang.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg_glow_vfx_a_screen
+  rotate: false
+  xy: 2, 96
+  size: 540, 398
+  orig: 540, 398
+  offset: 0, 0
+  index: -1
+bg_glow_vfx_c_screen
+  rotate: false
+  xy: 544, 96
+  size: 540, 398
+  orig: 540, 398
+  offset: 0, 0
+  index: -1
+bg_lights_vfx_b_screen
+  rotate: true
+  xy: 2, 2
+  size: 92, 221
+  orig: 92, 221
+  offset: 0, 0
+  index: -1
+bg_lights_vfx_c_screen
+  rotate: false
+  xy: 1086, 259
+  size: 148, 235
+  orig: 148, 235
+  offset: 0, 0
+  index: -1
+bg_lights_vfx_e_screen
+  rotate: true
+  xy: 1476, 354
+  size: 140, 175
+  orig: 140, 175
+  offset: 0, 0
+  index: -1
+bg_lights_vfx_h_screen
+  rotate: true
+  xy: 1236, 366
+  size: 128, 238
+  orig: 128, 238
+  offset: 0, 0
+  index: -1

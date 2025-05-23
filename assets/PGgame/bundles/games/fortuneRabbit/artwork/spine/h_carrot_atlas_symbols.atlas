@@ -1,0 +1,48 @@
+
+h_carrot_atlas_symbols.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+h_crt_base
+  rotate: true
+  xy: 0, 13
+  size: 172, 213
+  orig: 173, 213
+  offset: 0, 0
+  index: -1
+h_crt_chompB
+  rotate: false
+  xy: 298, 0
+  size: 53, 80
+  orig: 53, 80
+  offset: 0, 0
+  index: -1
+h_crt_chompF
+  rotate: true
+  xy: 353, 12
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+h_crt_chompM
+  rotate: false
+  xy: 386, 59
+  size: 80, 126
+  orig: 80, 126
+  offset: 0, 0
+  index: -1
+h_crt_leafB
+  rotate: true
+  xy: 215, 5
+  size: 75, 81
+  orig: 75, 81
+  offset: 0, 0
+  index: -1
+h_crt_leafF
+  rotate: false
+  xy: 215, 82
+  size: 169, 103
+  orig: 169, 103
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,258 @@
+
+spin.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mh_auto_vfx_b_screen_01
+  rotate: false
+  xy: 207, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_02
+  rotate: false
+  xy: 418, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_03
+  rotate: false
+  xy: 629, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_04
+  rotate: false
+  xy: 840, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_05
+  rotate: false
+  xy: 1051, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_06
+  rotate: false
+  xy: 1262, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_07
+  rotate: false
+  xy: 1473, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_08
+  rotate: false
+  xy: 1684, 597
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_09
+  rotate: true
+  xy: 0, 479
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_10
+  rotate: false
+  xy: 199, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_11
+  rotate: false
+  xy: 410, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_12
+  rotate: false
+  xy: 621, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_13
+  rotate: false
+  xy: 832, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_14
+  rotate: false
+  xy: 1043, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_15
+  rotate: false
+  xy: 1254, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_16
+  rotate: false
+  xy: 1465, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_auto_vfx_b_screen_17
+  rotate: false
+  xy: 1676, 398
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_01
+  rotate: true
+  xy: 0, 268
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_02
+  rotate: false
+  xy: 199, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_03
+  rotate: false
+  xy: 410, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_04
+  rotate: false
+  xy: 621, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_05
+  rotate: false
+  xy: 832, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_06
+  rotate: false
+  xy: 1043, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_07
+  rotate: false
+  xy: 1254, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_08
+  rotate: false
+  xy: 1465, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_09
+  rotate: false
+  xy: 1676, 199
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_10
+  rotate: true
+  xy: 0, 57
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_11
+  rotate: false
+  xy: 199, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_12
+  rotate: false
+  xy: 410, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_13
+  rotate: false
+  xy: 621, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_14
+  rotate: false
+  xy: 832, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_15
+  rotate: false
+  xy: 1043, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_16
+  rotate: false
+  xy: 1254, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+mh_spin_vfx_b_screen_17
+  rotate: false
+  xy: 1465, 0
+  size: 209, 197
+  orig: 209, 197
+  offset: 0, 0
+  index: -1
+quan
+  rotate: false
+  xy: 101, 690
+  size: 104, 104
+  orig: 106, 106
+  offset: 1, 1
+  index: -1
+quan2
+  rotate: false
+  xy: 0, 695
+  size: 99, 99
+  orig: 101, 101
+  offset: 1, 1
+  index: -1

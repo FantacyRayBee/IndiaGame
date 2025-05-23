@@ -31,7 +31,8 @@ var SceneManager = cc.Class({
       ZOO: 'zooGame/zoo',
       CRICKET: 'cricketGame/cricket',
       ZEUS: "zeusGame/zeus",
-      WEBVIEW: 'webview'
+      WEBVIEW: 'webview',
+      PGGAME: 'PGgame/app'
     };
     this.curSceneType = null;
     this.isLoadingScene = false;
@@ -288,7 +289,23 @@ var SceneManager = cc.Class({
     if (!protoCfg) {
       this.isLoadingScene = false;
       CommonFun.getInstance().hidProgress();
-      LoggerUtil.getInstance().error("When jumping to the scene, the corresponding protocol configuration was not found");
+      // LoggerUtil.getInstance().error(`When jumping to the scene, the corresponding protocol configuration was not found`);
+      Promise.all([this.loadBundleScene(toSceneName)]).then(function (arr) {
+        var scene = arr[0];
+        _this3.curSceneType = toSceneName;
+        cc.director.runScene(scene, function () {}, function () {
+          _this3.isLoadingScene = false;
+          // CommonFun.getInstance().showGameStartMask();
+          CommonFun.getInstance().hidProgress();
+          CommonFun.getInstance().hideSidebarData();
+        });
+      })["catch"](function (err) {
+        LoggerUtil.getInstance().error(err);
+        _this3.isLoadingScene = false;
+        CommonFun.getInstance().hidProgress();
+        GameServerManager.clientCloseServer();
+        CommonFun.getInstance().showTips(err);
+      });
       return;
     }
     ;
@@ -378,6 +395,7 @@ var SceneManager = cc.Class({
     });
   },
   loadBundleScene: function loadBundleScene(toSceneName) {
+    LoggerUtil.getInstance().log("2222222222 ", toSceneName);
     return new Promise(function (resolve, reject) {
       if (toSceneName && toSceneName.indexOf("/") == -1) {
         LoggerUtil.getInstance().error("toSceneName format error: " + toSceneName);

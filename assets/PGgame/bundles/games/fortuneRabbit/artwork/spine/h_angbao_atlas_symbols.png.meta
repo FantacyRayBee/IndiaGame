@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "d2af4b31-ccbf-4b82-96bf-1ec61ff734c3",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1024,
+  "height": 1024,
+  "platformSettings": {},
+  "subMetas": {
+    "h_angbao_atlas_symbols": {
+      "ver": "1.0.6",
+      "uuid": "5cc3e94f-76f4-4652-a0c1-1d5350a85f63",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d2af4b31-ccbf-4b82-96bf-1ec61ff734c3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -127.5,
+      "offsetY": 14,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 769,
+      "height": 996,
+      "rawWidth": 1024,
+      "rawHeight": 1024,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

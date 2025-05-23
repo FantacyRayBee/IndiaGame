@@ -1,0 +1,47 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "winNoteShaoguangAni",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.23333333333333334,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": null
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "a355eecf-1aba-4571-b4f9-48c305772520"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "2c08c074-343d-4325-84f0-4ed83f161fad"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "b97e34fd-2f79-419c-bbb3-2d7436206bea"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "0bd1c412-e8a3-46bf-a43c-8f097644ca89"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

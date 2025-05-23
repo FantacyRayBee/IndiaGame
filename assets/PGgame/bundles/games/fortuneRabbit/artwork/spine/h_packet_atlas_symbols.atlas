@@ -1,0 +1,90 @@
+
+h_packet_atlas_symbols.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+h_pkt_bag
+  rotate: false
+  xy: 125, 13
+  size: 276, 229
+  orig: 276, 229
+  offset: 0, 0
+  index: -1
+h_pkt_bagrim
+  rotate: true
+  xy: 0, 0
+  size: 242, 123
+  orig: 242, 123
+  offset: 0, 0
+  index: -1
+h_pkt_coinB
+  rotate: true
+  xy: 733, 73
+  size: 78, 75
+  orig: 81, 77
+  offset: 2, 1
+  index: -1
+h_pkt_coinBR
+  rotate: false
+  xy: 646, 15
+  size: 36, 39
+  orig: 38, 41
+  offset: 1, 1
+  index: -1
+h_pkt_coinFL
+  rotate: true
+  xy: 608, 147
+  size: 95, 71
+  orig: 97, 73
+  offset: 1, 1
+  index: -1
+h_pkt_coinFR
+  rotate: true
+  xy: 469, 4
+  size: 106, 89
+  orig: 108, 91
+  offset: 1, 1
+  index: -1
+h_pkt_coinML
+  rotate: false
+  xy: 646, 56
+  size: 85, 89
+  orig: 96, 96
+  offset: 10, 6
+  index: -1
+h_pkt_coinMR
+  rotate: false
+  xy: 681, 153
+  size: 85, 89
+  orig: 87, 91
+  offset: 1, 1
+  index: -1
+h_pkt_dangly
+  rotate: false
+  xy: 403, 112
+  size: 106, 130
+  orig: 106, 130
+  offset: 0, 0
+  index: -1
+h_pkt_ingB
+  rotate: true
+  xy: 403, 1
+  size: 109, 64
+  orig: 111, 66
+  offset: 1, 1
+  index: -1
+h_pkt_ingF
+  rotate: false
+  xy: 511, 116
+  size: 95, 126
+  orig: 97, 128
+  offset: 1, 1
+  index: -1
+h_pkt_ingM
+  rotate: true
+  xy: 560, 9
+  size: 105, 84
+  orig: 107, 86
+  offset: 1, 1
+  index: -1

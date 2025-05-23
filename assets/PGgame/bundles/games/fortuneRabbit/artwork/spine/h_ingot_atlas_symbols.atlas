@@ -1,0 +1,251 @@
+
+h_ingot_atlas_symbols.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fx_sparkl
+  rotate: false
+  xy: 563, 589
+  size: 54, 54
+  orig: 56, 56
+  offset: 1, 1
+  index: -1
+h_i_glowborder
+  rotate: false
+  xy: 0, 717
+  size: 332, 302
+  orig: 332, 302
+  offset: 0, 0
+  index: -1
+h_ing001_pawR
+  rotate: false
+  xy: 518, 474
+  size: 37, 25
+  orig: 39, 27
+  offset: 1, 1
+  index: -1
+h_ing001_pawRx
+  rotate: true
+  xy: 471, 174
+  size: 37, 25
+  orig: 39, 27
+  offset: 1, 1
+  index: -1
+h_ing002_pawL
+  rotate: true
+  xy: 836, 827
+  size: 39, 25
+  orig: 41, 27
+  offset: 1, 1
+  index: -1
+h_ing002_pawLx
+  rotate: false
+  xy: 251, 186
+  size: 39, 25
+  orig: 41, 27
+  offset: 1, 1
+  index: -1
+h_ing003_baseF
+  rotate: false
+  xy: 0, 539
+  size: 310, 176
+  orig: 336, 188
+  offset: 13, 6
+  index: -1
+h_ing003_baseF_fx001
+  rotate: false
+  xy: 334, 724
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx002
+  rotate: false
+  xy: 0, 242
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx003
+  rotate: false
+  xy: 585, 724
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx004
+  rotate: false
+  xy: 0, 98
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx005
+  rotate: false
+  xy: 312, 501
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx006
+  rotate: false
+  xy: 267, 357
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx007
+  rotate: false
+  xy: 251, 213
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx008
+  rotate: true
+  xy: 868, 770
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx009
+  rotate: false
+  xy: 637, 580
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx010
+  rotate: false
+  xy: 563, 436
+  size: 249, 142
+  orig: 269, 151
+  offset: 10, 5
+  index: -1
+h_ing003_baseF_fx011
+  rotate: false
+  xy: 334, 868
+  size: 265, 151
+  orig: 269, 151
+  offset: 2, 0
+  index: -1
+h_ing003_baseF_fx012
+  rotate: false
+  xy: 0, 386
+  size: 265, 151
+  orig: 269, 151
+  offset: 2, 0
+  index: -1
+h_ing003_baseF_fx013
+  rotate: false
+  xy: 601, 868
+  size: 265, 151
+  orig: 269, 151
+  offset: 2, 0
+  index: -1
+h_ing004_foreR
+  rotate: true
+  xy: 267, 505
+  size: 32, 39
+  orig: 34, 41
+  offset: 1, 1
+  index: -1
+h_ing005_foreL
+  rotate: true
+  xy: 888, 580
+  size: 33, 38
+  orig: 35, 40
+  offset: 1, 1
+  index: -1
+h_ing006_head
+  rotate: false
+  xy: 303, 19
+  size: 166, 192
+  orig: 246, 282
+  offset: 40, 61
+  index: -1
+h_ing006_head_fx001
+  rotate: false
+  xy: 888, 615
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx002
+  rotate: false
+  xy: 814, 425
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx003
+  rotate: true
+  xy: 518, 301
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx004
+  rotate: false
+  xy: 673, 281
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx005
+  rotate: false
+  xy: 808, 270
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx006
+  rotate: true
+  xy: 502, 166
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx007
+  rotate: true
+  xy: 471, 31
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx008
+  rotate: false
+  xy: 657, 126
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx009
+  rotate: true
+  xy: 792, 135
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing006_head_fx010
+  rotate: true
+  xy: 792, 0
+  size: 133, 153
+  orig: 197, 225
+  offset: 32, 49
+  index: -1
+h_ing007_baseB
+  rotate: false
+  xy: 0, 19
+  size: 301, 77
+  orig: 301, 77
+  offset: 0, 0
+  index: -1
+h_ing007_baseBx
+  rotate: false
+  xy: 334, 645
+  size: 301, 77
+  orig: 301, 77
+  offset: 0, 0
+  index: -1

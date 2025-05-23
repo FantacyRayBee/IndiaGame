@@ -1,0 +1,27 @@
+
+banzi.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+icon_8
+  rotate: true
+  xy: 191, 0
+  size: 213, 189
+  orig: 213, 189
+  offset: 0, 0
+  index: -1
+icon_8_0
+  rotate: true
+  xy: 0, 0
+  size: 213, 189
+  orig: 213, 189
+  offset: 0, 0
+  index: -1
+icon_9
+  rotate: true
+  xy: 382, 3
+  size: 210, 112
+  orig: 212, 112
+  offset: 0, 0
+  index: -1

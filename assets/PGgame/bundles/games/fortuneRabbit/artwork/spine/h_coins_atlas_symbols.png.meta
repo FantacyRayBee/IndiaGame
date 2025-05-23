@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "7ba5dcd2-52f0-441e-854d-57ff2233e433",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1024,
+  "height": 512,
+  "platformSettings": {},
+  "subMetas": {
+    "h_coins_atlas_symbols": {
+      "ver": "1.0.6",
+      "uuid": "b54f7d58-5b55-466d-8316-71bec5816757",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "7ba5dcd2-52f0-441e-854d-57ff2233e433",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -81.5,
+      "offsetY": 1,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 861,
+      "height": 510,
+      "rawWidth": 1024,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

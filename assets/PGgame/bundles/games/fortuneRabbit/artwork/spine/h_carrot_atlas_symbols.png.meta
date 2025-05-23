@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "6a4753b4-333a-49ee-a41f-575e309dfe1f",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 256,
+  "platformSettings": {},
+  "subMetas": {
+    "h_carrot_atlas_symbols": {
+      "ver": "1.0.6",
+      "uuid": "04e1f32d-ae5e-4181-9f48-4963f4cc31b6",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "6a4753b4-333a-49ee-a41f-575e309dfe1f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -23,
+      "offsetY": 35.5,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 466,
+      "height": 185,
+      "rawWidth": 512,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

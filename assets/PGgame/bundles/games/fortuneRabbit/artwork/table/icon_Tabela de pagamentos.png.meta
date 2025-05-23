@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f80bdf74-3e5e-459f-b52b-ff535528c9b7",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 62,
+  "height": 62,
+  "platformSettings": {},
+  "subMetas": {
+    "icon_Tabela de pagamentos": {
+      "ver": "1.0.6",
+      "uuid": "98c5e67a-78d6-47f8-b72f-7a1b6df796d8",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f80bdf74-3e5e-459f-b52b-ff535528c9b7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 62,
+      "height": 62,
+      "rawWidth": 62,
+      "rawHeight": 62,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

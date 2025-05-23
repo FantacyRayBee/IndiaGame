@@ -1,0 +1,104 @@
+
+h_coins_atlas_symbols.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+h_cF
+  rotate: true
+  xy: 0, 25
+  size: 241, 231
+  orig: 246, 233
+  offset: 2, 1
+  index: -1
+h_cF_fx001
+  rotate: true
+  xy: 244, 270
+  size: 52, 60
+  orig: 197, 186
+  offset: 10, 14
+  index: -1
+h_cF_fx002
+  rotate: false
+  xy: 610, 85
+  size: 108, 108
+  orig: 197, 186
+  offset: 9, 13
+  index: -1
+h_cF_fx003
+  rotate: true
+  xy: 606, 195
+  size: 147, 144
+  orig: 197, 186
+  offset: 6, 15
+  index: -1
+h_cF_fx004
+  rotate: true
+  xy: 580, 344
+  size: 166, 157
+  orig: 197, 186
+  offset: 6, 16
+  index: -1
+h_cF_fx005
+  rotate: true
+  xy: 244, 324
+  size: 186, 167
+  orig: 197, 186
+  offset: 7, 17
+  index: -1
+h_cF_fx006
+  rotate: true
+  xy: 413, 328
+  size: 182, 165
+  orig: 197, 186
+  offset: 13, 21
+  index: -1
+h_cF_fx007
+  rotate: false
+  xy: 447, 0
+  size: 161, 148
+  orig: 197, 186
+  offset: 36, 38
+  index: -1
+h_cF_fx008
+  rotate: true
+  xy: 739, 385
+  size: 125, 122
+  orig: 197, 186
+  offset: 72, 64
+  index: -1
+h_cF_fx009
+  rotate: true
+  xy: 720, 94
+  size: 99, 98
+  orig: 197, 186
+  offset: 96, 86
+  index: -1
+h_cF_fx010
+  rotate: false
+  xy: 306, 277
+  size: 45, 45
+  orig: 197, 186
+  offset: 140, 126
+  index: -1
+h_cF_glow
+  rotate: false
+  xy: 0, 268
+  size: 242, 242
+  orig: 242, 242
+  offset: 0, 0
+  index: -1
+h_cM
+  rotate: true
+  xy: 233, 40
+  size: 226, 212
+  orig: 228, 215
+  offset: 1, 1
+  index: -1
+h_cM_SHDW
+  rotate: false
+  xy: 447, 150
+  size: 157, 176
+  orig: 163, 191
+  offset: 4, 4
+  index: -1
