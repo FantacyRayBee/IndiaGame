@@ -47,8 +47,8 @@ cc.Class({
         this.userList = GlobalCfg.USER_DATAS.promoterMainData.rank
         this.promoterMainData = GlobalCfg.USER_DATAS.promoterMainData.this_week_player
         this.setPanel()
-        const mondayDate = this.getMondayOfCurrentWeek()
-        const sundayDate = this.getSundayOfCurrentWeek()
+        const mondayDate = this.getTodayFormatted()
+        const sundayDate = this.getTodayFormatted()
         this.txt_date.string = "Time Per: " + mondayDate + " ~ " + sundayDate;
         this.insPlayerRecords()
     },
@@ -71,6 +71,17 @@ cc.Class({
         
 
         this.setTopRank()
+    },
+
+    getTodayFormatted: function() {
+        const today = new Date(); // 获取当前日期
+        const year = today.getFullYear(); // 获取年份
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // 获取月份（补零）
+        const day = String(today.getDate()).padStart(2, '0'); // 获取日期（补零）
+    
+        const formattedDate = `${year}-${month}-${day}`;
+        console.log(formattedDate); // 例如：2023-10-05
+        return formattedDate;
     },
 
     // 获取当前周的周一 周日 日期
