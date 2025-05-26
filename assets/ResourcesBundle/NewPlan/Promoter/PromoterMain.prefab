@@ -11842,7 +11842,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>20%</color> of his tax to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>60%</color> of his tax to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,
@@ -12478,7 +12478,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>15%</color> of his tax to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>30%</color> of his tax to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,
@@ -13067,7 +13067,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 269.02000000000004,
+      "width": 280.14,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -13114,7 +13114,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>5%</color> of his tax to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>10%</color> of his tax to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,

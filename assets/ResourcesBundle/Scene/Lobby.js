@@ -512,7 +512,7 @@ cc.Class({
             this.btn_service.node.active = false;
         };
 
-        this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
+        // this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
         this.dealShowOnlyPayEvent();
         /**
