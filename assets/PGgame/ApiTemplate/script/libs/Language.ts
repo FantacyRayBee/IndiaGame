@@ -24,7 +24,7 @@ export class Language extends cc.Component {
 
     LoadLocal() {
         let self = Language.getInstance();
-        cc.resources.load('/language/en', (err: any, res: cc.JsonAsset) => {
+        cc.resources.load('/json/en', (err: any, res: cc.JsonAsset) => {
             if (err) {
                 console.error(err.message || err);
                 return;
@@ -43,6 +43,7 @@ export class Language extends cc.Component {
         if (self.lang) {
             let baseURL = GlobalGame.getInstance().getBaseURL();
             let url = `${baseURL}resources/language/${self.lang}.json`;
+            tcLog.log("LoadLocal language url ==>>", url);
             // 使用 Fetch API 获取网络上的 JSON 文件
             fetch(url)
                 .then(response => {
