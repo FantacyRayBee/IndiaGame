@@ -18,7 +18,7 @@ export const Game_Const = {
     },
 
 
-    language: "pt-BR",
+    language: "en-US",
     loginData: {
         notify_url: "https://apitest.mtmeme.com/callbacktest",
         amount: 1000 * 1000,

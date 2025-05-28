@@ -31,7 +31,7 @@ export class apiLogic implements Handler {
         const match = new api_act.match(href);
         let language = match.get("lang")!;
 
-        apiConfig.env.language = language ? language : "pt"
+        apiConfig.env.language = language ? language : "en"
         apiConfig.env.userId = 123456
         apiConfig.env.token = "testtesttesttesttest"
         apiConfig.env.gameId = cmd.SERVER_TYPE_FORTUNE_RABBIT;
@@ -45,7 +45,7 @@ export class apiLogic implements Handler {
 
         let Symbol = match.get("currency")!;
 
-        let moneySymbol = "BRL"
+        let moneySymbol = "USD"
         switch (Symbol) {
             case "USD":
                 moneySymbol = "USD"

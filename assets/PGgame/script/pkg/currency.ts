@@ -9,7 +9,7 @@ export namespace currency {
         ["AUD", { language: "en-US", symbol: "A$" }],
     ]);
 
-    let nowCode = supportCodes.get("BRL");
+    let nowCode = supportCodes.get("USD");
 
     export function setSymbol(s: string) {
         const data = supportCodes.get(s.toUpperCase());

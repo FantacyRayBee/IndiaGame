@@ -7,7 +7,7 @@ const developEnv = {
     ws: "",
     userId: 0,
     cashierUrl: "",
-    language: "pt",
+    language: "en",
     lobbyUrl: "",
     /** 控投注额 */
     welfareAmount: "",

@@ -63,7 +63,8 @@ export class LaunchV2 extends cc.Component {
 
         console.log("ver:     0605-1629     ", config.logLevel, logger.logLevel)
 
-        const language = params.get("lang")?.toLocaleLowerCase() ?? "";
+        const language = params.get("lang")?.toLocaleLowerCase() ?? "en";
+        console.log("caojun language = ", language)
         if (tcI18n.isOfType(language)) {
             env.application.language = language;
         } else {

@@ -23,7 +23,7 @@ export namespace tcI18n {
     /**
      * 默认语言
      */
-    export const defaultLanguage: Language = "pt";
+    export const defaultLanguage: Language = "en";
 
     export function isOfType(value: string): value is Language {
         return supportLanguages.includes(value as Language);
@@ -66,6 +66,7 @@ export namespace tcI18n {
      * @param lang 多语言类型
      */
     export async function switchLanguage(lang: Language) {
+        console.log("caojun switchLanguage lang = ", lang)
         if (curLanguage === lang) {
             return;
         }
