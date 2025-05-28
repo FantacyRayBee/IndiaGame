@@ -39,6 +39,14 @@ cc.Class({
     var _this = this;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var selfplayID = this.upCtrl.userInfoCtrl.getPlayerid();
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        if (_this.paymentSwitch) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
     if (this.vipSiteState == false && selfplayID == this.playerid) {
       CommonFun.getInstance().showMsgBox("Do you want to exit the VIP seat?", "YES_NO", function () {
         GameServerManager.send("gameservice.joinvip", "JoinVipReq", {

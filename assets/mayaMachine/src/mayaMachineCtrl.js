@@ -43,7 +43,7 @@ cc.Class({
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
             "Can't bet temporarily",                    //请选择下注的范围
-            "Your cash is insufficient, Please recharge in time!"
+            "You need to become a recharge player , go to recharge?"
         ];
         //投注额度数组
         this.betAmountArr = ['10', '20', '50', '100', '200', '500', '1000', '2000'];
@@ -1080,6 +1080,14 @@ cc.Class({
     },
 
     sendCallReq: function() {
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        } 
         if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 if (this.paymentSwitch) {
@@ -1094,7 +1102,6 @@ cc.Class({
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;
 
-        LoggerUtil.getInstance().error("GlobalCfg.USER_DATAS.userDiamond == " ,GlobalCfg.USER_DATAS.userDiamond); 
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城

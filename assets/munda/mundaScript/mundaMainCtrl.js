@@ -39,7 +39,7 @@ cc.Class({
         this.currentBetNum = 0;                 //当前下注额
         this.limitMaxBetNum = 3000000;          //下注上限
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
-            "Your cash is insufficient, Please recharge in time!", //您的现金不足，请及时充值！
+            "You need to become a recharge player , go to recharge?", //您的现金不足，请及时充值！
             "non betting stage",                     //暂时不能下注
             "Upper limit of betting amount！"  //投注金额上限！
         ];
@@ -1473,11 +1473,19 @@ cc.Class({
             amount += parseInt(item.count / 100);
         }
         LoggerUtil.getInstance().log(`当前阶段重复下注金额: ${amount}`);
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        } 
         if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                 CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
                     }
@@ -1580,12 +1588,19 @@ cc.Class({
             return;
         };
 
-
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        } 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                 CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {          
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }
@@ -1753,6 +1768,14 @@ cc.Class({
     betting: function (amount, type) {
         this.currentBetNum = this.getCurrentBetNum();
         if (this.betBtnState == true) {
+            if (GlobalCfg.USER_DATAS.recharged == 0){
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+                return;
+            } 
             if(GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     if (this.paymentSwitch) {
@@ -1763,7 +1786,7 @@ cc.Class({
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                 else {
-                    CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                    CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
                         if (this.paymentSwitch) {
                             CommonFun.getInstance().showSmallAddCash()
                         }

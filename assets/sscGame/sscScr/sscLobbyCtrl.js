@@ -526,6 +526,14 @@ cc.Class({
                 }
             }
         } else {
+            if (GlobalCfg.USER_DATAS.recharged == 0){
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+                return;
+            } 
             if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
                 CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
             else {
@@ -761,6 +769,14 @@ cc.Class({
     },
 
     callReq:function(CardType,coin){
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        } 
         let amount = 0
         if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {

@@ -1735,6 +1735,15 @@ cc.Class({
 
   // 发射
   callHitBullet: function callHitBullet(_playerid, _amount, _call) {
+    var _this13 = this;
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        if (_this13.paymentSwitch) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
     if (this.currentBetNum + _amount > this.limitMaxBetNum) {
       LoggerUtil.getInstance().log("当前下注数目：", this.currentBetNum);
       CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "YES", function () {}, false);
@@ -1802,7 +1811,7 @@ cc.Class({
   setSceneJb: function setSceneJb() {},
   //自己下注飞金币
   playFeiJinBiXiazhu: function playFeiJinBiXiazhu(count, areaType, fromPos, isSelf) {
-    var _this13 = this;
+    var _this14 = this;
     if (this.jbAudioState == true) {
       if (isSelf) {
         this.upDownAudioCtrl.playGameSound("touCoin", false);
@@ -1815,36 +1824,36 @@ cc.Class({
     }
 
     this.feiJbCallBack = function () {
-      var jbnode = _this13.createJbNode();
+      var jbnode = _this14.createJbNode();
       jbnode.setPosition(fromPos);
       if (areaType == 'left') {
         var posx = Math.random() * 170 - 395;
         var posy = Math.random() * 160 - 80;
-        if (_this13.leftGoldArr.length > 100) {
-          _this13.nodeJb.removeChild(_this13.leftGoldArr[0], true);
-          _this13.leftGoldArr.splice(0, 1);
+        if (_this14.leftGoldArr.length > 100) {
+          _this14.nodeJb.removeChild(_this14.leftGoldArr[0], true);
+          _this14.leftGoldArr.splice(0, 1);
         }
-        _this13.leftGoldArr.push(jbnode);
+        _this14.leftGoldArr.push(jbnode);
       } else if (areaType == 'mid') {
         var posx = Math.random() * 340 - 170;
         var posy = Math.random() * 60 - 80;
-        if (_this13.midGoldArr.length > 100) {
-          _this13.nodeJb.removeChild(_this13.midGoldArr[0], true);
-          _this13.midGoldArr.splice(0, 1);
+        if (_this14.midGoldArr.length > 100) {
+          _this14.nodeJb.removeChild(_this14.midGoldArr[0], true);
+          _this14.midGoldArr.splice(0, 1);
         }
-        _this13.midGoldArr.push(jbnode);
+        _this14.midGoldArr.push(jbnode);
       } else if (areaType == 'right') {
         var posx = Math.random() * 165 + 225;
         var posy = Math.random() * 160 - 80;
-        if (_this13.rightGoldArr.length > 100) {
-          _this13.nodeJb.removeChild(_this13.rightGoldArr[0], true);
-          _this13.rightGoldArr.splice(0, 1);
+        if (_this14.rightGoldArr.length > 100) {
+          _this14.nodeJb.removeChild(_this14.rightGoldArr[0], true);
+          _this14.rightGoldArr.splice(0, 1);
         }
-        _this13.rightGoldArr.push(jbnode);
+        _this14.rightGoldArr.push(jbnode);
       }
-      jbnode.parent = _this13.nodeJb;
+      jbnode.parent = _this14.nodeJb;
       var jbPos = cc.v2(posx, posy);
-      _this13.posMove(jbnode, jbPos, false, 0.2);
+      _this14.posMove(jbnode, jbPos, false, 0.2);
     };
     this.schedule(this.feiJbCallBack, 0.07, count - 1, 0);
     // for (let i = 0; i < count; i++) {
@@ -1939,7 +1948,7 @@ cc.Class({
     }
   },
   posMove: function posMove(node, pos, isHuishou, time) {
-    var _this14 = this;
+    var _this15 = this;
     if (!time) {
       time = 0.5;
     }
@@ -1947,7 +1956,7 @@ cc.Class({
       position: pos
     }).call(function () {
       if (isHuishou == true && node != null) {
-        _this14.removeJbNode(node);
+        _this15.removeJbNode(node);
       }
     }).start();
   }

@@ -1740,6 +1740,14 @@ cc.Class({
 
     // 发射
     callHitBullet: function (_playerid, _amount, _call) {
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        }
         if(this.currentBetNum + _amount > this.limitMaxBetNum){
             LoggerUtil.getInstance().log("当前下注数目：",this.currentBetNum);
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "YES", () => { }, false);

@@ -42,7 +42,7 @@ cc.Class({
     this.initNode();
     this.tipsLabel = ["Your game is not finished yet . If you wish to exit the game , you will lose your money . Do you want to leave game?",
     // 退出游戏
-    "Your cash is insufficient, Please recharge in time!"];
+    "You need to become a recharge player , go to recharge?"];
     // this.pmdTime = setTimeout(()=>{this.runPMD()}, 5000);
   },
 
@@ -247,6 +247,15 @@ cc.Class({
     this.labCoin.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
   },
   betFunc: function betFunc(bBet) {
+    var _this2 = this;
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        if (_this2.paymentSwitch) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
     if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {}, false);
@@ -461,6 +470,7 @@ cc.Class({
   },
   // 玩家点击下注
   touchstart: function touchstart(event) {
+    var _this3 = this;
     var name = event.currentTarget.name;
     var types = null;
     if (name == "btn_1") {
@@ -484,6 +494,14 @@ cc.Class({
       return;
     }
     if (this.betStatus) {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          if (_this3.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      }
       this.playGameSound('Sound/s' + types);
       if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
         //未曾充值
@@ -722,18 +740,18 @@ cc.Class({
     var logoLength = this.dataConfig.logoArr.length;
     this.playGameSound('Sound/runact');
     this.loop4 = function () {
-      var _this2 = this;
+      var _this4 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this2.node)) {
+        if (cc.isValid(_this4.node)) {
           that.init4();
         }
       }, this.loopTime);
     };
     this.init4 = function () {
-      var _this3 = this;
+      var _this5 = this;
       if (cc.isValid(this.node)) {
         if (this.startIndex >= logoLength) {
           this.startIndex = 0;
@@ -768,7 +786,7 @@ cc.Class({
             var _str = this.getTypeStr(type);
             this.playGameSound('Sound/' + _str);
             this.scheduleOnce(function () {
-              _this3.playWinAnim(_str);
+              _this5.playWinAnim(_str);
             }, 0.8);
           } else {
             this.playGameSound('Sound/meizhongjiang');
@@ -796,16 +814,16 @@ cc.Class({
     this.init4();
   },
   playWinAnim: function playWinAnim(str) {
-    var _this4 = this;
+    var _this6 = this;
     this.nodeWinAnim.node.active = true;
     this.nodeWinAnim.setAnimation(0, str, false);
     this.playGameSound('Sound/prize');
     this.nodeWinAnim.setCompleteListener(function (trackEntry, loopCount) {
       var name = trackEntry.animation.name;
       if (name == str) {
-        _this4.playGameSound('Sound/bg');
-        _this4.countDown(_this4.labTotalWin, _this4.totalWinNum, 1);
-        _this4.nodeWinAnim.node.active = false;
+        _this6.playGameSound('Sound/bg');
+        _this6.countDown(_this6.labTotalWin, _this6.totalWinNum, 1);
+        _this6.nodeWinAnim.node.active = false;
       }
     });
   },
@@ -848,16 +866,16 @@ cc.Class({
     return _str;
   },
   countDown: function countDown(StartNumNode, endNum, bMove) {
-    var _this5 = this;
+    var _this7 = this;
     this.bTouch = 2; //表示正在倒数计
     // 轮询递增递减
     var StartNum = Number(StartNumNode.string) * 100;
     this.loop5 = function () {
-      var that = _this5;
-      clearTimeout(_this5.changeTime);
-      _this5.changeTime = null;
-      _this5.changeTime = setTimeout(function () {
-        if (cc.isValid(_this5.node)) {
+      var that = _this7;
+      clearTimeout(_this7.changeTime);
+      _this7.changeTime = null;
+      _this7.changeTime = setTimeout(function () {
+        if (cc.isValid(_this7.node)) {
           that.init5();
         }
       }, 50);
@@ -865,7 +883,7 @@ cc.Class({
 
     // 递增递减
     this.init5 = function () {
-      var _this6 = this;
+      var _this8 = this;
       if (cc.isValid(this.node)) {
         if (this.bTouch == 1) {
           //表示停止
@@ -927,9 +945,9 @@ cc.Class({
                 nodeLizi.destroy();
               }
               ;
-              _this6.totalWinNum = 0;
-              _this6._winGold = 0;
-              _this6.countDown(_this6.labCoin, GlobalCfg.USER_DATAS.userDiamond);
+              _this8.totalWinNum = 0;
+              _this8._winGold = 0;
+              _this8.countDown(_this8.labCoin, GlobalCfg.USER_DATAS.userDiamond);
             }, 0.5);
           } else {
             if (Number(this.labCoin.string) * 100 == GlobalCfg.USER_DATAS.userDiamond) {
@@ -1055,18 +1073,18 @@ cc.Class({
       }
     };
     this.loop6 = function () {
-      var _this7 = this;
+      var _this9 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this7.node)) {
+        if (cc.isValid(_this9.node)) {
           that.init6();
         }
       }, 50);
     };
     this.init6 = function () {
-      var _this8 = this;
+      var _this10 = this;
       if (cc.isValid(this.node)) {
         if (this.startIndex > 23) {
           this.startIndex = 0;
@@ -1089,9 +1107,9 @@ cc.Class({
           }
           this.getReward(type, 1);
           this.scheduleOnce(function () {
-            _this8.startIndex = 0;
+            _this10.startIndex = 0;
             runNum = 0;
-            _this8.checkResult();
+            _this10.checkResult();
           }, 1);
           return;
         }
@@ -1107,18 +1125,18 @@ cc.Class({
     this.dataConfig.changeLogo(this.startIndex, false);
     this.startIndex = 0;
     this.loop1 = function () {
-      var _this9 = this;
+      var _this11 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this9.node)) {
+        if (cc.isValid(_this11.node)) {
           that.init1();
         }
       }, 125);
     };
     this.init1 = function () {
-      var _this10 = this;
+      var _this12 = this;
       if (cc.isValid(this.node)) {
         for (var index = runNum % 2; index < 24; index += 2) {
           this.dataConfig.changeLogo(index, true);
@@ -1135,14 +1153,14 @@ cc.Class({
               this.dataConfig.changeLogo(WinArr[_index12], true);
             }
             var _loop = function _loop(_index13) {
-              _this10.scheduleOnce(function () {
+              _this12.scheduleOnce(function () {
                 if (_index13 == WinArr.length - 1) {
-                  _this10.rotating = false;
+                  _this12.rotating = false;
                 }
-                _this10.playGameSound('Sound/dingdong');
-                _this10.dataConfig.setLogoOpacity(WinArr[_index13], 255, true);
-                var type = _this10.dataConfig.getType(WinArr[_index13]);
-                _this10.getReward(type, 1);
+                _this12.playGameSound('Sound/dingdong');
+                _this12.dataConfig.setLogoOpacity(WinArr[_index13], 255, true);
+                var type = _this12.dataConfig.getType(WinArr[_index13]);
+                _this12.getReward(type, 1);
               }, _index13 * 0.8);
             };
             for (var _index13 = 0; _index13 < WinArr.length; _index13++) {
@@ -1157,9 +1175,9 @@ cc.Class({
             this.collectCoin();
             // }
             var _loop2 = function _loop2(_index15) {
-              _this10.scheduleOnce(function () {
-                _this10.playGameSound('Sound/dingdong');
-                _this10.dataConfig.setLogoOpacity(WinArr[_index15], 255, true);
+              _this12.scheduleOnce(function () {
+                _this12.playGameSound('Sound/dingdong');
+                _this12.dataConfig.setLogoOpacity(WinArr[_index15], 255, true);
               }, _index15 * 0.8);
             };
             for (var _index15 = 0; _index15 < WinArr.length; _index15++) {
@@ -1181,32 +1199,32 @@ cc.Class({
     this.dataConfig.changeLogo(this.startIndex, false);
     this.startIndex = 0;
     this.loop2 = function () {
-      var _this11 = this;
+      var _this13 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this11.node)) {
+        if (cc.isValid(_this13.node)) {
           that.init2();
         }
       }, 400);
     };
     this.init2 = function () {
-      var _this12 = this;
+      var _this14 = this;
       if (cc.isValid(this.node)) {
         this.dataConfig.changeLogo(runNum, true);
         if (runNum == 23) {
           var _loop3 = function _loop3(index) {
-            _this12.dataConfig.changeLogo(runNum, true);
-            _this12.scheduleOnce(function () {
+            _this14.dataConfig.changeLogo(runNum, true);
+            _this14.scheduleOnce(function () {
               if (index == 24 - 1) {
-                _this12.rotating = false;
+                _this14.rotating = false;
               }
-              _this12.playGameSound('Sound/dingdong');
-              _this12.dataConfig.setLogoOpacity(index, 255, true);
-              var type = _this12.dataConfig.getType(index);
+              _this14.playGameSound('Sound/dingdong');
+              _this14.dataConfig.setLogoOpacity(index, 255, true);
+              var type = _this14.dataConfig.getType(index);
               // if(!this.bPMDRun){
-              _this12.getReward(type, 1);
+              _this14.getReward(type, 1);
               // }
             }, index * 0.8);
           };
@@ -1229,18 +1247,18 @@ cc.Class({
     this.dataConfig.changeLogo(this.startIndex, false);
     this.startIndex = 0;
     this.loop3 = function () {
-      var _this13 = this;
+      var _this15 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this13.node)) {
+        if (cc.isValid(_this15.node)) {
           that.init3();
         }
       }, this.loopTime);
     };
     this.init3 = function () {
-      var _this14 = this;
+      var _this16 = this;
       if (cc.isValid(this.node)) {
         if (this.startIndex >= logoLength) {
           this.startIndex = 0;
@@ -1268,17 +1286,17 @@ cc.Class({
         } else if (runNum == 0 && addNum == -1) {
           if (this.totalWinNum > 0) {
             var _loop4 = function _loop4(_index16) {
-              var jndex = _this14.startIndex - _index16;
-              var start = jndex < 0 ? logoLength + _this14.startIndex : _this14.startIndex;
-              _this14.dataConfig.changeLogo(start - _index16, true);
-              _this14.dataConfig.setLogoOpacity(start - _index16, 255);
-              _this14.scheduleOnce(function () {
+              var jndex = _this16.startIndex - _index16;
+              var start = jndex < 0 ? logoLength + _this16.startIndex : _this16.startIndex;
+              _this16.dataConfig.changeLogo(start - _index16, true);
+              _this16.dataConfig.setLogoOpacity(start - _index16, 255);
+              _this16.scheduleOnce(function () {
                 if (_index16 == 2) {
-                  _this14.rotating = false;
+                  _this16.rotating = false;
                 }
-                _this14.playGameSound('Sound/dingdong');
-                _this14.dataConfig.setLogoOpacity(start - _index16, 255, true);
-                _this14.getReward(_this14.dataConfig.getType(start - _index16, 1), 1);
+                _this16.playGameSound('Sound/dingdong');
+                _this16.dataConfig.setLogoOpacity(start - _index16, 255, true);
+                _this16.getReward(_this16.dataConfig.getType(start - _index16, 1), 1);
               }, _index16 * 0.8);
             };
             for (var _index16 = 2; _index16 >= 0; _index16--) {
@@ -1290,11 +1308,11 @@ cc.Class({
             this.collectCoin();
             // }
             var _loop5 = function _loop5(_index17) {
-              _this14.scheduleOnce(function () {
-                _this14.playGameSound('Sound/dingdong');
-                var jndex = _this14.startIndex - _index17;
-                var start = jndex < 0 ? logoLength + _this14.startIndex : _this14.startIndex;
-                _this14.dataConfig.setLogoOpacity(start - _index17, 255, true);
+              _this16.scheduleOnce(function () {
+                _this16.playGameSound('Sound/dingdong');
+                var jndex = _this16.startIndex - _index17;
+                var start = jndex < 0 ? logoLength + _this16.startIndex : _this16.startIndex;
+                _this16.dataConfig.setLogoOpacity(start - _index17, 255, true);
               }, _index17 * 0.8);
             };
             for (var _index17 = 0; _index17 < 3; _index17++) {

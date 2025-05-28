@@ -1097,6 +1097,14 @@ cc.Class({
 
     // 玩家下注请求
     UserSelectionActionReq: function(side, Score){
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        }
         if(Score > 0) {
             this.roundBet = this.roundBet + Score * 100;
         }

@@ -39,6 +39,12 @@ cc.Class({
    */
   CallReq: function CallReq(amount, side) {
     var self = GlobalCfg.ACT_SCENE_CTRL;
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        CommonFun.getInstance().showSmallAddCash();
+      }, false);
+      return;
+    }
     if (self.stopBetState) {
       LoggerUtil.getInstance().log("非下注状态");
       CommonFun.getInstance().showTips('non betting stage');
@@ -132,14 +138,13 @@ cc.Class({
     }
     ;
     if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
-      if (GlobalCfg.IS_CLUB_MODE == 1) {
-        //代理模式不跳转商城
-        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
-      } else {
-        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
-          CommonFun.getInstance().showSmallAddCash();
-        }, false);
-      }
+      // if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+      //     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+      // else {
+      CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+        CommonFun.getInstance().showSmallAddCash();
+      }, false);
+      // }
       return;
     }
     ;

@@ -39,7 +39,7 @@ cc.Class({
         this.ReSetPos()
         this.initNode()
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the game , you will lose your money . Do you want to leave game?", // 退出游戏
-            "Your cash is insufficient, Please recharge in time!",
+            "You need to become a recharge player , go to recharge?",
         ];
         // this.pmdTime = setTimeout(()=>{this.runPMD()}, 5000);
     },
@@ -251,6 +251,14 @@ cc.Class({
     },
 
     betFunc:function (bBet) {
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        } 
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) { //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
             }, false);
@@ -493,6 +501,14 @@ cc.Class({
             return
         }
         if (this.betStatus) {
+            if (GlobalCfg.USER_DATAS.recharged == 0){
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+                return;
+            } 
             this.playGameSound('Sound/s' + types)
             if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) { //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {

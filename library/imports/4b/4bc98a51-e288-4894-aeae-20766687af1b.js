@@ -581,6 +581,15 @@ cc.Class({
     }
     ;
     var coin = this.myCoinCtrl.getMyCoin();
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
+      this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
+      this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        CommonFun.getInstance().showSmallAddCash();
+      }, false);
+      return;
+    }
     if (coin < bet) {
       this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
       this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
@@ -650,6 +659,12 @@ cc.Class({
     ;
     var isAgree = notify.isAgree;
     if (isAgree) {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          CommonFun.getInstance().showSmallAddCash();
+        }, false);
+        return;
+      }
       var coin = this.myCoinCtrl.getMyCoin();
       if (coin < notify.bet * 100) {
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBuyFreeTipsHideEffect();

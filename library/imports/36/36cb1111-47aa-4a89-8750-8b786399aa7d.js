@@ -1028,6 +1028,15 @@ cc.Class({
   dealAskTrialEvent: function dealAskTrialEvent(notify) {},
   // 玩家下注请求
   UserSelectionActionReq: function UserSelectionActionReq(side, Score) {
+    var _this3 = this;
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        if (_this3.paymentSwitch) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
     if (Score > 0) {
       this.roundBet = this.roundBet + Score * 100;
     }
@@ -1056,12 +1065,12 @@ cc.Class({
     }
   },
   showBtnBetSpine: function showBtnBetSpine() {
-    var _this3 = this;
+    var _this4 = this;
     var animationName = 'animation';
     var len = this.btnBets.length,
       i = 0;
     this.scheduleBetSpineTimeCallback = function () {
-      var spine = _this3.btnBets[i].node.getChildByName('spine').getComponent(sp.Skeleton);
+      var spine = _this4.btnBets[i].node.getChildByName('spine').getComponent(sp.Skeleton);
       spine.setAnimation(0, animationName, false);
       i++;
     };

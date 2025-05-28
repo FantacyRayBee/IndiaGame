@@ -50,6 +50,14 @@ cc.Class({
   sendBetMsg: function sendBetMsg(chips) {
     var _this = this;
     if (GlobalCfg.ACT_SCENE_CTRL.gameState == 0) {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          if (_this.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      }
       // 0 下注中
       var allBet = 0;
       for (var i = 0; i < chips.length; i++) {

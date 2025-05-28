@@ -56,6 +56,14 @@ cc.Class({
      */
     sendBetMsg(chips) {
         if(GlobalCfg.ACT_SCENE_CTRL.gameState == 0){
+            if (GlobalCfg.USER_DATAS.recharged == 0){
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+                return;
+            } 
             let allBet = 0;
             for (let i = 0; i < chips.length; i++) {
                 let chip = chips[i];

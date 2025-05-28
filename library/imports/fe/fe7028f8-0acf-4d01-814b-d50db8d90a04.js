@@ -90,6 +90,7 @@ cc.Class({
     CommonFun.getInstance().showProgress();
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+    this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
   },
   onDestroy: function onDestroy() {
     GlobalCfg.ACT_SCENE_CTRL = null;
@@ -482,7 +483,16 @@ cc.Class({
     }
   },
   clickBtnBetCallback: function clickBtnBetCallback(num) {
+    var _this4 = this;
     if (this.isDuringBet == true) {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          if (_this4.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      }
       if (num > GlobalCfg.USER_DATAS.userDiamond) {
         if (GlobalCfg.IS_CLUB_MODE == 1) {
           //代理模式不跳转商城
@@ -735,12 +745,12 @@ cc.Class({
   },
   dealWaitState: function dealWaitState() {},
   loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
-    var _this4 = this;
+    var _this5 = this;
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'
       }, function (err, texture) {
-        if (!err && cc.isValid(_this4) && cc.isValid(heaSprite) && cc.isValid(heaSprite.spriteFrame)) {
+        if (!err && cc.isValid(_this5) && cc.isValid(heaSprite) && cc.isValid(heaSprite.spriteFrame)) {
           heaSprite.spriteFrame = new cc.SpriteFrame(texture);
           heaSprite.node.setScale(realWidth / heaSprite.node.width);
         }
@@ -820,7 +830,7 @@ cc.Class({
    * @param {Number} remainder 剩余时间 ms
    */
   startBetTimer: function startBetTimer(remainder) {
-    var _this5 = this;
+    var _this6 = this;
     if (this.numSelfBet == 0) {
       LoggerUtil.getInstance().log("上一局自己下注为 0 ");
       this.preRoundBetNum = 0;
@@ -874,11 +884,11 @@ cc.Class({
     this.scheduleWaitBetCallback = function () {
       count -= 100;
       lab.string = Math.floor(count / 1000) + "s";
-      var rate = Number(count / _this5.betDuration).toFixed(2);
-      _this5.timerBar.progress = rate;
+      var rate = Number(count / _this6.betDuration).toFixed(2);
+      _this6.timerBar.progress = rate;
       if (count <= 0 || rate <= 0) {
         LoggerUtil.getInstance().log("倒计时结束，火箭点火");
-        _this5.isDuringBet = false;
+        _this6.isDuringBet = false;
       }
     };
     this.schedule(this.scheduleWaitBetCallback, 0.1, Math.floor(time / 100) - 1);
@@ -1054,7 +1064,7 @@ cc.Class({
    * @param {cc.Vec2} fromPos 
    */
   moveCoinToBetArea: function moveCoinToBetArea(fromPos) {
-    var _this6 = this;
+    var _this7 = this;
     var areaWidth = this.betArea.width - 40;
     var areaHeight = this.betArea.height - 60;
     var areaPos = this.betArea.getPosition();
@@ -1071,7 +1081,7 @@ cc.Class({
     cc.tween(feijbNode).delay(Number((Math.random() / 3).toFixed(2))).to(0.3, {
       position: nodeToPos
     }).call(function () {
-      _this6.dealBetCoinArray(feijbNode);
+      _this7.dealBetCoinArray(feijbNode);
     }).start();
   },
   dealBetCoinArray: function dealBetCoinArray(coinNode) {
@@ -1122,12 +1132,12 @@ cc.Class({
     }
   },
   showBtnBetSpine: function showBtnBetSpine() {
-    var _this7 = this;
+    var _this8 = this;
     var animationName = 'animation';
     var len = this.btnBetList.length,
       i = 0;
     this.scheduleBetSpineTimeCallback = function () {
-      var spine = _this7.btnBetList[i].node.getChildByName('spine').getComponent(sp.Skeleton);
+      var spine = _this8.btnBetList[i].node.getChildByName('spine').getComponent(sp.Skeleton);
       spine.setAnimation(0, animationName, false);
       i++;
     };

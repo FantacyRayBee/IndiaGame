@@ -519,6 +519,14 @@ cc.Class({
       types = 6;
     }
     if (this.betStatus) {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          if (_this2.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      }
       if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
         //未曾充值
         CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
@@ -1747,6 +1755,14 @@ cc.Class({
     var _this12 = this;
     var betCoinAll = this.repeatBetArr[0] + this.repeatBetArr[1] + this.repeatBetArr[2] + this.repeatBetArr[3] + this.repeatBetArr[4] + this.repeatBetArr[5];
     if (str == "bet") {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          if (_this12.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      }
       if (betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond == 0) {
         if (GlobalCfg.IS_CLUB_MODE == 1) {
           //代理模式不跳转商城
@@ -1823,12 +1839,20 @@ cc.Class({
       return;
     }
     ;
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        if (_this13.paymentSwitch) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
     if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
       if (GlobalCfg.IS_CLUB_MODE == 1) {
         //代理模式不跳转商城
         CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
       } else {
-        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
           CommonFun.getInstance().showSmallAddCash();
         }, false);
       }
@@ -1933,7 +1957,7 @@ cc.Class({
     // 对不起，您的金币无法在本场内游戏）
     "Can't bet temporarily",
     //请选择下注的范围
-    "Your cash is insufficient, Please recharge in time!"];
+    "You need to become a recharge player , go to recharge?"];
     this.isGameEndStatus = false;
     this.showBetSpineTimeInterval = 15; // 显示下注动画的时间间隔
     this.showBetSpineTime = 0;

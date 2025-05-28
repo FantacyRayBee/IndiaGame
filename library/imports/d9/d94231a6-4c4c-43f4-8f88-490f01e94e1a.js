@@ -63,7 +63,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: true,
+  is_force_gotoTest: false,
   /**
    * 渠道信息
    */

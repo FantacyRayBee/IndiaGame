@@ -726,10 +726,10 @@ let CommonFun = cc.Class({
      * @returns 
      */
     showNewShop: function(isFromFirstRecharge, from = '') {          
-        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
-            return;
-        }
+        // if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+        //     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+        //     return;
+        // }
         if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
             CommonFun.getInstance().showMsgBox("Not yet open", "NO", () => { }, false);
             return

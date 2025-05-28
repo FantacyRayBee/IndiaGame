@@ -111,7 +111,6 @@ cc.Class({
         this.itemWidth = 162; // 每个multitem的宽度
         this.JpItemWidth = 411; // 每个multitem的宽度
         this.extraAnimIsComplete = true // extar动画是否播放完成
-        this.paymentSwitch = false;
         this.isExtra = false; //是否加倍
         this.popCoinIsRun = false; // 弹窗金币是否在滚动中
         this.frees = [];
@@ -208,8 +207,7 @@ cc.Class({
         this.helprootIsOpen = false; //help详情信息是否打开
         this.bigWinLevel = 0;
         this.stopNumScroll = false;
-
-
+        this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
     debounce: function(action, delayTime) {  
@@ -2077,6 +2075,14 @@ cc.Class({
 
     sendCallReq: function(jpMult = 1) {
         if (this.curSendSpin == true) { //避免重复发送请求
+            return;
+        }
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
             return;
         }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值

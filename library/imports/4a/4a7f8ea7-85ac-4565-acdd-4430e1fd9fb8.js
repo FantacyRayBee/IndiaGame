@@ -101,7 +101,7 @@ cc.Class({
       var message = result.message;
 
       // CommonFun.getInstance().showTips(msg);
-      // CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+      // CommonFun.getInstance().showMsgBox('You need to become a recharge player , go to recharge?', "SHOP", () => {
       //     CommonFun.getInstance().showSmallAddCash()
       // }, false);
     } else if (msgId == "gameservice.joinvipnotify") {

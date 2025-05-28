@@ -470,6 +470,7 @@ cc.Class({
   },
   // 重复下注
   repeatBet: function repeatBet() {
+    var _this = this;
     var myBetCoinAll = 0;
     for (var i = 0; i < this.recordBet.length; i++) {
       myBetCoinAll += this.recordBet[i];
@@ -482,6 +483,14 @@ cc.Class({
         }
       }
     } else {
+      if (GlobalCfg.USER_DATAS.recharged == 0) {
+        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+          if (_this.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+        return;
+      }
       if (GlobalCfg.IS_CLUB_MODE == 1)
         //代理模式不跳转商城
         CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);else {
@@ -581,12 +590,12 @@ cc.Class({
   },
   //游戏结束后显示牌型
   cradAct: function cradAct(cards, str) {
-    var _this = this;
+    var _this2 = this;
     var arr = cards;
     var _loop = function _loop(i) {
-      var cradNode = _this.node_cradArr[i];
+      var cradNode = _this2.node_cradArr[i];
       cradNode.scale = 0.63;
-      cradNode.getComponent(cc.Sprite).spriteFrame = _this.spite_cradBei;
+      cradNode.getComponent(cc.Sprite).spriteFrame = _this2.spite_cradBei;
       var cradScrpit = cradNode.getComponent("sscCradCtrl");
       if (str == "isAct") {
         cc.tween(cradNode).tag(1).delay(i * 0.5).to(0.25, {
@@ -699,6 +708,15 @@ cc.Class({
   },
 
   callReq: function callReq(CardType, coin) {
+    var _this3 = this;
+    if (GlobalCfg.USER_DATAS.recharged == 0) {
+      CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        if (_this3.paymentSwitch) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
     var amount = 0;
     if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值

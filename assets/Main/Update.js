@@ -913,11 +913,11 @@ cc.Class({
                         this.showCommonLoginView("");
                     });
                 };
-                if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
-                    this.node_btn_guestLogin.active = false;
-                    this.node_or_sprite.active = false;
-                    this.node_bg_title.active = false;
-                }
+                // if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
+                //     this.node_btn_guestLogin.active = false;
+                //     this.node_or_sprite.active = false;
+                //     this.node_bg_title.active = false;
+                // }
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
             });

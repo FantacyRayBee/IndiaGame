@@ -171,6 +171,7 @@ cc.Class({
         this.lab_totalWin.string = 0;
         this.bigWinLevel = 0;
         this.stopNumScroll = false;
+        this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
     debounce: function(action, delayTime) {  
@@ -1440,6 +1441,14 @@ cc.Class({
 
     sendCallReq: function() {
         if (this.curSendSpin == true) { //避免重复发送请求
+            return;
+        }
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
             return;
         }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值

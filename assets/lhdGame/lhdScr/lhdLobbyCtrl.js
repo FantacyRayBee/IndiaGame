@@ -42,7 +42,7 @@ cc.Class({
         "In the game, unable to exit",                              // 游戏中无法退出
         "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
         "Can't bet temporarily",                    //请选择下注的范围
-        "Your cash is insufficient, Please recharge in time!"
+        "You need to become a recharge player , go to recharge?"
         ];
         this.isGameEndStatus = false;
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
@@ -805,12 +805,19 @@ cc.Class({
             return;
         };
 
-
+        if (GlobalCfg.USER_DATAS.recharged == 0){
+            CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                if (this.paymentSwitch) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        } 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                 CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {          
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }
@@ -832,6 +839,14 @@ cc.Class({
             types = 1;
         }
         if(this.betStatus){
+            if (GlobalCfg.USER_DATAS.recharged == 0){
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+                return;
+            } 
             if(GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     if (this.paymentSwitch) {
@@ -1509,6 +1524,14 @@ cc.Class({
         LoggerUtil.getInstance().log("上一局下注情况",betCoinAll,this.repeatBetArr,GlobalCfg.USER_DATAS.userDiamond);
         if( str == "bet"){
             if( betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond <= 0){
+                if (GlobalCfg.USER_DATAS.recharged == 0){
+                    CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                        if (this.paymentSwitch) {
+                            CommonFun.getInstance().showSmallAddCash()
+                        }
+                    }, false);
+                    return;
+                } 
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                 else {

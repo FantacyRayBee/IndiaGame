@@ -97,7 +97,7 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-
+        this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
     onDestroy() {
@@ -529,6 +529,14 @@ cc.Class({
 
     clickBtnBetCallback(num) {
         if (this.isDuringBet == true) {
+            if (GlobalCfg.USER_DATAS.recharged == 0){
+                CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+                return;
+            } 
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}

@@ -718,11 +718,10 @@ var CommonFun = cc.Class({
     if (from === void 0) {
       from = '';
     }
-    if (GlobalCfg.IS_CLUB_MODE == 1) {
-      //代理模式不跳转商城
-      CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
-      return;
-    }
+    // if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+    //     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+    //     return;
+    // }
     if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
       CommonFun.getInstance().showMsgBox("Not yet open", "NO", function () {}, false);
       return;
