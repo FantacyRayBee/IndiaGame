@@ -53,11 +53,13 @@ cc.Class({
 
     initCard(){
         let seriesCard = GlobalCfg.USER_DATAS.seriesCard;
+        LoggerUtil.getInstance().log("caojun seriesCard", seriesCard);
         let content = this.scrollView.content;
         for (let i = 0, len = seriesCard.length; i < len; i++) {
             let cardInfo = seriesCard[i];
             let id = cardInfo.id;
             let price = cardInfo.price;
+            let add = cardInfo.add;
             let days = cardInfo.days;
             let daySend = cardInfo.day_send;
             let bonus = cardInfo.bonus;
@@ -85,10 +87,10 @@ cc.Class({
                     node_btn.getComponent(cc.Button).enableAutoGrayEffect = true;
                 };
 
-                lab_rate.string = `${parseInt(((days * daySend + bonus) / price) * 100)}%`;
-                lab_amount.string = `${price / 100}`;
+                lab_rate.string = `${parseInt(((days * daySend + bonus + add) / price) * 100)}%`;
+                lab_amount.string = `${(price + add) / 100}`;
                 lab_reward.string = `${(days * daySend + bonus) / 100}`;
-                lab_tips1.string = `Get ₹${price / 100} right now`;
+                lab_tips1.string = `Get ₹${(price + add) / 100} right now`;
                 // lab_tips2.string = `Bonus ₹${bonus / 100} right now`;
                 // lab_tips3.string = `₹${daySend / 100} Cash x${days} days`;
 
@@ -109,6 +111,7 @@ cc.Class({
                 }
                 else {
                     CommonFun.getInstance().showBindPhone('AddCash');
+                    SHOPPING.cashID = id;
                     this.node.destroy();
                 };
             }
