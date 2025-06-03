@@ -1852,7 +1852,7 @@ cc.Class({
         //代理模式不跳转商城
         CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
       } else {
-        CommonFun.getInstance().showMsgBox("You need to become a recharge player , go to recharge?", "SHOP", function () {
+        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
           CommonFun.getInstance().showSmallAddCash();
         }, false);
       }
@@ -1957,7 +1957,7 @@ cc.Class({
     // 对不起，您的金币无法在本场内游戏）
     "Can't bet temporarily",
     //请选择下注的范围
-    "You need to become a recharge player , go to recharge?"];
+    "Your cash is insufficient, Please recharge in time!"];
     this.isGameEndStatus = false;
     this.showBetSpineTimeInterval = 15; // 显示下注动画的时间间隔
     this.showBetSpineTime = 0;
