@@ -635,6 +635,7 @@ cc.Class({
 
     //游戏结束后显示牌型
     cradAct:function(cards,str) {
+        LoggerUtil.getInstance().log(`翻牌 cards = ${cards} str = ${str}`);
         let arr = cards;
         for (let i = 0; i < this.node_cradArr.length; i++) {
             let cradNode = this.node_cradArr[i];
