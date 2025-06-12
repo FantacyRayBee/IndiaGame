@@ -983,7 +983,6 @@ cc.Class({
     //游戏开始
     setGameStart: function (notify) {
         this.freshScene();
-        LoggerUtil.getInstance().log("收到gamestartnotify，游戏开始");
         this.sendReqCtrl.VipListReq();
     },
 

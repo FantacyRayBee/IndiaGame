@@ -80,7 +80,6 @@ cc.Class({
         this.lab_clock = this.node_clock.getChildByName("lab_time").getComponent(cc.Label);
         this.node_clock.active = false;
 
-        this.btn_chat = cc.find('Canvas_mtp/btn_chat').getComponent(cc.Button);
         this.btn_playersAll = cc.find('Canvas_mtp/btn_playersAll').getComponent(cc.Button);
         this.playListPosX = this.btn_playersAll.node.x;
         this.playListPosY = this.btn_playersAll.node.y;
@@ -107,7 +106,6 @@ cc.Class({
         this.betLabSelfArr = [this.lab_1_mine, this.lab_2_mine, this.lab_3_mine, this.lab_4_mine];
         
         this.btn_shop = cc.find('Canvas_mtp/btn_shop').getComponent(cc.Button);
-        this.btn_tc = cc.find('Canvas_mtp/btn_tc').getComponent(cc.Button);
         this.btn_wf = cc.find('Canvas_mtp/btn_wf').getComponent(cc.Button);
         this.btn_sound = cc.find('Canvas_mtp/btn_sound').getComponent(cc.Button);
         this.btn_openMenu = cc.find('Canvas_mtp/btn_openMenu').getComponent(cc.Button);
@@ -127,6 +125,9 @@ cc.Class({
         this.btn_4 = cc.find('Canvas_mtp/node_players/btn_04').getComponent(cc.Button);
         this.btn_5 = cc.find('Canvas_mtp/node_players/btn_05').getComponent(cc.Button);
         this.btn_6 = cc.find('Canvas_mtp/node_players/btn_06').getComponent(cc.Button);
+
+        this.img_wait = cc.find('Canvas_mtp/node_playerBetBtn/wait');
+        this.img_bet = cc.find('Canvas_mtp/node_playerBetBtn/bet');
 
         let btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
@@ -162,6 +163,7 @@ cc.Class({
 
     //重新开始刷新场景数据，重置
     freshScene: function () {
+        LoggerUtil.getInstance().error("freshScene freshScene freshScene");
         this.selfBetNum.fill(0,0);
         for (let i = 0; i < this.betAreaArr.length; i++) {
             this.showWinAreaSke(false, i);
@@ -266,18 +268,7 @@ cc.Class({
         let pos = button.node.getPosition()
         let btnName = button.node.name;
         LoggerUtil.getInstance().log("点击的button节点名：", btnName);
-        if (btnName == "btn_chat") {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            if (this.hasDown) {
-                let pab_chat = cc.instantiate(this.pab_chat);
-                let ctrl = pab_chat.getComponent("chatCtrl");
-                ctrl.setPlayerSeat(this.getVIPistMe())
-                this.node.addChild(pab_chat);
-            } else {
-                CommonFun.getInstance().showTips("You're not a VIP. You can't send expressions");
-            }
-
-        } else if (btnName == "btn_shop") {
+        if (btnName == "btn_shop") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             CommonFun.getInstance().showSmallAddCash()
         } else if (btnName == "btn_wf") {
@@ -636,6 +627,8 @@ cc.Class({
                 }
                 this.startBettingSke.node.active = true;
                 this.startBettingSke.setAnimation(0, "animation", false);
+                this.img_wait.active = false;
+                this.img_bet.active = true;
             }
         } else if (remaining <= 15 && isFirstTime == true) {
             this.startBettingSke.node.active = false;
@@ -660,6 +653,8 @@ cc.Class({
                 this.startBettingSke.node.active = true;
                 this.startBettingSke.setAnimation(0, "animation", false);
                 this.mundaAudioCtrl.playGameSound("stopBet", false);
+                this.img_wait.active = true;
+                this.img_bet.active = false;
             }
             this.startBettingSke.setCompleteListener((trackEntry, loopCount) => {
                 var name = trackEntry.animation.name;
@@ -1082,8 +1077,8 @@ cc.Class({
     },
 
     pushToArr(boss, node) {
-        if (this.goldAllArr[boss].length >= 80) {
-            // 限制每个区域最多80个金币（超出则移除最早的）
+        if (this.goldAllArr[boss].length >= 280) {
+            // 限制每个区域最多280个金币（超出则移除最早的）
             let jbNode = this.goldAllArr[boss].shift();
             this.removeJbNode(jbNode); // 回收到对象池
         }
