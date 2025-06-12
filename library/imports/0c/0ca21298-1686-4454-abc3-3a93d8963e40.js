@@ -870,7 +870,7 @@ cc.Class({
     this.node_or_sprite.setPosition(this.or_sprite_pos1);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
-    if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK == 1) {
+    if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
       this.node_btn_facebookLogin.active = false;
       this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
       this.node_btn_guestLogin.setContentSize(512, 79);

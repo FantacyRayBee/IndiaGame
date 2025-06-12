@@ -279,9 +279,10 @@ cc.Class({
                 let advertisingId = APPManager.getAdvertisingId();
                 if (advertisingId && advertisingId.length > 0) {
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
-                    GlobalCfg.ADVERTISING_ID = advertisingId;   
+                    GlobalCfg.ADVERTISING_ID = advertisingId;
                     this.unschedule(getAdvertisingIdCallback);
                     resolve(advertisingId);
+                    this.installApp();
                     return;
                 }
                 else if (endTime - startTime > 20000) {
@@ -289,11 +290,30 @@ cc.Class({
                     GlobalCfg.ADVERTISING_ID = "test01";
                     this.unschedule(getAdvertisingIdCallback);
                     resolve("");
+                    this.installApp();
                     return;
                 };
             };
             this.schedule(getAdvertisingIdCallback, 0.5);
         });
+    },
+
+    installApp: function() {
+        if (!cc.sys.localStorage.getItem("install")) {
+            let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+            let channel = '';
+            if (packageChannel && packageChannel.indexOf("_") != -1) {
+                let packageChannelArr = packageChannel.split("_"); 
+                channel = packageChannelArr[1];
+            }
+            let httpParam = {
+                "adv": GlobalCfg.ADVERTISING_ID,
+                "channel": channel,
+            };
+            let httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/install";
+            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {});
+            cc.sys.localStorage.setItem("install", "1");
+        }
     },
 
     reqAppConfig: function(url) {
@@ -330,7 +350,7 @@ cc.Class({
             CommonFun.getInstance().dealAppInfoJson(json);
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_SUCCESS, endTime - startTime);
             finishCallback && finishCallback(); 
-        }, 
+        },
         () => {
             let endTime = cc.sys.now();
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);

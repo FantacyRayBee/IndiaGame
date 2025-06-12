@@ -254,18 +254,37 @@ cc.Class({
           GlobalCfg.ADVERTISING_ID = advertisingId;
           _this5.unschedule(getAdvertisingIdCallback);
           resolve(advertisingId);
+          _this5.installApp();
           return;
         } else if (endTime - startTime > 20000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
           GlobalCfg.ADVERTISING_ID = "test01";
           _this5.unschedule(getAdvertisingIdCallback);
           resolve("");
+          _this5.installApp();
           return;
         }
         ;
       };
       _this5.schedule(getAdvertisingIdCallback, 0.5);
     });
+  },
+  installApp: function installApp() {
+    if (!cc.sys.localStorage.getItem("install")) {
+      var packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+      var channel = '';
+      if (packageChannel && packageChannel.indexOf("_") != -1) {
+        var packageChannelArr = packageChannel.split("_");
+        channel = packageChannelArr[1];
+      }
+      var httpParam = {
+        "adv": GlobalCfg.ADVERTISING_ID,
+        "channel": channel
+      };
+      var httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/install";
+      CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {});
+      cc.sys.localStorage.setItem("install", "1");
+    }
   },
   reqAppConfig: function reqAppConfig(url) {
     var _this6 = this;
