@@ -1,0 +1,139 @@
+
+heguan.png
+size: 240,240
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fa1
+  rotate: true
+  xy: 105, 180
+  size: 57, 64
+  orig: 57, 64
+  offset: 0, 0
+  index: -1
+fa2
+  rotate: false
+  xy: 105, 104
+  size: 56, 17
+  orig: 56, 17
+  offset: 0, 0
+  index: -1
+fa3
+  rotate: false
+  xy: 161, 141
+  size: 75, 37
+  orig: 75, 37
+  offset: 0, 0
+  index: -1
+shen
+  rotate: false
+  xy: 2, 94
+  size: 101, 143
+  orig: 101, 143
+  offset: 0, 0
+  index: -1
+shou1_1
+  rotate: false
+  xy: 55, 13
+  size: 52, 79
+  orig: 52, 79
+  offset: 0, 0
+  index: -1
+shou1_1_1
+  rotate: true
+  xy: 176, 90
+  size: 49, 51
+  orig: 49, 51
+  offset: 0, 0
+  index: -1
+shou1_2
+  rotate: true
+  xy: 105, 123
+  size: 55, 54
+  orig: 55, 54
+  offset: 0, 0
+  index: -1
+shou1_2_1
+  rotate: false
+  xy: 171, 196
+  size: 64, 41
+  orig: 64, 41
+  offset: 0, 0
+  index: -1
+shou1_3
+  rotate: true
+  xy: 208, 51
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+shou1_4
+  rotate: true
+  xy: 109, 32
+  size: 32, 34
+  orig: 32, 34
+  offset: 0, 0
+  index: -1
+shou2_1
+  rotate: false
+  xy: 2, 7
+  size: 51, 85
+  orig: 51, 85
+  offset: 0, 0
+  index: -1
+shou2_2
+  rotate: false
+  xy: 109, 66
+  size: 59, 36
+  orig: 59, 36
+  offset: 0, 0
+  index: -1
+shou2_3
+  rotate: false
+  xy: 170, 55
+  size: 36, 33
+  orig: 36, 33
+  offset: 0, 0
+  index: -1
+xin
+  rotate: true
+  xy: 186, 180
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+yan2_1
+  rotate: false
+  xy: 161, 125
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1
+yan2_2
+  rotate: false
+  xy: 171, 180
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1
+zui
+  rotate: false
+  xy: 55, 2
+  size: 12, 9
+  orig: 12, 9
+  offset: 0, 0
+  index: -1
+zui1
+  rotate: false
+  xy: 69, 5
+  size: 13, 6
+  orig: 13, 6
+  offset: 0, 0
+  index: -1
+zui2
+  rotate: true
+  xy: 84, 2
+  size: 9, 8
+  orig: 9, 8
+  offset: 0, 0
+  index: -1

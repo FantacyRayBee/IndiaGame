@@ -8,6 +8,8 @@ cc.Class({
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
         btn_add: cc.Button,
+        lab_win: cc.Label,
+        textBg: cc.Node,
     },
     ctor() {
         this.diamond = 0;
@@ -73,6 +75,20 @@ cc.Class({
                 GlobalCfg.USER_DATAS.userDiamond = coin;
             }
         }
+    },
+    setWinNum: function (num) {
+        if (num <= 0) { return };
+        let number = Math.round(num/100);
+        this.lab_win.string = "+" + number;
+        this.textBg.active = true;
+        cc.tween(this.textBg)
+            .to(1, { position: cc.v2(-60, 90) })
+            .delay(0.5)
+            .call(() => {
+                this.textBg.position = cc.v2(-60, 30);
+                this.textBg.active = false;
+            })
+            .start();
     },
 
     setPlayerid: function (playerid) {

@@ -2168,7 +2168,7 @@ cc.Class({
         if (this.btn_minimultiteenpatti.node.active) {
             skeleton = this.btn_minimultiteenpatti.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setAnimation(0, 'animation', true);
+            skeleton.setAnimation(0, 'idle', true);
         };
         if (this.btn_minijhandimunda.node.active) {
             skeleton = this.btn_minijhandimunda.node.getChildByName('Background').getComponent(sp.Skeleton);

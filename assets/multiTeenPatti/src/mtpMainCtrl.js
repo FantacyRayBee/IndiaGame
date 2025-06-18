@@ -6,11 +6,15 @@ cc.Class({
         pab_jinbi: cc.Prefab,
         pab_rule: cc.Prefab,
         pab_chat: cc.Prefab,
+        pab_playerlist: cc.Prefab,
+
         ske_start: sp.SkeletonData,
         ske_stop: sp.SkeletonData,
 
         sprites_jb: [cc.SpriteFrame],
         cardArr: [cc.Node],
+        paixArr: [cc.Node],
+        paixSFArr:[cc.SpriteFrame],
         
         content_trend: cc.Node,
         item_trend: cc.Node,
@@ -29,6 +33,7 @@ cc.Class({
         this.selfBetAmount = [0, 0, 0, 0, 0, 0];        //自己下注的每个区域的数目，用来处理repeat bets
         this.betAllAmount = [0, 0, 0, 0, 0, 0];         //所有区域下注数目
         this.loseAreaCountArr = [];             //存放输的区域的金币移动完毕标识
+        this.repeatBetArr = [];           //存放重复下注的数组
         this.currentBetNum = 0;                 //当前下注额
         this.limitMaxBetNum = 3000000;          //下注上限
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
@@ -36,6 +41,7 @@ cc.Class({
             "non betting stage",                     //暂时不能下注
             "Upper limit of betting amount！"  //投注金额上限！
         ];
+        this.paixStrArr = ["HIGH CARD","PAIR","COLOR","SEQ","PURE SEQ","SET"];
         this.isGameEndStatus = false;
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
@@ -48,8 +54,10 @@ cc.Class({
         this.initNode();
         this.initJbPool();
         this.sendReqCtrl = this.node.getComponent("mtpSendReq");
-        this.mundaAudioCtrl = this.node.getComponent("mtpAudioCtrl");
-        this.mundaAudioCtrl.inite();
+        this.mtpAudioCtrl = this.node.getComponent("mtpAudioCtrl");
+        this.mtpAudioCtrl.inite();
+
+        this.mtpBundle = cc.assetManager.getBundle('multiTeenPatti');
         this.EventHide();
         this.EventShow();
         this.paymentSwitch = false;
@@ -72,7 +80,7 @@ cc.Class({
         this.zhuangNode = this.node.getChildByName("zhuangPos");
         this.zhuangPosX = this.zhuangNode.x;
         this.zhuangPosY = this.zhuangNode.y;
-
+        this.playerSelfY = this.playerSelf.y;
 
         this.node_btnGuangQuan = cc.find('Canvas_mtp/node_playerBetBtn/node_btnGuangQuan');
         this.node_time = this.node.getChildByName("node_time");
@@ -81,6 +89,7 @@ cc.Class({
         this.node_clock.active = false;
 
         this.btn_playersAll = cc.find('Canvas_mtp/btn_playersAll').getComponent(cc.Button);
+        this.lab_playerCount = this.btn_playersAll.node.getChildByName("playerCount").getChildByName("lab").getComponent(cc.Label);
         this.playListPosX = this.btn_playersAll.node.x;
         this.playListPosY = this.btn_playersAll.node.y;
 
@@ -91,7 +100,6 @@ cc.Class({
         this.btn_area_3 = this.node_table.getChildByName("node_3").getComponent(cc.Button);
         this.btn_area_4 = this.node_table.getChildByName("node_4").getComponent(cc.Button);
         this.betAreaArr = [this.btn_area_1, this.btn_area_2, this.btn_area_3, this.btn_area_4];
-
         this.lab_1 = this.node_table.getChildByName("node_1").getChildByName("lab_1").getComponent(cc.RichText);
         this.lab_2 = this.node_table.getChildByName("node_2").getChildByName("lab_2").getComponent(cc.RichText);
         this.lab_3 = this.node_table.getChildByName("node_3").getChildByName("lab_3").getComponent(cc.RichText);
@@ -125,9 +133,10 @@ cc.Class({
         this.btn_4 = cc.find('Canvas_mtp/node_players/btn_04').getComponent(cc.Button);
         this.btn_5 = cc.find('Canvas_mtp/node_players/btn_05').getComponent(cc.Button);
         this.btn_6 = cc.find('Canvas_mtp/node_players/btn_06').getComponent(cc.Button);
-
+        
         this.img_wait = cc.find('Canvas_mtp/node_playerBetBtn/wait');
         this.img_bet = cc.find('Canvas_mtp/node_playerBetBtn/bet');
+        this.btn_repeatBet = cc.find('Canvas_mtp/node_playerBetBtn/btn_repeatBet').getComponent(cc.Button);
 
         let btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
@@ -163,7 +172,6 @@ cc.Class({
 
     //重新开始刷新场景数据，重置
     freshScene: function () {
-        LoggerUtil.getInstance().error("freshScene freshScene freshScene");
         this.selfBetNum.fill(0,0);
         for (let i = 0; i < this.betAreaArr.length; i++) {
             this.showWinAreaSke(false, i);
@@ -188,6 +196,7 @@ cc.Class({
                 let cradScrpit = cradNode.getComponent("mtpCradCtrl");
                 cradScrpit.initCardInfo()
             }
+            this.paixArr[i].active = false;
         }
         for (let i = 0; i < this.selfBetAmount.length; i++) {
             this.selfBetAmount[i] = 0;
@@ -281,6 +290,13 @@ cc.Class({
         } else if(btnName == "btn_sound") {
             CommonFun.getInstance().showGameSetting(2);
         } 
+        else if (btnName == "btn_playersAll") {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            let playList = cc.instantiate(this.pab_playerlist);
+            let ctrl = playList.getComponent("mtpPlayerListCtrl")
+            ctrl.reqPlayerlist(0, 12);
+            this.node.addChild(playList);
+        }
         else if ( btnName == "btn_openMenu") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY, msgData: {}});
@@ -347,6 +363,12 @@ cc.Class({
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
             }
             this.betting(this.userBtnCion, 3);
+        } else if (btnName == "btn_repeatBet") {          //重复上局下注
+            if (this.betBtnState == true) {
+                GlobalCfg.G_COMPONENTS.Audio.playButton();
+                this.repeatBet();
+            }
+
         }
     },
 
@@ -376,7 +398,12 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MUNDA, SceneManager.getInstance().sceneType.LOBBY);
         } else if (msgId === "gameservice.viplist") {                   //VIP列表
             self.updateVipList(notify);
-        } else if (msgId === "gameservice.playerlist") {
+        } 
+        else if (msgId === "gameservice.playerlist") {
+            LoggerUtil.getInstance().log("palyerList", notify);
+            self.lab_playerCount.string = notify.total;
+        }
+        else if (msgId === "gameservice.playerlist") {
             LoggerUtil.getInstance().log("palyerList", notify);
         } else if (msgId === "gameservice.querygameendinfo") {
             self.setGameEndInfo(notify);
@@ -496,7 +523,7 @@ cc.Class({
             return
         }
         this.selfNodeCtrl.setPlayerInfo(notify.userinfo, true);
-        this.mundaAudioCtrl.playGameMusic("munda");
+        this.mtpAudioCtrl.playGameMusic("bgm");
         // this.setGameConfig(notify.config);
     },
 
@@ -552,9 +579,10 @@ cc.Class({
             LoggerUtil.getInstance().error("Munda-服务器返回的GameScene的数据为空！");
             return;
         };
-        LoggerUtil.getInstance().log("gamescene===============================>", notify);
+        LoggerUtil.getInstance().log("gamescene===============================> ", notify.remaining);
         let vipList = notify.vipList;
         let requester = notify.requester;
+        this.lab_playerCount.string = notify.playerNumber; //玩家数量
         if (requester) {
             GlobalCfg.USER_DATAS.userDiamond = requester.diamond;
             this.selfNodeCtrl.lab_coin.string = CommonFun.getInstance().numberToShow(requester.diamond/100);
@@ -574,7 +602,7 @@ cc.Class({
                 let pools = notify.pools;
                 for (let i = 0; i < pools.length; i++) {
                     let BossPool = pools[i];
-                    let boss = BossPool.boss;
+                    let boss = BossPool.boss?BossPool.boss:0;
                     this.betAllAmount[boss] = BossPool.all;
                     // this.betLabArr[boss].string = BossPool.self / 100 + " / " + BossPool.all / 100;
                     this.betLabArr[boss].string = `${BossPool.all / 100}`;
@@ -613,11 +641,11 @@ cc.Class({
             isFirstTime = true
         }
         this.tempTime = remaining;
-        if (remaining > 15 && remaining < 20 && isFirstTime == true) {
+        if (remaining > 10 && remaining < 20 && isFirstTime == true) {
             this.betBtnState = false;
-            let time = remaining - 16;
+            let time = remaining - 11;
             if (time == 0) {
-                this.mundaAudioCtrl.playGameSound("start", false);
+                this.mtpAudioCtrl.playGameSound("start", false);
                 this.startBettingSke.skeletonData = this.ske_start;
                 let curScene = cc.director.getScene();
                 if (curScene.getChildByName("Tips")) {
@@ -630,14 +658,37 @@ cc.Class({
                 this.img_wait.active = false;
                 this.img_bet.active = true;
             }
-        } else if (remaining <= 15 && isFirstTime == true) {
+        } else if (remaining <= 10 && isFirstTime == true) {
+            let self = this;
+            LoggerUtil.getInstance().log("caojun222 ---------=========== this.repeatBetArr ", this.repeatBetArr);
+            if (this.repeatBetArr.length > 0) {
+                this.mtpBundle.load(`Res/repeat/btn_repeat`, cc.SpriteFrame, function (err, spriteFrame) {
+                    if (!err) {
+                        self.btn_repeatBet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                        self.btn_repeatBet.enabled = true;
+                    } else {
+                        LoggerUtil.getInstance().error(JSON.stringify(err));
+                    }
+
+                });
+            } else {
+                this.mtpBundle.load(`Res/repeat/btn_newOra_big`, cc.SpriteFrame, function (err, spriteFrame) {
+                    if (!err) {
+                        self.btn_repeatBet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                        self.btn_repeatBet.enabled = false;
+                    } else {
+                        LoggerUtil.getInstance().error(JSON.stringify(err));
+                    }
+
+                });
+            }
             this.startBettingSke.node.active = false;
             // this.startBettingSke.skeletonData = null;
             this.betBtnState = true;
-            this.lab_clock.string = remaining;
+            this.lab_clock.string = remaining >=0 ? remaining : 0;
             this.node_clock.active = true;   
             if (remaining < 3 && remaining > 0 && isFirstTime == true) {
-                this.mundaAudioCtrl.playGameSound("countDown", false);
+                this.mtpAudioCtrl.playGameSound("countDown", false);
             }
             if (remaining <= 1) {
                 this.betBtnState = false;
@@ -652,7 +703,7 @@ cc.Class({
                 }
                 this.startBettingSke.node.active = true;
                 this.startBettingSke.setAnimation(0, "animation", false);
-                this.mundaAudioCtrl.playGameSound("stopBet", false);
+                this.mtpAudioCtrl.playGameSound("stopBet", false);
                 this.img_wait.active = true;
                 this.img_bet.active = false;
             }
@@ -668,9 +719,9 @@ cc.Class({
         let isPlaySound = false;
         for (let i = 0, len = pools.length; i < len; i++) {
             let BossPool = pools[i];
-            let boss = BossPool.boss;
+            let boss = BossPool.boss?BossPool.boss:0;
             if (BossPool.all > this.betAllAmount[boss] && isPlaySound == false){
-                this.mundaAudioCtrl.playGameSound("otherCoin", false);
+                this.mtpAudioCtrl.playGameSound("otherCoin", false);
                 isPlaySound = true;
             }
             this.resolveBoosPool(BossPool, false);
@@ -684,6 +735,17 @@ cc.Class({
             this.sendReqCtrl.QueryGameEndInfoReq();
         }
         this.node_clock.active = false; 
+        let self = this;
+        // if (this.repeatBetArr.length <= 0) {
+        this.mtpBundle.load(`Res/repeat/btn_newOra_big`, cc.SpriteFrame, function (err, spriteFrame) {
+            if (!err) {
+                self.btn_repeatBet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                self.btn_repeatBet.enabled = false;
+            } else {
+                LoggerUtil.getInstance().error(JSON.stringify(err));
+            }
+
+        });
     },
 
     //处于结算状态进入游戏显示当前局的骰子结果
@@ -691,7 +753,6 @@ cc.Class({
         let pools = notify.pools;
         for (let i = 0; i < pools.length; i++) {
             let BossPool = pools[i];
-            let boss = BossPool.boss
             let number = BossPool.number;
             // this.showWinAreaSke(true, boss, number);
             if (number > 0) {
@@ -707,7 +768,7 @@ cc.Class({
      * @param {Boolean} isFirstEnter 是否第一次连接
      */
     resolveBoosPool: function (BossPool, isGameEnd, isFirstEnter = false) {
-        let boss = BossPool.boss;
+        let boss = BossPool.boss?BossPool.boss:0;
         this.selfBetAmount[boss] = BossPool.self;
         let goldCount = this.initTableGlodCount(BossPool.all);
         if (isFirstEnter == true) {
@@ -721,7 +782,7 @@ cc.Class({
         }
         if (BossPool.all > this.betAllAmount[boss] && isFirstEnter == false) {
             this.playListAnimation();
-            let startPos = cc.v2(this.playListPosX, this.playListPosY);
+            let startPos = cc.v2(this.btn_playersAll.node.x, this.btn_playersAll.node.y);
             this.otherBetCallBack = () => {
                 let endPos = this.randomPos(boss)
                 this.bettingCoin(startPos, endPos, boss, this.jinbiParent);
@@ -759,8 +820,9 @@ cc.Class({
         let seat = notify.seat;
         let boss = notify.boss;
         let afterGold = notify.after;       //下注之后的金币数目
+        LoggerUtil.getInstance().log("caojun resolveCallNotify notify ", notify);
         if (playerid == this.selfNodeCtrl.getPlayerid()) {          //表示玩家自己
-            this.mundaAudioCtrl.playGameSound("touCoin", false);
+            this.mtpAudioCtrl.playGameSound("touCoin", false);
             this.upAnimation(this.selfNodeCtrl.node);
             let startPos = cc.v2(-650, -304);
             let count = this.setCount(notify.amount);
@@ -776,7 +838,7 @@ cc.Class({
                 playerCtrl && playerCtrl.setCoin(afterGold);
             }
         } else {                    //VIP 座位
-            this.mundaAudioCtrl.playGameSound("otherCoin", false);
+            this.mtpAudioCtrl.playGameSound("otherCoin", false);
             let playerCtrl = this.getPlayerInfoByUserId(seat);
             if (playerCtrl) {
                 this.upAnimation(playerCtrl.node, cc.find(`Canvas_mtp/node_players/btn_0${seat}`));
@@ -906,13 +968,23 @@ cc.Class({
             this.sendReqCtrl.JoinVipReq(this.downSite, 2);
         };
 
-        LoggerUtil.getInstance().log("开始播放：", Date.now());
+        LoggerUtil.getInstance().log("caojun---------=========== this.selfBetAmount ", this.selfBetAmount);
+
+        this.repeatBetArr.length = 0;
+        for (let i = 0; i < this.selfBetAmount.length; i++) {
+            let element = this.selfBetAmount[i];
+            if (element > 0) {
+                this.repeatBetArr.push({ type: i, count: element });
+            }
+        }
+        LoggerUtil.getInstance().log("caojun---------=========== this.repeatBetArr ", this.repeatBetArr);
+
         let self = this;
         this.scheduleOnce(()=>{
-            self.cradAct(self.cardArr[0], notify.cards[0], "isAct");
+            self.cradAct(self.cardArr[0], self.paixArr[0], notify.zhuangCards, "isAct", notify.zhuangCardSuit);
             self.scheduleOnce(()=>{
-                for (let i = 1; i < notify.cards.length; i++) {
-                    self.cradAct(self.cardArr[i], notify.cards[i], "isAct");
+                for (let i = 0; i < notify.pools.length; i++) {
+                    self.cradAct(self.cardArr[i+1], self.paixArr[i+1], notify.pools[i].cards, "isAct", notify.pools[i].CardSuit);
                 }
                 //所有牌翻完之后，进入结算
                 self.scheduleOnce(()=>{
@@ -927,12 +999,12 @@ cc.Class({
     settlement: function (notify) {
         let pools = notify.pools;                        //结算信息
         this.loseAreaCount = 0;
-        this.mundaAudioCtrl.playGameSound("jbrecover", false);
-        this.mundaAudioCtrl.playGameSound("win", false);
+        this.mtpAudioCtrl.playGameSound("jbrecover", false);
+        this.mtpAudioCtrl.playGameSound("win", false);
         this.loseAreaCount = 0;
         for (let i = 0; i < pools.length; i++) {
             let BossPool = pools[i];
-            let boss = BossPool.boss
+            let boss = BossPool.boss?BossPool.boss:0;
             let number = BossPool.number;
             if (number && number > 0) {
                 this.showWinAreaSke(true, boss, number);
@@ -941,12 +1013,16 @@ cc.Class({
                 this.moveToZhuang(this.goldAllArr[boss], notify);
             }
         }
+        if (this.loseAreaCount == 0) { //全赢
+            this.moveToPlayer(notify);
+        }
+        //显示牌型
         this.setTrend(pools);
     },
 
     //游戏结束后显示牌型
-    cradAct:function(cardArr, cards, str) {
-        let arr = cards.cards;
+    cradAct:function(cardArr, paix, cards, str, paixIndex) {
+        let arr = cards;
         for (let i = 0; i < 3; i++) {
             let cradNode = cardArr.getChildByName(""+ (i+1));
             let cradScrpit = cradNode.getComponent("mtpCradCtrl");
@@ -954,10 +1030,14 @@ cc.Class({
             if(str == "isAct") {
                 cc.tween(cradNode)
                 .tag(1)
-                .delay(i*0.5)
+                .delay(i*0.2)
                 .to(0.25, { scaleX:0})
                 .call(() => {  
                     cradScrpit.setCardInfo(arr[i])
+                    if (i == 2) {
+                        paix.active = true;
+                        paix.getChildByName("img_paix").getComponent(cc.Sprite).spriteFrame = this.paixSFArr[paixIndex - 1];
+                    }
                 })
                 .to(0.25,{ scaleX:1})
                 .start()
@@ -979,11 +1059,15 @@ cc.Class({
             return
         }
         let win_light = this.betAreaArr[boss].node.getChildByName("win_light").getComponent(sp.Skeleton);
+        let win = this.betAreaArr[boss].node.getChildByName("win").getComponent(sp.Skeleton);
         if (isShow == false) {
             win_light.node.active = false;
+            win.node.active = false;
         } else {
             win_light.node.active = true;
             win_light.setAnimation(0, "animation", true);
+            win.node.active = true;
+            win.setAnimation(0, "open", false);
         }
     },
 
@@ -1117,8 +1201,7 @@ cc.Class({
             LoggerUtil.getInstance().log("金币尚未移动完毕-------等待------");
             return
         }
-        LoggerUtil.getInstance().log("金币移动完毕");
-        this.mundaAudioCtrl.playGameSound("moveToArea", false);
+        this.mtpAudioCtrl.playGameSound("moveToArea", false);
         let pools = notify.pools;
         let moveFun = (boss) => {
             let count = 40;                 //从庄家飞往每个区域的金币数目
@@ -1151,7 +1234,7 @@ cc.Class({
         };
         for (let i = 0; i < pools.length; i++) {
             let BossPool = pools[i];
-            let boss = BossPool.boss;
+            let boss = BossPool.boss?BossPool.boss:0;
             let number = BossPool.number;
             if (number == null || number < 1) {
                 continue
@@ -1167,7 +1250,8 @@ cc.Class({
         for (let i = 0; i < pools.length; i++) {
             let BossPool = pools[i];
             if (BossPool.number > 0) {
-                this.moveToPlayerByBoss(BossPool.boss, notify);
+                let boss = BossPool.boss?BossPool.boss:0;
+                this.moveToPlayerByBoss(boss, notify);
             }
         }
         let selfResult = notify.selfResult;
@@ -1231,7 +1315,7 @@ cc.Class({
             } else {
                 if (goldArr.length > 0) {
                     let pos = this.btn_playersAll.node.position;
-                    this.mundaAudioCtrl.playGameSound("jbrecover", false);
+                    this.mtpAudioCtrl.playGameSound("jbrecover", false);
                     let tempIndex = 0,len = goldArr.length;
                     for (let i = goldArr.length - 1; i >= 0; i--) {
                         let jbNode = goldArr.pop();
@@ -1250,11 +1334,70 @@ cc.Class({
         }
     },
 
+    //重复上局下注
+    repeatBet: function () {
+        let amount = 0;
+        for (let i = 0; i < this.repeatBetArr.length; i++) {
+            let item = this.repeatBetArr[i];
+            amount += parseInt(item.count / 100);
+        }
+        LoggerUtil.getInstance().log(`当前阶段重复下注金额: ${amount}`);
+        if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
+            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            else {
+                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+            }
+        } else {
+            this.currentBetNum = this.getCurrentBetNum();
+            let repeatBetNum = 0;
+            for (let i = 0; i < this.repeatBetArr.length; i++) {
+                repeatBetNum += this.repeatBetArr[i].count;
+            }
+            if (this.currentBetNum + repeatBetNum > this.limitMaxBetNum) {
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[3], "YES", () => { }, false);
+                    return
+            }
+            for (let i = 0; i < this.repeatBetArr.length; i++) {
+                let item = this.repeatBetArr[i];
+                this.sendReqCtrl.callReq(parseInt(item.count / 100), item.type);
+            }
+            this.repeatBetArr.length = 0;
+            let self = this;
+            this.mtpBundle.load(`Res/repeat/btn_newOra_big`, cc.SpriteFrame, function (err, spriteFrame) {
+                if (!err) {
+                    self.btn_repeatBet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                    self.btn_repeatBet.enabled = false;
+                } else {
+                    LoggerUtil.getInstance().error(JSON.stringify(err));
+                }
+
+            });
+        }
+    },
+    
+
     //下注玩家头像跳动
     upAnimation: function (nodeplayer, nodeButton = null) {
         let ctrl = nodeplayer.getComponent("mtpPlayerCtrl");
         if (ctrl == null) {
-            ctrl = nodeplayer.getComponent("mtpPlayerSelfCtrl");
+            cc.tween(nodeplayer)
+                .tag(8)
+                .to(0.1, { position: cc.v2(nodeplayer.x, this.playerSelfY + 15) })
+                .to(0.1, { position: cc.v2(nodeplayer.x, this.playerSelfY) })
+                .start();
+            if(nodeButton){
+                cc.tween(nodeButton)
+                .tag(9)
+                .to(0.1, { position: cc.v2(nodeplayer.x, this.playerSelfY + 15) })
+                .to(0.1, { position: cc.v2(nodeplayer.x, this.playerSelfY) })
+                .start();
+            }
+            return;
         }
         let nodeX = ctrl.posX;
         let nodeY = ctrl.posY;
@@ -1273,11 +1416,11 @@ cc.Class({
     },
 
     playListAnimation: function () {
-        let nodeX = this.playListPosX;
-        let nodeY = this.playListPosY;
+        let nodeX = this.btn_playersAll.node.x;
+        let nodeY = this.btn_playersAll.node.y;
         cc.tween(this.btn_playersAll.node)
             .tag(10)
-            .to(0.1, { position: cc.v2(nodeX, nodeY + 15) })
+            .to(0.1, { position: cc.v2(this.btn_playersAll.node.x, nodeY + 15) })
             .to(0.1, { position: cc.v2(nodeX, nodeY) })
             .start();
     },

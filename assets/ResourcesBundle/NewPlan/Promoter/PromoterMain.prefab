@@ -1958,7 +1958,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 64.04,
+      "width": 112.92,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2010,8 +2010,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Today",
-    "_N$string": "Today",
+    "_string": "This Week",
+    "_N$string": "This Week",
     "_fontSize": 24,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2175,7 +2175,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 74.64,
+      "width": 128.12,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2227,8 +2227,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Today",
-    "_N$string": "Today",
+    "_string": "This Week",
+    "_N$string": "This Week",
     "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2552,7 +2552,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 97.86,
+      "width": 119.61,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2564,7 +2564,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
+        -3.494,
         0,
         0,
         0,
@@ -2604,8 +2604,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Yestoday",
-    "_N$string": "Yestoday",
+    "_string": " Last Week",
+    "_N$string": " Last Week",
     "_fontSize": 24,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2781,7 +2781,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
+        -3.494,
         0,
         0,
         0,
@@ -2821,8 +2821,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Yestoday",
-    "_N$string": "Yestoday",
+    "_string": " Last Week",
+    "_N$string": " Last Week",
     "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -11231,7 +11231,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        111.983,
+        112,
         0,
         0,
         0,
@@ -11699,7 +11699,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 270.14,
+      "width": 286.82,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -11746,7 +11746,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>1%</color> of his bet to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>0.6%</color> of his bet to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,
@@ -11842,7 +11842,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>60%</color> of his tax to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>30%</color> of his tax to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,
@@ -12382,7 +12382,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>0.5%</color> of his bet to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>0.3%</color> of his bet to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,
@@ -12478,7 +12478,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>30%</color> of his tax to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>20%</color> of his tax to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,
@@ -13018,7 +13018,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": true,
-    "_N$string": "<color=#EFCB29>0.2%</color> of his bet to your <color=#EFCB29>Winnings</color>",
+    "_N$string": "<color=#EFCB29>0.1%</color> of his bet to your <color=#EFCB29>Winnings</color>",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 20,
     "_N$font": null,

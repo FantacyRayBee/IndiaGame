@@ -7,6 +7,7 @@ message ResponseBase {
   string message = 2;
 }
 
+
 //游戏状态
 enum EnumGameStatus {
   GAME_Betting = 0;   // 下注中
@@ -122,6 +123,7 @@ message BossPool {
   repeated int32 history = 5;   // 历史记录
   int32 number = 6;             // 开奖值(结算协议使用)
   EnumCardSuit CardSuit = 7;    // 牌型
+  repeated int32 cards = 8;
 }
 
 // 下注 gameservice.call
@@ -147,8 +149,9 @@ message CallNotifyAck{
 message GameEndNotify {
   CalcResult  selfResult = 1;               //玩家的结算信息
   repeated CalcResult vipResult = 2;        //vip座位的结算信息
-  repeated cards cards = 3;                 //牌的信息
+  repeated int32 zhuangCards = 3;            //庄的牌的信息
   repeated BossPool pools = 4;              //下注信息
+  EnumCardSuit zhuangCardSuit = 5;          //庄的牌型
 }
 
 message cards  {

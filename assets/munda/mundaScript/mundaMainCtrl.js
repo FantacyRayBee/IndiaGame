@@ -1019,7 +1019,6 @@ cc.Class({
             if (element > 0) {
                 this.repeatBetArr.push({ type: i, count: element });
             }
-
         }
 
         LoggerUtil.getInstance().log("开始播放：", Date.now());

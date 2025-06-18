@@ -5,14 +5,14 @@ cc.Class({
     properties: {},
 
     inite: function () {
-        this.assetBundle = cc.assetManager.getBundle('munda');
+        this.assetBundle = cc.assetManager.getBundle('multiTeenPatti');
         this.gameSound = new Map();
         this.loadGameSound();
     },
 
     //加载音效
     loadGameSound: function () {
-        var url = 'mundaSound';
+        var url = 'Sound';
         if (this.assetBundle) {
             this.assetBundle.loadDir(url, cc.AudioClip, (err, assets) => {
                 if (!err) {
@@ -32,7 +32,7 @@ cc.Class({
             this.playSound(clip, isLoop);
         } else {
             if (this.assetBundle) {
-                this.assetBundle.load("mundaSound/" + name, cc.AudioClip, (err, audioClip) => {
+                this.assetBundle.load("Sound/" + name, cc.AudioClip, (err, audioClip) => {
                     if (!err) {
                         this.playSound(audioClip, isLoop);
                         this.gameSound.set(name, audioClip);
@@ -48,7 +48,7 @@ cc.Class({
             this.playMusic(clip, true);
         } else {
             if (this.assetBundle) {
-                this.assetBundle.load("mundaSound/" + name, cc.AudioClip, (err, audioClip) => {
+                this.assetBundle.load("Sound/" + name, cc.AudioClip, (err, audioClip) => {
                     if (!err) {
                         this.playMusic(audioClip, true);
                         this.gameSound.set(name, audioClip);

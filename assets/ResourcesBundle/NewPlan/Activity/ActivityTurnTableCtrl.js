@@ -2,9 +2,13 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        lab_remainingTimes: cc.Label,
+        lab_remainingTimes: cc.RichText,
+        lab_endTime: cc.Label,
+        lab_tips3: cc.Label,
         btn_go: cc.Button,
         node_wheel: cc.Node,
+        normal_mat: cc.Material,
+        gray_mat: cc.Material
     },
 
     ctor: function() {
@@ -13,41 +17,83 @@ cc.Class({
             338.5, 293.5, 249.5, 204.5, 
             156.5, 112.5, 69.5, 22.5
         ];
+
+        this.shopPayinfo = [200, 300, 500, 1000, 2000, 3000, 5000, 10000];
     },
 
     onLoad: function() {
+        this.wheel_jinbSprite = {};
+        this.wheel_jinbLabel = {};
+        for (let i = 0; i < 8; i++) {
+            this.wheel_jinbSprite[i] = this.node_wheel.getChildByName(`jb_${i+1}`).getComponent(cc.Sprite);
+            this.wheel_jinbLabel[i] = this.node_wheel.getChildByName(`lab_${i+1}`).getComponent(cc.Label);
+        }
         this.btn_go.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_go.interactable = false;
-        this.lab_remainingTimes.string = `0`;
+
     },
 
     start: function() {
         let remainCountPromise = this.getTurnTableRemainCount();
-        remainCountPromise.then((remainCount) => {
+        remainCountPromise.then((turntableData) => {
             if (CommonFun.getInstance().isValidForScr(this)) {
-                this.lab_remainingTimes.string = remainCount;
-                if (remainCount > 0) {
-                    this.btn_go.interactable = true;
-                    this.btn_go.enableAutoGrayEffect = false;
-                } 
-                else {
-                    this.btn_go.interactable = false;
-                    this.btn_go.enableAutoGrayEffect = true;
-                };
+                // let turntableData = GlobalCfg.USER_DATAS.turntableData;
+                this.wheel_labs = []; // 改成数组
+                for (let i = 0; i < 8; i++) {
+                    const amount = turntableData.amountActivity[i];
+                    this.wheel_labs.push({
+                        num: (amount % 100000000) / 100, // 计算金额
+                        isBonus: amount > 1000000,        // 是否是大奖
+                    });
+                }
+                this.lab_tips3.string = "3.Number of uses remaining: " + turntableData.countRemainingTurns
+                // 按 num 升序排序
+                this.wheel_labs.sort((a, b) => a.num - b.num);
+                for (let i = 0; i < 8; i++) {
+                    if (this.wheel_labs[i].isBonus) {
+                        this.wheel_jinbLabel[i].string = "Bouns\n" + this.wheel_labs[i].num;
+                    }else{
+                        this.wheel_jinbLabel[i].string = "₹" + this.wheel_labs[i].num;
+                    }
+                }
+                let payIndex = this.getCurrentPayIndex();
+                this.lab_remainingTimes.string = "Recharge <color=#fff670>₹"+ this.shopPayinfo[payIndex] +"</color> to get 1 spin";
+                this.checkWheelState();
+                this.startCountdown(turntableData.expireTime)
             };
         })
-        .catch((error) => {
-            LoggerUtil.getInstance().log(error);
-        })
+    },
+
+    onDestroy: function () {
+        clearInterval(this.countdownInterval);
+    },
+
+    getCurrentPayIndex: function() {
+        for (let i = 0; i < 8; i++) {
+            if(GlobalCfg.USER_DATAS.turntableData.signInStatus[i] == false)
+                return i;
+        }
+        return 0;
     },
 
     btnClick: function(btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
+        if (GlobalCfg.USER_DATAS.turntableData.countRemainingTurns == 0){//没有旋转次数 这时需要跳转商城
+            let payIndex = this.getCurrentPayIndex();
+            GlobalCfg.SELECT_RECHARGE_ACOUNT = this.shopPayinfo[payIndex] * 100; //跳转商城 选中本次能够获取转盘机会的金额
+            CommonFun.getInstance().showNewShop(true);
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.ACTIVITY_CLOSE_VIEW, msgData: {}});
+            return;
+        }
         this.btn_go.interactable = false;
+        this.btn_go.enableAutoGrayEffect = true;
         let url =  GlobalCfg.HTTP_SERVER + "/v1/turntabledraw";
         CommonFun.getInstance().httpGet(url, (jsonObj) => {  
             if (jsonObj.result == 0) { 
-                GlobalCfg.USER_DATAS.turntableRemainCount = jsonObj.data.remaincount;
+                GlobalCfg.USER_DATAS.turntableData.countCurrentTurns = jsonObj.data.countCurrentTurns
+                GlobalCfg.USER_DATAS.turntableData.countRemainingTurns = jsonObj.data.countRemainingTurns
+                GlobalCfg.USER_DATAS.turntableRemainCount = jsonObj.data.countRemainingTurns;
+                this.lab_tips3.string = "3.Number of uses remaining: " + GlobalCfg.USER_DATAS.turntableData.countRemainingTurns
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: "RefreshActivity_RedPoint", msgData: {}});
                 if (CommonFun.getInstance().isValidForScr(this)) {
                     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("turnPlate", false);
                     this.trunPlateRotation(jsonObj.data);
@@ -59,63 +105,121 @@ cc.Class({
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
-    trunPlateRotation: function(data) {
-        let awardno = data.awardno;
-        let remaincount = data.remaincount;
+    checkWheelState: function() {
+        LoggerUtil.getInstance().log("checkWheelState count: ", GlobalCfg.USER_DATAS.turntableData.countCurrentTurns);
+        for (let i = 0; i < 8; i++) {
+            if (i < GlobalCfg.USER_DATAS.turntableData.countCurrentTurns) {
+                let index = this.getStopIndex(i); //通过第几次抽奖计算出转盘下标
+                // this.wheel_jinbSprite[i].materials[0] = this.gray_mat;
+                this.wheel_jinbSprite[index].node.getChildByName("yes").active = true;
+            }
+        }
+    },
+    // 启动倒计时
+    startCountdown(expireTimestamp) {
+        // 先立即更新一次显示
+        this.updateCountdownDisplay(expireTimestamp);
 
+        // 每秒更新一次
+        this.countdownInterval = setInterval(() => {
+            this.updateCountdownDisplay(expireTimestamp);
+        }, 1000);
+    },
+
+    // 更新倒计时显示
+    updateCountdownDisplay(expireTimestamp) {
+        const remainingMs = Math.max(0, expireTimestamp - Date.now());
+        this.lab_endTime.string = "End time: " + this.formatToHMS(remainingMs);
+
+        // 倒计时结束时的处理
+        if (remainingMs <= 0) {
+            clearInterval(this.countdownInterval);
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.ACTIVITY_CLOSE_VIEW, msgData: {}});
+        }
+    },
+
+    /**
+     * 将毫秒转换为 HH:MM:SS 格式
+     * @param {number} ms 剩余毫秒数
+     * @returns {string} 格式化后的时间字符串
+     */
+    formatToHMS: function(ms) {
+        if (ms <= 0) return "00:00:00"; // 倒计时结束
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        // 补零显示（如 1 → "01"）
+        const pad = (num) => num.toString().padStart(2, '0');
+        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    },
+
+    trunPlateRotation: function(data) {
+        let stopIndex = this.getStopIndex();
+        LoggerUtil.getInstance().log("caojun stopIndex = ", stopIndex);
         this.compensation = this.node_wheel.angle % 360 + 360;
         //旋转时间
         let rotationTime = 3.59;
         //旋转圈数
         let rotationcircle = 2; 
         //奖励圈数
-        let RotationAngle = this.node_wheel.angle - rotationcircle * 360 - this.awardAngle[awardno - 1] - this.compensation;
+        let RotationAngle = this.node_wheel.angle - rotationcircle * 360 - this.awardAngle[stopIndex] - this.compensation;
         cc.tween(this.node_wheel)
         .to(rotationTime, {angle: RotationAngle}, { easing: 'sineInOut'})
         .call(() => {
-            if (awardno != 2) {
-                GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
-                let rewaird = {
-                    1: 5,
-                    3: 10,
-                    4: 1000,
-                    5: 1,
-                    6: 50,
-                    7: 100,
-                    8: 500
-                };
+            GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
+            if (data.activity < 10000000) {
                 CommonFun.getInstance().showRewardsTips([{
                     id: 10,
-                    amount: rewaird[awardno]
+                    amount: data.activity /100
                 }]);
-            };
-
-            if (remaincount <= 0) {
-                this.btn_go.interactable = false;
-                this.btn_go.enableAutoGrayEffect = true;
             }
-            else {
-                this.btn_go.interactable = true;
-                this.btn_go.enableAutoGrayEffect = false;
-            };
+            else{ //该次抽奖中的是bouns
+                CommonFun.getInstance().showRewardsTips([{
+                    id: 12,
+                    amount: (data.activity % 100000000)/100
+                }]);
+            }
 
-            this.lab_remainingTimes.string = remaincount;
+            this.checkWheelState();
+            this.btn_go.interactable = true;
+            this.btn_go.enableAutoGrayEffect = false;
         })
         .start();
     },
 
+    getStopIndex:function(currentTurn) {
+        let turn = currentTurn || GlobalCfg.USER_DATAS.turntableData.countCurrentTurns;
+        let index = 0;
+        //根据当前处于第N次抽奖，找到这次转盘应该转到的奖励
+        let amount = GlobalCfg.USER_DATAS.turntableData.amountActivity[turn - 1];
+        amount = (amount % 100000000)/100
+
+        LoggerUtil.getInstance().log("找到这次转盘应该转到的奖励 amount:", amount);
+        LoggerUtil.getInstance().log("找到这次转盘应该转到的奖励 this.wheel_labs:", this.wheel_labs);
+        for (let i = 0; i < 8; i++) {
+            //通过奖励找到盘面上中奖的index
+            if (this.wheel_labs[i].num == amount) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    },
+
     getTurnTableRemainCount: function() {
         return new Promise((resolve, reject) => {
-            if (Reflect.has(GlobalCfg.USER_DATAS, 'turntableRemainCount')) {
-                resolve(GlobalCfg.USER_DATAS.turntableRemainCount);
-                return;
-            };
-
-            let url =  GlobalCfg.HTTP_SERVER + "/v1/turntableremaincount";  
+            // if (Reflect.has(GlobalCfg.USER_DATAS, 'turntableData')) {
+            //     resolve(GlobalCfg.USER_DATAS.turntableData);
+            //     return;
+            // };
+            let url =  GlobalCfg.HTTP_SERVER + "/v1/getturntableinfo";  
             CommonFun.getInstance().httpGet(url, (jsonObj) => {  
-                if (jsonObj.result == 0) { 
-                    GlobalCfg.USER_DATAS.turntableRemainCount = jsonObj.data.remaincount;
-                    resolve(GlobalCfg.USER_DATAS.turntableRemainCount);
+                if (jsonObj.result == 0) {
+                    GlobalCfg.USER_DATAS.turntableRemainCount = jsonObj.data.countRemainingTurns;
+                    GlobalCfg.USER_DATAS.turntableData = jsonObj.data;
+                    resolve(GlobalCfg.USER_DATAS.turntableData);
                 }
                 else {
                     CommonFun.getInstance().showTips(jsonObj.msg);
