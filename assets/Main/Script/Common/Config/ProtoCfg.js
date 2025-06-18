@@ -265,6 +265,25 @@ cc.Class({
       "gameservice.shortmessagenotify": "ShortMessageNotify", //短消息广播
     }
 
+    //MutliTeenPatti
+    this.protoMtp = {
+      "gameservice.login": "LoginAck",
+      "gameservice.joinvip": "JoinVipAck",
+      "gameservice.joinvipnotify": "JoinVipNotify",
+      "gameservice.gamestartnotify": "GameStartNotifyAck",
+      "gameservice.gamescene": "GameSceneAck",
+      "gameservice.call": "CallAck",
+      "gameservice.callnotify": "CallNotifyAck",
+      "gameservice.gameendnotify": "GameEndNotify",
+      "gameservice.kickout": "KickOutAck",
+      "gameservice.exitgame": "ExitGameAck", // 退出游戏
+      "gameservice.playerlist": "PlayerListAck",
+      "gameservice.viplist": "VipListAck", //VIP 列表
+      "gameservice.querygameendinfo": "GameEndNotify",
+      "gameservice.shortmessage": "ShortMessageAck", //短消息
+      "gameservice.shortmessagenotify": "ShortMessageNotify", //短消息广播
+    }
+
     this.protoHorseRace = {
       "gameservice.login": "LoginAck", //登录
       "gameservice.joinroom": "JoinRoomAck", //加入房间
@@ -493,6 +512,9 @@ cc.Class({
     }
     else if (gameName == "Munda") {
       return this.protoMunda;
+    }
+    else if (gameName == "MTP") {
+      return this.protoMtp;
     }
     else if (gameName == "SSC") {
       return this.protoSSC;

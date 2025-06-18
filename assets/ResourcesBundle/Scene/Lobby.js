@@ -96,6 +96,10 @@ cc.Class({
          */
         btn_miniteenpattibaccarat: cc.Button,
         /**
+         * MultiTeenPatti
+         */
+        btn_minimultiteenpatti: cc.Button,
+        /**
          * 火箭
          */
         btn_minirocket: cc.Button,
@@ -333,6 +337,7 @@ cc.Class({
             "miniluckyloto": 16,
             "minizeus": 17,
             "miniclown": 18,
+            "minimultiteenpatti": 19,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -344,6 +349,7 @@ cc.Class({
         let btnsMap = {
             "minirocket": this.btn_minirocket,
             "minijhandimunda": this.btn_minijhandimunda,
+            "minimultiteenpatti": this.btn_minimultiteenpatti,
             "miniteenpatti": this.btn_miniteenpatti,
             "miniteenpattibaccarat": this.btn_miniteenpattibaccarat,
             "miniandar": this.btn_miniandar,
@@ -399,6 +405,7 @@ cc.Class({
         this.btn_miniandar.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minibenzbmw.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minijhandimunda.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_minimultiteenpatti.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minilonghu.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniluckyloto.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minirummy.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -551,6 +558,7 @@ cc.Class({
         this.btn_miniandar.node.active = false;
         this.btn_minibenzbmw.node.active = false;
         this.btn_minijhandimunda.node.active = false;
+        this.btn_minimultiteenpatti.node.active = false;
         this.btn_minilonghu.node.active = false;
         this.btn_miniluckyloto.node.active = false;
         this.btn_minirummy.node.active = false;
@@ -621,6 +629,18 @@ cc.Class({
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("munda");
                         if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("munda");
+                        }
+                    };
+                    break;
+                case "minimultiteenpatti":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(124)) {
+                        this.btn_minimultiteenpatti.node.active = true;
+
+                        GlobalCfg.SMALL_GAME_DATAS.mtpData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.mtpData.product = gameProduct;
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("multiTeenPatti");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("multiTeenPatti");
                         }
                     };
                     break;
@@ -1718,6 +1738,14 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MUNDA);
             });
         } 
+        else if(btnName == "btn_multiTeenPatti") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MTP_GAME);
+            this.checkUpdate("multiTeenPatti", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mtpData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MTP);
+            });
+        } 
         else if (btnName == "btn_horseRace") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_HORSE_GAME);
             this.checkUpdate("horseRaceGame", () => {
@@ -1924,6 +1952,9 @@ cc.Class({
             case "munda":
                 upDateMaskNode = this.btn_minijhandimunda.node.getChildByName("upDateMask");
                 break;
+            case "multiTeenPatti":
+                upDateMaskNode = this.btn_minimultiteenpatti.node.getChildByName("upDateMask");
+                break;
             case "horseRaceGame":
                 upDateMaskNode = this.btn_minisaima.node.getChildByName("upDateMask");
                 break;
@@ -2003,6 +2034,9 @@ cc.Class({
                 break;
             case "munda":
                 this.btn_minijhandimunda.node.getChildByName("upDateMask").active = false;
+                break;
+            case "multiTeenPatti":
+                this.btn_minimultiteenpatti.node.getChildByName("upDateMask").active = false;
                 break;
             case "horseRaceGame":
                 this.btn_minisaima.node.getChildByName("upDateMask").active = false;
@@ -2130,6 +2164,11 @@ cc.Class({
             skeleton.clearTrack(0);
             skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
+        };
+        if (this.btn_minimultiteenpatti.node.active) {
+            skeleton = this.btn_minimultiteenpatti.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            skeleton.setAnimation(0, 'idle', true);
         };
         if (this.btn_minijhandimunda.node.active) {
             skeleton = this.btn_minijhandimunda.node.getChildByName('Background').getComponent(sp.Skeleton);

@@ -90,7 +90,7 @@ ProtobufManager.packProtobuf = function(command, messageKey, jsonData, heartType
                 }  
                 else if (heartType === "GAME_HEART") {
                     command = "gameservice.pingpang";
-                }
+                } 
                 else {
                     LoggerUtil.getInstance().error("无法区分心跳类型");
                     return;
@@ -109,6 +109,7 @@ ProtobufManager.packProtobuf = function(command, messageKey, jsonData, heartType
     catch (error) {
         LoggerUtil.getInstance().error("协议问题：" + JSON.stringify(jsonData));
         LoggerUtil.getInstance().error("协议问题：" + messageStr);
+        LoggerUtil.getInstance().error("协议问题：" + error);
     };
     return buffer;
 };

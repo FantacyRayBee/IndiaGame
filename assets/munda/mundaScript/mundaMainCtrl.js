@@ -983,7 +983,6 @@ cc.Class({
     //游戏开始
     setGameStart: function (notify) {
         this.freshScene();
-        LoggerUtil.getInstance().log("收到gamestartnotify，游戏开始");
         this.sendReqCtrl.VipListReq();
     },
 
@@ -1020,7 +1019,6 @@ cc.Class({
             if (element > 0) {
                 this.repeatBetArr.push({ type: i, count: element });
             }
-
         }
 
         LoggerUtil.getInstance().log("开始播放：", Date.now());

@@ -48,6 +48,7 @@ cc.Class({
             "proto/horseRace/gameservice",
             "proto/lhd/gameservice",
             "proto/munda/gameservice",
+            "proto/multiTeenPatti/gameservice",
             "proto/ssc/gameservice",
             "proto/tpGame/gameservice",
             "proto/rummy/gameservice",

@@ -582,6 +582,7 @@ cc.Class({
   //游戏结束后显示牌型
   cradAct: function cradAct(cards, str) {
     var _this = this;
+    LoggerUtil.getInstance().log("\u7FFB\u724C cards = " + cards + " str = " + str);
     var arr = cards;
     var _loop = function _loop(i) {
       var cradNode = _this.node_cradArr[i];

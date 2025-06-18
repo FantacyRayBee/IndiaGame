@@ -47,8 +47,8 @@ cc.Class({
         this.userList = GlobalCfg.USER_DATAS.promoterMainData.rank
         this.promoterMainData = GlobalCfg.USER_DATAS.promoterMainData.this_week_player
         this.setPanel()
-        const mondayDate = this.getTodayFormatted()
-        const sundayDate = this.getTodayFormatted()
+        const mondayDate = this.getMondayOfCurrentWeek()
+        const sundayDate = this.getSundayOfCurrentWeek()
         this.txt_date.string = "Time Per: " + mondayDate + " ~ " + sundayDate;
         this.insPlayerRecords()
     },
@@ -100,18 +100,18 @@ cc.Class({
         return formattedDate;
     },
 
-    getSundayOfCurrentWeek:function() {
+    getSundayOfCurrentWeek: function() {
         const today = new Date(); // 获取当前日期
         const dayOfWeek = today.getDay(); // 获取当前是星期几（0 是周日，1 是周一，...，6 是周六）
-        const diff = today.getDate() + (6 - dayOfWeek); // 计算周日的日期差值
+        const diff = today.getDate() + (7 - dayOfWeek) % 7; // 计算本周日的日期差值
     
         const sunday = new Date(today.setDate(diff)); // 设置日期为周日
         const year = sunday.getFullYear(); // 获取年份
-        const month = String(sunday.getMonth() + 1).padStart(2, '0'); // 获取月份（注意补零）
-        const day = String(sunday.getDate()).padStart(2, '0'); // 获取日期（注意补零）
+        const month = String(sunday.getMonth() + 1).padStart(2, '0'); // 获取月份（补零）
+        const day = String(sunday.getDate()).padStart(2, '0'); // 获取日期（补零）
         const formattedDate = `${year}-${month}-${day}`;
-        console.log(formattedDate); // 例如：2023-10-05
-
+        console.log(formattedDate); // 例如：2023-10-08（本周日）
+    
         return formattedDate;
     },
 

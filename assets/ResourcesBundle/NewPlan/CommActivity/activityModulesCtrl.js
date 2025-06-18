@@ -57,6 +57,7 @@ cc.Class({
             tooltip: "按钮图标方向",
             visible: true,
         },
+        red_act: cc.Node, //活动红点
         isShow: {
             get: function () {
                 return this._isShow;
@@ -115,6 +116,9 @@ cc.Class({
                     self.btnBonusCard.node.active = true;
                 };
             };
+        }
+        if (msgId == "RefreshActivity_RedPoint") {
+            this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
         }
     },
 
@@ -231,6 +235,7 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.openModules.includes(8) || GlobalCfg.USER_DATAS.openModules.includes(9)
             || GlobalCfg.USER_DATAS.openModules.includes(10) || GlobalCfg.USER_DATAS.openModules.includes(17)) {
             this.btnActivity.node.active = true;
+            this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
         }
         else {
             this.btnActivity.node.active = false;
