@@ -42,6 +42,10 @@ export default class TpGameCtrl extends cc.Component {
      */
     private chipParent: cc.Node = null;
     /**
+     * 充值按钮
+     */
+    private btn_recharge: cc.Node = null;
+    /**
      * 总下注池位置坐标
      */
     private totalChipsPos = cc.v2(0, 150);
@@ -162,6 +166,11 @@ export default class TpGameCtrl extends cc.Component {
      */
     private defaultOptTime = 15;
 
+    /**
+     * 是否充值状态
+     */
+    private isRechargeStatus = false;
+
     onLoad() {
         this.setPosNodeArr();
         this.setChipParent();
@@ -225,6 +234,11 @@ export default class TpGameCtrl extends cc.Component {
         GlobalCfg.ACT_SCENE_CTRL = this;
         //@ts-ignore
         cc.sys.localStorage.setItem(`ENTERED_TP_GAME_${GlobalCfg.USER_DATAS.userId}`, "true");
+
+        this.btn_recharge = this.node.getChildByName("btn_recharge");
+        //@ts-ignore
+        this.btn_recharge.on("click", CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
+
     }
 
     onDestroy() {
@@ -301,6 +315,9 @@ export default class TpGameCtrl extends cc.Component {
             case "btn_chat":
                 this.dealBtnChatEvent();
                 break;
+            case "btn_recharge":
+                this.dealBtnRechargeEvent();
+                break;
             default:
                 break;
         }
@@ -315,6 +332,11 @@ export default class TpGameCtrl extends cc.Component {
         };
         //@ts-ignore
         CommonFun.getInstance().showGameWordInteraction(ownPlayerSeat);
+    }
+
+    dealBtnRechargeEvent() {
+        //@ts-ignore
+        CommonFun.getInstance().showBankruptcy(true);
     }
 
     /**
@@ -1140,8 +1162,31 @@ export default class TpGameCtrl extends cc.Component {
                 break;
             //@ts-ignore
             case GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS:
-                //@ts-ignore
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
+                if (this.isRechargeStatus == false) {
+                    //@ts-ignore
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
+                }
+                else{
+                    this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+                    this.btn_recharge.active = false;
+                    this.isRechargeStatus = false;
+                    this.refreshOwnDiamond();
+                    //@ts-ignore
+                    let global = GlobalCfg;
+                    if (global.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
+                        let coin = global.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
+                        let getBouns = global.USER_DATAS.firstGetBonus / 100 //本次充值获得的代金券
+                        global.FIRST_RECHARGE_REWARD_SHOW = false;
+                        if (getBouns > 0) {
+                            //@ts-ignore
+                            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin },{ id: 12, amount: getBouns }]);
+                        }
+                        else {
+                            //@ts-ignore
+                            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }]);
+                        }
+                    }
+                }
                 break;
             default:
                 break;
@@ -1384,6 +1429,21 @@ export default class TpGameCtrl extends cc.Component {
                 chipNode.setPosition(chipNodePos);
                 chipParent.addChild(chipNode);
             };
+        };
+    }
+
+    refreshOwnDiamond() {
+        let ownPlayerSeat = this.getOwnPlayerSeat();
+        let posNodeIndex = this.getPosNodeIndexByPlayerSeat(ownPlayerSeat);
+        //@ts-ignore
+        LoggerUtil.getInstance().log("ownPlayerSeat = ", ownPlayerSeat);
+        //@ts-ignore
+        LoggerUtil.getInstance().log("posNodeIndex = ", posNodeIndex);
+        let playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);
+        if (playerNode) {
+            let playerCtrl = playerNode.getComponent(PlayerCtrl);
+            //@ts-ignore
+            playerCtrl.setPlayerCoin(GlobalCfg.USER_DATAS.userDiamond);
         };
     }
 
@@ -1718,6 +1778,8 @@ export default class TpGameCtrl extends cc.Component {
             if (ownPlayerSeat == duringPaymentSeat) {
                 this.actBtnsCtrl.setActBtnsRechargeData(plotPayment, time, plotWinRate);
                 this.ownRechargeTipCtrl.setOwnRechargeTipTime(time);
+                this.btn_recharge.active = time > 0;
+                this.isRechargeStatus = time > 0;
             };
         }
         else if (sourceCompSeat != -1 && targetCompSeat != -1) {
@@ -2142,7 +2204,7 @@ export default class TpGameCtrl extends cc.Component {
             .to(0.3, {position: chipNodePos}, { easing: 'circOut'})
             .start();
         };
-   
+
         if (ownPlayerSeat == seat) {
             this.tableInfoCtrl.setTableInfoNodeActive(false);
             this.actBtnsCtrl.setActBtnsNodeActive(true);
@@ -2307,6 +2369,7 @@ export default class TpGameCtrl extends cc.Component {
         if (target == ownPlayerSeat || ownPlayerSeat == launch) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+
         };
     }
 
@@ -3061,6 +3124,8 @@ export default class TpGameCtrl extends cc.Component {
         if (ownPlayerSeat == seat) {
             this.actBtnsCtrl.setActBtnsRechargeData(payment, time, winRate);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(time);
+            this.btn_recharge.active = time > 0;
+            this.isRechargeStatus = true;
         };
     }
 
