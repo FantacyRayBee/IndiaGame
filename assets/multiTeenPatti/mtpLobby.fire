@@ -2425,7 +2425,7 @@
       "__id__": 45
     },
     "_name": "player",
-    "_active": true,
+    "_active": false,
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
