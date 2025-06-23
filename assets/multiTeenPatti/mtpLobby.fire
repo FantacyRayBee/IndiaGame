@@ -2425,7 +2425,7 @@
       "__id__": 45
     },
     "_name": "player",
-    "_active": false,
+    "_active": true,
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
@@ -17944,7 +17944,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "c8edc1c5-d9b7-4479-a00c-e8dfd13cd95a"
+      "__uuid__": "04a98d2c-0abd-4e6e-9ccd-adb85330df34"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

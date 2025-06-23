@@ -85,7 +85,7 @@ cc.Class({
 
     setWinNum: function (num) {
         if (num <= 0) { return };
-        let number = Math.round(num/100);
+        let number = parseFloat((num / 100).toFixed(2));
         this.lab_win.string = "+" + number;
         this.textBg.active = true;
         cc.tween(this.textBg)

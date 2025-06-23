@@ -893,7 +893,7 @@ cc.Class({
                 let Num = Math.abs(StartNum - endNum);
                 if (Num >= 1000000) { 
                     StartNum += StartNum < endNum ? 1000000 : -1000000;
-                } 
+                }
                 else if (Num >= 100000) { 
                     StartNum += StartNum < endNum ? 100000 : -100000;
                 } 

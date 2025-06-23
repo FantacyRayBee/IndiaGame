@@ -1129,7 +1129,7 @@ cc.Class({
     if (selfWin > 0) {
       var winLabel = this.selfPlayerNode.getChildByName('WinLabel').getComponent(cc.Label);
       winLabel.node.setPosition(cc.v2(0, 0));
-      winLabel.string = "+" + Math.round(selfWin / 100);
+      winLabel.string = "+" + parseFloat((selfWin / 100).toFixed(2));
       winLabel.node.active = true;
       cc.tween(winLabel.node).to(1, {
         position: cc.v2(0, 100)
