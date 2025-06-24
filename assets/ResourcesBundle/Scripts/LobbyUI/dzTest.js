@@ -10,24 +10,24 @@ cc.Class({
     },
     ctor() {
         this.initUsers = [
-            { ID: '谭轩', Name: '李嘉豪', score: 0 },
-            { ID: '常客玩家', Name: '鱼', score: 0 },
-            { ID: '王重阳', Name: '赵老师', score: 0 },
+            { ID: '谭轩', Name: '李嘉豪', score: -2380 },
+            { ID: '常客玩家', Name: '鱼', score: 680 },
+            { ID: '王重阳', Name: '赵老师', score: -1060 },
             { ID: '线上的神', Name: '东拉', score: 0 },
             // { ID: '皮卡丘', Name: '柠檬轩', score: 0 },
-            { ID: 'zzy', Name: '张哥', score: 0 },
-            { ID: '又菜又凶', Name: '赖发财', score: 0 },
-            { ID: '性感荷官', Name: '张哲', score: 0 },
-            { ID: '泡芙老板', Name: '翠花', score: 0 },
-            { ID: '上等马', Name: '小姜', score: 0 },
+            { ID: 'zzy', Name: '张哥', score: 600 },
+            { ID: '又菜又凶', Name: '赖发财', score: 1240 },
+            { ID: '性感荷官', Name: '张哲', score: 400 },
+            { ID: '泡芙老板', Name: '翠花', score: 150 },
+            { ID: '上等马', Name: '小姜', score: 400 },
             // { ID: '专业荷官', Name: '小骨', score: 0 },
             // { ID: '齐天大圣', Name: '猴子', score: 0 },
             // { ID: '独家彤话', Name: '彤彤', score: 0 },
-            { ID: '花店老板', Name: '曹俊', score: 0 },
+            { ID: '花店老板', Name: '曹准', score: -150 },
             // { ID: '充电宝', Name: '走马', score: 0 },
-            { ID: '俊俊子', Name: '胖哥', score: 0 },
-            // { ID: '纸飞机', Name: '飞机', score: 0 },
-            // { ID: '蔡徐坤', Name: '蔡徐坤', score: 0 },
+            { ID: '俊俊子', Name: '胖哥', score: 140 },
+            { ID: '纸飞机', Name: '飞机', score: 0 },
+            { ID: '蔡徐坤', Name: '蔡徐坤', score: 0 },
             // { ID: '边牧', Name: '边牧', score: 0 },
         ];
     },
@@ -45,9 +45,27 @@ cc.Class({
             this.users = this.initUsers;
             cc.sys.localStorage.setItem('ChildTable', JSON.stringify(this.users))
         } else {
-            this.users = JSON.parse(arr);
+            this.users = this.addNewUser(JSON.parse(arr));
         }
     },
+
+    //判断是否有新成员
+    addNewUser(arr) {
+        for (var i = 0; i < this.initUsers.length; i++) {
+            let isNew = false;
+            for (var j = 0; j < arr.length; j++) {
+                if (this.initUsers[i].ID == arr[j].ID) {
+                    isNew = true;
+                    break;
+                }
+            }
+            if (!isNew) {
+                arr.push(this.initUsers[i]);
+            }
+        }
+        return arr;
+    },
+
 
     btnClick: function (button) {
         var btnName = button.node.name;
@@ -92,7 +110,8 @@ cc.Class({
         // 打印数据
         let printString = '';
         for (var i = 0; i < this.users.length; i++) {
-            let strings = `ID: ${this.users[i].ID}, Name: ${this.users[i].Name}, score: ${this.users[i].score}`
+            // let strings = `ID: ${this.users[i].ID}, Name: ${this.users[i].Name}, score: ${this.users[i].score}`
+            let strings = `${this.users[i].Name},ID: ${this.users[i].ID}, ${this.users[i].score}`
             printString = printString + " " + (i + 1) + ". " + strings + "\n";
         }
         LoggerUtil.getInstance().log("S3赛季排行榜：\n", printString);
