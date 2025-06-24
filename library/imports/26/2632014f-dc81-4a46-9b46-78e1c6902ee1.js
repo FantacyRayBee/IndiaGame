@@ -211,7 +211,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             _this.addRoundInfo();
             _this.addMsgToast();
             _this.addTableInfoToast();
-            _this.addAddCash();
+            // this.addAddCash();
             _this.addLuckyPlayer();
             _this.initPlayerNodePool();
             _this.initHandCardsNodePool();
@@ -256,6 +256,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.btn_recharge = this.node.getChildByName("btn_recharge");
         //@ts-ignore
         this.btn_recharge.on("click", CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
+        this.btn_recharge.getComponent(cc.Animation).play("drop");
     };
     TpGameCtrl.prototype.onDestroy = function () {
         //@ts-ignore
@@ -298,6 +299,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             _this.setNormalPlayerNumber(0);
             _this.waitStartTipCtrl.setWaitStartTipActive(false);
             _this.luckyPlayerCtrl.setLuckyPlayerActive(false);
+            _this.btn_recharge.active = false;
         }, this);
         /**
          * 游戏切回前台事件
@@ -1301,6 +1303,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.setNormalPlayerNumber(0);
         this.waitStartTipCtrl.setWaitStartTipActive(false);
         this.luckyPlayerCtrl.setLuckyPlayerActive(false);
+        this.btn_recharge.active = false;
         var pid = notify.pid;
         var diamond = notify.diamond;
         var totalPay = notify.totalPay;
@@ -1360,11 +1363,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
         };
         this.tableInfoCtrl.setTableInfoData(tableInfo);
         this.tableInfoToastCtrl.setTableInfoToastData(tableInfo);
-        //@ts-ignore
-        if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
-            this.addCashCtrl.setAddCashStyle(conf.trial ? DataDef_1.EnumAddCashType.PRACTICE : DataDef_1.EnumAddCashType.CASH, conf);
-        }
-        ;
+        // //@ts-ignore
+        // if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
+        //     this.addCashCtrl.setAddCashStyle(conf.trial ? EnumAddCashType.PRACTICE : EnumAddCashType.CASH, conf);
+        // };
         if (matching == false && scene) {
             this.dealGameSceneMsg(scene);
         }
@@ -2168,6 +2170,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.actBtnsCtrl.setActBtnsInteractableByActValueArr([]);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
     };
@@ -2212,6 +2215,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.actBtnsCtrl.setActBtnsNodeActive(false);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
         this.actBtnsCtrl.setActBtnsShowBtnString(normalPlayerNumber == 2 ? DataDef_1.EnumShowBtnStr.SHOW : DataDef_1.EnumShowBtnStr.SIDESHOW);
@@ -2316,6 +2320,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         if (target == ownPlayerSeat || ownPlayerSeat == launch) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
     };
@@ -3036,6 +3041,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.setCurOptPlayerSeat(-1);
         this.setNormalPlayerNumber(0);
         this.luckyPlayerCtrl.setLuckyPlayerActive(false);
+        this.btn_recharge.active = false;
         var maxBlinds = conf.blind ? "Always Blind" : "4";
         var tableInfo = {
             bootAmount: conf.cellScore / 100,
@@ -3047,11 +3053,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.tableInfoCtrl.setTableInfoNodeActive(true);
         this.tableInfoToastCtrl.setTableInfoToastData(tableInfo);
         this.waitStartTipCtrl.setWaitStartTipActive(true);
-        //@ts-ignore
-        if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
-            this.addCashCtrl.setAddCashStyle(conf.trial ? DataDef_1.EnumAddCashType.PRACTICE : DataDef_1.EnumAddCashType.CASH, conf);
-        }
-        ;
+        // //@ts-ignore
+        // if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
+        //     this.addCashCtrl.setAddCashStyle(conf.trial ? EnumAddCashType.PRACTICE : EnumAddCashType.CASH, conf);
+        // };
         if (scene) {
             this.dealGameSceneMsg(scene);
         }
@@ -3104,6 +3109,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             this.actBtnsCtrl.setActBtnsInteractableByActValueArr(actValueArr);
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
         var playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);

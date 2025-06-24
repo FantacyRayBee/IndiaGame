@@ -23240,8 +23240,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivityCtrl.js"
   },
   "2d434c3a-5762-4e8b-af92-c6c9bb2aa1f7": {
-    "asset": 1750733231150,
-    "meta": 1750733247014,
+    "asset": 1750751771082,
+    "meta": 1750751771094,
     "relativePath": "tpGame\\TpGame.fire"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
@@ -23278,11 +23278,6 @@
     "asset": 1750325779965,
     "meta": 1750733248461,
     "relativePath": "tpGame\\RechargeToast\\OwnRechargeTipCtrl.ts"
-  },
-  "2632014f-dc81-4a46-9b46-78e1c6902ee1": {
-    "asset": 1750733231153,
-    "meta": 1750733246506,
-    "relativePath": "tpGame\\TpGameCtrl.ts"
   },
   "0cadb109-3d9e-422e-8750-ec86d049b84f": {
     "asset": 1750734765458,
@@ -28868,5 +28863,15 @@
     "asset": 1750744086332,
     "meta": 1750744088513,
     "relativePath": "cricketGame\\res\\bigPic\\bqzz.png"
+  },
+  "100b7bd4-943c-4133-9efd-b7dcb67dda00": {
+    "asset": 1750747081059,
+    "meta": 1750747081070,
+    "relativePath": "tpGame\\Anim\\drop.anim"
+  },
+  "2632014f-dc81-4a46-9b46-78e1c6902ee1": {
+    "asset": 1750748180019,
+    "meta": 1750748184110,
+    "relativePath": "tpGame\\TpGameCtrl.ts"
   }
 }
