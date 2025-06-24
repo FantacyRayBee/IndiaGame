@@ -98,7 +98,6 @@ var SceneManager = cc.Class({
     }
     // 从小游戏场景跳转到大厅场景
     else if (fromSceneName !== this.sceneType.UPDATE && fromSceneName !== this.sceneType.LOBBY && toSceneName === this.sceneType.LOBBY) {
-      LoggerUtil.getInstance().error("从小游戏场景跳转到大厅场景");
       GameServerManager.clientCloseServer();
       Promise.all([this.reqUserDataInfo(), this.loadBundleScene(toSceneName)]).then(function (arr) {
         var scene = arr[1];
