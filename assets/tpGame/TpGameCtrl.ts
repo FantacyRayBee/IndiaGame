@@ -3104,6 +3104,8 @@ export default class TpGameCtrl extends cc.Component {
         let seat = notify.seat;
         let payment = notify.payment;
         let winRate = notify.winRate;
+        //@ts-ignore
+        cc.sys.localStorage.setItem("TP_winRate", notify.winRate);
 
         let time = Math.floor(timeoutMs / 1000);
 

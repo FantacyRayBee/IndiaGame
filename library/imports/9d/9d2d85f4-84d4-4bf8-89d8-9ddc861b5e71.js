@@ -92,7 +92,16 @@ cc.Class({
       }
    */
   init: function init(isPLotPlay) {
-    var list = isPLotPlay ? GlobalCfg.USER_DATAS.plotPay : GlobalCfg.USER_DATAS.discoList;
+    var list = GlobalCfg.USER_DATAS.discoList;
+    if (isPLotPlay) {
+      //需要处理一下数据
+      var winRate = cc.sys.localStorage.getItem("TP_winRate", 0);
+      if (winRate == 1) {
+        list = this.dealData(GlobalCfg.USER_DATAS.plotPay);
+      } else {
+        list = GlobalCfg.USER_DATAS.plotPay;
+      }
+    }
     list = list.sort(function (a, b) {
       return a.amount - b.amount;
     });
@@ -144,6 +153,20 @@ cc.Class({
         _this2.node.destroy();
       });
     });
+  },
+  dealData: function dealData(data) {
+    if (!Array.isArray(data)) return []; // 防御：非数组直接返回空数组
+    var tmp = JSON.parse(JSON.stringify(data)); // 深拷贝
+    var ret = [];
+    for (var i = 0; i < tmp.length; i++) {
+      if (i > 0) {
+        // 跳过第一个元素（如需保留全部元素，移除此判断）
+        ret.push(tmp[i]); // 将元素推入数组
+      }
+    }
+
+    LoggerUtil.getInstance().log('dealData ret:', ret);
+    return ret; // 返回数组
   }
 });
 

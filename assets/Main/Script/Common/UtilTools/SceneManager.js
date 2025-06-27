@@ -23,7 +23,8 @@ let SceneManager = cc.Class({
             SSC: 'sscGame/',
             TEENPATTI: 'tpGame/TpGame',
             RUMMY: 'Rummy/rummy',
-            ROCKET: 'rocket/rocket',
+            // ROCKET: 'rocket/rocket',
+            ROCKET: 'rocket/aircraft',
             ZOO:'zooGame/zoo',
             CRICKET: 'cricketGame/cricket',
             ZEUS: "zeusGame/zeus",
@@ -956,6 +957,9 @@ let SceneManager = cc.Class({
                      */
                     let disco_list = msgData.disco_list ? msgData.disco_list : [];
                     let plot_pay = msgData.plot_pay ? msgData.plot_pay : [];
+
+                    LoggerUtil.getInstance().error("plot_pay", msgData.plot_pay);
+
                     let only_pay = msgData.only_pay ? msgData.only_pay : [];
                     let only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
                     /**
