@@ -29,6 +29,7 @@ cc.Class({
     var changed = GlobalCfg.USER_DATAS.changed / 100; // 变化值
     var coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
     var getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 + changed; //本次充值获得的代金券
+    LoggerUtil.getInstance().log('GlobalCfg.USER_DATAS:', GlobalCfg.USER_DATAS);
     CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
   },
   show: function show(bool) {

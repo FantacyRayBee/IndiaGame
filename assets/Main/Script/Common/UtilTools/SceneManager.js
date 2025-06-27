@@ -807,6 +807,7 @@ let SceneManager = cc.Class({
                     let in_game = msgData.in_game ? msgData.in_game : [];
     
                     let wallet = msgData.wallet;
+                   
 
                     let channel = msgData.channel ? msgData.channel : ""; 
                     /**
@@ -954,6 +955,7 @@ let SceneManager = cc.Class({
                      * superDiscount 活动列表
                      */
                     let disco_list = msgData.disco_list ? msgData.disco_list : [];
+                    let plot_pay = msgData.plot_pay ? msgData.plot_pay : [];
                     let only_pay = msgData.only_pay ? msgData.only_pay : [];
                     let only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
                     /**
@@ -1011,6 +1013,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.nextDisco = next_disco;
                     GlobalCfg.USER_DATAS.registerTime = register_time;
                     GlobalCfg.USER_DATAS.discoList = disco_list;
+                    GlobalCfg.USER_DATAS.plotPay = plot_pay;
                     GlobalCfg.USER_DATAS.onlyPay = only_pay;
                     GlobalCfg.USER_DATAS.only_pay_countDownTime = only_pay_time + Date.now();
                     GlobalCfg.USER_DATAS.only_pay_time = only_pay_time;

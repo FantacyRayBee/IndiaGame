@@ -20,7 +20,7 @@ cc.Class({
         this.roomItemType = null;
         this.roomItemData = null;
         this.btnEnterGameState = btnState.EnterGame;
-        this.teenPattiLabelPos = [cc.v2(-425, 0), cc.v2(-296, 0), cc.v2(-133, 0), cc.v2(28, 0), cc.v2(195, 0)];
+        this.teenPattiLabelPos = [cc.v2(-425, 0), cc.v2(-255, 0), cc.v2(-60, 0), cc.v2(170, 0)];
         this.rummyLabelPos = [cc.v2(-395, 0), cc.v2(-204, 0), cc.v2(-14, 0), cc.v2(199, 0)];
         this.andarLabelPos = [cc.v2(-395, 0), cc.v2(-204, 0), cc.v2(-14, 0), cc.v2(199, 0)];
         this.btnEnterState = null;
@@ -129,6 +129,7 @@ cc.Class({
         this.labAll[3].string = data.maxtablescore / 100;      // 桌面最大分数
         this.labAll[4].string = data.onlinenum;
 
+        this.labAll[3].node.active = true;
         let positions = [];
         switch (itemType) {
             case 'rummy':
@@ -146,6 +147,7 @@ cc.Class({
                 break;
             case 'teenpatti':
                 positions = [...this.teenPattiLabelPos];
+                this.labAll[3].node.active = false;
                 this.node_pot.active = (data.trial && data.isblind);
                 break;
             default:

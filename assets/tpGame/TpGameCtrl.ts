@@ -336,7 +336,7 @@ export default class TpGameCtrl extends cc.Component {
 
     dealBtnRechargeEvent() {
         //@ts-ignore
-        CommonFun.getInstance().showBankruptcy(true);
+        CommonFun.getInstance().showBankruptcy(true, true);
     }
 
     /**
@@ -1073,9 +1073,9 @@ export default class TpGameCtrl extends cc.Component {
         /**
          * 如果当前是切入到后台状态，则不处理消息
          */
-        if (this.isGameEventHideStutas) {
-            return;
-        };
+        // if (this.isGameEventHideStutas) {
+        //     return;
+        // };
         switch (msgId) {
             case "gameservice.login":
                 this.dealLoginMsg(notify);
@@ -1338,7 +1338,9 @@ export default class TpGameCtrl extends cc.Component {
         };
 
         this.setOwnPlayerPid(pid);
-      
+        //@ts-ignore
+        LoggerUtil.getInstance().error(`caojun GlobalCfg.USER_DATAS.userDiamond = ${GlobalCfg.USER_DATAS.userDiamond}`);
+        //@ts-ignore
         let playerNode = this.addPlayerNodeByPosIndex(0);
         if (playerNode) {
             let playerCtrl = playerNode.getComponent(PlayerCtrl);
@@ -1348,7 +1350,7 @@ export default class TpGameCtrl extends cc.Component {
             //@ts-ignore
             playerCtrl.setPlayerName(GlobalCfg.USER_DATAS.userName);
             //@ts-ignore
-            playerCtrl.setPlayerCoin(GlobalCfg.USER_DATAS.userDiamond);
+            playerCtrl.setPlayerCoin(diamond);
             //@ts-ignore
             playerCtrl.setPlayerHead(GlobalCfg.USER_DATAS.userHeadimgurl);
         };
@@ -1435,10 +1437,6 @@ export default class TpGameCtrl extends cc.Component {
     refreshOwnDiamond() {
         let ownPlayerSeat = this.getOwnPlayerSeat();
         let posNodeIndex = this.getPosNodeIndexByPlayerSeat(ownPlayerSeat);
-        //@ts-ignore
-        LoggerUtil.getInstance().log("ownPlayerSeat = ", ownPlayerSeat);
-        //@ts-ignore
-        LoggerUtil.getInstance().log("posNodeIndex = ", posNodeIndex);
         let playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);
         if (playerNode) {
             let playerCtrl = playerNode.getComponent(PlayerCtrl);
@@ -1619,6 +1617,8 @@ export default class TpGameCtrl extends cc.Component {
      */
     setGameSceneInfoForRunningStatus(notify: IGameSceneNotify) {
         let players = notify.players;
+        //@ts-ignore
+        LoggerUtil.getInstance().error("setGameSceneInfoForRunningStatus notplayersify = ", players);
         let banker = notify.banker;
         let curChip = notify.curChip;
         let selfBaseChip = notify.selfBaseChip;

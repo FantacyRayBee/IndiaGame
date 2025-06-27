@@ -1798,6 +1798,7 @@ let CommonFun = cc.Class({
     },
 
     _showShopNewTip: function(changed, coin, bonus){
+        LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
         let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
         shopPrefabPromise.then((prefab) => {
             let shopNode = cc.instantiate(prefab);
@@ -3031,7 +3032,7 @@ let CommonFun = cc.Class({
     /**
      * 显示破产弹窗
      */
-    showBankruptcy: function (isClick = false) {
+    showBankruptcy: function (isClick = false, isPlotPlay = false) {
         LoggerUtil.getInstance().log("caojun showBankruptcy GlobalCfg.BANKRUPT_CD:", GlobalCfg.BANKRUPT_CD);
         if (isClick == false){ //手动点击的时候不需要加入破产cd
             if (GlobalCfg.BANKRUPT_CD == 0){
@@ -3061,7 +3062,7 @@ let CommonFun = cc.Class({
                 bankruptcyNode.setScale(0.7);
             }
             let BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
-            BankruptcyGiftCtrl.init();
+            BankruptcyGiftCtrl.init(isPlotPlay);
             this.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
         });
     },

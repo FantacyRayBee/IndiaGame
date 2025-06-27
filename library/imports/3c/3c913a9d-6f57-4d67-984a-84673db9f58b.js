@@ -1795,6 +1795,7 @@ var CommonFun = cc.Class({
   },
   _showShopNewTip: function _showShopNewTip(changed, coin, bonus) {
     var _this43 = this;
+    LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
     var shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
     shopPrefabPromise.then(function (prefab) {
       var shopNode = cc.instantiate(prefab);
@@ -3002,10 +3003,13 @@ var CommonFun = cc.Class({
   /**
    * 显示破产弹窗
    */
-  showBankruptcy: function showBankruptcy(isClick) {
+  showBankruptcy: function showBankruptcy(isClick, isPlotPlay) {
     var _this76 = this;
     if (isClick === void 0) {
       isClick = false;
+    }
+    if (isPlotPlay === void 0) {
+      isPlotPlay = false;
     }
     LoggerUtil.getInstance().log("caojun showBankruptcy GlobalCfg.BANKRUPT_CD:", GlobalCfg.BANKRUPT_CD);
     if (isClick == false) {
@@ -3037,7 +3041,7 @@ var CommonFun = cc.Class({
         bankruptcyNode.setScale(0.7);
       }
       var BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
-      BankruptcyGiftCtrl.init();
+      BankruptcyGiftCtrl.init(isPlotPlay);
       _this76.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
     });
   },

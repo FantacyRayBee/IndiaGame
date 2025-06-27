@@ -349,7 +349,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
     };
     TpGameCtrl.prototype.dealBtnRechargeEvent = function () {
         //@ts-ignore
-        CommonFun.getInstance().showBankruptcy(true);
+        CommonFun.getInstance().showBankruptcy(true, true);
     };
     /**
      * 实例化玩家节点对象池
@@ -1057,10 +1057,9 @@ var TpGameCtrl = /** @class */ (function (_super) {
         /**
          * 如果当前是切入到后台状态，则不处理消息
          */
-        if (this.isGameEventHideStutas) {
-            return;
-        }
-        ;
+        // if (this.isGameEventHideStutas) {
+        //     return;
+        // };
         switch (msgId) {
             case "gameservice.login":
                 this.dealLoginMsg(notify);
@@ -1324,6 +1323,9 @@ var TpGameCtrl = /** @class */ (function (_super) {
         }
         ;
         this.setOwnPlayerPid(pid);
+        //@ts-ignore
+        LoggerUtil.getInstance().error("caojun GlobalCfg.USER_DATAS.userDiamond = " + GlobalCfg.USER_DATAS.userDiamond);
+        //@ts-ignore
         var playerNode = this.addPlayerNodeByPosIndex(0);
         if (playerNode) {
             var playerCtrl = playerNode.getComponent(PlayerCtrl_1.default);
@@ -1333,7 +1335,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             //@ts-ignore
             playerCtrl.setPlayerName(GlobalCfg.USER_DATAS.userName);
             //@ts-ignore
-            playerCtrl.setPlayerCoin(GlobalCfg.USER_DATAS.userDiamond);
+            playerCtrl.setPlayerCoin(diamond);
             //@ts-ignore
             playerCtrl.setPlayerHead(GlobalCfg.USER_DATAS.userHeadimgurl);
         }
@@ -1412,10 +1414,6 @@ var TpGameCtrl = /** @class */ (function (_super) {
     TpGameCtrl.prototype.refreshOwnDiamond = function () {
         var ownPlayerSeat = this.getOwnPlayerSeat();
         var posNodeIndex = this.getPosNodeIndexByPlayerSeat(ownPlayerSeat);
-        //@ts-ignore
-        LoggerUtil.getInstance().log("ownPlayerSeat = ", ownPlayerSeat);
-        //@ts-ignore
-        LoggerUtil.getInstance().log("posNodeIndex = ", posNodeIndex);
         var playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);
         if (playerNode) {
             var playerCtrl = playerNode.getComponent(PlayerCtrl_1.default);
@@ -1586,6 +1584,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
      */
     TpGameCtrl.prototype.setGameSceneInfoForRunningStatus = function (notify) {
         var players = notify.players;
+        //@ts-ignore
+        LoggerUtil.getInstance().error("setGameSceneInfoForRunningStatus notplayersify = ", players);
         var banker = notify.banker;
         var curChip = notify.curChip;
         var selfBaseChip = notify.selfBaseChip;

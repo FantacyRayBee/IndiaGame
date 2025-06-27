@@ -190,6 +190,7 @@ export default class PlayerCtrl extends cc.Component {
      * @param coin 玩家金币
      */
     setPlayerCoin(coin: number) {
+
         if (coin >= 0) {
             //@ts-ignore
             this.lab_coin.string = `${CommonFun.getInstance().numberToShow(coin / 100)}`;

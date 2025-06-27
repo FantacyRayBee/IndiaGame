@@ -94,9 +94,10 @@ cc.Class({
             bool plot = 5;      // 暂无意义，默认false
         }
      */
-    init() {
-        GlobalCfg.USER_DATAS.discoList = GlobalCfg.USER_DATAS.discoList.sort((a,b) => a.amount - b.amount);
-        let options = [...GlobalCfg.USER_DATAS.discoList];
+    init(isPLotPlay) {
+        let list = isPLotPlay ? GlobalCfg.USER_DATAS.plotPay : GlobalCfg.USER_DATAS.discoList
+        list = list.sort((a,b) => a.amount - b.amount);
+        let options = [...list];
         let curIndex = this.getLowerOptionIndexByLastRecharge(options, GlobalCfg.USER_DATAS.lastRecharged);
         let curIndex2 = this.getLowerOptionIndexByAllRecharge(options, GlobalCfg.USER_DATAS.recharged);
         curIndex = curIndex2 > curIndex ? curIndex2 : curIndex;

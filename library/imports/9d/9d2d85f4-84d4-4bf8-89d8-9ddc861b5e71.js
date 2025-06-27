@@ -91,11 +91,12 @@ cc.Class({
           bool plot = 5;      // 暂无意义，默认false
       }
    */
-  init: function init() {
-    GlobalCfg.USER_DATAS.discoList = GlobalCfg.USER_DATAS.discoList.sort(function (a, b) {
+  init: function init(isPLotPlay) {
+    var list = isPLotPlay ? GlobalCfg.USER_DATAS.plotPay : GlobalCfg.USER_DATAS.discoList;
+    list = list.sort(function (a, b) {
       return a.amount - b.amount;
     });
-    var options = [].concat(GlobalCfg.USER_DATAS.discoList);
+    var options = [].concat(list);
     var curIndex = this.getLowerOptionIndexByLastRecharge(options, GlobalCfg.USER_DATAS.lastRecharged);
     var curIndex2 = this.getLowerOptionIndexByAllRecharge(options, GlobalCfg.USER_DATAS.recharged);
     curIndex = curIndex2 > curIndex ? curIndex2 : curIndex;

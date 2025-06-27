@@ -876,36 +876,36 @@ cc.Class({
             }
         };
         //自动下载小游戏
-        // if (needUpdataArr.length > 0) {
-        //     let gameSubPackageNames = {
-        //         "minirocket": "rocket",
-        //         "minijhandimunda": "munda",
-        //         "miniteenpatti": "tpGame",
-        //         "miniteenpattibaccarat": "baccarat3PattiGame",
-        //         "miniandar": "andaerGame",
-        //         "minilonghu": "lhdGame",
-        //         "minishuiguo": "fruitMachine",
-        //         "minimaya": "mayaMachine",
-        //         "miniclown": "jokerMachine",
-        //         "miniindia": "indiaMachine",
-        //         "minivampire": "vampireMachine",
-        //         "minibull": "bullMachine",
-        //         "minisaima": "horseRaceGame",
-        //         "minibenzbmw": "Benz",
-        //         "minirummy": "Rummy",
-        //         "miniseven": "7up7downGame",
-        //         "minizoo": "zooGame",
-        //         "minicricket": "cricketGame",
-        //         "miniluckyloto": "sscGame",
-        //         "minizeus": "zeusGame",
-        //     };
-        //     for (let i = 0, len = this.gameUpdateDownloadOrder.length; i < len; i++) {
-        //         let element = this.gameUpdateDownloadOrder[i];
-        //         if (gameSubPackageNames[element] && needUpdataArr.indexOf(gameSubPackageNames[element]) != -1) {
-        //             GameDownloader.getInstance().commonLoadGame(gameSubPackageNames[element]);
-        //         };
-        //     };
-        // };
+        if (needUpdataArr.length > 0) {
+            let gameSubPackageNames = {
+                "minirocket": "rocket",
+                "minijhandimunda": "munda",
+                "miniteenpatti": "tpGame",
+                "miniteenpattibaccarat": "baccarat3PattiGame",
+                "miniandar": "andaerGame",
+                "minilonghu": "lhdGame",
+                "minishuiguo": "fruitMachine",
+                "minimaya": "mayaMachine",
+                "miniclown": "jokerMachine",
+                "miniindia": "indiaMachine",
+                "minivampire": "vampireMachine",
+                "minibull": "bullMachine",
+                "minisaima": "horseRaceGame",
+                "minibenzbmw": "Benz",
+                "minirummy": "Rummy",
+                "miniseven": "7up7downGame",
+                "minizoo": "zooGame",
+                "minicricket": "cricketGame",
+                "miniluckyloto": "sscGame",
+                "minizeus": "zeusGame",
+            };
+            for (let i = 0, len = this.gameUpdateDownloadOrder.length; i < len; i++) {
+                let element = this.gameUpdateDownloadOrder[i];
+                if (gameSubPackageNames[element] && needUpdataArr.indexOf(gameSubPackageNames[element]) != -1) {
+                    GameDownloader.getInstance().commonLoadGame(gameSubPackageNames[element]);
+                };
+            };
+        };
 
         let languagesType = I18NUtil.getInstance().getLanguageType();
         this.setSmallGameBtnByLanguageType(languagesType);
