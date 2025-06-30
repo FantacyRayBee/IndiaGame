@@ -75,8 +75,8 @@
     "relativePath": "ResourcesBundle"
   },
   "0775218b-43c3-419e-9195-96bce442d4ca": {
-    "asset": 1751005025925,
-    "meta": 1751005059614,
+    "asset": 1751263072633,
+    "meta": 1751263092103,
     "relativePath": "rocket"
   },
   "f1629d96-2d88-4106-812d-56de347e56f4": {
@@ -95,8 +95,8 @@
     "relativePath": "teenPatti"
   },
   "7ad5797f-fbaa-4e97-b88d-16b4f3247a23": {
-    "asset": 1750752259799,
-    "meta": 1750752292580,
+    "asset": 1751263072637,
+    "meta": 1751263092104,
     "relativePath": "tpGame"
   },
   "faaef6f1-6f01-4539-81d9-59932688893f": {
@@ -945,8 +945,8 @@
     "relativePath": "ResourcesBundle\\res"
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
-    "asset": 1750751906363,
-    "meta": 1750752293216,
+    "asset": 1751263072605,
+    "meta": 1751263092359,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -975,8 +975,8 @@
     "relativePath": "rocket\\res"
   },
   "1964eff1-68db-46b0-85ac-a9f1138a56ee": {
-    "asset": 1751005001978,
-    "meta": 1751005059616,
+    "asset": 1751263072630,
+    "meta": 1751263092360,
     "relativePath": "rocket\\Scripts"
   },
   "eeef25ac-93ef-4201-8e43-ea568e9277d1": {
@@ -1080,8 +1080,8 @@
     "relativePath": "teenPatti\\src"
   },
   "e9a886c5-baa7-4da2-8ca6-e40af903764b": {
-    "asset": 1728960023401,
-    "meta": 1743401023713,
+    "asset": 1751263072634,
+    "meta": 1751263092361,
     "relativePath": "tpGame\\ActBtns"
   },
   "35f4bd8b-cd42-47f6-9802-3742529c882f": {
@@ -1095,8 +1095,8 @@
     "relativePath": "tpGame\\Base"
   },
   "7e0fe572-4aaa-415b-b319-b4991ce39e2d": {
-    "asset": 1728960023454,
-    "meta": 1743401023714,
+    "asset": 1751263072635,
+    "meta": 1751263092362,
     "relativePath": "tpGame\\BetInfo"
   },
   "f858d2dd-6d2b-4302-be62-44f9adc34e6a": {
@@ -1145,8 +1145,8 @@
     "relativePath": "tpGame\\RechargeToast"
   },
   "ff03ad29-bd14-4f67-95e0-df72821853c8": {
-    "asset": 1728960023867,
-    "meta": 1743401023770,
+    "asset": 1751263072635,
+    "meta": 1751263092362,
     "relativePath": "tpGame\\RoundInfo"
   },
   "5f7dd5e9-ddd0-4689-bd4c-1fbe840bbc5f": {
@@ -6240,8 +6240,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode"
   },
   "08cc129a-99d3-41b8-a5a0-606cea80a028": {
-    "asset": 1747892398842,
-    "meta": 1748417600377,
+    "asset": 1751015537352,
+    "meta": 1751263092858,
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift"
   },
   "fb5eb44f-6100-4c15-aa0e-3c5cc8872fbb": {
@@ -6565,8 +6565,8 @@
     "relativePath": "ResourcesBundle\\res\\smallGame"
   },
   "ae696d2f-1780-4884-b824-98f2569a85bd": {
-    "asset": 1750751906364,
-    "meta": 1750752295929,
+    "asset": 1751263072606,
+    "meta": 1751263092861,
     "relativePath": "ResourcesBundle\\Scripts\\LobbyUI"
   },
   "b5bcc961-923c-4205-8b2a-3dfaa7ed9b2a": {
@@ -6688,11 +6688,6 @@
     "asset": 1724821647000,
     "meta": 1743401029579,
     "relativePath": "rocket\\Scripts\\RocketAudioManager.js"
-  },
-  "8e08f2ba-cf76-43fd-9850-bec5d41df31e": {
-    "asset": 1724821647000,
-    "meta": 1743401029585,
-    "relativePath": "rocket\\Scripts\\RocketCenterRate.js"
   },
   "de9e658c-69bf-4d2d-a46a-5ab770ea0a31": {
     "asset": 1743415973485,
@@ -7760,8 +7755,8 @@
     "relativePath": "teenPatti\\sound\\shanDian.mp3"
   },
   "782cd815-321e-437a-ad77-223b3ce88061": {
-    "asset": 1724821647000,
-    "meta": 1743401031033,
+    "asset": 1751263072635,
+    "meta": 1751263093136,
     "relativePath": "tpGame\\BetInfo\\BetInfoCtrl.ts"
   },
   "3dc32854-dd7c-4cc2-ac71-f55e5def271a": {
@@ -7811,7 +7806,7 @@
   },
   "35b4eba1-6b4d-4614-966c-5ca5344a0292": {
     "asset": 1724821647000,
-    "meta": 1743401031065,
+    "meta": 1751263093217,
     "relativePath": "tpGame\\BetInfo\\BetInfo.prefab"
   },
   "ed6669e6-0ebf-4a3d-8395-f0a36c85e1b0": {
@@ -7960,8 +7955,8 @@
     "relativePath": "tpGame\\RechargeToast\\res"
   },
   "989d0023-3a08-4673-b3b5-782b5dd5ad84": {
-    "asset": 1724821647000,
-    "meta": 1743401031263,
+    "asset": 1751263072635,
+    "meta": 1751263093146,
     "relativePath": "tpGame\\RoundInfo\\RoundInfoCtrl.ts"
   },
   "a06e527f-e986-4444-8e3c-33453e5c75ff": {
@@ -10190,8 +10185,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1750325793549,
-    "meta": 1750752296939,
+    "asset": 1751263072601,
+    "meta": 1751263093154,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
@@ -21231,17 +21226,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1751005059706,
+    "meta": 1751263093609,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1751005059705,
+    "meta": 1751263093613,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1751005059704,
+    "meta": 1751263093610,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -21266,7 +21261,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1751005059705,
+    "meta": 1751263093612,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -21281,7 +21276,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1751005059703,
+    "meta": 1751263093615,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -21291,7 +21286,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1751005059708,
+    "meta": 1751263093616,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -21301,7 +21296,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1751005059708,
+    "meta": 1751263093614,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -21316,7 +21311,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1751005059711,
+    "meta": 1751263093618,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -21341,7 +21336,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1751005059709,
+    "meta": 1751263093620,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -21356,7 +21351,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1751005059711,
+    "meta": 1751263093621,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -21366,7 +21361,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1751005059710,
+    "meta": 1751263093624,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -21401,12 +21396,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1751005059712,
+    "meta": 1751263093624,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1751005059713,
+    "meta": 1751263093625,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -22326,7 +22321,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1737357038117,
-    "meta": 1751005059714,
+    "meta": 1751263093626,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
@@ -24791,7 +24786,7 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1743391864212,
-    "meta": 1751005059719,
+    "meta": 1751263093631,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "af802f07-ef3d-404f-8016-4c4ead749feb": {
@@ -24801,7 +24796,7 @@
   },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1743391864206,
-    "meta": 1751005059718,
+    "meta": 1751263093627,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
   },
   "b1df4b90-791e-4d29-a9d1-b6a0fc9fdcb9": {
@@ -24826,12 +24821,12 @@
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1743391864181,
-    "meta": 1751005059716,
+    "meta": 1751263093628,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1743391864211,
-    "meta": 1751005059720,
+    "meta": 1751263093632,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "8ddc87ee-ee4a-49bd-b2a2-b0b2917e22fc": {
@@ -24851,12 +24846,12 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1743391864181,
-    "meta": 1751005059716,
+    "meta": 1751263093628,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1743391864181,
-    "meta": 1751005059717,
+    "meta": 1751263093629,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
   },
   "652ba1d0-dd36-4ab8-aca8-496a181d7227": {
@@ -24961,7 +24956,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1743391864187,
-    "meta": 1751005059718,
+    "meta": 1751263093629,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "7a241750-4b99-4026-a977-2d71ddbc3038": {
@@ -24976,7 +24971,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1743391864187,
-    "meta": 1751005059720,
+    "meta": 1751263093633,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "85f8c995-21fd-4a75-a710-535f628606cd": {
@@ -24986,12 +24981,12 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1743391864187,
-    "meta": 1751005059721,
+    "meta": 1751263093634,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1743391864187,
-    "meta": 1751005059723,
+    "meta": 1751263093634,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "1e39b532-7ce2-4248-a526-8a07f492fe22": {
@@ -25001,7 +24996,7 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1743391864187,
-    "meta": 1751005059722,
+    "meta": 1751263093635,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "1ba3209c-364d-488d-83a1-8d375861db8c": {
@@ -25011,7 +25006,7 @@
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1743391864188,
-    "meta": 1751005059722,
+    "meta": 1751263093635,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -25021,7 +25016,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1743391864187,
-    "meta": 1751005059727,
+    "meta": 1751263093636,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -25031,7 +25026,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1743391864188,
-    "meta": 1751005059728,
+    "meta": 1751263093637,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -25041,7 +25036,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1743391864207,
-    "meta": 1751005059728,
+    "meta": 1751263093637,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "b8156e81-ec1d-4306-a6e2-c62ba3058b2b": {
@@ -25061,7 +25056,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1743415973446,
-    "meta": 1751005059719,
+    "meta": 1751263093631,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "eb149c8e-a00b-486a-81b0-0cbde6cb7d7d": {
@@ -25091,7 +25086,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1743415973460,
-    "meta": 1751005059715,
+    "meta": 1751263093630,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "a5f88e66-1b8a-4fc8-a854-2104b5a3938d": {
@@ -25645,8 +25640,8 @@
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\btn_gameEntry.prefab"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1750751906360,
-    "meta": 1750752295947,
+    "asset": 1751263072605,
+    "meta": 1751263093222,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "66ad10d3-034f-448d-812b-5db931a14829": {
@@ -26661,7 +26656,7 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1743391864181,
-    "meta": 1751005059714,
+    "meta": 1751263093626,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "d5f577e2-9631-4686-a663-f93c71be8964": {
@@ -28650,8 +28645,8 @@
     "relativePath": "Main\\Script\\Common\\Net\\GameServerManager.js"
   },
   "52a0a651-14d9-4f38-91cf-8fcaa717b14d": {
-    "asset": 1750993384955,
-    "meta": 1751005059614,
+    "asset": 1751263072609,
+    "meta": 1751263092103,
     "relativePath": "aircraft"
   },
   "c69c0d9f-c217-4399-8835-02799e9bd64c": {
@@ -28660,8 +28655,8 @@
     "relativePath": "aircraft\\prefab"
   },
   "e0b261bc-e281-4cbd-8b32-b178ca845ea4": {
-    "asset": 1751003849181,
-    "meta": 1751005059615,
+    "asset": 1751263072629,
+    "meta": 1751263092106,
     "relativePath": "aircraft\\res"
   },
   "a0aef190-c86e-43c1-be85-7a8cd133c2be": {
@@ -28780,8 +28775,8 @@
     "relativePath": "ResourcesBundle\\common\\font\\font_win.png"
   },
   "6566657d-1e6e-4c76-873e-27f72cfabffd": {
-    "asset": 1750751906364,
-    "meta": 1750752297555,
+    "asset": 1751263072606,
+    "meta": 1751263093211,
     "relativePath": "ResourcesBundle\\Scripts\\LobbyUI\\dzTest.js"
   },
   "626cefa8-b2ac-4258-875d-9e38966d6e87": {
@@ -28830,8 +28825,8 @@
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   },
   "ef549240-7c0b-4761-8d33-57bd594e60d7": {
-    "asset": 1750752996347,
-    "meta": 1750753059835,
+    "asset": 1751263072634,
+    "meta": 1751263093126,
     "relativePath": "tpGame\\ActBtns\\ActBtnsCtrl.ts"
   },
   "e9e65f3c-68ee-42f1-adb8-e00a52a5c894": {
@@ -28860,108 +28855,123 @@
     "relativePath": "ResourcesBundle\\NewPlan\\AdvancedMode\\AdvancedModeCtrl.js"
   },
   "ed0e5c19-063d-4038-a950-67c277a6c4b6": {
-    "asset": 1750990050646,
-    "meta": 1750990093837,
+    "asset": 1751263072618,
+    "meta": 1751263092829,
     "relativePath": "aircraft\\res\\btn1.png"
   },
   "7f520c15-2896-455f-b8d8-c452a2e6bd65": {
-    "asset": 1750990050646,
-    "meta": 1750990070733,
+    "asset": 1751263072611,
+    "meta": 1751263092833,
     "relativePath": "aircraft\\res\\back.png"
   },
   "96790541-4f55-423f-a334-ad3a0372866f": {
-    "asset": 1750990050646,
-    "meta": 1750990096145,
+    "asset": 1751263072619,
+    "meta": 1751263092835,
     "relativePath": "aircraft\\res\\btn2.png"
   },
   "862d745e-a527-4081-ac47-c33ff687dd64": {
-    "asset": 1750990050646,
-    "meta": 1750990119598,
+    "asset": 1751263072628,
+    "meta": 1751263092849,
     "relativePath": "aircraft\\res\\toggle2.png"
   },
   "bb9240e1-0490-462f-820a-f1e8a5e517a6": {
-    "asset": 1750990050647,
-    "meta": 1750990111988,
+    "asset": 1751263072627,
+    "meta": 1751263092842,
     "relativePath": "aircraft\\res\\toggle.png"
   },
   "2da3a8df-1461-4b5c-8255-d634d9082a93": {
-    "asset": 1750990050646,
-    "meta": 1750990108713,
+    "asset": 1751263072626,
+    "meta": 1751263092840,
     "relativePath": "aircraft\\res\\logo3.png"
   },
   "b59b22ee-aa57-4bcf-9c6e-edec12478d96": {
-    "asset": 1750990050646,
-    "meta": 1750990066168,
+    "asset": 1751263072624,
+    "meta": 1751263092839,
     "relativePath": "aircraft\\res\\logo.png"
   },
   "24926a3b-c254-4b45-bdbf-395885da1534": {
-    "asset": 1750990050647,
-    "meta": 1750990104731,
+    "asset": 1751263072625,
+    "meta": 1751263092838,
     "relativePath": "aircraft\\res\\logo2.png"
   },
   "31bbe72d-b71f-4224-a3f1-2adc2fca9862": {
-    "asset": 1722828796000,
-    "meta": 1750993332259,
+    "asset": 1751263072621,
+    "meta": 1751263092831,
     "relativePath": "aircraft\\res\\jindutiao.png"
   },
   "2687cc80-cd12-4026-a964-22554e7d6155": {
-    "asset": 1722828767000,
-    "meta": 1750993336896,
+    "asset": 1751263072622,
+    "meta": 1751263092837,
     "relativePath": "aircraft\\res\\jindutiao2.png"
   },
   "6a5fcce1-f52f-4617-8ee0-5e46fbcb191d": {
-    "asset": 1751005008831,
-    "meta": 1751005008844,
+    "asset": 1751265836193,
+    "meta": 1751265836201,
     "relativePath": "aircraft\\aircraft.fire"
   },
   "4f7466d2-8e99-463e-ac2f-aa7996972aa5": {
-    "asset": 1750993409146,
-    "meta": 1750993411361,
+    "asset": 1751263072617,
+    "meta": 1751263093150,
     "relativePath": "aircraft\\res\\bg.png"
   },
   "16c944a9-de37-4071-8238-062ad389f18a": {
-    "asset": 1751003986328,
-    "meta": 1751003986340,
+    "asset": 1751263072610,
+    "meta": 1751263093224,
     "relativePath": "aircraft\\res\\anim\\rotate.anim"
   },
   "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1751004588000,
-    "meta": 1751004608736,
+    "asset": 1751263072601,
+    "meta": 1751263093576,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
   "75131999-d098-4bb3-a686-081b2cbceaed": {
-    "asset": 1751006049563,
-    "meta": 1751006049575,
+    "asset": 1751272555191,
+    "meta": 1751272555205,
     "relativePath": "rocket\\aircraft.fire"
   },
   "5c9bd7e3-b0a0-4218-8c0c-8009ef3302c8": {
-    "asset": 1751003849188,
-    "meta": 1751005059617,
+    "asset": 1751263072610,
+    "meta": 1751263092797,
     "relativePath": "aircraft\\res\\anim"
-  },
-  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
-    "asset": 1751006177906,
-    "meta": 1751006478028,
-    "relativePath": "rocket\\Scripts\\Aircraft.js"
   },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
     "asset": 1751012180086,
-    "meta": 1751012181713,
+    "meta": 1751263092358,
     "relativePath": "Main\\Global.js"
   },
   "2632014f-dc81-4a46-9b46-78e1c6902ee1": {
-    "asset": 1751014329470,
-    "meta": 1751014466141,
+    "asset": 1751263072637,
+    "meta": 1751263092796,
     "relativePath": "tpGame\\TpGameCtrl.ts"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
     "asset": 1751014765538,
-    "meta": 1751014798142,
+    "meta": 1751263093492,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
   "9d2d85f4-84d4-4bf8-89d8-9ddc861b5e71": {
-    "asset": 1751015430136,
-    "meta": 1751015431704,
+    "asset": 1751015557330,
+    "meta": 1751263093188,
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
+  },
+  "8e08f2ba-cf76-43fd-9850-bec5d41df31e": {
+    "asset": 1751265043429,
+    "meta": 1751265321454,
+    "relativePath": "rocket\\Scripts\\RocketCenterRate.js"
+  },
+  "0740c6a1-a9ca-4364-9ef2-df8b60805404": {
+    "asset": 1751268696167,
+    "meta": 1751268696176,
+    "relativePath": "aircraft\\res\\anim\\rotate2.anim"
+  },
+  "d0ec1eac-f575-4976-b430-c59ef8c23d60": {
+    "asset": 1751272302885,
+    "meta": 1751272307034,
+    "relativePath": "rocket\\Scripts\\AircraftCenterRate.js"
+  },
+  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
+    "asset": 1751273120995,
+    "meta": 1751273128216,
+    "relativePath": "rocket\\Scripts\\Aircraft.js"
   }
 }

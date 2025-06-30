@@ -19,11 +19,10 @@ cc.Class({
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
 
+        background: cc.Node,
+
         // waitLayer
         timerBar: cc.ProgressBar,
-        betArea: cc.Node,
-        labSelfBet: cc.Label,
-        labAllBet: cc.Label,
 
         // during Game
         horizontalLine: cc.Node,
@@ -65,7 +64,6 @@ cc.Class({
         this.lineTimeMarkOffsetX = 1000;         // 时间线标记偏移量
         this.lineRateMarkOffsetY = 125;         // 比率线标记偏移量
 
-        this.betCoinNodeArray = [];            // 存放下注金币的节点数组
         this.timeMarkNodeArray = [];           // 存放时间线标记的节点数组
         this.rateMarkNodeArray = [];           // 存放比率线标记的节点数组
         this.rectTrendNodeArray = [];          // 存放矩形走势的节点数组
@@ -73,8 +71,8 @@ cc.Class({
         this.pointRecordDataList = [];          // 存放点记录的数组
 
         this.drawLine = false;                  // 是否绘制线
-        this.constStartPosX = -540;               // 矩形走势起点X坐标
-        this.constStartPosY = -148;               // 矩形走势起点Y坐标
+        this.constStartPosX = -540;               // 走势起点X坐标
+        this.constStartPosY = -148;               // 走势起点Y坐标
         this.drawPosX = -540;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
@@ -135,11 +133,6 @@ cc.Class({
         this.isFlying = false;
         this.isMoveTimeMark = false;
         this.isMoveRateMark = false;
-        for (let i = 0; i < this.betCoinNodeArray.length; i++) {
-            let coin = this.betCoinNodeArray[i];
-            this.removeJbNode(coin);
-        }
-        this.betCoinNodeArray.length = 0;
         this.numSelfBet = 0;
         this.numAllBet = 0;
     },
@@ -150,7 +143,6 @@ cc.Class({
 
 
     initialization() {
-        this.initJbPool();
         this.initLineMark(this.horizontalLine, "time");
         this.initLineMark(this.variableLine, "rate");
         this.defaultLayer = this.node.getChildByName('defaultLayer');
@@ -176,7 +168,6 @@ cc.Class({
         this.btnPlayerList.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnBottomTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.betArea.on('click', this.btnClick, this);
         this.btnReBet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnReBet.interactable = false;
 
@@ -196,11 +187,12 @@ cc.Class({
             for (let i = 0; i < count; i++) {
                 let node = cc.instantiate(prefabAsset);
                 if (type == "time") {
-                    node.setPosition(cc.v2(originX + this.lineTimeMarkOffsetX * i, originY));
-                    node.getChildByName('Label').getComponent(cc.Label).string = i * 2 + 's';
+                    node.setPosition(cc.v2(originX + 200 * i, originY));
+                    node.getChildByName('Label').active = false;
+
                 } else if (type == "rate") {
                     node.setPosition(cc.v2(originX, originY + this.lineRateMarkOffsetY * i));
-                    node.getChildByName('Label').getComponent(cc.Label).string = Number(1 + i * 0.2).toFixed(1) + 'x';
+                    // node.getChildByName('Label').getComponent(cc.Label).string = Number(1 + i * 0.2).toFixed(1) + 'x';
                 }
                 parentNode.addChild(node);
                 nodeArray.push(node);
@@ -210,7 +202,7 @@ cc.Class({
         switch (type) {
             case "time":
                 originX = -600, originY = -3;
-                func(8, this.prefabTimeMark, originX, originY, type, directionLineNode, this.timeMarkNodeArray);
+                func(16, this.prefabTimeMark, originX, originY, type, directionLineNode, this.timeMarkNodeArray);
                 break;
             case "rate":
                 originX = -8, originY = -249;
@@ -258,7 +250,6 @@ cc.Class({
 
 
     freshGameData() {
-        this.betCoinNodeArray = [];            // 存放下注金币的节点数组
         this.timeMarkNodeArray = [];           // 存放时间线标记的节点数组
         this.rateMarkNodeArray = [];           // 存放比率线标记的节点数组
         this.rectTrendNodeArray = [];          // 存放矩形走势的节点数组
@@ -296,24 +287,11 @@ cc.Class({
         else if (msgId == 'gameservice.bet') {
             // 下注
             self.rocketAudioManager.playGameSound('mytouCoin', false);
-            let fromPos = self.selfPlayer.getPosition();
-            self.moveCoinToBetArea(fromPos);
-            let amount = notify.amount;              // 金额
             let totalChip = notify.totalChip;        // 个人总下注
             let poolChip = notify.poolChip;
             let after = notify.after;
 
             GlobalCfg.USER_DATAS.userDiamond = after;
-            if(self.numSelfBet < totalChip){
-                cc.tween(self.labSelfBet.node)
-                    .to(0.1, {scale: 1.2})
-                    .to(0.1, {scale: 1})
-                    .start();
-                cc.tween(self.labAllBet.node)
-                    .to(0.1, {scale: 1.2})
-                    .to(0.1, {scale: 1})
-                    .start();
-            }
             self.numSelfBet = totalChip;
             self.numAllBet = poolChip;
             self.setBetLabelInfo();
@@ -343,7 +321,7 @@ cc.Class({
         }
         else if (msgId == 'gameservice.cashnotify') {
             // 有人领取通知
-            self.dealPlayerGetOut(notify);
+            // self.dealPlayerGetOut(notify);
         }
         else if (msgId == 'gameservice.startbettingnotify') {
             // 开始下注阶段通知
@@ -369,7 +347,6 @@ cc.Class({
                 LoggerUtil.getInstance().log("Is In Hide");
                 return;
             }
-            let betAdd = notify.betAdd;
             let betPool = notify.betPool;
             let jackpotPool = notify.jackpotPool;
             if (jackpotPool) {
@@ -377,18 +354,6 @@ cc.Class({
             }
             self.numAllBet = betPool;
             self.setBetLabelInfo();
-
-            if (betAdd > 0) {
-                let fromPos = self.btnPlayerList.node.getPosition();
-                cc.tween(self.btnPlayerList.node)
-                    .to(0.1, {position: cc.v2(fromPos.x, 20)})
-                    .to(0.1, {position: cc.v2(fromPos.x, 0)})
-                    .start();
-                for (let i = 0; i < 5; i++) {
-                    self.moveCoinToBetArea(fromPos);
-                }
-                self.rocketAudioManager.playGameSound('otherCoin', false);
-            }
         }
         else if (msgId == 'gameservice.updatecoinnotify') {
             // 货币更新广播
@@ -517,9 +482,6 @@ cc.Class({
             this.choiceBetButton(event, this.nodeBtnBetSelect);
             this.curSingleNote = this.btnBetCoinNum[4];
         }
-        else if (name == this.betArea.name) {
-            this.clickBtnBetCallback(this.curSingleNote);
-        }
         else if (name == this.btnReBet.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             let num = this.preRoundBetNum;
@@ -599,7 +561,6 @@ cc.Class({
                 case 0:
                     // 下注状态
                     this.isDuringBet = true;
-                    this.labAllBet.string = betPool / 100;
                     if (this.rocketAudioManager.curMusicName == 'betBgMusic') {
                         this.rocketAudioManager.resumeMusic();
                     } else {
@@ -620,6 +581,7 @@ cc.Class({
                     this.freshWaitLayer(false);
                     this.dealFlyState(curPoint);
                     this.btnReBet.interactable = false;
+                    this.background.getComponent(cc.Animation).play("rotate"); // 背景旋转
                     if (cashPoint) {
                         // 已领取
                         this.getDownNode.getChildByName('labRate').getComponent(cc.Label).string = (cashPoint.mul / 1000).toFixed(2) + "X";
@@ -633,12 +595,8 @@ cc.Class({
                         this.getDownNode.active = false;
                         this.unGetDownNode.active = false;
                         if (chip > 0) {
-                            this.labSelfBet.node.color = new cc.Color(254, 253, 1, 1);
                             this.unGetDownNode.active = true;
-                        } else {
-                            this.labSelfBet.node.color = new cc.Color(255, 255, 255, 255);
                         }
-
                     }
                     break;
                 case 2:
@@ -707,11 +665,7 @@ cc.Class({
             }
             let currentY = this.constStartPosY + Math.pow(x, 2) / 10 * this.lineRateMarkOffsetY * 5;
             let deltaX = (unitTime / 2) * this.lineTimeMarkOffsetX;
-            let deltaY = currentY - frontY;
-            let rate = 1 + Math.pow(x, 2) / 10;
             this.drawPosX += deltaX;
-            let angle = Math.atan(deltaY / deltaX) * 180 / Math.PI;
-            this.flyRocketNode.angle = -90 + angle;
             this.flyRocketNode.setPosition(this.drawPosX, currentY);
             this.graphicsDrawLine.lineTo(this.drawPosX, currentY);
             this.graphicsDrawLine.stroke();
@@ -879,10 +833,7 @@ cc.Class({
         this.unGetDownNode.getChildByName('allBet').getComponent(cc.Label).string = allBet / 100;
         this.unGetDownNode.getChildByName('selfBet').getComponent(cc.Label).string = selfBet / 100;
 
-        this.labAllBet.string = allBet / 100;
-        this.labSelfBet.string = selfBet / 100;
         if (selfBet > 0) {
-            this.labSelfBet.node.color = new cc.Color(254, 253, 1, 255);
             this.unGetDownNode.getChildByName('selfBet').color = new cc.Color(254, 253, 1, 255);
         }
     },
@@ -914,25 +865,6 @@ cc.Class({
         this.initLineMark(this.horizontalLine, "time");
         this.initLineMark(this.variableLine, "rate");
 
-        let useTime = Number(this.betDuration - remainder) / 1000;
-        let coinCount = Math.ceil(useTime) * 5;
-        // LoggerUtil.getInstance().log(">>>>>>>>>>>初始化金币数目", useTime, coinCount);
-        for (let i = 0; i < coinCount; i++) {
-            let areaWidth = this.betArea.width - 40;
-            let areaHeight = this.betArea.height - 60;
-            let areaPos = this.betArea.getPosition();
-            let worldAreaPos = this.betArea.parent.convertToWorldSpaceAR(areaPos);
-            let nodeAreaPos = this.betArea.convertToNodeSpaceAR(worldAreaPos);
-            let toPos = cc.v2(nodeAreaPos.x - areaWidth / 2 + Math.random() * areaWidth, nodeAreaPos.y - areaHeight / 2 + Math.random() * areaHeight);
-            let worldToPos = this.betArea.parent.convertToWorldSpaceAR(toPos);
-            let nodeToPos = this.betArea.convertToNodeSpaceAR(worldToPos);
-
-            let feijbNode = this.createJbNode();
-            feijbNode.setPosition(nodeToPos);
-            this.betArea.addChild(feijbNode);
-            this.dealBetCoinArray(feijbNode);
-        }
-
         let time = null, count = null;
         if (remainder) {
             time = remainder;
@@ -941,11 +873,13 @@ cc.Class({
             time = this.betDuration;
             count = time;
         }
-        let lab = this.timerBar.node.getChildByName("labTime").getComponent(cc.Label);
-        lab.string = Math.floor(count / 1000) + "s";
+        // let lab = this.timerBar.node.getChildByName("labTime").getComponent(cc.Label);
+        // lab.string = Math.floor(count / 1000) + "s";
+
+        this.timerBar.node.getChildByName("logo").getComponent(cc.Animation).play("rotate2");
         this.scheduleWaitBetCallback = () => {
             count -= 100;
-            lab.string = Math.floor(count / 1000) + "s";
+            // lab.string = Math.floor(count / 1000) + "s";
             let rate = Number(count / this.betDuration).toFixed(2);
             this.timerBar.progress = rate;
             if (count <= 0 || rate <= 0) {
@@ -987,12 +921,7 @@ cc.Class({
         this.isFlying = true;
         this.drawLine = true;
 
-        // 回收金币
-        for (let i = 0; i < this.betCoinNodeArray.length; i++) {
-            let coin = this.betCoinNodeArray[i];
-            this.removeJbNode(coin);
-        }
-        this.betCoinNodeArray.length = 0;
+        this.background.getComponent(cc.Animation).play("rotate");
     },
 
     rocketEnd(notify) {
@@ -1007,7 +936,7 @@ cc.Class({
         let jackpotPool = notify.jackpotPool;
         let point = { x: time, mul: rate };
         this.labelJackPot.string = jackpotPool / 100;
-        this.updateCenterRate(Number((rate / 1000).toFixed(2)));
+        this.updateCenterRate(Number((rate / 1000).toFixed(2)), true);
         // let rocketSke = this.flyRocketNode.getComponent(sp.Skeleton);
         // rocketSke.skeletonData = this.rocketSpData;
         // rocketSke.setAnimation(0, "baozha", false);
@@ -1015,7 +944,7 @@ cc.Class({
         this.updateTrendData(point);
         this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1]);
         this.curRoundAddCoinFinish();
-
+        this.background.getComponent(cc.Animation).stop();
     },
 
     curRoundAddCoinFinish(){
@@ -1134,87 +1063,15 @@ cc.Class({
         this.popupLayer.active = true;
     },
 
-
-
-
-    // *************************************   Coin    *******************************************************************
-
-    /**
-     * 移动金币去指定区域
-     * @param {cc.Vec2} fromPos 
-     */
-    moveCoinToBetArea(fromPos) {
-        let areaWidth = this.betArea.width - 40;
-        let areaHeight = this.betArea.height - 60;
-        let areaPos = this.betArea.getPosition();
-        let worldAreaPos = this.betArea.parent.convertToWorldSpaceAR(areaPos);
-        let nodeAreaPos = this.betArea.convertToNodeSpaceAR(worldAreaPos);
-        let toPos = cc.v2(nodeAreaPos.x - areaWidth / 2 + Math.random() * areaWidth, nodeAreaPos.y - areaHeight / 2 + Math.random() * areaHeight + 20);
-
-        let worldFromPos = this.defaultLayer.getChildByName('bg_bottom').convertToWorldSpaceAR(fromPos);
-        let worldToPos = this.betArea.parent.convertToWorldSpaceAR(toPos);
-
-        let nodeFromPos = this.betArea.convertToNodeSpaceAR(worldFromPos);
-        let nodeToPos = this.betArea.convertToNodeSpaceAR(worldToPos);
-        let feijbNode = this.createJbNode();
-        feijbNode.setPosition(nodeFromPos);
-        this.betArea.addChild(feijbNode);
-        cc.tween(feijbNode)
-            .delay(Number((Math.random() / 3).toFixed(2)))
-            .to(0.3, { position: nodeToPos })
-            .call(() => {
-                this.dealBetCoinArray(feijbNode);
-            })
-            .start();
-    },
-
-    dealBetCoinArray(coinNode) {
-        if (this.betCoinNodeArray.length > 150) {
-            let coin = this.betCoinNodeArray.shift();
-            this.removeJbNode(coin);
-        }
-        this.betCoinNodeArray.push(coinNode);
-    },
-
-
-    initJbPool: function () {
-        this.jbPool = new cc.NodePool();
-        let initCount = 150;
-        for (let i = 0; i < initCount; i++) {
-            this.jbPool.put(cc.instantiate(this.pabfabCoin));    //放入对象池
-        }
-    },
-
-    createJbNode: function () {
-        let feijbNode = null;
-        if (this.jbPool.size() > 0) {       //通过size接口判断对象池中是否有空闲的对象
-            feijbNode = this.jbPool.get();
-        } else {                          //对象池中的备用对象不够时，通过cc.instantiate 重新创建
-            feijbNode = cc.instantiate(this.pabfabCoin);
-        }
-        return feijbNode;
-    },
-
-    removeJbNode: function (feijbNode) {
-        if (feijbNode == null) {
-            LoggerUtil.getInstance().error("将金币对象放回对象池中，金币对象为空！");
-            return;
-        }
-        feijbNode.setPosition(0, 0);
-        this.jbPool.put(feijbNode);
-    },
-
-    // *******************************************************************************************************************
-
     /**
      * 更新中间的倍率
      * @param {Number} rate 倍率
      */
-    updateCenterRate(rate) {
+    updateCenterRate(rate, isEnd = false) {
         if (rate) {
-            let ctrl = this.centerRateNode.getComponent("RocketCenterRate");
+            let ctrl = this.centerRateNode.getComponent("AircraftCenterRate");
             if (ctrl) {
-                ctrl.updateRate(Number(rate).toFixed(2));
+                ctrl.updateRate(Number(rate).toFixed(2), isEnd);
             }
         }
     },
@@ -1264,11 +1121,8 @@ cc.Class({
                     this.drawLine = false;
                     LoggerUtil.getInstance().log("当前时间", this.duringFlyTime, rate);
                     LoggerUtil.getInstance().log("当前火箭位置", this.flyRocketNode.getPosition());
-                    LoggerUtil.getInstance().log("当前火箭角度", this.flyRocketNode.angle);
                     return;
                 }
-                let angle = Math.atan(deltaY / deltaX) * 180 / Math.PI;
-                this.flyRocketNode.angle = -90 + angle;
                 this.flyRocketNode.setPosition(this.drawPosX, currentY);
                 // this.graphicsDrawLine.strokeColor = this.startFlyLineColor;
                 // this.graphicsDrawLine.fillColor = this.startFlyLineColor;
@@ -1335,7 +1189,7 @@ cc.Class({
                 let pos = lastNode.getPosition();
                 let time = Number(labStr.split('s')[0]);
                 _node.getChildByName('Label').getComponent(cc.Label).string = (time + 2) + 's';
-                _node.setPosition(cc.v2(pos.x + this.lineTimeMarkOffsetX, pos.y));
+                _node.setPosition(cc.v2(pos.x + 200, pos.y));
                 this.timeMarkNodeArray.push(_node);
             }
         }
