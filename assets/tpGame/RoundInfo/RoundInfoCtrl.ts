@@ -12,6 +12,6 @@ export default class RoundInfoCtrl extends cc.Component {
      * @param round 轮次
      */
     setRoundInfoRound(round: number) {
-        this.lab_content.string = `Round ${round}/20`;
+        this.lab_content.string = `Round ${round}/50`;
     }
 }

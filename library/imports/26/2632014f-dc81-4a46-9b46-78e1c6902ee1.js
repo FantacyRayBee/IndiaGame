@@ -1417,8 +1417,16 @@ var TpGameCtrl = /** @class */ (function (_super) {
         var playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);
         if (playerNode) {
             var playerCtrl = playerNode.getComponent(PlayerCtrl_1.default);
+            var betInfoNode = this.getBetInfoNodeByPosIndex(posNodeIndex);
+            var betInfo = "0";
+            if (betInfoNode) {
+                var betInfoCtrl = betInfoNode.getComponent(BetInfoCtrl_1.default);
+                betInfo = betInfoCtrl.getBetInfoTotalBet();
+            }
+            ;
             //@ts-ignore
-            playerCtrl.setPlayerCoin(GlobalCfg.USER_DATAS.userDiamond);
+            var userDiamond = GlobalCfg.USER_DATAS.userDiamond - (parseFloat(betInfo) * 100);
+            playerCtrl.setPlayerCoin(userDiamond);
         }
         ;
     };
