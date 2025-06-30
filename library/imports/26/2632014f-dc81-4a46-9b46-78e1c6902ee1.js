@@ -3067,6 +3067,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
         var seat = notify.seat;
         var payment = notify.payment;
         var winRate = notify.winRate;
+        //@ts-ignore
+        cc.sys.localStorage.setItem("TP_winRate", notify.winRate);
         var time = Math.floor(timeoutMs / 1000);
         this.setCurOptPlayerSeat(seat);
         var posNodeIndex = this.getPosNodeIndexByPlayerSeat(seat);
