@@ -98,16 +98,15 @@ cc.Class({
         let list = GlobalCfg.USER_DATAS.discoList
         if (isPLotPlay) { //需要处理一下数据
             let winRate = cc.sys.localStorage.getItem("TP_winRate", 0);
-            if (winRate == 1) {
-                list = this.dealData(GlobalCfg.USER_DATAS.plotPay);}
-            else {
-                list = GlobalCfg.USER_DATAS.plotPay;}
+            list = this.dealData(GlobalCfg.USER_DATAS.plotPay, winRate)
         }
         list = list.sort((a,b) => a.amount - b.amount);
+        LoggerUtil.getInstance().log('3 dealData list:', list);
         let options = [...list];
         let curIndex = this.getLowerOptionIndexByLastRecharge(options, GlobalCfg.USER_DATAS.lastRecharged);
         let curIndex2 = this.getLowerOptionIndexByAllRecharge(options, GlobalCfg.USER_DATAS.recharged);
         curIndex = curIndex2 > curIndex ? curIndex2 : curIndex;
+        LoggerUtil.getInstance().log('4 dealData options:', options);
         if((curIndex + 2) >= options.length){
             curIndex2 = options.length - 1;
         }else{
@@ -157,16 +156,24 @@ cc.Class({
         });
     },
 
-    dealData(data) {
+    dealData(data, winRate) {
+        LoggerUtil.getInstance().log('1 dealData data:', data);
         if (!Array.isArray(data)) return []; // 防御：非数组直接返回空数组
         const tmp = JSON.parse(JSON.stringify(data)); // 深拷贝
         const ret = [];
-        for (let i = 0; i < tmp.length; i++) {
-            if (i > 0) { // 跳过第一个元素（如需保留全部元素，移除此判断）
+        if (winRate == 1) {
+            for (let i = 0; i < tmp.length; i++) {
+                if (i > 0) { // 跳过第一个元素（如需保留全部元素，移除此判断）
+                    ret.push(tmp[i]); // 将元素推入数组
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < tmp.length - 1; i++) {
                 ret.push(tmp[i]); // 将元素推入数组
             }
         }
-        LoggerUtil.getInstance().log('dealData ret:', ret);
+        LoggerUtil.getInstance().log('2 dealData ret:', ret);
         return ret; // 返回数组
     }
 });

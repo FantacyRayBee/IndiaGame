@@ -942,6 +942,8 @@ var SceneManager = cc.Class({
           var plot_pay = msgData.plot_pay ? msgData.plot_pay : [];
           var only_pay = msgData.only_pay ? msgData.only_pay : [];
           var only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
+          LoggerUtil.getInstance().error('plot_pay:', plot_pay);
+
           /**
            * VIP信息
            */
