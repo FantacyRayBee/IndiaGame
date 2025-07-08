@@ -171,6 +171,8 @@ cc.Class({
         this.lab_totalWin.string = 0;
         this.bigWinLevel = 0;
         this.stopNumScroll = false;
+
+        this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4); //是否开启支付
     },
 
     debounce: function(action, delayTime) {  

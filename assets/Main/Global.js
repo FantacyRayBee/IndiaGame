@@ -34,6 +34,10 @@ window.GlobalCfg = {
   */
   IS_CLUB_MODE: 0,
   /**
+  * 是否是需要充值才能进入的游戏
+  */
+  isPayGame: true,
+  /**
    * 消息订阅的大类型
    */
   MSG_TYPE: {
@@ -52,7 +56,7 @@ window.GlobalCfg = {
   /**
    * 是否触发热更（测试服专用，线上服这个值必须为true）
    */
-   is_need_update: true,
+   is_need_update: false,
   /**
    * 是否强制进测试服
    */
@@ -563,7 +567,19 @@ window.GlobalCfg = {
     REPEAT_LOGIN: 9,      // 重复登录
     SERVER_RELOAD: 29,    // 服务器重启
   },
-
+  /**
+   * 诱导充值配置
+   */
+  INDUCEMENT_INFO :{
+      [1]: {taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [2]: {taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [4]: {taskName: 'Play 10 games of Fruit Party', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need ₹10 to withdraw ₹5000"},
+      [5]: {taskName: 'Play 5 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need ₹1 to withdraw ₹5000"},
+      [6]: {taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need ₹0.1 to withdraw ₹5000"},
+      [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need ₹0.01 to withdraw ₹5000"},
+      [8]: {taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
+  },
   /**
    * 预制体路径
    */
@@ -854,6 +870,11 @@ window.GlobalCfg = {
      */
     BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
     /**
+     * 诱导充值
+     */
+    INDUCEMENT: "ResourcesBundle/NewPlan/Inducement/Inducement",
+    INDUCEMENTPOP: "ResourcesBundle/NewPlan/Inducement/InducementPop",
+    /**
      * 破产礼包
      */
     ONLY_PAY: "ResourcesBundle/NewPlan/OnlyPay/OnlyPay",
@@ -935,6 +956,8 @@ window.GlobalCfg = {
     ACTIVITY_GOBETTING: "SecondLayer",
     DIVERSIONFREETP: "SecondLayer",
     BANKRUPTCY_GIFT: "SecondLayer",
+    INDUCEMENT: "SecondLayer",
+    INDUCEMENTPOP: "SecondLayer",
     ONLY_PAY: "SecondLayer",
     GAMEICONLIST: "SecondLayer",
 

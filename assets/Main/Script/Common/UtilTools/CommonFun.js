@@ -1237,6 +1237,23 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 显示诱导充值界面
+     */
+    showInducement: function() {
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.inducement = msg.data;
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
+                prefabPromise.then((prefab) => {
+                    let node = cc.instantiate(prefab);
+                    this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
      * 显示联系我们界面
      */
     showContactUs: function() {
@@ -2121,6 +2138,34 @@ let CommonFun = cc.Class({
         };
     },
 
+    updateToastLocalStorageByHours: function(toastType, hours) {
+        /**
+         * 当前毫秒级的时间戳
+         */
+        let curTimeStamp = new Date().getTime();
+        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
+        if (toastLocalStorage) {
+            try {
+                let toastLocalData = JSON.parse(toastLocalStorage);
+                let showTag = toastLocalData.showTag;
+                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
+                    toastLocalData.showTag = `${curTimeStamp}`;
+                    cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
+                }; 
+                
+            } 
+            catch (error) {
+                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
+            };
+        }
+        else {
+            let toastLocalData = {
+                showTag: curTimeStamp
+            };
+            cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
+        };
+    },
+
     /**
      * 上报错误至 Telegram
      * @param {String} info 
@@ -2374,12 +2419,13 @@ let CommonFun = cc.Class({
         if (!eventName) {
             return;
         };
-        if (!cc.sys.isNative) {
-            return;
-        };
-        let url = "";
+        // if (!cc.sys.isNative) {
+        //     return;
+        // };
+        let url = "https://svr.tp-game.com/login/uievent";
         let device = CommonFun.getInstance().getDeviceId();
         let serverType = CommonFun.getInstance().getServerType();
+        LoggerUtil.getInstance().info(`behaviorReporting: serverType ${serverType}`);
         switch (serverType) {
             case 0:
                 url = `https://svrtest.tpgame.in/login/uievent`;
@@ -2391,7 +2437,7 @@ let CommonFun = cc.Class({
                 url = `https://svr2.tpgame.in/login/uievent`;
                 break;
             case 3:
-                url = `https://svr.3tpattiyi.in/login/uievent`;
+                url = `https://svr.tp-game.com/login/uievent`;
                 break;
             case 6:
                 url = `https://svr.teengatti.in/login/uievent`;
@@ -2480,6 +2526,22 @@ let CommonFun = cc.Class({
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
+    /**
+     * 将毫秒转换为 HH:MM:SS 格式
+     * @param {number} ms 剩余毫秒数
+     * @returns {string} 格式化后的时间字符串
+     */
+    formatToHMS: function(ms) {
+        if (ms <= 0) return "00:00:00"; // 倒计时结束
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        // 补零显示（如 1 → "01"）
+        const pad = (num) => num.toString().padStart(2, '0');
+        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    },
 
     /**
      * 获取商场角标
@@ -2778,6 +2840,38 @@ let CommonFun = cc.Class({
         let arr = btnListData.slice(startIndex, btnListData.length);
         LoggerUtil.getInstance().log(">>>>>ShopList>>>>>>>>", arr);
         return arr;
+    },
+
+    /**
+     * 根据本地缓存判断是否需要显示弹框
+     * @param {*} toastType 弹框类型
+     * @param {*} hours 间隔几个小时
+     */
+    isNeedShowPointToastByHours: function(toastType, hours) {
+        /**
+         * 当前毫秒级的时间戳
+         */
+        let curTimeStamp = new Date().getTime();
+        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
+        if (toastLocalStorage) {
+            try {
+                let toastLocalData = JSON.parse(toastLocalStorage);
+                let showTag = toastLocalData.showTag;
+                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
+                    return true;
+                }
+                else {
+                    return false;
+                };
+            } 
+            catch (error) {
+                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
+                return false;
+            };
+        }
+        else {
+            return true;
+        };
     },
 
     /**

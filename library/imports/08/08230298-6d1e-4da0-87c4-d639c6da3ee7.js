@@ -279,6 +279,13 @@ cc.Class({
     }
   },
   btnBetClick: function btnBetClick(ani) {
+    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+      //未曾充值
+      CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
+        CommonFun.getInstance().showSmallAddCash();
+      }, false);
+      return;
+    }
     this.serverMsgManager.sendBetMsg([{
       ani: ani,
       amount: this.curBetCtrl.curBetNum

@@ -19,7 +19,7 @@ cc.Class({
         };
        
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
-
+        GlobalCfg.isPayGame = false;
         this.rummyLoginReq();
     },
 
@@ -75,5 +75,6 @@ cc.Class({
     onDestroy: function() {
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_RUMMY_GAME);
+        GlobalCfg.isPayGame = true;
     },
 });

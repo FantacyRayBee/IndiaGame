@@ -129,8 +129,8 @@ var SceneManager = cc.Class({
   },
   dealEnterLobbyScene: function dealEnterLobbyScene(toSceneName) {
     var _this2 = this;
-    var protoCfg = ProtoObj.getProto("LOBBY");
     var protoPathArr = ["proto/baseproto", "proto/lobbyservice"];
+    var protoCfg = ProtoObj.getProto("LOBBY");
     var websocketUrl = GlobalCfg.WEB_SOCKET_LOBBY;
     if (!protoCfg) {
       this.isLoadingScene = false;
@@ -887,6 +887,7 @@ var SceneManager = cc.Class({
            * 是否有PDD任务
            */
           var have_pdd_activity = msgData.have_pdd_activity ? msgData.have_pdd_activity : false;
+          var inducement = msgData.get_recharge_inducement_info_ack ? msgData.get_recharge_inducement_info_ack : {};
           /**
            * 签到信息。同v1/signlist接口数据
            */
@@ -942,8 +943,6 @@ var SceneManager = cc.Class({
           var plot_pay = msgData.plot_pay ? msgData.plot_pay : [];
           var only_pay = msgData.only_pay ? msgData.only_pay : [];
           var only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
-          LoggerUtil.getInstance().error('plot_pay:', plot_pay);
-
           /**
            * VIP信息
            */
@@ -1011,10 +1010,13 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.is_club = msgData.is_club;
           GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
           GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
+          GlobalCfg.USER_DATAS.inducement = inducement;
           if (channel.length > 0) {
             GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
           }
           ;
+          // LoggerUtil.getInstance().log('caojun GlobalCfg.USER_DATAS.lastRecharged :', GlobalCfg.USER_DATAS.lastRecharged);
+          // LoggerUtil.getInstance().log('caojun GlobalCfg.USER_DATAS.recharged :', GlobalCfg.USER_DATAS.recharged);
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_USERDATA_INFO_SUCCESS);
           _this5.updateShopSelectRechargeAmount(last_recharged);
           resolve();
@@ -1053,6 +1055,7 @@ var SceneManager = cc.Class({
    * @param {Number} lastRecharged 
    */
   updateShopSelectRechargeAmount: function updateShopSelectRechargeAmount(lastRecharged) {
+    LoggerUtil.getInstance().log('11 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
     if (GlobalCfg.USER_DATAS.recharged > 0) {
       var index = 0,
         length = GlobalCfg.USER_DATAS.store.length;
@@ -1068,6 +1071,7 @@ var SceneManager = cc.Class({
         index++;
       }
     }
+    LoggerUtil.getInstance().log('22 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
   },
   getAdvertisingId: function getAdvertisingId() {
     var _this6 = this;

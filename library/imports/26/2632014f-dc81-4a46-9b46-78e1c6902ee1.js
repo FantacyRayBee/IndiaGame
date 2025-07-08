@@ -257,6 +257,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
         //@ts-ignore
         this.btn_recharge.on("click", CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
         this.btn_recharge.getComponent(cc.Animation).play("drop");
+        //@ts-ignore
+        GlobalCfg.isPayGame = false;
     };
     TpGameCtrl.prototype.onDestroy = function () {
         //@ts-ignore
@@ -267,6 +269,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_TP_GAME);
         //@ts-ignore
         GlobalCfg.ACT_SCENE_CTRL = null;
+        //@ts-ignore
+        GlobalCfg.isPayGame = true;
     };
     /**
      * 设置监听游戏切入后台/前台事件

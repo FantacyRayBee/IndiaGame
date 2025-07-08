@@ -132,8 +132,8 @@ let SceneManager = cc.Class({
     },
 
     dealEnterLobbyScene: function(toSceneName) {
-        let protoCfg = ProtoObj.getProto("LOBBY");
         let protoPathArr = ["proto/baseproto", "proto/lobbyservice"];
+        let protoCfg = ProtoObj.getProto("LOBBY");
         let websocketUrl = GlobalCfg.WEB_SOCKET_LOBBY;
 
         if (!protoCfg) {
@@ -911,6 +911,8 @@ let SceneManager = cc.Class({
                      * 是否有PDD任务
                      */
                     let have_pdd_activity = msgData.have_pdd_activity ? msgData.have_pdd_activity : false;
+
+                    let inducement = msgData.get_recharge_inducement_info_ack ? msgData.get_recharge_inducement_info_ack : {};
                     /**
                      * 签到信息。同v1/signlist接口数据
                      */
@@ -1024,10 +1026,12 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.is_club = msgData.is_club;
                     GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
                     GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
+                    GlobalCfg.USER_DATAS.inducement = inducement;
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
                     };
-
+                    // LoggerUtil.getInstance().log('caojun GlobalCfg.USER_DATAS.lastRecharged :', GlobalCfg.USER_DATAS.lastRecharged);
+                    // LoggerUtil.getInstance().log('caojun GlobalCfg.USER_DATAS.recharged :', GlobalCfg.USER_DATAS.recharged);
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_USERDATA_INFO_SUCCESS);
                     this.updateShopSelectRechargeAmount(last_recharged);
                     resolve();
@@ -1066,6 +1070,7 @@ let SceneManager = cc.Class({
      * @param {Number} lastRecharged 
      */
     updateShopSelectRechargeAmount:function(lastRecharged){
+        LoggerUtil.getInstance().log('11 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
         if (GlobalCfg.USER_DATAS.recharged > 0) {
             let index = 0, length = GlobalCfg.USER_DATAS.store.length;
             while (index < length) {
@@ -1080,6 +1085,7 @@ let SceneManager = cc.Class({
                 index++;
             }
         }
+        LoggerUtil.getInstance().log('22 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
     },
 
     getAdvertisingId: function() {

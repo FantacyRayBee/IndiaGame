@@ -44,10 +44,9 @@ cc.Class({
             LoggerUtil.getInstance().log("非下注状态");
             CommonFun.getInstance().showTips('non betting stage');
         } else {
-            if(GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {  //未曾充值
+            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true && GlobalCfg.isPayGame == true) {  //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                     CommonFun.getInstance().showSmallAddCash()
-                    
+                    CommonFun.getInstance().showSmallAddCash()
                 }, false);
             } else {
                 if(GlobalCfg.USER_DATAS.userDiamond >= amount*100) {

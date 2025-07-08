@@ -275,24 +275,33 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
         return new Promise((resolve, reject) => {
             let getAdvertisingIdCallback = () =>  {
-                let endTime = cc.sys.now();
-                let advertisingId = APPManager.getAdvertisingId();
-                if (advertisingId && advertisingId.length > 0) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
-                    GlobalCfg.ADVERTISING_ID = advertisingId;
-                    this.unschedule(getAdvertisingIdCallback);
-                    resolve(advertisingId);
-                    this.installApp();
-                    return;
+                //只有第一次打开APP的时候 需要获取广告ID ，获取成功后保存到本地
+                let advertisingId_tmp = cc.sys.localStorage.getItem(`advertisingId_${GlobalCfg.USER_DATAS.userId}`);
+                if (!advertisingId_tmp) {
+                    let endTime = cc.sys.now();
+                    let advertisingId = APPManager.getAdvertisingId();
+                    if (advertisingId && advertisingId.length > 0) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
+                        GlobalCfg.ADVERTISING_ID = advertisingId;
+                        cc.sys.localStorage.setItem(`advertisingId_${GlobalCfg.USER_DATAS.userId}`, advertisingId);
+                        this.unschedule(getAdvertisingIdCallback);
+                        resolve(advertisingId);
+                        this.installApp();
+                        return;
+                    }
+                    else if (endTime - startTime > 20000) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
+                        GlobalCfg.ADVERTISING_ID = "test01";
+                        cc.sys.localStorage.setItem(`advertisingId_${GlobalCfg.USER_DATAS.userId}`, "test01");
+                        this.unschedule(getAdvertisingIdCallback);
+                        resolve("");
+                        this.installApp();
+                        return;
+                    };
                 }
-                else if (endTime - startTime > 20000) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
-                    GlobalCfg.ADVERTISING_ID = "test01";
-                    this.unschedule(getAdvertisingIdCallback);
-                    resolve("");
-                    this.installApp();
-                    return;
-                };
+                else{
+                    GlobalCfg.ADVERTISING_ID = advertisingId_tmp;
+                }
             };
             this.schedule(getAdvertisingIdCallback, 0.5);
         });

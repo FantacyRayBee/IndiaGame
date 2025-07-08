@@ -239,6 +239,8 @@ export default class TpGameCtrl extends cc.Component {
         //@ts-ignore
         this.btn_recharge.on("click", CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
         this.btn_recharge.getComponent(cc.Animation).play("drop");
+        //@ts-ignore
+        GlobalCfg.isPayGame = false;
     }
 
     onDestroy() {
@@ -250,6 +252,8 @@ export default class TpGameCtrl extends cc.Component {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_TP_GAME);
         //@ts-ignore
         GlobalCfg.ACT_SCENE_CTRL = null;
+        //@ts-ignore
+        GlobalCfg.isPayGame = true;
     }
 
     /**

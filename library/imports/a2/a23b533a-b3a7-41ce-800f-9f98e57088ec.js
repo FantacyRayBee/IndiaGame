@@ -62,6 +62,11 @@ cc.Class({
       msgCode: GlobalCfg.CLIENT_MSG_ID.GET_FIRST_GIFT_REWARD,
       msgData: {}
     });
+    //新手领取奖励之后 需要弹出诱导充值的弹窗
+    if (GlobalCfg.USER_DATAS.openModules.includes(24) && CommonFun.getInstance().isNeedShowPointToastByHours("Inducement", 4)) {
+      CommonFun.getInstance().updateToastLocalStorageByHours("Inducement", 4);
+      CommonFun.getInstance().showInducement();
+    }
     this.node.destroy();
   },
   onDestroy: function onDestroy() {

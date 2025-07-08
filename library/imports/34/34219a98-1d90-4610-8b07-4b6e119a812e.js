@@ -136,7 +136,7 @@ cc.Class({
   // 更新倒计时显示
   updateCountdownDisplay: function updateCountdownDisplay(expireTimestamp) {
     var remainingMs = Math.max(0, expireTimestamp - Date.now());
-    this.lab_endTime.string = "End time: " + this.formatToHMS(remainingMs);
+    this.lab_endTime.string = "End time: " + CommonFun.getInstance().formatToHMS(remainingMs);
 
     // 倒计时结束时的处理
     if (remainingMs <= 0) {

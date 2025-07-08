@@ -314,14 +314,17 @@ cc.Class({
     }
     this.reqAppInfoCount++;
     var startTime = cc.sys.now();
+    cc.log("reqAppInfo startTime: ", startTime);
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_START);
     CommonFun.getInstance().httpGet(url, function (json) {
       var endTime = cc.sys.now();
+      cc.log("reqAppInfo 11 endTime: ", endTime);
       CommonFun.getInstance().dealAppInfoJson(json);
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_SUCCESS, endTime - startTime);
       finishCallback && finishCallback();
     }, function () {
       var endTime = cc.sys.now();
+      cc.log("reqAppInfo 22 endTime: ", endTime);
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);
       if (_this7.reqAppInfoCount < 5) {
         _this7.reqAppInfo(finishCallback, url);
