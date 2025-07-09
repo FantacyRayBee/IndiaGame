@@ -1129,7 +1129,7 @@ cc.Class({
 
         for (let i = 0, len = pools.length; i < len; i++) {
             let BossPool = pools[i];
-            // this.resolveBoosPool(BossPool, true);
+            this.resolveBoosPool(BossPool, true);
         }
     },
 

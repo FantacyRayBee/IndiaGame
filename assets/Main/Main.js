@@ -219,24 +219,32 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_START);
         return new Promise((resolve, reject) => {
             let getAdjustIDCallback = () =>  {
-                let endTime = cc.sys.now();
-                let adjustId = APPManager.getAdjustID();
-                if (adjustId && adjustId != '' && adjustId.length > 0) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_SUCCESS, endTime - startTime);
-                    GlobalCfg.ADJUST_ID = adjustId;
-                    LoggerUtil.getInstance().log("adjustId:", GlobalCfg.ADJUST_ID);
-                    this.unschedule(getAdjustIDCallback);
-                    resolve(adjustId);
-                    return;
+                let adjustId_tmp = cc.sys.localStorage.getItem(`adjustId_local`);
+                if (!adjustId_tmp) {
+                    let endTime = cc.sys.now();
+                    let adjustId = APPManager.getAdjustID();
+                    if (adjustId && adjustId != '' && adjustId.length > 0) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_SUCCESS, endTime - startTime);
+                        GlobalCfg.ADJUST_ID = adjustId;
+                        cc.sys.localStorage.setItem(`adjustId_local`, adjustId);
+                        this.unschedule(getAdjustIDCallback);
+                        resolve(adjustId);
+                        return;
+                    }
+                    else if (endTime - startTime > 20000) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
+                        GlobalCfg.ADJUST_ID = "test01";
+                        this.unschedule(getAdjustIDCallback);
+                        cc.sys.localStorage.setItem(`adjustId_local`, "test01");
+                        resolve("");
+                        return;
+                    };
                 }
-                else if (endTime - startTime > 20000) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
-                    GlobalCfg.ADJUST_ID = "";
-                    LoggerUtil.getInstance().log("adjustId is empty");
+                else{
+                    GlobalCfg.ADJUST_ID = adjustId_tmp;
                     this.unschedule(getAdjustIDCallback);
-                    resolve("");
-                    return;
-                };
+                    resolve(adjustId_tmp);
+                }
             };
             this.schedule(getAdjustIDCallback, 0.5);
         });
@@ -276,14 +284,14 @@ cc.Class({
         return new Promise((resolve, reject) => {
             let getAdvertisingIdCallback = () =>  {
                 //只有第一次打开APP的时候 需要获取广告ID ，获取成功后保存到本地
-                let advertisingId_tmp = cc.sys.localStorage.getItem(`advertisingId_${GlobalCfg.USER_DATAS.userId}`);
+                let advertisingId_tmp = cc.sys.localStorage.getItem(`advertisingId_local`);
                 if (!advertisingId_tmp) {
                     let endTime = cc.sys.now();
                     let advertisingId = APPManager.getAdvertisingId();
                     if (advertisingId && advertisingId.length > 0) {
                         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
                         GlobalCfg.ADVERTISING_ID = advertisingId;
-                        cc.sys.localStorage.setItem(`advertisingId_${GlobalCfg.USER_DATAS.userId}`, advertisingId);
+                        cc.sys.localStorage.setItem(`advertisingId_local`, advertisingId);
                         this.unschedule(getAdvertisingIdCallback);
                         resolve(advertisingId);
                         this.installApp();
@@ -292,7 +300,7 @@ cc.Class({
                     else if (endTime - startTime > 20000) {
                         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
                         GlobalCfg.ADVERTISING_ID = "test01";
-                        cc.sys.localStorage.setItem(`advertisingId_${GlobalCfg.USER_DATAS.userId}`, "test01");
+                        cc.sys.localStorage.setItem(`advertisingId_local`, "test01");
                         this.unschedule(getAdvertisingIdCallback);
                         resolve("");
                         this.installApp();
@@ -301,6 +309,9 @@ cc.Class({
                 }
                 else{
                     GlobalCfg.ADVERTISING_ID = advertisingId_tmp;
+                    this.unschedule(getAdvertisingIdCallback);
+                    resolve(advertisingId_tmp);
+                    this.installApp();
                 }
             };
             this.schedule(getAdvertisingIdCallback, 0.5);

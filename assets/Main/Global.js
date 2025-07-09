@@ -56,7 +56,7 @@ window.GlobalCfg = {
   /**
    * 是否触发热更（测试服专用，线上服这个值必须为true）
    */
-   is_need_update: false,
+   is_need_update: true,
   /**
    * 是否强制进测试服
    */

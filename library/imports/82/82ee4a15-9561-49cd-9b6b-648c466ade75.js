@@ -1123,10 +1123,9 @@ cc.Class({
     }
     for (var _i14 = 0, len = pools.length; _i14 < len; _i14++) {
       var _BossPool2 = pools[_i14];
-      // this.resolveBoosPool(BossPool, true);
+      this.resolveBoosPool(_BossPool2, true);
     }
   },
-
   /**
    * 
    * @param {Boolean} isShow 是否展示
