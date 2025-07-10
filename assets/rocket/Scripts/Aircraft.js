@@ -72,7 +72,7 @@ cc.Class({
 
         this.drawLine = false;                  // 是否绘制线
         this.constStartPosX = -540;               // 走势起点X坐标
-        this.constStartPosY = -148;               // 走势起点Y坐标
+        this.constStartPosY = -180;               // 走势起点Y坐标
         this.drawPosX = -540;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
@@ -698,12 +698,8 @@ cc.Class({
             // y: 144.60892217858014
             let time_s = time / 1000;       // 秒
             let more = Number((time_s % 2).toFixed(3));     // 跟上一个刻度之间的差值
-            LoggerUtil.getInstance().log("time_s", time_s);
-            LoggerUtil.getInstance().log("more", more);
             let lastPosX = 522 + (1 - more / 2) * this.lineTimeMarkOffsetX;
-            LoggerUtil.getInstance().log("lastPosX", lastPosX);
             let lastTime = Math.round(time_s + 2 - more);
-            LoggerUtil.getInstance().log("lastTime", lastTime);
             for (let i = 0; i < 8; i++) {
                 let node = cc.instantiate(this.prefabTimeMark);
                 node.setPosition(cc.v2(lastPosX - this.lineTimeMarkOffsetX * i, -3));
@@ -1097,9 +1093,9 @@ cc.Class({
         if (this.isFlying == true) {
             // 倍数 = x的平方/100 + 1   , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
             // y=X²/10+1  , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
-            let frontY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
+            let frontY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 6;
             this.duringFlyTime += dt;
-            let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
+            let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 6;
             let deltaX = (dt / 2) * this.lineTimeMarkOffsetX;
             let deltaY = currentY - frontY;
             let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
