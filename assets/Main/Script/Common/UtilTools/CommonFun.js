@@ -1814,15 +1814,26 @@ let CommonFun = cc.Class({
         });
     },
 
-    _showShopNewTip: function(changed, coin, bonus){
+    _showShopNewTip: function(changed, coin, bonus, is10Precent, remind){
         LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
-        let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
-        shopPrefabPromise.then((prefab) => {
-            let shopNode = cc.instantiate(prefab);
-            let shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
-            shopCtrl.setStartCoin(changed, coin, bonus);
-            this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP); 
-        });  
+        if(is10Precent){
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP10);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopCtrl = shopNode.getComponent("ShopNewTip10Ctrl");
+                shopCtrl.setStartCoin(changed, coin, bonus, remind);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP10); 
+            });  
+        }
+        else{
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
+                shopCtrl.setStartCoin(changed, coin, bonus);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP); 
+            });  
+        }
     },
 
     /**
@@ -2416,45 +2427,45 @@ let CommonFun = cc.Class({
      * @param {number} duration 事件持续时间，单位毫秒
      */
     behaviorReporting: function(eventName, duration = 0) {
-        if (!eventName) {
-            return;
-        };
+        // if (!eventName) {
+        //     return;
+        // };
         // if (!cc.sys.isNative) {
         //     return;
         // };
-        let url = "https://svr.tp-game.com/login/uievent";
-        let device = CommonFun.getInstance().getDeviceId();
-        let serverType = CommonFun.getInstance().getServerType();
-        LoggerUtil.getInstance().info(`behaviorReporting: serverType ${serverType}`);
-        switch (serverType) {
-            case 0:
-                url = `https://svrtest.tpgame.in/login/uievent`;
-                break;
-            case 1:
-                url = `https://svr.tpgame.in/login/uievent`;
-                break;
-            case 2:
-                url = `https://svr2.tpgame.in/login/uievent`;
-                break;
-            case 3:
-                url = `https://svr.tp-game.com/login/uievent`;
-                break;
-            case 6:
-                url = `https://svr.teengatti.in/login/uievent`;
-                break;
-            default:
-                url = `https://svrtest.tpgame.in/login/uievent`;
-                break;
-        };
-        let httpParam = {
-            device: `${device}`,
-            uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
-            triggerTime: cc.sys.now(),
-            duration: duration,
-            event: `${eventName}`,
-            sign: CommonFun.getInstance().encryptByRSA(device) 
-        };
-        CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
+        // let url = "";
+        // let device = CommonFun.getInstance().getDeviceId();
+        // let serverType = CommonFun.getInstance().getServerType();
+        // LoggerUtil.getInstance().info(`behaviorReporting: serverType ${serverType}`);
+        // switch (serverType) {
+        //     case 0:
+        //         url = `https://svrtest.tpgame.in/login/uievent`;
+        //         break;
+        //     case 1:
+        //         url = `https://svr.tpgame.in/login/uievent`;
+        //         break;
+        //     case 2:
+        //         url = `https://svr2.tpgame.in/login/uievent`;
+        //         break;
+        //     case 3:
+        //         url = `https://svr.tp-game.com/login/uievent`;
+        //         break;
+        //     case 6:
+        //         url = `https://svr.teengatti.in/login/uievent`;
+        //         break;
+        //     default:
+        //         url = `https://svrtest.tpgame.in/login/uievent`;
+        //         break;
+        // };
+        // let httpParam = {
+        //     device: `${device}`,
+        //     uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
+        //     triggerTime: cc.sys.now(),
+        //     duration: duration,
+        //     event: `${eventName}`,
+        //     sign: CommonFun.getInstance().encryptByRSA(device) 
+        // };
+        // CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
     },
 
     /**

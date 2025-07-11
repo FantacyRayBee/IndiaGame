@@ -1566,6 +1566,9 @@ cc.Class({
         else if (jumpid == "withdraw") {
             this.dealBtnWithDrawEvent();
         }
+        else if (jumpid == "share") {
+            CommonFun.getInstance().promoterSkipToOtherApp('btn_share');
+        }
     },
 
     dealBtnRechargeEvent: function() {

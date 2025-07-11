@@ -47,6 +47,7 @@ window.GlobalCfg = {
 
   CURSCENE_DIRECTION: "horizontal",   // 当前场景方向 horizontal， vertical
   FIRST_RECHARGE_TIPS_SHOW: false,    // 是否展示首充之后的提示弹窗
+  FIRST_RECHARGE_TIPS_SHOW_10: false,    // 是否展示首充之后的提示弹窗
   FIRST_RECHARGE_REWARD_SHOW: false,    // 是否展示首充之后获得的金币 弹窗
   /**
    * 是否存在 divertFreeTp界面
@@ -498,6 +499,7 @@ window.GlobalCfg = {
   // 拒绝未充值玩百人,false(未支付可玩)  true(未支付不可玩)
   REFUSE_UNPAY_CANBET: true,
 
+
   NATIVE_CALL_URL: "kayo/maoka/gmp/JSCallJavaManager",
   /**
    * APP 服务器错误代码
@@ -571,11 +573,11 @@ window.GlobalCfg = {
    * 诱导充值配置
    */
   INDUCEMENT_INFO :{
-      [1]: {taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [2]: {taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [4]: {taskName: 'Play 10 games of Fruit Party', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need ₹10 to withdraw ₹5000"},
-      [5]: {taskName: 'Play 5 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need ₹1 to withdraw ₹5000"},
+      [1]: {taskName: 'Play 5 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [2]: {taskName: 'Play 10 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [3]: {taskName: 'Invite 1 friend to complete the registration', reward: 4900, status: 1, pais: [], jump: 'share', paiIndex: -1,tips:""},
+      [4]: {taskName: 'Invite 3 friends to complete the registration', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'share', paiIndex: 2,tips:"Only need ₹10 to withdraw ₹5000"},
+      [5]: {taskName: 'Invite 5 friends to complete the registration', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'share', paiIndex: 1,tips:"Only need ₹1 to withdraw ₹5000"},
       [6]: {taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need ₹0.1 to withdraw ₹5000"},
       [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need ₹0.01 to withdraw ₹5000"},
       [8]: {taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
@@ -772,7 +774,7 @@ window.GlobalCfg = {
     SHOPINSTRUCTIONS: "ResourcesBundle/NewPlan/Shop/ShopInstructions",
     SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
     SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
-
+    SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
     /**
      * 提现
      */
@@ -987,6 +989,7 @@ window.GlobalCfg = {
     WITHDRAWSHARE: "ShopLayer",
     ADVANCEDMODE: "ShopLayer",
     SHOPNEWTIP: "SecondLayer",
+    SHOPNEWTIP10: "SecondLayer",
 
     PROGRESS: "ProgressLayer",
 
@@ -1187,7 +1190,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  cc.sys.localStorage.setItem("PackageChannel", "5_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };

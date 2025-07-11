@@ -54,6 +54,8 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 当前场景方向 horizontal， vertical
   FIRST_RECHARGE_TIPS_SHOW: false,
   // 是否展示首充之后的提示弹窗
+  FIRST_RECHARGE_TIPS_SHOW_10: false,
+  // 是否展示首充之后的提示弹窗
   FIRST_RECHARGE_REWARD_SHOW: false,
   // 是否展示首充之后获得的金币 弹窗
   /**
@@ -526,7 +528,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 重复登录
   SERVER_RELOAD: 29 // 服务器重启
 }, _window$GlobalCfg.INDUCEMENT_INFO = (_INDUCEMENT_INFO = {}, _INDUCEMENT_INFO[1] = {
-  taskName: 'Play 3 games of TeenPatti',
+  taskName: 'Play 5 games of TeenPatti',
   reward: 4500,
   status: 1,
   pais: [],
@@ -534,7 +536,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   paiIndex: -1,
   tips: ""
 }, _INDUCEMENT_INFO[2] = {
-  taskName: 'Play 7 games of TeenPatti',
+  taskName: 'Play 10 games of TeenPatti',
   reward: 4800,
   status: 1,
   pais: [],
@@ -542,27 +544,27 @@ window.GlobalCfg = (_window$GlobalCfg = {
   paiIndex: -1,
   tips: ""
 }, _INDUCEMENT_INFO[3] = {
-  taskName: 'Play 10 games of TeenPatti',
+  taskName: 'Invite 1 friend to complete the registration',
   reward: 4900,
   status: 1,
   pais: [],
-  jump: 'TeenPatti',
+  jump: 'share',
   paiIndex: -1,
   tips: ""
 }, _INDUCEMENT_INFO[4] = {
-  taskName: 'Play 10 games of Fruit Party',
+  taskName: 'Invite 3 friends to complete the registration',
   reward: 4990,
   status: 2,
   pais: [100, 200, 90, 50],
-  jump: 'Fruit',
+  jump: 'share',
   paiIndex: 2,
   tips: "Only need ₹10 to withdraw ₹5000"
 }, _INDUCEMENT_INFO[5] = {
-  taskName: 'Play 5 games of Dragon VS Tiger',
+  taskName: 'Invite 5 friends to complete the registration',
   reward: 4999,
   status: 2,
   pais: [10, 9, 10, 8],
-  jump: 'Dragon',
+  jump: 'share',
   paiIndex: 1,
   tips: "Only need ₹1 to withdraw ₹5000"
 }, _INDUCEMENT_INFO[6] = {
@@ -778,6 +780,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SHOPINSTRUCTIONS: "ResourcesBundle/NewPlan/Shop/ShopInstructions",
   SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
   SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
+  SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
   /**
    * 提现
    */
@@ -980,6 +983,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   WITHDRAWSHARE: "ShopLayer",
   ADVANCEDMODE: "ShopLayer",
   SHOPNEWTIP: "SecondLayer",
+  SHOPNEWTIP10: "SecondLayer",
   PROGRESS: "ProgressLayer",
   TIPS: "TipsLayer",
   HALLTIP: "TipsLayer",
@@ -1165,7 +1169,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  cc.sys.localStorage.setItem("PackageChannel", "5_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }

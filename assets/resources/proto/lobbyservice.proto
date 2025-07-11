@@ -45,6 +45,7 @@ message PushCurrencyChanged {
 	bool firstRecharge = 6; // 是否是首次充值
 	int32 firstRechargeRetainBonus = 7; // 首次清0后保留的bonus
 	bool firstRechargeCleanWallet = 8; // 首充清空钱包
+  	int64 goldBeforeRecharging = 9;
 }
 
 //新用户第一次充值

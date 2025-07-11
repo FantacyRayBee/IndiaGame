@@ -1811,16 +1811,26 @@ var CommonFun = cc.Class((_cc$Class = {
       });
     });
   },
-  _showShopNewTip: function _showShopNewTip(changed, coin, bonus) {
+  _showShopNewTip: function _showShopNewTip(changed, coin, bonus, is10Precent, remind) {
     var _this44 = this;
     LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
-    var shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
-    shopPrefabPromise.then(function (prefab) {
-      var shopNode = cc.instantiate(prefab);
-      var shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
-      shopCtrl.setStartCoin(changed, coin, bonus);
-      _this44.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP);
-    });
+    if (is10Precent) {
+      var shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP10);
+      shopPrefabPromise.then(function (prefab) {
+        var shopNode = cc.instantiate(prefab);
+        var shopCtrl = shopNode.getComponent("ShopNewTip10Ctrl");
+        shopCtrl.setStartCoin(changed, coin, bonus, remind);
+        _this44.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP10);
+      });
+    } else {
+      var _shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
+      _shopPrefabPromise.then(function (prefab) {
+        var shopNode = cc.instantiate(prefab);
+        var shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
+        shopCtrl.setStartCoin(changed, coin, bonus);
+        _this44.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP);
+      });
+    }
   },
   /**
    * 显示充值说明界面
@@ -2315,48 +2325,46 @@ var CommonFun = cc.Class((_cc$Class = {
   if (duration === void 0) {
     duration = 0;
   }
-  if (!eventName) {
-    return;
-  }
-  ;
-  // if (!cc.sys.isNative) {
-  //     return;
-  // };
-  var url = "https://svr.tp-game.com/login/uievent";
-  var device = CommonFun.getInstance().getDeviceId();
-  var serverType = CommonFun.getInstance().getServerType();
-  LoggerUtil.getInstance().info("behaviorReporting: serverType " + serverType);
-  switch (serverType) {
-    case 0:
-      url = "https://svrtest.tpgame.in/login/uievent";
-      break;
-    case 1:
-      url = "https://svr.tpgame.in/login/uievent";
-      break;
-    case 2:
-      url = "https://svr2.tpgame.in/login/uievent";
-      break;
-    case 3:
-      url = "https://svr.tp-game.com/login/uievent";
-      break;
-    case 6:
-      url = "https://svr.teengatti.in/login/uievent";
-      break;
-    default:
-      url = "https://svrtest.tpgame.in/login/uievent";
-      break;
-  }
-  ;
-  var httpParam = {
-    device: "" + device,
-    uid: "" + (GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""),
-    triggerTime: cc.sys.now(),
-    duration: duration,
-    event: "" + eventName,
-    sign: CommonFun.getInstance().encryptByRSA(device)
-  };
-  CommonFun.getInstance().httpPost(url, httpParam, function (json) {}, function (json) {});
-}, _cc$Class.getServerType = function getServerType() {
+} // if (!eventName) {
+//     return;
+// };
+// if (!cc.sys.isNative) {
+//     return;
+// };
+// let url = "";
+// let device = CommonFun.getInstance().getDeviceId();
+// let serverType = CommonFun.getInstance().getServerType();
+// LoggerUtil.getInstance().info(`behaviorReporting: serverType ${serverType}`);
+// switch (serverType) {
+//     case 0:
+//         url = `https://svrtest.tpgame.in/login/uievent`;
+//         break;
+//     case 1:
+//         url = `https://svr.tpgame.in/login/uievent`;
+//         break;
+//     case 2:
+//         url = `https://svr2.tpgame.in/login/uievent`;
+//         break;
+//     case 3:
+//         url = `https://svr.tp-game.com/login/uievent`;
+//         break;
+//     case 6:
+//         url = `https://svr.teengatti.in/login/uievent`;
+//         break;
+//     default:
+//         url = `https://svrtest.tpgame.in/login/uievent`;
+//         break;
+// };
+// let httpParam = {
+//     device: `${device}`,
+//     uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
+//     triggerTime: cc.sys.now(),
+//     duration: duration,
+//     event: `${eventName}`,
+//     sign: CommonFun.getInstance().encryptByRSA(device) 
+// };
+// CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
+, _cc$Class.getServerType = function getServerType() {
   var type = 0;
   if (GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
     type = 0;
