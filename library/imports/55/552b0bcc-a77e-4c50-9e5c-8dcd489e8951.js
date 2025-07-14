@@ -202,7 +202,7 @@ cc.Class({
             _this3.unschedule(getAdjustIDCallback);
             resolve(adjustId);
             return;
-          } else if (endTime - startTime > 20000) {
+          } else if (endTime - startTime > 10000) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
             GlobalCfg.ADJUST_ID = "test01";
             _this3.unschedule(getAdjustIDCallback);
@@ -235,7 +235,7 @@ cc.Class({
           _this4.unschedule(getAppsFlyerIdCallback);
           resolve(appsFlyerId);
           return;
-        } else if (endTime - startTime > 20000) {
+        } else if (endTime - startTime > 10000) {
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_FAIL, endTime - startTime);
           GlobalCfg.APPSFLYER_ID = "";
           LoggerUtil.getInstance().log("appsFlyerId is empty");

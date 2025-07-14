@@ -1240,6 +1240,10 @@ let CommonFun = cc.Class({
      * 显示诱导充值界面
      */
     showInducement: function() {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INDUCEMENT, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+        if (isExist) {
+            return;
+        };
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
         CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
             if (msg.result == 0) {
@@ -1263,7 +1267,7 @@ let CommonFun = cc.Class({
             let contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');    
             this.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
         });
-    },    
+    },
 
     /**
      * 显示内嵌网页界面

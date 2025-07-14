@@ -79,6 +79,8 @@ cc.Class({
         let data = GlobalCfg.USER_DATAS.inducement;
         let curRound = data.task_info.rounds;
         let info = GlobalCfg.INDUCEMENT_INFO
+        let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
+
         if (curRound <= 8) {
             this.btn_withdraw.interactable = false;
             this.progressbar.progress = this.progressArr[curRound - 1];
@@ -102,13 +104,12 @@ cc.Class({
                 cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_IsShowInducementHand`, 1);
             }
             this.node_hand.active = this.isCollect || needShow;
-    
             this.jumpId = info[curRound].jump;
             if (curRound == 1) {
-                this.lab_remind.string = `Only need ₹5000 to withdraw ₹5000`;
+                this.lab_remind.string = `Only need ₹${allNumber} to withdraw ₹${allNumber}`;
                 let canGetReward = info[curRound].reward
                 this.lab_totalNum.string = "₹0";
-                this.lab_progress.string = `0/5000`
+                this.lab_progress.string = `0/${allNumber}`
                 let decimals = this.countDecimals(canGetReward);
                 this.node_task_reward1.getComponent(cc.Label).string = "₹" + canGetReward.toFixed(decimals > 2 ? 2 : decimals);
             }
@@ -124,10 +125,10 @@ cc.Class({
                 else {
                     this.lab_totalNum.string = "₹" + info[curRound - 1].reward;
                 }
-                let remind = (5000 - info[curRound - 1].reward);
+                let remind = (allNumber - info[curRound - 1].reward);
                 
-                this.lab_remind.string = `Only need ₹${parseFloat(remind.toFixed(2))} to withdraw ₹5000`;
-                this.lab_progress.string = `${info[curRound - 1].reward}/5000`
+                this.lab_remind.string = `Only need ₹${parseFloat(remind.toFixed(2))} to withdraw ₹${allNumber}`;
+                this.lab_progress.string = `${info[curRound - 1].reward}/${allNumber}`
 
                 let canGetReward = info[curRound].reward - info[curRound - 1].reward
                 this.node_task_reward1.getComponent(cc.Label).string = "₹" + parseFloat(canGetReward.toFixed(2));
@@ -142,10 +143,10 @@ cc.Class({
             this.lab_taskTime.string =`50000/50000`;
             this.lab_remind.string = ``;
             // this.lab_remind.string = `Only need ₹0 to withdraw ₹5000`;
-            this.lab_progress.string = `5000/5000`;
+            this.lab_progress.string = `${allNumber}/${allNumber}`;
             this.node_task_reward1.active = false;
             this.node_task_reward2.active = false;
-            this.lab_totalNum.string = "₹5000";
+            this.lab_totalNum.string = `₹${allNumber}`;
             this.progressbar.progress = 1;
             this.node_hand.active = false;
         }
@@ -322,9 +323,10 @@ cc.Class({
 
     setItem:function(node, infos){
         let descs = {};
+        let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
         for (let i = 1; i < 5; i++) {
             descs[i] = node.getChildByName("" + i).getChildByName("desc").getComponent(cc.RichText);
-            descs[i].string = "User" + infos[i - 1] +" Wiehdraw <color=#F9D95A>₹5000</color>";
+            descs[i].string = "User" + infos[i - 1] +` Wiehdraw <color=#F9D95A>₹${allNumber}</color>`;
         };
     },
     

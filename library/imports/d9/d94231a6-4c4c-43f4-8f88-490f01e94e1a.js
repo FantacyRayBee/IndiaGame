@@ -529,7 +529,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SERVER_RELOAD: 29 // 服务器重启
 }, _window$GlobalCfg.INDUCEMENT_INFO = (_INDUCEMENT_INFO = {}, _INDUCEMENT_INFO[1] = {
   taskName: 'Play 5 games of TeenPatti',
-  reward: 4500,
+  reward: 990,
   status: 1,
   pais: [],
   jump: 'TeenPatti',
@@ -537,55 +537,55 @@ window.GlobalCfg = (_window$GlobalCfg = {
   tips: ""
 }, _INDUCEMENT_INFO[2] = {
   taskName: 'Play 10 games of TeenPatti',
-  reward: 4800,
+  reward: 999,
   status: 1,
   pais: [],
   jump: 'TeenPatti',
   paiIndex: -1,
   tips: ""
 }, _INDUCEMENT_INFO[3] = {
-  taskName: 'Invite 1 friend to complete the registration',
-  reward: 4900,
-  status: 1,
-  pais: [],
-  jump: 'share',
-  paiIndex: -1,
-  tips: ""
+  taskName: 'Play 10 games of Fruit Machines',
+  reward: 999.5,
+  status: 2,
+  pais: [1, 1, 0.8, 0.5],
+  jump: 'Fruit',
+  paiIndex: 3,
+  tips: "Only need ₹0.5 to withdraw ₹1000"
 }, _INDUCEMENT_INFO[4] = {
-  taskName: 'Invite 3 friends to complete the registration',
-  reward: 4990,
+  taskName: 'Play 10 games of Jhandi Munda',
+  reward: 999.8,
   status: 2,
-  pais: [100, 200, 90, 50],
-  jump: 'share',
+  pais: [0.5, 0.2, 0.3, 0.1],
+  jump: 'Munda',
   paiIndex: 2,
-  tips: "Only need ₹10 to withdraw ₹5000"
+  tips: "Only need ₹0.2 to withdraw ₹1000"
 }, _INDUCEMENT_INFO[5] = {
-  taskName: 'Invite 5 friends to complete the registration',
-  reward: 4999,
+  taskName: 'Invite 2 friends to complete the registration',
+  reward: 999.9,
   status: 2,
-  pais: [10, 9, 10, 8],
+  pais: [0.1, 0.2, 0.3, 0.1],
   jump: 'share',
-  paiIndex: 1,
-  tips: "Only need ₹1 to withdraw ₹5000"
+  paiIndex: 3,
+  tips: "Only need ₹0.1 to withdraw ₹1000"
 }, _INDUCEMENT_INFO[6] = {
   taskName: 'Complete a recharge of ₹500',
-  reward: 4999.9,
+  reward: 999.98,
   status: 2,
-  pais: [0.1, 0.9, 0.5, 1],
+  pais: [0.05, 0.1, 0.1, 0.08],
   jump: 'shop',
-  paiIndex: 1,
-  tips: "Only need ₹0.1 to withdraw ₹5000"
+  paiIndex: 3,
+  tips: "Only need ₹0.02 to withdraw ₹1000"
 }, _INDUCEMENT_INFO[7] = {
   taskName: 'Check the account is correct and complete a withdrawal',
-  reward: 4999.99,
+  reward: 999.99,
   status: 2,
-  pais: [0.1, 0.09, 0.1, 0.09],
+  pais: [0.02, 0.01, 0.01, 0.02],
   jump: 'withdraw',
   paiIndex: 1,
-  tips: "Only need ₹0.01 to withdraw ₹5000"
+  tips: "Only need ₹0.01 to withdraw ₹1000"
 }, _INDUCEMENT_INFO[8] = {
-  taskName: 'Total recharge ₹50000',
-  reward: 5000,
+  taskName: 'Total recharge ₹10000',
+  reward: 1000,
   status: 1,
   pais: [],
   jump: 'shop',
@@ -1169,7 +1169,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_8001");
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }

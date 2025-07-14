@@ -888,6 +888,7 @@ var SceneManager = cc.Class({
            */
           var have_pdd_activity = msgData.have_pdd_activity ? msgData.have_pdd_activity : false;
           var inducement = msgData.get_recharge_inducement_info_ack ? msgData.get_recharge_inducement_info_ack : {};
+          LoggerUtil.getInstance().log("caojun inducement", inducement);
           /**
            * 签到信息。同v1/signlist接口数据
            */

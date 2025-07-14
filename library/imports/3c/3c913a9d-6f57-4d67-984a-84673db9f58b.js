@@ -1244,6 +1244,11 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showInducement: function showInducement() {
     var _this15 = this;
+    var isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INDUCEMENT, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+    if (isExist) {
+      return;
+    }
+    ;
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
     CommonFun.getInstance().httpPost(httpUrl, {}, function (msg) {
       if (msg.result == 0) {

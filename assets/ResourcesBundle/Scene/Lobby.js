@@ -1014,18 +1014,18 @@ cc.Class({
 
     dealInducementInfo() {
         let data = GlobalCfg.USER_DATAS.inducement;
-        LoggerUtil.getInstance().log('data == ', GlobalCfg.USER_DATAS.inducement);
         let curRound = data.task_info.rounds;
-        LoggerUtil.getInstance().log('curRound == ', curRound);
         let time = data.end_time - Date.now();
-        let isOpen = time > 0;
+        let isOpen = time > 0 && curRound > 0;
         this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24) && isOpen)
-        LoggerUtil.getInstance().log('info == ', GlobalCfg.INDUCEMENT_INFO[curRound-1]);
-        
+        if (!isOpen) {
+            return;
+        }
+        let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
         if (curRound == 1) {
-            this.btn_inducement.node.getChildByName('lb_round').getComponent(cc.Label).string = `0/5000`;}
+            this.btn_inducement.node.getChildByName('lb_round').getComponent(cc.Label).string = `0/${allNumber}`;}
         else{
-            this.btn_inducement.node.getChildByName('lb_round').getComponent(cc.Label).string = `${GlobalCfg.INDUCEMENT_INFO[curRound-1].reward}/5000`;
+            this.btn_inducement.node.getChildByName('lb_round').getComponent(cc.Label).string = `${GlobalCfg.INDUCEMENT_INFO[curRound-1].reward}/${allNumber}`;
         }
         if (data.task_info.all_completions_num > 100) { //大于100 说明是充值任务，金额需要除以100
             this.btn_inducement.node.getChildByName('lb_task').getComponent(cc.Label).string = 
@@ -1558,6 +1558,14 @@ cc.Class({
                 CommonFun.getInstance().showProgress();
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.lhdData.product;
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LHD);
+            });
+        }
+        else if (jumpid == "Munda") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MUNDA_GAME);
+            this.checkUpdate("munda", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mundaData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MUNDA);
             });
         }
         else if (jumpid == "shop") {
