@@ -326,7 +326,7 @@ cc.Class({
         let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
         for (let i = 1; i < 5; i++) {
             descs[i] = node.getChildByName("" + i).getChildByName("desc").getComponent(cc.RichText);
-            descs[i].string = "User" + infos[i - 1] +` Wiehdraw <color=#F9D95A>₹${allNumber}</color>`;
+            descs[i].string = "User" + infos[i - 1] +` Withdraw <color=#F9D95A>₹${allNumber}</color>`;
         };
     },
     
