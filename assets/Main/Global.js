@@ -573,14 +573,14 @@ window.GlobalCfg = {
    * 诱导充值配置
    */
   INDUCEMENT_INFO :{
-      [1]: {taskName: 'Play 1 games of TeenPatti', reward: 800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [1]: {taskName: 'Play 1 game of TeenPatti', reward: 800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
       [2]: {taskName: 'Play 5 games of TeenPatti', reward: 900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
       [3]: {taskName: 'Play 10 games of TeenPatti', reward: 990, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
       [4]: {taskName: 'Play 10 games of Fruit Machines', reward: 999, status: 1, pais: [], jump: 'Fruit', paiIndex: -1,tips:""},
       [5]: {taskName: 'Complete any recharge', reward: 999.9, status: 2, pais: [1,2,0.9,0.5], jump: 'shop', paiIndex: 2,tips:"Only need ₹0.1 to withdraw ₹1000"},
       [6]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 999.98, status: 2, pais: [0.05,0.1,0.1,0.08], jump: 'withdraw', paiIndex: 3,tips:"Only need ₹0.02 to withdraw ₹1000"},
       [7]: {taskName: 'Complete a recharge of ₹500', reward: 999.99, status: 2, pais: [0.02,0.01,0.01,0.02], jump: 'shop', paiIndex: 1,tips:"Only need ₹0.01 to withdraw ₹1000"},
-      [8]: {taskName: 'Total recharge ₹10000', reward: 1000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
+      [8]: {taskName: 'Total recharge ₹20000', reward: 1000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
   },
   /**
    * 预制体路径

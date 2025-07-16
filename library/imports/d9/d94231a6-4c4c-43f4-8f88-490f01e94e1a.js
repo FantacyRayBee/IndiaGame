@@ -528,7 +528,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 重复登录
   SERVER_RELOAD: 29 // 服务器重启
 }, _window$GlobalCfg.INDUCEMENT_INFO = (_INDUCEMENT_INFO = {}, _INDUCEMENT_INFO[1] = {
-  taskName: 'Play 1 games of TeenPatti',
+  taskName: 'Play 1 game of TeenPatti',
   reward: 800,
   status: 1,
   pais: [],
@@ -584,7 +584,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   paiIndex: 1,
   tips: "Only need ₹0.01 to withdraw ₹1000"
 }, _INDUCEMENT_INFO[8] = {
-  taskName: 'Total recharge ₹10000',
+  taskName: 'Total recharge ₹20000',
   reward: 1000,
   status: 1,
   pais: [],

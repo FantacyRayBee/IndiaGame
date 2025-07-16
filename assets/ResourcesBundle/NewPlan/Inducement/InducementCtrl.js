@@ -140,7 +140,7 @@ cc.Class({
             this.lab_round.string = `8/8`;
             this.lab_curRound.string = 8;
             this.lab_taskDesc.string = `${info[8].taskName}`;
-            this.lab_taskTime.string =`50000/50000`;
+            this.lab_taskTime.string =`20000/20000`;
             this.lab_remind.string = ``;
             // this.lab_remind.string = `Only need ₹0 to withdraw ₹5000`;
             this.lab_progress.string = `${allNumber}/${allNumber}`;
