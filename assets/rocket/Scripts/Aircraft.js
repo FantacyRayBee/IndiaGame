@@ -44,7 +44,8 @@ cc.Class({
         prefabPlayerList: cc.Prefab,
         prefabPlayerGetOut: cc.Prefab,
 
-
+        region: cc.Node,      // 红色区域图片节点
+        lights: [cc.Node],      
     },
 
     ctor() {
@@ -72,18 +73,21 @@ cc.Class({
 
         this.drawLine = false;                  // 是否绘制线
         this.constStartPosX = -540;               // 走势起点X坐标
-        this.constStartPosY = -180;               // 走势起点Y坐标
+        this.constStartPosY = -198;               // 走势起点Y坐标
         this.drawPosX = -540;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
         // this.startFlyLineColor = cc.Color(255, 0, 0, 255);
         this.endFlyLineColor = new cc.Color(220, 96, 6, 255);
 
+        this.endFlyPos = cc.v2(665, 250);              // 游戏结束时 飞机终点位置
+
         this.numSelfBet = 0;                        // 存放当前玩家下注数
         this.numAllBet = 0;                         // 存放所有玩家下注数
         this.preRoundBetNum = 0;                      // 存放上一轮下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
+        this.trendMaxNum = 11;                     // 走势图最大显示点数
     },
 
     onLoad: function() {
@@ -638,11 +642,6 @@ cc.Class({
         let mul = point.mul;         // 倍数
         this.drawPosX = this.constStartPosX;
         this.duringFlyTime = Number(time / 1000);
-        this.graphicsDrawLine.clear();
-        this.graphicsDrawLine.moveTo(this.drawPosX, this.constStartPosY);
-        // let rocketSke = this.flyRocketNode.getComponent(sp.Skeleton);
-        // rocketSke.skeletonData = this.rocketSpData;
-        // rocketSke.setAnimation(0, "feixing", true);
         let limitTime = 2.3;
         let time_s = Number(time / 1000);
         if (time_s <= limitTime) {
@@ -667,14 +666,26 @@ cc.Class({
             let deltaX = (unitTime / 2) * this.lineTimeMarkOffsetX;
             this.drawPosX += deltaX;
             this.flyRocketNode.setPosition(this.drawPosX, currentY);
-            this.graphicsDrawLine.lineTo(this.drawPosX, currentY);
-            this.graphicsDrawLine.stroke();
+            this.setRegion();
         }
         this.initTimeMarkByCurTime(time);
         this.initRateMarkByCurRate(Number((mul / 1000).toFixed(2)));
-
     },
 
+    setRegion() {
+        // 获取飞机和红区节点的位置（世界坐标）
+        let planeWorld = this.flyRocketNode.convertToWorldSpaceAR(cc.Vec2.ZERO);
+        // 转为同一坐标系（本地坐标）
+        let local = this.region.parent.convertToNodeSpaceAR(planeWorld);
+        // 区域左下角是 anchor (0,0)，直接用宽高覆盖即可
+        let width = local.x - this.region.x;
+        let height = local.y - this.region.y;
+        if (width > 0 && height > 0) {
+            this.region.width = width - 30;
+            this.region.height = height - 25;
+        }
+    },
+    
     /**
      * 设置移动刻度
      * @param {boolean} isMove 是否移动刻度
@@ -873,17 +884,15 @@ cc.Class({
         // lab.string = Math.floor(count / 1000) + "s";
 
         this.timerBar.node.getChildByName("logo").getComponent(cc.Animation).play("rotate2");
-        this.scheduleWaitBetCallback = () => {
-            count -= 100;
-            // lab.string = Math.floor(count / 1000) + "s";
-            let rate = Number(count / this.betDuration).toFixed(2);
-            this.timerBar.progress = rate;
-            if (count <= 0 || rate <= 0) {
-                LoggerUtil.getInstance().log("倒计时结束，火箭点火");
-                this.isDuringBet = false;
-            }
-        };
-        this.schedule(this.scheduleWaitBetCallback, 0.1, Math.floor(time / 100) - 1);
+        this.timerBar.node.stopAllActions();
+        this.timerBar.progress = 1;
+        cc.tween(this.timerBar)
+          .to(remainder / 1000, { progress: 0 })
+          .call(() => {
+              LoggerUtil.getInstance().log("倒计时结束，火箭点火");
+              this.isDuringBet = false;
+          })
+          .start();
     },
 
     freshWaitLayer(bool) {
@@ -893,6 +902,14 @@ cc.Class({
 
     // 开始火箭点火
     startRocketFire() {
+        this.drawPosX = this.constStartPosX;
+        this.drawPosY = this.constStartPosY;
+        this.duringFlyTime = 0;
+        this.isOscillating = false;
+        this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
+        this.region.active = true;
+        this.region.width = 0;
+        this.region.height = 0;
         this.setBetLabelInfo();
         this.getDownNode.active = false;
         this.unGetDownNode.active = true;
@@ -910,10 +927,7 @@ cc.Class({
         this.freshWaitLayer(false);
         this.isMoveTimeMark = false;
         this.updateCenterRate(1);
-        this.drawPosX = this.constStartPosX;
-        this.duringFlyTime = 0;
         this.graphicsDrawLine.moveTo(this.drawPosX, this.constStartPosY);
-        this.flyRocketNode.setPosition(this.drawPosX, this.constStartPosY);
         this.isFlying = true;
         this.drawLine = true;
 
@@ -924,9 +938,10 @@ cc.Class({
         this.unGetDownNode.active = false;
         LoggerUtil.getInstance().warn("rocketEnd", notify);
         if (!notify) return;
+        this.isOscillating = false;
         this.isFlying = false;
         this.drawLine = false;
-
+        this.region.active = false;
         let time = notify.x;
         let rate = notify.mul;
         let jackpotPool = notify.jackpotPool;
@@ -936,11 +951,23 @@ cc.Class({
         // let rocketSke = this.flyRocketNode.getComponent(sp.Skeleton);
         // rocketSke.skeletonData = this.rocketSpData;
         // rocketSke.setAnimation(0, "baozha", false);
-        this.rocketAudioManager.playGameSound("explosion", false);
-        this.updateTrendData(point);
-        this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1]);
-        this.curRoundAddCoinFinish();
+        this.flyEndAnimion(point);
         this.background.getComponent(cc.Animation).stop();
+    },
+
+    flyEndAnimion(point) {
+        // 使用tween实现爆炸后飞向终点
+        cc.tween(this.flyRocketNode)
+        .to(0.2, {
+            position: this.endFlyPos
+        }, { easing: 'sineOut' })
+        .call(() => {
+            this.rocketAudioManager.playGameSound("explosion", false);
+            this.updateTrendData(point);
+            this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1]);
+            this.curRoundAddCoinFinish();
+        })
+        .start();
     },
 
     curRoundAddCoinFinish(){
@@ -1005,12 +1032,12 @@ cc.Class({
     initRectTrend(data) {
         this.nodeTrendParent.removeAllChildren();
         this.rectTrendNodeArray.length = 0;
-        if (data.length < 12) {
+        if (data.length < this.trendMaxNum) {
             for (let i = 0; i < data.length; i++) {
                 this.createRectTrendNode(data[i]);
             }
         } else {
-            for (let i = data.length - 12; i < data.length; i++) {
+            for (let i = data.length - this.trendMaxNum; i < data.length; i++) {
                 this.createRectTrendNode(data[i]);
             }
         }
@@ -1024,7 +1051,7 @@ cc.Class({
             isShowLight = false;
         }
         let trendNode = cc.instantiate(this.prefabTrendItem);
-        let RocketRecordRectCtrl = trendNode.getComponent("RocketRecordRectCtrl");
+        let RocketRecordRectCtrl = trendNode.getComponent("AircraftRecordRectCtrl");
         if (RocketRecordRectCtrl) {
             RocketRecordRectCtrl.init(data);
             this.nodeTrendParent.addChild(trendNode);
@@ -1037,7 +1064,7 @@ cc.Class({
      * 更新矩形走势数据节点
      */
     updateRectTrendNode(data) {
-        if (this.rectTrendNodeArray.length >= 12) {
+        if (this.rectTrendNodeArray.length >= this.trendMaxNum) {
             let node = this.rectTrendNodeArray.shift();
             node.removeFromParent(true);
             if (cc.isValid(node)) {
@@ -1054,7 +1081,7 @@ cc.Class({
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
         node.getComponent("RocketRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(0, 98));
+        node.setPosition(cc.v2(0, 200));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
@@ -1068,6 +1095,16 @@ cc.Class({
             let ctrl = this.centerRateNode.getComponent("AircraftCenterRate");
             if (ctrl) {
                 ctrl.updateRate(Number(rate).toFixed(2), isEnd);
+            }
+            for (let i = 0; i < 3; i++) {
+                this.lights[i].active = false;
+            }
+            if (rate <= 2) {
+                this.lights[0].active = true;
+            } else if (rate <= 10) {
+                this.lights[1].active = true;
+            } else {
+                this.lights[2].active = true;
             }
         }
     },
@@ -1089,52 +1126,52 @@ cc.Class({
             this.showBetSpineTime = 0;
             this.showBtnBetSpine();
         }
-
-        if (this.isFlying == true) {
-            // 倍数 = x的平方/100 + 1   , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
-            // y=X²/10+1  , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
-            let frontY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 6;
+        if (!this.isFlying) return;
+    
+        // ✅ 飞行期间倍率始终增长
+        let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
+        this.updateCenterRate(rate);
+    
+        // ✅ 正确震荡逻辑：震荡时一定执行
+        if (this.isOscillating) {
             this.duringFlyTime += dt;
-            let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 6;
-            let deltaX = (dt / 2) * this.lineTimeMarkOffsetX;
-            let deltaY = currentY - frontY;
-            let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
-
-            this.updateCenterRate(rate);
-
-            if (this.isMoveTimeMark == true) {
-                this.moveTimeMark(deltaX);
-            }
-
-            if (this.isMoveRateMark == true) {
-                this.moveRateMark(deltaY);
-            }
-
-            if (this.drawLine == true) {
-                this.drawPosX += deltaX;
-                if (this.drawPosX > 520 || currentY > 160) {
-                    this.setMoveMark(true);
-                    this.drawLine = false;
-                    LoggerUtil.getInstance().log("当前时间", this.duringFlyTime, rate);
-                    LoggerUtil.getInstance().log("当前火箭位置", this.flyRocketNode.getPosition());
-                    return;
-                }
-                this.flyRocketNode.setPosition(this.drawPosX, currentY);
-                // this.graphicsDrawLine.strokeColor = this.startFlyLineColor;
-                // this.graphicsDrawLine.fillColor = this.startFlyLineColor;
-                let redOffset = 0, greenOffset = 0, blueOffset = 0;
-                redOffset = this.endFlyLineColor.r - this.startFlyLineColor.r;
-                greenOffset = this.endFlyLineColor.g - this.startFlyLineColor.g;
-                blueOffset = this.endFlyLineColor.b - this.startFlyLineColor.b;
-                if (this.duringFlyTime > 5 && this.duringFlyTime < 10) {
-                    this.graphicsDrawLine.strokeColor = new cc.Color(this.startFlyLineColor.r + redOffset * this.duringFlyTime / 10, this.startFlyLineColor.g + greenOffset * this.duringFlyTime / 10, this.startFlyLineColor.b + blueOffset * this.duringFlyTime / 10, 255);
-                    this.graphicsDrawLine.fillColor = new cc.Color(this.startFlyLineColor.r + redOffset * this.duringFlyTime / 10, this.startFlyLineColor.g + greenOffset * this.duringFlyTime / 10, this.startFlyLineColor.b + blueOffset * this.duringFlyTime / 10, 255);
-                }
-                // LoggerUtil.getInstance().log("graphicsDrawLine:", this.graphicsDrawLine.strokeColor.r, this.graphicsDrawLine.fillColor.r);
-                this.graphicsDrawLine.lineTo(this.drawPosX, currentY);
-                this.graphicsDrawLine.stroke();
-
-            }
+            // 震荡配置
+            const baseX = this.drawPosX;
+            const baseY = 200;
+            const freqX = 2;     // 左右震荡频率
+            const freqY = 3;     // 上下震荡频率
+            const ampX = 6;      // 左右幅度
+            const ampY = 20;     // 上下幅度
+            const x = baseX + Math.sin(this.duringFlyTime * freqX) * ampX;
+            const y = baseY + Math.sin(this.duringFlyTime * freqY) * ampY;
+            this.flyRocketNode.setPosition(x, y);
+            this.setRegion();
+            return;
+        }
+    
+        // ❗此处不能再判断 drawLine，必须继续逻辑
+        let frontY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 8;
+        this.duringFlyTime += dt;
+        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 8;
+        let deltaX = (dt / 2) * this.lineTimeMarkOffsetX;
+        let deltaY = currentY - frontY;
+    
+        if (this.isMoveTimeMark) this.moveTimeMark(deltaX);
+        if (this.isMoveRateMark) this.moveRateMark(deltaY);
+    
+        this.drawPosX += deltaX;
+        this.drawPosY = currentY;
+        this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
+        this.setRegion();
+    
+        // ✅ 当达到边界时，切换为震荡阶段（一次性）
+        if (!this.isOscillating && (this.drawPosX >= 550 || this.drawPosY >= 200)) {
+            this.drawPosX = Math.min(this.drawPosX, 550);
+            this.drawPosY = Math.min(this.drawPosY, 200);
+            this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
+            this.isOscillating = true;
+            this.setMoveMark(true);
+            LoggerUtil.getInstance().log("🎯 切换为震荡阶段 at", this.drawPosX, this.drawPosY);
         }
     },
 

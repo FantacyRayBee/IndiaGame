@@ -39,9 +39,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 48,
+      "g": 48,
+      "b": 48,
       "a": 255
     },
     "_contentSize": {
@@ -316,7 +316,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "73fe790f-d9ae-4975-8b60-9c9bd591d28a"
+      "__uuid__": "ff0e91c7-55c6-4086-a39f-cb6e457b8c3b"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -333,7 +333,7 @@
     "_id": ""
   },
   {
-    "__type__": "2383e1afd9DgoXAaixduou3",
+    "__type__": "1d652A/BhdIqbWKOuUj/yBd",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -343,45 +343,26 @@
     "rectLight": {
       "__id__": 2
     },
-    "greenLabColor": {
+    "blueLabColor": {
       "__type__": "cc.Color",
-      "r": 80,
-      "g": 255,
-      "b": 46,
-      "a": 255
-    },
-    "orangeLabColor": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 148,
-      "b": 11,
+      "r": 36,
+      "g": 172,
+      "b": 255,
       "a": 255
     },
     "purpleLabColor": {
       "__type__": "cc.Color",
-      "r": 173,
-      "g": 50,
+      "r": 198,
+      "g": 36,
       "b": 255,
       "a": 255
     },
-    "blueLabColor": {
+    "redLabColor": {
       "__type__": "cc.Color",
-      "r": 31,
-      "g": 112,
-      "b": 255,
+      "r": 255,
+      "g": 21,
+      "b": 21,
       "a": 255
-    },
-    "greenSpriteFrame": {
-      "__uuid__": "d1eea0a6-d19e-4736-b66b-1a9b58acedc9"
-    },
-    "orangeSpriteFrame": {
-      "__uuid__": "9c2acdc6-ef7b-4c36-9169-c2442a615ee7"
-    },
-    "purpleSpriteFrame": {
-      "__uuid__": "4c785f33-c1ac-40fd-a8df-3de76ac90af6"
-    },
-    "blueSpriteFrame": {
-      "__uuid__": "73fe790f-d9ae-4975-8b60-9c9bd591d28a"
     },
     "_id": ""
   },
