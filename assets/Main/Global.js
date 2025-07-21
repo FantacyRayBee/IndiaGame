@@ -480,6 +480,7 @@ window.GlobalCfg = {
     mwData: {},
     baccaratData: {},
     rocketData: {},
+    aviatorData: {},
     zooData: {},
     cricketData: {},
     zeusData: {},

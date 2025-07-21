@@ -31,7 +31,7 @@ cc.Class({
     this.or_sprite_pos1 = cc.v2(340, -76);
     this.btn_facebookLogin_pos1 = cc.v2(209, -144);
     this.btn_guestLogin_pos1 = cc.v2(476, -144);
-    this.protoFiles = ["proto/baseproto", "proto/lobbyservice", "proto/gamebase", "proto/benz/gameservice", "proto/fruitMachine/gameservice", "proto/mayaMachine/gameservice", "proto/jokerMachine/gameservice", "proto/indiaMachine/gameservice", "proto/vampireMachine/gameservice", "proto/bullMachine/gameservice", "proto/updown/gameservice", "proto/andeer/gameservice", "proto/baccarat3Patti/gameservice", "proto/horseRace/gameservice", "proto/lhd/gameservice", "proto/munda/gameservice", "proto/multiTeenPatti/gameservice", "proto/ssc/gameservice", "proto/tpGame/gameservice", "proto/rummy/gameservice", "proto/rocket/gameservice", "proto/zoo/gameservice", "proto/cricket/gameservice", "proto/zeus/gameservice"];
+    this.protoFiles = ["proto/baseproto", "proto/lobbyservice", "proto/gamebase", "proto/benz/gameservice", "proto/fruitMachine/gameservice", "proto/mayaMachine/gameservice", "proto/jokerMachine/gameservice", "proto/indiaMachine/gameservice", "proto/vampireMachine/gameservice", "proto/bullMachine/gameservice", "proto/updown/gameservice", "proto/andeer/gameservice", "proto/baccarat3Patti/gameservice", "proto/horseRace/gameservice", "proto/lhd/gameservice", "proto/munda/gameservice", "proto/multiTeenPatti/gameservice", "proto/ssc/gameservice", "proto/tpGame/gameservice", "proto/rummy/gameservice", "proto/rocket/gameservice", "proto/aviator/gameservice", "proto/zoo/gameservice", "proto/cricket/gameservice", "proto/zeus/gameservice"];
     this.baseBundlesCheckUpdateArr = ['ResourcesBundle'];
     this.baseBundlesNeedUpdateArr = [];
     this.baseBundlesUpdateCompleteArr = [];

@@ -415,6 +415,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
     mwData: {},
     baccaratData: {},
     rocketData: {},
+    aviatorData: {},
     zooData: {},
     cricketData: {},
     zeusData: {}

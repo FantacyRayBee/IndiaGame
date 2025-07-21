@@ -431,6 +431,24 @@ cc.Class({
       "gameservice.updatecoinnotify": "UpdateCoinNotify",
     }
 
+    // 飞机
+    this.protoAviator = {
+      "gameservice.login": "LoginAck",
+      "gameservice.loadwhole": "LoadWholeAck",
+      "gameservice.exit": "ExitAck",
+      "gameservice.playerlist": "PlayerListAck",
+      "gameservice.playernumberchangednotify": "PlayerNumberChangedNotify",
+      "gameservice.bet": "BetAck",
+      "gameservice.cash": "CashAck",
+      "gameservice.cashnotify": "CashNotify",
+      "gameservice.startbettingnotify": "StartBetNotify",
+      "gameservice.startflynotify": "StartFlyNotify",
+      "gameservice.flyfinishnotify": "FlyFinishNotify",
+      "gameservice.bettingupdatenotify": "BettingUpdateNotify",
+      "gameservice.updatecoinnotify": "UpdateCoinNotify",
+      "gameservice.endbettingnotify": "EndBettingNotify",
+    }
+
     // 动物园
     this.protoZoo = {
       "gameservice.login": "LoginAck",
@@ -548,6 +566,9 @@ cc.Class({
     }
     else if (gameName == "rocket") {
       return this.protoRocket;
+    }
+    else if (gameName == "aviator") {
+      return this.protoAviator;
     }
     else if (gameName == "zooGame") {
       return this.protoZoo;
