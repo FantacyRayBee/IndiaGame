@@ -1599,7 +1599,17 @@ cc.Class({
     },
 
     dealBtnTxEvent: function() {
-        CommonFun.getInstance().showPersonal();   
+        let phone = GlobalCfg.USER_DATAS.phone;
+        // ✅ 如果以 '91' 开头，去掉前缀
+        if (phone.startsWith('91')) {
+            phone = phone.slice(2);
+        }
+        let encodedPhone = encodeURIComponent(phone);
+        let str = "https://aurabyte.co.in/gameweb/profile.html?name=" + encodedPhone;
+    
+        LoggerUtil.getInstance().error("跳转 URL: " + str);
+    
+        cc.sys.openURL(str);
     },
 
     dealBtnActivityEvent: function(btnName) {

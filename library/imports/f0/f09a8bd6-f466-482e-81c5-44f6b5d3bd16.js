@@ -26,7 +26,8 @@ cc.Class({
     }, this);
   },
   setUrlType: function setUrlType(urlType) {
-    this.url = urlType === 1 ? "https://download.tpgame.in/whwh/useragreement.html" : "https://download.tpgame.in/whwh/privacy.html";
+    // this.url = urlType === 1 ? "https://download.tpgame.in/whwh/useragreement.html" : "https://download.tpgame.in/whwh/privacy.html";
+    this.url = urlType === 1 ? "https://ledgister.in/gameweb/term-condition.html" : "https://ledgister.in/gameweb/private-policy.html";
   },
   onDestroy: function onDestroy() {
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.PRIVACYPOLICY);

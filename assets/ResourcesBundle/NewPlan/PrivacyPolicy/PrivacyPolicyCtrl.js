@@ -22,7 +22,8 @@ cc.Class({
     },
 
     setUrlType: function (urlType) {
-        this.url = urlType === 1 ? "https://download.tpgame.in/whwh/useragreement.html" : "https://download.tpgame.in/whwh/privacy.html";
+        // this.url = urlType === 1 ? "https://download.tpgame.in/whwh/useragreement.html" : "https://download.tpgame.in/whwh/privacy.html";
+        this.url = urlType === 1 ? "https://ledgister.in/gameweb/term-condition.html" : "https://ledgister.in/gameweb/private-policy.html";
     },
 
     onDestroy: function() {

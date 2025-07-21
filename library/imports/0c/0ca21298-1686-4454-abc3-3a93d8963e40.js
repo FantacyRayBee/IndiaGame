@@ -847,12 +847,11 @@ cc.Class({
           });
         }
         ;
-        if (GlobalCfg.IS_CLUB_MODE == 1) {
-          //代理模式不显示游客登录
-          _this4.node_btn_guestLogin.active = false;
-          _this4.node_or_sprite.active = false;
-          _this4.node_bg_title.active = false;
-        }
+        // if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
+        //     this.node_btn_guestLogin.active = false;
+        //     this.node_or_sprite.active = false;
+        //     this.node_bg_title.active = false;
+        // }
       }, function (err) {
         LoggerUtil.getInstance().error("\u52A0\u8F7DResourcesBundle-Bundle\u5F02\u5E38: " + JSON.stringify(err));
       });
@@ -887,13 +886,14 @@ cc.Class({
     this.node_or_sprite.setPosition(this.or_sprite_pos);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
-    if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-      this.node_btn_facebookLogin.active = false;
-      this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
-      this.node_btn_guestLogin.setContentSize(512, 79);
-    }
-    ;
+
+    // if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
+    //     this.node_btn_facebookLogin.active = false;
+    //     this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
+    //     this.node_btn_guestLogin.setContentSize(512, 79);
+    // };
   },
+
   baseBundlesHotUpdate: function baseBundlesHotUpdate() {
     var _this5 = this;
     this.loadBundlesStartTime = cc.sys.now();

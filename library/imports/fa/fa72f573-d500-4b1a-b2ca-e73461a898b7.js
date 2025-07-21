@@ -20,7 +20,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     this.email = GlobalCfg.USER_DATAS.customerService.email.length > 0 ? GlobalCfg.USER_DATAS.customerService.email : "teenpattikayu01@gmail.com";
-    this.lab_content.string = this.email;
+    // this.lab_content.string = this.email;
     this.lab_Copy.string = otherLanguage.lab_Copy[language];
     this.btn_close.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btn_copy.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);

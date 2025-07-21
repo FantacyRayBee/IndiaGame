@@ -65,6 +65,7 @@ cc.Class({
         this.updateStartTime = 0;
         this.btnWenZiClickTimes = 0;
 
+        
         this.loadDiffFilesStartTime = 0;
         this.loadBundlesStartTime = 0;
         this.isHaveUpdateForResources = false;
@@ -914,11 +915,11 @@ cc.Class({
                         this.showCommonLoginView("");
                     });
                 };
-                if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
-                    this.node_btn_guestLogin.active = false;
-                    this.node_or_sprite.active = false;
-                    this.node_bg_title.active = false;
-                }
+                // if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
+                //     this.node_btn_guestLogin.active = false;
+                //     this.node_or_sprite.active = false;
+                //     this.node_bg_title.active = false;
+                // }
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
             });
@@ -960,11 +961,11 @@ cc.Class({
         this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
         this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
 
-        if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-            this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
-            this.node_btn_guestLogin.setContentSize(512, 79);
-        };
+        // if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
+        //     this.node_btn_facebookLogin.active = false;
+        //     this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
+        //     this.node_btn_guestLogin.setContentSize(512, 79);
+        // };
     },
 
     baseBundlesHotUpdate: function() {
