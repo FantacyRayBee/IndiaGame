@@ -8,8 +8,6 @@ cc.Class({
         toggle_challenges: cc.Toggle,
         toggle_bonus: cc.Toggle,
         toggle_turntable: cc.Toggle,
-
-        red_act: cc.Node,
     },
 
     ctor: function() {
@@ -18,7 +16,7 @@ cc.Class({
         this.node_bonus = null;
         this.node_turntable = null;
         this.customMsgEventHandle = null;
-        this.pointView = "Turntable";
+        this.pointView = "Daily";
     },
 
     onLoad: function() {
@@ -47,9 +45,6 @@ cc.Class({
         if (msgId == GlobalCfg.CLIENT_MSG_ID.ACTIVITY_CLOSE_VIEW) {
             self.node.destroy();
         }
-        if (msgId == "RefreshActivity_RedPoint") {
-            this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
-        }
     },
 
     setPointView: function(pointView) {
@@ -60,7 +55,6 @@ cc.Class({
         let curToggleName = null;
         let data = GlobalCfg.USER_DATAS.openModules;
         let couldShowModel = new Map();
-
         // 签到活动
         if (data.includes(8)) {
             couldShowModel.set("Daily", true);
@@ -69,6 +63,14 @@ cc.Class({
         else {
             this.toggle_daily.node.active = false;
         };
+        // 转盘活动
+        if (data.includes(9)) {
+            couldShowModel.set("Turntable", true);
+            this.toggle_turntable.node.active = true;
+        }
+        else {
+            this.toggle_turntable.node.active = false;
+        };
         // 首充活动
         if (GlobalCfg.USER_DATAS.recharged == 0 && data.includes(10)) {
             couldShowModel.set("Bonus", true);
@@ -76,15 +78,6 @@ cc.Class({
         }
         else {
             this.toggle_bonus.node.active = false;
-        };
-        // 转盘活动
-        if (data.includes(9)) {
-            couldShowModel.set("Turntable", true);
-            this.toggle_turntable.node.active = true;
-            this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
-        }
-        else {
-            this.toggle_turntable.node.active = false;
         };
         // 挑战任务
         if (GlobalCfg.USER_DATAS.challengeRunning && data.includes(17)) {
@@ -109,7 +102,7 @@ cc.Class({
                     this.toggle_bonus.isChecked = true;
                     curToggleName = this.toggle_bonus.node.name;
                     break;
-                case "Turntable":
+                case "TurnTable":
                     this.toggle_turntable.isChecked = true;
                     curToggleName = this.toggle_turntable.node.name;
                     break;
@@ -129,17 +122,18 @@ cc.Class({
 
         /**
          * 
-         * @param {string} pointView 值：Daily  Challenges  Bonus  Turntable
+         * @param {string} pointView 值：Daily  Challenges  Bonus  TurnTable
          */
         let func_CheckPointView = (pointView)=>{
             if(couldShowModel.has(pointView)){
                 func(pointView);
-            }
-            else{
+            }else{
                 funcShowCurrentCouldShowModel();
             }
         }
+
         func_CheckPointView(this.pointView);
+
         if (curToggleName) {
             this.setViewByToggleName(curToggleName);
         };

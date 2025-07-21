@@ -69,7 +69,7 @@ window.activityLanguage = {
     lab_morecash:["lab_morecash","more cash bonus after the purchase","खरीद के बाद अधिक नकद बोनस","خریداری کے بعد مزید کیش بونس","ক্রয়ের পরে আরও ক্যাশ বোনাস"],
     lab_times:["lab_times","Remaining times : ","बचा हुआ समय : ","باقی ماندہ وقت : ","অবশিষ্ট সময় : "],
     lab_turnplate_tips:["lab_turnplate_tips","Tips","टिप्स","مشورے","পরামর্শ"],
-    lab_turnplate_1:["lab_turnplate_1","1.You can get a luckdraw for every 50 games you play","1. आपको अपने द्वारा खेले गए हर 50 खेल के लिए एक लकड्रा मिलेगा","1. آپ اپنے کھیلے جانے والے ہر 50 گیمز کے لیے لکی ڈرا حاصل کرسکتے ہیں","1. আপনি আপনার খেলা প্রতি 50টি গেমের জন্য একটি লাকিড্র পেতে পারেন"],
+    lab_turnplate_1:["lab_turnplate_1","1.You can get a luckdraw for every 50 games of teenpatti","1. आपको अपने द्वारा खेले गए हर 50 खेल के लिए एक लकड्रा मिलेगा","1. آپ اپنے کھیلے جانے والے ہر 50 گیمز کے لیے لکی ڈرا حاصل کرسکتے ہیں","1. আপনি আপনার খেলা প্রতি 50টি গেমের জন্য একটি লাকিড্র পেতে পারেন"],
     lab_turnplate_2:["lab_turnplate_2","2.there is a freelottery every day","2. हर दिन एक मुफ्त लॉटरी होती है","2. روزانہ مفت لاٹری بھی ہے","2. প্রতিদিন একটি ফ্রি লটারি আছে"],
     lab_bg_sign: ["lab_bg_sign","DAILY"+ "\n" +"FREE RUPEES","दैनिक"+ "\n" +"मुफ्त रुपये","روزانہ" + "\n" + "مفت روپے","প্রতিদিনের"+ "\n" +"ফ্রি টাকা"],
     lab_cm_sign: ["lab_cm_sign","DAILY"+ "\n" +"FREE RUPEES","दैनिक"+ "\n" +"मुफ्त रुपये","روزانہ" + "\n" + "مفت روپے","প্রতিদিনের"+ "\n" +"ফ্রি টাকা"],

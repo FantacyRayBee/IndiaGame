@@ -122,9 +122,9 @@ cc.Class({
       }
       ;
     }
-    if (msgId == "RefreshActivity_RedPoint") {
-      this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
-    }
+    // if (msgId == "RefreshActivity_RedPoint") {
+    //     this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
+    // }
   },
   btnClick: function btnClick(button) {
     var name = button.node.name;
@@ -247,7 +247,7 @@ cc.Class({
      */
     if (GlobalCfg.USER_DATAS.openModules.includes(8) || GlobalCfg.USER_DATAS.openModules.includes(9) || GlobalCfg.USER_DATAS.openModules.includes(10) || GlobalCfg.USER_DATAS.openModules.includes(17)) {
       this.btnActivity.node.active = true;
-      this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
+      // this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
     } else {
       this.btnActivity.node.active = false;
     }
