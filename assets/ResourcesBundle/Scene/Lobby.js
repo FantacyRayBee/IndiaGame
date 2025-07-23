@@ -1605,7 +1605,7 @@ cc.Class({
             phone = phone.slice(2);
         }
         let encodedPhone = encodeURIComponent(phone);
-        let str = "https://aurabyte.co.in/gameweb/profile.html?name=" + encodedPhone;
+        let str = "https://ledgister.in/gameweb//profile.html?name=" + encodedPhone;
     
         LoggerUtil.getInstance().error("跳转 URL: " + str);
     
