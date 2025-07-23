@@ -14,7 +14,6 @@ cc.Class({
         nodeTrendParent: cc.Node,
         btnTrend: cc.Button,
         btnBottomTrend: cc.Button,
-        labelJackPot: cc.Label,
         background: cc.Node,
 
         // waitLayer
@@ -299,13 +298,6 @@ cc.Class({
             self.numAllBet = poolChip;
             self.setBetLabelInfo();
             self.updateSelfCoin();
-            
-            let txNode = self.selfPlayer.getChildByName('txk');
-            let pos = txNode.getPosition();
-            cc.tween(txNode)
-                .to(0.1, {position: cc.v2(pos.x, 20)})
-                .to(0.1, {position: cc.v2(pos.x, 0)})
-                .start();
         }
         else if (msgId == 'gameservice.cash') {
             // 领取奖励
@@ -357,10 +349,6 @@ cc.Class({
                 return;
             }
             let betPool = notify.betPool;
-            let jackpotPool = notify.jackpotPool;
-            if (jackpotPool) {
-                self.labelJackPot.string = Number(jackpotPool / 100).toFixed(2);
-            }
             self.numAllBet = betPool;
             self.setBetLabelInfo();
         }
@@ -560,7 +548,6 @@ cc.Class({
             let playerNum = scene.playerNum;            // 总玩家人数
             let currentStatusLeftMs = scene.currentStatusLeftMs;    // 当前状态剩余时间.毫秒(下注，结算)
             let betPool = scene.betPool;                // 下注池
-            let jackpotPool = scene.jackpotPool;        // 头奖池
             let curPoint = scene.point;                 // 当前坐标点
             let trends = scene.openRecord;              // 开奖记录
             this.dealTrendData(trends);
@@ -569,8 +556,6 @@ cc.Class({
             this.numSelfBet = chip;
             this.numAllBet = betPool;
             this.setBetLabelInfo();
-
-            this.labelJackPot.string = jackpotPool / 100;
             this.btnPlayerList.node.getChildByName('redBg').getChildByName('Label').getComponent(cc.Label).string = playerNum;
             switch (status) {
                 case 0:
@@ -827,19 +812,7 @@ cc.Class({
     setSelfPlayerInfo(data) {
         if (!data) return;
         GlobalCfg.USER_DATAS.userDiamond = data.diamond;
-        this.selfPlayer.getChildByName('userName').getComponent(cc.Label).string = CommonFun.getInstance().getStrByLength(data.nickname, 8);
         this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
-        let headUrl = data.imgUrl;
-        if (headUrl) {
-            this.loadHeadSp(headUrl, 85, this.selfPlayer.getChildByName('txk').getChildByName('mask').getChildByName('tx').getComponent(cc.Sprite));
-        }
-        let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(data.vipLevel);
-        if (isCanShowVIPFont) {
-            this.selfPlayer.getChildByName('userName').color = new cc.Color(250, 225, 76); 
-        }
-        else {
-            this.selfPlayer.getChildByName('userName').color = new cc.Color(255, 255, 255);
-        };
     },
 
     updateSelfCoin() {
@@ -982,7 +955,6 @@ cc.Class({
         let rate = notify.mul;
         let jackpotPool = notify.jackpotPool;
         let point = { x: time, mul: rate };
-        this.labelJackPot.string = jackpotPool / 100;
         this.updateCenterRate(Number((rate / 1000).toFixed(2)), true);
         this.flyEndAnimion(point);
         this.background.getComponent(cc.Animation).stop();
@@ -1114,7 +1086,7 @@ cc.Class({
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
         node.getComponent("AviatorRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(0, 245));
+        node.setPosition(cc.v2(0, 195));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
