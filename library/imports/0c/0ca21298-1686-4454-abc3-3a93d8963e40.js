@@ -10,8 +10,12 @@ cc.Class({
     btn_test1: cc.Button,
     btn_testLogin: cc.Button,
     editBox_invited_test: cc.EditBox,
-    editBox_chanel_test: cc.EditBox
+    editBox_chanel_test: cc.EditBox,
+    eyeOpenSprite: cc.SpriteFrame,
+    // 眼睛睁开图标
+    eyeCloseSprite: cc.SpriteFrame // 眼睛关闭图标
   },
+
   ctor: function ctor() {
     this.reqComparisonMainMD5InfoAcount = 0; // 请求远程assets下的manifest文件的次数（请求次数超过3次，判定为异常）
     this.needUpdateFileArr = []; // 存放需要更新的文件的容器
@@ -40,6 +44,7 @@ cc.Class({
     this.loadDiffFilesStartTime = 0;
     this.loadBundlesStartTime = 0;
     this.isHaveUpdateForResources = false;
+    this._isPasswordVisible = false;
   },
   onLoad: function onLoad() {
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_UPDATE_VIEW);
@@ -56,22 +61,24 @@ cc.Class({
 
     // login节点部分
     this.node_loginLayer = this.node.getChildByName("loginLayer");
+    this.node_regist = this.node_loginLayer.getChildByName("regist");
     this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
     this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
     this.node_btn_accountDelete = this.node_loginLayer.getChildByName("btn_accountDelete");
-    this.node_btn_passwordDelete = this.node_loginLayer.getChildByName("btn_passwordDelete");
-    this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
+    this.node_btn_passwordDelete = this.node_regist.getChildByName("btn_passwordDelete");
+    this.node_btn_reqVerify = this.node_regist.getChildByName("btn_reqVerify");
     this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
-    this.node_btn_accountLogin = this.node_loginLayer.getChildByName("btn_accountLogin");
+    this.node_btn_regist = this.node_loginLayer.getChildByName("btn_regist");
     this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
     this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
     this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
-    this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
+    this.node_btn_login = this.node_loginLayer.getChildByName("btn_login");
     this.node_bg_title = this.node_loginLayer.getChildByName("bg_title");
     this.node_lab_accountTips = this.node_loginLayer.getChildByName("lab_accountTips");
     this.node_lab_passwordTips = this.node_loginLayer.getChildByName("lab_passwordTips");
     this.node_btn_wenZi = this.node_loginLayer.getChildByName("btn_wenZi");
-    this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
+    this.lab_otpTips = this.node_regist.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
+    this.btn_eye = this.editBox_password.node.getChildByName("btn_eye");
     var languagesType = I18NUtil.getInstance().getLanguageType();
     var checkedName = "";
     switch (languagesType) {
@@ -115,13 +122,14 @@ cc.Class({
     this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_passwordDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-    this.node_btn_accountLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+    this.node_btn_regist.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_quickLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-    this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+    this.node_btn_login.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
     this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
     this.btn_testLogin.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
+    this.btn_eye.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
   onEventMsg: function onEventMsg(webData, target) {
@@ -230,12 +238,15 @@ cc.Class({
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.editBox_password.string = "";
       this.node_lab_passwordTips.active = false;
-    } else if (btnName == "btn_accountLogin") {
+    } else if (btnName == "btn_login") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.dealAccountLoginEvent();
     } else if (btnName == "btn_quickLogin") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.dealQuickLoginEvent();
+    } else if (btnName == "btn_eye") {
+      GlobalCfg.G_COMPONENTS.Audio.playButton();
+      this.dealPasswordVisible();
     } else if (btnName === "btn_facebookLogin") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       CommonFun.getInstance().showProgress();
@@ -255,10 +266,9 @@ cc.Class({
       ;
       CommonFun.getInstance().showProgress("Sending SMS request ...");
       this.dealReqVerifyEvent(accountOrPhoneStr);
-    } else if (btnName === "btn_guestLogin") {
+    } else if (btnName === "btn_regist") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-      CommonFun.getInstance().showProgress();
-      this.dealGuestLoginEvent();
+      this.node_regist.active = true;
     } else if (btnName === "btn_wenZi") {
       this.dealBtnWenZiEvent();
     } else if (btnName === "btn_test1") {
@@ -404,6 +414,11 @@ cc.Class({
     });
   },
   dealAccountLoginEvent: function dealAccountLoginEvent() {
+    if (this.node_regist.active == true) {
+      //如果是注册界面，则切换到登录界面
+      this.node_regist.active = false;
+      return;
+    }
     var accountOrPhoneStr = this.editBox_account.string;
     if (accountOrPhoneStr.length == 0) {
       this.node_lab_accountTips.active = true;
@@ -416,47 +431,23 @@ cc.Class({
       return;
     }
     ;
-    if (this.isCustomAccount(accountOrPhoneStr)) {
+    CommonFun.getInstance().showProgress();
+    var obj = {
+      loginType: "ACCOUNT",
+      account: accountOrPhoneStr,
+      password: passwordOrVerCodeStr
+    };
+    var promise = SceneManager.getInstance().reqTokenInfo(obj);
+    promise.then(function () {
+      return SceneManager.getInstance().reqBearerToken();
+    }).then(function () {
+      return SceneManager.getInstance().reqUserDataInfo();
+    }).then(function () {
       CommonFun.getInstance().showProgress();
-      var obj = {
-        loginType: "ACCOUNT",
-        account: accountOrPhoneStr,
-        password: passwordOrVerCodeStr
-      };
-      var promise = SceneManager.getInstance().reqTokenInfo(obj);
-      promise.then(function () {
-        return SceneManager.getInstance().reqBearerToken();
-      }).then(function () {
-        return SceneManager.getInstance().reqUserDataInfo();
-      }).then(function () {
-        CommonFun.getInstance().showProgress();
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-      })["catch"](function (error) {
-        LoggerUtil.getInstance().log(error);
-      });
-    } else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-      CommonFun.getInstance().showProgress();
-      var _obj = {
-        loginType: "PHONE",
-        phone: '91' + accountOrPhoneStr,
-        code: passwordOrVerCodeStr,
-        token: ""
-      };
-      var _promise = SceneManager.getInstance().reqTokenInfo(_obj);
-      _promise.then(function () {
-        return SceneManager.getInstance().reqBearerToken();
-      }).then(function () {
-        return SceneManager.getInstance().reqUserDataInfo();
-      }).then(function () {
-        CommonFun.getInstance().showProgress();
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-      })["catch"](function (error) {
-        LoggerUtil.getInstance().log(error);
-      });
-    } else {
-      this.node_lab_accountTips.active = true;
-    }
-    ;
+      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+    })["catch"](function (error) {
+      LoggerUtil.getInstance().log(error);
+    });
   },
   dealQuickLoginEvent: function dealQuickLoginEvent() {
     var _this2 = this;
@@ -492,6 +483,25 @@ cc.Class({
       this.node_lab_accountTips.active = true;
     }
     ;
+  },
+  dealPasswordVisible: function dealPasswordVisible() {
+    this._isPasswordVisible = !this._isPasswordVisible;
+    // 更新 inputFlag
+    if (this._isPasswordVisible) {
+      this.editBox_password.inputFlag = cc.EditBox.InputFlag.DEFAULT; // 显示明文
+    } else {
+      this.editBox_password.inputFlag = cc.EditBox.InputFlag.PASSWORD; // 隐藏密码
+    }
+
+    // ⚠️ 必须强制刷新文本（Cocos 中切换 inputFlag 不会立刻刷新）
+    var oldText = this.editBox_password.string;
+    this.editBox_password.string = ''; // 清空
+    this.editBox_password.string = oldText; // 再重新设置触发刷新
+
+    var sprite = this.btn_eye.getChildByName('Background').getComponent(cc.Sprite);
+    if (sprite) {
+      sprite.spriteFrame = this._isPasswordVisible ? this.eyeOpenSprite : this.eyeCloseSprite;
+    }
   },
   dealFacebookLoginEvent: function dealFacebookLoginEvent() {
     GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
@@ -848,7 +858,7 @@ cc.Class({
         }
         ;
         // if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
-        //     this.node_btn_guestLogin.active = false;
+        //     this.node_btn_login.active = false;
         //     this.node_or_sprite.active = false;
         //     this.node_bg_title.active = false;
         // }
@@ -863,34 +873,35 @@ cc.Class({
     this.editBox_password.node.active = false;
     this.node_btn_passwordDelete.active = false;
     this.node_btn_reqVerify.active = false;
-    this.node_btn_accountLogin.active = false;
+    this.node_btn_regist.active = false;
     this.node_btn_quickLogin.active = true;
     this.editBox_account.string = cc.sys.localStorage.getItem("login_phone").slice(2);
     this.node_or_sprite.setPosition(this.or_sprite_pos1);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
-    this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
-    if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-      this.node_btn_facebookLogin.active = false;
-      this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
-      this.node_btn_guestLogin.setContentSize(512, 79);
-    }
-    ;
+    // this.node_btn_login.setPosition(this.btn_guestLogin_pos1);
+
+    // if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
+    //     this.node_btn_facebookLogin.active = false;
+    //     this.node_btn_login.setPosition(340, this.btn_guestLogin_pos1.y);
+    //     this.node_btn_login.setContentSize(512, 79);
+    // };
   },
+
   showCommonLoginView: function showCommonLoginView() {
     this.editBox_password.node.active = true;
     this.node_btn_passwordDelete.active = true;
     this.node_btn_reqVerify.active = true;
-    this.node_btn_accountLogin.active = true;
+    this.node_btn_regist.active = true;
     this.node_btn_quickLogin.active = false;
     this.editBox_account.string = "";
     this.node_or_sprite.setPosition(this.or_sprite_pos);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
-    this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
+    // this.node_btn_login.setPosition(this.btn_guestLogin_pos);
 
     // if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
     //     this.node_btn_facebookLogin.active = false;
-    //     this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
-    //     this.node_btn_guestLogin.setContentSize(512, 79);
+    //     this.node_btn_login.setPosition(340, this.btn_guestLogin_pos.y);
+    //     this.node_btn_login.setContentSize(512, 79);
     // };
   },
 

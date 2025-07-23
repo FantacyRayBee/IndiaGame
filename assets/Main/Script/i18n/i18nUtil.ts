@@ -537,7 +537,7 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Login'], 'Login');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Login Via Facebook'], 'Login Via Facebook');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Please be wait and check your phone!'], 'Please be wait and check your phone!');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'Verify with OTP'); 
+        this.EnglishMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'Account Regist'); 
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Sent to'], 'Sent to');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Input OTP here'], 'Input OTP here');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_X Invalid OTP. Please try again.'], 'X Invalid OTP. Please try again.');
@@ -545,7 +545,7 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Not received. Resend'], 'Not received. Resend');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Resend'], 'Resend');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Back & Change Mobile'], 'Back & Change Mobile');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'Guest Login');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'Account Login');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Quick Login'], 'Quick Login');
 
         this.EnglishMap.set(I18NLabelTransIdEnum['Lobby_WITHDRAW'], 'WITHDRAW');
@@ -873,7 +873,7 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Login'], 'लॉग इन करें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Login Via Facebook'], 'फेसबुक लॉग इन');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Please be wait and check your phone!'], 'कृपया प्रतीक्षा करें और अपना फोन जांचें!');
-        this.HindiMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'ओटीपी के साथ सत्यापित करें');
+        this.HindiMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'खाता पंजीकरण');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Sent to'], 'को भेजा');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Input OTP here'], 'यहां ओटीपी डालें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_X Invalid OTP. Please try again.'], 'एक्स अवैध ओटीपरी। कृपया दोबारा प्रयास करें।');
@@ -881,7 +881,7 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Not received. Resend'], 'नही मिला। दोबारा भेजें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Resend'], 'दोबारा भेजें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Back & Change Mobile'], 'वापस करें और मोबाइल बदलें');
-        this.HindiMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'मेहमान लॉगइन करें');
+        this.HindiMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'खाता लॉगिन');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Quick Login'], 'त्वरित लॉगिन');
 
         this.HindiMap.set(I18NLabelTransIdEnum['Lobby_WITHDRAW'], 'वापसी');
@@ -1210,7 +1210,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Login'], 'লগইন করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Login Via Facebook'], 'Facebook দিয়ে লগইন করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Please be wait and check your phone!'], 'অনুগ্রহ করে অপেক্ষা করে আপনার ফোন চেক করুন');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'OTP যাচাই করুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'অ্যাকাউন্ট নিবন্ধন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Sent to'], 'এখানে পাঠান');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Input OTP here'], 'OTP এখানে লিপিবদ্ধ করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_X Invalid OTP. Please try again.'], 'X অবৈধ OTP। অনুগ্রহ করে আবার চেষ্টা করুন।');
@@ -1218,7 +1218,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Not received. Resend'], 'পাওয়া হয়নি। আবার পাঠান');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Resend'], 'আবার পাঠান');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Back & Change Mobile'], 'ফিরে যান ও মোবাইল নম্বর পরিবর্তন করুন');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'গেস্ট লগইন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'অ্যাকাউন্ট লগইন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Quick Login'], 'দ্রুত লগইন');
 
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_WITHDRAW'], 'ফেরত');
@@ -1548,7 +1548,7 @@ export class I18NUtil {
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Login'], 'لاگ ان کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Login Via Facebook'], 'فیس بک کے ذریعے لاگ ان کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Please be wait and check your phone!'], 'براہِ کرم انتظار کریں اور اپنا فون چیک کریں !');
-        this.UrduMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'OTP کے ساتھ تصدیق کریں');
+        this.UrduMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'اکاؤنٹ رجسٹریشن');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Sent to'], 'کو ارسال کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Input OTP here'], 'یہاں OTP درج کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_X Invalid OTP. Please try again.'], 'X غلط OTP۔ براہِ کرم دوبارہ کوشش کریں.');
@@ -1556,7 +1556,7 @@ export class I18NUtil {
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Not received. Resend'], 'موصول نہیں ہوا۔   دوبارہ بھیجیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Resend'], 'دوبارہ بھیجیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Back & Change Mobile'], 'پیچھے جائیں اور موبائل تبدیل کریں');
-        this.UrduMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'مہمان لاگ ان');
+        this.UrduMap.set(I18NLabelTransIdEnum['Login_Guest Login'], 'اکاؤنٹ لاگ ان');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Quick Login'], 'فوری لاگ ان');
 
         this.UrduMap.set(I18NLabelTransIdEnum['Lobby_WITHDRAW'], 'رقم نکالیں');
