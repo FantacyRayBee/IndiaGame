@@ -19,21 +19,21 @@ cc.Class({
     },
 
     start() {
-        this.curBet = 10;
+        this.curBet = 0;
         this.maxBet = 1000000; //最大下注
-        this.edit_Mult.enabled = false;
         this.btn_add.interactable = false;
         this.btn_att.interactable = false;
     },
 
     toggleClick(toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
-        this.edit_Mult.enabled = toggle.isChecked;
         this.btn_add.interactable = toggle.isChecked;
         this.btn_att.interactable = toggle.isChecked;
     },
 
-    btnClick() {
+    btnClick(btn) {
+        let btnName = btn.node.name;
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName === "btn_add") {
             this.dealBetChangeEvent(1);
         } 
@@ -58,11 +58,22 @@ cc.Class({
     reset() {
         this.edit_set.string = "0.00";
         this.toggle_node.isChecked = false;
-        this.curBet = 10;
+        this.curBet = 0;
+    },
+
+    isError() {
+        let bet = parseFloat(this.edit_set.string);
+        this.curBet = bet;
+        if (this.toggle_node.isChecked && this.curBet == 0) {
+            return true;
+        }
+        return false;
     },
 
     getInfo() {
         if (this.toggle_node.isChecked) {
+            let bet = parseFloat(this.edit_set.string);
+            this.curBet = bet;
             return this.curBet;
         }
         else {

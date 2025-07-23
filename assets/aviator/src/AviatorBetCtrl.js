@@ -15,6 +15,7 @@ cc.Class({
         lab_curBet1: cc.Label,
         lab_curBet2: cc.Label,
         lab_bet_tip: cc.Label,
+        label_autoCount: cc.Label,
 
         btn_add: cc.Button,
         btn_att: cc.Button,
@@ -22,7 +23,8 @@ cc.Class({
         btn_bet: cc.Button,
         btn_bet_cancel: cc.Button,
         btn_autoplay: cc.Button,
-        btn_autoSet: cc.Button,
+        btn_stopAuto: cc.Button,
+
 
         edit_Mult: cc.EditBox,
 
@@ -41,7 +43,7 @@ cc.Class({
         this.btn_bet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_bet_cancel.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_autoplay.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_autoSet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_stopAuto.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         
         this.toggle_bet.node.on('toggle', this.toggleClick, this);
         this.toggle_auto.node.on('toggle', this.toggleClick, this);
@@ -86,9 +88,15 @@ cc.Class({
     },
 
     StartBet() {
+        if (this.autoCount > 0) {//如果为自动下注
+            this.betStatus = 1
+        }
         if (this.betStatus == 1) {//如果为等待下一局 则变成下注状态
             this.betStatus = 2;
+            this.btn_bet.node.active = false;
+            this.btn_bet_cancel.node.active = true;
             this.node_waitnextround.active = false;
+            this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.greenSpriteFrame;
         }
         else{
             this.Init();
@@ -96,9 +104,16 @@ cc.Class({
     },
 
     flyEnd() {
-        this.autoCount--;
-        if (this.autoCount <= 0) {
-            this.autoCount = 0;
+        if (this.autoCount > 0) { //如果为自动下注
+            this.autoCount--;
+            if (this.autoCount <= 0) {
+                this.autoCount = 0;
+                this.toggle_isAuto.enabled = true;
+                this.setButtonEnabled(true);
+                this.btn_stopAuto.node.active = false;
+                this.btn_autoplay.node.active = true;
+            }
+            this.label_autoCount.string = `stop (${this.autoCount})`;
         }
     },
 
@@ -116,7 +131,6 @@ cc.Class({
         else {
             this.edit_Mult.enabled = false;
         }
-
         this.toggle_auto.interactable = !toggle.isChecked;
         this.toggle_bet.interactable = !toggle.isChecked;
     },
@@ -151,10 +165,9 @@ cc.Class({
         else if (btnName === "btn_autoplay") {
             this.dealAutoPlayEvent();
         }
-        else if (btnName === "btn_autoSet") {
-            this.dealAutoSettingEvent();
+        else if (btnName === "btn_stopAuto") {
+            this.dealStopAutoEvent();
         }
-        
     },
     
     dealBetStatus: function () {
@@ -178,12 +191,19 @@ cc.Class({
         let finalValue = value * this.curBet;
         this.lab_curBet2.string = finalValue.toFixed(2);
 
-        if (this.isAuto || this.toggle_isAuto.isChecked) { //自动下注 需要判断是否达到设置的倍率
+        if (this.toggle_isAuto.isChecked) { //自动下注 需要判断是否达到设置的倍率
             let curValue = Number(this.edit_Mult.string);
             if(value == curValue){
                 if (GlobalCfg.ACT_SCENE_CTRL.betStatus == 1) { //飞行阶段 点击下注按钮 说明是要领取奖励
                     this.sendGetCashMessage();
-                    this.Init();
+                    if (this.autoCount > 0) {
+                        this.btn_bet.node.active = false;
+                        this.btn_bet_cancel.node.active = true;
+                        this.node_waitnextround.active = true;
+                        this.betStatus = 1;
+                    }
+                    else
+                        this.Init();
                 }
             }
         }
@@ -191,7 +211,6 @@ cc.Class({
 
     checkSendStatus: function () {
         //关闭一切下注相关操作
-
         if (this.betStatus == 2) {
             this.sendBetReq();
         }
@@ -239,7 +258,6 @@ cc.Class({
                 this.btn_bet.node.active = false;
                 this.btn_bet_cancel.node.active = true;
                 this.setButtonEnabled(false);
-                LoggerUtil.getInstance().log("GlobalCfg.ACT_SCENE_CTRL.betStatus: ", GlobalCfg.ACT_SCENE_CTRL.betStatus);
                 if (GlobalCfg.ACT_SCENE_CTRL.betStatus == 0) { //下注阶段
                     this.node_waitnextround.active = false;
                     this.betStatus = 2;
@@ -251,11 +269,18 @@ cc.Class({
             }
         }
         else if (this.betStatus == 2) {//下注阶段
-            LoggerUtil.getInstance().log("GlobalCfg.ACT_SCENE_CTRL.betStatus:", GlobalCfg.ACT_SCENE_CTRL.betStatus);
             if (GlobalCfg.ACT_SCENE_CTRL.betStatus == 1) { //飞行阶段 点击下注按钮 说明是要领取奖励
                 this.sendGetCashMessage();
             }
-            this.Init();
+            if (this.autoCount > 0) { //处于自动下注阶段
+                //手动领取奖励，等待下一局
+                this.btn_bet.node.active = false;
+                this.btn_bet_cancel.node.active = true;
+                this.node_waitnextround.active = true;
+                this.betStatus = 1;
+            }
+            else
+                this.Init();
         }
     },
 
@@ -272,6 +297,13 @@ cc.Class({
 
     sendBetReq: function () {
         let amount = this.curBet * 100;
+        if (amount > GlobalCfg.USER_DATAS.userDiamond) {
+            CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            this.dealStopAutoEvent();
+            return;
+        }
         let mult = this.toggle_isAuto.isChecked ? Math.round(Number(this.edit_Mult.string) * 1000): 0;
         GameServerManager.send("gameservice.bet", "BetReq", {
             amount: amount,
@@ -280,20 +312,31 @@ cc.Class({
         });
     },
 
+    //取消下注
     dealBetCancelEvent: function () {
         this.betStatus = 0;
         this.btn_bet.node.active = true;
         this.btn_bet_cancel.node.active = false;
         this.node_waitnextround.active = false;
         this.setButtonEnabled(true);
+        if (this.autoCount > 0) { //如果为自动下注，则取消自动下注
+            this.dealStopAutoEvent();
+        }
     },
 
-    dealAutoPlayEvent: function () {},
-    dealAutoSettingEvent: function () {
-        GlobalCfg.ACT_SCENE_CTRL.openAutoSetting();
+    dealAutoPlayEvent: function () {
+        GlobalCfg.ACT_SCENE_CTRL.openAutoSetting(this.root_index);
     },
-    
 
+    //取消自动下注
+    dealStopAutoEvent: function () {
+        this.autoCount = 0;
+        this.btn_stopAuto.node.active = false;
+        this.btn_autoplay.node.active = true;
+        this.toggle_isAuto.enabled = true;
+        this.setButtonEnabled(true);
+        this.Init();
+    },
     
     setButtonEnabled: function (enabled) {
         this.btn_add.interactable = enabled;
@@ -303,11 +346,24 @@ cc.Class({
         }
     },
 
+    //设置自动下注次数
+    setAutoInfo: function (count) {
+        this.autoCount = count; //自动下注次数
+        this.btn_stopAuto.node.active = true;
+        this.btn_autoplay.node.active = false;
+        this.label_autoCount.string = `stop (${this.autoCount})`;
+        this.toggle_isAuto.enabled = false;
+        this.edit_Mult.enabled = false; //自动下注时，倍数不可用
+        this.setButtonEnabled(false); //自动下注时，按钮不可用
+        this.betStatus = 0;
+        this.dealBetEvent();
+    },
+
     setViewByToggleName(toggleName) {
         if(toggleName == this.NowToggleName)
             return;
         if (this.node_betinfo) {
-            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, 0) : cc.v2(0, 20);
+            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, 0) : cc.v2(0, 15);
         };
         if (this.node_autoinfo) {
             this.node_autoinfo.active = toggleName == "tog_auto";

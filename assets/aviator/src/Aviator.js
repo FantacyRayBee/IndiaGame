@@ -697,9 +697,19 @@ cc.Class({
         }
     },
 
-
-    openAutoSetting() {
+    openAutoSetting(openAutoSettingIndex) {
+        this.openAutoSettingIndex = openAutoSettingIndex;
         this.node_autoSetting.active = true;
+    },
+
+    setAutoStatus(infos, count) {
+        this.autoSettingInfos = infos;
+        if (this.openAutoSettingIndex == 0) {
+            this.node_betinfo1.getComponent('AviatorBetCtrl').setAutoInfo(count);
+        }
+        else{
+            this.node_betinfo2.getComponent('AviatorBetCtrl').setAutoInfo(count);
+        }
     },
 
     dealBetInfo(msgId) {
@@ -763,7 +773,6 @@ cc.Class({
             this.setMoveMark(false);
             this.drawLine = true;
         }
-
     },
 
     /**
@@ -917,7 +926,7 @@ cc.Class({
         this.timerBar.node.stopAllActions();
         this.timerBar.progress = 1;
         cc.tween(this.timerBar)
-          .to(remainder / 1000, { progress: 0 })
+          .to((remainder / 1000) + 1, { progress: 0 })
           .call(() => {
               LoggerUtil.getInstance().log("倒计时结束，火箭点火");
               this.isDuringBet = false;
@@ -1104,8 +1113,8 @@ cc.Class({
      */
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
-        node.getComponent("RocketRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(0, 200));
+        node.getComponent("AviatorRecord").init(this.pointRecordDataList);
+        node.setPosition(cc.v2(0, 245));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
