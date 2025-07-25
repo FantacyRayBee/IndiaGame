@@ -1,0 +1,117 @@
+let EnumBtnType = cc.Enum({
+    Music: 1,
+    Effect: 2,
+});
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        tog_sound: cc.Toggle,
+        tog_music: cc.Toggle,
+        tog_animation: cc.Toggle,
+
+        sprite_tx: cc.Sprite,
+        userName: cc.Label,
+
+        btn_provably: cc.Button,
+        btn_rule: cc.Button,
+        btn_mybet: cc.Button,
+        btn_limit: cc.Button,
+
+        pabfabProvably: cc.Prefab,
+        prefabRule: cc.Prefab,
+        prefabMybet: cc.Prefab,
+        prefabLimit: cc.Prefab,
+    },
+
+    onLoad() {
+        this.tog_sound.node.on('toggle', this.onToggleSound, this);
+        this.tog_music.node.on('toggle', this.onToggleMusic, this);
+        this.tog_animation.node.on('toggle', this.onToggleAnimation, this);
+
+        this.btn_provably.node.on('click', this.onBtnProvably, this);
+        this.btn_rule.node.on('click', this.onBtnRule, this);
+        this.btn_mybet.node.on('click', this.onBtnMybet, this);
+        this.btn_limit.node.on('click', this.onBtnlimit, this);
+
+        this.setMusicEffectBtns(EnumBtnType.Music);
+        this.setMusicEffectBtns(EnumBtnType.Effect);
+    },
+
+    start() {
+        this.loadHeadSp();
+        this.userName.string = GlobalCfg.USER_DATAS.userId;
+    },
+    
+    loadHeadSp: function() {
+        if (GlobalCfg.USER_DATAS.userHeadimgurl == null || GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
+            return;
+        };
+        cc.loader.load({url: GlobalCfg.USER_DATAS.userHeadimgurl, type: 'png' },  (err, img) => {
+            if (!err && cc.isValid(this) && cc.isValid(this.sprite_tx)) {
+                let spriteFrame = new cc.SpriteFrame(img);
+                this.sprite_tx.spriteFrame = spriteFrame;
+            };
+        });
+    },
+
+    onToggleSound(event) {
+        if (event.detail.isChecked) {
+            GlobalCfg.G_COMPONENTS.Audio.openSound();
+        } else {
+            GlobalCfg.G_COMPONENTS.Audio.closeSound();
+        }
+    },
+
+    onToggleMusic(event) {
+        if (event.detail.isChecked) {
+            GlobalCfg.G_COMPONENTS.Audio.openMusic();
+        } else {
+            GlobalCfg.G_COMPONENTS.Audio.closeMusic();
+        }
+    },
+    onToggleAnimation(event) {
+        GlobalCfg.ACT_SCENE_CTRL.setAviatorAnimation(event.detail.isChecked);
+    },
+
+    onBtnProvably() {
+        let node = cc.instantiate(this.pabfabProvably);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+    onBtnRule() {
+        let node = cc.instantiate(this.prefabRule);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+    onBtnMybet() {
+        let node = cc.instantiate(this.prefabMybet);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+    onBtnlimit() {
+        let node = cc.instantiate(this.prefabLimit);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+
+    setMusicEffectBtns: function (type) {
+        if (type == EnumBtnType.Music) {
+            let state = GlobalCfg.G_COMPONENTS.Audio.checkState('toggle_yinyun');
+            this.tog_music.isChecked = state;
+        }
+        else if (type == EnumBtnType.Effect) {
+            let state = GlobalCfg.G_COMPONENTS.Audio.checkState('toggle_yinxiao');
+            this.tog_sound.isChecked = state;
+        };
+    },
+});

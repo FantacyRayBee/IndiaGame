@@ -116,6 +116,7 @@ message PlayerListReq {
   uint32 page = 1;     // 页数 (0代表第一页，1代表第二页)
   uint32 rows = 2;
 }
+
 message PlayerListAck {
   ResponseBase result = 1;
   int32 total = 2;
@@ -138,6 +139,13 @@ message BetAck {
   int32 pos = 6;        //下注位置(0,1)
 }
 
+// 下注通知 gameservice.betnotify
+message BetNotify {
+  string userId = 1;
+  string head = 2;
+  int64 bet = 3;
+}
+
 // 领取奖励 gameservice.cash
 message CashReq {
   int64 x = 1;    // 时间坐标
@@ -152,6 +160,43 @@ message CashAck {
   int64 after = 5;  // 钱包剩余
   int32 pos = 6;  //位置(0,1)
 }
+
+
+
+// 获取种子 gameservice.seed
+message SeedReq {
+  string userId = 1;
+}
+message SeedAck {
+  ResponseBase result = 1;
+  string serverSeed = 2;   //服务器种子
+  string n1Nickname = 3;
+  string n1Head = 4;
+  string n1Seed =5;
+  string n2Nickname = 6;
+  string n2Head = 7;
+  string n2Seed =8;
+  string n3Nickname = 9;
+  string n3Head = 10;
+  string n3Seed =11;
+  string sha256 = 12;
+  string Hex = 13;
+  string decimal = 14;
+  string resultScore = 15;
+}
+
+
+
+// 玩家排行榜 gameservice.readandsortranking
+message GetRankingDataReq {
+  int32 types = 1;// 排行榜类型 1:赢钱榜, 2:倍数榜, 3:最大倍数榜
+  int32 timer = 2;// 时间类型 1:今天, 2:本月, 3:本年
+}
+message GetRankingDataAck {
+  ResponseBase result = 1;
+  repeated RankingData list = 2;
+}
+
 
 // 有人领取通知 gameservice.cashnotify
 message CashNotify {
@@ -198,4 +243,13 @@ message UpdateCoinNotify {
 
 //货币更新广播(非游戏行为) gameservice.endbettingnotify
 message EndBettingNotify {
+}
+
+message RankingData {
+  int64 bet = 1;
+  int64 mub = 2;
+  string timer = 3;
+  int64 rounds = 4;
+  string user_id = 5;
+  string head = 6;
 }

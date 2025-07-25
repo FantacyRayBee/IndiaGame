@@ -447,6 +447,9 @@ cc.Class({
       "gameservice.bettingupdatenotify": "BettingUpdateNotify",
       "gameservice.updatecoinnotify": "UpdateCoinNotify",
       "gameservice.endbettingnotify": "EndBettingNotify",
+      "gameservice.readandsortranking": "GetRankingDataAck",
+      "gameservice.seed": "SeedAck",
+      "gameservice.betnotify": "BetNotify",
     }
 
     // 动物园

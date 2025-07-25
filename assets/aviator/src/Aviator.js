@@ -5,7 +5,6 @@ cc.Class({
     properties: {
         // default
         btnBack: cc.Button,
-        btnShop: cc.Button,
         btnPlayerList: cc.Button,
         nodeBtnBetSelect: cc.Node,
         btnReBet: cc.Button,
@@ -15,6 +14,7 @@ cc.Class({
         btnTrend: cc.Button,
         btnBottomTrend: cc.Button,
         background: cc.Node,
+        btnSetting: cc.Button,
 
         // waitLayer
         timerBar: cc.ProgressBar,
@@ -41,6 +41,7 @@ cc.Class({
         prefabTrendItem: cc.Prefab,
         prefabPlayerList: cc.Prefab,
         prefabPlayerGetOut: cc.Prefab,
+        prefabSetting: cc.Prefab,
 
         region: cc.Node,      // 红色区域图片节点
         lights: [cc.Node],      
@@ -78,14 +79,14 @@ cc.Class({
         // this.startFlyLineColor = cc.Color(255, 0, 0, 255);
         this.endFlyLineColor = new cc.Color(220, 96, 6, 255);
 
-        this.endFlyPos = cc.v2(665, 250);              // 游戏结束时 飞机终点位置
+        this.endFlyPos = cc.v2(755, 270);              // 游戏结束时 飞机终点位置
 
         this.numSelfBet = 0;                        // 存放当前玩家下注数
         this.numAllBet = 0;                         // 存放所有玩家下注数
         this.preRoundBetNum = 0;                      // 存放上一轮下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
-        this.trendMaxNum = 11;                     // 走势图最大显示点数
+        this.trendMaxNum = 12;                     // 走势图最大显示点数
     },
 
     onLoad: function() {
@@ -166,14 +167,12 @@ cc.Class({
         this.btnCashout = this.unGetDownNode.getChildByName('btn_cashout').getComponent(cc.Button);
         this.btnCashout.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnBack.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btnShop.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btnSetting.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnPlayerList.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnBottomTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnReBet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnReBet.interactable = false;
-
-        this.btnShop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
     /**
@@ -438,13 +437,13 @@ cc.Class({
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             CommonFun.getInstance().showGameMenu(false);
         }
-        else if (name == this.btnShop.node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            CommonFun.getInstance().showSmallAddCash();
-        }
         else if (name == this.btnPlayerList.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.rocketMessageManager.sendGetPlayerListMessage(0, 12);
+        }
+        else if (name == this.btnSetting.node.name) {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            this.showSettingNode();
         }
         else if (name == this.btnTrend.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -1086,9 +1085,25 @@ cc.Class({
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
         node.getComponent("AviatorRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(0, 195));
+        node.setPosition(cc.v2(210, 195));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
+    },
+
+    /**
+     * 展示设置界面
+     * @param {*} msg 
+     */
+    showSettingNode() {
+        let node = cc.instantiate(this.prefabSetting);
+        node.setPosition(cc.v2(767.5, 0));
+        this.popupLayer.addChild(node);
+        this.popupLayer.active = true;
+    },
+
+    setAviatorAnimation(isShow) {
+        this.flyRocketNode.active = isShow;
+        this.region.active = isShow;
     },
 
     /**
@@ -1173,8 +1188,8 @@ cc.Class({
         this.setRegion();
     
         // ✅ 当达到边界时，切换为震荡阶段（一次性）
-        if (!this.isOscillating && (this.drawPosX >= 550 || this.drawPosY >= 200)) {
-            this.drawPosX = Math.min(this.drawPosX, 550);
+        if (!this.isOscillating && (this.drawPosX >= 650 || this.drawPosY >= 200)) {
+            this.drawPosX = Math.min(this.drawPosX, 650);
             this.drawPosY = Math.min(this.drawPosY, 200);
             this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.isOscillating = true;

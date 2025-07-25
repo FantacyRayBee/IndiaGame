@@ -363,7 +363,7 @@ cc.Class({
         if(toggleName == this.NowToggleName)
             return;
         if (this.node_betinfo) {
-            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, 0) : cc.v2(0, 15);
+            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, -15) : cc.v2(0, 0);
         };
         if (this.node_autoinfo) {
             this.node_autoinfo.active = toggleName == "tog_auto";
