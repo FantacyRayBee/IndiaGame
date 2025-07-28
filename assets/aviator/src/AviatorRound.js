@@ -85,10 +85,18 @@ cc.Class({
             //其他玩家下注消息
             self.refreshPlayerBet(notify);
         }
+        else if (msgId === "gameservice.startbettingnotify") {
+            // 开始下注阶段通知
+            self.roundInit();
+        }
+        else if (msgId == 'gameservice.cashnotify') {
+            // 有人领取通知
+            self.dealPlayerGetOut(notify);
+        }
     },
 
     refreshRank(notify){
-        LoggerUtil.getInstance().log("refreshRank", notify);
+        LoggerUtil.getInstance().log("caojun refreshRank", notify);
     },
     refreshSeed(notify){
         let node = cc.instantiate(this.prefabProvably);
@@ -99,5 +107,14 @@ cc.Class({
     },
     refreshPlayerBet(notify){
         this.node_root1.getComponent("AviatorRoundRoot1").refreshPlayerBet(notify);
+    },
+
+    roundInit(){
+        this.node_root1.getComponent("AviatorRoundRoot1").init();
+    },
+
+    dealPlayerGetOut(notify){
+        LoggerUtil.getInstance().log("caojun dealPlayerGetOut", notify);
+        this.node_root1.getComponent("AviatorRoundRoot1").setPlayerResult(notify);
     },
 });

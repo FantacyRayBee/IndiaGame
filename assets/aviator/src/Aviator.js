@@ -313,10 +313,7 @@ cc.Class({
             GlobalCfg.USER_DATAS.userDiamond = after;
             self.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
         }
-        else if (msgId == 'gameservice.cashnotify') {
-            // 有人领取通知
-            // self.dealPlayerGetOut(notify);
-        }
+
         else if (msgId == 'gameservice.startbettingnotify') {
             // 开始下注阶段通知
             self.rocketAudioManager.playGameMusic('betBgMusic');
