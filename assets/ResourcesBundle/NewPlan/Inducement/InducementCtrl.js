@@ -140,7 +140,7 @@ cc.Class({
             this.lab_round.string = `8/8`;
             this.lab_curRound.string = 8;
             this.lab_taskDesc.string = `${info[8].taskName}`;
-            this.lab_taskTime.string =`20000/20000`;
+            this.lab_taskTime.string =`50000/50000`;
             this.lab_remind.string = ``;
             // this.lab_remind.string = `Only need ₹0 to withdraw ₹5000`;
             this.lab_progress.string = `${allNumber}/${allNumber}`;
@@ -395,7 +395,13 @@ cc.Class({
             if (msg.result == 0) {
                 CommonFun.getInstance().showRewardsTips([{ id: 10, amount: msg.data.coin / 100 }]);
                 this.node.destroy();
-                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'inducement_click', msgData: {}});
+                let httpUrl2 = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+                CommonFun.getInstance().httpPost(httpUrl2, {}, (msg) => {
+                    if (msg.result == 0) {
+                        GlobalCfg.USER_DATAS.inducement = msg.data;
+                        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'inducement_click', msgData: {}});
+                    }
+                }, null, GlobalCfg.USER_DATAS.BearerToken);
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },

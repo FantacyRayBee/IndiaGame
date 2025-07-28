@@ -1503,40 +1503,41 @@ var CommonFun = cc.Class((_cc$Class = {
       _this25.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
     });
   },
-  // /**
-  //  * 显示推广员界面
-  //  */
-  // showPromoter: function() {
-  //     let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-  //     promoterPrefabPromise.then((prefab) => {
-  //         let promoterNode = cc.instantiate(prefab);
-  //         let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
-  //         this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
-  //     });
-  // },
-
   /**
    * 显示推广员界面
    */
   showPromoter: function showPromoter() {
     var _this26 = this;
-    CommonFun.getInstance().showProgress();
-    var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
-    CommonFun.getInstance().httpGet(httpUrl, function (msg) {
-      if (msg.result == 0) {
-        GlobalCfg.USER_DATAS.promoterMainData = msg.data;
-        var promoterPrefabPromise = _this26.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
-        promoterPrefabPromise.then(function (prefab) {
-          var promoterNode = cc.instantiate(prefab);
-          _this26.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);
-          CommonFun.getInstance().hidProgress();
-        });
-      } else {
-        CommonFun.getInstance().showTips(msg.msg);
-        CommonFun.getInstance().hidProgress();
-      }
-    }, null, GlobalCfg.USER_DATAS.BearerToken);
+    var promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+    promoterPrefabPromise.then(function (prefab) {
+      var promoterNode = cc.instantiate(prefab);
+      var promoterCtrl = promoterNode.getComponent('PromoterCtrl');
+      _this26.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);
+    });
   },
+  // /**
+  //  * 显示推广员界面
+  //  */
+  // showPromoter: function() {
+  //     CommonFun.getInstance().showProgress();
+  //     let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+  //     CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+
+  //         if (msg.result == 0) {
+  //             GlobalCfg.USER_DATAS.promoterMainData = msg.data
+  //             let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
+  //             promoterPrefabPromise.then((prefab) => {
+  //                 let promoterNode = cc.instantiate(prefab);
+  //                 this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
+  //                 CommonFun.getInstance().hidProgress();
+  //             });
+  //         }
+  //         else {
+  //             CommonFun.getInstance().showTips(msg.msg);
+  //             CommonFun.getInstance().hidProgress();
+  //         }
+  //     }, null, GlobalCfg.USER_DATAS.BearerToken);
+  // },
   /**
    * 推广员界面分享
    */

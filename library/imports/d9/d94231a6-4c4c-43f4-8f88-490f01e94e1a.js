@@ -528,16 +528,16 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 重复登录
   SERVER_RELOAD: 29 // 服务器重启
 }, _window$GlobalCfg.INDUCEMENT_INFO = (_INDUCEMENT_INFO = {}, _INDUCEMENT_INFO[1] = {
-  taskName: 'Play 1 game of TeenPatti',
-  reward: 800,
+  taskName: 'Play 3 games of TeenPatti',
+  reward: 4500,
   status: 1,
   pais: [],
   jump: 'TeenPatti',
   paiIndex: -1,
   tips: ""
 }, _INDUCEMENT_INFO[2] = {
-  taskName: 'Play 5 games of TeenPatti',
-  reward: 900,
+  taskName: 'Play 7 games of TeenPatti',
+  reward: 4800,
   status: 1,
   pais: [],
   jump: 'TeenPatti',
@@ -545,7 +545,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   tips: ""
 }, _INDUCEMENT_INFO[3] = {
   taskName: 'Play 10 games of TeenPatti',
-  reward: 990,
+  reward: 4900,
   status: 1,
   pais: [],
   jump: 'TeenPatti',
@@ -553,39 +553,39 @@ window.GlobalCfg = (_window$GlobalCfg = {
   tips: ""
 }, _INDUCEMENT_INFO[4] = {
   taskName: 'Play 10 games of Fruit Machines',
-  reward: 999,
-  status: 1,
-  pais: [],
+  reward: 4990,
+  status: 2,
+  pais: [100, 200, 90, 50],
   jump: 'Fruit',
-  paiIndex: -1,
-  tips: ""
-}, _INDUCEMENT_INFO[5] = {
-  taskName: 'Complete any recharge',
-  reward: 999.9,
-  status: 2,
-  pais: [1, 2, 0.9, 0.5],
-  jump: 'shop',
   paiIndex: 2,
-  tips: "Only need ₹0.1 to withdraw ₹1000"
+  tips: "Only need ₹10 to withdraw ₹5000"
+}, _INDUCEMENT_INFO[5] = {
+  taskName: 'Play 10 games of Dragon VS Tiger',
+  reward: 4999,
+  status: 2,
+  pais: [10, 9, 10, 8],
+  jump: 'Dragon',
+  paiIndex: 1,
+  tips: "Only need ₹1 to withdraw ₹5000"
 }, _INDUCEMENT_INFO[6] = {
-  taskName: 'Check the account is correct and complete a withdrawal',
-  reward: 999.98,
-  status: 2,
-  pais: [0.05, 0.1, 0.1, 0.08],
-  jump: 'withdraw',
-  paiIndex: 3,
-  tips: "Only need ₹0.02 to withdraw ₹1000"
-}, _INDUCEMENT_INFO[7] = {
   taskName: 'Complete a recharge of ₹500',
-  reward: 999.99,
+  reward: 4999.9,
   status: 2,
-  pais: [0.02, 0.01, 0.01, 0.02],
+  pais: [0.1, 0.9, 0.5, 1],
   jump: 'shop',
   paiIndex: 1,
-  tips: "Only need ₹0.01 to withdraw ₹1000"
+  tips: "Only need ₹0.1 to withdraw ₹5000"
+}, _INDUCEMENT_INFO[7] = {
+  taskName: 'Check the account is correct and complete a withdrawal',
+  reward: 4999.99,
+  status: 2,
+  pais: [0.1, 0.09, 0.1, 0.09],
+  jump: 'withdraw',
+  paiIndex: 1,
+  tips: "Only need ₹0.01 to withdraw ₹5000"
 }, _INDUCEMENT_INFO[8] = {
-  taskName: 'Total recharge ₹20000',
-  reward: 1000,
+  taskName: 'Total recharge ₹50000',
+  reward: 5000,
   status: 1,
   pais: [],
   jump: 'shop',

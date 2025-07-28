@@ -1141,8 +1141,14 @@ cc.Class({
          * 诱导充值
          */
         else if (GlobalCfg.USER_DATAS.openModules.includes(24) && this.isNeedShowPointToastByHours("Inducement", 4)) {
-            this.updateToastLocalStorageByHours("Inducement", 4);
-            CommonFun.getInstance().showInducement();
+            let data = GlobalCfg.USER_DATAS.inducement;
+            let curRound = data.task_info.rounds;
+            let time = data.end_time - Date.now();
+            let isOpen = time > 0 && curRound > 0;
+            if (isOpen) {
+                this.updateToastLocalStorageByHours("Inducement", 4);
+                CommonFun.getInstance().showInducement();
+            }
         }
         /** 
          * 首充
