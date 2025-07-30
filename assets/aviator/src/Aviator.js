@@ -25,9 +25,8 @@ cc.Class({
         graphicsDrawLine: cc.Graphics,
         centerRateNode: cc.Node,
         flyRocketNode: cc.Node,
-        unGetDownNode: cc.Node,
-        getDownNode: cc.Node,
         playerGetOutParent: cc.Node,
+        rewardPosNode: cc.Node,
         node_autoSetting: cc.Node,
 
         node_betinfo1: cc.Node,
@@ -42,6 +41,8 @@ cc.Class({
         prefabPlayerList: cc.Prefab,
         prefabPlayerGetOut: cc.Prefab,
         prefabSetting: cc.Prefab,
+        prefabMybet: cc.Prefab,
+        prefabReward: cc.Prefab,
 
         region: cc.Node,      // 红色区域图片节点
         lights: [cc.Node],      
@@ -55,7 +56,7 @@ cc.Class({
         this.betDuration = 15000;                              // 下注持续时间 ms
         this.calcDuration = 3000;                              // 爆炸后结算时长 ms
 
-        this.rocketMessageManager = null;      // 存放消息的管理器
+        this.aviatorMessageManager = null;      // 存放消息的管理器
         this.isDuringBet = false;           // 是否在下注
 
         this.isFlying = false;                  // 是否在飞行
@@ -87,20 +88,21 @@ cc.Class({
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
         this.trendMaxNum = 12;                     // 走势图最大显示点数
+        this.roundTopRankInfo = {};
+        this.provablyData = {}
+        this.betTimerTween = null;
     },
 
     onLoad: function() {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_CRASH_GAME);
-
         GlobalCfg.ACT_SCENE_CTRL = this;
-        this.rocketMessageManager = this.node.getComponent('RocketMessageManager');
-        this.rocketMessageManager.sendLoginMessage();
-        this.rocketAudioManager = this.node.getComponent('RocketAudioManager');
+        this.aviatorMessageManager = this.node.getComponent('AviatorMessageManager');
+        this.aviatorMessageManager.sendLoginMessage();
+        this.aviatorAudioManager = this.node.getComponent('AviatorAudioManager');
         CommonFun.getInstance().showProgress();
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-
     },
 
     onDestroy() {
@@ -116,16 +118,16 @@ cc.Class({
             LoggerUtil.getInstance().log("Rocket 进入后台");
             this.isHide = true;
             this.unscheduleAll();
-            this.rocketAudioManager.pauseMusic();
             this.setDefaultValueOfVariables();
         }, this);
         cc.game.on(cc.game.EVENT_SHOW, () => {
             LoggerUtil.getInstance().log("重新返回Rocket");
             this.isHide = false;
-            this.rocketMessageManager.sendRefreshMessage();
+            this.aviatorMessageManager.sendRefreshMessage();
         }, this);
         this.initialization();
         LoggerUtil.getInstance().warn("当前游戏帧率", cc.game.getFrameRate());
+        this.aviatorAudioManager.playGameMusic();
     },
 
     /**
@@ -163,9 +165,6 @@ cc.Class({
         }, this);
 
         this.setBetLabelInfo();
-
-        this.btnCashout = this.unGetDownNode.getChildByName('btn_cashout').getComponent(cc.Button);
-        this.btnCashout.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnBack.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnSetting.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnPlayerList.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -266,6 +265,10 @@ cc.Class({
             // 登录游戏
             self.dealLoginData(notify);
             CommonFun.getInstance().hidProgress();
+            GameServerManager.send("gameservice.getrankingdata", "GetRankingDataReq", { //开局请求左侧top数据
+                types: 1,
+                timer: 1,
+            });
         }
         else if (msgId == 'gameservice.exit') {
             // 退出房间
@@ -287,7 +290,6 @@ cc.Class({
         }
         else if (msgId == 'gameservice.bet') {
             // 下注
-            self.rocketAudioManager.playGameSound('mytouCoin', false);
             let totalChip = notify.totalChip;        // 个人总下注
             let poolChip = notify.poolChip;
             let after = notify.after;
@@ -299,25 +301,12 @@ cc.Class({
             self.updateSelfCoin();
         }
         else if (msgId == 'gameservice.cash') {
-            // 领取奖励
-            let time = notify.time;     // 时间坐标
-            let rate = notify.mul;      // 倍数
-            let amount = notify.amount; // 领取的金额
-            let after = notify.after;   // 钱包剩余
+            self.showReward(notify);
 
-            self.getDownNode.getChildByName('labRate').getComponent(cc.Label).string = (rate / 1000).toFixed(2) + "X";
-            self.getDownNode.getChildByName('labWin').getComponent(cc.Label).string = amount / 100;
-            self.getDownNode.active = true;
-            self.unGetDownNode.active = false;
-            self.rocketAudioManager.playGameSound('cash_out_win', false);
-            GlobalCfg.USER_DATAS.userDiamond = after;
-            self.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
         }
 
         else if (msgId == 'gameservice.startbettingnotify') {
             // 开始下注阶段通知
-            self.rocketAudioManager.playGameMusic('betBgMusic');
-            self.rocketAudioManager.playGameSound("start", false);
             this.betStatus = 0; //下注状态
             self.startBetTimer(self.betDuration);
             self.dealBetInfo(msgId);
@@ -325,15 +314,13 @@ cc.Class({
         else if (msgId == 'gameservice.startflynotify') {
             // 开始飞行阶段通知
             this.betStatus = 1; //飞行阶段
-            self.rocketAudioManager.playGameMusic('rocketFlyBgMusic');
-            self.rocketAudioManager.playGameSound('rocket_fly', false);
             self.startRocketFire();
             self.dealBetInfo(msgId);
         }
         else if (msgId == 'gameservice.flyfinishnotify') {
             // 飞行结束通知
             this.betStatus = 2; //结束阶段
-            self.rocketAudioManager.pauseMusic();
+            self.aviatorAudioManager.playGameSound('end', false);
             self.rocketEnd(notify);
             self.dealBetInfo(msgId);
         }
@@ -350,7 +337,10 @@ cc.Class({
         }
         else if (msgId == 'gameservice.updatecoinnotify') {
             // 货币更新广播
-
+        }
+        else if (msgId == 'gameservice.getplayerrecord') {
+            //获取自己的投注记录
+            self.getBetRecord(notify);
         }
         else if (msgId == 'gameservice.endbettingnotify') {
             //结束下注 传消息给服务器
@@ -365,7 +355,7 @@ cc.Class({
         //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
         // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
-            self.rocketMessageManager.sendExitMessage();
+            self.aviatorMessageManager.sendExitMessage();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
             CommonFun.getInstance().showRule("rocket");
@@ -373,6 +363,7 @@ cc.Class({
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
         }
+        
     },
 
     checkWebMsgError(webData, target) {
@@ -436,7 +427,7 @@ cc.Class({
         }
         else if (name == this.btnPlayerList.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.rocketMessageManager.sendGetPlayerListMessage(0, 12);
+            this.aviatorMessageManager.sendGetPlayerListMessage(0, 12);
         }
         else if (name == this.btnSetting.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -449,11 +440,6 @@ cc.Class({
         else if (name == this.btnBottomTrend.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.showPointTrendNode();
-        }
-        else if (name == this.btnCashout.node.name) {
-            // 下车
-            let rate = this.centerRateNode.getChildByName('Label').getComponent(cc.Label).string;
-            this.rocketMessageManager.sendGetCashMessage(this.duringFlyTime, rate.split('x')[0]);
         }
         else if (name == this.btnBetList[0].node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -500,7 +486,7 @@ cc.Class({
                     }, false);
                 }
             } else {
-                this.rocketMessageManager.sendBetMessage(num);
+                this.aviatorMessageManager.sendBetMessage(num);
             }
         }
     },
@@ -557,43 +543,17 @@ cc.Class({
                 case 0:
                     // 下注状态
                     this.isDuringBet = true;
-                    if (this.rocketAudioManager.curMusicName == 'betBgMusic') {
-                        this.rocketAudioManager.resumeMusic();
-                    } else {
-                        this.rocketAudioManager.playGameMusic('betBgMusic');
-                    }
                     this.startBetTimer(currentStatusLeftMs);
                     this.freshWaitLayer(true);
                     break;
                 case 1:
                     // 飞行中
-                    if (this.rocketAudioManager.curMusicName == 'rocketFlyBgMusic') {
-                        this.rocketAudioManager.resumeMusic();
-                    } else {
-                        this.rocketAudioManager.playGameMusic('rocketFlyBgMusic');
-                    }
                     this.duringFlyTime = curPoint.x / 1000;
                     this.isFlying = true;
                     this.freshWaitLayer(false);
                     this.dealFlyState(curPoint);
                     this.btnReBet.interactable = false;
                     this.background.getComponent(cc.Animation).play("rotate"); // 背景旋转
-                    // if (cashPoint) {
-                    //     // 已领取
-                    //     this.getDownNode.getChildByName('labRate').getComponent(cc.Label).string = (cashPoint.mul / 1000).toFixed(2) + "X";
-                    //     this.getDownNode.getChildByName('labWin').getComponent(cc.Label).string = cashPoint.win / 100;
-                    //     this.getDownNode.active = true;
-                    //     this.unGetDownNode.active = false;
-                    // } else {
-                    //     // 未领取
-                    //     this.unGetDownNode.getChildByName('allBet').getComponent(cc.Label).string = betPool / 100;
-                    //     this.unGetDownNode.getChildByName('selfBet').getComponent(cc.Label).string = chip / 100;
-                    //     this.getDownNode.active = false;
-                    //     this.unGetDownNode.active = false;
-                    //     if (chip > 0) {
-                    //         this.unGetDownNode.active = true;
-                    //     }
-                    // }
                     break;
                 case 2:
                     // 结算状态
@@ -602,17 +562,6 @@ cc.Class({
                     // this.initTimeMarkByCurTime(time);
                     // this.initRateMarkByCurRate(Number((mul / 1000).toFixed(2)));
                     this.freshWaitLayer(false);
-                    // if (cashPoint) {
-                    //     // 已领取
-                    //     this.getDownNode.getChildByName('labRate').getComponent(cc.Label).string = (cashPoint.mul / 1000).toFixed(2) + "X";
-                    //     this.getDownNode.getChildByName('labWin').getComponent(cc.Label).string = cashPoint.win / 100;
-                    //     this.getDownNode.active = false;
-                    //     this.unGetDownNode.active = false;
-                    // } else {
-                    //     // 未领取
-                    //     this.getDownNode.active = false;
-                    //     this.unGetDownNode.active = false;
-                    // }
                     this.duringLayer.active = false;
                     this.waitLayer.active = false;
                     break;
@@ -836,21 +785,23 @@ cc.Class({
         }
     },
 
-    // ******************************************************************************************
+    //获取自己的下注记录
+    getBetRecord(notify) {
+        LoggerUtil.getInstance().log("getBetRecord notify = ", notify);
+        let node = cc.instantiate(this.prefabMybet);
+        node.setPosition(cc.v2(0, 0));
+        node.getComponent("AviatorMybet").setData(notify);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+    },
 
+    // ******************************************************************************************
     /**
      * 设置下注金额,使用之前请更新 numSelfBet，numAllBet
      */
     setBetLabelInfo() {
         let selfBet = this.numSelfBet;
         let allBet = this.numAllBet;
-
-        this.unGetDownNode.getChildByName('allBet').getComponent(cc.Label).string = allBet / 100;
-        this.unGetDownNode.getChildByName('selfBet').getComponent(cc.Label).string = selfBet / 100;
-
-        if (selfBet > 0) {
-            this.unGetDownNode.getChildByName('selfBet').color = new cc.Color(254, 253, 1, 255);
-        }
     },
     /**
      * 开始下注阶段
@@ -888,13 +839,15 @@ cc.Class({
             time = this.betDuration;
             count = time;
         }
-        // let lab = this.timerBar.node.getChildByName("labTime").getComponent(cc.Label);
-        // lab.string = Math.floor(count / 1000) + "s";
 
+        if (this.betTimerTween) {
+            this.betTimerTween.stop();
+            this.betTimerTween = null;
+        }
         this.timerBar.node.getChildByName("logo").getComponent(cc.Animation).play("rotate2");
         this.timerBar.node.stopAllActions();
         this.timerBar.progress = 1;
-        cc.tween(this.timerBar)
+        this.betTimerTween = cc.tween(this.timerBar)
           .to((remainder / 1000) + 1, { progress: 0 })
           .call(() => {
               LoggerUtil.getInstance().log("倒计时结束，火箭点火");
@@ -919,15 +872,7 @@ cc.Class({
         this.region.width = 0;
         this.region.height = 0;
         this.setBetLabelInfo();
-        this.getDownNode.active = false;
-        // this.unGetDownNode.active = true;
-        // if (this.numSelfBet > 0) {
-        //     this.unGetDownNode.active = true;
-        // } else {
-        //     this.unGetDownNode.active = false;
-        // }
         this.btnReBet.interactable = false;
-        this.rocketAudioManager.playGameSound('rocket_fly', false);
         this.graphicsDrawLine.clear();
         this.freshWaitLayer(false);
         this.isMoveTimeMark = false;
@@ -935,12 +880,11 @@ cc.Class({
         this.graphicsDrawLine.moveTo(this.drawPosX, this.constStartPosY);
         this.isFlying = true;
         this.drawLine = true;
-
         this.background.getComponent(cc.Animation).play("rotate");
+        this.rewardPosNode.removeAllChildren();
     },
 
     rocketEnd(notify) {
-        this.unGetDownNode.active = false;
         LoggerUtil.getInstance().warn("rocketEnd", notify);
         if (!notify) return;
         this.isOscillating = false;
@@ -963,7 +907,6 @@ cc.Class({
             position: this.endFlyPos
         }, { easing: 'sineOut' })
         .call(() => {
-            this.rocketAudioManager.playGameSound("explosion", false);
             this.updateTrendData(point);
             this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1]);
             this.curRoundAddCoinFinish();
@@ -979,21 +922,16 @@ cc.Class({
         }
     },
 
-    /**
-     * 有玩家领取
-     */
-    dealPlayerGetOut(notify) {
-        if (!notify) {
-            LoggerUtil.getInstance().error("PlayerGetOut Data Error!");
-            return;
+    showReward(notify) {
+        let pos = cc.Vec2(0, 0);
+        if (this.rewardPosNode.children.length > 0) {
+            pos = cc.Vec2(0, 90);
         }
-        let playerGetOutNode = cc.instantiate(this.prefabPlayerGetOut);
-        let pos = this.flyRocketNode.getPosition();
-        playerGetOutNode.setPosition(pos);
-        this.playerGetOutParent.addChild(playerGetOutNode);
-        playerGetOutNode.getComponent("RocketPlayerGetOut").setNodeData(notify);
+        let prefabRwd = cc.instantiate(this.prefabReward);
+        prefabRwd.setPosition(pos);
+        this.rewardPosNode.addChild(prefabRwd);
+        prefabRwd.getComponent("AviatorReward").setData(notify);
     },
-
 
     // ***************************************************************************************
 

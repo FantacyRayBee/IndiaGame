@@ -2819,8 +2819,29 @@
       "__id__": 1
     },
     "_enabled": true,
-    "prefabPoint": null,
-    "content": null,
+    "content": {
+      "__id__": 26
+    },
+    "item": {
+      "__id__": 27
+    },
+    "btnclose": {
+      "__id__": 72
+    },
+    "normalColor": {
+      "__type__": "cc.Color",
+      "r": 33,
+      "g": 33,
+      "b": 33,
+      "a": 255
+    },
+    "markColor": {
+      "__type__": "cc.Color",
+      "r": 3,
+      "g": 55,
+      "b": 0,
+      "a": 255
+    },
     "_id": ""
   },
   {

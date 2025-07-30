@@ -21,7 +21,6 @@ cc.Class({
 
         pabfabProvably: cc.Prefab,
         prefabRule: cc.Prefab,
-        prefabMybet: cc.Prefab,
         prefabLimit: cc.Prefab,
     },
 
@@ -43,7 +42,7 @@ cc.Class({
         this.loadHeadSp();
         this.userName.string = GlobalCfg.USER_DATAS.userId;
     },
-    
+
     loadHeadSp: function() {
         if (GlobalCfg.USER_DATAS.userHeadimgurl == null || GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
             return;
@@ -56,23 +55,23 @@ cc.Class({
         });
     },
 
-    onToggleSound(event) {
-        if (event.detail.isChecked) {
+    onToggleSound(toggle) {
+        if (toggle.isChecked) {
             GlobalCfg.G_COMPONENTS.Audio.openSound();
         } else {
             GlobalCfg.G_COMPONENTS.Audio.closeSound();
         }
     },
 
-    onToggleMusic(event) {
-        if (event.detail.isChecked) {
+    onToggleMusic(toggle) {
+        if (toggle.isChecked) {
             GlobalCfg.G_COMPONENTS.Audio.openMusic();
         } else {
             GlobalCfg.G_COMPONENTS.Audio.closeMusic();
         }
     },
-    onToggleAnimation(event) {
-        GlobalCfg.ACT_SCENE_CTRL.setAviatorAnimation(event.detail.isChecked);
+    onToggleAnimation(toggle) {
+        GlobalCfg.ACT_SCENE_CTRL.setAviatorAnimation(toggle.isChecked);
     },
 
     onBtnProvably() {
@@ -90,10 +89,7 @@ cc.Class({
         this.node.destroy();
     },
     onBtnMybet() {
-        let node = cc.instantiate(this.prefabMybet);
-        node.setPosition(cc.v2(0, 0));
-        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
-        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GameServerManager.send("gameservice.getplayerrecord", "GetPlayerRecordReq", {});
         this.node.destroy();
     },
     onBtnlimit() {

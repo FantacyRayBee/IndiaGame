@@ -114,6 +114,12 @@ cc.Class({
                 this.btn_autoplay.node.active = true;
             }
             this.label_autoCount.string = `stop (${this.autoCount})`;
+            return;
+        }
+        if (this.betStatus != 1) {//如果为等待下一局 则变成下注状态
+            this.btn_bet.node.active = true;
+            this.btn_bet_cancel.node.active = false;
+            this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.greenSpriteFrame;
         }
     },
 

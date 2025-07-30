@@ -577,9 +577,11 @@ cc.Class({
       "gameservice.bettingupdatenotify": "BettingUpdateNotify",
       "gameservice.updatecoinnotify": "UpdateCoinNotify",
       "gameservice.endbettingnotify": "EndBettingNotify",
-      "gameservice.readandsortranking": "GetRankingDataAck",
+      "gameservice.getrankingdata": "GetRankingDataAck",
       "gameservice.seed": "SeedAck",
-      "gameservice.betnotify": "BetNotify"
+      "gameservice.betnotify": "BetNotify",
+      "gameservice.lastgamerecord": "LastGameRecordAck",
+      "gameservice.getplayerrecord": "GetPlayerRecordAck"
     };
 
     // 动物园

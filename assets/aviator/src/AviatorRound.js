@@ -55,10 +55,16 @@ cc.Class({
         };
         if (this.node_root2) {
             this.node_root2.active = toggleName == "tog_previous";
+
         };
         if (this.node_root3) {
             this.node_root3.active = toggleName == "tog_top";
         };
+
+        if (toggleName == "tog_previous") {
+            GameServerManager.send("gameservice.lastgamerecord", "LastGameRecordReq", { //获取上局数据
+            });
+        }
         this.NowToggleName = toggleName
     },
 
@@ -73,7 +79,7 @@ cc.Class({
         let self = target;
         var msgId = webData.msgCode;
         var notify = webData.msgData;
-        if (msgId === "gameservice.readandsortranking") {
+        if (msgId === "gameservice.getrankingdata") {
             //更新排行榜
             self.refreshRank(notify);
         }
@@ -93,11 +99,19 @@ cc.Class({
             // 有人领取通知
             self.dealPlayerGetOut(notify);
         }
+        else if (msgId == 'gameservice.lastgamerecord') {
+            // 获取上局记录
+            self.dealLastGameRecord(notify);
+        }
     },
 
     refreshRank(notify){
-        LoggerUtil.getInstance().log("caojun refreshRank", notify);
+        GlobalCfg.ACT_SCENE_CTRL.roundTopRankInfo = notify;
+        if (this.node_root3.active) {
+            this.node_root3.getComponent("AviatorRoundRoot3").setWinData(notify);
+        }
     },
+
     refreshSeed(notify){
         let node = cc.instantiate(this.prefabProvably);
         node.setPosition(cc.v2(0, 0));
@@ -105,6 +119,7 @@ cc.Class({
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
     },
+
     refreshPlayerBet(notify){
         this.node_root1.getComponent("AviatorRoundRoot1").refreshPlayerBet(notify);
     },
@@ -114,7 +129,11 @@ cc.Class({
     },
 
     dealPlayerGetOut(notify){
-        LoggerUtil.getInstance().log("caojun dealPlayerGetOut", notify);
         this.node_root1.getComponent("AviatorRoundRoot1").setPlayerResult(notify);
+    },
+
+    dealLastGameRecord(notify){
+        LoggerUtil.getInstance().log("caojun dealLastGameRecord notify = ", notify);
+        this.node_root2.getComponent("AviatorRoundRoot2").setLastGameRecord(notify);
     },
 });

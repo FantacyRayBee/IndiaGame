@@ -2348,7 +2348,7 @@
       "__id__": 55
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 60
@@ -2515,7 +2515,7 @@
     "_N$target": {
       "__id__": 55
     },
-    "_N$isChecked": false,
+    "_N$isChecked": true,
     "toggleGroup": null,
     "checkMark": {
       "__id__": 60
@@ -2731,7 +2731,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -2805,8 +2805,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 0,
+    "transition": 0,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -3295,7 +3295,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -3369,8 +3369,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 0,
+    "transition": 0,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -3859,7 +3859,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -3933,8 +3933,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 0,
+    "transition": 0,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -4423,7 +4423,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -4497,8 +4497,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 0,
+    "transition": 0,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -5165,13 +5165,10 @@
       "__id__": 112
     },
     "pabfabProvably": {
-      "__uuid__": "d0ca18ba-fdc0-4f94-b686-c58c1062a18d"
+      "__uuid__": "e446707e-3a2b-4cd0-8145-e5236e9f5b62"
     },
     "prefabRule": {
       "__uuid__": "d00d4e6c-24f9-4a66-a887-607792e0920b"
-    },
-    "prefabMybet": {
-      "__uuid__": "bf7744c2-e965-41a9-8a80-69dd53bc3d35"
     },
     "prefabLimit": {
       "__uuid__": "ee5cbf84-1754-45d7-bbfd-eda7cc3b8e7a"

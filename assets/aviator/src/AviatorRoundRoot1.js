@@ -7,6 +7,8 @@ cc.Class({
 
         normalColor: cc.Color,
         markColor: cc.Color,
+
+        defaultAvatar: cc.SpriteFrame,
     },
 
     onLoad() {

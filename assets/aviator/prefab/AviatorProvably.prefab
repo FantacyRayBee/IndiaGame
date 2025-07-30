@@ -6216,7 +6216,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 145.63,
+      "width": 78.89,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -6268,8 +6268,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "ROUND 833528",
-    "_N$string": "ROUND 833528",
+    "_string": "ROUND ",
+    "_N$string": "ROUND ",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -6336,7 +6336,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -110.662,
+        -161.368,
         291.78,
         0,
         0,
@@ -6442,7 +6442,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90,
+      "width": 120,
       "height": 39
     },
     "_anchorPoint": {
@@ -6454,7 +6454,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -154.18,
+        -215.28,
         290.561,
         0,
         0,
@@ -6714,7 +6714,7 @@
     "_spriteFrame": {
       "__uuid__": "950954db-9b5d-4a74-bee2-11ee03617f7e"
     },
-    "_type": 0,
+    "_type": 1,
     "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
@@ -7049,8 +7049,63 @@
       "__id__": 1
     },
     "_enabled": true,
-    "prefabPoint": null,
-    "content": null,
+    "lab_service": {
+      "__id__": 37
+    },
+    "lab_hash": {
+      "__id__": 54
+    },
+    "lab_hax": {
+      "__id__": 69
+    },
+    "lab_decimal": {
+      "__id__": 72
+    },
+    "lab_result": {
+      "__id__": 75
+    },
+    "sp_N1": {
+      "__id__": 99
+    },
+    "sp_N2": {
+      "__id__": 123
+    },
+    "sp_N3": {
+      "__id__": 147
+    },
+    "lab_id_N1": {
+      "__id__": 108
+    },
+    "lab_id_N2": {
+      "__id__": 132
+    },
+    "lab_id_N3": {
+      "__id__": 156
+    },
+    "lab_seed_N1": {
+      "__id__": 111
+    },
+    "lab_seed_N2": {
+      "__id__": 135
+    },
+    "lab_seed_N3": {
+      "__id__": 159
+    },
+    "lab_timer": {
+      "__id__": 171
+    },
+    "record_rect": {
+      "__id__": 173
+    },
+    "btn_provably": {
+      "__id__": 23
+    },
+    "btn_close": {
+      "__id__": 187
+    },
+    "prefabRule": {
+      "__uuid__": "d00d4e6c-24f9-4a66-a887-607792e0920b"
+    },
     "_id": ""
   },
   {

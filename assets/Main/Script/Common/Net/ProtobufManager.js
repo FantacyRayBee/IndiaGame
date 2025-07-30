@@ -94,7 +94,7 @@ ProtobufManager.packProtobuf = function(command, messageKey, jsonData, heartType
                 else {
                     LoggerUtil.getInstance().error("无法区分心跳类型");
                     return;
-                } 
+                }
             };
             let data = {
                 id: command,

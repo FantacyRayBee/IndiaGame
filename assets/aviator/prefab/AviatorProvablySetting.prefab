@@ -974,7 +974,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 433.6,
+      "width": 551.21,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1026,8 +1026,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "CWbWTLWUNpSQNZWyquUPpuiavgtlDmxFpi20dfVE",
-    "_N$string": "CWbWTLWUNpSQNZWyquUPpuiavgtlDmxFpi20dfVE",
+    "_string": "12a926cb2b742a8eac11f37f31d6a5d1ce8babbebfa1070b17085fafd2",
+    "_N$string": "12a926cb2b742a8eac11f37f31d6a5d1ce8babbebfa1070b17085fafd2",
     "_fontSize": 18,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2058,7 +2058,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 213.45,
+      "width": 204.55,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2110,8 +2110,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Roundom on every new game",
-    "_N$string": "Roundom on every new game",
+    "_string": "Random on every new game",
+    "_N$string": "Random on every new game",
     "_fontSize": 16,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2931,7 +2931,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_changed",
+    "_name": "btn_change",
     "_objFlags": 0,
     "_parent": {
       "__id__": 54
@@ -5424,8 +5424,36 @@
       "__id__": 1
     },
     "_enabled": true,
-    "prefabPoint": null,
-    "content": null,
+    "toggle1": {
+      "__id__": 96
+    },
+    "toggle2": {
+      "__id__": 105
+    },
+    "btn_whatIsProvably": {
+      "__id__": 125
+    },
+    "btn_copy1": {
+      "__id__": 46
+    },
+    "btn_copy2": {
+      "__id__": 66
+    },
+    "btn_change": {
+      "__id__": 77
+    },
+    "btn_close": {
+      "__id__": 136
+    },
+    "lab_seed1": {
+      "__id__": 37
+    },
+    "lab_seed2": {
+      "__id__": 57
+    },
+    "prefabRule": {
+      "__uuid__": "d00d4e6c-24f9-4a66-a887-607792e0920b"
+    },
     "_id": ""
   },
   {
