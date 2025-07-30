@@ -912,9 +912,9 @@ let SceneManager = cc.Class({
                      */
                     let have_pdd_activity = msgData.have_pdd_activity ? msgData.have_pdd_activity : false;
 
-                    let inducement = msgData.get_recharge_inducement_info_ack ? msgData.get_recharge_inducement_info_ack : {};
+                    // let inducement = msgData.get_recharge_inducement_info_ack ? msgData.get_recharge_inducement_info_ack : {};
 
-                    LoggerUtil.getInstance().log("caojun inducement", inducement);
+                    // LoggerUtil.getInstance().log("caojun inducement", inducement);
                     /**
                      * 签到信息。同v1/signlist接口数据
                      */
@@ -1028,7 +1028,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.is_club = msgData.is_club;
                     GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
                     GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
-                    GlobalCfg.USER_DATAS.inducement = inducement;
+                    // GlobalCfg.USER_DATAS.inducement = inducement;
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
                     };

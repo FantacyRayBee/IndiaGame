@@ -295,9 +295,11 @@ cc.Class({
         var packageChannelArr = packageChannel.split("_");
         channel = packageChannelArr[1];
       }
+      var device = CommonFun.getInstance().getDeviceId();
       var httpParam = {
         "adv": GlobalCfg.ADVERTISING_ID,
-        "channel": channel
+        "channel": channel,
+        "device": device
       };
       var httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/install";
       CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {});

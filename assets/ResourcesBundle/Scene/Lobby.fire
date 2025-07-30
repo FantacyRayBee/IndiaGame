@@ -19926,7 +19926,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 921,
+      "width": 762.5,
       "height": 150
     },
     "_anchorPoint": {
@@ -22922,7 +22922,7 @@
         "__id__": 475
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 477
@@ -23646,7 +23646,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 921,
+      "width": 762.5,
       "height": 150
     },
     "_resize": 1,
