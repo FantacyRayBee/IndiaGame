@@ -30,7 +30,7 @@ cc.Class({
     },
 
     showLight(bool) {
-        this.isShowLight = bool;
+        this.isShowLight = false;
     },
 
     update(dt) {

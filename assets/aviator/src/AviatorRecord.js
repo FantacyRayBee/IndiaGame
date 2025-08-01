@@ -9,7 +9,7 @@ cc.Class({
     start() {},
 
     /**
-     * 初始化走势图（倒序，最多70个）
+     * 初始化走势图
      * @param {Array} data 
      */
     init(data) {
@@ -20,15 +20,15 @@ cc.Class({
             return;
         }
 
-        // ✅ 倒序处理，最多取70条
+        // ✅ 倒序处理，最多取76条
         let reversed = data.slice().reverse();
-        let limited = reversed.slice(0, 60);
+        let limited = reversed.slice(0, 76);
 
         this.initPoint(limited);
     },
 
     /**
-     * 绘制每个点（最多70条，倒序数据）
+     * 绘制每个点
      * @param {Array} data 
      */
     initPoint(data) {

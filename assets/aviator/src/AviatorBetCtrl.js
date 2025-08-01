@@ -27,6 +27,7 @@ cc.Class({
 
 
         edit_Mult: cc.EditBox,
+        edit_Bet: cc.EditBox,
 
         greenSpriteFrame: cc.SpriteFrame,
         orangeSpriteFrame: cc.SpriteFrame,
@@ -50,18 +51,20 @@ cc.Class({
         this.toggle_isAuto.node.on('toggle', this.toggleAutoClick, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+        this.edit_Bet.node.on('editing-did-ended', this.onBetEditEnd, this);
     },
 
     start() {
         this.NowToggleName = 'tog_bet';
         this.isAuto = false; //是否自动投注
         this.autoCount = 0;
-        this.quickBetStr = [100, 200, 500, 1000];
+        this.quickBetStr = [10000, 20000, 50000, 100000]; //需要除以100
         this.choiceQuickIndex = -1; //当前选择的快捷下注索引，如果和上次一样则执行加法逻辑
-        this.curBet = 10;
-        this.maxBet = 10000; //最大下注
+        this.curBet = 1000;
+        this.minBet = 1000; //最小下注
+        this.maxBet = 1000000; //最大下注
         for (let i = 0; i < this.btn_bet_quicks.length; i++) {
-            this.btn_bet_quicks[i].node.getChildByName('lab').getComponent(cc.Label).string = this.quickBetStr[i]+'';
+            this.btn_bet_quicks[i].node.getChildByName('lab').getComponent(cc.Label).string = this.quickBetStr[i] / 100 + '';
         }
         this.edit_Mult.string = this.edit_Mult.placeholder
         this.Init();
@@ -83,8 +86,10 @@ cc.Class({
         this.btn_bet_cancel.node.active = false;
         this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.greenSpriteFrame;
         this.lab_bet_tip.string = "Bet";
-        this.lab_curBet1.string = this.curBet + ".00";
-        this.lab_curBet2.string = this.curBet + ".00";
+        // this.lab_curBet1.string = this.curBet + ".00";
+        this.edit_Bet.string = (this.curBet / 100).toFixed(2);
+        this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
+        this.setButtonEnabled(true);
     },
 
     StartBet() {
@@ -194,7 +199,7 @@ cc.Class({
         if(!value) return;
         if(this.betStatus != 2) return;
         value = Number(value);
-        let finalValue = value * this.curBet;
+        let finalValue = value * this.curBet /100;
         this.lab_curBet2.string = finalValue.toFixed(2);
 
         if (this.toggle_isAuto.isChecked) { //自动下注 需要判断是否达到设置的倍率
@@ -224,16 +229,17 @@ cc.Class({
 
     dealBetChangeEvent: function (type) {
         if (type == 1) {
-            this.curBet += 10;
+            this.curBet += 100;
             if (this.curBet > this.maxBet)
                 this.curBet = this.maxBet;
         } else if (type == 2) {
-            this.curBet -= 10;
-            if (this.curBet < 10)
-                this.curBet = 10;
+            this.curBet -= 100;
+            if (this.curBet < this.minBet)
+                this.curBet = this.minBet;
         }
-        this.lab_curBet1.string = this.curBet + ".00";
-        this.lab_curBet2.string = this.curBet + ".00";
+        // this.lab_curBet1.string = this.curBet + ".00";
+        this.edit_Bet.string = (this.curBet / 100).toFixed(2);
+        this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
     },
 
     dealQuickBetEvent: function (type) {
@@ -242,20 +248,22 @@ cc.Class({
             if (this.curBet > this.maxBet)
                 this.curBet = this.maxBet;
 
-            this.lab_curBet1.string = this.curBet + ".00";
-            this.lab_curBet2.string = this.curBet + ".00";
+            // this.lab_curBet1.string = this.curBet + ".00";
+            this.edit_Bet.string = (this.curBet / 100).toFixed(2);
+            this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
         }
         else{
             this.choiceQuickIndex = type;
             this.curBet = this.quickBetStr[type];
-            this.lab_curBet1.string = this.quickBetStr[type] + ".00";
-            this.lab_curBet2.string = this.quickBetStr[type] + ".00";
+            // this.lab_curBet1.string = this.quickBetStr[type] + ".00";
+            this.edit_Bet.string = (this.quickBetStr[type] / 100).toFixed(2);
+            this.lab_curBet2.string = (this.quickBetStr[type] / 100).toFixed(2);
         }
     },
 
     dealBetEvent: function () {
         if (this.betStatus == 0) {//可下注状态
-            let num = this.curBet * 100;
+            let num = this.curBet;
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
                 CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
@@ -302,7 +310,7 @@ cc.Class({
     },
 
     sendBetReq: function () {
-        let amount = this.curBet * 100;
+        let amount = this.curBet;
         if (amount > GlobalCfg.USER_DATAS.userDiamond) {
             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
@@ -345,11 +353,19 @@ cc.Class({
     },
     
     setButtonEnabled: function (enabled) {
+        LoggerUtil.getInstance().error("setButtonEnabled enabled:", enabled);
         this.btn_add.interactable = enabled;
         this.btn_att.interactable = enabled;
         for (let i = 0; i < this.btn_bet_quicks.length; i++) {
             this.btn_bet_quicks[i].interactable = enabled;
         }
+        this.edit_Bet.enabled = enabled;
+    },
+
+    onBetEditEnd: function (editBox) {
+        const value = editBox.string;
+        this.curBet = parseFloat(value) * 100;
+        this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
     },
 
     //设置自动下注次数

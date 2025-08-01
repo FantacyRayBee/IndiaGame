@@ -2327,8 +2327,7 @@ cc.Class({
         if (this.btn_miniaviator.node.active) {
             skeleton = this.btn_miniaviator.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'animation', true);
+            skeleton.setAnimation(0, 'idle', true);
         };
         if (this.btn_minicricket.node.active) {
             skeleton = this.btn_minicricket.node.getChildByName('Background').getComponent(sp.Skeleton);

@@ -23,12 +23,14 @@ cc.Class({
         this.maxBet = 1000000; //最大下注
         this.btn_add.interactable = false;
         this.btn_att.interactable = false;
+        this.edit_set.enabled = false;
     },
 
     toggleClick(toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.btn_add.interactable = toggle.isChecked;
         this.btn_att.interactable = toggle.isChecked;
+        this.edit_set.enabled = toggle.isChecked;
     },
 
     btnClick(btn) {
@@ -44,26 +46,26 @@ cc.Class({
 
     dealBetChangeEvent: function (type) {
         if (type == 1) {
-            this.curBet += 10;
+            this.curBet += 100;
             if (this.curBet > this.maxBet)
                 this.curBet = this.maxBet;
         } else if (type == 2) {
-            this.curBet -= 10;
+            this.curBet -= 100;
             if (this.curBet < 0)
                 this.curBet = 0;
         }
-        this.edit_set.string = this.curBet + ".00";
+        this.edit_set.string = (this.curBet / 100).toFixed(2);
     },
 
     reset() {
-        this.edit_set.string = "0.00";
-        this.toggle_node.isChecked = false;
         this.curBet = 0;
+        this.edit_set.string = (this.curBet / 100).toFixed(2);
+        this.toggle_node.isChecked = false;
     },
 
     isError() {
         let bet = parseFloat(this.edit_set.string);
-        this.curBet = bet;
+        this.curBet = bet * 100;
         if (this.toggle_node.isChecked && this.curBet == 0) {
             return true;
         }
@@ -73,11 +75,11 @@ cc.Class({
     getInfo() {
         if (this.toggle_node.isChecked) {
             let bet = parseFloat(this.edit_set.string);
-            this.curBet = bet;
+            this.curBet = bet * 100;
             return this.curBet;
         }
         else {
-            return null;
+            return 0;
         }
     },
 });

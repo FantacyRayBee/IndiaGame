@@ -87,10 +87,11 @@ cc.Class({
         this.preRoundBetNum = 0;                      // 存放上一轮下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
-        this.trendMaxNum = 12;                     // 走势图最大显示点数
+        this.trendMaxNum = 20;                     // 走势图最大显示点数
         this.roundTopRankInfo = {};
         this.provablyData = {}
         this.betTimerTween = null;
+        this.autoSettingInfos = [null,null]
     },
 
     onLoad: function() {
@@ -302,9 +303,8 @@ cc.Class({
         }
         else if (msgId == 'gameservice.cash') {
             self.showReward(notify);
-
+            self.updateSelfCoin(); // 更新自己的金币
         }
-
         else if (msgId == 'gameservice.startbettingnotify') {
             // 开始下注阶段通知
             this.betStatus = 0; //下注状态
@@ -392,7 +392,8 @@ cc.Class({
                     if (notify.result.result == 19) {         // 余额不足
                         if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                             CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-                        else {
+                            else {
+                            this.stopAutoBetStatus();
                             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                                 CommonFun.getInstance().showSmallAddCash()
                             }, false);
@@ -405,6 +406,7 @@ cc.Class({
                     if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                         CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                     else {
+                        this.stopAutoBetStatus();
                         CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                             CommonFun.getInstance().showSmallAddCash()
                         }, false);
@@ -423,7 +425,7 @@ cc.Class({
         let name = event.node.name;
         if (name == this.btnBack.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            CommonFun.getInstance().showGameMenu(false);
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY, msgData: {}});
         }
         else if (name == this.btnPlayerList.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -481,6 +483,7 @@ cc.Class({
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                 else {
+                    this.stopAutoBetStatus();
                     CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                         CommonFun.getInstance().showSmallAddCash()
                     }, false);
@@ -633,7 +636,9 @@ cc.Class({
     },
 
     setAutoStatus(infos, count) {
-        this.autoSettingInfos = infos;
+        LoggerUtil.getInstance().log(`setAutoStatus: infos: ${infos}, count: ${count}`);
+        this.autoSettingInfos[this.openAutoSettingIndex] = infos
+        LoggerUtil.getInstance().log(`setAutoStatus: this.autoSettingInfos: `, this.autoSettingInfos);
         if (this.openAutoSettingIndex == 0) {
             this.node_betinfo1.getComponent('AviatorBetCtrl').setAutoInfo(count);
         }
@@ -898,6 +903,7 @@ cc.Class({
         this.updateCenterRate(Number((rate / 1000).toFixed(2)), true);
         this.flyEndAnimion(point);
         this.background.getComponent(cc.Animation).stop();
+        this.checkAutoSettingStatus();
     },
 
     flyEndAnimion(point) {
@@ -931,6 +937,45 @@ cc.Class({
         prefabRwd.setPosition(pos);
         this.rewardPosNode.addChild(prefabRwd);
         prefabRwd.getComponent("AviatorReward").setData(notify);
+        this.checkAutoSettingStatus(notify.mul);
+    },
+
+
+    checkAutoSettingStatus(curWinMult = 0) {
+        LoggerUtil.getInstance().log(`checkAutoSettingStatus:`, this.autoSettingInfos);
+        for (let index = 0; index < 2; index++) {
+            if (this.autoSettingInfos[index] != null) {
+                let infos = this.autoSettingInfos[index];
+                if (infos[0] > 0 && infos[0] >= GlobalCfg.USER_DATAS.userDiamond) {
+                    this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
+                    this.autoSettingInfos[index] = null;
+                    break;
+                }
+                if (infos[1] > 0 && infos[1] <= GlobalCfg.USER_DATAS.userDiamond) {
+                    this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
+                    this.autoSettingInfos[index] = null;
+                    break;
+                }
+                if (infos[2] > 0 && (curWinMult / 10) >= infos[2]) {
+                    this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
+                    this.autoSettingInfos[index] = null;
+                    break;
+                }
+            }
+        }
+    },
+
+    stopAutoBetStatus() {
+        this.node_betinfo1.getComponent('AviatorBetCtrl').dealStopAutoEvent();
+        this.node_betinfo2.getComponent('AviatorBetCtrl').dealStopAutoEvent();
+    },
+
+    // ***************************************************************************************
+
+    /**
+     * 处理走势数据
+     * @param {*
+        }
     },
 
     // ***************************************************************************************

@@ -1,0 +1,34 @@
+
+a.png
+size: 212,149
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fei01
+  rotate: false
+  xy: 2, 73
+  size: 145, 74
+  orig: 152, 76
+  offset: 1, 1
+  index: -1
+fei02
+  rotate: false
+  xy: 2, 2
+  size: 144, 69
+  orig: 152, 76
+  offset: 1, 3
+  index: -1
+fei03
+  rotate: false
+  xy: 2, 2
+  size: 144, 69
+  orig: 152, 76
+  offset: 1, 3
+  index: -1
+fei04
+  rotate: true
+  xy: 149, 4
+  size: 143, 61
+  orig: 152, 76
+  offset: 1, 3
+  index: -1

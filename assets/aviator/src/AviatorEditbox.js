@@ -16,6 +16,10 @@ cc.Class({
     onLoad() {
         this.editBox.node.on('text-changed', this.onTextChangedNumber, this);
         this.editBox.node.on('editing-did-ended', this.onEditingDidEnded, this);
+
+        this.editBox.node.on('editing-did-began', () => {
+            this.setCursorToLeft(this.editBox);
+        }, this);
     },
 
     onTextChangedNumber(editBox) {
@@ -73,6 +77,15 @@ cc.Class({
     
         // 四舍五入保留两位
         editBox.string = num.toFixed(2);
+    },
+
+    setCursorToLeft(editBox) {
+        // 等待 DOM 元素渲染
+        setTimeout(() => {
+            if (cc.sys.isBrowser && editBox._impl && editBox._impl._edTxt) {
+                const input = editBox._impl._edTxt;
+                input.setSelectionRange(0, 0); // 设置光标位置为开头
+            }
+        }, 0);
     }
-    
 });
