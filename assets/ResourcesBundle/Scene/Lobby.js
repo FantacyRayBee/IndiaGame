@@ -524,8 +524,8 @@ cc.Class({
         // this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
 
-        // this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
-        // this.dealInducementInfo();
+        this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
+        this.dealInducementInfo();
         this.dealShowOnlyPayEvent();
         /**
          * 邮箱
@@ -1140,16 +1140,16 @@ cc.Class({
         // /** 
         //  * 诱导充值
         //  */
-        // else if (GlobalCfg.USER_DATAS.openModules.includes(24) && this.isNeedShowPointToastByHours("Inducement", 4)) {
-        //     let data = GlobalCfg.USER_DATAS.inducement;
-        //     let curRound = data.task_info.rounds;
-        //     let time = data.end_time - Date.now();
-        //     let isOpen = time > 0 && curRound > 0;
-        //     if (isOpen) {
-        //         this.updateToastLocalStorageByHours("Inducement", 4);
-        //         CommonFun.getInstance().showInducement();
-        //     }
-        // }
+        else if (GlobalCfg.USER_DATAS.openModules.includes(24) && this.isNeedShowPointToastByHours("Inducement", 4)) {
+            let data = GlobalCfg.USER_DATAS.inducement;
+            let curRound = data.task_info.rounds;
+            let time = data.end_time - Date.now();
+            let isOpen = time > 0 && curRound > 0;
+            if (isOpen) {
+                this.updateToastLocalStorageByHours("Inducement", 4);
+                CommonFun.getInstance().showInducement();
+            }
+        }
         /** 
          * 首充
          */
@@ -1454,14 +1454,14 @@ cc.Class({
         else if (msgId == 'close_Only_Pay') {
             self.dealCloseOnlyPayEvent();
         }
-        // else if (msgId == 'inducement_click') {
-        //     if(notify.jump) {
-        //         self.dealJumpBtnEvent(notify.jump);
-        //     }
-        //     else {
-        //         self.dealInducementInfo();
-        //     }
-        // }
+        else if (msgId == 'inducement_click') {
+            if(notify.jump) {
+                self.dealJumpBtnEvent(notify.jump);
+            }
+            else {
+                self.dealInducementInfo();
+            }
+        }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.ACTIVITY_GOBETTING_GET) {
             self.showActivityGoBetting();
             self.showUserInfo();
@@ -1519,9 +1519,9 @@ cc.Class({
         else if (btnName == 'btn_onlypay') {
             CommonFun.getInstance().showOnlyPay(true);
         }
-        // else if (btnName == 'btn_inducement') {
-        //     this.dealInducementClickEvent();
-        // }
+        else if (btnName == 'btn_inducement') {
+            this.dealInducementClickEvent();
+        }
     },
 
     dealInducementClickEvent: function () {

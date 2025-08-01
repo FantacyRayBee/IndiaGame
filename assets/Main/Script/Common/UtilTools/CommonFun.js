@@ -1240,21 +1240,21 @@ let CommonFun = cc.Class({
      * 显示诱导充值界面
      */
     showInducement: function() {
-        // let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INDUCEMENT, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
-        // if (isExist) {
-        //     return;
-        // };
-        // let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
-        // CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
-        //     if (msg.result == 0) {
-        //         GlobalCfg.USER_DATAS.inducement = msg.data;
-        //         let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
-        //         prefabPromise.then((prefab) => {
-        //             let node = cc.instantiate(prefab);
-        //             this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
-        //         });
-        //     }
-        // }, null, GlobalCfg.USER_DATAS.BearerToken);
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INDUCEMENT, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+        if (isExist) {
+            return;
+        };
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.inducement = msg.data;
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
+                prefabPromise.then((prefab) => {
+                    let node = cc.instantiate(prefab);
+                    this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
     /**
