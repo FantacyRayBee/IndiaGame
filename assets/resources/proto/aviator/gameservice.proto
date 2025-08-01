@@ -106,6 +106,14 @@ message ExitAck {
   ResponseBase result = 1;
 }
 
+// 退出房间 gameservice.sethead
+message SetHeadReq {
+  int32 head = 1;
+}
+message SetHeadAck {
+  ResponseBase result = 1;
+}
+
 // 人数变化通知 gameservice.playernumberchangednotify
 message PlayerNumberChangedNotify {
   int32 num = 1;
@@ -163,6 +171,7 @@ message CashAck {
   int64 bet = 7;    // 下注额度
 }
 
+
 // 获取上局记录 gameservice.lastgamerecord
 message LastGameRecordReq {
 }
@@ -189,6 +198,7 @@ message playerRecord {
   int64 gameMub = 6; //游戏下机记录
 }
 
+
 // 获取种子 gameservice.seed
 message SeedReq {
   string userId = 1;
@@ -210,6 +220,8 @@ message SeedAck {
   string decimal = 14;
   string resultScore = 15;
 }
+
+
 
 // 玩家排行榜 gameservice.getrankingdata
 message GetRankingDataReq {
