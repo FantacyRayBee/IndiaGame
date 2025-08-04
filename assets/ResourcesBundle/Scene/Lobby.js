@@ -251,6 +251,7 @@ cc.Class({
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
+        this.LoadCompletedCallback = null;
     },
 
 
@@ -881,36 +882,36 @@ cc.Class({
             }
         };
         //自动下载小游戏
-        if (needUpdataArr.length > 0) {
-            let gameSubPackageNames = {
-                "minirocket": "rocket",
-                "minijhandimunda": "munda",
-                "miniteenpatti": "tpGame",
-                "miniteenpattibaccarat": "baccarat3PattiGame",
-                "miniandar": "andaerGame",
-                "minilonghu": "lhdGame",
-                "minishuiguo": "fruitMachine",
-                "minimaya": "mayaMachine",
-                "miniclown": "jokerMachine",
-                "miniindia": "indiaMachine",
-                "minivampire": "vampireMachine",
-                "minibull": "bullMachine",
-                "minisaima": "horseRaceGame",
-                "minibenzbmw": "Benz",
-                "minirummy": "Rummy",
-                "miniseven": "7up7downGame",
-                "minizoo": "zooGame",
-                "minicricket": "cricketGame",
-                "miniluckyloto": "sscGame",
-                "minizeus": "zeusGame",
-            };
-            for (let i = 0, len = this.gameUpdateDownloadOrder.length; i < len; i++) {
-                let element = this.gameUpdateDownloadOrder[i];
-                if (gameSubPackageNames[element] && needUpdataArr.indexOf(gameSubPackageNames[element]) != -1) {
-                    GameDownloader.getInstance().commonLoadGame(gameSubPackageNames[element]);
-                };
-            };
-        };
+        // if (needUpdataArr.length > 0) {
+        //     let gameSubPackageNames = {
+        //         "minirocket": "rocket",
+        //         "minijhandimunda": "munda",
+        //         "miniteenpatti": "tpGame",
+        //         "miniteenpattibaccarat": "baccarat3PattiGame",
+        //         "miniandar": "andaerGame",
+        //         "minilonghu": "lhdGame",
+        //         "minishuiguo": "fruitMachine",
+        //         "minimaya": "mayaMachine",
+        //         "miniclown": "jokerMachine",
+        //         "miniindia": "indiaMachine",
+        //         "minivampire": "vampireMachine",
+        //         "minibull": "bullMachine",
+        //         "minisaima": "horseRaceGame",
+        //         "minibenzbmw": "Benz",
+        //         "minirummy": "Rummy",
+        //         "miniseven": "7up7downGame",
+        //         "minizoo": "zooGame",
+        //         "minicricket": "cricketGame",
+        //         "miniluckyloto": "sscGame",
+        //         "minizeus": "zeusGame",
+        //     };
+        //     for (let i = 0, len = this.gameUpdateDownloadOrder.length; i < len; i++) {
+        //         let element = this.gameUpdateDownloadOrder[i];
+        //         if (gameSubPackageNames[element] && needUpdataArr.indexOf(gameSubPackageNames[element]) != -1) {
+        //             GameDownloader.getInstance().commonLoadGame(gameSubPackageNames[element]);
+        //         };
+        //     };
+        // };
 
         let languagesType = I18NUtil.getInstance().getLanguageType();
         this.setSmallGameBtnByLanguageType(languagesType);
@@ -1984,6 +1985,9 @@ cc.Class({
             return;
         };
 
+        if (this.LoadCompletedCallback == null) {
+            this.LoadCompletedCallback = callFun;
+        }
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
@@ -2150,6 +2154,11 @@ cc.Class({
             default:
                 break;
         };
+
+        if (this.LoadCompletedCallback) {
+            this.LoadCompletedCallback();
+            this.LoadCompletedCallback = null;
+        }
     },
 
     onDestroy: function() {
