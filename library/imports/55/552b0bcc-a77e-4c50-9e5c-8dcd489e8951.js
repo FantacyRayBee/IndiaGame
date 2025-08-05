@@ -145,6 +145,7 @@ cc.Class({
     } else {
       packageChannel = cc.sys.localStorage.getItem("PackageChannel");
     }
+    LoggerUtil.getInstance().log("caojun packageChannel:", packageChannel);
     if (packageChannel && packageChannel.indexOf("_") != -1) {
       var packageChannelArr = packageChannel.split("_");
       channel = packageChannelArr[1];

@@ -69,7 +69,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: true,
+  is_force_gotoTest: false,
   /**
    * 渠道信息
    */
@@ -1169,7 +1169,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  cc.sys.localStorage.setItem("PackageChannel", "5_5062");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }
@@ -1475,6 +1475,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   var server = packageChannelArr[0];
   console.log("packageChannelArr == ", packageChannelArr);
   console.log("server == ", server);
+  console.log("cc.sys.isNative == ", cc.sys.isNative);
   GlobalCfg.server_id = server;
   switch (server) {
     case "0":
@@ -1513,17 +1514,17 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     case "5":
       // 5服
       GlobalCfg.APP_VERSION = "5.0.0.32";
-      GlobalCfg.APP_INFO_URL = "https://svgdownload.tp-game.com/production/AppInfo.json";
-      GlobalCfg.APP_CONFIG_URL = "https://svgdownload.tp-game.com/production/AppConfig.json";
+      GlobalCfg.APP_INFO_URL = "https://download.rax8.com/production/AppInfo.json";
+      GlobalCfg.APP_CONFIG_URL = "https://download.rax8.com/production/AppConfig.json";
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {
         //cocos 版本2.4.13
-        GlobalCfg.APP_INFO_URL = "https://svgdownload.tp-game.com/production/v1/AppInfo.json";
+        GlobalCfg.APP_INFO_URL = "https://download.rax8.com/production/v1/AppInfo.json";
       }
       // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 
-      GlobalCfg.APP_INFO_URL_SPARE = "https://download.ltgame.in/production/AppInfo.json";
-      GlobalCfg.APP_CONFIG_URL_SPARE = "https://download.ltgame.in/production/AppConfig.json";
+      GlobalCfg.APP_INFO_URL_SPARE = "https://download.rax8.com/production/AppInfo.json";
+      GlobalCfg.APP_CONFIG_URL_SPARE = "https://download.rax8.com/production/AppConfig.json";
       break;
     case "6":
       // 代理服
