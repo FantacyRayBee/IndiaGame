@@ -1985,12 +1985,12 @@ cc.Class({
             return;
         };
 
-        if (this.LoadCompletedCallback == null) {
-            this.LoadCompletedCallback = callFun;
-        }
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            if (this.LoadCompletedCallback == null) {
+                this.LoadCompletedCallback = callFun;
+            }
         } 
         else {
             callFun();
