@@ -757,6 +757,7 @@ cc.Class({
      */
     setSelfPlayerInfo(data) {
         if (!data) return;
+        LoggerUtil.getInstance().log('caojun setSelfPlayerInfo data: ', data);
         GlobalCfg.USER_DATAS.userDiamond = data.diamond;
         this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
         LoggerUtil.getInstance().log('selfPlayerInfo data: ', data);

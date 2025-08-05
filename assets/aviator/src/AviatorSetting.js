@@ -17,13 +17,17 @@ cc.Class({
         btn_provably: cc.Button,
         btn_rule: cc.Button,
         btn_mybet: cc.Button,
+        btn_how: cc.Button,
         btn_limit: cc.Button,
         btn_changeHead: cc.Button,
+        btn_Free: cc.Button,
 
         pabfabProvably: cc.Prefab,
         prefabRule: cc.Prefab,
         prefabLimit: cc.Prefab,
         prefabChangeHead: cc.Prefab,
+        prefabHowToPlay: cc.Prefab,
+        prefabFree: cc.Prefab,
 
         atlas_head: cc.SpriteAtlas,
     },
@@ -38,6 +42,10 @@ cc.Class({
         this.btn_mybet.node.on('click', this.onBtnMybet, this);
         this.btn_limit.node.on('click', this.onBtnlimit, this);
         this.btn_changeHead.node.on('click', this.onBtnChangeHead, this);
+        this.btn_how.node.on('click', this.onBtnHowToPlay, this);
+        this.btn_Free.node.on('click', this.onBtnFree, this);
+
+        
 
 
         this.setMusicEffectBtns(EnumBtnType.Music);
@@ -99,6 +107,22 @@ cc.Class({
     },
     onBtnChangeHead() {
         let node = cc.instantiate(this.prefabChangeHead);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+
+    onBtnHowToPlay() {
+        let node = cc.instantiate(this.prefabHowToPlay);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+
+    onBtnFree() {
+        let node = cc.instantiate(this.prefabFree);
         node.setPosition(cc.v2(0, 0));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
