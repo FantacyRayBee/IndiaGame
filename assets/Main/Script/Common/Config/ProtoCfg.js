@@ -452,6 +452,7 @@ cc.Class({
       "gameservice.betnotify": "BetNotify",
       "gameservice.lastgamerecord": "LastGameRecordAck",
       "gameservice.getplayerrecord": "GetPlayerRecordAck",
+      "gameservice.sethead": "SetHeadAck",
     }
 
     // 动物园

@@ -6,10 +6,13 @@ cc.Class({
         content: cc.Node,
         item: cc.Node,
 
-        normalColor: cc.Color,
-        markColor: cc.Color,
+        normalSp: cc.SpriteFrame,
+        markSp: cc.SpriteFrame,
 
         defaultAvatar: cc.SpriteFrame,
+        blueLabColor: cc.Color,
+        purpleLabColor: cc.Color,
+        redLabColor: cc.Color,
     },
 
     onLoad() {
@@ -34,6 +37,18 @@ cc.Class({
     setLastGameRecord(data) {
         this.init();
         this.lab_Result.string = (data.rounds/1000).toFixed(2) + "x";
+        let value = Number((data.rounds / 1000).toFixed(2));
+        if (value >= 0 && value < 2) {
+            this.lab_Result.node.color = this.blueLabColor;
+            LoggerUtil.getInstance().log("1111111111");
+        } else if (value >= 2 && value < 10) {
+            this.lab_Result.node.color = this.purpleLabColor;
+            LoggerUtil.getInstance().log("2222222222");
+        } else if (value >= 10) {
+            this.lab_Result.node.color = this.redLabColor;
+            LoggerUtil.getInstance().log("3333333333");
+        }
+        
         if (data.list && data.list.length > 0) {
             const maxCount = Math.min(data.list.length, 50);
             for (let i = 0; i < maxCount; i++) {
@@ -64,7 +79,7 @@ cc.Class({
     createPlayerBetItem(node) {
         let obj = {};
         obj.node = node;
-        obj.bg = node.getChildByName("bg");
+        obj.bg = node.getChildByName("bg").getComponent(cc.Sprite);
         obj.labelId = node.getChildByName("id").getComponent(cc.Label);
         obj.labelBet = node.getChildByName("bet").getComponent(cc.Label);
         obj.imgHead = node.getChildByName("tx").getChildByName("img_head");
@@ -72,13 +87,14 @@ cc.Class({
         obj.record_rect = node.getChildByName("record_rect");
     
         obj.setData = (data) => {
-            obj.bg.color = this.normalColor;
+            LoggerUtil.getInstance().log("AviatorRoundRoot2 setData", data);
+            obj.bg.spriteFrame = this.normalSp;
             obj.userId = data.userId;
             obj.labelId.string = this.maskUserId(data.userId);
     
             // 加载头像
             if (data.head) {
-                this.loadHead(obj.imgHead, data.head);
+                GlobalCfg.ACT_SCENE_CTRL.loadHead(obj.imgHead, data.head);
             } else {
                 obj.imgHead.getComponent(cc.Sprite).spriteFrame = this.defaultAvatar;
             }
@@ -88,7 +104,7 @@ cc.Class({
     
             if (data.mub && data.mub > 0) {
                 obj.cashout.string = ((data.bet / 100) * (data.mub / 1000)).toFixed(2) + " ";
-                obj.bg.color = this.markColor;
+                obj.bg.spriteFrame = this.markSp;
                 obj.record_rect.active = true;
                 let RocketRecordRectCtrl = obj.record_rect.getComponent("AviatorRecordRectCtrl");
                 if (RocketRecordRectCtrl) {
@@ -96,7 +112,7 @@ cc.Class({
                 }
             } else {
                 obj.cashout.string = '';
-                obj.bg.color = this.normalColor;
+                obj.bg.spriteFrame = this.normalSp;
                 obj.record_rect.active = false;
             }
         }
@@ -109,21 +125,4 @@ cc.Class({
         const suffix = userId.slice(-3);
         return `${prefix}***${suffix}`;
     },
-
-    loadHead(spriteNode, url) {
-        if (this._headCache[url]) {
-            spriteNode.getComponent(cc.Sprite).spriteFrame = this._headCache[url];
-            return;
-        }
-        spriteNode._headUrl = url;
-        cc.loader.load({ url, type: 'png' }, (err, tex) => {
-            if (err || !cc.isValid(this) || !cc.isValid(spriteNode)) return;
-            if (spriteNode._headUrl !== url) return;
-    
-            let frame = new cc.SpriteFrame(tex);
-            this._headCache[url] = frame;
-            spriteNode.getComponent(cc.Sprite).spriteFrame = frame;
-        });
-    },
-
 });

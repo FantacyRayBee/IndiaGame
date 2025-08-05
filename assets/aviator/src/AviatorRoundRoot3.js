@@ -16,6 +16,10 @@ cc.Class({
         tog_year: cc.Toggle,
 
         defaultAvatar: cc.SpriteFrame,
+
+        blueLabColor: cc.Color,
+        purpleLabColor: cc.Color,
+        redLabColor: cc.Color,
     },
 
     onLoad() {
@@ -170,24 +174,41 @@ cc.Class({
         obj.btnClick = () => {
             //点击打开安全界面
             GlobalCfg.ACT_SCENE_CTRL.provablyData.bet = obj.roundsMax;
-            GlobalCfg.ACT_SCENE_CTRL.provablyData.date = obj.date;
+            GlobalCfg.ACT_SCENE_CTRL.provablyData.date = obj.Date;
             this.onProvableClick(obj.userId);
         }
         obj.btn_provably.node.on('click', obj.btnClick, this);
 
         obj.setData = (data) => {
+            LoggerUtil.getInstance().log("AviatorRoundRoot3 setData", data);
             obj.userId = data.userId;
             obj.roundsMax = data.rounds;
-            obj.date = data.timer;
+            obj.Date = data.timer;
             obj.labelId.string = this.maskUserId(data.userId);
             obj.lab_bet.string = (data.bet / 100) + " ";
             obj.lab_win.string = ((data.mub / 1000) * (data.bet / 100)).toFixed(2) + " ";
             obj.lab_result.string = (data.mub / 1000) + "x";
             obj.lab_round.string = (data.rounds/ 1000) + "x";
             obj.date.string = this.formatTimestampToDate(data.timer);
-            this.loadHead(obj.imgHead, data.head);
+            GlobalCfg.ACT_SCENE_CTRL.loadHead(obj.imgHead, data.head);
+
+            obj.lab_result.node.color = this.setColor(data.mub);
+            obj.lab_round.node.color = this.setColor(data.rounds);
         }
         return obj;
+    },
+
+    setColor(_value) {
+        let value = Number((_value / 1000).toFixed(2));
+        let color = null;
+        if (value >= 0 && value < 2) {
+            color = this.blueLabColor;
+        } else if (value >= 2 && value < 10) {
+            color = this.purpleLabColor;
+        } else if (value >= 10) {
+            color = this.redLabColor;
+        }
+        return color;
     },
 
     createRoundItem(node) {
@@ -199,13 +220,18 @@ cc.Class({
 
         obj.btnClick = () => {
             //点击打开安全界面
+            GlobalCfg.ACT_SCENE_CTRL.provablyData.bet = obj.roundsMax;
+            GlobalCfg.ACT_SCENE_CTRL.provablyData.date = obj.Date;
             this.onProvableClick(obj.userId);
         }
         obj.btn_provably.node.on('click', obj.btnClick, this);
 
         obj.setData = (data) => {
+            LoggerUtil.getInstance().log("AviatorRoundRoot4 setData", data);
             obj.userId = data.user_id;
-            obj.date.string = data.timer;
+            obj.roundsMax = data.mub;
+            obj.Date = data.timer;
+            obj.date.string = this.formatTimestampToDate(data.timer);
             let RocketRecordRectCtrl = obj.record_rect.getComponent("AviatorRecordRectCtrl");
             if (RocketRecordRectCtrl) {
                 RocketRecordRectCtrl.init({mul:data.mub});
@@ -269,7 +295,7 @@ cc.Class({
         const day = this.padZero(date.getDate());
         const month = this.padZero(date.getMonth() + 1); // 月份从 0 开始
         const year = date.getFullYear().toString().slice(-2); // 取后两位
-        return `${day}.${month}.${year}`;
+        return `${year}-${month}-${day}`;
     },
     
     padZero(num) {

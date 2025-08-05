@@ -18,10 +18,14 @@ cc.Class({
         btn_rule: cc.Button,
         btn_mybet: cc.Button,
         btn_limit: cc.Button,
+        btn_changeHead: cc.Button,
 
         pabfabProvably: cc.Prefab,
         prefabRule: cc.Prefab,
         prefabLimit: cc.Prefab,
+        prefabChangeHead: cc.Prefab,
+
+        atlas_head: cc.SpriteAtlas,
     },
 
     onLoad() {
@@ -33,6 +37,8 @@ cc.Class({
         this.btn_rule.node.on('click', this.onBtnRule, this);
         this.btn_mybet.node.on('click', this.onBtnMybet, this);
         this.btn_limit.node.on('click', this.onBtnlimit, this);
+        this.btn_changeHead.node.on('click', this.onBtnChangeHead, this);
+
 
         this.setMusicEffectBtns(EnumBtnType.Music);
         this.setMusicEffectBtns(EnumBtnType.Effect);
@@ -43,16 +49,8 @@ cc.Class({
         this.userName.string = GlobalCfg.USER_DATAS.userId;
     },
 
-    loadHeadSp: function() {
-        if (GlobalCfg.USER_DATAS.userHeadimgurl == null || GlobalCfg.USER_DATAS.userHeadimgurl.length === 0) {
-            return;
-        };
-        cc.loader.load({url: GlobalCfg.USER_DATAS.userHeadimgurl, type: 'png' },  (err, img) => {
-            if (!err && cc.isValid(this) && cc.isValid(this.sprite_tx)) {
-                let spriteFrame = new cc.SpriteFrame(img);
-                this.sprite_tx.spriteFrame = spriteFrame;
-            };
-        });
+    loadHeadSp: function () {
+        this.sprite_tx.spriteFrame = this.atlas_head.getSpriteFrame('head_' + GlobalCfg.ACT_SCENE_CTRL.headId);
     },
 
     onToggleSound(toggle) {
@@ -94,6 +92,13 @@ cc.Class({
     },
     onBtnlimit() {
         let node = cc.instantiate(this.prefabLimit);
+        node.setPosition(cc.v2(0, 0));
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        this.node.destroy();
+    },
+    onBtnChangeHead() {
+        let node = cc.instantiate(this.prefabChangeHead);
         node.setPosition(cc.v2(0, 0));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;

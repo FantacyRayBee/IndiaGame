@@ -7,6 +7,8 @@ cc.Class({
         node_betinfo: cc.Node,
         node_autoinfo: cc.Node,
         node_waitnextround: cc.Node,
+        node_left: cc.Node,
+        node_choice: cc.Node,
 
         toggle_bet: cc.Toggle,
         toggle_auto: cc.Toggle,
@@ -24,6 +26,7 @@ cc.Class({
         btn_bet_cancel: cc.Button,
         btn_autoplay: cc.Button,
         btn_stopAuto: cc.Button,
+        btn_open: cc.Button,
 
 
         edit_Mult: cc.EditBox,
@@ -45,6 +48,8 @@ cc.Class({
         this.btn_bet_cancel.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_autoplay.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_stopAuto.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_open.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        
         
         this.toggle_bet.node.on('toggle', this.toggleClick, this);
         this.toggle_auto.node.on('toggle', this.toggleClick, this);
@@ -88,7 +93,7 @@ cc.Class({
         this.lab_bet_tip.string = "Bet";
         // this.lab_curBet1.string = this.curBet + ".00";
         this.edit_Bet.string = (this.curBet / 100).toFixed(2);
-        this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
+        this.lab_curBet2.string = (this.curBet / 100).toFixed(2) + " INR";
         this.setButtonEnabled(true);
     },
 
@@ -138,12 +143,16 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (toggle.isChecked) {
             this.edit_Mult.enabled = true;
+            this.edit_Mult.node.opacity = 255;
         }
         else {
             this.edit_Mult.enabled = false;
+            this.edit_Mult.node.opacity = 160;
         }
         this.toggle_auto.interactable = !toggle.isChecked;
         this.toggle_bet.interactable = !toggle.isChecked;
+        this.node_choice.opacity = toggle.isChecked ? 160 : 255;
+
     },
 
     btnClick: function (btn) {
@@ -179,6 +188,9 @@ cc.Class({
         else if (btnName === "btn_stopAuto") {
             this.dealStopAutoEvent();
         }
+        else if (btnName === "btn_open") {
+            this.dealOpenEvent();
+        }
     },
     
     dealBetStatus: function () {
@@ -200,7 +212,7 @@ cc.Class({
         if(this.betStatus != 2) return;
         value = Number(value);
         let finalValue = value * this.curBet /100;
-        this.lab_curBet2.string = finalValue.toFixed(2);
+        this.lab_curBet2.string = finalValue.toFixed(2) + " INR";
 
         if (this.toggle_isAuto.isChecked) { //自动下注 需要判断是否达到设置的倍率
             let curValue = Number(this.edit_Mult.string);
@@ -239,7 +251,7 @@ cc.Class({
         }
         // this.lab_curBet1.string = this.curBet + ".00";
         this.edit_Bet.string = (this.curBet / 100).toFixed(2);
-        this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
+        this.lab_curBet2.string = (this.curBet / 100).toFixed(2) + " INR";
     },
 
     dealQuickBetEvent: function (type) {
@@ -250,14 +262,14 @@ cc.Class({
 
             // this.lab_curBet1.string = this.curBet + ".00";
             this.edit_Bet.string = (this.curBet / 100).toFixed(2);
-            this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
+            this.lab_curBet2.string = (this.curBet / 100).toFixed(2) + " INR";
         }
         else{
             this.choiceQuickIndex = type;
             this.curBet = this.quickBetStr[type];
             // this.lab_curBet1.string = this.quickBetStr[type] + ".00";
             this.edit_Bet.string = (this.quickBetStr[type] / 100).toFixed(2);
-            this.lab_curBet2.string = (this.quickBetStr[type] / 100).toFixed(2);
+            this.lab_curBet2.string = (this.quickBetStr[type] / 100).toFixed(2) + " INR";
         }
     },
 
@@ -351,7 +363,25 @@ cc.Class({
         this.setButtonEnabled(true);
         this.Init();
     },
-    
+
+    dealOpenEvent: function () {
+        if (this.root_index == 0) {
+            GlobalCfg.ACT_SCENE_CTRL.node_betinfo2.active = true;
+            this.setBgWidth(false)
+        } else {
+            let betinfo1 = GlobalCfg.ACT_SCENE_CTRL.node_betinfo1.getComponent('AviatorBetCtrl');
+            this.node.active = false;
+            betinfo1.setBgWidth(true);
+        }
+    },
+
+    setBgWidth: function (isOne) {
+        let width = isOne ? 1150 : 574;
+        this.node.getChildByName('bg').width = width;
+        this.node.getChildByName('autoinfo').getChildByName('line').width = width;
+        this.btn_open.node.active = isOne;
+    },
+
     setButtonEnabled: function (enabled) {
         LoggerUtil.getInstance().error("setButtonEnabled enabled:", enabled);
         this.btn_add.interactable = enabled;
@@ -360,12 +390,14 @@ cc.Class({
             this.btn_bet_quicks[i].interactable = enabled;
         }
         this.edit_Bet.enabled = enabled;
+
+        this.node_left.opacity = enabled ? 255 : 160;
     },
 
     onBetEditEnd: function (editBox) {
         const value = editBox.string;
         this.curBet = parseFloat(value) * 100;
-        this.lab_curBet2.string = (this.curBet / 100).toFixed(2);
+        this.lab_curBet2.string = (this.curBet / 100).toFixed(2) + " INR";
     },
 
     //设置自动下注次数
@@ -385,7 +417,7 @@ cc.Class({
         if(toggleName == this.NowToggleName)
             return;
         if (this.node_betinfo) {
-            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, -15) : cc.v2(0, 0);
+            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, 0) : cc.v2(0, 20);
         };
         if (this.node_autoinfo) {
             this.node_autoinfo.active = toggleName == "tog_auto";

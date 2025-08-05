@@ -5,10 +5,12 @@ cc.Class({
         content: cc.Node,
         item: cc.Node,
 
-        normalColor: cc.Color,
-        markColor: cc.Color,
+        normalSp: cc.SpriteFrame,
+        markSp: cc.SpriteFrame,
 
         defaultAvatar: cc.SpriteFrame,
+
+        atlas_head: cc.SpriteAtlas,
     },
 
     onLoad() {
@@ -98,7 +100,7 @@ cc.Class({
                     const index = this.userIds.length;
                     this.users[index].active = true;
                     const imgNode = this.users[index].getChildByName("tx").getChildByName("img_head");
-                    this.loadHead(imgNode, head);
+                    GlobalCfg.ACT_SCENE_CTRL.loadHead(imgNode, head);
                 }
             }
             this.playerCount++;
@@ -123,7 +125,7 @@ cc.Class({
     createPlayerBetItem(node) {
         let obj = {};
         obj.node = node;
-        obj.bg = node.getChildByName("bg");
+        obj.bg = node.getChildByName("bg").getComponent(cc.Sprite);
         obj.labelId = node.getChildByName("id").getComponent(cc.Label);
         obj.labelBet = node.getChildByName("bet").getComponent(cc.Label);
         obj.imgHead = node.getChildByName("tx").getChildByName("img_head");
@@ -131,13 +133,13 @@ cc.Class({
         obj.record_rect = node.getChildByName("record_rect");
     
         obj.initItem = (userId, bet, headUrl) => {
-            obj.bg.color = this.normalColor;
+            obj.bg.spriteFrame = this.normalSp;
             obj.userId = userId;
             obj.labelId.string = this.maskUserId(userId);
             obj.labelBet.string = bet / 100 + " ";
             obj.record_rect.active = false;
             obj.cashout.string = '';
-            this.loadHead(obj.imgHead, headUrl);
+            GlobalCfg.ACT_SCENE_CTRL.loadHead(obj.imgHead, headUrl);
         }
     
         obj.updateBet = (bet) => {
@@ -153,25 +155,9 @@ cc.Class({
             if (RocketRecordRectCtrl) {
                 RocketRecordRectCtrl.init(data);
             }
-            obj.bg.color = this.markColor;
+            obj.bg.spriteFrame = this.markSp;
         };
         return obj;
-    },
-
-    loadHead(spriteNode, url) {
-        if (this._headCache[url]) {
-            spriteNode.getComponent(cc.Sprite).spriteFrame = this._headCache[url];
-            return;
-        }
-        spriteNode._headUrl = url;
-        cc.loader.load({ url, type: 'png' }, (err, tex) => {
-            if (err || !cc.isValid(this) || !cc.isValid(spriteNode)) return;
-            if (spriteNode._headUrl !== url) return;
-    
-            let frame = new cc.SpriteFrame(tex);
-            this._headCache[url] = frame;
-            spriteNode.getComponent(cc.Sprite).spriteFrame = frame;
-        });
     },
 
     maskUserId(userId) {

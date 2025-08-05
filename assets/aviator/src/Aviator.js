@@ -46,6 +46,7 @@ cc.Class({
 
         region: cc.Node,      // 红色区域图片节点
         lights: [cc.Node],      
+        atlas_head: cc.SpriteAtlas,     // 头像图集
     },
 
     ctor() {
@@ -72,9 +73,9 @@ cc.Class({
         this.pointRecordDataList = [];          // 存放点记录的数组
 
         this.drawLine = false;                  // 是否绘制线
-        this.constStartPosX = -540;               // 走势起点X坐标
-        this.constStartPosY = -198;               // 走势起点Y坐标
-        this.drawPosX = -540;                    // 绘制线起点X坐标
+        this.constStartPosX = -500;               // 走势起点X坐标
+        this.constStartPosY = -188;               // 走势起点Y坐标
+        this.drawPosX = -500;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
         // this.startFlyLineColor = cc.Color(255, 0, 0, 255);
@@ -87,11 +88,12 @@ cc.Class({
         this.preRoundBetNum = 0;                      // 存放上一轮下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
-        this.trendMaxNum = 20;                     // 走势图最大显示点数
+        this.trendMaxNum = 16;                     // 走势图最大显示点数
         this.roundTopRankInfo = {};
         this.provablyData = {}
         this.betTimerTween = null;
         this.autoSettingInfos = [null,null]
+        this.headId = 1; // 头像ID
     },
 
     onLoad: function() {
@@ -741,17 +743,11 @@ cc.Class({
     dealWaitState() {
 
     },
-
-
-    loadHeadSp(headUrl, realWidth, heaSprite) {
-        if (headUrl && headUrl.length > 0) {
-            cc.assetManager.loadRemote(headUrl, { ext: '.png' }, (err, texture) => {
-                if (!err && cc.isValid(this) && cc.isValid(heaSprite) && cc.isValid(heaSprite.spriteFrame)) {
-                    heaSprite.spriteFrame = new cc.SpriteFrame(texture);
-                    heaSprite.node.setScale(realWidth / heaSprite.node.width);
-                }
-            });
-        }
+    
+    loadHead(spriteNode, headId) {
+        let random = Math.floor(Math.random() * 72) + 1; // 1-72
+        let id = headId == null || headId == 0 ? random : headId;
+        spriteNode.getComponent(cc.Sprite).spriteFrame = this.atlas_head.getSpriteFrame("head_" + id);
     },
 
     /**
@@ -763,6 +759,8 @@ cc.Class({
         if (!data) return;
         GlobalCfg.USER_DATAS.userDiamond = data.diamond;
         this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
+        LoggerUtil.getInstance().log('selfPlayerInfo data: ', data);
+        this.headId = data.imgUrl == 0 ? 1 : data.imgUrl;
     },
 
     updateSelfCoin() {
@@ -1076,7 +1074,7 @@ cc.Class({
      */
     showSettingNode() {
         let node = cc.instantiate(this.prefabSetting);
-        node.setPosition(cc.v2(700, 0));
+        node.setPosition(cc.v2(700, -50));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
@@ -1112,6 +1110,7 @@ cc.Class({
         }
     },
 
+
     showBtnBetSpine: function () {
         let animationName = 'animation';
         let len = this.btnBetList.length, i = 0;
@@ -1140,7 +1139,7 @@ cc.Class({
             this.duringFlyTime += dt;
             // 震荡配置
             const baseX = this.drawPosX;
-            const baseY = 200;
+            const baseY = 180;
             const freqX = 2;     // 左右震荡频率
             const freqY = 3;     // 上下震荡频率
             const ampX = 6;      // 左右幅度
@@ -1168,9 +1167,9 @@ cc.Class({
         this.setRegion();
     
         // ✅ 当达到边界时，切换为震荡阶段（一次性）
-        if (!this.isOscillating && (this.drawPosX >= 650 || this.drawPosY >= 200)) {
-            this.drawPosX = Math.min(this.drawPosX, 650);
-            this.drawPosY = Math.min(this.drawPosY, 200);
+        if (!this.isOscillating && (this.drawPosX >= 500 || this.drawPosY >= 160)) {
+            this.drawPosX = Math.min(this.drawPosX, 500);
+            this.drawPosY = Math.min(this.drawPosY, 160);
             this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.isOscillating = true;
             this.setMoveMark(true);

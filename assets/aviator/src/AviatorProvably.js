@@ -37,6 +37,8 @@ cc.Class({
     start() {},
 
     init(data) {
+        LoggerUtil.getInstance().log("init1111 data", data);
+        
         this.lab_service.string = data.serverSeed;
         this.lab_hash.string = this.truncateUtf8Bytes(data.sha256, 60);
         this.lab_hax.string = this.truncateUtf8Bytes(data.Hex, 10);
@@ -56,10 +58,9 @@ cc.Class({
         if (RocketRecordRectCtrl) {
             RocketRecordRectCtrl.init({mul: GlobalCfg.ACT_SCENE_CTRL.provablyData.bet});
         }
-
-        this.loadHead(this.sp_N1, data.n1Head);
-        this.loadHead(this.sp_N1, data.n2Head);
-        this.loadHead(this.sp_N1, data.n3Head);
+        GlobalCfg.ACT_SCENE_CTRL.loadHead(this.sp_N1, data.n1Head)
+        GlobalCfg.ACT_SCENE_CTRL.loadHead(this.sp_N2, data.n2Head)
+        GlobalCfg.ACT_SCENE_CTRL.loadHead(this.sp_N3, data.n3Head)
     },
 
     btnClick() {
@@ -71,14 +72,6 @@ cc.Class({
 
     btnCloseClick() {
         this.node.destroy();
-    },
-
-    loadHead(spriteNode, url) {
-        cc.loader.load({ url, type: 'png' }, (err, tex) => {
-            if (err || !cc.isValid(this) || !cc.isValid(spriteNode)) return;
-            let frame = new cc.SpriteFrame(tex);
-            spriteNode.getComponent(cc.Sprite).spriteFrame = frame;
-        });
     },
 
     truncateUtf8Bytes(str, maxBytes) {

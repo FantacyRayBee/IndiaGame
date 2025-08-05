@@ -9,6 +9,8 @@ cc.Class({
         btn_add: cc.Button,
         btn_att: cc.Button,
         edit_set: cc.EditBox,
+
+        node_infos: cc.Node,
     },
 
     
@@ -24,6 +26,7 @@ cc.Class({
         this.btn_add.interactable = false;
         this.btn_att.interactable = false;
         this.edit_set.enabled = false;
+        this.setClickStatus();
     },
 
     toggleClick(toggle) {
@@ -31,6 +34,7 @@ cc.Class({
         this.btn_add.interactable = toggle.isChecked;
         this.btn_att.interactable = toggle.isChecked;
         this.edit_set.enabled = toggle.isChecked;
+        this.setClickStatus();
     },
 
     btnClick(btn) {
@@ -42,6 +46,10 @@ cc.Class({
         else if (btnName === "btn_att") {
             this.dealBetChangeEvent(2);
         }
+    },
+
+    setClickStatus() {
+        this.node_infos.opacity = this.toggle_node.isChecked ? 255 : 160;
     },
 
     dealBetChangeEvent: function (type) {
@@ -61,6 +69,7 @@ cc.Class({
         this.curBet = 0;
         this.edit_set.string = (this.curBet / 100).toFixed(2);
         this.toggle_node.isChecked = false;
+        this.setClickStatus();
     },
 
     isError() {
