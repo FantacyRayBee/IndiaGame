@@ -906,7 +906,7 @@ cc.Class({
      */
     showSettingNode() {
         let node = cc.instantiate(this.prefabSetting);
-        node.setPosition(cc.v2(700, -50));
+        node.setPosition(cc.v2(610, -80));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
