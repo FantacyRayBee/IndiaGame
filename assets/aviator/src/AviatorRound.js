@@ -122,6 +122,7 @@ cc.Class({
 
     refreshPlayerBet(notify){
         this.node_root1.getComponent("AviatorRoundRoot1").refreshPlayerBet(notify);
+        GlobalCfg.ACT_SCENE_CTRL.node_playerBet.getComponent('AviatorPlayerBet').refreshPlayerBet(notify);
     },
 
     roundInit(){
@@ -130,6 +131,7 @@ cc.Class({
 
     dealPlayerGetOut(notify){
         this.node_root1.getComponent("AviatorRoundRoot1").setPlayerResult(notify);
+        GlobalCfg.ACT_SCENE_CTRL.node_playerBet.getComponent('AviatorPlayerBet').setPlayerResult(notify);
     },
 
     dealLastGameRecord(notify){

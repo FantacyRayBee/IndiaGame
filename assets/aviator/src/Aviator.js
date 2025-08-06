@@ -5,14 +5,9 @@ cc.Class({
     properties: {
         // default
         btnBack: cc.Button,
-        btnPlayerList: cc.Button,
-        nodeBtnBetSelect: cc.Node,
-        btnReBet: cc.Button,
-        btnBetList: [cc.Button],
         selfPlayer: cc.Node,
         nodeTrendParent: cc.Node,
         btnTrend: cc.Button,
-        btnBottomTrend: cc.Button,
         background: cc.Node,
         btnSetting: cc.Button,
 
@@ -31,14 +26,13 @@ cc.Class({
 
         node_betinfo1: cc.Node,
         node_betinfo2: cc.Node,
-
+        node_playerBet: cc.Node,
         // Prefabs
         pabfabCoin: cc.Prefab,
         prefabRecord: cc.Prefab,
         prefabTimeMark: cc.Prefab,
         prefabRateMark: cc.Prefab,
         prefabTrendItem: cc.Prefab,
-        prefabPlayerList: cc.Prefab,
         prefabPlayerGetOut: cc.Prefab,
         prefabSetting: cc.Prefab,
         prefabMybet: cc.Prefab,
@@ -84,15 +78,14 @@ cc.Class({
         this.endFlyPos = cc.v2(755, 270);              // 游戏结束时 飞机终点位置
 
         this.numSelfBet = 0;                        // 存放当前玩家下注数
-        this.numAllBet = 0;                         // 存放所有玩家下注数
-        this.preRoundBetNum = 0;                      // 存放上一轮下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
-        this.trendMaxNum = 16;                     // 走势图最大显示点数
+        this.trendMaxNum = 22;                     // 走势图最大显示点数
         this.roundTopRankInfo = {};
         this.provablyData = {}
         this.betTimerTween = null;
         this.autoSettingInfos = [null,null]
+        this.currentSetAutoDiamond = 0; // 当次选择自动下注的钻石数 记录下来 用于判断是否需要停止自动下注
         this.headId = 1; // 头像ID
     },
 
@@ -142,7 +135,6 @@ cc.Class({
         this.isMoveTimeMark = false;
         this.isMoveRateMark = false;
         this.numSelfBet = 0;
-        this.numAllBet = 0;
     },
 
     unscheduleAll() {
@@ -167,14 +159,9 @@ cc.Class({
             this.popupLayer.active = false;
         }, this);
 
-        this.setBetLabelInfo();
         this.btnBack.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnSetting.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btnPlayerList.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btnBottomTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btnReBet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btnReBet.interactable = false;
     },
 
     /**
@@ -219,39 +206,6 @@ cc.Class({
 
     },
 
-    // 初始化下注按钮
-    initBetBtnCoin() {
-        for (let index = 0; index < this.btnBetList.length; index++) {
-            const btn = this.btnBetList[index];
-            btn.target.getChildByName('Label').getComponent(cc.Label).string = this.btnBetCoinNum[index] / 100;
-            // btn.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-            btn.node.on('click', this.btnClick, this);
-        };
-        this.curSingleNote = this.btnBetCoinNum[0];
-        this.choiceBetButton(this.btnBetList[0], this.nodeBtnBetSelect);
-    },
-
-    choiceBetButton: function (button, selectLight){
-        let scale = 1.1;
-        let btnName = button.node.name;
-        selectLight.setScale(scale);
-        for (let i = 0; i < this.btnBetList.length; i++) {
-            let btn = this.btnBetList[i];
-            if(btn.node.name == btnName){
-                btn.node.setScale(scale);
-            }else{
-                btn.node.setScale(1);
-            }
-            let widget = btn.node.getComponent(cc.Widget);
-            if(widget){
-                widget.updateAlignment();
-            }
-        }
-        let pos = button.node.getPosition();
-        selectLight.setPosition(pos.x, pos.y + 3.5);
-    },
-
-
     freshGameData() {
         this.timeMarkNodeArray = [];           // 存放时间线标记的节点数组
         this.rateMarkNodeArray = [];           // 存放比率线标记的节点数组
@@ -281,10 +235,6 @@ cc.Class({
             // 刷新游戏场景
             self.dealLoginData(notify);
         }
-        else if (msgId == 'gameservice.playerlist') {
-            // 获取玩家列表
-            self.dealPlayerList(notify);
-        }
         else if (msgId == 'gameservice.playernumberchangednotify') {
             // 人数变化通知
             if (notify.num) {
@@ -294,13 +244,10 @@ cc.Class({
         else if (msgId == 'gameservice.bet') {
             // 下注
             let totalChip = notify.totalChip;        // 个人总下注
-            let poolChip = notify.poolChip;
             let after = notify.after;
 
             GlobalCfg.USER_DATAS.userDiamond = after;
             self.numSelfBet = totalChip;
-            self.numAllBet = poolChip;
-            self.setBetLabelInfo();
             self.updateSelfCoin();
         }
         else if (msgId == 'gameservice.cash') {
@@ -325,17 +272,6 @@ cc.Class({
             self.aviatorAudioManager.playGameSound('end', false);
             self.rocketEnd(notify);
             self.dealBetInfo(msgId);
-        }
-        else if (msgId == 'gameservice.bettingupdatenotify') {
-            // 下注过程 update
-            // LoggerUtil.getInstance().warn("下注过程 update", notify);
-            if (self.isHide == true) {
-                LoggerUtil.getInstance().log("Is In Hide");
-                return;
-            }
-            let betPool = notify.betPool;
-            self.numAllBet = betPool;
-            self.setBetLabelInfo();
         }
         else if (msgId == 'gameservice.updatecoinnotify') {
             // 货币更新广播
@@ -365,7 +301,6 @@ cc.Class({
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
         }
-        
     },
 
     checkWebMsgError(webData, target) {
@@ -429,10 +364,6 @@ cc.Class({
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY, msgData: {}});
         }
-        else if (name == this.btnPlayerList.node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.aviatorMessageManager.sendGetPlayerListMessage(0, 12);
-        }
         else if (name == this.btnSetting.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.showSettingNode();
@@ -440,59 +371,6 @@ cc.Class({
         else if (name == this.btnTrend.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.showPointTrendNode();
-        }
-        else if (name == this.btnBottomTrend.node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.showPointTrendNode();
-        }
-        else if (name == this.btnBetList[0].node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.choiceBetButton(event, this.nodeBtnBetSelect);
-            this.curSingleNote = this.btnBetCoinNum[0];
-        }
-        else if (name == this.btnBetList[1].node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.choiceBetButton(event, this.nodeBtnBetSelect);
-            this.curSingleNote = this.btnBetCoinNum[1];
-        }
-        else if (name == this.btnBetList[2].node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.choiceBetButton(event, this.nodeBtnBetSelect);
-            this.curSingleNote = this.btnBetCoinNum[2];
-        }
-        else if (name == this.btnBetList[3].node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.choiceBetButton(event, this.nodeBtnBetSelect);
-            this.curSingleNote = this.btnBetCoinNum[3];
-        }
-        else if (name == this.btnBetList[4].node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.choiceBetButton(event, this.nodeBtnBetSelect);
-            this.curSingleNote = this.btnBetCoinNum[4];
-        }
-        else if (name == this.btnReBet.node.name) {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            let num = this.preRoundBetNum;
-            this.clickBtnBetCallback(num);
-            this.preRoundBetNum = 0;
-            this.btnReBet.interactable = false;
-        }
-    },
-
-    clickBtnBetCallback(num) {
-        if (this.isDuringBet == true) {
-            if (num > GlobalCfg.USER_DATAS.userDiamond) {
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-                else {
-                    this.stopAutoBetStatus();
-                    CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }, false);
-                }
-            } else {
-                this.aviatorMessageManager.sendBetMessage(num);
-            }
         }
     },
 
@@ -521,7 +399,6 @@ cc.Class({
             this.btnBetCoinNum = config.chipOption;
             this.betDuration = config.betDuration;
             this.calcDuration = config.calcDuration;
-            this.initBetBtnCoin();
 
             let userInfo = requester.userInfo;
             let chip = requester.chip ? requester.chip : 0;              // 已下注的
@@ -532,18 +409,13 @@ cc.Class({
 
             let status = scene.status;                  // 当前状态
             this.betStatus = status;
-            let playerNum = scene.playerNum;            // 总玩家人数
             let currentStatusLeftMs = scene.currentStatusLeftMs;    // 当前状态剩余时间.毫秒(下注，结算)
-            let betPool = scene.betPool;                // 下注池
             let curPoint = scene.point;                 // 当前坐标点
             let trends = scene.openRecord;              // 开奖记录
             this.dealTrendData(trends);
             this.dealRectTrendData(this.pointRecordDataList);
 
             this.numSelfBet = chip;
-            this.numAllBet = betPool;
-            this.setBetLabelInfo();
-            this.btnPlayerList.node.getChildByName('redBg').getChildByName('Label').getComponent(cc.Label).string = playerNum;
             switch (status) {
                 case 0:
                     // 下注状态
@@ -557,7 +429,6 @@ cc.Class({
                     this.isFlying = true;
                     this.freshWaitLayer(false);
                     this.dealFlyState(curPoint);
-                    this.btnReBet.interactable = false;
                     this.background.getComponent(cc.Animation).play("rotate"); // 背景旋转
                     break;
                 case 2:
@@ -639,6 +510,7 @@ cc.Class({
 
     setAutoStatus(infos, count) {
         LoggerUtil.getInstance().log(`setAutoStatus: infos: ${infos}, count: ${count}`);
+        this.currentSetAutoDiamond = GlobalCfg.USER_DATAS.userDiamond; // 当前设置自动的钻石
         this.autoSettingInfos[this.openAutoSettingIndex] = infos
         LoggerUtil.getInstance().log(`setAutoStatus: this.autoSettingInfos: `, this.autoSettingInfos);
         if (this.openAutoSettingIndex == 0) {
@@ -654,6 +526,7 @@ cc.Class({
             // 开始下注阶段通知
             this.node_betinfo1.getComponent('AviatorBetCtrl').StartBet();
             this.node_betinfo2.getComponent('AviatorBetCtrl').StartBet();
+            this.node_playerBet.getComponent('AviatorPlayerBet').init();
         }
         else if (msgId == 'gameservice.startflynotify') {
             // 开始飞行阶段通知
@@ -768,27 +641,6 @@ cc.Class({
         this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
     },
 
-    dealPlayerList(notify) {
-        if (!notify) {
-            LoggerUtil.getInstance().error("PlayerList Data Error!");
-            return;
-        }
-        let node = this.node.getChildByName('playerList');
-        if (node) {
-            let nodeCtrl = node.getComponent('RocketPlayerList');
-            if (nodeCtrl) {
-                nodeCtrl.setPlayerData(notify);
-            }
-        } else {
-            let nodePlayerList = cc.instantiate(this.prefabPlayerList);
-            let nodeCtrl = nodePlayerList.getComponent('RocketPlayerList');
-            this.node.addChild(nodePlayerList);
-            if (nodeCtrl) {
-                nodeCtrl.setPlayerData(notify);
-            }
-        }
-    },
-
     //获取自己的下注记录
     getBetRecord(notify) {
         LoggerUtil.getInstance().log("getBetRecord notify = ", notify);
@@ -801,34 +653,15 @@ cc.Class({
 
     // ******************************************************************************************
     /**
-     * 设置下注金额,使用之前请更新 numSelfBet，numAllBet
-     */
-    setBetLabelInfo() {
-        let selfBet = this.numSelfBet;
-        let allBet = this.numAllBet;
-    },
-    /**
      * 开始下注阶段
      * @param {Number} remainder 剩余时间 ms
      */
     startBetTimer(remainder) {
-        if (this.numSelfBet == 0) {
-            LoggerUtil.getInstance().log("上一局自己下注为 0 ");
-            this.preRoundBetNum = 0;
-        } else {
-            this.preRoundBetNum = this.numSelfBet;
-            LoggerUtil.getInstance().log("上一局自己下注为: ", this.preRoundBetNum);
-        }
         if (this.betDuration == remainder) {
             this.numSelfBet = 0;
-            this.numAllBet = 0;
         }
-        this.setBetLabelInfo();
         this.freshWaitLayer(true);
         this.playerGetOutParent.removeAllChildren();
-        if (this.preRoundBetNum > 0) {
-            this.btnReBet.interactable = true;
-        }
         this.isDuringBet = true;
         this.isFlying = false;
         this.setMoveMark(false);
@@ -848,7 +681,7 @@ cc.Class({
             this.betTimerTween.stop();
             this.betTimerTween = null;
         }
-        this.timerBar.node.getChildByName("logo").getComponent(cc.Animation).play("rotate2");
+        // this.timerBar.node.getChildByName("logo").getComponent(cc.Animation).play("rotate2");
         this.timerBar.node.stopAllActions();
         this.timerBar.progress = 1;
         this.betTimerTween = cc.tween(this.timerBar)
@@ -875,8 +708,6 @@ cc.Class({
         this.region.active = true;
         this.region.width = 0;
         this.region.height = 0;
-        this.setBetLabelInfo();
-        this.btnReBet.interactable = false;
         this.graphicsDrawLine.clear();
         this.freshWaitLayer(false);
         this.isMoveTimeMark = false;
@@ -939,18 +770,19 @@ cc.Class({
         this.checkAutoSettingStatus(notify.mul);
     },
 
-
     checkAutoSettingStatus(curWinMult = 0) {
+        let targetValue = Math.abs(this.currentSetAutoDiamond - GlobalCfg.USER_DATAS.userDiamond);
         LoggerUtil.getInstance().log(`checkAutoSettingStatus:`, this.autoSettingInfos);
+        LoggerUtil.getInstance().log(`checkAutoSettingStatus targetValue :`, targetValue);
         for (let index = 0; index < 2; index++) {
             if (this.autoSettingInfos[index] != null) {
                 let infos = this.autoSettingInfos[index];
-                if (infos[0] > 0 && infos[0] >= GlobalCfg.USER_DATAS.userDiamond) {
+                if (infos[0] > 0 && infos[0] >= targetValue) {
                     this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
                     this.autoSettingInfos[index] = null;
                     break;
                 }
-                if (infos[1] > 0 && infos[1] <= GlobalCfg.USER_DATAS.userDiamond) {
+                if (infos[1] > 0 && infos[1] <= targetValue) {
                     this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
                     this.autoSettingInfos[index] = null;
                     break;
@@ -968,9 +800,8 @@ cc.Class({
         this.node_betinfo1.getComponent('AviatorBetCtrl').dealStopAutoEvent();
         this.node_betinfo2.getComponent('AviatorBetCtrl').dealStopAutoEvent();
     },
-
+    
     // ***************************************************************************************
-
     /**
      * 处理走势数据
      * @param {*
@@ -1111,24 +942,7 @@ cc.Class({
         }
     },
 
-
-    showBtnBetSpine: function () {
-        let animationName = 'animation';
-        let len = this.btnBetList.length, i = 0;
-        this.scheduleBetSpineTimeCallback = ()=>{
-            let spine = this.btnBetList[i].node.getChildByName('spine').getComponent(sp.Skeleton);
-            spine.setAnimation(0, animationName, false);
-            i++;
-        }
-        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len-1);
-    },
-
     update(dt) {
-        this.showBetSpineTime += dt;
-        if (this.showBetSpineTime > this.showBetSpineTimeInterval) {
-            this.showBetSpineTime = 0;
-            this.showBtnBetSpine();
-        }
         if (!this.isFlying) return;
     
         // ✅ 飞行期间倍率始终增长

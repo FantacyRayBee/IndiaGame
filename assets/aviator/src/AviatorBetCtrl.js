@@ -395,6 +395,9 @@ cc.Class({
     },
 
     onBetEditEnd: function (editBox) {
+        if (editBox.string == "") {
+            editBox.string = editBox.placeholder;
+        }
         const value = editBox.string;
         this.curBet = parseFloat(value) * 100;
         this.lab_curBet2.string = (this.curBet / 100).toFixed(2) + " INR";
