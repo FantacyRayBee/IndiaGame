@@ -1818,6 +1818,19 @@ let CommonFun = cc.Class({
         });
     },
 
+    showPayChannel: function(infos, callback){
+        LoggerUtil.getInstance().log('callback =', callback);
+        this.getPayChannel((payData) => {
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPCHANNEL);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopChannel = shopNode.getComponent("shopChannel");
+                shopChannel.setData(payData, infos, callback);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPCHANNEL); 
+            });   
+        });
+    },
+
     _showShopNewTip: function(changed, coin, bonus, is10Precent, remind){
         LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
         if(is10Precent){

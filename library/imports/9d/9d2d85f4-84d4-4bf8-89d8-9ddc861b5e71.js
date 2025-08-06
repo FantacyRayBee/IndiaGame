@@ -146,10 +146,17 @@ cc.Class({
     labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
     buttonLabelNum.string = Math.round(cash / 100);
     button.node.on('click', function () {
-      CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, function () {
-        button.node.off('click');
-        _this2.node.destroy();
-      });
+      var callback = function callback() {
+        CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, function () {
+          button.node.off('click');
+          _this2.node.destroy();
+        }, GlobalCfg.PAY_CHANNEL);
+      };
+      var data = {
+        price: Math.round((data.amount + data.add) / 100),
+        bonus: Math.round(data.bonus / 100)
+      };
+      CommonFun.getInstance().showPayChannel(data, callback);
     });
   },
   dealData: function dealData(data, winRate) {

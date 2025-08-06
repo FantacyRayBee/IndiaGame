@@ -775,6 +775,7 @@ window.GlobalCfg = {
     SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
     SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
     SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
+    SHOPCHANNEL: "ResourcesBundle/NewPlan/Shop/shopChannel",
     /**
      * 提现
      */
@@ -990,6 +991,7 @@ window.GlobalCfg = {
     ADVANCEDMODE: "ShopLayer",
     SHOPNEWTIP: "SecondLayer",
     SHOPNEWTIP10: "SecondLayer",
+    SHOPCHANNEL: "SecondLayer",
 
     PROGRESS: "ProgressLayer",
 

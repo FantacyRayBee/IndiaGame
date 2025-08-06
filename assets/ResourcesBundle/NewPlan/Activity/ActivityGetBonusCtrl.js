@@ -72,9 +72,15 @@ cc.Class({
         let btnName = btn.node.name;
         let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
         GlobalCfg.G_COMPONENTS.Audio.playButton();
+        let commodity = GlobalCfg.USER_DATAS.first_pay_product.sort((a, b) => {
+            return a.amount - b.amount;
+        });
+
         switch (btnName) {
             case "btn_addCash1":
-                CommonFun.getInstance().ShowTipsBeforeBuy(this.price1, ()=>{
+                // CommonFun.getInstance().ShowTipsBeforeBuy(this.price1, ()=>{
+                // })
+                let callback = ()=>{
                     if (rechargeNeedInfo) {
                         if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
                             CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
@@ -87,10 +93,14 @@ cc.Class({
                     else {
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
                     };
-                })
+                }
+                let data1 = {price: Math.floor(Number(commodity[0].amount) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
+                CommonFun.getInstance().showPayChannel(data1, callback);
                 break;
             case "btn_addCash2":
-                CommonFun.getInstance().ShowTipsBeforeBuy(this.price2, ()=>{
+                // CommonFun.getInstance().ShowTipsBeforeBuy(this.price2, ()=>{
+                // })
+                let callback2 = ()=>{
                     if (rechargeNeedInfo) {
                         if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
                             CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
@@ -103,7 +113,9 @@ cc.Class({
                     else {
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
                     };
-                })
+                }
+                let data2 = {price: Math.floor(Number(commodity[1].amount) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
+                CommonFun.getInstance().showPayChannel(data2, callback2);
                 break;
             case "btn_otherAmount":
                 if (rechargeNeedInfo) {
