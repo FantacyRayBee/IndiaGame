@@ -61,7 +61,7 @@ window.GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-   is_force_gotoTest: false,
+   is_force_gotoTest: true,
 
   /**
    * 渠道信息
@@ -1523,7 +1523,9 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       break;
     case "5":     // 5服
       GlobalCfg.APP_VERSION = "5.0.0.32"; 
-      GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+      // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+      GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfoTest.json`;
+
       GlobalCfg.APP_CONFIG_URL = `https://download.rax8.com/production/AppConfig.json`;
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
         GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfoTest.json`;
