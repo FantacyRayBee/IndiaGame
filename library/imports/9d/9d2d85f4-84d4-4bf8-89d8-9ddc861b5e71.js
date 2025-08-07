@@ -152,11 +152,11 @@ cc.Class({
           _this2.node.destroy();
         }, GlobalCfg.PAY_CHANNEL);
       };
-      var data = {
+      var data1 = {
         price: Math.round((data.amount + data.add) / 100),
         bonus: Math.round(data.bonus / 100)
       };
-      CommonFun.getInstance().showPayChannel(data, callback);
+      CommonFun.getInstance().showPayChannel(data1, callback);
     });
   },
   dealData: function dealData(data, winRate) {
