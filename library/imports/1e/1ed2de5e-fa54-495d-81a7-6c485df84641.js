@@ -124,6 +124,7 @@ ProtobufManager.packProtobuf = function (command, messageKey, jsonData, heartTyp
     LoggerUtil.getInstance().error("协议问题：" + JSON.stringify(jsonData));
     LoggerUtil.getInstance().error("协议问题：" + messageStr);
     LoggerUtil.getInstance().error("协议问题：" + error);
+    LoggerUtil.getInstance().error("协议问题：" + command);
   }
   ;
   return buffer;
