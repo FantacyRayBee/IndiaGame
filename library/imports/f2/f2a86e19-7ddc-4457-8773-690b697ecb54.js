@@ -29,6 +29,7 @@ var SceneManager = cc.Class({
       TEENPATTI: 'tpGame/TpGame',
       RUMMY: 'Rummy/rummy',
       ROCKET: 'rocket/rocket',
+      AVIATOR: 'aviator/aviator',
       ZOO: 'zooGame/zoo',
       CRICKET: 'cricketGame/cricket',
       ZEUS: "zeusGame/zeus",
@@ -272,6 +273,11 @@ var SceneManager = cc.Class({
         protoCfg = ProtoObj.getProto("rocket");
         protoPathArr = ["proto/rocket/gameservice"];
         websocketUrl = GlobalCfg.SMALL_GAME_DATAS.rocketData.endpoint;
+        break;
+      case this.sceneType.AVIATOR:
+        protoCfg = ProtoObj.getProto("aviator");
+        protoPathArr = ["proto/aviator/gameservice"];
+        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.aviatorData.endpoint;
         break;
       case this.sceneType.ZOO:
         protoCfg = ProtoObj.getProto("zooGame");
@@ -943,6 +949,7 @@ var SceneManager = cc.Class({
            */
           var disco_list = msgData.disco_list ? msgData.disco_list : [];
           var plot_pay = msgData.plot_pay ? msgData.plot_pay : [];
+          LoggerUtil.getInstance().error("plot_pay", msgData.plot_pay);
           var only_pay = msgData.only_pay ? msgData.only_pay : [];
           var only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
           /**

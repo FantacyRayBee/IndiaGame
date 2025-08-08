@@ -323,7 +323,9 @@ GameServerManager.onReceive = function(evt) {
             let minutes = now.getMinutes();
             // 获取秒
             let seconds = now.getSeconds();
-            LoggerUtil.getInstance().log(`GameService收到并分发内部包数据(${year}-${month}-${date} ${hours}:${minutes >= 10 ? minutes : "0" + minutes}:${seconds >= 10 ? seconds : "0" + seconds}) ===>`, msgTransPack.id, msgData);
+            if (msgTransPack.id != "gameservice.bettingupdatenotify") {
+                LoggerUtil.getInstance().log(`GameService收到并分发内部包数据(${year}-${month}-${date} ${hours}:${minutes >= 10 ? minutes : "0" + minutes}:${seconds >= 10 ? seconds : "0" + seconds}) ===>`, msgTransPack.id, msgData);
+            }
         } 
         else {
             LoggerUtil.getInstance().log("GameService收到并分发内部包数据 ", msgTransPack.id, JSON.stringify(msgData));
