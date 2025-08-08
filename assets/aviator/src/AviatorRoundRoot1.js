@@ -61,15 +61,15 @@ cc.Class({
     },
 
     //有玩家领取奖励 刷新界面
-    setPlayerResult(notify) {
-        this.applyResultByUserId(notify.pid, notify.pos, notify.amount, notify.mul);
+    setPlayerResult(notify, random) {
+        this.applyResultByUserId(notify.pid, notify.pos, notify.amount, notify.mul, random);
     },
 
     /**
      * 刷新或添加玩家下注项
      * @param {{ userId: string, head: string, bet: number }} notify 
      */
-    refreshPlayerBet(notify) {
+    refreshPlayerBet(notify, num) {
         if (!notify || !notify.userId || typeof notify.pos !== 'number') return;
     
         let uid = notify.userId;
@@ -103,8 +103,8 @@ cc.Class({
                     GlobalCfg.ACT_SCENE_CTRL.loadHead(imgNode, head);
                 }
             }
-            this.playerCount++;
-            this.remindCount++;
+            this.playerCount += num;
+            this.remindCount += num;
         } else {
             this.playerMap[key].updateBet(bet);
         }
@@ -167,13 +167,13 @@ cc.Class({
         return `${prefix}***${suffix}`;
     },
 
-    applyResultByUserId(userId, pos, amount, mult) {
+    applyResultByUserId(userId, pos, amount, mult, random) {
         const key = `${userId}@${pos}`;
         const itemObj = this.playerMap[key];
         if (itemObj && itemObj.setResult) {
             itemObj.setResult(amount, { mul: mult });
         }
-        this.remindCount--;
+        this.remindCount -= random;
         if (this.remindCount < 0) {
             this.remindCount = 0;
         }

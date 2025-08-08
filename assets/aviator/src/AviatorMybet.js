@@ -36,7 +36,7 @@ cc.Class({
 
     onProvableClick() {
         GameServerManager.send("gameservice.seed", "SeedReq", {
-            userid: GlobalCfg.USER_DATAS.userId,
+            userId: GlobalCfg.USER_DATAS.userId,
         });
     },
 

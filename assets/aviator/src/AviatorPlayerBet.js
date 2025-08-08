@@ -18,7 +18,7 @@ cc.Class({
     start() {
     },
 
-    init(){
+    init() {
         this.lab_num.string = "0";
         this.playerCount = 0;
         for (let i = 1; i <= 3; i++) {
@@ -29,21 +29,21 @@ cc.Class({
     },
 
     //有玩家领取奖励 刷新界面
-    setPlayerResult(notify) {
-        this.applyResultByUserId(notify.pid, notify.pos);
+    setPlayerResult(notify, random) {
+        this.applyResultByUserId(notify.pid, notify.pos, random);
     },
 
     /**
      * 刷新或添加玩家下注项
      * @param {{ userId: string, head: string, bet: number }} notify 
      */
-    refreshPlayerBet(notify) {
+    refreshPlayerBet(notify, num) {
         if (!notify || !notify.userId || typeof notify.pos !== 'number') return;
-    
+
         let uid = notify.userId;
         let head = notify.head;
         let pos = notify.pos;
-    
+
         const key = `${uid}@${pos}`;
         if (!this.playerMap[key]) {
             this.playerMap[key] = true;
@@ -57,16 +57,16 @@ cc.Class({
                     GlobalCfg.ACT_SCENE_CTRL.loadHead(imgNode, head);
                 }
             }
-            this.playerCount++;
+            this.playerCount += num;
         }
         this.lab_num.string = `${this.playerCount}`
     },
 
-    applyResultByUserId(userId, pos) {
+    applyResultByUserId(userId, pos, random) {
         const key = `${userId}@${pos}`;
         if (this.playerMap[key] == true) {
             this.playerMap[key] = false;
-            this.playerCount--;
+            this.playerCount -= random;
             if (this.playerCount < 0) {
                 this.playerCount = 0;
             }

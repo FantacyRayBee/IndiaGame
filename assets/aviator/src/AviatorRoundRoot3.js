@@ -118,7 +118,7 @@ cc.Class({
 
     onProvableClick(userId) {
         GameServerManager.send("gameservice.seed", "SeedReq", {
-            userid: userId,
+            userId: userId,
         });
     },
 

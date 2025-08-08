@@ -121,8 +121,9 @@ cc.Class({
     },
 
     refreshPlayerBet(notify){
-        this.node_root1.getComponent("AviatorRoundRoot1").refreshPlayerBet(notify);
-        GlobalCfg.ACT_SCENE_CTRL.node_playerBet.getComponent('AviatorPlayerBet').refreshPlayerBet(notify);
+        let random = Math.floor(Math.random() * (8 - 5 + 1)) + 5;
+        this.node_root1.getComponent("AviatorRoundRoot1").refreshPlayerBet(notify, random);
+        GlobalCfg.ACT_SCENE_CTRL.node_playerBet.getComponent('AviatorPlayerBet').refreshPlayerBet(notify, random);
     },
 
     roundInit(){
@@ -130,12 +131,12 @@ cc.Class({
     },
 
     dealPlayerGetOut(notify){
-        this.node_root1.getComponent("AviatorRoundRoot1").setPlayerResult(notify);
-        GlobalCfg.ACT_SCENE_CTRL.node_playerBet.getComponent('AviatorPlayerBet').setPlayerResult(notify);
+        let random = Math.floor(Math.random() * (8 - 5 + 1)) + 5;
+        this.node_root1.getComponent("AviatorRoundRoot1").setPlayerResult(notify, random);
+        GlobalCfg.ACT_SCENE_CTRL.node_playerBet.getComponent('AviatorPlayerBet').setPlayerResult(notify, random);
     },
 
     dealLastGameRecord(notify){
-        LoggerUtil.getInstance().log("caojun dealLastGameRecord notify = ", notify);
         this.node_root2.getComponent("AviatorRoundRoot2").setLastGameRecord(notify);
     },
 });

@@ -39,8 +39,8 @@ cc.Class({
     },
 
     onItemClick(btn) {
-        let index = parseInt(btn.node.name);
-        GlobalCfg.ACT_SCENE_CTRL.headId = index; // 设置选中的头像ID
+        let index = parseInt(btn.node.parent.name);
+        GlobalCfg.ACT_SCENE_CTRL.headId = index + 1; // 设置选中的头像ID
         GameServerManager.send("gameservice.sethead", "SetHeadReq", {
             head: index + 1,
         });

@@ -235,12 +235,6 @@ cc.Class({
             // 刷新游戏场景
             self.dealLoginData(notify);
         }
-        else if (msgId == 'gameservice.playernumberchangednotify') {
-            // 人数变化通知
-            if (notify.num) {
-                self.btnPlayerList.node.getChildByName('redBg').getChildByName('Label').getComponent(cc.Label).string = notify.num;
-            }
-        }
         else if (msgId == 'gameservice.bet') {
             // 下注
             let totalChip = notify.totalChip;        // 个人总下注
