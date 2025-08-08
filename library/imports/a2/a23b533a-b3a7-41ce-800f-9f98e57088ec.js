@@ -62,6 +62,15 @@ cc.Class({
       msgCode: GlobalCfg.CLIENT_MSG_ID.GET_FIRST_GIFT_REWARD,
       msgData: {}
     });
+    // //新手领取奖励之后 需要弹出诱导充值的弹窗
+    var data = GlobalCfg.USER_DATAS.inducement;
+    var curRound = data.task_info.rounds;
+    var time = data.end_time - Date.now();
+    var inducementIsOpen = time > 0 && curRound > 0 && GlobalCfg.USER_DATAS.openModules.includes(24);
+    if (inducementIsOpen && CommonFun.getInstance().isNeedShowPointToastByHours("Inducement", 4)) {
+      CommonFun.getInstance().updateToastLocalStorageByHours("Inducement", 4);
+      CommonFun.getInstance().showInducement();
+    }
     this.node.destroy();
   },
   onDestroy: function onDestroy() {

@@ -195,7 +195,6 @@ export class ActBtnsCtrl extends cc.Component {
      */
     setActBtnsInteractableByActValueArr(canActValueArr: number[]) {
         //@ts-ignore
-        LoggerUtil.getInstance().error(`setActBtnsInteractableByActValueArr = ${canActValueArr}, show = ${canActValueArr.indexOf(8) != -1}`);
         this._setBetBtnInteractable(canActValueArr.indexOf(2) != -1);
         this._setAddBtnInteractable(canActValueArr.indexOf(4) != -1);
         this._setShowBtnInteractable(canActValueArr.indexOf(8) != -1);

@@ -1237,6 +1237,27 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 显示诱导充值界面
+     */
+    showInducement: function() {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INDUCEMENT, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+        if (isExist) {
+            return;
+        };
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.inducement = msg.data;
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
+                prefabPromise.then((prefab) => {
+                    let node = cc.instantiate(prefab);
+                    this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
      * 显示联系我们界面
      */
     showContactUs: function() {
@@ -1246,7 +1267,7 @@ let CommonFun = cc.Class({
             let contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');    
             this.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
         });
-    },    
+    },
 
     /**
      * 显示内嵌网页界面
@@ -1478,41 +1499,41 @@ let CommonFun = cc.Class({
         });
     },
 
-    // /**
-    //  * 显示推广员界面
-    //  */
-    // showPromoter: function() {
-    //     let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-    //     promoterPrefabPromise.then((prefab) => {
-    //         let promoterNode = cc.instantiate(prefab);
-    //         let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
-    //         this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
-    //     });
-    // },
-    
     /**
      * 显示推广员界面
      */
     showPromoter: function() {
-        CommonFun.getInstance().showProgress();
-        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
-        CommonFun.getInstance().httpGet(httpUrl, (msg) => {
-            
-            if (msg.result == 0) {
-                GlobalCfg.USER_DATAS.promoterMainData = msg.data
-                let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
-                promoterPrefabPromise.then((prefab) => {
-                    let promoterNode = cc.instantiate(prefab);
-                    this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
-                    CommonFun.getInstance().hidProgress();
-                });
-            }
-            else {
-                CommonFun.getInstance().showTips(msg.msg);
-                CommonFun.getInstance().hidProgress();
-            }
-        }, null, GlobalCfg.USER_DATAS.BearerToken);
+        let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+        promoterPrefabPromise.then((prefab) => {
+            let promoterNode = cc.instantiate(prefab);
+            let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+            this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+        });
     },
+    
+    // /**
+    //  * 显示推广员界面
+    //  */
+    // showPromoter: function() {
+    //     CommonFun.getInstance().showProgress();
+    //     let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+    //     CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+            
+    //         if (msg.result == 0) {
+    //             GlobalCfg.USER_DATAS.promoterMainData = msg.data
+    //             let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
+    //             promoterPrefabPromise.then((prefab) => {
+    //                 let promoterNode = cc.instantiate(prefab);
+    //                 this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
+    //                 CommonFun.getInstance().hidProgress();
+    //             });
+    //         }
+    //         else {
+    //             CommonFun.getInstance().showTips(msg.msg);
+    //             CommonFun.getInstance().hidProgress();
+    //         }
+    //     }, null, GlobalCfg.USER_DATAS.BearerToken);
+    // },
     /**
      * 推广员界面分享
      */
@@ -1797,15 +1818,39 @@ let CommonFun = cc.Class({
         });
     },
 
-    _showShopNewTip: function(changed, coin, bonus){
+    showPayChannel: function(infos, callback){
+        LoggerUtil.getInstance().log('callback =', callback);
+        this.getPayChannel((payData) => {
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPCHANNEL);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopChannel = shopNode.getComponent("shopChannel");
+                shopChannel.setData(payData, infos, callback);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPCHANNEL); 
+            });   
+        });
+    },
+
+    _showShopNewTip: function(changed, coin, bonus, is10Precent, remind){
         LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
-        let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
-        shopPrefabPromise.then((prefab) => {
-            let shopNode = cc.instantiate(prefab);
-            let shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
-            shopCtrl.setStartCoin(changed, coin, bonus);
-            this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP); 
-        });  
+        if(is10Precent){
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP10);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopCtrl = shopNode.getComponent("ShopNewTip10Ctrl");
+                shopCtrl.setStartCoin(changed, coin, bonus, remind);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP10); 
+            });  
+        }
+        else{
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
+                shopCtrl.setStartCoin(changed, coin, bonus);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP); 
+            });  
+        }
     },
 
     /**
@@ -2121,6 +2166,34 @@ let CommonFun = cc.Class({
         };
     },
 
+    updateToastLocalStorageByHours: function(toastType, hours) {
+        /**
+         * 当前毫秒级的时间戳
+         */
+        let curTimeStamp = new Date().getTime();
+        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
+        if (toastLocalStorage) {
+            try {
+                let toastLocalData = JSON.parse(toastLocalStorage);
+                let showTag = toastLocalData.showTag;
+                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
+                    toastLocalData.showTag = `${curTimeStamp}`;
+                    cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
+                }; 
+                
+            } 
+            catch (error) {
+                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
+            };
+        }
+        else {
+            let toastLocalData = {
+                showTag: curTimeStamp
+            };
+            cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
+        };
+    },
+
     /**
      * 上报错误至 Telegram
      * @param {String} info 
@@ -2371,44 +2444,45 @@ let CommonFun = cc.Class({
      * @param {number} duration 事件持续时间，单位毫秒
      */
     behaviorReporting: function(eventName, duration = 0) {
-        if (!eventName) {
-            return;
-        };
-        if (!cc.sys.isNative) {
-            return;
-        };
-        let url = "";
-        let device = CommonFun.getInstance().getDeviceId();
-        let serverType = CommonFun.getInstance().getServerType();
-        switch (serverType) {
-            case 0:
-                url = `https://svrtest.tpgame.in/login/uievent`;
-                break;
-            case 1:
-                url = `https://svr.tpgame.in/login/uievent`;
-                break;
-            case 2:
-                url = `https://svr2.tpgame.in/login/uievent`;
-                break;
-            case 3:
-                url = `https://svr.3tpattiyi.in/login/uievent`;
-                break;
-            case 6:
-                url = `https://svr.teengatti.in/login/uievent`;
-                break;
-            default:
-                url = `https://svrtest.tpgame.in/login/uievent`;
-                break;
-        };
-        let httpParam = {
-            device: `${device}`,
-            uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
-            triggerTime: cc.sys.now(),
-            duration: duration,
-            event: `${eventName}`,
-            sign: CommonFun.getInstance().encryptByRSA(device) 
-        };
-        CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
+        // if (!eventName) {
+        //     return;
+        // };
+        // if (!cc.sys.isNative) {
+        //     return;
+        // };
+        // let url = "";
+        // let device = CommonFun.getInstance().getDeviceId();
+        // let serverType = CommonFun.getInstance().getServerType();
+        // LoggerUtil.getInstance().info(`behaviorReporting: serverType ${serverType}`);
+        // switch (serverType) {
+        //     case 0:
+        //         url = `https://svrtest.tpgame.in/login/uievent`;
+        //         break;
+        //     case 1:
+        //         url = `https://svr.tpgame.in/login/uievent`;
+        //         break;
+        //     case 2:
+        //         url = `https://svr2.tpgame.in/login/uievent`;
+        //         break;
+        //     case 3:
+        //         url = `https://svr.tp-game.com/login/uievent`;
+        //         break;
+        //     case 6:
+        //         url = `https://svr.teengatti.in/login/uievent`;
+        //         break;
+        //     default:
+        //         url = `https://svrtest.tpgame.in/login/uievent`;
+        //         break;
+        // };
+        // let httpParam = {
+        //     device: `${device}`,
+        //     uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
+        //     triggerTime: cc.sys.now(),
+        //     duration: duration,
+        //     event: `${eventName}`,
+        //     sign: CommonFun.getInstance().encryptByRSA(device) 
+        // };
+        // CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
     },
 
     /**
@@ -2480,6 +2554,22 @@ let CommonFun = cc.Class({
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
+    /**
+     * 将毫秒转换为 HH:MM:SS 格式
+     * @param {number} ms 剩余毫秒数
+     * @returns {string} 格式化后的时间字符串
+     */
+    formatToHMS: function(ms) {
+        if (ms <= 0) return "00:00:00"; // 倒计时结束
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        // 补零显示（如 1 → "01"）
+        const pad = (num) => num.toString().padStart(2, '0');
+        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    },
 
     /**
      * 获取商场角标
@@ -2778,6 +2868,38 @@ let CommonFun = cc.Class({
         let arr = btnListData.slice(startIndex, btnListData.length);
         LoggerUtil.getInstance().log(">>>>>ShopList>>>>>>>>", arr);
         return arr;
+    },
+
+    /**
+     * 根据本地缓存判断是否需要显示弹框
+     * @param {*} toastType 弹框类型
+     * @param {*} hours 间隔几个小时
+     */
+    isNeedShowPointToastByHours: function(toastType, hours) {
+        /**
+         * 当前毫秒级的时间戳
+         */
+        let curTimeStamp = new Date().getTime();
+        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
+        if (toastLocalStorage) {
+            try {
+                let toastLocalData = JSON.parse(toastLocalStorage);
+                let showTag = toastLocalData.showTag;
+                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
+                    return true;
+                }
+                else {
+                    return false;
+                };
+            } 
+            catch (error) {
+                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
+                return false;
+            };
+        }
+        else {
+            return true;
+        };
     },
 
     /**

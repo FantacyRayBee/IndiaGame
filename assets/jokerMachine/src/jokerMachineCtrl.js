@@ -209,7 +209,7 @@ cc.Class({
         this.bigWinLevel = 0;
         this.stopNumScroll = false;
 
-
+        this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4); //是否开启支付
     },
 
     debounce: function(action, delayTime) {  
@@ -2055,9 +2055,7 @@ cc.Class({
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond) {
             this.recoverySpinBtnEvent();
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
+                CommonFun.getInstance().showSmallAddCash()
             }, false);
             return;
         };

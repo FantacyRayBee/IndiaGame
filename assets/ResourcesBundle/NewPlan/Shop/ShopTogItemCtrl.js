@@ -23,7 +23,7 @@ cc.Class({
     toggleCallback: function(toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (toggle.isChecked) {
-            GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;   
+            GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;
             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: "REFRESH_SHOP_ITEM", msgData: {isShow:this.PAY_CONFIG}});
         };
     },

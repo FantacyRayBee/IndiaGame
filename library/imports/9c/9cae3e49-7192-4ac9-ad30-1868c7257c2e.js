@@ -14,8 +14,8 @@ cc.Class({
   // LIFE-CYCLE CALLBACKS:
   onLoad: function onLoad() {
     var _this = this;
-    this.node_ResetWallet.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? false : true;
-    this.node_ToBonus.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? true : false;
+    // this.node_ResetWallet.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? false : true;
+    // this.node_ToBonus.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? true : false;
     this.btnOK.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       _this.node.destroy();
@@ -26,11 +26,18 @@ cc.Class({
     this.unschedule(this.scheduleCallback);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V);
-    var changed = GlobalCfg.USER_DATAS.changed / 100; // 变化值
-    var coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
-    var getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 + changed; //本次充值获得的代金券
-    LoggerUtil.getInstance().log('GlobalCfg.USER_DATAS:', GlobalCfg.USER_DATAS);
-    CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
+    if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10) {
+      var changed = GlobalCfg.USER_DATAS.changed % 100000000 / 100; // 变化值
+      var coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+      var remind = GlobalCfg.USER_DATAS.beforeRecharge / 100 - changed;
+      var getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100; //本次充值获得的代金券
+      CommonFun.getInstance()._showShopNewTip(GlobalCfg.USER_DATAS.beforeRecharge / 100, coin, getBouns, true, remind); //显示首充转换界面
+    } else {
+      var _changed = GlobalCfg.USER_DATAS.changed / 100; // 变化值
+      var _coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+      var _getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 + _changed; //本次充值获得的代金券
+      CommonFun.getInstance()._showShopNewTip(_changed, _coin, _getBouns, false, 0); //显示首充转换界面
+    }
   },
   show: function show(bool) {
     var _this2 = this;

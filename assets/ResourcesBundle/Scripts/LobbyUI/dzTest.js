@@ -10,24 +10,25 @@ cc.Class({
     },
     ctor() {
         this.initUsers = [
-            { ID: '谭轩', Name: '李嘉豪', score: -2380 },
-            { ID: '常客玩家', Name: '鱼', score: 680 },
-            { ID: '王重阳', Name: '赵老师', score: -1060 },
-            { ID: '线上的神', Name: '东拉', score: 0 },
+            {Name: "鱼", ID: "常客玩家", score: 3470 }, 
+            {Name: "蔡徐坤", ID: "蔡徐坤", score: 700 }, 
+            {Name: "翠花", ID: "泡芙老板", score: 640 }, 
+            {Name: "张哲", ID: "性感荷官", score: 600 }, 
+            {Name: "东拉", ID: "线上的神", score: 430 }, 
+            {Name: "张哥", ID: "zzy", score: 410 }, 
+            {Name: "走马", ID: "充电宝", score: 210 }, 
+            {Name: "胖哥", ID: "俊俊子", score: 140 }, 
+            {Name: "小骨", ID: "专业荷官", score: 100 }, 
+            {Name: "TT", ID: "TT", score: 20 }, 
+            {Name: "小姜", ID: "上等马", score: -180 }, 
+            {Name: "赵老师", ID: "王重阳", score: -200 }, 
+            {Name: "赖发财", ID: "又菜又凶", score: -290 }, 
+            {Name: "飞机", ID: "纸飞机", score: -1610 }, 
+            {Name: "嘉豪", ID: "谭轩", score: -2170 }, 
+            {Name: "曹俊", ID: "花店老板", score: -2250 },
             // { ID: '皮卡丘', Name: '柠檬轩', score: 0 },
-            { ID: 'zzy', Name: '张哥', score: 600 },
-            { ID: '又菜又凶', Name: '赖发财', score: 1240 },
-            { ID: '性感荷官', Name: '张哲', score: 400 },
-            { ID: '泡芙老板', Name: '翠花', score: 150 },
-            { ID: '上等马', Name: '小姜', score: 400 },
-            // { ID: '专业荷官', Name: '小骨', score: 0 },
             // { ID: '齐天大圣', Name: '猴子', score: 0 },
             // { ID: '独家彤话', Name: '彤彤', score: 0 },
-            { ID: '花店老板', Name: '曹准', score: -150 },
-            // { ID: '充电宝', Name: '走马', score: 0 },
-            { ID: '俊俊子', Name: '胖哥', score: 140 },
-            { ID: '纸飞机', Name: '飞机', score: 0 },
-            { ID: '蔡徐坤', Name: '蔡徐坤', score: 0 },
             // { ID: '边牧', Name: '边牧', score: 0 },
         ];
     },
@@ -39,33 +40,8 @@ cc.Class({
     },
 
     start() {
-        //先取缓存里的数组
-        var arr = cc.sys.localStorage.getItem('ChildTable');
-        if (!arr) {
-            this.users = this.initUsers;
-            cc.sys.localStorage.setItem('ChildTable', JSON.stringify(this.users))
-        } else {
-            this.users = this.addNewUser(JSON.parse(arr));
-        }
+        this.users = this.initUsers;
     },
-
-    //判断是否有新成员
-    addNewUser(arr) {
-        for (var i = 0; i < this.initUsers.length; i++) {
-            let isNew = false;
-            for (var j = 0; j < arr.length; j++) {
-                if (this.initUsers[i].ID == arr[j].ID) {
-                    isNew = true;
-                    break;
-                }
-            }
-            if (!isNew) {
-                arr.push(this.initUsers[i]);
-            }
-        }
-        return arr;
-    },
-
 
     btnClick: function (button) {
         var btnName = button.node.name;
@@ -75,7 +51,6 @@ cc.Class({
             this.onPrint();
         } else if (btnName === 'btn_init') {
             this.users = this.initUsers;
-            cc.sys.localStorage.setItem('ChildTable', JSON.stringify(this.users))
         }
     },
 
@@ -109,12 +84,16 @@ cc.Class({
         this.onSort();
         // 打印数据
         let printString = '';
+        let printString2 = '';
         for (var i = 0; i < this.users.length; i++) {
             // let strings = `ID: ${this.users[i].ID}, Name: ${this.users[i].Name}, score: ${this.users[i].score}`
             let strings = `${this.users[i].Name},ID: ${this.users[i].ID}, ${this.users[i].score}`
             printString = printString + " " + (i + 1) + ". " + strings + "\n";
+            let strings2 = `{Name: "${this.users[i].Name}", ID: "${this.users[i].ID}", score: ${this.users[i].score} }, \n`
+            printString2 += strings2
         }
         LoggerUtil.getInstance().log("S3赛季排行榜：\n", printString);
+        LoggerUtil.getInstance().log("S3赛季排行榜2：\n", printString2);
     },
 
     onSort: function () {

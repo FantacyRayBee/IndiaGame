@@ -10,8 +10,8 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.node_ResetWallet.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? false : true;
-        this.node_ToBonus.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? true : false;
+        // this.node_ResetWallet.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? false : true;
+        // this.node_ToBonus.active = GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS > 0 ? true : false;
         this.btnOK.node.on('click', () => {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.node.destroy();
@@ -25,17 +25,25 @@ cc.Class({
         this.unschedule(this.scheduleCallback);
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE);
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V);
-
-        let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
-        let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
-        let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
-        LoggerUtil.getInstance().log('GlobalCfg.USER_DATAS:', GlobalCfg.USER_DATAS);
-
-        CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns); //显示首充转换界面
+        
+        if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10) {
+            let changed = (GlobalCfg.USER_DATAS.changed % 100000000) / 100; // 变化值
+            let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+            let remind = GlobalCfg.USER_DATAS.beforeRecharge/100 - changed;
+            let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100); //本次充值获得的代金券
+            CommonFun.getInstance()._showShopNewTip(GlobalCfg.USER_DATAS.beforeRecharge/100, coin, getBouns, true, remind); //显示首充转换界面
+        }
+        else {
+            let changed = GlobalCfg.USER_DATAS.changed/ 100; // 变化值
+            let coin = GlobalCfg.USER_DATAS.deposit / 100; //本次充值获得的金币
+            let getBouns = (GlobalCfg.USER_DATAS.firstGetBonus/ 100) + changed; //本次充值获得的代金券
+            CommonFun.getInstance()._showShopNewTip(changed, coin, getBouns, false, 0); //显示首充转换界面
+        }
     },
 
     show(bool) {
         GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = false;
+
         if(bool == true){
             this.btnOK.target.getChildByName('Label').getComponent(cc.Label).string = "Okay";
             this.btnOK.interactable = true;

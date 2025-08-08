@@ -34,6 +34,10 @@ window.GlobalCfg = {
   */
   IS_CLUB_MODE: 0,
   /**
+  * 是否是需要充值才能进入的游戏
+  */
+  isPayGame: true,
+  /**
    * 消息订阅的大类型
    */
   MSG_TYPE: {
@@ -43,6 +47,7 @@ window.GlobalCfg = {
 
   CURSCENE_DIRECTION: "horizontal",   // 当前场景方向 horizontal， vertical
   FIRST_RECHARGE_TIPS_SHOW: false,    // 是否展示首充之后的提示弹窗
+  FIRST_RECHARGE_TIPS_SHOW_10: false,    // 是否展示首充之后的提示弹窗
   FIRST_RECHARGE_REWARD_SHOW: false,    // 是否展示首充之后获得的金币 弹窗
   /**
    * 是否存在 divertFreeTp界面
@@ -495,6 +500,7 @@ window.GlobalCfg = {
   // 拒绝未充值玩百人,false(未支付可玩)  true(未支付不可玩)
   REFUSE_UNPAY_CANBET: true,
 
+
   NATIVE_CALL_URL: "kayo/maoka/gmp/JSCallJavaManager",
   /**
    * APP 服务器错误代码
@@ -564,7 +570,19 @@ window.GlobalCfg = {
     REPEAT_LOGIN: 9,      // 重复登录
     SERVER_RELOAD: 29,    // 服务器重启
   },
-
+  /**
+   * 诱导充值配置
+   */
+  INDUCEMENT_INFO :{
+      [1]: {taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [2]: {taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [4]: {taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need ₹10 to withdraw ₹5000"},
+      [5]: {taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need ₹1 to withdraw ₹5000"},
+      [6]: {taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need ₹0.1 to withdraw ₹5000"},
+      [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need ₹0.01 to withdraw ₹5000"},
+      [8]: {taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
+  },
   /**
    * 预制体路径
    */
@@ -757,7 +775,8 @@ window.GlobalCfg = {
     SHOPINSTRUCTIONS: "ResourcesBundle/NewPlan/Shop/ShopInstructions",
     SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
     SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
-
+    SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
+    SHOPCHANNEL: "ResourcesBundle/NewPlan/Shop/shopChannel",
     /**
      * 提现
      */
@@ -855,6 +874,11 @@ window.GlobalCfg = {
      */
     BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
     /**
+     * 诱导充值
+     */
+    INDUCEMENT: "ResourcesBundle/NewPlan/Inducement/Inducement",
+    INDUCEMENTPOP: "ResourcesBundle/NewPlan/Inducement/InducementPop",
+    /**
      * 破产礼包
      */
     ONLY_PAY: "ResourcesBundle/NewPlan/OnlyPay/OnlyPay",
@@ -936,6 +960,8 @@ window.GlobalCfg = {
     ACTIVITY_GOBETTING: "SecondLayer",
     DIVERSIONFREETP: "SecondLayer",
     BANKRUPTCY_GIFT: "SecondLayer",
+    INDUCEMENT: "SecondLayer",
+    INDUCEMENTPOP: "SecondLayer",
     ONLY_PAY: "SecondLayer",
     GAMEICONLIST: "SecondLayer",
 
@@ -965,6 +991,8 @@ window.GlobalCfg = {
     WITHDRAWSHARE: "ShopLayer",
     ADVANCEDMODE: "ShopLayer",
     SHOPNEWTIP: "SecondLayer",
+    SHOPNEWTIP10: "SecondLayer",
+    SHOPCHANNEL: "SecondLayer",
 
     PROGRESS: "ProgressLayer",
 
@@ -1464,6 +1492,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   let server = packageChannelArr[0];
   console.log("packageChannelArr == " , packageChannelArr)
   console.log("server == " , server)
+  console.log("cc.sys.isNative == " , cc.sys.isNative)
+  
   GlobalCfg.server_id = server;
   switch (server) {
     case "0":     // 测试服
@@ -1496,16 +1526,18 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       break;
     case "5":     // 5服
       GlobalCfg.APP_VERSION = "5.0.0.32"; 
-      GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/AppConfig.json`;
+      // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+      GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+
+      GlobalCfg.APP_CONFIG_URL = `https://download.rax8.com/production/AppConfig.json`;
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
-        GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/v1/AppInfo.json`;
+        GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfo.json`;
       }
       // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 
-      GlobalCfg.APP_INFO_URL_SPARE = `https://download.ltgame.in/production/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.ltgame.in/production/AppConfig.json`;
+      GlobalCfg.APP_INFO_URL_SPARE = `https://download.rax8.com/production/AppInfo.json`;
+      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.rax8.com/production/AppConfig.json`;
       break;
     case "6":     // 代理服
       GlobalCfg.APP_VERSION = "6.0.1";

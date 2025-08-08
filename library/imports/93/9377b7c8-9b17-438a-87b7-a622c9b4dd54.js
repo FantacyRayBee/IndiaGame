@@ -893,16 +893,15 @@ cc.Class({
   },
   sendCallReq: function sendCallReq() {
     var _this6 = this;
-    if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
-      //未曾充值
-      CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
-        if (_this6.paymentSwitch) {
-          CommonFun.getInstance().showSmallAddCash();
-        }
-      }, false);
-      return;
-    }
-    ;
+    // if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+    //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+    //         if (this.paymentSwitch) {
+    //             CommonFun.getInstance().showSmallAddCash()
+    //         }
+    //     }, false);
+    //     return;
+    // };
+
     var betAmount = parseInt(this.lab_betAmount.string) * 100;
     var freesItem = this.getFreesItem(betAmount);
     var freeCount = freesItem.freeCount;

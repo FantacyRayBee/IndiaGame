@@ -42,6 +42,10 @@ cc.Class({
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.btn_okay.interactable = false;
             this.btn_okay.enableAutoGrayEffect = true;
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                msgCode: GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO,
+                msgData: {}
+            }); 
             this.node.destroy();
         }, 1), this);
     },

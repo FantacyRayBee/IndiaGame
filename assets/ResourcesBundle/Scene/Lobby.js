@@ -196,6 +196,10 @@ cc.Class({
          */
         btn_onlypay: cc.Button,
         /**
+         * 诱导充值
+         */
+        btn_inducement: cc.Button,
+        /**
          * tp引导手指
          */
         node_tpFinger: cc.Node,
@@ -251,6 +255,7 @@ cc.Class({
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
+        this.LoadCompletedCallback = null;
     },
 
 
@@ -315,9 +320,6 @@ cc.Class({
                 this.showActivityGoBetting();
             };
         }
-
-        LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.onlyPay : ", GlobalCfg.USER_DATAS.onlyPay);
-        LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.only_pay_time : ", GlobalCfg.USER_DATAS.only_pay_time);
     },
 
     setGameOrder: function() {
@@ -402,6 +404,7 @@ cc.Class({
         this.btn_pdd.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_inducement.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -528,6 +531,9 @@ cc.Class({
 
         // this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
+
+        this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
+        this.dealInducementInfo();
         this.dealShowOnlyPayEvent();
         /**
          * 邮箱
@@ -893,37 +899,36 @@ cc.Class({
             }
         };
         //自动下载小游戏
-        if (needUpdataArr.length > 0) {
-            let gameSubPackageNames = {
-                "minirocket": "rocket",
-                "miniaviator": "aviator",
-                "minijhandimunda": "munda",
-                "miniteenpatti": "tpGame",
-                "miniteenpattibaccarat": "baccarat3PattiGame",
-                "miniandar": "andaerGame",
-                "minilonghu": "lhdGame",
-                "minishuiguo": "fruitMachine",
-                "minimaya": "mayaMachine",
-                "miniclown": "jokerMachine",
-                "miniindia": "indiaMachine",
-                "minivampire": "vampireMachine",
-                "minibull": "bullMachine",
-                "minisaima": "horseRaceGame",
-                "minibenzbmw": "Benz",
-                "minirummy": "Rummy",
-                "miniseven": "7up7downGame",
-                "minizoo": "zooGame",
-                "minicricket": "cricketGame",
-                "miniluckyloto": "sscGame",
-                "minizeus": "zeusGame",
-            };
-            for (let i = 0, len = this.gameUpdateDownloadOrder.length; i < len; i++) {
-                let element = this.gameUpdateDownloadOrder[i];
-                if (gameSubPackageNames[element] && needUpdataArr.indexOf(gameSubPackageNames[element]) != -1) {
-                    GameDownloader.getInstance().commonLoadGame(gameSubPackageNames[element]);
-                };
-            };
-        };
+        // if (needUpdataArr.length > 0) {
+        //     let gameSubPackageNames = {
+        //         "minirocket": "rocket",
+        //         "minijhandimunda": "munda",
+        //         "miniteenpatti": "tpGame",
+        //         "miniteenpattibaccarat": "baccarat3PattiGame",
+        //         "miniandar": "andaerGame",
+        //         "minilonghu": "lhdGame",
+        //         "minishuiguo": "fruitMachine",
+        //         "minimaya": "mayaMachine",
+        //         "miniclown": "jokerMachine",
+        //         "miniindia": "indiaMachine",
+        //         "minivampire": "vampireMachine",
+        //         "minibull": "bullMachine",
+        //         "minisaima": "horseRaceGame",
+        //         "minibenzbmw": "Benz",
+        //         "minirummy": "Rummy",
+        //         "miniseven": "7up7downGame",
+        //         "minizoo": "zooGame",
+        //         "minicricket": "cricketGame",
+        //         "miniluckyloto": "sscGame",
+        //         "minizeus": "zeusGame",
+        //     };
+        //     for (let i = 0, len = this.gameUpdateDownloadOrder.length; i < len; i++) {
+        //         let element = this.gameUpdateDownloadOrder[i];
+        //         if (gameSubPackageNames[element] && needUpdataArr.indexOf(gameSubPackageNames[element]) != -1) {
+        //             GameDownloader.getInstance().commonLoadGame(gameSubPackageNames[element]);
+        //         };
+        //     };
+        // };
 
         let languagesType = I18NUtil.getInstance().getLanguageType();
         this.setSmallGameBtnByLanguageType(languagesType);
@@ -1025,6 +1030,32 @@ cc.Class({
         }, 1000); // 每秒执行一次
     },
 
+    dealInducementInfo() {
+        let data = GlobalCfg.USER_DATAS.inducement;
+        let curRound = data.task_info.rounds;
+        let time = data.end_time - Date.now();
+        let isOpen = time > 0 && curRound > 0;
+        this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24) && isOpen)
+        if (!isOpen) {
+            return;
+        }
+        let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
+        if (curRound == 1) {
+            this.btn_inducement.node.getChildByName('lb_round').getComponent(cc.Label).string = `0/${allNumber}`;}
+        else{
+            this.btn_inducement.node.getChildByName('lb_round').getComponent(cc.Label).string = `${GlobalCfg.INDUCEMENT_INFO[curRound-1].reward}/${allNumber}`;
+        }
+        if (data.task_info.all_completions_num > 100) { //大于100 说明是充值任务，金额需要除以100
+            this.btn_inducement.node.getChildByName('lb_task').getComponent(cc.Label).string = 
+            `${(data.task_info.completions_num/100)}/${(data.task_info.all_completions_num/100)}`;
+        }
+        else{
+            this.btn_inducement.node.getChildByName('lb_task').getComponent(cc.Label).string = `${data.task_info.completions_num}/${data.task_info.all_completions_num}`;
+        }
+
+        this.btn_inducement.node.getChildByName('shouzhi').active = (data.task_info.completions_num >= data.task_info.all_completions_num && data.task_info.completions_num > 0);
+    },
+
     dealCloseOnlyPayEvent() {
         if (this.btn_onlypay.node.active == false) {
             return;
@@ -1123,6 +1154,19 @@ cc.Class({
                 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
             this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
             this.showWithDrawToast();
+        }
+        // /** 
+        //  * 诱导充值
+        //  */
+        else if (GlobalCfg.USER_DATAS.openModules.includes(24) && this.isNeedShowPointToastByHours("Inducement", 4)) {
+            let data = GlobalCfg.USER_DATAS.inducement;
+            let curRound = data.task_info.rounds;
+            let time = data.end_time - Date.now();
+            let isOpen = time > 0 && curRound > 0;
+            if (isOpen) {
+                this.updateToastLocalStorageByHours("Inducement", 4);
+                CommonFun.getInstance().showInducement();
+            }
         }
         /** 
          * 首充
@@ -1287,58 +1331,11 @@ cc.Class({
      * @param {*} hours 间隔几个小时
      */
     isNeedShowPointToastByHours: function(toastType, hours) {
-        /**
-         * 当前毫秒级的时间戳
-         */
-        let curTimeStamp = new Date().getTime();
-        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-        if (toastLocalStorage) {
-            try {
-                let toastLocalData = JSON.parse(toastLocalStorage);
-                let showTag = toastLocalData.showTag;
-                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                    return true;
-                }
-                else {
-                    return false;
-                };
-            } 
-            catch (error) {
-                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-                return false;
-            };
-        }
-        else {
-            return true;
-        };
+        return CommonFun.getInstance().isNeedShowPointToastByHours(toastType, hours);
     },
 
     updateToastLocalStorageByHours: function(toastType, hours) {
-        /**
-         * 当前毫秒级的时间戳
-         */
-        let curTimeStamp = new Date().getTime();
-        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-        if (toastLocalStorage) {
-            try {
-                let toastLocalData = JSON.parse(toastLocalStorage);
-                let showTag = toastLocalData.showTag;
-                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                    toastLocalData.showTag = `${curTimeStamp}`;
-                    cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-                }; 
-                
-            } 
-            catch (error) {
-                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-            };
-        }
-        else {
-            let toastLocalData = {
-                showTag: curTimeStamp
-            };
-            cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-        };
+        CommonFun.getInstance().updateToastLocalStorageByHours(toastType, hours);
     },
 
     onEventMsg: function(webData, target) {
@@ -1353,7 +1350,6 @@ cc.Class({
             self.setSmallGameLoadComplete(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
-            LoggerUtil.getInstance().log("caojun CURRENCY_CHANGED_USER_INFO");
             self.showUserInfo();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_TGY_REWARD 
@@ -1421,7 +1417,6 @@ cc.Class({
             self.showNewEmailRedDot(bool);
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            LoggerUtil.getInstance().log(`caojun 222 FIRST_RECHARGE_TIPS_SHOW = ${GlobalCfg.FIRST_RECHARGE_TIPS_SHOW} FIRST_RECHARGE_REWARD_SHOW = ${GlobalCfg.FIRST_RECHARGE_REWARD_SHOW}`);
             if (GlobalCfg.FIRST_RECHARGE_TIPS_SHOW == true) {
                 this.showFirstRechargeTipPopup();
             }
@@ -1476,6 +1471,14 @@ cc.Class({
         }
         else if (msgId == 'close_Only_Pay') {
             self.dealCloseOnlyPayEvent();
+        }
+        else if (msgId == 'inducement_click') {
+            if(notify.jump) {
+                self.dealJumpBtnEvent(notify.jump);
+            }
+            else {
+                self.dealInducementInfo();
+            }
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.ACTIVITY_GOBETTING_GET) {
             self.showActivityGoBetting();
@@ -1533,6 +1536,70 @@ cc.Class({
         }
         else if (btnName == 'btn_onlypay') {
             CommonFun.getInstance().showOnlyPay(true);
+        }
+        else if (btnName == 'btn_inducement') {
+            this.dealInducementClickEvent();
+        }
+    },
+
+    dealInducementClickEvent: function () {
+        let self = this;
+        this.btn_inducement.interactable = false;
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.inducement = msg.data;
+                let prefabPromise = CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
+                prefabPromise.then((prefab) => {
+                    self.dealInducementInfo();
+                    self.btn_inducement.interactable = true;
+                    let node = cc.instantiate(prefab);
+                    CommonFun.getInstance().addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    dealJumpBtnEvent: function(jumpid) {
+        if (jumpid == "TeenPatti") {
+            this.checkUpdate("tpGame", () => {
+                window.isNeedShowRoomList = "tpGame";
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product;
+                this.showGameRoomList();
+            });
+        }
+        else if (jumpid == "Fruit") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_FRUIT_GAME);
+            this.checkUpdate("fruitMachine", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SGJ);
+            });
+        }
+        else if (jumpid == "Dragon") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_LHD_GAME);
+            this.checkUpdate("lhdGame", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.lhdData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LHD);
+            });
+        }
+        else if (jumpid == "Munda") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MUNDA_GAME);
+            this.checkUpdate("munda", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mundaData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MUNDA);
+            });
+        }
+        else if (jumpid == "shop") {
+            this.dealBtnRechargeEvent();
+        }
+        else if (jumpid == "withdraw") {
+            this.dealBtnWithDrawEvent();
+        }
+        else if (jumpid == "share") {
+            CommonFun.getInstance().promoterSkipToOtherApp('btn_share');
         }
     },
 
@@ -1946,6 +2013,9 @@ cc.Class({
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            if (this.LoadCompletedCallback == null) {
+                this.LoadCompletedCallback = callFun;
+            }
         } 
         else {
             callFun();
@@ -2115,6 +2185,11 @@ cc.Class({
             default:
                 break;
         };
+
+        if (this.LoadCompletedCallback) {
+            this.LoadCompletedCallback();
+            this.LoadCompletedCallback = null;
+        }
     },
 
     onDestroy: function() {

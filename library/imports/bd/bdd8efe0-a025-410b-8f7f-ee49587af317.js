@@ -4,7 +4,6 @@ cc._RF.push(module, 'bdd8e/goCVBC49/7klYevMX', 'PromoterCtrl');
 
 "use strict";
 
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 cc.Class({
   "extends": cc.Component,
   properties: {},
@@ -256,13 +255,15 @@ cc.Class({
     ;
   },
   dealBtnSFEvent: function dealBtnSFEvent() {
-    // 跳转至WhatsApp
-    var channel_info = _extends({}, GlobalCfg.USER_DATAS.customerService);
-    var whatsAppInfos = channel_info.whatsApp.split(',');
-    var mobileNum = whatsAppInfos[0].match(/\d+/g);
-    // LoggerUtil.getInstance().log('whatsAppInfos', whatsAppInfos);
-    // LoggerUtil.getInstance().log('mobileNum', mobileNum);
-    APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
+    // // 跳转至WhatsApp
+    // let channel_info = {...GlobalCfg.USER_DATAS.customerService};
+    // let whatsAppInfos = channel_info.whatsApp.split(',');
+    // let mobileNum = whatsAppInfos[0].match(/\d+/g);
+    // // LoggerUtil.getInstance().log('whatsAppInfos', whatsAppInfos);
+    // // LoggerUtil.getInstance().log('mobileNum', mobileNum);
+    // APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
+    CommonFun.getInstance().showCustomerService();
+    this.node.destroy();
   },
   dealBtnTeamEvent: function dealBtnTeamEvent() {
     this.showLeftView("teamView");

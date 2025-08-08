@@ -304,7 +304,7 @@ LobbyServerManager.checkDistributed = function(webData) {
         let firstRecharge = notify.firstRecharge;     // 是否是首次充值清除金币
         let firstRechargeRetainBonus = notify.firstRechargeRetainBonus; // 首次清0后保留的bonus
         let firstRechargeCleanWallet = notify.firstRechargeCleanWallet; // 首充清空钱包
-
+        let goldBeforeRecharging = notify.goldBeforeRecharging; // 充值前金币
         if (firstRecharge) {
             GlobalCfg.USER_DATAS.oldUserDiamond = GlobalCfg.USER_DATAS.userDiamond;
             GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS = firstRechargeRetainBonus;
@@ -329,6 +329,13 @@ LobbyServerManager.checkDistributed = function(webData) {
                 if (firstRechargeCleanWallet) {
                     // 是否展示首充清金币的动画
                     GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = true;
+                    GlobalCfg.USER_DATAS.changed = firstRechargeRetainBonus; //首充需要清的金币
+                    GlobalCfg.USER_DATAS.beforeRecharge = goldBeforeRecharging;
+                    if (firstRechargeRetainBonus >= 100000000) { //10%转换弹框
+                        GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10 = true;
+                    }
+                    else
+                        GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10 = false;
                 }else{
                     GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
                 }

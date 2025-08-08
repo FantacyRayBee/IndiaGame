@@ -142,7 +142,7 @@ cc.Class({
                     self.node_cradArr[i].scale = 0.63;
                     self.node_cradArr[i].getComponent(cc.Sprite).spriteFrame =  self.spite_cradBei;
                 }
-                self.betCionAct(6,notify.score/100)
+                self.betCionAct(6, parseFloat((notify.score/100).toFixed(2)))
             }
         } else if (msgId == "lobbyservice.pushcurrencychanged") { 
             GlobalCfg.USER_DATAS.userDiamond = notify.deposit + notify.winnings;
@@ -316,7 +316,7 @@ cc.Class({
             this.lab_betTime.string = "";
             this.showCradTypeAct(winSide) 
             if( score > 0 && str == "endGame") {
-                this.betCionAct(6,Math.floor(score/100))
+                this.betCionAct(6, parseFloat((score/100).toFixed(2)))
                 this.sscAudioCtrl.playGameSound("touCoin")
                 GlobalCfg.USER_DATAS.userDiamond = after;
                 this.lab_coin.string = CommonFun.getInstance().numberToShow(after/100);
@@ -593,6 +593,7 @@ cc.Class({
     // 玩家下注金币向上的动作
     betCionAct:function(num,coin,str){ 
         if( coin > 0){
+            LoggerUtil.getInstance().log("下注金币向上动作 ", coin);
             if(str != "play"){this.sscAudioCtrl.playGameSound("otherCoin")}
             let betPosArr =  [cc.v2(-483,-83),cc.v2(-287,-83),cc.v2(-92,-83),cc.v2(102,-83),cc.v2(295,-83),cc.v2(490,-83),cc.v2(-450,-288)]   
             let pos = betPosArr[num];
@@ -763,7 +764,7 @@ cc.Class({
 
     callReq:function(CardType,coin){
         let amount = 0
-        if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {   //未曾充值
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash();
             }, false);

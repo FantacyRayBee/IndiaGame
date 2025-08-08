@@ -1129,7 +1129,7 @@ cc.Class({
 
         for (let i = 0, len = pools.length; i < len; i++) {
             let BossPool = pools[i];
-            // this.resolveBoosPool(BossPool, true);
+            this.resolveBoosPool(BossPool, true);
         }
     },
 
@@ -1751,7 +1751,7 @@ cc.Class({
     betting: function (amount, type) {
         this.currentBetNum = this.getCurrentBetNum();
         if (this.betBtnState == true) {
-            if(GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()

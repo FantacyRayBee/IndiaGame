@@ -195,10 +195,14 @@ cc.Class({
         labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
         buttonLabelNum.string = Math.round(cash / 100);
         button.node.on('click', () => {
-            CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.OnlyPay, () => {
-                button.node.off('click');
-                this.node.destroy();
-            });
+            let callback = () => {
+                CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.OnlyPay, () => {
+                    button.node.off('click');
+                }, GlobalCfg.PAY_CHANNEL);
+            }
+            this.node.destroy();
+            let data = {price: Math.round((data.amount + data.add)/100), bonus: Math.round(data.bonus/100)}
+            CommonFun.getInstance().showPayChannel(data, callback);
         });
     },
 });

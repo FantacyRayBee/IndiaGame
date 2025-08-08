@@ -575,6 +575,16 @@ cc.Class({
     ;
   },
   dealSendSpinReqEvent: function dealSendSpinReqEvent(bet, isDoubleMulti) {
+    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+      //未曾充值
+      CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
+        if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
+          CommonFun.getInstance().showSmallAddCash();
+        }
+      }, false);
+      return;
+    }
+    ;
     if (bet <= 0) {
       LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, \u81EA\u5B9A\u4E49ZEUS_SEND_SPIN_REQ\u6D88\u606F\u7684\u6570\u636E\u5F02\u5E38", bet);
       return;
