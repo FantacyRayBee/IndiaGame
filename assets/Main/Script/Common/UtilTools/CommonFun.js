@@ -2377,6 +2377,7 @@ let CommonFun = cc.Class({
      * @param {function} failCallback 
      */
     loadBundle: function(bundleName, succCallback, failCallback) {
+        LoggerUtil.getInstance().log(`2222222 加载bundle:${bundleName}`);
         cc.assetManager.loadBundle(`${bundleName}`, (err, bundle) => {
             if (!err) {
                 succCallback && succCallback(bundle);

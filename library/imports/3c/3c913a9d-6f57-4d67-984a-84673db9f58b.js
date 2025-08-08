@@ -2297,6 +2297,7 @@ var CommonFun = cc.Class((_cc$Class = {
   });
   return newArr;
 }, _cc$Class.loadBundle = function loadBundle(bundleName, succCallback, failCallback) {
+  LoggerUtil.getInstance().log("2222222 \u52A0\u8F7Dbundle:" + bundleName);
   cc.assetManager.loadBundle("" + bundleName, function (err, bundle) {
     if (!err) {
       succCallback && succCallback(bundle);

@@ -229,7 +229,7 @@ cc.Class({
         }
         else if (msgId == 'gameservice.exit') {
             // 退出房间
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.AVIATOR, SceneManager.getInstance().sceneType.LOBBY);
         }
         else if (msgId == 'gameservice.loadwhole') {
             // 刷新游戏场景
@@ -293,7 +293,7 @@ cc.Class({
             CommonFun.getInstance().showRule("rocket");
         }
         else if (msgId == "lobbyservice.kicktolobby") {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.AVIATOR, SceneManager.getInstance().sceneType.LOBBY);
         }
     },
 
@@ -347,7 +347,7 @@ cc.Class({
         }
         else if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.AVIATOR, SceneManager.getInstance().sceneType.LOBBY);
             }, false);
         }
     },
