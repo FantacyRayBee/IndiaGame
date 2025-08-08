@@ -189,7 +189,7 @@ cc.Class({
             let itemPrefab = arr[0];
             if (CommonFun.getInstance().isValidForScr(this)) {
                 this.addShopTogItems(payChannels, itemPrefab);         
-            };       
+            };
         })
         .catch((err) => {}); 
     },

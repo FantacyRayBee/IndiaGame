@@ -69,7 +69,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: false,
+  is_force_gotoTest: true,
   /**
    * 渠道信息
    */
@@ -781,6 +781,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
   SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
   SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
+  SHOPCHANNEL: "ResourcesBundle/NewPlan/Shop/shopChannel",
   /**
    * 提现
    */
@@ -984,6 +985,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   ADVANCEDMODE: "ShopLayer",
   SHOPNEWTIP: "SecondLayer",
   SHOPNEWTIP10: "SecondLayer",
+  SHOPCHANNEL: "SecondLayer",
   PROGRESS: "ProgressLayer",
   TIPS: "TipsLayer",
   HALLTIP: "TipsLayer",
@@ -1169,7 +1171,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_5062");
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }
@@ -1519,7 +1521,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       GlobalCfg.APP_CONFIG_URL = "https://download.rax8.com/production/AppConfig.json";
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {
         //cocos 版本2.4.13
-        GlobalCfg.APP_INFO_URL = "https://download.rax8.com/production/v1/AppInfo.json";
+        GlobalCfg.APP_INFO_URL = "https://download.rax8.com/production/v1/AppInfoTest.json";
       }
       // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;

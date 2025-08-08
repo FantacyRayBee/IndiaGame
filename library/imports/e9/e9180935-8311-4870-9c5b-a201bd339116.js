@@ -87,13 +87,14 @@ cc.Class({
         if (commodity[0]) {
           price = Math.floor(Number(commodity[0].amount) / 100);
         }
-        CommonFun.getInstance().ShowTipsBeforeBuy(price, function () {
+        // CommonFun.getInstance().ShowTipsBeforeBuy(price, ()=>{
+        var callback = function callback() {
           if (rechargeNeedInfo) {
             if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
               // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
               CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
                 _this.node.destroy();
-              });
+              }, GlobalCfg.PAY_CHANNEL);
             } else {
               CommonFun.getInstance().showBindPhone('AddCash');
               SHOPPING.cashID = _this.firstCommodityId;
@@ -103,23 +104,30 @@ cc.Class({
           } else {
             CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
               _this.node.destroy();
-            });
+            }, GlobalCfg.PAY_CHANNEL);
           }
           ;
-        });
+        };
+        var data1 = {
+          price: this.lab_item0Cash.string,
+          bonus: this.lab_item0Bonus.string
+        };
+        CommonFun.getInstance().showPayChannel(data1, callback);
+        // })
         break;
       case "btn_item1":
         price = 1000;
         if (commodity[1]) {
           price = Math.floor(Number(commodity[1].amount) / 100);
         }
-        CommonFun.getInstance().ShowTipsBeforeBuy(price, function () {
+        // CommonFun.getInstance().ShowTipsBeforeBuy(price, ()=>{
+        var callback2 = function callback2() {
           if (rechargeNeedInfo) {
             if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
               // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
               CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
                 _this.node.destroy();
-              });
+              }, GlobalCfg.PAY_CHANNEL);
             } else {
               CommonFun.getInstance().showBindPhone('AddCash');
               SHOPPING.cashID = _this.secondCommodityId;
@@ -129,10 +137,17 @@ cc.Class({
           } else {
             CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
               _this.node.destroy();
-            });
+            }, GlobalCfg.PAY_CHANNEL);
           }
           ;
-        });
+          // })
+        };
+
+        var data2 = {
+          price: this.lab_item1Cash.string,
+          bonus: this.lab_item1Bonus.string
+        };
+        CommonFun.getInstance().showPayChannel(data2, callback2);
         break;
       case "btn_otherAmount":
         if (rechargeNeedInfo) {

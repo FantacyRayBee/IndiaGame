@@ -49,31 +49,37 @@ cc.Class({
     this.node.destroy();
   },
   dealBtnPayEvent: function dealBtnPayEvent() {
-    var _this = this;
     var str = GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
-    CommonFun.getInstance().ShowTipsBeforeBuy(str, function () {
+    // CommonFun.getInstance().ShowTipsBeforeBuy(str, ()=>{
+    if (CommonFun.getInstance().isValidForScr(this)) {
+      this.node.destroy();
+    }
+    ;
+    var callback = function callback() {
       SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.VipOnceToast;
       ;
-      var _cb = function _cb() {
-        if (CommonFun.getInstance().isValidForScr(_this)) {
-          _this.node.destroy();
-        }
-        ;
-      };
+      var _cb = function _cb() {};
       var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
       if (rechargeNeedInfo) {
         if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-          CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
+          CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
         } else {
           CommonFun.getInstance().showBindPhone('AddCash');
         }
         ;
       } else {
-        CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
+        CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
       }
       ;
-    });
+    };
+    var data = {
+      price: GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100,
+      bonus: (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100
+    };
+    CommonFun.getInstance().showPayChannel(data, callback);
+    // })
   },
+
   onDestroy: function onDestroy() {
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
   }

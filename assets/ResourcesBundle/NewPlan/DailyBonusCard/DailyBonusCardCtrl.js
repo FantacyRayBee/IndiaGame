@@ -79,7 +79,7 @@ cc.Class({
                 if (GlobalCfg.USER_DATAS.voucherCard == 0) {
                     
                     node_btn.on("click", CommonFun.getInstance().debounce(() => {
-                        this.bonusRecharge(id, price);
+                        this.bonusRecharge(id, lab_amount.string, lab_reward.string);
                     }, 1), this);
                 }
                 else {
@@ -101,24 +101,27 @@ cc.Class({
         };
     },
 
-    bonusRecharge: function(id, price) {
-        CommonFun.getInstance().ShowTipsBeforeBuy(price / 100, ()=>{
-            SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.DailyBonusCard;
-            let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-            if (rechargeNeedInfo) {
-                if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                    CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from);
+    bonusRecharge: function(id, price, bonus) {
+        // CommonFun.getInstance().ShowTipsBeforeBuy(price / 100, ()=>{
+            let data = {price: price, bonus: bonus}
+            CommonFun.getInstance().showPayChannel(data, ()=>{
+                SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.DailyBonusCard;
+                let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+                if (rechargeNeedInfo) {
+                    if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                        CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
+                    }
+                    else {
+                        CommonFun.getInstance().showBindPhone('AddCash');
+                        SHOPPING.cashID = id;
+                        this.node.destroy();
+                    };
                 }
                 else {
-                    CommonFun.getInstance().showBindPhone('AddCash');
-                    SHOPPING.cashID = id;
-                    this.node.destroy();
+                    CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
                 };
-            }
-            else {
-                CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from);
-            };
-        })
+            });
+        // })
     },
 
     onEventMsg: function(webData, target) {
