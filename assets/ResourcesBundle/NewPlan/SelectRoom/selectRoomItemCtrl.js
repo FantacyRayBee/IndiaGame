@@ -123,6 +123,8 @@ cc.Class({
         this.roomItemType = itemType;
         this.roomItemData = data;
 
+        LoggerUtil.getInstance().log("🎯 setGameData data :", data );
+
         this.labAll[0].string = data.cellscore / 100;          // 底注 
         this.labAll[1].string = data.entrycondition / 100;     // 入场限制
         this.labAll[2].string = data.maxjetton / 100;          // 最大单注

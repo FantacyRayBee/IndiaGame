@@ -218,17 +218,21 @@ cc.Class({
             let curValue = Number(this.edit_Mult.string);
             if(value == curValue){
                 if (GlobalCfg.ACT_SCENE_CTRL.betStatus == 1) { //飞行阶段 点击下注按钮 说明是要领取奖励
-                    this.sendGetCashMessage();
-                    if (this.autoCount > 0) {
-                        this.btn_bet.node.active = false;
-                        this.btn_bet_cancel.node.active = true;
-                        this.node_waitnextround.active = true;
-                        this.betStatus = 1;
-                    }
-                    else
+                    // this.sendGetCashMessage();
+                    if (this.autoCount <= 0) {
                         this.Init();
+                    }
                 }
             }
+        }
+    },
+
+    showReward() {
+        if (this.autoCount > 0) {
+            this.btn_bet.node.active = false;
+            this.btn_bet_cancel.node.active = true;
+            this.node_waitnextround.active = true;
+            this.betStatus = 1;
         }
     },
 
@@ -275,6 +279,12 @@ cc.Class({
 
     dealBetEvent: function () {
         if (this.betStatus == 0) {//可下注状态
+            if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                    CommonFun.getInstance().showSmallAddCash()
+                }, false);
+                return;
+            };
             let num = this.curBet;
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
                 CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
@@ -351,6 +361,12 @@ cc.Class({
     },
 
     dealAutoPlayEvent: function () {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return;
+        };
         GlobalCfg.ACT_SCENE_CTRL.openAutoSetting(this.root_index);
     },
 
@@ -376,9 +392,10 @@ cc.Class({
     },
 
     setBgWidth: function (isOne) {
-        let width = isOne ? 1150 : 574;
-        this.node.getChildByName('bg').width = width;
-        this.node.getChildByName('autoinfo').getChildByName('line').width = width;
+        let widthBg = isOne ? 700 : 574;
+        let widthLine = isOne ? 520 : 425;
+        this.node.getChildByName('bg').width = widthBg;
+        this.node.getChildByName('autoinfo').getChildByName('line').width = widthLine;
         this.btn_open.node.active = isOne;
     },
 
@@ -398,7 +415,7 @@ cc.Class({
         if (editBox.string == "") {
             editBox.string = editBox.placeholder;
         }
-        const value = editBox.string;
+        const value = editBox.string < 10 ? 10 : editBox.string;
         this.curBet = parseFloat(value) * 100;
         this.lab_curBet2.string = (this.curBet / 100).toFixed(2) + " INR";
     },
@@ -420,7 +437,7 @@ cc.Class({
         if(toggleName == this.NowToggleName)
             return;
         if (this.node_betinfo) {
-            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, 0) : cc.v2(0, 20);
+            this.node_betinfo.position = toggleName == "tog_bet" ? cc.v2(0, 0) : cc.v2(0, 35);
         };
         if (this.node_autoinfo) {
             this.node_autoinfo.active = toggleName == "tog_auto";

@@ -68,7 +68,7 @@ cc.Class({
 
         this.drawLine = false;                  // 是否绘制线
         this.constStartPosX = -500;               // 走势起点X坐标
-        this.constStartPosY = -188;               // 走势起点Y坐标
+        this.constStartPosY = -165;               // 走势起点Y坐标
         this.drawPosX = -500;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
@@ -80,7 +80,7 @@ cc.Class({
         this.numSelfBet = 0;                        // 存放当前玩家下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
-        this.trendMaxNum = 22;                     // 走势图最大显示点数
+        this.trendMaxNum = 13;                     // 走势图最大显示点数
         this.roundTopRankInfo = {};
         this.provablyData = {}
         this.betTimerTween = null;
@@ -99,6 +99,12 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+
+        let size = cc.view.getFrameSize();
+        console.log("caojun 当前分辨率:", size.width, size.height);
+        if (size.width / size.height < 2) {
+            this.node.getChildByName("root").scale = 0.85;
+        }
     },
 
     onDestroy() {
@@ -145,10 +151,10 @@ cc.Class({
     initialization() {
         this.initLineMark(this.horizontalLine, "time");
         this.initLineMark(this.variableLine, "rate");
-        this.defaultLayer = this.node.getChildByName('defaultLayer');
-        this.waitLayer = this.node.getChildByName('waitLayer');
-        this.duringLayer = this.node.getChildByName('during');
-        this.popupLayer = this.node.getChildByName('popupLayer');       // 弹窗层
+        this.defaultLayer = this.node.getChildByName('root').getChildByName('defaultLayer');
+        this.waitLayer = this.node.getChildByName('root').getChildByName('waitLayer');
+        this.duringLayer = this.node.getChildByName('root').getChildByName('during');
+        this.popupLayer = this.node.getChildByName('root').getChildByName('popupLayer');       // 弹窗层
 
         this.duringLayer.active = false;
         this.waitLayer.active = false;
@@ -408,7 +414,7 @@ cc.Class({
             let trends = scene.openRecord;              // 开奖记录
             this.dealTrendData(trends);
             this.dealRectTrendData(this.pointRecordDataList);
-
+            LoggerUtil.getInstance().log("重连 scene :", scene);
             this.numSelfBet = chip;
             switch (status) {
                 case 0:
@@ -449,36 +455,62 @@ cc.Class({
      * @param {Point {  int64 x = 1;  int64 mul = 2;}} point 当前飞机的坐标点
      */
     dealFlyState(point) {
-        let time = point.x;         // 时间 ms
-        let mul = point.mul;         // 倍数
+        const MAX_X = 500;
+        const MAX_Y = 140;
+        let time = point.x;   // ms
+        let mul  = point.mul; // 倍数
         this.drawPosX = this.constStartPosX;
         this.duringFlyTime = Number(time / 1000);
+    
+        // 只补画最近 ~2.3s 的轨迹，避免一次性画太多
         let limitTime = 2.3;
-        let time_s = Number(time / 1000);
-        if (time_s <= limitTime) {
-            limitTime = time_s;
-        }
+        let time_s = this.duringFlyTime;
+        if (time_s <= limitTime) limitTime = time_s;
+    
         let frameRate = cc.game.getFrameRate();
-        let frameRateTime = 1 / frameRate;
-        let drawCount = Math.floor(limitTime / frameRateTime);
-        LoggerUtil.getInstance().warn('绘画次数：', limitTime, drawCount);
-        // 公式：rate = math.Pow(float64(x)/1000, 2)/100 + 1
-        
-        let unitTime = limitTime / drawCount;         // 单位时间
+        let unitTime = 1 / frameRate;                 // 每帧时间
+        let drawCount = Math.floor(limitTime / unitTime);
+    
         for (let i = 0; i < drawCount; i++) {
             const x = i * unitTime;
-            let frontY = 0;
-            if (i > 0) {
-                frontY = this.constStartPosY + Math.pow(x - unitTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
-            } else {
-                frontY = this.constStartPosY + Math.pow(x, 2) / 10 * this.lineRateMarkOffsetY * 5;
+    
+            // 轨迹公式
+            let currentY = this.constStartPosY + Math.pow(x, 2) / 20 * this.lineRateMarkOffsetY * 8;
+            let deltaX = (unitTime / 3) * this.lineTimeMarkOffsetX;
+    
+            // 预计算下一帧位置
+            let nextX = this.drawPosX + deltaX;
+            let nextY = currentY;
+    
+            // ✅ 边界裁剪 + 切换震荡
+            if (nextX >= MAX_X || nextY >= MAX_Y) {
+                this.drawPosX = Math.min(nextX, MAX_X);
+                this.drawPosY = Math.min(nextY, MAX_Y);
+                this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
+                this.setRegion();
+                this.isOscillating = true;
+                this.setMoveMark(true);
+                LoggerUtil.getInstance().log("🎯 重连补画触边，切震荡 at", this.drawPosX, this.drawPosY);
+                break;
             }
-            let currentY = this.constStartPosY + Math.pow(x, 2) / 10 * this.lineRateMarkOffsetY * 5;
-            let deltaX = (unitTime / 2) * this.lineTimeMarkOffsetX;
-            this.drawPosX += deltaX;
-            this.flyRocketNode.setPosition(this.drawPosX, currentY);
+    
+            // 正常前进
+            this.drawPosX = nextX;
+            this.drawPosY = nextY;
+            this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.setRegion();
         }
+    
+        // 兜底：循环可能没触发（drawCount==0）或刚好卡边界
+        if (this.drawPosX >= MAX_X || this.drawPosY >= MAX_Y) {
+            this.drawPosX = Math.min(this.drawPosX, MAX_X);
+            this.drawPosY = Math.min(this.drawPosY, MAX_Y);
+            this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
+            this.isOscillating = true;
+            this.setMoveMark(true);
+        }
+    
+        // 初始化刻度线（原逻辑保留）
         this.initTimeMarkByCurTime(time);
         this.initRateMarkByCurRate(Number((mul / 1000).toFixed(2)));
     },
@@ -762,28 +794,39 @@ cc.Class({
         this.rewardPosNode.addChild(prefabRwd);
         prefabRwd.getComponent("AviatorReward").setData(notify);
         this.checkAutoSettingStatus(notify.mul);
+        this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
+        this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
+        
+        
     },
 
     checkAutoSettingStatus(curWinMult = 0) {
-        let targetValue = Math.abs(this.currentSetAutoDiamond - GlobalCfg.USER_DATAS.userDiamond);
+        if (this.currentSetAutoDiamond == 0) {
+            return;
+        }
+        let targetValue = GlobalCfg.USER_DATAS.userDiamond - this.currentSetAutoDiamond;
         LoggerUtil.getInstance().log(`checkAutoSettingStatus:`, this.autoSettingInfos);
         LoggerUtil.getInstance().log(`checkAutoSettingStatus targetValue :`, targetValue);
         for (let index = 0; index < 2; index++) {
             if (this.autoSettingInfos[index] != null) {
                 let infos = this.autoSettingInfos[index];
-                if (infos[0] > 0 && infos[0] >= targetValue) {
-                    this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
+                let betCtrl = this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl')
+                if (infos[0] > 0 && targetValue < 0 && infos[0] <= Math.abs(targetValue)) {
+                    betCtrl.dealStopAutoEvent();
                     this.autoSettingInfos[index] = null;
+                    this.currentSetAutoDiamond = 0;
                     break;
                 }
-                if (infos[1] > 0 && infos[1] <= targetValue) {
-                    this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
+                if (infos[1] > 0 && targetValue > 0 && infos[1] <= targetValue) {
+                    betCtrl.dealStopAutoEvent();
                     this.autoSettingInfos[index] = null;
+                    this.currentSetAutoDiamond = 0;
                     break;
                 }
                 if (infos[2] > 0 && (curWinMult / 10) >= infos[2]) {
-                    this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl').dealStopAutoEvent();
+                    betCtrl.dealStopAutoEvent();
                     this.autoSettingInfos[index] = null;
+                    this.currentSetAutoDiamond = 0;
                     break;
                 }
             }
@@ -889,7 +932,7 @@ cc.Class({
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
         node.getComponent("AviatorRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(210, 195));
+        node.setPosition(cc.v2(230, 135));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
@@ -900,7 +943,7 @@ cc.Class({
      */
     showSettingNode() {
         let node = cc.instantiate(this.prefabSetting);
-        node.setPosition(cc.v2(610, -80));
+        node.setPosition(cc.v2(695, -87));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
@@ -940,7 +983,7 @@ cc.Class({
         if (!this.isFlying) return;
     
         // ✅ 飞行期间倍率始终增长
-        let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
+        let rate = 1 + Math.pow(this.duringFlyTime, 2) / 20;
         this.updateCenterRate(rate);
     
         // ✅ 正确震荡逻辑：震荡时一定执行
@@ -948,7 +991,7 @@ cc.Class({
             this.duringFlyTime += dt;
             // 震荡配置
             const baseX = this.drawPosX;
-            const baseY = 180;
+            const baseY = this.drawPosY;
             const freqX = 2;     // 左右震荡频率
             const freqY = 3;     // 上下震荡频率
             const ampX = 6;      // 左右幅度
@@ -961,14 +1004,11 @@ cc.Class({
         }
     
         // ❗此处不能再判断 drawLine，必须继续逻辑
-        let frontY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 8;
         this.duringFlyTime += dt;
-        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 8;
-        let deltaX = (dt / 2) * this.lineTimeMarkOffsetX;
-        let deltaY = currentY - frontY;
+        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 20 * this.lineRateMarkOffsetY * 8;
+        let deltaX = (dt / 3) * this.lineTimeMarkOffsetX;
     
         if (this.isMoveTimeMark) this.moveTimeMark(deltaX);
-        if (this.isMoveRateMark) this.moveRateMark(deltaY);
     
         this.drawPosX += deltaX;
         this.drawPosY = currentY;
@@ -976,9 +1016,9 @@ cc.Class({
         this.setRegion();
     
         // ✅ 当达到边界时，切换为震荡阶段（一次性）
-        if (!this.isOscillating && (this.drawPosX >= 500 || this.drawPosY >= 160)) {
+        if (!this.isOscillating && (this.drawPosX >= 500 || this.drawPosY >= 140)) {
             this.drawPosX = Math.min(this.drawPosX, 500);
-            this.drawPosY = Math.min(this.drawPosY, 160);
+            this.drawPosY = Math.min(this.drawPosY, 140);
             this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.isOscillating = true;
             this.setMoveMark(true);

@@ -20,9 +20,9 @@ cc.Class({
             return;
         }
 
-        // ✅ 倒序处理，最多取76条
+        // ✅ 倒序处理
         let reversed = data.slice().reverse();
-        let limited = reversed.slice(0, 76);
+        let limited = reversed.slice(0, 39);
 
         this.initPoint(limited);
     },

@@ -284,7 +284,7 @@ GameServerManager.onReceive = function (evt) {
   var bufferStr = evt.data;
   var buffer = new Uint8Array(bufferStr);
   var msgTransPack = ProtobufManager.decode("baseproto", "baseproto.TransPack", buffer);
-  LoggerUtil.getInstance().log("GameService WebSocket onReceive: ", msgTransPack.id);
+  // LoggerUtil.getInstance().log("GameService WebSocket onReceive: ", msgTransPack.id);
   GameServerManager.startHeartBeat();
   if (GameServerManager.discardMsg) {
     return;
@@ -315,7 +315,7 @@ GameServerManager.onReceive = function (evt) {
       var minutes = now.getMinutes();
       // 获取秒
       var seconds = now.getSeconds();
-      if (msgTransPack.id != "gameservice.bettingupdatenotify") {
+      if (msgTransPack.id != "gameservice.bettingupdatenotify" && msgTransPack.id != "gameservice.cashnotify" && msgTransPack.id != "gameservice.betnotify") {
         LoggerUtil.getInstance().log("GameService\u6536\u5230\u5E76\u5206\u53D1\u5185\u90E8\u5305\u6570\u636E(" + year + "-" + month + "-" + date + " " + hours + ":" + (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds) + ") ===>", msgTransPack.id, msgData);
       }
     } else {

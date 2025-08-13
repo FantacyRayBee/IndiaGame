@@ -201,8 +201,8 @@ cc.Class({
                 }, GlobalCfg.PAY_CHANNEL);
             }
             this.node.destroy();
-            let data = {price: Math.round((data.amount + data.add)/100), bonus: Math.round(data.bonus/100)}
-            CommonFun.getInstance().showPayChannel(data, callback);
+            let _data = {price: Math.round((data.amount + data.add)/100), bonus: Math.round(data.bonus/100)}
+            CommonFun.getInstance().showPayChannel(_data, callback);
         });
     },
 });

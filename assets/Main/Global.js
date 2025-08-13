@@ -1562,7 +1562,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     default:
       break;
   };
-}; 
+};
 
 
 
