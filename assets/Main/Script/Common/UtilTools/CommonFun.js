@@ -568,6 +568,13 @@ let CommonFun = cc.Class({
         return uuid;
     },  
 
+    fixed:function(num){
+        // let result = Math.floor(num * 100) / 100; // 截断两位小数
+        // return result.toString().replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '')
+        let result = Math.floor(num * 100) / 100; // 截断两位小数
+        return result.toFixed(2); // 始终保留 2 位
+    },
+
     /**
      * 检测小游戏是需要版本更新
      * @param {string} subpackgeName 小游戏bundle名

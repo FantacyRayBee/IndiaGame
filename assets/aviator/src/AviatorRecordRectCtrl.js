@@ -26,7 +26,7 @@ cc.Class({
         }
         // this.node.getComponent(cc.Sprite).spriteFrame = _sp;
         this.node.getChildByName('Label').color = color;
-        this.node.getChildByName('Label').getComponent(cc.Label).string = value + 'x';
+        this.node.getChildByName('Label').getComponent(cc.Label).string =  CommonFun.getInstance().fixed(data.mul / 1000) + 'x ';
     },
 
     showLight(bool) {

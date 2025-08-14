@@ -1,6 +1,11 @@
 syntax = "proto3";
 package gameservice;
 
+// 心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
 // 返回结果
 message ResponseBase {
   uint32 result = 1;

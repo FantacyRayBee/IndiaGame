@@ -563,6 +563,7 @@ cc.Class({
 
     // 飞机
     this.protoAviator = {
+      "gameservice.pingpang": "PingPang",
       "gameservice.login": "LoginAck",
       "gameservice.loadwhole": "LoadWholeAck",
       "gameservice.exit": "ExitAck",

@@ -28624,11 +28624,6 @@
     "meta": 1754639146331,
     "relativePath": "7up7downGame\\7upScript\\7upCtrl.js"
   },
-  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1754639123096,
-    "meta": 1754639169582,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
-  },
   "a4bd1034-287e-47e9-ae96-c625fc7cc163": {
     "asset": 1754634432604,
     "meta": 1754639145118,
@@ -28680,8 +28675,8 @@
     "relativePath": "aviator\\prefab\\AviatorReward.prefab"
   },
   "75131999-d098-4bb3-a686-081b2cbceaed": {
-    "asset": 1755050388394,
-    "meta": 1755050388411,
+    "asset": 1755141193523,
+    "meta": 1755141193541,
     "relativePath": "aviator\\aviator.fire"
   },
   "b40ddde7-5736-47a0-96fa-a031c75ff112": {
@@ -28894,35 +28889,10 @@
     "meta": 1754639164902,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\ChangeHeadItemCtrl.js"
   },
-  "de49df87-6e4a-44df-a73d-c8d090f88016": {
-    "asset": 1754634432599,
-    "meta": 1754639168879,
-    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
-  },
   "697694af-2375-4142-ab99-1d6f8cf7032a": {
     "asset": 1754634432752,
     "meta": 1754639147569,
     "relativePath": "aviator\\res\\main"
-  },
-  "b78cff13-0824-4452-8f78-8afce67caa31": {
-    "asset": 1754634432700,
-    "meta": 1754639160246,
-    "relativePath": "aviator\\res\\main\\Group 3.png"
-  },
-  "eea6d0d7-5dba-4273-97fd-36d58ff799e4": {
-    "asset": 1754634432704,
-    "meta": 1754639160319,
-    "relativePath": "aviator\\res\\main\\Rectangle 12.png"
-  },
-  "8fbb989d-7cbd-4a71-ac7d-acf81c762dfc": {
-    "asset": 1754634432707,
-    "meta": 1754639160336,
-    "relativePath": "aviator\\res\\main\\Rectangle 16.png"
-  },
-  "01816824-aa8d-422a-8718-adb258f129b8": {
-    "asset": 1754634432712,
-    "meta": 1754639160338,
-    "relativePath": "aviator\\res\\main\\Rectangle 20.png"
   },
   "4a7c5f2e-1f1b-4ac7-9d0d-d3e2531651c6": {
     "asset": 1754634432735,
@@ -28939,20 +28909,10 @@
     "meta": 1754639160342,
     "relativePath": "aviator\\res\\main\\Rectangle 23.png"
   },
-  "2349b437-105d-4608-be83-d4bd000f3c06": {
-    "asset": 1754634432713,
-    "meta": 1754639160341,
-    "relativePath": "aviator\\res\\main\\Rectangle 21.png"
-  },
   "1123c773-1368-4bcf-91d8-392abe731ff0": {
     "asset": 1754634432737,
     "meta": 1754639160277,
     "relativePath": "aviator\\res\\main\\icon_更多.png"
-  },
-  "79e0625f-a23f-43e7-bccd-5fc0e1ca8c38": {
-    "asset": 1754634432703,
-    "meta": 1754639160303,
-    "relativePath": "aviator\\res\\main\\Rectangle 11.png"
   },
   "e88caef4-f032-4aab-9e53-cffbb3fae7c7": {
     "asset": 1754634432706,
@@ -28989,21 +28949,6 @@
     "meta": 1754639160340,
     "relativePath": "aviator\\res\\main\\Rectangle 22.png"
   },
-  "77b0afee-902a-4722-a792-8f247ed4e7e3": {
-    "asset": 1754634432715,
-    "meta": 1754639160343,
-    "relativePath": "aviator\\res\\main\\Rectangle 40.png"
-  },
-  "70700240-f2b3-40cd-a313-54cb818e67fd": {
-    "asset": 1754634432716,
-    "meta": 1754639160366,
-    "relativePath": "aviator\\res\\main\\Rectangle 42.png"
-  },
-  "1d65203f-0617-48a9-b58a-3ae523ff205d": {
-    "asset": 1754634432834,
-    "meta": 1754639147874,
-    "relativePath": "aviator\\src\\AviatorRecordRectCtrl.js"
-  },
   "7a25296d-3d2a-4630-8eec-c6e8d54cffaa": {
     "asset": 1754634432798,
     "meta": 1754639160518,
@@ -29023,11 +28968,6 @@
     "asset": 1754634432718,
     "meta": 1754639160370,
     "relativePath": "aviator\\res\\main\\Rectangle 65.png"
-  },
-  "ec4d1d5d-d820-44e0-8a3c-37fb2fc34ecb": {
-    "asset": 1754634432838,
-    "meta": 1754639147938,
-    "relativePath": "aviator\\src\\AviatorRoundRoot2.js"
   },
   "c55fe411-47b6-4baf-9ad8-f2c74f3a80b0": {
     "asset": 1754634432830,
@@ -29539,20 +29479,10 @@
     "meta": 1754639175081,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\res\\newTip2\\金币堆₹.png"
   },
-  "e21ea6b4-6c65-42e4-851f-be896b2cdd46": {
-    "asset": 1754644692981,
-    "meta": 1754644696731,
-    "relativePath": "aviator\\src\\AviatorReward.js"
-  },
   "2b33a01c-5a39-4bad-a6d2-cadb620d940f": {
     "asset": 1754879975529,
     "meta": 1754879977677,
     "relativePath": "ResourcesBundle\\NewPlan\\SelectRoom\\selectRoomItemCtrl.js"
-  },
-  "fc097dc7-49e3-4f0a-b7ec-afe2d7c2ea5a": {
-    "asset": 1754893204573,
-    "meta": 1754893265150,
-    "relativePath": "resources\\proto\\aviator\\gameservice.proto"
   },
   "189e376f-e30a-4785-a740-4f7374aae6b0": {
     "asset": 1754901854551,
@@ -29563,11 +29493,6 @@
     "asset": 1754970682790,
     "meta": 1754970685775,
     "relativePath": "ResourcesBundle\\NewPlan\\OnlyPay\\OnlyPayCtrl.js"
-  },
-  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
-    "asset": 1754971014822,
-    "meta": 1754971017293,
-    "relativePath": "aviator\\src\\Aviator.js"
   },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
     "asset": 1754986944800,
@@ -29584,19 +29509,99 @@
     "meta": 1754994124395,
     "relativePath": "Main\\Script\\Common\\Net\\ProtobufManager.js"
   },
-  "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
-    "asset": 1754994468407,
-    "meta": 1754994771424,
-    "relativePath": "aviator\\src\\AviatorBetCtrl.js"
-  },
   "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
     "asset": 1754999873915,
     "meta": 1755000158671,
     "relativePath": "Main\\Script\\Common\\Net\\LobbyServerManager.js"
   },
+  "de49df87-6e4a-44df-a73d-c8d090f88016": {
+    "asset": 1755054726233,
+    "meta": 1755054874886,
+    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
+  },
   "12508095-553d-4d89-9735-cd2b8e608ab7": {
-    "asset": 1755052016296,
-    "meta": 1755052291573,
+    "asset": 1755054795878,
+    "meta": 1755054874969,
     "relativePath": "Main\\Script\\Common\\Net\\GameServerManager.js"
+  },
+  "fc097dc7-49e3-4f0a-b7ec-afe2d7c2ea5a": {
+    "asset": 1755054757394,
+    "meta": 1755054874986,
+    "relativePath": "resources\\proto\\aviator\\gameservice.proto"
+  },
+  "b78cff13-0824-4452-8f78-8afce67caa31": {
+    "asset": 1755065570447,
+    "meta": 1755066338659,
+    "relativePath": "aviator\\res\\main\\Group 3.png"
+  },
+  "8fbb989d-7cbd-4a71-ac7d-acf81c762dfc": {
+    "asset": 1755066301510,
+    "meta": 1755066338660,
+    "relativePath": "aviator\\res\\main\\Rectangle 16.png"
+  },
+  "eea6d0d7-5dba-4273-97fd-36d58ff799e4": {
+    "asset": 1755066275704,
+    "meta": 1755066338661,
+    "relativePath": "aviator\\res\\main\\Rectangle 12.png"
+  },
+  "01816824-aa8d-422a-8718-adb258f129b8": {
+    "asset": 1755066495325,
+    "meta": 1755066517436,
+    "relativePath": "aviator\\res\\main\\Rectangle 20.png"
+  },
+  "2349b437-105d-4608-be83-d4bd000f3c06": {
+    "asset": 1755066551457,
+    "meta": 1755066568172,
+    "relativePath": "aviator\\res\\main\\Rectangle 21.png"
+  },
+  "cf128d81-a34e-4305-8c72-0a8bc09d3870": {
+    "asset": 1755066646609,
+    "meta": 1755066646628,
+    "relativePath": "aviator\\res\\main\\Rectangle 14.png"
+  },
+  "79e0625f-a23f-43e7-bccd-5fc0e1ca8c38": {
+    "asset": 1755066960258,
+    "meta": 1755066976200,
+    "relativePath": "aviator\\res\\main\\Rectangle 11.png"
+  },
+  "70700240-f2b3-40cd-a313-54cb818e67fd": {
+    "asset": 1755067012120,
+    "meta": 1755067027174,
+    "relativePath": "aviator\\res\\main\\Rectangle 42.png"
+  },
+  "77b0afee-902a-4722-a792-8f247ed4e7e3": {
+    "asset": 1755067065880,
+    "meta": 1755067077423,
+    "relativePath": "aviator\\res\\main\\Rectangle 40.png"
+  },
+  "e21ea6b4-6c65-42e4-851f-be896b2cdd46": {
+    "asset": 1755082007292,
+    "meta": 1755082278725,
+    "relativePath": "aviator\\src\\AviatorReward.js"
+  },
+  "ec4d1d5d-d820-44e0-8a3c-37fb2fc34ecb": {
+    "asset": 1755082169077,
+    "meta": 1755082278746,
+    "relativePath": "aviator\\src\\AviatorRoundRoot2.js"
+  },
+  "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
+    "asset": 1755082536633,
+    "meta": 1755082539344,
+    "relativePath": "aviator\\src\\AviatorBetCtrl.js"
+  },
+  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
+    "asset": 1755084238891,
+    "meta": 1755084242550,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
+  },
+  "1d65203f-0617-48a9-b58a-3ae523ff205d": {
+    "asset": 1755140894140,
+    "meta": 1755140911169,
+    "relativePath": "aviator\\src\\AviatorRecordRectCtrl.js"
+  },
+  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
+    "asset": 1755141056113,
+    "meta": 1755141060336,
+    "relativePath": "aviator\\src\\Aviator.js"
   }
 }

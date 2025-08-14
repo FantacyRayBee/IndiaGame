@@ -80,7 +80,7 @@ cc.Class({
         this.numSelfBet = 0;                        // 存放当前玩家下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
-        this.trendMaxNum = 13;                     // 走势图最大显示点数
+        this.trendMaxNum = 15;                     // 走势图最大显示点数
         this.roundTopRankInfo = {};
         this.provablyData = {}
         this.betTimerTween = null;
@@ -251,6 +251,7 @@ cc.Class({
             self.updateSelfCoin();
         }
         else if (msgId == 'gameservice.cash') {
+            LoggerUtil.getInstance().log("gameservice.cash notify = ",notify);
             self.showReward(notify);
             self.updateSelfCoin(); // 更新自己的金币
         }
@@ -756,7 +757,7 @@ cc.Class({
         let rate = notify.mul;
         let jackpotPool = notify.jackpotPool;
         let point = { x: time, mul: rate };
-        this.updateCenterRate(Number((rate / 1000).toFixed(2)), true);
+        this.updateCenterRate(CommonFun.getInstance().fixed(rate / 1000), true);
         this.flyEndAnimion(point);
         this.background.getComponent(cc.Animation).stop();
         this.checkAutoSettingStatus();
@@ -770,7 +771,7 @@ cc.Class({
         }, { easing: 'sineOut' })
         .call(() => {
             this.updateTrendData(point);
-            this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1]);
+            this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1], true);
             this.curRoundAddCoinFinish();
         })
         .start();
@@ -883,48 +884,105 @@ cc.Class({
     initRectTrend(data) {
         this.nodeTrendParent.removeAllChildren();
         this.rectTrendNodeArray.length = 0;
-        if (data.length < this.trendMaxNum) {
-            for (let i = 0; i < data.length; i++) {
-                this.createRectTrendNode(data[i]);
-            }
-        } else {
-            for (let i = data.length - this.trendMaxNum; i < data.length; i++) {
-                this.createRectTrendNode(data[i]);
-            }
+    
+        const start = Math.max(0, data.length - this.trendMaxNum);
+        const latest = data.slice(start); // 旧 ... 新
+    
+        // 反向添加：新 -> 旧；这样左到右就是 新 -> 旧
+        for (let i = latest.length - 1; i >= 0; i--) {
+            const trendNode = cc.instantiate(this.prefabTrendItem);
+            const ctrl = trendNode.getComponent("AviatorRecordRectCtrl");
+            if (ctrl) ctrl.init(latest[i], false); // 初始化不播缩放动画
+            this.nodeTrendParent.addChild(trendNode);
+            this.rectTrendNodeArray.push(trendNode);
         }
     },
 
     /**
      * 生成矩形走势数据节点
      */
-    createRectTrendNode(data, isShowLight) {
-        if (isShowLight == undefined) {
-            isShowLight = false;
-        }
+    createRectTrendNode(data, isShowAnim = false) {
         let trendNode = cc.instantiate(this.prefabTrendItem);
         let RocketRecordRectCtrl = trendNode.getComponent("AviatorRecordRectCtrl");
         if (RocketRecordRectCtrl) {
-            RocketRecordRectCtrl.init(data);
+            RocketRecordRectCtrl.init(data, isShowAnim);
             this.nodeTrendParent.addChild(trendNode);
-            RocketRecordRectCtrl.showLight(isShowLight);
             this.rectTrendNodeArray.push(trendNode);
         }
     },
 
-    /**
-     * 更新矩形走势数据节点
-     */
-    updateRectTrendNode(data) {
-        if (this.rectTrendNodeArray.length >= this.trendMaxNum) {
-            let node = this.rectTrendNodeArray.shift();
-            node.removeFromParent(true);
-            if (cc.isValid(node)) {
-                node.destroy();
-            }
-        }
-        this.createRectTrendNode(data, true);
+    // 计算一格位移
+    getTrendItemShift() {
+        const parent = this.nodeTrendParent;
+        const layout = parent.getComponent(cc.Layout);
+        const spacing = layout ? layout.spacingX : 0;
+        const sample = this.rectTrendNodeArray[0] || parent.children[0];
+        const width = sample ? sample.width : (this.prefabTrendItem?.data?.width || 110);
+        return width + spacing;
     },
 
+    // 先右移旧项；领先一点时间后再让新项在最左淡入+弹出
+    animateInsertTrendLeft(newNode) {
+        const parent = this.nodeTrendParent;
+        const layout = parent.getComponent(cc.Layout);
+        const hadLayout = !!(layout && layout.enabled);
+        if (hadLayout) layout.enabled = false;
+
+        const shift = this.getTrendItemShift();
+        const hasChildren = parent.children.length > 0;
+        const baseY = hasChildren ? parent.children[0].y : 0;
+        const leftX = hasChildren ? parent.children[0].x : 0;
+
+        // 先把新节点插入最左，但设成“不可见”，避免与旧项重叠时看到
+        newNode.setPosition(leftX, baseY);
+        newNode.opacity = 0;
+        newNode.scale = 0.8;
+        newNode.active = true;
+        parent.insertChild(newNode, 0);
+
+        // 旧项统一右移
+        const moveDur = 1.2;             // 右移总时长（已放慢）
+        const leadDelay = 0.25;           // 领先时间：旧项先挪开一点
+        for (let i = 1; i < parent.children.length; i++) {
+            const child = parent.children[i];
+            cc.tween(child).by(moveDur, { position: cc.v2(shift, 0) }, { easing: 'cubicOut' }).start();
+        }
+
+        // 领先一点时间后，新节点再出现（只做淡入+弹出缩放，不做位移动画）
+        this.scheduleOnce(() => {
+            // 显示新节点（淡入）
+            cc.tween(newNode).to(0.08, { opacity: 255 }).start();
+            // 弹出缩放
+            cc.tween(newNode)
+            .to(0.8, { scale: 1.3 }, { easing: 'quadOut' })
+            .to(0.2, { scale: 1 }, { easing: 'quadIn' })
+            .start();
+        }, leadDelay);
+
+        // 收尾：右移结束后再恢复 Layout
+        this.scheduleOnce(() => {
+            if (hadLayout) {
+                layout.enabled = true;
+                layout.updateLayout();
+            }
+        }, moveDur + 0.02);
+    },
+
+    // 增量更新：移除最右 → 新项最左（先不播动画，交给 animateInsertTrendLeft 控制时机）
+    updateRectTrendNode(data) {
+        if (this.rectTrendNodeArray.length >= this.trendMaxNum) {
+            const rightMost = this.rectTrendNodeArray.pop();
+            rightMost.removeFromParent(true);
+            if (cc.isValid(rightMost)) rightMost.destroy();
+        }
+
+        const trendNode = cc.instantiate(this.prefabTrendItem);
+        const ctrl = trendNode.getComponent("AviatorRecordRectCtrl");
+        if (ctrl) ctrl.init(data, false);   // 不要立刻播出现动画
+
+        this.rectTrendNodeArray.unshift(trendNode); // 最新放数组头
+        this.animateInsertTrendLeft(trendNode);     // 旧项先右移 → 新项再出现
+    },
     /**
      * 展示点形走势数据
      * @param {*} msg 
@@ -961,7 +1019,7 @@ cc.Class({
         if (rate) {
             let ctrl = this.centerRateNode.getComponent("AviatorCenterRate");
             if (ctrl) {
-                ctrl.updateRate(Number(rate).toFixed(2), isEnd);
+                ctrl.updateRate(CommonFun.getInstance().fixed(rate), isEnd);
             }
             this.node_betinfo1.getComponent('AviatorBetCtrl').updateRate(Number(rate).toFixed(2));
             this.node_betinfo2.getComponent('AviatorBetCtrl').updateRate(Number(rate).toFixed(2));

@@ -36,7 +36,7 @@ cc.Class({
 
     setLastGameRecord(data) {
         this.init();
-        this.lab_Result.string = (data.rounds/1000).toFixed(2) + "x";
+        this.lab_Result.string = CommonFun.getInstance().fixed(data.rounds/1000) + "x";
         let value = Number((data.rounds / 1000).toFixed(2));
         if (value >= 0 && value < 2) {
             this.lab_Result.node.color = this.blueLabColor;

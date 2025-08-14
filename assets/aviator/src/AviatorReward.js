@@ -17,8 +17,8 @@ cc.Class({
         let amount = notify.amount; // 领取的金额
         let after = notify.after;   // 钱包剩余
         let result = Math.floor(rate / 10) / 100;
-        this.labRate.string = result.toFixed(2) + "X";
-        this.labWin.string = (amount / 100).toFixed(2)
+        this.labRate.string = CommonFun.getInstance().fixed(result) + "X";
+        this.labWin.string = CommonFun.getInstance().fixed(amount / 100)
         GlobalCfg.USER_DATAS.userDiamond = after;
     },
 });
