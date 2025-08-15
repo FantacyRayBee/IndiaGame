@@ -103,8 +103,10 @@ ProtobufManager.packProtobuf = function (command, messageKey, jsonData, heartTyp
       if (command === "baseproto.pingpang" && heartType) {
         if (heartType === "LOBBY_HEART") {
           command = "lobbyservice.pingpang";
+          return;
         } else if (heartType === "GAME_HEART") {
           command = "gameservice.pingpang";
+          return;
         } else {
           LoggerUtil.getInstance().error("无法区分心跳类型");
           return;

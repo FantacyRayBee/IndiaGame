@@ -1856,13 +1856,13 @@ cc.Class({
             });
         } 
         else if (btnName == "btn_jokerMachine") {
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
-            this.checkUpdate("jokerMachine", () => {
-                CommonFun.getInstance().showProgress();
-                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.product;
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.JOKER);
-            });
-            // CommonFun.getInstance().showGameIconList();
+            // CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
+            // this.checkUpdate("jokerMachine", () => {
+            //     CommonFun.getInstance().showProgress();
+            //     GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.product;
+            //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.JOKER);
+            // });
+            CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_INDIA_GAME);
