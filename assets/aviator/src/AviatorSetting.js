@@ -1,6 +1,7 @@
 let EnumBtnType = cc.Enum({
     Music: 1,
     Effect: 2,
+    Aniamtion: 3,
 });
 
 cc.Class({
@@ -45,11 +46,10 @@ cc.Class({
         this.btn_how.node.on('click', this.onBtnHowToPlay, this);
         this.btn_Free.node.on('click', this.onBtnFree, this);
 
-        
-
 
         this.setMusicEffectBtns(EnumBtnType.Music);
         this.setMusicEffectBtns(EnumBtnType.Effect);
+        this.setMusicEffectBtns(EnumBtnType.Aniamtion);
     },
 
     start() {
@@ -82,16 +82,20 @@ cc.Class({
 
     onBtnProvably() {
         let node = cc.instantiate(this.pabfabProvably);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -440));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
         this.node.destroy();
     },
     onBtnRule() {
         let node = cc.instantiate(this.prefabRule);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -782));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
         this.node.destroy();
     },
     onBtnMybet() {
@@ -100,32 +104,40 @@ cc.Class({
     },
     onBtnlimit() {
         let node = cc.instantiate(this.prefabLimit);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -80));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
         this.node.destroy();
     },
     onBtnChangeHead() {
         let node = cc.instantiate(this.prefabChangeHead);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -200));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
         this.node.destroy();
     },
 
     onBtnHowToPlay() {
         let node = cc.instantiate(this.prefabHowToPlay);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -290));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
         this.node.destroy();
     },
 
     onBtnFree() {
         let node = cc.instantiate(this.prefabFree);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -142));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
         this.node.destroy();
     },
 
@@ -137,6 +149,9 @@ cc.Class({
         else if (type == EnumBtnType.Effect) {
             let state = GlobalCfg.G_COMPONENTS.Audio.checkState('toggle_yinxiao');
             this.tog_sound.isChecked = state;
-        };
+        }
+        else if (type == EnumBtnType.Aniamtion) {
+            this.tog_animation.isChecked = GlobalCfg.ACT_SCENE_CTRL.isHideAviatorAnim;
+        }
     },
 });
