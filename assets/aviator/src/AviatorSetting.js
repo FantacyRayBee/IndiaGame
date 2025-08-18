@@ -100,14 +100,14 @@ cc.Class({
     },
     onBtnlimit() {
         let node = cc.instantiate(this.prefabLimit);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, 200));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
         this.node.destroy();
     },
     onBtnChangeHead() {
         let node = cc.instantiate(this.prefabChangeHead);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, 200));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
         this.node.destroy();
@@ -115,7 +115,7 @@ cc.Class({
 
     onBtnHowToPlay() {
         let node = cc.instantiate(this.prefabHowToPlay);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, 200));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
         this.node.destroy();
@@ -123,7 +123,7 @@ cc.Class({
 
     onBtnFree() {
         let node = cc.instantiate(this.prefabFree);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, 200));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
         this.node.destroy();

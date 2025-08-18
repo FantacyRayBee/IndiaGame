@@ -15,9 +15,6 @@ cc.Class({
         timerBar: cc.ProgressBar,
 
         // during Game
-        horizontalLine: cc.Node,
-        variableLine: cc.Node,
-        graphicsDrawLine: cc.Graphics,
         centerRateNode: cc.Node,
         flyRocketNode: cc.Node,
         playerGetOutParent: cc.Node,
@@ -67,15 +64,15 @@ cc.Class({
         this.pointRecordDataList = [];          // 存放点记录的数组
 
         this.drawLine = false;                  // 是否绘制线
-        this.constStartPosX = -500;               // 走势起点X坐标
-        this.constStartPosY = -165;               // 走势起点Y坐标
-        this.drawPosX = -500;                    // 绘制线起点X坐标
+        this.constStartPosX = -298;               // 走势起点X坐标
+        this.constStartPosY = -182;               // 走势起点Y坐标
+        this.drawPosX = -298;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
         // this.startFlyLineColor = cc.Color(255, 0, 0, 255);
         this.endFlyLineColor = new cc.Color(220, 96, 6, 255);
 
-        this.endFlyPos = cc.v2(755, 270);              // 游戏结束时 飞机终点位置
+        this.endFlyPos = cc.v2(433, 255);              // 游戏结束时 飞机终点位置
 
         this.numSelfBet = 0;                        // 存放当前玩家下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
@@ -90,6 +87,7 @@ cc.Class({
     },
 
     onLoad: function() {
+        CommonFun.getInstance().addVerticalAcc();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_CRASH_GAME);
         GlobalCfg.ACT_SCENE_CTRL = this;
         this.aviatorMessageManager = this.node.getComponent('AviatorMessageManager');
@@ -130,6 +128,7 @@ cc.Class({
         this.initialization();
         LoggerUtil.getInstance().warn("当前游戏帧率", cc.game.getFrameRate());
         this.aviatorAudioManager.playGameMusic();
+        GlobalCfg.USER_DATAS.isNotCharge = true;
     },
 
     /**
@@ -149,8 +148,6 @@ cc.Class({
 
 
     initialization() {
-        this.initLineMark(this.horizontalLine, "time");
-        this.initLineMark(this.variableLine, "rate");
         this.defaultLayer = this.node.getChildByName('root').getChildByName('defaultLayer');
         this.waitLayer = this.node.getChildByName('root').getChildByName('waitLayer');
         this.duringLayer = this.node.getChildByName('root').getChildByName('during');
@@ -168,48 +165,6 @@ cc.Class({
         this.btnBack.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnSetting.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnTrend.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-    },
-
-    /**
-     * 初始化线标记
-     * @param {cc.Node} directionLineNode 刻度父节点
-     * @param {String} type time ， rate
-     * @returns 
-     */
-    initLineMark(directionLineNode, type) {
-        directionLineNode.removeAllChildren();
-        let func = (count, prefabAsset, originX, originY, type, parentNode, nodeArray) => {
-            nodeArray.length = 0;
-            for (let i = 0; i < count; i++) {
-                let node = cc.instantiate(prefabAsset);
-                if (type == "time") {
-                    node.setPosition(cc.v2(originX + 200 * i, originY));
-                    node.getChildByName('Label').active = false;
-
-                } else if (type == "rate") {
-                    node.setPosition(cc.v2(originX, originY + this.lineRateMarkOffsetY * i));
-                    // node.getChildByName('Label').getComponent(cc.Label).string = Number(1 + i * 0.2).toFixed(1) + 'x';
-                }
-                parentNode.addChild(node);
-                nodeArray.push(node);
-            }
-        };
-        let originX = 0, originY = 0;
-        switch (type) {
-            case "time":
-                originX = -600, originY = -3;
-                func(16, this.prefabTimeMark, originX, originY, type, directionLineNode, this.timeMarkNodeArray);
-                break;
-            case "rate":
-                originX = -8, originY = -249;
-                func(7, this.prefabRateMark, originX, originY, type, directionLineNode, this.rateMarkNodeArray);
-                break;
-
-            default:
-                LoggerUtil.getInstance().error("initLineMark Type error");
-                return;
-        }
-
     },
 
     freshGameData() {
@@ -236,6 +191,7 @@ cc.Class({
         else if (msgId == 'gameservice.exit') {
             // 退出房间
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+            CommonFun.getInstance().decVerticalAcc(); 
         }
         else if (msgId == 'gameservice.loadwhole') {
             // 刷新游戏场景
@@ -301,6 +257,7 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+            CommonFun.getInstance().decVerticalAcc(); 
         }
     },
 
@@ -323,6 +280,7 @@ cc.Class({
                 if (result.result == 57) {
                     CommonFun.getInstance().showDiversionFreeTP(() => {
                         GameServerManager.send("gameservice.exit", "ExitReq", {});
+                        // CommonFun.getInstance().decVerticalAcc(); 
                         // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
                     });
                 }
@@ -355,6 +313,7 @@ cc.Class({
         else if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+                CommonFun.getInstance().decVerticalAcc(); 
             }, false);
         }
     },
@@ -433,11 +392,6 @@ cc.Class({
                     this.background.getComponent(cc.Animation).play("rotate"); // 背景旋转
                     break;
                 case 2:
-                    // 结算状态
-                    // let time = curPoint.x;         // 时间
-                    // let mul = curPoint.mul;         // 倍数
-                    // this.initTimeMarkByCurTime(time);
-                    // this.initRateMarkByCurRate(Number((mul / 1000).toFixed(2)));
                     this.freshWaitLayer(false);
                     this.duringLayer.active = false;
                     this.waitLayer.active = false;
@@ -456,8 +410,8 @@ cc.Class({
      * @param {Point {  int64 x = 1;  int64 mul = 2;}} point 当前飞机的坐标点
      */
     dealFlyState(point) {
-        const MAX_X = 500;
-        const MAX_Y = 140;
+        const MAX_X = 300;
+        const MAX_Y = 160;
         let time = point.x;   // ms
         let mul  = point.mul; // 倍数
         this.drawPosX = this.constStartPosX;
@@ -476,7 +430,7 @@ cc.Class({
             const x = i * unitTime;
     
             // 轨迹公式
-            let currentY = this.constStartPosY + Math.pow(x, 2) / 20 * this.lineRateMarkOffsetY * 8;
+            let currentY = this.constStartPosY + Math.pow(x, 2) / 10 * this.lineRateMarkOffsetY * 8;
             let deltaX = (unitTime / 3) * this.lineTimeMarkOffsetX;
     
             // 预计算下一帧位置
@@ -510,10 +464,6 @@ cc.Class({
             this.isOscillating = true;
             this.setMoveMark(true);
         }
-    
-        // 初始化刻度线（原逻辑保留）
-        this.initTimeMarkByCurTime(time);
-        this.initRateMarkByCurRate(Number((mul / 1000).toFixed(2)));
     },
 
     setRegion() {
@@ -581,64 +531,6 @@ cc.Class({
         this.isMoveRateMark = isMove;
     },
 
-    /**
-     * 通过当前时间初始化时间刻度线
-     * @param {Number} time ms
-     */
-    initTimeMarkByCurTime(time) {
-        LoggerUtil.getInstance().log("initTimeMarkByCurTime", time);
-        if (time > 10000) {
-            // 已经开始移动刻度线
-            this.timeMarkNodeArray.length = 0;
-            this.horizontalLine.removeAllChildren();
-            // x: 522.077874999999
-            // y: 144.60892217858014
-            let time_s = time / 1000;       // 秒
-            let more = Number((time_s % 2).toFixed(3));     // 跟上一个刻度之间的差值
-            let lastPosX = 522 + (1 - more / 2) * this.lineTimeMarkOffsetX;
-            let lastTime = Math.round(time_s + 2 - more);
-            for (let i = 0; i < 8; i++) {
-                let node = cc.instantiate(this.prefabTimeMark);
-                node.setPosition(cc.v2(lastPosX - this.lineTimeMarkOffsetX * i, -3));
-                node.getChildByName('Label').getComponent(cc.Label).string = lastTime - i * 2 + 's';
-                this.horizontalLine.addChild(node);
-                this.timeMarkNodeArray.unshift(node);
-            }
-            this.setMoveMark(true);
-        } else {
-            // 暂未移动刻度线
-            this.setMoveMark(false);
-            this.drawLine = true;
-        }
-    },
-
-    /**
-     * 通过当前倍率初始化倍率刻度线
-     * @param {Number} rate 倍率
-     */
-    initRateMarkByCurRate(rate) {
-        if (rate > 2) {
-            this.rateMarkNodeArray.length = 0;
-            this.variableLine.removeAllChildren();
-            let moreRate = (Number(((rate * 10) % 2).toFixed(1)) / 10).toFixed(2);    // 跟下一个刻度之间的差值
-            // LoggerUtil.getInstance().log("moreRate", moreRate);
-            let lastPosY = 144 + (1 - Number(moreRate) / 0.2) * this.lineRateMarkOffsetY;
-            let lastRate = rate + 0.2 - Number(moreRate);
-            // LoggerUtil.getInstance().log("lastRate", lastRate, "lastPosY", lastPosY);
-            for (let i = 0; i < 7; i++) {
-                let node = cc.instantiate(this.prefabRateMark);
-                node.setPosition(cc.v2(-8, lastPosY - this.lineRateMarkOffsetY * i));
-                node.getChildByName('Label').getComponent(cc.Label).string = Number(lastRate - i * 0.2).toFixed(1) + 'x';
-                this.variableLine.addChild(node);
-                this.rateMarkNodeArray.unshift(node);
-            }
-            this.setMoveMark(true);
-        } else {
-            // 暂未移动刻度线
-            this.setMoveMark(false);
-            this.drawLine = true;
-        }
-    },
 
     dealWaitState() {
 
@@ -692,8 +584,6 @@ cc.Class({
         this.isDuringBet = true;
         this.isFlying = false;
         this.setMoveMark(false);
-        this.initLineMark(this.horizontalLine, "time");
-        this.initLineMark(this.variableLine, "rate");
 
         let time = null, count = null;
         if (remainder) {
@@ -735,11 +625,9 @@ cc.Class({
         this.region.active = true;
         this.region.width = 0;
         this.region.height = 0;
-        this.graphicsDrawLine.clear();
         this.freshWaitLayer(false);
         this.isMoveTimeMark = false;
         this.updateCenterRate(1);
-        this.graphicsDrawLine.moveTo(this.drawPosX, this.constStartPosY);
         this.isFlying = true;
         this.drawLine = true;
         this.background.getComponent(cc.Animation).play("rotate");
@@ -990,7 +878,7 @@ cc.Class({
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
         node.getComponent("AviatorRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(230, 135));
+        node.setPosition(cc.v2(0, 584));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
@@ -1001,7 +889,7 @@ cc.Class({
      */
     showSettingNode() {
         let node = cc.instantiate(this.prefabSetting);
-        node.setPosition(cc.v2(695, -87));
+        node.setPosition(cc.v2(100, 200));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
     },
@@ -1063,7 +951,7 @@ cc.Class({
     
         // ❗此处不能再判断 drawLine，必须继续逻辑
         this.duringFlyTime += dt;
-        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 20 * this.lineRateMarkOffsetY * 8;
+        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 8;
         let deltaX = (dt / 3) * this.lineTimeMarkOffsetX;
     
         if (this.isMoveTimeMark) this.moveTimeMark(deltaX);
@@ -1074,9 +962,9 @@ cc.Class({
         this.setRegion();
     
         // ✅ 当达到边界时，切换为震荡阶段（一次性）
-        if (!this.isOscillating && (this.drawPosX >= 500 || this.drawPosY >= 140)) {
-            this.drawPosX = Math.min(this.drawPosX, 500);
-            this.drawPosY = Math.min(this.drawPosY, 140);
+        if (!this.isOscillating && (this.drawPosX >= 300 || this.drawPosY >= 160)) {
+            this.drawPosX = Math.min(this.drawPosX, 300);
+            this.drawPosY = Math.min(this.drawPosY, 160);
             this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.isOscillating = true;
             this.setMoveMark(true);
