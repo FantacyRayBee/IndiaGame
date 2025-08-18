@@ -84,6 +84,7 @@ cc.Class({
         this.autoSettingInfos = [null,null]
         this.currentSetAutoDiamond = 0; // 当次选择自动下注的钻石数 记录下来 用于判断是否需要停止自动下注
         this.headId = 1; // 头像ID
+        this.isHideAviatorAnim = true; // 是否隐藏飞行动画
     },
 
     onLoad: function() {
@@ -97,12 +98,35 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+        this.calcSceneScale();
+    },
 
-        let size = cc.view.getFrameSize();
-        console.log("caojun 当前分辨率:", size.width, size.height);
-        if (size.width / size.height < 2) {
-            this.node.getChildByName("root").scale = 0.85;
-        }
+
+    calcSceneScale() {
+        const size = cc.view.getFrameSize();
+        let frameW = size.width;
+        let frameH = size.height;
+        LoggerUtil.getInstance().log("当前屏幕分辨率 ", frameW, frameH);
+    
+        // 宽高比
+        const r = frameW / frameH;
+    
+        // 二次拟合系数（保证 371×808→1.0, 371×663→1.2, 744×1829→0.9）
+        const A = 0.53978958;
+        const B = 1.44174666;
+        const C = 0.22420797;
+    
+        let scale = A * r * r + B * r + C;
+    
+        // 限制缩放范围，避免极端机型过大过小
+        scale = Math.max(0.85, Math.min(scale, 1.2));
+    
+        // 保留三位小数避免浮点抖动
+        scale = Math.round(scale * 1000) / 1000;
+    
+        LoggerUtil.getInstance().log("计算后的 scale ", scale);
+    
+        this.node.scale = scale;  // 根节点缩放
     },
 
     onDestroy() {
@@ -131,6 +155,7 @@ cc.Class({
         GlobalCfg.USER_DATAS.isNotCharge = true;
     },
 
+
     /**
      * 初始化变量
      */
@@ -152,14 +177,17 @@ cc.Class({
         this.waitLayer = this.node.getChildByName('root').getChildByName('waitLayer');
         this.duringLayer = this.node.getChildByName('root').getChildByName('during');
         this.popupLayer = this.node.getChildByName('root').getChildByName('popupLayer');       // 弹窗层
+        this.touchbg = this.node.getChildByName(`root`).getChildByName(`touchbg`);
 
         this.duringLayer.active = false;
         this.waitLayer.active = false;
         this.popupLayer.active = false;
-        this.popupLayer.on(cc.Node.EventType.TOUCH_START, () => {
+        this.touchbg.active = false;
+        this.touchbg.on(cc.Node.EventType.TOUCH_START, () => {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.popupLayer.destroyAllChildren();
             this.popupLayer.active = false;
+            this.touchbg.active = false;
         }, this);
 
         this.btnBack.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -564,7 +592,7 @@ cc.Class({
     getBetRecord(notify) {
         LoggerUtil.getInstance().log("getBetRecord notify = ", notify);
         let node = cc.instantiate(this.prefabMybet);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -170));
         node.getComponent("AviatorMybet").setData(notify);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
@@ -622,7 +650,6 @@ cc.Class({
         this.duringFlyTime = 0;
         this.isOscillating = false;
         this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
-        this.region.active = true;
         this.region.width = 0;
         this.region.height = 0;
         this.freshWaitLayer(false);
@@ -640,7 +667,8 @@ cc.Class({
         this.isOscillating = false;
         this.isFlying = false;
         this.drawLine = false;
-        this.region.active = false;
+        this.region.width = 0;
+        this.region.height = 0;
         let time = notify.x;
         let rate = notify.mul;
         let jackpotPool = notify.jackpotPool;
@@ -878,9 +906,10 @@ cc.Class({
     showPointTrendNode() {
         let node = cc.instantiate(this.prefabRecord);
         node.getComponent("AviatorRecord").init(this.pointRecordDataList);
-        node.setPosition(cc.v2(0, 584));
+        node.setPosition(cc.v2(0, -36));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
+        this.touchbg.active = true;
     },
 
     /**
@@ -889,12 +918,14 @@ cc.Class({
      */
     showSettingNode() {
         let node = cc.instantiate(this.prefabSetting);
-        node.setPosition(cc.v2(100, 200));
+        node.setPosition(cc.v2(100, -386));
         this.popupLayer.addChild(node);
         this.popupLayer.active = true;
+        this.touchbg.active = true;
     },
 
     setAviatorAnimation(isShow) {
+        this.isHideAviatorAnim = isShow;
         this.flyRocketNode.active = isShow;
         this.region.active = isShow;
     },

@@ -55,8 +55,8 @@
     "relativePath": "lhdGame"
   },
   "a8eacbcf-fbef-4465-84b3-524340df9455": {
-    "asset": 1755151922425,
-    "meta": 1755223206499,
+    "asset": 1755509017826,
+    "meta": 1755509057083,
     "relativePath": "Main"
   },
   "8fc902c6-4301-45e4-a71d-b923f1634160": {
@@ -220,8 +220,8 @@
     "relativePath": "Benz\\BenzRes"
   },
   "6066e0f7-eb03-4ef7-927b-1ac5449e59a1": {
-    "asset": 1754639123089,
-    "meta": 1754639144291,
+    "asset": 1755509017822,
+    "meta": 1755509057088,
     "relativePath": "Benz\\BenzScript"
   },
   "b0482ede-d7f1-430c-bc41-7307990a152c": {
@@ -916,7 +916,7 @@
   },
   "015e5320-2be4-4e3c-98ef-d8e41a147c8e": {
     "asset": 1755151922679,
-    "meta": 1755223207124,
+    "meta": 1755509057677,
     "relativePath": "resources\\proto"
   },
   "66173686-75bd-47c9-b9ff-59a130f372d8": {
@@ -926,7 +926,7 @@
   },
   "5bbffecd-f0fe-4e1c-9cf9-37c5eed996a9": {
     "asset": 1755151922426,
-    "meta": 1755223207134,
+    "meta": 1755509057678,
     "relativePath": "ResourcesBundle\\NewPlan"
   },
   "61a5f0c4-c0da-44c9-a366-79b66c19c855": {
@@ -946,7 +946,7 @@
   },
   "1082de96-589f-4d7b-a84b-afde7e5aa2c9": {
     "asset": 1755222401105,
-    "meta": 1755223207135,
+    "meta": 1755509057679,
     "relativePath": "ResourcesBundle\\Scene"
   },
   "563172d5-ce7c-4bcf-9df1-055d99c09569": {
@@ -966,7 +966,7 @@
   },
   "86d31621-f0da-4d9f-bd32-0fa4a6edd0d2": {
     "asset": 1755151922682,
-    "meta": 1755223207136,
+    "meta": 1755509057679,
     "relativePath": "rocket\\Prefabs"
   },
   "a226a7e3-9999-4ac4-9be3-eb6c2a33ecfd": {
@@ -976,7 +976,7 @@
   },
   "1964eff1-68db-46b0-85ac-a9f1138a56ee": {
     "asset": 1755151922684,
-    "meta": 1755223207137,
+    "meta": 1755509057680,
     "relativePath": "rocket\\Scripts"
   },
   "eeef25ac-93ef-4201-8e43-ea568e9277d1": {
@@ -1220,8 +1220,8 @@
     "relativePath": "zeusGame\\spines"
   },
   "7aa8a699-9888-419e-a417-1f8e13be9131": {
-    "asset": 1754639123253,
-    "meta": 1754639145970,
+    "asset": 1755509017978,
+    "meta": 1755509057682,
     "relativePath": "zeusGame\\src"
   },
   "dc544731-4344-4eec-b3cb-00da33398d90": {
@@ -1355,8 +1355,8 @@
     "relativePath": "7up7downGame\\7upScript\\7upPlayerListFabCtrl.js"
   },
   "f67ae165-4d07-41e0-b0cc-f377a1938733": {
-    "asset": 1724821647000,
-    "meta": 1754639146382,
+    "asset": 1755503832430,
+    "meta": 1755509057725,
     "relativePath": "7up7downGame\\7upScript\\7upUserInfoCtrl.js"
   },
   "8468688f-89b1-4ef2-8c7a-d2a1a7692245": {
@@ -6230,8 +6230,8 @@
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes"
   },
   "c0777580-35ff-485e-ae37-a1253108b39d": {
-    "asset": 1754639123103,
-    "meta": 1754639155354,
+    "asset": 1755509017827,
+    "meta": 1755509059205,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity"
   },
   "a21d4732-d664-40e4-8439-78e13a3a8de7": {
@@ -6380,8 +6380,8 @@
     "relativePath": "munda\\mundaSke\\yuananniu_shuaguang.json"
   },
   "503c9040-8411-48a6-87f0-d834e7a2135d": {
-    "asset": 1754639123175,
-    "meta": 1754639155394,
+    "asset": 1755509017828,
+    "meta": 1755509059206,
     "relativePath": "ResourcesBundle\\NewPlan\\MyVip"
   },
   "e559a67c-16f2-44e4-a77c-3346a6f4fa60": {
@@ -6400,8 +6400,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Pdd"
   },
   "9a1a3098-b663-4e24-99d2-b2e74b6b6e19": {
-    "asset": 1748917414111,
-    "meta": 1754639155400,
+    "asset": 1755509017829,
+    "meta": 1755509059210,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal"
   },
   "0ede358f-0be0-4750-a429-86c10c28decb": {
@@ -6451,7 +6451,7 @@
   },
   "7662f975-f0a5-4509-a6af-c7c002bae9d9": {
     "asset": 1755151922428,
-    "meta": 1755223207920,
+    "meta": 1755509059211,
     "relativePath": "ResourcesBundle\\NewPlan\\SelectRoom"
   },
   "d2d24e33-5ccf-4fc4-86a4-c04382428a72": {
@@ -6696,7 +6696,7 @@
   },
   "bcf844e1-9aa4-4a2d-a32e-d39cef7ceab3": {
     "asset": 1755151922683,
-    "meta": 1755223208159,
+    "meta": 1755509059530,
     "relativePath": "rocket\\Prefabs\\record_rect.prefab"
   },
   "d932ff2d-89b5-473a-a77f-c074f9966a56": {
@@ -10151,7 +10151,7 @@
   },
   "8a967505-2829-4dcf-9447-4a81c44ace84": {
     "asset": 1755151922418,
-    "meta": 1755223208725,
+    "meta": 1755509060113,
     "relativePath": "Main\\Script\\Common\\Config"
   },
   "ca29df22-e887-4f1b-b0ae-1fa7f30e3393": {
@@ -10161,7 +10161,7 @@
   },
   "7b198cc4-3979-48e0-9245-89b21526631b": {
     "asset": 1755151922420,
-    "meta": 1755223208725,
+    "meta": 1755509060115,
     "relativePath": "Main\\Script\\Common\\Net"
   },
   "5ce52eb5-3b24-4d42-b945-7c772f33f42e": {
@@ -10170,8 +10170,8 @@
     "relativePath": "Main\\res\\updateScene\\english.png"
   },
   "e1b2834d-91e9-4dd8-9df8-ca1236ebf16f": {
-    "asset": 1755151922423,
-    "meta": 1755223208728,
+    "asset": 1755509017825,
+    "meta": 1755509060117,
     "relativePath": "Main\\Script\\Common\\UtilTools"
   },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
@@ -10611,7 +10611,7 @@
   },
   "d9317500-93a2-40ea-aeb9-81767461d998": {
     "asset": 1755151922437,
-    "meta": 1755223208733,
+    "meta": 1755509060119,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines"
   },
   "337ccff1-d135-4a7c-b355-9a8996e3269d": {
@@ -10685,8 +10685,8 @@
     "relativePath": "munda\\mundaRes\\trend\\zs.png"
   },
   "7707dd9c-6953-4e55-a22d-f622c68f690b": {
-    "asset": 1743415973404,
-    "meta": 1754639163821,
+    "asset": 1755509017827,
+    "meta": 1755509060142,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivitySignCtrl.js"
   },
   "2070d757-88af-4f18-9578-5f9d25909e80": {
@@ -10700,8 +10700,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivitySignItemCtrl.js"
   },
   "34219a98-1d90-4610-8b07-4b6e119a812e": {
-    "asset": 1754639123103,
-    "meta": 1754639163844,
+    "asset": 1755509017827,
+    "meta": 1755509060163,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivityTurnTableCtrl.js"
   },
   "cef99108-79f0-466a-bae0-590420b0f177": {
@@ -11165,8 +11165,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\GameWordInteraction\\GameWordInteraction.prefab"
   },
   "29f3da3b-0641-42e2-9339-7a02386e9266": {
-    "asset": 1724821647000,
-    "meta": 1754639164666,
+    "asset": 1755509017828,
+    "meta": 1755509060244,
     "relativePath": "ResourcesBundle\\NewPlan\\MyVip\\MyVipCtrl.js"
   },
   "65efd170-a25c-4c65-bef6-7bff4e8d2637": {
@@ -21155,8 +21155,8 @@
     "relativePath": "fruitMachine\\sprite"
   },
   "674eccc7-f8ec-4549-af35-0265551a7c31": {
-    "asset": 1754639123230,
-    "meta": 1754639144311,
+    "asset": 1755509017973,
+    "meta": 1755509057089,
     "relativePath": "fruitMachine\\src"
   },
   "3223abc6-1de5-40a2-9893-7d5928b32943": {
@@ -21201,17 +21201,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1724821647000,
-    "meta": 1755223209453,
+    "meta": 1755509061453,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1724821647000,
-    "meta": 1755223209454,
+    "meta": 1755509061457,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1724821647000,
-    "meta": 1755223209456,
+    "meta": 1755509061457,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -21236,7 +21236,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1724821647000,
-    "meta": 1755223209454,
+    "meta": 1755509061456,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -21251,7 +21251,7 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1724821647000,
-    "meta": 1755223209457,
+    "meta": 1755509061456,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "40a3829f-588c-46e5-abf8-4c7148cdb9f7": {
@@ -21261,7 +21261,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1724821647000,
-    "meta": 1755223209455,
+    "meta": 1755509061460,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -21271,7 +21271,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1724821647000,
-    "meta": 1755223209459,
+    "meta": 1755509061459,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "e03f135e-7fe3-4161-be68-cad84bb5bd78": {
@@ -21286,7 +21286,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1724821647000,
-    "meta": 1755223209459,
+    "meta": 1755509061461,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "8608e7b9-1088-47ea-a679-6399442603bb": {
@@ -21311,7 +21311,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1724821647000,
-    "meta": 1755223209460,
+    "meta": 1755509061464,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -21326,7 +21326,7 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1724821647000,
-    "meta": 1755223209462,
+    "meta": 1755509061469,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "3d2ee98d-8d26-4f3e-b25b-6f0ae1fdd6fd": {
@@ -21336,7 +21336,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1724821647000,
-    "meta": 1755223209461,
+    "meta": 1755509061470,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -21371,12 +21371,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1724821647000,
-    "meta": 1755223209463,
+    "meta": 1755509061468,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1724821647000,
-    "meta": 1755223209462,
+    "meta": 1755509061470,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -21655,8 +21655,8 @@
     "relativePath": "vampireMachine\\sprite"
   },
   "b8469afe-1827-4f0b-bcbe-4059a1bfde8c": {
-    "asset": 1754639123251,
-    "meta": 1754639145951,
+    "asset": 1755509017977,
+    "meta": 1755509057681,
     "relativePath": "vampireMachine\\src"
   },
   "e9de5a64-2b80-48e9-81ac-2fb1e8a3ede0": {
@@ -21690,8 +21690,8 @@
     "relativePath": "mayaMachine\\sprite"
   },
   "d830832c-754a-4da5-953b-1dd5c2f12a75": {
-    "asset": 1754639123239,
-    "meta": 1754639145237,
+    "asset": 1755509017976,
+    "meta": 1755509057676,
     "relativePath": "mayaMachine\\src"
   },
   "2036f362-7780-4f77-b9f6-7dcc43fa7374": {
@@ -22296,7 +22296,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1737357038117,
-    "meta": 1755223209537,
+    "meta": 1755509061555,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "18739447-33ea-4244-9198-0f1c8f1cbaca": {
@@ -23040,8 +23040,8 @@
     "relativePath": "indiaMachine\\sprite"
   },
   "226dc840-2471-4a96-a513-d60b3635a9a0": {
-    "asset": 1754639123233,
-    "meta": 1754639144326,
+    "asset": 1755509017974,
+    "meta": 1755509057090,
     "relativePath": "indiaMachine\\src"
   },
   "8496bcc3-198b-49d8-96f5-0715a92d6e80": {
@@ -23730,8 +23730,8 @@
     "relativePath": "jokerMachine\\sprite"
   },
   "31008a04-bba8-4383-87c7-430cdc2d4c84": {
-    "asset": 1754639123234,
-    "meta": 1754639144340,
+    "asset": 1755509017975,
+    "meta": 1755509057090,
     "relativePath": "jokerMachine\\src"
   },
   "6c3f4d9a-d4f6-417c-ac6c-4aaf716dca69": {
@@ -24331,7 +24331,7 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1753435746617,
-    "meta": 1755223209547,
+    "meta": 1755509061574,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "af802f07-ef3d-404f-8016-4c4ead749feb": {
@@ -24341,7 +24341,7 @@
   },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1753435746620,
-    "meta": 1755223209543,
+    "meta": 1755509061573,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
   },
   "b1df4b90-791e-4d29-a9d1-b6a0fc9fdcb9": {
@@ -24366,12 +24366,12 @@
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1753435746641,
-    "meta": 1755223209538,
+    "meta": 1755509061574,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1753435746639,
-    "meta": 1755223209548,
+    "meta": 1755509061582,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "8ddc87ee-ee4a-49bd-b2a2-b0b2917e22fc": {
@@ -24391,12 +24391,12 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1753435746652,
-    "meta": 1755223209542,
+    "meta": 1755509061575,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1753435746657,
-    "meta": 1755223209540,
+    "meta": 1755509061576,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
   },
   "652ba1d0-dd36-4ab8-aca8-496a181d7227": {
@@ -24501,7 +24501,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1753435746773,
-    "meta": 1755223209544,
+    "meta": 1755509061577,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "7a241750-4b99-4026-a977-2d71ddbc3038": {
@@ -24516,7 +24516,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1753435746789,
-    "meta": 1755223209549,
+    "meta": 1755509061584,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "85f8c995-21fd-4a75-a710-535f628606cd": {
@@ -24526,12 +24526,12 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1753435746796,
-    "meta": 1755223209550,
+    "meta": 1755509061583,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1753435746804,
-    "meta": 1755223209550,
+    "meta": 1755509061585,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "1e39b532-7ce2-4248-a526-8a07f492fe22": {
@@ -24541,7 +24541,7 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1753435746818,
-    "meta": 1755223209551,
+    "meta": 1755509061586,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "1ba3209c-364d-488d-83a1-8d375861db8c": {
@@ -24551,7 +24551,7 @@
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1753435746831,
-    "meta": 1755223209551,
+    "meta": 1755509061587,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -24561,7 +24561,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1753435746836,
-    "meta": 1755223209552,
+    "meta": 1755509061586,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -24571,7 +24571,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1753435746841,
-    "meta": 1755223209552,
+    "meta": 1755509061587,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -24581,7 +24581,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1753435746848,
-    "meta": 1755223209553,
+    "meta": 1755509061588,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "b8156e81-ec1d-4306-a6e2-c62ba3058b2b": {
@@ -24601,7 +24601,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1753435746193,
-    "meta": 1755223209464,
+    "meta": 1755509061471,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "eb149c8e-a00b-486a-81b0-0cbde6cb7d7d": {
@@ -24631,7 +24631,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1753435746756,
-    "meta": 1755223209541,
+    "meta": 1755509061577,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "a5f88e66-1b8a-4fc8-a854-2104b5a3938d": {
@@ -25101,7 +25101,7 @@
   },
   "7e09c817-e1c1-4e25-a182-dbe5a6dd132c": {
     "asset": 1755152771700,
-    "meta": 1755223209256,
+    "meta": 1755509061207,
     "relativePath": "Main\\Script\\Common\\UtilTools\\GameManager.js"
   },
   "1c8ddbf5-b7ee-4a33-bef2-184ee8b17b6a": {
@@ -25181,7 +25181,7 @@
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
     "asset": 1755151922432,
-    "meta": 1755223208166,
+    "meta": 1755509059537,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "66ad10d3-034f-448d-812b-5db931a14829": {
@@ -25231,12 +25231,12 @@
   },
   "ce35b2ea-7d54-437a-a4ee-cc59e9bcc1cd": {
     "asset": 1755152850269,
-    "meta": 1755223209359,
+    "meta": 1755509061314,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\gameIconCtrl.js"
   },
   "2362eb0d-a5d5-44d9-a294-48aae38897a3": {
     "asset": 1755152762636,
-    "meta": 1755223209383,
+    "meta": 1755509061330,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\gameIcon\\gameIconListCtrl.js"
   },
   "4fb6c85f-a51c-4ecd-9e4b-5b642c7faed4": {
@@ -25615,8 +25615,8 @@
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\wallet\\icon_wallet.json"
   },
   "9cec7302-233a-4ff3-a01c-d34b6d604df2": {
-    "asset": 1748917414111,
-    "meta": 1754639164945,
+    "asset": 1755509017829,
+    "meta": 1755509060327,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\PersonalCtrl.js"
   },
   "caef45d9-2c23-47ad-aa1e-be16fb0b91aa": {
@@ -26191,7 +26191,7 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1753435746626,
-    "meta": 1755223209539,
+    "meta": 1755509061572,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "d5f577e2-9631-4686-a663-f93c71be8964": {
@@ -26905,8 +26905,8 @@
     "relativePath": "resources\\materials\\builtin-2d-spine.mtl"
   },
   "9377b7c8-9b17-438a-87b7-a622c9b4dd54": {
-    "asset": 1754639123230,
-    "meta": 1754639149926,
+    "asset": 1755509017973,
+    "meta": 1755509058788,
     "relativePath": "fruitMachine\\src\\fruitMachineCtrl.js"
   },
   "3a7bb79f-32fd-422e-ada2-96f518fed422": {
@@ -26925,8 +26925,8 @@
     "relativePath": "resources\\materials\\builtin-2d-sprite.mtl"
   },
   "864e1957-9827-46ca-a44c-57fc6a7f8a1e": {
-    "asset": 1754639123233,
-    "meta": 1754639150941,
+    "asset": 1755509017974,
+    "meta": 1755509058893,
     "relativePath": "indiaMachine\\src\\indiaMachineCtrl.js"
   },
   "432fa09c-cf03-4cff-a186-982604408a07": {
@@ -26940,8 +26940,8 @@
     "relativePath": "lhdGame\\lhdScr\\lhdLobbyCtrl.js"
   },
   "6f9f69c6-a9e0-4e4f-9954-418347d23500": {
-    "asset": 1754639123239,
-    "meta": 1754639154238,
+    "asset": 1755509017976,
+    "meta": 1755509059199,
     "relativePath": "mayaMachine\\src\\mayaMachineCtrl.js"
   },
   "0848d46b-46f0-4b27-a831-ff5cffbb2ccb": {
@@ -26970,13 +26970,13 @@
     "relativePath": "teenPatti\\src\\teenPattiRoomCtrl.js"
   },
   "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
-    "asset": 1754639123251,
-    "meta": 1754639158985,
+    "asset": 1755509017977,
+    "meta": 1755509059472,
     "relativePath": "vampireMachine\\src\\vampireMachineCtrl.js"
   },
   "4bc98a51-e288-4894-aeae-20766687af1b": {
-    "asset": 1754639123254,
-    "meta": 1754639159596,
+    "asset": 1755509017978,
+    "meta": 1755509059523,
     "relativePath": "zeusGame\\src\\zeusSceneCtrl.js"
   },
   "24090efa-1cf2-42f5-bf26-87f091b33fe3": {
@@ -27006,7 +27006,7 @@
   },
   "e77b8665-d1c7-4803-b8a1-fe14069c4a0f": {
     "asset": 1755151922427,
-    "meta": 1755223207919,
+    "meta": 1755509059206,
     "relativePath": "ResourcesBundle\\NewPlan\\OnlyPay"
   },
   "6a28168c-2db5-48b6-a7bb-c1082ecde383": {
@@ -28125,13 +28125,13 @@
     "relativePath": "sscGame\\sscScr\\sscLobbyCtrl.js"
   },
   "52a0a651-14d9-4f38-91cf-8fcaa717b14d": {
-    "asset": 1755222872179,
-    "meta": 1755223206497,
+    "asset": 1755509017835,
+    "meta": 1755509057083,
     "relativePath": "aviator"
   },
   "d234eb34-0867-48af-94b4-0c99a00f2219": {
-    "asset": 1754639123089,
-    "meta": 1754639148593,
+    "asset": 1755509017822,
+    "meta": 1755509058622,
     "relativePath": "Benz\\BenzScript\\benzmainCtrl.js"
   },
   "08230298-6d1e-4da0-87c4-d639c6da3ee7": {
@@ -28241,7 +28241,7 @@
   },
   "626cefa8-b2ac-4258-875d-9e38966d6e87": {
     "asset": 1755151922651,
-    "meta": 1755223206502,
+    "meta": 1755509057087,
     "relativePath": "aviator\\sound"
   },
   "b23e97fb-44fd-418a-8097-f4bbf6bf798c": {
@@ -28251,17 +28251,17 @@
   },
   "8500f3fc-744f-46c2-a72f-1e9eb3feacd2": {
     "asset": 1755151922650,
-    "meta": 1755223208715,
+    "meta": 1755509060120,
     "relativePath": "aviator\\sound\\end.mp3"
   },
   "05a08121-2467-4803-93a6-11053622cfea": {
     "asset": 1755151922649,
-    "meta": 1755223208709,
+    "meta": 1755509060112,
     "relativePath": "aviator\\sound\\ding.mp3"
   },
   "f653b36f-3014-4570-8dee-4440dbb890d2": {
     "asset": 1755151922648,
-    "meta": 1755223208827,
+    "meta": 1755509060445,
     "relativePath": "aviator\\sound\\bgm.mp3"
   },
   "100b7bd4-943c-4133-9efd-b7dcb67dda00": {
@@ -28306,57 +28306,57 @@
   },
   "ed0e5c19-063d-4038-a950-67c277a6c4b6": {
     "asset": 1755151922536,
-    "meta": 1755223208304,
+    "meta": 1755509059684,
     "relativePath": "aviator\\res\\main\\btn1.png"
   },
   "96790541-4f55-423f-a334-ad3a0372866f": {
     "asset": 1755151922537,
-    "meta": 1755223208307,
+    "meta": 1755509059689,
     "relativePath": "aviator\\res\\main\\btn2.png"
   },
   "bb9240e1-0490-462f-820a-f1e8a5e517a6": {
     "asset": 1755151922564,
-    "meta": 1755223208543,
+    "meta": 1755509059927,
     "relativePath": "aviator\\res\\main\\toggle.png"
   },
   "2da3a8df-1461-4b5c-8255-d634d9082a93": {
     "asset": 1755151922556,
-    "meta": 1755223208410,
+    "meta": 1755509059815,
     "relativePath": "aviator\\res\\main\\logo3.png"
   },
   "b59b22ee-aa57-4bcf-9c6e-edec12478d96": {
     "asset": 1755151922554,
-    "meta": 1755223208408,
+    "meta": 1755509059803,
     "relativePath": "aviator\\res\\main\\logo.png"
   },
   "24926a3b-c254-4b45-bdbf-395885da1534": {
     "asset": 1755151922555,
-    "meta": 1755223208409,
+    "meta": 1755509059805,
     "relativePath": "aviator\\res\\main\\logo2.png"
   },
   "31bbe72d-b71f-4224-a3f1-2adc2fca9862": {
     "asset": 1755151922551,
-    "meta": 1755223208399,
+    "meta": 1755509059775,
     "relativePath": "aviator\\res\\main\\jindutiao.png"
   },
   "2687cc80-cd12-4026-a964-22554e7d6155": {
     "asset": 1755151922552,
-    "meta": 1755223208407,
+    "meta": 1755509059777,
     "relativePath": "aviator\\res\\main\\jindutiao2.png"
   },
   "4f7466d2-8e99-463e-ac2f-aa7996972aa5": {
     "asset": 1755151922534,
-    "meta": 1755223208357,
+    "meta": 1755509059733,
     "relativePath": "aviator\\res\\main\\bg.png"
   },
   "16c944a9-de37-4071-8238-062ad389f18a": {
     "asset": 1755151922442,
-    "meta": 1755223207158,
+    "meta": 1755509057742,
     "relativePath": "aviator\\anim\\rotate.anim"
   },
   "5c9bd7e3-b0a0-4218-8c0c-8009ef3302c8": {
     "asset": 1755151922443,
-    "meta": 1755223206500,
+    "meta": 1755509057084,
     "relativePath": "aviator\\anim"
   },
   "2632014f-dc81-4a46-9b46-78e1c6902ee1": {
@@ -28376,107 +28376,107 @@
   },
   "0740c6a1-a9ca-4364-9ef2-df8b60805404": {
     "asset": 1755151922442,
-    "meta": 1755223207159,
+    "meta": 1755509057757,
     "relativePath": "aviator\\anim\\rotate2.anim"
   },
   "e57773bd-4b07-4953-a383-1cafe9827334": {
     "asset": 1755151922503,
-    "meta": 1755223208362,
+    "meta": 1755509059723,
     "relativePath": "aviator\\res\\main\\Group 2.png"
   },
   "549761aa-b0ff-4b08-8f02-66dc44059df7": {
     "asset": 1755151922502,
-    "meta": 1755223208342,
+    "meta": 1755509059767,
     "relativePath": "aviator\\res\\main\\Ellipse 7.png"
   },
   "b2e5e762-7179-4583-aa30-cf40f24d8676": {
-    "asset": 1755251061937,
-    "meta": 1755251061947,
+    "asset": 1755509017850,
+    "meta": 1755509057787,
     "relativePath": "aviator\\prefab\\record.prefab"
   },
   "3b0d7215-f24d-47f1-8008-35ab724adefa": {
     "asset": 1755151922470,
-    "meta": 1755223207471,
+    "meta": 1755509058139,
     "relativePath": "aviator\\prefab\\record_rect.prefab"
   },
   "2383ed5a-7ddf-4382-85c0-6a2c5dba8bb7": {
     "asset": 1752572501876,
-    "meta": 1755223208149,
+    "meta": 1755509059387,
     "relativePath": "rocket\\Scripts\\RocketRecordRectCtrl.js"
   },
   "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1755151922423,
-    "meta": 1755223209350,
+    "asset": 1755509017825,
+    "meta": 1755509061302,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1755151922424,
-    "meta": 1755223207123,
+    "asset": 1755509017826,
+    "meta": 1755509057676,
     "relativePath": "Main\\Update.js"
   },
   "66d9dc67-6190-40fe-9f86-6445518712f0": {
     "asset": 1755151922681,
-    "meta": 1755223207916,
+    "meta": 1755509059200,
     "relativePath": "resources\\proto\\aviator"
   },
   "c362a0ca-1738-46a4-a0ff-df76a099f8d7": {
     "asset": 1755151922470,
-    "meta": 1755223207877,
+    "meta": 1755509058632,
     "relativePath": "aviator\\prefab\\timeMark.prefab"
   },
   "9915ae11-9f05-4a50-a9de-7191f45a2628": {
     "asset": 1755151922468,
-    "meta": 1755223207404,
+    "meta": 1755509057793,
     "relativePath": "aviator\\prefab\\rateMark.prefab"
   },
   "64ab174e-693e-4866-8fc2-03edaa215f71": {
     "asset": 1755151922467,
-    "meta": 1755223207483,
+    "meta": 1755509057791,
     "relativePath": "aviator\\prefab\\playerList.prefab"
   },
   "541c3082-e938-4f11-b8c0-1a26a2a7b8cc": {
     "asset": 1755151922466,
-    "meta": 1755223207188,
+    "meta": 1755509057785,
     "relativePath": "aviator\\prefab\\playerGetOut.prefab"
   },
   "e20138b4-2c93-42bb-babb-c8ba5b39825b": {
     "asset": 1755151922463,
-    "meta": 1755223207183,
+    "meta": 1755509057789,
     "relativePath": "aviator\\prefab\\coin.prefab"
   },
   "36a467b0-63eb-4729-b338-eb909e276a85": {
     "asset": 1755151922559,
-    "meta": 1755223208438,
+    "meta": 1755509059810,
     "relativePath": "aviator\\res\\main\\race_bg.png"
   },
   "0d1028be-3273-44c5-b076-d6b93a2d8f7b": {
     "asset": 1755151922535,
-    "meta": 1755223208302,
+    "meta": 1755509059687,
     "relativePath": "aviator\\res\\main\\black.png"
   },
   "49810999-d558-4a6f-9acf-7c4fac56f649": {
     "asset": 1755151922539,
-    "meta": 1755223208309,
+    "meta": 1755509059711,
     "relativePath": "aviator\\res\\main\\btnclose.png"
   },
   "1aec1e52-f23d-4dc1-b1f6-c501e251ed27": {
     "asset": 1755151922562,
-    "meta": 1755223208545,
+    "meta": 1755509059924,
     "relativePath": "aviator\\res\\main\\tog.png"
   },
   "dea2ec36-6017-4ea5-bca0-217e91b5a76f": {
     "asset": 1755151922557,
-    "meta": 1755223208441,
+    "meta": 1755509059800,
     "relativePath": "aviator\\res\\main\\pervious1.png"
   },
   "9624d411-cc50-40e0-a9e7-1c439b9a74e8": {
     "asset": 1755151922530,
-    "meta": 1755223208306,
+    "meta": 1755509059681,
     "relativePath": "aviator\\res\\main\\bet_d.png"
   },
   "cd094e5c-037d-46ec-8b06-abe42b5cf1fc": {
     "asset": 1755151922538,
-    "meta": 1755223208310,
+    "meta": 1755509059708,
     "relativePath": "aviator\\res\\main\\btn3.png"
   },
   "3ea011cd-0de3-429c-9632-9e2ad83983db": {
@@ -28486,7 +28486,7 @@
   },
   "d0ec1eac-f575-4976-b430-c59ef8c23d60": {
     "asset": 1755151922658,
-    "meta": 1755223207481,
+    "meta": 1755509058107,
     "relativePath": "aviator\\src\\AviatorCenterRate.js"
   },
   "de9e658c-69bf-4d2d-a46a-5ab770ea0a31": {
@@ -28496,128 +28496,123 @@
   },
   "519c1425-507b-4241-84a4-b7d357b70398": {
     "asset": 1755151922566,
-    "meta": 1755223208546,
+    "meta": 1755509059931,
     "relativePath": "aviator\\res\\main\\winbg2.png"
   },
   "35449481-4f5c-4744-aadb-6df344405bcd": {
     "asset": 1755151922565,
-    "meta": 1755223208551,
+    "meta": 1755509059939,
     "relativePath": "aviator\\res\\main\\winbg.png"
   },
   "39cd63c7-2d2c-4bea-8773-97a37a5da2ba": {
     "asset": 1755151922544,
-    "meta": 1755223208388,
+    "meta": 1755509059769,
     "relativePath": "aviator\\res\\main\\icon7.png"
   },
   "8ea4b9e9-663b-4409-9628-80dccedbf521": {
     "asset": 1755151922465,
-    "meta": 1755223207191,
+    "meta": 1755509057797,
     "relativePath": "aviator\\prefab\\gameSetting.prefab"
   },
   "61db6a23-7c71-4b9c-89d5-d73290ffd18b": {
     "asset": 1755151922567,
-    "meta": 1755223208571,
+    "meta": 1755509059933,
     "relativePath": "aviator\\res\\main\\外.png"
   },
   "c7c10efa-e40a-4192-bdb7-3f72d088e43e": {
     "asset": 1755151922558,
-    "meta": 1755223208447,
+    "meta": 1755509059812,
     "relativePath": "aviator\\res\\main\\pervious2.png"
   },
   "343c0ef0-a528-41b9-89a9-d547f0042646": {
     "asset": 1755151922543,
-    "meta": 1755223208364,
+    "meta": 1755509059761,
     "relativePath": "aviator\\res\\main\\icon6.png"
   },
   "76ed2abe-66fe-4a59-a405-8917b93561df": {
     "asset": 1755151922560,
-    "meta": 1755223208542,
+    "meta": 1755509059921,
     "relativePath": "aviator\\res\\main\\redk.png"
   },
   "f4592ad0-7a58-49c2-bafa-fbea3ce273a2": {
     "asset": 1755151922610,
-    "meta": 1755223208690,
+    "meta": 1755509060093,
     "relativePath": "aviator\\res\\provably\\2.png"
   },
   "a151dfa4-df7e-4ef5-ae81-3a4d8ed3cf4d": {
     "asset": 1755151922612,
-    "meta": 1755223208693,
+    "meta": 1755509060095,
     "relativePath": "aviator\\res\\provably\\3.png"
   },
   "09c05fd5-dc7f-4c8f-8833-9bb0e4227695": {
     "asset": 1755151922607,
-    "meta": 1755223208688,
+    "meta": 1755509060086,
     "relativePath": "aviator\\res\\provably\\1.png"
   },
   "d0ca18ba-fdc0-4f94-b686-c58c1062a18d": {
-    "asset": 1755242755618,
-    "meta": 1755242755626,
+    "asset": 1755509017844,
+    "meta": 1755509057784,
     "relativePath": "aviator\\prefab\\AviatorProvably.prefab"
   },
   "132ba4b0-81b0-4b17-9bc3-3cefc94aa909": {
     "asset": 1755151922630,
-    "meta": 1755223207193,
+    "meta": 1755509057792,
     "relativePath": "aviator\\res\\rule"
   },
   "160389d8-2965-4f12-98d5-9ae25be87c30": {
     "asset": 1755151922624,
-    "meta": 1755223208792,
+    "meta": 1755509060418,
     "relativePath": "aviator\\res\\rule\\2.png"
   },
   "d00d4e6c-24f9-4a66-a887-607792e0920b": {
-    "asset": 1755247353068,
-    "meta": 1755247353082,
+    "asset": 1755509536968,
+    "meta": 1755509536979,
     "relativePath": "aviator\\prefab\\AviatorRule.prefab"
   },
   "bf7744c2-e965-41a9-8a80-69dd53bc3d35": {
-    "asset": 1755244992323,
-    "meta": 1755244992335,
+    "asset": 1755515291140,
+    "meta": 1755515291152,
     "relativePath": "aviator\\prefab\\AviatorMybet.prefab"
   },
   "319e199f-6016-4313-93e6-3abf35293c89": {
     "asset": 1755151922622,
-    "meta": 1755223208735,
+    "meta": 1755509060109,
     "relativePath": "aviator\\res\\rule\\1.png"
   },
   "b47a6e82-ec47-4ca5-a4b7-70b104a6c10e": {
     "asset": 1755151922621,
-    "meta": 1755223207192,
+    "meta": 1755509057789,
     "relativePath": "aviator\\res\\provably"
   },
   "3d34a12d-74cf-4dda-84b8-582c0378fa4a": {
     "asset": 1755151922617,
-    "meta": 1755223208723,
+    "meta": 1755509060107,
     "relativePath": "aviator\\res\\provably\\5.png"
   },
   "a8584818-0db8-4a94-ae3f-a3bcd8027aa8": {
     "asset": 1755151922614,
-    "meta": 1755223208727,
+    "meta": 1755509060090,
     "relativePath": "aviator\\res\\provably\\4.png"
   },
   "78940cbc-5858-4c63-8b61-72c5fcfc97dc": {
     "asset": 1755151922618,
-    "meta": 1755223208729,
+    "meta": 1755509060100,
     "relativePath": "aviator\\res\\provably\\6.png"
   },
   "a3c5cc5f-c6b2-4fcb-af7f-aac3e6d01b8e": {
     "asset": 1755151922620,
-    "meta": 1755223208732,
+    "meta": 1755509060104,
     "relativePath": "aviator\\res\\provably\\7.png"
   },
   "e446707e-3a2b-4cd0-8145-e5236e9f5b62": {
-    "asset": 1755244292564,
-    "meta": 1755244292580,
+    "asset": 1755509017846,
+    "meta": 1755509057781,
     "relativePath": "aviator\\prefab\\AviatorProvablySetting.prefab"
   },
   "ee5cbf84-1754-45d7-bbfd-eda7cc3b8e7a": {
-    "asset": 1755241794822,
-    "meta": 1755241794830,
+    "asset": 1755509017841,
+    "meta": 1755509057760,
     "relativePath": "aviator\\prefab\\AviatorLimit.prefab"
-  },
-  "0c5e7236-c381-49b3-89f4-d6570e7cd1fd": {
-    "asset": 1755151922676,
-    "meta": 1755223207809,
-    "relativePath": "aviator\\src\\AviatorRule.js"
   },
   "5bb20ab0-0a2a-40b8-9ab8-4c651799e6b3": {
     "asset": 1754639123088,
@@ -28626,13 +28621,8 @@
   },
   "a4bd1034-287e-47e9-ae96-c625fc7cc163": {
     "asset": 1755151922425,
-    "meta": 1755223206960,
+    "meta": 1755509057526,
     "relativePath": "Main\\md5.js"
-  },
-  "a613c51a-239a-4ac7-9436-1c218a9da2b0": {
-    "asset": 1755151922667,
-    "meta": 1755223207623,
-    "relativePath": "aviator\\src\\AviatorProvablySetting.js"
   },
   "fe7028f8-0acf-4d01-814b-d50db8d90a04": {
     "asset": 1754639123244,
@@ -28641,7 +28631,7 @@
   },
   "cdfb5b7d-6f5e-43bc-8f66-eee13347cc33": {
     "asset": 1755151922662,
-    "meta": 1755223207542,
+    "meta": 1755509058171,
     "relativePath": "aviator\\src\\AviatorMessageManager.js"
   },
   "ba48db7c-4597-482e-b580-9b8c062fb1fc": {
@@ -28661,227 +28651,222 @@
   },
   "871a1423-cf65-4560-a58d-251cd5720d9b": {
     "asset": 1755151922654,
-    "meta": 1755223207399,
+    "meta": 1755509058036,
     "relativePath": "aviator\\src\\AviatorAudioManager.js"
   },
   "b12aea8e-3f2d-466d-a425-694f08e769f1": {
-    "asset": 1754639123234,
-    "meta": 1754639151341,
+    "asset": 1755509017975,
+    "meta": 1755509059099,
     "relativePath": "jokerMachine\\src\\jokerMachineCtrl.js"
   },
   "c61a55b8-2ee4-4e19-89f5-af6e76139477": {
     "asset": 1755151922461,
-    "meta": 1755223207178,
+    "meta": 1755509057777,
     "relativePath": "aviator\\prefab\\AviatorReward.prefab"
-  },
-  "75131999-d098-4bb3-a686-081b2cbceaed": {
-    "asset": 1755251267252,
-    "meta": 1755251267271,
-    "relativePath": "aviator\\aviator.fire"
   },
   "b40ddde7-5736-47a0-96fa-a031c75ff112": {
     "asset": 1755151922433,
-    "meta": 1755223209394,
+    "meta": 1755509061343,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\Aviator.atlas.txt"
   },
   "b95557a8-4edf-49cf-b43c-599d75837803": {
     "asset": 1755151922434,
-    "meta": 1755223209559,
+    "meta": 1755509061594,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\Aviator.json"
   },
   "fefbfc88-59f4-432d-92fc-d150809f1df9": {
     "asset": 1755151922436,
-    "meta": 1755223209420,
+    "meta": 1755509061372,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\Aviator.png"
   },
   "8b3f4b1b-ab9c-43b6-8f47-44023e186e17": {
     "asset": 1755151922440,
-    "meta": 1755223209506,
+    "meta": 1755509061520,
     "relativePath": "aviator\\anim\\a.json"
   },
   "d9685d2e-5723-4a39-a461-0d75c3937725": {
     "asset": 1755151922439,
-    "meta": 1755223207152,
+    "meta": 1755509057738,
     "relativePath": "aviator\\anim\\a.atlas.txt"
   },
   "bc36d795-7fb8-4894-b9eb-5297f26dbba4": {
     "asset": 1755151922441,
-    "meta": 1755223207815,
+    "meta": 1755509058633,
     "relativePath": "aviator\\anim\\a.png"
   },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1755222401105,
-    "meta": 1755223208135,
+    "asset": 1755505235362,
+    "meta": 1755509059376,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   },
   "db281fc7-22a4-4f3f-b799-13509606aafa": {
     "asset": 1755151922655,
-    "meta": 1755223207420,
+    "meta": 1755509058051,
     "relativePath": "aviator\\src\\AviatorAutoSetting.js"
   },
   "f10be4dc-89d0-4a61-9198-282e398f445c": {
     "asset": 1755151922498,
-    "meta": 1755223207184,
+    "meta": 1755509057785,
     "relativePath": "aviator\\res\\head"
   },
   "530b9009-7f98-4786-a6e2-5a57dbaefa68": {
     "asset": 1755151922494,
-    "meta": 1755223209497,
+    "meta": 1755509061508,
     "relativePath": "aviator\\res\\head\\ui_headimg_list.plist"
   },
   "8415758c-98d9-40b3-8617-5641786e31f9": {
     "asset": 1755151922497,
-    "meta": 1755223208312,
+    "meta": 1755509059685,
     "relativePath": "aviator\\res\\head\\ui_headimg_list.png"
   },
   "72dffa3d-3393-4d9b-8cf3-c553a89575b9": {
     "asset": 1755151922604,
-    "meta": 1755223207188,
+    "meta": 1755509057788,
     "relativePath": "aviator\\res\\menu"
   },
   "7cef0cae-d766-4e71-a5f1-96ab17865d13": {
     "asset": 1755151922574,
-    "meta": 1755223208588,
+    "meta": 1755509059966,
     "relativePath": "aviator\\res\\menu\\Group 46.png"
   },
   "4be80eb3-09fc-4ce8-a53c-8dfdffb8c986": {
     "asset": 1755151922575,
-    "meta": 1755223208586,
+    "meta": 1755509059962,
     "relativePath": "aviator\\res\\menu\\Group 47.png"
   },
   "a4580359-adf7-4068-84f3-97bad41c3ba7": {
     "asset": 1755151922577,
-    "meta": 1755223208585,
+    "meta": 1755509059975,
     "relativePath": "aviator\\res\\menu\\Group 48.png"
   },
   "21365b74-3efc-4428-b23e-9ae7d3c91188": {
     "asset": 1755151922582,
-    "meta": 1755223208618,
+    "meta": 1755509059972,
     "relativePath": "aviator\\res\\menu\\Help (帮助).png"
   },
   "f577b886-7e44-4a84-b4bd-4cb5fb02a396": {
     "asset": 1755151922601,
-    "meta": 1755223208629,
+    "meta": 1755509060021,
     "relativePath": "aviator\\res\\menu\\icon_菜单.png"
   },
   "cc0de9da-3d85-492d-886b-58eecb8a3096": {
     "asset": 1755151922584,
-    "meta": 1755223208614,
+    "meta": 1755509059984,
     "relativePath": "aviator\\res\\menu\\History (历史记录).png"
   },
   "266b0fb8-b4f4-44d2-ba58-02c74b464237": {
     "asset": 1755151922572,
-    "meta": 1755223208583,
+    "meta": 1755509059969,
     "relativePath": "aviator\\res\\menu\\Frame.png"
   },
   "162875c9-a9a0-4d0e-8b8b-a7d6c4b82ed6": {
     "asset": 1755151922598,
-    "meta": 1755223208624,
+    "meta": 1755509060031,
     "relativePath": "aviator\\res\\menu\\icon_对话.png"
   },
   "a7a9ca2b-2780-47e1-adc8-1058174041bb": {
     "asset": 1755151922596,
-    "meta": 1755223208626,
+    "meta": 1755509059986,
     "relativePath": "aviator\\res\\menu\\icon_back.png"
   },
   "c81a4fd8-56f2-4757-96aa-4b0a41e6c9a8": {
     "asset": 1755151922604,
-    "meta": 1755223208632,
+    "meta": 1755509060038,
     "relativePath": "aviator\\res\\menu\\logo_titel.png"
   },
   "f8f4a724-30a3-4cbc-8ca3-7b8cfdc768ff": {
     "asset": 1755151922594,
-    "meta": 1755223208621,
+    "meta": 1755509059977,
     "relativePath": "aviator\\res\\menu\\icon.png"
   },
   "7409f1ea-d82a-4de1-b2b9-4c2941d8c2b0": {
     "asset": 1755151922599,
-    "meta": 1755223208627,
+    "meta": 1755509060025,
     "relativePath": "aviator\\res\\menu\\icon_更多.png"
   },
   "e54c339f-5cbb-4787-a67d-58017e64edec": {
     "asset": 1755151922585,
-    "meta": 1755223208672,
+    "meta": 1755509060035,
     "relativePath": "aviator\\res\\menu\\Music (音乐).png"
   },
   "382a4f89-6523-4eab-8b9d-11d68683d464": {
     "asset": 1755151922586,
-    "meta": 1755223208675,
+    "meta": 1755509060037,
     "relativePath": "aviator\\res\\menu\\Protect (保护).png"
   },
   "b40aaeea-b7ea-4e8d-8a8a-fc43dc9068db": {
     "asset": 1755151922592,
-    "meta": 1755223208694,
+    "meta": 1755509060080,
     "relativePath": "aviator\\res\\menu\\Volume-small (声音-小).png"
   },
   "4e95c541-4bf0-402b-9c0c-44c46a2deaf1": {
     "asset": 1755151922588,
-    "meta": 1755223208684,
+    "meta": 1755509060044,
     "relativePath": "aviator\\res\\menu\\Rectangle 46.png"
   },
   "01df57a1-878e-4836-b580-fac9d2f396dd": {
     "asset": 1755151922591,
-    "meta": 1755223208687,
+    "meta": 1755509060046,
     "relativePath": "aviator\\res\\menu\\Star (星星).png"
   },
   "b779292c-ee96-40ef-89f0-3d2a03748640": {
     "asset": 1755151922569,
-    "meta": 1755223208574,
+    "meta": 1755509059937,
     "relativePath": "aviator\\res\\menu\\Ellipse 12.png"
   },
   "8672593a-7798-4a7f-a770-a5937640e12e": {
     "asset": 1755151922589,
-    "meta": 1755223208682,
+    "meta": 1755509060040,
     "relativePath": "aviator\\res\\menu\\Rectangle 87.png"
   },
   "ceb17c85-a395-4809-ac4b-c859717a502b": {
     "asset": 1755151922580,
-    "meta": 1755223208610,
+    "meta": 1755509059982,
     "relativePath": "aviator\\res\\menu\\Group 69.png"
   },
   "fb09c283-2f05-495c-9c15-794af4f4cffa": {
     "asset": 1755151922571,
-    "meta": 1755223208580,
+    "meta": 1755509059938,
     "relativePath": "aviator\\res\\menu\\Frame 9.png"
   },
   "88ddea1c-8c8e-4fe0-8cd7-6f741a2a2024": {
     "asset": 1755151922570,
-    "meta": 1755223208577,
+    "meta": 1755509059935,
     "relativePath": "aviator\\res\\menu\\Frame 10.png"
   },
   "524b5d4a-a399-45ad-bba7-7614841b12b4": {
     "asset": 1755151922492,
-    "meta": 1755223208276,
+    "meta": 1755509059673,
     "relativePath": "aviator\\res\\head\\icon_close.png"
   },
   "b0f35da5-f818-479e-a84d-a2b650b8889f": {
     "asset": 1755151922488,
-    "meta": 1755223208269,
+    "meta": 1755509059651,
     "relativePath": "aviator\\res\\head\\Ellipse 19.png"
   },
   "c554b824-5a6f-400e-b2c9-4d0071dfe51d": {
     "asset": 1755151922489,
-    "meta": 1755223208272,
+    "meta": 1755509059646,
     "relativePath": "aviator\\res\\head\\Ellipse 29.png"
   },
   "04c1f032-edb4-4029-9bbb-c56d0d84ef45": {
     "asset": 1755151922492,
-    "meta": 1755223208278,
+    "meta": 1755509059653,
     "relativePath": "aviator\\res\\head\\game limits.png"
   },
   "0b4b1375-5427-4264-9d26-c2b1137c9c00": {
     "asset": 1755151922491,
-    "meta": 1755223208281,
+    "meta": 1755509059678,
     "relativePath": "aviator\\res\\head\\Rectangle 67.png"
   },
   "f5e1424e-cc2a-4ecd-88b9-4f31e7872e28": {
-    "asset": 1755241783679,
-    "meta": 1755241783705,
+    "asset": 1755509017837,
+    "meta": 1755509057755,
     "relativePath": "aviator\\prefab\\AviatorChangeHead.prefab"
   },
   "162a97a7-6230-4695-92c3-da276cfa6ee7": {
     "asset": 1755151922489,
-    "meta": 1755223208274,
+    "meta": 1755509059670,
     "relativePath": "aviator\\res\\head\\Group 68.png"
   },
   "fab4ab3c-4ac5-4979-a1db-f904ae72020a": {
@@ -28891,267 +28876,257 @@
   },
   "697694af-2375-4142-ab99-1d6f8cf7032a": {
     "asset": 1755151922568,
-    "meta": 1755223207187,
+    "meta": 1755509057786,
     "relativePath": "aviator\\res\\main"
   },
   "4a7c5f2e-1f1b-4ac7-9d0d-d3e2531651c6": {
     "asset": 1755151922546,
-    "meta": 1755223208394,
+    "meta": 1755509059763,
     "relativePath": "aviator\\res\\main\\icon_减.png"
   },
   "ca17f42f-88df-4c30-90b8-bf18cca08628": {
     "asset": 1755151922547,
-    "meta": 1755223208396,
+    "meta": 1755509059770,
     "relativePath": "aviator\\res\\main\\icon_加.png"
   },
   "dcef27bb-f6dd-4e48-8f8e-5e6fdad95442": {
     "asset": 1755151922522,
-    "meta": 1755223208504,
+    "meta": 1755509059893,
     "relativePath": "aviator\\res\\main\\Rectangle 23.png"
   },
   "1123c773-1368-4bcf-91d8-392abe731ff0": {
     "asset": 1755151922550,
-    "meta": 1755223208406,
+    "meta": 1755509059771,
     "relativePath": "aviator\\res\\main\\icon_更多.png"
   },
   "e88caef4-f032-4aab-9e53-cffbb3fae7c7": {
     "asset": 1755151922516,
-    "meta": 1755223208460,
+    "meta": 1755509059853,
     "relativePath": "aviator\\res\\main\\Rectangle 15.png"
   },
   "b51df57d-bc83-4560-b7b6-4c540e541fc3": {
     "asset": 1755151922512,
-    "meta": 1755223208453,
+    "meta": 1755509059847,
     "relativePath": "aviator\\res\\main\\Rectangle 13.png"
   },
   "b07bfc7b-4774-433e-9d49-e80f859c32a4": {
     "asset": 1755151922517,
-    "meta": 1755223208498,
+    "meta": 1755509059858,
     "relativePath": "aviator\\res\\main\\Rectangle 17.png"
   },
   "f95f04b9-4ffc-4e50-8875-6762ccb956c0": {
     "asset": 1755151922518,
-    "meta": 1755223208495,
+    "meta": 1755509059856,
     "relativePath": "aviator\\res\\main\\Rectangle 18.png"
   },
   "92a6fe4d-6f4d-4e9c-b697-30a695ab8e0a": {
     "asset": 1755151922519,
-    "meta": 1755223208505,
+    "meta": 1755509059860,
     "relativePath": "aviator\\res\\main\\Rectangle 19.png"
   },
   "ed0baa16-6cf6-4b39-89c1-a94fa3b1223d": {
     "asset": 1755151922505,
-    "meta": 1755223208335,
+    "meta": 1755509059715,
     "relativePath": "aviator\\res\\main\\Group 27.png"
   },
   "6c595c81-07a7-4ba7-bdea-936022fe55ca": {
     "asset": 1755151922522,
-    "meta": 1755223208501,
+    "meta": 1755509059888,
     "relativePath": "aviator\\res\\main\\Rectangle 22.png"
   },
   "7a25296d-3d2a-4630-8eec-c6e8d54cffaa": {
     "asset": 1755151922629,
-    "meta": 1755223208793,
+    "meta": 1755509060400,
     "relativePath": "aviator\\res\\rule\\game limits.png"
   },
   "c1c73775-4310-4f30-ad45-a59ded741054": {
     "asset": 1755151922528,
-    "meta": 1755223208531,
+    "meta": 1755509059900,
     "relativePath": "aviator\\res\\main\\Rectangle 89.png"
   },
   "e765bf12-668e-4f05-b956-05bd709d1a57": {
     "asset": 1755151922527,
-    "meta": 1755223208535,
+    "meta": 1755509059898,
     "relativePath": "aviator\\res\\main\\Rectangle 88.png"
   },
   "306303ae-7ed6-4e69-bdfb-1a5d765dc6bb": {
     "asset": 1755151922525,
-    "meta": 1755223208538,
+    "meta": 1755509059894,
     "relativePath": "aviator\\res\\main\\Rectangle 65.png"
-  },
-  "c55fe411-47b6-4baf-9ad8-f2c74f3a80b0": {
-    "asset": 1755151922666,
-    "meta": 1755223207598,
-    "relativePath": "aviator\\src\\AviatorProvably.js"
   },
   "b6e42c9e-60b6-41df-932c-0cb16d83ea73": {
     "asset": 1755151922540,
-    "meta": 1755223208351,
+    "meta": 1755509059728,
     "relativePath": "aviator\\res\\main\\icon (1).png"
   },
   "2fde34b0-7cea-41fe-91a4-3cb0b12e0e77": {
     "asset": 1755151922541,
-    "meta": 1755223208361,
+    "meta": 1755509059758,
     "relativePath": "aviator\\res\\main\\icon.png"
   },
   "ad97afe8-9d49-4a63-94d5-0118aed2d348": {
     "asset": 1755151922678,
-    "meta": 1755223207865,
+    "meta": 1755509058496,
     "relativePath": "aviator\\src\\AviatorStopItem.js"
   },
   "281c6874-035e-4720-a764-a87da9329c86": {
-    "asset": 1755244350063,
-    "meta": 1755244350074,
+    "asset": 1755509017840,
+    "meta": 1755509057745,
     "relativePath": "aviator\\prefab\\AviatorHowToPlay.prefab"
   },
   "af4f4f9d-ba8f-4d9f-9d90-386cf4deb338": {
     "asset": 1755151922625,
-    "meta": 1755223208794,
+    "meta": 1755509060407,
     "relativePath": "aviator\\res\\rule\\3.png"
   },
   "852f47d3-9d6c-47b0-b5b6-6b49f4793cec": {
     "asset": 1755151922627,
-    "meta": 1755223208814,
+    "meta": 1755509060410,
     "relativePath": "aviator\\res\\rule\\4.png"
   },
   "37bb6c65-6860-4a6a-a358-d2cf7d0a08e4": {
-    "asset": 1755241809561,
-    "meta": 1755241809568,
+    "asset": 1755509017839,
+    "meta": 1755509057758,
     "relativePath": "aviator\\prefab\\AviatorFreeBets.prefab"
   },
   "9ea6482e-3ee5-4715-84ad-34cb9cab0a1f": {
     "asset": 1755151922487,
-    "meta": 1755223207182,
+    "meta": 1755509057782,
     "relativePath": "aviator\\res\\free"
   },
   "9ce1ef88-fd7b-4e0d-8b2f-eb6ee415f33e": {
     "asset": 1755151922487,
-    "meta": 1755223208232,
+    "meta": 1755509059619,
     "relativePath": "aviator\\res\\free\\icon_close.png"
   },
   "04a0db68-44c2-4031-89c9-f4b309a8c3e5": {
     "asset": 1755151922483,
-    "meta": 1755223208227,
+    "meta": 1755509059617,
     "relativePath": "aviator\\res\\free\\Group 66.png"
   },
   "9fcf8bea-bf19-4d04-9cf3-0ac25f7edc0a": {
     "asset": 1755151922484,
-    "meta": 1755223208261,
+    "meta": 1755509059621,
     "relativePath": "aviator\\res\\free\\Rectangle 67.png"
   },
   "410c9cde-aa2b-4571-ba0c-704d77ee87ab": {
     "asset": 1755151922486,
-    "meta": 1755223208267,
+    "meta": 1755509059649,
     "relativePath": "aviator\\res\\free\\Rectangle 71.png"
   },
   "a1735a72-3cfd-434d-bb1c-92ac0fca10f9": {
     "asset": 1755151922485,
-    "meta": 1755223208251,
+    "meta": 1755509059639,
     "relativePath": "aviator\\res\\free\\Rectangle 68.png"
   },
   "b4113464-f6f8-434b-962e-77a64806b9ac": {
     "asset": 1755151922507,
-    "meta": 1755223208338,
+    "meta": 1755509059732,
     "relativePath": "aviator\\res\\main\\Group 86.png"
   },
   "9be7e5fe-96d5-4cf3-a8cb-a8b4523348d1": {
     "asset": 1755151922482,
-    "meta": 1755223207180,
+    "meta": 1755509057780,
     "relativePath": "aviator\\res\\auto"
   },
   "6198a95e-6502-406b-8038-87adc46fe8df": {
     "asset": 1755151922476,
-    "meta": 1755223208223,
+    "meta": 1755509059596,
     "relativePath": "aviator\\res\\auto\\Rectangle 93.png"
   },
   "40f07f91-a2a3-4b58-a007-016b8471c766": {
     "asset": 1755151922479,
-    "meta": 1755223208225,
+    "meta": 1755509059600,
     "relativePath": "aviator\\res\\auto\\Rectangle 98.png"
   },
   "3ed90d13-e92a-4115-98d1-e9b30a75dabf": {
     "asset": 1755151922473,
-    "meta": 1755223208188,
+    "meta": 1755509059573,
     "relativePath": "aviator\\res\\auto\\Rectangle 68.png"
   },
   "3d2bf4ef-89cc-47ba-9b5d-586168a5383a": {
     "asset": 1755151922474,
-    "meta": 1755223208199,
+    "meta": 1755509059575,
     "relativePath": "aviator\\res\\auto\\Rectangle 90.png"
   },
   "50406871-59f2-479d-9254-fd734d95997c": {
     "asset": 1755151922475,
-    "meta": 1755223208193,
+    "meta": 1755509059576,
     "relativePath": "aviator\\res\\auto\\Rectangle 91.png"
   },
   "e7728eab-d674-4d7d-a3f2-5fbca554db81": {
     "asset": 1755151922477,
-    "meta": 1755223208215,
+    "meta": 1755509059594,
     "relativePath": "aviator\\res\\auto\\Rectangle 94.png"
   },
   "01a54489-6dfb-4c1f-9048-a00b2c330adb": {
     "asset": 1755151922481,
-    "meta": 1755223208229,
+    "meta": 1755509059615,
     "relativePath": "aviator\\res\\auto\\Rectangle 99.png"
   },
   "d064da45-7895-4738-8160-53d3553a993b": {
     "asset": 1755151922472,
-    "meta": 1755223208187,
+    "meta": 1755509059572,
     "relativePath": "aviator\\res\\auto\\Rectangle 67.png"
   },
   "eddb3867-a75d-4f91-8797-02294db8fcc5": {
     "asset": 1755151922478,
-    "meta": 1755223208220,
+    "meta": 1755509059598,
     "relativePath": "aviator\\res\\auto\\Rectangle 95.png"
   },
   "1b56d4b4-ed23-4962-bcf8-a50441106341": {
     "asset": 1755151922508,
-    "meta": 1755223208450,
+    "meta": 1755509059818,
     "relativePath": "aviator\\res\\main\\Rectangle 105.png"
   },
   "7c8dc18a-7844-4dce-b408-d13d2154fb38": {
     "asset": 1755151922456,
-    "meta": 1755223207173,
+    "meta": 1755509057764,
     "relativePath": "aviator\\prefab\\AviatorPlayerBet.prefab"
   },
   "a72ae74b-af27-4b81-b2f0-31ed4903f78e": {
     "asset": 1755151922660,
-    "meta": 1755223207501,
+    "meta": 1755509058126,
     "relativePath": "aviator\\src\\AviatorChangeHead.js"
   },
   "259f5390-1903-4449-b1c7-629d982f1879": {
     "asset": 1755151922664,
-    "meta": 1755223207563,
+    "meta": 1755509058186,
     "relativePath": "aviator\\src\\AviatorMybet.js"
   },
   "23bf04d0-bde6-4eb5-af65-f7f8428a8e36": {
     "asset": 1755151922674,
-    "meta": 1755223207802,
+    "meta": 1755509058447,
     "relativePath": "aviator\\src\\AviatorRoundRoot3.js"
   },
   "9c438445-1bfd-45b0-a430-fa0b1c3e99b2": {
     "asset": 1755151922665,
-    "meta": 1755223207576,
+    "meta": 1755509058207,
     "relativePath": "aviator\\src\\AviatorPlayerBet.js"
-  },
-  "885ec5ff-b231-4e5d-a1ca-de358cec2521": {
-    "asset": 1755151922670,
-    "meta": 1755223207710,
-    "relativePath": "aviator\\src\\AviatorRound.js"
   },
   "965ef59d-75a8-496c-bc63-308d0239c543": {
     "asset": 1755151922672,
-    "meta": 1755223207746,
+    "meta": 1755509058391,
     "relativePath": "aviator\\src\\AviatorRoundRoot1.js"
   },
   "02e2076c-1f3e-4325-91d0-13ce504ec024": {
-    "asset": 1755151922470,
-    "meta": 1755223206501,
+    "asset": 1755509017849,
+    "meta": 1755509057086,
     "relativePath": "aviator\\prefab"
   },
   "1aab9fc6-fcfa-4695-9db8-b18b355821fd": {
-    "asset": 1755151922622,
-    "meta": 1755223206502,
+    "asset": 1755509017851,
+    "meta": 1755509057086,
     "relativePath": "aviator\\res"
   },
   "090ed0ad-ebfa-4131-a78f-d2f23dcd93c3": {
-    "asset": 1755151922678,
-    "meta": 1755223206502,
+    "asset": 1755509017972,
+    "meta": 1755509057088,
     "relativePath": "aviator\\src"
   },
   "c69b27f1-e166-4142-8cee-0f31df621ef7": {
     "asset": 1755151922426,
-    "meta": 1755223207918,
+    "meta": 1755509059205,
     "relativePath": "ResourcesBundle\\NewPlan\\Inducement"
   },
   "79f64bec-6689-400f-8114-f4654fba7a72": {
@@ -29171,7 +29146,7 @@
   },
   "1ec800f8-a681-42d3-84fd-01604c264b1f": {
     "asset": 1754639123174,
-    "meta": 1755223208736,
+    "meta": 1755509060164,
     "relativePath": "ResourcesBundle\\NewPlan\\Inducement\\res"
   },
   "864f0f1b-7224-4f13-97d4-10953d44dfe2": {
@@ -29206,7 +29181,7 @@
   },
   "88f333ca-9e91-410a-b816-833cd34ec23f": {
     "asset": 1754639123221,
-    "meta": 1755223209393,
+    "meta": 1755509061340,
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes\\iconSpines\\inducement"
   },
   "82fd9393-9ad6-4451-bc79-2e9771eb8371": {
@@ -29476,27 +29451,22 @@
   },
   "2b33a01c-5a39-4bad-a6d2-cadb620d940f": {
     "asset": 1755151922428,
-    "meta": 1755223208789,
+    "meta": 1755509060358,
     "relativePath": "ResourcesBundle\\NewPlan\\SelectRoom\\selectRoomItemCtrl.js"
   },
   "fefb990b-20d0-432a-963a-70de135d3793": {
     "asset": 1755151922427,
-    "meta": 1755223208766,
+    "meta": 1755509060281,
     "relativePath": "ResourcesBundle\\NewPlan\\OnlyPay\\OnlyPayCtrl.js"
   },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
     "asset": 1755151922417,
-    "meta": 1755223206880,
+    "meta": 1755509057447,
     "relativePath": "Main\\Global.js"
-  },
-  "c5f251c6-1d29-4d93-96e1-d71bf81e51f2": {
-    "asset": 1755151922661,
-    "meta": 1755223207523,
-    "relativePath": "aviator\\src\\AviatorEditbox.js"
   },
   "1ed2de5e-fa54-495d-81a7-6c485df84641": {
     "asset": 1755151922420,
-    "meta": 1755223208925,
+    "meta": 1755509060923,
     "relativePath": "Main\\Script\\Common\\Net\\ProtobufManager.js"
   },
   "dbf3b9aa-9f62-4564-b47c-3e175ea17b0a": {
@@ -29506,372 +29476,402 @@
   },
   "de49df87-6e4a-44df-a73d-c8d090f88016": {
     "asset": 1755151922418,
-    "meta": 1755223208873,
+    "meta": 1755509060872,
     "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
   },
   "12508095-553d-4d89-9735-cd2b8e608ab7": {
     "asset": 1755151922419,
-    "meta": 1755223208904,
+    "meta": 1755509060899,
     "relativePath": "Main\\Script\\Common\\Net\\GameServerManager.js"
   },
   "fc097dc7-49e3-4f0a-b7ec-afe2d7c2ea5a": {
     "asset": 1755151922680,
-    "meta": 1755223208801,
+    "meta": 1755509060369,
     "relativePath": "resources\\proto\\aviator\\gameservice.proto"
   },
   "b78cff13-0824-4452-8f78-8afce67caa31": {
     "asset": 1755151922506,
-    "meta": 1755223208344,
+    "meta": 1755509059719,
     "relativePath": "aviator\\res\\main\\Group 3.png"
   },
   "8fbb989d-7cbd-4a71-ac7d-acf81c762dfc": {
     "asset": 1755151922516,
-    "meta": 1755223208485,
+    "meta": 1755509059855,
     "relativePath": "aviator\\res\\main\\Rectangle 16.png"
   },
   "eea6d0d7-5dba-4273-97fd-36d58ff799e4": {
     "asset": 1755151922511,
-    "meta": 1755223208444,
+    "meta": 1755509059834,
     "relativePath": "aviator\\res\\main\\Rectangle 12.png"
   },
   "01816824-aa8d-422a-8718-adb258f129b8": {
     "asset": 1755151922520,
-    "meta": 1755223208493,
+    "meta": 1755509059883,
     "relativePath": "aviator\\res\\main\\Rectangle 20.png"
   },
   "2349b437-105d-4608-be83-d4bd000f3c06": {
     "asset": 1755151922521,
-    "meta": 1755223208499,
+    "meta": 1755509059886,
     "relativePath": "aviator\\res\\main\\Rectangle 21.png"
   },
   "cf128d81-a34e-4305-8c72-0a8bc09d3870": {
     "asset": 1755151922514,
-    "meta": 1755223208455,
+    "meta": 1755509059851,
     "relativePath": "aviator\\res\\main\\Rectangle 14.png"
   },
   "79e0625f-a23f-43e7-bccd-5fc0e1ca8c38": {
     "asset": 1755151922510,
-    "meta": 1755223208458,
+    "meta": 1755509059836,
     "relativePath": "aviator\\res\\main\\Rectangle 11.png"
   },
   "70700240-f2b3-40cd-a313-54cb818e67fd": {
     "asset": 1755151922524,
-    "meta": 1755223208541,
+    "meta": 1755509059897,
     "relativePath": "aviator\\res\\main\\Rectangle 42.png"
   },
   "77b0afee-902a-4722-a792-8f247ed4e7e3": {
     "asset": 1755151922523,
-    "meta": 1755223208502,
+    "meta": 1755509059891,
     "relativePath": "aviator\\res\\main\\Rectangle 40.png"
   },
   "e21ea6b4-6c65-42e4-851f-be896b2cdd46": {
     "asset": 1755151922669,
-    "meta": 1755223207684,
+    "meta": 1755509058316,
     "relativePath": "aviator\\src\\AviatorReward.js"
   },
   "ec4d1d5d-d820-44e0-8a3c-37fb2fc34ecb": {
     "asset": 1755151922673,
-    "meta": 1755223207765,
+    "meta": 1755509058408,
     "relativePath": "aviator\\src\\AviatorRoundRoot2.js"
   },
   "1d65203f-0617-48a9-b58a-3ae523ff205d": {
     "asset": 1755151922668,
-    "meta": 1755223207672,
+    "meta": 1755509058282,
     "relativePath": "aviator\\src\\AviatorRecordRectCtrl.js"
   },
   "e5b0ceb6-431b-4a7b-9746-1e8cf99cbdb1": {
-    "asset": 1755223458848,
-    "meta": 1755223458850,
+    "asset": 1755509017929,
+    "meta": 1755509057793,
     "relativePath": "aviator\\res\\V"
   },
   "2ecd0c2e-73df-4b6d-8481-5e8c5339f1bf": {
-    "asset": 1755223464198,
-    "meta": 1755223464199,
+    "asset": 1755509017899,
+    "meta": 1755509060098,
     "relativePath": "aviator\\res\\V\\main"
   },
   "0767ff88-0ce0-42bf-a334-06ed4f62170b": {
-    "asset": 1755223475556,
-    "meta": 1755223475588,
+    "asset": 1755509017870,
+    "meta": 1755509060464,
     "relativePath": "aviator\\res\\V\\main\\Group 3.png"
   },
   "822d7aa4-4c62-4873-911e-a2fbb4d66e00": {
-    "asset": 1755224279619,
-    "meta": 1755224279645,
+    "asset": 1755509017878,
+    "meta": 1755509060479,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 106.png"
   },
   "ffc1c046-4623-45c8-9d5b-dfb829dccd04": {
-    "asset": 1755224462811,
-    "meta": 1755224462826,
+    "asset": 1755509017896,
+    "meta": 1755509060470,
     "relativePath": "aviator\\res\\V\\main\\icon_更多.png"
   },
   "8e7cfc25-28e2-4dc7-ad09-c15fb992bd51": {
-    "asset": 1755225239199,
-    "meta": 1755225239218,
+    "asset": 1755509017893,
+    "meta": 1755509060534,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 20.png"
   },
   "3f0776b5-aa9f-461b-8a9b-2074f7f1deb1": {
-    "asset": 1755225886108,
-    "meta": 1755225886132,
+    "asset": 1755509017885,
+    "meta": 1755509060525,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 13.png"
   },
   "178a9dca-e3fd-4bda-9403-099fc9116601": {
-    "asset": 1755227071379,
-    "meta": 1755227071395,
+    "asset": 1755509017882,
+    "meta": 1755509060506,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 12.png"
   },
   "84e2cb03-7193-4ff0-82aa-c8cffae6f6e8": {
-    "asset": 1755227097287,
-    "meta": 1755227099830,
+    "asset": 1755509017881,
+    "meta": 1755509060492,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 11.png"
   },
   "fa0b7ebd-4a06-4028-af65-52fc90a7e5eb": {
-    "asset": 1755227192270,
-    "meta": 1755227196066,
+    "asset": 1755509017889,
+    "meta": 1755509060523,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 16.png"
   },
   "9cceb731-7a0f-415e-971b-96b6fc652f41": {
-    "asset": 1755227425570,
-    "meta": 1755227425588,
+    "asset": 1755509017879,
+    "meta": 1755509060490,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 107.png"
   },
   "dbdee689-b867-4257-ac49-ca4f12f21b53": {
-    "asset": 1755227706344,
-    "meta": 1755227706363,
+    "asset": 1755509017887,
+    "meta": 1755509060522,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 15.png"
   },
   "7e18b48a-79ef-44ab-9b1d-532cda318504": {
-    "asset": 1755227706344,
-    "meta": 1755227706364,
+    "asset": 1755509017886,
+    "meta": 1755509060518,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 14.png"
   },
   "08f5b761-57ab-491e-9481-2a600b881c78": {
-    "asset": 1755228523378,
-    "meta": 1755228527092,
+    "asset": 1755509017874,
+    "meta": 1755509060471,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 10.png"
   },
   "94a720dc-3525-4354-9dbc-1613c7481889": {
-    "asset": 1755236492192,
-    "meta": 1755236497780,
+    "asset": 1755509017891,
+    "meta": 1755509060528,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 18.png"
   },
   "101c2f18-1eb1-4db0-bb25-071e7f5958bc": {
-    "asset": 1755237328101,
-    "meta": 1755237331123,
+    "asset": 1755509017894,
+    "meta": 1755509060531,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 40.png"
   },
   "cf8d35a6-ea7b-4ecb-a0ab-c8c3e1277c95": {
-    "asset": 1755238241786,
-    "meta": 1755238241805,
+    "asset": 1755509017876,
+    "meta": 1755509060477,
     "relativePath": "aviator\\res\\V\\main\\Rectangle 105.png"
   },
   "7c26ceeb-bd8b-4223-8aed-331bc4053575": {
-    "asset": 1755238262143,
-    "meta": 1755238262159,
+    "asset": 1755509017898,
+    "meta": 1755509060540,
     "relativePath": "aviator\\res\\V\\main\\曲线.png"
   },
   "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1755238713744,
-    "meta": 1755238788655,
+    "asset": 1755509017824,
+    "meta": 1755509061179,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
-  "589bb17d-e8ba-4672-95f8-1e63f459dec2": {
-    "asset": 1755239896318,
-    "meta": 1755239899740,
-    "relativePath": "aviator\\src\\AviatorSetting.js"
-  },
   "bf3ed5e2-ae78-4627-9d2e-29e5d24705d5": {
-    "asset": 1755241439103,
-    "meta": 1755241439104,
+    "asset": 1755509017869,
+    "meta": 1755509060097,
     "relativePath": "aviator\\res\\V\\free"
   },
   "f5647488-c91d-4f0e-a2e0-3cd4f7bd8be7": {
-    "asset": 1755212622000,
-    "meta": 1755241458178,
+    "asset": 1755509017853,
+    "meta": 1755509060423,
     "relativePath": "aviator\\res\\V\\free\\Frame 23.png"
   },
   "906bed25-d86b-45f9-91d1-7fc991ca3796": {
-    "asset": 1755212622000,
-    "meta": 1755241458180,
+    "asset": 1755509017856,
+    "meta": 1755509060428,
     "relativePath": "aviator\\res\\V\\free\\Group 66.png"
   },
   "dc99657f-241c-4632-ae5b-bbc6bf8f72aa": {
-    "asset": 1755212622000,
-    "meta": 1755241458182,
+    "asset": 1755509017868,
+    "meta": 1755509060431,
     "relativePath": "aviator\\res\\V\\free\\icon_close.png"
   },
   "61c29dab-7d91-4e97-bd46-1405dc2fd3a8": {
-    "asset": 1755212622000,
-    "meta": 1755241458183,
+    "asset": 1755509017861,
+    "meta": 1755509060433,
     "relativePath": "aviator\\res\\V\\free\\Rectangle 67.png"
   },
   "a0326191-f9b9-46d3-97c1-9e1d528c583c": {
-    "asset": 1755212622000,
-    "meta": 1755241458196,
+    "asset": 1755509017863,
+    "meta": 1755509060466,
     "relativePath": "aviator\\res\\V\\free\\Rectangle 71.png"
   },
   "5ee604a5-6426-4fd5-8ff7-ea4d42643883": {
-    "asset": 1755212622000,
-    "meta": 1755241458198,
+    "asset": 1755509017862,
+    "meta": 1755509060454,
     "relativePath": "aviator\\res\\V\\free\\Rectangle 68.png"
   },
   "fe2af053-b982-4670-868e-ae455a4da2c3": {
-    "asset": 1755241714187,
-    "meta": 1755241714210,
+    "asset": 1755509017866,
+    "meta": 1755509060435,
     "relativePath": "aviator\\res\\V\\free\\game limits.png"
   },
   "76ec5041-cf12-4240-a238-e12bc484ed2e": {
-    "asset": 1755242774079,
-    "meta": 1755242774081,
+    "asset": 1755509017928,
+    "meta": 1755509060101,
     "relativePath": "aviator\\res\\V\\provably"
   },
   "5327bf7a-df5f-4f9f-bc14-85d4240a3719": {
-    "asset": 1755213988000,
-    "meta": 1755242812050,
+    "asset": 1755509017903,
+    "meta": 1755509060538,
     "relativePath": "aviator\\res\\V\\provably\\Copy (复制).png"
   },
   "bc095d90-3fa6-4132-8f54-81e9d2986edc": {
-    "asset": 1755213988000,
-    "meta": 1755242812052,
+    "asset": 1755509017908,
+    "meta": 1755509060567,
     "relativePath": "aviator\\res\\V\\provably\\Frame.png"
   },
   "7f5440ea-9ff1-4d2a-88da-1dd5eac44fa7": {
-    "asset": 1755213988000,
-    "meta": 1755242812054,
+    "asset": 1755509017901,
+    "meta": 1755509060536,
     "relativePath": "aviator\\res\\V\\provably\\Copy (复制)(1).png"
   },
   "2ce14666-4600-43b8-8a15-42504ddcbf04": {
-    "asset": 1755213988000,
-    "meta": 1755242812056,
+    "asset": 1755509017906,
+    "meta": 1755509060560,
     "relativePath": "aviator\\res\\V\\provably\\Frame 35.png"
   },
   "e377bd5c-c760-4c3a-9cbf-af97ca8eb3ba": {
-    "asset": 1755213988000,
-    "meta": 1755242812058,
+    "asset": 1755509017909,
+    "meta": 1755509060570,
     "relativePath": "aviator\\res\\V\\provably\\Group 66.png"
   },
   "252ff05a-5a00-42e1-b923-c2b29f597c5c": {
-    "asset": 1755213988000,
-    "meta": 1755242812059,
+    "asset": 1755509017904,
+    "meta": 1755509060541,
     "relativePath": "aviator\\res\\V\\provably\\Frame 34.png"
   },
   "182f4a34-1776-4ddc-9ae4-36fa5d1009ae": {
-    "asset": 1755213988000,
-    "meta": 1755242812068,
+    "asset": 1755509017911,
+    "meta": 1755509060578,
     "relativePath": "aviator\\res\\V\\provably\\Group 67.png"
   },
   "80083499-cc93-4575-b764-e6859a97b8a2": {
-    "asset": 1755213988000,
-    "meta": 1755242812069,
+    "asset": 1755509017927,
+    "meta": 1755509060576,
     "relativePath": "aviator\\res\\V\\provably\\icon_close.png"
   },
   "6ff4a7db-4ab1-44e4-b326-93a524970370": {
-    "asset": 1755213988000,
-    "meta": 1755242812070,
+    "asset": 1755509017912,
+    "meta": 1755509060574,
     "relativePath": "aviator\\res\\V\\provably\\Group 98.png"
   },
   "f90a7793-1064-4c1d-8ebf-2798f839206a": {
-    "asset": 1755213988000,
-    "meta": 1755242812071,
+    "asset": 1755509017918,
+    "meta": 1755509060588,
     "relativePath": "aviator\\res\\V\\provably\\PROVABLY FAIR SETTINGS.png"
   },
   "87f12aed-6941-46ea-af80-f3db5fa7cf36": {
-    "asset": 1755213988000,
-    "meta": 1755242812072,
+    "asset": 1755509017915,
+    "meta": 1755509060581,
     "relativePath": "aviator\\res\\V\\provably\\Help (帮助).png"
   },
   "e02a1444-6ec7-4c66-9ae9-a1e5bcf0487d": {
-    "asset": 1755213988000,
-    "meta": 1755242812073,
+    "asset": 1755509017920,
+    "meta": 1755509060589,
     "relativePath": "aviator\\res\\V\\provably\\Rectangle 67.png"
   },
   "2725a5d7-fa92-4838-9ba5-0efdc6d033d9": {
-    "asset": 1755213988000,
-    "meta": 1755242812091,
+    "asset": 1755509017922,
+    "meta": 1755509060585,
     "relativePath": "aviator\\res\\V\\provably\\Rectangle 77.png"
   },
   "1bcf78b8-bf7e-4a75-b52e-812c0081c913": {
-    "asset": 1755213988000,
-    "meta": 1755242812092,
+    "asset": 1755509017923,
+    "meta": 1755509060592,
     "relativePath": "aviator\\res\\V\\provably\\Rectangle 80.png"
   },
   "d269fffd-d7ed-423e-9e46-f9d23e74a57d": {
-    "asset": 1755213988000,
-    "meta": 1755242812093,
+    "asset": 1755509017925,
+    "meta": 1755509060591,
     "relativePath": "aviator\\res\\V\\provably\\Rectangle 81.png"
   },
   "4b040691-5564-460b-9609-5ae616cfb33c": {
-    "asset": 1755213988000,
-    "meta": 1755242812094,
+    "asset": 1755509017926,
+    "meta": 1755509060609,
     "relativePath": "aviator\\res\\V\\provably\\Rectangle 82.png"
   },
   "c5728c97-e426-4b78-894c-db9b38852ea8": {
-    "asset": 1755244336600,
-    "meta": 1755244336623,
+    "asset": 1755509017859,
+    "meta": 1755509060459,
     "relativePath": "aviator\\res\\V\\free\\Group 97 (1).png"
   },
   "31084ba6-ef5a-4de5-8fe7-9431ccd79ca3": {
-    "asset": 1755244406523,
-    "meta": 1755244406524,
+    "asset": 1755509017967,
+    "meta": 1755509060105,
     "relativePath": "aviator\\res\\V\\rule"
   },
   "195b9dab-3cb4-43f1-8d0f-001ff367ab84": {
-    "asset": 1755215598000,
-    "meta": 1755244451189,
+    "asset": 1755509017943,
+    "meta": 1755509060621,
     "relativePath": "aviator\\res\\V\\rule\\icon_share.png"
   },
   "d138bd38-0cb7-4ec7-97d7-527a5957ce7f": {
-    "asset": 1755215598000,
-    "meta": 1755244451206,
+    "asset": 1755509017944,
+    "meta": 1755509060623,
     "relativePath": "aviator\\res\\V\\rule\\logo_youtobe.png"
   },
   "2155e7fa-a9d2-44b4-8249-69e5b4e36116": {
-    "asset": 1755215598000,
-    "meta": 1755244451207,
+    "asset": 1755509017940,
+    "meta": 1755509060613,
     "relativePath": "aviator\\res\\V\\rule\\icon_close.png"
   },
   "97e04a2d-8034-488d-ae4f-9c87f41a3063": {
-    "asset": 1755215598000,
-    "meta": 1755244451208,
+    "asset": 1755509017930,
+    "meta": 1755509060624,
     "relativePath": "aviator\\res\\V\\rule\\Rectangle 117.png"
   },
   "715fdc1c-0091-4ab3-a499-9f27208cde8b": {
-    "asset": 1755215598000,
-    "meta": 1755244451209,
+    "asset": 1755509017942,
+    "meta": 1755509060619,
     "relativePath": "aviator\\res\\V\\rule\\icon_share(1).png"
   },
   "26884009-75e9-42f6-82df-e0a4e2496c4b": {
-    "asset": 1755215598000,
-    "meta": 1755244451258,
+    "asset": 1755509017934,
+    "meta": 1755509060877,
     "relativePath": "aviator\\res\\V\\rule\\Rectangle 67.png"
   },
   "6beec265-3817-4ae8-b3a9-06474670813e": {
-    "asset": 1755215598000,
-    "meta": 1755244451260,
+    "asset": 1755509017939,
+    "meta": 1755509060821,
     "relativePath": "aviator\\res\\V\\rule\\game limits.png"
   },
   "e9ca7e7b-30f0-4da3-92e0-1e983e9dc282": {
-    "asset": 1755215598000,
-    "meta": 1755244451302,
+    "asset": 1755509017966,
+    "meta": 1755509061420,
     "relativePath": "aviator\\res\\V\\rule\\详情页截图3倍 1.png"
   },
   "189e376f-e30a-4785-a740-4f7374aae6b0": {
-    "asset": 1755251023711,
-    "meta": 1755251026354,
+    "asset": 1755509017970,
+    "meta": 1755509058266,
     "relativePath": "aviator\\src\\AviatorRecord.js"
   },
   "ccc4cc15-025e-4afa-bef4-72a547001a03": {
-    "asset": 1755251245424,
-    "meta": 1755251245440,
+    "asset": 1755509017873,
+    "meta": 1755509060468,
     "relativePath": "aviator\\res\\V\\main\\Group 86.png"
   },
+  "0c5e7236-c381-49b3-89f4-d6570e7cd1fd": {
+    "asset": 1755509238898,
+    "meta": 1755509506163,
+    "relativePath": "aviator\\src\\AviatorRule.js"
+  },
+  "75131999-d098-4bb3-a686-081b2cbceaed": {
+    "asset": 1755515450197,
+    "meta": 1755515450216,
+    "relativePath": "aviator\\aviator.fire"
+  },
+  "c55fe411-47b6-4baf-9ad8-f2c74f3a80b0": {
+    "asset": 1755513789351,
+    "meta": 1755513829900,
+    "relativePath": "aviator\\src\\AviatorProvably.js"
+  },
+  "a613c51a-239a-4ac7-9436-1c218a9da2b0": {
+    "asset": 1755513781284,
+    "meta": 1755513829955,
+    "relativePath": "aviator\\src\\AviatorProvablySetting.js"
+  },
   "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
-    "asset": 1755251440882,
-    "meta": 1755251455095,
+    "asset": 1755513861945,
+    "meta": 1755513863955,
     "relativePath": "aviator\\src\\Aviator.js"
   },
+  "589bb17d-e8ba-4672-95f8-1e63f459dec2": {
+    "asset": 1755514014242,
+    "meta": 1755514019600,
+    "relativePath": "aviator\\src\\AviatorSetting.js"
+  },
+  "885ec5ff-b231-4e5d-a1ca-de358cec2521": {
+    "asset": 1755514041081,
+    "meta": 1755514054571,
+    "relativePath": "aviator\\src\\AviatorRound.js"
+  },
   "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
-    "asset": 1755251693103,
-    "meta": 1755251695279,
+    "asset": 1755514221056,
+    "meta": 1755514224186,
     "relativePath": "aviator\\src\\AviatorBetCtrl.js"
+  },
+  "c5f251c6-1d29-4d93-96e1-d71bf81e51f2": {
+    "asset": 1755514898105,
+    "meta": 1755514901695,
+    "relativePath": "aviator\\src\\AviatorEditbox.js"
   }
 }

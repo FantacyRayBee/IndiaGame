@@ -391,11 +391,11 @@ cc.Class({
     dealOpenEvent: function () {
         if (this.root_index == 0) {
             GlobalCfg.ACT_SCENE_CTRL.node_betinfo2.active = true;
-            this.setBgWidth(false)
+            // this.setBgWidth(false)
         } else {
             let betinfo1 = GlobalCfg.ACT_SCENE_CTRL.node_betinfo1.getComponent('AviatorBetCtrl');
             this.node.active = false;
-            betinfo1.setBgWidth(true);
+            // betinfo1.setBgWidth(true);
         }
     },
 
