@@ -13,19 +13,17 @@ cc.Class({
         toggle_bet: cc.Toggle,
         toggle_auto: cc.Toggle,
         toggle_isAuto: cc.Toggle,
+        toggle_autoPlay: cc.Toggle,
 
         lab_curBet1: cc.Label,
         lab_curBet2: cc.Label,
         lab_bet_tip: cc.Label,
-        label_autoCount: cc.Label,
 
         btn_add: cc.Button,
         btn_att: cc.Button,
         btn_bet_quicks: [cc.Button],
         btn_bet: cc.Button,
         btn_bet_cancel: cc.Button,
-        btn_autoplay: cc.Button,
-        btn_stopAuto: cc.Button,
         btn_open: cc.Button,
 
 
@@ -46,14 +44,13 @@ cc.Class({
         }
         this.btn_bet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_bet_cancel.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_autoplay.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_stopAuto.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_open.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        
         
         this.toggle_bet.node.on('toggle', this.toggleClick, this);
         this.toggle_auto.node.on('toggle', this.toggleClick, this);
-        this.toggle_isAuto.node.on('toggle', this.toggleAutoClick, this);
+        this.toggle_isAuto.node.on('toggle', this.toggleSetAutoClick, this);
+        this.toggle_autoPlay.node.on('toggle', this.toggleAutoPlayClick, this);
+        
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.edit_Bet.node.on('editing-did-ended', this.onBetEditEnd, this);
@@ -123,10 +120,7 @@ cc.Class({
                 this.autoCount = 0;
                 this.toggle_isAuto.enabled = true;
                 this.setButtonEnabled(true);
-                this.btn_stopAuto.node.active = false;
-                this.btn_autoplay.node.active = true;
             }
-            this.label_autoCount.string = `stop (${this.autoCount})`;
             return;
         }
         if (this.betStatus != 1) {//如果为等待下一局 则变成下注状态
@@ -144,9 +138,8 @@ cc.Class({
         this.setViewByToggleName(toggleName);
     },
 
-    toggleAutoClick: function(toggle) {
-        LoggerUtil.getInstance().log("GlobalCfg.ACT_SCENE_CTRL.betStatus == ", GlobalCfg.ACT_SCENE_CTRL.betStatus);
-        if (GlobalCfg.ACT_SCENE_CTRL.betStatus == 1) {//飞行阶段不允许切换自动下注
+    toggleSetAutoClick: function(toggle) {
+        if (GlobalCfg.ACT_SCENE_CTRL.betStatus == 1 && this.betStatus == 2) {//飞行阶段&&下注状态 不允许切换自动下注
             return; //自动下注
         }
         GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -161,6 +154,16 @@ cc.Class({
         this.toggle_auto.interactable = !toggle.isChecked;
         this.toggle_bet.interactable = !toggle.isChecked;
         this.node_choice.opacity = toggle.isChecked ? 160 : 255;
+    },
+
+    toggleAutoPlayClick: function(toggle) {
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        if (toggle.isChecked) {
+            this.setAutoInfo(99999);
+        }
+        else {
+            this.dealStopAutoEvent();
+        }
     },
 
     btnClick: function (btn) {
@@ -190,12 +193,6 @@ cc.Class({
         else if (btnName === "btn_bet_cancel") {
             this.dealBetCancelEvent();
         }
-        else if (btnName === "btn_autoplay") {
-            this.dealAutoPlayEvent();
-        }
-        else if (btnName === "btn_stopAuto") {
-            this.dealStopAutoEvent();
-        }
         else if (btnName === "btn_open") {
             this.dealOpenEvent();
         }
@@ -208,8 +205,8 @@ cc.Class({
             this.btn_bet_cancel.node.active = false;
             this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.orangeSpriteFrame;
             this.lab_bet_tip.string = "Cash Out";
+            this.toggle_isAuto.enabled = false; //飞行状态&&下注状态 不能自动下注
         }
-        this.toggle_isAuto.enabled = false; //飞行状态不能自动下注
     },
 
     /**
@@ -288,12 +285,12 @@ cc.Class({
 
     dealBetEvent: function () {
         if (this.betStatus == 0) {//可下注状态
-            if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash()
-                }, false);
-                return;
-            };
+            // if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
+            //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            //         CommonFun.getInstance().showSmallAddCash()
+            //     }, false);
+            //     return;
+            // };
             let num = this.curBet;
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
                 CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
@@ -374,20 +371,18 @@ cc.Class({
     },
 
     dealAutoPlayEvent: function () {
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                CommonFun.getInstance().showSmallAddCash()
-            }, false);
-            return;
-        };
+        // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         CommonFun.getInstance().showSmallAddCash()
+        //     }, false);
+        //     return;
+        // };
         GlobalCfg.ACT_SCENE_CTRL.openAutoSetting(this.root_index);
     },
 
     //取消自动下注
     dealStopAutoEvent: function () {
         this.autoCount = 0;
-        this.btn_stopAuto.node.active = false;
-        this.btn_autoplay.node.active = true;
         this.toggle_isAuto.enabled = true;
         this.setButtonEnabled(true);
         this.Init();
@@ -396,11 +391,11 @@ cc.Class({
     dealOpenEvent: function () {
         if (this.root_index == 0) {
             GlobalCfg.ACT_SCENE_CTRL.node_betinfo2.active = true;
-            this.setBgWidth(false)
+            // this.setBgWidth(false)
         } else {
             let betinfo1 = GlobalCfg.ACT_SCENE_CTRL.node_betinfo1.getComponent('AviatorBetCtrl');
             this.node.active = false;
-            betinfo1.setBgWidth(true);
+            // betinfo1.setBgWidth(true);
         }
     },
 
@@ -436,9 +431,6 @@ cc.Class({
     //设置自动下注次数
     setAutoInfo: function (count) {
         this.autoCount = count; //自动下注次数
-        this.btn_stopAuto.node.active = true;
-        this.btn_autoplay.node.active = false;
-        this.label_autoCount.string = `stop (${this.autoCount})`;
         this.toggle_isAuto.enabled = false;
         this.edit_Mult.enabled = false; //自动下注时，倍数不可用
         this.setButtonEnabled(false); //自动下注时，按钮不可用

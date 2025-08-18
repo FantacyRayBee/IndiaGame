@@ -22,7 +22,7 @@ cc.Class({
 
         // ✅ 倒序处理
         let reversed = data.slice().reverse();
-        let limited = reversed.slice(0, 39);
+        let limited = reversed.slice(0, 32);
 
         this.initPoint(limited);
     },

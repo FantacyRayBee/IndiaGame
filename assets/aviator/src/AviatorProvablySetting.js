@@ -60,9 +60,11 @@ cc.Class({
 
     dealOpen() {
         let node = cc.instantiate(this.prefabRule);
-        node.setPosition(cc.v2(0, 0));
+        node.setPosition(cc.v2(0, -782));
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.addChild(node);
         GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = true;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = true;
+
     },
 
     dealCopy(type) {
