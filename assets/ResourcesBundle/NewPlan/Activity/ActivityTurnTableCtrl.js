@@ -43,20 +43,29 @@ cc.Class({
 
     btnClick: function(btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
-        this.btn_go.interactable = false;
-        let url =  GlobalCfg.HTTP_SERVER + "/v1/turntabledraw";
-        CommonFun.getInstance().httpGet(url, (jsonObj) => {  
-            if (jsonObj.result == 0) { 
-                GlobalCfg.USER_DATAS.turntableRemainCount = jsonObj.data.remaincount;
-                if (CommonFun.getInstance().isValidForScr(this)) {
-                    GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("turnPlate", false);
-                    this.trunPlateRotation(jsonObj.data);
+        let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
+        if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
+        {
+            this.btn_go.interactable = false;
+            let url =  GlobalCfg.HTTP_SERVER + "/v1/turntabledraw";
+            CommonFun.getInstance().httpGet(url, (jsonObj) => {  
+                if (jsonObj.result == 0) { 
+                    GlobalCfg.USER_DATAS.turntableRemainCount = jsonObj.data.remaincount;
+                    if (CommonFun.getInstance().isValidForScr(this)) {
+                        GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("turnPlate", false);
+                        this.trunPlateRotation(jsonObj.data);
+                    };
+                }
+                else {
+                    CommonFun.getInstance().showTips(jsonObj.msg);
                 };
-            }
-            else {
-                CommonFun.getInstance().showTips(jsonObj.msg);
-            };
-        }, null, GlobalCfg.USER_DATAS.BearerToken);
+            }, null, GlobalCfg.USER_DATAS.BearerToken);
+        }
+        else{
+            CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
+                CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
+            }, false);
+        }
     },
 
     trunPlateRotation: function(data) {

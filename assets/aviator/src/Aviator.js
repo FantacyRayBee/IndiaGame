@@ -302,6 +302,9 @@ cc.Class({
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
         }
+        else if (msgId == "STOP_GAME") {
+            self.stopAutoBetStatus();
+        }
     },
 
     checkWebMsgError(webData, target) {

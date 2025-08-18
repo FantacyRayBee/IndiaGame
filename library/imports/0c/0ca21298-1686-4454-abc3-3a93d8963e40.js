@@ -170,8 +170,8 @@ cc.Class({
     }
     ;
     var tempProgress = allProgress / (len * 100);
-    this.setLabUpdateProgressStr((20 + tempProgress * 80).toFixed(2) + "%");
-    this.setUpdateProgressBarProgress(Number(((20 + tempProgress * 80) / 100).toFixed(2)));
+    this.setLabUpdateProgressStr((80 + tempProgress * 20).toFixed(2) + "%");
+    this.setUpdateProgressBarProgress(Number(((80 + tempProgress * 20) / 100).toFixed(2)));
     this.setLabUpdateContentTipsStr("Downloading files");
   },
   setZipFileLoadComplete: function setZipFileLoadComplete(notify) {
@@ -721,8 +721,8 @@ cc.Class({
     if (needUpdateFileArrLen == 0) {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_NO_LOADED_END);
       this.setLabUpdatePointAnim(false);
-      this.setLabUpdateProgressStr("20%");
-      this.setUpdateProgressBarProgress(0.2);
+      this.setLabUpdateProgressStr("80%");
+      this.setUpdateProgressBarProgress(0.8);
       cc.sys.localStorage.setItem("localVersion", GlobalCfg.ASSETS_VERSION);
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
       this.baseBundlesHotUpdate();
@@ -784,16 +784,16 @@ cc.Class({
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_LOADED_END, endTime - this.loadDiffFilesStartTime);
       this.setLabUpdatePointAnim(false);
-      this.setLabUpdateProgressStr("20%");
-      this.setUpdateProgressBarProgress(0.2);
+      this.setLabUpdateProgressStr("80%");
+      this.setUpdateProgressBarProgress(0.8);
       cc.sys.localStorage.setItem("localVersion", GlobalCfg.ASSETS_VERSION);
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
       this.isHaveUpdateForResources = true;
       this.baseBundlesHotUpdate();
     } else {
       var percent = this.totalNumberOfFilesDownloaded / needUpdateFileArrLen;
-      this.setLabUpdateProgressStr((Math.floor(percent * 100) * 0.2).toFixed(2) + "%");
-      this.setUpdateProgressBarProgress(Number((percent * 0.2).toFixed(2)));
+      this.setLabUpdateProgressStr((Math.floor(percent * 100) * 0.8).toFixed(2) + "%");
+      this.setUpdateProgressBarProgress(Number((percent * 0.8).toFixed(2)));
       this.downDifferenceFiles();
     }
     ;

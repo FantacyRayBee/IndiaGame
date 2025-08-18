@@ -619,6 +619,10 @@ cc.Class({
     ;
     this.isAuto = notify.isAuto;
   },
+  setBetCiShuAutoTips: function setBetCiShuAutoTips() {
+    this.isAuto = false;
+    this.bottomAreaCtrl.setTogAutoCheckedStatus(false);
+  },
   dealSelectedBetEvent: function dealSelectedBetEvent(notify) {
     if (!notify) {
       return;

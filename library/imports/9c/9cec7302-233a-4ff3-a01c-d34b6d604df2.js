@@ -104,6 +104,7 @@ cc.Class({
     if (GlobalCfg.USER_DATAS.recharged > 0) {
       this.lab_winnings.string = GlobalCfg.USER_DATAS.winnings ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.winnings, 100)) : "₹0";
     } else {
+      this.lab_deposited.string = "₹0";
       this.lab_winnings.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.deposit, 100)) : "₹0";
     }
     ;

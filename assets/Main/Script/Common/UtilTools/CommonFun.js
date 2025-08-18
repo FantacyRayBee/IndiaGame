@@ -2173,34 +2173,6 @@ let CommonFun = cc.Class({
         };
     },
 
-    updateToastLocalStorageByHours: function(toastType, hours) {
-        /**
-         * 当前毫秒级的时间戳
-         */
-        let curTimeStamp = new Date().getTime();
-        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-        if (toastLocalStorage) {
-            try {
-                let toastLocalData = JSON.parse(toastLocalStorage);
-                let showTag = toastLocalData.showTag;
-                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                    toastLocalData.showTag = `${curTimeStamp}`;
-                    cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-                }; 
-                
-            } 
-            catch (error) {
-                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-            };
-        }
-        else {
-            let toastLocalData = {
-                showTag: curTimeStamp
-            };
-            cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-        };
-    },
-
     /**
      * 上报错误至 Telegram
      * @param {String} info 
@@ -3033,40 +3005,13 @@ let CommonFun = cc.Class({
                 return true;
             };
         };
-        let updateToastLocalStorageByHours = (toastType, hours) => {
-            /**
-             * 当前毫秒级的时间戳
-             */
-            let curTimeStamp = new Date().getTime();
-            let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-            if (toastLocalStorage) {
-                try {
-                    let toastLocalData = JSON.parse(toastLocalStorage);
-                    let showTag = toastLocalData.showTag;
-                    if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                        toastLocalData.showTag = `${curTimeStamp}`;
-                        cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-                    }; 
-                    
-                } 
-                catch (error) {
-                    LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-                };
-            }
-            else {
-                let toastLocalData = {
-                    showTag: curTimeStamp
-                };
-                cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-            };
-        };
         let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
         console.log("toastWithDrawFrequency1: ", GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5))
         console.log("toastWithDrawFrequency2: ", GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100))
         console.log("toastWithDrawFrequency3: ", isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency));
         if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
             && isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-            updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+            this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
             CommonFun.getInstance().showPopUpWithDraw();
         };
     },
@@ -3087,6 +3032,18 @@ let CommonFun = cc.Class({
             return true;
         }
         return false; 
+    },
+
+
+    checkShowWithDrawToast: function() {
+        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
+            && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+                this.showPopUpWithDraw();
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'STOP_GAME', msgData: {}});
+                return true;
+        }
+        return false;
     },
 
     /**

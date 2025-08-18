@@ -244,6 +244,9 @@ cc.Class({
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.VAMPIRE, SceneManager.getInstance().sceneType.LOBBY);
         }
+        else if (msgId == "STOP_GAME") {
+            self.setBetCiShuAutoTips();
+        }
     },
 
     checkWebMsgError: function (webData, target) {

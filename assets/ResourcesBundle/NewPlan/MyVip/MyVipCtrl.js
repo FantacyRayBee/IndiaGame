@@ -423,7 +423,7 @@ cc.Class({
     dealVipTakeWelfare: function(notify) {
         let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
         if (timestamp >= GlobalCfg.USER_DATAS.userVip.expires_time) {
-            CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate itafter recharging !', 'ADDCASH', ()=>{
+            CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
                 CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
             }, false);
             return;

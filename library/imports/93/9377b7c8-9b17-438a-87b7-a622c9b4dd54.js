@@ -201,6 +201,8 @@ cc.Class({
       CommonFun.getInstance().showRule("fruitMachine");
     } else if (msgId == "lobbyservice.kicktolobby") {
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SGJ, SceneManager.getInstance().sceneType.LOBBY);
+    } else if (msgId == "STOP_GAME") {
+      self.setBetCiShuAutoTips();
     }
   },
   checkWebMsgError: function checkWebMsgError(webData, target) {

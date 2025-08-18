@@ -33,40 +33,47 @@ cc.Class({
   },
   onSignClick: function onSignClick() {
     var _this2 = this;
-    GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
-    var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
-    CommonFun.getInstance().httpPost(httpUrl, {}, function (msg) {
-      if (msg.result == 0 && msg.data) {
-        var data = msg.data;
-        if (data && CommonFun.getInstance().isValidForScr(_this2)) {
-          CommonFun.getInstance().showRewardsTips([{
-            id: 10,
-            amount: data.gift / 100
-          }]);
-          if (GlobalCfg.USER_DATAS.signInfo) {
-            GlobalCfg.USER_DATAS.signInfo.today = data.today;
-            GlobalCfg.USER_DATAS.signInfo.done = true;
+    var timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
+    if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time) {
+      GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
+      var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
+      CommonFun.getInstance().httpPost(httpUrl, {}, function (msg) {
+        if (msg.result == 0 && msg.data) {
+          var data = msg.data;
+          if (data && CommonFun.getInstance().isValidForScr(_this2)) {
+            CommonFun.getInstance().showRewardsTips([{
+              id: 10,
+              amount: data.gift / 100
+            }]);
+            if (GlobalCfg.USER_DATAS.signInfo) {
+              GlobalCfg.USER_DATAS.signInfo.today = data.today;
+              GlobalCfg.USER_DATAS.signInfo.done = true;
+            }
+            ;
+            if (_this2.signItemCtrlMap.has(data.today)) {
+              var signItemCtrl = _this2.signItemCtrlMap.get(data.today);
+              signItemCtrl.setSignItemSigned();
+            }
+            ;
+            if (data.today == 7) {
+              _this2.node_day7Signed.active = true;
+              _this2.node_day7Unsigned.active = false;
+            }
+            ;
+            _this2.btn_sign.interactable = false;
+            _this2.btn_sign.enableAutoGrayEffect = true;
           }
           ;
-          if (_this2.signItemCtrlMap.has(data.today)) {
-            var signItemCtrl = _this2.signItemCtrlMap.get(data.today);
-            signItemCtrl.setSignItemSigned();
-          }
-          ;
-          if (data.today == 7) {
-            _this2.node_day7Signed.active = true;
-            _this2.node_day7Unsigned.active = false;
-          }
-          ;
-          _this2.btn_sign.interactable = false;
-          _this2.btn_sign.enableAutoGrayEffect = true;
+        } else {
+          CommonFun.getInstance().showTips(msg.msg);
         }
         ;
-      } else {
-        CommonFun.getInstance().showTips(msg.msg);
-      }
-      ;
-    }, null, GlobalCfg.USER_DATAS.BearerToken);
+      }, null, GlobalCfg.USER_DATAS.BearerToken);
+    } else {
+      CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', function () {
+        CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
+      }, false);
+    }
   },
   getSignList: function getSignList() {
     return new Promise(function (resolve, reject) {

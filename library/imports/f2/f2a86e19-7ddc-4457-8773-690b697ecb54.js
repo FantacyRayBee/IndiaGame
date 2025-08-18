@@ -37,6 +37,7 @@ var SceneManager = cc.Class({
     };
     this.curSceneType = null;
     this.isLoadingScene = false;
+    this.checkTimer = null;
   },
   statics: {
     _instance: null
@@ -100,6 +101,10 @@ var SceneManager = cc.Class({
     // 从小游戏场景跳转到大厅场景
     else if (fromSceneName !== this.sceneType.UPDATE && fromSceneName !== this.sceneType.LOBBY && toSceneName === this.sceneType.LOBBY) {
       GameServerManager.clientCloseServer();
+      if (this.checkTimer) {
+        clearInterval(this.checkTimer);
+        this.checkTimer = null;
+      }
       Promise.all([this.reqUserDataInfo(), this.loadBundleScene(toSceneName)]).then(function (arr) {
         var scene = arr[1];
         _this.curSceneType = toSceneName;
@@ -338,6 +343,17 @@ var SceneManager = cc.Class({
         CommonFun.getInstance().showGameStartMask();
         CommonFun.getInstance().hidProgress();
         CommonFun.getInstance().hideSidebarData();
+        // ✅ 开启计时器，每 0.5 秒检测一次
+        if (_this3.checkTimer) {
+          clearInterval(_this3.checkTimer);
+          _this3.checkTimer = null;
+        }
+        _this3.checkTimer = setInterval(function () {
+          if (CommonFun.getInstance().checkShowWithDrawToast()) {
+            clearInterval(_this3.checkTimer);
+            _this3.checkTimer = null;
+          }
+        }, 500);
       })["catch"](function (err) {
         LoggerUtil.getInstance().error(err);
         _this3.isLoadingScene = false;
@@ -354,6 +370,19 @@ var SceneManager = cc.Class({
           // CommonFun.getInstance().showGameStartMask();
           CommonFun.getInstance().hidProgress();
           CommonFun.getInstance().hideSidebarData();
+          // ✅ 开启计时器，每 0.5 秒检测一次
+          if (_this3.checkTimer) {
+            clearInterval(_this3.checkTimer);
+            _this3.checkTimer = null;
+          }
+          if (toSceneName != _this3.sceneType.BENZ && toSceneName != _this3.sceneType.AVIATOR) {
+            _this3.checkTimer = setInterval(function () {
+              if (CommonFun.getInstance().checkShowWithDrawToast()) {
+                clearInterval(_this3.checkTimer);
+                _this3.checkTimer = null;
+              }
+            }, 500);
+          }
         });
       })["catch"](function (err) {
         LoggerUtil.getInstance().error(err);
@@ -1020,6 +1049,7 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
           GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
           GlobalCfg.USER_DATAS.inducement = inducement;
+          LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userVip == ", GlobalCfg.USER_DATAS.userVip);
           if (channel.length > 0) {
             GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
           }

@@ -299,6 +299,10 @@ cc.Class({
                 this.dealAutoBetCiShuBtnEvent(this.autoSpinTypeNumArr[0]); //设置自动spin次数
             }
         }
+        else if (msgId == "STOP_GAME") {
+            this.toggle_auto.isChecked = false;
+            this.toggle_auto.interactable = false;
+        }
     },
 
     checkWebMsgError: function (webData, target) {

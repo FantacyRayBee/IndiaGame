@@ -34,6 +34,7 @@ let SceneManager = cc.Class({
         this.curSceneType = null;
 
         this.isLoadingScene = false;
+        this.checkTimer = null;
     },
 
     statics: {
@@ -101,6 +102,10 @@ let SceneManager = cc.Class({
         // 从小游戏场景跳转到大厅场景
         else if (fromSceneName !== this.sceneType.UPDATE && fromSceneName !== this.sceneType.LOBBY && toSceneName === this.sceneType.LOBBY) {
             GameServerManager.clientCloseServer();
+            if (this.checkTimer) {
+                clearInterval(this.checkTimer);
+                this.checkTimer = null;
+            }
             Promise.all([this.reqUserDataInfo(), this.loadBundleScene(toSceneName)])
             .then((arr) => {
                 let scene = arr[1];
@@ -346,6 +351,17 @@ let SceneManager = cc.Class({
                 CommonFun.getInstance().showGameStartMask();
                 CommonFun.getInstance().hidProgress();
                 CommonFun.getInstance().hideSidebarData();
+                // ✅ 开启计时器，每 0.5 秒检测一次
+                if (this.checkTimer) {
+                    clearInterval(this.checkTimer);
+                    this.checkTimer = null;
+                }
+                this.checkTimer = setInterval(() => {
+                    if (CommonFun.getInstance().checkShowWithDrawToast()) {
+                        clearInterval(this.checkTimer);
+                        this.checkTimer = null;
+                    }
+                }, 500);
             })
             .catch((err) => {
                 LoggerUtil.getInstance().error(err);
@@ -365,6 +381,19 @@ let SceneManager = cc.Class({
                     // CommonFun.getInstance().showGameStartMask();
                     CommonFun.getInstance().hidProgress();
                     CommonFun.getInstance().hideSidebarData();
+                    // ✅ 开启计时器，每 0.5 秒检测一次
+                    if (this.checkTimer) {
+                        clearInterval(this.checkTimer);
+                        this.checkTimer = null;
+                    }
+                    if (toSceneName != this.sceneType.BENZ && toSceneName != this.sceneType.AVIATOR) {
+                        this.checkTimer = setInterval(() => {
+                            if (CommonFun.getInstance().checkShowWithDrawToast()) {
+                                clearInterval(this.checkTimer);
+                                this.checkTimer = null;
+                            }
+                        }, 500);
+                    }
                 });
             })
             .catch((err) => {
@@ -1038,6 +1067,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
                     GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
                     GlobalCfg.USER_DATAS.inducement = inducement;
+                    LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userVip == ", GlobalCfg.USER_DATAS.userVip);
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
                     };
