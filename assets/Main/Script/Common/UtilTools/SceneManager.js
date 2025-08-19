@@ -77,6 +77,10 @@ let SceneManager = cc.Class({
             cc.director.loadScene("Update");
             CommonFun.getInstance().hidProgress();
             this.isLoadingScene = false;
+            if (this.checkTimer) {
+                clearInterval(this.checkTimer);
+                this.checkTimer = null;
+            }
         }
         // 从大厅场景跳转到小游戏场景
         else if (fromSceneName === this.sceneType.LOBBY && toSceneName !== this.sceneType.UPDATE) {
@@ -129,6 +133,10 @@ let SceneManager = cc.Class({
             cc.director.loadScene("Update");
             CommonFun.getInstance().hidProgress();
             this.isLoadingScene = false;
+            if (this.checkTimer) {
+                clearInterval(this.checkTimer);
+                this.checkTimer = null;
+            }
         }
         else {
             LoggerUtil.getInstance().error(`Scene jump specified error ===>, FromSceneName: ${fromSceneName}.  ToSceneName: ${toSceneName}`);

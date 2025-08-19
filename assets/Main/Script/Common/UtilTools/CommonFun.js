@@ -2957,7 +2957,6 @@ let CommonFun = cc.Class({
      * 在游戏中显示提现提示弹窗
      */
     showWithdrawToastInGame: function() {
-        console.log("isNeedShowWithdrawToastInGame: ", CommonFun.getInstance().isNeedShowWithdrawToastInGame());
         if (this.isNeedShowWithdrawToastInGame() == false) {
             return;
         };
@@ -3036,9 +3035,30 @@ let CommonFun = cc.Class({
 
 
     checkShowWithDrawToast: function() {
+        if (GlobalCfg.USER_DATAS.isNotCharge == false){   //充值过则不弹出
+            return true;
+        };
+        let func = (date)=>{
+            let _date = date * 1000;
+            let _curDate = new Date().getTime();
+            let _differ = _curDate - _date;
+            if(_differ < 24 * 60 * 60 * 1000){
+                return Number(30 / 60).toFixed(1);
+            }else if(_differ < 3 * 24 * 60 * 60 * 1000){
+                return Number(20 / 60).toFixed(1);
+            }else if(_differ < 5 * 24 * 60 * 60 * 1000){
+                return Number(10 / 60).toFixed(1);
+            }else{
+                return Number(5 / 60).toFixed(1);
+            }
+        }
+        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
         let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
         if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
             && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+                this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
                 this.showPopUpWithDraw();
                 ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'STOP_GAME', msgData: {}});
                 return true;

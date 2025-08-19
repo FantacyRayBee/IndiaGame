@@ -2905,7 +2905,6 @@ var CommonFun = cc.Class((_cc$Class = {
   }
   return false;
 }, _cc$Class.showWithdrawToastInGame = function showWithdrawToastInGame() {
-  console.log("isNeedShowWithdrawToastInGame: ", CommonFun.getInstance().isNeedShowWithdrawToastInGame());
   if (this.isNeedShowWithdrawToastInGame() == false) {
     return;
   }
@@ -2973,8 +2972,31 @@ var CommonFun = cc.Class((_cc$Class = {
   }
   return false;
 }, _cc$Class.checkShowWithDrawToast = function checkShowWithDrawToast() {
+  if (GlobalCfg.USER_DATAS.isNotCharge == false) {
+    //充值过则不弹出
+    return true;
+  }
+  ;
+  var func = function func(date) {
+    var _date = date * 1000;
+    var _curDate = new Date().getTime();
+    var _differ = _curDate - _date;
+    if (_differ < 24 * 60 * 60 * 1000) {
+      return Number(30 / 60).toFixed(1);
+    } else if (_differ < 3 * 24 * 60 * 60 * 1000) {
+      return Number(20 / 60).toFixed(1);
+    } else if (_differ < 5 * 24 * 60 * 60 * 1000) {
+      return Number(10 / 60).toFixed(1);
+    } else {
+      return Number(5 / 60).toFixed(1);
+    }
+  };
+  // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+  var toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+  LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
   var defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100); // 提现弹窗限制默认值
   if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > defaultPopupWithdrawLimit * 100 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+    this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
     this.showPopUpWithDraw();
     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
       msgCode: 'STOP_GAME',

@@ -152,7 +152,6 @@ cc.Class({
         this.initialization();
         LoggerUtil.getInstance().warn("当前游戏帧率", cc.game.getFrameRate());
         this.aviatorAudioManager.playGameMusic();
-        GlobalCfg.USER_DATAS.isNotCharge = true;
     },
 
 

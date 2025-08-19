@@ -66,8 +66,8 @@ cc.Class({
 
     initNode: function () {
         this.btnClose.node.on('click', this.debounce(this.btnClick, 1), this);
-        this.btn_collect.node.on('click', this.debounce(this.btnClick, 1), this);
-        this.btn_withdraw.node.on('click', this.debounce(this.btnClick, 1), this);
+        this.btn_collect.node.on('click', this.debounce(this.btnClick, 3), this);
+        this.btn_withdraw.node.on('click', this.debounce(this.btnClick, 3), this);
 
         for (let i = 0; i < 4; i++) {
             this.node_paiArrs[i].getChildByName(""+i).on('click', this.debounce(this.paiClick, 1), this);

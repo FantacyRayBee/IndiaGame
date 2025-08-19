@@ -4655,9 +4655,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -4837,7 +4837,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 7,
+    "maxLength": 9,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -8936,9 +8936,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -11333,9 +11333,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -11515,7 +11515,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 7,
+    "maxLength": 9,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -15614,9 +15614,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -18554,7 +18554,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 97.31,
-      "height": 37.8
+      "height": 63
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -18608,7 +18608,7 @@
     "_string": "0.00",
     "_N$string": "0.00",
     "_fontSize": 50,
-    "_lineHeight": 30,
+    "_lineHeight": 50,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
@@ -39632,9 +39632,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -39814,7 +39814,7 @@
     "_enabled": false,
     "_string": "",
     "returnType": 0,
-    "maxLength": 7,
+    "maxLength": 9,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -41241,9 +41241,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -41423,7 +41423,7 @@
     "_enabled": false,
     "_string": "",
     "returnType": 0,
-    "maxLength": 7,
+    "maxLength": 9,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -42850,9 +42850,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 187,
+      "g": 187,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
@@ -43032,7 +43032,7 @@
     "_enabled": false,
     "_string": "",
     "returnType": 0,
-    "maxLength": 7,
+    "maxLength": 9,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],

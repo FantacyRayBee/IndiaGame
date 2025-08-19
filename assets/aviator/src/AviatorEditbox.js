@@ -8,14 +8,18 @@ cc.Class({
     },
 
     onLoad() {
-        this.editBox.node.on('text-changed', this.onTextChangedNumber, this);
         this.editBox.node.on('editing-did-ended', this.onEditingDidEnded, this);
     },
 
-    onTextChangedNumber(editBox) {
-        let text = editBox.string;
-        if (text === '') return;
+    onEditingDidEnded(editBox) {
+        let text = editBox.string.trim();
 
+        if (text === '') {
+            editBox.string = this.minValue.toFixed(2);
+            return;
+        }
+
+        // 去掉非法字符（只保留数字和一个小数点）
         let filtered = text.replace(/[^\d.]/g, '');
         const dotIndex = filtered.indexOf('.');
         if (dotIndex !== -1) {
@@ -28,34 +32,23 @@ cc.Class({
         const m = filtered.match(/^(\d+)(\.\d{0,2})?/);
         if (m) filtered = m[0];
 
-        // 限制最大值
-        const n = parseFloat(filtered);
-        if (!isNaN(n) && n > this.maxValue) {
-            filtered = this.maxValue.toFixed(2);
-        }
+        // 如果以 "." 开头，加前缀 0
+        if (filtered.startsWith('.')) filtered = '0' + filtered;
 
-        if (text !== filtered) editBox.string = filtered;
-    },
+        // 如果以 "." 结尾，加上两位小数
+        if (filtered.endsWith('.')) filtered += '00';
 
-    onEditingDidEnded(editBox) {
-        let val = editBox.string;
-
-        if (val === '') {
-            editBox.string = this.minValue.toFixed(2);
-            return;
-        }
-
-        if (val.startsWith('.')) val = '0' + val;
-        if (val.endsWith('.')) val += '00';
-
-        let num = parseFloat(val);
+        let num = parseFloat(filtered);
         if (isNaN(num)) {
             editBox.string = this.minValue.toFixed(2);
             return;
         }
 
+        // 限制范围
         num = Math.min(num, this.maxValue);
         num = Math.max(num, this.minValue);
+
+        // 格式化结果
         editBox.string = num.toFixed(2);
     },
 });

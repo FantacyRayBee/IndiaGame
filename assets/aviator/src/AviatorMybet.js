@@ -6,8 +6,9 @@ cc.Class({
         item: cc.Node,
         btnclose: cc.Button,
 
-        normalColor: cc.Color,
-        markColor: cc.Color,
+        normalSp: cc.SpriteFrame,
+        markSp: cc.SpriteFrame,
+
     },
 
     onLoad() {
@@ -58,7 +59,7 @@ cc.Class({
         }
         obj.btn_provably.node.on('click', obj.btnClick, this);
         obj.setData = (data) => {
-            obj.bg.color = this.normalColor;
+            obj.bg.spriteFrame = this.normalSp;
             obj.roundsMax = data.gameMub
             obj.date = data.timer
             // 设置下注金额
@@ -66,10 +67,10 @@ cc.Class({
             obj.labelDate.string = this.formatTimestampToDate(data.timer);
             if (data.mub && data.mub > 0) {
                 obj.cashout.string = ((data.bet / 100) * (data.mub / 1000)).toFixed(2) + " ";
-                obj.bg.color = this.markColor;
+                obj.bg.spriteFrame = this.markSp;
             } else {
                 obj.cashout.string = '';
-                obj.bg.color = this.normalColor;
+                obj.bg.spriteFrame = this.normalSp;
                 obj.record_rect.active = false;
             }
             obj.record_rect.active = true;
