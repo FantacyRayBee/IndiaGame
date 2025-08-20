@@ -1516,7 +1516,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       break;
     case "5":
       // 5服
-      GlobalCfg.APP_VERSION = "5.0.0.32";
+      GlobalCfg.APP_VERSION = "5.0.0.33";
       // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
       GlobalCfg.APP_INFO_URL = "https://download.rax8.com/production/AppInfo.json";
       GlobalCfg.APP_CONFIG_URL = "https://download.rax8.com/production/AppConfig.json";
