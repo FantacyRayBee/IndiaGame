@@ -545,4 +545,8 @@ APPManager.adjustGoogleIdCallBack = function (googleAdId) {
     };
 }
 
+APPManager.selectPhotoCallBack = function (googleAdId) {
+    console.log("selectPhotoCallBack:", googleAdId);
+}
+
 window.APPManager = APPManager;

@@ -71,6 +71,10 @@ cc.Class({
          */
         btn_minijoker: cc.Button,
         /**
+         * 包网slots
+         */
+        btn_slots: cc.Button,
+        /**
          * 印度舞娘机台
          */
         btn_miniindia: cc.Button,
@@ -365,6 +369,7 @@ cc.Class({
             "minishuiguo": this.btn_minishuiguo,
             "minimaya": this.btn_minimaya,
             "miniclown": this.btn_minijoker,
+            'slots': this.btn_slots,
             "miniindia": this.btn_miniindia,
             "minivampire": this.btn_minivampire,
             "minibull": this.btn_minibull,
@@ -423,6 +428,7 @@ cc.Class({
         this.btn_minishuiguo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minimaya.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minijoker.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_slots.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniindia.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minivampire.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minibull.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -580,6 +586,7 @@ cc.Class({
         this.btn_minishuiguo.node.active = false;
         this.btn_minimaya.node.active = false;
         this.btn_minijoker.node.active = false;
+        this.btn_slots.node.active = false;
         this.btn_miniindia.node.active = false;
         this.btn_minivampire.node.active = false;
         this.btn_minibull.node.active = false;
@@ -897,6 +904,9 @@ cc.Class({
                     break; 
                     
             }
+        };
+        if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
+            this.btn_slots.node.active = true;
         };
         //自动下载小游戏
         // if (needUpdataArr.length > 0) {
@@ -1864,6 +1874,9 @@ cc.Class({
             });
             // CommonFun.getInstance().showGameIconList();
         } 
+        else if (btnName == "btn_slots") {
+            CommonFun.getInstance().showGameIconList();
+        } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_INDIA_GAME);
             this.checkUpdate("indiaMachine", () => {
@@ -2331,12 +2344,12 @@ cc.Class({
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minijoker.node.active) {
-            // let anim = this.btn_minijoker.node.getChildByName('mask').getChildByName('guang').getComponent(cc.Animation);
-            // anim.play('guang');
-            // skeleton = this.btn_minijoker.node.getChildByName('mask').getChildByName('Background').getComponent(sp.Skeleton);
-            // skeleton.clearTrack(0);
-            // // skeleton.setSkin(skinName);
-            // skeleton.setAnimation(0, 'Idle', true);
+            let anim = this.btn_minijoker.node.getChildByName('mask').getChildByName('guang').getComponent(cc.Animation);
+            anim.play('guang');
+            skeleton = this.btn_minijoker.node.getChildByName('mask').getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            // skeleton.setSkin(skinName);
+            skeleton.setAnimation(0, 'Idle', true);
         };
         if (this.btn_miniindia.node.active) {
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);
