@@ -36,7 +36,7 @@ cc.Class({
         prefabReward: cc.Prefab,
 
         region: cc.Node,      // 红色区域图片节点
-        lights: [cc.Node],      
+        lights: [cc.Node],
         atlas_head: cc.SpriteAtlas,     // 头像图集
     },
 
@@ -53,7 +53,6 @@ cc.Class({
 
         this.isFlying = false;                  // 是否在飞行
         this.isMoveTimeMark = false;            // 是否移动时间标记
-        this.isMoveRateMark = false;            // 是否移动比率标记
         this.lineTimeMarkOffsetX = 1000;         // 时间线标记偏移量
         this.lineRateMarkOffsetY = 125;         // 比率线标记偏移量
 
@@ -68,6 +67,7 @@ cc.Class({
         this.constStartPosY = -182;               // 走势起点Y坐标
         this.drawPosX = -298;                    // 绘制线起点X坐标
         this.duringFlyTime = 0;                    // 存放当前飞行时长
+        this.updateRateCD = 0;                    // 更新比率CD
         this.startFlyLineColor = new cc.Color(174, 36, 72, 255);
         // this.startFlyLineColor = cc.Color(255, 0, 0, 255);
         this.endFlyLineColor = new cc.Color(220, 96, 6, 255);
@@ -81,13 +81,13 @@ cc.Class({
         this.roundTopRankInfo = {};
         this.provablyData = {}
         this.betTimerTween = null;
-        this.autoSettingInfos = [null,null]
+        this.autoSettingInfos = [null, null]
         this.currentSetAutoDiamond = 0; // 当次选择自动下注的钻石数 记录下来 用于判断是否需要停止自动下注
         this.headId = 1; // 头像ID
         this.isHideAviatorAnim = true; // 是否隐藏飞行动画
     },
 
-    onLoad: function() {
+    onLoad: function () {
         CommonFun.getInstance().addVerticalAcc();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_CRASH_GAME);
         GlobalCfg.ACT_SCENE_CTRL = this;
@@ -95,6 +95,8 @@ cc.Class({
         this.aviatorMessageManager.sendLoginMessage();
         this.aviatorAudioManager = this.node.getComponent('AviatorAudioManager');
         CommonFun.getInstance().showProgress();
+        this.aviatorMultManager = this.node.getComponent('AviatorMultManager');
+
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
@@ -107,25 +109,25 @@ cc.Class({
         let frameW = size.width;
         let frameH = size.height;
         LoggerUtil.getInstance().log("当前屏幕分辨率 ", frameW, frameH);
-    
+
         // 宽高比
         const r = frameW / frameH;
-    
+
         // 二次拟合系数（保证 371×808→1.0, 371×663→1.2, 744×1829→0.9）
         const A = 0.53978958;
         const B = 1.44174666;
         const C = 0.22420797;
-    
+
         let scale = A * r * r + B * r + C;
-    
+
         // 限制缩放范围，避免极端机型过大过小
         scale = Math.max(0.85, Math.min(scale, 1.2));
-    
+
         // 保留三位小数避免浮点抖动
         scale = Math.round(scale * 1000) / 1000;
-    
+
         LoggerUtil.getInstance().log("计算后的 scale ", scale);
-    
+
         this.node.scale = scale;  // 根节点缩放
     },
 
@@ -162,7 +164,6 @@ cc.Class({
         this.isDuringBet = false;
         this.isFlying = false;
         this.isMoveTimeMark = false;
-        this.isMoveRateMark = false;
         this.numSelfBet = 0;
     },
 
@@ -218,7 +219,7 @@ cc.Class({
         else if (msgId == 'gameservice.exit') {
             // 退出房间
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
-            CommonFun.getInstance().decVerticalAcc(); 
+            CommonFun.getInstance().decVerticalAcc();
         }
         else if (msgId == 'gameservice.loadwhole') {
             // 刷新游戏场景
@@ -234,7 +235,7 @@ cc.Class({
             self.updateSelfCoin();
         }
         else if (msgId == 'gameservice.cash') {
-            LoggerUtil.getInstance().log("gameservice.cash notify = ",notify);
+            LoggerUtil.getInstance().log("gameservice.cash notify = ", notify);
             self.showReward(notify);
             self.updateSelfCoin(); // 更新自己的金币
         }
@@ -284,7 +285,7 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
-            CommonFun.getInstance().decVerticalAcc(); 
+            CommonFun.getInstance().decVerticalAcc();
         }
         else if (msgId == "STOP_GAME") {
             self.stopAutoBetStatus();
@@ -316,9 +317,10 @@ cc.Class({
                 }
                 else {
                     if (notify.result.result == 19) {         // 余额不足
-                        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-                            else {
+                        if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                        }
+                        else {
                             this.stopAutoBetStatus();
                             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                                 CommonFun.getInstance().showSmallAddCash()
@@ -329,8 +331,9 @@ cc.Class({
             }
             else {
                 if (notify.result.result == 19) {         // 余额不足
-                    if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                    }
                     else {
                         this.stopAutoBetStatus();
                         CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
@@ -343,7 +346,7 @@ cc.Class({
         else if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
-                CommonFun.getInstance().decVerticalAcc(); 
+                CommonFun.getInstance().decVerticalAcc();
             }, false);
         }
     },
@@ -352,7 +355,7 @@ cc.Class({
         let name = event.node.name;
         if (name == this.btnBack.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY, msgData: {}});
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY, msgData: {} });
         }
         else if (name == this.btnSetting.node.name) {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -440,33 +443,33 @@ cc.Class({
      * @param {Point {  int64 x = 1;  int64 mul = 2;}} point 当前飞机的坐标点
      */
     dealFlyState(point) {
-        const MAX_X = 300;
+        const MAX_X = 280;
         const MAX_Y = 160;
         let time = point.x;   // ms
-        let mul  = point.mul; // 倍数
+        let mul = point.mul; // 倍数
         this.drawPosX = this.constStartPosX;
         this.duringFlyTime = Number(time / 1000);
-    
+
         // 只补画最近 ~2.3s 的轨迹，避免一次性画太多
         let limitTime = 2.3;
         let time_s = this.duringFlyTime;
         if (time_s <= limitTime) limitTime = time_s;
-    
+
         let frameRate = cc.game.getFrameRate();
         let unitTime = 1 / frameRate;                 // 每帧时间
         let drawCount = Math.floor(limitTime / unitTime);
-    
+
         for (let i = 0; i < drawCount; i++) {
             const x = i * unitTime;
-    
+
             // 轨迹公式
             let currentY = this.constStartPosY + Math.pow(x, 2) / 10 * this.lineRateMarkOffsetY * 8;
             let deltaX = (unitTime / 3) * this.lineTimeMarkOffsetX;
-    
+
             // 预计算下一帧位置
             let nextX = this.drawPosX + deltaX;
             let nextY = currentY;
-    
+
             // ✅ 边界裁剪 + 切换震荡
             if (nextX >= MAX_X || nextY >= MAX_Y) {
                 this.drawPosX = Math.min(nextX, MAX_X);
@@ -478,14 +481,14 @@ cc.Class({
                 LoggerUtil.getInstance().log("🎯 重连补画触边，切震荡 at", this.drawPosX, this.drawPosY);
                 break;
             }
-    
+
             // 正常前进
             this.drawPosX = nextX;
             this.drawPosY = nextY;
             this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.setRegion();
         }
-    
+
         // 兜底：循环可能没触发（drawCount==0）或刚好卡边界
         if (this.drawPosX >= MAX_X || this.drawPosY >= MAX_Y) {
             this.drawPosX = Math.min(this.drawPosX, MAX_X);
@@ -523,7 +526,7 @@ cc.Class({
         if (this.openAutoSettingIndex == 0) {
             this.node_betinfo1.getComponent('AviatorBetCtrl').setAutoInfo(count);
         }
-        else{
+        else {
             this.node_betinfo2.getComponent('AviatorBetCtrl').setAutoInfo(count);
         }
     },
@@ -558,14 +561,13 @@ cc.Class({
      */
     setMoveMark(isMove) {
         this.isMoveTimeMark = isMove;
-        this.isMoveRateMark = isMove;
     },
 
 
     dealWaitState() {
 
     },
-    
+
     loadHead(spriteNode, headId) {
         let random = Math.floor(Math.random() * 72) + 1; // 1-72
         let id = headId == null || headId == 0 ? random : headId;
@@ -632,12 +634,12 @@ cc.Class({
         this.timerBar.node.stopAllActions();
         this.timerBar.progress = 1;
         this.betTimerTween = cc.tween(this.timerBar)
-          .to((remainder / 1000) + 1, { progress: 0 })
-          .call(() => {
-              LoggerUtil.getInstance().log("倒计时结束，火箭点火");
-              this.isDuringBet = false;
-          })
-          .start();
+            .to((remainder / 1000) + 1, { progress: 0 })
+            .call(() => {
+                LoggerUtil.getInstance().log("倒计时结束，火箭点火");
+                this.isDuringBet = false;
+            })
+            .start();
     },
 
     freshWaitLayer(bool) {
@@ -650,6 +652,7 @@ cc.Class({
         this.drawPosX = this.constStartPosX;
         this.drawPosY = this.constStartPosY;
         this.duringFlyTime = 0;
+        this.updateRateCD = 0;
         this.isOscillating = false;
         this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
         this.region.width = 0;
@@ -684,19 +687,19 @@ cc.Class({
     flyEndAnimion(point) {
         // 使用tween实现爆炸后飞向终点
         cc.tween(this.flyRocketNode)
-        .to(0.2, {
-            position: this.endFlyPos
-        }, { easing: 'sineOut' })
-        .call(() => {
-            this.updateTrendData(point);
-            this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1], true);
-            this.curRoundAddCoinFinish();
-        })
-        .start();
+            .to(0.4, {
+                position: this.endFlyPos
+            }, { easing: 'sineOut' })
+            .call(() => {
+                this.updateTrendData(point);
+                this.updateRectTrendNode(this.pointRecordDataList[this.pointRecordDataList.length - 1], true);
+                // this.curRoundAddCoinFinish();
+            })
+            .start();
     },
 
-    curRoundAddCoinFinish(){
-        if(cc.isValid(this)){
+    curRoundAddCoinFinish() {
+        if (cc.isValid(this)) {
             let minLimit = this.btnBetCoinNum[0] || 0;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, this.numSelfBet);
             CommonFun.getInstance().showWithdrawToastInGame();
@@ -715,8 +718,8 @@ cc.Class({
         this.checkAutoSettingStatus(notify.mul);
         this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
         this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
-        
-        
+
+
     },
 
     checkAutoSettingStatus(curWinMult = 0) {
@@ -729,7 +732,7 @@ cc.Class({
         for (let index = 0; index < 2; index++) {
             if (this.autoSettingInfos[index] != null) {
                 let infos = this.autoSettingInfos[index];
-                let betCtrl = this[`node_betinfo${index+1}`].getComponent('AviatorBetCtrl')
+                let betCtrl = this[`node_betinfo${index + 1}`].getComponent('AviatorBetCtrl')
                 if (infos[0] > 0 && targetValue < 0 && infos[0] <= Math.abs(targetValue)) {
                     betCtrl.dealStopAutoEvent();
                     this.autoSettingInfos[index] = null;
@@ -756,7 +759,7 @@ cc.Class({
         this.node_betinfo1.getComponent('AviatorBetCtrl').dealStopAutoEvent();
         this.node_betinfo2.getComponent('AviatorBetCtrl').dealStopAutoEvent();
     },
-    
+
     // ***************************************************************************************
     /**
      * 处理走势数据
@@ -802,10 +805,10 @@ cc.Class({
     initRectTrend(data) {
         this.nodeTrendParent.removeAllChildren();
         this.rectTrendNodeArray.length = 0;
-    
+
         const start = Math.max(0, data.length - this.trendMaxNum);
         const latest = data.slice(start); // 旧 ... 新
-    
+
         // 反向添加：新 -> 旧；这样左到右就是 新 -> 旧
         for (let i = latest.length - 1; i >= 0; i--) {
             const trendNode = cc.instantiate(this.prefabTrendItem);
@@ -872,9 +875,9 @@ cc.Class({
             cc.tween(newNode).to(0.08, { opacity: 255 }).start();
             // 弹出缩放
             cc.tween(newNode)
-            .to(0.8, { scale: 1.3 }, { easing: 'quadOut' })
-            .to(0.2, { scale: 1 }, { easing: 'quadIn' })
-            .start();
+                .to(0.8, { scale: 1.3 }, { easing: 'quadOut' })
+                .to(0.2, { scale: 1 }, { easing: 'quadIn' })
+                .start();
         }, leadDelay);
 
         // 收尾：右移结束后再恢复 Layout
@@ -960,14 +963,17 @@ cc.Class({
 
     update(dt) {
         if (!this.isFlying) return;
-    
+
         // ✅ 飞行期间倍率始终增长
-        let rate = 1 + Math.pow(this.duringFlyTime, 2) / 20;
-        this.updateCenterRate(rate);
-    
+        // let rate = 1 + Math.pow(this.duringFlyTime, 2) / 20
+        let rate = this.aviatorMultManager.getSpeedRate(this.duringFlyTime)
+        if (this.updateRateCD % 6 == 0) {//每6帧更新一次倍率
+            this.updateCenterRate(rate);
+        }
+        this.updateRateCD++;
         // ✅ 正确震荡逻辑：震荡时一定执行
+        this.duringFlyTime += dt;
         if (this.isOscillating) {
-            this.duringFlyTime += dt;
             // 震荡配置
             const baseX = this.drawPosX;
             const baseY = this.drawPosY;
@@ -981,22 +987,19 @@ cc.Class({
             this.setRegion();
             return;
         }
-    
-        // ❗此处不能再判断 drawLine，必须继续逻辑
-        this.duringFlyTime += dt;
-        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 8;
-        let deltaX = (dt / 3) * this.lineTimeMarkOffsetX;
-    
+        let currentY = this.constStartPosY + Math.pow(this.duringFlyTime, 2) / 70 * this.lineRateMarkOffsetY * 8;
+        let deltaX = (dt / 9) * this.lineTimeMarkOffsetX;
+
         if (this.isMoveTimeMark) this.moveTimeMark(deltaX);
-    
+
         this.drawPosX += deltaX;
         this.drawPosY = currentY;
         this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
         this.setRegion();
-    
+
         // ✅ 当达到边界时，切换为震荡阶段（一次性）
-        if (!this.isOscillating && (this.drawPosX >= 300 || this.drawPosY >= 160)) {
-            this.drawPosX = Math.min(this.drawPosX, 300);
+        if (!this.isOscillating && (this.drawPosX >= 280 || this.drawPosY >= 160)) {
+            this.drawPosX = Math.min(this.drawPosX, 280);
             this.drawPosY = Math.min(this.drawPosY, 160);
             this.flyRocketNode.setPosition(this.drawPosX, this.drawPosY);
             this.isOscillating = true;
@@ -1005,31 +1008,6 @@ cc.Class({
         }
     },
 
-    moveRateMark(offsetY) {
-        if (this.isMoveRateMark == true) {
-            for (let i = 0; i < this.rateMarkNodeArray.length; i++) {
-                let node = this.rateMarkNodeArray[i];
-                let pos = node.getPosition();
-                node.setPosition(cc.v2(pos.x, pos.y - offsetY));
-            }
-            for (let i = 0; i < this.rateMarkNodeArray.length; i++) {
-                let node = this.rateMarkNodeArray[i];
-                let pos = node.getPosition();
-                if (pos.y < this.constStartPosY - 50) {
-                    let _node = this.rateMarkNodeArray.shift();
-                    i--;
-                    let lastNode = this.rateMarkNodeArray[this.rateMarkNodeArray.length - 1];
-                    let labStr = lastNode.getChildByName('Label').getComponent(cc.Label).string;
-                    let pos = lastNode.getPosition();
-                    let rate = Number(labStr.split('x')[0]);
-                    _node.getChildByName('Label').getComponent(cc.Label).string = Number(rate + 0.2).toFixed(1) + 'x';
-                    _node.setPosition(cc.v2(pos.x, pos.y + this.lineRateMarkOffsetY));
-                    this.rateMarkNodeArray.push(_node);
-                }
-            }
-        }
-
-    },
 
     /**
      * 移动时间标记

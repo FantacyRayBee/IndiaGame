@@ -94,6 +94,8 @@ cc.Class({
         this.rocketMessageManager.sendLoginMessage();
         this.rocketAudioManager = this.node.getComponent('RocketAudioManager');
         CommonFun.getInstance().showProgress();
+        this.rocketMultManager = this.node.getComponent('RocketMultManager');
+
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
@@ -1245,12 +1247,13 @@ cc.Class({
         if (this.isFlying == true) {
             // 倍数 = x的平方/100 + 1   , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
             // y=X²/10+1  , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
-            let frontY = -218 + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
+            let frontY = -218 + Math.pow(this.duringFlyTime, 2) / 60 * this.lineRateMarkOffsetY * 5;
             this.duringFlyTime += dt;
-            let currentY = -218 + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
-            let deltaX = (dt / 2) * this.lineTimeMarkOffsetX;
+            let currentY = -218 + Math.pow(this.duringFlyTime, 2) / 60 * this.lineRateMarkOffsetY * 5;
+            let deltaX = (dt / 6) * this.lineTimeMarkOffsetX;
             let deltaY = currentY - frontY;
-            let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
+            // let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
+            let rate = this.rocketMultManager.getSpeedRate(this.duringFlyTime)
 
             this.updateCenterRate(rate);
 
