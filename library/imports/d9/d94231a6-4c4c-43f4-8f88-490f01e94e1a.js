@@ -65,7 +65,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否触发热更（测试服专用，线上服这个值必须为true）
    */
-  is_need_update: false,
+  is_need_update: true,
   /**
    * 是否强制进测试服
    */
@@ -1172,7 +1172,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  cc.sys.localStorage.setItem("PackageChannel", "5_5055");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }

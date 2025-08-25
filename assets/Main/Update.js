@@ -23,13 +23,13 @@ cc.Class({
 
         this.verifyTimer = null;
 
-        this.or_sprite_pos = cc.v2(340, -206);
+        this.or_sprite_pos = cc.v2(326, -160);
         this.btn_facebookLogin_pos = cc.v2(209, -274);
-        this.btn_guestLogin_pos = cc.v2(476, -274);
+        this.btn_guestLogin_pos = cc.v2(326, -225);
 
-        this.or_sprite_pos1 = cc.v2(340, -76);
+        this.or_sprite_pos1 = cc.v2(326, -76);
         this.btn_facebookLogin_pos1 = cc.v2(209, -144);
-        this.btn_guestLogin_pos1 = cc.v2(476, -144);
+        this.btn_guestLogin_pos1 = cc.v2(326, -144);
 
         this.protoFiles = [
             "proto/baseproto",
@@ -943,7 +943,7 @@ cc.Class({
 
         if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
             this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
+            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
 
@@ -963,7 +963,7 @@ cc.Class({
 
         if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
             this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
+            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
     },

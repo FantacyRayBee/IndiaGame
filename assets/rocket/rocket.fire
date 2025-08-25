@@ -8500,7 +8500,7 @@
   {
     "__type__": "cc.Node",
     "_name": "mask",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 172
     },
@@ -8525,7 +8525,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1240,
+      "width": 1204.3,
       "height": 40
     },
     "_anchorPoint": {
@@ -8537,7 +8537,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
+        17.799999999999955,
         0,
         0,
         0,
@@ -8605,8 +8605,8 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 0,
-    "_right": 0,
+    "_left": 35.64999999999998,
+    "_right": 0.050000000000067324,
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
@@ -8646,7 +8646,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1138,
+      "width": 1101,
       "height": 40
     },
     "_anchorPoint": {
@@ -8658,7 +8658,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -49.895,
+        -31,
         0,
         0,
         0,
@@ -8693,7 +8693,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 1138,
+      "width": 1101,
       "height": 40
     },
     "_resize": 0,

@@ -3,7 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        lab_blind : cc.Label,
+        // lab_blind : cc.Label,
         /**
          * VIP等级图标
          */
@@ -21,41 +21,27 @@ cc.Class({
         node.setContentSize(cc.view.getVisibleSize().width, cc.view.getVisibleSize().height);
 
         let node_user = node.getChildByName("bg").getChildByName("node_user");
-        this.lab_deposited = node_user.getChildByName("lab_deposited").getComponent(cc.Label);
-        this.lab_winnings = node_user.getChildByName("lab_winnings").getComponent(cc.Label);
-        this.lab_totalCash = node_user.getChildByName("lab_totalCash").getComponent(cc.Label);
-        this.lab_bonus = node_user.getChildByName("lab_bonus").getComponent(cc.Label);
-        this.node_totalCash = node_user.getChildByName("node_totalCash").getComponent(cc.Label);
-        this.lab_bnode_bonusonus = node_user.getChildByName("node_bonus").getComponent(cc.Label);
+        this.lab_deposited = node_user.getChildByName("bg_cash").getChildByName("lab_deposited").getComponent(cc.Label);
+        this.lab_winnings = node_user.getChildByName("bg_cash").getChildByName("lab_winnings").getComponent(cc.Label);
+        this.lab_totalCash = node_user.getChildByName("bg_cash").getChildByName("lab_totalCash").getComponent(cc.Label);
+        this.node_totalCash = node_user.getChildByName("bg_cash").getChildByName("node_totalCash").getComponent(cc.Label);
 
-        this.lab_mobile = node_user.getChildByName("lab_Mobile").getComponent(cc.Label);
-        this.lab_name = node_user.getChildByName("lab_name").getComponent(cc.Label);
-        this.lab_email = node_user.getChildByName("lab_email").getComponent(cc.Label);
+        this.lab_bonus = node_user.getChildByName("bg_bonus").getChildByName("lab_bonus").getComponent(cc.Label);
+        this.lab_bnode_bonusonus = node_user.getChildByName("bg_bonus").getComponent(cc.Label);
 
-        this.lab_user_name = node_user.getChildByName("lab_user_name").getComponent(cc.Label);
-        this.lab_ID = node_user.getChildByName("lab_ID").getComponent(cc.Label);
+        this.lab_mobile = node_user.getChildByName("bg_info").getChildByName("lab_Mobile").getComponent(cc.Label);
+        this.lab_name = node_user.getChildByName("bg_info").getChildByName("lab_name").getComponent(cc.Label);
+        this.lab_email = node_user.getChildByName("bg_info").getChildByName("lab_email").getComponent(cc.Label);
+
+        this.lab_user_name = node_user.getChildByName("bg_name").getChildByName("lab_user_name").getComponent(cc.Label);
+        this.lab_ID = node_user.getChildByName("bg_id").getChildByName("lab_ID").getComponent(cc.Label);
         this.headSp = node_user.getChildByName("node_txt").getChildByName("tx").getComponent(cc.Sprite);
 
         this.bg = node.getChildByName("bg");
-        this.node_user = node.getChildByName("bg").getChildByName("node_user");
-
-        this.spr_bg01 = node_user.getChildByName("spr_bg01").getComponent(cc.Sprite);
-        this.spr_bg02 = node_user.getChildByName("spr_bg02").getComponent(cc.Sprite);
-        this.spr_bg03 = node_user.getChildByName("spr_bg03").getComponent(cc.Sprite);
-        this.spr_bg04 = node_user.getChildByName("spr_bg04").getComponent(cc.Sprite);
-        this.tx_k01 = node_user.getChildByName("tx_k01").getComponent(cc.Sprite);
-        this.tx_k02 = node_user.getChildByName("tx_k02").getComponent(cc.Sprite);
-        this.tx_k03 = node_user.getChildByName("tx_k03").getComponent(cc.Sprite);
-        this.bg_name01 = node_user.getChildByName("bg_name01").getComponent(cc.Sprite);
-        this.bg_name02 = node_user.getChildByName("bg_name02").getComponent(cc.Sprite);
-        this.Background01 = node_user.getChildByName("btn_change").getChildByName("Background01").getComponent(cc.Sprite);
-        this.Background02 = node_user.getChildByName("btn_change").getChildByName("Background01").getComponent(cc.Sprite);
-        this.Background03 = node_user.getChildByName("btn_change").getChildByName("Background03").getComponent(cc.Sprite);
 
         this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, this.headSp);
-        this.lab_ID.string = cc.js.formatStr("ID:  %s", GlobalCfg.USER_DATAS.userId);
+        this.lab_ID.string = GlobalCfg.USER_DATAS.userId;
         this.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
-        this.initVipCard(Number(GlobalCfg.USER_DATAS.voucherCard));
         mask.on(cc.Node.EventType.TOUCH_START,()=>{
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.outAct(()=>{
@@ -80,21 +66,21 @@ cc.Class({
         this.sprite_vipLevelIcon.node.on("click", this.btnClick, this);
 
         // 奖券兑换活动
-        let NodebtnToBonus = cc.find('node/bg/node_user/btnToBonus', this.node);
+        let NodebtnToBonus = cc.find('node/bg/node_user/bg_bonus/btnToBonus', this.node);
         if (GlobalCfg.USER_DATAS.openModules.includes(12)) {
             NodebtnToBonus.active = true;
         }else{
             NodebtnToBonus.active = false;
         }
         // 充值
-        let NodebtnToShop = cc.find('node/bg/node_user/btnToShop', this.node);
+        let NodebtnToShop = cc.find('node/bg/node_user/bg_cash/btnToShop', this.node);
         if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
             NodebtnToShop.active = true;
         }else{
             NodebtnToShop.active = false;
         }
         // 提现
-        let NodebtnToWithdraw = cc.find('node/bg/node_user/btnToWithdraw', this.node);
+        let NodebtnToWithdraw = cc.find('node/bg/node_user/bg_cash/btnToWithdraw', this.node);
         if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
             NodebtnToWithdraw.active = true;
         }else{
@@ -237,49 +223,6 @@ cc.Class({
             callback();  
         })
         .start()
-    },
-
-    initVipCard: function (vipType) {
-        this.spr_bg01.node.active = false;
-        this.spr_bg02.node.active = false;
-        this.spr_bg03.node.active = false;
-        this.spr_bg04.node.active = false;
-        this.tx_k01.node.active = false;
-        this.tx_k02.node.active = false;
-        this.tx_k03.node.active = false;
-        this.bg_name01.node.active = false;
-        this.bg_name02.node.active = false;
-        this.Background01.node.active = false;
-        this.Background02.node.active = false;
-        this.Background03.node.active = false;
-        if(vipType == 101){
-            this.spr_bg02.node.active = true; 
-            this.tx_k02.node.active = true;
-            this.bg_name02.node.active = true;
-            this.Background02.node.active = true;
-            // this.lab_ID.node.color = new cc.color(255,255,255,255)
-            this.lab_user_name.node.color = new cc.color(255,255,255,255)
-        }else if(vipType == 102){
-            this.spr_bg03.node.active = true;
-            this.tx_k03.node.active = true;
-            this.bg_name02.node.active = true;
-            this.Background03.node.active = true;
-            // this.lab_ID.node.color = new cc.color(255,255,255,255)
-            this.lab_user_name.node.color = new cc.color(255,255,255,255)
-        }else if(vipType == 103){
-            this.spr_bg04.node.active = true;
-            this.tx_k03.node.active = true;
-            this.bg_name02.node.active = true;
-            this.Background03.node.active = true;
-            // this.lab_ID.node.color = new cc.color(255,255,255,255)
-            this.lab_user_name.node.color = new cc.color(255,255,255,255)
-        }else{
-            this.spr_bg01.node.active = true;
-            this.tx_k01.node.active = true;
-            this.bg_name01.node.active = true;
-            this.Background01.node.active = true;
-            // this.lab_ID.node.color = new cc.color(153,94,39,255)
-        }
     },
 
     showWithDraw(){

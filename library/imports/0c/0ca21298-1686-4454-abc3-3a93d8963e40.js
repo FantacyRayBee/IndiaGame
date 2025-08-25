@@ -25,12 +25,12 @@ cc.Class({
     this.testIndexNum = 0; // 测试按钮点击次数
     this.sendVerifyCodeReqAcount = 0;
     this.verifyTimer = null;
-    this.or_sprite_pos = cc.v2(340, -206);
+    this.or_sprite_pos = cc.v2(326, -160);
     this.btn_facebookLogin_pos = cc.v2(209, -274);
-    this.btn_guestLogin_pos = cc.v2(476, -274);
-    this.or_sprite_pos1 = cc.v2(340, -76);
+    this.btn_guestLogin_pos = cc.v2(326, -225);
+    this.or_sprite_pos1 = cc.v2(326, -76);
     this.btn_facebookLogin_pos1 = cc.v2(209, -144);
-    this.btn_guestLogin_pos1 = cc.v2(476, -144);
+    this.btn_guestLogin_pos1 = cc.v2(326, -144);
     this.protoFiles = ["proto/baseproto", "proto/lobbyservice", "proto/gamebase", "proto/benz/gameservice", "proto/fruitMachine/gameservice", "proto/mayaMachine/gameservice", "proto/jokerMachine/gameservice", "proto/indiaMachine/gameservice", "proto/vampireMachine/gameservice", "proto/bullMachine/gameservice", "proto/updown/gameservice", "proto/andeer/gameservice", "proto/baccarat3Patti/gameservice", "proto/horseRace/gameservice", "proto/lhd/gameservice", "proto/munda/gameservice", "proto/multiTeenPatti/gameservice", "proto/ssc/gameservice", "proto/tpGame/gameservice", "proto/rummy/gameservice", "proto/rocket/gameservice", "proto/aviator/gameservice", "proto/zoo/gameservice", "proto/cricket/gameservice", "proto/zeus/gameservice"];
     this.baseBundlesCheckUpdateArr = ['ResourcesBundle', 'tpGame'];
     this.baseBundlesNeedUpdateArr = [];
@@ -872,7 +872,7 @@ cc.Class({
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
     if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
       this.node_btn_facebookLogin.active = false;
-      this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
+      this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
       this.node_btn_guestLogin.setContentSize(512, 79);
     }
     ;
@@ -889,7 +889,7 @@ cc.Class({
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
     if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
       this.node_btn_facebookLogin.active = false;
-      this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
+      this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
       this.node_btn_guestLogin.setContentSize(512, 79);
     }
     ;
