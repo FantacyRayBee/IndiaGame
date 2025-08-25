@@ -23339,11 +23339,6 @@
     "meta": 1755831782357,
     "relativePath": "lhdGame\\lhdRes\\btn_chouma_02.png"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1755831666932,
-    "meta": 1755831782495,
-    "relativePath": "Main\\Global.js"
-  },
   "552b0bcc-a77e-4c50-9e5c-8dcd489e8951": {
     "asset": 1755831666936,
     "meta": 1755831782545,
@@ -29910,13 +29905,18 @@
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
   "da78386b-15c7-459d-b25b-166a4dbb5272": {
-    "asset": 1755850244800,
-    "meta": 1755850903123,
+    "asset": 1755853476539,
+    "meta": 1755853531403,
     "relativePath": "Main\\SDK\\APPManager.js"
   },
   "9cec7302-233a-4ff3-a01c-d34b6d604df2": {
-    "asset": 1755849255312,
-    "meta": 1755850903201,
+    "asset": 1755853555625,
+    "meta": 1755853559338,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\PersonalCtrl.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1755853619693,
+    "meta": 1755853622440,
+    "relativePath": "Main\\Global.js"
   }
 }

@@ -57,7 +57,7 @@ window.GlobalCfg = {
   /**
    * 是否触发热更（测试服专用，线上服这个值必须为true）
    */
-   is_need_update: true,
+   is_need_update: false,
   /**
    * 是否强制进测试服
    */
@@ -1045,7 +1045,7 @@ window.GlobalCfg = {
 GlobalCfg.NATIVE_CALL_URL = "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy";
 GlobalCfg.NATIVE_CALL_NAME_OBJ = { 
   getOpenInstallData: "getOpenInstallDataByBloom3Rummy",
-  selectPhoto: 'selectPhotoByBloom3Rummy',
+  openPhotoAlbum: 'openPhotoAlbumByBloom3Rummy',
   getAdjustId: "getAdjustIdByBloom3Rummy",
   getAdjustAttribution: "getAdjustAttributionByBloom3Rummy",
   getInstallReferrer: "getInstallReferrerByBloom3Rummy",

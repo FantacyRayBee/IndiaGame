@@ -334,6 +334,7 @@ APPManager.selectPhoto = function () {
   }
 };
 APPManager.selectPhotoCallBack = function (photoPath, width, height) {
+  console.log("caojun selectPhotoCallBack:", photoPath);
   if (photoPath && width && height) {
     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
       msgCode: "SelectPhotoCallBack",
@@ -554,8 +555,12 @@ APPManager.adjustGoogleIdCallBack = function (googleAdId) {
   }
   ;
 };
-APPManager.selectPhotoCallBack = function (googleAdId) {
-  console.log("selectPhotoCallBack:", googleAdId);
+
+// 打开相册
+APPManager.openAlbum = function () {
+  if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+    jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.openPhotoAlbum, "()V");
+  }
 };
 window.APPManager = APPManager;
 
