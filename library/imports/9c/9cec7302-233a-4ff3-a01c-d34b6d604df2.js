@@ -146,8 +146,8 @@ cc.Class({
     }
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     if (btnName === "btn_change") {
-      // CommonFun.getInstance().showChangeName();
-      APPManager.openAlbum();
+      CommonFun.getInstance().showChangeName();
+      // APPManager.openAlbum();
     } else if (btnName === "btn_bind") {
       CommonFun.getInstance().showBindPhone('Personal');
     } else if (btnName == "node_txt") {

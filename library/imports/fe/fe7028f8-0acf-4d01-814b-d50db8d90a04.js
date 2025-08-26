@@ -36,6 +36,7 @@ cc.Class({
     getDownNode: cc.Node,
     rocketSpData: sp.SkeletonData,
     playerGetOutParent: cc.Node,
+    recordItem: cc.Node,
     // Prefabs
     pabfabCoin: cc.Prefab,
     prefabRecord: cc.Prefab,
@@ -1024,7 +1025,8 @@ cc.Class({
     if (isShowLight == undefined) {
       isShowLight = false;
     }
-    var trendNode = cc.instantiate(this.prefabTrendItem);
+    var trendNode = cc.instantiate(this.recordItem);
+    trendNode.active = true;
     var RocketRecordRectCtrl = trendNode.getComponent("RocketRecordRectCtrl");
     if (RocketRecordRectCtrl) {
       RocketRecordRectCtrl.init(data);

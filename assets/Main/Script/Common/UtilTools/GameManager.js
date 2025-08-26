@@ -5,7 +5,7 @@ let GameManager = cc.Class({
             { type: "PG", gameID: "incan-wonders", isVertical: true },
             { type: "PG", gameID: "mr-treas-fort", isVertical: true },
             { type: "PG", gameID: "cash-mania", isVertical: true },
-            { type: "PG", gameID: "fortune-tiger", isVertical: true },
+            //{ type: "PG", gameID: "fortune-tiger", isVertical: true },
             { type: "PG", gameID: "fortune-rabbit", isVertical: true },
             { type: "PG", gameID: "wings-iguazu", isVertical: true },
             { type: "PG", gameID: "fortune-ox", isVertical: true },
