@@ -546,8 +546,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 136,
-      "height": 136
+      "width": 140,
+      "height": 140
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -755,8 +755,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147.75,
-      "height": 50.4
+      "width": 174.3,
+      "height": 43.6
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -767,8 +767,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        52.651,
-        0,
+        70.1,
+        -0.3,
         0,
         0,
         0,
@@ -807,8 +807,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "1212512551",
-    "_N$string": "1212512551",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 32,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -823,7 +823,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
     "_id": ""
   },
@@ -869,8 +869,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 60
+      "width": 50,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -881,8 +881,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        88.013,
-        0,
+        98.72,
+        -4.015,
         0,
         0,
         0,
@@ -933,8 +933,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50,
-      "height": 50
+      "width": 56,
+      "height": 56
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -986,10 +986,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "669a5770-ff55-4774-9b5c-86da4937a749"
+      "__uuid__": "bec478e3-b5c2-4877-870b-72d7fff46623"
     },
     "_type": 1,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

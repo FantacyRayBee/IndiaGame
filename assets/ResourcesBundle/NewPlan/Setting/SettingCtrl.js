@@ -44,7 +44,7 @@ cc.Class({
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.underLayout = this.node.getChildByName("underLayout");
         let width = cc.view.getVisibleSize().width;
-        this.underLayout.setPosition((600 + width)/2, 0);
+        this.underLayout.setPosition((573 + width)/2, 0);
 
         this.BtnGuiZe.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.BtnGuiZe.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -216,7 +216,7 @@ cc.Class({
         let width = cc.view.getVisibleSize().width;
         let underLayout = this.node.getChildByName('underLayout');
         cc.tween(underLayout)
-        .to(0.3, {position: cc.v2((width - 600)/2, 0)}, {easing: 'smooth'})
+        .to(0.3, {position: cc.v2((width - 573)/2, 0)}, {easing: 'smooth'})
         .start()
     },
 

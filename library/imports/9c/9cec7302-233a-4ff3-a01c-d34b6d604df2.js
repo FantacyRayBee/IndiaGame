@@ -28,7 +28,8 @@ cc.Class({
     this.lab_totalCash = node_user.getChildByName("bg_cash").getChildByName("lab_totalCash").getComponent(cc.Label);
     this.node_totalCash = node_user.getChildByName("bg_cash").getChildByName("node_totalCash").getComponent(cc.Label);
     this.lab_bonus = node_user.getChildByName("bg_bonus").getChildByName("lab_bonus").getComponent(cc.Label);
-    this.lab_bnode_bonusonus = node_user.getChildByName("bg_bonus").getComponent(cc.Label);
+    // this.lab_bnode_bonusonus = node_user.getChildByName("bg_bonus").getComponent(cc.Label);
+
     this.lab_mobile = node_user.getChildByName("bg_info").getChildByName("lab_Mobile").getComponent(cc.Label);
     this.lab_name = node_user.getChildByName("bg_info").getChildByName("lab_name").getComponent(cc.Label);
     this.lab_email = node_user.getChildByName("bg_info").getChildByName("lab_email").getComponent(cc.Label);
@@ -36,7 +37,7 @@ cc.Class({
     this.lab_ID = node_user.getChildByName("bg_id").getChildByName("lab_ID").getComponent(cc.Label);
     this.headSp = node_user.getChildByName("node_txt").getChildByName("tx").getComponent(cc.Sprite);
     this.bg = node.getChildByName("bg");
-    this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, this.headSp);
+    this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 140, this.headSp);
     this.lab_ID.string = GlobalCfg.USER_DATAS.userId;
     this.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
     mask.on(cc.Node.EventType.TOUCH_START, function () {
@@ -96,14 +97,16 @@ cc.Class({
     ;
     this.lab_totalCash.string = GlobalCfg.USER_DATAS.userDiamond ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100)) : "₹0";
     this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;
-    if (GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
-      this.lab_bnode_bonusonus.string = language == 1 ? "Chips" : "बोनास";
-      this.node_totalCash.string = language == 1 ? "Total Chips" : "कुल नकद";
-    } else {
-      this.lab_bnode_bonusonus.string = playerCenterLanguage.node_bonus[language];
-      this.node_totalCash.string = playerCenterLanguage.node_totalCash[language];
-    }
+
+    // if( GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
+    //     this.lab_bnode_bonusonus.string = language==1 ? "Chips" : "बोनास";
+    //     this.node_totalCash.string =  language==1 ? "Total Chips": "कुल नकद";
+    // } else {
+    //     this.lab_bnode_bonusonus.string = playerCenterLanguage.node_bonus[language];
+    //     this.node_totalCash.string = playerCenterLanguage.node_totalCash[language] 
+    // }
   },
+
   onEventMsg: function onEventMsg(webData, target) {
     var self = target;
     var msgId = webData.msgCode;
