@@ -57,7 +57,7 @@ cc.Class({
     },
     node_btnDirection: {
       "default": null,
-      type: cc.Node,
+      type: cc.Sprite,
       tooltip: "按钮图标方向",
       visible: true
     },
@@ -79,7 +79,9 @@ cc.Class({
       },
       tooltip: "是否显示",
       visible: true
-    }
+    },
+    on_sf: cc.SpriteFrame,
+    off_sf: cc.SpriteFrame
   },
   ctor: function ctor() {
     this._isShow = true;
@@ -210,7 +212,7 @@ cc.Class({
       }, {
         easing: 'smooth'
       }).call(function () {
-        _this.node_btnDirection.scaleX = 1;
+        _this.node_btnDirection.spriteFrame = _this.on_sf;
       }).start();
     } else {
       ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
@@ -224,7 +226,7 @@ cc.Class({
       }, {
         easing: 'smooth'
       }).call(function () {
-        _this.node_btnDirection.scaleX = -1;
+        _this.node_btnDirection.spriteFrame = _this.off_sf;
       }).start();
     }
     ;

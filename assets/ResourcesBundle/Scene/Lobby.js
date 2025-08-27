@@ -447,7 +447,7 @@ cc.Class({
      */
     showUserInfo: function() {
         this.loadHeadSp();
-        this.lab_userId.string = `ID: ${GlobalCfg.USER_DATAS.userId}`;
+        this.lab_userId.string = GlobalCfg.USER_DATAS.userId;
         this.lab_userName.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 10);
         this.lab_userDiamond.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
         this.lab_userBonus.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.bonus / 100);

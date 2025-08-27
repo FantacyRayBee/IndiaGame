@@ -53,7 +53,7 @@ cc.Class({
         },
         node_btnDirection: {
             default: null,
-            type: cc.Node,
+            type: cc.Sprite,
             tooltip: "按钮图标方向",
             visible: true,
         },
@@ -72,6 +72,8 @@ cc.Class({
             visible: true,
 
         },
+        on_sf: cc.SpriteFrame,
+        off_sf: cc.SpriteFrame,
     },
 
     ctor() {
@@ -202,7 +204,7 @@ cc.Class({
             cc.tween(this.node)
                 .to(0.2, { position: cc.v2(-(w / 2) + 69.5, -12) }, { easing: 'smooth' })
                 .call(() => {
-                    this.node_btnDirection.scaleX = 1;
+                    this.node_btnDirection.spriteFrame = this.on_sf;
                 })
                 .start();
         } 
@@ -211,7 +213,7 @@ cc.Class({
             cc.tween(this.node)
                 .to(0.2, { position: cc.v2(-(w / 2) - 69.5, -12) }, { easing: 'smooth' })
                 .call(() => {
-                    this.node_btnDirection.scaleX = -1;
+                    this.node_btnDirection.spriteFrame = this.off_sf;
                 })
                 .start();
         };

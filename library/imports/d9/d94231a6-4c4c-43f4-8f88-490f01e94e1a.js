@@ -1172,7 +1172,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_5055");
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }
@@ -1484,8 +1484,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     case "0":
       // 测试服
       GlobalCfg.APP_VERSION = "0.1.2.7";
-      GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
-      GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
+      GlobalCfg.APP_INFO_URL = "https://down.buddha9.com/AppInfo.json?time=" + new Date().getTime();
+      GlobalCfg.APP_CONFIG_URL = "https://down.buddha9.com/AppConfig.json?time=" + new Date().getTime();
       break;
     case "1":
       // 1服
