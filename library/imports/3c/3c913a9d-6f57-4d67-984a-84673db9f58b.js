@@ -1062,14 +1062,18 @@ var CommonFun = cc.Class((_cc$Class = {
    * @param {string} title 标题
    * @param {function} callFun2 回调函数
    */
-  showMsgBox: function showMsgBox(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal) {
+  showMsgBox: function showMsgBox(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal, scale) {
     var _this5 = this;
     if (horizontal === void 0) {
       horizontal = cc.Label.HorizontalAlign.CENTER;
     }
+    if (scale === void 0) {
+      scale = 1;
+    }
     var msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
     msgBoxPrefabPromise.then(function (prefab) {
       var msgBoxNode = cc.instantiate(prefab);
+      msgBoxNode.scale = scale;
       var msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
       msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal);
       _this5.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
@@ -1285,6 +1289,14 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showGameWebview: function showGameWebview(gameId, isVertical) {
     var _this17 = this;
+    if (GlobalCfg.USER_DATAS.isNotCharge == true) {
+      //未曾充值
+      this.showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
+        _this17.showSmallAddCash();
+      }, false, null, null, null, null, 0.85);
+      return;
+    }
+    ;
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/pg/game_url";
     var httpParam = {
       game_id: gameId

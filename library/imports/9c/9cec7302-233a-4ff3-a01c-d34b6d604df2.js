@@ -133,8 +133,9 @@ cc.Class({
       self.lab_bonus.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.bonus, 100);
     } else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
       self.showVipLevelIcon();
+    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG) {
+      self.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, self.headSp);
     }
-    ;
   },
   btnClick: function btnClick(button) {
     var _this2 = this;
@@ -147,11 +148,12 @@ cc.Class({
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     if (btnName === "btn_change") {
       CommonFun.getInstance().showChangeName();
-      // APPManager.openAlbum();
     } else if (btnName === "btn_bind") {
       CommonFun.getInstance().showBindPhone('Personal');
     } else if (btnName == "node_txt") {
-      CommonFun.getInstance().showChangeHead();
+      if (GlobalCfg.IS_Freestyle_Head == 0)
+        //老包不能用自定义头像
+        CommonFun.getInstance().showChangeHead();else APPManager.openAlbum();
     } else if (btnName == "btn_add") {
       this.node_checkClick.active = true;
     } else if (btnName == "btn_photograph") {

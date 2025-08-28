@@ -40,6 +40,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
   */
   IS_CLUB_MODE: 0,
   /**
+  * 是否能自定义换头像, 0:不是; 1:表示是
+  */
+  IS_Freestyle_Head: 0,
+  /**
   * 是否是需要充值才能进入的游戏
   */
   isPayGame: true,
@@ -112,6 +116,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
     HAPPY_MATCH_CHANGE_SCORE: "HAPPY_MATCH_CHANGE_SCORE",
     FAILURE_TO_OBTAIN_USER_INFO: "FAILURE_TO_OBTAIN_USER_INFO",
     UPDATE_USER_INFO: "UPDATE_USER_INFO",
+    UPDATE_USER_HEADIMG: "UPDATE_USER_HEADIMG",
     CHALLENGES_ACT: "CHALLENGES_ACT",
     GET_MAIL_REWARD: "GET_MAIL_REWARD",
     GET_CHALLENGES_REWARD: "GET_CHALLENGES_REWARD",
@@ -1172,7 +1177,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_5078");
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 }
@@ -1484,8 +1489,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     case "0":
       // 测试服
       GlobalCfg.APP_VERSION = "0.1.2.7";
-      GlobalCfg.APP_INFO_URL = "https://server.tpmass.com/AppInfo.json?time=" + new Date().getTime();
-      GlobalCfg.APP_CONFIG_URL = "https://server.tpmass.com/AppConfig.json?time=" + new Date().getTime();
+      GlobalCfg.APP_INFO_URL = "https://down.buddha9.com/AppInfo.json?time=" + new Date().getTime();
+      GlobalCfg.APP_CONFIG_URL = "https://down.buddha9.com/AppConfig.json?time=" + new Date().getTime();
       break;
     case "1":
       // 1服

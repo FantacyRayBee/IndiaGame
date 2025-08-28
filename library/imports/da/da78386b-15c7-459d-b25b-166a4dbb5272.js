@@ -99,6 +99,10 @@ APPManager.appCallBack = function (dataType, data1, data2, data3) {
       CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
         if (msg.result == 0) {
           GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
+          ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+            msgCode: GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG,
+            msgData: {}
+          });
         } else {
           CommonFun.getInstance().showMsgBox(msg.msg);
         }
@@ -333,19 +337,9 @@ APPManager.selectPhoto = function () {
     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.selectPhoto, "()V");
   }
 };
-APPManager.selectPhotoCallBack = function (photoPath, width, height) {
+APPManager.selectPhotoCallBack = function (photoPath) {
   console.log("caojun selectPhotoCallBack:", photoPath);
-  if (photoPath && width && height) {
-    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
-      msgCode: "SelectPhotoCallBack",
-      msgData: {
-        photoPath: photoPath,
-        width: width,
-        height: height
-      }
-    });
-  }
-  ;
+  APPManager.appCallBack("SELECTIMG", photoPath);
 };
 APPManager.getOpenInstallData = function () {
   if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {

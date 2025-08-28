@@ -288,14 +288,14 @@ cc.Class({
             if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
-                }, false);
+                }, false, null, null, null, null, 0.85);
                 return;
             };
             let num = this.curBet;
             if (num > GlobalCfg.USER_DATAS.userDiamond) {
                 CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
-                }, false);
+                }, false, null, null, null, null, 0.85);
             } else {
                 this.btn_bet.node.active = false;
                 this.btn_bet_cancel.node.active = true;
@@ -346,7 +346,7 @@ cc.Class({
         if (amount > GlobalCfg.USER_DATAS.userDiamond) {
             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
-            }, false);
+            }, false, null, null, null, null, 0.85);
             this.dealStopAutoEvent();
             return;
         }
@@ -374,7 +374,7 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
-            }, false);
+            }, false, null, null, null, null, 0.85);
             return;
         };
         GlobalCfg.ACT_SCENE_CTRL.openAutoSetting(this.root_index);

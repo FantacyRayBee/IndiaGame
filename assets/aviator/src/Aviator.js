@@ -318,7 +318,7 @@ cc.Class({
                 else {
                     if (notify.result.result == 19) {         // 余额不足
                         if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
-                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false, null, null, null, null, 0.85);
                         }
                         else {
                             this.stopAutoBetStatus();
@@ -332,13 +332,13 @@ cc.Class({
             else {
                 if (notify.result.result == 19) {         // 余额不足
                     if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
-                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false, null, null, null, null, 0.85);
                     }
                     else {
                         this.stopAutoBetStatus();
                         CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                             CommonFun.getInstance().showSmallAddCash()
-                        }, false);
+                        }, false, null, null, null, null, 0.85);
                     }
                 }
             };
@@ -347,7 +347,7 @@ cc.Class({
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
                 CommonFun.getInstance().decVerticalAcc();
-            }, false);
+            }, false, null, null, null, null, 0.85);
         }
     },
 

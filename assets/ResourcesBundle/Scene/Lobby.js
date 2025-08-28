@@ -1390,6 +1390,9 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_FIRST_GIFT_REWARD) {
             self.showUserInfo();
         }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG) {
+            self.showUserInfo();
+        }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_RELIEF_REWARD) {
             self.showUserInfo();
         }

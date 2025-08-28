@@ -1082,10 +1082,11 @@ let CommonFun = cc.Class({
      * @param {string} title 标题
      * @param {function} callFun2 回调函数
      */    
-    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal = cc.Label.HorizontalAlign.CENTER) {
+    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal = cc.Label.HorizontalAlign.CENTER, scale = 1) {
         let msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
         msgBoxPrefabPromise.then((prefab) => {
             let msgBoxNode = cc.instantiate(prefab);
+            msgBoxNode.scale = scale;
             let msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
             msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal);
             this.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
@@ -1280,6 +1281,12 @@ let CommonFun = cc.Class({
      * 显示内嵌网页界面
      */
     showGameWebview: function(gameId, isVertical) {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
+            this.showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                this.showSmallAddCash()
+            }, false, null, null, null, null, 0.85);
+            return;
+        };
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/pg/game_url";
         let httpParam = {
             game_id: gameId,
