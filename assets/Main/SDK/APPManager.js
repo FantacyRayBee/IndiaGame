@@ -73,15 +73,18 @@ APPManager.SelectImg = function (strObjec) {
 //异步回调监听
 APPManager.appCallBack = function (dataType, data1, data2, data3) {
     if (dataType == "UNZIP") {
+        console.log("caojun 11111");
         LoggerUtil.getInstance().log("UNZIP>>>>>>>>>>>>>>>>>>>", data1, window.GameDownloader.getInstance());
         window.GameDownloader.getInstance().loadGameCompleteByZip(data1);
     }
     else if (dataType == "IOSPAYERR") {
+        console.log("caojun 222222");
         CommonFun.getInstance().showMsgBox(data1, "YES", () => {
 
         }, false);
     }
     else if (dataType == 'IOSPAYSUS') {
+        console.log("caojun 3333333");
         let jsonStr = JSON.parse(data1);
         if (jsonStr.result !== 1000) {
             CommonFun.getInstance().showMsgBox(jsonStr.msg, "YES", () => {
@@ -89,27 +92,28 @@ APPManager.appCallBack = function (dataType, data1, data2, data3) {
         }
     }
     else if (dataType == "SELECTIMG") {
-        GlobalCfg.USER_DATAS.userHeadimgurl = data1;
-        CommonFun.getInstance().showTips("Avatar modified successfully");
-        let byteData = jsb.fileUtils.getDataFromFile(data1)
-        let imgBase64Data = CommonFun.getInstance().arrayBufferToBase64(byteData);
-        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/uploadicon";
-        let httpParam = {
-            "icon": imgBase64Data,
-        };
-        clearTimeout(this.changeTime);
-        this.changeTime = null;
-        this.changeTime = setTimeout(() => {
-            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
-                if (msg.result == 0) {
-                    GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
-                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG, msgData: {} });
-                }
-                else {
-                    CommonFun.getInstance().showMsgBox(msg.msg);
-                }
-            }, null, GlobalCfg.USER_DATAS.BearerToken);
-        }, 500);
+        console.log("caojun 444444");
+        // GlobalCfg.USER_DATAS.userHeadimgurl = data1;
+        // CommonFun.getInstance().showTips("Avatar modified successfully");
+        // let byteData = jsb.fileUtils.getDataFromFile(data1)
+        // let imgBase64Data = CommonFun.getInstance().arrayBufferToBase64(byteData);
+        // let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/uploadicon";
+        // let httpParam = {
+        //     "icon": imgBase64Data,
+        // };
+        // clearTimeout(this.changeTime);
+        // this.changeTime = null;
+        // this.changeTime = setTimeout(() => {
+        //     CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+        //         if (msg.result == 0) {
+        //             GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
+        //             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG, msgData: {} });
+        //         }
+        //         else {
+        //             CommonFun.getInstance().showMsgBox(msg.msg);
+        //         }
+        //     }, null, GlobalCfg.USER_DATAS.BearerToken);
+        // }, 500);
     }
 }
 
@@ -333,6 +337,28 @@ APPManager.selectPhoto = function () {
 
 APPManager.selectPhotoCallBack = function (photoPath) {
     console.log("caojun selectPhotoCallBack:", photoPath);
+    GlobalCfg.USER_DATAS.userHeadimgurl = photoPath;
+    CommonFun.getInstance().showTips("Avatar modified successfully");
+    let byteData = jsb.fileUtils.getDataFromFile(photoPath)
+    let imgBase64Data = CommonFun.getInstance().arrayBufferToBase64(byteData);
+    let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/uploadicon";
+    let httpParam = {
+        "icon": imgBase64Data,
+    };
+    clearTimeout(this.changeTime);
+    this.changeTime = null;
+    this.changeTime = setTimeout(() => {
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG, msgData: {} });
+            }
+            else {
+                CommonFun.getInstance().showMsgBox(msg.msg);
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    }, 500);
+    
     APPManager.appCallBack("SELECTIMG", photoPath);
 }
 

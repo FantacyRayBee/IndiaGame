@@ -2,17 +2,17 @@ let GameManager = cc.Class({
     ctor: function() {
         this.gameConfig = [
             // PG类型游戏
-            { type: "PG", gameID: "incan-wonders", isVertical: true },
-            { type: "PG", gameID: "mr-treas-fort", isVertical: true },
+            // { type: "PG", gameID: "incan-wonders", isVertical: true },
+            // { type: "PG", gameID: "mr-treas-fort", isVertical: true },
             { type: "PG", gameID: "cash-mania", isVertical: true },
-            //{ type: "PG", gameID: "fortune-tiger", isVertical: true },
-            { type: "PG", gameID: "fortune-rabbit", isVertical: true },
+            // { type: "PG", gameID: "fortune-tiger", isVertical: true },
+            // { type: "PG", gameID: "fortune-rabbit", isVertical: true },
             { type: "PG", gameID: "wings-iguazu", isVertical: true },
             { type: "PG", gameID: "fortune-ox", isVertical: true },
             { type: "PG", gameID: "fortune-mouse", isVertical: true },
             { type: "PG", gameID: "fortune-dragon", isVertical: true },
             { type: "PG", gameID: "pinata-wins", isVertical: true },
-            { type: "PG", gameID: "futebol-fever", isVertical: true },
+            // { type: "PG", gameID: "futebol-fever", isVertical: true },
             { type: "PG", gameID: "dragon-hatch", isVertical: true },
             { type: "PG", gameID: "dragon-hatch2", isVertical: true },
             { type: "PG", gameID: "speed-winner", isVertical: true },

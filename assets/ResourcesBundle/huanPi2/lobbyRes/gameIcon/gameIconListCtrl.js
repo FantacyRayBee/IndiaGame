@@ -64,14 +64,14 @@ cc.Class({
             ctrl.setItemData(data.gameID, data.isVertical)
             this.game_content[0].addChild(pab_player);
         }
-        for (var i = 0; i < this.gameConfig['PG'].length; i++) {
-            let data = this.gameConfig['PG'][i];
+        for (var i = 0; i < this.gameConfig['JL'].length; i++) {
+            let data = this.gameConfig['JL'][i];
             let pab_player = cc.instantiate(this.gamePrefab);
             pab_player.active = true;
             pab_player.setPosition(0, 0);
             let ctrl = pab_player.getComponent('gameIconCtrl');
             ctrl.setItemData(data.gameID, data.isVertical)
-            this.game_content[1].addChild(pab_player);
+            this.game_content[3].addChild(pab_player);
         }
         for (var i = 0; i < this.gameConfig['PP'].length; i++) {
             let data = this.gameConfig['PP'][i];
@@ -82,14 +82,14 @@ cc.Class({
             ctrl.setItemData(data.gameID, data.isVertical)
             this.game_content[2].addChild(pab_player);
         }
-        for (var i = 0; i < this.gameConfig['JL'].length; i++) {
-            let data = this.gameConfig['JL'][i];
+        for (var i = 0; i < this.gameConfig['PG'].length; i++) {
+            let data = this.gameConfig['PG'][i];
             let pab_player = cc.instantiate(this.gamePrefab);
             pab_player.active = true;
             pab_player.setPosition(0, 0);
             let ctrl = pab_player.getComponent('gameIconCtrl');
             ctrl.setItemData(data.gameID, data.isVertical)
-            this.game_content[3].addChild(pab_player);
+            this.game_content[1].addChild(pab_player);
         }
     },
 

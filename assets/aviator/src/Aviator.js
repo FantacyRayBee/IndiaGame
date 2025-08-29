@@ -324,7 +324,7 @@ cc.Class({
                             this.stopAutoBetStatus();
                             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                                 CommonFun.getInstance().showSmallAddCash()
-                            }, false);
+                            }, false, null, null, null, null, 0.85);
                         }
                     }
                 };

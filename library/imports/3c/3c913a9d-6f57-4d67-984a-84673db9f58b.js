@@ -1291,9 +1291,9 @@ var CommonFun = cc.Class((_cc$Class = {
     var _this17 = this;
     if (GlobalCfg.USER_DATAS.isNotCharge == true) {
       //未曾充值
-      this.showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
-        _this17.showSmallAddCash();
-      }, false, null, null, null, null, 0.85);
+      CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
+        CommonFun.getInstance().showSmallAddCash();
+      }, false);
       return;
     }
     ;

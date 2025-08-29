@@ -1282,9 +1282,9 @@ let CommonFun = cc.Class({
      */
     showGameWebview: function(gameId, isVertical) {
         if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
-            this.showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                this.showSmallAddCash()
-            }, false, null, null, null, null, 0.85);
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
             return;
         };
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/pg/game_url";
