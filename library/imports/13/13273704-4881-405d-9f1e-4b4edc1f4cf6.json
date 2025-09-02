@@ -1,7 +1,0 @@
-{
-  "__type__": "cc.TextAsset",
-  "_name": "Symbol",
-  "_objFlags": 0,
-  "_native": "",
-  "text": "﻿id,name,group,pay_rate,aniName\nint,string,array:int,row:_PayRate,string\n#,名称,组合成员,,动画名称\n1,Scatter,1,5,sc.skel\n2,无,2,6,\n3,皇冠,3,7,H1.skel\n4,沙漏,4,8,M1.skel\n5,戒指,5,9,M2.skel\n6,酒杯,6,10,M3.skel\n7,红宝石,7,11,L1.skel\n8,紫宝石,8,12,L2.skel\n9,黄宝石,9,13,L3.skel\n10,绿宝石,10,14,L4.skel\n11,蓝宝石,11,15,L5.skel\n12,特殊飞翅膀,11,15,L5.skel\n"
-}
