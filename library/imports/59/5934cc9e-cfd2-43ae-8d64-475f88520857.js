@@ -301,28 +301,16 @@ cc.Class({
     this.lab_tips_mobile2 = this.sz_input_yzm.getChildByName("lab_tips_mobile2");
     this.lab_tips_mobile3 = this.sz_input_name.getChildByName("lab_tips_mobile3");
     this.lab_tips_mobile4 = this.sz_input_mail.getChildByName("lab_tips_mobile4");
-    this.lab_tips_mobile3.active = false;
-    this.sz_input_name.height = 54;
-    this.sz_input_sj.height = 54;
-    this.sz_input_yzm.height = 54;
-    this.sz_input_mail.height = 54;
     this.lab_tips_mobile1.active = false;
     this.lab_tips_mobile2.active = false;
     this.lab_tips_mobile3.active = false;
     this.lab_tips_mobile4.active = false;
-    this.sz_input_yzm.setPosition(-95, -30);
-    this.sz_input_mail.setPosition(-38, -120);
     this.sz_input_name.active = true;
     if (GlobalCfg.USER_DATAS.phone.length > 0) {
       this.sz_input_yzm.active = false;
-      this.sz_input_sj.setPosition(0, 15);
-      this.sz_input_mail.setPosition(0, -120);
-    } else {
-      this.sz_input_yzm.active = true;
-      this.sz_input_sj.setPosition(0, 50);
-      this.sz_input_mail.setPosition(0, -120);
+      this.sz_input_sj.setPosition(0, 20);
+      this.sz_input_mail.setPosition(0, -95);
     }
-    ;
     if (GlobalCfg.USER_DATAS.realname.length > 0) {
       this.editBox_name.string = GlobalCfg.USER_DATAS.realname;
     } else if (GlobalCfg.USER_DATAS.transferAddress.name.length > 0) {

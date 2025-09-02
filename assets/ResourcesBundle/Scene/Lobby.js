@@ -525,6 +525,8 @@ cc.Class({
             this.node_bonusTransferBg.active = false;
         };
 
+        LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.customerService = ", GlobalCfg.USER_DATAS.customerService);
+
         /**
          * 客服
          */

@@ -53,8 +53,11 @@ cc.Class({
     this.yesCallFun = callFun;
     this.noCallFun = callFun2;
     this.btn_close.node.active = isShowCloseBtn;
-    var btnStr_YES = this.btn_yes.target.getChildByName("lab_MsgBox_YES").getComponent(cc.Label);
-    var btnStr_ON = this.btn_no.target.getChildByName("lab_MsgBox_ON").getComponent(cc.Label);
+
+    // let btnStr_YES = this.btn_yes.target.getChildByName("lab_MsgBox_YES").getComponent(cc.Label);
+
+    // let btnStr_ON = this.btn_no.target.getChildByName("lab_MsgBox_ON").getComponent(cc.Label);
+
     this.lab_content.string = content;
     this.lab_content.horizontalAlign = horizontal;
     var typeUpperCase = msgBoxType.toUpperCase();
@@ -62,29 +65,30 @@ cc.Class({
       this.btn_no.node.active = false;
       this.btn_yes.node.active = true;
       this.btn_yes.node.x = 0;
-      btnStr_YES.string = "Agree";
+      // btnStr_YES.string = "Agree";
     } else if (typeUpperCase === "NO") {
       this.btn_no.node.active = true;
       this.btn_yes.node.active = false;
       this.btn_no.node.x = 0;
-      btnStr_ON.string = "Cancel";
+      // btnStr_ON.string = "Cancel";
     } else if (typeUpperCase === "YES_NO" || typeUpperCase === "NO_YES") {
       this.btn_no.node.active = true;
       this.btn_yes.node.active = true;
-      btnStr_YES.string = "Agree";
-      btnStr_ON.string = "Cancel";
+      // btnStr_YES.string = "Agree";
+      // btnStr_ON.string = "Cancel";
     } else if (typeUpperCase === "SHOP") {
       this.btn_no.node.active = true;
       this.btn_yes.node.active = true;
-      btnStr_YES.string = "Add Cash";
-      btnStr_ON.string = "Cancel";
+      // btnStr_YES.string = "Add Cash";
+      // btnStr_ON.string = "Cancel";
     } else if (typeUpperCase === "ADDCASH") {
       this.btn_no.node.active = false;
       this.btn_yes.node.active = true;
       this.btn_yes.node.x = 0;
-      btnStr_YES.string = "Add Cash";
+      // btnStr_YES.string = "Add Cash";
     }
   },
+
   onDestroy: function onDestroy() {
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.MSGBOX);
   }
