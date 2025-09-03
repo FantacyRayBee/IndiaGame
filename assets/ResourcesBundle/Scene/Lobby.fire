@@ -3441,7 +3441,7 @@
   {
     "__type__": "cc.Node",
     "_name": "middleNode",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 5
     },
@@ -5012,7 +5012,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1245,
+      "width": 1647,
       "height": 480
     },
     "_anchorPoint": {
@@ -5024,8 +5024,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -407.5,
-        -37.31,
+        -731,
+        -37,
         0,
         0,
         0,
@@ -5081,7 +5081,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1245,
+      "width": 1647,
       "height": 480
     },
     "_anchorPoint": {
@@ -5213,7 +5213,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 3086,
+      "width": 3176,
       "height": 520
     },
     "_anchorPoint": {
@@ -20179,7 +20179,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 3086,
+      "width": 3176,
       "height": 520
     },
     "_resize": 1,
@@ -20191,7 +20191,7 @@
     },
     "_N$startAxis": 1,
     "_N$paddingLeft": 30,
-    "_N$paddingRight": 30,
+    "_N$paddingRight": 120,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 10,
