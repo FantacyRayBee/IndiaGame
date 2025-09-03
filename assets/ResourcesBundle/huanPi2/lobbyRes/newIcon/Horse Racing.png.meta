@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "7935bdb2-43b3-410b-8b4b-271d40d95736",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 276,
+  "height": 250,
+  "platformSettings": {},
+  "subMetas": {
+    "Horse Racing": {
+      "ver": "1.0.6",
+      "uuid": "9f81c320-a3e3-43ec-8f6f-efb8ccdc011b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "7935bdb2-43b3-410b-8b4b-271d40d95736",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -0.5,
+      "trimX": 3,
+      "trimY": 3,
+      "width": 271,
+      "height": 245,
+      "rawWidth": 276,
+      "rawHeight": 250,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

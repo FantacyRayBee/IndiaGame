@@ -707,7 +707,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
    * 邮箱
    */
   EMAIL: "ResourcesBundle/NewPlan/Email/Email",
-  EMAILITEM: "ResourcesBundle/NewPlan/Email/Emailitem",
+  EMAILITEM: "ResourcesBundle/NewPlan/Email/titleItem",
   /**
    * 反馈邮箱
    */

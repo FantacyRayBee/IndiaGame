@@ -229,8 +229,8 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 150, 20);
-        this.node_gameScollview.setContentSize(w - 150 - 30, 480);
+        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setContentSize(w - 100 - 30, 520);
     },
 
     onLoad: function() {
@@ -447,7 +447,7 @@ cc.Class({
      */
     showUserInfo: function() {
         this.loadHeadSp();
-        this.lab_userId.string = `ID: ${GlobalCfg.USER_DATAS.userId}`;
+        this.lab_userId.string = GlobalCfg.USER_DATAS.userId;
         this.lab_userName.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 10);
         this.lab_userDiamond.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
         this.lab_userBonus.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.bonus / 100);
@@ -525,6 +525,8 @@ cc.Class({
             this.node_bonusTransferBg.active = false;
         };
 
+        LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.customerService = ", GlobalCfg.USER_DATAS.customerService);
+
         /**
          * 客服
          */
@@ -566,8 +568,8 @@ cc.Class({
 
         let w = cc.view.getVisibleSize().width;
         // this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
+        this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 520);
+        this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
     },
 
     /**
@@ -1467,6 +1469,7 @@ cc.Class({
             self.showUserInfo();
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED) {
+            LoggerUtil.getInstance().log("GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED notify.isShow: ", notify.isShow);
             let isShow = notify.isShow;
             self.dealToggleModules(isShow);
         }
@@ -1683,8 +1686,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(0, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 150 - 30, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30, 480);
+                this.node_gameScollview.setContentSize(w - 130 - 30, 520);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30, 520);
             })
             .start();
         }
@@ -1692,8 +1695,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(-132, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
+                this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 520);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
             })
             .start();
         };
@@ -2347,12 +2350,10 @@ cc.Class({
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minijoker.node.active) {
-            let anim = this.btn_minijoker.node.getChildByName('mask').getChildByName('guang').getComponent(cc.Animation);
-            anim.play('guang');
-            skeleton = this.btn_minijoker.node.getChildByName('mask').getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton = this.btn_minijoker.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'Idle', true);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniindia.node.active) {
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);
@@ -2441,32 +2442,32 @@ cc.Class({
 
 
     setAddCashBtnByLanguageType: function(languagesType) {
-        let skinName = '';
-        switch (languagesType) {
-            case I18NLanguagesEnum.English:
-                skinName = 'yuyan1';
-                break;
-            case I18NLanguagesEnum.Hindi:
-                skinName = 'yuyan2';
-                break;
-            case I18NLanguagesEnum.Urdu:
-                skinName = 'yuyan3';
-                break;
-            case I18NLanguagesEnum.Bengali:
-                skinName = 'yuyan4';
-                break;
-            default:
-                skinName = 'yuyan1';
-                break;
-        };
+        // let skinName = '';
+        // switch (languagesType) {
+        //     case I18NLanguagesEnum.English:
+        //         skinName = 'yuyan1';
+        //         break;
+        //     case I18NLanguagesEnum.Hindi:
+        //         skinName = 'yuyan2';
+        //         break;
+        //     case I18NLanguagesEnum.Urdu:
+        //         skinName = 'yuyan3';
+        //         break;
+        //     case I18NLanguagesEnum.Bengali:
+        //         skinName = 'yuyan4';
+        //         break;
+        //     default:
+        //         skinName = 'yuyan1';
+        //         break;
+        // };
 
-        let skeleton = null;
-        if (this.btn_addCash.node.active) {
-            skeleton = this.btn_addCash.node.getChildByName('Background').getComponent(sp.Skeleton);
-            skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'animation', true);
-        };
+        // let skeleton = null;
+        // if (this.btn_addCash.node.active) {
+        //     skeleton = this.btn_addCash.node.getChildByName('Background').getComponent(sp.Skeleton);
+        //     skeleton.clearTrack(0);
+        //     skeleton.setSkin(skinName);
+        //     skeleton.setAnimation(0, 'animation', true);
+        // };
     },
 
     /**

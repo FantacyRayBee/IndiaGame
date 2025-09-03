@@ -280,7 +280,7 @@
       }
     }
   },
-  "_atlasText": "\ngamestart.png\nsize: 1023,108\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nGame Start!\n  rotate: false\n  xy: 758, 59\n  size: 263, 47\n  orig: 263, 47\n  offset: 0, 0\n  index: -1\nkuang\n  rotate: false\n  xy: 2, 2\n  size: 754, 104\n  orig: 754, 104\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\ngamestart.png\r\nsize: 1023,108\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nGame Start!\r\n  rotate: false\r\n  xy: 758, 59\r\n  size: 263, 47\r\n  orig: 263, 47\r\n  offset: 0, 0\r\n  index: -1\r\nkuang\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 754, 104\r\n  orig: 754, 104\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "5146d429-809e-42bc-8656-f309a5dc51dc"

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "a8871ed0-adb9-40b3-a3b9-e0ed1be746b8",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 276,
+  "height": 250,
+  "platformSettings": {},
+  "subMetas": {
+    "Racing Car Roulette": {
+      "ver": "1.0.6",
+      "uuid": "105c2e3c-8a16-4573-8b6e-547162b01f5d",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a8871ed0-adb9-40b3-a3b9-e0ed1be746b8",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -0.5,
+      "trimX": 3,
+      "trimY": 3,
+      "width": 271,
+      "height": 245,
+      "rawWidth": 276,
+      "rawHeight": 250,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

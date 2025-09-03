@@ -11,8 +11,8 @@ cc.Class({
 
     ctor: function() {
         this.itemPosArr = [
-            cc.v2(-165, 84), cc.v2(-40, 84), cc.v2(85, 84), 
-            cc.v2(-165, -77), cc.v2(-40, -77), cc.v2(85, -77), cc.v2(85, -77),
+            cc.v2(-90, 55), cc.v2(7, 55), cc.v2(100, 55), 
+            cc.v2(-90, -75), cc.v2(7, -75), cc.v2(100, -75), cc.v2(85, -77),
         ];
 
         this.signItemCtrlMap = new Map();
@@ -154,6 +154,7 @@ cc.Class({
             if (index <= 5) {
                 let signItemPos = this.itemPosArr[index];
                 let signItemNode = cc.instantiate(itemPrefab);
+                signItemNode.scale = 0.862;
                 let activitySignItemCtrl = signItemNode.getComponent("ActivitySignItemCtrl");
                 if (activitySignItemCtrl) {
                     activitySignItemCtrl.setSignItemData(gift, signData.today, signData.done, index + 1);

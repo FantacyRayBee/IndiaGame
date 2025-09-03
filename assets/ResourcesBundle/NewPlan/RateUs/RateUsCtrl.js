@@ -4,15 +4,11 @@ cc.Class({
     properties: {
         btn_close: cc.Button,
         btn_ok: cc.Button,
-        btn_cancel: cc.Button,
         btn_1: cc.Button,
         btn_2: cc.Button,
         btn_3: cc.Button,
         btn_4: cc.Button,
         btn_5: cc.Button,
-
-        node_title01: cc.Node,
-        node_title02: cc.Node,
     },
 
     onLoad: function () {
@@ -20,17 +16,12 @@ cc.Class({
 
         this.btn_close.node.on('click', this.btnClick, this);
         this.btn_ok.node.on('click', this.btnClick, this);
-        this.btn_cancel.node.on('click', this.btnClick, this);
 
         for (let i = 0; i < 5; i++) {
             this[`btn_${i + 1}`].node.on('click', this.btnClick, this);
         };
 
-        this.node_title01.active = this.num === 0;
-        this.node_title02.active = this.num !== 0;
-
         this.btn_ok.node.active = this.num === 0;
-        this.btn_cancel.node.active = this.num === 0;
 
         this.rateUs(this.num);
     },
@@ -44,8 +35,6 @@ cc.Class({
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             if (btnName === "btn_ok") {
                 cc.sys.localStorage.setItem("RateUsStorage", this.num);
-                this.node.destroy();
-            } else if (btnName === "btn_cancel") {
                 this.node.destroy();
             } else if (btnName === "btn_1") {
                 this.rateUs(1);

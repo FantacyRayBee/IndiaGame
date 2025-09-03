@@ -163,7 +163,7 @@ cc.Class({
         }
         else if (btnName === "btn_bind") {
             CommonFun.getInstance().showBindPhone('Personal');
-        }else if (btnName == "node_txt") {
+        }else if (btnName == "tx") {
             if (GlobalCfg.IS_Freestyle_Head == 0)  //老包不能用自定义头像
                 CommonFun.getInstance().showChangeHead();
             else 

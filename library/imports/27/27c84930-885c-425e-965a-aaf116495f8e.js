@@ -17,15 +17,16 @@ cc.Class({
     labBankAccount: cc.Label,
     nodeBankAccountDefault: cc.Node,
     nodeMain: cc.Node,
-    sprite_tips: cc.Sprite,
-    spriteFrame_upgrade: cc.SpriteFrame,
     togglesParent: cc.Node,
+    lab_user_name: cc.Label,
+    headSp: cc.Sprite,
     // Rule
     nodeRule: cc.Node,
     btnCLoseRule: cc.Button,
     // WriteData
     nodeWirte: cc.Node,
     btnSave: cc.Button,
+    btnCloseWrite: cc.Button,
     AccountEditBox: cc.EditBox,
     UserNameEditBox: cc.EditBox,
     IFSCEditBox: cc.EditBox,
@@ -79,7 +80,6 @@ cc.Class({
       this.remainingTimes = 3;
     } else {
       if (CommonFun.getInstance().isOpenVipModule()) {
-        this.sprite_tips.spriteFrame = this.spriteFrame_upgrade;
         this.remainingTimes = GlobalCfg.USER_DATAS.userVip.day_withdraw_count_limit - GlobalCfg.USER_DATAS.userVip.day_withdraw_count;
         this.remainingTimes = this.remainingTimes <= 0 ? 0 : this.remainingTimes;
       } else {
@@ -99,8 +99,15 @@ cc.Class({
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
   },
   checkShipei: function checkShipei(node) {
-    if (GlobalCfg.DEVICE_MODEL != "iphone X") {
-      node.scaleX = 0.9;
+    // if (GlobalCfg.DEVICE_MODEL != "iphone X") {
+    //     node.scaleX = 0.9;
+    // }
+    var frameSize = cc.view.getFrameSize();
+    var w = frameSize.width;
+    var h = frameSize.height;
+    if (w / h < 2) {
+      //宽高比小于2
+      node.getChildByName('sps').scale = 0.9;
     }
   },
   start: function start() {
@@ -109,6 +116,7 @@ cc.Class({
     this.btnWithDraw.node.on('click', this.clickCallback, this);
     this.btnRule.node.on('click', this.clickCallback, this);
     this.btnCLoseRule.node.on('click', this.clickCallback, this);
+    this.btnCloseWrite.node.on('click', this.clickCallback, this);
     this.btnSave.node.on('click', this.clickCallback, this);
     this.AccountEditBox.node.on('editing-did-ended', this.checkAccound, this);
     this.UserNameEditBox.node.on('editing-did-ended', this.checkUserName, this);
@@ -131,7 +139,6 @@ cc.Class({
       ;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE) {
       if (CommonFun.getInstance().isValidForScr(self)) {
-        self.sprite_tips.spriteFrame = self.spriteFrame_upgrade;
         self.remainingTimes = GlobalCfg.USER_DATAS.userVip.day_withdraw_count_limit - GlobalCfg.USER_DATAS.userVip.day_withdraw_count;
         self.remainingTimes = self.remainingTimes <= 0 ? 0 : self.remainingTimes;
         self.updateWithDrawRemainingCount();
@@ -144,12 +151,7 @@ cc.Class({
     var name = button.node.name;
     if (name == this.btnBack.node.name) {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
-      if (this.nodeWirte.active == true) {
-        this.nodeWirte.active = false;
-        this.nodeMain.active = true;
-      } else {
-        this.node.destroy();
-      }
+      this.node.destroy();
       return;
     } else if (name == this.btnCLoseRule.node.name) {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
@@ -203,6 +205,9 @@ cc.Class({
       this.nodeRule.active = true;
     } else if (name == this.btnSave.node.name) {
       this.saveAddress();
+    } else if (name == this.btnCloseWrite.node.name) {
+      this.nodeWirte.active = false;
+      this.nodeMain.active = true;
     }
   },
   setData: function setData(data) {
@@ -241,6 +246,8 @@ cc.Class({
     } else {
       this.labWithdrawAble.string = "" + GlobalCfg.USER_DATAS.userDiamond / 100;
     }
+    this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, this.headSp);
+    this.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
   },
   initServiceData: function initServiceData() {
     this.setBankAccount(this.address.bank_card_id);
@@ -301,6 +308,19 @@ cc.Class({
       var value = iterator1.next().value;
       var errorStr = this.errorStrArr[value];
       CommonFun.getInstance().showTips(errorStr);
+    }
+  },
+  loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
+    var _this3 = this;
+    if (headUrl && headUrl.length > 0) {
+      cc.assetManager.loadRemote(headUrl, {
+        ext: '.png'
+      }, function (err, texture) {
+        if (!err && cc.isValid(_this3) && cc.isValid(heaSprite)) {
+          heaSprite.spriteFrame = new cc.SpriteFrame(texture);
+          heaSprite.node.setScale(realWidth / heaSprite.node.width);
+        }
+      });
     }
   },
   // -----------------------------------------EditBox-------------------------------------------------------------

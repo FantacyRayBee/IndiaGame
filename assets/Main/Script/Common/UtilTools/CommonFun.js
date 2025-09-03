@@ -2801,6 +2801,13 @@ let CommonFun = cc.Class({
         };
     },
 
+    checkVerticalAcc: function() {
+        if (this._curOrientation == EnumOrientation.VERTICAL) {
+            return true;
+        }
+        return false;
+    },
+
     /**
      * 处理商品列表
      * @param {number} couldWithdraw 

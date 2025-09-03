@@ -1,0 +1,41 @@
+
+mayaera.png
+size: 1016,632
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/1
+  rotate: false
+  xy: 748, 68
+  size: 266, 103
+  orig: 276, 112
+  offset: 5, 3
+  index: -1
+images/Maya Era2
+  rotate: false
+  xy: 748, 27
+  size: 132, 39
+  orig: 134, 40
+  offset: 2, 0
+  index: -1
+images/di
+  rotate: false
+  xy: 748, 173
+  size: 207, 228
+  orig: 213, 236
+  offset: 3, 3
+  index: -1
+images/glwo
+  rotate: false
+  xy: 748, 403
+  size: 262, 227
+  orig: 262, 227
+  offset: 0, 0
+  index: -1
+images/maya
+  rotate: true
+  xy: 2, 2
+  size: 628, 744
+  orig: 628, 744
+  offset: 0, 0
+  index: -1

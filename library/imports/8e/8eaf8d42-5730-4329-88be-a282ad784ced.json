@@ -1112,7 +1112,7 @@
       }
     }
   },
-  "_atlasText": "\nxingxing_b.png\nsize: 457,455\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/guangquan_h\n  rotate: false\n  xy: 2, 38\n  size: 155, 151\n  orig: 165, 165\n  offset: 5, 9\n  index: -1\nimg/guangquan_h2\n  rotate: false\n  xy: 159, 38\n  size: 154, 151\n  orig: 165, 165\n  offset: 6, 9\n  index: -1\nimg/guangquan_h3\n  rotate: false\n  xy: 315, 45\n  size: 140, 144\n  orig: 171, 171\n  offset: 16, 16\n  index: -1\nimg/sanxing\n  rotate: false\n  xy: 2, 191\n  size: 347, 262\n  orig: 347, 262\n  offset: 0, 0\n  index: -1\nimg/xing\n  rotate: false\n  xy: 351, 386\n  size: 69, 67\n  orig: 69, 67\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\nxingxing_b.png\r\nsize: 457,455\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/guangquan_h\r\n  rotate: false\r\n  xy: 2, 38\r\n  size: 155, 151\r\n  orig: 165, 165\r\n  offset: 5, 9\r\n  index: -1\r\nimg/guangquan_h2\r\n  rotate: false\r\n  xy: 159, 38\r\n  size: 154, 151\r\n  orig: 165, 165\r\n  offset: 6, 9\r\n  index: -1\r\nimg/guangquan_h3\r\n  rotate: false\r\n  xy: 315, 45\r\n  size: 140, 144\r\n  orig: 171, 171\r\n  offset: 16, 16\r\n  index: -1\r\nimg/sanxing\r\n  rotate: false\r\n  xy: 2, 191\r\n  size: 347, 262\r\n  orig: 347, 262\r\n  offset: 0, 0\r\n  index: -1\r\nimg/xing\r\n  rotate: false\r\n  xy: 351, 386\r\n  size: 69, 67\r\n  orig: 69, 67\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "a6a2020a-19ba-42d5-990f-55ffc775d8be"

@@ -1,0 +1,41 @@
+
+Go_betting.png
+size: 247,247
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 139, 173
+  size: 106, 72
+  orig: 108, 73
+  offset: 1, 1
+  index: -1
+11
+  rotate: false
+  xy: 25, 213
+  size: 112, 32
+  orig: 114, 32
+  offset: 2, 0
+  index: -1
+biao
+  rotate: true
+  xy: 2, 227
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+staraY
+  rotate: true
+  xy: 106, 50
+  size: 121, 122
+  orig: 128, 128
+  offset: 5, 2
+  index: -1
+xiaolizi
+  rotate: false
+  xy: 2, 112
+  size: 102, 99
+  orig: 128, 128
+  offset: 11, 15
+  index: -1
