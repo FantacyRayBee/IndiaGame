@@ -1466,6 +1466,7 @@ cc.Class({
             self.showUserInfo();
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED) {
+            LoggerUtil.getInstance().log("GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED notify.isShow: ", notify.isShow);
             let isShow = notify.isShow;
             self.dealToggleModules(isShow);
         }
@@ -2346,12 +2347,10 @@ cc.Class({
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minijoker.node.active) {
-            let anim = this.btn_minijoker.node.getChildByName('mask').getChildByName('guang').getComponent(cc.Animation);
-            anim.play('guang');
-            skeleton = this.btn_minijoker.node.getChildByName('mask').getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton = this.btn_minijoker.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'Idle', true);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniindia.node.active) {
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);

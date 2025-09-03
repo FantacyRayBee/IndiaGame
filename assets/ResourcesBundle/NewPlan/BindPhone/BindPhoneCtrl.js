@@ -25,6 +25,7 @@ cc.Class({
 
     ctor() {
         this.clickOkToView = 'Lobby';             // Lobby (大厅) Personal (个人中心) AddCash (充值填写) 
+
     },
 
     setNodeStateStr(str){
@@ -58,8 +59,8 @@ cc.Class({
         this.lab_tip2.node.active = false;
         this.NodeSended.active = false;
         this.phoneNumber = ''
-        if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
-            this.zhuNode.setScale(0.8);
+        if (CommonFun.getInstance().checkVerticalAcc()) {
+            this.zhuNode.scale = 0.6
         };
         this.showRealName();
     },

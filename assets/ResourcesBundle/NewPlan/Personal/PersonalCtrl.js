@@ -134,6 +134,8 @@ cc.Class({
 
     btnClick: function (button) {
         var btnName = button.node.name;
+        LoggerUtil.getInstance().log(">>>>>btnName>>>>>>>>", btnName);
+
         if (btnName === "btn_exit") {
             GlobalCfg.G_COMPONENTS.Audio.pauseMusic();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LOGIN);
@@ -147,7 +149,7 @@ cc.Class({
         }
         else if (btnName === "btn_bind") {
             CommonFun.getInstance().showBindPhone('Personal');
-        }else if (btnName == "node_txt") {
+        }else if (btnName == "tx") {
             CommonFun.getInstance().showChangeHead();
         }else if(btnName == "btn_add"){
             this.node_checkClick.active = true
