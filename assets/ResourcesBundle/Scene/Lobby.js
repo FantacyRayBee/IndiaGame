@@ -229,8 +229,8 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 150, 20);
-        this.node_gameScollview.setContentSize(w - 150 - 30, 480);
+        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setContentSize(w - 100 - 30, 520);
     },
 
     onLoad: function() {
@@ -568,8 +568,8 @@ cc.Class({
 
         let w = cc.view.getVisibleSize().width;
         // this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
+        this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 520);
+        this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
     },
 
     /**
@@ -1682,8 +1682,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(0, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 150 - 30, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30, 480);
+                this.node_gameScollview.setContentSize(w - 130 - 30, 520);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30, 520);
             })
             .start();
         }
@@ -1691,8 +1691,8 @@ cc.Class({
             cc.tween(this.node_middles)
             .to(0.2, {position: cc.v2(-132, -20)}, {easing: 'smooth'})
             .call(() => {
-                this.node_gameScollview.setContentSize(w - 150 - 30 + 132, 480);
-                this.node_gameScollview.getChildByName("view").setContentSize(w - 150 - 30 + 132, 480);
+                this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 520);
+                this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
             })
             .start();
         };
@@ -2440,32 +2440,32 @@ cc.Class({
 
 
     setAddCashBtnByLanguageType: function(languagesType) {
-        let skinName = '';
-        switch (languagesType) {
-            case I18NLanguagesEnum.English:
-                skinName = 'yuyan1';
-                break;
-            case I18NLanguagesEnum.Hindi:
-                skinName = 'yuyan2';
-                break;
-            case I18NLanguagesEnum.Urdu:
-                skinName = 'yuyan3';
-                break;
-            case I18NLanguagesEnum.Bengali:
-                skinName = 'yuyan4';
-                break;
-            default:
-                skinName = 'yuyan1';
-                break;
-        };
+        // let skinName = '';
+        // switch (languagesType) {
+        //     case I18NLanguagesEnum.English:
+        //         skinName = 'yuyan1';
+        //         break;
+        //     case I18NLanguagesEnum.Hindi:
+        //         skinName = 'yuyan2';
+        //         break;
+        //     case I18NLanguagesEnum.Urdu:
+        //         skinName = 'yuyan3';
+        //         break;
+        //     case I18NLanguagesEnum.Bengali:
+        //         skinName = 'yuyan4';
+        //         break;
+        //     default:
+        //         skinName = 'yuyan1';
+        //         break;
+        // };
 
-        let skeleton = null;
-        if (this.btn_addCash.node.active) {
-            skeleton = this.btn_addCash.node.getChildByName('Background').getComponent(sp.Skeleton);
-            skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'animation', true);
-        };
+        // let skeleton = null;
+        // if (this.btn_addCash.node.active) {
+        //     skeleton = this.btn_addCash.node.getChildByName('Background').getComponent(sp.Skeleton);
+        //     skeleton.clearTrack(0);
+        //     skeleton.setSkin(skinName);
+        //     skeleton.setAnimation(0, 'animation', true);
+        // };
     },
 
     /**

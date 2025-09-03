@@ -5157,7 +5157,7 @@
       }
     }
   },
-  "_atlasText": "\nhd_meigui01.png\nsize: 256,256\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nlight01\n  rotate: false\n  xy: 90, 165\n  size: 70, 65\n  orig: 70, 65\n  offset: 0, 0\n  index: -1\nlight02\n  rotate: false\n  xy: 217, 199\n  size: 32, 31\n  orig: 32, 31\n  offset: 0, 0\n  index: -1\nlight03\n  rotate: false\n  xy: 162, 180\n  size: 53, 50\n  orig: 53, 50\n  offset: 0, 0\n  index: -1\nrose\n  rotate: false\n  xy: 2, 68\n  size: 80, 76\n  orig: 80, 76\n  offset: 0, 0\n  index: -1\nrose2\n  rotate: false\n  xy: 2, 146\n  size: 86, 84\n  orig: 86, 84\n  offset: 0, 0\n  index: -1\nstar\n  rotate: false\n  xy: 2, 2\n  size: 67, 64\n  orig: 67, 64\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\nhd_meigui01.png\r\nsize: 256,256\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nlight01\r\n  rotate: false\r\n  xy: 90, 165\r\n  size: 70, 65\r\n  orig: 70, 65\r\n  offset: 0, 0\r\n  index: -1\r\nlight02\r\n  rotate: false\r\n  xy: 217, 199\r\n  size: 32, 31\r\n  orig: 32, 31\r\n  offset: 0, 0\r\n  index: -1\r\nlight03\r\n  rotate: false\r\n  xy: 162, 180\r\n  size: 53, 50\r\n  orig: 53, 50\r\n  offset: 0, 0\r\n  index: -1\r\nrose\r\n  rotate: false\r\n  xy: 2, 68\r\n  size: 80, 76\r\n  orig: 80, 76\r\n  offset: 0, 0\r\n  index: -1\r\nrose2\r\n  rotate: false\r\n  xy: 2, 146\r\n  size: 86, 84\r\n  orig: 86, 84\r\n  offset: 0, 0\r\n  index: -1\r\nstar\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 67, 64\r\n  orig: 67, 64\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "57cc7357-7fee-4dc3-9af3-abf39199ae49"

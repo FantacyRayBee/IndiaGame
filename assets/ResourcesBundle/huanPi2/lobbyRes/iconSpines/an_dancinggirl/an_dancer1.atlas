@@ -1,0 +1,76 @@
+
+an_dancer1.png
+size: 1040,408
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Dancing Girl
+  rotate: true
+  xy: 999, 127
+  size: 171, 39
+  orig: 174, 41
+  offset: 2, 1
+  index: -1
+dai
+  rotate: false
+  xy: 730, 164
+  size: 266, 103
+  orig: 276, 112
+  offset: 5, 3
+  index: -1
+di
+  rotate: false
+  xy: 521, 178
+  size: 207, 228
+  orig: 213, 236
+  offset: 3, 3
+  index: -1
+guang
+  rotate: true
+  xy: 521, 3
+  size: 173, 174
+  orig: 179, 176
+  offset: 3, 2
+  index: -1
+wunv_1
+  rotate: true
+  xy: 730, 269
+  size: 137, 249
+  orig: 386, 404
+  offset: 0, 18
+  index: -1
+wunv_2
+  rotate: true
+  xy: 697, 26
+  size: 136, 244
+  orig: 386, 404
+  offset: 250, 0
+  index: -1
+wunv_3
+  rotate: false
+  xy: 383, 53
+  size: 136, 353
+  orig: 386, 404
+  offset: 239, 0
+  index: -1
+wunv_4
+  rotate: false
+  xy: 2, 2
+  size: 379, 404
+  orig: 386, 404
+  offset: 0, 0
+  index: -1
+wunv_y_1
+  rotate: true
+  xy: 981, 300
+  size: 106, 57
+  orig: 386, 404
+  offset: 170, 216
+  index: -1
+wunv_y_2
+  rotate: true
+  xy: 943, 57
+  size: 105, 54
+  orig: 386, 404
+  offset: 171, 219
+  index: -1

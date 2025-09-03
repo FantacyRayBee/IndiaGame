@@ -2701,7 +2701,7 @@
       }
     }
   },
-  "_atlasText": "\nchouma_fei.png\nsize: 162,162\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/S_light014c_h\n  rotate: false\n  xy: 2, 2\n  size: 69, 69\n  orig: 69, 69\n  offset: 0, 0\n  index: -1\nimg/cm_10\n  rotate: false\n  xy: 2, 73\n  size: 84, 87\n  orig: 94, 97\n  offset: 5, 5\n  index: -1\nimg/q1\n  rotate: false\n  xy: 88, 107\n  size: 52, 53\n  orig: 52, 53\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\nchouma_fei.png\r\nsize: 162,162\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/S_light014c_h\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 69, 69\r\n  orig: 69, 69\r\n  offset: 0, 0\r\n  index: -1\r\nimg/cm_10\r\n  rotate: false\r\n  xy: 2, 73\r\n  size: 84, 87\r\n  orig: 94, 97\r\n  offset: 5, 5\r\n  index: -1\r\nimg/q1\r\n  rotate: false\r\n  xy: 88, 107\r\n  size: 52, 53\r\n  orig: 52, 53\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "9ba8872d-f333-4f6c-a461-d6f0629b6a09"

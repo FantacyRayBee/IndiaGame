@@ -1,0 +1,41 @@
+
+rk_Jackpot Joker.png
+size: 360,465
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 232, 197
+  size: 266, 103
+  orig: 276, 112
+  offset: 5, 3
+  index: -1
+di
+  rotate: true
+  xy: 2, 256
+  size: 207, 228
+  orig: 213, 236
+  offset: 3, 3
+  index: -1
+guang
+  rotate: false
+  xy: 2, 60
+  size: 194, 194
+  orig: 208, 208
+  offset: 7, 7
+  index: -1
+ren
+  rotate: true
+  xy: 198, 2
+  size: 193, 160
+  orig: 193, 160
+  offset: 0, 0
+  index: -1
+yuyan1
+  rotate: false
+  xy: 2, 19
+  size: 193, 39
+  orig: 195, 41
+  offset: 1, 0
+  index: -1

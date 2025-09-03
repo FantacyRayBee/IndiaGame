@@ -38,7 +38,7 @@ cc.Class({
         Bet  int64           json:"bet"  // 玩家总下注
         Item []BetRebateItem json:"item" // 返利
       }
-        type BetRebateItem struct {
+         type BetRebateItem struct {
         Bet      int  json:"bet"      // 下注额
         Rebate   int  json:"rebate"   // 返利额
         Received bool json:"received" // 已领取

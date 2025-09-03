@@ -338,18 +338,19 @@ cc.Class({
     }
     ;
 
-    /**
-     * 推广员
-     * 玩家登录到游戏，并进行200局游戏以上时，退出到游戏大厅页面后，弹出该弹框
-     * 弹出次数：每日弹1次，每天0点重置规则
-     */
-    if (GlobalCfg.USER_DATAS.openModules.includes(15)) {
-      this.btnNewTGY.node.active = true;
-    } else {
-      this.btnNewTGY.node.active = false;
-    }
-    ;
+    // /**
+    //  * 推广员
+    //  * 玩家登录到游戏，并进行200局游戏以上时，退出到游戏大厅页面后，弹出该弹框
+    //  * 弹出次数：每日弹1次，每天0点重置规则
+    //  */
+    // if (GlobalCfg.USER_DATAS.openModules.includes(15)) {
+    //     this.btnNewTGY.node.active = true;
+    // }
+    // else {
+    //     this.btnNewTGY.node.active = false;
+    // };
   },
+
   dealBtnMobileEvent: function dealBtnMobileEvent() {
     if (GlobalCfg.USER_DATAS.phone.length == 0) {
       CommonFun.getInstance().showBindPhoneRewards();

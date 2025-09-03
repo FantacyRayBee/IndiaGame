@@ -251,7 +251,7 @@
       }
     }
   },
-  "_atlasText": "\npai_guang.png\nsize: 323,323\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/fangsheguang_goods\n  rotate: false\n  xy: 163, 164\n  size: 157, 157\n  orig: 157, 157\n  offset: 0, 0\n  index: -1\nimg/pai_guang\n  rotate: false\n  xy: 2, 126\n  size: 159, 195\n  orig: 159, 195\n  offset: 0, 0\n  index: -1\nimg/poker_fp_6\n  rotate: true\n  xy: 2, 2\n  size: 122, 156\n  orig: 122, 156\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\npai_guang.png\r\nsize: 323,323\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/fangsheguang_goods\r\n  rotate: false\r\n  xy: 163, 164\r\n  size: 157, 157\r\n  orig: 157, 157\r\n  offset: 0, 0\r\n  index: -1\r\nimg/pai_guang\r\n  rotate: false\r\n  xy: 2, 126\r\n  size: 159, 195\r\n  orig: 159, 195\r\n  offset: 0, 0\r\n  index: -1\r\nimg/poker_fp_6\r\n  rotate: true\r\n  xy: 2, 2\r\n  size: 122, 156\r\n  orig: 122, 156\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "10563544-ed98-442f-8abd-0a9304882588"
