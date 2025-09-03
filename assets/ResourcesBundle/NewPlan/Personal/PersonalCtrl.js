@@ -21,41 +21,27 @@ cc.Class({
         node.setContentSize(cc.view.getVisibleSize().width, cc.view.getVisibleSize().height);
 
         let node_user = node.getChildByName("bg").getChildByName("node_user");
-        this.lab_deposited = node_user.getChildByName("lab_deposited").getComponent(cc.Label);
-        this.lab_winnings = node_user.getChildByName("lab_winnings").getComponent(cc.Label);
-        this.lab_totalCash = node_user.getChildByName("lab_totalCash").getComponent(cc.Label);
-        this.lab_bonus = node_user.getChildByName("lab_bonus").getComponent(cc.Label);
-        this.node_totalCash = node_user.getChildByName("node_totalCash").getComponent(cc.Label);
-        this.lab_bnode_bonusonus = node_user.getChildByName("node_bonus").getComponent(cc.Label);
+        this.lab_deposited = node_user.getChildByName("bg_cash").getChildByName("lab_deposited").getComponent(cc.Label);
+        this.lab_winnings = node_user.getChildByName("bg_cash").getChildByName("lab_winnings").getComponent(cc.Label);
+        this.lab_totalCash = node_user.getChildByName("bg_cash").getChildByName("lab_totalCash").getComponent(cc.Label);
+        this.node_totalCash = node_user.getChildByName("bg_cash").getChildByName("node_totalCash").getComponent(cc.Label);
 
-        this.lab_mobile = node_user.getChildByName("lab_Mobile").getComponent(cc.Label);
-        this.lab_name = node_user.getChildByName("lab_name").getComponent(cc.Label);
-        this.lab_email = node_user.getChildByName("lab_email").getComponent(cc.Label);
+        this.lab_bonus = node_user.getChildByName("bg_bonus").getChildByName("lab_bonus").getComponent(cc.Label);
+        // this.lab_bnode_bonusonus = node_user.getChildByName("bg_bonus").getComponent(cc.Label);
 
-        this.lab_user_name = node_user.getChildByName("lab_user_name").getComponent(cc.Label);
-        this.lab_ID = node_user.getChildByName("lab_ID").getComponent(cc.Label);
+        this.lab_mobile = node_user.getChildByName("bg_info").getChildByName("lab_Mobile").getComponent(cc.Label);
+        this.lab_name = node_user.getChildByName("bg_info").getChildByName("lab_name").getComponent(cc.Label);
+        this.lab_email = node_user.getChildByName("bg_info").getChildByName("lab_email").getComponent(cc.Label);
+
+        this.lab_user_name = node_user.getChildByName("bg_name").getChildByName("lab_user_name").getComponent(cc.Label);
+        this.lab_ID = node_user.getChildByName("bg_id").getChildByName("lab_ID").getComponent(cc.Label);
         this.headSp = node_user.getChildByName("node_txt").getChildByName("tx").getComponent(cc.Sprite);
 
         this.bg = node.getChildByName("bg");
-        this.node_user = node.getChildByName("bg").getChildByName("node_user");
 
-        this.spr_bg01 = node_user.getChildByName("spr_bg01").getComponent(cc.Sprite);
-        this.spr_bg02 = node_user.getChildByName("spr_bg02").getComponent(cc.Sprite);
-        this.spr_bg03 = node_user.getChildByName("spr_bg03").getComponent(cc.Sprite);
-        this.spr_bg04 = node_user.getChildByName("spr_bg04").getComponent(cc.Sprite);
-        this.tx_k01 = node_user.getChildByName("tx_k01").getComponent(cc.Sprite);
-        this.tx_k02 = node_user.getChildByName("tx_k02").getComponent(cc.Sprite);
-        this.tx_k03 = node_user.getChildByName("tx_k03").getComponent(cc.Sprite);
-        this.bg_name01 = node_user.getChildByName("bg_name01").getComponent(cc.Sprite);
-        this.bg_name02 = node_user.getChildByName("bg_name02").getComponent(cc.Sprite);
-        this.Background01 = node_user.getChildByName("btn_change").getChildByName("Background01").getComponent(cc.Sprite);
-        this.Background02 = node_user.getChildByName("btn_change").getChildByName("Background01").getComponent(cc.Sprite);
-        this.Background03 = node_user.getChildByName("btn_change").getChildByName("Background03").getComponent(cc.Sprite);
-
-        this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, this.headSp);
-        this.lab_ID.string = cc.js.formatStr("ID:  %s", GlobalCfg.USER_DATAS.userId);
+        this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 140, this.headSp);
+        this.lab_ID.string = GlobalCfg.USER_DATAS.userId;
         this.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
-        this.initVipCard(Number(GlobalCfg.USER_DATAS.voucherCard));
         mask.on(cc.Node.EventType.TOUCH_START,()=>{
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.outAct(()=>{
