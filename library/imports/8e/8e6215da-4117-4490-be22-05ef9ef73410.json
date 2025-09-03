@@ -549,7 +549,7 @@
     "_prefab": {
       "__id__": 19
     },
-    "_opacity": 255,
+    "_opacity": 0,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -623,7 +623,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40.03,
+      "width": 36.17,
       "height": 25.2
     },
     "_anchorPoint": {

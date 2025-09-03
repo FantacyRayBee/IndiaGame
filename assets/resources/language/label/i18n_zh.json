@@ -1,0 +1,36 @@
+{
+
+    "label_policy":"隐私协议",
+    "label_service":"服务条款",  
+    "txt_showlevel":"关卡 #0",
+    "txt_play":"开始游戏",
+    "txt_today_best":"今日最佳：",
+    "txt_weekbest":"本周最佳：",
+    "txt_monthbest":"本月最佳：",
+    "txt_yearbest":"本年最佳：",
+    "txt_bestscore":"历史最佳：",
+    "txt_gdpr":"在开始游戏前，清先接受隐私政策和服务条款。你可以在下方的链接中阅读相关内容！",
+    "txt_accept":"接受",
+
+    "title_shop": "商店",
+    "title_setting":"设置",
+    "btn_free": "免费",
+    "txt_fail":"失败了！",
+    "txt_timeup":"时间到了！",
+    "txt_lose":"不能消除任何商品了！\n 再试一次？",
+    "btn_continue":"继续",
+    "btn_get":"获得",
+    "btn_quit":"退出",
+    "txt_lose_note2":"你将失去这些奖励，\n 再试一次?",
+    "btn_play":"开始",
+    "txt_select_item":"选择道具",
+    "txt_double_star":"使用道具在这一关卡中获得双倍星星",
+    "txt_useitem_hammer":"试试使用道具，消灭1组模型",
+    "txt_exit_level":"退出关卡",
+    "txt_more_life":"获得更多红心",
+    "txt_next_life":"下一红心还需:",
+    "title_score":"分数",
+    "title_level":"关卡",
+
+    "example01": "#0 喜欢 #1" 
+}

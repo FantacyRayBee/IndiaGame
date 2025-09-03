@@ -4,9 +4,9 @@
   "startScene": "eeef25ac-93ef-4201-8e43-ea568e9277d1",
   "excludeScenes": [],
   "orientation": {
-    "landscapeRight": true,
-    "landscapeLeft": true,
-    "portrait": false,
+    "landscapeRight": false,
+    "landscapeLeft": false,
+    "portrait": true,
     "upsideDown": false
   },
   "webOrientation": "auto",
@@ -22,7 +22,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "packageName": "com.Fier1The.a111nim.lnch.wssss1211llpa1pers1s.catsparr242ots.catsss.leopard",
+    "packageName": "com.Fier1The.a111nim.lnch",
     "REMOTE_SERVER_ROOT": ""
   },
   "ios": {

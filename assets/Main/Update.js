@@ -585,7 +585,7 @@ cc.Class({
             return SceneManager.getInstance().reqUserDataInfo();
         }).then(() => {
             CommonFun.getInstance().showProgress();
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+            cc.director.loadScene("Game");
         }).catch(error => {
             LoggerUtil.getInstance().log(error);
         });
@@ -605,27 +605,7 @@ cc.Class({
     },
  
     start: function() {
-        if (GlobalCfg.SERVERRELOAD == true) {
-            CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
-                window.ResourcesBundle = bundle;
-                CommonFun.getInstance().showMsgBox(GlobalCfg.SERVERRELOAD_Descr, "YES", ()=>{
-                    cc.game.end();
-                }, false);
-            }, (err) => {
-                LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
-                cc.game.end();
-            });
-            return
-        };
-
-        if (cc.sys.isNative) {
-            this.updateStartTime = cc.sys.now();
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
-            this.runUpdateProcess();
-        }
-        else {
-            this.changeSceneToLobby();
-        };
+        SceneManager.getInstance().dealEnterGameScene("PlayerGame/Game")
     },
 
     onDestroy: function() {

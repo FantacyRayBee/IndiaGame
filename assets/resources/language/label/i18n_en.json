@@ -1,0 +1,37 @@
+{
+ 
+    "label_policy":"Privacy Policy",
+    "label_service":"Terms of Service",
+    "title_shop": "STORE",
+    "btn_free": "Free",
+    "title_setting":"SETTING",
+  
+    "txt_showlevel":"Level #0",
+     "txt_play":"Start game",
+     "txt_today_best":"Today's best",
+     "txt_weekbest":"This week's best",
+     "txt_monthbest":"This month's best",
+     "txt_yearbest":"This year's best",
+     "txt_bestscore":"Best in history",
+     "txt_gdpr":"Before starting the game, please accept the Privacy Policy and Terms of Service. You can read the relevant content in the link below!",
+     "txt_accept":"Accept",
+
+     "txt_fail":"Failed",    
+     "txt_timeup":"Time Up",
+     "txt_lose":"Unable to remove anything now. \n Try again?",
+     "btn_continue":"Continue",
+     "btn_get":"Get",
+     "txt_lose_note2":"You're about to lose them. \n Let's try again?",
+     "btn_play":"Play",
+     "btn_quit":"Quit",
+     "txt_select_item":"Select Items",
+     "txt_double_star":"Use this item to get double stars in this level.",
+     "txt_useitem_hammer":"Try using this item to remove 4 models",
+     "txt_exit_level":"Exit The Level",
+     "txt_more_life":"Get more lives",
+     "txt_next_life":"Next life in:",
+     "title_score":"SCORE",
+     "title_level":"LEVEL",
+
+     "example01": "#0 like #1"
+}

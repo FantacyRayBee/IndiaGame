@@ -29,6 +29,79 @@ cc.Class({
     this.haveFromData = false; // 是否有跳转来源数据
     this.upiChannel = 1; // upi渠道
     this.entryStrList = ['paytm', 'upi', 'phonepe'];
+    this.storeData = [{
+      add: 0,
+      amount: 20000,
+      bonus: 0,
+      gift: 5000,
+      id: 3,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 30000,
+      bonus: 0,
+      gift: 9000,
+      id: 5,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 50000,
+      bonus: 0,
+      gift: 15000,
+      id: 6,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 100000,
+      bonus: 0,
+      gift: 35000,
+      id: 7,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 200000,
+      bonus: 0,
+      gift: 60000,
+      id: 10,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 300000,
+      bonus: 0,
+      gift: 105000,
+      id: 11,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 500000,
+      bonus: 0,
+      gift: 200000,
+      id: 8,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 1000000,
+      bonus: 0,
+      gift: 400000,
+      id: 9,
+      loop_status: 0,
+      show: false
+    }, {
+      add: 0,
+      amount: 2000000,
+      bonus: 0,
+      gift: 1000000,
+      id: 4,
+      loop_status: 0,
+      show: false
+    }];
   },
   onLoad: function onLoad() {
     SHOPPING.cashID = -1;
@@ -41,7 +114,7 @@ cc.Class({
     for (var i = 0; i < 3; i++) {
       this.togList[i].node.on("toggle", CommonFun.getInstance().debounce(this.togClick, 1), this);
     }
-    this.lab_userDiamond.string = "\u20B9" + FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
+    this.lab_userDiamond.string = "\u20B90";
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
@@ -158,9 +231,9 @@ cc.Class({
 
   setShopItems: function setShopItems() {
     var _this = this;
-    Promise.all([this.getStoreListInfo(), CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPITEM)]).then(function (arr) {
-      var storeList = arr[0];
-      var itemPrefab = arr[1];
+    Promise.all([CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPITEM)]).then(function (arr) {
+      var storeList = _this.storeData;
+      var itemPrefab = arr[0];
       if (CommonFun.getInstance().isValidForScr(_this)) {
         var couldWithdraw = GlobalCfg.USER_DATAS.userDiamond;
         var _arr = CommonFun.getInstance().dealShopList(couldWithdraw, storeList);
@@ -315,7 +388,7 @@ cc.Class({
     }
   },
   dealBtnBackEvent: function dealBtnBackEvent() {
-    CommonFun.getInstance().decVerticalAcc();
+    // CommonFun.getInstance().decVerticalAcc();
     this.node.destroy();
   },
   dealBtnInstructionsEvent: function dealBtnInstructionsEvent() {
@@ -325,22 +398,14 @@ cc.Class({
     CommonFun.getInstance().showTransactionRecord();
   },
   dealBtnAddCashEvent: function dealBtnAddCashEvent() {
-    if (SHOPPING.cashID == -1) {
-      return;
-    }
-    ;
-    var arr = SceneManager.getInstance().curSceneType.split("/");
-    var curScene = arr[arr.length - 1];
-    if (SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.SSC) {
-      curScene = 'ssc';
-    }
-    ;
-    var commodityId = Number(SHOPPING.cashID);
-    if (this.haveFromData == false) {
-      SHOPPING.from = curScene;
-    }
-    ;
-    CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
+    var url = "https://zrpay.buddha9.com/pay?amount=" + SHOPPING.cashAmount;
+    // url += "&server_id=" + GlobalCfg.server_id;
+    CommonFun.getInstance().showProgress();
+    CommonFun.getInstance().httpGet(url, function (strInfo) {
+      LoggerUtil.getinstance().log("dealBtnAddCashEvent", strInfo);
+      CommonFun.getInstance().hidProgress();
+      cc.sys.openURL(strInfo);
+    }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
   dealBtnBonusTipsEvent: function dealBtnBonusTipsEvent() {
     this.node_bonusTips.active = !this.node_bonusTips.active;

@@ -180,190 +180,16 @@ var SceneManager = cc.Class({
   },
   dealEnterGameScene: function dealEnterGameScene(toSceneName) {
     var _this3 = this;
-    var protoCfg = null;
-    var protoPathArr = null;
-    var websocketUrl = null;
-    switch (toSceneName) {
-      case this.sceneType.BENZ:
-        protoCfg = ProtoObj.getProto("Benz");
-        protoPathArr = ["proto/benz/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.benZData.endpoint;
-        break;
-      case this.sceneType.SGJ:
-        protoCfg = ProtoObj.getProto("SGJ");
-        protoPathArr = ["proto/fruitMachine/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.fruitMachineData.endpoint;
-        break;
-      case this.sceneType.MAYA:
-        protoCfg = ProtoObj.getProto("MAYA");
-        protoPathArr = ["proto/mayaMachine/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.endpoint;
-        break;
-      case this.sceneType.JOKER:
-        protoCfg = ProtoObj.getProto("JOKER");
-        protoPathArr = ["proto/jokerMachine/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.endpoint;
-        break;
-      case this.sceneType.INDIA:
-        protoCfg = ProtoObj.getProto("INDIA");
-        protoPathArr = ["proto/indiaMachine/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.endpoint;
-        break;
-      case this.sceneType.VAMPIRE:
-        protoCfg = ProtoObj.getProto("VAMPIRE");
-        protoPathArr = ["proto/vampireMachine/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.endpoint;
-        break;
-      case this.sceneType.BULL:
-        protoCfg = ProtoObj.getProto("BULL");
-        protoPathArr = ["proto/bullMachine/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.bullMachineData.endpoint;
-        break;
-      case this.sceneType.SEVENUPDOWN:
-        protoCfg = ProtoObj.getProto("UPDOWN");
-        protoPathArr = ["proto/updown/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.upDownData.endpoint;
-        break;
-      case this.sceneType.ANDAER:
-        protoCfg = ProtoObj.getProto("ANDEER");
-        protoPathArr = ["proto/andeer/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.andeerData.endpoint;
-        break;
-      case this.sceneType.BACCARAT:
-        protoCfg = ProtoObj.getProto("baccarat3Patti");
-        protoPathArr = ["proto/baccarat3Patti/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.baccaratData.endpoint;
-        break;
-      case this.sceneType.HORSERACE:
-        protoCfg = ProtoObj.getProto("HORSERACE");
-        protoPathArr = ["proto/horseRace/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.horseRaceData.endpoint;
-        break;
-      case this.sceneType.LHD:
-        protoCfg = ProtoObj.getProto("LHD");
-        protoPathArr = ["proto/lhd/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.lhdData.endpoint;
-        break;
-      case this.sceneType.MUNDA:
-        protoCfg = ProtoObj.getProto("Munda");
-        protoPathArr = ["proto/munda/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mundaData.endpoint;
-        break;
-      case this.sceneType.MTP:
-        protoCfg = ProtoObj.getProto("MTP");
-        protoPathArr = ["proto/multiTeenPatti/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mtpData.endpoint;
-        break;
-      case this.sceneType.SSC:
-        protoCfg = ProtoObj.getProto("SSC");
-        protoPathArr = ["proto/ssc/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.sscData.endpoint;
-        break;
-      case this.sceneType.TEENPATTI:
-        protoCfg = ProtoObj.getProto("tpGame");
-        protoPathArr = ["proto/tpGame/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint;
-        break;
-      case this.sceneType.RUMMY:
-        protoCfg = ProtoObj.getProto("Rummy");
-        protoPathArr = ["proto/rummy/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.rummyData.endpoint;
-        break;
-      case this.sceneType.ROCKET:
-        protoCfg = ProtoObj.getProto("rocket");
-        protoPathArr = ["proto/rocket/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.rocketData.endpoint;
-        break;
-      case this.sceneType.AVIATOR:
-        protoCfg = ProtoObj.getProto("aviator");
-        protoPathArr = ["proto/aviator/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.aviatorData.endpoint;
-        break;
-      case this.sceneType.ZOO:
-        protoCfg = ProtoObj.getProto("zooGame");
-        protoPathArr = ["proto/zoo/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.zooData.endpoint;
-        break;
-      case this.sceneType.CRICKET:
-        protoCfg = ProtoObj.getProto("cricketGame");
-        protoPathArr = ["proto/cricket/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.cricketData.endpoint;
-        break;
-      case this.sceneType.ZEUS:
-        protoCfg = ProtoObj.getProto("zeusGame");
-        protoPathArr = ["proto/zeus/gameservice"];
-        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.zeusData.endpoint;
-        break;
-      default:
-        break;
-    }
-    if (!protoCfg) {
-      this.isLoadingScene = false;
-      CommonFun.getInstance().hidProgress();
-      LoggerUtil.getInstance().error("When jumping to the scene, the corresponding protocol configuration was not found");
-      return;
-    }
-    ;
-    if (!protoPathArr) {
-      this.isLoadingScene = false;
-      CommonFun.getInstance().hidProgress();
-      LoggerUtil.getInstance().error("When jumping to the scene, the corresponding protocol bundle path was not found");
-      return;
-    }
-    ;
-    if (!websocketUrl) {
-      this.isLoadingScene = false;
-      CommonFun.getInstance().hidProgress();
-      LoggerUtil.getInstance().error("When jumping to the scene, the corresponding websocket URL was not found");
-      return;
-    }
-    ;
-    var isSuccess = ProtobufManager.loadProtoFiles(protoPathArr);
-    if (!isSuccess) {
-      this.isLoadingScene = false;
-      CommonFun.getInstance().hidProgress();
-      LoggerUtil.getInstance().error("Failed to load the corresponding proto file");
-      CommonFun.getInstance().showTips("Failed to load the corresponding proto file!");
-      return;
-    }
-    ;
-    GameServerManager.setProtoCfgAndUrl(protoCfg, websocketUrl);
-    if (toSceneName == this.sceneType.SSC) {
-      Promise.all([GameServerManager.connectServer(true), this.loadSSCBundlePab(toSceneName)]).then(function (arr) {
-        var prefab = arr[1];
-        _this3.curSceneType = toSceneName;
-        var pab_ssc = cc.instantiate(prefab);
-        cc.Canvas.instance.node.addChild(pab_ssc);
+    Promise.all([this.loadBundleScene(toSceneName)]).then(function (arr) {
+      var scene = arr[0];
+      _this3.curSceneType = toSceneName;
+      cc.director.runScene(scene, function () {}, function () {
         _this3.isLoadingScene = false;
-        CommonFun.getInstance().showGameStartMask();
+        // CommonFun.getInstance().showGameStartMask();
         CommonFun.getInstance().hidProgress();
         CommonFun.getInstance().hideSidebarData();
-      })["catch"](function (err) {
-        LoggerUtil.getInstance().error(err);
-        _this3.isLoadingScene = false;
-        CommonFun.getInstance().hidProgress();
-        GameServerManager.clientCloseServer();
-        CommonFun.getInstance().showTips(err);
       });
-    } else {
-      Promise.all([GameServerManager.connectServer(true), this.loadBundleScene(toSceneName)]).then(function (arr) {
-        var scene = arr[1];
-        _this3.curSceneType = toSceneName;
-        cc.director.runScene(scene, function () {}, function () {
-          _this3.isLoadingScene = false;
-          // CommonFun.getInstance().showGameStartMask();
-          CommonFun.getInstance().hidProgress();
-          CommonFun.getInstance().hideSidebarData();
-        });
-      })["catch"](function (err) {
-        LoggerUtil.getInstance().error(err);
-        _this3.isLoadingScene = false;
-        CommonFun.getInstance().hidProgress();
-        GameServerManager.clientCloseServer();
-        CommonFun.getInstance().showTips(err);
-      });
-    }
-    ;
+    })["catch"](function (err) {});
   },
   loadSSCBundlePab: function loadSSCBundlePab(toSceneName) {
     return new Promise(function (resolve, reject) {
@@ -1020,7 +846,7 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
           GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
           GlobalCfg.USER_DATAS.inducement = inducement;
-          LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userVip == ", GlobalCfg.USER_DATAS.userVip);
+          LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.store == ", GlobalCfg.USER_DATAS.store);
           if (channel.length > 0) {
             GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
           }

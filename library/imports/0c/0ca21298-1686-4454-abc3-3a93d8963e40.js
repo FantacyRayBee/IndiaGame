@@ -531,7 +531,7 @@ cc.Class({
       return SceneManager.getInstance().reqUserDataInfo();
     }).then(function () {
       CommonFun.getInstance().showProgress();
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+      cc.director.loadScene("Game");
     })["catch"](function (error) {
       LoggerUtil.getInstance().log(error);
     });
@@ -549,27 +549,7 @@ cc.Class({
     return false;
   },
   start: function start() {
-    if (GlobalCfg.SERVERRELOAD == true) {
-      CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
-        window.ResourcesBundle = bundle;
-        CommonFun.getInstance().showMsgBox(GlobalCfg.SERVERRELOAD_Descr, "YES", function () {
-          cc.game.end();
-        }, false);
-      }, function (err) {
-        LoggerUtil.getInstance().error("\u52A0\u8F7DResourcesBundle-Bundle\u5F02\u5E38: " + JSON.stringify(err));
-        cc.game.end();
-      });
-      return;
-    }
-    ;
-    if (cc.sys.isNative) {
-      this.updateStartTime = cc.sys.now();
-      CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
-      this.runUpdateProcess();
-    } else {
-      this.changeSceneToLobby();
-    }
-    ;
+    SceneManager.getInstance().dealEnterGameScene("PlayerGame/Game");
   },
   onDestroy: function onDestroy() {
     this.downloaderArr = null;

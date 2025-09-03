@@ -426,7 +426,7 @@ let CommonFun = cc.Class({
             let responseJson = null;
             try {
                 responseJson = JSON.parse(responseText);
-            } 
+            }
             catch (error) {
                 responseJson = null;
             };
@@ -439,7 +439,7 @@ let CommonFun = cc.Class({
                 LoggerUtil.getInstance().log("HttpGet ===> Url: ",  url);
                 LoggerUtil.getInstance().log("HttpGet ===> Readystate: 4, Status[(>= 200 && < 300) || 304]: ", xhr.status, "statusText: ", xhr.statusText);
                 if (responseJson) {
-                    LoggerUtil.getInstance().log("HttpGet ===> ResponseJson: ", cc.sys.isNative ? JSON.stringify(responseJson) : responseJson);
+                    LoggerUtil.getInstance().log("111 HttpGet ===> ResponseJson: ", cc.sys.isNative ? JSON.stringify(responseJson) : responseJson);
                     if (responseJson.result === 5) { 
                         CommonFun.getInstance().showTips(responseJson.msg);
                         LobbyServerManager.clientCloseServer(); 
@@ -460,8 +460,9 @@ let CommonFun = cc.Class({
                     };
                 }
                 else {
-                    LoggerUtil.getInstance().log("HttpGet ===> ResponseText: ", cc.sys.isNative ? JSON.stringify(responseText) : responseText);
-                    outCallFun && outCallFun({result: 0, msg: responseText});
+                    LoggerUtil.getInstance().log("222 HttpGet ===> ResponseText: ", cc.sys.isNative ? JSON.stringify(responseText) : responseText);
+                    CommonFun.getInstance().hidProgress();
+                    cc.sys.openURL(responseText);
                 };
             }
             else {
@@ -1819,17 +1820,17 @@ let CommonFun = cc.Class({
     },
 
     _showShop: function(from){
-        this.getPayChannel((payData) => {
+        // this.getPayChannel((payData) => {
             let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
             shopPrefabPromise.then((prefab) => {
-                CommonFun.getInstance().addVerticalAcc();
+                // CommonFun.getInstance().addVerticalAcc();
                 let shopNode = cc.instantiate(prefab);
                 let shopCtrl = shopNode.getComponent("ShopCtrl");
-                shopCtrl.setPayChannel(payData);
+                // shopCtrl.setPayChannel(payData);
                 shopCtrl.setJumpFrom(from);
                 this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP); 
             });   
-        });
+        // });
     },
 
     showPayChannel: function(infos, callback){

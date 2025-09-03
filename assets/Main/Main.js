@@ -12,6 +12,7 @@ cc.Class({
     },
 
     onLoad: function() {
+
         /**
          * 首次进入上报
          */
@@ -325,26 +326,6 @@ cc.Class({
         });
     },
 
-    installApp: function() {
-        if (!cc.sys.localStorage.getItem("install")) {
-            let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
-            let channel = '';
-            if (packageChannel && packageChannel.indexOf("_") != -1) {
-                let packageChannelArr = packageChannel.split("_"); 
-                channel = packageChannelArr[1];
-            }
-            let device = CommonFun.getInstance().getDeviceId();
-            let httpParam = {
-                "adv": GlobalCfg.ADVERTISING_ID,
-                "channel": channel,
-                "device":device,
-            };
-            let httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/install";
-            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {});
-            cc.sys.localStorage.setItem("install", "1");
-        }
-    },
-
     reqAppConfig: function(url) {
         this.reqAppConfigCount++;
         CommonFun.getInstance().httpGet(url,(jsonObj)=>{
@@ -398,17 +379,7 @@ cc.Class({
     },
 
     loadUpdateScene: function() {
-        let localAppVersion = Number(cc.sys.localStorage.getItem("LocalAppVersion"));
-        let isCanDownApp = Number(cc.sys.localStorage.getItem("IsCanDownApp"));
-        // LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);
-        // LoggerUtil.getInstance().log("isCanDownApp: ", isCanDownApp);
-        if (cc.sys.isNative && isCanDownApp == 1 && GlobalCfg.REMOTE_APP_UPDATE && GlobalCfg.REMOTE_APP_VERSION != localAppVersion) {
-            this.node_loadTipsLayer.active = false;
-            APPManager.downloadApkByApkUrl(GlobalCfg.REMOTE_APP_URL);
-        }
-        else {
-            this.loadPrecess = 100.00;
-            cc.director.loadScene("Update");
-        };
+        this.loadPrecess = 100.00;
+        cc.director.loadScene("Update");
     },
 });

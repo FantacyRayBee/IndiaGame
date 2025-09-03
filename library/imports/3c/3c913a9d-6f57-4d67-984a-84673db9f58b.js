@@ -436,7 +436,7 @@ var CommonFun = cc.Class((_cc$Class = {
         LoggerUtil.getInstance().log("HttpGet ===> Url: ", url);
         LoggerUtil.getInstance().log("HttpGet ===> Readystate: 4, Status[(>= 200 && < 300) || 304]: ", xhr.status, "statusText: ", xhr.statusText);
         if (responseJson) {
-          LoggerUtil.getInstance().log("HttpGet ===> ResponseJson: ", cc.sys.isNative ? JSON.stringify(responseJson) : responseJson);
+          LoggerUtil.getInstance().log("111 HttpGet ===> ResponseJson: ", cc.sys.isNative ? JSON.stringify(responseJson) : responseJson);
           if (responseJson.result === 5) {
             CommonFun.getInstance().showTips(responseJson.msg);
             LobbyServerManager.clientCloseServer();
@@ -455,11 +455,9 @@ var CommonFun = cc.Class((_cc$Class = {
           }
           ;
         } else {
-          LoggerUtil.getInstance().log("HttpGet ===> ResponseText: ", cc.sys.isNative ? JSON.stringify(responseText) : responseText);
-          outCallFun && outCallFun({
-            result: 0,
-            msg: responseText
-          });
+          LoggerUtil.getInstance().log("222 HttpGet ===> ResponseText: ", cc.sys.isNative ? JSON.stringify(responseText) : responseText);
+          CommonFun.getInstance().hidProgress();
+          cc.sys.openURL(responseText);
         }
         ;
       } else {
@@ -1824,18 +1822,19 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   _showShop: function _showShop(from) {
     var _this43 = this;
-    this.getPayChannel(function (payData) {
-      var shopPrefabPromise = _this43.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
-      shopPrefabPromise.then(function (prefab) {
-        CommonFun.getInstance().addVerticalAcc();
-        var shopNode = cc.instantiate(prefab);
-        var shopCtrl = shopNode.getComponent("ShopCtrl");
-        shopCtrl.setPayChannel(payData);
-        shopCtrl.setJumpFrom(from);
-        _this43.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP);
-      });
+    // this.getPayChannel((payData) => {
+    var shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
+    shopPrefabPromise.then(function (prefab) {
+      // CommonFun.getInstance().addVerticalAcc();
+      var shopNode = cc.instantiate(prefab);
+      var shopCtrl = shopNode.getComponent("ShopCtrl");
+      // shopCtrl.setPayChannel(payData);
+      shopCtrl.setJumpFrom(from);
+      _this43.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP);
     });
+    // });
   },
+
   showPayChannel: function showPayChannel(infos, callback) {
     var _this44 = this;
     LoggerUtil.getInstance().log('callback =', callback);
