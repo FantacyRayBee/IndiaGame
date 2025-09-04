@@ -60,7 +60,7 @@ cc.Class({
         this.NodeSended.active = false;
         this.phoneNumber = ''
         if (CommonFun.getInstance().checkVerticalAcc()) {
-            this.zhuNode.scale = 0.6
+            this.zhuNode.scale = 0.7
         };
         this.showRealName();
     },

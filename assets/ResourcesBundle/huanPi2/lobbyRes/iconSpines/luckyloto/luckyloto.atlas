@@ -1,61 +1,61 @@
 
 luckyloto.png
-size: 163,249
+size: 108,392
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 T0
   rotate: false
-  xy: 2, 147
+  xy: 2, 290
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 aaa
   rotate: true
-  xy: 2, 18
-  size: 44, 53
-  orig: 48, 56
+  xy: 34, 2
+  size: 48, 59
+  orig: 51, 60
   offset: 2, 1
   index: -1
 bg
   rotate: true
-  xy: 136, 80
-  size: 75, 21
-  orig: 75, 21
+  xy: 34, 52
+  size: 75, 23
+  orig: 75, 23
   offset: 0, 0
   index: -1
 kkk
   rotate: false
-  xy: 85, 71
-  size: 49, 59
-  orig: 49, 61
-  offset: 0, 1
+  xy: 59, 52
+  size: 47, 61
+  orig: 50, 62
+  offset: 2, 1
   index: -1
 qi
   rotate: true
-  xy: 136, 157
+  xy: 81, 115
   size: 90, 25
   orig: 90, 25
   offset: 0, 0
   index: -1
 saoguang02
   rotate: false
-  xy: 2, 64
+  xy: 2, 207
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 yuan
   rotate: true
-  xy: 85, 2
-  size: 67, 69
-  orig: 67, 69
-  offset: 0, 0
+  xy: 2, 129
+  size: 76, 77
+  orig: 78, 78
+  offset: 1, 1
   index: -1
 zi
   rotate: true
-  xy: 104, 132
+  xy: 2, 12
   size: 115, 30
   orig: 117, 31
   offset: 1, 1

@@ -1117,7 +1117,7 @@ cc.Class({
             this.schedule(this.scheduleGetTodayTimeCountdown, 1);
             let spine = this.btn_goBetiing.node.getChildByName('Background').getComponent(sp.Skeleton);
             if (checkActivityGoBettingData.call(this) == true) {
-                spine.setAnimation(0, 'animation2', true);
+                spine.setAnimation(0, 'animation', true);
             } else {
                 spine.setAnimation(0, 'animation', true);
             }

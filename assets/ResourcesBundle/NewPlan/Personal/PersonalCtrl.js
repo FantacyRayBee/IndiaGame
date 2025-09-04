@@ -3,7 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        lab_blind : cc.Label,
+        // lab_blind : cc.Label,
         /**
          * VIP等级图标
          */
@@ -66,21 +66,21 @@ cc.Class({
         this.sprite_vipLevelIcon.node.on("click", this.btnClick, this);
 
         // 奖券兑换活动
-        let NodebtnToBonus = cc.find('node/bg/node_user/btnToBonus', this.node);
+        let NodebtnToBonus = cc.find('node/bg/node_user/bg_bonus/btnToBonus', this.node);
         if (GlobalCfg.USER_DATAS.openModules.includes(12)) {
             NodebtnToBonus.active = true;
         }else{
             NodebtnToBonus.active = false;
         }
         // 充值
-        let NodebtnToShop = cc.find('node/bg/node_user/btnToShop', this.node);
+        let NodebtnToShop = cc.find('node/bg/node_user/bg_cash/btnToShop', this.node);
         if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
             NodebtnToShop.active = true;
         }else{
             NodebtnToShop.active = false;
         }
         // 提现
-        let NodebtnToWithdraw = cc.find('node/bg/node_user/btnToWithdraw', this.node);
+        let NodebtnToWithdraw = cc.find('node/bg/node_user/bg_cash/btnToWithdraw', this.node);
         if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
             NodebtnToWithdraw.active = true;
         }else{
@@ -103,13 +103,13 @@ cc.Class({
         this.lab_totalCash.string = GlobalCfg.USER_DATAS.userDiamond ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.userDiamond,100)) : "₹0";
         this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;
 
-        if( GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
-            this.lab_bnode_bonusonus.string = language==1 ? "Chips" : "बोनास";
-            this.node_totalCash.string =  language==1 ? "Total Chips": "कुल नकद";
-        } else {
-            this.lab_bnode_bonusonus.string = playerCenterLanguage.node_bonus[language];
-            this.node_totalCash.string = playerCenterLanguage.node_totalCash[language] 
-        }
+        // if( GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
+        //     this.lab_bnode_bonusonus.string = language==1 ? "Chips" : "बोनास";
+        //     this.node_totalCash.string =  language==1 ? "Total Chips": "कुल नकद";
+        // } else {
+        //     this.lab_bnode_bonusonus.string = playerCenterLanguage.node_bonus[language];
+        //     this.node_totalCash.string = playerCenterLanguage.node_totalCash[language] 
+        // }
     }, 
 
     onEventMsg: function(webData, target) {
@@ -129,14 +129,13 @@ cc.Class({
         }
         else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
             self.showVipLevelIcon();
-        }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG) {
-            self.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, self.headSp);
-        }
+        };
     },
 
     btnClick: function (button) {
         var btnName = button.node.name;
+        LoggerUtil.getInstance().log(">>>>>btnName>>>>>>>>", btnName);
+
         if (btnName === "btn_exit") {
             GlobalCfg.G_COMPONENTS.Audio.pauseMusic();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LOGIN);
@@ -146,6 +145,7 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton(); 
         if (btnName === "btn_change") {
             CommonFun.getInstance().showChangeName();
+            // APPManager.openAlbum();
         }
         else if (btnName === "btn_bind") {
             CommonFun.getInstance().showBindPhone('Personal');
@@ -228,49 +228,6 @@ cc.Class({
             callback();  
         })
         .start()
-    },
-
-    initVipCard: function (vipType) {
-        this.spr_bg01.node.active = false;
-        this.spr_bg02.node.active = false;
-        this.spr_bg03.node.active = false;
-        this.spr_bg04.node.active = false;
-        this.tx_k01.node.active = false;
-        this.tx_k02.node.active = false;
-        this.tx_k03.node.active = false;
-        this.bg_name01.node.active = false;
-        this.bg_name02.node.active = false;
-        this.Background01.node.active = false;
-        this.Background02.node.active = false;
-        this.Background03.node.active = false;
-        if(vipType == 101){
-            this.spr_bg02.node.active = true; 
-            this.tx_k02.node.active = true;
-            this.bg_name02.node.active = true;
-            this.Background02.node.active = true;
-            // this.lab_ID.node.color = new cc.color(255,255,255,255)
-            this.lab_user_name.node.color = new cc.color(255,255,255,255)
-        }else if(vipType == 102){
-            this.spr_bg03.node.active = true;
-            this.tx_k03.node.active = true;
-            this.bg_name02.node.active = true;
-            this.Background03.node.active = true;
-            // this.lab_ID.node.color = new cc.color(255,255,255,255)
-            this.lab_user_name.node.color = new cc.color(255,255,255,255)
-        }else if(vipType == 103){
-            this.spr_bg04.node.active = true;
-            this.tx_k03.node.active = true;
-            this.bg_name02.node.active = true;
-            this.Background03.node.active = true;
-            // this.lab_ID.node.color = new cc.color(255,255,255,255)
-            this.lab_user_name.node.color = new cc.color(255,255,255,255)
-        }else{
-            this.spr_bg01.node.active = true;
-            this.tx_k01.node.active = true;
-            this.bg_name01.node.active = true;
-            this.Background01.node.active = true;
-            // this.lab_ID.node.color = new cc.color(153,94,39,255)
-        }
     },
 
     showWithDraw(){
