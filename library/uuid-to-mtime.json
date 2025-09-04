@@ -20919,11 +20919,6 @@
     "meta": 1756894788857,
     "relativePath": "ResourcesBundle\\NewPlan\\OnlyPay\\res\\金币1.png"
   },
-  "36568554-ce2b-447e-9d14-3276278ca1f1": {
-    "asset": 1756895387492,
-    "meta": 1756895390277,
-    "relativePath": "PGgame"
-  },
   "5bb20ab0-0a2a-40b8-9ab8-4c651799e6b3": {
     "asset": 1756866389868,
     "meta": 1756894770515,
@@ -30938,5 +30933,40 @@
     "asset": 1756953321471,
     "meta": 1756953325001,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "44758d7a-c300-43db-9e74-9e48b5fe742b": {
+    "asset": 1756971490177,
+    "meta": 1756971535750,
+    "relativePath": "chickenRoad"
+  },
+  "8639e3e5-63de-4e80-ba6c-d610e6aa7b0d": {
+    "asset": 1756971533653,
+    "meta": 1756971535750,
+    "relativePath": "chickenRoad\\anim"
+  },
+  "9102aa97-40bf-4a70-b692-bcdb3130d8fe": {
+    "asset": 1756971526517,
+    "meta": 1756971535752,
+    "relativePath": "chickenRoad\\prefab"
+  },
+  "05251197-0f80-4a33-a644-5da7efea54b0": {
+    "asset": 1756971521722,
+    "meta": 1756971535752,
+    "relativePath": "chickenRoad\\res"
+  },
+  "1e771634-e065-4cfb-adef-af296bbe16e5": {
+    "asset": 1756971515180,
+    "meta": 1756971535753,
+    "relativePath": "chickenRoad\\sound"
+  },
+  "98f4fabf-2776-4886-b387-9c7b242dd1fa": {
+    "asset": 1756971511174,
+    "meta": 1756971535753,
+    "relativePath": "chickenRoad\\src"
+  },
+  "6cf4fb21-462c-445c-a1ff-3e628530c3ac": {
+    "asset": 1756972394765,
+    "meta": 1756972394775,
+    "relativePath": "chickenRoad\\chickenRoad.fire"
   }
 }
