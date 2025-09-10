@@ -456,6 +456,14 @@ cc.Class({
       "gameservice.sethead": "SetHeadAck",
     }
 
+    // 小鸡
+    this.protoChicken = {
+      "gameservice.pingpang": "PingPang",
+      "gameservice.login": "LoginAck",
+      "gameservice.exit": "ExitAck",
+      "gameservice.sethead": "SetHeadAck",
+    }
+
     // 动物园
     this.protoZoo = {
       "gameservice.login": "LoginAck",
@@ -576,6 +584,9 @@ cc.Class({
     }
     else if (gameName == "aviator") {
       return this.protoAviator;
+    }
+    else if (gameName == "chickenRoad") {
+      return this.protoChicken;
     }
     else if (gameName == "zooGame") {
       return this.protoZoo;

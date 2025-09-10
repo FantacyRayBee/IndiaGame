@@ -491,6 +491,7 @@ window.GlobalCfg = {
     baccaratData: {},
     rocketData: {},
     aviatorData: {},
+    chickenData: {},
     zooData: {},
     cricketData: {},
     zeusData: {},

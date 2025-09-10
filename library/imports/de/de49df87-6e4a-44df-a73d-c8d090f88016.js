@@ -586,6 +586,14 @@ cc.Class({
       "gameservice.sethead": "SetHeadAck"
     };
 
+    // 小鸡
+    this.protoAviator = {
+      "gameservice.pingpang": "PingPang",
+      "gameservice.login": "LoginAck",
+      "gameservice.exit": "ExitAck",
+      "gameservice.sethead": "SetHeadAck"
+    };
+
     // 动物园
     this.protoZoo = {
       "gameservice.login": "LoginAck",

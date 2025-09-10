@@ -30,6 +30,7 @@ var SceneManager = cc.Class({
       RUMMY: 'Rummy/rummy',
       ROCKET: 'rocket/rocket',
       AVIATOR: 'aviator/aviator',
+      CHICKEN: 'chickenRoad/chickenRoad',
       ZOO: 'zooGame/zoo',
       CRICKET: 'cricketGame/cricket',
       ZEUS: "zeusGame/zeus",
@@ -278,6 +279,11 @@ var SceneManager = cc.Class({
         protoCfg = ProtoObj.getProto("aviator");
         protoPathArr = ["proto/aviator/gameservice"];
         websocketUrl = GlobalCfg.SMALL_GAME_DATAS.aviatorData.endpoint;
+        break;
+      case this.sceneType.CHICKEN:
+        protoCfg = ProtoObj.getProto("chicken");
+        protoPathArr = ["proto/chicken/gameservice"];
+        websocketUrl = GlobalCfg.SMALL_GAME_DATAS.chickenData.endpoint;
         break;
       case this.sceneType.ZOO:
         protoCfg = ProtoObj.getProto("zooGame");

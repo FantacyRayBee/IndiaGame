@@ -112,6 +112,10 @@ cc.Class({
          */
         btn_miniaviator: cc.Button,
         /**
+         * 小鸡
+         */
+        btn_minichicken: cc.Button,
+        /**
          * 动物园
          */
         btn_minizoo:cc.Button,
@@ -349,6 +353,7 @@ cc.Class({
             "miniclown": 18,
             "minimultiteenpatti": 19,
             "miniaviator": 20,
+            "minichicken": 21,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -360,6 +365,7 @@ cc.Class({
         let btnsMap = {
             "minirocket": this.btn_minirocket,
             "miniaviator": this.btn_miniaviator,
+            "minichicken": this.btn_minichicken,
             "minijhandimunda": this.btn_minijhandimunda,
             "minimultiteenpatti": this.btn_minimultiteenpatti,
             "miniteenpatti": this.btn_miniteenpatti,
@@ -437,6 +443,7 @@ cc.Class({
         this.btn_miniteenpattibaccarat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minirocket.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniaviator.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_minichicken.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minizoo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minicricket.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minizeus.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -597,6 +604,7 @@ cc.Class({
         this.btn_miniteenpattibaccarat.node.active = false;
         this.btn_minirocket.node.active = false;
         this.btn_miniaviator.node.active = false;
+        this.btn_minichicken.node.active = false;
         this.btn_minizoo.node.active = false;
         this.btn_minicricket.node.active = false;
         this.btn_minizeus.node.active = false;
@@ -860,6 +868,17 @@ cc.Class({
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("aviator");
                         if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("aviator");
+                        }
+                    }
+                    break;
+                case "minichicken":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(127)) {
+                        this.btn_minichicken.node.active = true;
+                        GlobalCfg.SMALL_GAME_DATAS.chickenData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.chickenData.product = gameProduct;
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("chickenRoad");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("chickenRoad");
                         }
                     }
                     break;
@@ -1945,6 +1964,14 @@ cc.Class({
                 CommonFun.getInstance().showProgress();
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.aviatorData.product;
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.AVIATOR);
+            });
+        }
+        else if (btnName == 'btn_chicken'){
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_CRASH_GAME);
+            this.checkUpdate("chickenRoad", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.chickenData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CHICKEN);
             });
         }
         else if (btnName == 'btn_zoo'){
