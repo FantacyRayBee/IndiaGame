@@ -9,7 +9,7 @@
     "portrait": false,
     "upsideDown": false
   },
-  "webOrientation": "auto",
+  "webOrientation": "landscape",
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "mainCompressionType": "merge_all_json",
@@ -19,10 +19,10 @@
   "nativeMd5Cache": false,
   "encryptJs": true,
   "xxteaKey": "929c02b7-f4e8-4d",
-  "zipCompressJs": true,
+  "zipCompressJs": false,
   "fb-instant-games": {},
   "android": {
-    "packageName": "com.Fier1The.a111nim.test4d",
+    "packageName": "com.Fiere.am.ln2ch.wss.ca11tots.cats3ss.leopard",
     "REMOTE_SERVER_ROOT": ""
   },
   "ios": {

@@ -18,7 +18,7 @@ var APIManager = cc.Class({
         Unclaimed   int json:"unclaimed"    // 待领取
         GoldCoin    int json:"gold_coin"    // 金币
         DoubleCard  int json:"double_card"  // 双倍卡个数
-         Address TakeProfitAddress json:"address" // 提现地址
+          Address TakeProfitAddress json:"address" // 提现地址
      */
     var url = GlobalCfg.HTTP_SERVER + "/v1/pdd/info";
     return new Promise(function (resolve, reject) {
