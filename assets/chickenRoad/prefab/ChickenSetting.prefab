@@ -25,13 +25,10 @@
     "_components": [
       {
         "__id__": 101
-      },
-      {
-        "__id__": 102
       }
     ],
     "_prefab": {
-      "__id__": 103
+      "__id__": 102
     },
     "_opacity": 255,
     "_color": {
@@ -141,8 +138,8 @@
         0,
         0,
         1,
-        1.3,
-        1.3,
+        1,
+        1,
         1
       ]
     },
@@ -4049,65 +4046,6 @@
     "sync": false
   },
   {
-    "__type__": "589bbF96LpGcpX4HmP0Wd7C",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "tog_sound": {
-      "__id__": 38
-    },
-    "tog_music": {
-      "__id__": 55
-    },
-    "tog_animation": null,
-    "sprite_tx": {
-      "__id__": 16
-    },
-    "userName": {
-      "__id__": 6
-    },
-    "btn_provably": {
-      "__id__": 63
-    },
-    "btn_rule": {
-      "__id__": 77
-    },
-    "btn_mybet": {
-      "__id__": 91
-    },
-    "btn_how": null,
-    "btn_limit": null,
-    "btn_changeHead": {
-      "__id__": 12
-    },
-    "btn_Free": null,
-    "pabfabProvably": {
-      "__uuid__": "e446707e-3a2b-4cd0-8145-e5236e9f5b62"
-    },
-    "prefabRule": {
-      "__uuid__": "d00d4e6c-24f9-4a66-a887-607792e0920b"
-    },
-    "prefabLimit": {
-      "__uuid__": "ee5cbf84-1754-45d7-bbfd-eda7cc3b8e7a"
-    },
-    "prefabChangeHead": {
-      "__uuid__": "f5e1424e-cc2a-4ecd-88b9-4f31e7872e28"
-    },
-    "prefabHowToPlay": {
-      "__uuid__": "281c6874-035e-4720-a764-a87da9329c86"
-    },
-    "prefabFree": {
-      "__uuid__": "37bb6c65-6860-4a6a-a358-d2cf7d0a08e4"
-    },
-    "atlas_head": {
-      "__uuid__": "530b9009-7f98-4786-a6e2-5a57dbaefa68"
-    },
-    "_id": ""
-  },
-  {
     "__type__": "ce076amC85LY626f98xgoHc",
     "_name": "",
     "_objFlags": 0,
@@ -4121,7 +4059,6 @@
     "tog_music": {
       "__id__": 55
     },
-    "tog_animation": null,
     "sprite_tx": {
       "__id__": 16
     },
@@ -4137,19 +4074,21 @@
     "btn_mybet": {
       "__id__": 91
     },
-    "btn_how": null,
-    "btn_limit": null,
     "btn_changeHead": {
       "__id__": 12
     },
-    "btn_Free": null,
-    "pabfabProvably": null,
-    "prefabRule": null,
-    "prefabLimit": null,
-    "prefabChangeHead": null,
-    "prefabHowToPlay": null,
-    "prefabFree": null,
-    "atlas_head": null,
+    "pabfabProvably": {
+      "__uuid__": "a0904ed0-4964-4015-945a-394bad3f3769"
+    },
+    "prefabRule": {
+      "__uuid__": "4462b886-2edd-4e59-a14b-8c373ce5193f"
+    },
+    "prefabChangeHead": {
+      "__uuid__": "965b2d0b-7d88-4c63-a51b-b38924235060"
+    },
+    "atlas_head": {
+      "__uuid__": "353ffc57-8f90-4d7b-a00e-e8c55e2863bc"
+    },
     "_id": ""
   },
   {

@@ -587,10 +587,12 @@ cc.Class({
     };
 
     // 小鸡
-    this.protoAviator = {
+    this.protoChicken = {
       "gameservice.pingpang": "PingPang",
       "gameservice.login": "LoginAck",
+      "gameservice.loadwhole": "LoadWholeAck",
       "gameservice.exit": "ExitAck",
+      "gameservice.getplayerrecord": "GetPlayerRecordAck",
       "gameservice.sethead": "SetHeadAck"
     };
 
@@ -690,6 +692,8 @@ cc.Class({
       return this.protoRocket;
     } else if (gameName == "aviator") {
       return this.protoAviator;
+    } else if (gameName == "chickenroad") {
+      return this.protoChicken;
     } else if (gameName == "zooGame") {
       return this.protoZoo;
     } else if (gameName == "cricketGame") {

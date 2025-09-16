@@ -1,0 +1,167 @@
+syntax = "proto3";
+package gameservice;
+
+//protoc --go_out=:. game.proto
+
+// 心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
+// 返回结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+// 登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+}
+message LoginAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2; // 所有信息
+  //repeated int32 betOption = 3; // 下注选项
+}
+
+message WholeInfo {
+  //ConfigInfo config = 1;      // 配置信息
+  SceneInfo scene = 1;        // 场景信息
+  PlayerInfo requester = 2;   // 玩家信息
+}
+
+// 配置信息
+message ConfigInfo {
+  repeated int64 chipOption = 1;   // 下注选项
+}
+
+// 场景信息
+message SceneInfo {
+  string mode = 1;  //当前模式
+  int32 round = 2;  //当前跳到第几个
+  int64 bet =3;     //下注金额
+}
+
+// 坐标点
+message Point {
+  int64 x = 1;
+  int64 mul = 2;
+  int64 win = 3; // 赢取的
+}
+
+// 玩家信息
+message PlayerInfo {
+  UserInfo userInfo = 1;                // 用户信息
+}
+
+// 用户信息
+message UserInfo {
+  uint64 playerId = 1;    // 玩家游戏Id
+  string displayName = 2; // uid
+  int32 imgUrl = 3;      // 头像
+  string nickname = 4;    // 昵称
+  int64 diamond = 5;      // 金币
+  uint32 vipLevel = 6;    // vip等级
+}
+
+// 刷新游戏场景 gameservice.loadwhole
+message LoadWholeReq {
+}
+message LoadWholeAck {
+  ResponseBase result = 1;
+  WholeInfo whole = 2;
+}
+
+// 退出房间 gameservice.exit
+message ExitReq {
+}
+message ExitAck {
+  ResponseBase result = 1;
+}
+
+// 退出房间 gameservice.sethead
+message SetHeadReq {
+  int32 head = 1;
+}
+message SetHeadAck {
+  ResponseBase result = 1;
+}
+
+
+// 获取玩家列表 gameservice.playerlist
+message PlayerListReq {
+  uint32 page = 1;     // 页数 (0代表第一页，1代表第二页)
+  uint32 rows = 2;
+}
+
+message PlayerListAck {
+  ResponseBase result = 1;
+  int32 total = 2;
+  repeated UserInfo list = 3;
+}
+
+// 下注 gameservice.bet
+message BetReq {
+  int64 amount = 1;     // 金额
+  int32 mode = 2;       //	1:Easy 2:Medium 3:Hard 4:Hardcore
+}
+message BetAck {
+  ResponseBase result = 1;
+  int32 round = 2;        //环数
+  int64 amount = 3;       //下注金额
+  int64 mub = 4;          //赢的话倍数
+  bool isWin = 5;         //这轮是否成功
+}
+
+// 领取奖励 gameservice.cash
+message CashReq {
+}
+
+message CashAck {
+  ResponseBase result = 1;
+  int64 mul = 2;    // 倍数
+  int64 amount = 3; // 领取的金额
+  int64 after = 4;  // 钱包剩余
+  int64 bet = 5;    // 下注额度
+}
+
+// 获取种子 gameservice.seed
+message SeedReq {
+  string userId = 1;
+}
+
+message SeedAck {
+  ResponseBase result = 1;
+  string serverSeed = 2;   //服务器种子
+  string n1Nickname = 3;
+  int32 n1Head = 4;
+  string n1Seed = 5;
+  string n2Nickname = 6;
+  int32 n2Head = 7;
+  string n2Seed = 8;
+  string n3Nickname = 9;
+  int32 n3Head = 10;
+  string n3Seed = 11;
+  string sha256 = 12;
+  string Hex = 13;
+  string decimal = 14;
+  string resultScore = 15;
+}
+
+// 获取玩家记录 gameservice.getplayerrecord
+message GetPlayerRecordReq {
+}
+message GetPlayerRecordAck {
+  ResponseBase result = 1;
+  repeated playerRecord list = 2;
+}
+
+message playerRecord {
+  string userId = 1;
+  int32 head = 2;
+  int64 bet = 3;
+  int64 mub = 4;
+  int64 timer = 5;
+  int64 gameMub = 6; //游戏下机记录
+}

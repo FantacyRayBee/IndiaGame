@@ -13,7 +13,7 @@ cc.Class({
         if (!audioClipUrl || audioClipUrl.length == 0) {
             return;
         };
-        CommonFun.getInstance().loadBundle('chickenRoad', (bundle) => {
+        CommonFun.getInstance().loadBundle('chickenroad', (bundle) => {
             bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
                 if (!err1) {
                     func && func(audioClip, target);

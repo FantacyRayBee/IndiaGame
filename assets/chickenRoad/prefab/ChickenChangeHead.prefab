@@ -1729,7 +1729,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_close2",
+    "_name": "btn_save",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -1758,8 +1758,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 75,
-      "height": 45
+      "width": 650,
+      "height": 80
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1798,7 +1798,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Background",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 43
     },
@@ -2227,7 +2227,7 @@
     "sync": false
   },
   {
-    "__type__": "a72aedLrydLgbLwMe1JA/eO",
+    "__type__": "f5811zeRNRFmLEetbaCqvhE",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2237,7 +2237,7 @@
     "btn_close1": {
       "__id__": 41
     },
-    "btn_close2": {
+    "btn_save": {
       "__id__": 50
     },
     "atlas_head": {

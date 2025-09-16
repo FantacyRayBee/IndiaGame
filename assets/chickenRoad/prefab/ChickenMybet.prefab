@@ -2885,7 +2885,7 @@
     "sync": false
   },
   {
-    "__type__": "259f5OQGQNESbHHYp2YLxh5",
+    "__type__": "a9943sUoDtO1p3ZxcAYummx",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2901,12 +2901,8 @@
     "btnclose": {
       "__id__": 74
     },
-    "normalSp": {
-      "__uuid__": "199433e5-7a04-4a1c-97b6-375eb4c7bd78"
-    },
-    "markSp": {
-      "__uuid__": "89a1a7a8-ec36-4c09-88fc-c89fbfa0aa9d"
-    },
+    "normalSp": null,
+    "markSp": null,
     "_id": ""
   },
   {

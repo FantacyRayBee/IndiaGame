@@ -353,7 +353,7 @@ cc.Class({
             "miniclown": 18,
             "minimultiteenpatti": 19,
             "miniaviator": 20,
-            "minichicken": 21,
+            "minichickenroad": 21,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -365,7 +365,7 @@ cc.Class({
         let btnsMap = {
             "minirocket": this.btn_minirocket,
             "miniaviator": this.btn_miniaviator,
-            "minichicken": this.btn_minichicken,
+            "minichickenroad": this.btn_minichicken,
             "minijhandimunda": this.btn_minijhandimunda,
             "minimultiteenpatti": this.btn_minimultiteenpatti,
             "miniteenpatti": this.btn_miniteenpatti,
@@ -871,14 +871,14 @@ cc.Class({
                         }
                     }
                     break;
-                case "minichicken":
+                case "minichickenroad":
                     if (GlobalCfg.USER_DATAS.openModules.includes(127)) {
                         this.btn_minichicken.node.active = true;
                         GlobalCfg.SMALL_GAME_DATAS.chickenData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
                         GlobalCfg.SMALL_GAME_DATAS.chickenData.product = gameProduct;
-                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("chickenRoad");
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("chickenroad");
                         if (isNeedUpdata && cc.sys.isNative) {
-                            needUpdataArr.push("chickenRoad");
+                            needUpdataArr.push("chickenroad");
                         }
                     }
                     break;
@@ -1968,7 +1968,7 @@ cc.Class({
         }
         else if (btnName == 'btn_chicken'){
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_CRASH_GAME);
-            this.checkUpdate("chickenRoad", () => {
+            this.checkUpdate("chickenroad", () => {
                 CommonFun.getInstance().showProgress();
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.chickenData.product;
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CHICKEN);
