@@ -4267,7 +4267,7 @@
       }
     }
   },
-  "_atlasText": "\npuke01_xipai02.png\nsize: 512,256\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimages/paibei\n  rotate: false\n  xy: 2, 2\n  size: 155, 209\n  orig: 155, 209\n  offset: 0, 0\n  index: -1\nimages/paibei_hu\n  rotate: false\n  xy: 159, 13\n  size: 163, 198\n  orig: 163, 198\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\npuke01_xipai02.png\r\nsize: 512,256\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimages/paibei\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 155, 209\r\n  orig: 155, 209\r\n  offset: 0, 0\r\n  index: -1\r\nimages/paibei_hu\r\n  rotate: false\r\n  xy: 159, 13\r\n  size: 163, 198\r\n  orig: 163, 198\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "db020645-d31d-4001-9293-88e60e59407c"
