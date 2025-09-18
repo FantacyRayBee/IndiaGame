@@ -3,11 +3,11 @@ cc.Class({
 
     properties: {
         // main
-        chickenObj: cc.Node,
-        node_content: cc.Node,
-        node_item: cc.Node,
-        node_map_start: cc.Node,
-        node_map_end: cc.Node,
+        // chickenObj: cc.Node,
+        // node_content: cc.Node,
+        // node_item: cc.Node,
+        // node_map_start: cc.Node,
+        // node_map_end: cc.Node,
 
         btnclose: cc.Button,
         btn_att_Time: cc.Button,
@@ -42,7 +42,7 @@ cc.Class({
     },
 
     start() {
-        this.contentStartPosX = this.node_content.position.x;
+        // this.contentStartPosX = this.node_content.position.x;
 
     },
 
@@ -53,10 +53,6 @@ cc.Class({
         this.edit_autoLevel.node.getComponent("ChickenEditbox").maxValue = this.mapConfig.length; //最大值
         this.edit_autoLevel.string = this.mapConfig.length.toString();
         this.edit_autoLevel.placeholder = this.mapConfig.length.toString();
-        // this.setMap();
-        // this.chickenObj.setParent(this.mapListArr[0]);
-        // this.chickenObj.active = true;
-        // this.chickenObj.setPosition(cc.Vec2(0, 0));
     },
 
     btnQuickClick(event) {

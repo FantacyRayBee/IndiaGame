@@ -15,7 +15,6 @@ cc.Class({
         node_button: cc.Node,
         lab_curBet: cc.Label,
         lab_withdraw: cc.Label,
-
         lab_autoTime: cc.Label,
 
         tog_difficulty1: cc.Toggle,
@@ -23,7 +22,6 @@ cc.Class({
         tog_difficulty3: cc.Toggle,
         tog_difficulty4: cc.Toggle,
         edit_Bet: cc.EditBox,
-
     },
 
     onLoad() {
@@ -34,111 +32,130 @@ cc.Class({
         }
 
         this.btn_play.node.on('click', this.onPlayClick, this);
-        this.btn_go.node.on('click', this.onMoveClick, this);
         this.btn_withdraw.node.on('click', this.onWithDrawClick, this);
         this.btn_auto.node.on('click', this.onAutoClick, this);
         this.btn_cancelAuto.node.on('click', this.onAutoCancelClick, this);
-        
+        this.btn_go.node.on('click', CommonFun.getInstance().debounce(this.onMoveClick, 1.2), this);
 
         this.tog_difficulty1.node.on('toggle', this.toggleClick, this);
         this.tog_difficulty2.node.on('toggle', this.toggleClick, this);
         this.tog_difficulty3.node.on('toggle', this.toggleClick, this);
         this.tog_difficulty4.node.on('toggle', this.toggleClick, this);
+
+        let playNode = this.btn_play.node.getChildByName("play");
+        let pauseNode = this.btn_play.node.getChildByName("pause");
+        let labAutoCountNode = this.lab_autoTime.node;  // 如果 lab_autoTime 是 cc.Label
+        const scene = GlobalCfg.ACT_SCENE_CTRL;
+        // 鼠标进入按钮区域
+        this.btn_play.node.on(cc.Node.EventType.MOUSE_ENTER, () => {
+            if(scene.isAutoGame){
+                labAutoCountNode.active = false;
+                playNode.active = scene.isPause;
+                pauseNode.active = !scene.isPause;
+            }
+        });
+        // 鼠标移出按钮区域
+        this.btn_play.node.on(cc.Node.EventType.MOUSE_LEAVE, () => {
+            labAutoCountNode.active = true;
+            playNode.active = false;
+            pauseNode.active = false;
+        });
     },
 
     start() {
-        this.quickBetStr = [1000, 2000, 5000, 10000]; //需要除以100
+        this.quickBetStr = [1000, 2000, 5000, 10000];
         this.minBet = 1000;
         this.maxBet = 100000;
         this.curBet = 1000;
-        this.isPause = false;
-        this.NowToggleName = "tog_difficulty1"
-        this.setViewByToggleName(this.NowToggleName)
-        this.init()
+
+        this.NowToggleName = "tog_difficulty1";
+        this.setViewByToggleName(this.NowToggleName);
+        this.init();
     },
 
-    init(){
-        if (this.isAutoGame == true) {
-            return; //自动游戏，不初始化
-        }
-        this.btn_play.node.active = true
-        this.btn_auto.node.active = true
-        this.btn_go.node.active = false
-        this.btn_withdraw.node.active = false
+    init() {
+        this.btn_play.node.active = true;
+        this.btn_auto.node.active = true;
+        this.btn_go.node.active = false;
+        this.btn_withdraw.node.active = false;
+        this.btn_cancelAuto.node.active = false;
+        this.lab_autoTime.string = "GO";
+        this.edit_Bet.string = this.curBet / 100;
     },
 
-    btnClick: function (btn) {
-        let btnName = btn.node.name;
+    // ====== 下注按钮 ======
+    btnClick(btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
-        if (btnName === "btn_min") {
+        const n = btn.node.name;
+        if (n === "btn_min") {
             this.dealBetChangeEvent(2);
-        } 
-        else if (btnName === "btn_max") {
+        } else if (n === "btn_max") {
             this.dealBetChangeEvent(1);
-        }
-        else if (btnName === "btn_bet_quick1") {
+        } else if (n === "btn_bet_quick1") {
             this.dealQuickBetEvent(0);
-        }
-        else if (btnName === "btn_bet_quick2") {
+        } else if (n === "btn_bet_quick2") {
             this.dealQuickBetEvent(1);
-        }
-        else if (btnName === "btn_bet_quick3") {
+        } else if (n === "btn_bet_quick3") {
             this.dealQuickBetEvent(2);
-        }
-        else if (btnName === "btn_bet_quick4") {
+        } else if (n === "btn_bet_quick4") {
             this.dealQuickBetEvent(3);
         }
     },
 
-    dealBetChangeEvent: function (type) {
-        if (type == 1) {
-            this.curBet = this.maxBet;
-        } else if (type == 2) {
-            this.curBet = this.minBet;
-        }
-        this.edit_Bet.string = CommonFun.getInstance().fixed(this.curBet / 100);
+    dealBetChangeEvent(type) {
+        let curBet = (type === 1) ? this.maxBet : this.minBet;
+        this.edit_Bet.string = curBet / 100
     },
 
-    dealQuickBetEvent: function (type) {
-        this.curBet = this.quickBetStr[type];
-        this.edit_Bet.string = CommonFun.getInstance().fixed(this.curBet / 100);
+    dealQuickBetEvent(idx) {
+        let curBet = this.quickBetStr[idx];
+        this.edit_Bet.string = curBet / 100
     },
 
+    // ====== 按钮交互 ======
     onPlayClick() {
-        if (this.isAutoGame) {
-            //如果是自动游戏 逻辑为 暂停
-            this.isPause = !this.isPause
-            GlobalCfg.ACT_SCENE_CTRL.pauseGame(this.isPause)
+        const scene = GlobalCfg.ACT_SCENE_CTRL;
+        if (!scene) return;
+        if (scene.isAutoGame) {
+            scene.togglePause();
+            return;
         }
-        else{
-            GlobalCfg.ACT_SCENE_CTRL.startGame()
-            this.setButtonEnabled(false)
-            this.btn_play.node.active = false
-            this.btn_auto.node.active = false
-            this.btn_go.node.active = true
-            this.btn_withdraw.node.active = true
+        if (this.curBet > GlobalCfg.USER_DATAS.userDiamond) {
+            CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return;
         }
+        scene.startGame();
+        this.setButtonEnabled(false);
+        this.btn_play.node.active = false;
+        this.btn_auto.node.active = false;
+        this.btn_go.node.active = true;
+        this.btn_withdraw.node.active = true;
     },
+
     onMoveClick() {
-        GlobalCfg.ACT_SCENE_CTRL.chickenMove()  
+        const scene = GlobalCfg.ACT_SCENE_CTRL;
+        if (scene) scene.sendMove();
     },
 
     onWithDrawClick() {
-        GlobalCfg.ACT_SCENE_CTRL.withDraw()
+        const scene = GlobalCfg.ACT_SCENE_CTRL;
+        if (scene) scene.withDraw();
     },
+
     onAutoClick() {
-        GlobalCfg.ACT_SCENE_CTRL.showAutoSetting()
+        const scene = GlobalCfg.ACT_SCENE_CTRL;
+        if (scene) scene.showAutoSetting();
     },
 
     onAutoCancelClick() {
-        GlobalCfg.ACT_SCENE_CTRL.stopAutoSchedule()
-        this.btn_play.node.active = false
-        this.btn_auto.node.active = false
-        this.btn_go.node.active = true
-        this.btn_withdraw.node.active = true
+        const scene = GlobalCfg.ACT_SCENE_CTRL;
+        if (scene) scene.stopAutoSchedule(true);
     },
 
-    setButtonEnabled: function (enabled) {
+    // ====== 控件状态 ======
+    setButtonEnabled(enabled) {
         this.btn_min.interactable = enabled;
         this.btn_max.interactable = enabled;
         for (let i = 0; i < this.btn_bet_quicks.length; i++) {
@@ -146,73 +163,76 @@ cc.Class({
         }
         this.edit_Bet.enabled = enabled;
         this.node_button.opacity = enabled ? 255 : 160;
-        
+
         this.tog_difficulty1.interactable = enabled;
         this.tog_difficulty2.interactable = enabled;
         this.tog_difficulty3.interactable = enabled;
         this.tog_difficulty4.interactable = enabled;
     },
 
-    setPlayButtonEnabled: function (enabled) {
+    setPlayButtonEnabled(enabled) {
         this.btn_play.interactable = enabled;
         this.btn_auto.interactable = enabled;
         this.btn_go.interactable = enabled;
         this.btn_withdraw.interactable = enabled;
     },
 
-    setMultiplier: function (curWinMoney) {
+    setMultiplier(curWinMoney) {
         let ret = curWinMoney / 100;
         this.lab_withdraw.string = CommonFun.getInstance().fixed(ret) + " INR";
     },
 
-    getCurBet: function () {
-        return this.curBet;
+    getCurBet() { return this.curBet; },
+
+    // ====== 自动模式 UI ======
+    startAutoGame(autoTime) {
+        this.btn_play.node.active = true;
+        this.btn_auto.node.active = false;
+        this.btn_withdraw.node.active = false;
+        this.btn_go.node.active = false;
+        this.btn_cancelAuto.node.active = true;
+
+        // ★ 次数显示逻辑
+        this.lab_autoTime.string = autoTime > 0 ? autoTime.toString() : "GO";
     },
 
-    toggleClick: function (toggle) {
-        GlobalCfg.G_COMPONENTS.Audio.playButton();
-        let toggleName = toggle.node.name;
-        this.setViewByToggleName(toggleName);
-    },
-
-    startAutoGame: function (time) {
-        this.isAutoGame = true;
-        this.autoTime = time;
-
-        this.btn_play.node.active = true
-        this.btn_auto.node.active = false
-        this.btn_withdraw.node.active = false
-        this.btn_go.node.active = false
-        this.btn_cancelAuto.node.active = true
-        this.lab_autoTime.string = this.autoTime;
-    },
-
-
-    endAutoGame: function () {
-        this.isAutoGame = false;
-
-        this.btn_play.node.active = true
-        this.btn_auto.node.active = true
-        this.btn_withdraw.node.active = false
-        this.btn_go.node.active = false
-        this.btn_cancelAuto.node.active = false
+    endAutoGame(isGameing) {
+        if (isGameing) {
+            this.btn_play.node.active = false;
+            this.btn_auto.node.active = false;
+            this.btn_withdraw.node.active = true;
+            this.btn_go.node.active = true;
+        }
+        else{
+            this.btn_play.node.active = true;
+            this.btn_auto.node.active = true;
+            this.btn_withdraw.node.active = false;
+            this.btn_go.node.active = false;
+        }
+        this.btn_cancelAuto.node.active = false;
         this.lab_autoTime.string = "GO";
     },
-    
+
+    // ====== 难度切换 ======
+    toggleClick(toggle) {
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        this.setViewByToggleName(toggle.node.name);
+    },
+
     setViewByToggleName(toggleName) {
+        if (toggleName === this.NowToggleName) return;
+
         let difficulty = 0;
-        if (toggleName == this.NowToggleName)
-            return
-        else if (toggleName == 'tog_difficulty1') {
-            difficulty = 0;
-        } else if (toggleName == 'tog_difficulty2') {
-            difficulty = 1;
-        } else if (toggleName == 'tog_difficulty3') {
-            difficulty = 2;
-        } else if (toggleName == 'tog_difficulty4') {
-            difficulty = 3;
-        }
+        if (toggleName === 'tog_difficulty1') difficulty = 0;
+        else if (toggleName === 'tog_difficulty2') difficulty = 1;
+        else if (toggleName === 'tog_difficulty3') difficulty = 2;
+        else if (toggleName === 'tog_difficulty4') difficulty = 3;
+
         this.NowToggleName = toggleName;
-        GlobalCfg.ACT_SCENE_CTRL.setDiffculty(difficulty)
+        GlobalCfg.ACT_SCENE_CTRL.setDiffculty(difficulty);
+    },
+
+    update(){
+        this.curBet = parseInt(this.edit_Bet.string) * 100;
     }
 });

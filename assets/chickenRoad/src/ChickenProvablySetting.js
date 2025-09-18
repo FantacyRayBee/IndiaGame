@@ -21,7 +21,6 @@ cc.Class({
     start() {
         let md5Hash = md5(GlobalCfg.USER_DATAS.userId);
         this.lab_seed1.string = this.truncateUtf8Bytes(md5Hash, 15);
-        this.dealChange();
     },
 
     btnClick(event) {
@@ -35,6 +34,9 @@ cc.Class({
         }
         else if (name == this.btn_close.node.name) {
             this.node.destroy();
+            GlobalCfg.ACT_SCENE_CTRL.popupLayer.destroyAllChildren();
+            GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = false;
+            GlobalCfg.ACT_SCENE_CTRL.touchbg.active = false;
         }
     },
 

@@ -2133,6 +2133,9 @@ cc.Class({
             case "aviator":
                 upDateMaskNode = this.btn_miniaviator.node.getChildByName("upDateMask");
                 break;
+            case "chickenroad":
+                upDateMaskNode = this.btn_minichicken.node.getChildByName("upDateMask");
+                break;
             case "zooGame":
                 upDateMaskNode = this.btn_minizoo.node.getChildByName("upDateMask");
                 break;

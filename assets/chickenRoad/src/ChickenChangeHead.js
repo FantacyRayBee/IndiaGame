@@ -20,6 +20,9 @@ cc.Class({
 
     onCloseClick() {
         this.node.destroy();
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.destroyAllChildren();
+        GlobalCfg.ACT_SCENE_CTRL.popupLayer.active = false;
+        GlobalCfg.ACT_SCENE_CTRL.touchbg.active = false;
     },
 
     init() {

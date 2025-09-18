@@ -593,7 +593,9 @@ cc.Class({
       "gameservice.loadwhole": "LoadWholeAck",
       "gameservice.exit": "ExitAck",
       "gameservice.getplayerrecord": "GetPlayerRecordAck",
-      "gameservice.sethead": "SetHeadAck"
+      "gameservice.sethead": "SetHeadAck",
+      "gameservice.bet": "BetAck",
+      "gameservice.cash": "CashAck"
     };
 
     // 动物园

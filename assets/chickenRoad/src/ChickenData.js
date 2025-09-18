@@ -21,6 +21,16 @@ cc.Class({
                 2643.89, 9161.08, 39301.05, 23448.29, 2542251.93
             ]
         };
+
+        // 在线人数配置（按印度时间）
+        this.onlineConfig = [
+            { start: 2,  end: 6,  min: 2000, max: 4000 },
+            { start: 6,  end: 10, min: 3000, max: 5000 },
+            { start: 10, end: 14, min: 5000, max: 8000 },
+            { start: 14, end: 20, min: 8000, max: 12000 },
+            { start: 20, end: 24, min: 8000, max: 12000 },
+            { start: 0,  end: 2,  min: 8000, max: 12000 }
+        ];
     },
     getMapConfig(difficulty) {
         switch (difficulty) {
@@ -36,5 +46,31 @@ cc.Class({
                 cc.warn("未知的难度编号: " + difficulty);
                 return null;
         }
+    },
+
+
+    // 获取当前时间的印度时区小时
+    getIndiaHour() {
+        let nowUtc = new Date();
+        // 印度时区 +5:30，换算毫秒
+        let indiaTime = new Date(nowUtc.getTime() + (5.5 * 60 * 60 * 1000));
+        return indiaTime.getUTCHours();
+    },
+
+    // 获取当前在线人数（随机区间值）
+    getOnlineCount() {
+        let hour = this.getIndiaHour();
+        for (let i = 0; i < this.onlineConfig.length; i++) {
+            let cfg = this.onlineConfig[i];
+            if (hour >= cfg.start && hour < cfg.end) {
+                return this.randInt(cfg.min, cfg.max);
+            }
+        }
+        // 没匹配到（理论不会走到这），默认给一个
+        return this.randInt(2000, 4000);
+    },
+
+    randInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 });

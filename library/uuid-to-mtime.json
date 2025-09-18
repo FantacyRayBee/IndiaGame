@@ -735,8 +735,8 @@
     "relativePath": "aviator\\res"
   },
   "626cefa8-b2ac-4258-875d-9e38966d6e87": {
-    "asset": 1757322162259,
-    "meta": 1757581059485,
+    "asset": 1758075446766,
+    "meta": 1758076039171,
     "relativePath": "aviator\\sound"
   },
   "090ed0ad-ebfa-4131-a78f-d2f23dcd93c3": {
@@ -835,8 +835,8 @@
     "relativePath": "bullMachine\\src"
   },
   "8639e3e5-63de-4e80-ba6c-d610e6aa7b0d": {
-    "asset": 1757670605860,
-    "meta": 1757900121655,
+    "asset": 1757993617056,
+    "meta": 1758076039172,
     "relativePath": "chickenroad\\anim"
   },
   "bfe563c7-eaab-46e4-b361-d020e59b60cd": {
@@ -845,23 +845,23 @@
     "relativePath": "chickenroad\\font"
   },
   "9102aa97-40bf-4a70-b692-bcdb3130d8fe": {
-    "asset": 1757474095758,
-    "meta": 1757581059495,
+    "asset": 1757901683463,
+    "meta": 1757986463169,
     "relativePath": "chickenroad\\prefab"
   },
   "05251197-0f80-4a33-a644-5da7efea54b0": {
-    "asset": 1757474095797,
-    "meta": 1757581059496,
+    "asset": 1757901569133,
+    "meta": 1757986463170,
     "relativePath": "chickenroad\\res"
   },
   "1e771634-e065-4cfb-adef-af296bbe16e5": {
-    "asset": 1757486820732,
-    "meta": 1757581059496,
+    "asset": 1758075660063,
+    "meta": 1758076039172,
     "relativePath": "chickenroad\\sound"
   },
   "98f4fabf-2776-4886-b387-9c7b242dd1fa": {
-    "asset": 1757668722947,
-    "meta": 1757900121655,
+    "asset": 1758092753172,
+    "meta": 1758095045986,
     "relativePath": "chickenroad\\src"
   },
   "3edf5123-3218-4377-aeab-88171f970a8d": {
@@ -1200,8 +1200,8 @@
     "relativePath": "LanguageEnglish\\GameSetting"
   },
   "6cf4fb21-462c-445c-a1ff-3e628530c3ac": {
-    "asset": 1757928328602,
-    "meta": 1757928328610,
+    "asset": 1758104603066,
+    "meta": 1758104603070,
     "relativePath": "chickenroad\\chickenroad.fire"
   },
   "3107a072-250c-4df5-8172-b820d3ccb203": {
@@ -2899,20 +2899,10 @@
     "meta": 1757581060946,
     "relativePath": "aviator\\prefab\\rateMark.prefab"
   },
-  "871a1423-cf65-4560-a58d-251cd5720d9b": {
-    "asset": 1757322162260,
-    "meta": 1757581060952,
-    "relativePath": "aviator\\src\\AviatorAudioManager.js"
-  },
   "db281fc7-22a4-4f3f-b799-13509606aafa": {
     "asset": 1757322162260,
     "meta": 1757581060961,
     "relativePath": "aviator\\src\\AviatorAutoSetting.js"
-  },
-  "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
-    "asset": 1757578704214,
-    "meta": 1757581060983,
-    "relativePath": "aviator\\src\\AviatorBetCtrl.js"
   },
   "b2e5e762-7179-4583-aa30-cf40f24d8676": {
     "asset": 1757322162169,
@@ -2978,11 +2968,6 @@
     "asset": 1757322162264,
     "meta": 1757581061067,
     "relativePath": "aviator\\src\\AviatorRecordRectCtrl.js"
-  },
-  "e21ea6b4-6c65-42e4-851f-be896b2cdd46": {
-    "asset": 1757322162265,
-    "meta": 1757581061071,
-    "relativePath": "aviator\\src\\AviatorReward.js"
   },
   "885ec5ff-b231-4e5d-a1ca-de358cec2521": {
     "asset": 1757558441160,
@@ -3980,8 +3965,8 @@
     "relativePath": "bullMachine\\sound\\zhuang.mp3"
   },
   "44f4d0eb-8884-452b-8d08-26c9500c1cb3": {
-    "asset": 1757663578909,
-    "meta": 1757900121656,
+    "asset": 1758014997894,
+    "meta": 1758076039173,
     "relativePath": "chickenroad\\res\\main"
   },
   "a8e48403-b7f5-4412-a300-b960ca1d7191": {
@@ -4024,16 +4009,6 @@
     "meta": 1757581061735,
     "relativePath": "bullMachine\\spine\\superwin.atlas"
   },
-  "50e66cc8-0cca-48b3-a0ab-d70a9387153d": {
-    "asset": 1757486803994,
-    "meta": 1757581061741,
-    "relativePath": "chickenroad\\src\\ChickenAudioManager.js"
-  },
-  "7a495f05-cc22-4c47-8ffd-e4cf73de7f2b": {
-    "asset": 1757559292424,
-    "meta": 1757581061753,
-    "relativePath": "chickenroad\\src\\ChickenData.js"
-  },
   "965b2d0b-7d88-4c63-a51b-b38924235060": {
     "asset": 1757658943528,
     "meta": 1757658943531,
@@ -4044,19 +4019,14 @@
     "meta": 1757647794367,
     "relativePath": "chickenroad\\prefab\\ChickenHowToPlay.prefab"
   },
-  "800219d9-1ac0-4fe2-91b9-c45374448f81": {
-    "asset": 1757557209654,
-    "meta": 1757581061796,
-    "relativePath": "chickenroad\\src\\ChickenRule.js"
-  },
   "578195f7-6e73-490b-8db2-a15937b07935": {
     "asset": 1757322083999,
     "meta": 1757581061796,
     "relativePath": "Benz\\Sound\\w9.mp3"
   },
   "18aad775-70a6-4c82-990b-fe6101888644": {
-    "asset": 1757656497897,
-    "meta": 1757656497902,
+    "asset": 1758091772440,
+    "meta": 1758091772443,
     "relativePath": "chickenroad\\prefab\\ChickenMybet.prefab"
   },
   "a0904ed0-4964-4015-945a-394bad3f3769": {
@@ -4070,14 +4040,9 @@
     "relativePath": "chickenroad\\prefab\\ChickenRewardPop.prefab"
   },
   "4462b886-2edd-4e59-a14b-8c373ce5193f": {
-    "asset": 1757474095756,
-    "meta": 1757581061810,
+    "asset": 1758091871024,
+    "meta": 1758091871030,
     "relativePath": "chickenroad\\prefab\\ChickenRule.prefab"
-  },
-  "d378fe7c-6eb2-4d59-af42-5c47e9141160": {
-    "asset": 1757496136018,
-    "meta": 1757581061811,
-    "relativePath": "chickenroad\\anim\\fire_max.atlas"
   },
   "b27eef77-4359-42e6-b46d-091ae0ea5095": {
     "asset": 1757322149321,
@@ -4110,8 +4075,8 @@
     "relativePath": "cricketGame\\res\\font"
   },
   "7c3f74d1-2489-43ec-98ab-d29f4d27cf22": {
-    "asset": 1757647516929,
-    "meta": 1757647516937,
+    "asset": 1758103663145,
+    "meta": 1758103663151,
     "relativePath": "chickenroad\\prefab\\ChickenSetting.prefab"
   },
   "3925c935-eba4-4321-811e-1fe45e9da103": {
@@ -4294,16 +4259,6 @@
     "meta": 1757581062059,
     "relativePath": "fruitMachine\\prefab\\fruitItem.prefab"
   },
-  "3ef46e5e-52da-4929-954a-2ebeb286c8bf": {
-    "asset": 1757486820331,
-    "meta": 1757581062065,
-    "relativePath": "chickenroad\\sound\\end.mp3"
-  },
-  "39b1f715-a317-4fe4-82a8-5918581c6c97": {
-    "asset": 1757486819455,
-    "meta": 1757581062066,
-    "relativePath": "chickenroad\\sound\\ding.mp3"
-  },
   "129f8b4a-87b7-44f5-b607-9cb834420881": {
     "asset": 1757322085304,
     "meta": 1757581062071,
@@ -4356,17 +4311,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1757322085304,
-    "meta": 1757900121700,
+    "meta": 1758095046035,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1757322085305,
-    "meta": 1757900121702,
+    "meta": 1758095046035,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1757322085307,
-    "meta": 1757900121701,
+    "meta": 1758095046035,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "3c628d27-bc57-40cd-9e83-e3ccb92f6614": {
@@ -4376,12 +4331,12 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1757322085309,
-    "meta": 1757900121701,
+    "meta": 1758095046036,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1757322085311,
-    "meta": 1757900121703,
+    "meta": 1758095046037,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "b74e8fe9-a5f0-464a-8a79-7a5f9848caf0": {
@@ -4411,7 +4366,7 @@
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1757322085313,
-    "meta": 1757900121704,
+    "meta": 1758095046037,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e93aa68e-6043-48f3-85b1-43f5dfa6bb0f": {
@@ -4476,7 +4431,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1757322085315,
-    "meta": 1757900121703,
+    "meta": 1758095046036,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "6877db0b-48c2-420b-aff7-7df0a19b283a": {
@@ -4491,7 +4446,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1757322085317,
-    "meta": 1757900121702,
+    "meta": 1758095046037,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "bb75acd4-974b-406d-9fcd-5c5f35c89279": {
@@ -4511,7 +4466,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1757322085318,
-    "meta": 1757900121709,
+    "meta": 1758095046038,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "f681825f-1f02-4df6-87e9-38fee7282e76": {
@@ -4521,18 +4476,13 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1757322085320,
-    "meta": 1757900121706,
+    "meta": 1758095046040,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "d9123d6d-448d-4fa6-b13d-fb97bb85cace": {
     "asset": 1757322085349,
     "meta": 1757581075454,
     "relativePath": "horseRaceGame\\horseFont\\betBlue.fnt"
-  },
-  "8224b193-907d-4c97-beb4-4cb118c1681b": {
-    "asset": 1757486818692,
-    "meta": 1757581062182,
-    "relativePath": "chickenroad\\sound\\bgm.mp3"
   },
   "28b5e55d-54f3-4cad-a5a0-d36ccec11178": {
     "asset": 1757322085350,
@@ -4581,7 +4531,7 @@
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1757322085322,
-    "meta": 1757900121704,
+    "meta": 1758095046039,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0cfca949-9645-45bb-9628-7f18a77135ad": {
@@ -4596,7 +4546,7 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1757322085324,
-    "meta": 1757900121705,
+    "meta": 1758095046038,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "afe69c46-f65a-43ce-a034-447ec67ba92f": {
@@ -4656,7 +4606,7 @@
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1757322085327,
-    "meta": 1757900121707,
+    "meta": 1758095046039,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "790757c7-1078-49ec-9e5b-0aabc0a123b4": {
@@ -4718,11 +4668,6 @@
     "asset": 1757496073481,
     "meta": 1757581075486,
     "relativePath": "chickenroad\\anim\\chinken.json"
-  },
-  "0fee3046-6b4e-489d-accb-1887e2b7bbba": {
-    "asset": 1757496136019,
-    "meta": 1757581075486,
-    "relativePath": "chickenroad\\anim\\fire_max.json"
   },
   "d8bd1b1a-7883-4706-81a1-b16d5c5219fc": {
     "asset": 1757574889106,
@@ -5633,11 +5578,6 @@
     "asset": 1757322149475,
     "meta": 1757581062766,
     "relativePath": "jokerMachine\\sound\\ExtraBuy_Show.mp3"
-  },
-  "af015024-62e5-46a5-a654-4b111e11f300": {
-    "asset": 1757496136027,
-    "meta": 1757581062753,
-    "relativePath": "chickenroad\\anim\\fire_max.png"
   },
   "3cd13432-d0b3-4f41-8fc6-e53c45c04a87": {
     "asset": 1757322149477,
@@ -9579,11 +9519,6 @@
     "meta": 1757581064382,
     "relativePath": "ResourcesBundle\\res\\smallGame"
   },
-  "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1757485934678,
-    "meta": 1757581064470,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
-  },
   "ae696d2f-1780-4884-b824-98f2569a85bd": {
     "asset": 1757322149072,
     "meta": 1757581064470,
@@ -9655,8 +9590,8 @@
     "relativePath": "rocket\\res\\game_rock"
   },
   "cb20fc61-7404-4162-86b3-fe27621912c7": {
-    "asset": 1757486707276,
-    "meta": 1757581064489,
+    "asset": 1758100140590,
+    "meta": 1758100140597,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.fire"
   },
   "020754f5-0a2d-47c8-9a5c-e206ca1e6ba6": {
@@ -10051,7 +9986,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1757322149141,
-    "meta": 1757900121711,
+    "meta": 1758095046046,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "1e825271-229e-48aa-be0b-ff0ae13b9e3b": {
@@ -14906,7 +14841,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1757322085485,
-    "meta": 1757900121705,
+    "meta": 1758095046039,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "aa3da91c-0b74-4235-93bb-6a545a55c6a6": {
@@ -22376,7 +22311,7 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1757322149396,
-    "meta": 1757900121705,
+    "meta": 1758095046040,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "d138bd38-0cb7-4ec7-97d7-527a5957ce7f": {
@@ -22396,7 +22331,7 @@
   },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1757322149392,
-    "meta": 1757900121709,
+    "meta": 1758095046044,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
   },
   "97e04a2d-8034-488d-ae4f-9c87f41a3063": {
@@ -22406,7 +22341,7 @@
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1757322149406,
-    "meta": 1757900121709,
+    "meta": 1758095046041,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "c5162e85-5ecb-49a4-8049-8ce7b922b3d6": {
@@ -22431,7 +22366,7 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1757322149413,
-    "meta": 1757900121707,
+    "meta": 1758095046041,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "9a5e4567-0aa8-47d2-95af-aa841cafc076": {
@@ -22456,7 +22391,7 @@
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1757322149416,
-    "meta": 1757900121708,
+    "meta": 1758095046042,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
   },
   "8ddc87ee-ee4a-49bd-b2a2-b0b2917e22fc": {
@@ -22466,7 +22401,7 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1757322149390,
-    "meta": 1757900121711,
+    "meta": 1758095046045,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "c8f622e6-8a4d-4ad4-9549-efbb058336e7": {
@@ -22481,7 +22416,7 @@
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1757322149404,
-    "meta": 1757900121712,
+    "meta": 1758095046046,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "0ae2826c-e6dc-4ba5-83d4-c83f80159e16": {
@@ -22656,7 +22591,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1757322149436,
-    "meta": 1757900121708,
+    "meta": 1758095046041,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "f01b603d-bbb4-44e6-abbd-0f2e2d6b54c3": {
@@ -22691,7 +22626,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1757322149439,
-    "meta": 1757900121708,
+    "meta": 1758095046042,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "c03bd500-945c-4add-b0ac-1ae8c8d733dd": {
@@ -22716,7 +22651,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1757322149442,
-    "meta": 1757900121707,
+    "meta": 1758095046043,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -22726,7 +22661,7 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1757322149445,
-    "meta": 1757900121709,
+    "meta": 1758095046043,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -22736,7 +22671,7 @@
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1757322149447,
-    "meta": 1757900121706,
+    "meta": 1758095046043,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -22746,12 +22681,12 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1757322149450,
-    "meta": 1757900121710,
+    "meta": 1758095046044,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1757322149453,
-    "meta": 1757900121712,
+    "meta": 1758095046047,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "fe341427-4214-4596-b78a-9d5022464e37": {
@@ -22761,7 +22696,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1757322149455,
-    "meta": 1757900121713,
+    "meta": 1758095046046,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "35256c73-69f4-48b0-980f-c2f9181dbec3": {
@@ -22776,7 +22711,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1757322149459,
-    "meta": 1757900121712,
+    "meta": 1758095046046,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "b5740772-4dec-460c-85dd-c6098f4767bc": {
@@ -22861,7 +22796,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1757322149462,
-    "meta": 1757900121713,
+    "meta": 1758095046047,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "ebfe2a62-c23e-4d5e-86a4-14c84cf4cbad": {
@@ -31529,50 +31464,20 @@
     "meta": 1757646782770,
     "relativePath": "aviator\\src\\AviatorMessageManager.js"
   },
-  "fc097dc7-49e3-4f0a-b7ec-afe2d7c2ea5a": {
-    "asset": 1757646742168,
-    "meta": 1757646782813,
-    "relativePath": "resources\\proto\\aviator\\gameservice.proto"
-  },
   "589bb17d-e8ba-4672-95f8-1e63f459dec2": {
     "asset": 1757647144206,
     "meta": 1757647162775,
     "relativePath": "aviator\\src\\AviatorSetting.js"
-  },
-  "de49df87-6e4a-44df-a73d-c8d090f88016": {
-    "asset": 1757656244397,
-    "meta": 1757656245735,
-    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
   },
   "4bdd1436-c8f5-450d-9be8-3dc319b08c80": {
     "asset": 1757656458023,
     "meta": 1757656458037,
     "relativePath": "chickenroad\\res\\main\\Rectangle 101.png"
   },
-  "a9943b14-a03b-4ed6-9dd9-c5c018ba69b1": {
-    "asset": 1757656541155,
-    "meta": 1757656547196,
-    "relativePath": "chickenroad\\src\\ChickenMybet.js"
-  },
   "ce0766a6-0bce-4b63-adba-7fdf318281dc": {
     "asset": 1757658399140,
     "meta": 1757658492172,
     "relativePath": "chickenroad\\src\\ChickenSetting.js"
-  },
-  "f5811cde-44d4-4598-b11e-b5b682aaf844": {
-    "asset": 1757658921661,
-    "meta": 1757658926097,
-    "relativePath": "chickenroad\\src\\ChickenChangeHead.js"
-  },
-  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
-    "asset": 1757658966860,
-    "meta": 1757658994764,
-    "relativePath": "aviator\\src\\Aviator.js"
-  },
-  "8c31eff7-881c-48b4-9e26-bea665c929fa": {
-    "asset": 1757660546227,
-    "meta": 1757660551228,
-    "relativePath": "resources\\proto\\chickenroad\\gameservice.proto"
   },
   "a613c51a-239a-4ac7-9436-1c218a9da2b0": {
     "asset": 1757663027443,
@@ -31583,11 +31488,6 @@
     "asset": 1757663559329,
     "meta": 1757663559343,
     "relativePath": "chickenroad\\res\\main\\img_egg2.png"
-  },
-  "301a7e01-2443-4079-b987-3e361edaa957": {
-    "asset": 1757664549313,
-    "meta": 1757664582093,
-    "relativePath": "chickenroad\\src\\ChickenProvablySetting.js"
   },
   "3efd3f7c-a6f0-4fbf-af5d-aa501a332d30": {
     "asset": 1757670605859,
@@ -31605,8 +31505,8 @@
     "relativePath": "chickenroad\\anim\\win_k.png"
   },
   "a118e5e3-47f8-44b4-90c4-ff72a5d5879b": {
-    "asset": 1757901565318,
-    "meta": 1757901565319,
+    "asset": 1757916501681,
+    "meta": 1757986463170,
     "relativePath": "chickenroad\\res\\auto"
   },
   "217a57e0-4cdf-4c6a-9557-70de85807955": {
@@ -31715,8 +31615,8 @@
     "relativePath": "chickenroad\\res\\auto\\tanchuang.png"
   },
   "5f6505aa-80e6-4aca-8e0a-2f344dd49bad": {
-    "asset": 1757927490114,
-    "meta": 1757927490117,
+    "asset": 1758100139820,
+    "meta": 1758100139826,
     "relativePath": "chickenroad\\prefab\\ChickenAutoSetting.prefab"
   },
   "d4c9dc7a-3770-40c7-9759-80bca861cb08": {
@@ -31724,35 +31624,15 @@
     "meta": 1757916501690,
     "relativePath": "chickenroad\\res\\auto\\img_egg2.png"
   },
-  "a044c41d-4feb-46d6-92d3-66adf3b2500d": {
-    "asset": 1757917245388,
-    "meta": 1757917253167,
-    "relativePath": "chickenroad\\src\\ChickenMapItem2.js"
-  },
   "c5f251c6-1d29-4d93-96e1-d71bf81e51f2": {
     "asset": 1757920713860,
     "meta": 1757920731348,
     "relativePath": "aviator\\src\\AviatorEditbox.js"
   },
-  "d254611b-674b-4036-b40b-56730dd73690": {
-    "asset": 1757920729030,
-    "meta": 1757920731359,
-    "relativePath": "chickenroad\\src\\ChickenEditbox.js"
-  },
-  "ed27ea93-10b0-4daf-9dea-3ad942a27495": {
-    "asset": 1757926092705,
-    "meta": 1757926104965,
-    "relativePath": "chickenroad\\src\\ChickenBet.js"
-  },
   "548b6e76-5d28-4f26-8d65-5052391055f3": {
     "asset": 1757927323670,
     "meta": 1757927323679,
     "relativePath": "chickenroad\\res\\main\\green.png"
-  },
-  "0662569d-a4e7-4408-b378-4f7ec272e990": {
-    "asset": 1757928186020,
-    "meta": 1757928192601,
-    "relativePath": "chickenroad\\src\\ChickenAutoSetting.js"
   },
   "b067fb66-4c92-4ace-9bfe-06547f5446d5": {
     "asset": 1757928263537,
@@ -31769,19 +31649,139 @@
     "meta": 1757928306973,
     "relativePath": "chickenroad\\res\\main\\Rectangle 91.png"
   },
-  "cc7c6940-68f7-4b94-92bb-24f02ecfdd58": {
-    "asset": 1757929187075,
-    "meta": 1757929225675,
-    "relativePath": "chickenroad\\src\\ChickenReward.js"
+  "e21ea6b4-6c65-42e4-851f-be896b2cdd46": {
+    "asset": 1757990310428,
+    "meta": 1757990440352,
+    "relativePath": "aviator\\src\\AviatorReward.js"
+  },
+  "de49df87-6e4a-44df-a73d-c8d090f88016": {
+    "asset": 1757989884558,
+    "meta": 1757990440484,
+    "relativePath": "Main\\Script\\Common\\Config\\ProtoCfg.js"
+  },
+  "7d83863e-9066-49f8-b5de-53294d24c958": {
+    "asset": 1757993617048,
+    "meta": 1757993617147,
+    "relativePath": "chickenroad\\anim\\fire_max.json"
+  },
+  "a7bf357a-5dc1-4e03-a61b-4368832af004": {
+    "asset": 1757993617048,
+    "meta": 1757993617061,
+    "relativePath": "chickenroad\\anim\\fire_max.atlas"
+  },
+  "ec178d03-ef8d-44c1-bf0c-24f67c64b68c": {
+    "asset": 1757993617054,
+    "meta": 1757993617144,
+    "relativePath": "chickenroad\\anim\\fire_max.png"
   },
   "58089cd6-920c-48d0-9284-d2fbb3a7b6c8": {
-    "asset": 1757930111913,
-    "meta": 1757930113229,
+    "asset": 1758004490423,
+    "meta": 1758004491680,
     "relativePath": "chickenroad\\src\\ChickenMapItem.js"
   },
+  "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
+    "asset": 1758006305239,
+    "meta": 1758006316730,
+    "relativePath": "aviator\\src\\AviatorBetCtrl.js"
+  },
+  "cc7c6940-68f7-4b94-92bb-24f02ecfdd58": {
+    "asset": 1758014010346,
+    "meta": 1758014011795,
+    "relativePath": "chickenroad\\src\\ChickenReward.js"
+  },
+  "f1e01c28-2f11-4e44-9757-90ea24f7a374": {
+    "asset": 1758014997892,
+    "meta": 1758014997904,
+    "relativePath": "chickenroad\\res\\main\\Group 140.png"
+  },
+  "7a370624-d925-48ca-9ce4-0d5ea74b30fa": {
+    "asset": 1758014997893,
+    "meta": 1758014997905,
+    "relativePath": "chickenroad\\res\\main\\Polygon 2.png"
+  },
+  "075d7821-af85-4b4e-8f1c-6dcbfeb4874c": {
+    "asset": 1758075620139,
+    "meta": 1758075620536,
+    "relativePath": "chickenroad\\sound\\dead.mp3"
+  },
+  "4af9d09e-6acc-484c-a1f9-24f7b3442c94": {
+    "asset": 1758075660062,
+    "meta": 1758075660342,
+    "relativePath": "chickenroad\\sound\\win.mp3"
+  },
+  "871a1423-cf65-4560-a58d-251cd5720d9b": {
+    "asset": 1758076120433,
+    "meta": 1758076134721,
+    "relativePath": "aviator\\src\\AviatorAudioManager.js"
+  },
+  "50e66cc8-0cca-48b3-a0ab-d70a9387153d": {
+    "asset": 1758076091212,
+    "meta": 1758076134736,
+    "relativePath": "chickenroad\\src\\ChickenAudioManager.js"
+  },
+  "fc097dc7-49e3-4f0a-b7ec-afe2d7c2ea5a": {
+    "asset": 1758077102845,
+    "meta": 1758077188870,
+    "relativePath": "resources\\proto\\aviator\\gameservice.proto"
+  },
+  "8c31eff7-881c-48b4-9e26-bea665c929fa": {
+    "asset": 1758077101197,
+    "meta": 1758077188871,
+    "relativePath": "resources\\proto\\chickenroad\\gameservice.proto"
+  },
+  "7a495f05-cc22-4c47-8ffd-e4cf73de7f2b": {
+    "asset": 1758089546177,
+    "meta": 1758089600444,
+    "relativePath": "chickenroad\\src\\ChickenData.js"
+  },
+  "41e864c9-7cf1-4401-a7dc-c1a66d7e7d1d": {
+    "asset": 1758092728068,
+    "meta": 1758092729729,
+    "relativePath": "chickenroad\\src\\ChickenDefault.js"
+  },
+  "a9943b14-a03b-4ed6-9dd9-c5c018ba69b1": {
+    "asset": 1758092692065,
+    "meta": 1758092729755,
+    "relativePath": "chickenroad\\src\\ChickenMybet.js"
+  },
+  "301a7e01-2443-4079-b987-3e361edaa957": {
+    "asset": 1758092663778,
+    "meta": 1758092729766,
+    "relativePath": "chickenroad\\src\\ChickenProvablySetting.js"
+  },
+  "f5811cde-44d4-4598-b11e-b5b682aaf844": {
+    "asset": 1758092765564,
+    "meta": 1758092767113,
+    "relativePath": "chickenroad\\src\\ChickenChangeHead.js"
+  },
+  "d254611b-674b-4036-b40b-56730dd73690": {
+    "asset": 1758093172814,
+    "meta": 1758093180630,
+    "relativePath": "chickenroad\\src\\ChickenEditbox.js"
+  },
+  "0662569d-a4e7-4408-b378-4f7ec272e990": {
+    "asset": 1758100129775,
+    "meta": 1758100131411,
+    "relativePath": "chickenroad\\src\\ChickenAutoSetting.js"
+  },
+  "94e34e55-245d-4bd3-8a84-60774f575028": {
+    "asset": 1758100195462,
+    "meta": 1758100202531,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
+    "asset": 1758103904444,
+    "meta": 1758103942722,
+    "relativePath": "aviator\\src\\Aviator.js"
+  },
+  "ed27ea93-10b0-4daf-9dea-3ad942a27495": {
+    "asset": 1758105389389,
+    "meta": 1758105646040,
+    "relativePath": "chickenroad\\src\\ChickenBet.js"
+  },
   "1e996578-af9b-4161-acf0-1860be546a2c": {
-    "asset": 1757930136577,
-    "meta": 1757930137859,
+    "asset": 1758106264078,
+    "meta": 1758106265387,
     "relativePath": "chickenroad\\src\\ChickenRoad.js"
   }
 }

@@ -12,6 +12,8 @@ cc.Class({
         node_final: cc.Node,
         node_light: cc.Node,
 
+        node_defeat: cc.Node,
+
         skel_fire: sp.Skeleton,
         skel_defeat: sp.Skeleton,
 
@@ -120,11 +122,6 @@ cc.Class({
             this.node_final.getChildByName('lab_final2').active = false;
         }
     },
-
-    playDead(callback) {
-        this.stopFireLoop();
-        this._playSkeletonOnceAndHide(this.skel_defeat, "1", callback);
-    },
     /** -------- 火焰动画循环：每 5~8 秒随机触发一次 -------- */
     startFireLoop() {
         this.stopFireLoop();          // 先清理，避免重复
@@ -186,37 +183,25 @@ cc.Class({
         }
     },
 
+    playDead(callback) {
+        this.stopFireLoop();
+        this._playDefeatOnce("1", callback);  // "1" 替换成你的失败动画名
+    },
+
     /**
-     * 播放某个 skeleton 的动画一次，完毕后隐藏
-     * @param {sp.Skeleton} skel
+     * 实例化一份 defeat skeleton 到 node_defeat 下，播放一次后销毁
      * @param {string} animName
      * @param {Function} [cb]
      */
-    _playSkeletonOnceAndHide(skel, animName, cb) {
-        if (!skel) return;
-        const node = skel.node;
-
-        // 每次播放前清理旧动画
-        try {
-            // skel.clearTracks();
-            skel.setToSetupPose();
-        } catch (e) {}
-
-        node.active = true;
-
-        const entry = skel.setAnimation(0, animName, false);
-
-        const onComplete = () => {
-            node.active = false;
+    _playDefeatOnce(animName = "1", cb) {
+        const inst = cc.instantiate(this.skel_defeat.node);
+        inst.active = true;
+        inst.setParent(this.node_defeat);
+        const skel = inst.getComponent(sp.Skeleton);
+        skel.setAnimation(0, animName, false);
+        this.scheduleOnce(() =>{
+            inst.destroy();
             cb && cb();
-        };
-
-        // 推荐使用 trackEntry 的 listener，不会影响全局
-        if (entry) {
-            entry.listener = { complete: onComplete };
-        } else {
-            // fallback，部分 Creator 版本 entry 可能为空
-            skel.setCompleteListener(onComplete);
-        }
-    },
+        }, 1.5);
+    }
 });
