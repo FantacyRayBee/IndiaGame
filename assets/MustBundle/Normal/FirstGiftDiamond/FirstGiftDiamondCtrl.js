@@ -56,6 +56,15 @@ cc.Class({
         GlobalCfg.USER_DATAS.userDiamond += GlobalCfg.USER_DATAS.firstGiftDiamond;
         GlobalCfg.USER_DATAS.firstGiftDiamond = 0;
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GET_FIRST_GIFT_REWARD, msgData: {}});
+        // //新手领取奖励之后 需要弹出诱导充值的弹窗
+        let data = GlobalCfg.USER_DATAS.inducement;
+        let curRound = data.task_info.rounds;
+        let time = data.end_time - Date.now();
+        let inducementIsOpen = time > 0 && curRound > 0 && GlobalCfg.USER_DATAS.openModules.includes(24);
+        if (inducementIsOpen && CommonFun.getInstance().isNeedShowPointToastByHours("Inducement", 4)) {
+            CommonFun.getInstance().updateToastLocalStorageByHours("Inducement", 4);
+            CommonFun.getInstance().showInducement();
+        }
         this.node.destroy();
     },
 

@@ -22,6 +22,8 @@ export default class OwnRechargeTipCtrl extends cc.Component {
      * @param time 
      */
     setOwnRechargeTipTime(time: number) {
+        //@ts-ignore
+        LoggerUtil.getInstance().error(`setOwnRechargeTipTime time = ${time}`);
         this._clearOwnRechargeTipTimer();
         if (time <= 0) {
             this.lab_time.string = "";

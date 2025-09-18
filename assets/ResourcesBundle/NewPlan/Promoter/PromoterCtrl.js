@@ -283,13 +283,15 @@ cc.Class({
     },
 
     dealBtnSFEvent: function () {
-        // 跳转至WhatsApp
-        let channel_info = {...GlobalCfg.USER_DATAS.customerService};
-        let whatsAppInfos = channel_info.whatsApp.split(',');
-        let mobileNum = whatsAppInfos[0].match(/\d+/g);
-        // LoggerUtil.getInstance().log('whatsAppInfos', whatsAppInfos);
-        // LoggerUtil.getInstance().log('mobileNum', mobileNum);
-        APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
+        // // 跳转至WhatsApp
+        // let channel_info = {...GlobalCfg.USER_DATAS.customerService};
+        // let whatsAppInfos = channel_info.whatsApp.split(',');
+        // let mobileNum = whatsAppInfos[0].match(/\d+/g);
+        // // LoggerUtil.getInstance().log('whatsAppInfos', whatsAppInfos);
+        // // LoggerUtil.getInstance().log('mobileNum', mobileNum);
+        // APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
+        CommonFun.getInstance().showCustomerService();
+        this.node.destroy();
     },
 
     dealBtnTeamEvent: function () {

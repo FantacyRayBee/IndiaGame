@@ -32,6 +32,7 @@ cc.Class({
   },
   // 设置玩家数据
   setUserData: function setUserData(date, pos) {
+    LoggerUtil.getInstance().log("setUserData date", date);
     this.playerid = date.playerId;
     this.imgurl = date.imgUrl;
     this.nickname = date.nickname;
@@ -89,7 +90,7 @@ cc.Class({
     if (this.lab_winCoin && score > 0) {
       this.diamond = coin;
       this.lab_coin.string = CommonFun.getInstance().numberToShow(this.diamond / 100);
-      this.lab_winCoin.string = "+" + score / 100;
+      this.lab_winCoin.string = "+" + parseFloat((score / 100).toFixed(2));
       this.bg_js.setPosition(0, 40);
       this.bg_js.active = true;
       cc.tween(this.bg_js).to(1, {

@@ -139,7 +139,7 @@ cc.Class({
             let coin = notify.deposit + notify.winnings;
             self.noVIPPlayerCtrl.setMyCoin(coin);
         } else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS){
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
+            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
         } else if (msgId == "gameservice.joinvippos") {
             let result = notify.result;
             if (notify.Result) {

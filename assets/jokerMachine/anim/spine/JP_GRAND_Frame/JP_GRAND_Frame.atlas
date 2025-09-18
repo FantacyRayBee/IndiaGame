@@ -1,0 +1,146 @@
+
+JP_GRAND_Frame.png
+size: 776,527
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Images/FX/Add_Flare_5
+  rotate: false
+  xy: 450, 255
+  size: 61, 61
+  orig: 64, 64
+  offset: 2, 2
+  index: -1
+Images/JP_Frame/Add_Line_Light
+  rotate: true
+  xy: 750, 334
+  size: 91, 24
+  orig: 100, 100
+  offset: 5, 37
+  index: -1
+Images/JP_Frame/Add_Particles1
+  rotate: false
+  xy: 700, 210
+  size: 47, 41
+  orig: 70, 70
+  offset: 13, 17
+  index: -1
+Images/JP_Frame/Color_W00
+  rotate: false
+  xy: 450, 187
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Images/JP_Frame/FX_circle
+  rotate: true
+  xy: 376, 13
+  size: 167, 166
+  orig: 182, 166
+  offset: 8, 0
+  index: -1
+Images/JP_Frame/GRAND_Glow
+  rotate: true
+  xy: 2, 16
+  size: 509, 162
+  orig: 512, 165
+  offset: 2, 1
+  index: -1
+Images/JP_Frame/GRAND_JP_glow
+  rotate: true
+  xy: 298, 292
+  size: 233, 58
+  orig: 241, 68
+  offset: 4, 4
+  index: -1
+Images/JP_Frame/MAJOR_JP_glow
+  rotate: false
+  xy: 516, 203
+  size: 182, 48
+  orig: 182, 48
+  offset: 0, 0
+  index: -1
+Images/JP_Frame/Other_Glow
+  rotate: true
+  xy: 166, 178
+  size: 347, 130
+  orig: 347, 130
+  offset: 0, 0
+  index: -1
+Images/JP_Frame/SpeedLine05_Glow
+  rotate: true
+  xy: 378, 201
+  size: 113, 70
+  orig: 136, 95
+  offset: 18, 14
+  index: -1
+Images/JP_Frame/Wipe_02
+  rotate: false
+  xy: 553, 355
+  size: 195, 70
+  orig: 250, 200
+  offset: 17, 123
+  index: -1
+Images/JP_Frame/Wipe_03
+  rotate: true
+  xy: 358, 316
+  size: 209, 85
+  orig: 250, 200
+  offset: 15, 113
+  index: -1
+Images/JP_Frame/Wipe_04
+  rotate: false
+  xy: 553, 427
+  size: 205, 98
+  orig: 250, 200
+  offset: 26, 100
+  index: -1
+Images/JP_Frame/Wipe_05
+  rotate: true
+  xy: 544, 14
+  size: 187, 98
+  orig: 250, 200
+  offset: 31, 100
+  index: -1
+Images/JP_Frame/Wipe_06
+  rotate: true
+  xy: 166, 2
+  size: 174, 99
+  orig: 250, 200
+  offset: 38, 99
+  index: -1
+Images/JP_Frame/Wipe_07
+  rotate: true
+  xy: 644, 46
+  size: 155, 99
+  orig: 250, 200
+  offset: 67, 99
+  index: -1
+Images/JP_Frame/Wipe_08
+  rotate: false
+  xy: 553, 253
+  size: 193, 100
+  orig: 250, 200
+  offset: 44, 100
+  index: -1
+Images/JP_Frame/Wipe_09
+  rotate: true
+  xy: 445, 318
+  size: 207, 106
+  orig: 250, 200
+  offset: 30, 94
+  index: -1
+Images/JP_Frame/Wipe_10
+  rotate: false
+  xy: 298, 182
+  size: 78, 108
+  orig: 250, 200
+  offset: 158, 85
+  index: -1
+Images/JP_Frame/explosion6_00021
+  rotate: true
+  xy: 267, 7
+  size: 169, 107
+  orig: 181, 178
+  offset: 1, 25
+  index: -1

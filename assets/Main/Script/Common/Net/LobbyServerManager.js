@@ -304,7 +304,7 @@ LobbyServerManager.checkDistributed = function(webData) {
         let firstRecharge = notify.firstRecharge;     // 是否是首次充值清除金币
         let firstRechargeRetainBonus = notify.firstRechargeRetainBonus; // 首次清0后保留的bonus
         let firstRechargeCleanWallet = notify.firstRechargeCleanWallet; // 首充清空钱包
-
+        let goldBeforeRecharging = notify.goldBeforeRecharging; // 充值前金币
         if (firstRecharge) {
             GlobalCfg.USER_DATAS.oldUserDiamond = GlobalCfg.USER_DATAS.userDiamond;
             GlobalCfg.FIRST_RECHARGE_RETAIN_BONUS = firstRechargeRetainBonus;
@@ -329,18 +329,27 @@ LobbyServerManager.checkDistributed = function(webData) {
                 if (firstRechargeCleanWallet) {
                     // 是否展示首充清金币的动画
                     GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = true;
-                    ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
-                        msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
-                        msgData: {}
-                    }); 
-                };
-            };
+                    GlobalCfg.USER_DATAS.changed = firstRechargeRetainBonus; //首充需要清的金币
+                    GlobalCfg.USER_DATAS.beforeRecharge = goldBeforeRecharging;
+                    if (firstRechargeRetainBonus >= 100000000) { //10%转换弹框
+                        GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10 = true;
+                    }
+                    else
+                        GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10 = false;
+                }else{
+                    GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
+                }
+            }else{
+                GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = true;
+            }
             // 上传充值数据到FB账号后台
             // 此处 标准事件 参数命名需参照官方标准，不可自行定义，https://developers.facebook.com/docs/app-events/reference ，AppEventsConstants类中定义
             let content = {fb_content: 'Recharge', fb_currency: 'INR'};
             let obj = {eventName: 'fb_mobile_purchase', valueToSum: Math.ceil(changed / 100), eventContent: content};
             APPManager.faceBookLogEvent(JSON.stringify(obj));
 
+            //充值了 就发送关闭一次支付面板的指令
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'close_Only_Pay', msgData: {}});
             // 刷新商城商品列表
             let url = `${GlobalCfg.HTTP_SERVER}/v1/payment/commodity/storelist`;
             CommonFun.getInstance().httpGet(url, (json) => {  
@@ -353,7 +362,6 @@ LobbyServerManager.checkDistributed = function(webData) {
                     }); 
                 }; 
             }, null, GlobalCfg.USER_DATAS.BearerToken);
-
 
             if (CommonFun.getInstance().isOpenVipModule()) {
                 // 刷新VIP系统
@@ -373,6 +381,10 @@ LobbyServerManager.checkDistributed = function(webData) {
         if(reason == 120) {
             //送蓝钻（代金券）
             GlobalCfg.USER_DATAS.firstGetBonus = changed;
+            ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
+                msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
+                msgData: {}
+            }); 
         }
         // 自己充值消息下发到每个游戏中
         ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {

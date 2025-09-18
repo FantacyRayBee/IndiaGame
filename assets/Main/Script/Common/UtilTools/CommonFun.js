@@ -568,6 +568,13 @@ let CommonFun = cc.Class({
         return uuid;
     },  
 
+    fixed:function(num){
+        // let result = Math.floor(num * 100) / 100; // 截断两位小数
+        // return result.toString().replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '')
+        let result = Math.floor(num * 100) / 100; // 截断两位小数
+        return result.toFixed(2); // 始终保留 2 位
+    },
+
     /**
      * 检测小游戏是需要版本更新
      * @param {string} subpackgeName 小游戏bundle名
@@ -629,6 +636,34 @@ let CommonFun = cc.Class({
             }
             return number;
         };
+    },
+
+    // 货币显示规范美术字 需要把.替换成x,美术字没有.
+    numberToShow_byColor: function(label, num) {
+        let cash = num / 100
+        let str = CommonFun.getInstance().numberToShow(cash);
+        label.string = str.toString().replace(".","x");
+    },
+
+    // 货币显示规范 超过100万显示为xx.xM 超过1000显示为xx.xK
+    numberToShow2: function(number, entrycondition) {
+        if (entrycondition == 0) {
+            return number; // 如果 entrycondition 为 0，直接返回原数字
+        }
+        let coin = parseInt(number); // 将输入转换为整数
+        if (isNaN(coin)) {
+            return number; // 如果转换失败，返回原数字
+        }
+        if (coin >= 1000000) {
+            // 大于等于 100 万，转换为 "M" 单位
+            let tcoin1 = (coin / 1000000).toFixed(2); // 保留两位小数
+            return tcoin1.replace(/\.?0+$/, '') + 'M'; // 去掉末尾的 0 和小数点
+        }else if (coin >= 1000) {
+            // 大于等于 1000，转换为 "K" 单位
+            let tcoin2 = (coin / 1000).toFixed(1); // 保留一位小数
+            return tcoin2.replace(/\.?0+$/, '') + 'K'; // 去掉末尾的 0 和小数点
+        }
+        return number; // 其他情况返回原数字
     },
 
     getStrLength: function(str) {
@@ -697,6 +732,10 @@ let CommonFun = cc.Class({
      * @returns 
      */
     showNewShop: function(isFromFirstRecharge, from = '') {          
+        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            return;
+        }
         if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
             CommonFun.getInstance().showMsgBox("Not yet open", "NO", () => { }, false);
             return
@@ -1042,12 +1081,13 @@ let CommonFun = cc.Class({
      * @param {string} title 标题
      * @param {function} callFun2 回调函数
      */    
-    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2) {
+    showMsgBox: function(content, msgBoxType, callFun, isShowCloseBtn, isNet, title, callFun2, horizontal = cc.Label.HorizontalAlign.CENTER, scale = 1) {
         let msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
         msgBoxPrefabPromise.then((prefab) => {
             let msgBoxNode = cc.instantiate(prefab);
+            msgBoxNode.scale = scale;
             let msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
-            msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2);
+            msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal);
             this.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
         });
     },
@@ -1060,6 +1100,18 @@ let CommonFun = cc.Class({
         settingPrefabPromise.then((prefab) => {
             let settingNode = cc.instantiate(prefab);
             this.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
+        });
+    },
+
+    /**
+     * 打开游戏列表界面
+     */
+    showGameIconList: function() {
+        let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEICONLIST);
+        PrefabPromise.then((prefab) => {
+            CommonFun.getInstance().addVerticalAcc();
+            let Node = cc.instantiate(prefab);
+            this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.GAMEICONLIST);
         });
     },
 
@@ -1192,6 +1244,27 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 显示诱导充值界面
+     */
+    showInducement: function() {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INDUCEMENT, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+        if (isExist) {
+            return;
+        };
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.inducement = msg.data;
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
+                prefabPromise.then((prefab) => {
+                    let node = cc.instantiate(prefab);
+                    this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
      * 显示联系我们界面
      */
     showContactUs: function() {
@@ -1201,6 +1274,76 @@ let CommonFun = cc.Class({
             let contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');    
             this.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
         });
+    },
+
+    /**
+     * 显示内嵌网页界面
+     */
+    showGameWebview: function(gameId, isVertical) {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return;
+        };
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/pg/game_url";
+        let httpParam = {
+            game_id: gameId,
+        };
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+            if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+                APPManager.showWebView(msg.data.Url, isVertical);
+            }
+            else{
+                let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
+                PrefabPromise.then((prefab) => {
+                    let Node = cc.instantiate(prefab);
+                    let Ctrl = Node.getComponent('gameWebview');   
+                    Ctrl.setURL(msg.data.Url) 
+                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
+     * 获取俱乐部信息
+     */
+    getClubData: function(callback) {
+        CommonFun.getInstance().showProgress();
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/club/get_club_info`;
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.clubInfo = msg.data;
+                callback && callback();
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+    /**
+     * 打开钱包
+     */
+    showWalletPanel: function() {
+        this.getClubData(() => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WALLET);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.WALLET);
+            });
+        })
+    }, 
+
+    /**
+     * 打开俱乐部
+     */
+    showClub: function() {
+        this.getClubData(() => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
+            });
+        })
     },    
 
     /**
@@ -1325,11 +1468,33 @@ let CommonFun = cc.Class({
      * 强制引导弹窗
      */
     showHallTip: function() {
-        let hallTipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.HALLTIP);
-        hallTipPrefabPromise.then((prefab) => {
-            let bhallTipNode = cc.instantiate(prefab);
-            this.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
-        });
+        LoggerUtil.getInstance().log("showHallTip GlobalCfg.Forced_Migration: ", GlobalCfg.Forced_Migration);
+        // //需求：强制引导用户点击跳转
+        let NeedShowForceVersion = cc.sys.localStorage.getItem("NeedShowForceVersion");
+        if(NeedShowForceVersion == null){
+            NeedShowForceVersion = 0
+        }
+        LoggerUtil.getInstance().log("showHallTip NeedShowForceVersion: ", NeedShowForceVersion);
+        let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+        let Channel = ""
+        if (packageChannel && packageChannel.indexOf("_") != -1) {
+            let packageChannelArr = packageChannel.split("_"); 
+            Channel = Number(packageChannelArr[1]);
+        }
+        LoggerUtil.getInstance().log("showHallTip Channel: ", Channel);
+        if (GlobalCfg.Forced_Migration && Channel != ""){
+            let data = GlobalCfg.Forced_Migration[Channel] //指定渠道号
+            LoggerUtil.getInstance().log("showHallTip data: ", data);
+            if(data && data.version >= NeedShowForceVersion){ //低于服务器设定的需要弹窗的版本号 则弹窗
+                let hallTipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.HALLTIP);
+                hallTipPrefabPromise.then((prefab) => {
+                    let bhallTipNode = cc.instantiate(prefab);
+                    let bhallTipCtrl = bhallTipNode.getComponent('HallTipCtrl');  
+                    bhallTipCtrl.setHallTipData(data); 
+                    this.addToPointParent(bhallTipNode, GlobalCfg.PREFAB_PARENT.HALLTIP);
+                });
+            }
+        }
     },
 
     /**
@@ -1358,6 +1523,58 @@ let CommonFun = cc.Class({
             this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
         });
     },
+    
+    // /**
+    //  * 显示推广员界面
+    //  */
+    // showPromoter: function() {
+    //     CommonFun.getInstance().showProgress();
+    //     let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/layerincomerank";
+    //     CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+            
+    //         if (msg.result == 0) {
+    //             GlobalCfg.USER_DATAS.promoterMainData = msg.data
+    //             let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERMAIN);
+    //             promoterPrefabPromise.then((prefab) => {
+    //                 let promoterNode = cc.instantiate(prefab);
+    //                 this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTERMAIN);  
+    //                 CommonFun.getInstance().hidProgress();
+    //             });
+    //         }
+    //         else {
+    //             CommonFun.getInstance().showTips(msg.msg);
+    //             CommonFun.getInstance().hidProgress();
+    //         }
+    //     }, null, GlobalCfg.USER_DATAS.BearerToken);
+    // },
+    /**
+     * 推广员界面分享
+     */
+    promoterSkipToOtherApp:function(btnName) {
+        let inviteCode = `?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+        let shareStrtmp = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！";
+        let shareUrls = GlobalCfg.APP_SHARE_URL + inviteCode;
+        if (btnName == 'btn_telegram') {
+            let str = "https://t.me/share/url?text=" +  encodeURIComponent(shareStrtmp)+ "&url="+ encodeURIComponent(shareUrls);
+            cc.sys.openURL(str);
+        } 
+        if (btnName == 'btn_fb') {
+            let str = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrls);
+            LoggerUtil.getInstance().log("promoterSkipToOtherApp shareStr", str);
+            cc.sys.openURL(str);
+        } 
+        if (btnName == 'btn_whatsapp') {
+            let str = "https://wa.me/?text=" + encodeURIComponent(shareStrtmp+"    "+shareUrls);
+            cc.sys.openURL(str);
+        }
+        if (btnName == 'btn_share') {
+            let shareUrl = `Your cash will expire in three hours, download the No.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+            APPManager.copyToPasteBoard(shareUrl);
+            CommonFun.getInstance().showTips("Copy successful!");
+            APPManager.Share(shareUrl);
+        }
+    },
+
 
     /**
      * 显示推广员左侧界面
@@ -1455,12 +1672,14 @@ let CommonFun = cc.Class({
      * 显示个人中心界面
      */
     showPersonal: function() {
-        let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
-        personalPrefabPromise.then((prefab) => {
-            let personalNode = cc.instantiate(prefab);
-            let personalCtrl = personalNode.getComponent('PersonalCtrl');    
-            this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);      
-        }); 
+        this.getClubData(()=>{
+            let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
+            personalPrefabPromise.then((prefab) => {
+                let personalNode = cc.instantiate(prefab);
+                let personalCtrl = personalNode.getComponent('PersonalCtrl');    
+                this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);      
+            }); 
+        });
     },
     
     /**
@@ -1599,27 +1818,52 @@ let CommonFun = cc.Class({
     },
 
     _showShop: function(from){
-        this.getPayChannel((payChannels) => {
+        this.getPayChannel((payData) => {
             let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
             shopPrefabPromise.then((prefab) => {
                 CommonFun.getInstance().addVerticalAcc();
                 let shopNode = cc.instantiate(prefab);
                 let shopCtrl = shopNode.getComponent("ShopCtrl");
-                shopCtrl.setPayChannel(payChannels);
+                shopCtrl.setPayChannel(payData);
                 shopCtrl.setJumpFrom(from);
                 this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP); 
             });   
         });
     },
 
-    _showShopNewTip: function(changed, coin, bonus){
-        let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
-        shopPrefabPromise.then((prefab) => {
-            let shopNode = cc.instantiate(prefab);
-            let shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
-            shopCtrl.setStartCoin(changed, coin, bonus);
-            this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP); 
-        });  
+    showPayChannel: function(infos, callback){
+        LoggerUtil.getInstance().log('callback =', callback);
+        this.getPayChannel((payData) => {
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPCHANNEL);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopChannel = shopNode.getComponent("shopChannel");
+                shopChannel.setData(payData, infos, callback);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPCHANNEL); 
+            });   
+        });
+    },
+
+    _showShopNewTip: function(changed, coin, bonus, is10Precent, remind){
+        LoggerUtil.getInstance().error('changed:' + changed + ' coin:' + coin + ' bonus:' + bonus);
+        if(is10Precent){
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP10);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopCtrl = shopNode.getComponent("ShopNewTip10Ctrl");
+                shopCtrl.setStartCoin(changed, coin, bonus, remind);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP10); 
+            });  
+        }
+        else{
+            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPNEWTIP);
+            shopPrefabPromise.then((prefab) => {
+                let shopNode = cc.instantiate(prefab);
+                let shopCtrl = shopNode.getComponent("ShopNewTipCtrl");
+                shopCtrl.setStartCoin(changed, coin, bonus);
+                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOPNEWTIP); 
+            });  
+        }
     },
 
     /**
@@ -1850,10 +2094,22 @@ let CommonFun = cc.Class({
      */
     gameShowSecondRecharge: function(curGameMinEnter, curGameCurRoundBetNum = 0, callback){
         let BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
-        if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
-            LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userDiamond = ",GlobalCfg.USER_DATAS.userDiamond);
-            LoggerUtil.getInstance().log("curGameMinEnter = ", curGameMinEnter);
-            LoggerUtil.getInstance().log("xxxx = ",GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate);
+        let rate = GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate
+        if (GlobalCfg.USER_DATAS.openModules.includes(23) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0 && GlobalCfg.USER_DATAS.only_pay_time == 0) {
+            if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
+                this.checkCanShowOnlyPay(callback, ()=> {
+                    if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
+                        if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
+                            this.showBankruptcy();
+                            if (callback) {
+                                callback();
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        else if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
             if (GlobalCfg.USER_DATAS.userDiamond <curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate) {
                 this.showBankruptcy();
                 if (callback) {
@@ -1861,13 +2117,6 @@ let CommonFun = cc.Class({
                 }
             }
         }
-        // if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && curGameCurRoundBetNum > 0 &&
-        // (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.lastRecharged * BrokeGift_ShowInGame_Rate)) {
-        //     this.showBankruptcy();
-        //     if (callback) {
-        //         callback();
-        //     }
-        // }
     },
 
     updateToastLocalStorageByHours: function(toastType, hours) {
@@ -2180,44 +2429,45 @@ let CommonFun = cc.Class({
      * @param {number} duration 事件持续时间，单位毫秒
      */
     behaviorReporting: function(eventName, duration = 0) {
-        if (!eventName) {
-            return;
-        };
-        if (!cc.sys.isNative) {
-            return;
-        };
-        let url = "";
-        let device = CommonFun.getInstance().getDeviceId();
-        let serverType = CommonFun.getInstance().getServerType();
-        switch (serverType) {
-            case 0:
-                url = `https://svrtest.tpgame.in/login/uievent`;
-                break;
-            case 1:
-                url = `https://svr.tpgame.in/login/uievent`;
-                break;
-            case 2:
-                url = `https://svr2.tpgame.in/login/uievent`;
-                break;
-            case 3:
-                url = `https://svr.3tpattiyi.in/login/uievent`;
-                break;
-            case 6:
-                url = `https://svr.teengatti.in/login/uievent`;
-                break;
-            default:
-                url = `https://svrtest.tpgame.in/login/uievent`;
-                break;
-        };
-        let httpParam = {
-            device: `${device}`,
-            uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
-            triggerTime: cc.sys.now(),
-            duration: duration,
-            event: `${eventName}`,
-            sign: CommonFun.getInstance().encryptByRSA(device) 
-        };
-        CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
+        // if (!eventName) {
+        //     return;
+        // };
+        // if (!cc.sys.isNative) {
+        //     return;
+        // };
+        // let url = "";
+        // let device = CommonFun.getInstance().getDeviceId();
+        // let serverType = CommonFun.getInstance().getServerType();
+        // LoggerUtil.getInstance().info(`behaviorReporting: serverType ${serverType}`);
+        // switch (serverType) {
+        //     case 0:
+        //         url = `https://svrtest.tpgame.in/login/uievent`;
+        //         break;
+        //     case 1:
+        //         url = `https://svr.tpgame.in/login/uievent`;
+        //         break;
+        //     case 2:
+        //         url = `https://svr2.tpgame.in/login/uievent`;
+        //         break;
+        //     case 3:
+        //         url = `https://svr.tp-game.com/login/uievent`;
+        //         break;
+        //     case 6:
+        //         url = `https://svr.teengatti.in/login/uievent`;
+        //         break;
+        //     default:
+        //         url = `https://svrtest.tpgame.in/login/uievent`;
+        //         break;
+        // };
+        // let httpParam = {
+        //     device: `${device}`,
+        //     uid: `${GlobalCfg.USER_DATAS.userId ? GlobalCfg.USER_DATAS.userId : ""}`,
+        //     triggerTime: cc.sys.now(),
+        //     duration: duration,
+        //     event: `${eventName}`,
+        //     sign: CommonFun.getInstance().encryptByRSA(device) 
+        // };
+        // CommonFun.getInstance().httpPost(url, httpParam, (json) => {}, (json) => {});
     },
 
     /**
@@ -2252,8 +2502,8 @@ let CommonFun = cc.Class({
     rechargeByCommodityId: function (commodityId, from, callback, PAY_CHANNEL = 0) {
         if (PAY_CHANNEL == 0) {
             //如果传进来的支付渠道ID为0，则获取支付渠道ID
-            this.getPayChannel((payChannels) => {
-                GlobalCfg.PAY_CHANNEL = payChannels[0]
+            this.getPayChannel((payData) => {
+                GlobalCfg.PAY_CHANNEL = payData.pay_channels[0]
                 this.PayHttp(commodityId, from, callback);
             });
             return;
@@ -2268,6 +2518,8 @@ let CommonFun = cc.Class({
         url += "&id=" + commodityId;
         url += "&from=" + from;
         url += "&pay_channel=" + GlobalCfg.PAY_CHANNEL;
+        url += "&types=" + GlobalCfg.PAY_CHANNEL2;
+        // url += "&server_id=" + GlobalCfg.server_id;
         CommonFun.getInstance().showProgress();
         CommonFun.getInstance().httpGet(url, (strInfo) => {
             CommonFun.getInstance().hidProgress();
@@ -2287,6 +2539,22 @@ let CommonFun = cc.Class({
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
+    /**
+     * 将毫秒转换为 HH:MM:SS 格式
+     * @param {number} ms 剩余毫秒数
+     * @returns {string} 格式化后的时间字符串
+     */
+    formatToHMS: function(ms) {
+        if (ms <= 0) return "00:00:00"; // 倒计时结束
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        // 补零显示（如 1 → "01"）
+        const pad = (num) => num.toString().padStart(2, '0');
+        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    },
 
     /**
      * 获取商场角标
@@ -2297,7 +2565,7 @@ let CommonFun = cc.Class({
         CommonFun.getInstance().httpGet(url, (strInfo) => {
             CommonFun.getInstance().hidProgress();
             if (strInfo && strInfo.result == 0) {
-                callback && callback(strInfo.data.pay_channels);
+                callback && callback(strInfo.data);
             }
             else {
                 CommonFun.getInstance().showTips(strInfo.msg);
@@ -2437,6 +2705,38 @@ let CommonFun = cc.Class({
         });
     },
 
+    setEditBoxEvent: function (editBox, node) {
+        if (cc.sys.os === cc.sys.OS_ANDROID && cc.sys.isNative) {
+            // 保存原始位置
+            let _originalY = node.y;
+            
+            // 计算合适的键盘高度（可根据需要调整）
+            var KEYBOARD_HEIGHT = cc.view.getVisibleSize().height * 0.4;
+            
+            editBox.node.on('editing-did-began', function() {
+                // 获取输入框底部位置
+                var pos = editBox.node.convertToWorldSpaceAR(cc.v2(0, -editBox.node.height/2));
+                var screenHeight = cc.view.getVisibleSize().height;
+                
+                // 计算需要上移的距离（只移动必要距离）
+                var moveDistance = Math.max(0, (pos.y - KEYBOARD_HEIGHT));
+                
+                // 限制最大上移距离（例如不超过屏幕的50%）
+                moveDistance = Math.min(moveDistance, screenHeight * 0.5);
+                
+                cc.tween(node)
+                    .to(0.2, { y: _originalY + moveDistance })
+                    .start();
+            }.bind(this));
+    
+            editBox.node.on('editing-did-ended', function() {
+                cc.tween(node)
+                    .to(0.2, { y: _originalY })
+                    .start();
+            }.bind(this));
+        }
+    },
+
 
     /**
      * 显示游戏的菜单界面
@@ -2452,6 +2752,20 @@ let CommonFun = cc.Class({
         });
     },
 
+    // 设置昵称
+    setNickname: function(nickname) {
+        const MAX_LENGTH = 9; // 昵称最大长度
+        const DISPLAY_LENGTH = 7; // 超过最大长度时显示的长度
+        let name = ""
+        if (nickname.length > MAX_LENGTH) {
+            // 超过 7 位，截取前 5 位并加上省略号
+            name = nickname.substring(0, DISPLAY_LENGTH) + "...";
+        } else {
+            // 不超过 7 位，直接显示
+            name = nickname;
+        }
+        return name
+    },
 
     /**
      * 初始化竖屏次数
@@ -2484,6 +2798,13 @@ let CommonFun = cc.Class({
             this._curOrientation = EnumOrientation.HORIZONTAL;
             APPManager.setOrientation('H');
         };
+    },
+
+    checkVerticalAcc: function() {
+        if (this._curOrientation == EnumOrientation.VERTICAL) {
+            return true;
+        }
+        return false;
     },
 
     /**
@@ -2539,6 +2860,38 @@ let CommonFun = cc.Class({
         let arr = btnListData.slice(startIndex, btnListData.length);
         LoggerUtil.getInstance().log(">>>>>ShopList>>>>>>>>", arr);
         return arr;
+    },
+
+    /**
+     * 根据本地缓存判断是否需要显示弹框
+     * @param {*} toastType 弹框类型
+     * @param {*} hours 间隔几个小时
+     */
+    isNeedShowPointToastByHours: function(toastType, hours) {
+        /**
+         * 当前毫秒级的时间戳
+         */
+        let curTimeStamp = new Date().getTime();
+        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
+        if (toastLocalStorage) {
+            try {
+                let toastLocalData = JSON.parse(toastLocalStorage);
+                let showTag = toastLocalData.showTag;
+                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
+                    return true;
+                }
+                else {
+                    return false;
+                };
+            } 
+            catch (error) {
+                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
+                return false;
+            };
+        }
+        else {
+            return true;
+        };
     },
 
     /**
@@ -2617,7 +2970,6 @@ let CommonFun = cc.Class({
      * 在游戏中显示提现提示弹窗
      */
     showWithdrawToastInGame: function() {
-        console.log("isNeedShowWithdrawToastInGame: ", CommonFun.getInstance().isNeedShowWithdrawToastInGame());
         if (this.isNeedShowWithdrawToastInGame() == false) {
             return;
         };
@@ -2665,40 +3017,13 @@ let CommonFun = cc.Class({
                 return true;
             };
         };
-        let updateToastLocalStorageByHours = (toastType, hours) => {
-            /**
-             * 当前毫秒级的时间戳
-             */
-            let curTimeStamp = new Date().getTime();
-            let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-            if (toastLocalStorage) {
-                try {
-                    let toastLocalData = JSON.parse(toastLocalStorage);
-                    let showTag = toastLocalData.showTag;
-                    if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                        toastLocalData.showTag = `${curTimeStamp}`;
-                        cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-                    }; 
-                    
-                } 
-                catch (error) {
-                    LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-                };
-            }
-            else {
-                let toastLocalData = {
-                    showTag: curTimeStamp
-                };
-                cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-            };
-        };
         let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
         console.log("toastWithDrawFrequency1: ", GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5))
         console.log("toastWithDrawFrequency2: ", GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100))
         console.log("toastWithDrawFrequency3: ", isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency));
         if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
             && isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-            updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+            this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
             CommonFun.getInstance().showPopUpWithDraw();
         };
     },
@@ -2719,6 +3044,39 @@ let CommonFun = cc.Class({
             return true;
         }
         return false; 
+    },
+
+
+    checkShowWithDrawToast: function() {
+        if (GlobalCfg.USER_DATAS.isNotCharge == false){   //充值过则不弹出
+            return true;
+        };
+        let func = (date)=>{
+            let _date = date * 1000;
+            let _curDate = new Date().getTime();
+            let _differ = _curDate - _date;
+            if(_differ < 24 * 60 * 60 * 1000){
+                return Number(30 / 60).toFixed(1);
+            }else if(_differ < 3 * 24 * 60 * 60 * 1000){
+                return Number(20 / 60).toFixed(1);
+            }else if(_differ < 5 * 24 * 60 * 60 * 1000){
+                return Number(10 / 60).toFixed(1);
+            }else{
+                return Number(5 / 60).toFixed(1);
+            }
+        }
+        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
+        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
+            && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+                this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+                this.showPopUpWithDraw();
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'STOP_GAME', msgData: {}});
+                return true;
+        }
+        return false;
     },
 
     /**
@@ -2768,6 +3126,18 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 购买之前显示提示框
+     */
+    ShowTipsBeforeBuy: function(msg, callback) {
+        let str = 'Go to Recharge ₹ '+ msg + '?'
+        CommonFun.getInstance().showMsgBox(str, "SHOP", () => {
+            if(callback){
+                callback()
+            }
+        }, false);
+    },
+
+    /**
      * 是否需要显示TP手指提示
      * @returns {boolean}
      */
@@ -2781,14 +3151,14 @@ let CommonFun = cc.Class({
     /**
      * 显示破产弹窗
      */
-    showBankruptcy: function (isClick = false) {
-        if  (isClick == false){ //手动点击的时候不需要加入破产cd
+    showBankruptcy: function (isClick = false, isPlotPlay = false) {
+        LoggerUtil.getInstance().log("caojun showBankruptcy GlobalCfg.BANKRUPT_CD:", GlobalCfg.BANKRUPT_CD);
+        if (isClick == false){ //手动点击的时候不需要加入破产cd
             if (GlobalCfg.BANKRUPT_CD == 0){
                 GlobalCfg.BANKRUPT_CD = new Date().getTime();
             }
             else{
                 let shengyuTime = (new Date().getTime() - GlobalCfg.BANKRUPT_CD) / 1000;
-                LoggerUtil.getInstance().log("333 破产礼包，游戏内显示 shengyuTime = ", shengyuTime);
                 if (shengyuTime < 1800){//半小时CD才会弹出破产面板
                     return;
                 }
@@ -2797,11 +3167,12 @@ let CommonFun = cc.Class({
                 }
             }
         }
-        GlobalCfg.IS_SHOW_BANKRUPT = true;
         let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+        LoggerUtil.getInstance().log("caojun showBankruptcy isExist:", isExist);
         if (isExist) {
             return;
         };
+        GlobalCfg.IS_SHOW_BANKRUPT = true;
         let curScene = SceneManager.getInstance().curSceneType;
         let bankruptcyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
         bankruptcyPrefabPromise.then((prefab) => {
@@ -2810,8 +3181,50 @@ let CommonFun = cc.Class({
                 bankruptcyNode.setScale(0.7);
             }
             let BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
-            BankruptcyGiftCtrl.init();
+            BankruptcyGiftCtrl.init(isPlotPlay);
             this.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+        });
+    },
+
+    checkCanShowOnlyPay: function (callback, callback2) {
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/payment/useonlypay`;
+        let httpParam = {
+        };
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (strInfo) => {
+            CommonFun.getInstance().hidProgress();
+            if (strInfo && strInfo.data) {
+                if (strInfo.data.code == 0) {
+                    GlobalCfg.USER_DATAS.only_pay_time = strInfo.data.timer;
+                    GlobalCfg.USER_DATAS.only_pay_countDownTime = strInfo.data.timer + Date.now();
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: 'show_Only_Pay', msgData: {}});
+                    this.showOnlyPay();
+                    callback && callback();
+                }
+                else {
+                    callback2 && callback2();
+                }
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
+     * 显示onlypay
+     */
+    showOnlyPay: function () {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.ONLY_PAY, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
+        if (isExist) {
+            return;
+        };
+        if(SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.BENZ){
+            return;
+        }
+        GlobalCfg.IS_SHOW_BANKRUPT = true;
+        let OnlyPayPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ONLY_PAY);
+        OnlyPayPromise.then((prefab) => {
+            let OnlyPayNode = cc.instantiate(prefab);
+            let OnlyPayCtrl = OnlyPayNode.getComponent("OnlyPayCtrl");
+            OnlyPayCtrl.init();
+            this.addToPointParent(OnlyPayNode, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
         });
     },
 });

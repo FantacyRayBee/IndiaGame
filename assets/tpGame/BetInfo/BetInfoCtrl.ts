@@ -20,4 +20,8 @@ export default class BetInfoCtrl extends cc.Component {
         //@ts-ignore
         this.lab_totalBet.string = `${CommonFun.getInstance().numberToShow(totalBet / 100)}`;
     }
+
+    getBetInfoTotalBet() {
+        return this.lab_totalBet.string;
+    }
 }

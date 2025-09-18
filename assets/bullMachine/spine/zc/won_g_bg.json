@@ -1,0 +1,82 @@
+{
+"skeleton": { "hash": "/3xj8kv8X+6xWlgNFmtgVq3KDQM", "spine": "3.8.99", "x": -960, "y": -658, "width": 1920, "height": 1316 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "all", "parent": "root" },
+	{ "name": "g", "parent": "all" },
+	{ "name": "g2", "parent": "all" },
+	{ "name": "g3", "parent": "all", "scaleX": 0.5036, "scaleY": 0.5036 },
+	{ "name": "g4", "parent": "all", "scaleX": 0.5415, "scaleY": 0.5415 }
+],
+"slots": [
+	{ "name": "xxx", "bone": "root" },
+	{ "name": "g", "bone": "g", "attachment": "guang01" },
+	{ "name": "g3", "bone": "g3", "color": "ffffffa7", "attachment": "guang01", "blend": "additive" },
+	{ "name": "g2", "bone": "g2", "color": "fff9ebff", "attachment": "guang01", "blend": "additive" },
+	{ "name": "g4", "bone": "g4", "color": "fff9eb69", "attachment": "guang01", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"g": {
+				"guang01": { "x": 14.18, "y": 3.55, "scaleX": 3.65, "scaleY": 3.65, "width": 299, "height": 304 }
+			},
+			"g2": {
+				"guang01": { "x": 14.18, "y": 3.55, "scaleX": 3.65, "scaleY": 3.65, "width": 299, "height": 304 }
+			},
+			"g3": {
+				"guang01": { "x": 14.18, "y": 3.55, "scaleX": 3.65, "scaleY": 3.65, "width": 299, "height": 304 }
+			},
+			"g4": {
+				"guang01": { "x": 14.18, "y": 3.55, "scaleX": 3.65, "scaleY": 3.65, "width": 299, "height": 304 }
+			}
+		}
+	}
+],
+"animations": {
+	"idle": {
+		"bones": {
+			"g": {
+				"rotate": [
+					{ "angle": 28.8 },
+					{ "time": 0.4667 },
+					{ "time": 1.9667, "angle": -90 },
+					{ "time": 3.5, "angle": 180 },
+					{ "time": 5, "angle": 90 },
+					{ "time": 6, "angle": 28.8 }
+				]
+			},
+			"g2": {
+				"rotate": [
+					{},
+					{ "time": 1.1333, "angle": 90 },
+					{ "time": 2.7667, "angle": 180 },
+					{ "time": 4.4, "angle": -90 },
+					{ "time": 6 }
+				]
+			},
+			"g3": {
+				"rotate": [
+					{ "angle": -111.6 },
+					{ "time": 1.1333, "angle": 180 },
+					{ "time": 1.6667, "angle": 147.6 },
+					{ "time": 2.6333, "angle": 90 },
+					{ "time": 4.1333 },
+					{ "time": 5.6333, "angle": -90 },
+					{ "time": 6, "angle": -111.6 }
+				]
+			},
+			"g4": {
+				"rotate": [
+					{},
+					{ "time": 1.1333, "angle": 90 },
+					{ "time": 2.7667, "angle": 180 },
+					{ "time": 4.4, "angle": -90 },
+					{ "time": 6 }
+				]
+			}
+		}
+	}
+}
+}

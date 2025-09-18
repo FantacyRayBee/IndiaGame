@@ -42,6 +42,9 @@ var BetInfoCtrl = /** @class */ (function (_super) {
         //@ts-ignore
         this.lab_totalBet.string = "" + CommonFun.getInstance().numberToShow(totalBet / 100);
     };
+    BetInfoCtrl.prototype.getBetInfoTotalBet = function () {
+        return this.lab_totalBet.string;
+    };
     __decorate([
         property(cc.Label)
     ], BetInfoCtrl.prototype, "lab_totalBet", void 0);

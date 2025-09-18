@@ -201,9 +201,9 @@ cc.Class({
             let coin = notify.deposit + notify.winnings;
             self.setUserDiamond(coin);
         }
-        else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SGJ, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SGJ, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isRunningFruitAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
@@ -219,6 +219,9 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SGJ, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "STOP_GAME") {
+            self.setBetCiShuAutoTips();
         }
     },
 
@@ -951,14 +954,14 @@ cc.Class({
     },
 
     sendCallReq: function() {
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-            }, false);
-            return;
-        };
+        // if (GlobalCfg.IS_CLUB_MODE == 0 && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         if (this.paymentSwitch) {
+        //             CommonFun.getInstance().showSmallAddCash()
+        //         }
+        //     }, false);
+        //     return;
+        // };
 
         let betAmount = parseInt(this.lab_betAmount.string) * 100;
 
@@ -967,11 +970,16 @@ cc.Class({
 
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
-            CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-            }, false);
+            if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            }
+            else {
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+            }
             return;
         };
        

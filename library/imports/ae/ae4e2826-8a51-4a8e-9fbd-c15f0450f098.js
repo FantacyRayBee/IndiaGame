@@ -86,9 +86,11 @@ cc.Class({
       var myVIPCtrl = self.setNodeCtrl(self.my_playerid);
       self.myNodeCtrl.shePlayCion(coin);
       if (myVIPCtrl) myVIPCtrl.shePlayCion(coin);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
+    }
+    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
+    // }
+    else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
       //退出游戏
       var betCoin = 0;
       for (var index = 1; index < 7; index++) {
@@ -526,11 +528,16 @@ cc.Class({
         }, false);
         return;
       } else if (this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond) {
-        CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-          if (_this2.paymentSwitch) {
-            CommonFun.getInstance().showSmallAddCash();
-          }
-        }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1) {
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+        } else {
+          CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
+            if (_this2.paymentSwitch) {
+              CommonFun.getInstance().showSmallAddCash();
+            }
+          }, false);
+        }
       } else {
         var betCoinAll = this.userBtnCion;
         for (var i = 1; i < this.myBetCoin.length; i++) {
@@ -1741,11 +1748,16 @@ cc.Class({
     var betCoinAll = this.repeatBetArr[0] + this.repeatBetArr[1] + this.repeatBetArr[2] + this.repeatBetArr[3] + this.repeatBetArr[4] + this.repeatBetArr[5];
     if (str == "bet") {
       if (betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond == 0) {
-        CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
-          if (_this12.paymentSwitch) {
-            CommonFun.getInstance().showSmallAddCash();
-          }
-        }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1) {
+          //代理模式不跳转商城
+          CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+        } else {
+          CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", function () {
+            if (_this12.paymentSwitch) {
+              CommonFun.getInstance().showSmallAddCash();
+            }
+          }, false);
+        }
       } else {
         for (var i = 1; i < this.myBetCoin.length; i++) {
           betCoinAll += this.myBetCoin[i];
@@ -1812,9 +1824,14 @@ cc.Class({
     }
     ;
     if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
-      CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
-        CommonFun.getInstance().showSmallAddCash();
-      }, false);
+      if (GlobalCfg.IS_CLUB_MODE == 1) {
+        //代理模式不跳转商城
+        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+      } else {
+        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+          CommonFun.getInstance().showSmallAddCash();
+        }, false);
+      }
       return;
     }
     ;

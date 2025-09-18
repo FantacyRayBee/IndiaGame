@@ -91,6 +91,7 @@ cc.Class({
 
     start() {
         GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = false;
+        GlobalCfg.FIRST_RECHARGE_TIPS_SHOW_10 = false;
         this.showStep_1();
     },
 

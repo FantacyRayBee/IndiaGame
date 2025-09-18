@@ -53,25 +53,32 @@ cc.Class({
     },
 
     dealBtnPayEvent: function() {
-        SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.VipOnceToast;;
-        let _cb = ()=>{
+        let str = GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100
+        // CommonFun.getInstance().ShowTipsBeforeBuy(str, ()=>{
             if (CommonFun.getInstance().isValidForScr(this)) {
                 this.node.destroy();
             };
-        };
-        
-        let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-        if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
+            let callback = ()=>{
+                SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.VipOnceToast;;
+                let _cb = ()=>{
+                };
+                
+                let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+                if (rechargeNeedInfo) {
+                    if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                        CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
+                    }
+                    else {
+                        CommonFun.getInstance().showBindPhone('AddCash');
+                    };
+                }
+                else {
+                    CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
+                };
             }
-            else {
-                CommonFun.getInstance().showBindPhone('AddCash');
-            };
-        }
-        else {
-            CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
-        };
+            let data = {price: GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100, bonus: (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount)/100}
+            CommonFun.getInstance().showPayChannel(data, callback);
+        // })
     },
 
     onDestroy: function() {

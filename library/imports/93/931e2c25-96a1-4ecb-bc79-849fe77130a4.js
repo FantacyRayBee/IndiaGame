@@ -101,7 +101,7 @@ cc.Class({
       return;
     }
     ;
-    var number = Math.round(num / 100);
+    var number = parseFloat((num / 100).toFixed(2));
     this.lab_win.string = "+" + number;
     this.textBg.active = true;
     cc.tween(this.textBg).to(1, {

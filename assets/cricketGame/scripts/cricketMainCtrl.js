@@ -113,6 +113,7 @@ cc.Class({
         }
         this.selfPlayerNode.getChildByName('WinLabel').active = false;
 
+        this.btnAddCash.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
         this.clockNode.active = false;
         this.initJbPool();
         this.endAnimationNode.active = false;
@@ -195,6 +196,12 @@ cc.Class({
     },
 
     btnBetClick(ani) {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) { //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return
+        } 
         this.serverMsgManager.sendBetMsg([{ ani: ani, amount: this.curBetCtrl.curBetNum }]);
     },
 
@@ -360,11 +367,11 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.updateSelfCoin();
         }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            self.unscheduleAll();
-            self.rouletteManager.unscheduleAll();
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CRICKET, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+            // self.unscheduleAll();
+            // self.rouletteManager.unscheduleAll();
+            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CRICKET, SceneManager.getInstance().sceneType.LOBBY);
+        // }
 
     },
 
@@ -1086,7 +1093,7 @@ cc.Class({
         if (selfWin > 0) {
             let winLabel = this.selfPlayerNode.getChildByName('WinLabel').getComponent(cc.Label);
             winLabel.node.setPosition(cc.v2(0, 0));
-            winLabel.string = "+" + Math.round(selfWin / 100);
+            winLabel.string = "+" + parseFloat((selfWin / 100).toFixed(2));
             winLabel.node.active = true;
             cc.tween(winLabel.node)
                 .to(1, { position: cc.v2(0, 100) })

@@ -366,7 +366,7 @@ cc.Class({
             if (this.allSpinArr.length > 0 && spin.isNormal == true) {   // 常规SPIN执行完成，开始免费SPIN，先展示15次免费SPIN的提示框
                 CommonFun.getInstance().loadBundle('zeusGame', (bundle) => {
                     bundle.load("prefabs/zeusChangeStateTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
+                        if (!err && GlobalCfg.ACT_SCENE_CTRL != null) {
                             let scene = cc.director.getScene();
                             let zeusChangeStateTipsNode = cc.instantiate(prefab);
                             let zeusChangeStateTipsCtrl = zeusChangeStateTipsNode.getComponent("zeusChangeStateTipsCtrl");

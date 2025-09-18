@@ -46,7 +46,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 93,
+      "width": 90,
       "height": 39
     },
     "_anchorPoint": {
@@ -316,10 +316,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "d1eea0a6-d19e-4736-b66b-1a9b58acedc9"
+      "__uuid__": "73fe790f-d9ae-4975-8b60-9c9bd591d28a"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -333,7 +333,7 @@
     "_id": ""
   },
   {
-    "__type__": "90956ZCvYRKHp44IRqk6+59",
+    "__type__": "2383e1afd9DgoXAaixduou3",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -345,30 +345,30 @@
     },
     "greenLabColor": {
       "__type__": "cc.Color",
-      "r": 6,
-      "g": 233,
-      "b": 102,
+      "r": 80,
+      "g": 255,
+      "b": 46,
       "a": 255
     },
     "orangeLabColor": {
       "__type__": "cc.Color",
-      "r": 254,
-      "g": 197,
-      "b": 2,
+      "r": 255,
+      "g": 148,
+      "b": 11,
       "a": 255
     },
     "purpleLabColor": {
       "__type__": "cc.Color",
-      "r": 252,
-      "g": 103,
+      "r": 173,
+      "g": 50,
       "b": 255,
       "a": 255
     },
     "blueLabColor": {
       "__type__": "cc.Color",
-      "r": 10,
-      "g": 209,
-      "b": 238,
+      "r": 31,
+      "g": 112,
+      "b": 255,
       "a": 255
     },
     "greenSpriteFrame": {

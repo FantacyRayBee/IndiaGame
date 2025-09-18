@@ -35,6 +35,12 @@ cc.Class({
             LoggerUtil.getInstance().setLoggerStatus(true);
         };
         console.log(`LoggerUtil Status is: ${LoggerUtil.getInstance().getLoggerStatus()}`);
+        console.log(`APP_CONFIG_URL: ${GlobalCfg.APP_CONFIG_URL}`);
+        console.log(`APP_INFO_URL: ${GlobalCfg.APP_INFO_URL}`);
+        console.log(`APP_VERSION: ${GlobalCfg.APP_VERSION}`);
+        console.log(`UpdateVersion: ${cc.sys.localStorage.getItem("UpdateVersion")}`);
+        console.log(`PackageName: ${APPManager.getPackageName()}`);
+        console.log(`PackageChannel: ${cc.sys.localStorage.getItem("PackageChannel")}`);
 
         /**
          * 常驻节点
@@ -71,6 +77,13 @@ cc.Class({
         let UnUseFacebook = Number(cc.sys.localStorage.getItem("UnUseFacebook"));
         LoggerUtil.getInstance().log("UnUseFacebook: ", UnUseFacebook);
         GlobalCfg.UNUSE_FACEBOOK = UnUseFacebook;
+
+        let clubMode = Number(cc.sys.localStorage.getItem("IsClubMode") || 0); //是否是代理模式 0:不是 1:是
+        GlobalCfg.IS_CLUB_MODE = clubMode;
+
+        let freestyleHead = Number(cc.sys.localStorage.getItem("IsfreestyleHead") || 0); 
+        GlobalCfg.IS_Freestyle_Head = freestyleHead;
+
 
         let needToLogEncrypt = false;
         if(needToLogEncrypt) {
@@ -127,15 +140,25 @@ cc.Class({
         APPManager.getFirebaseToken();
         let packageChannel = "";
         let channel = 0;
+
         if(window.parent && window.parent.uni){// H5端
-            packageChannel = window.parent.channel;
-            cc.sys.localStorage.setItem("PackageChannel", packageChannel);
-            // const systemInfo = window.parent.uni.getSystemInfoSync();
-            // console.log("222systemInfo : ", systemInfo); // 打印出设备的系统信息
+            packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+            window.postMessage({
+                action: 'getChannel',  // 动作类型，可以根据需要传递不同的 action
+                data: {}  // 发送的数据
+            }, '*');
+
+            // window.addEventListener('message', function(event) {
+            //     if (event.data.action === 'sendChannel') {
+            //         console.log('Received channel:', channel);
+            //     }
+            // });
         }
         else{
             packageChannel = cc.sys.localStorage.getItem("PackageChannel");
         }
+
+        LoggerUtil.getInstance().log("caojun packageChannel:",packageChannel);
 
         if (packageChannel && packageChannel.indexOf("_") != -1) {
             let packageChannelArr = packageChannel.split("_"); 
@@ -204,24 +227,32 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_START);
         return new Promise((resolve, reject) => {
             let getAdjustIDCallback = () =>  {
-                let endTime = cc.sys.now();
-                let adjustId = APPManager.getAdjustID();
-                if (adjustId && adjustId != '' && adjustId.length > 0) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_SUCCESS, endTime - startTime);
-                    GlobalCfg.ADJUST_ID = adjustId;
-                    LoggerUtil.getInstance().log("adjustId:", GlobalCfg.ADJUST_ID);
-                    this.unschedule(getAdjustIDCallback);
-                    resolve(adjustId);
-                    return;
+                let adjustId_tmp = cc.sys.localStorage.getItem(`adjustId_local`);
+                if (!adjustId_tmp) {
+                    let endTime = cc.sys.now();
+                    let adjustId = APPManager.getAdjustID();
+                    if (adjustId && adjustId != '' && adjustId.length > 0) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_SUCCESS, endTime - startTime);
+                        GlobalCfg.ADJUST_ID = adjustId;
+                        cc.sys.localStorage.setItem(`adjustId_local`, adjustId);
+                        this.unschedule(getAdjustIDCallback);
+                        resolve(adjustId);
+                        return;
+                    }
+                    else if (endTime - startTime > 10000) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
+                        GlobalCfg.ADJUST_ID = "test01";
+                        this.unschedule(getAdjustIDCallback);
+                        cc.sys.localStorage.setItem(`adjustId_local`, "test01");
+                        resolve("");
+                        return;
+                    };
                 }
-                else if (endTime - startTime > 20000) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_FAIL, endTime - startTime);
-                    GlobalCfg.ADJUST_ID = "";
-                    LoggerUtil.getInstance().log("adjustId is empty");
+                else{
+                    GlobalCfg.ADJUST_ID = adjustId_tmp;
                     this.unschedule(getAdjustIDCallback);
-                    resolve("");
-                    return;
-                };
+                    resolve(adjustId_tmp);
+                }
             };
             this.schedule(getAdjustIDCallback, 0.5);
         });
@@ -242,7 +273,7 @@ cc.Class({
                     resolve(appsFlyerId);
                     return;
                 }
-                else if (endTime - startTime > 20000) {
+                else if (endTime - startTime > 10000) {
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_FAIL, endTime - startTime);
                     GlobalCfg.APPSFLYER_ID = "";   
                     LoggerUtil.getInstance().log("appsFlyerId is empty");
@@ -260,25 +291,59 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
         return new Promise((resolve, reject) => {
             let getAdvertisingIdCallback = () =>  {
-                let endTime = cc.sys.now();
-                let advertisingId = APPManager.getAdvertisingId();
-                if (advertisingId && advertisingId.length > 0) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
-                    GlobalCfg.ADVERTISING_ID = advertisingId;   
-                    this.unschedule(getAdvertisingIdCallback);
-                    resolve(advertisingId);
-                    return;
+                //只有第一次打开APP的时候 需要获取广告ID ，获取成功后保存到本地
+                let advertisingId_tmp = cc.sys.localStorage.getItem(`advertisingId_local`);
+                if (!advertisingId_tmp) {
+                    let endTime = cc.sys.now();
+                    let advertisingId = APPManager.getAdvertisingId();
+                    if (advertisingId && advertisingId.length > 0) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_SUCCESS, endTime - startTime);
+                        GlobalCfg.ADVERTISING_ID = advertisingId;
+                        cc.sys.localStorage.setItem(`advertisingId_local`, advertisingId);
+                        this.unschedule(getAdvertisingIdCallback);
+                        resolve(advertisingId);
+                        this.installApp();
+                        return;
+                    }
+                    else if (endTime - startTime > 20000) {
+                        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
+                        GlobalCfg.ADVERTISING_ID = "test01";
+                        cc.sys.localStorage.setItem(`advertisingId_local`, "test01");
+                        this.unschedule(getAdvertisingIdCallback);
+                        resolve("");
+                        this.installApp();
+                        return;
+                    };
                 }
-                else if (endTime - startTime > 20000) {
-                    CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_FAIL, endTime - startTime);
-                    GlobalCfg.ADVERTISING_ID = "test01";
+                else{
+                    GlobalCfg.ADVERTISING_ID = advertisingId_tmp;
                     this.unschedule(getAdvertisingIdCallback);
-                    resolve("");
-                    return;
-                };
+                    resolve(advertisingId_tmp);
+                    this.installApp();
+                }
             };
             this.schedule(getAdvertisingIdCallback, 0.5);
         });
+    },
+
+    installApp: function() {
+        if (!cc.sys.localStorage.getItem("install")) {
+            let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+            let channel = '';
+            if (packageChannel && packageChannel.indexOf("_") != -1) {
+                let packageChannelArr = packageChannel.split("_"); 
+                channel = packageChannelArr[1];
+            }
+            let device = CommonFun.getInstance().getDeviceId();
+            let httpParam = {
+                "adv": GlobalCfg.ADVERTISING_ID,
+                "channel": channel,
+                "device":device,
+            };
+            let httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/install";
+            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {});
+            cc.sys.localStorage.setItem("install", "1");
+        }
     },
 
     reqAppConfig: function(url) {
@@ -315,7 +380,7 @@ cc.Class({
             CommonFun.getInstance().dealAppInfoJson(json);
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_SUCCESS, endTime - startTime);
             finishCallback && finishCallback(); 
-        }, 
+        },
         () => {
             let endTime = cc.sys.now();
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);

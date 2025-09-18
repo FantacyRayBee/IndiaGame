@@ -194,6 +194,7 @@ export class ActBtnsCtrl extends cc.Component {
      * @param canActValueArr 可进行的动作码数组
      */
     setActBtnsInteractableByActValueArr(canActValueArr: number[]) {
+        //@ts-ignore
         this._setBetBtnInteractable(canActValueArr.indexOf(2) != -1);
         this._setAddBtnInteractable(canActValueArr.indexOf(4) != -1);
         this._setShowBtnInteractable(canActValueArr.indexOf(8) != -1);

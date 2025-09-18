@@ -1,0 +1,207 @@
+syntax = "proto3";
+package gameservice;
+
+// ack结果
+message ResponseBase {
+  uint32 result = 1;
+  string message = 2;
+}
+
+
+//游戏状态
+enum EnumGameStatus {
+  GAME_Betting = 0;   // 下注中
+  GAME_Wait = 1;      // 等待
+}
+
+// JoinVip 操作码
+enum EnumJoinAction {
+  None = 0;       // 异常
+  Sit = 1;        // 上VIP
+  Leave = 2;      // 离开VIP
+  Change = 3;     // 换座
+}
+
+//游戏牌的类型
+enum EnumCardSuit {
+  NULL = 0;           //没有牌型
+  POINT = 1;          //点数
+  TWO = 2;            //对子
+  FLUSH = 3;          //金花
+  STRAIGHT = 4;       //顺子
+  STRAIGHT_FLUSH = 5; //金顺
+  THREE = 6;          //豹子
+}
+
+// 短消息 gameservice.shortmessage
+message ShortMessageReq {
+  int32 msgType = 1;    // 消息类型 0短语 1表情
+  string name = 2;      // 表情名/短语内容
+  int32 target = 3;     // 接收者seat (-1表示群发)
+}
+message ShortMessageAck {
+  ResponseBase result = 1;
+}
+// 短消息广播 gameservice.shortmessagenotify
+message ShortMessageNotify {
+  int32 msgType = 1;      // 消息类型 0短语 1表情 2礼物
+  string name = 2;        // 表情名/短语内容
+  int32 sender = 3;       // 发送者seat
+  int32 target = 4;       // 接收者seat (-1表示群发)
+  int32 price = 5;        // 价格
+  int64 senderAfter = 6;  // 发送者扣价后货币
+}
+
+// 玩家信息
+message UserInfo {
+  uint64 playerId = 1;
+  string displayName = 2;
+  string imgUrl = 3;
+  string nickname = 4;
+  repeated int64 scores = 5;  // 下注信息
+  int64 diamond = 8;
+  int64 seat = 9;             // vip座位, 0表示非vip
+  uint32 vipLevel = 10;
+}
+
+//登录 gameservice.login
+message LoginReq {
+  string userid = 1;  // 用户ID
+  string token = 2;   // 登录服拿到的token
+}
+message LoginAck {
+  ResponseBase Result = 1;
+  GameConfig config = 6;    // 游戏配置
+  UserInfo userinfo = 7;    // 用户信息
+  repeated int32 betOption = 8; // 下注选项
+}
+// 游戏配置
+message GameConfig {
+  uint32 bettingTime = 1;   // 下注时间
+  uint32 waitTime = 2;      // 结算后等待时间
+}
+
+
+//vip入座进入 gameservice.joinvip
+message JoinVipReq {
+  int32 seat = 1;           // 选择的座位 > 0; 离座时无视
+  EnumJoinAction act = 2;   // 操作码
+}
+message JoinVipAck {
+  ResponseBase Result = 1;
+}
+//vip入座进入 gameservice.joinvipnotify
+message JoinVipNotify {
+  UserInfo user = 1;
+  EnumJoinAction act = 2;     // 操作码
+  int32 oldSeat = 3;          // 换做的情况下原来的座位号
+}
+
+//游戏开始 gameservice.gamestartnotify
+message GameStartNotifyAck {
+  int32 id = 1;             // 小局编号(客户端可无视)
+}
+
+// 主动拉取/场景推送 gameservice.gamescene
+message GameSceneReq {
+}
+message GameSceneAck {
+  ResponseBase Result = 1;
+  EnumGameStatus status = 2;      // 游戏状态
+  int64 remaining = 3;            // 当前状态剩余时间
+  repeated UserInfo vipList = 4;  // vip玩家列表
+  repeated BossPool pools = 5;    // 下注信息
+  int32 playerNumber = 6;         // 总玩家人数
+  bool first = 7;                 // 是否连接后第一次
+  UserInfo requester = 8;         // 请求者信息
+}
+// 下注池
+message BossPool {
+  int32 boss = 1;               // 注池
+  int64 all = 2;                // 总量
+  int64 self = 3;               // 自己下的
+  repeated int32 history = 5;   // 历史记录
+  int32 number = 6;             // 开奖值(结算协议使用)
+  EnumCardSuit CardSuit = 7;    // 牌型
+  repeated int32 cards = 8;
+}
+
+// 下注 gameservice.call
+message CallReq {
+  int64 amount = 1;   // 下注金额
+  int32 boss = 2;     // 下的哪边
+}
+message CallAck {
+  ResponseBase Result = 1;
+}
+// 下注通知 gameservice.callnotify
+message CallNotifyAck{
+  ResponseBase Result = 1;
+  uint64 playerId = 2;
+  int32 seat = 3;             // vip座位 0表示非VIP
+  int32 boss = 4;             // 下注池
+  int64 amount = 5;           // 下注额
+  int64 allAmount = 6;        // 注池总金额
+  int64 after = 7;            // 玩家下注后剩余货币
+}
+
+//游戏结果 gameservice.gameendnotify
+message GameEndNotify {
+  CalcResult  selfResult = 1;               //玩家的结算信息
+  repeated CalcResult vipResult = 2;        //vip座位的结算信息
+  repeated int32 zhuangCards = 3;            //庄的牌的信息
+  repeated BossPool pools = 4;              //下注信息
+  EnumCardSuit zhuangCardSuit = 5;          //庄的牌型
+}
+
+message cards  {
+  repeated int32 cards = 1;
+}
+
+// 结算结果
+message CalcResult {
+  int32 seat = 1;     // vip座位, 0表示非vip
+  int64 score = 2;    // 结算值
+  int64 after = 3;    // 结算后的金币
+}
+
+//踢人 gameservice.kickout
+message KickOutAck {
+  uint32 KickType = 1;
+}
+
+// 查询最近的结算信息 gameservice.exitgame
+message ExitGameReq{}
+message ExitGameAck{
+  ResponseBase Result = 1;
+}
+
+//玩家列表 gameservice.playerlist
+message PlayerListReq {
+  int32 page = 1;       // 页码 0~n
+  int32 size = 2;       // 每页个数
+}
+message PlayerListAck {
+  ResponseBase Result = 1;
+  int32 total = 2;              // 总数
+  repeated UserInfo list = 3;
+}
+
+//vip列表 gameservice.viplist
+message VipListReq {
+}
+message VipListAck {
+  repeated UserInfo list = 1;
+}
+
+// 查询最近的结算信息 gameservice.querygameendinfo
+message QueryGameEndInfoReq{}
+// 返回结构体 = GameEndNotify
+
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  int32 seat = 1;
+  int64 diamond = 2;  // 剩余数量
+  int32 reason = 3;   // 原因 1:支付; 其他：未知
+}

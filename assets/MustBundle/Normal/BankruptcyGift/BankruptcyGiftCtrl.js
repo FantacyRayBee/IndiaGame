@@ -83,8 +83,6 @@ cc.Class({
         return index;
     },
 
-
-
     /**
      * 
      * @param {Array<PaymentProduct>} options 
@@ -96,12 +94,19 @@ cc.Class({
             bool plot = 5;      // 暂无意义，默认false
         }
      */
-    init() {
-        GlobalCfg.USER_DATAS.discoList = GlobalCfg.USER_DATAS.discoList.sort((a,b) => a.amount - b.amount);
-        let options = [...GlobalCfg.USER_DATAS.discoList];
+    init(isPLotPlay) {
+        let list = GlobalCfg.USER_DATAS.discoList
+        if (isPLotPlay) { //需要处理一下数据
+            let winRate = cc.sys.localStorage.getItem("TP_winRate", 0);
+            list = this.dealData(GlobalCfg.USER_DATAS.plotPay, winRate)
+        }
+        list = list.sort((a,b) => a.amount - b.amount);
+        LoggerUtil.getInstance().log('3 dealData list:', list);
+        let options = [...list];
         let curIndex = this.getLowerOptionIndexByLastRecharge(options, GlobalCfg.USER_DATAS.lastRecharged);
         let curIndex2 = this.getLowerOptionIndexByAllRecharge(options, GlobalCfg.USER_DATAS.recharged);
         curIndex = curIndex2 > curIndex ? curIndex2 : curIndex;
+        LoggerUtil.getInstance().log('4 dealData options:', options);
         if((curIndex + 2) >= options.length){
             curIndex2 = options.length - 1;
         }else{
@@ -144,10 +149,35 @@ cc.Class({
         labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
         buttonLabelNum.string = Math.round(cash / 100);
         button.node.on('click', () => {
-            CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, () => {
-                button.node.off('click');
-                this.node.destroy();
-            });
+            let callback = () => {
+                CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, () => {
+                    button.node.off('click');
+                    this.node.destroy();
+                }, GlobalCfg.PAY_CHANNEL);
+            }
+            let data1 = {price: Math.round((data.amount + data.add) / 100), bonus: Math.round(data.bonus / 100)}
+            CommonFun.getInstance().showPayChannel(data1, callback);
         });
     },
+
+    dealData(data, winRate) {
+        LoggerUtil.getInstance().log('1 dealData data:', data);
+        if (!Array.isArray(data)) return []; // 防御：非数组直接返回空数组
+        const tmp = JSON.parse(JSON.stringify(data)); // 深拷贝
+        const ret = [];
+        if (winRate == 1) {
+            for (let i = 0; i < tmp.length; i++) {
+                if (i > 0) { // 跳过第一个元素（如需保留全部元素，移除此判断）
+                    ret.push(tmp[i]); // 将元素推入数组
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < tmp.length - 1; i++) {
+                ret.push(tmp[i]); // 将元素推入数组
+            }
+        }
+        LoggerUtil.getInstance().log('2 dealData ret:', ret);
+        return ret; // 返回数组
+    }
 });

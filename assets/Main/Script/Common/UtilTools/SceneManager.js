@@ -12,7 +12,11 @@ let SceneManager = cc.Class({
             BENZ: 'Benz/benz',
             SGJ: 'fruitMachine/fruitMachine',
             MAYA: 'mayaMachine/mayaMachine',
+            MTP: 'multiTeenPatti/mtpLobby',
+            JOKER: 'jokerMachine/jokerMachine',
             INDIA: 'indiaMachine/indiaMachine',
+            VAMPIRE: 'vampireMachine/vampireMachine',
+            BULL: 'bullMachine/bullMachine',
             HORSERACE: 'horseRaceGame/horseRace',
             LHD: 'lhdGame/LHD',
             MUNDA: 'munda/mundaLobby',
@@ -20,9 +24,11 @@ let SceneManager = cc.Class({
             TEENPATTI: 'tpGame/TpGame',
             RUMMY: 'Rummy/rummy',
             ROCKET: 'rocket/rocket',
+            AVIATOR: 'aviator/aviator',
             ZOO:'zooGame/zoo',
             CRICKET: 'cricketGame/cricket',
             ZEUS: "zeusGame/zeus",
+            WEBVIEW:'webview',
         };
     
         this.curSceneType = null;
@@ -75,6 +81,23 @@ let SceneManager = cc.Class({
         else if (fromSceneName === this.sceneType.LOBBY && toSceneName !== this.sceneType.UPDATE) {
             this.dealEnterGameScene(toSceneName);
         }
+        // 从内嵌小游戏网页场景跳转到大厅场景 刷新玩家身上的数据
+        else if(fromSceneName == this.sceneType.WEBVIEW && toSceneName === this.sceneType.LOBBY){
+            Promise.all([this.reqUserDataInfo()])
+            .then((arr) => {
+                this.isLoadingScene = false;
+                CommonFun.getInstance().hidProgress();
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                    msgCode: GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY,
+                    msgData: {}
+                });
+            })
+            .catch((err) => {
+                this.isLoadingScene = false;
+                CommonFun.getInstance().hidProgress();
+                CommonFun.getInstance().showTips(err);
+            });
+        }
         // 从小游戏场景跳转到大厅场景
         else if (fromSceneName !== this.sceneType.UPDATE && fromSceneName !== this.sceneType.LOBBY && toSceneName === this.sceneType.LOBBY) {
             GameServerManager.clientCloseServer();
@@ -110,8 +133,8 @@ let SceneManager = cc.Class({
     },
 
     dealEnterLobbyScene: function(toSceneName) {
-        let protoCfg = ProtoObj.getProto("LOBBY");
         let protoPathArr = ["proto/baseproto", "proto/lobbyservice"];
+        let protoCfg = ProtoObj.getProto("LOBBY");
         let websocketUrl = GlobalCfg.WEB_SOCKET_LOBBY;
 
         if (!protoCfg) {
@@ -182,10 +205,25 @@ let SceneManager = cc.Class({
                 protoPathArr = ["proto/mayaMachine/gameservice"];
                 websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mayaMachineData.endpoint;
                 break;
+            case this.sceneType.JOKER:
+                protoCfg = ProtoObj.getProto("JOKER");
+                protoPathArr = ["proto/jokerMachine/gameservice"];
+                websocketUrl = GlobalCfg.SMALL_GAME_DATAS.jokerMachineData.endpoint;
+                break;
             case this.sceneType.INDIA:
                 protoCfg = ProtoObj.getProto("INDIA");
                 protoPathArr = ["proto/indiaMachine/gameservice"];
                 websocketUrl = GlobalCfg.SMALL_GAME_DATAS.indiaMachineData.endpoint;
+                break;
+            case this.sceneType.VAMPIRE:
+                protoCfg = ProtoObj.getProto("VAMPIRE");
+                protoPathArr = ["proto/vampireMachine/gameservice"];
+                websocketUrl = GlobalCfg.SMALL_GAME_DATAS.vampireMachineData.endpoint;
+                break;
+            case this.sceneType.BULL:
+                protoCfg = ProtoObj.getProto("BULL");
+                protoPathArr = ["proto/bullMachine/gameservice"];
+                websocketUrl = GlobalCfg.SMALL_GAME_DATAS.bullMachineData.endpoint;
                 break;
             case this.sceneType.SEVENUPDOWN:
                 protoCfg = ProtoObj.getProto("UPDOWN");
@@ -217,6 +255,11 @@ let SceneManager = cc.Class({
                 protoPathArr = ["proto/munda/gameservice"];
                 websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mundaData.endpoint;
                 break;
+            case this.sceneType.MTP:
+                protoCfg = ProtoObj.getProto("MTP");
+                protoPathArr = ["proto/multiTeenPatti/gameservice"];
+                websocketUrl = GlobalCfg.SMALL_GAME_DATAS.mtpData.endpoint;
+                break;
             case this.sceneType.SSC:
                 protoCfg = ProtoObj.getProto("SSC");
                 protoPathArr = ["proto/ssc/gameservice"];
@@ -236,6 +279,11 @@ let SceneManager = cc.Class({
                 protoCfg = ProtoObj.getProto("rocket");
                 protoPathArr = ["proto/rocket/gameservice"];
                 websocketUrl = GlobalCfg.SMALL_GAME_DATAS.rocketData.endpoint;
+                break;
+            case this.sceneType.AVIATOR:
+                protoCfg = ProtoObj.getProto("aviator");
+                protoPathArr = ["proto/aviator/gameservice"];
+                websocketUrl = GlobalCfg.SMALL_GAME_DATAS.aviatorData.endpoint;
                 break;
             case this.sceneType.ZOO:
                 protoCfg = ProtoObj.getProto("zooGame");
@@ -407,9 +455,12 @@ let SceneManager = cc.Class({
         let httpParam = {};
     
         let device = CommonFun.getInstance().getDeviceId();
+        let gaid = APPManager.getGAID();
+        let conversionListener = APPManager.getAppsFlyerConversionListener();
+        // LoggerUtil.getInstance().log(`登录 device: ${device} 广告id gaid: ${gaid}`)
 
-        LoggerUtil.getInstance().log(`登录 device: ${device}`)
-
+        console.log("广告id gaid:" + gaid)
+        let googleId = APPManager.getPackageName();
         if (notify.loginType == "PHONE") {
             httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/phonelogin";
             httpParam = {
@@ -417,7 +468,7 @@ let SceneManager = cc.Class({
                 "code": notify.code,
                 "login_product": GlobalCfg.PRODUCT_ID,
                 "channel_info": GlobalCfg.CHANNEL_INFO,
-                "googleId": GlobalCfg.GOOGLE_ID,
+                "googleId": googleId,
                 "admin_mode": 0,
                 "device": device,
                 "adv": GlobalCfg.ADVERTISING_ID,
@@ -427,6 +478,7 @@ let SceneManager = cc.Class({
                 "afid": GlobalCfg.APPSFLYER_ID,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "token": notify.token,
+                "gaid":gaid,
                 "sign": CommonFun.getInstance().encryptByRSA(device),
             }
         } 
@@ -446,7 +498,7 @@ let SceneManager = cc.Class({
                 "mobile": "",
                 "login_product": GlobalCfg.PRODUCT_ID,
                 "channel_info": GlobalCfg.CHANNEL_INFO,
-                "googleId": GlobalCfg.GOOGLE_ID,
+                "googleId": googleId,
                 "admin_mode": 0,
                 "device": device,
                 "headImgUrl": notify.code.HeadImgUrl,
@@ -454,6 +506,7 @@ let SceneManager = cc.Class({
                 "userName": notify.code.UserName,
                 "userId": notify.code.UserId,
                 "token": notify.code.Token,
+                "gaid":gaid,
                 "adv": GlobalCfg.ADVERTISING_ID,
                 "adid": GlobalCfg.ADJUST_ID,
                 "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
@@ -471,14 +524,16 @@ let SceneManager = cc.Class({
                 "password": notify.password,
                 "admin_mode": 0,
                 "channel": GlobalCfg.CHANNEL_INFO,
-                "googleId": GlobalCfg.GOOGLE_ID,
+                "googleId": googleId,
                 "adv": GlobalCfg.ADVERTISING_ID,
                 "adid": GlobalCfg.ADJUST_ID,
+                "gaid":gaid,
                 "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
                 "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
                 "afid": GlobalCfg.APPSFLYER_ID,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(notify.account),
+                "cl": conversionListener,
             }
         }
         else if (notify.loginType == "GUEST") {
@@ -489,18 +544,41 @@ let SceneManager = cc.Class({
                 "device": device,
                 "admin_mode": 0, 
                 "channel_info": GlobalCfg.CHANNEL_INFO,
-                "googleId": GlobalCfg.GOOGLE_ID,
+                "googleId": googleId,
                 "adv": GlobalCfg.ADVERTISING_ID,
                 "adid": GlobalCfg.ADJUST_ID,
                 "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
                 "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
                 "afid": GlobalCfg.APPSFLYER_ID,
+                "gaid":gaid,
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(device),
                 "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,
+                "cl": conversionListener,
+            };
+        }
+        else if (notify.loginType == "USERID") {
+            // httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/visitorlogin"
+            httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/testxiaowei"
+            httpParam = {
+                "login_product": GlobalCfg.PRODUCT_ID,
+                "device": device,
+                "admin_mode": 0, 
+                "channel_info": GlobalCfg.CHANNEL_INFO,
+                "googleId": googleId,
+                "adv": GlobalCfg.ADVERTISING_ID,
+                "adid": GlobalCfg.ADJUST_ID,
+                "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
+                "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+                "afid": GlobalCfg.APPSFLYER_ID,
+                "gaid":gaid,
+                "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
+                "sign": CommonFun.getInstance().encryptByRSA(device),
+                "packageSdkType": GlobalCfg.PACKAGE_REPORT_METHOD,
+                "user_id": notify.userid,
+                "cl": conversionListener,
             };
         };
-
         return new Promise((resolve, reject) => {
             CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
                 if (msg && msg.result == 0 && msg.data) {
@@ -565,15 +643,14 @@ let SceneManager = cc.Class({
             "channel_info": GlobalCfg.CHANNEL_INFO,
             "login_product": GlobalCfg.PRODUCT_ID
         };
-
+        LoggerUtil.getInstance().error(`caojun httpParam: ${JSON.stringify(httpParam)}`);
         return new Promise((resolve, reject) => {
             CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
                 if (msg && msg.result == 0 && msg.data) {
         
                     let msgData = msg.data;
-        
                     let token = msgData.token;
-        
+                    LoggerUtil.getInstance().error(`v1/login msgData: ${JSON.stringify(msgData)}`);
                     let login_way = msgData.login_way;
                     /**
                      * 用户token的有效时间截点
@@ -591,7 +668,7 @@ let SceneManager = cc.Class({
                      * 客服信息
                      */
                     let customer_service = config.customer_service ? config.customer_service : "";    // 旧字段
-                    let support = config.support ? config.support : {whatsApp: '', email: '', facebook: '', telegram: '', cloud: ''};
+                    let support = config.support ? config.support : {whatsApp: '', email: '', facebook: '', telegram: '', cloud: '', landingPage:''};
                     /**
                      *  游戏模式，特殊渠道百人加一分场，另一套数值
                      */
@@ -632,6 +709,8 @@ let SceneManager = cc.Class({
                      * 
                      */
                     let vip_expires_day = config.vip_expires_day ? config.vip_expires_day : 0;
+
+                    let IP_URL = config.ipUrl ? config.ipUrl : "";
                     /**
                      * VIP扭蛋机商品列表
                      * 二维数组  下标0表示物品id， 1表示数量
@@ -654,8 +733,12 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.vipLevels = vip_levels;
                     GlobalCfg.USER_DATAS.vipExpiresDay = vip_expires_day;
                     GlobalCfg.USER_DATAS.gacha = gacha;
+                    
 
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_SUCCESS);
+                    if (IP_URL && IP_URL != "") {
+                        this.dealIpUrl(IP_URL);
+                    }
                     resolve();
                 }
                 else {
@@ -730,6 +813,7 @@ let SceneManager = cc.Class({
                     let in_game = msgData.in_game ? msgData.in_game : [];
     
                     let wallet = msgData.wallet;
+                   
 
                     let channel = msgData.channel ? msgData.channel : ""; 
                     /**
@@ -833,6 +917,10 @@ let SceneManager = cc.Class({
                      * 是否有PDD任务
                      */
                     let have_pdd_activity = msgData.have_pdd_activity ? msgData.have_pdd_activity : false;
+
+                    let inducement = msgData.get_recharge_inducement_info_ack ? msgData.get_recharge_inducement_info_ack : {};
+
+                    // LoggerUtil.getInstance().log("caojun inducement", inducement);
                     /**
                      * 签到信息。同v1/signlist接口数据
                      */
@@ -877,6 +965,12 @@ let SceneManager = cc.Class({
                      * superDiscount 活动列表
                      */
                     let disco_list = msgData.disco_list ? msgData.disco_list : [];
+                    let plot_pay = msgData.plot_pay ? msgData.plot_pay : [];
+
+                    LoggerUtil.getInstance().error("plot_pay", msgData.plot_pay);
+
+                    let only_pay = msgData.only_pay ? msgData.only_pay : [];
+                    let only_pay_time = msgData.only_pay_time ? msgData.only_pay_time : 0;
                     /**
                      * VIP信息
                      */
@@ -932,14 +1026,24 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.nextDisco = next_disco;
                     GlobalCfg.USER_DATAS.registerTime = register_time;
                     GlobalCfg.USER_DATAS.discoList = disco_list;
+                    GlobalCfg.USER_DATAS.plotPay = plot_pay;
+                    GlobalCfg.USER_DATAS.onlyPay = only_pay;
+                    GlobalCfg.USER_DATAS.only_pay_countDownTime = only_pay_time + Date.now();
+                    GlobalCfg.USER_DATAS.only_pay_time = only_pay_time;
                     GlobalCfg.USER_DATAS.userVip = user_vip;
                     GlobalCfg.USER_DATAS.userLevel = user_level;
                     GlobalCfg.USER_DATAS.betrebate = betrebate;
                     GlobalCfg.USER_DATAS.lastRecharged = last_recharged;
+                    GlobalCfg.USER_DATAS.is_club = msgData.is_club;
+                    GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
+                    GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
+                    GlobalCfg.USER_DATAS.inducement = inducement;
+                    LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userVip == ", GlobalCfg.USER_DATAS.userVip);
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');
                     };
-
+                    // LoggerUtil.getInstance().log('caojun GlobalCfg.USER_DATAS.lastRecharged :', GlobalCfg.USER_DATAS.lastRecharged);
+                    // LoggerUtil.getInstance().log('caojun GlobalCfg.USER_DATAS.recharged :', GlobalCfg.USER_DATAS.recharged);
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_USERDATA_INFO_SUCCESS);
                     this.updateShopSelectRechargeAmount(last_recharged);
                     resolve();
@@ -967,11 +1071,18 @@ let SceneManager = cc.Class({
         });
     },
 
+    //发送给服务器 无需处理
+    dealIpUrl: function(IP_URL){
+        IP_URL = IP_URL +"?userId="+GlobalCfg.USER_DATAS.userId
+        CommonFun.getInstance().httpGet(IP_URL,(jsonObj)=>{});
+    },
+
     /**
      * 更新商城商品默认选中值
      * @param {Number} lastRecharged 
      */
     updateShopSelectRechargeAmount:function(lastRecharged){
+        LoggerUtil.getInstance().log('11 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
         if (GlobalCfg.USER_DATAS.recharged > 0) {
             let index = 0, length = GlobalCfg.USER_DATAS.store.length;
             while (index < length) {
@@ -986,6 +1097,7 @@ let SceneManager = cc.Class({
                 index++;
             }
         }
+        LoggerUtil.getInstance().log('22 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
     },
 
     getAdvertisingId: function() {

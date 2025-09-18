@@ -11,8 +11,8 @@ cc.Class({
 
     ctor: function() {
         this.itemPosArr = [
-            cc.v2(-165, 84), cc.v2(-40, 84), cc.v2(85, 84), 
-            cc.v2(-165, -77), cc.v2(-40, -77), cc.v2(85, -77), cc.v2(85, -77),
+            cc.v2(-90, 55), cc.v2(7, 55), cc.v2(100, 55), 
+            cc.v2(-90, -75), cc.v2(7, -75), cc.v2(100, -75), cc.v2(85, -77),
         ];
 
         this.signItemCtrlMap = new Map();
@@ -36,37 +36,46 @@ cc.Class({
     },
 
     onSignClick: function() {
-        GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
-        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
-        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
-            if (msg.result == 0 && msg.data) {
-                let data = msg.data;
-                if (data && CommonFun.getInstance().isValidForScr(this)) {
-                    CommonFun.getInstance().showRewardsTips([{ id: 10, amount: data.gift / 100 }]);
-
-                    if (GlobalCfg.USER_DATAS.signInfo) {
-                        GlobalCfg.USER_DATAS.signInfo.today = data.today;
-                        GlobalCfg.USER_DATAS.signInfo.done = true;
+        let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
+        if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
+            {
+            GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
+            let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
+            CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+                if (msg.result == 0 && msg.data) {
+                    let data = msg.data;
+                    if (data && CommonFun.getInstance().isValidForScr(this)) {
+                        CommonFun.getInstance().showRewardsTips([{ id: 10, amount: data.gift / 100 }]);
+    
+                        if (GlobalCfg.USER_DATAS.signInfo) {
+                            GlobalCfg.USER_DATAS.signInfo.today = data.today;
+                            GlobalCfg.USER_DATAS.signInfo.done = true;
+                        };
+    
+                        if (this.signItemCtrlMap.has(data.today)) {
+                            let signItemCtrl = this.signItemCtrlMap.get(data.today);
+                            signItemCtrl.setSignItemSigned();
+                        };
+    
+                        if (data.today == 7) {
+                            this.node_day7Signed.active = true;
+                            this.node_day7Unsigned.active = false;
+                        };
+    
+                        this.btn_sign.interactable = false;
+                        this.btn_sign.enableAutoGrayEffect = true;
                     };
-
-                    if (this.signItemCtrlMap.has(data.today)) {
-                        let signItemCtrl = this.signItemCtrlMap.get(data.today);
-                        signItemCtrl.setSignItemSigned();
-                    };
-
-                    if (data.today == 7) {
-                        this.node_day7Signed.active = true;
-                        this.node_day7Unsigned.active = false;
-                    };
-
-                    this.btn_sign.interactable = false;
-                    this.btn_sign.enableAutoGrayEffect = true;
+                }
+                else {
+                    CommonFun.getInstance().showTips(msg.msg);
                 };
-            }
-            else {
-                CommonFun.getInstance().showTips(msg.msg);
-            };
-        }, null, GlobalCfg.USER_DATAS.BearerToken);
+            }, null, GlobalCfg.USER_DATAS.BearerToken);
+        }
+        else{
+            CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
+                CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
+            }, false);
+        }
     },
 
     getSignList: function() {
@@ -145,6 +154,7 @@ cc.Class({
             if (index <= 5) {
                 let signItemPos = this.itemPosArr[index];
                 let signItemNode = cc.instantiate(itemPrefab);
+                signItemNode.scale = 0.862;
                 let activitySignItemCtrl = signItemNode.getComponent("ActivitySignItemCtrl");
                 if (activitySignItemCtrl) {
                     activitySignItemCtrl.setSignItemData(gift, signData.today, signData.done, index + 1);

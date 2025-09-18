@@ -36,7 +36,7 @@ var RoundInfoCtrl = /** @class */ (function (_super) {
      * @param round 轮次
      */
     RoundInfoCtrl.prototype.setRoundInfoRound = function (round) {
-        this.lab_content.string = "Round " + round + "/20";
+        this.lab_content.string = "Round " + round + "/15";
     };
     __decorate([
         property(cc.Label)

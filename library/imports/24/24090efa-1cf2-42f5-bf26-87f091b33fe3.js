@@ -230,6 +230,7 @@ cc.Class({
     this.initJbPool();
     this.endAnimationNode.active = false;
     this.betStartEndAnimationNode.active = false;
+    this.btnAddCash.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onCustomEventMsg, this);
   },
@@ -274,6 +275,13 @@ cc.Class({
     this.unschedule(this.scheduleTimeCallback);
   },
   btnBetClick: function btnBetClick(ani) {
+    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+      //未曾充值
+      CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
+        CommonFun.getInstance().showSmallAddCash();
+      }, false);
+      return;
+    }
     this.serverMsgManager.sendBetMsg([{
       ani: ani,
       amount: this.zooCurBetCtrl.curBetNum
@@ -408,11 +416,12 @@ cc.Class({
       self.shortmessagenotify(notify); // 发送表情
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
       self.updateSelfCoin();
-    } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      self.unscheduleAll();
-      self.zooRouletteManager.unscheduleAll();
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZOO, SceneManager.getInstance().sceneType.LOBBY);
     }
+    // else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+    //     self.unscheduleAll();
+    //     self.zooRouletteManager.unscheduleAll();
+    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZOO, SceneManager.getInstance().sceneType.LOBBY);
+    // }
   },
   onCustomEventMsg: function onCustomEventMsg(webData, target) {
     var self = target;

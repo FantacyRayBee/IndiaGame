@@ -208,9 +208,9 @@ cc.Class({
             let coin = notify.deposit + notify.winnings;
             self.setUserDiamond(coin);
         }
-        else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isRunningMayaAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
@@ -226,6 +226,9 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.INDIA, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "STOP_GAME") {
+            self.setBetCiShuAutoTips();
         }
     },
 
@@ -1120,11 +1123,16 @@ cc.Class({
         LoggerUtil.getInstance().error("GlobalCfg.USER_DATAS.userDiamond == " ,GlobalCfg.USER_DATAS.userDiamond); 
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
-            CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-            }, false);
+            if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            }
+            else {
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }
+                }, false);
+            }
             return;
         };
        

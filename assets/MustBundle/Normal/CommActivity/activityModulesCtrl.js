@@ -45,12 +45,19 @@ cc.Class({
             tooltip: "推广员",
             visible: true,
         },
+        btn_club: {
+            default: null,
+            type: cc.Button,
+            tooltip: "俱乐部",
+            visible: true,
+        },
         node_btnDirection: {
             default: null,
-            type: cc.Node,
+            type: cc.Sprite,
             tooltip: "按钮图标方向",
             visible: true,
         },
+        red_act: cc.Node, //活动红点
         isShow: {
             get: function () {
                 return this._isShow;
@@ -65,6 +72,8 @@ cc.Class({
             visible: true,
 
         },
+        on_sf: cc.SpriteFrame,
+        off_sf: cc.SpriteFrame,
     },
 
     ctor() {
@@ -86,9 +95,12 @@ cc.Class({
         this.btnBrokeGift.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnSuperDiscount.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnNewTGY.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
 
+
+        // this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
     },
 
     onDestroy: function () {
@@ -107,6 +119,9 @@ cc.Class({
                 };
             };
         }
+        // if (msgId == "RefreshActivity_RedPoint") {
+        //     this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
+        // }
     },
 
     btnClick(button) {
@@ -139,6 +154,9 @@ cc.Class({
         }
         else if (name == this.btnNewTGY.node.name) {
             this.showPromoterToast();
+        }
+        else if (name == this.btn_club.node.name) {
+            CommonFun.getInstance().showClub();
         }
     },
 
@@ -186,7 +204,7 @@ cc.Class({
             cc.tween(this.node)
                 .to(0.2, { position: cc.v2(-(w / 2) + 69.5, -12) }, { easing: 'smooth' })
                 .call(() => {
-                    this.node_btnDirection.scaleX = 1;
+                    this.node_btnDirection.spriteFrame = this.on_sf;
                 })
                 .start();
         } 
@@ -195,7 +213,7 @@ cc.Class({
             cc.tween(this.node)
                 .to(0.2, { position: cc.v2(-(w / 2) - 69.5, -12) }, { easing: 'smooth' })
                 .call(() => {
-                    this.node_btnDirection.scaleX = -1;
+                    this.node_btnDirection.spriteFrame = this.off_sf;
                 })
                 .start();
         };
@@ -219,6 +237,7 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.openModules.includes(8) || GlobalCfg.USER_DATAS.openModules.includes(9)
             || GlobalCfg.USER_DATAS.openModules.includes(10) || GlobalCfg.USER_DATAS.openModules.includes(17)) {
             this.btnActivity.node.active = true;
+            // this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
         }
         else {
             this.btnActivity.node.active = false;
@@ -307,17 +326,17 @@ cc.Class({
             this.btnBonusCard.node.active = false;
         };
 
-        /**
-         * 推广员
-         * 玩家登录到游戏，并进行200局游戏以上时，退出到游戏大厅页面后，弹出该弹框
-         * 弹出次数：每日弹1次，每天0点重置规则
-         */
-        if (GlobalCfg.USER_DATAS.openModules.includes(15)) {
-            this.btnNewTGY.node.active = true;
-        }
-        else {
-            this.btnNewTGY.node.active = false;
-        };
+        // /**
+        //  * 推广员
+        //  * 玩家登录到游戏，并进行200局游戏以上时，退出到游戏大厅页面后，弹出该弹框
+        //  * 弹出次数：每日弹1次，每天0点重置规则
+        //  */
+        // if (GlobalCfg.USER_DATAS.openModules.includes(15)) {
+        //     this.btnNewTGY.node.active = true;
+        // }
+        // else {
+        //     this.btnNewTGY.node.active = false;
+        // };
 
 
 
@@ -335,6 +354,10 @@ cc.Class({
 
     showPromoterToast: function () {
         CommonFun.getInstance().showPromoter();
+    },
+
+    dealClubEvent: function () {
+        
     },
 
     dealBtnSuperDiscountferEvent: function () {

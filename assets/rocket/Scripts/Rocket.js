@@ -35,6 +35,7 @@ cc.Class({
         getDownNode: cc.Node,
         rocketSpData: sp.SkeletonData,
         playerGetOutParent: cc.Node,
+        recordItem: cc.Node,
 
         // Prefabs
         pabfabCoin: cc.Prefab,
@@ -94,6 +95,8 @@ cc.Class({
         this.rocketMessageManager.sendLoginMessage();
         this.rocketAudioManager = this.node.getComponent('RocketAudioManager');
         CommonFun.getInstance().showProgress();
+        this.rocketMultManager = this.node.getComponent('RocketMultManager');
+
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
@@ -177,6 +180,8 @@ cc.Class({
         this.betArea.on('click', this.btnClick, this);
         this.btnReBet.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnReBet.interactable = false;
+
+        this.btnShop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
     /**
@@ -393,10 +398,10 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
         }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            LoggerUtil.getInstance().warn("首次充值提示");
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     LoggerUtil.getInstance().warn("首次充值提示");
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             self.rocketMessageManager.sendExitMessage();
         }
@@ -432,17 +437,25 @@ cc.Class({
                 }
                 else {
                     if (notify.result.result == 19) {         // 余额不足
-                        CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
-                            CommonFun.getInstance().showSmallAddCash()
-                        }, false);
+                        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                        else {
+                            CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                                CommonFun.getInstance().showSmallAddCash()
+                            }, false);
+                        }
                     }
                 };
             }
             else {
                 if (notify.result.result == 19) {         // 余额不足
-                    CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }, false);
+                    if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    else {
+                        CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                            CommonFun.getInstance().showSmallAddCash()
+                        }, false);
+                    }
                 }
             };
         }
@@ -519,10 +532,20 @@ cc.Class({
 
     clickBtnBetCallback(num) {
         if (this.isDuringBet == true) {
-            if (num > GlobalCfg.USER_DATAS.userDiamond) {
-                CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+            if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
+                return;
+            };
+            if (num > GlobalCfg.USER_DATAS.userDiamond) {
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }, false);
+                }
             } else {
                 this.rocketMessageManager.sendBetMessage(num);
             }
@@ -1083,7 +1106,8 @@ cc.Class({
         if (isShowLight == undefined) {
             isShowLight = false;
         }
-        let trendNode = cc.instantiate(this.prefabTrendItem);
+        let trendNode = cc.instantiate(this.recordItem);
+        trendNode.active = true;
         let RocketRecordRectCtrl = trendNode.getComponent("RocketRecordRectCtrl");
         if (RocketRecordRectCtrl) {
             RocketRecordRectCtrl.init(data);
@@ -1225,12 +1249,13 @@ cc.Class({
         if (this.isFlying == true) {
             // 倍数 = x的平方/100 + 1   , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
             // y=X²/10+1  , x: 毫秒ms  math.Pow(float64(x)/1000, 2)/100 + 1
-            let frontY = -218 + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
+            let frontY = -218 + Math.pow(this.duringFlyTime, 2) / 60 * this.lineRateMarkOffsetY * 5;
             this.duringFlyTime += dt;
-            let currentY = -218 + Math.pow(this.duringFlyTime, 2) / 10 * this.lineRateMarkOffsetY * 5;
-            let deltaX = (dt / 2) * this.lineTimeMarkOffsetX;
+            let currentY = -218 + Math.pow(this.duringFlyTime, 2) / 60 * this.lineRateMarkOffsetY * 5;
+            let deltaX = (dt / 6) * this.lineTimeMarkOffsetX;
             let deltaY = currentY - frontY;
-            let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
+            // let rate = 1 + Math.pow(this.duringFlyTime, 2) / 10;
+            let rate = this.rocketMultManager.getSpeedRate(this.duringFlyTime)
 
             this.updateCenterRate(rate);
 

@@ -1,7 +1,12 @@
 cc.Class({
     extends: cc.Component,
 
-    properties: {},
+    properties: {
+        btn_test1:cc.Button,
+        btn_testLogin:cc.Button,
+        editBox_invited_test:cc.EditBox,
+        editBox_chanel_test:cc.EditBox,
+    },
 
     ctor: function () {   
         this.reqComparisonMainMD5InfoAcount = 0;        // 请求远程assets下的manifest文件的次数（请求次数超过3次，判定为异常）
@@ -12,18 +17,19 @@ cc.Class({
         this.curNumberOfJoinedDownloader = 0;           // 当前添加到下载器的需下载文件数量
         this.updateStatusPoints = 0;                    // 更新状态圆点的个数  
         this.downloaderArr = [];                        // 热更新下载器容器（实现多管道下载）
-
+        this.testButtonIsActive = false;                // 测试按钮是否激活
+        this.testIndexNum = 0;                          // 测试按钮点击次数
         this.sendVerifyCodeReqAcount = 0;
 
         this.verifyTimer = null;
 
-        this.or_sprite_pos = cc.v2(340, -206);
+        this.or_sprite_pos = cc.v2(326, -160);
         this.btn_facebookLogin_pos = cc.v2(209, -274);
-        this.btn_guestLogin_pos = cc.v2(476, -274);
+        this.btn_guestLogin_pos = cc.v2(326, -225);
 
-        this.or_sprite_pos1 = cc.v2(340, -76);
+        this.or_sprite_pos1 = cc.v2(326, -76);
         this.btn_facebookLogin_pos1 = cc.v2(209, -144);
-        this.btn_guestLogin_pos1 = cc.v2(476, -144);
+        this.btn_guestLogin_pos1 = cc.v2(326, -144);
 
         this.protoFiles = [
             "proto/baseproto",
@@ -32,23 +38,28 @@ cc.Class({
             "proto/benz/gameservice",
             "proto/fruitMachine/gameservice",
             "proto/mayaMachine/gameservice",
+            "proto/jokerMachine/gameservice",
             "proto/indiaMachine/gameservice",
+            "proto/vampireMachine/gameservice",
+            "proto/bullMachine/gameservice",
             "proto/updown/gameservice",
             "proto/andeer/gameservice",
             "proto/baccarat3Patti/gameservice",
             "proto/horseRace/gameservice",
             "proto/lhd/gameservice",
             "proto/munda/gameservice",
+            "proto/multiTeenPatti/gameservice",
             "proto/ssc/gameservice",
             "proto/tpGame/gameservice",
             "proto/rummy/gameservice",
             "proto/rocket/gameservice",
+            "proto/aviator/gameservice",
             "proto/zoo/gameservice",
             "proto/cricket/gameservice",
             "proto/zeus/gameservice",
         ];
 
-        this.baseBundlesCheckUpdateArr = ['ResourcesBundle'];
+        this.baseBundlesCheckUpdateArr = ['ResourcesBundle','tpGame'];
         this.baseBundlesNeedUpdateArr = [];
         this.baseBundlesUpdateCompleteArr = []; 
 
@@ -85,11 +96,12 @@ cc.Class({
         this.node_btn_passwordDelete = this.node_loginLayer.getChildByName("btn_passwordDelete");
         this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
         this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
-        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
         this.node_btn_accountLogin = this.node_loginLayer.getChildByName("btn_accountLogin");
+        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
         this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
         this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
         this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
+        this.node_bg_title = this.node_loginLayer.getChildByName("bg_title");
         this.node_lab_accountTips = this.node_loginLayer.getChildByName("lab_accountTips");
         this.node_lab_passwordTips = this.node_loginLayer.getChildByName("lab_passwordTips");
         this.node_btn_wenZi = this.node_loginLayer.getChildByName("btn_wenZi");
@@ -132,6 +144,9 @@ cc.Class({
 
         this.editBox_account.node.on('editing-did-began', this.editBoxCallback, this);
         this.editBox_password.node.on('editing-did-began', this.editBoxCallback, this);
+
+        this.editBox_invited_test.node.on('editing-did-began', this.editBoxCallback, this);
+        this.editBox_chanel_test.node.on('editing-did-began', this.editBoxCallback, this);
   
         this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
         this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
@@ -141,6 +156,8 @@ cc.Class({
         this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
+        this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
+        this.btn_testLogin.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
 
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     },
@@ -197,8 +214,8 @@ cc.Class({
 
         let tempProgress = allProgress/(len * 100);
 
-        this.setLabUpdateProgressStr(`${(20 + tempProgress * 80).toFixed(2)}%`);
-        this.setUpdateProgressBarProgress(Number(((20 + tempProgress * 80)/100).toFixed(2)));
+        this.setLabUpdateProgressStr(`${(80 + tempProgress * 20).toFixed(2)}%`);
+        this.setUpdateProgressBarProgress(Number(((80 + tempProgress * 20)/100).toFixed(2)));
         this.setLabUpdateContentTipsStr("Downloading files");
     },
 
@@ -298,6 +315,36 @@ cc.Class({
         }
         else if (btnName === "btn_wenZi") {
             this.dealBtnWenZiEvent();
+        }
+        else if (btnName === "btn_test1") {
+            this.testIndexNum++;
+            if (this.testIndexNum > 2) {
+                let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+                if (packageChannel && packageChannel.indexOf("_") != -1) {
+                    let packageChannelArr = packageChannel.split("_"); 
+                    let server = packageChannelArr[0];
+                    if (server == "0") { //只有测试服才能打开测试按钮
+                        this.testButtonIsActive = true;
+                        this.editBox_invited_test.node.active = true
+                        this.editBox_chanel_test.node.active = true
+                    }
+                }
+            }
+        }
+        else if (btnName === "btn_testLogin") {
+            let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+            if (packageChannel && packageChannel.indexOf("_") != -1) {
+                let packageChannelArr = packageChannel.split("_"); 
+                let server = packageChannelArr[0];
+                if (server == "0") { //只有测试服才能打开测试按钮
+                    if (this.editBox_account.string == "") {
+                        return;
+                    }
+                    GlobalCfg.G_COMPONENTS.Audio.playButton();
+                    CommonFun.getInstance().showProgress();
+                    this.dealTestLoginEvent();
+                }
+            }
         }
     },
 
@@ -503,7 +550,30 @@ cc.Class({
         WXManager.login();
     },
 
+    dealTestLoginEvent: function() {
+        let obj = {
+            loginType: "USERID",
+            userid: this.editBox_account.string,
+        };
+        GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
+        let promise = SceneManager.getInstance().reqTokenInfo(obj);
+        promise.then(() => {
+            return SceneManager.getInstance().reqBearerToken();
+        }).then(() => {
+            return SceneManager.getInstance().reqUserDataInfo();
+        }).then(() => {
+            CommonFun.getInstance().showProgress();
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+        }).catch(error => {
+            LoggerUtil.getInstance().log(error);
+        });
+    },
+
     dealGuestLoginEvent: function() {
+        if (this.testButtonIsActive) {
+            GlobalCfg.OPENINSTALL_INVITE_CODE = this.editBox_invited_test.string;
+            GlobalCfg.CHANNEL_INFO = this.editBox_chanel_test.string;
+        }
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         let obj = {
             loginType: "GUEST"
@@ -590,7 +660,7 @@ cc.Class({
     comparisonVersionInfo: function() {
         let localVersion = Number(cc.sys.localStorage.getItem("localVersion"));
         LoggerUtil.getInstance().log(`Remote resource file version：${GlobalCfg.ASSETS_VERSION}, Local resource file version：${localVersion}`);
-        if (localVersion != GlobalCfg.ASSETS_VERSION) {
+        if (localVersion != GlobalCfg.ASSETS_VERSION && GlobalCfg.is_need_update) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_RESOURCES_UPDATE);
             LoggerUtil.getInstance().log(`The remote version that needs to be updated is：${GlobalCfg.ASSETS_VERSION}`);
             this.reqMainManifestInfo();
@@ -717,8 +787,8 @@ cc.Class({
         if (needUpdateFileArrLen == 0) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_NO_LOADED_END);
             this.setLabUpdatePointAnim(false);
-            this.setLabUpdateProgressStr("20%");
-            this.setUpdateProgressBarProgress(0.2);
+            this.setLabUpdateProgressStr("80%");
+            this.setUpdateProgressBarProgress(0.8);
             cc.sys.localStorage.setItem("localVersion", GlobalCfg.ASSETS_VERSION);
 
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
@@ -783,8 +853,8 @@ cc.Class({
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_LOADED_END, endTime - this.loadDiffFilesStartTime);
 
             this.setLabUpdatePointAnim(false);
-            this.setLabUpdateProgressStr("20%");
-            this.setUpdateProgressBarProgress(0.2);
+            this.setLabUpdateProgressStr("80%");
+            this.setUpdateProgressBarProgress(0.8);
             cc.sys.localStorage.setItem("localVersion", GlobalCfg.ASSETS_VERSION);
 
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
@@ -793,8 +863,8 @@ cc.Class({
         }
         else {
             let percent = this.totalNumberOfFilesDownloaded/needUpdateFileArrLen;
-            this.setLabUpdateProgressStr((Math.floor(percent * 100) * 0.2).toFixed(2) + "%");
-            this.setUpdateProgressBarProgress(Number((percent * 0.2).toFixed(2)));
+            this.setLabUpdateProgressStr((Math.floor(percent * 100) * 0.8).toFixed(2) + "%");
+            this.setUpdateProgressBarProgress(Number((percent * 0.8).toFixed(2)));
             this.downDifferenceFiles();
         };
     },
@@ -922,6 +992,11 @@ cc.Class({
                         this.showCommonLoginView("");
                     });
                 };
+                if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
+                    this.node_btn_guestLogin.active = false;
+                    this.node_or_sprite.active = false;
+                    this.node_bg_title.active = false;
+                }
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
             });
@@ -943,11 +1018,12 @@ cc.Class({
         this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
         this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
 
-        if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK == 1) {
+        if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
             this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos1.y);
+            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
+
     },
 
     showCommonLoginView: function() {
@@ -962,9 +1038,9 @@ cc.Class({
         this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
         this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
 
-        if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK == 1) {
+        if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
             this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(340, this.btn_guestLogin_pos.y);
+            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
     },
@@ -973,15 +1049,17 @@ cc.Class({
         this.loadBundlesStartTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
         LoggerUtil.getInstance().log(`Start downloading baseBundles zip files!`);
-        this.baseBundlesCheckUpdateArr.forEach(baseBundle => {
-            if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
-                let tempObj = {
-                    baseBundle: baseBundle,
-                    progress: 0
-                };
-                this.baseBundlesNeedUpdateArr.push(tempObj);
-            }; 
-        });
+        if (GlobalCfg.is_need_update) {
+            this.baseBundlesCheckUpdateArr.forEach(baseBundle => {
+                if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
+                    let tempObj = {
+                        baseBundle: baseBundle,
+                        progress: 0
+                    };
+                    this.baseBundlesNeedUpdateArr.push(tempObj);
+                }; 
+            });
+        }
 
         if (this.baseBundlesNeedUpdateArr.length == 0) {
             let endTime = cc.sys.now();

@@ -253,6 +253,7 @@ cc.Class({
     betFunc:function (bBet) {
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) { //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
             }, false);
             return
         } 
@@ -288,9 +289,13 @@ cc.Class({
             this.setBtnInteractableAndOutLineLabel(false, this.btnRepeat1);
             this.showBtnReset(true);
         } else if(reBetCoin > GlobalCfg.USER_DATAS.userDiamond){
-                CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash()
-                }, false);
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }, false);
+                }
                 return;
         } else if(reBetCoin == 0) {
             if(!bBet){
@@ -311,9 +316,13 @@ cc.Class({
                 }
                 this.showBtnReset(true);
             }else{
-                CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash()
-                }, false);
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }, false);
+                }
                 return;
             }
         }
@@ -418,10 +427,11 @@ cc.Class({
                     self.labCoin.string = num;
                 }
             };
-        } else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
-            CommonFun.getInstance().decVerticalAcc();
         }
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
+        //     CommonFun.getInstance().decVerticalAcc();
+        // }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
             CommonFun.getInstance().decVerticalAcc();
@@ -491,9 +501,13 @@ cc.Class({
                 }, false);
                 return
             } else if (this.singleBet > GlobalCfg.USER_DATAS.userDiamond) {
-                CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash()
-                }, false);
+                // if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                //     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                // else {
+                    CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
+                        CommonFun.getInstance().showSmallAddCash()
+                    }, false);
+                // }
             } else {
                 let num = this.betArr[types] + this.singleBet;
                 if(num > 1000000){
@@ -880,7 +894,7 @@ cc.Class({
                 let Num = Math.abs(StartNum - endNum);
                 if (Num >= 1000000) { 
                     StartNum += StartNum < endNum ? 1000000 : -1000000;
-                } 
+                }
                 else if (Num >= 100000) { 
                     StartNum += StartNum < endNum ? 100000 : -100000;
                 } 

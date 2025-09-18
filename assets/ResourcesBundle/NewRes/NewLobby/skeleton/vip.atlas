@@ -1,0 +1,27 @@
+
+vip.png
+size: 250,166
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+T_d_shend
+  rotate: false
+  xy: 2, 2
+  size: 162, 162
+  orig: 162, 162
+  offset: 0, 0
+  index: -1
+VIP
+  rotate: false
+  xy: 166, 40
+  size: 41, 26
+  orig: 44, 27
+  offset: 2, 1
+  index: -1
+img_vip
+  rotate: true
+  xy: 166, 68
+  size: 96, 82
+  orig: 127, 108
+  offset: 18, 8
+  index: -1

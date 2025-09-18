@@ -1,0 +1,71 @@
+{
+"skeleton": {
+	"hash": "CLVW9yelrxIbVwRhtNzkVTYiGjc",
+	"spine": "3.8.99",
+	"x": -145.5,
+	"y": -143,
+	"width": 300.19,
+	"height": 286,
+	"images": "./images/",
+	"audio": "Y:/小游戏/暮光/特效需求/10.旋转"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "xz0", "parent": "root", "rotation": 16.33, "x": -2.77, "y": 1.09 },
+	{ "name": "qq_00000", "parent": "root" },
+	{ "name": "xg", "parent": "root", "x": 57.38, "y": 52.2, "scaleX": 0.1595, "scaleY": 0.1595 }
+],
+"slots": [
+	{ "name": "xz2", "bone": "root" },
+	{ "name": "xz1", "bone": "root" },
+	{ "name": "xz0", "bone": "xz0" },
+	{ "name": "qq_00000", "bone": "qq_00000", "color": "ffd400ff", "attachment": "qq_00000", "blend": "additive" },
+	{ "name": "xg", "bone": "xg", "attachment": "xg", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"qq_00000": {
+				"qq_00000": { "width": 291, "height": 286 }
+			},
+			"xg": {
+				"xg": { "x": 10.04, "y": -65, "width": 1200, "height": 1153 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"slots": {
+			"qq_00000": {
+				"color": [
+					{ "color": "ffe770c5" }
+				]
+			},
+			"xg": {
+				"color": [
+					{ "color": "ffbf00ff" }
+				]
+			}
+		},
+		"bones": {
+			"qq_00000": {
+				"rotate": [
+					{},
+					{ "time": 0.6667, "angle": 174.14 },
+					{ "time": 0.7333, "angle": -177.15 },
+					{ "time": 1.3333 }
+				]
+			},
+			"xg": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 0, "y": 0, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.3333 }
+				]
+			}
+		}
+	}
+}
+}

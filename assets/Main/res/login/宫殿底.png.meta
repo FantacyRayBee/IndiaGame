@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "ad7ea9a6-cc12-4123-9e5f-83bc67a6a4eb",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 583,
+  "height": 694,
+  "platformSettings": {},
+  "subMetas": {
+    "宫殿底": {
+      "ver": "1.0.6",
+      "uuid": "9c4e8cef-35b0-4d45-9401-d882e96b01b6",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "ad7ea9a6-cc12-4123-9e5f-83bc67a6a4eb",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": -3,
+      "trimX": 4,
+      "trimY": 10,
+      "width": 574,
+      "height": 680,
+      "rawWidth": 583,
+      "rawHeight": 694,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

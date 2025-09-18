@@ -326,11 +326,16 @@ cc.Class({
   checkCoin: function checkCoin(coin, danzhu) {
     var _this3 = this;
     if (coin < danzhu) {
-      CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
-        if (_this3.paymentSwitch) {
-          CommonFun.getInstance().showSmallAddCash();
-        }
-      }, false);
+      if (GlobalCfg.IS_CLUB_MODE == 1) {
+        //代理模式不跳转商城
+        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+      } else {
+        CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", function () {
+          if (_this3.paymentSwitch) {
+            CommonFun.getInstance().showSmallAddCash();
+          }
+        }, false);
+      }
       return false;
     } else {
       return true;
@@ -415,7 +420,7 @@ cc.Class({
       var coin = notify.deposit + notify.winnings;
       self.userInfoCtrl.setCoin(coin);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SEVENUPDOWN, SceneManager.getInstance().sceneType.LOBBY);
+      // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SEVENUPDOWN, SceneManager.getInstance().sceneType.LOBBY);
     } else if (msgId == "gameservice.shortmessagenotify") {
       self.shortmessagenotify(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
@@ -506,9 +511,14 @@ cc.Class({
           });
         } else {
           if (result.result == 19) {
-            CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time！", "SHOP", function () {
-              CommonFun.getInstance().showSmallAddCash();
-            }, false);
+            if (GlobalCfg.IS_CLUB_MODE == 1) {
+              //代理模式不跳转商城
+              CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+            } else {
+              CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time！", "SHOP", function () {
+                CommonFun.getInstance().showSmallAddCash();
+              }, false);
+            }
           } else {
             CommonFun.getInstance().showTips(result.message);
           }
@@ -517,9 +527,14 @@ cc.Class({
         ;
       } else {
         if (result.result == 19) {
-          CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time！", "SHOP", function () {
-            CommonFun.getInstance().showSmallAddCash();
-          }, false);
+          if (GlobalCfg.IS_CLUB_MODE == 1) {
+            //代理模式不跳转商城
+            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", function () {}, false);
+          } else {
+            CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time！", "SHOP", function () {
+              CommonFun.getInstance().showSmallAddCash();
+            }, false);
+          }
         } else {
           CommonFun.getInstance().showTips(result.message);
         }

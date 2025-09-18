@@ -33,7 +33,7 @@ APPManager.skipToOtherApp = function (packageName, url) {
 }
 
 APPManager.setFaceBookID = function (fbid) {
-    if(GlobalCfg.UNUSE_FACEBOOK == 1){
+    if (GlobalCfg.UNUSE_FACEBOOK == 1) {
         return;
     }
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
@@ -73,43 +73,47 @@ APPManager.SelectImg = function (strObjec) {
 //异步回调监听
 APPManager.appCallBack = function (dataType, data1, data2, data3) {
     if (dataType == "UNZIP") {
+        console.log("caojun 11111");
         LoggerUtil.getInstance().log("UNZIP>>>>>>>>>>>>>>>>>>>", data1, window.GameDownloader.getInstance());
         window.GameDownloader.getInstance().loadGameCompleteByZip(data1);
-    } 
+    }
     else if (dataType == "IOSPAYERR") {
+        console.log("caojun 222222");
         CommonFun.getInstance().showMsgBox(data1, "YES", () => {
-            
+
         }, false);
-    } 
+    }
     else if (dataType == 'IOSPAYSUS') {
+        console.log("caojun 3333333");
         let jsonStr = JSON.parse(data1);
         if (jsonStr.result !== 1000) {
             CommonFun.getInstance().showMsgBox(jsonStr.msg, "YES", () => {
-
             }, false);
         }
-    } 
+    }
     else if (dataType == "SELECTIMG") {
-        GlobalCfg.USER_DATAS.userHeadimgurl = data1;
-        CommonFun.getInstance().showTips("Avatar modified successfully");
-        let byteData = jsb.fileUtils.getDataFromFile(data1)
-        let imgBase64Data = CommonFun.getInstance().arrayBufferToBase64(byteData);
-        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/uploadicon";
-        let httpParam = {
-            "icon": imgBase64Data, 
-        };
-        clearTimeout(this.changeTime);
-        this.changeTime = null;
-        this.changeTime = setTimeout(() => {
-            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
-                if (msg.result == 0) {
-                    GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
-                } 
-                else {
-                    CommonFun.getInstance().showMsgBox(msg.msg);
-                }
-            }, null, GlobalCfg.USER_DATAS.BearerToken);
-        }, 500);   
+        console.log("caojun 444444");
+        // GlobalCfg.USER_DATAS.userHeadimgurl = data1;
+        // CommonFun.getInstance().showTips("Avatar modified successfully");
+        // let byteData = jsb.fileUtils.getDataFromFile(data1)
+        // let imgBase64Data = CommonFun.getInstance().arrayBufferToBase64(byteData);
+        // let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/uploadicon";
+        // let httpParam = {
+        //     "icon": imgBase64Data,
+        // };
+        // clearTimeout(this.changeTime);
+        // this.changeTime = null;
+        // this.changeTime = setTimeout(() => {
+        //     CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+        //         if (msg.result == 0) {
+        //             GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
+        //             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG, msgData: {} });
+        //         }
+        //         else {
+        //             CommonFun.getInstance().showMsgBox(msg.msg);
+        //         }
+        //     }, null, GlobalCfg.USER_DATAS.BearerToken);
+        // }, 500);
     }
 }
 
@@ -122,6 +126,18 @@ APPManager.Share = function (Url) {
     }
 }
 
+//安卓内嵌网页调起
+APPManager.showWebView = function (Url, isPortrait) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.closeMusic(); //关闭背景音乐
+        let data = {
+            url: Url,
+            isPortrait: isPortrait
+        }
+        jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "showWebViewByBloom3Rummy", "(Ljava/lang/String;)V", JSON.stringify(data));
+    }
+}
+
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
@@ -129,7 +145,7 @@ APPManager.setOrientation = function (dir) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.setOrientation, '(Ljava/lang/String;)V', dir);
     }
-    
+
     let frameSize = cc.view.getFrameSize();
 
     if (dir == 'V') {
@@ -152,7 +168,7 @@ APPManager.setOrientation = function (dir) {
     }
 }
 
-APPManager.getConcactsArrStr = function() {
+APPManager.getConcactsArrStr = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getConcactsArrStr, '()V');
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getConcactsArrStr, '()V');
@@ -160,13 +176,19 @@ APPManager.getConcactsArrStr = function() {
     }
 }
 
-APPManager.getConcactsArrStrCallback = function(concactsArrStr) {
+APPManager.getConcactsArrStrCallback = function (concactsArrStr) {
     if (concactsArrStr) {
-        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: "ConcactsArrStr", msgData: {concacts: concactsArrStr}});
-    }  
+        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: "ConcactsArrStr", msgData: { concacts: concactsArrStr } });
+    }
 }
 
-APPManager.checkSendSmsPermission = function() {
+APPManager.closeWebViewCallBack = function () {
+    // APPManager.setOrientation("H");
+    GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.openMusic();
+    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.WEBVIEW, SceneManager.getInstance().sceneType.LOBBY);
+}
+
+APPManager.checkSendSmsPermission = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = 0;
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.checkSendSmsPermission, "()I");
@@ -185,7 +207,7 @@ APPManager.checkSendSmsPermission = function() {
     }
 }
 
-APPManager.sendSmsMessage = function(message) {
+APPManager.sendSmsMessage = function (message) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.sendSmsMessage, '(Ljava/lang/String;)V', message);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.sendSmsMessage, '(Ljava/lang/String;)V', message);
@@ -193,7 +215,7 @@ APPManager.sendSmsMessage = function(message) {
     }
 }
 
-APPManager.getNetWorkType = function() {
+APPManager.getNetWorkType = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = 0;
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getNetWorkType, "()I");
@@ -212,7 +234,7 @@ APPManager.getNetWorkType = function() {
     }
 }
 
-APPManager.getUUID = function() {
+APPManager.getUUID = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getUUID, "()Ljava/lang/String;");
@@ -229,6 +251,33 @@ APPManager.getUUID = function() {
         };
         return result;
     }
+}
+
+APPManager.getGAID = function () {
+    let result = "";
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getGAID, "()Ljava/lang/String;");
+        let result2 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getGAID, "()Ljava/lang/String;");
+        let result3 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getGAID, "()Ljava/lang/String;");
+        if (result1) {
+            result = result1;
+        };
+        if (result2) {
+            result = result2;
+        };
+        if (result3) {
+            result = result3;
+        };
+    }
+    return result;
+}
+
+APPManager.getPackageName = function () {
+    let result = "";
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        result = jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "getPackageName", "()Ljava/lang/String;");
+    }
+    return result;
 }
 
 
@@ -273,12 +322,12 @@ APPManager.getAdjustAttribution = function () {
         return result;
     }
     else {
-        return JSON.stringify({"network": "OfflineDeve", "adid": "55555444445"});
+        return JSON.stringify({ "network": "OfflineDeve", "adid": "55555444445" });
     };
 }
 
 
-APPManager.selectPhoto = function() {
+APPManager.selectPhoto = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.selectPhoto, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.selectPhoto, "()V");
@@ -286,21 +335,66 @@ APPManager.selectPhoto = function() {
     }
 }
 
-APPManager.selectPhotoCallBack = function(photoPath, width, height) {
-    if (photoPath && width && height) {
-        ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: "SelectPhotoCallBack", msgData: {photoPath: photoPath, width: width, height: height}});
+APPManager.selectPhotoCallBack = function (photoPath) {
+    console.log("caojun selectPhotoCallBack:", photoPath);
+    GlobalCfg.USER_DATAS.userHeadimgurl = photoPath;
+    CommonFun.getInstance().showTips("Avatar modified successfully");
+    let byteData = jsb.fileUtils.getDataFromFile(photoPath)
+    let imgBase64Data = CommonFun.getInstance().arrayBufferToBase64(byteData);
+    let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/uploadicon";
+    let httpParam = {
+        "icon": imgBase64Data,
     };
+    clearTimeout(this.changeTime);
+    this.changeTime = null;
+    this.changeTime = setTimeout(() => {
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.userHeadimgurl = msg.data.url;
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.UPDATE_USER_HEADIMG, msgData: {} });
+            }
+            else {
+                CommonFun.getInstance().showMsgBox(msg.msg);
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    }, 500);
+    
+    APPManager.appCallBack("SELECTIMG", photoPath);
 }
 
-APPManager.getOpenInstallData = function() {
+APPManager.getOpenInstallData = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getOpenInstallData, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getOpenInstallData, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getOpenInstallData, "()V");
+        if (cc.sys.localStorage.getItem("launch") == "") {//每次只有首次安装会发送
+            let device = CommonFun.getInstance().getDeviceId();
+            let gaid = APPManager.getGAID();
+            let googleId = APPManager.getPackageName()
+            let channel = cc.sys.localStorage.getItem("AppChannel");
+            let httpParam = {
+                "device": device,
+                "channel": channel,
+                "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
+                "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+                "gaid": gaid,
+                "googleId": googleId,
+            };
+            /**
+             * APP启动事件上报
+             */
+            let httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/launch";
+            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+                if (msg) {
+                    cc.sys.localStorage.setItem("launch", "1")
+                    LoggerUtil.getInstance().log("launch=========>", JSON.stringify(msg));
+                };
+            });
+        }
     }
 }
 
-APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
+APPManager.getOpenInstallDataCallBack = function (channelCode, bindData) {
     LoggerUtil.getInstance().log(`getOpenInstallDataCallBack ===> channelCode: ${channelCode}, bindData: ${bindData}`);
     try {
         bindData = JSON.parse(bindData);
@@ -314,8 +408,8 @@ APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
         };
         if (inviteCodeArr[1] && inviteCodeArr[1].length > 0) {
             GlobalCfg.OPENINSTALL_INVITE_CODE = inviteCodeArr[1];
-        }; 
-        
+        };
+
         /**
          * 处理广告链接的商户事件的相关信息
          */
@@ -338,14 +432,16 @@ APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
         if (bindData["adsid"] && bindData["adsid"].length > 0) {
             GlobalCfg.OPENINSTALL_ADS_ID = bindData["adsid"];
         };
-        
+
         let device = CommonFun.getInstance().getDeviceId();
-        
+        let gaid = APPManager.getGAID();
         let httpParam = {
             "device": device,
             "channel": GlobalCfg.CHANNEL_INFO,
             "fbclid": GlobalCfg.OPENINSTALL_FB_CLID,
             "adsid": GlobalCfg.OPENINSTALL_ADS_ID,
+            "gaid": gaid,
+            "googleId": GlobalCfg.GOOGLE_ID,
         };
         /**
          * APP启动事件上报
@@ -356,9 +452,9 @@ APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
                 LoggerUtil.getInstance().log("launch=========>", JSON.stringify(msg));
             };
         });
-    } 
+    }
     catch (error) {
-        
+
     };
 };
 
@@ -366,7 +462,7 @@ APPManager.getOpenInstallDataCallBack = function(channelCode, bindData) {
  * 获取AppsFlyerId
  * @returns {string}
  */
-APPManager.getAppsFlyerId = function() {
+APPManager.getAppsFlyerId = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAppsFlyerId, "()Ljava/lang/String;");
@@ -386,10 +482,46 @@ APPManager.getAppsFlyerId = function() {
 };
 
 /**
+ * 获取AppsFlyerConversionListener
+ * @returns {string}
+ */
+APPManager.getAppsFlyerConversionListener = function () {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        let result = "";
+
+        // 定义一个辅助函数，用于安全调用 Java 方法
+        const callJavaMethod = (className, methodName, methodSignature) => {
+            try {
+                return jsb.reflection.callStaticMethod(className, methodName, methodSignature);
+            } catch (error) {
+                console.error(`调用 Java 方法失败: ${className}.${methodName}`, error);
+                return null; // 返回 null 表示调用失败
+            }
+        };
+
+        // 依次调用 Java 方法
+        let result1 = callJavaMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAppsFlyerConversionListener, "()Ljava/lang/String;");
+        let result2 = callJavaMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getAppsFlyerConversionListener, "()Ljava/lang/String;");
+        let result3 = callJavaMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.getAppsFlyerConversionListener, "()Ljava/lang/String;");
+
+        // 处理结果
+        if (result1) {
+            result = result1;
+        } else if (result2) {
+            result = result2;
+        } else if (result3) {
+            result = result3;
+        }
+
+        return result;
+    }
+};
+
+/**
  * 获取AdvertisingId
  * @returns {string}
  */
-APPManager.getAdvertisingId = function() {
+APPManager.getAdvertisingId = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let result = "";
         let result1 = jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getAdvertisingId, "()Ljava/lang/String;");
@@ -411,7 +543,7 @@ APPManager.getAdvertisingId = function() {
     };
 };
 
-APPManager.getFirebaseToken = function() {
+APPManager.getFirebaseToken = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.getFirebaseToken, "()V");
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.getFirebaseToken, "()V");
@@ -420,7 +552,7 @@ APPManager.getFirebaseToken = function() {
 }
 
 
-APPManager.downloadApkByApkUrl = function(apkUrl) {
+APPManager.downloadApkByApkUrl = function (apkUrl) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.downloadApkByApkUrl, "(Ljava/lang/String;)V", apkUrl);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.downloadApkByApkUrl, "(Ljava/lang/String;)V", apkUrl);
@@ -428,14 +560,21 @@ APPManager.downloadApkByApkUrl = function(apkUrl) {
     }
 }
 
-APPManager.adjustGoogleIdCallBack = function(googleAdId) {
+APPManager.adjustGoogleIdCallBack = function (googleAdId) {
     // console.log("adjustGoogleIdCallBack:", googleAdId);
 
     cc.log("adjustGoogleIdCallBack:", googleAdId);
     if (googleAdId && googleAdId.length > 0) {
-        GlobalCfg.ADVERTISING_ID = googleAdId;   
+        GlobalCfg.ADVERTISING_ID = googleAdId;
         LoggerUtil.getInstance().log("googleAdId:", GlobalCfg.ADVERTISING_ID);
     };
+}
+
+// 打开相册
+APPManager.openAlbum = function() {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.openPhotoAlbum, "()V");
+    }
 }
 
 window.APPManager = APPManager;

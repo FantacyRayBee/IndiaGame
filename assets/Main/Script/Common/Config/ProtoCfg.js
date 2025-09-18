@@ -265,6 +265,25 @@ cc.Class({
       "gameservice.shortmessagenotify": "ShortMessageNotify", //短消息广播
     }
 
+    //MutliTeenPatti
+    this.protoMtp = {
+      "gameservice.login": "LoginAck",
+      "gameservice.joinvip": "JoinVipAck",
+      "gameservice.joinvipnotify": "JoinVipNotify",
+      "gameservice.gamestartnotify": "GameStartNotifyAck",
+      "gameservice.gamescene": "GameSceneAck",
+      "gameservice.call": "CallAck",
+      "gameservice.callnotify": "CallNotifyAck",
+      "gameservice.gameendnotify": "GameEndNotify",
+      "gameservice.kickout": "KickOutAck",
+      "gameservice.exitgame": "ExitGameAck", // 退出游戏
+      "gameservice.playerlist": "PlayerListAck",
+      "gameservice.viplist": "VipListAck", //VIP 列表
+      "gameservice.querygameendinfo": "GameEndNotify",
+      "gameservice.shortmessage": "ShortMessageAck", //短消息
+      "gameservice.shortmessagenotify": "ShortMessageNotify", //短消息广播
+    }
+
     this.protoHorseRace = {
       "gameservice.login": "LoginAck", //登录
       "gameservice.joinroom": "JoinRoomAck", //加入房间
@@ -312,8 +331,23 @@ cc.Class({
       "gameservice.login": "LoginAck", //登录
       "gameservice.call": "CallAck", //下注    
     }
+    //小丑机台
+    this.protoJoker = {
+      "gameservice.login": "LoginAck", //登录
+      "gameservice.call": "CallAck", //下注    
+    }
     //印度舞娘机台
     this.protoIndia = {
+      "gameservice.login": "LoginAck", //登录
+      "gameservice.call": "CallAck", //下注    
+    }
+    //吸血鬼机台
+    this.protoVampire = {
+      "gameservice.login": "LoginAck", //登录
+      "gameservice.call": "CallAck", //下注    
+    }
+    //吸血鬼机台
+    this.protoBull = {
       "gameservice.login": "LoginAck", //登录
       "gameservice.call": "CallAck", //下注    
     }
@@ -395,6 +429,31 @@ cc.Class({
       "gameservice.flyfinishnotify": "FlyFinishNotify",
       "gameservice.bettingupdatenotify": "BettingUpdateNotify",
       "gameservice.updatecoinnotify": "UpdateCoinNotify",
+    }
+
+    // 飞机
+    this.protoAviator = {
+      "gameservice.pingpang": "PingPang",
+      "gameservice.login": "LoginAck",
+      "gameservice.loadwhole": "LoadWholeAck",
+      "gameservice.exit": "ExitAck",
+      "gameservice.playerlist": "PlayerListAck",
+      "gameservice.playernumberchangednotify": "PlayerNumberChangedNotify",
+      "gameservice.bet": "BetAck",
+      "gameservice.cash": "CashAck",
+      "gameservice.cashnotify": "CashNotify",
+      "gameservice.startbettingnotify": "StartBetNotify",
+      "gameservice.startflynotify": "StartFlyNotify",
+      "gameservice.flyfinishnotify": "FlyFinishNotify",
+      "gameservice.bettingupdatenotify": "BettingUpdateNotify",
+      "gameservice.updatecoinnotify": "UpdateCoinNotify",
+      "gameservice.endbettingnotify": "EndBettingNotify",
+      "gameservice.getrankingdata": "GetRankingDataAck",
+      "gameservice.seed": "SeedAck",
+      "gameservice.betnotify": "BetNotify",
+      "gameservice.lastgamerecord": "LastGameRecordAck",
+      "gameservice.getplayerrecord": "GetPlayerRecordAck",
+      "gameservice.sethead": "SetHeadAck",
     }
 
     // 动物园
@@ -479,6 +538,9 @@ cc.Class({
     else if (gameName == "Munda") {
       return this.protoMunda;
     }
+    else if (gameName == "MTP") {
+      return this.protoMtp;
+    }
     else if (gameName == "SSC") {
       return this.protoSSC;
     }
@@ -488,8 +550,17 @@ cc.Class({
     else if (gameName == "MAYA") {
       return this.protoMaya;
     }
+    else if (gameName == "JOKER") {
+      return this.protoJoker;
+    }
     else if (gameName == "INDIA") {
       return this.protoIndia;
+    }
+    else if (gameName == "VAMPIRE") {
+      return this.protoVampire;
+    }
+    else if (gameName == "BULL") {
+      return this.protoBull;
     }
     else if (gameName == "MW") {
       return this.protoMW;
@@ -502,6 +573,9 @@ cc.Class({
     }
     else if (gameName == "rocket") {
       return this.protoRocket;
+    }
+    else if (gameName == "aviator") {
+      return this.protoAviator;
     }
     else if (gameName == "zooGame") {
       return this.protoZoo;

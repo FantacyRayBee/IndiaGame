@@ -12,18 +12,8 @@ cc.Class({
         lab_2: cc.Label,
         checkmark: cc.Node,
     },
-    // onLoad () {},
 
     start () {
-        // var graphics = this.checkmark.getComponent(cc.Graphics);
-        // // 清除之前的绘图指令
-        // graphics.clear();
-        // graphics.lineWidth = 3;
-        // graphics.strokeColor = cc.Color.BLACK;
-        // graphics.rect(0, 0, 140, 56);
-        // graphics.moveTo(0, 0);
-        // // 立即渲染
-        // graphics.stroke();
     },
 
     onLoad: function() {
@@ -32,24 +22,22 @@ cc.Class({
 
     toggleCallback: function(toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
-        if (this.node.getComponent(cc.Toggle).isChecked) {
-            GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;   
+        if (toggle.isChecked) {
+            GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: "REFRESH_SHOP_ITEM", msgData: {isShow:this.PAY_CONFIG}});
         };
     },
 
-    // update (dt) {},
-
-    setLabel: function(txt, pay_channel) {
-        this.lab_1.string = "UPI " + txt;
-        this.lab_2.string = "UPI " + txt;
+    setLabel: function(data, pay_channel) {
+        this.lab_1.string = data.name;
+        this.lab_2.string = data.name;
         this.PAY_CHANNEL = pay_channel;
+        this.PAY_CONFIG = data.is_multichannel;
     },
-
 
     setNewShopItemChecked: function(isChecked) {
         this.node.getComponent(cc.Toggle).isChecked = isChecked;
-        if (isChecked) {
-            // GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;   
-        };
     },
+
+
 });

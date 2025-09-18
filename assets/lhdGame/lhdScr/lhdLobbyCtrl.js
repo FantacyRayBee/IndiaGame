@@ -133,9 +133,10 @@ cc.Class({
             let ctrl = GlobalCfg.ACT_SCENE_CTRL.setNodeCtrl(self.my_playerId);
             ctrl && ctrl.shePlayCion(coin);
             self.myNodeCtrl.shePlayCion(coin);
-        } else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        } 
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             let betCoinAll = self.myDragonCoin + self.mytieCoin + self.mytigerCoin;
             if (betCoinAll > 0 && self.isGameEndStatus == false) {
@@ -806,9 +807,13 @@ cc.Class({
 
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
-            CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
-                CommonFun.getInstance().showSmallAddCash()
-            }, false);
+            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            else {
+                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                    CommonFun.getInstance().showSmallAddCash()
+                }, false);
+            }
             return;
         };
 
@@ -835,9 +840,13 @@ cc.Class({
                 }, false);
                 return
             } else if( this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond){
-                CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
-                    CommonFun.getInstance().showSmallAddCash()
-                },false);
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
+                        CommonFun.getInstance().showSmallAddCash()
+                    },false);
+                }
             }else {
                 let betCoinAll = this.myDragonCoin + this.mytieCoin + this.mytigerCoin + this.userBtnCion;
                 if( betCoinAll > 2000000){   // 限制玩家下注
@@ -1500,11 +1509,15 @@ cc.Class({
         LoggerUtil.getInstance().log("上一局下注情况",betCoinAll,this.repeatBetArr,GlobalCfg.USER_DATAS.userDiamond);
         if( str == "bet"){
             if( betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond <= 0){
-                CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
-                    if(this.paymentSwitch){
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                },false);
+                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                else {
+                    CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
+                        if(this.paymentSwitch){
+                            CommonFun.getInstance().showSmallAddCash()
+                        }
+                    },false);
+                }
             } else {
                 let newBetCoinAll = this.myDragonCoin + this.mytieCoin + this.mytigerCoin;
                 let allCoin = betCoinAll + newBetCoinAll;

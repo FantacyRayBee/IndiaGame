@@ -41,7 +41,7 @@ cc.Class({
         let pos = UserInfo.pos;
         this.loadHeadSp(imgUrl, 95, this.tx);
         this.labName.string = CommonFun.getInstance().getStrByLength(userName, 8);
-        this.labCoin.string = diamond / 100;
+        this.labCoin.string =  diamond / 100;
 
         let giftPos = this.btnGift.node.getPosition();
         let vipPos = this.sprite_vipLevelIcon.node.getPosition();
@@ -96,7 +96,8 @@ cc.Class({
     showWinLabel(win) {
         if (win > 0) {
             this.winLabel.node.setPosition(cc.v2(0, 0));
-            this.winLabel.string = "+" + Math.round(win / 100);
+            this.winLabel.string = "+" + parseFloat((win / 100).toFixed(2));
+
             this.winLabel.node.active = true;
             cc.tween(this.winLabel.node)
                 .to(1, { position: cc.v2(0, 100) })

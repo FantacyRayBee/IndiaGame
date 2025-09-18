@@ -30,6 +30,18 @@ window.GlobalCfg = {
   */
   UNUSE_FACEBOOK: 0,
   /**
+  * 是否是代理模式, 0:不是; 1:表示是
+  */
+  IS_CLUB_MODE: 0,
+  /**
+  * 是否能自定义换头像, 0:不是; 1:表示是
+  */
+  IS_Freestyle_Head: 0,
+  /**
+  * 是否是需要充值才能进入的游戏
+  */
+  isPayGame: true,
+  /**
    * 消息订阅的大类型
    */
   MSG_TYPE: {
@@ -39,11 +51,30 @@ window.GlobalCfg = {
 
   CURSCENE_DIRECTION: "horizontal",   // 当前场景方向 horizontal， vertical
   FIRST_RECHARGE_TIPS_SHOW: false,    // 是否展示首充之后的提示弹窗
+  FIRST_RECHARGE_TIPS_SHOW_10: false,    // 是否展示首充之后的提示弹窗
+  FIRST_RECHARGE_REWARD_SHOW: false,    // 是否展示首充之后获得的金币 弹窗
   /**
    * 是否存在 divertFreeTp界面
    */
   IS_EXIST_DIVERSIONFREETP_VIEW: false,
 
+  /**
+   * 是否触发热更（测试服专用，线上服这个值必须为true）
+   */
+   is_need_update: true,
+  /**
+   * 是否强制进测试服
+   */
+   is_force_gotoTest: false,
+
+  /**
+   * 渠道信息
+   */
+  CHANNEL_INFO_TEST: '',
+  /**
+   * 邀请码信息
+   */
+  OPENINSTALL_INVITE_CODE_TEST: '',
   /**
    * 自定义消息分发Id
    */
@@ -78,6 +109,7 @@ window.GlobalCfg = {
     HAPPY_MATCH_CHANGE_SCORE: "HAPPY_MATCH_CHANGE_SCORE",
     FAILURE_TO_OBTAIN_USER_INFO: "FAILURE_TO_OBTAIN_USER_INFO",
     UPDATE_USER_INFO: "UPDATE_USER_INFO",
+    UPDATE_USER_HEADIMG: "UPDATE_USER_HEADIMG",
     CHALLENGES_ACT: "CHALLENGES_ACT",
     GET_MAIL_REWARD: "GET_MAIL_REWARD",
     GET_CHALLENGES_REWARD: "GET_CHALLENGES_REWARD",
@@ -87,7 +119,7 @@ window.GlobalCfg = {
     GET_RELIEF_REWARD: "GET_RELIEF_REWARD",
     CLOSE_SSCGAME_REFRESH_LOBBY: "CLOSE_SSCGAME_REFRESH_LOBBY",
     READ_EMAIL: "READ_EMAIL",     // 读取邮件
-    OPEN_EMAIL: "OPEN_EMAIL",   
+    OPEN_EMAIL: "OPEN_EMAIL",
     ENTER_GAME_FROM_SELECT_ROOM: "ENTER_GAME_FROM_SELECT_ROOM",
     BINDPHONE_SUCCESS: "BINDPHONE_SUCCESS",
     REFRESH_SHOP_COMMODITY: "REFRESH_SHOP_COMMODITY",   
@@ -217,6 +249,10 @@ window.GlobalCfg = {
     SHOW_ANDAR_GAME: "显示ANDAR界面",
     EXIT_ANDAR_GAME: "点击退出ANDAR",
 
+    CLICK_MTP_GAME: "点击MultiTeenPatti游戏按钮",
+    SHOW_MTP_GAME: "显示MTP界面",
+    EXIT_MTP_GAME: "点击退出MTP",
+
     CLICK_MUNDA_GAME: "点击MUNDA游戏按钮",
     SHOW_MUNDA_GAME: "显示MUNDA界面",
     EXIT_MUNDA_GAME: "点击退出MUNDA",
@@ -232,6 +268,14 @@ window.GlobalCfg = {
     CLICK_MAYA_GAME: "点击MAYA游戏按钮",
     SHOW_MAYA_GAME: "显示MAYA界面",
     EXIT_MAYA_GAME: "点击退出MAYA",
+
+    CLICK_JOKER_GAME: "点击JOKER游戏按钮",
+    SHOW_JOKER_GAME: "显示JOKER界面",
+    EXIT_JOKER_GAME: "点击退出JOKER",
+
+    CLICK_BULL_GAME: "点击BULL游戏按钮",
+    SHOW_BULL_GAME: "显示BULL界面",
+    EXIT_BULL_GAME: "点击退出BULL",
 
     CLICK_ZOO_GAME: "点击ZOO游戏按钮",
     SHOW_ZOO_GAME: "显示ZOO界面",
@@ -362,6 +406,8 @@ window.GlobalCfg = {
 
   // 商城角标
   PAY_CHANNEL: "",
+  // 支付渠道
+  PAY_CHANNEL2: "",
   
   /* APP_STATUS说明
     0: 未设置状态; 
@@ -429,6 +475,7 @@ window.GlobalCfg = {
     benZData: {},
     sscData: {},
     mundaData: {},
+    mtpData: {},
     lhdData: {},
     horseRaceData: {},
     rummyData: {},
@@ -436,10 +483,14 @@ window.GlobalCfg = {
     andeerData: {},
     fruitMachineData: {},
     mayaMachineData: {},
+    bullMachineData: {},
+    jokerMachineData: {},
     indiaMachineData: {},
+    vampireMachineData: {},
     mwData: {},
     baccaratData: {},
     rocketData: {},
+    aviatorData: {},
     zooData: {},
     cricketData: {},
     zeusData: {},
@@ -453,6 +504,7 @@ window.GlobalCfg = {
 
   // 拒绝未充值玩百人,false(未支付可玩)  true(未支付不可玩)
   REFUSE_UNPAY_CANBET: true,
+
 
   NATIVE_CALL_URL: "kayo/maoka/gmp/JSCallJavaManager",
   /**
@@ -523,7 +575,19 @@ window.GlobalCfg = {
     REPEAT_LOGIN: 9,      // 重复登录
     SERVER_RELOAD: 29,    // 服务器重启
   },
-
+  /**
+   * 诱导充值配置
+   */
+  INDUCEMENT_INFO :{
+      [1]: {taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [2]: {taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
+      [4]: {taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need ₹10 to withdraw ₹5000"},
+      [5]: {taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need ₹1 to withdraw ₹5000"},
+      [6]: {taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need ₹0.1 to withdraw ₹5000"},
+      [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need ₹0.01 to withdraw ₹5000"},
+      [8]: {taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
+  },
   /**
    * 预制体路径
    */
@@ -623,6 +687,8 @@ window.GlobalCfg = {
      * 推广员
      */
     PROMOTER: "ResourcesBundle/NewPlan/Promoter/Promoter",
+    PROMOTERMAIN: "ResourcesBundle/NewPlan/Promoter/PromoterMain",
+    PROMOTERRULE: "ResourcesBundle/NewPlan/Promoter/PromoterRule",
     /**
      * 推广员左侧详情
      */
@@ -635,7 +701,7 @@ window.GlobalCfg = {
      * 邮箱
      */
     EMAIL: "ResourcesBundle/NewPlan/Email/Email",
-    EMAILITEM: "ResourcesBundle/NewPlan/Email/Emailitem",
+    EMAILITEM: "ResourcesBundle/NewPlan/Email/titleItem",
     /**
      * 反馈邮箱
      */
@@ -714,7 +780,8 @@ window.GlobalCfg = {
     SHOPINSTRUCTIONS: "ResourcesBundle/NewPlan/Shop/ShopInstructions",
     SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
     SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
-
+    SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
+    SHOPCHANNEL: "ResourcesBundle/NewPlan/Shop/shopChannel",
     /**
      * 提现
      */
@@ -788,6 +855,8 @@ window.GlobalCfg = {
      * 游戏中的设置
      */
     GAMESETTING: "ResourcesBundle/NewPlan/GameSetting/GameSetting",
+    GAMESETTINGNEW: "ResourcesBundle/NewPlan/GameSetting/GameSettingNew",
+    AUTOSPINSETTING: "ResourcesBundle/NewPlan/GameSetting/autoSpinSetting",
     /**
      * 游戏中的菜单
      */
@@ -810,9 +879,35 @@ window.GlobalCfg = {
      */
     BANKRUPTCY_GIFT: "MustBundle/Normal/BankruptcyGift/BankruptcyGift",
     /**
+     * 诱导充值
+     */
+    INDUCEMENT: "ResourcesBundle/NewPlan/Inducement/Inducement",
+    INDUCEMENTPOP: "ResourcesBundle/NewPlan/Inducement/InducementPop",
+    /**
+     * 破产礼包
+     */
+    ONLY_PAY: "ResourcesBundle/NewPlan/OnlyPay/OnlyPay",
+    /**
      * 强制引导弹窗
      */
     HALLTIP: "ResourcesBundle/NewPlan/HallTip/HallTip",
+    /**
+     * 第三方游戏跳转内嵌网页
+     */
+    GAMEWEBVIEW: "ResourcesBundle/NewPlan/webview/gameWebview",
+
+    /**
+     * 第三方游戏跳转内嵌网页
+     */
+    GAMEICONLIST: "ResourcesBundle/huanPi2/lobbyRes/gameIcon/gameIconList",
+    /**
+     * 俱乐部
+     */
+    CLUB: "ResourcesBundle/NewPlan/Club/ClubMain",
+    /**
+     * 俱乐部
+     */
+    WALLET: "ResourcesBundle/NewPlan/Club/walletMain",
   },
 
 
@@ -837,7 +932,10 @@ window.GlobalCfg = {
     GAMEMENU: "FirstLayer",
     SIGN: "FirstLayer",
     WITHDRAWPREDATA: "FirstLayer",
-
+    PROMOTERMAIN: "FirstLayer",
+    CLUB: "FirstLayer",
+    WALLET: "FirstLayer",
+    
     ACTIVITY: "SecondLayer",
     FIRSTRECHARGE: "SecondLayer",
     CONTACTUS: "SecondLayer",
@@ -845,6 +943,7 @@ window.GlobalCfg = {
     BINDPHONEREWARDS: "SecondLayer",
     BINDPHONE: "SecondLayer",
     PROMOTERLEFTVIEW: "SecondLayer",
+    PROMOTERRULE: "FirstLayer",
     RELIEF: "SecondLayer",
     EMAIL: "SecondLayer",
     FEEDBACKEMAIL: "SecondLayer",
@@ -861,10 +960,15 @@ window.GlobalCfg = {
     VIPLUCKYDRAW: "SecondLayer",
     VIPRULES: "SecondLayer",
     GAMESETTING: "SecondLayer",
+    GAMESETTINGNEW: "SecondLayer",
+    AUTOSPINSETTING: "SecondLayer",
     ACTIVITY_GOBETTING: "SecondLayer",
     DIVERSIONFREETP: "SecondLayer",
     BANKRUPTCY_GIFT: "SecondLayer",
-  
+    INDUCEMENT: "SecondLayer",
+    INDUCEMENTPOP: "SecondLayer",
+    ONLY_PAY: "SecondLayer",
+    GAMEICONLIST: "SecondLayer",
 
     SMALLADDCASH: "ThirdLayer",
     SMALLADDEXPERIENCE: "ThirdLayer",
@@ -892,13 +996,14 @@ window.GlobalCfg = {
     WITHDRAWSHARE: "ShopLayer",
     ADVANCEDMODE: "ShopLayer",
     SHOPNEWTIP: "SecondLayer",
-
+    SHOPNEWTIP10: "SecondLayer",
+    SHOPCHANNEL: "SecondLayer",
 
     PROGRESS: "ProgressLayer",
 
     TIPS: "TipsLayer",
     HALLTIP: "TipsLayer",
-
+    GAMEWEBVIEW: "TipsLayer",
   },
 
   /**
@@ -938,13 +1043,14 @@ window.GlobalCfg = {
     TeenPattiRecharge: "TP剧情充值",
     DiversionFreeTP: "免费玩家引导到TP的弹框充值",
     BankruptcyGift: "破产礼包",
+    OnlyPay: "终身一次支付",
   },
 }; 
 
 GlobalCfg.NATIVE_CALL_URL = "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy";
 GlobalCfg.NATIVE_CALL_NAME_OBJ = { 
   getOpenInstallData: "getOpenInstallDataByBloom3Rummy",
-  selectPhoto: 'selectPhotoByBloom3Rummy',
+  openPhotoAlbum: 'openPhotoAlbumByBloom3Rummy',
   getAdjustId: "getAdjustIdByBloom3Rummy",
   getAdjustAttribution: "getAdjustAttributionByBloom3Rummy",
   getInstallReferrer: "getInstallReferrerByBloom3Rummy",
@@ -960,8 +1066,10 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   sendSmsMessage: 'sendSmsMessageByBloom3Rummy',
   getNetWorkType: 'getNetWorkTypeByBloom3Rummy',
   getUUID: 'getUUIDByBloom3Rummy',
+  getGAID: 'getGAIDByBloom3Rummy',
   login: 'loginByBloom3Rummy',
   getAppsFlyerId: 'getAppsFlyerIdByBloom3Rummy',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByBloom3Rummy',
   getAdvertisingId: 'getAdvertisingIdByBloom3Rummy',
   getFirebaseToken: 'getFirebaseTokenByBloom3Rummy',
   downloadApkByApkUrl: 'downloadApkByApkUrlByBloom3Rummy',
@@ -973,6 +1081,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   hwLogin: 'hwLoginByBloom3Rummy',
   hwPay: 'hwPayByBloom3Rummy',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByBloom3Rummy',
+  showWebView: 'showWebViewByBloom3Rummy',
 };
 
 GlobalCfg.NATIVE_CALL_URL1 = "com/baggy/ranistan/JSCallJavaByDownloadPackage";
@@ -993,8 +1102,10 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   sendSmsMessage: 'sendSmsMessageByDownloadPackage',
   getNetWorkType: 'getNetWorkTypeByDownloadPackage',
   getUUID: 'getUUIDByDownloadPackage',
+  getGAID: 'getGAIDByDownloadPackage',
   login: 'loginByDownloadPackage',
   getAppsFlyerId: 'getAppsFlyerIdByDownloadPackage',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByDownloadPackage',
   getAdvertisingId: 'getAdvertisingIdByDownloadPackage',
   getFirebaseToken: 'getFirebaseTokenByDownloadPackage',
   downloadApkByApkUrl: 'downloadApkByApkUrlByDownloadPackage',
@@ -1006,6 +1117,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ1 = {
   hwLogin: 'hwLoginByDownloadPackage',
   hwPay: 'hwPayByDownloadPackage',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByDownloadPackage',
+  showWebView: 'showWebViewByDownloadPackage',
 };
 
 GlobalCfg.NATIVE_CALL_URL2 = "com/gugu/testteenpatti/JSCallJavaByOFFLINEDEVE";
@@ -1026,8 +1138,10 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   sendSmsMessage: 'sendSmsMessageByOFFLINEDEVE',
   getNetWorkType: 'getNetWorkTypeByOFFLINEDEVE',
   getUUID: 'getUUIDByOFFLINEDEVE',
+  getGAID: 'getGAIDByOFFLINEDEVE',
   login: 'loginByOFFLINEDEVE',
   getAppsFlyerId: 'getAppsFlyerIdByOFFLINEDEVE',
+  getAppsFlyerConversionListener: 'getAppsFlyerConversionListenerByOFFLINEDEVE',
   getAdvertisingId: 'getAdvertisingIdByOFFLINEDEVE',
   getFirebaseToken: 'getFirebaseTokenByOFFLINEDEVE',
   downloadApkByApkUrl: 'downloadApkByApkUrlByOFFLINEDEVE',
@@ -1039,6 +1153,7 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
   hwLogin: 'hwLoginByOFFLINEDEVE',
   hwPay: 'hwPayByOFFLINEDEVE',
   hwConsumeOwnedPurchase: 'hwConsumeOwnedPurchaseByOFFLINEDEVE',
+  showWebView: 'showWebViewByOFFLINEDEVE',
 };
 
 // ----------------------------------------------------------------------------------------
@@ -1052,8 +1167,12 @@ GlobalCfg.NATIVE_CALL_NAME_OBJ2 = {
 GlobalCfg.IsDownloadPackage2 = 1;
 if (GlobalCfg.IsDownloadPackage2 == 1) {
   GlobalCfg.APP_VERSION = "2.2.2.8";
-  GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/DownloadPackage2/AppInfo.json`;
-  GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/DownloadPackage2/AppConfig.json`;
+  // GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/DownloadPackage2/AppInfo.json`;
+  // GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/DownloadPackage2/AppConfig.json`;
+
+
+  GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/AppInfo.json`;
+  GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/AppConfig.json`;
 };
 
 /* 
@@ -1076,12 +1195,12 @@ if (GlobalCfg.isOfflineDeve == 1) {
   * 包名： com.taara.saara.master
   * 渠道名：5007
 */
-GlobalCfg.isOfflineDeve2 = 1;
-if (GlobalCfg.isOfflineDeve2 == 1) {
+// GlobalCfg.isOfflineDeve2 = 1;
+if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_7001");
-  GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-  GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+  // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };
 
 /**
@@ -1376,13 +1495,14 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   GlobalCfg.IsDownloadPackage2 = 0;
   let packageChannelArr = packageChannel.split("_"); 
   let server = packageChannelArr[0];
+  console.log("packageChannelArr == " , packageChannelArr)
+  console.log("server == " , server)
+  console.log("cc.sys.isNative == " , cc.sys.isNative)
+  
   GlobalCfg.server_id = server;
   switch (server) {
     case "0":     // 测试服
       GlobalCfg.APP_VERSION = "0.1.2.7";
-      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-
       GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json?time=${new Date().getTime()}`;
       GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json?time=${new Date().getTime()}`;
       break;
@@ -1418,11 +1538,16 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
         GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfo.json`;
       }
+      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+
+      GlobalCfg.APP_INFO_URL_SPARE = `https://download.rax8.com/production/AppInfo.json`;
+      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.rax8.com/production/AppConfig.json`;
       break;
-    case "6":     // jim服 
-      GlobalCfg.APP_VERSION = "6.1.6.21";
-      GlobalCfg.APP_INFO_URL = `https://resource.teengatti.in/Release/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://resource.teengatti.in/Release/AppConfig.json`;
+    case "6":     // 代理服
+      GlobalCfg.APP_VERSION = "6.0.1";
+      GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/s2AppInfo.json`;
+      GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/s2AppConfig.json`;
       break;
     case "11":     // 1服(RummyClassic)
       GlobalCfg.APP_VERSION = "11.0.8.1";
@@ -1442,7 +1567,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     default:
       break;
   };
-}; 
+};
 
 
 

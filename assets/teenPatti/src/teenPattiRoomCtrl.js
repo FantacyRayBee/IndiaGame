@@ -665,12 +665,9 @@ cc.Class({
                 CommonFun.getInstance().showTips("Daily bonus Limit Exceeded. Please retry tomorrow");
             }
         }
-        else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
-        }
-        else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isCanExitDirectly == false) {
                 CommonFun.getInstance().showMsgBox("If you wish to exit the table, you will lose your money. Do you want to leave table?", "YES_NO", () => {
@@ -2011,6 +2008,7 @@ cc.Class({
     },
 
     curRoundAddCoinFinish(){
+        LoggerUtil.getInstance().log("caojun curRoundAddCoinFinish");
         if(cc.isValid(this)){
             let minLimit = this.RoomConfig.entryCondition || 0;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER);

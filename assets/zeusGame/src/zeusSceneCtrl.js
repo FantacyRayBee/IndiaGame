@@ -79,7 +79,6 @@ cc.Class({
         // this.zeusAudiosCtrl.setMusicVolume(0.6);
         this.zeusAudiosCtrl.setSoundVolume(1);
         this.zeusAudiosCtrl.playNormalStateBg();
-        
         /**
          * 注册按钮点击事件
          */
@@ -88,6 +87,8 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+
+        this.btn_getCoin.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
 
         /**
          * 监听后台切换事件
@@ -189,9 +190,9 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_TRIGGER_DOUBLE_TOGGLE) {
             self.dealTriggerDoubleToggleEvent(notify);
         }
-        else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS){
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS){
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_ENTER_FREE_STATUS) {
             self.dealEnterFreeStatusEvent(notify);
         }
@@ -549,6 +550,15 @@ cc.Class({
     },
 
     dealSendSpinReqEvent: function(bet, isDoubleMulti) {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
+                    CommonFun.getInstance().showSmallAddCash()
+                }
+            }, false);
+            return;
+        };
+        
         if (bet <= 0) {
             LoggerUtil.getInstance().warn(`zeus游戏中, 自定义ZEUS_SEND_SPIN_REQ消息的数据异常`, bet)
             return;
@@ -559,7 +569,10 @@ cc.Class({
             this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);  
             this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true); 
             this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
-            CommonFun.getInstance().showSmallAddCash();
+            if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            else 
+                CommonFun.getInstance().showSmallAddCash();
             return;
         };
 
@@ -579,6 +592,11 @@ cc.Class({
         };
         
         this.isAuto = notify.isAuto;
+    },
+
+    setBetCiShuAutoTips: function() {
+        this.isAuto = false;
+        this.bottomAreaCtrl.setTogAutoCheckedStatus(false);
     },
 
     dealSelectedBetEvent: function(notify) {
@@ -627,12 +645,16 @@ cc.Class({
             let coin = this.myCoinCtrl.getMyCoin();
             if (coin < notify.bet * 100) {
                 GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBuyFreeTipsHideEffect();
-                CommonFun.getInstance().showSmallAddCash();
                 this.leftAreaCtrl.setBuyFreeState(false);
                 this.leftAreaCtrl.playBtnFreeAnim(true);
                 this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);  
                 this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true); 
                 this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
+                if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+                else 
+                    CommonFun.getInstance().showSmallAddCash();
+                
                 return;
             };
 

@@ -64,6 +64,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
          */
         _this.chipParent = null;
         /**
+         * 充值按钮
+         */
+        _this.btn_recharge = null;
+        /**
          * 总下注池位置坐标
          */
         _this.totalChipsPos = cc.v2(0, 150);
@@ -183,6 +187,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
          * 默认的操作时间
          */
         _this.defaultOptTime = 15;
+        /**
+         * 是否充值状态
+         */
+        _this.isRechargeStatus = false;
         return _this;
     }
     TpGameCtrl.prototype.onLoad = function () {
@@ -203,7 +211,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             _this.addRoundInfo();
             _this.addMsgToast();
             _this.addTableInfoToast();
-            _this.addAddCash();
+            // this.addAddCash();
             _this.addLuckyPlayer();
             _this.initPlayerNodePool();
             _this.initHandCardsNodePool();
@@ -245,6 +253,12 @@ var TpGameCtrl = /** @class */ (function (_super) {
         GlobalCfg.ACT_SCENE_CTRL = this;
         //@ts-ignore
         cc.sys.localStorage.setItem("ENTERED_TP_GAME_" + GlobalCfg.USER_DATAS.userId, "true");
+        this.btn_recharge = this.node.getChildByName("btn_recharge");
+        //@ts-ignore
+        this.btn_recharge.on("click", CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
+        this.btn_recharge.getComponent(cc.Animation).play("drop");
+        //@ts-ignore
+        GlobalCfg.isPayGame = false;
     };
     TpGameCtrl.prototype.onDestroy = function () {
         //@ts-ignore
@@ -255,6 +269,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_TP_GAME);
         //@ts-ignore
         GlobalCfg.ACT_SCENE_CTRL = null;
+        //@ts-ignore
+        GlobalCfg.isPayGame = true;
     };
     /**
      * 设置监听游戏切入后台/前台事件
@@ -287,6 +303,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             _this.setNormalPlayerNumber(0);
             _this.waitStartTipCtrl.setWaitStartTipActive(false);
             _this.luckyPlayerCtrl.setLuckyPlayerActive(false);
+            _this.btn_recharge.active = false;
         }, this);
         /**
          * 游戏切回前台事件
@@ -316,6 +333,9 @@ var TpGameCtrl = /** @class */ (function (_super) {
             case "btn_chat":
                 this.dealBtnChatEvent();
                 break;
+            case "btn_recharge":
+                this.dealBtnRechargeEvent();
+                break;
             default:
                 break;
         }
@@ -330,6 +350,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
         ;
         //@ts-ignore
         CommonFun.getInstance().showGameWordInteraction(ownPlayerSeat);
+    };
+    TpGameCtrl.prototype.dealBtnRechargeEvent = function () {
+        //@ts-ignore
+        CommonFun.getInstance().showBankruptcy(true, true);
     };
     /**
      * 实例化玩家节点对象池
@@ -1037,10 +1061,9 @@ var TpGameCtrl = /** @class */ (function (_super) {
         /**
          * 如果当前是切入到后台状态，则不处理消息
          */
-        if (this.isGameEventHideStutas) {
-            return;
-        }
-        ;
+        // if (this.isGameEventHideStutas) {
+        //     return;
+        // };
         switch (msgId) {
             case "gameservice.login":
                 this.dealLoginMsg(notify);
@@ -1127,8 +1150,31 @@ var TpGameCtrl = /** @class */ (function (_super) {
                 break;
             //@ts-ignore
             case GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS:
-                //@ts-ignore
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
+                if (this.isRechargeStatus == false) {
+                    //@ts-ignore
+                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.TEENPATTI, SceneManager.getInstance().sceneType.LOBBY);
+                }
+                else {
+                    this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+                    this.btn_recharge.active = false;
+                    this.isRechargeStatus = false;
+                    this.refreshOwnDiamond();
+                    //@ts-ignore
+                    var global = GlobalCfg;
+                    if (global.FIRST_RECHARGE_REWARD_SHOW == true) { //首次充值奖励 直接显示奖励弹窗
+                        var coin = global.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
+                        var getBouns = global.USER_DATAS.firstGetBonus / 100; //本次充值获得的代金券
+                        global.FIRST_RECHARGE_REWARD_SHOW = false;
+                        if (getBouns > 0) {
+                            //@ts-ignore
+                            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }, { id: 12, amount: getBouns }]);
+                        }
+                        else {
+                            //@ts-ignore
+                            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }]);
+                        }
+                    }
+                }
                 break;
             default:
                 break;
@@ -1260,6 +1306,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.setNormalPlayerNumber(0);
         this.waitStartTipCtrl.setWaitStartTipActive(false);
         this.luckyPlayerCtrl.setLuckyPlayerActive(false);
+        this.btn_recharge.active = false;
         var pid = notify.pid;
         var diamond = notify.diamond;
         var totalPay = notify.totalPay;
@@ -1280,6 +1327,9 @@ var TpGameCtrl = /** @class */ (function (_super) {
         }
         ;
         this.setOwnPlayerPid(pid);
+        //@ts-ignore
+        LoggerUtil.getInstance().error("caojun GlobalCfg.USER_DATAS.userDiamond = " + GlobalCfg.USER_DATAS.userDiamond);
+        //@ts-ignore
         var playerNode = this.addPlayerNodeByPosIndex(0);
         if (playerNode) {
             var playerCtrl = playerNode.getComponent(PlayerCtrl_1.default);
@@ -1289,7 +1339,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             //@ts-ignore
             playerCtrl.setPlayerName(GlobalCfg.USER_DATAS.userName);
             //@ts-ignore
-            playerCtrl.setPlayerCoin(GlobalCfg.USER_DATAS.userDiamond);
+            playerCtrl.setPlayerCoin(diamond);
             //@ts-ignore
             playerCtrl.setPlayerHead(GlobalCfg.USER_DATAS.userHeadimgurl);
         }
@@ -1319,11 +1369,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
         };
         this.tableInfoCtrl.setTableInfoData(tableInfo);
         this.tableInfoToastCtrl.setTableInfoToastData(tableInfo);
-        //@ts-ignore
-        if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
-            this.addCashCtrl.setAddCashStyle(conf.trial ? DataDef_1.EnumAddCashType.PRACTICE : DataDef_1.EnumAddCashType.CASH, conf);
-        }
-        ;
+        // //@ts-ignore
+        // if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
+        //     this.addCashCtrl.setAddCashStyle(conf.trial ? EnumAddCashType.PRACTICE : EnumAddCashType.CASH, conf);
+        // };
         if (matching == false && scene) {
             this.dealGameSceneMsg(scene);
         }
@@ -1363,6 +1412,25 @@ var TpGameCtrl = /** @class */ (function (_super) {
                 chipParent.addChild(chipNode);
             }
             ;
+        }
+        ;
+    };
+    TpGameCtrl.prototype.refreshOwnDiamond = function () {
+        var ownPlayerSeat = this.getOwnPlayerSeat();
+        var posNodeIndex = this.getPosNodeIndexByPlayerSeat(ownPlayerSeat);
+        var playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);
+        if (playerNode) {
+            var playerCtrl = playerNode.getComponent(PlayerCtrl_1.default);
+            var betInfoNode = this.getBetInfoNodeByPosIndex(posNodeIndex);
+            var betInfo = "0";
+            if (betInfoNode) {
+                var betInfoCtrl = betInfoNode.getComponent(BetInfoCtrl_1.default);
+                betInfo = betInfoCtrl.getBetInfoTotalBet();
+            }
+            ;
+            //@ts-ignore
+            var userDiamond = GlobalCfg.USER_DATAS.userDiamond - (parseFloat(betInfo) * 100);
+            playerCtrl.setPlayerCoin(userDiamond);
         }
         ;
     };
@@ -1528,6 +1596,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
      */
     TpGameCtrl.prototype.setGameSceneInfoForRunningStatus = function (notify) {
         var players = notify.players;
+        //@ts-ignore
+        LoggerUtil.getInstance().error("setGameSceneInfoForRunningStatus notplayersify = ", players);
         var banker = notify.banker;
         var curChip = notify.curChip;
         var selfBaseChip = notify.selfBaseChip;
@@ -1687,6 +1757,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
             if (ownPlayerSeat == duringPaymentSeat) {
                 this.actBtnsCtrl.setActBtnsRechargeData(plotPayment, time, plotWinRate);
                 this.ownRechargeTipCtrl.setOwnRechargeTipTime(time);
+                this.btn_recharge.active = time > 0;
+                this.isRechargeStatus = time > 0;
             }
             ;
         }
@@ -2110,6 +2182,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.actBtnsCtrl.setActBtnsInteractableByActValueArr([]);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
     };
@@ -2154,6 +2227,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.actBtnsCtrl.setActBtnsNodeActive(false);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
         this.actBtnsCtrl.setActBtnsShowBtnString(normalPlayerNumber == 2 ? DataDef_1.EnumShowBtnStr.SHOW : DataDef_1.EnumShowBtnStr.SIDESHOW);
@@ -2258,6 +2332,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         if (target == ownPlayerSeat || ownPlayerSeat == launch) {
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
     };
@@ -2978,6 +3053,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.setCurOptPlayerSeat(-1);
         this.setNormalPlayerNumber(0);
         this.luckyPlayerCtrl.setLuckyPlayerActive(false);
+        this.btn_recharge.active = false;
         var maxBlinds = conf.blind ? "Always Blind" : "4";
         var tableInfo = {
             bootAmount: conf.cellScore / 100,
@@ -2989,11 +3065,10 @@ var TpGameCtrl = /** @class */ (function (_super) {
         this.tableInfoCtrl.setTableInfoNodeActive(true);
         this.tableInfoToastCtrl.setTableInfoToastData(tableInfo);
         this.waitStartTipCtrl.setWaitStartTipActive(true);
-        //@ts-ignore
-        if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
-            this.addCashCtrl.setAddCashStyle(conf.trial ? DataDef_1.EnumAddCashType.PRACTICE : DataDef_1.EnumAddCashType.CASH, conf);
-        }
-        ;
+        // //@ts-ignore
+        // if (GlobalCfg.server_id == "2" || GlobalCfg.server_id == "22" || GlobalCfg.server_id == "0" || GlobalCfg.server_id == "21") {
+        //     this.addCashCtrl.setAddCashStyle(conf.trial ? EnumAddCashType.PRACTICE : EnumAddCashType.CASH, conf);
+        // };
         if (scene) {
             this.dealGameSceneMsg(scene);
         }
@@ -3004,6 +3079,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
         var seat = notify.seat;
         var payment = notify.payment;
         var winRate = notify.winRate;
+        //@ts-ignore
+        cc.sys.localStorage.setItem("TP_winRate", notify.winRate);
         var time = Math.floor(timeoutMs / 1000);
         this.setCurOptPlayerSeat(seat);
         var posNodeIndex = this.getPosNodeIndexByPlayerSeat(seat);
@@ -3023,6 +3100,8 @@ var TpGameCtrl = /** @class */ (function (_super) {
         if (ownPlayerSeat == seat) {
             this.actBtnsCtrl.setActBtnsRechargeData(payment, time, winRate);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(time);
+            this.btn_recharge.active = time > 0;
+            this.isRechargeStatus = true;
         }
         ;
     };
@@ -3044,6 +3123,7 @@ var TpGameCtrl = /** @class */ (function (_super) {
             this.actBtnsCtrl.setActBtnsInteractableByActValueArr(actValueArr);
             this.actBtnsCtrl.setActBtnsRechargeData(null, 0, null);
             this.ownRechargeTipCtrl.setOwnRechargeTipTime(0);
+            this.btn_recharge.active = false;
         }
         ;
         var playerNode = this.getPlayerNodeByPosIndex(posNodeIndex);

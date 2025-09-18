@@ -23,7 +23,7 @@ cc.Class({
         this.remaining = -1;       // 等待游戏开始的时间 
         this.startBetTime  = 0;     // 下注时间
         this.isBackStage = true;   // 是否切后台进入游戏
-        this.LotteryRecord = null; // 开奖记录
+        this.LotteryRecord = null; // 开奖记录f
         this.betIndex = 0;     //玩家下注的下标
         this.betCion = 1;     //玩家下注的金额
         this.myBetCoinAll = 0   //统计自己下注全部金额
@@ -142,16 +142,17 @@ cc.Class({
                     self.node_cradArr[i].scale = 0.63;
                     self.node_cradArr[i].getComponent(cc.Sprite).spriteFrame =  self.spite_cradBei;
                 }
-                self.betCionAct(6,notify.score/100)
+                self.betCionAct(6, parseFloat((notify.score/100).toFixed(2)))
             }
         } else if (msgId == "lobbyservice.pushcurrencychanged") { 
             GlobalCfg.USER_DATAS.userDiamond = notify.deposit + notify.winnings;
             GlobalCfg.USER_DATAS.userDiamond = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.userDiamond, 0);
             let coin = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
             self.lab_coin.string = CommonFun.getInstance().numberToShow(coin);
-        } else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
-        }
+        } 
+        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
+        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
+        // }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
         }
@@ -315,7 +316,7 @@ cc.Class({
             this.lab_betTime.string = "";
             this.showCradTypeAct(winSide) 
             if( score > 0 && str == "endGame") {
-                this.betCionAct(6,Math.floor(score/100))
+                this.betCionAct(6, parseFloat((score/100).toFixed(2)))
                 this.sscAudioCtrl.playGameSound("touCoin")
                 GlobalCfg.USER_DATAS.userDiamond = after;
                 this.lab_coin.string = CommonFun.getInstance().numberToShow(after/100);
@@ -525,9 +526,13 @@ cc.Class({
                 }
             }
         } else {
-            CommonFun.getInstance().showMsgBox( this.tipsLabel[4],"SHOP",()=>{
-                CommonFun.getInstance().showSmallAddCash();
-            },false);
+            if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            else {
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[4],"SHOP",()=>{
+                    CommonFun.getInstance().showSmallAddCash();
+                },false);
+            }
         }
     },
 
@@ -588,6 +593,7 @@ cc.Class({
     // 玩家下注金币向上的动作
     betCionAct:function(num,coin,str){ 
         if( coin > 0){
+            LoggerUtil.getInstance().log("下注金币向上动作 ", coin);
             if(str != "play"){this.sscAudioCtrl.playGameSound("otherCoin")}
             let betPosArr =  [cc.v2(-483,-83),cc.v2(-287,-83),cc.v2(-92,-83),cc.v2(102,-83),cc.v2(295,-83),cc.v2(490,-83),cc.v2(-450,-288)]   
             let pos = betPosArr[num];
@@ -630,6 +636,7 @@ cc.Class({
 
     //游戏结束后显示牌型
     cradAct:function(cards,str) {
+        LoggerUtil.getInstance().log(`翻牌 cards = ${cards} str = ${str}`);
         let arr = cards;
         for (let i = 0; i < this.node_cradArr.length; i++) {
             let cradNode = this.node_cradArr[i];
@@ -769,9 +776,13 @@ cc.Class({
         else {
             amount = this.betCion * 100;
             if (amount > GlobalCfg.USER_DATAS.userDiamond) {
-                CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash();
-                }, false);
+                if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+                else {
+                    CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", () => {
+                        CommonFun.getInstance().showSmallAddCash();
+                    }, false);
+                }
                 return
             }
         };
