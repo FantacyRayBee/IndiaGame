@@ -619,13 +619,16 @@ cc.Class({
         };
 
         if (cc.sys.isNative) {
-            this.updateStartTime = cc.sys.now();
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
             this.runUpdateProcess();
         }
+        else if (cc.sys.isBrowser) {
+            // H5 环境
+            this.preloadMainH5();  
+        }
         else {
             this.changeSceneToLobby();
-        };
+        }
     },
 
     onDestroy: function() {
@@ -869,6 +872,79 @@ cc.Class({
             downloader.createDownloadFileTask(task.requestURL, task.storagePath);
         };
     },
+
+    preloadMainH5:function(){
+        this.node_loginLayer.active = false;
+        this.progressBar.node.active = true;
+        this.lab_updatePoint.node.active = true;
+        this.lab_updateProgress.node.active = true;
+        this.lab_updateContentTips.node.active = true;
+
+        this.setLabUpdatePointAnim(true);
+        this.setLabUpdateProgressStr("0%");
+        this.setUpdateProgressBarProgress(0);
+        this.setLabUpdateContentTipsStr("Getting Version Information");
+
+        let packgeName = "MustBundle";
+
+        this.checkDownloadH5Main(()=>{
+            // ====== 先跑 0~80% 假进度条 ======
+            let fakeDuration = 1 + Math.random(); // 随机 1~2 秒
+            let elapsed = 0;
+            this.schedule((dt)=>{
+                elapsed += dt;
+                let ratio = Math.min(elapsed / fakeDuration, 1);
+                let fakeProgress = ratio * 0.8; // 映射到 0~0.8
+
+                this.setLabUpdateProgressStr(`${(fakeProgress * 100).toFixed(2)}%`);
+                this.setUpdateProgressBarProgress(fakeProgress);
+                this.setLabUpdateContentTipsStr("Checking files...");
+
+                if (ratio >= 1) {
+                    this.unscheduleAllCallbacks(); // 停掉假进度
+                    this.startRealPreload(packgeName); // 开始真实预加载
+                }
+            }, 0); // 每帧调度一次
+        });
+    },
+
+    // ====== 真正的预加载逻辑（80% → 100%） ======
+    startRealPreload:function(packgeName){
+        cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
+            bundle.preloadDir("/", (completedCount, totalCount) => { 
+                let rawProgress = completedCount / totalCount;  // [0,1]
+                let mappedProgress = 0.8 + rawProgress * 0.2;   // [0.8,1]
+
+                this.setLabUpdateProgressStr(`${(mappedProgress * 100).toFixed(2)}%`);
+                this.setUpdateProgressBarProgress(mappedProgress);
+                this.setLabUpdateContentTipsStr("Downloading files");
+            }, (err) => { 
+                if (err) { 
+                    console.error(packgeName+ " 资源加载失败:", err);
+                } else { 
+                    this.setLabUpdateProgressStr("100%");
+                    this.setUpdateProgressBarProgress(1);
+                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                    this.scheduleOnce(() => {
+                        this.changeSceneToLobby();
+                    }, 1);
+                }
+            }); 
+        });
+    },
+
+    checkDownloadH5Main(callback = null){
+        cc.assetManager.loadBundle('LanguageEnglish', function(err, bundle) {
+            if (err) {
+                console.error("加载 LanguageEnglish 失败:", err);
+                return;
+            }
+            if(callback){
+                callback()
+            }
+        });
+    },
+
 
     changeSceneToLobby: function() {
         LoggerUtil.getInstance().log("Update completed, now enter Login-view");

@@ -595,7 +595,7 @@ window.GlobalCfg = {
     /**
      * 侧边栏
      */
-    SIDEBAR: "ResourcesBundle/NewPlan/CommActivity/activityModules_ScrollView",
+    SIDEBAR: "MustBundle/Normal/CommActivity/activityModules_ScrollView",
     /**
      * 标语提示框
      */
@@ -607,7 +607,7 @@ window.GlobalCfg = {
     /**
      * 通用提示操作框
      */
-    MSGBOX: "ResourcesBundle/NewPlan/MsgBox/MsgBox",
+    MSGBOX: "MustBundle/Normal/MsgBox/MsgBox",
     /**
      * 大厅设置
      */
@@ -661,8 +661,8 @@ window.GlobalCfg = {
     /**
      * 首充
      */
-    FIRSTRECHARGE: "ResourcesBundle/NewPlan/FirstRecharge/FirstRecharge",
-    FIRSTRECHARGE_V: "ResourcesBundle/NewPlan/FirstRecharge/firstRecharge_V",
+    FIRSTRECHARGE: "MustBundle/Normal/FirstRecharge/FirstRecharge",
+    FIRSTRECHARGE_V: "MustBundle/Normal/FirstRecharge/firstRecharge_V",
     /**
      * 联系我们 客服邮件地址
      */
@@ -686,13 +686,13 @@ window.GlobalCfg = {
     /**
      * 推广员
      */
-    PROMOTER: "ResourcesBundle/NewPlan/Promoter/Promoter",
-    PROMOTERMAIN: "ResourcesBundle/NewPlan/Promoter/PromoterMain",
-    PROMOTERRULE: "ResourcesBundle/NewPlan/Promoter/PromoterRule",
+    PROMOTER: "MustBundle/Normal/Promoter/Promoter",
+    // PROMOTERMAIN: "ResourcesBundle/NewPlan/Promoter/PromoterMain",
+    // PROMOTERRULE: "ResourcesBundle/NewPlan/Promoter/PromoterRule",
     /**
      * 推广员左侧详情
      */
-    PROMOTERLEFTVIEW: "ResourcesBundle/NewPlan/Promoter/PromoterLeftView",
+    PROMOTERLEFTVIEW: "MustBundle/Normal/Promoter/PromoterLeftView",
     /**
      * 救济金
      */
@@ -742,7 +742,7 @@ window.GlobalCfg = {
     /**
      * 日常奖励卡
      */
-    DAILYBONUSCARD: "ResourcesBundle/NewPlan/DailyBonusCard/DailyBonusCard",
+    DAILYBONUSCARD: "MustBundle/Normal/DailyBonusCard/DailyBonusCard",
     /**
      * 新人礼
      */
@@ -860,7 +860,7 @@ window.GlobalCfg = {
     /**
      * 游戏中的菜单
      */
-    GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
+    GAMEMENU: "MustBundle/Normal/GameMenu/GameMenu",
     /**
      * 活动 Go Betting
      */
@@ -877,7 +877,7 @@ window.GlobalCfg = {
     /**
      * 破产礼包
      */
-    BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
+    BANKRUPTCY_GIFT: "MustBundle/Normal/BankruptcyGift/BankruptcyGift",
     /**
      * 诱导充值
      */
