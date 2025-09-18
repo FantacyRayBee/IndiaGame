@@ -531,7 +531,7 @@ window.GlobalCfg = {
     /**
      * 侧边栏
      */
-    SIDEBAR: "ResourcesBundle/NewPlan/CommActivity/activityModules_ScrollView",
+    SIDEBAR: "MustBundle/Normal/CommActivity/activityModules_ScrollView",
     /**
      * 标语提示框
      */
@@ -543,11 +543,11 @@ window.GlobalCfg = {
     /**
      * 通用提示操作框
      */
-    MSGBOX: "ResourcesBundle/NewPlan/MsgBox/MsgBox",
+    MSGBOX: "MustBundle/Normal/MsgBox/MsgBox",
     /**
      * 大厅设置
      */
-    SETTING: "ResourcesBundle/NewPlan/Setting/Setting",
+    SETTING: "MustBundle/Normal/Setting/Setting",
     /**
      * 小游戏中点击充值按钮所显示的金币界面
      */
@@ -597,8 +597,8 @@ window.GlobalCfg = {
     /**
      * 首充
      */
-    FIRSTRECHARGE: "ResourcesBundle/NewPlan/FirstRecharge/FirstRecharge",
-    FIRSTRECHARGE_V: "ResourcesBundle/NewPlan/FirstRecharge/firstRecharge_V",
+    FIRSTRECHARGE: "MustBundle/Normal/FirstRecharge/FirstRecharge",
+    FIRSTRECHARGE_V: "MustBundle/Normal/FirstRecharge/firstRecharge_V",
     /**
      * 联系我们 客服邮件地址
      */
@@ -676,11 +676,11 @@ window.GlobalCfg = {
     /**
      * 日常奖励卡
      */
-    DAILYBONUSCARD: "ResourcesBundle/NewPlan/DailyBonusCard/DailyBonusCard",
+    DAILYBONUSCARD: "MustBundle/Normal/DailyBonusCard/DailyBonusCard",
     /**
      * 新人礼
      */
-    FIRSTGIFTDIAMOND: "ResourcesBundle/NewPlan/FirstGiftDiamond/FirstGiftDiamond",
+    FIRSTGIFTDIAMOND: "MustBundle/Normal/FirstGiftDiamond/FirstGiftDiamond",
     /**
      * 规则
      */
@@ -791,7 +791,7 @@ window.GlobalCfg = {
     /**
      * 游戏中的菜单
      */
-    GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
+    GAMEMENU: "MustBundle/Normal/GameMenu/GameMenu",
     /**
      * 活动 Go Betting
      */
@@ -808,7 +808,7 @@ window.GlobalCfg = {
     /**
      * 破产礼包
      */
-    BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
+    BANKRUPTCY_GIFT: "MustBundle/Normal/BankruptcyGift/BankruptcyGift",
     /**
      * 强制引导弹窗
      */

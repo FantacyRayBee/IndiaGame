@@ -749,7 +749,6 @@ cc.Class({
     }
     ;
   },
-  // 预加载H5相关必要资源
   preloadMainH5: function preloadMainH5() {
     var _this4 = this;
     this.node_loginLayer.active = false;
@@ -761,28 +760,49 @@ cc.Class({
     this.setLabUpdateProgressStr("0%");
     this.setUpdateProgressBarProgress(0);
     this.setLabUpdateContentTipsStr("Getting Version Information");
-    var packgeName = "ResourcesBundle";
+    var packgeName = "MustBundle";
     this.checkDownloadH5Main(function () {
-      cc.assetManager.loadBundle(packgeName, function (_, bundle) {
-        bundle.preloadDir("/", function (completedCount, totalCount) {
-          // 更新进度条
-          var progress = completedCount / totalCount;
-          _this4.setLabUpdateProgressStr((progress * 100).toFixed(2) + "%");
-          _this4.setUpdateProgressBarProgress(progress);
-          _this4.setLabUpdateContentTipsStr("Downloading files");
-        }, function (err, resources) {
-          if (err) {
-            console.error(packgeName + " 资源加载失败:", err);
-          } else {
-            console.log(packgeName + " 资源预加载完成!" + resources);
-            _this4.setLabUpdateProgressStr("100%");
-            _this4.setUpdateProgressBarProgress(1);
-            _this4.setLabUpdateContentTipsStr("Please Enjoy The Game");
-            _this4.scheduleOnce(function () {
-              _this4.changeSceneToLobby();
-            }, 1);
-          }
-        });
+      // ====== 先跑 0~80% 假进度条 ======
+      var fakeDuration = 1 + Math.random(); // 随机 1~2 秒
+      var elapsed = 0;
+      _this4.schedule(function (dt) {
+        elapsed += dt;
+        var ratio = Math.min(elapsed / fakeDuration, 1);
+        var fakeProgress = ratio * 0.8; // 映射到 0~0.8
+
+        _this4.setLabUpdateProgressStr((fakeProgress * 100).toFixed(2) + "%");
+        _this4.setUpdateProgressBarProgress(fakeProgress);
+        _this4.setLabUpdateContentTipsStr("Checking files...");
+        if (ratio >= 1) {
+          _this4.unscheduleAllCallbacks(); // 停掉假进度
+          _this4.startRealPreload(packgeName); // 开始真实预加载
+        }
+      }, 0); // 每帧调度一次
+    });
+  },
+
+  // ====== 真正的预加载逻辑（80% → 100%） ======
+  startRealPreload: function startRealPreload(packgeName) {
+    var _this5 = this;
+    cc.assetManager.loadBundle(packgeName, function (_, bundle) {
+      bundle.preloadDir("/", function (completedCount, totalCount) {
+        var rawProgress = completedCount / totalCount; // [0,1]
+        var mappedProgress = 0.8 + rawProgress * 0.2; // [0.8,1]
+
+        _this5.setLabUpdateProgressStr((mappedProgress * 100).toFixed(2) + "%");
+        _this5.setUpdateProgressBarProgress(mappedProgress);
+        _this5.setLabUpdateContentTipsStr("Downloading files");
+      }, function (err) {
+        if (err) {
+          console.error(packgeName + " 资源加载失败:", err);
+        } else {
+          _this5.setLabUpdateProgressStr("100%");
+          _this5.setUpdateProgressBarProgress(1);
+          _this5.setLabUpdateContentTipsStr("Please Enjoy The Game");
+          _this5.scheduleOnce(function () {
+            _this5.changeSceneToLobby();
+          }, 1);
+        }
       });
     });
   },
@@ -810,24 +830,24 @@ cc.Class({
     this.loadBundleAndRunScene();
   },
   loadBundleAndRunScene: function loadBundleAndRunScene() {
-    var _this5 = this;
+    var _this6 = this;
     Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()]).then(function (arr) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
         window.ResourcesBundle = bundle;
         GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
         GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
         if (!GlobalCfg.USER_DATAS.token) {
-          _this5.node_loginLayer.active = true;
+          _this6.node_loginLayer.active = true;
           var phoneToken = cc.sys.localStorage.getItem("phone_token");
           if (phoneToken) {
-            _this5.showMemoryPhoneView();
+            _this6.showMemoryPhoneView();
           } else {
-            _this5.showCommonLoginView();
+            _this6.showCommonLoginView();
           }
           ;
         } else {
           CommonFun.getInstance().showProgress('Memory login ...');
-          _this5.node_loginLayer.active = false;
+          _this6.node_loginLayer.active = false;
           var promise = SceneManager.getInstance().reqBearerToken();
           promise.then(function () {
             return SceneManager.getInstance().reqUserDataInfo();
@@ -836,8 +856,8 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
           })["catch"](function (error) {
             LoggerUtil.getInstance().log(error);
-            _this5.node_loginLayer.active = true;
-            _this5.showCommonLoginView("");
+            _this6.node_loginLayer.active = true;
+            _this6.showCommonLoginView("");
           });
         }
         ;
@@ -883,7 +903,7 @@ cc.Class({
     ;
   },
   baseBundlesHotUpdate: function baseBundlesHotUpdate() {
-    var _this6 = this;
+    var _this7 = this;
     this.loadBundlesStartTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
     LoggerUtil.getInstance().log("Start downloading baseBundles zip files!");
@@ -893,7 +913,7 @@ cc.Class({
           baseBundle: baseBundle,
           progress: 0
         };
-        _this6.baseBundlesNeedUpdateArr.push(tempObj);
+        _this7.baseBundlesNeedUpdateArr.push(tempObj);
       }
       ;
     });
@@ -905,7 +925,7 @@ cc.Class({
       this.setUpdateProgressBarProgress(1);
       this.setLabUpdateContentTipsStr("Please Enjoy The Game");
       this.scheduleOnce(function () {
-        if (_this6.isHaveUpdateForResources) {
+        if (_this7.isHaveUpdateForResources) {
           GlobalCfg.G_COMPONENTS.Audio.stopAll();
           var searchPaths = jsb.fileUtils.getSearchPaths();
           var storagePath1 = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'remote-asset/';
@@ -915,7 +935,7 @@ cc.Class({
           jsb.fileUtils.setSearchPaths(searchPaths);
           cc.game.restart();
         } else {
-          _this6.changeSceneToLobby();
+          _this7.changeSceneToLobby();
         }
         ;
       }, 1);
