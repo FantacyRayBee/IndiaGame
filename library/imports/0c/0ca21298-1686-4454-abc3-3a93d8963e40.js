@@ -501,18 +501,18 @@ cc.Class({
     }
     ;
     if (cc.sys.isNative) {
-      this.updateStartTime = cc.sys.now();
+      LoggerUtil.getInstance().log("H5: 11111111");
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
       this.runUpdateProcess();
+    } else if (cc.sys.isBrowser) {
+      LoggerUtil.getInstance().log("H5: 22222222");
+      // H5 环境
+      this.preloadMainH5();
     } else {
-      if (cc.sys.os == cc.sys.OS_ANDROID) {
-        //H5
-        this.preloadMainH5();
-      } else {
-        this.changeSceneToLobby();
-      }
+      LoggerUtil.getInstance().log("H5: 33333333");
+      // 其它环境，比如小程序之类
+      this.changeSceneToLobby();
     }
-    ;
   },
   onDestroy: function onDestroy() {
     this.downloaderArr = null;
@@ -749,7 +749,7 @@ cc.Class({
     }
     ;
   },
-  //预加载H5相关必要资源
+  // 预加载H5相关必要资源
   preloadMainH5: function preloadMainH5() {
     var _this4 = this;
     this.node_loginLayer.active = false;
@@ -761,67 +761,31 @@ cc.Class({
     this.setLabUpdateProgressStr("0%");
     this.setUpdateProgressBarProgress(0);
     this.setLabUpdateContentTipsStr("Getting Version Information");
-    if (CommonFun.getInstance().isNeedUpdata("ResourcesBundle")) {
-      this.checkDownloadH5Main(function () {
-        var packgeName = "ResourcesBundle";
-        cc.assetManager.loadBundle(packgeName, function (_, bundle) {
-          bundle.preloadDir("/", function (completedCount, totalCount) {
-            // 更新进度条
-            var progressStr = completedCount / totalCount;
-            // cc.log(`progress = ${progressStr}`);
-            _this4.setLabUpdateProgressStr((progressStr * 100).toFixed(2) + "%");
-            _this4.setUpdateProgressBarProgress(Number(progressStr.toFixed(2)));
-            _this4.setLabUpdateContentTipsStr("Downloading files");
-          }, function (err, resources) {
-            // 所有资源加载完成后的回调 
-            if (err) {
-              console.error(packgeName + " 资源加载失败:", err);
-            } else {
-              console.log(packgeName + " 资源预加载完成!" + resources);
-              var serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
-              cc.sys.localStorage.setItem(packgeName, serverVersion);
-              _this4.setLabUpdateProgressStr("100%");
-              _this4.setUpdateProgressBarProgress(1);
-              _this4.setLabUpdateContentTipsStr("Please Enjoy The Game");
-              _this4.scheduleOnce(function () {
-                _this4.changeSceneToLobby();
-              }, 1);
-            }
-          });
+    var packgeName = "ResourcesBundle";
+    this.checkDownloadH5Main(function () {
+      cc.assetManager.loadBundle(packgeName, function (_, bundle) {
+        bundle.preloadDir("/", function (completedCount, totalCount) {
+          // 更新进度条
+          var progress = completedCount / totalCount;
+          _this4.setLabUpdateProgressStr((progress * 100).toFixed(2) + "%");
+          _this4.setUpdateProgressBarProgress(progress);
+          _this4.setLabUpdateContentTipsStr("Downloading files");
+        }, function (err, resources) {
+          if (err) {
+            console.error(packgeName + " 资源加载失败:", err);
+          } else {
+            console.log(packgeName + " 资源预加载完成!" + resources);
+            _this4.setLabUpdateProgressStr("100%");
+            _this4.setUpdateProgressBarProgress(1);
+            _this4.setLabUpdateContentTipsStr("Please Enjoy The Game");
+            _this4.scheduleOnce(function () {
+              _this4.changeSceneToLobby();
+            }, 1);
+          }
         });
       });
-    } else {
-      this.changeSceneToLobby();
-    }
+    });
   },
-  // //下载H5端必要资源
-  // checkDownloadH5Main(packgeName){
-  //     cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
-  //         bundle.preloadDir("/", (completedCount, totalCount) => { 
-  //             // 更新进度条
-  //             let progressStr = completedCount / totalCount; 
-  //             // cc.log(`progress = ${progressStr}`);
-  //             this.setLabUpdateProgressStr(`${(progressStr * 100).toFixed(2)}%`);
-  //             this.setUpdateProgressBarProgress(Number((progressStr).toFixed(2)));
-  //             this.setLabUpdateContentTipsStr("Downloading files");
-  //         }, (err, resources) => { 
-  //             // 所有资源加载完成后的回调 
-  //             if (err) { 
-  //                 console.error(packgeName+ " 资源加载失败:", err);
-  //             } else { 
-  //                 console.log(packgeName + " 资源预加载完成!" + resources); 
-  //                 let serverVersion = Number(GlobalCfg.SUB_GAME_VERSION_INFO[packgeName]);
-  //                 cc.sys.localStorage.setItem(packgeName, serverVersion); 
-  //                 this.setLabUpdateProgressStr("100%");
-  //                 this.setUpdateProgressBarProgress(1);
-  //                 this.setLabUpdateContentTipsStr("Please Enjoy The Game");
-  //                 this.scheduleOnce(() => {
-  //                     this.changeSceneToLobby();
-  //                 }, 1);
-  //             }
-  //         }); 
-  //     });
-  // },
   checkDownloadH5Main: function checkDownloadH5Main(callback) {
     if (callback === void 0) {
       callback = null;

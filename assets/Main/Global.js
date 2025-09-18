@@ -1380,8 +1380,11 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   switch (server) {
     case "0":     // 测试服
       GlobalCfg.APP_VERSION = "0.1.2.7";
-      GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-      GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+
+      GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json?time=${new Date().getTime()}`;
+      GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json?time=${new Date().getTime()}`;
       break;
     case "1":     // 1服
       GlobalCfg.APP_VERSION = "1.0.8.12";
@@ -1407,15 +1410,14 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
       break;
     case "5":     // 5服
-      GlobalCfg.APP_VERSION = "5.0.0.2"; 
-      GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/AppConfig.json`;
+      GlobalCfg.APP_VERSION = "5.0.0.34"; 
+      // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+      GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
 
-      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-
-      GlobalCfg.APP_INFO_URL_SPARE = `https://download.ltgame.in/production/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.ltgame.in/production/AppConfig.json`;
+      GlobalCfg.APP_CONFIG_URL = `https://download.rax8.com/production/AppConfig.json`;
+      if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
+        GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfo.json`;
+      }
       break;
     case "6":     // jim服 
       GlobalCfg.APP_VERSION = "6.1.6.21";

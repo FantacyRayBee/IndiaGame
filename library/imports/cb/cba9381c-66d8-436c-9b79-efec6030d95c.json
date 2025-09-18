@@ -431,7 +431,7 @@
       }
     }
   },
-  "_atlasText": "\nbt_fx_reward.png\nsize: 305,305\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/1b\n  rotate: false\n  xy: 2, 132\n  size: 215, 171\n  orig: 217, 171\n  offset: 0, 0\n  index: -1\nimg/Tex_0005\n  rotate: false\n  xy: 2, 2\n  size: 256, 128\n  orig: 256, 128\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\nbt_fx_reward.png\r\nsize: 305,305\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/1b\r\n  rotate: false\r\n  xy: 2, 132\r\n  size: 215, 171\r\n  orig: 217, 171\r\n  offset: 0, 0\r\n  index: -1\r\nimg/Tex_0005\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 256, 128\r\n  orig: 256, 128\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "28c74852-9b28-47c4-9e15-a8e492d3ccfd"

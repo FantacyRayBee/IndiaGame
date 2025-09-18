@@ -4,7 +4,7 @@
   "_objFlags": 0,
   "_native": ".bin",
   "_skeletonJson": null,
-  "_atlasText": "\nbar.png\nsize: 689,256\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 255, 10\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 504, 147\n  size: 183, 107\n  orig: 187, 110\n  offset: 1, 2\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 2\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 504, 51\n  size: 170, 94\n  orig: 174, 98\n  offset: 2, 2\n  index: -1\n",
+  "_atlasText": "\r\nbar.png\r\nsize: 689,256\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nsanguang\r\n  rotate: false\r\n  xy: 255, 10\r\n  size: 247, 244\r\n  orig: 256, 256\r\n  offset: 4, 6\r\n  index: -1\r\nwaiguang\r\n  rotate: false\r\n  xy: 504, 147\r\n  size: 183, 107\r\n  orig: 187, 110\r\n  offset: 1, 2\r\n  index: -1\r\nzhuanguang\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 251, 252\r\n  orig: 256, 256\r\n  offset: 2, 2\r\n  index: -1\r\nzhuti\r\n  rotate: false\r\n  xy: 504, 51\r\n  size: 170, 94\r\n  orig: 174, 98\r\n  offset: 2, 2\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "40a3829f-588c-46e5-abf8-4c7148cdb9f7"

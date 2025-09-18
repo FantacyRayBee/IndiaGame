@@ -23,7 +23,7 @@ cc.Class({
             };
         };
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);  
-        cc.assetManager.downloader.maxConcurrency = 10; //用于设置下载的最大并发连接数，若当前连接数超过限制，将会进入等待队列。
+        cc.assetManager.downloader.maxConcurrency = 20; //用于设置下载的最大并发连接数，若当前连接数超过限制，将会进入等待队列。
         /**
          * 日志开关
          */
