@@ -3,16 +3,12 @@ package gameservice;
 
 //protoc --go_out=:. game.proto
 
-// 心跳
-message PingPang {
-	uint64 timestamp = 1;	//时间戳
-}
-
 // 返回结果
 message ResponseBase {
   uint32 result = 1;
   string message = 2;
 }
+
 
 // 登录 gameservice.login
 message LoginReq {
@@ -164,4 +160,10 @@ message playerRecord {
   int64 mub = 4;
   int64 timer = 5;
   int64 gameMub = 6; //游戏下机记录
+}
+
+
+// 心跳
+message PingPang {
+  uint64 timestamp = 1;  //时间戳
 }
