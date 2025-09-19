@@ -1,541 +1,526 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "btn_tx",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "PqOuUhNuLX5+K9ydkzK8oiT7EKQ",
-      "spine": "3.3.07",
-      "width": 0,
-      "height": 0,
-      "images": "./images/"
-    },
-    "bones": [
-      {
-        "name": "root"
-      }
-    ],
-    "slots": [
-      {
-        "name": "tx",
-        "bone": "root",
-        "blend": "additive"
-      }
-    ],
-    "skins": {
-      "default": {
-        "tx": {
-          "btn_mfjf_00000": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00001": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00002": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00003": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00004": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00005": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00006": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00007": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00008": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00009": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00010": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00011": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00012": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00013": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00014": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00015": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00016": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00017": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00018": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00019": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00020": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00021": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00022": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00023": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00024": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00025": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00026": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00027": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00028": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00029": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00030": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00031": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00032": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00033": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00034": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00035": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00036": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00037": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00038": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00039": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00040": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00041": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00042": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00043": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00044": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00045": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00046": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00047": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00048": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00049": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00050": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00051": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00052": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00053": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00054": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00055": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00056": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00057": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00058": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00059": {
-            "width": 235,
-            "height": 119
-          },
-          "btn_mfjf_00060": {
-            "width": 235,
-            "height": 119
-          }
-        }
-      }
-    },
-    "animations": {
-      "animation": {
-        "slots": {
-          "tx": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": "btn_mfjf_00000"
-              },
-              {
-                "time": 0.0666,
-                "name": "btn_mfjf_00001"
-              },
-              {
-                "time": 0.1333,
-                "name": "btn_mfjf_00002"
-              },
-              {
-                "time": 0.2,
-                "name": "btn_mfjf_00003"
-              },
-              {
-                "time": 0.2666,
-                "name": "btn_mfjf_00004"
-              },
-              {
-                "time": 0.3333,
-                "name": "btn_mfjf_00005"
-              },
-              {
-                "time": 0.4,
-                "name": "btn_mfjf_00006"
-              },
-              {
-                "time": 0.4666,
-                "name": "btn_mfjf_00007"
-              },
-              {
-                "time": 0.5333,
-                "name": "btn_mfjf_00008"
-              },
-              {
-                "time": 0.6,
-                "name": "btn_mfjf_00009"
-              },
-              {
-                "time": 0.6666,
-                "name": "btn_mfjf_00010"
-              },
-              {
-                "time": 0.7333,
-                "name": "btn_mfjf_00011"
-              },
-              {
-                "time": 0.8,
-                "name": "btn_mfjf_00012"
-              },
-              {
-                "time": 0.8666,
-                "name": "btn_mfjf_00013"
-              },
-              {
-                "time": 0.9333,
-                "name": "btn_mfjf_00014"
-              },
-              {
-                "time": 1,
-                "name": "btn_mfjf_00015"
-              },
-              {
-                "time": 1.0666,
-                "name": "btn_mfjf_00016"
-              },
-              {
-                "time": 1.1333,
-                "name": "btn_mfjf_00017"
-              },
-              {
-                "time": 1.2,
-                "name": "btn_mfjf_00018"
-              },
-              {
-                "time": 1.2666,
-                "name": "btn_mfjf_00019"
-              },
-              {
-                "time": 1.3333,
-                "name": "btn_mfjf_00020"
-              },
-              {
-                "time": 1.4,
-                "name": "btn_mfjf_00021"
-              },
-              {
-                "time": 1.4666,
-                "name": "btn_mfjf_00022"
-              },
-              {
-                "time": 1.5333,
-                "name": "btn_mfjf_00023"
-              },
-              {
-                "time": 1.6,
-                "name": "btn_mfjf_00024"
-              },
-              {
-                "time": 1.6666,
-                "name": "btn_mfjf_00025"
-              },
-              {
-                "time": 1.7333,
-                "name": "btn_mfjf_00026"
-              },
-              {
-                "time": 1.8,
-                "name": "btn_mfjf_00027"
-              },
-              {
-                "time": 1.8666,
-                "name": "btn_mfjf_00028"
-              },
-              {
-                "time": 1.9333,
-                "name": "btn_mfjf_00029"
-              },
-              {
-                "time": 2,
-                "name": "btn_mfjf_00030"
-              },
-              {
-                "time": 2.0666,
-                "name": "btn_mfjf_00031"
-              },
-              {
-                "time": 2.1333,
-                "name": "btn_mfjf_00032"
-              },
-              {
-                "time": 2.2,
-                "name": "btn_mfjf_00033"
-              },
-              {
-                "time": 2.2666,
-                "name": "btn_mfjf_00034"
-              },
-              {
-                "time": 2.3333,
-                "name": "btn_mfjf_00035"
-              },
-              {
-                "time": 2.4,
-                "name": "btn_mfjf_00036"
-              },
-              {
-                "time": 2.4666,
-                "name": "btn_mfjf_00037"
-              },
-              {
-                "time": 2.5333,
-                "name": "btn_mfjf_00038"
-              },
-              {
-                "time": 2.6,
-                "name": "btn_mfjf_00039"
-              },
-              {
-                "time": 2.6666,
-                "name": "btn_mfjf_00040"
-              },
-              {
-                "time": 2.7333,
-                "name": "btn_mfjf_00041"
-              },
-              {
-                "time": 2.8,
-                "name": "btn_mfjf_00042"
-              },
-              {
-                "time": 2.8666,
-                "name": "btn_mfjf_00043"
-              },
-              {
-                "time": 2.9333,
-                "name": "btn_mfjf_00044"
-              },
-              {
-                "time": 3,
-                "name": "btn_mfjf_00045"
-              },
-              {
-                "time": 3.0666,
-                "name": "btn_mfjf_00046"
-              },
-              {
-                "time": 3.1333,
-                "name": "btn_mfjf_00047"
-              },
-              {
-                "time": 3.2,
-                "name": "btn_mfjf_00048"
-              },
-              {
-                "time": 3.2666,
-                "name": "btn_mfjf_00049"
-              },
-              {
-                "time": 3.3333,
-                "name": "btn_mfjf_00050"
-              },
-              {
-                "time": 3.4,
-                "name": "btn_mfjf_00051"
-              },
-              {
-                "time": 3.4666,
-                "name": "btn_mfjf_00052"
-              },
-              {
-                "time": 3.5333,
-                "name": "btn_mfjf_00053"
-              },
-              {
-                "time": 3.6,
-                "name": "btn_mfjf_00054"
-              },
-              {
-                "time": 3.6666,
-                "name": "btn_mfjf_00055"
-              },
-              {
-                "time": 3.7333,
-                "name": "btn_mfjf_00056"
-              },
-              {
-                "time": 3.8,
-                "name": "btn_mfjf_00057"
-              },
-              {
-                "time": 3.8666,
-                "name": "btn_mfjf_00058"
-              },
-              {
-                "time": 3.9333,
-                "name": "btn_mfjf_00059"
-              },
-              {
-                "time": 4,
-                "name": "btn_mfjf_00060"
-              }
-            ]
-          }
+  "skeleton": {
+    "hash": "PqOuUhNuLX5+K9ydkzK8oiT7EKQ",
+    "spine": "3.3.07",
+    "width": 0,
+    "height": 0,
+    "images": "./images/"
+  },
+  "bones": [
+    {
+      "name": "root"
+    }
+  ],
+  "slots": [
+    {
+      "name": "tx",
+      "bone": "root",
+      "blend": "additive"
+    }
+  ],
+  "skins": {
+    "default": {
+      "tx": {
+        "btn_mfjf_00000": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00001": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00002": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00003": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00004": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00005": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00006": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00007": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00008": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00009": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00010": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00011": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00012": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00013": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00014": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00015": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00016": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00017": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00018": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00019": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00020": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00021": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00022": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00023": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00024": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00025": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00026": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00027": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00028": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00029": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00030": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00031": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00032": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00033": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00034": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00035": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00036": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00037": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00038": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00039": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00040": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00041": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00042": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00043": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00044": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00045": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00046": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00047": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00048": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00049": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00050": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00051": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00052": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00053": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00054": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00055": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00056": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00057": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00058": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00059": {
+          "width": 235,
+          "height": 119
+        },
+        "btn_mfjf_00060": {
+          "width": 235,
+          "height": 119
         }
       }
     }
   },
-  "_atlasText": "\r\nbtn_tx.png\r\nsize: 1905,325\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nbtn_mfjf_00000\r\n  rotate: false\r\n  xy: 1478, 2\r\n  size: 88, 103\r\n  orig: 235, 119\r\n  offset: 132, 8\r\n  index: -1\r\nbtn_mfjf_00060\r\n  rotate: false\r\n  xy: 1478, 2\r\n  size: 88, 103\r\n  orig: 235, 119\r\n  offset: 132, 8\r\n  index: -1\r\nbtn_mfjf_00001\r\n  rotate: false\r\n  xy: 1697, 218\r\n  size: 82, 105\r\n  orig: 235, 119\r\n  offset: 135, 7\r\n  index: -1\r\nbtn_mfjf_00002\r\n  rotate: false\r\n  xy: 1672, 4\r\n  size: 77, 105\r\n  orig: 235, 119\r\n  offset: 138, 7\r\n  index: -1\r\nbtn_mfjf_00003\r\n  rotate: false\r\n  xy: 1437, 107\r\n  size: 71, 107\r\n  orig: 235, 119\r\n  offset: 141, 6\r\n  index: -1\r\nbtn_mfjf_00004\r\n  rotate: false\r\n  xy: 634, 103\r\n  size: 64, 109\r\n  orig: 235, 119\r\n  offset: 144, 5\r\n  index: -1\r\nbtn_mfjf_00005\r\n  rotate: false\r\n  xy: 712, 214\r\n  size: 56, 109\r\n  orig: 235, 119\r\n  offset: 148, 5\r\n  index: -1\r\nbtn_mfjf_00006\r\n  rotate: false\r\n  xy: 649, 214\r\n  size: 61, 109\r\n  orig: 235, 119\r\n  offset: 146, 5\r\n  index: -1\r\nbtn_mfjf_00007\r\n  rotate: false\r\n  xy: 873, 215\r\n  size: 68, 108\r\n  orig: 235, 119\r\n  offset: 142, 5\r\n  index: -1\r\nbtn_mfjf_00008\r\n  rotate: false\r\n  xy: 1360, 107\r\n  size: 75, 107\r\n  orig: 235, 119\r\n  offset: 139, 6\r\n  index: -1\r\nbtn_mfjf_00009\r\n  rotate: false\r\n  xy: 1276, 107\r\n  size: 82, 107\r\n  orig: 235, 119\r\n  offset: 135, 6\r\n  index: -1\r\nbtn_mfjf_00010\r\n  rotate: true\r\n  xy: 2, 2\r\n  size: 89, 105\r\n  orig: 235, 119\r\n  offset: 130, 7\r\n  index: -1\r\nbtn_mfjf_00011\r\n  rotate: false\r\n  xy: 1286, 2\r\n  size: 96, 103\r\n  orig: 235, 119\r\n  offset: 126, 8\r\n  index: -1\r\nbtn_mfjf_00012\r\n  rotate: false\r\n  xy: 1751, 8\r\n  size: 101, 102\r\n  orig: 235, 119\r\n  offset: 123, 10\r\n  index: -1\r\nbtn_mfjf_00013\r\n  rotate: false\r\n  xy: 1181, 2\r\n  size: 103, 103\r\n  orig: 235, 119\r\n  offset: 122, 11\r\n  index: -1\r\nbtn_mfjf_00014\r\n  rotate: false\r\n  xy: 967, 2\r\n  size: 105, 102\r\n  orig: 235, 119\r\n  offset: 121, 13\r\n  index: -1\r\nbtn_mfjf_00015\r\n  rotate: true\r\n  xy: 1120, 216\r\n  size: 107, 101\r\n  orig: 235, 119\r\n  offset: 120, 15\r\n  index: -1\r\nbtn_mfjf_00016\r\n  rotate: true\r\n  xy: 266, 214\r\n  size: 109, 99\r\n  orig: 235, 119\r\n  offset: 119, 18\r\n  index: -1\r\nbtn_mfjf_00017\r\n  rotate: false\r\n  xy: 332, 3\r\n  size: 109, 97\r\n  orig: 235, 119\r\n  offset: 119, 20\r\n  index: -1\r\nbtn_mfjf_00018\r\n  rotate: false\r\n  xy: 221, 3\r\n  size: 109, 94\r\n  orig: 235, 119\r\n  offset: 120, 23\r\n  index: -1\r\nbtn_mfjf_00019\r\n  rotate: true\r\n  xy: 168, 213\r\n  size: 110, 96\r\n  orig: 235, 119\r\n  offset: 120, 21\r\n  index: -1\r\nbtn_mfjf_00020\r\n  rotate: true\r\n  xy: 346, 103\r\n  size: 109, 99\r\n  orig: 235, 119\r\n  offset: 121, 18\r\n  index: -1\r\nbtn_mfjf_00021\r\n  rotate: true\r\n  xy: 243, 102\r\n  size: 109, 101\r\n  orig: 235, 119\r\n  offset: 121, 15\r\n  index: -1\r\nbtn_mfjf_00022\r\n  rotate: true\r\n  xy: 763, 104\r\n  size: 108, 103\r\n  orig: 235, 119\r\n  offset: 121, 13\r\n  index: -1\r\nbtn_mfjf_00023\r\n  rotate: true\r\n  xy: 964, 106\r\n  size: 107, 105\r\n  orig: 235, 119\r\n  offset: 122, 10\r\n  index: -1\r\nbtn_mfjf_00024\r\n  rotate: true\r\n  xy: 1013, 216\r\n  size: 107, 105\r\n  orig: 235, 119\r\n  offset: 122, 9\r\n  index: -1\r\nbtn_mfjf_00025\r\n  rotate: false\r\n  xy: 1510, 110\r\n  size: 105, 105\r\n  orig: 235, 119\r\n  offset: 123, 7\r\n  index: -1\r\nbtn_mfjf_00026\r\n  rotate: false\r\n  xy: 1590, 218\r\n  size: 105, 105\r\n  orig: 235, 119\r\n  offset: 124, 6\r\n  index: -1\r\nbtn_mfjf_00027\r\n  rotate: false\r\n  xy: 1705, 112\r\n  size: 104, 104\r\n  orig: 235, 119\r\n  offset: 126, 5\r\n  index: -1\r\nbtn_mfjf_00028\r\n  rotate: false\r\n  xy: 1781, 219\r\n  size: 104, 104\r\n  orig: 235, 119\r\n  offset: 127, 5\r\n  index: -1\r\nbtn_mfjf_00029\r\n  rotate: false\r\n  xy: 1482, 217\r\n  size: 106, 106\r\n  orig: 235, 119\r\n  offset: 129, 4\r\n  index: -1\r\nbtn_mfjf_00030\r\n  rotate: false\r\n  xy: 1071, 107\r\n  size: 104, 107\r\n  orig: 235, 119\r\n  offset: 131, 4\r\n  index: -1\r\nbtn_mfjf_00031\r\n  rotate: false\r\n  xy: 770, 215\r\n  size: 101, 108\r\n  orig: 235, 119\r\n  offset: 134, 4\r\n  index: -1\r\nbtn_mfjf_00032\r\n  rotate: true\r\n  xy: 443, 2\r\n  size: 99, 108\r\n  orig: 235, 119\r\n  offset: 136, 4\r\n  index: -1\r\nbtn_mfjf_00033\r\n  rotate: false\r\n  xy: 367, 214\r\n  size: 96, 109\r\n  orig: 235, 119\r\n  offset: 139, 4\r\n  index: -1\r\nbtn_mfjf_00034\r\n  rotate: false\r\n  xy: 447, 103\r\n  size: 92, 109\r\n  orig: 235, 119\r\n  offset: 143, 5\r\n  index: -1\r\nbtn_mfjf_00035\r\n  rotate: false\r\n  xy: 559, 214\r\n  size: 88, 109\r\n  orig: 235, 119\r\n  offset: 147, 5\r\n  index: -1\r\nbtn_mfjf_00036\r\n  rotate: false\r\n  xy: 541, 103\r\n  size: 91, 109\r\n  orig: 235, 119\r\n  offset: 144, 5\r\n  index: -1\r\nbtn_mfjf_00037\r\n  rotate: false\r\n  xy: 868, 105\r\n  size: 94, 108\r\n  orig: 235, 119\r\n  offset: 141, 6\r\n  index: -1\r\nbtn_mfjf_00038\r\n  rotate: false\r\n  xy: 1177, 107\r\n  size: 97, 107\r\n  orig: 235, 119\r\n  offset: 137, 6\r\n  index: -1\r\nbtn_mfjf_00039\r\n  rotate: true\r\n  xy: 858, 2\r\n  size: 100, 107\r\n  orig: 235, 119\r\n  offset: 134, 6\r\n  index: -1\r\nbtn_mfjf_00040\r\n  rotate: false\r\n  xy: 1568, 3\r\n  size: 102, 105\r\n  orig: 235, 119\r\n  offset: 132, 7\r\n  index: -1\r\nbtn_mfjf_00041\r\n  rotate: false\r\n  xy: 1074, 2\r\n  size: 105, 103\r\n  orig: 235, 119\r\n  offset: 129, 8\r\n  index: -1\r\nbtn_mfjf_00042\r\n  rotate: false\r\n  xy: 553, 2\r\n  size: 107, 99\r\n  orig: 235, 119\r\n  offset: 127, 10\r\n  index: -1\r\nbtn_mfjf_00043\r\n  rotate: true\r\n  xy: 1223, 216\r\n  size: 107, 96\r\n  orig: 235, 119\r\n  offset: 126, 12\r\n  index: -1\r\nbtn_mfjf_00044\r\n  rotate: true\r\n  xy: 465, 214\r\n  size: 109, 92\r\n  orig: 235, 119\r\n  offset: 125, 14\r\n  index: -1\r\nbtn_mfjf_00045\r\n  rotate: false\r\n  xy: 109, 2\r\n  size: 110, 90\r\n  orig: 235, 119\r\n  offset: 124, 16\r\n  index: -1\r\nbtn_mfjf_00046\r\n  rotate: true\r\n  xy: 80, 212\r\n  size: 111, 86\r\n  orig: 235, 119\r\n  offset: 123, 19\r\n  index: -1\r\nbtn_mfjf_00047\r\n  rotate: true\r\n  xy: 158, 99\r\n  size: 111, 83\r\n  orig: 235, 119\r\n  offset: 123, 22\r\n  index: -1\r\nbtn_mfjf_00048\r\n  rotate: true\r\n  xy: 76, 94\r\n  size: 113, 80\r\n  orig: 235, 119\r\n  offset: 122, 25\r\n  index: -1\r\nbtn_mfjf_00049\r\n  rotate: true\r\n  xy: 2, 209\r\n  size: 114, 76\r\n  orig: 235, 119\r\n  offset: 121, 28\r\n  index: -1\r\nbtn_mfjf_00050\r\n  rotate: true\r\n  xy: 2, 93\r\n  size: 114, 72\r\n  orig: 235, 119\r\n  offset: 121, 32\r\n  index: -1\r\nbtn_mfjf_00051\r\n  rotate: true\r\n  xy: 700, 103\r\n  size: 109, 61\r\n  orig: 235, 119\r\n  offset: 121, 30\r\n  index: -1\r\nbtn_mfjf_00052\r\n  rotate: true\r\n  xy: 943, 215\r\n  size: 108, 68\r\n  orig: 235, 119\r\n  offset: 122, 26\r\n  index: -1\r\nbtn_mfjf_00053\r\n  rotate: true\r\n  xy: 1405, 216\r\n  size: 107, 75\r\n  orig: 235, 119\r\n  offset: 122, 23\r\n  index: -1\r\nbtn_mfjf_00054\r\n  rotate: true\r\n  xy: 1321, 216\r\n  size: 107, 82\r\n  orig: 235, 119\r\n  offset: 122, 19\r\n  index: -1\r\nbtn_mfjf_00055\r\n  rotate: true\r\n  xy: 1617, 111\r\n  size: 105, 86\r\n  orig: 235, 119\r\n  offset: 123, 17\r\n  index: -1\r\nbtn_mfjf_00056\r\n  rotate: true\r\n  xy: 1384, 2\r\n  size: 103, 92\r\n  orig: 235, 119\r\n  offset: 124, 14\r\n  index: -1\r\nbtn_mfjf_00057\r\n  rotate: true\r\n  xy: 662, 2\r\n  size: 99, 96\r\n  orig: 235, 119\r\n  offset: 126, 12\r\n  index: -1\r\nbtn_mfjf_00058\r\n  rotate: false\r\n  xy: 760, 2\r\n  size: 96, 99\r\n  orig: 235, 119\r\n  offset: 128, 10\r\n  index: -1\r\nbtn_mfjf_00059\r\n  rotate: false\r\n  xy: 1811, 116\r\n  size: 92, 101\r\n  orig: 235, 119\r\n  offset: 130, 9\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "f3092564-cb4e-4af2-9680-952de2d1e9f6"
+  "animations": {
+    "animation": {
+      "slots": {
+        "tx": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "btn_mfjf_00000"
+            },
+            {
+              "time": 0.0666,
+              "name": "btn_mfjf_00001"
+            },
+            {
+              "time": 0.1333,
+              "name": "btn_mfjf_00002"
+            },
+            {
+              "time": 0.2,
+              "name": "btn_mfjf_00003"
+            },
+            {
+              "time": 0.2666,
+              "name": "btn_mfjf_00004"
+            },
+            {
+              "time": 0.3333,
+              "name": "btn_mfjf_00005"
+            },
+            {
+              "time": 0.4,
+              "name": "btn_mfjf_00006"
+            },
+            {
+              "time": 0.4666,
+              "name": "btn_mfjf_00007"
+            },
+            {
+              "time": 0.5333,
+              "name": "btn_mfjf_00008"
+            },
+            {
+              "time": 0.6,
+              "name": "btn_mfjf_00009"
+            },
+            {
+              "time": 0.6666,
+              "name": "btn_mfjf_00010"
+            },
+            {
+              "time": 0.7333,
+              "name": "btn_mfjf_00011"
+            },
+            {
+              "time": 0.8,
+              "name": "btn_mfjf_00012"
+            },
+            {
+              "time": 0.8666,
+              "name": "btn_mfjf_00013"
+            },
+            {
+              "time": 0.9333,
+              "name": "btn_mfjf_00014"
+            },
+            {
+              "time": 1,
+              "name": "btn_mfjf_00015"
+            },
+            {
+              "time": 1.0666,
+              "name": "btn_mfjf_00016"
+            },
+            {
+              "time": 1.1333,
+              "name": "btn_mfjf_00017"
+            },
+            {
+              "time": 1.2,
+              "name": "btn_mfjf_00018"
+            },
+            {
+              "time": 1.2666,
+              "name": "btn_mfjf_00019"
+            },
+            {
+              "time": 1.3333,
+              "name": "btn_mfjf_00020"
+            },
+            {
+              "time": 1.4,
+              "name": "btn_mfjf_00021"
+            },
+            {
+              "time": 1.4666,
+              "name": "btn_mfjf_00022"
+            },
+            {
+              "time": 1.5333,
+              "name": "btn_mfjf_00023"
+            },
+            {
+              "time": 1.6,
+              "name": "btn_mfjf_00024"
+            },
+            {
+              "time": 1.6666,
+              "name": "btn_mfjf_00025"
+            },
+            {
+              "time": 1.7333,
+              "name": "btn_mfjf_00026"
+            },
+            {
+              "time": 1.8,
+              "name": "btn_mfjf_00027"
+            },
+            {
+              "time": 1.8666,
+              "name": "btn_mfjf_00028"
+            },
+            {
+              "time": 1.9333,
+              "name": "btn_mfjf_00029"
+            },
+            {
+              "time": 2,
+              "name": "btn_mfjf_00030"
+            },
+            {
+              "time": 2.0666,
+              "name": "btn_mfjf_00031"
+            },
+            {
+              "time": 2.1333,
+              "name": "btn_mfjf_00032"
+            },
+            {
+              "time": 2.2,
+              "name": "btn_mfjf_00033"
+            },
+            {
+              "time": 2.2666,
+              "name": "btn_mfjf_00034"
+            },
+            {
+              "time": 2.3333,
+              "name": "btn_mfjf_00035"
+            },
+            {
+              "time": 2.4,
+              "name": "btn_mfjf_00036"
+            },
+            {
+              "time": 2.4666,
+              "name": "btn_mfjf_00037"
+            },
+            {
+              "time": 2.5333,
+              "name": "btn_mfjf_00038"
+            },
+            {
+              "time": 2.6,
+              "name": "btn_mfjf_00039"
+            },
+            {
+              "time": 2.6666,
+              "name": "btn_mfjf_00040"
+            },
+            {
+              "time": 2.7333,
+              "name": "btn_mfjf_00041"
+            },
+            {
+              "time": 2.8,
+              "name": "btn_mfjf_00042"
+            },
+            {
+              "time": 2.8666,
+              "name": "btn_mfjf_00043"
+            },
+            {
+              "time": 2.9333,
+              "name": "btn_mfjf_00044"
+            },
+            {
+              "time": 3,
+              "name": "btn_mfjf_00045"
+            },
+            {
+              "time": 3.0666,
+              "name": "btn_mfjf_00046"
+            },
+            {
+              "time": 3.1333,
+              "name": "btn_mfjf_00047"
+            },
+            {
+              "time": 3.2,
+              "name": "btn_mfjf_00048"
+            },
+            {
+              "time": 3.2666,
+              "name": "btn_mfjf_00049"
+            },
+            {
+              "time": 3.3333,
+              "name": "btn_mfjf_00050"
+            },
+            {
+              "time": 3.4,
+              "name": "btn_mfjf_00051"
+            },
+            {
+              "time": 3.4666,
+              "name": "btn_mfjf_00052"
+            },
+            {
+              "time": 3.5333,
+              "name": "btn_mfjf_00053"
+            },
+            {
+              "time": 3.6,
+              "name": "btn_mfjf_00054"
+            },
+            {
+              "time": 3.6666,
+              "name": "btn_mfjf_00055"
+            },
+            {
+              "time": 3.7333,
+              "name": "btn_mfjf_00056"
+            },
+            {
+              "time": 3.8,
+              "name": "btn_mfjf_00057"
+            },
+            {
+              "time": 3.8666,
+              "name": "btn_mfjf_00058"
+            },
+            {
+              "time": 3.9333,
+              "name": "btn_mfjf_00059"
+            },
+            {
+              "time": 4,
+              "name": "btn_mfjf_00060"
+            }
+          ]
+        }
+      }
     }
-  ],
-  "textureNames": [
-    "btn_tx.png"
-  ],
-  "scale": 1
+  },
+  "_name": "btn_tx"
 }

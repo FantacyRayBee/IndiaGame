@@ -1,115 +1,100 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "k_yx",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "+7LTv0hP4vllVVGXagvjykM9cHc",
-      "spine": "3.3.07",
-      "width": 302,
-      "height": 190,
-      "images": "./images/"
+  "skeleton": {
+    "hash": "+7LTv0hP4vllVVGXagvjykM9cHc",
+    "spine": "3.3.07",
+    "width": 302,
+    "height": 190,
+    "images": "./images/"
+  },
+  "bones": [
+    {
+      "name": "root"
     },
-    "bones": [
-      {
-        "name": "root"
-      },
-      {
-        "name": "k_yx",
-        "parent": "root"
-      }
-    ],
-    "slots": [
-      {
-        "name": "k_yx",
-        "bone": "k_yx",
-        "attachment": "k_yx",
-        "blend": "additive"
-      }
-    ],
-    "skins": {
-      "default": {
+    {
+      "name": "k_yx",
+      "parent": "root"
+    }
+  ],
+  "slots": [
+    {
+      "name": "k_yx",
+      "bone": "k_yx",
+      "attachment": "k_yx",
+      "blend": "additive"
+    }
+  ],
+  "skins": {
+    "default": {
+      "k_yx": {
         "k_yx": {
-          "k_yx": {
-            "width": 302,
-            "height": 190
-          }
-        }
-      }
-    },
-    "animations": {
-      "animation": {
-        "slots": {
-          "k_yx": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.5,
-                "color": "ffffff7d"
-              },
-              {
-                "time": 1,
-                "color": "ffffffff"
-              }
-            ]
-          }
-        },
-        "bones": {
-          "k_yx": {
-            "rotate": [
-              {
-                "time": 0,
-                "angle": 0,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "angle": 0
-              }
-            ],
-            "translate": [
-              {
-                "time": 0,
-                "x": 0,
-                "y": 0,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": 0,
-                "y": 0
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": 1,
-                "y": 1
-              }
-            ]
-          }
+          "width": 302,
+          "height": 190
         }
       }
     }
   },
-  "_atlasText": "\r\nk_yx.png\r\nsize: 306,194\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nk_yx\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 302, 190\r\n  orig: 302, 190\r\n  offset: 0, 0\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "7e598203-aaea-4894-a94d-285205775abe"
+  "animations": {
+    "animation": {
+      "slots": {
+        "k_yx": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.5,
+              "color": "ffffff7d"
+            },
+            {
+              "time": 1,
+              "color": "ffffffff"
+            }
+          ]
+        }
+      },
+      "bones": {
+        "k_yx": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": 1,
+              "y": 1
+            }
+          ]
+        }
+      }
     }
-  ],
-  "textureNames": [
-    "k_yx.png"
-  ],
-  "scale": 1
+  },
+  "_name": "k_yx"
 }

@@ -1,2848 +1,2833 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "winner_zj",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "3BGAGjiQHB7b7wiyyTn8w5N0JnY",
-      "spine": "3.3.07",
-      "width": 500,
-      "height": 501.47,
-      "images": "./images/"
+  "skeleton": {
+    "hash": "3BGAGjiQHB7b7wiyyTn8w5N0JnY",
+    "spine": "3.3.07",
+    "width": 500,
+    "height": 501.47,
+    "images": "./images/"
+  },
+  "bones": [
+    {
+      "name": "root"
     },
-    "bones": [
-      {
-        "name": "root"
-      },
-      {
-        "name": "winner_dj",
-        "parent": "root"
-      },
-      {
-        "name": "guang",
-        "parent": "winner_dj",
-        "x": 133.53,
-        "y": -0.93,
-        "scaleX": 0.693,
-        "scaleY": 0.693
-      },
-      {
-        "name": "kuang-tx",
-        "parent": "winner_dj",
-        "x": 16.47,
-        "y": -1.1
-      },
-      {
-        "name": "kuang-tx2",
-        "parent": "winner_dj",
-        "x": 16.5,
-        "y": -1.12
-      },
-      {
-        "name": "kuang-tx3",
-        "parent": "winner_dj",
-        "x": 16.47,
-        "y": -1.1,
-        "scaleX": 0.74,
-        "scaleY": 0.61
-      },
-      {
-        "name": "xian-tx",
-        "parent": "winner_dj",
-        "x": 16.93,
-        "y": -1.38,
-        "scaleX": 0.764,
-        "scaleY": 0.625
-      },
-      {
-        "name": "yanhua",
-        "parent": "winner_dj",
-        "x": 194.85,
-        "y": 18.23
-      },
-      {
-        "name": "yanhua2",
-        "parent": "winner_dj",
-        "x": 82.31,
-        "y": -17.71
-      },
-      {
-        "name": "zi-tx",
-        "parent": "winner_dj",
-        "x": 133.69,
-        "y": -1.59
-      },
-      {
-        "name": "zi-tx2",
-        "parent": "winner_dj",
-        "x": 133.69,
-        "y": -1.59
-      }
-    ],
-    "slots": [
-      {
-        "name": "win_me_bg2",
-        "bone": "root",
-        "blend": "additive"
-      },
-      {
-        "name": "kuang_00000",
-        "bone": "kuang-tx",
-        "blend": "screen"
-      },
-      {
-        "name": "kuang_0",
-        "bone": "kuang-tx2",
-        "blend": "screen"
-      },
-      {
-        "name": "kuang_1",
-        "bone": "kuang-tx3",
-        "blend": "additive"
-      },
-      {
-        "name": "xian-tx",
-        "bone": "xian-tx",
-        "blend": "screen"
-      },
-      {
-        "name": "zi-tx",
-        "bone": "zi-tx",
-        "attachment": "zi/zi_00000"
-      },
-      {
-        "name": "zi-tx2",
-        "bone": "zi-tx2",
-        "blend": "screen"
-      },
-      {
-        "name": "xianguang_00000",
-        "bone": "guang",
-        "attachment": "xianguang_00000",
-        "blend": "additive"
-      },
-      {
-        "name": "yanhua",
-        "bone": "yanhua"
-      },
-      {
-        "name": "yanhua2",
-        "bone": "yanhua2"
-      }
-    ],
-    "skins": {
-      "default": {
-        "kuang_0": {
-          "kuang_00000": {
-            "x": 0.76,
-            "y": 13.57,
-            "scaleX": 0.74,
-            "scaleY": 0.61,
-            "width": 500,
-            "height": 500
-          }
-        },
+    {
+      "name": "winner_dj",
+      "parent": "root"
+    },
+    {
+      "name": "guang",
+      "parent": "winner_dj",
+      "x": 133.53,
+      "y": -0.93,
+      "scaleX": 0.693,
+      "scaleY": 0.693
+    },
+    {
+      "name": "kuang-tx",
+      "parent": "winner_dj",
+      "x": 16.47,
+      "y": -1.1
+    },
+    {
+      "name": "kuang-tx2",
+      "parent": "winner_dj",
+      "x": 16.5,
+      "y": -1.12
+    },
+    {
+      "name": "kuang-tx3",
+      "parent": "winner_dj",
+      "x": 16.47,
+      "y": -1.1,
+      "scaleX": 0.74,
+      "scaleY": 0.61
+    },
+    {
+      "name": "xian-tx",
+      "parent": "winner_dj",
+      "x": 16.93,
+      "y": -1.38,
+      "scaleX": 0.764,
+      "scaleY": 0.625
+    },
+    {
+      "name": "yanhua",
+      "parent": "winner_dj",
+      "x": 194.85,
+      "y": 18.23
+    },
+    {
+      "name": "yanhua2",
+      "parent": "winner_dj",
+      "x": 82.31,
+      "y": -17.71
+    },
+    {
+      "name": "zi-tx",
+      "parent": "winner_dj",
+      "x": 133.69,
+      "y": -1.59
+    },
+    {
+      "name": "zi-tx2",
+      "parent": "winner_dj",
+      "x": 133.69,
+      "y": -1.59
+    }
+  ],
+  "slots": [
+    {
+      "name": "win_me_bg2",
+      "bone": "root",
+      "blend": "additive"
+    },
+    {
+      "name": "kuang_00000",
+      "bone": "kuang-tx",
+      "blend": "screen"
+    },
+    {
+      "name": "kuang_0",
+      "bone": "kuang-tx2",
+      "blend": "screen"
+    },
+    {
+      "name": "kuang_1",
+      "bone": "kuang-tx3",
+      "blend": "additive"
+    },
+    {
+      "name": "xian-tx",
+      "bone": "xian-tx",
+      "blend": "screen"
+    },
+    {
+      "name": "zi-tx",
+      "bone": "zi-tx",
+      "attachment": "zi/zi_00000"
+    },
+    {
+      "name": "zi-tx2",
+      "bone": "zi-tx2",
+      "blend": "screen"
+    },
+    {
+      "name": "xianguang_00000",
+      "bone": "guang",
+      "attachment": "xianguang_00000",
+      "blend": "additive"
+    },
+    {
+      "name": "yanhua",
+      "bone": "yanhua"
+    },
+    {
+      "name": "yanhua2",
+      "bone": "yanhua2"
+    }
+  ],
+  "skins": {
+    "default": {
+      "kuang_0": {
         "kuang_00000": {
-          "kuang_00000": {
-            "x": -0.47,
-            "y": 13.29,
-            "scaleX": 0.736,
-            "scaleY": 0.613,
-            "width": 500,
-            "height": 500
-          }
+          "x": 0.76,
+          "y": 13.57,
+          "scaleX": 0.74,
+          "scaleY": 0.61,
+          "width": 500,
+          "height": 500
+        }
+      },
+      "kuang_00000": {
+        "kuang_00000": {
+          "x": -0.47,
+          "y": 13.29,
+          "scaleX": 0.736,
+          "scaleY": 0.613,
+          "width": 500,
+          "height": 500
+        }
+      },
+      "kuang_1": {
+        "kuang_00000": {
+          "y": 21.27,
+          "width": 500,
+          "height": 500
+        }
+      },
+      "win_me_bg2": {
+        "win_me_bg": {
+          "x": 16.77,
+          "y": -1.7,
+          "width": 128,
+          "height": 128
+        }
+      },
+      "xian-tx": {
+        "xian/xian_00000": {
+          "y": 22,
+          "width": 500,
+          "height": 500
         },
-        "kuang_1": {
-          "kuang_00000": {
-            "y": 21.27,
-            "width": 500,
-            "height": 500
-          }
+        "xian/xian_00001": {
+          "y": 22,
+          "width": 500,
+          "height": 500
         },
-        "win_me_bg2": {
-          "win_me_bg": {
-            "x": 16.77,
-            "y": -1.7,
-            "width": 128,
-            "height": 128
-          }
+        "xian/xian_00002": {
+          "y": 22,
+          "width": 500,
+          "height": 500
         },
-        "xian-tx": {
-          "xian/xian_00000": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00001": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00002": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00003": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00004": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00005": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00006": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00007": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00008": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00009": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00010": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00011": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00012": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00013": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00014": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00015": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00016": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00017": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00018": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00019": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00020": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00021": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00022": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00023": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00024": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00025": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00026": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00027": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00028": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00029": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          },
-          "xian/xian_00030": {
-            "y": 22,
-            "width": 500,
-            "height": 500
-          }
+        "xian/xian_00003": {
+          "y": 22,
+          "width": 500,
+          "height": 500
         },
+        "xian/xian_00004": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00005": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00006": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00007": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00008": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00009": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00010": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00011": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00012": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00013": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00014": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00015": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00016": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00017": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00018": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00019": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00020": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00021": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00022": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00023": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00024": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00025": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00026": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00027": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00028": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00029": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        },
+        "xian/xian_00030": {
+          "y": 22,
+          "width": 500,
+          "height": 500
+        }
+      },
+      "xianguang_00000": {
         "xianguang_00000": {
-          "xianguang_00000": {
-            "width": 500,
-            "height": 500
-          }
-        },
-        "yanhua": {
-          "yanhua/yanhua_00001": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00002": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00003": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00004": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00005": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00006": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00007": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00008": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00009": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00010": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00011": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00012": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00013": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00014": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00015": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00016": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00017": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00018": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00019": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00020": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00021": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00022": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00023": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00024": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00025": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00026": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00027": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00028": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00029": {
-            "width": 500,
-            "height": 500
-          }
-        },
-        "yanhua2": {
-          "yanhua/yanhua_00001": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00002": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00003": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00004": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00005": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00006": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00007": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00008": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00009": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00010": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00011": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00012": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00013": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00014": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00015": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00016": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00017": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00018": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00019": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00020": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00021": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00022": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00023": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00024": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00025": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00026": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00027": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00028": {
-            "width": 500,
-            "height": 500
-          },
-          "yanhua/yanhua_00029": {
-            "width": 500,
-            "height": 500
-          }
-        },
-        "zi-tx": {
-          "zi/zi_00000": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00001": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00002": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00003": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00004": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00005": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00006": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00007": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00008": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00009": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00010": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00011": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00012": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00013": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00014": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00015": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          }
-        },
-        "zi-tx2": {
-          "zi/zi_00000": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00001": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00002": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00003": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00004": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00005": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00006": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00007": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00008": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00009": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00010": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00011": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00012": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00013": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00014": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          },
-          "zi/zi_00015": {
-            "y": -77.46,
-            "width": 500,
-            "height": 500
-          }
-        }
-      }
-    },
-    "animations": {
-      "loop": {
-        "slots": {
-          "win_me_bg2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              }
-            ]
-          },
-          "xian-tx": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": "xian/xian_00000"
-              },
-              {
-                "time": 0.0333,
-                "name": "xian/xian_00001"
-              },
-              {
-                "time": 0.0666,
-                "name": "xian/xian_00002"
-              },
-              {
-                "time": 0.1,
-                "name": "xian/xian_00003"
-              },
-              {
-                "time": 0.1333,
-                "name": "xian/xian_00004"
-              },
-              {
-                "time": 0.1666,
-                "name": "xian/xian_00005"
-              },
-              {
-                "time": 0.2,
-                "name": "xian/xian_00006"
-              },
-              {
-                "time": 0.2333,
-                "name": "xian/xian_00007"
-              },
-              {
-                "time": 0.2666,
-                "name": "xian/xian_00008"
-              },
-              {
-                "time": 0.3,
-                "name": "xian/xian_00009"
-              },
-              {
-                "time": 0.3333,
-                "name": "xian/xian_00010"
-              },
-              {
-                "time": 0.3666,
-                "name": "xian/xian_00011"
-              },
-              {
-                "time": 0.4,
-                "name": "xian/xian_00012"
-              },
-              {
-                "time": 0.4333,
-                "name": "xian/xian_00013"
-              },
-              {
-                "time": 0.4666,
-                "name": "xian/xian_00014"
-              },
-              {
-                "time": 0.5,
-                "name": "xian/xian_00015"
-              },
-              {
-                "time": 0.5333,
-                "name": "xian/xian_00016"
-              },
-              {
-                "time": 0.5666,
-                "name": "xian/xian_00017"
-              },
-              {
-                "time": 0.6,
-                "name": "xian/xian_00018"
-              },
-              {
-                "time": 0.6333,
-                "name": "xian/xian_00019"
-              },
-              {
-                "time": 0.6666,
-                "name": "xian/xian_00020"
-              },
-              {
-                "time": 0.7,
-                "name": "xian/xian_00021"
-              },
-              {
-                "time": 0.7333,
-                "name": "xian/xian_00022"
-              },
-              {
-                "time": 0.7666,
-                "name": "xian/xian_00023"
-              },
-              {
-                "time": 0.8,
-                "name": "xian/xian_00024"
-              },
-              {
-                "time": 0.8333,
-                "name": "xian/xian_00025"
-              },
-              {
-                "time": 0.8666,
-                "name": "xian/xian_00026"
-              },
-              {
-                "time": 0.9,
-                "name": "xian/xian_00027"
-              },
-              {
-                "time": 0.9333,
-                "name": "xian/xian_00028"
-              },
-              {
-                "time": 0.9666,
-                "name": "xian/xian_00029"
-              },
-              {
-                "time": 1,
-                "name": "xian/xian_00030"
-              },
-              {
-                "time": 1.0333,
-                "name": "xian/xian_00000"
-              },
-              {
-                "time": 1.0666,
-                "name": "xian/xian_00001"
-              },
-              {
-                "time": 1.1,
-                "name": "xian/xian_00002"
-              },
-              {
-                "time": 1.1333,
-                "name": "xian/xian_00003"
-              },
-              {
-                "time": 1.1666,
-                "name": "xian/xian_00004"
-              },
-              {
-                "time": 1.2,
-                "name": "xian/xian_00005"
-              },
-              {
-                "time": 1.2333,
-                "name": "xian/xian_00006"
-              },
-              {
-                "time": 1.2666,
-                "name": "xian/xian_00007"
-              },
-              {
-                "time": 1.3,
-                "name": "xian/xian_00008"
-              },
-              {
-                "time": 1.3333,
-                "name": "xian/xian_00009"
-              },
-              {
-                "time": 1.3666,
-                "name": "xian/xian_00010"
-              },
-              {
-                "time": 1.4,
-                "name": "xian/xian_00011"
-              },
-              {
-                "time": 1.4333,
-                "name": "xian/xian_00012"
-              },
-              {
-                "time": 1.4666,
-                "name": "xian/xian_00013"
-              },
-              {
-                "time": 1.5,
-                "name": "xian/xian_00014"
-              },
-              {
-                "time": 1.5333,
-                "name": "xian/xian_00015"
-              },
-              {
-                "time": 1.5666,
-                "name": "xian/xian_00016"
-              },
-              {
-                "time": 1.6,
-                "name": "xian/xian_00017"
-              },
-              {
-                "time": 1.6333,
-                "name": "xian/xian_00018"
-              },
-              {
-                "time": 1.6666,
-                "name": "xian/xian_00019"
-              },
-              {
-                "time": 1.7,
-                "name": "xian/xian_00020"
-              },
-              {
-                "time": 1.7333,
-                "name": "xian/xian_00021"
-              },
-              {
-                "time": 1.7666,
-                "name": "xian/xian_00022"
-              },
-              {
-                "time": 1.8,
-                "name": "xian/xian_00023"
-              },
-              {
-                "time": 1.8333,
-                "name": "xian/xian_00024"
-              },
-              {
-                "time": 1.8666,
-                "name": "xian/xian_00025"
-              },
-              {
-                "time": 1.9,
-                "name": "xian/xian_00026"
-              },
-              {
-                "time": 1.9333,
-                "name": "xian/xian_00027"
-              },
-              {
-                "time": 1.9666,
-                "name": "xian/xian_00028"
-              },
-              {
-                "time": 2,
-                "name": "xian/xian_00029"
-              },
-              {
-                "time": 2.0333,
-                "name": "xian/xian_00030"
-              }
-            ]
-          },
-          "xianguang_00000": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              }
-            ]
-          },
-          "yanhua": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 0.6666,
-                "name": "yanhua/yanhua_00001"
-              },
-              {
-                "time": 0.7,
-                "name": "yanhua/yanhua_00002"
-              },
-              {
-                "time": 0.7333,
-                "name": "yanhua/yanhua_00003"
-              },
-              {
-                "time": 0.7666,
-                "name": "yanhua/yanhua_00004"
-              },
-              {
-                "time": 0.8,
-                "name": "yanhua/yanhua_00005"
-              },
-              {
-                "time": 0.8333,
-                "name": "yanhua/yanhua_00006"
-              },
-              {
-                "time": 0.8666,
-                "name": "yanhua/yanhua_00007"
-              },
-              {
-                "time": 0.9,
-                "name": "yanhua/yanhua_00008"
-              },
-              {
-                "time": 0.9333,
-                "name": "yanhua/yanhua_00009"
-              },
-              {
-                "time": 0.9666,
-                "name": "yanhua/yanhua_00010"
-              },
-              {
-                "time": 1,
-                "name": "yanhua/yanhua_00011"
-              },
-              {
-                "time": 1.0333,
-                "name": "yanhua/yanhua_00012"
-              },
-              {
-                "time": 1.0666,
-                "name": "yanhua/yanhua_00013"
-              },
-              {
-                "time": 1.1,
-                "name": "yanhua/yanhua_00014"
-              },
-              {
-                "time": 1.1333,
-                "name": "yanhua/yanhua_00015"
-              },
-              {
-                "time": 1.1666,
-                "name": "yanhua/yanhua_00016"
-              },
-              {
-                "time": 1.2,
-                "name": "yanhua/yanhua_00017"
-              },
-              {
-                "time": 1.2333,
-                "name": "yanhua/yanhua_00018"
-              },
-              {
-                "time": 1.2666,
-                "name": "yanhua/yanhua_00019"
-              },
-              {
-                "time": 1.3,
-                "name": "yanhua/yanhua_00020"
-              },
-              {
-                "time": 1.3333,
-                "name": "yanhua/yanhua_00021"
-              },
-              {
-                "time": 1.3666,
-                "name": "yanhua/yanhua_00022"
-              },
-              {
-                "time": 1.4,
-                "name": "yanhua/yanhua_00023"
-              },
-              {
-                "time": 1.4333,
-                "name": "yanhua/yanhua_00024"
-              },
-              {
-                "time": 1.4666,
-                "name": "yanhua/yanhua_00025"
-              },
-              {
-                "time": 1.5,
-                "name": "yanhua/yanhua_00026"
-              },
-              {
-                "time": 1.5333,
-                "name": "yanhua/yanhua_00027"
-              },
-              {
-                "time": 1.5666,
-                "name": "yanhua/yanhua_00028"
-              },
-              {
-                "time": 1.6,
-                "name": "yanhua/yanhua_00029"
-              },
-              {
-                "time": 1.6333,
-                "name": null
-              },
-              {
-                "time": 2.0333,
-                "name": null
-              }
-            ]
-          },
-          "yanhua2": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 0.8666,
-                "name": "yanhua/yanhua_00001"
-              },
-              {
-                "time": 0.9,
-                "name": "yanhua/yanhua_00002"
-              },
-              {
-                "time": 0.9333,
-                "name": "yanhua/yanhua_00003"
-              },
-              {
-                "time": 0.9666,
-                "name": "yanhua/yanhua_00004"
-              },
-              {
-                "time": 1,
-                "name": "yanhua/yanhua_00005"
-              },
-              {
-                "time": 1.0333,
-                "name": "yanhua/yanhua_00006"
-              },
-              {
-                "time": 1.0666,
-                "name": "yanhua/yanhua_00007"
-              },
-              {
-                "time": 1.1,
-                "name": "yanhua/yanhua_00008"
-              },
-              {
-                "time": 1.1333,
-                "name": "yanhua/yanhua_00009"
-              },
-              {
-                "time": 1.1666,
-                "name": "yanhua/yanhua_00010"
-              },
-              {
-                "time": 1.2,
-                "name": "yanhua/yanhua_00011"
-              },
-              {
-                "time": 1.2333,
-                "name": "yanhua/yanhua_00012"
-              },
-              {
-                "time": 1.2666,
-                "name": "yanhua/yanhua_00013"
-              },
-              {
-                "time": 1.3,
-                "name": "yanhua/yanhua_00014"
-              },
-              {
-                "time": 1.3333,
-                "name": "yanhua/yanhua_00015"
-              },
-              {
-                "time": 1.3666,
-                "name": "yanhua/yanhua_00016"
-              },
-              {
-                "time": 1.4,
-                "name": "yanhua/yanhua_00017"
-              },
-              {
-                "time": 1.4333,
-                "name": "yanhua/yanhua_00018"
-              },
-              {
-                "time": 1.4666,
-                "name": "yanhua/yanhua_00019"
-              },
-              {
-                "time": 1.5,
-                "name": "yanhua/yanhua_00020"
-              },
-              {
-                "time": 1.5333,
-                "name": "yanhua/yanhua_00021"
-              },
-              {
-                "time": 1.5666,
-                "name": "yanhua/yanhua_00022"
-              },
-              {
-                "time": 1.6,
-                "name": "yanhua/yanhua_00023"
-              },
-              {
-                "time": 1.6333,
-                "name": "yanhua/yanhua_00024"
-              },
-              {
-                "time": 1.6666,
-                "name": "yanhua/yanhua_00025"
-              },
-              {
-                "time": 1.7,
-                "name": "yanhua/yanhua_00026"
-              },
-              {
-                "time": 1.7333,
-                "name": "yanhua/yanhua_00027"
-              },
-              {
-                "time": 1.7666,
-                "name": "yanhua/yanhua_00028"
-              },
-              {
-                "time": 1.8,
-                "name": "yanhua/yanhua_00029"
-              },
-              {
-                "time": 1.8333,
-                "name": null
-              },
-              {
-                "time": 2.0333,
-                "name": null
-              }
-            ]
-          },
-          "zi-tx": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": "zi/zi_00000"
-              }
-            ]
-          },
-          "zi-tx2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.6666,
-                "color": "ffffffd8"
-              },
-              {
-                "time": 1.1,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "zi/zi_00000"
-              },
-              {
-                "time": 0.6666,
-                "name": "zi/zi_00000"
-              },
-              {
-                "time": 1.1,
-                "name": null
-              },
-              {
-                "time": 2.0333,
-                "name": null
-              }
-            ]
-          }
-        },
-        "bones": {
-          "zi-tx2": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.6666,
-                "x": 1,
-                "y": 1
-              },
-              {
-                "time": 1.1,
-                "x": 1.299,
-                "y": 1.299,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "x": 1.299,
-                "y": 1.299
-              }
-            ]
-          },
-          "yanhua2": {
-            "translate": [
-              {
-                "time": 0,
-                "x": -1.34,
-                "y": 0.73,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "x": -1.34,
-                "y": 0.73
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 0.642,
-                "y": 0.642,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "x": 0.642,
-                "y": 0.642
-              }
-            ]
-          },
-          "yanhua": {
-            "translate": [
-              {
-                "time": 0,
-                "x": 10.59,
-                "y": 3.73,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "x": 10.59,
-                "y": 3.73
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 0.421,
-                "y": 0.421,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "x": 0.421,
-                "y": 0.421
-              }
-            ]
-          }
+          "width": 500,
+          "height": 500
         }
       },
-      "out": {
-        "slots": {
-          "kuang_00000": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ]
-          },
-          "kuang_0": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ]
-          },
-          "kuang_1": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ]
-          },
-          "win_me_bg2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              }
-            ]
-          },
-          "xian-tx": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "xian/xian_00000"
-              },
-              {
-                "time": 0.0333,
-                "name": "xian/xian_00001"
-              },
-              {
-                "time": 0.0666,
-                "name": "xian/xian_00002"
-              },
-              {
-                "time": 0.1,
-                "name": "xian/xian_00003"
-              },
-              {
-                "time": 0.1333,
-                "name": "xian/xian_00004"
-              },
-              {
-                "time": 0.1666,
-                "name": "xian/xian_00005"
-              },
-              {
-                "time": 0.2,
-                "name": "xian/xian_00006"
-              },
-              {
-                "time": 0.2333,
-                "name": "xian/xian_00007"
-              },
-              {
-                "time": 0.2666,
-                "name": "xian/xian_00008"
-              },
-              {
-                "time": 0.3,
-                "name": "xian/xian_00009"
-              },
-              {
-                "time": 0.3333,
-                "name": "xian/xian_00010"
-              },
-              {
-                "time": 0.3666,
-                "name": "xian/xian_00011"
-              },
-              {
-                "time": 0.4,
-                "name": "xian/xian_00012"
-              },
-              {
-                "time": 0.4333,
-                "name": "xian/xian_00013"
-              },
-              {
-                "time": 0.4666,
-                "name": "xian/xian_00014"
-              },
-              {
-                "time": 0.5,
-                "name": "xian/xian_00015"
-              },
-              {
-                "time": 0.5333,
-                "name": "xian/xian_00016"
-              },
-              {
-                "time": 0.5666,
-                "name": "xian/xian_00017"
-              },
-              {
-                "time": 0.6,
-                "name": "xian/xian_00018"
-              },
-              {
-                "time": 0.6333,
-                "name": "xian/xian_00019"
-              },
-              {
-                "time": 0.6666,
-                "name": "xian/xian_00020"
-              },
-              {
-                "time": 0.7,
-                "name": "xian/xian_00021"
-              },
-              {
-                "time": 0.7333,
-                "name": "xian/xian_00022"
-              },
-              {
-                "time": 0.7666,
-                "name": "xian/xian_00023"
-              },
-              {
-                "time": 0.8,
-                "name": "xian/xian_00024"
-              },
-              {
-                "time": 0.8333,
-                "name": "xian/xian_00025"
-              },
-              {
-                "time": 0.8666,
-                "name": "xian/xian_00026"
-              },
-              {
-                "time": 0.9,
-                "name": "xian/xian_00027"
-              },
-              {
-                "time": 0.9333,
-                "name": "xian/xian_00028"
-              },
-              {
-                "time": 0.9666,
-                "name": "xian/xian_00029"
-              },
-              {
-                "time": 1,
-                "name": "xian/xian_00030"
-              }
-            ]
-          },
-          "xianguang_00000": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              }
-            ]
-          },
-          "yanhua": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 1,
-                "name": null
-              }
-            ]
-          },
-          "yanhua2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 1,
-                "name": null
-              }
-            ]
-          },
-          "zi-tx": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "zi/zi_00000"
-              },
-              {
-                "time": 1,
-                "name": "zi/zi_00000"
-              }
-            ]
-          },
-          "zi-tx2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 1,
-                "name": null
-              }
-            ]
-          }
+      "yanhua": {
+        "yanhua/yanhua_00001": {
+          "width": 500,
+          "height": 500
         },
-        "bones": {
-          "yanhua2": {
-            "translate": [
-              {
-                "time": 0,
-                "x": -1.34,
-                "y": 0.73,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": -1.34,
-                "y": 0.73
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 0.642,
-                "y": 0.642,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": 0.642,
-                "y": 0.642
-              }
-            ]
-          },
-          "yanhua": {
-            "translate": [
-              {
-                "time": 0,
-                "x": 10.59,
-                "y": 3.73,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": 10.59,
-                "y": 3.73
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 0.421,
-                "y": 0.421,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": 0.421,
-                "y": 0.421
-              }
-            ]
-          },
-          "zi-tx2": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "x": 1,
-                "y": 1
-              }
-            ]
-          }
+        "yanhua/yanhua_00002": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00003": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00004": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00005": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00006": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00007": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00008": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00009": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00010": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00011": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00012": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00013": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00014": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00015": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00016": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00017": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00018": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00019": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00020": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00021": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00022": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00023": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00024": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00025": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00026": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00027": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00028": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00029": {
+          "width": 500,
+          "height": 500
         }
       },
-      "star": {
-        "slots": {
-          "kuang_00000": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.0333,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.3333,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "kuang_00000"
-              },
-              {
-                "time": 2.4,
-                "name": "kuang_00000"
-              }
-            ]
-          },
-          "kuang_0": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.1666,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.5,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "kuang_00000"
-              }
-            ]
-          },
-          "kuang_1": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.3333,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.6666,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "kuang_00000"
-              }
-            ]
-          },
-          "win_me_bg2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.3333,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.8333,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "win_me_bg"
-              },
-              {
-                "time": 0.3333,
-                "name": "win_me_bg"
-              },
-              {
-                "time": 2.4,
-                "name": "win_me_bg"
-              }
-            ]
-          },
-          "xian-tx": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 0.3333,
-                "name": "xian/xian_00000"
-              },
-              {
-                "time": 0.3666,
-                "name": "xian/xian_00001"
-              },
-              {
-                "time": 0.4,
-                "name": "xian/xian_00002"
-              },
-              {
-                "time": 0.4333,
-                "name": "xian/xian_00003"
-              },
-              {
-                "time": 0.4666,
-                "name": "xian/xian_00004"
-              },
-              {
-                "time": 0.5,
-                "name": "xian/xian_00005"
-              },
-              {
-                "time": 0.5333,
-                "name": "xian/xian_00006"
-              },
-              {
-                "time": 0.5666,
-                "name": "xian/xian_00007"
-              },
-              {
-                "time": 0.6,
-                "name": "xian/xian_00008"
-              },
-              {
-                "time": 0.6333,
-                "name": "xian/xian_00009"
-              },
-              {
-                "time": 0.6666,
-                "name": "xian/xian_00010"
-              },
-              {
-                "time": 0.7,
-                "name": "xian/xian_00011"
-              },
-              {
-                "time": 0.7333,
-                "name": "xian/xian_00012"
-              },
-              {
-                "time": 0.7666,
-                "name": "xian/xian_00013"
-              },
-              {
-                "time": 0.8,
-                "name": "xian/xian_00014"
-              },
-              {
-                "time": 0.8333,
-                "name": "xian/xian_00015"
-              },
-              {
-                "time": 0.8666,
-                "name": "xian/xian_00016"
-              },
-              {
-                "time": 0.9,
-                "name": "xian/xian_00017"
-              },
-              {
-                "time": 0.9333,
-                "name": "xian/xian_00018"
-              },
-              {
-                "time": 0.9666,
-                "name": "xian/xian_00019"
-              },
-              {
-                "time": 1,
-                "name": "xian/xian_00020"
-              },
-              {
-                "time": 1.0333,
-                "name": "xian/xian_00021"
-              },
-              {
-                "time": 1.0666,
-                "name": "xian/xian_00022"
-              },
-              {
-                "time": 1.1,
-                "name": "xian/xian_00023"
-              },
-              {
-                "time": 1.1333,
-                "name": "xian/xian_00024"
-              },
-              {
-                "time": 1.1666,
-                "name": "xian/xian_00025"
-              },
-              {
-                "time": 1.2,
-                "name": "xian/xian_00026"
-              },
-              {
-                "time": 1.2333,
-                "name": "xian/xian_00027"
-              },
-              {
-                "time": 1.2666,
-                "name": "xian/xian_00028"
-              },
-              {
-                "time": 1.3,
-                "name": "xian/xian_00029"
-              },
-              {
-                "time": 1.3333,
-                "name": "xian/xian_00030"
-              },
-              {
-                "time": 1.3666,
-                "name": "xian/xian_00000"
-              },
-              {
-                "time": 1.4,
-                "name": "xian/xian_00001"
-              },
-              {
-                "time": 1.4333,
-                "name": "xian/xian_00002"
-              },
-              {
-                "time": 1.4666,
-                "name": "xian/xian_00003"
-              },
-              {
-                "time": 1.5,
-                "name": "xian/xian_00004"
-              },
-              {
-                "time": 1.5333,
-                "name": "xian/xian_00005"
-              },
-              {
-                "time": 1.5666,
-                "name": "xian/xian_00006"
-              },
-              {
-                "time": 1.6,
-                "name": "xian/xian_00007"
-              },
-              {
-                "time": 1.6333,
-                "name": "xian/xian_00008"
-              },
-              {
-                "time": 1.6666,
-                "name": "xian/xian_00009"
-              },
-              {
-                "time": 1.7,
-                "name": "xian/xian_00010"
-              },
-              {
-                "time": 1.7333,
-                "name": "xian/xian_00011"
-              },
-              {
-                "time": 1.7666,
-                "name": "xian/xian_00012"
-              },
-              {
-                "time": 1.8,
-                "name": "xian/xian_00013"
-              },
-              {
-                "time": 1.8333,
-                "name": "xian/xian_00014"
-              },
-              {
-                "time": 1.8666,
-                "name": "xian/xian_00015"
-              },
-              {
-                "time": 1.9,
-                "name": "xian/xian_00016"
-              },
-              {
-                "time": 1.9333,
-                "name": "xian/xian_00017"
-              },
-              {
-                "time": 1.9666,
-                "name": "xian/xian_00018"
-              },
-              {
-                "time": 2,
-                "name": "xian/xian_00019"
-              },
-              {
-                "time": 2.0333,
-                "name": "xian/xian_00020"
-              },
-              {
-                "time": 2.0666,
-                "name": "xian/xian_00021"
-              },
-              {
-                "time": 2.1,
-                "name": "xian/xian_00022"
-              },
-              {
-                "time": 2.1333,
-                "name": "xian/xian_00023"
-              },
-              {
-                "time": 2.1666,
-                "name": "xian/xian_00024"
-              },
-              {
-                "time": 2.2,
-                "name": "xian/xian_00025"
-              },
-              {
-                "time": 2.2333,
-                "name": "xian/xian_00026"
-              },
-              {
-                "time": 2.2666,
-                "name": "xian/xian_00027"
-              },
-              {
-                "time": 2.3,
-                "name": "xian/xian_00028"
-              },
-              {
-                "time": 2.3333,
-                "name": "xian/xian_00029"
-              },
-              {
-                "time": 2.3666,
-                "name": "xian/xian_00030"
-              },
-              {
-                "time": 2.4,
-                "name": null
-              }
-            ]
-          },
-          "xianguang_00000": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.5,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.8333,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "xianguang_00000"
-              }
-            ]
-          },
-          "yanhua": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 0.5666,
-                "name": "yanhua/yanhua_00001"
-              },
-              {
-                "time": 0.6,
-                "name": "yanhua/yanhua_00002"
-              },
-              {
-                "time": 0.6333,
-                "name": "yanhua/yanhua_00003"
-              },
-              {
-                "time": 0.6666,
-                "name": "yanhua/yanhua_00004"
-              },
-              {
-                "time": 0.7,
-                "name": "yanhua/yanhua_00005"
-              },
-              {
-                "time": 0.7333,
-                "name": "yanhua/yanhua_00006"
-              },
-              {
-                "time": 0.7666,
-                "name": "yanhua/yanhua_00007"
-              },
-              {
-                "time": 0.8,
-                "name": "yanhua/yanhua_00008"
-              },
-              {
-                "time": 0.8333,
-                "name": "yanhua/yanhua_00009"
-              },
-              {
-                "time": 0.8666,
-                "name": "yanhua/yanhua_00010"
-              },
-              {
-                "time": 0.9,
-                "name": "yanhua/yanhua_00011"
-              },
-              {
-                "time": 0.9333,
-                "name": "yanhua/yanhua_00012"
-              },
-              {
-                "time": 0.9666,
-                "name": "yanhua/yanhua_00013"
-              },
-              {
-                "time": 1,
-                "name": "yanhua/yanhua_00014"
-              },
-              {
-                "time": 1.0333,
-                "name": "yanhua/yanhua_00015"
-              },
-              {
-                "time": 1.0666,
-                "name": "yanhua/yanhua_00016"
-              },
-              {
-                "time": 1.1,
-                "name": "yanhua/yanhua_00017"
-              },
-              {
-                "time": 1.1333,
-                "name": "yanhua/yanhua_00018"
-              },
-              {
-                "time": 1.1666,
-                "name": "yanhua/yanhua_00019"
-              },
-              {
-                "time": 1.2,
-                "name": "yanhua/yanhua_00020"
-              },
-              {
-                "time": 1.2333,
-                "name": "yanhua/yanhua_00021"
-              },
-              {
-                "time": 1.2666,
-                "name": "yanhua/yanhua_00022"
-              },
-              {
-                "time": 1.3,
-                "name": "yanhua/yanhua_00023"
-              },
-              {
-                "time": 1.3333,
-                "name": "yanhua/yanhua_00024"
-              },
-              {
-                "time": 1.3666,
-                "name": "yanhua/yanhua_00025"
-              },
-              {
-                "time": 1.4,
-                "name": "yanhua/yanhua_00026"
-              },
-              {
-                "time": 1.4333,
-                "name": "yanhua/yanhua_00027"
-              },
-              {
-                "time": 1.4666,
-                "name": "yanhua/yanhua_00028"
-              },
-              {
-                "time": 1.5,
-                "name": "yanhua/yanhua_00029"
-              },
-              {
-                "time": 1.5333,
-                "name": null
-              },
-              {
-                "time": 2.4,
-                "name": null
-              }
-            ]
-          },
-          "yanhua2": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 0.7,
-                "name": "yanhua/yanhua_00001"
-              },
-              {
-                "time": 0.7333,
-                "name": "yanhua/yanhua_00002"
-              },
-              {
-                "time": 0.7666,
-                "name": "yanhua/yanhua_00003"
-              },
-              {
-                "time": 0.8,
-                "name": "yanhua/yanhua_00004"
-              },
-              {
-                "time": 0.8333,
-                "name": "yanhua/yanhua_00005"
-              },
-              {
-                "time": 0.8666,
-                "name": "yanhua/yanhua_00006"
-              },
-              {
-                "time": 0.9,
-                "name": "yanhua/yanhua_00007"
-              },
-              {
-                "time": 0.9333,
-                "name": "yanhua/yanhua_00008"
-              },
-              {
-                "time": 0.9666,
-                "name": "yanhua/yanhua_00009"
-              },
-              {
-                "time": 1,
-                "name": "yanhua/yanhua_00010"
-              },
-              {
-                "time": 1.0333,
-                "name": "yanhua/yanhua_00011"
-              },
-              {
-                "time": 1.0666,
-                "name": "yanhua/yanhua_00012"
-              },
-              {
-                "time": 1.1,
-                "name": "yanhua/yanhua_00013"
-              },
-              {
-                "time": 1.1333,
-                "name": "yanhua/yanhua_00014"
-              },
-              {
-                "time": 1.1666,
-                "name": "yanhua/yanhua_00015"
-              },
-              {
-                "time": 1.2,
-                "name": "yanhua/yanhua_00016"
-              },
-              {
-                "time": 1.2333,
-                "name": "yanhua/yanhua_00017"
-              },
-              {
-                "time": 1.2666,
-                "name": "yanhua/yanhua_00018"
-              },
-              {
-                "time": 1.3,
-                "name": "yanhua/yanhua_00019"
-              },
-              {
-                "time": 1.3333,
-                "name": "yanhua/yanhua_00020"
-              },
-              {
-                "time": 1.3666,
-                "name": "yanhua/yanhua_00021"
-              },
-              {
-                "time": 1.4,
-                "name": "yanhua/yanhua_00022"
-              },
-              {
-                "time": 1.4333,
-                "name": "yanhua/yanhua_00023"
-              },
-              {
-                "time": 1.4666,
-                "name": "yanhua/yanhua_00024"
-              },
-              {
-                "time": 1.5,
-                "name": "yanhua/yanhua_00025"
-              },
-              {
-                "time": 1.5333,
-                "name": "yanhua/yanhua_00026"
-              },
-              {
-                "time": 1.5666,
-                "name": "yanhua/yanhua_00027"
-              },
-              {
-                "time": 1.6,
-                "name": "yanhua/yanhua_00028"
-              },
-              {
-                "time": 1.6333,
-                "name": "yanhua/yanhua_00029"
-              },
-              {
-                "time": 1.6666,
-                "name": null
-              },
-              {
-                "time": 2.4,
-                "name": null
-              }
-            ]
-          },
-          "zi-tx": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.5,
-                "color": "ffffffff",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffffff"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": "zi/zi_00000"
-              },
-              {
-                "time": 0.5,
-                "name": "zi/zi_00000"
-              },
-              {
-                "time": 0.5333,
-                "name": "zi/zi_00001"
-              },
-              {
-                "time": 0.5666,
-                "name": "zi/zi_00002"
-              },
-              {
-                "time": 0.6,
-                "name": "zi/zi_00003"
-              },
-              {
-                "time": 0.6333,
-                "name": "zi/zi_00004"
-              },
-              {
-                "time": 0.6666,
-                "name": "zi/zi_00005"
-              },
-              {
-                "time": 0.7,
-                "name": "zi/zi_00006"
-              },
-              {
-                "time": 0.7333,
-                "name": "zi/zi_00007"
-              },
-              {
-                "time": 0.7666,
-                "name": "zi/zi_00008"
-              },
-              {
-                "time": 0.8,
-                "name": "zi/zi_00009"
-              },
-              {
-                "time": 0.8333,
-                "name": "zi/zi_00010"
-              },
-              {
-                "time": 0.8666,
-                "name": "zi/zi_00011"
-              },
-              {
-                "time": 0.9,
-                "name": "zi/zi_00012"
-              },
-              {
-                "time": 0.9333,
-                "name": "zi/zi_00013"
-              },
-              {
-                "time": 0.9666,
-                "name": "zi/zi_00014"
-              },
-              {
-                "time": 1,
-                "name": "zi/zi_00015"
-              },
-              {
-                "time": 2.4,
-                "name": "zi/zi_00015"
-              }
-            ]
-          },
-          "zi-tx2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 1.2333,
-                "color": "ffffffd8"
-              },
-              {
-                "time": 1.6666,
-                "color": "ffffff00",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "color": "ffffff00"
-              }
-            ],
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 1.2333,
-                "name": "zi/zi_00000"
-              },
-              {
-                "time": 2.4,
-                "name": null
-              }
-            ]
-          }
+      "yanhua2": {
+        "yanhua/yanhua_00001": {
+          "width": 500,
+          "height": 500
         },
-        "bones": {
-          "kuang-tx": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1.5,
-                "y": 1.5
-              },
-              {
-                "time": 0.3333,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 1,
-                "y": 1
-              }
-            ]
-          },
-          "kuang-tx2": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1.5,
-                "y": 1.5,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.1666,
-                "x": 1.5,
-                "y": 1.5
-              },
-              {
-                "time": 0.5,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 1,
-                "y": 1
-              }
-            ]
-          },
-          "kuang-tx3": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "x": 1,
-                "y": 1
-              },
-              {
-                "time": 0.6666,
-                "x": 1.5,
-                "y": 1.5,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 1.5,
-                "y": 1.5
-              }
-            ]
-          },
-          "zi-tx": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.4,
-                "x": 1,
-                "y": 1
-              },
-              {
-                "time": 0.5,
-                "x": 1.268,
-                "y": 1.268
-              },
-              {
-                "time": 1,
-                "x": 1.3,
-                "y": 1.3
-              },
-              {
-                "time": 1.1666,
-                "x": 1.35,
-                "y": 1.35
-              },
-              {
-                "time": 1.2333,
-                "x": 0.9,
-                "y": 0.9
-              },
-              {
-                "time": 1.3,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 1,
-                "y": 1
-              }
-            ]
-          },
-          "guang": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "x": 1,
-                "y": 1
-              },
-              {
-                "time": 0.5,
-                "x": 1.42,
-                "y": 1.42
-              },
-              {
-                "time": 0.8333,
-                "x": 1.952,
-                "y": 1.952,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 1.952,
-                "y": 1.952
-              }
-            ]
-          },
-          "zi-tx2": {
-            "scale": [
-              {
-                "time": 0,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 1.2333,
-                "x": 1,
-                "y": 1
-              },
-              {
-                "time": 1.6666,
-                "x": 1.299,
-                "y": 1.299,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 1.299,
-                "y": 1.299
-              }
-            ]
-          },
-          "yanhua": {
-            "translate": [
-              {
-                "time": 0,
-                "x": 10.59,
-                "y": 3.73,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 10.59,
-                "y": 3.73
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 0.421,
-                "y": 0.421,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 0.421,
-                "y": 0.421
-              }
-            ]
-          },
-          "yanhua2": {
-            "translate": [
-              {
-                "time": 0,
-                "x": -1.34,
-                "y": 0.73,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": -1.34,
-                "y": 0.73
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 0.642,
-                "y": 0.642,
-                "curve": "stepped"
-              },
-              {
-                "time": 2.4,
-                "x": 0.642,
-                "y": 0.642
-              }
-            ]
-          }
+        "yanhua/yanhua_00002": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00003": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00004": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00005": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00006": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00007": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00008": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00009": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00010": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00011": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00012": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00013": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00014": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00015": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00016": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00017": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00018": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00019": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00020": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00021": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00022": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00023": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00024": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00025": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00026": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00027": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00028": {
+          "width": 500,
+          "height": 500
+        },
+        "yanhua/yanhua_00029": {
+          "width": 500,
+          "height": 500
+        }
+      },
+      "zi-tx": {
+        "zi/zi_00000": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00001": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00002": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00003": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00004": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00005": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00006": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00007": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00008": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00009": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00010": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00011": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00012": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00013": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00014": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00015": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        }
+      },
+      "zi-tx2": {
+        "zi/zi_00000": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00001": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00002": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00003": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00004": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00005": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00006": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00007": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00008": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00009": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00010": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00011": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00012": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00013": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00014": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
+        },
+        "zi/zi_00015": {
+          "y": -77.46,
+          "width": 500,
+          "height": 500
         }
       }
     }
   },
-  "_atlasText": "\r\nwinner_zj.png\r\nsize: 2016,792\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nkuang_00000\r\n  rotate: false\r\n  xy: 2, 604\r\n  size: 160, 186\r\n  orig: 500, 500\r\n  offset: 170, 135\r\n  index: -1\r\nwin_me_bg\r\n  rotate: false\r\n  xy: 1083, 11\r\n  size: 128, 128\r\n  orig: 128, 128\r\n  offset: 0, 0\r\n  index: -1\r\nxian/xian_00000\r\n  rotate: true\r\n  xy: 162, 40\r\n  size: 154, 180\r\n  orig: 500, 500\r\n  offset: 173, 138\r\n  index: -1\r\nxian/xian_00030\r\n  rotate: true\r\n  xy: 162, 40\r\n  size: 154, 180\r\n  orig: 500, 500\r\n  offset: 173, 138\r\n  index: -1\r\nxian/xian_00001\r\n  rotate: false\r\n  xy: 636, 272\r\n  size: 154, 179\r\n  orig: 500, 500\r\n  offset: 173, 138\r\n  index: -1\r\nxian/xian_00002\r\n  rotate: true\r\n  xy: 510, 636\r\n  size: 154, 184\r\n  orig: 500, 500\r\n  offset: 173, 136\r\n  index: -1\r\nxian/xian_00003\r\n  rotate: true\r\n  xy: 696, 636\r\n  size: 154, 184\r\n  orig: 500, 500\r\n  offset: 173, 136\r\n  index: -1\r\nxian/xian_00004\r\n  rotate: true\r\n  xy: 882, 636\r\n  size: 154, 184\r\n  orig: 500, 500\r\n  offset: 173, 136\r\n  index: -1\r\nxian/xian_00005\r\n  rotate: true\r\n  xy: 1068, 637\r\n  size: 153, 184\r\n  orig: 500, 500\r\n  offset: 174, 136\r\n  index: -1\r\nxian/xian_00006\r\n  rotate: true\r\n  xy: 1254, 638\r\n  size: 152, 184\r\n  orig: 500, 500\r\n  offset: 174, 136\r\n  index: -1\r\nxian/xian_00007\r\n  rotate: true\r\n  xy: 1440, 638\r\n  size: 152, 184\r\n  orig: 500, 500\r\n  offset: 174, 136\r\n  index: -1\r\nxian/xian_00008\r\n  rotate: true\r\n  xy: 324, 634\r\n  size: 156, 184\r\n  orig: 500, 500\r\n  offset: 172, 136\r\n  index: -1\r\nxian/xian_00009\r\n  rotate: false\r\n  xy: 2, 418\r\n  size: 158, 184\r\n  orig: 500, 500\r\n  offset: 171, 136\r\n  index: -1\r\nxian/xian_00010\r\n  rotate: false\r\n  xy: 164, 607\r\n  size: 158, 183\r\n  orig: 500, 500\r\n  offset: 171, 136\r\n  index: -1\r\nxian/xian_00011\r\n  rotate: false\r\n  xy: 2, 233\r\n  size: 158, 183\r\n  orig: 500, 500\r\n  offset: 171, 136\r\n  index: -1\r\nxian/xian_00012\r\n  rotate: false\r\n  xy: 2, 49\r\n  size: 158, 182\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00013\r\n  rotate: true\r\n  xy: 1626, 632\r\n  size: 158, 182\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00014\r\n  rotate: true\r\n  xy: 1810, 632\r\n  size: 158, 182\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00015\r\n  rotate: false\r\n  xy: 217, 423\r\n  size: 158, 182\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00016\r\n  rotate: false\r\n  xy: 377, 450\r\n  size: 158, 182\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00017\r\n  rotate: false\r\n  xy: 537, 453\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00018\r\n  rotate: false\r\n  xy: 697, 453\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00019\r\n  rotate: false\r\n  xy: 857, 453\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00020\r\n  rotate: false\r\n  xy: 162, 196\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00021\r\n  rotate: false\r\n  xy: 1017, 453\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00022\r\n  rotate: false\r\n  xy: 1177, 454\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00023\r\n  rotate: false\r\n  xy: 1337, 455\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00024\r\n  rotate: true\r\n  xy: 1626, 472\r\n  size: 158, 181\r\n  orig: 500, 500\r\n  offset: 171, 137\r\n  index: -1\r\nxian/xian_00025\r\n  rotate: true\r\n  xy: 1809, 474\r\n  size: 156, 181\r\n  orig: 500, 500\r\n  offset: 172, 137\r\n  index: -1\r\nxian/xian_00026\r\n  rotate: false\r\n  xy: 322, 240\r\n  size: 156, 181\r\n  orig: 500, 500\r\n  offset: 172, 137\r\n  index: -1\r\nxian/xian_00027\r\n  rotate: false\r\n  xy: 344, 57\r\n  size: 156, 181\r\n  orig: 500, 500\r\n  offset: 172, 137\r\n  index: -1\r\nxian/xian_00028\r\n  rotate: false\r\n  xy: 480, 240\r\n  size: 154, 181\r\n  orig: 500, 500\r\n  offset: 173, 137\r\n  index: -1\r\nxian/xian_00029\r\n  rotate: false\r\n  xy: 502, 57\r\n  size: 154, 181\r\n  orig: 500, 500\r\n  offset: 173, 137\r\n  index: -1\r\nxianguang_00000\r\n  rotate: true\r\n  xy: 162, 379\r\n  size: 223, 53\r\n  orig: 500, 500\r\n  offset: 143, 223\r\n  index: -1\r\nyanhua/yanhua_00001\r\n  rotate: false\r\n  xy: 567, 8\r\n  size: 49, 47\r\n  orig: 500, 500\r\n  offset: 225, 227\r\n  index: -1\r\nyanhua/yanhua_00002\r\n  rotate: false\r\n  xy: 1464, 63\r\n  size: 78, 77\r\n  orig: 500, 500\r\n  offset: 209, 213\r\n  index: -1\r\nyanhua/yanhua_00003\r\n  rotate: false\r\n  xy: 1863, 41\r\n  size: 100, 99\r\n  orig: 500, 500\r\n  offset: 197, 202\r\n  index: -1\r\nyanhua/yanhua_00004\r\n  rotate: false\r\n  xy: 1213, 23\r\n  size: 118, 116\r\n  orig: 500, 500\r\n  offset: 189, 193\r\n  index: -1\r\nyanhua/yanhua_00005\r\n  rotate: true\r\n  xy: 954, 6\r\n  size: 130, 127\r\n  orig: 500, 500\r\n  offset: 183, 187\r\n  index: -1\r\nyanhua/yanhua_00006\r\n  rotate: false\r\n  xy: 1722, 27\r\n  size: 139, 135\r\n  orig: 500, 500\r\n  offset: 179, 182\r\n  index: -1\r\nyanhua/yanhua_00007\r\n  rotate: false\r\n  xy: 1576, 18\r\n  size: 144, 141\r\n  orig: 500, 500\r\n  offset: 177, 180\r\n  index: -1\r\nyanhua/yanhua_00008\r\n  rotate: true\r\n  xy: 1865, 171\r\n  size: 149, 145\r\n  orig: 500, 500\r\n  offset: 175, 177\r\n  index: -1\r\nyanhua/yanhua_00009\r\n  rotate: true\r\n  xy: 1714, 320\r\n  size: 150, 147\r\n  orig: 500, 500\r\n  offset: 176, 176\r\n  index: -1\r\nyanhua/yanhua_00010\r\n  rotate: true\r\n  xy: 1863, 322\r\n  size: 150, 148\r\n  orig: 500, 500\r\n  offset: 178, 176\r\n  index: -1\r\nyanhua/yanhua_00011\r\n  rotate: false\r\n  xy: 1107, 298\r\n  size: 152, 153\r\n  orig: 500, 500\r\n  offset: 177, 172\r\n  index: -1\r\nyanhua/yanhua_00012\r\n  rotate: false\r\n  xy: 1559, 317\r\n  size: 153, 153\r\n  orig: 500, 500\r\n  offset: 176, 172\r\n  index: -1\r\nyanhua/yanhua_00013\r\n  rotate: true\r\n  xy: 1261, 298\r\n  size: 154, 151\r\n  orig: 500, 500\r\n  offset: 176, 174\r\n  index: -1\r\nyanhua/yanhua_00014\r\n  rotate: true\r\n  xy: 658, 115\r\n  size: 155, 151\r\n  orig: 500, 500\r\n  offset: 176, 174\r\n  index: -1\r\nyanhua/yanhua_00015\r\n  rotate: true\r\n  xy: 811, 138\r\n  size: 155, 152\r\n  orig: 500, 500\r\n  offset: 176, 173\r\n  index: -1\r\nyanhua/yanhua_00016\r\n  rotate: false\r\n  xy: 949, 298\r\n  size: 156, 153\r\n  orig: 500, 500\r\n  offset: 175, 172\r\n  index: -1\r\nyanhua/yanhua_00017\r\n  rotate: true\r\n  xy: 965, 141\r\n  size: 155, 153\r\n  orig: 500, 500\r\n  offset: 176, 172\r\n  index: -1\r\nyanhua/yanhua_00018\r\n  rotate: false\r\n  xy: 792, 295\r\n  size: 155, 156\r\n  orig: 500, 500\r\n  offset: 176, 169\r\n  index: -1\r\nyanhua/yanhua_00019\r\n  rotate: true\r\n  xy: 1120, 141\r\n  size: 155, 154\r\n  orig: 500, 500\r\n  offset: 176, 170\r\n  index: -1\r\nyanhua/yanhua_00020\r\n  rotate: true\r\n  xy: 1276, 141\r\n  size: 155, 153\r\n  orig: 500, 500\r\n  offset: 176, 170\r\n  index: -1\r\nyanhua/yanhua_00021\r\n  rotate: true\r\n  xy: 1414, 298\r\n  size: 155, 143\r\n  orig: 500, 500\r\n  offset: 176, 170\r\n  index: -1\r\nyanhua/yanhua_00022\r\n  rotate: true\r\n  xy: 1431, 142\r\n  size: 154, 143\r\n  orig: 500, 500\r\n  offset: 177, 170\r\n  index: -1\r\nyanhua/yanhua_00023\r\n  rotate: true\r\n  xy: 1576, 161\r\n  size: 154, 143\r\n  orig: 500, 500\r\n  offset: 177, 170\r\n  index: -1\r\nyanhua/yanhua_00024\r\n  rotate: true\r\n  xy: 1721, 164\r\n  size: 154, 142\r\n  orig: 500, 500\r\n  offset: 177, 170\r\n  index: -1\r\nyanhua/yanhua_00025\r\n  rotate: true\r\n  xy: 811, 2\r\n  size: 134, 141\r\n  orig: 500, 500\r\n  offset: 177, 170\r\n  index: -1\r\nyanhua/yanhua_00026\r\n  rotate: false\r\n  xy: 1497, 495\r\n  size: 127, 141\r\n  orig: 500, 500\r\n  offset: 184, 170\r\n  index: -1\r\nyanhua/yanhua_00027\r\n  rotate: true\r\n  xy: 658, 17\r\n  size: 96, 140\r\n  orig: 500, 500\r\n  offset: 209, 170\r\n  index: -1\r\nyanhua/yanhua_00028\r\n  rotate: false\r\n  xy: 1333, 10\r\n  size: 94, 129\r\n  orig: 500, 500\r\n  offset: 211, 181\r\n  index: -1\r\nyanhua/yanhua_00029\r\n  rotate: false\r\n  xy: 324, 616\r\n  size: 16, 16\r\n  orig: 500, 500\r\n  offset: 212, 294\r\n  index: -1\r\nzi/zi_00000\r\n  rotate: false\r\n  xy: 1863, 8\r\n  size: 107, 31\r\n  orig: 500, 500\r\n  offset: 196, 311\r\n  index: -1\r\nzi/zi_00015\r\n  rotate: false\r\n  xy: 1863, 8\r\n  size: 107, 31\r\n  orig: 500, 500\r\n  offset: 196, 311\r\n  index: -1\r\nzi/zi_00001\r\n  rotate: false\r\n  xy: 224, 6\r\n  size: 108, 32\r\n  orig: 500, 500\r\n  offset: 195, 309\r\n  index: -1\r\nzi/zi_00002\r\n  rotate: true\r\n  xy: 1544, 32\r\n  size: 108, 30\r\n  orig: 500, 500\r\n  offset: 195, 309\r\n  index: -1\r\nzi/zi_00003\r\n  rotate: false\r\n  xy: 377, 423\r\n  size: 108, 25\r\n  orig: 500, 500\r\n  offset: 195, 311\r\n  index: -1\r\nzi/zi_00004\r\n  rotate: false\r\n  xy: 1213, 2\r\n  size: 108, 19\r\n  orig: 500, 500\r\n  offset: 195, 314\r\n  index: -1\r\nzi/zi_00005\r\n  rotate: false\r\n  xy: 1722, 14\r\n  size: 109, 11\r\n  orig: 500, 500\r\n  offset: 195, 318\r\n  index: -1\r\nzi/zi_00006\r\n  rotate: false\r\n  xy: 1497, 475\r\n  size: 108, 18\r\n  orig: 500, 500\r\n  offset: 195, 315\r\n  index: -1\r\nzi/zi_00007\r\n  rotate: false\r\n  xy: 1865, 142\r\n  size: 109, 27\r\n  orig: 500, 500\r\n  offset: 195, 312\r\n  index: -1\r\nzi/zi_00008\r\n  rotate: false\r\n  xy: 456, 23\r\n  size: 109, 32\r\n  orig: 500, 500\r\n  offset: 195, 310\r\n  index: -1\r\nzi/zi_00009\r\n  rotate: false\r\n  xy: 2, 14\r\n  size: 109, 33\r\n  orig: 500, 500\r\n  offset: 195, 311\r\n  index: -1\r\nzi/zi_00010\r\n  rotate: true\r\n  xy: 1429, 30\r\n  size: 109, 33\r\n  orig: 500, 500\r\n  offset: 195, 313\r\n  index: -1\r\nzi/zi_00011\r\n  rotate: false\r\n  xy: 344, 27\r\n  size: 110, 28\r\n  orig: 500, 500\r\n  offset: 194, 317\r\n  index: -1\r\nzi/zi_00012\r\n  rotate: true\r\n  xy: 1994, 679\r\n  size: 111, 13\r\n  orig: 500, 500\r\n  offset: 194, 325\r\n  index: -1\r\nzi/zi_00013\r\n  rotate: true\r\n  xy: 1992, 521\r\n  size: 109, 22\r\n  orig: 500, 500\r\n  offset: 195, 320\r\n  index: -1\r\nzi/zi_00014\r\n  rotate: false\r\n  xy: 113, 6\r\n  size: 109, 32\r\n  orig: 500, 500\r\n  offset: 195, 313\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "4c5b0174-81f3-46f5-b8c4-c380affb87e6"
+  "animations": {
+    "loop": {
+      "slots": {
+        "win_me_bg2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            }
+          ]
+        },
+        "xian-tx": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "xian/xian_00000"
+            },
+            {
+              "time": 0.0333,
+              "name": "xian/xian_00001"
+            },
+            {
+              "time": 0.0666,
+              "name": "xian/xian_00002"
+            },
+            {
+              "time": 0.1,
+              "name": "xian/xian_00003"
+            },
+            {
+              "time": 0.1333,
+              "name": "xian/xian_00004"
+            },
+            {
+              "time": 0.1666,
+              "name": "xian/xian_00005"
+            },
+            {
+              "time": 0.2,
+              "name": "xian/xian_00006"
+            },
+            {
+              "time": 0.2333,
+              "name": "xian/xian_00007"
+            },
+            {
+              "time": 0.2666,
+              "name": "xian/xian_00008"
+            },
+            {
+              "time": 0.3,
+              "name": "xian/xian_00009"
+            },
+            {
+              "time": 0.3333,
+              "name": "xian/xian_00010"
+            },
+            {
+              "time": 0.3666,
+              "name": "xian/xian_00011"
+            },
+            {
+              "time": 0.4,
+              "name": "xian/xian_00012"
+            },
+            {
+              "time": 0.4333,
+              "name": "xian/xian_00013"
+            },
+            {
+              "time": 0.4666,
+              "name": "xian/xian_00014"
+            },
+            {
+              "time": 0.5,
+              "name": "xian/xian_00015"
+            },
+            {
+              "time": 0.5333,
+              "name": "xian/xian_00016"
+            },
+            {
+              "time": 0.5666,
+              "name": "xian/xian_00017"
+            },
+            {
+              "time": 0.6,
+              "name": "xian/xian_00018"
+            },
+            {
+              "time": 0.6333,
+              "name": "xian/xian_00019"
+            },
+            {
+              "time": 0.6666,
+              "name": "xian/xian_00020"
+            },
+            {
+              "time": 0.7,
+              "name": "xian/xian_00021"
+            },
+            {
+              "time": 0.7333,
+              "name": "xian/xian_00022"
+            },
+            {
+              "time": 0.7666,
+              "name": "xian/xian_00023"
+            },
+            {
+              "time": 0.8,
+              "name": "xian/xian_00024"
+            },
+            {
+              "time": 0.8333,
+              "name": "xian/xian_00025"
+            },
+            {
+              "time": 0.8666,
+              "name": "xian/xian_00026"
+            },
+            {
+              "time": 0.9,
+              "name": "xian/xian_00027"
+            },
+            {
+              "time": 0.9333,
+              "name": "xian/xian_00028"
+            },
+            {
+              "time": 0.9666,
+              "name": "xian/xian_00029"
+            },
+            {
+              "time": 1,
+              "name": "xian/xian_00030"
+            },
+            {
+              "time": 1.0333,
+              "name": "xian/xian_00000"
+            },
+            {
+              "time": 1.0666,
+              "name": "xian/xian_00001"
+            },
+            {
+              "time": 1.1,
+              "name": "xian/xian_00002"
+            },
+            {
+              "time": 1.1333,
+              "name": "xian/xian_00003"
+            },
+            {
+              "time": 1.1666,
+              "name": "xian/xian_00004"
+            },
+            {
+              "time": 1.2,
+              "name": "xian/xian_00005"
+            },
+            {
+              "time": 1.2333,
+              "name": "xian/xian_00006"
+            },
+            {
+              "time": 1.2666,
+              "name": "xian/xian_00007"
+            },
+            {
+              "time": 1.3,
+              "name": "xian/xian_00008"
+            },
+            {
+              "time": 1.3333,
+              "name": "xian/xian_00009"
+            },
+            {
+              "time": 1.3666,
+              "name": "xian/xian_00010"
+            },
+            {
+              "time": 1.4,
+              "name": "xian/xian_00011"
+            },
+            {
+              "time": 1.4333,
+              "name": "xian/xian_00012"
+            },
+            {
+              "time": 1.4666,
+              "name": "xian/xian_00013"
+            },
+            {
+              "time": 1.5,
+              "name": "xian/xian_00014"
+            },
+            {
+              "time": 1.5333,
+              "name": "xian/xian_00015"
+            },
+            {
+              "time": 1.5666,
+              "name": "xian/xian_00016"
+            },
+            {
+              "time": 1.6,
+              "name": "xian/xian_00017"
+            },
+            {
+              "time": 1.6333,
+              "name": "xian/xian_00018"
+            },
+            {
+              "time": 1.6666,
+              "name": "xian/xian_00019"
+            },
+            {
+              "time": 1.7,
+              "name": "xian/xian_00020"
+            },
+            {
+              "time": 1.7333,
+              "name": "xian/xian_00021"
+            },
+            {
+              "time": 1.7666,
+              "name": "xian/xian_00022"
+            },
+            {
+              "time": 1.8,
+              "name": "xian/xian_00023"
+            },
+            {
+              "time": 1.8333,
+              "name": "xian/xian_00024"
+            },
+            {
+              "time": 1.8666,
+              "name": "xian/xian_00025"
+            },
+            {
+              "time": 1.9,
+              "name": "xian/xian_00026"
+            },
+            {
+              "time": 1.9333,
+              "name": "xian/xian_00027"
+            },
+            {
+              "time": 1.9666,
+              "name": "xian/xian_00028"
+            },
+            {
+              "time": 2,
+              "name": "xian/xian_00029"
+            },
+            {
+              "time": 2.0333,
+              "name": "xian/xian_00030"
+            }
+          ]
+        },
+        "xianguang_00000": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            }
+          ]
+        },
+        "yanhua": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.6666,
+              "name": "yanhua/yanhua_00001"
+            },
+            {
+              "time": 0.7,
+              "name": "yanhua/yanhua_00002"
+            },
+            {
+              "time": 0.7333,
+              "name": "yanhua/yanhua_00003"
+            },
+            {
+              "time": 0.7666,
+              "name": "yanhua/yanhua_00004"
+            },
+            {
+              "time": 0.8,
+              "name": "yanhua/yanhua_00005"
+            },
+            {
+              "time": 0.8333,
+              "name": "yanhua/yanhua_00006"
+            },
+            {
+              "time": 0.8666,
+              "name": "yanhua/yanhua_00007"
+            },
+            {
+              "time": 0.9,
+              "name": "yanhua/yanhua_00008"
+            },
+            {
+              "time": 0.9333,
+              "name": "yanhua/yanhua_00009"
+            },
+            {
+              "time": 0.9666,
+              "name": "yanhua/yanhua_00010"
+            },
+            {
+              "time": 1,
+              "name": "yanhua/yanhua_00011"
+            },
+            {
+              "time": 1.0333,
+              "name": "yanhua/yanhua_00012"
+            },
+            {
+              "time": 1.0666,
+              "name": "yanhua/yanhua_00013"
+            },
+            {
+              "time": 1.1,
+              "name": "yanhua/yanhua_00014"
+            },
+            {
+              "time": 1.1333,
+              "name": "yanhua/yanhua_00015"
+            },
+            {
+              "time": 1.1666,
+              "name": "yanhua/yanhua_00016"
+            },
+            {
+              "time": 1.2,
+              "name": "yanhua/yanhua_00017"
+            },
+            {
+              "time": 1.2333,
+              "name": "yanhua/yanhua_00018"
+            },
+            {
+              "time": 1.2666,
+              "name": "yanhua/yanhua_00019"
+            },
+            {
+              "time": 1.3,
+              "name": "yanhua/yanhua_00020"
+            },
+            {
+              "time": 1.3333,
+              "name": "yanhua/yanhua_00021"
+            },
+            {
+              "time": 1.3666,
+              "name": "yanhua/yanhua_00022"
+            },
+            {
+              "time": 1.4,
+              "name": "yanhua/yanhua_00023"
+            },
+            {
+              "time": 1.4333,
+              "name": "yanhua/yanhua_00024"
+            },
+            {
+              "time": 1.4666,
+              "name": "yanhua/yanhua_00025"
+            },
+            {
+              "time": 1.5,
+              "name": "yanhua/yanhua_00026"
+            },
+            {
+              "time": 1.5333,
+              "name": "yanhua/yanhua_00027"
+            },
+            {
+              "time": 1.5666,
+              "name": "yanhua/yanhua_00028"
+            },
+            {
+              "time": 1.6,
+              "name": "yanhua/yanhua_00029"
+            },
+            {
+              "time": 1.6333,
+              "name": null
+            },
+            {
+              "time": 2.0333,
+              "name": null
+            }
+          ]
+        },
+        "yanhua2": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.8666,
+              "name": "yanhua/yanhua_00001"
+            },
+            {
+              "time": 0.9,
+              "name": "yanhua/yanhua_00002"
+            },
+            {
+              "time": 0.9333,
+              "name": "yanhua/yanhua_00003"
+            },
+            {
+              "time": 0.9666,
+              "name": "yanhua/yanhua_00004"
+            },
+            {
+              "time": 1,
+              "name": "yanhua/yanhua_00005"
+            },
+            {
+              "time": 1.0333,
+              "name": "yanhua/yanhua_00006"
+            },
+            {
+              "time": 1.0666,
+              "name": "yanhua/yanhua_00007"
+            },
+            {
+              "time": 1.1,
+              "name": "yanhua/yanhua_00008"
+            },
+            {
+              "time": 1.1333,
+              "name": "yanhua/yanhua_00009"
+            },
+            {
+              "time": 1.1666,
+              "name": "yanhua/yanhua_00010"
+            },
+            {
+              "time": 1.2,
+              "name": "yanhua/yanhua_00011"
+            },
+            {
+              "time": 1.2333,
+              "name": "yanhua/yanhua_00012"
+            },
+            {
+              "time": 1.2666,
+              "name": "yanhua/yanhua_00013"
+            },
+            {
+              "time": 1.3,
+              "name": "yanhua/yanhua_00014"
+            },
+            {
+              "time": 1.3333,
+              "name": "yanhua/yanhua_00015"
+            },
+            {
+              "time": 1.3666,
+              "name": "yanhua/yanhua_00016"
+            },
+            {
+              "time": 1.4,
+              "name": "yanhua/yanhua_00017"
+            },
+            {
+              "time": 1.4333,
+              "name": "yanhua/yanhua_00018"
+            },
+            {
+              "time": 1.4666,
+              "name": "yanhua/yanhua_00019"
+            },
+            {
+              "time": 1.5,
+              "name": "yanhua/yanhua_00020"
+            },
+            {
+              "time": 1.5333,
+              "name": "yanhua/yanhua_00021"
+            },
+            {
+              "time": 1.5666,
+              "name": "yanhua/yanhua_00022"
+            },
+            {
+              "time": 1.6,
+              "name": "yanhua/yanhua_00023"
+            },
+            {
+              "time": 1.6333,
+              "name": "yanhua/yanhua_00024"
+            },
+            {
+              "time": 1.6666,
+              "name": "yanhua/yanhua_00025"
+            },
+            {
+              "time": 1.7,
+              "name": "yanhua/yanhua_00026"
+            },
+            {
+              "time": 1.7333,
+              "name": "yanhua/yanhua_00027"
+            },
+            {
+              "time": 1.7666,
+              "name": "yanhua/yanhua_00028"
+            },
+            {
+              "time": 1.8,
+              "name": "yanhua/yanhua_00029"
+            },
+            {
+              "time": 1.8333,
+              "name": null
+            },
+            {
+              "time": 2.0333,
+              "name": null
+            }
+          ]
+        },
+        "zi-tx": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "zi/zi_00000"
+            }
+          ]
+        },
+        "zi-tx2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.6666,
+              "color": "ffffffd8"
+            },
+            {
+              "time": 1.1,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "zi/zi_00000"
+            },
+            {
+              "time": 0.6666,
+              "name": "zi/zi_00000"
+            },
+            {
+              "time": 1.1,
+              "name": null
+            },
+            {
+              "time": 2.0333,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "zi-tx2": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 1.1,
+              "x": 1.299,
+              "y": 1.299,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "x": 1.299,
+              "y": 1.299
+            }
+          ]
+        },
+        "yanhua2": {
+          "translate": [
+            {
+              "time": 0,
+              "x": -1.34,
+              "y": 0.73,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "x": -1.34,
+              "y": 0.73
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.642,
+              "y": 0.642,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "x": 0.642,
+              "y": 0.642
+            }
+          ]
+        },
+        "yanhua": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 10.59,
+              "y": 3.73,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "x": 10.59,
+              "y": 3.73
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.421,
+              "y": 0.421,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "x": 0.421,
+              "y": 0.421
+            }
+          ]
+        }
+      }
+    },
+    "out": {
+      "slots": {
+        "kuang_00000": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ]
+        },
+        "kuang_0": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ]
+        },
+        "kuang_1": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ]
+        },
+        "win_me_bg2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            }
+          ]
+        },
+        "xian-tx": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "xian/xian_00000"
+            },
+            {
+              "time": 0.0333,
+              "name": "xian/xian_00001"
+            },
+            {
+              "time": 0.0666,
+              "name": "xian/xian_00002"
+            },
+            {
+              "time": 0.1,
+              "name": "xian/xian_00003"
+            },
+            {
+              "time": 0.1333,
+              "name": "xian/xian_00004"
+            },
+            {
+              "time": 0.1666,
+              "name": "xian/xian_00005"
+            },
+            {
+              "time": 0.2,
+              "name": "xian/xian_00006"
+            },
+            {
+              "time": 0.2333,
+              "name": "xian/xian_00007"
+            },
+            {
+              "time": 0.2666,
+              "name": "xian/xian_00008"
+            },
+            {
+              "time": 0.3,
+              "name": "xian/xian_00009"
+            },
+            {
+              "time": 0.3333,
+              "name": "xian/xian_00010"
+            },
+            {
+              "time": 0.3666,
+              "name": "xian/xian_00011"
+            },
+            {
+              "time": 0.4,
+              "name": "xian/xian_00012"
+            },
+            {
+              "time": 0.4333,
+              "name": "xian/xian_00013"
+            },
+            {
+              "time": 0.4666,
+              "name": "xian/xian_00014"
+            },
+            {
+              "time": 0.5,
+              "name": "xian/xian_00015"
+            },
+            {
+              "time": 0.5333,
+              "name": "xian/xian_00016"
+            },
+            {
+              "time": 0.5666,
+              "name": "xian/xian_00017"
+            },
+            {
+              "time": 0.6,
+              "name": "xian/xian_00018"
+            },
+            {
+              "time": 0.6333,
+              "name": "xian/xian_00019"
+            },
+            {
+              "time": 0.6666,
+              "name": "xian/xian_00020"
+            },
+            {
+              "time": 0.7,
+              "name": "xian/xian_00021"
+            },
+            {
+              "time": 0.7333,
+              "name": "xian/xian_00022"
+            },
+            {
+              "time": 0.7666,
+              "name": "xian/xian_00023"
+            },
+            {
+              "time": 0.8,
+              "name": "xian/xian_00024"
+            },
+            {
+              "time": 0.8333,
+              "name": "xian/xian_00025"
+            },
+            {
+              "time": 0.8666,
+              "name": "xian/xian_00026"
+            },
+            {
+              "time": 0.9,
+              "name": "xian/xian_00027"
+            },
+            {
+              "time": 0.9333,
+              "name": "xian/xian_00028"
+            },
+            {
+              "time": 0.9666,
+              "name": "xian/xian_00029"
+            },
+            {
+              "time": 1,
+              "name": "xian/xian_00030"
+            }
+          ]
+        },
+        "xianguang_00000": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            }
+          ]
+        },
+        "yanhua": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 1,
+              "name": null
+            }
+          ]
+        },
+        "yanhua2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 1,
+              "name": null
+            }
+          ]
+        },
+        "zi-tx": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "zi/zi_00000"
+            },
+            {
+              "time": 1,
+              "name": "zi/zi_00000"
+            }
+          ]
+        },
+        "zi-tx2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 1,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "yanhua2": {
+          "translate": [
+            {
+              "time": 0,
+              "x": -1.34,
+              "y": 0.73,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": -1.34,
+              "y": 0.73
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.642,
+              "y": 0.642,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": 0.642,
+              "y": 0.642
+            }
+          ]
+        },
+        "yanhua": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 10.59,
+              "y": 3.73,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": 10.59,
+              "y": 3.73
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.421,
+              "y": 0.421,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": 0.421,
+              "y": 0.421
+            }
+          ]
+        },
+        "zi-tx2": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "x": 1,
+              "y": 1
+            }
+          ]
+        }
+      }
+    },
+    "star": {
+      "slots": {
+        "kuang_00000": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.0333,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.3333,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "kuang_00000"
+            },
+            {
+              "time": 2.4,
+              "name": "kuang_00000"
+            }
+          ]
+        },
+        "kuang_0": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.1666,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.5,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "kuang_00000"
+            }
+          ]
+        },
+        "kuang_1": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.3333,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.6666,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "kuang_00000"
+            }
+          ]
+        },
+        "win_me_bg2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.3333,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.8333,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "win_me_bg"
+            },
+            {
+              "time": 0.3333,
+              "name": "win_me_bg"
+            },
+            {
+              "time": 2.4,
+              "name": "win_me_bg"
+            }
+          ]
+        },
+        "xian-tx": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.3333,
+              "name": "xian/xian_00000"
+            },
+            {
+              "time": 0.3666,
+              "name": "xian/xian_00001"
+            },
+            {
+              "time": 0.4,
+              "name": "xian/xian_00002"
+            },
+            {
+              "time": 0.4333,
+              "name": "xian/xian_00003"
+            },
+            {
+              "time": 0.4666,
+              "name": "xian/xian_00004"
+            },
+            {
+              "time": 0.5,
+              "name": "xian/xian_00005"
+            },
+            {
+              "time": 0.5333,
+              "name": "xian/xian_00006"
+            },
+            {
+              "time": 0.5666,
+              "name": "xian/xian_00007"
+            },
+            {
+              "time": 0.6,
+              "name": "xian/xian_00008"
+            },
+            {
+              "time": 0.6333,
+              "name": "xian/xian_00009"
+            },
+            {
+              "time": 0.6666,
+              "name": "xian/xian_00010"
+            },
+            {
+              "time": 0.7,
+              "name": "xian/xian_00011"
+            },
+            {
+              "time": 0.7333,
+              "name": "xian/xian_00012"
+            },
+            {
+              "time": 0.7666,
+              "name": "xian/xian_00013"
+            },
+            {
+              "time": 0.8,
+              "name": "xian/xian_00014"
+            },
+            {
+              "time": 0.8333,
+              "name": "xian/xian_00015"
+            },
+            {
+              "time": 0.8666,
+              "name": "xian/xian_00016"
+            },
+            {
+              "time": 0.9,
+              "name": "xian/xian_00017"
+            },
+            {
+              "time": 0.9333,
+              "name": "xian/xian_00018"
+            },
+            {
+              "time": 0.9666,
+              "name": "xian/xian_00019"
+            },
+            {
+              "time": 1,
+              "name": "xian/xian_00020"
+            },
+            {
+              "time": 1.0333,
+              "name": "xian/xian_00021"
+            },
+            {
+              "time": 1.0666,
+              "name": "xian/xian_00022"
+            },
+            {
+              "time": 1.1,
+              "name": "xian/xian_00023"
+            },
+            {
+              "time": 1.1333,
+              "name": "xian/xian_00024"
+            },
+            {
+              "time": 1.1666,
+              "name": "xian/xian_00025"
+            },
+            {
+              "time": 1.2,
+              "name": "xian/xian_00026"
+            },
+            {
+              "time": 1.2333,
+              "name": "xian/xian_00027"
+            },
+            {
+              "time": 1.2666,
+              "name": "xian/xian_00028"
+            },
+            {
+              "time": 1.3,
+              "name": "xian/xian_00029"
+            },
+            {
+              "time": 1.3333,
+              "name": "xian/xian_00030"
+            },
+            {
+              "time": 1.3666,
+              "name": "xian/xian_00000"
+            },
+            {
+              "time": 1.4,
+              "name": "xian/xian_00001"
+            },
+            {
+              "time": 1.4333,
+              "name": "xian/xian_00002"
+            },
+            {
+              "time": 1.4666,
+              "name": "xian/xian_00003"
+            },
+            {
+              "time": 1.5,
+              "name": "xian/xian_00004"
+            },
+            {
+              "time": 1.5333,
+              "name": "xian/xian_00005"
+            },
+            {
+              "time": 1.5666,
+              "name": "xian/xian_00006"
+            },
+            {
+              "time": 1.6,
+              "name": "xian/xian_00007"
+            },
+            {
+              "time": 1.6333,
+              "name": "xian/xian_00008"
+            },
+            {
+              "time": 1.6666,
+              "name": "xian/xian_00009"
+            },
+            {
+              "time": 1.7,
+              "name": "xian/xian_00010"
+            },
+            {
+              "time": 1.7333,
+              "name": "xian/xian_00011"
+            },
+            {
+              "time": 1.7666,
+              "name": "xian/xian_00012"
+            },
+            {
+              "time": 1.8,
+              "name": "xian/xian_00013"
+            },
+            {
+              "time": 1.8333,
+              "name": "xian/xian_00014"
+            },
+            {
+              "time": 1.8666,
+              "name": "xian/xian_00015"
+            },
+            {
+              "time": 1.9,
+              "name": "xian/xian_00016"
+            },
+            {
+              "time": 1.9333,
+              "name": "xian/xian_00017"
+            },
+            {
+              "time": 1.9666,
+              "name": "xian/xian_00018"
+            },
+            {
+              "time": 2,
+              "name": "xian/xian_00019"
+            },
+            {
+              "time": 2.0333,
+              "name": "xian/xian_00020"
+            },
+            {
+              "time": 2.0666,
+              "name": "xian/xian_00021"
+            },
+            {
+              "time": 2.1,
+              "name": "xian/xian_00022"
+            },
+            {
+              "time": 2.1333,
+              "name": "xian/xian_00023"
+            },
+            {
+              "time": 2.1666,
+              "name": "xian/xian_00024"
+            },
+            {
+              "time": 2.2,
+              "name": "xian/xian_00025"
+            },
+            {
+              "time": 2.2333,
+              "name": "xian/xian_00026"
+            },
+            {
+              "time": 2.2666,
+              "name": "xian/xian_00027"
+            },
+            {
+              "time": 2.3,
+              "name": "xian/xian_00028"
+            },
+            {
+              "time": 2.3333,
+              "name": "xian/xian_00029"
+            },
+            {
+              "time": 2.3666,
+              "name": "xian/xian_00030"
+            },
+            {
+              "time": 2.4,
+              "name": null
+            }
+          ]
+        },
+        "xianguang_00000": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.5,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.8333,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "xianguang_00000"
+            }
+          ]
+        },
+        "yanhua": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.5666,
+              "name": "yanhua/yanhua_00001"
+            },
+            {
+              "time": 0.6,
+              "name": "yanhua/yanhua_00002"
+            },
+            {
+              "time": 0.6333,
+              "name": "yanhua/yanhua_00003"
+            },
+            {
+              "time": 0.6666,
+              "name": "yanhua/yanhua_00004"
+            },
+            {
+              "time": 0.7,
+              "name": "yanhua/yanhua_00005"
+            },
+            {
+              "time": 0.7333,
+              "name": "yanhua/yanhua_00006"
+            },
+            {
+              "time": 0.7666,
+              "name": "yanhua/yanhua_00007"
+            },
+            {
+              "time": 0.8,
+              "name": "yanhua/yanhua_00008"
+            },
+            {
+              "time": 0.8333,
+              "name": "yanhua/yanhua_00009"
+            },
+            {
+              "time": 0.8666,
+              "name": "yanhua/yanhua_00010"
+            },
+            {
+              "time": 0.9,
+              "name": "yanhua/yanhua_00011"
+            },
+            {
+              "time": 0.9333,
+              "name": "yanhua/yanhua_00012"
+            },
+            {
+              "time": 0.9666,
+              "name": "yanhua/yanhua_00013"
+            },
+            {
+              "time": 1,
+              "name": "yanhua/yanhua_00014"
+            },
+            {
+              "time": 1.0333,
+              "name": "yanhua/yanhua_00015"
+            },
+            {
+              "time": 1.0666,
+              "name": "yanhua/yanhua_00016"
+            },
+            {
+              "time": 1.1,
+              "name": "yanhua/yanhua_00017"
+            },
+            {
+              "time": 1.1333,
+              "name": "yanhua/yanhua_00018"
+            },
+            {
+              "time": 1.1666,
+              "name": "yanhua/yanhua_00019"
+            },
+            {
+              "time": 1.2,
+              "name": "yanhua/yanhua_00020"
+            },
+            {
+              "time": 1.2333,
+              "name": "yanhua/yanhua_00021"
+            },
+            {
+              "time": 1.2666,
+              "name": "yanhua/yanhua_00022"
+            },
+            {
+              "time": 1.3,
+              "name": "yanhua/yanhua_00023"
+            },
+            {
+              "time": 1.3333,
+              "name": "yanhua/yanhua_00024"
+            },
+            {
+              "time": 1.3666,
+              "name": "yanhua/yanhua_00025"
+            },
+            {
+              "time": 1.4,
+              "name": "yanhua/yanhua_00026"
+            },
+            {
+              "time": 1.4333,
+              "name": "yanhua/yanhua_00027"
+            },
+            {
+              "time": 1.4666,
+              "name": "yanhua/yanhua_00028"
+            },
+            {
+              "time": 1.5,
+              "name": "yanhua/yanhua_00029"
+            },
+            {
+              "time": 1.5333,
+              "name": null
+            },
+            {
+              "time": 2.4,
+              "name": null
+            }
+          ]
+        },
+        "yanhua2": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.7,
+              "name": "yanhua/yanhua_00001"
+            },
+            {
+              "time": 0.7333,
+              "name": "yanhua/yanhua_00002"
+            },
+            {
+              "time": 0.7666,
+              "name": "yanhua/yanhua_00003"
+            },
+            {
+              "time": 0.8,
+              "name": "yanhua/yanhua_00004"
+            },
+            {
+              "time": 0.8333,
+              "name": "yanhua/yanhua_00005"
+            },
+            {
+              "time": 0.8666,
+              "name": "yanhua/yanhua_00006"
+            },
+            {
+              "time": 0.9,
+              "name": "yanhua/yanhua_00007"
+            },
+            {
+              "time": 0.9333,
+              "name": "yanhua/yanhua_00008"
+            },
+            {
+              "time": 0.9666,
+              "name": "yanhua/yanhua_00009"
+            },
+            {
+              "time": 1,
+              "name": "yanhua/yanhua_00010"
+            },
+            {
+              "time": 1.0333,
+              "name": "yanhua/yanhua_00011"
+            },
+            {
+              "time": 1.0666,
+              "name": "yanhua/yanhua_00012"
+            },
+            {
+              "time": 1.1,
+              "name": "yanhua/yanhua_00013"
+            },
+            {
+              "time": 1.1333,
+              "name": "yanhua/yanhua_00014"
+            },
+            {
+              "time": 1.1666,
+              "name": "yanhua/yanhua_00015"
+            },
+            {
+              "time": 1.2,
+              "name": "yanhua/yanhua_00016"
+            },
+            {
+              "time": 1.2333,
+              "name": "yanhua/yanhua_00017"
+            },
+            {
+              "time": 1.2666,
+              "name": "yanhua/yanhua_00018"
+            },
+            {
+              "time": 1.3,
+              "name": "yanhua/yanhua_00019"
+            },
+            {
+              "time": 1.3333,
+              "name": "yanhua/yanhua_00020"
+            },
+            {
+              "time": 1.3666,
+              "name": "yanhua/yanhua_00021"
+            },
+            {
+              "time": 1.4,
+              "name": "yanhua/yanhua_00022"
+            },
+            {
+              "time": 1.4333,
+              "name": "yanhua/yanhua_00023"
+            },
+            {
+              "time": 1.4666,
+              "name": "yanhua/yanhua_00024"
+            },
+            {
+              "time": 1.5,
+              "name": "yanhua/yanhua_00025"
+            },
+            {
+              "time": 1.5333,
+              "name": "yanhua/yanhua_00026"
+            },
+            {
+              "time": 1.5666,
+              "name": "yanhua/yanhua_00027"
+            },
+            {
+              "time": 1.6,
+              "name": "yanhua/yanhua_00028"
+            },
+            {
+              "time": 1.6333,
+              "name": "yanhua/yanhua_00029"
+            },
+            {
+              "time": 1.6666,
+              "name": null
+            },
+            {
+              "time": 2.4,
+              "name": null
+            }
+          ]
+        },
+        "zi-tx": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.5,
+              "color": "ffffffff",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffffff"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "zi/zi_00000"
+            },
+            {
+              "time": 0.5,
+              "name": "zi/zi_00000"
+            },
+            {
+              "time": 0.5333,
+              "name": "zi/zi_00001"
+            },
+            {
+              "time": 0.5666,
+              "name": "zi/zi_00002"
+            },
+            {
+              "time": 0.6,
+              "name": "zi/zi_00003"
+            },
+            {
+              "time": 0.6333,
+              "name": "zi/zi_00004"
+            },
+            {
+              "time": 0.6666,
+              "name": "zi/zi_00005"
+            },
+            {
+              "time": 0.7,
+              "name": "zi/zi_00006"
+            },
+            {
+              "time": 0.7333,
+              "name": "zi/zi_00007"
+            },
+            {
+              "time": 0.7666,
+              "name": "zi/zi_00008"
+            },
+            {
+              "time": 0.8,
+              "name": "zi/zi_00009"
+            },
+            {
+              "time": 0.8333,
+              "name": "zi/zi_00010"
+            },
+            {
+              "time": 0.8666,
+              "name": "zi/zi_00011"
+            },
+            {
+              "time": 0.9,
+              "name": "zi/zi_00012"
+            },
+            {
+              "time": 0.9333,
+              "name": "zi/zi_00013"
+            },
+            {
+              "time": 0.9666,
+              "name": "zi/zi_00014"
+            },
+            {
+              "time": 1,
+              "name": "zi/zi_00015"
+            },
+            {
+              "time": 2.4,
+              "name": "zi/zi_00015"
+            }
+          ]
+        },
+        "zi-tx2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 1.2333,
+              "color": "ffffffd8"
+            },
+            {
+              "time": 1.6666,
+              "color": "ffffff00",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 1.2333,
+              "name": "zi/zi_00000"
+            },
+            {
+              "time": 2.4,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "kuang-tx": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.5,
+              "y": 1.5
+            },
+            {
+              "time": 0.3333,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 1,
+              "y": 1
+            }
+          ]
+        },
+        "kuang-tx2": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.5,
+              "y": 1.5,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.1666,
+              "x": 1.5,
+              "y": 1.5
+            },
+            {
+              "time": 0.5,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 1,
+              "y": 1
+            }
+          ]
+        },
+        "kuang-tx3": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.6666,
+              "x": 1.5,
+              "y": 1.5,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 1.5,
+              "y": 1.5
+            }
+          ]
+        },
+        "zi-tx": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.4,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.5,
+              "x": 1.268,
+              "y": 1.268
+            },
+            {
+              "time": 1,
+              "x": 1.3,
+              "y": 1.3
+            },
+            {
+              "time": 1.1666,
+              "x": 1.35,
+              "y": 1.35
+            },
+            {
+              "time": 1.2333,
+              "x": 0.9,
+              "y": 0.9
+            },
+            {
+              "time": 1.3,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 1,
+              "y": 1
+            }
+          ]
+        },
+        "guang": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.5,
+              "x": 1.42,
+              "y": 1.42
+            },
+            {
+              "time": 0.8333,
+              "x": 1.952,
+              "y": 1.952,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 1.952,
+              "y": 1.952
+            }
+          ]
+        },
+        "zi-tx2": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 1.2333,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 1.6666,
+              "x": 1.299,
+              "y": 1.299,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 1.299,
+              "y": 1.299
+            }
+          ]
+        },
+        "yanhua": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 10.59,
+              "y": 3.73,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 10.59,
+              "y": 3.73
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.421,
+              "y": 0.421,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 0.421,
+              "y": 0.421
+            }
+          ]
+        },
+        "yanhua2": {
+          "translate": [
+            {
+              "time": 0,
+              "x": -1.34,
+              "y": 0.73,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": -1.34,
+              "y": 0.73
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.642,
+              "y": 0.642,
+              "curve": "stepped"
+            },
+            {
+              "time": 2.4,
+              "x": 0.642,
+              "y": 0.642
+            }
+          ]
+        }
+      }
     }
-  ],
-  "textureNames": [
-    "winner_zj.png"
-  ],
-  "scale": 1
+  },
+  "_name": "winner_zj"
 }

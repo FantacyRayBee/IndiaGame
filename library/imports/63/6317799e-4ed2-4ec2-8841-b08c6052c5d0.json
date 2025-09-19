@@ -1,77 +1,62 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "rummy",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "dTlqfNSwpFMMrDaGN6mYgkbEGFc",
-      "spine": "3.3.07",
-      "width": 136.83,
-      "height": 167.69,
-      "images": "./images/"
+  "skeleton": {
+    "hash": "dTlqfNSwpFMMrDaGN6mYgkbEGFc",
+    "spine": "3.3.07",
+    "width": 136.83,
+    "height": 167.69,
+    "images": "./images/"
+  },
+  "bones": [
+    {
+      "name": "root"
     },
-    "bones": [
-      {
-        "name": "root"
-      },
-      {
-        "name": "kuang",
-        "parent": "root",
-        "scaleX": 1.028,
-        "scaleY": 1.028
-      }
-    ],
-    "slots": [
-      {
-        "name": "kuang",
-        "bone": "kuang",
-        "attachment": "kuang"
-      }
-    ],
-    "skins": {
-      "default": {
+    {
+      "name": "kuang",
+      "parent": "root",
+      "scaleX": 1.028,
+      "scaleY": 1.028
+    }
+  ],
+  "slots": [
+    {
+      "name": "kuang",
+      "bone": "kuang",
+      "attachment": "kuang"
+    }
+  ],
+  "skins": {
+    "default": {
+      "kuang": {
         "kuang": {
-          "kuang": {
-            "x": -1.5,
-            "y": -0.5,
-            "width": 133,
-            "height": 163
-          }
-        }
-      }
-    },
-    "animations": {
-      "animation": {
-        "slots": {
-          "kuang": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffffff"
-              },
-              {
-                "time": 1,
-                "color": "ffffff84"
-              },
-              {
-                "time": 2,
-                "color": "ffffffff"
-              }
-            ]
-          }
+          "x": -1.5,
+          "y": -0.5,
+          "width": 133,
+          "height": 163
         }
       }
     }
   },
-  "_atlasText": "\r\nrummy.png\r\nsize: 137,167\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nkuang\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 133, 163\r\n  orig: 133, 163\r\n  offset: 0, 0\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "1318ef64-f663-48e9-be67-cec2c7eb5d4d"
+  "animations": {
+    "animation": {
+      "slots": {
+        "kuang": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff"
+            },
+            {
+              "time": 1,
+              "color": "ffffff84"
+            },
+            {
+              "time": 2,
+              "color": "ffffffff"
+            }
+          ]
+        }
+      }
     }
-  ],
-  "textureNames": [
-    "rummy.png"
-  ],
-  "scale": 1
+  },
+  "_name": "rummy"
 }

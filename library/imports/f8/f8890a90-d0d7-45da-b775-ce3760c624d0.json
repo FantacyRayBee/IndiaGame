@@ -1,433 +1,418 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "baodian_huang",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "Yaj6DyPrnPmP01r5Q6jjNzsArdA",
-      "spine": "3.7.94",
-      "width": 1835,
-      "height": 767.26,
-      "images": "",
-      "audio": ""
+  "skeleton": {
+    "hash": "Yaj6DyPrnPmP01r5Q6jjNzsArdA",
+    "spine": "3.7.94",
+    "width": 1835,
+    "height": 767.26,
+    "images": "",
+    "audio": ""
+  },
+  "bones": [
+    {
+      "name": "root"
     },
-    "bones": [
-      {
-        "name": "root"
-      },
-      {
-        "name": "baodian",
-        "parent": "root",
-        "y": 72.85,
-        "scaleX": 2.281,
-        "scaleY": 1.825
-      },
-      {
-        "name": "huang_g_bd",
-        "parent": "root",
-        "x": 11.51,
-        "y": 177.25
-      },
-      {
-        "name": "caidai",
-        "parent": "root",
-        "x": -2.99,
-        "y": 97.26,
-        "scaleX": 1.203,
-        "scaleY": 1.203
-      }
-    ],
-    "slots": [
-      {
-        "name": "xg",
-        "bone": "root"
-      },
-      {
-        "name": "baodian/picV382_boom_huangJin_000",
-        "bone": "baodian",
-        "attachment": "baodian/picV382_boom_huangJin_001"
-      },
-      {
-        "name": "baodian_117",
-        "bone": "huang_g_bd",
-        "attachment": "baodian_117",
-        "blend": "additive"
-      },
-      {
-        "name": "caidai/cd_01",
-        "bone": "caidai",
-        "attachment": "caidai/cd_14"
-      }
-    ],
-    "skins": {
-      "default": {
+    {
+      "name": "baodian",
+      "parent": "root",
+      "y": 72.85,
+      "scaleX": 2.281,
+      "scaleY": 1.825
+    },
+    {
+      "name": "huang_g_bd",
+      "parent": "root",
+      "x": 11.51,
+      "y": 177.25
+    },
+    {
+      "name": "caidai",
+      "parent": "root",
+      "x": -2.99,
+      "y": 97.26,
+      "scaleX": 1.203,
+      "scaleY": 1.203
+    }
+  ],
+  "slots": [
+    {
+      "name": "xg",
+      "bone": "root"
+    },
+    {
+      "name": "baodian/picV382_boom_huangJin_000",
+      "bone": "baodian",
+      "attachment": "baodian/picV382_boom_huangJin_001"
+    },
+    {
+      "name": "baodian_117",
+      "bone": "huang_g_bd",
+      "attachment": "baodian_117",
+      "blend": "additive"
+    },
+    {
+      "name": "caidai/cd_01",
+      "bone": "caidai",
+      "attachment": "caidai/cd_14"
+    }
+  ],
+  "skins": {
+    "default": {
+      "baodian/picV382_boom_huangJin_000": {
         "baodian/picV382_boom_huangJin_000": {
-          "baodian/picV382_boom_huangJin_000": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_001": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_002": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_003": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_004": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_005": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_006": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_007": {
-            "width": 350,
-            "height": 350
-          },
-          "baodian/picV382_boom_huangJin_008": {
-            "width": 350,
-            "height": 350
-          }
+          "width": 350,
+          "height": 350
         },
-        "baodian_117": {
-          "baodian_117": {
-            "width": 256,
-            "height": 256
-          }
+        "baodian/picV382_boom_huangJin_001": {
+          "width": 350,
+          "height": 350
         },
-        "caidai/cd_01": {
-          "caidai/cd_01": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_02": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_03": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_04": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_05": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_06": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_07": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_08": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_09": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_10": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_11": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_12": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_13": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_14": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_15": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_16": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_17": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_18": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_19": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_20": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_21": {
-            "width": 512,
-            "height": 236
-          },
-          "caidai/cd_22": {
-            "width": 512,
-            "height": 236
-          }
+        "baodian/picV382_boom_huangJin_002": {
+          "width": 350,
+          "height": 350
+        },
+        "baodian/picV382_boom_huangJin_003": {
+          "width": 350,
+          "height": 350
+        },
+        "baodian/picV382_boom_huangJin_004": {
+          "width": 350,
+          "height": 350
+        },
+        "baodian/picV382_boom_huangJin_005": {
+          "width": 350,
+          "height": 350
+        },
+        "baodian/picV382_boom_huangJin_006": {
+          "width": 350,
+          "height": 350
+        },
+        "baodian/picV382_boom_huangJin_007": {
+          "width": 350,
+          "height": 350
+        },
+        "baodian/picV382_boom_huangJin_008": {
+          "width": 350,
+          "height": 350
         }
-      }
-    },
-    "animations": {
-      "baodian": {
-        "slots": {
-          "baodian/picV382_boom_huangJin_000": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": null
-              },
-              {
-                "time": 0.0667,
-                "name": "baodian/picV382_boom_huangJin_000"
-              },
-              {
-                "time": 0.1,
-                "name": "baodian/picV382_boom_huangJin_001"
-              },
-              {
-                "time": 0.1667,
-                "name": "baodian/picV382_boom_huangJin_002"
-              },
-              {
-                "time": 0.2333,
-                "name": "baodian/picV382_boom_huangJin_003"
-              },
-              {
-                "time": 0.3,
-                "name": "baodian/picV382_boom_huangJin_004"
-              },
-              {
-                "time": 0.3667,
-                "name": "baodian/picV382_boom_huangJin_005"
-              },
-              {
-                "time": 0.4333,
-                "name": "baodian/picV382_boom_huangJin_006"
-              },
-              {
-                "time": 0.4667,
-                "name": "baodian/picV382_boom_huangJin_007"
-              },
-              {
-                "time": 0.5,
-                "name": "baodian/picV382_boom_huangJin_008"
-              },
-              {
-                "time": 0.5667,
-                "name": null
-              }
-            ]
-          },
-          "baodian_117": {
-            "color": [
-              {
-                "time": 0,
-                "color": "ffffff00"
-              },
-              {
-                "time": 0.0667,
-                "color": "ffffffff",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.4,
-                "color": "ffffffff"
-              },
-              {
-                "time": 0.5333,
-                "color": "ffffff00"
-              }
-            ]
-          },
-          "caidai/cd_01": {
-            "attachment": [
-              {
-                "time": 0,
-                "name": "caidai/cd_01"
-              },
-              {
-                "time": 0.1,
-                "name": null
-              },
-              {
-                "time": 0.1333,
-                "name": "caidai/cd_03"
-              },
-              {
-                "time": 0.2,
-                "name": "caidai/cd_04"
-              },
-              {
-                "time": 0.2667,
-                "name": "caidai/cd_05"
-              },
-              {
-                "time": 0.3,
-                "name": "caidai/cd_06"
-              },
-              {
-                "time": 0.3667,
-                "name": "caidai/cd_07"
-              },
-              {
-                "time": 0.4333,
-                "name": "caidai/cd_08"
-              },
-              {
-                "time": 0.5,
-                "name": "caidai/cd_09"
-              },
-              {
-                "time": 0.5333,
-                "name": "caidai/cd_10"
-              },
-              {
-                "time": 0.6,
-                "name": "caidai/cd_11"
-              },
-              {
-                "time": 0.6667,
-                "name": "caidai/cd_12"
-              },
-              {
-                "time": 0.7333,
-                "name": "caidai/cd_13"
-              },
-              {
-                "time": 0.7667,
-                "name": "caidai/cd_14"
-              },
-              {
-                "time": 0.8333,
-                "name": "caidai/cd_15"
-              },
-              {
-                "time": 0.9,
-                "name": "caidai/cd_16"
-              },
-              {
-                "time": 0.9667,
-                "name": "caidai/cd_17"
-              },
-              {
-                "time": 1,
-                "name": "caidai/cd_18"
-              },
-              {
-                "time": 1.0667,
-                "name": "caidai/cd_19"
-              },
-              {
-                "time": 1.1333,
-                "name": "caidai/cd_20"
-              },
-              {
-                "time": 1.2,
-                "name": "caidai/cd_21"
-              },
-              {
-                "time": 1.2333,
-                "name": "caidai/cd_22"
-              },
-              {
-                "time": 1.3,
-                "name": null
-              }
-            ]
-          }
+      },
+      "baodian_117": {
+        "baodian_117": {
+          "width": 256,
+          "height": 256
+        }
+      },
+      "caidai/cd_01": {
+        "caidai/cd_01": {
+          "width": 512,
+          "height": 236
         },
-        "bones": {
-          "huang_g_bd": {
-            "translate": [
-              {
-                "time": 0,
-                "x": 9.21,
-                "y": 267.03
-              },
-              {
-                "time": 0.0667,
-                "x": -1.57,
-                "y": -12.82,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.4,
-                "x": -1.57,
-                "y": -12.82
-              },
-              {
-                "time": 0.5333,
-                "x": -1.57,
-                "y": 54.45
-              }
-            ],
-            "scale": [
-              {
-                "time": 0,
-                "x": 1.414,
-                "y": 1.76
-              },
-              {
-                "time": 0.0667,
-                "x": 1,
-                "y": 1,
-                "curve": "stepped"
-              },
-              {
-                "time": 0.4,
-                "x": 1,
-                "y": 1
-              },
-              {
-                "time": 0.5333,
-                "x": 1.368,
-                "y": 1.61
-              }
-            ]
-          }
+        "caidai/cd_02": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_03": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_04": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_05": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_06": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_07": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_08": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_09": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_10": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_11": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_12": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_13": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_14": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_15": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_16": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_17": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_18": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_19": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_20": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_21": {
+          "width": 512,
+          "height": 236
+        },
+        "caidai/cd_22": {
+          "width": 512,
+          "height": 236
         }
       }
     }
   },
-  "_atlasText": "\r\nbaodian_huang.png\r\nsize: 1417,1417\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nbaodian/picV382_boom_huangJin_000\r\n  rotate: false\r\n  xy: 1183, 1310\r\n  size: 224, 105\r\n  orig: 350, 350\r\n  offset: 63, 122\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_001\r\n  rotate: true\r\n  xy: 903, 401\r\n  size: 339, 234\r\n  orig: 350, 350\r\n  offset: 5, 54\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_002\r\n  rotate: false\r\n  xy: 344, 765\r\n  size: 339, 318\r\n  orig: 350, 350\r\n  offset: 5, 12\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_003\r\n  rotate: false\r\n  xy: 2, 1084\r\n  size: 340, 331\r\n  orig: 350, 350\r\n  offset: 5, 7\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_004\r\n  rotate: false\r\n  xy: 2, 752\r\n  size: 340, 330\r\n  orig: 350, 350\r\n  offset: 5, 5\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_005\r\n  rotate: false\r\n  xy: 344, 1085\r\n  size: 340, 330\r\n  orig: 350, 350\r\n  offset: 5, 5\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_006\r\n  rotate: false\r\n  xy: 592, 430\r\n  size: 309, 310\r\n  orig: 350, 350\r\n  offset: 24, 14\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_007\r\n  rotate: true\r\n  xy: 592, 123\r\n  size: 305, 306\r\n  orig: 350, 350\r\n  offset: 27, 15\r\n  index: -1\r\nbaodian/picV382_boom_huangJin_008\r\n  rotate: false\r\n  xy: 900, 119\r\n  size: 271, 280\r\n  orig: 350, 350\r\n  offset: 48, 27\r\n  index: -1\r\nbaodian_117\r\n  rotate: false\r\n  xy: 2, 5\r\n  size: 256, 256\r\n  orig: 256, 256\r\n  offset: 0, 0\r\n  index: -1\r\ncaidai/cd_01\r\n  rotate: false\r\n  xy: 900, 427\r\n  size: 1, 1\r\n  orig: 1, 1\r\n  offset: 0, 0\r\n  index: -1\r\ncaidai/cd_02\r\n  rotate: true\r\n  xy: 694, 2\r\n  size: 29, 17\r\n  orig: 512, 236\r\n  offset: 279, 0\r\n  index: -1\r\ncaidai/cd_03\r\n  rotate: false\r\n  xy: 260, 149\r\n  size: 156, 128\r\n  orig: 512, 236\r\n  offset: 213, 0\r\n  index: -1\r\ncaidai/cd_04\r\n  rotate: false\r\n  xy: 1196, 1065\r\n  size: 169, 128\r\n  orig: 512, 236\r\n  offset: 214, 32\r\n  index: -1\r\ncaidai/cd_05\r\n  rotate: false\r\n  xy: 1196, 1195\r\n  size: 213, 113\r\n  orig: 512, 236\r\n  offset: 185, 90\r\n  index: -1\r\ncaidai/cd_06\r\n  rotate: true\r\n  xy: 1292, 56\r\n  size: 269, 87\r\n  orig: 512, 236\r\n  offset: 147, 118\r\n  index: -1\r\ncaidai/cd_07\r\n  rotate: true\r\n  xy: 1292, 327\r\n  size: 324, 82\r\n  orig: 512, 236\r\n  offset: 112, 132\r\n  index: -1\r\ncaidai/cd_08\r\n  rotate: false\r\n  xy: 694, 33\r\n  size: 366, 84\r\n  orig: 512, 236\r\n  offset: 82, 136\r\n  index: -1\r\ncaidai/cd_09\r\n  rotate: true\r\n  xy: 1173, 161\r\n  size: 401, 117\r\n  orig: 512, 236\r\n  offset: 52, 119\r\n  index: -1\r\ncaidai/cd_10\r\n  rotate: true\r\n  xy: 458, 342\r\n  size: 421, 132\r\n  orig: 512, 236\r\n  offset: 38, 104\r\n  index: -1\r\ncaidai/cd_11\r\n  rotate: false\r\n  xy: 685, 863\r\n  size: 446, 133\r\n  orig: 512, 236\r\n  offset: 26, 89\r\n  index: -1\r\ncaidai/cd_12\r\n  rotate: true\r\n  xy: 183, 279\r\n  size: 471, 154\r\n  orig: 512, 236\r\n  offset: 15, 74\r\n  index: -1\r\ncaidai/cd_13\r\n  rotate: false\r\n  xy: 686, 1254\r\n  size: 495, 161\r\n  orig: 512, 236\r\n  offset: 6, 57\r\n  index: -1\r\ncaidai/cd_14\r\n  rotate: true\r\n  xy: 2, 263\r\n  size: 487, 179\r\n  orig: 512, 236\r\n  offset: 0, 41\r\n  index: -1\r\ncaidai/cd_15\r\n  rotate: false\r\n  xy: 686, 998\r\n  size: 478, 120\r\n  orig: 512, 236\r\n  offset: 24, 103\r\n  index: -1\r\ncaidai/cd_16\r\n  rotate: false\r\n  xy: 686, 1120\r\n  size: 508, 132\r\n  orig: 512, 236\r\n  offset: 4, 94\r\n  index: -1\r\ncaidai/cd_17\r\n  rotate: true\r\n  xy: 1139, 564\r\n  size: 432, 116\r\n  orig: 512, 236\r\n  offset: 80, 84\r\n  index: -1\r\ncaidai/cd_18\r\n  rotate: true\r\n  xy: 1257, 653\r\n  size: 410, 124\r\n  orig: 512, 236\r\n  offset: 68, 67\r\n  index: -1\r\ncaidai/cd_19\r\n  rotate: false\r\n  xy: 260, 2\r\n  size: 432, 119\r\n  orig: 512, 236\r\n  offset: 57, 61\r\n  index: -1\r\ncaidai/cd_20\r\n  rotate: false\r\n  xy: 685, 742\r\n  size: 451, 119\r\n  orig: 512, 236\r\n  offset: 47, 48\r\n  index: -1\r\ncaidai/cd_21\r\n  rotate: true\r\n  xy: 339, 290\r\n  size: 460, 117\r\n  orig: 512, 236\r\n  offset: 40, 35\r\n  index: -1\r\ncaidai/cd_22\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 1, 1\r\n  orig: 1, 1\r\n  offset: 0, 0\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "c1806976-ce72-4f9e-b97e-ba8276a5de22"
+  "animations": {
+    "baodian": {
+      "slots": {
+        "baodian/picV382_boom_huangJin_000": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.0667,
+              "name": "baodian/picV382_boom_huangJin_000"
+            },
+            {
+              "time": 0.1,
+              "name": "baodian/picV382_boom_huangJin_001"
+            },
+            {
+              "time": 0.1667,
+              "name": "baodian/picV382_boom_huangJin_002"
+            },
+            {
+              "time": 0.2333,
+              "name": "baodian/picV382_boom_huangJin_003"
+            },
+            {
+              "time": 0.3,
+              "name": "baodian/picV382_boom_huangJin_004"
+            },
+            {
+              "time": 0.3667,
+              "name": "baodian/picV382_boom_huangJin_005"
+            },
+            {
+              "time": 0.4333,
+              "name": "baodian/picV382_boom_huangJin_006"
+            },
+            {
+              "time": 0.4667,
+              "name": "baodian/picV382_boom_huangJin_007"
+            },
+            {
+              "time": 0.5,
+              "name": "baodian/picV382_boom_huangJin_008"
+            },
+            {
+              "time": 0.5667,
+              "name": null
+            }
+          ]
+        },
+        "baodian_117": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffff00"
+            },
+            {
+              "time": 0.0667,
+              "color": "ffffffff",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.4,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.5333,
+              "color": "ffffff00"
+            }
+          ]
+        },
+        "caidai/cd_01": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "caidai/cd_01"
+            },
+            {
+              "time": 0.1,
+              "name": null
+            },
+            {
+              "time": 0.1333,
+              "name": "caidai/cd_03"
+            },
+            {
+              "time": 0.2,
+              "name": "caidai/cd_04"
+            },
+            {
+              "time": 0.2667,
+              "name": "caidai/cd_05"
+            },
+            {
+              "time": 0.3,
+              "name": "caidai/cd_06"
+            },
+            {
+              "time": 0.3667,
+              "name": "caidai/cd_07"
+            },
+            {
+              "time": 0.4333,
+              "name": "caidai/cd_08"
+            },
+            {
+              "time": 0.5,
+              "name": "caidai/cd_09"
+            },
+            {
+              "time": 0.5333,
+              "name": "caidai/cd_10"
+            },
+            {
+              "time": 0.6,
+              "name": "caidai/cd_11"
+            },
+            {
+              "time": 0.6667,
+              "name": "caidai/cd_12"
+            },
+            {
+              "time": 0.7333,
+              "name": "caidai/cd_13"
+            },
+            {
+              "time": 0.7667,
+              "name": "caidai/cd_14"
+            },
+            {
+              "time": 0.8333,
+              "name": "caidai/cd_15"
+            },
+            {
+              "time": 0.9,
+              "name": "caidai/cd_16"
+            },
+            {
+              "time": 0.9667,
+              "name": "caidai/cd_17"
+            },
+            {
+              "time": 1,
+              "name": "caidai/cd_18"
+            },
+            {
+              "time": 1.0667,
+              "name": "caidai/cd_19"
+            },
+            {
+              "time": 1.1333,
+              "name": "caidai/cd_20"
+            },
+            {
+              "time": 1.2,
+              "name": "caidai/cd_21"
+            },
+            {
+              "time": 1.2333,
+              "name": "caidai/cd_22"
+            },
+            {
+              "time": 1.3,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "huang_g_bd": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 9.21,
+              "y": 267.03
+            },
+            {
+              "time": 0.0667,
+              "x": -1.57,
+              "y": -12.82,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.4,
+              "x": -1.57,
+              "y": -12.82
+            },
+            {
+              "time": 0.5333,
+              "x": -1.57,
+              "y": 54.45
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.414,
+              "y": 1.76
+            },
+            {
+              "time": 0.0667,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.4,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.5333,
+              "x": 1.368,
+              "y": 1.61
+            }
+          ]
+        }
+      }
     }
-  ],
-  "textureNames": [
-    "baodian_huang.png"
-  ],
-  "scale": 1
+  },
+  "_name": "baodian_huang"
 }

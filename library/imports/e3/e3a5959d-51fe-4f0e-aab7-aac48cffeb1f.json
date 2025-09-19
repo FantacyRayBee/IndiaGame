@@ -1,180 +1,165 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "fire2",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "nkFEltCdfa4eDYnIGjw3g0TQCSE",
-      "spine": "3.8.99",
-      "x": -150,
-      "y": -150,
-      "width": 300,
-      "height": 300,
-      "images": "",
-      "audio": ""
-    },
-    "bones": [
-      {
-        "name": "root",
-        "scaleX": 0.7,
-        "scaleY": 0.7
-      }
-    ],
-    "slots": [
-      {
-        "name": "fire2",
-        "bone": "root",
-        "attachment": "images/Fire_14"
-      }
-    ],
-    "skins": [
-      {
-        "name": "default",
-        "attachments": {
-          "fire2": {
-            "images/Fire_00": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_01": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_02": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_03": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_04": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_05": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_06": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_07": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_08": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_09": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_10": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_11": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_12": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_13": {
-              "width": 300,
-              "height": 300
-            },
-            "images/Fire_14": {
-              "width": 300,
-              "height": 300
-            }
+  "skeleton": {
+    "hash": "nkFEltCdfa4eDYnIGjw3g0TQCSE",
+    "spine": "3.8.99",
+    "x": -150,
+    "y": -150,
+    "width": 300,
+    "height": 300,
+    "images": "",
+    "audio": ""
+  },
+  "bones": [
+    {
+      "name": "root",
+      "scaleX": 0.7,
+      "scaleY": 0.7
+    }
+  ],
+  "slots": [
+    {
+      "name": "fire2",
+      "bone": "root",
+      "attachment": "images/Fire_14"
+    }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "fire2": {
+          "images/Fire_00": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_01": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_02": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_03": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_04": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_05": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_06": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_07": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_08": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_09": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_10": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_11": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_12": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_13": {
+            "width": 300,
+            "height": 300
+          },
+          "images/Fire_14": {
+            "width": 300,
+            "height": 300
           }
         }
       }
-    ],
-    "animations": {
-      "animation": {
-        "slots": {
-          "fire2": {
-            "attachment": [
-              {
-                "name": "images/Fire_00"
-              },
-              {
-                "time": 0.0667,
-                "name": "images/Fire_01"
-              },
-              {
-                "time": 0.1333,
-                "name": "images/Fire_02"
-              },
-              {
-                "time": 0.2,
-                "name": "images/Fire_03"
-              },
-              {
-                "time": 0.2667,
-                "name": "images/Fire_04"
-              },
-              {
-                "time": 0.3333,
-                "name": "images/Fire_05"
-              },
-              {
-                "time": 0.4,
-                "name": "images/Fire_06"
-              },
-              {
-                "time": 0.4667,
-                "name": "images/Fire_07"
-              },
-              {
-                "time": 0.5333,
-                "name": "images/Fire_08"
-              },
-              {
-                "time": 0.6,
-                "name": "images/Fire_09"
-              },
-              {
-                "time": 0.6667,
-                "name": "images/Fire_10"
-              },
-              {
-                "time": 0.7333,
-                "name": "images/Fire_11"
-              },
-              {
-                "time": 0.8,
-                "name": "images/Fire_12"
-              },
-              {
-                "time": 0.8667,
-                "name": "images/Fire_13"
-              },
-              {
-                "time": 0.9333,
-                "name": "images/Fire_14"
-              }
-            ]
-          }
+    }
+  ],
+  "animations": {
+    "animation": {
+      "slots": {
+        "fire2": {
+          "attachment": [
+            {
+              "name": "images/Fire_00"
+            },
+            {
+              "time": 0.0667,
+              "name": "images/Fire_01"
+            },
+            {
+              "time": 0.1333,
+              "name": "images/Fire_02"
+            },
+            {
+              "time": 0.2,
+              "name": "images/Fire_03"
+            },
+            {
+              "time": 0.2667,
+              "name": "images/Fire_04"
+            },
+            {
+              "time": 0.3333,
+              "name": "images/Fire_05"
+            },
+            {
+              "time": 0.4,
+              "name": "images/Fire_06"
+            },
+            {
+              "time": 0.4667,
+              "name": "images/Fire_07"
+            },
+            {
+              "time": 0.5333,
+              "name": "images/Fire_08"
+            },
+            {
+              "time": 0.6,
+              "name": "images/Fire_09"
+            },
+            {
+              "time": 0.6667,
+              "name": "images/Fire_10"
+            },
+            {
+              "time": 0.7333,
+              "name": "images/Fire_11"
+            },
+            {
+              "time": 0.8,
+              "name": "images/Fire_12"
+            },
+            {
+              "time": 0.8667,
+              "name": "images/Fire_13"
+            },
+            {
+              "time": 0.9333,
+              "name": "images/Fire_14"
+            }
+          ]
         }
       }
     }
   },
-  "_atlasText": "\r\nfire2.png\r\nsize: 531,700\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimages/Fire_00\r\n  rotate: true\r\n  xy: 352, 141\r\n  size: 139, 179\r\n  orig: 210, 210\r\n  offset: 34, 12\r\n  index: -1\r\nimages/Fire_01\r\n  rotate: true\r\n  xy: 0, 423\r\n  size: 138, 172\r\n  orig: 210, 210\r\n  offset: 34, 16\r\n  index: -1\r\nimages/Fire_02\r\n  rotate: true\r\n  xy: 174, 422\r\n  size: 138, 180\r\n  orig: 210, 210\r\n  offset: 34, 2\r\n  index: -1\r\nimages/Fire_03\r\n  rotate: true\r\n  xy: 169, 1\r\n  size: 139, 181\r\n  orig: 210, 210\r\n  offset: 34, 4\r\n  index: -1\r\nimages/Fire_04\r\n  rotate: true\r\n  xy: 356, 422\r\n  size: 138, 170\r\n  orig: 210, 210\r\n  offset: 34, 16\r\n  index: -1\r\nimages/Fire_05\r\n  rotate: true\r\n  xy: 0, 283\r\n  size: 138, 168\r\n  orig: 210, 210\r\n  offset: 34, 16\r\n  index: -1\r\nimages/Fire_06\r\n  rotate: true\r\n  xy: 170, 282\r\n  size: 138, 174\r\n  orig: 210, 210\r\n  offset: 34, 13\r\n  index: -1\r\nimages/Fire_07\r\n  rotate: true\r\n  xy: 0, 2\r\n  size: 139, 167\r\n  orig: 210, 210\r\n  offset: 33, 15\r\n  index: -1\r\nimages/Fire_08\r\n  rotate: true\r\n  xy: 0, 563\r\n  size: 137, 169\r\n  orig: 210, 210\r\n  offset: 34, 15\r\n  index: -1\r\nimages/Fire_09\r\n  rotate: true\r\n  xy: 346, 282\r\n  size: 138, 172\r\n  orig: 210, 210\r\n  offset: 34, 15\r\n  index: -1\r\nimages/Fire_10\r\n  rotate: true\r\n  xy: 352, 0\r\n  size: 139, 169\r\n  orig: 210, 210\r\n  offset: 33, 16\r\n  index: -1\r\nimages/Fire_11\r\n  rotate: true\r\n  xy: 171, 563\r\n  size: 137, 170\r\n  orig: 210, 210\r\n  offset: 34, 16\r\n  index: -1\r\nimages/Fire_12\r\n  rotate: true\r\n  xy: 0, 143\r\n  size: 138, 168\r\n  orig: 210, 210\r\n  offset: 34, 16\r\n  index: -1\r\nimages/Fire_13\r\n  rotate: true\r\n  xy: 170, 142\r\n  size: 138, 180\r\n  orig: 210, 210\r\n  offset: 34, 11\r\n  index: -1\r\nimages/Fire_14\r\n  rotate: true\r\n  xy: 343, 562\r\n  size: 138, 178\r\n  orig: 210, 210\r\n  offset: 34, 11\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "1231432f-396f-4319-9135-1e50f41521f0"
-    }
-  ],
-  "textureNames": [
-    "fire2.png"
-  ],
-  "scale": 1
+  "_name": "fire2"
 }

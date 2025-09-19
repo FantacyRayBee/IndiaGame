@@ -1,2512 +1,2497 @@
 {
-  "__type__": "sp.SkeletonData",
-  "_name": "dengtiao_bian",
-  "_objFlags": 0,
-  "_native": "",
-  "_skeletonJson": {
-    "skeleton": {
-      "hash": "6Uzue2zcHYRNzYWPhZol3IHOiuY",
-      "spine": "3.7.94",
-      "width": 750,
-      "height": 1625,
-      "images": "",
-      "audio": ""
+  "skeleton": {
+    "hash": "6Uzue2zcHYRNzYWPhZol3IHOiuY",
+    "spine": "3.7.94",
+    "width": 750,
+    "height": 1625,
+    "images": "",
+    "audio": ""
+  },
+  "bones": [
+    {
+      "name": "root"
     },
-    "bones": [
-      {
-        "name": "root"
-      },
-      {
-        "name": "dengkuai_y",
-        "parent": "root",
-        "y": 152
-      },
-      {
-        "name": "001",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 275.97
-      },
-      {
-        "name": "01",
-        "parent": "001",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "002",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 235.15
-      },
-      {
-        "name": "02",
-        "parent": "002",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "003",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 194.87
-      },
-      {
-        "name": "03",
-        "parent": "003",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "004",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 155.82
-      },
-      {
-        "name": "04",
-        "parent": "004",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "005",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 115.38
-      },
-      {
-        "name": "05",
-        "parent": "005",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "006",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 74.7
-      },
-      {
-        "name": "06",
-        "parent": "006",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "007",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": 35.59
-      },
-      {
-        "name": "07",
-        "parent": "007",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "008",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -3.95
-      },
-      {
-        "name": "08",
-        "parent": "008",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "011",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -124.79
-      },
-      {
-        "name": "11",
-        "parent": "011",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "012",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -164.81
-      },
-      {
-        "name": "12",
-        "parent": "012",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "013",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -204.46
-      },
-      {
-        "name": "13",
-        "parent": "013",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "009",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -44.23
-      },
-      {
-        "name": "09",
-        "parent": "009",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "010",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -84.76
-      },
-      {
-        "name": "10",
-        "parent": "010",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "014",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -244.62
-      },
-      {
-        "name": "14",
-        "parent": "014",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "015",
-        "parent": "dengkuai_y",
-        "x": 300.56,
-        "y": -284.42
-      },
-      {
-        "name": "15",
-        "parent": "015",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "dengkuai_z",
-        "parent": "root",
-        "y": 152,
-        "scaleX": -1
-      },
-      {
-        "name": "1",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 275.97
-      },
-      {
-        "name": "2",
-        "parent": "1",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "3",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 235.15
-      },
-      {
-        "name": "4",
-        "parent": "3",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "5",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 194.87
-      },
-      {
-        "name": "6",
-        "parent": "5",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "7",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 155.82
-      },
-      {
-        "name": "8",
-        "parent": "7",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "9",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 115.38
-      },
-      {
-        "name": "16",
-        "parent": "9",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "17",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 74.7
-      },
-      {
-        "name": "18",
-        "parent": "17",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "19",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": 35.59
-      },
-      {
-        "name": "20",
-        "parent": "19",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "21",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -3.95
-      },
-      {
-        "name": "22",
-        "parent": "21",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "23",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -124.79
-      },
-      {
-        "name": "24",
-        "parent": "23",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "25",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -164.81
-      },
-      {
-        "name": "26",
-        "parent": "25",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "27",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -204.46
-      },
-      {
-        "name": "28",
-        "parent": "27",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "29",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -44.23
-      },
-      {
-        "name": "30",
-        "parent": "29",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "31",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -84.76
-      },
-      {
-        "name": "32",
-        "parent": "31",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "33",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -244.62
-      },
-      {
-        "name": "34",
-        "parent": "33",
-        "x": 33.42,
-        "y": 3.43
-      },
-      {
-        "name": "35",
-        "parent": "dengkuai_z",
-        "x": 300.56,
-        "y": -284.42
-      },
-      {
-        "name": "36",
-        "parent": "35",
-        "x": 33.42,
-        "y": 3.43
-      }
-    ],
-    "slots": [
-      {
-        "name": "dengkuai_y",
-        "bone": "dengkuai_y",
-        "attachment": "dengkuai_y"
-      },
-      {
-        "name": "dengkuai_z",
-        "bone": "dengkuai_z",
-        "attachment": "dengkuai_y"
-      },
-      {
-        "name": "img/dengkuai",
-        "bone": "01",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai16",
-        "bone": "2",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai8",
-        "bone": "08",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai23",
-        "bone": "22",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai2",
-        "bone": "02",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai17",
-        "bone": "4",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai9",
-        "bone": "11",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai24",
-        "bone": "24",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai3",
-        "bone": "03",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai18",
-        "bone": "6",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai10",
-        "bone": "12",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai25",
-        "bone": "26",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai4",
-        "bone": "04",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai19",
-        "bone": "8",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai11",
-        "bone": "13",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai26",
-        "bone": "28",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai12",
-        "bone": "14",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai29",
-        "bone": "34",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai15",
-        "bone": "15",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai30",
-        "bone": "36",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai5",
-        "bone": "05",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai20",
-        "bone": "16",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai6",
-        "bone": "06",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai21",
-        "bone": "18",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai13",
-        "bone": "09",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai27",
-        "bone": "30",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai7",
-        "bone": "07",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai22",
-        "bone": "20",
-        "color": "599cff21",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai14",
-        "bone": "10",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      },
-      {
-        "name": "img/dengkuai28",
-        "bone": "32",
-        "color": "599dff6e",
-        "attachment": "img/dengkuai"
-      }
-    ],
-    "skins": {
-      "default": {
+    {
+      "name": "dengkuai_y",
+      "parent": "root",
+      "y": 152
+    },
+    {
+      "name": "001",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 275.97
+    },
+    {
+      "name": "01",
+      "parent": "001",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "002",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 235.15
+    },
+    {
+      "name": "02",
+      "parent": "002",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "003",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 194.87
+    },
+    {
+      "name": "03",
+      "parent": "003",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "004",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 155.82
+    },
+    {
+      "name": "04",
+      "parent": "004",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "005",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 115.38
+    },
+    {
+      "name": "05",
+      "parent": "005",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "006",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 74.7
+    },
+    {
+      "name": "06",
+      "parent": "006",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "007",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": 35.59
+    },
+    {
+      "name": "07",
+      "parent": "007",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "008",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -3.95
+    },
+    {
+      "name": "08",
+      "parent": "008",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "011",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -124.79
+    },
+    {
+      "name": "11",
+      "parent": "011",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "012",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -164.81
+    },
+    {
+      "name": "12",
+      "parent": "012",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "013",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -204.46
+    },
+    {
+      "name": "13",
+      "parent": "013",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "009",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -44.23
+    },
+    {
+      "name": "09",
+      "parent": "009",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "010",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -84.76
+    },
+    {
+      "name": "10",
+      "parent": "010",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "014",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -244.62
+    },
+    {
+      "name": "14",
+      "parent": "014",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "015",
+      "parent": "dengkuai_y",
+      "x": 300.56,
+      "y": -284.42
+    },
+    {
+      "name": "15",
+      "parent": "015",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "dengkuai_z",
+      "parent": "root",
+      "y": 152,
+      "scaleX": -1
+    },
+    {
+      "name": "1",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 275.97
+    },
+    {
+      "name": "2",
+      "parent": "1",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "3",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 235.15
+    },
+    {
+      "name": "4",
+      "parent": "3",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "5",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 194.87
+    },
+    {
+      "name": "6",
+      "parent": "5",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "7",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 155.82
+    },
+    {
+      "name": "8",
+      "parent": "7",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "9",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 115.38
+    },
+    {
+      "name": "16",
+      "parent": "9",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "17",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 74.7
+    },
+    {
+      "name": "18",
+      "parent": "17",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "19",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": 35.59
+    },
+    {
+      "name": "20",
+      "parent": "19",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "21",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -3.95
+    },
+    {
+      "name": "22",
+      "parent": "21",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "23",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -124.79
+    },
+    {
+      "name": "24",
+      "parent": "23",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "25",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -164.81
+    },
+    {
+      "name": "26",
+      "parent": "25",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "27",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -204.46
+    },
+    {
+      "name": "28",
+      "parent": "27",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "29",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -44.23
+    },
+    {
+      "name": "30",
+      "parent": "29",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "31",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -84.76
+    },
+    {
+      "name": "32",
+      "parent": "31",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "33",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -244.62
+    },
+    {
+      "name": "34",
+      "parent": "33",
+      "x": 33.42,
+      "y": 3.43
+    },
+    {
+      "name": "35",
+      "parent": "dengkuai_z",
+      "x": 300.56,
+      "y": -284.42
+    },
+    {
+      "name": "36",
+      "parent": "35",
+      "x": 33.42,
+      "y": 3.43
+    }
+  ],
+  "slots": [
+    {
+      "name": "dengkuai_y",
+      "bone": "dengkuai_y",
+      "attachment": "dengkuai_y"
+    },
+    {
+      "name": "dengkuai_z",
+      "bone": "dengkuai_z",
+      "attachment": "dengkuai_y"
+    },
+    {
+      "name": "img/dengkuai",
+      "bone": "01",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai16",
+      "bone": "2",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai8",
+      "bone": "08",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai23",
+      "bone": "22",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai2",
+      "bone": "02",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai17",
+      "bone": "4",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai9",
+      "bone": "11",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai24",
+      "bone": "24",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai3",
+      "bone": "03",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai18",
+      "bone": "6",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai10",
+      "bone": "12",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai25",
+      "bone": "26",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai4",
+      "bone": "04",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai19",
+      "bone": "8",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai11",
+      "bone": "13",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai26",
+      "bone": "28",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai12",
+      "bone": "14",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai29",
+      "bone": "34",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai15",
+      "bone": "15",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai30",
+      "bone": "36",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai5",
+      "bone": "05",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai20",
+      "bone": "16",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai6",
+      "bone": "06",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai21",
+      "bone": "18",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai13",
+      "bone": "09",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai27",
+      "bone": "30",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai7",
+      "bone": "07",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai22",
+      "bone": "20",
+      "color": "599cff21",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai14",
+      "bone": "10",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    },
+    {
+      "name": "img/dengkuai28",
+      "bone": "32",
+      "color": "599dff6e",
+      "attachment": "img/dengkuai"
+    }
+  ],
+  "skins": {
+    "default": {
+      "dengkuai_y": {
         "dengkuai_y": {
-          "dengkuai_y": {
-            "type": "clipping",
-            "end": "dengkuai_y",
-            "vertexCount": 16,
-            "vertices": [
-              -375.52,
-              278.48,
-              -350.84,
-              279.15,
-              -343.31,
-              285.26,
-              -301.01,
-              285.58,
-              307.24,
-              285.12,
-              342.86,
-              285.76,
-              352.4,
-              279.4,
-              374.34,
-              279.08,
-              375.05,
-              -284.61,
-              353.11,
-              -284.29,
-              345.79,
-              -291.29,
-              310.18,
-              -290.34,
-              -309.03,
-              -289.38,
-              -346.24,
-              -290.34,
-              -351.65,
-              -285.25,
-              -374.86,
-              -285.25
-            ],
-            "color": "ce3a3aff"
-          }
-        },
-        "dengkuai_z": {
-          "dengkuai_y": {
-            "type": "clipping",
-            "end": "dengkuai_y",
-            "vertexCount": 16,
-            "vertices": [
-              -375.52,
-              278.48,
-              -350.84,
-              279.15,
-              -343.31,
-              285.26,
-              -301.01,
-              285.58,
-              307.24,
-              285.12,
-              342.86,
-              285.76,
-              352.4,
-              279.4,
-              374.34,
-              279.08,
-              375.05,
-              -284.61,
-              353.11,
-              -284.29,
-              345.79,
-              -291.29,
-              310.18,
-              -290.34,
-              -309.03,
-              -289.38,
-              -346.24,
-              -290.34,
-              -351.65,
-              -285.25,
-              -374.86,
-              -285.25
-            ],
-            "color": "ce3a3aff"
-          }
-        },
-        "img/dengkuai": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai10": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai11": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai12": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai13": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai14": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai15": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai16": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai17": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai18": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai19": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai2": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai20": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai21": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai22": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai23": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai24": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai25": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai26": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai27": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai28": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai29": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai3": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai30": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai4": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai5": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai6": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai7": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai8": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        },
-        "img/dengkuai9": {
-          "img/dengkuai": {
-            "x": 0.71,
-            "y": 1.92,
-            "width": 36,
-            "height": 29
-          }
-        }
-      }
-    },
-    "animations": {
-      "pao": {
-        "slots": {
-          "img/dengkuai": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.1667,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.3,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai3": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.4667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.6667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.7,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai4": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.8333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.8667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai5": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.6667,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.8,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.0333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai6": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.8333,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.9667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.1667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.2,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai7": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.1333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.3333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.3667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai8": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.1667,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.3,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.5,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.5333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai9": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.6667,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.8,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai10": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.8333,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.9667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.1667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.2,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai11": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 2,
-                "color": "599bff20"
-              },
-              {
-                "time": 2.1333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.3333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.3667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai12": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.1667,
-                "color": "599bff20"
-              },
-              {
-                "time": 2.3,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.5,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.5333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai13": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.3333,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.4667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.6667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.7,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai14": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.6333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.8333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.8667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai15": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.3333,
-                "color": "599bff20"
-              },
-              {
-                "time": 2.4667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.6667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.7,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai16": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.3333,
-                "color": "599bff20"
-              },
-              {
-                "time": 2.4667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.6667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.7,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai17": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.1667,
-                "color": "599bff20"
-              },
-              {
-                "time": 2.3,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.5,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.5333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai18": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 2,
-                "color": "599bff20"
-              },
-              {
-                "time": 2.1333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.3333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.3667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai19": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.8333,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.9667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.1667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.2,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai20": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.6667,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.8,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 2.0333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai21": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.6333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.8333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.8667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai22": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.3333,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.4667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.6667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.7,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai23": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.1667,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.3,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.5,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.5333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai24": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.6667,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.8,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.0333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai25": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.8333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.8667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai26": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.4667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.6667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.7,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai27": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              },
-              {
-                "time": 1.1333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.3333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.3667,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai28": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.8333,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.9667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.1667,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1.2,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai29": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.1667,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.3,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5333,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai30": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3333,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.3667,
-                "color": "599bff20"
-              }
-            ]
-          }
+          "type": "clipping",
+          "end": "dengkuai_y",
+          "vertexCount": 16,
+          "vertices": [
+            -375.52,
+            278.48,
+            -350.84,
+            279.15,
+            -343.31,
+            285.26,
+            -301.01,
+            285.58,
+            307.24,
+            285.12,
+            342.86,
+            285.76,
+            352.4,
+            279.4,
+            374.34,
+            279.08,
+            375.05,
+            -284.61,
+            353.11,
+            -284.29,
+            345.79,
+            -291.29,
+            310.18,
+            -290.34,
+            -309.03,
+            -289.38,
+            -346.24,
+            -290.34,
+            -351.65,
+            -285.25,
+            -374.86,
+            -285.25
+          ],
+          "color": "ce3a3aff"
         }
       },
-      "shan": {
-        "slots": {
-          "img/dengkuai": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai2": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai3": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai4": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai5": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai6": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai7": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai8": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai9": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai10": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai11": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai12": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai13": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai14": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai15": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai16": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai17": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai18": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai19": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai20": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai21": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai22": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai23": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai24": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai25": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai26": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai27": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          },
-          "img/dengkuai28": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai29": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff74"
-              }
-            ]
-          },
-          "img/dengkuai30": {
-            "color": [
-              {
-                "time": 0,
-                "color": "599bff20"
-              },
-              {
-                "time": 0.1,
-                "color": "599bff74",
-                "curve": "stepped"
-              },
-              {
-                "time": 0.5,
-                "color": "599bff74"
-              },
-              {
-                "time": 0.6,
-                "color": "599bff20",
-                "curve": "stepped"
-              },
-              {
-                "time": 1,
-                "color": "599bff20"
-              }
-            ]
-          }
+      "dengkuai_z": {
+        "dengkuai_y": {
+          "type": "clipping",
+          "end": "dengkuai_y",
+          "vertexCount": 16,
+          "vertices": [
+            -375.52,
+            278.48,
+            -350.84,
+            279.15,
+            -343.31,
+            285.26,
+            -301.01,
+            285.58,
+            307.24,
+            285.12,
+            342.86,
+            285.76,
+            352.4,
+            279.4,
+            374.34,
+            279.08,
+            375.05,
+            -284.61,
+            353.11,
+            -284.29,
+            345.79,
+            -291.29,
+            310.18,
+            -290.34,
+            -309.03,
+            -289.38,
+            -346.24,
+            -290.34,
+            -351.65,
+            -285.25,
+            -374.86,
+            -285.25
+          ],
+          "color": "ce3a3aff"
+        }
+      },
+      "img/dengkuai": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai10": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai11": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai12": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai13": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai14": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai15": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai16": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai17": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai18": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai19": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai2": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai20": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai21": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai22": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai23": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai24": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai25": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai26": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai27": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai28": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai29": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai3": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai30": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai4": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai5": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai6": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai7": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai8": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
+        }
+      },
+      "img/dengkuai9": {
+        "img/dengkuai": {
+          "x": 0.71,
+          "y": 1.92,
+          "width": 36,
+          "height": 29
         }
       }
     }
   },
-  "_atlasText": "\r\ndengtiao_bian.png\r\nsize: 40,38\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/dengkuai\r\n  rotate: false\r\n  xy: 2, 7\r\n  size: 36, 29\r\n  orig: 36, 29\r\n  offset: 0, 0\r\n  index: -1\r\n",
-  "textures": [
-    {
-      "__uuid__": "265ab3fb-f285-4a46-ba4d-2c318d045a53"
+  "animations": {
+    "pao": {
+      "slots": {
+        "img/dengkuai": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.1667,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.3,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai3": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.4667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai4": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.8333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.8667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai5": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6667,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.8,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.0333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai6": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.8333,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.9667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.1667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.2,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai7": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.1333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.3333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.3667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai8": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.1667,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.3,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.5,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.5333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai9": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.6667,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.8,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai10": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.8333,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.9667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.1667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.2,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai11": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 2,
+              "color": "599bff20"
+            },
+            {
+              "time": 2.1333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.3333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.3667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai12": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.1667,
+              "color": "599bff20"
+            },
+            {
+              "time": 2.3,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.5,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.5333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai13": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.3333,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.4667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.6667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.7,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai14": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.6333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.8333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.8667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai15": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.3333,
+              "color": "599bff20"
+            },
+            {
+              "time": 2.4667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.6667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.7,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai16": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.3333,
+              "color": "599bff20"
+            },
+            {
+              "time": 2.4667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.6667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.7,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai17": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.1667,
+              "color": "599bff20"
+            },
+            {
+              "time": 2.3,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.5,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.5333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai18": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 2,
+              "color": "599bff20"
+            },
+            {
+              "time": 2.1333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.3333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.3667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai19": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.8333,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.9667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.1667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.2,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai20": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.6667,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.8,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 2.0333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai21": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.6333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.8333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.8667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai22": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.3333,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.4667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.6667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.7,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai23": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.1667,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.3,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.5,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.5333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai24": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6667,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.8,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.0333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai25": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.8333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.8667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai26": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.4667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai27": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            },
+            {
+              "time": 1.1333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.3333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.3667,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai28": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.8333,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.9667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.1667,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1.2,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai29": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.1667,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.3,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5333,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai30": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3333,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.3667,
+              "color": "599bff20"
+            }
+          ]
+        }
+      }
+    },
+    "shan": {
+      "slots": {
+        "img/dengkuai": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai2": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai3": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai4": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai5": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai6": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai7": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai8": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai9": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai10": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai11": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai12": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai13": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai14": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai15": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai16": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai17": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai18": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai19": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai20": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai21": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai22": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai23": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai24": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai25": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai26": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai27": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        },
+        "img/dengkuai28": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai29": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff74"
+            }
+          ]
+        },
+        "img/dengkuai30": {
+          "color": [
+            {
+              "time": 0,
+              "color": "599bff20"
+            },
+            {
+              "time": 0.1,
+              "color": "599bff74",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.5,
+              "color": "599bff74"
+            },
+            {
+              "time": 0.6,
+              "color": "599bff20",
+              "curve": "stepped"
+            },
+            {
+              "time": 1,
+              "color": "599bff20"
+            }
+          ]
+        }
+      }
     }
-  ],
-  "textureNames": [
-    "dengtiao_bian.png"
-  ],
-  "scale": 1
+  },
+  "_name": "dengtiao_bian"
 }
