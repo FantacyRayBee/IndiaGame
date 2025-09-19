@@ -1,0 +1,17 @@
+{
+  "ver": "1.1.3",
+<<<<<<<< HEAD:assets/chickenRoad/sound.meta
+  "uuid": "f68ebef4-7e13-4887-aa4d-722f49a09dac",
+========
+  "uuid": "9102aa97-40bf-4a70-b692-bcdb3130d8fe",
+>>>>>>>> dev_chicken:assets/chickenRoad/prefab.meta
+  "importer": "folder",
+  "isBundle": false,
+  "bundleName": "",
+  "priority": 1,
+  "compressionType": {},
+  "optimizeHotUpdate": {},
+  "inlineSpriteFrames": {},
+  "isRemoteBundle": {},
+  "subMetas": {}
+}
