@@ -54,6 +54,7 @@ cc.Class({
             "proto/rummy/gameservice",
             "proto/rocket/gameservice",
             "proto/aviator/gameservice",
+            "proto/chickenroad/gameservice",
             "proto/zoo/gameservice",
             "proto/cricket/gameservice",
             "proto/zeus/gameservice",

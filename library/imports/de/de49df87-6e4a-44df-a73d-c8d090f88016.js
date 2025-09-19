@@ -586,6 +586,18 @@ cc.Class({
       "gameservice.sethead": "SetHeadAck"
     };
 
+    // 小鸡
+    this.protoChicken = {
+      "gameservice.pingpang": "PingPang",
+      "gameservice.login": "LoginAck",
+      "gameservice.loadwhole": "LoadWholeAck",
+      "gameservice.exit": "ExitAck",
+      "gameservice.getplayerrecord": "GetPlayerRecordAck",
+      "gameservice.sethead": "SetHeadAck",
+      "gameservice.bet": "BetAck",
+      "gameservice.cash": "CashAck"
+    };
+
     // 动物园
     this.protoZoo = {
       "gameservice.login": "LoginAck",
@@ -682,6 +694,8 @@ cc.Class({
       return this.protoRocket;
     } else if (gameName == "aviator") {
       return this.protoAviator;
+    } else if (gameName == "chickenroad") {
+      return this.protoChicken;
     } else if (gameName == "zooGame") {
       return this.protoZoo;
     } else if (gameName == "cricketGame") {
