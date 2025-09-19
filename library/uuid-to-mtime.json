@@ -99,11 +99,6 @@
     "meta": 1758181662398,
     "relativePath": "tpGame"
   },
-  "faaef6f1-6f01-4539-81d9-59932688893f": {
-    "asset": 1757322086363,
-    "meta": 1758261677683,
-    "relativePath": "zeusGame"
-  },
   "40957310-212d-4d5e-9cf9-a370622ec070": {
     "asset": 1757322086433,
     "meta": 1758181662400,
@@ -925,8 +920,8 @@
     "relativePath": "ResourcesBundle\\huanPi2"
   },
   "5bbffecd-f0fe-4e1c-9cf9-37c5eed996a9": {
-    "asset": 1758247284218,
-    "meta": 1758247609145,
+    "asset": 1758248762692,
+    "meta": 1758268762547,
     "relativePath": "ResourcesBundle\\NewPlan"
   },
   "61a5f0c4-c0da-44c9-a366-79b66c19c855": {
@@ -1179,41 +1174,6 @@
     "meta": 1758181663260,
     "relativePath": "tpGame\\WaitStartTip"
   },
-  "c6ab5c9a-4265-4fef-97d3-64cd3b4ff0a0": {
-    "asset": 1757322086241,
-    "meta": 1758181663269,
-    "relativePath": "zeusGame\\audios"
-  },
-  "b71e78e6-081b-443b-bca8-a463ef700123": {
-    "asset": 1758180054828,
-    "meta": 1758181663271,
-    "relativePath": "zeusGame\\fonts"
-  },
-  "491dec95-5fda-4bb5-912c-be897d09fa64": {
-    "asset": 1757322086281,
-    "meta": 1758181663272,
-    "relativePath": "zeusGame\\images"
-  },
-  "f06af664-c354-469f-936c-49f02b2f90f1": {
-    "asset": 1757322086295,
-    "meta": 1758181663273,
-    "relativePath": "zeusGame\\prefabs"
-  },
-  "a15b2665-8092-4200-bd52-ebbd8eaf871a": {
-    "asset": 1757322086295,
-    "meta": 1758181663273,
-    "relativePath": "zeusGame\\res"
-  },
-  "2cf7cbf9-7604-4550-b91d-04276e965533": {
-    "asset": 1757322086330,
-    "meta": 1758181663274,
-    "relativePath": "zeusGame\\spines"
-  },
-  "7aa8a699-9888-419e-a417-1f8e13be9131": {
-    "asset": 1758180054882,
-    "meta": 1758181663274,
-    "relativePath": "zeusGame\\src"
-  },
   "dc544731-4344-4eec-b3cb-00da33398d90": {
     "asset": 1758180054885,
     "meta": 1758181663275,
@@ -1258,11 +1218,6 @@
     "asset": 1757322085954,
     "meta": 1758181663503,
     "relativePath": "teenPatti\\teenPatti.fire"
-  },
-  "67ac8171-d45b-434c-bab2-1475d42487a4": {
-    "asset": 1757322086363,
-    "meta": 1758181663524,
-    "relativePath": "zeusGame\\zeus.fire"
   },
   "37999931-5a81-409e-9739-241c1d9acdc9": {
     "asset": 1757322083876,
@@ -5285,8 +5240,8 @@
     "relativePath": "ResourcesBundle\\huanPi2\\lobbyRes"
   },
   "c0777580-35ff-485e-ae37-a1253108b39d": {
-    "asset": 1758180053541,
-    "meta": 1758181667271,
+    "asset": 1758248523033,
+    "meta": 1758268762562,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity"
   },
   "a21d4732-d664-40e4-8439-78e13a3a8de7": {
@@ -6984,485 +6939,10 @@
     "meta": 1758181668924,
     "relativePath": "tpGame\\Sounds\\win.mp3"
   },
-  "f931c10c-f551-4339-af40-81cea6f537e5": {
-    "asset": 1757322086190,
-    "meta": 1758181668935,
-    "relativePath": "zeusGame\\audios\\addAllCoin2s.mp3"
-  },
-  "c468d39c-8990-4626-a379-ccab8702f921": {
-    "asset": 1757322086190,
-    "meta": 1758181668944,
-    "relativePath": "zeusGame\\audios\\addAllCoin3s.mp3"
-  },
-  "3e6afe54-7253-4cdd-916e-068687484457": {
-    "asset": 1757322086191,
-    "meta": 1758181668947,
-    "relativePath": "zeusGame\\audios\\allMultWordFly.mp3"
-  },
-  "1ff42dcc-8502-48c8-a260-acb43518d325": {
-    "asset": 1757322086192,
-    "meta": 1758181668946,
-    "relativePath": "zeusGame\\audios\\bigWin1End.mp3"
-  },
-  "73de641b-7fbf-4653-988f-11c2bf5701bd": {
-    "asset": 1757322086199,
-    "meta": 1758181668944,
-    "relativePath": "zeusGame\\audios\\bigWin2ShowFree.mp3"
-  },
-  "3897d489-fb57-4eaa-9fd4-b91293be4f91": {
-    "asset": 1757322086199,
-    "meta": 1758181668946,
-    "relativePath": "zeusGame\\audios\\bigWin2End.mp3"
-  },
-  "7d279c72-7f9a-47c5-8586-bd2ce1afa70d": {
-    "asset": 1757322086200,
-    "meta": 1758181668942,
-    "relativePath": "zeusGame\\audios\\bigWin2ShowNotFree.mp3"
-  },
-  "5d17c8d5-0331-446e-899e-24de690aa9c9": {
-    "asset": 1757322086198,
-    "meta": 1758181668958,
-    "relativePath": "zeusGame\\audios\\bigWin2AddCoin.mp3"
-  },
-  "aa27cd70-6f0e-4fd5-9c74-b3c1a2b283af": {
-    "asset": 1757322086205,
-    "meta": 1758181668949,
-    "relativePath": "zeusGame\\audios\\bigWin3End.mp3"
-  },
-  "4d7d011f-f9d8-40c5-a426-f573abba469a": {
-    "asset": 1757322086195,
-    "meta": 1758181668965,
-    "relativePath": "zeusGame\\audios\\bigWin1Show.mp3"
-  },
   "62e7e4a7-53d7-4cfc-be25-cd1b0a83e20c": {
     "asset": 1757322086056,
     "meta": 1758181668910,
     "relativePath": "tpGame\\WaitStartTip\\bg.png"
-  },
-  "44971899-8d23-4f14-8976-648f2b33d67a": {
-    "asset": 1757322086205,
-    "meta": 1758181668953,
-    "relativePath": "zeusGame\\audios\\bigWin3ShowFree.mp3"
-  },
-  "e299b3bd-7e83-4a1e-a653-0b18406e06d3": {
-    "asset": 1757322086204,
-    "meta": 1758181668966,
-    "relativePath": "zeusGame\\audios\\bigWin3AddCoin.mp3"
-  },
-  "da054cc4-b54f-4f43-a44f-931b69f09803": {
-    "asset": 1757322086210,
-    "meta": 1758181668948,
-    "relativePath": "zeusGame\\audios\\bigWin4End.mp3"
-  },
-  "87e2a906-ef1d-45ae-8360-39578d2ed751": {
-    "asset": 1757322086206,
-    "meta": 1758181668950,
-    "relativePath": "zeusGame\\audios\\bigWin3ShowNotFree.mp3"
-  },
-  "a454cdc7-e29d-4333-900f-77eaa02114b5": {
-    "asset": 1757322086212,
-    "meta": 1758181668952,
-    "relativePath": "zeusGame\\audios\\bigWin4ShowNotFree.mp3"
-  },
-  "9c31439e-37f9-4336-8e24-a7ed9b2b909b": {
-    "asset": 1757322086211,
-    "meta": 1758181668951,
-    "relativePath": "zeusGame\\audios\\bigWin4ShowFree.mp3"
-  },
-  "77bc1284-4e23-40f1-abe1-31720c6b5352": {
-    "asset": 1757322086209,
-    "meta": 1758181668964,
-    "relativePath": "zeusGame\\audios\\bigWin4AddCoin.mp3"
-  },
-  "d7e0fc35-a065-44b4-ac94-bc857773751a": {
-    "asset": 1757322086219,
-    "meta": 1758181668959,
-    "relativePath": "zeusGame\\audios\\bigWin5ShowFree.mp3"
-  },
-  "0fed6cfe-4944-40c9-a732-01395aea1f57": {
-    "asset": 1757322086221,
-    "meta": 1758181668954,
-    "relativePath": "zeusGame\\audios\\boom1.mp3"
-  },
-  "f0035ce7-794d-4469-9236-c661b6200a7c": {
-    "asset": 1757322086218,
-    "meta": 1758181668962,
-    "relativePath": "zeusGame\\audios\\bigWin5End.mp3"
-  },
-  "521e94e0-68d8-4fdb-a6ca-1577b40bb029": {
-    "asset": 1757322086220,
-    "meta": 1758181668959,
-    "relativePath": "zeusGame\\audios\\bigWin5ShowNotFree.mp3"
-  },
-  "9ac8fd1c-abbe-4639-8530-7d516b7bfc2b": {
-    "asset": 1757322086222,
-    "meta": 1758181668955,
-    "relativePath": "zeusGame\\audios\\boom3.mp3"
-  },
-  "ccea4f1c-edec-415b-b6cc-247dcca101ae": {
-    "asset": 1757322086221,
-    "meta": 1758181668956,
-    "relativePath": "zeusGame\\audios\\boom2.mp3"
-  },
-  "aa7bdd82-53f6-4357-a1e9-e6478b30e94a": {
-    "asset": 1757322086222,
-    "meta": 1758181668957,
-    "relativePath": "zeusGame\\audios\\buyFreeTipsCliclOk.mp3"
-  },
-  "9b9e4d0b-9e05-4501-85d4-a1dd7b79a329": {
-    "asset": 1757322086222,
-    "meta": 1758181668958,
-    "relativePath": "zeusGame\\audios\\buyFreeTipsHide.mp3"
-  },
-  "7cb6c103-1012-4666-a038-c2e56b73f703": {
-    "asset": 1757322086217,
-    "meta": 1758181668990,
-    "relativePath": "zeusGame\\audios\\bigWin5AddCoin.mp3"
-  },
-  "12a327de-797e-4ace-bc70-db787ada5b80": {
-    "asset": 1757322086223,
-    "meta": 1758181668961,
-    "relativePath": "zeusGame\\audios\\buyFreeTipsShow.mp3"
-  },
-  "a6b9c185-069d-419e-95b1-0984b4e5082c": {
-    "asset": 1757322086224,
-    "meta": 1758181668974,
-    "relativePath": "zeusGame\\audios\\clickNormalBtn.mp3"
-  },
-  "af606d61-15e8-4784-b246-7be822dfdbe7": {
-    "asset": 1757322086224,
-    "meta": 1758181668971,
-    "relativePath": "zeusGame\\audios\\click125Times.mp3"
-  },
-  "24fcee3d-0d78-4c77-a27f-cf21642878b8": {
-    "asset": 1757322086225,
-    "meta": 1758181668976,
-    "relativePath": "zeusGame\\audios\\flyMultScore.mp3"
-  },
-  "c1420672-17b5-4024-927a-f42dd0132625": {
-    "asset": 1757322086226,
-    "meta": 1758181668978,
-    "relativePath": "zeusGame\\audios\\freeFinished.mp3"
-  },
-  "59df97d0-4b28-4f9c-94a8-823d83a7678a": {
-    "asset": 1757322086224,
-    "meta": 1758181668977,
-    "relativePath": "zeusGame\\audios\\clickSpinBtn.mp3"
-  },
-  "1326a06f-57c0-4065-9d5c-15b3bed2000d": {
-    "asset": 1757322086231,
-    "meta": 1758181668981,
-    "relativePath": "zeusGame\\audios\\freeTipsLongEffect.mp3"
-  },
-  "754f64eb-8fbc-46e3-b5b5-cbdf5e98f9c1": {
-    "asset": 1757322086228,
-    "meta": 1758181668985,
-    "relativePath": "zeusGame\\audios\\freeFinishedResultShow.mp3"
-  },
-  "128d41df-1904-43ba-8d15-ed5639619430": {
-    "asset": 1757322086227,
-    "meta": 1758181668989,
-    "relativePath": "zeusGame\\audios\\freeFinishedResultLongEffect.mp3"
-  },
-  "8459d43c-0377-4618-a66d-fbe54fb32a2e": {
-    "asset": 1757322086232,
-    "meta": 1758181668983,
-    "relativePath": "zeusGame\\audios\\freeTipsShow.mp3"
-  },
-  "4124a259-b6a2-4646-a31e-da1724743ee5": {
-    "asset": 1757322086233,
-    "meta": 1758181668986,
-    "relativePath": "zeusGame\\audios\\freeXuLi2.mp3"
-  },
-  "534f14d0-d78c-4182-b4f1-41477fc57168": {
-    "asset": 1757322086231,
-    "meta": 1758181669112,
-    "relativePath": "zeusGame\\audios\\freeStateBg.mp3"
-  },
-  "85a7530b-2018-47c8-b037-024a9beb8e13": {
-    "asset": 1757322086233,
-    "meta": 1758181668991,
-    "relativePath": "zeusGame\\audios\\freeXuLi3.mp3"
-  },
-  "3d9a327c-b5d3-4cfe-8204-b0166a3662d4": {
-    "asset": 1757322086232,
-    "meta": 1758181668987,
-    "relativePath": "zeusGame\\audios\\freeXuLi1.mp3"
-  },
-  "ec590c79-1e78-4f55-a40a-ecaec92a732a": {
-    "asset": 1757322086234,
-    "meta": 1758181668993,
-    "relativePath": "zeusGame\\audios\\headMultAdd.mp3"
-  },
-  "b0394044-b017-4089-bd73-feb2931bc505": {
-    "asset": 1757322086234,
-    "meta": 1758181668994,
-    "relativePath": "zeusGame\\audios\\lightNing.mp3"
-  },
-  "e69fce58-1ee8-48ba-a21d-21cb690f7657": {
-    "asset": 1757322086242,
-    "meta": 1758181668972,
-    "relativePath": "zeusGame\\fonts\\auto-atlas.pac"
-  },
-  "ca72b397-742a-4bda-814c-e86da8744cd4": {
-    "asset": 1757322086242,
-    "meta": 1758181678726,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num1.fnt"
-  },
-  "55becfcc-42ce-474e-93f9-1e33c9daf103": {
-    "asset": 1757322086234,
-    "meta": 1758181668998,
-    "relativePath": "zeusGame\\audios\\multEleShow.mp3"
-  },
-  "48aa9a1f-3f7a-44b0-946e-0c51fe852211": {
-    "asset": 1757322086243,
-    "meta": 1758181678727,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num2.fnt"
-  },
-  "88d06cc6-e128-4bf6-9718-c4a1cc8b8d75": {
-    "asset": 1757322086237,
-    "meta": 1758181668997,
-    "relativePath": "zeusGame\\audios\\reachBottom.mp3"
-  },
-  "eab70175-4f0c-4481-ba91-999f03d03b18": {
-    "asset": 1757322086244,
-    "meta": 1758181678729,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num3.fnt"
-  },
-  "36a2eee4-5927-4dcd-802d-c9117535d8a5": {
-    "asset": 1757322086237,
-    "meta": 1758181668996,
-    "relativePath": "zeusGame\\audios\\normalXuLi.mp3"
-  },
-  "0b9e64e0-d98b-4179-95a7-80b33eb6d1be": {
-    "asset": 1757322086244,
-    "meta": 1758181678730,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num4.fnt"
-  },
-  "1c3729a7-8a2c-4c11-8ff6-5d64ae4374a1": {
-    "asset": 1757322086238,
-    "meta": 1758181669181,
-    "relativePath": "zeusGame\\audios\\reachOut.mp3"
-  },
-  "7afcdf7a-03ae-46c8-b8f4-cb8cafd2ae80": {
-    "asset": 1757322086245,
-    "meta": 1758181678731,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num5.fnt"
-  },
-  "4b268381-87ed-4105-9a1e-43cf1fbef122": {
-    "asset": 1757322086239,
-    "meta": 1758181669021,
-    "relativePath": "zeusGame\\audios\\roleLightNing.mp3"
-  },
-  "ba125dd7-b837-4bb2-90a5-30bfc065f625": {
-    "asset": 1757322086246,
-    "meta": 1758181678732,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num6.fnt"
-  },
-  "6da18c2d-3c37-4760-986a-5f0e8a6b97cb": {
-    "asset": 1757322086236,
-    "meta": 1758181669365,
-    "relativePath": "zeusGame\\audios\\normalStateBg.mp3"
-  },
-  "cec3a5b4-dfba-47ec-92dd-cd04e96375a0": {
-    "asset": 1757322086247,
-    "meta": 1758181678733,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num7.fnt"
-  },
-  "98aa2729-6072-495a-a6fd-0162638025f1": {
-    "asset": 1757322086239,
-    "meta": 1758181669120,
-    "relativePath": "zeusGame\\audios\\scatterEleAppear.mp3"
-  },
-  "e25a51ce-2b87-4282-8119-7800ddb01ed4": {
-    "asset": 1757322086248,
-    "meta": 1758181678734,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num8.fnt"
-  },
-  "52f85654-1f7f-4365-b431-a23d5964e9d7": {
-    "asset": 1757322086240,
-    "meta": 1758181669117,
-    "relativePath": "zeusGame\\audios\\scatterTrigger.mp3"
-  },
-  "b094737b-1326-4fe0-a274-6cfb8fa964ac": {
-    "asset": 1757322086249,
-    "meta": 1758181678735,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num9.fnt"
-  },
-  "cca0c647-bab7-4c03-a0bf-4411423c10ed": {
-    "asset": 1757322086241,
-    "meta": 1758181669173,
-    "relativePath": "zeusGame\\audios\\scoreMultiply.mp3"
-  },
-  "1f354bf3-e449-49d1-aae8-23bb923816b6": {
-    "asset": 1757322086240,
-    "meta": 1758181669011,
-    "relativePath": "zeusGame\\audios\\scatterEleAppearFree.mp3"
-  },
-  "311afe8f-efbd-4445-82d8-a405bab7eccb": {
-    "asset": 1758180054839,
-    "meta": 1758181668988,
-    "relativePath": "zeusGame\\images\\folder"
-  },
-  "8dfb998f-1769-4988-9226-3f8cb4d16d28": {
-    "asset": 1758180054850,
-    "meta": 1758181668989,
-    "relativePath": "zeusGame\\images\\gatesofolympus"
-  },
-  "8781ec98-624d-4ed2-af43-1322e5dd0d67": {
-    "asset": 1758180054851,
-    "meta": 1758181668990,
-    "relativePath": "zeusGame\\images\\symbols"
-  },
-  "e29cd368-d603-4d48-a1e2-4ed6670ec6ef": {
-    "asset": 1757322086241,
-    "meta": 1758181669352,
-    "relativePath": "zeusGame\\audios\\scoreMultiplyEnd.mp3"
-  },
-  "6fea6bb7-0b73-4662-aad4-c133d94b98e1": {
-    "asset": 1758180054858,
-    "meta": 1758181668991,
-    "relativePath": "zeusGame\\images\\text"
-  },
-  "8a335b67-5a1c-404a-ab08-5e780a03ed83": {
-    "asset": 1758180054859,
-    "meta": 1758181668993,
-    "relativePath": "zeusGame\\spines\\Boom"
-  },
-  "1ce8c1dd-fa00-4575-9c4d-83fe9918ee72": {
-    "asset": 1758180054874,
-    "meta": 1758181668994,
-    "relativePath": "zeusGame\\spines\\enterFree"
-  },
-  "514fac33-683d-482b-880a-50e2adb9cdc8": {
-    "asset": 1758180054875,
-    "meta": 1758181668995,
-    "relativePath": "zeusGame\\spines\\fall_coins"
-  },
-  "45d0dfb1-39f8-4fb0-b843-248c2b21f7e0": {
-    "asset": 1758180054860,
-    "meta": 1758181668995,
-    "relativePath": "zeusGame\\spines\\Fire1"
-  },
-  "4ab46d86-41b1-4d82-829e-c348c617eba1": {
-    "asset": 1757322086294,
-    "meta": 1758181669133,
-    "relativePath": "zeusGame\\prefabs\\zeusBuyFreeTips.prefab"
-  },
-  "05342380-5033-4878-8bd7-2ce33924b44b": {
-    "asset": 1758180054861,
-    "meta": 1758181668996,
-    "relativePath": "zeusGame\\spines\\Fire2"
-  },
-  "078fc0cd-faa3-4baa-ae22-65d6e92f94f1": {
-    "asset": 1757322086294,
-    "meta": 1758181669161,
-    "relativePath": "zeusGame\\prefabs\\zeusChangeStateTips.prefab"
-  },
-  "13936eae-41f5-4696-9a4d-ef44db1e824e": {
-    "asset": 1758180054864,
-    "meta": 1758181668997,
-    "relativePath": "zeusGame\\spines\\Renwu"
-  },
-  "cb4159fd-32c8-4f57-9177-0a6fb3bebe3e": {
-    "asset": 1757322086295,
-    "meta": 1758181669160,
-    "relativePath": "zeusGame\\prefabs\\zeusRewardTips.prefab"
-  },
-  "9cb3a2e0-0bfa-434a-8b9b-1b3dd987fe57": {
-    "asset": 1758180054875,
-    "meta": 1758181668998,
-    "relativePath": "zeusGame\\spines\\reward_frame"
-  },
-  "13273704-4881-405d-9f1e-4b4edc1f4cf6": {
-    "asset": 1757322086295,
-    "meta": 1758181669129,
-    "relativePath": "zeusGame\\res\\Symbol.csv"
-  },
-  "9249b412-482d-48b3-acd6-75ac1d289976": {
-    "asset": 1757322086354,
-    "meta": 1758181668999,
-    "relativePath": "zeusGame\\spines\\symbols"
-  },
-  "c78a1dc6-6d8f-4383-ac8b-750995d44683": {
-    "asset": 1758180054865,
-    "meta": 1758181668999,
-    "relativePath": "zeusGame\\spines\\WIN"
-  },
-  "e535a36e-0884-4e08-af1b-e2c2d36f7575": {
-    "asset": 1758180054867,
-    "meta": 1758181669000,
-    "relativePath": "zeusGame\\spines\\X2"
-  },
-  "a32ba7bc-0e00-4e9a-ad98-9cc49a38cbb4": {
-    "asset": 1758180054869,
-    "meta": 1758181669000,
-    "relativePath": "zeusGame\\spines\\ZSSF"
-  },
-  "e9b9747b-7186-4547-9af5-60b15fc106db": {
-    "asset": 1757322086355,
-    "meta": 1758181669010,
-    "relativePath": "zeusGame\\src\\zeusAudiosCtrl.js"
-  },
-  "fd457857-e992-4d85-8e4c-595f98b013b9": {
-    "asset": 1757322086356,
-    "meta": 1758181669021,
-    "relativePath": "zeusGame\\src\\zeusBottomAreaCtrl.js"
-  },
-  "6b1b79d1-9560-4f3b-be04-34bc415ba156": {
-    "asset": 1757322086356,
-    "meta": 1758181669025,
-    "relativePath": "zeusGame\\src\\zeusBuyFreeTipsCtrl.js"
-  },
-  "b371cd1b-7959-4e68-aa8e-e290ac57c34d": {
-    "asset": 1757322086356,
-    "meta": 1758181669033,
-    "relativePath": "zeusGame\\src\\zeusCellCtrl.js"
-  },
-  "d4148778-20a3-4cfb-acdc-74ddb4ce135a": {
-    "asset": 1757322086357,
-    "meta": 1758181669081,
-    "relativePath": "zeusGame\\src\\zeusChangeStateTipsCtrl.js"
-  },
-  "545dd7d4-6a18-4ff0-8378-5ff93fb2ab7c": {
-    "asset": 1757322086357,
-    "meta": 1758181669085,
-    "relativePath": "zeusGame\\src\\zeusFiresAreaCtrl.js"
-  },
-  "ee68ae4d-2095-4450-a22e-afe4e90c56d7": {
-    "asset": 1757322086358,
-    "meta": 1758181669095,
-    "relativePath": "zeusGame\\src\\zeusHeadAreaCtrl.js"
-  },
-  "81aaa65e-a15e-4f4c-9aa5-ceae2fa07d15": {
-    "asset": 1757322086358,
-    "meta": 1758181669107,
-    "relativePath": "zeusGame\\src\\zeusLeftAreaCtrl.js"
-  },
-  "d7af4d90-1e6f-4564-a0e4-923f682afb58": {
-    "asset": 1757322086358,
-    "meta": 1758181669111,
-    "relativePath": "zeusGame\\src\\zeusMyCoinCtrl.js"
-  },
-  "f8e3f653-3a47-4aef-9ef7-ab62b45c1dc0": {
-    "asset": 1757322086359,
-    "meta": 1758181669117,
-    "relativePath": "zeusGame\\src\\zeusRecordItemCtrl.js"
-  },
-  "3baabab9-68f2-4404-911f-30cea82a7ab2": {
-    "asset": 1757322086360,
-    "meta": 1758181669120,
-    "relativePath": "zeusGame\\src\\zeusReelCtrl.js"
-  },
-  "ccdea9b6-713e-4840-919e-77ac2cd98a67": {
-    "asset": 1757322086360,
-    "meta": 1758181669128,
-    "relativePath": "zeusGame\\src\\zeusRewardTipsCtrl.js"
-  },
-  "2369bd7c-6cf8-4636-884b-6ea325a74a25": {
-    "asset": 1757322086360,
-    "meta": 1758181669132,
-    "relativePath": "zeusGame\\src\\zeusRightAreaCtrl.js"
   },
   "fb836837-375a-473f-be4e-d4ecde4b6de2": {
     "asset": 1758180054896,
@@ -9060,8 +8540,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivitySignItemCtrl.js"
   },
   "cef99108-79f0-466a-bae0-590420b0f177": {
-    "asset": 1758183034607,
-    "meta": 1758183960339,
+    "asset": 1758248516037,
+    "meta": 1758268763661,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\res"
   },
   "d8c68fc6-9921-4a55-bb7a-5bf07ef16271": {
@@ -11539,11 +11019,6 @@
     "meta": 1758181673104,
     "relativePath": "tpGame\\RechargeToast\\res\\bg2.png"
   },
-  "0b0c6197-fc35-4e4d-ad69-81253af289f5": {
-    "asset": 1757322086250,
-    "meta": 1758181673287,
-    "relativePath": "zeusGame\\images\\folder\\auto-atlas.pac"
-  },
   "c13f8b95-78e9-4db6-bf42-dee5e7e8c432": {
     "asset": 1757322086035,
     "meta": 1758181673103,
@@ -11609,225 +11084,15 @@
     "meta": 1758181673139,
     "relativePath": "tpGame\\TableInfo\\res\\info_bg.png"
   },
-  "ce9e66d5-8a30-4b79-bd90-5d81a18ec3c2": {
-    "asset": 1757322086254,
-    "meta": 1758181673374,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_add_btn_normal.png"
-  },
   "643a8305-ff92-4af4-ab05-7f19aef0e419": {
     "asset": 1757322085996,
     "meta": 1758181679324,
     "relativePath": "tpGame\\HandCards\\spine\\paixing_zi.json"
   },
-  "dd04202b-c346-43a1-90dc-77fbb2bfcfc3": {
-    "asset": 1757322086256,
-    "meta": 1758181673377,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_bg_shadow.png"
-  },
-  "84d4492b-ce32-442e-9cc8-6c11087dcaea": {
-    "asset": 1757322086252,
-    "meta": 1758181673382,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_Flash02.png"
-  },
-  "1adb62d4-15b0-42da-bb4b-35ba3df122f7": {
-    "asset": 1757322086253,
-    "meta": 1758181673384,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_Flash02_2.png"
-  },
   "d1bde214-f474-4541-a5ac-079ed5391aa5": {
     "asset": 1757322085995,
     "meta": 1758181679323,
     "relativePath": "tpGame\\HandCards\\spine\\pai_zi_s.json"
-  },
-  "70c306d9-f43b-4a45-85ad-29081029265b": {
-    "asset": 1757322086257,
-    "meta": 1758181673385,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_freespins_2.png"
-  },
-  "0f911539-ebc3-4e92-a892-958c9239aacb": {
-    "asset": 1757322086258,
-    "meta": 1758181673400,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_mycoin_bottom.png"
-  },
-  "71d29d54-c554-43ab-bd08-4abf23d67a17": {
-    "asset": 1757322086260,
-    "meta": 1758181673406,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_reduce_btn_normal.png"
-  },
-  "98e18c2a-3dde-49a9-828b-eb006ae3f47e": {
-    "asset": 1757322086277,
-    "meta": 1758181673385,
-    "relativePath": "zeusGame\\images\\symbols\\AutoAtlas.pac"
-  },
-  "a76c284f-f694-483e-bb9a-57dc5a758b6d": {
-    "asset": 1757322086262,
-    "meta": 1758181673414,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_switch_btn_off.png"
-  },
-  "91b6d3dd-e2c0-479c-a9ba-0c00b8086be8": {
-    "asset": 1757322086262,
-    "meta": 1758181673416,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_switch_btn_on.png"
-  },
-  "e44bba45-f9de-439a-8f14-827ffcc23f2c": {
-    "asset": 1757322086277,
-    "meta": 1758181673436,
-    "relativePath": "zeusGame\\images\\symbols\\blue.png"
-  },
-  "94646bad-2c58-45f6-b25b-328c3205f033": {
-    "asset": 1757322086278,
-    "meta": 1758181673442,
-    "relativePath": "zeusGame\\images\\symbols\\grail.png"
-  },
-  "da8bf759-7738-4200-b97b-d284a6354b26": {
-    "asset": 1757322086279,
-    "meta": 1758181673443,
-    "relativePath": "zeusGame\\images\\symbols\\green.png"
-  },
-  "8f45493d-c2b5-4f98-b65a-1a4d600a6b48": {
-    "asset": 1757322086279,
-    "meta": 1758181673449,
-    "relativePath": "zeusGame\\images\\symbols\\red.png"
-  },
-  "8d069d54-4f03-4aba-9853-657843df8506": {
-    "asset": 1757322086279,
-    "meta": 1758181673445,
-    "relativePath": "zeusGame\\images\\symbols\\purple.png"
-  },
-  "e33ab93c-f8ec-4cce-91b7-3082baf73982": {
-    "asset": 1757322086283,
-    "meta": 1758181673465,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_bouns.png"
-  },
-  "0d56fb03-1193-43f2-9b51-e3a5ffddfde6": {
-    "asset": 1757322086281,
-    "meta": 1758181673463,
-    "relativePath": "zeusGame\\images\\symbols\\yellow.png"
-  },
-  "81b097e8-0210-413f-9608-e5325d29af24": {
-    "asset": 1757322086285,
-    "meta": 1758181673481,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_freespins_3.png"
-  },
-  "ccc5b4ec-d7a5-4835-85c2-bc67466539d8": {
-    "asset": 1757322086282,
-    "meta": 1758181673484,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_PRESS ANYWHERE TO CONTINUE.png"
-  },
-  "93ce1880-d278-4ccb-befe-e5aa5f311932": {
-    "asset": 1757322086290,
-    "meta": 1758181673488,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_texte_1.png"
-  },
-  "05b0acae-2cf9-4c6f-8821-a851fec6cedc": {
-    "asset": 1757322086296,
-    "meta": 1758181673507,
-    "relativePath": "zeusGame\\spines\\Boom\\boom.atlas"
-  },
-  "05e8fdb6-24ca-4f84-9d54-b418635c67b7": {
-    "asset": 1757322086322,
-    "meta": 1758181673524,
-    "relativePath": "zeusGame\\spines\\enterFree\\zc.atlas"
-  },
-  "db395d4c-77e5-436d-86b6-a73db7899d07": {
-    "asset": 1757322086326,
-    "meta": 1758181673526,
-    "relativePath": "zeusGame\\spines\\fall_coins\\gatesofolympus_fall_coin.atlas"
-  },
-  "3324163c-1a53-4437-b636-f38e4acc954e": {
-    "asset": 1757322086292,
-    "meta": 1758181673521,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_total_multiply.png"
-  },
-  "14980fb0-2dfc-4952-83a2-b8bd840ec403": {
-    "asset": 1757322086283,
-    "meta": 1758181673524,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_TUMBLEWIN.png"
-  },
-  "dc8478a0-923b-45b4-8407-3cd9efa7e03e": {
-    "asset": 1757322086300,
-    "meta": 1758181673531,
-    "relativePath": "zeusGame\\spines\\Fire1\\fire1.atlas"
-  },
-  "bd7a9e61-0737-4a39-9e09-5f6caf75ab65": {
-    "asset": 1758180054876,
-    "meta": 1758181673499,
-    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond"
-  },
-  "4a707643-a45c-4000-b68c-effe3c0f49fe": {
-    "asset": 1758180054876,
-    "meta": 1758181673499,
-    "relativePath": "zeusGame\\spines\\symbols\\Crown"
-  },
-  "d4b48bd9-60e2-44a1-a638-691aee050f25": {
-    "asset": 1758180054876,
-    "meta": 1758181673501,
-    "relativePath": "zeusGame\\spines\\symbols\\Grail"
-  },
-  "cc6b9f16-bbd2-463c-949e-bac9235faa04": {
-    "asset": 1757322086293,
-    "meta": 1758181673525,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_youwin_text.png"
-  },
-  "d467eaca-79aa-4417-ac32-0ac1226ab641": {
-    "asset": 1758180054877,
-    "meta": 1758181673502,
-    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond"
-  },
-  "e4ef3df5-cda7-4725-a173-b75e6975ab1d": {
-    "asset": 1758180054877,
-    "meta": 1758181673502,
-    "relativePath": "zeusGame\\spines\\symbols\\Multiple"
-  },
-  "5d6c054f-fe87-4f96-a820-1f8c1f0e5425": {
-    "asset": 1757322086302,
-    "meta": 1758181673536,
-    "relativePath": "zeusGame\\spines\\Fire2\\fire2.atlas"
-  },
-  "801d0441-4206-4e56-917a-3d24d777e24d": {
-    "asset": 1758180054878,
-    "meta": 1758181673503,
-    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond"
-  },
-  "4799688a-b03a-4213-a845-6c6ae47ac69b": {
-    "asset": 1758180054878,
-    "meta": 1758181673504,
-    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond"
-  },
-  "188fef18-8e41-4869-aae1-a67d1d69d5b4": {
-    "asset": 1758180054879,
-    "meta": 1758181673506,
-    "relativePath": "zeusGame\\spines\\symbols\\Ring"
-  },
-  "71e42280-f6f2-41f5-b9d8-1cad7c51acd7": {
-    "asset": 1758180054879,
-    "meta": 1758181673507,
-    "relativePath": "zeusGame\\spines\\symbols\\Sandglass"
-  },
-  "34d722e6-6294-425d-8cd2-7f423310e2da": {
-    "asset": 1758180054881,
-    "meta": 1758181673507,
-    "relativePath": "zeusGame\\spines\\symbols\\Scatter"
-  },
-  "5f03a887-be30-4ba7-b612-6f624c05aeaa": {
-    "asset": 1757322086305,
-    "meta": 1758181673538,
-    "relativePath": "zeusGame\\spines\\Renwu\\ren.skel.atlas"
-  },
-  "0594e612-b49a-4c08-9854-a09c2e7f1c43": {
-    "asset": 1758180054881,
-    "meta": 1758181673508,
-    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond"
-  },
-  "577ac4a2-be4c-4f3b-b835-986fd6e67a62": {
-    "asset": 1757322086328,
-    "meta": 1758181673539,
-    "relativePath": "zeusGame\\spines\\reward_frame\\reward_frame.atlas"
-  },
-  "cdbed91e-7763-48e2-8323-f640d0ad4cfc": {
-    "asset": 1757322086309,
-    "meta": 1758181673543,
-    "relativePath": "zeusGame\\spines\\WIN\\Jiang.skel.atlas"
   },
   "9dd9ea5b-b308-4c62-ac8b-55d424032720": {
     "asset": 1758180054887,
@@ -11849,11 +11114,6 @@
     "meta": 1758181673522,
     "relativePath": "zooGame\\res\\animation\\4-FQZS_shayu"
   },
-  "25cf05a5-e935-4041-bc09-f7b42e9a07f6": {
-    "asset": 1757322086312,
-    "meta": 1758181673544,
-    "relativePath": "zeusGame\\spines\\X2\\X2.atlas"
-  },
   "01da097e-c0a3-4bd6-a329-83b8d22f64d0": {
     "asset": 1758180054892,
     "meta": 1758181673522,
@@ -11864,45 +11124,10 @@
     "meta": 1758181673523,
     "relativePath": "zooGame\\res\\animation\\6-FQZS_tongpei"
   },
-  "e506b15e-d3f0-4945-b18f-ad5a7a319336": {
-    "asset": 1757322086323,
-    "meta": 1758181679421,
-    "relativePath": "zeusGame\\spines\\enterFree\\zc.json"
-  },
-  "43bbb11e-f5ac-4dad-a47d-f1903aea09a8": {
-    "asset": 1757322086296,
-    "meta": 1758181679418,
-    "relativePath": "zeusGame\\spines\\Boom\\boom.json"
-  },
-  "6c055ff8-2c62-418b-974a-88618e7286a6": {
-    "asset": 1757322086327,
-    "meta": 1758181679420,
-    "relativePath": "zeusGame\\spines\\fall_coins\\gatesofolympus_fall_coin.json"
-  },
-  "f9d36a9a-01d1-48bf-937a-bc7cf99d2b5f": {
-    "asset": 1757322086317,
-    "meta": 1758181673545,
-    "relativePath": "zeusGame\\spines\\ZSSF\\zssf.atlas"
-  },
-  "e3a5959d-51fe-4f0e-aab7-aac48cffeb1f": {
-    "asset": 1757322086303,
-    "meta": 1758181679419,
-    "relativePath": "zeusGame\\spines\\Fire2\\fire2.json"
-  },
   "8290837f-75ba-4aed-bd29-6332f00bb718": {
     "asset": 1757322086389,
     "meta": 1758181673551,
     "relativePath": "zooGame\\res\\animation\\Start Betting.atlas"
-  },
-  "03bb5867-c26a-4385-ac3f-c06de81960eb": {
-    "asset": 1757322086301,
-    "meta": 1758181679422,
-    "relativePath": "zeusGame\\spines\\Fire1\\fire1.json"
-  },
-  "e42f2e24-7fca-44ef-a222-750f4e2500df": {
-    "asset": 1757322086306,
-    "meta": 1758181679436,
-    "relativePath": "zeusGame\\spines\\Renwu\\ren.skel.json"
   },
   "3472fa2d-5a18-408c-9f15-5418ce125f1b": {
     "asset": 1757322086391,
@@ -11919,25 +11144,10 @@
     "meta": 1758181673537,
     "relativePath": "zooGame\\res\\chips\\AutoAtlas.pac"
   },
-  "875f045e-f887-4cfa-bd70-d5cad93c90c5": {
-    "asset": 1757322086328,
-    "meta": 1758181679427,
-    "relativePath": "zeusGame\\spines\\reward_frame\\reward_frame.json"
-  },
-  "5d602558-07a9-45c9-b69d-e9b7f0f92899": {
-    "asset": 1757322086310,
-    "meta": 1758181679430,
-    "relativePath": "zeusGame\\spines\\WIN\\Jiang.skel.json"
-  },
   "84d04adb-0cf3-4a2d-aeb3-c2527547b006": {
     "asset": 1757322086393,
     "meta": 1758181673562,
     "relativePath": "zooGame\\res\\animation\\yuananniu_zhuanquan.atlas"
-  },
-  "9851f5ed-397c-462a-98a4-15635deeb2c8": {
-    "asset": 1757322086313,
-    "meta": 1758181679428,
-    "relativePath": "zeusGame\\spines\\X2\\X2.json"
   },
   "a1984f73-8daa-4981-b634-c01068449ce2": {
     "asset": 1757322086400,
@@ -11958,11 +11168,6 @@
     "asset": 1757322086401,
     "meta": 1758181679402,
     "relativePath": "zooGame\\res\\font\\betOrange.fnt"
-  },
-  "47cbd15d-7113-4b06-94b3-8c711195204f": {
-    "asset": 1757322086317,
-    "meta": 1758181679431,
-    "relativePath": "zeusGame\\spines\\ZSSF\\zssf.json"
   },
   "c41fd278-ccf4-4c14-b034-701b5ae878bb": {
     "asset": 1757322086402,
@@ -13170,8 +12375,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\gameRules\\Rummy.prefab"
   },
   "35698b86-dfe6-4e53-9f42-5068cd91effb": {
-    "asset": 1758183338240,
-    "meta": 1758183960376,
+    "asset": 1758266055402,
+    "meta": 1758268764136,
     "relativePath": "ResourcesBundle\\NewPlan\\Rule\\res\\newRele"
   },
   "48211ba8-8c11-4163-98ff-a09ada56a312": {
@@ -14079,11 +13284,6 @@
     "meta": 1758181675922,
     "relativePath": "tpGame\\Player\\res\\thumbnail\\img_dx.png"
   },
-  "c99832d8-1066-47ac-b5dd-31491a67f98f": {
-    "asset": 1757322086330,
-    "meta": 1758181675914,
-    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond\\gatesolympus_bluediamond.atlas"
-  },
   "840b0276-0085-4afd-bed2-6c6e074f5a84": {
     "asset": 1757322086029,
     "meta": 1758181675959,
@@ -14094,20 +13294,10 @@
     "meta": 1758181675966,
     "relativePath": "tpGame\\Player\\res\\thumbnail\\kuang2.png"
   },
-  "81c7cea1-2b4b-44e5-b257-d750554b64b7": {
-    "asset": 1757322086332,
-    "meta": 1758181675918,
-    "relativePath": "zeusGame\\spines\\symbols\\Crown\\gatesolympus_crown.atlas"
-  },
   "b9e8aa3b-134b-4cc7-94a9-2069fe7a9264": {
     "asset": 1757322086029,
     "meta": 1758181675958,
     "relativePath": "tpGame\\Player\\res\\thumbnail\\shoppingCarStr.png"
-  },
-  "97b89611-f0c5-4d20-bc18-2284c25dbcb2": {
-    "asset": 1757322086333,
-    "meta": 1758181675921,
-    "relativePath": "zeusGame\\spines\\symbols\\Grail\\gatesolympus_grail.atlas"
   },
   "848f2361-a234-42a0-bf0e-edc88805cafb": {
     "asset": 1757322086030,
@@ -14124,26 +13314,6 @@
     "meta": 1758181675960,
     "relativePath": "tpGame\\Player\\res\\thumbnail\\wj_tx.png"
   },
-  "35381f5f-e051-4856-90b9-973c541a8f9a": {
-    "asset": 1757322086335,
-    "meta": 1758181675926,
-    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond\\gatesolympus_greendiamond.atlas"
-  },
-  "843d40e7-d5c8-4212-82e3-93e49d05750d": {
-    "asset": 1757322086336,
-    "meta": 1758181675956,
-    "relativePath": "zeusGame\\spines\\symbols\\Multiple\\gatesolympus_multiple.atlas"
-  },
-  "b9bfaf10-ef57-46e1-9b57-dedc8019d623": {
-    "asset": 1757322086338,
-    "meta": 1758181675971,
-    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond\\gatesolympus_purplediamond.atlas"
-  },
-  "de5e5c7b-bb46-4d85-a859-d41d7a613975": {
-    "asset": 1757322086340,
-    "meta": 1758181675975,
-    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond\\gatesolympus_reddiamond.atlas"
-  },
   "d680f531-2094-4d52-b4a1-e289f40414b6": {
     "asset": 1757322086016,
     "meta": 1758181679712,
@@ -14159,51 +13329,6 @@
     "meta": 1758181679711,
     "relativePath": "tpGame\\Player\\res\\spine\\daojishilianyi.json"
   },
-  "b2934bdf-88a4-423e-b659-4542a38a0cdb": {
-    "asset": 1757322086341,
-    "meta": 1758181675987,
-    "relativePath": "zeusGame\\spines\\symbols\\Ring\\gatesolympus_ring.atlas"
-  },
-  "0032af25-9b98-40cf-bf0f-9b9b4377872b": {
-    "asset": 1757322086343,
-    "meta": 1758181675988,
-    "relativePath": "zeusGame\\spines\\symbols\\Sandglass\\gatesolympus_sandglass.atlas"
-  },
-  "b36a33f6-6e90-4487-ab4f-e6d04874fd8c": {
-    "asset": 1757322086330,
-    "meta": 1758181679714,
-    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond\\gatesolympus_bluediamond.json"
-  },
-  "bb365cb3-e499-4c71-b548-f2ae7ae69836": {
-    "asset": 1757322086334,
-    "meta": 1758181679719,
-    "relativePath": "zeusGame\\spines\\symbols\\Grail\\gatesolympus_grail.json"
-  },
-  "b56c6924-9c0c-4e21-b737-98b1cccfc22e": {
-    "asset": 1757322086332,
-    "meta": 1758181679715,
-    "relativePath": "zeusGame\\spines\\symbols\\Crown\\gatesolympus_crown.json"
-  },
-  "7db6881e-4ad9-4ec2-b8c9-68a07f140adc": {
-    "asset": 1757322086345,
-    "meta": 1758181675991,
-    "relativePath": "zeusGame\\spines\\symbols\\Scatter\\gatesolympus_scatter.atlas"
-  },
-  "d827134f-c39f-4a6a-8cdd-1e6d0743e7e5": {
-    "asset": 1757322086354,
-    "meta": 1758181675993,
-    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond\\gatesolympus_yellowdiamond.atlas"
-  },
-  "36d38671-5e26-473a-af3e-29dd95feb13e": {
-    "asset": 1757322086335,
-    "meta": 1758181679720,
-    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond\\gatesolympus_greendiamond.json"
-  },
-  "84f952b9-5c05-44ce-873b-91060ecaf826": {
-    "asset": 1757322086337,
-    "meta": 1758181679716,
-    "relativePath": "zeusGame\\spines\\symbols\\Multiple\\gatesolympus_multiple.json"
-  },
   "73142252-a39c-498b-82f9-1fc869f525e5": {
     "asset": 1757322086372,
     "meta": 1758181675998,
@@ -14214,20 +13339,10 @@
     "meta": 1758181675995,
     "relativePath": "zooGame\\res\\animation\\2-FQZS_xiaodongwu\\FQZS_xiaodongwu.atlas"
   },
-  "0afd76a6-af6c-4bbc-9268-30bc1b7314e1": {
-    "asset": 1757322086339,
-    "meta": 1758181679717,
-    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond\\gatesolympus_purplediamond.json"
-  },
   "1c1e4ca8-7a61-439f-b3ee-b8df91b437da": {
     "asset": 1757322086381,
     "meta": 1758181675998,
     "relativePath": "zooGame\\res\\animation\\3-FQZS_jinsha\\FQZS_jinsha.atlas"
-  },
-  "f19eea1d-8200-4960-86d1-c351802ab48f": {
-    "asset": 1757322086340,
-    "meta": 1758181679723,
-    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond\\gatesolympus_reddiamond.json"
   },
   "5e414700-ae98-43bf-b21a-9a2c015b99a0": {
     "asset": 1757322086383,
@@ -14244,25 +13359,10 @@
     "meta": 1758181676003,
     "relativePath": "zooGame\\res\\animation\\5-FQZS_tongchi\\FQZS_tongchi.atlas"
   },
-  "f585d3a4-591c-4646-b829-510014d2552a": {
-    "asset": 1757322086342,
-    "meta": 1758181679726,
-    "relativePath": "zeusGame\\spines\\symbols\\Ring\\gatesolympus_ring.json"
-  },
   "f17c0da9-0aa6-4eb8-b505-0e033e702f35": {
     "asset": 1757322086387,
     "meta": 1758181676005,
     "relativePath": "zooGame\\res\\animation\\6-FQZS_tongpei\\FQZS_tongpei.atlas"
-  },
-  "d3505384-4016-4d0b-ba28-f64d089552e0": {
-    "asset": 1757322086344,
-    "meta": 1758181679727,
-    "relativePath": "zeusGame\\spines\\symbols\\Sandglass\\gatesolympus_sandglass.json"
-  },
-  "e28d64b6-f4f6-4f03-824d-985733c97930": {
-    "asset": 1757322086346,
-    "meta": 1758181679736,
-    "relativePath": "zeusGame\\spines\\symbols\\Scatter\\gatesolympus_scatter.json"
   },
   "022159d2-fc39-4596-865b-12c0422fc1f9": {
     "asset": 1757322084199,
@@ -14273,11 +13373,6 @@
     "asset": 1757322084199,
     "meta": 1758181676231,
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\res\\base\\dian.png"
-  },
-  "b6e9ad95-6440-4fc1-925a-95891de493e5": {
-    "asset": 1757322086354,
-    "meta": 1758181679730,
-    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond\\gatesolympus_yellowdiamond.json"
   },
   "dad9ce49-1cc6-4202-ac5c-9dc5107b819b": {
     "asset": 1757322086373,
@@ -16331,17 +15426,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1757322085304,
-    "meta": 1758247609191,
+    "meta": 1758269819855,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1757322085305,
-    "meta": 1758247609192,
+    "meta": 1758269819855,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1757322085307,
-    "meta": 1758247609192,
+    "meta": 1758269819857,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "98fc052a-da65-4a4c-baaa-156f3fb008f3": {
@@ -16356,7 +15451,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1757322085309,
-    "meta": 1758247609191,
+    "meta": 1758269819855,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -16366,12 +15461,12 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1757322085311,
-    "meta": 1758247609193,
+    "meta": 1758269819857,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1757322085313,
-    "meta": 1758247609193,
+    "meta": 1758269819858,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -16381,7 +15476,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1757322085315,
-    "meta": 1758247609194,
+    "meta": 1758269819858,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "d8abb29c-c397-4fde-9114-5136149992a4": {
@@ -16391,7 +15486,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1757322085317,
-    "meta": 1758247609194,
+    "meta": 1758269819858,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "48f777ad-c3bc-4954-90c2-07ec0ed2467e": {
@@ -16406,7 +15501,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1757322085318,
-    "meta": 1758247609196,
+    "meta": 1758269819859,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "0f75adde-5095-4a30-aa1d-bc02533c7dea": {
@@ -16416,12 +15511,12 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1757322085320,
-    "meta": 1758247609195,
+    "meta": 1758269819859,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1757322085322,
-    "meta": 1758247609195,
+    "meta": 1758269819861,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -16446,12 +15541,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1757322085324,
-    "meta": 1758247609194,
+    "meta": 1758269819860,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1757322085327,
-    "meta": 1758247609196,
+    "meta": 1758269819860,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "e55d99a3-a054-4a4b-9868-73e1fddef77d": {
@@ -17191,7 +16286,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1757322085485,
-    "meta": 1758247609197,
+    "meta": 1758269819861,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "af2c7605-e0af-4231-ad0f-381ea211ded3": {
@@ -18771,12 +17866,12 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1758180054367,
-    "meta": 1758247609201,
+    "meta": 1758269819873,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1758180054368,
-    "meta": 1758247609201,
+    "meta": 1758269819868,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
   },
   "32978865-0c6d-4f9f-8785-c2886404db76": {
@@ -18791,12 +17886,12 @@
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1758180054383,
-    "meta": 1758247609198,
+    "meta": 1758269819867,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1758180054381,
-    "meta": 1758247609202,
+    "meta": 1758269819874,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "cb5688b5-aff6-4c38-a67a-e5a8f6e6e429": {
@@ -18811,12 +17906,12 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1758180054389,
-    "meta": 1758247609199,
+    "meta": 1758269819868,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1758180054391,
-    "meta": 1758247609198,
+    "meta": 1758269819869,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
   },
   "2f57efcb-7f25-45ae-932a-f443eefd875a": {
@@ -18876,7 +17971,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1758180054413,
-    "meta": 1758247609200,
+    "meta": 1758269819870,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "7a241750-4b99-4026-a977-2d71ddbc3038": {
@@ -18891,7 +17986,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1758180054416,
-    "meta": 1758247609199,
+    "meta": 1758269819870,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "85f8c995-21fd-4a75-a710-535f628606cd": {
@@ -18901,12 +17996,12 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1758180054418,
-    "meta": 1758247609199,
+    "meta": 1758269819872,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1758180054421,
-    "meta": 1758247609200,
+    "meta": 1758269819871,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "1e39b532-7ce2-4248-a526-8a07f492fe22": {
@@ -18916,7 +18011,7 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1758180054423,
-    "meta": 1758247609201,
+    "meta": 1758269819871,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "1ba3209c-364d-488d-83a1-8d375861db8c": {
@@ -18926,7 +18021,7 @@
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1758180054426,
-    "meta": 1758247609203,
+    "meta": 1758269819872,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -18936,7 +18031,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1758180054428,
-    "meta": 1758247609203,
+    "meta": 1758269819873,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -18946,7 +18041,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1758180054431,
-    "meta": 1758247609203,
+    "meta": 1758269819874,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -18956,7 +18051,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1758180054435,
-    "meta": 1758247609204,
+    "meta": 1758269819875,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "b8156e81-ec1d-4306-a6e2-c62ba3058b2b": {
@@ -18976,7 +18071,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1758180053998,
-    "meta": 1758247609202,
+    "meta": 1758269819863,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "a757fc0c-2da6-4a29-b314-4198d38cbc67": {
@@ -18991,7 +18086,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1758180054410,
-    "meta": 1758247609197,
+    "meta": 1758269819869,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "30901e52-76f7-495d-b266-779de908de6e": {
@@ -20046,7 +19141,7 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1758180054373,
-    "meta": 1758247609196,
+    "meta": 1758269819867,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "d1511798-6686-42f9-be9c-0ae7895f2a0d": {
@@ -25209,440 +24304,15 @@
     "meta": 1758181673318,
     "relativePath": "vampireMachine\\sprite\\bg\\uwl_bg1.png"
   },
-  "f919d284-0cf2-4605-8bb0-122410d38c01": {
-    "asset": 1758180054826,
-    "meta": 1758181669355,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num2_0.png"
-  },
-  "f584ee21-1540-4766-a5b6-390069b7ef61": {
-    "asset": 1758180054825,
-    "meta": 1758181669264,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num1_0.png"
-  },
   "019be336-85dc-428b-9839-2b96bb84bd29": {
     "asset": 1758180054812,
     "meta": 1758181673319,
     "relativePath": "vampireMachine\\sprite\\bg\\uwl_bg2.png"
   },
-  "7bd351df-1f50-47db-8c25-3c2ce083269e": {
-    "asset": 1758180054826,
-    "meta": 1758181669367,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num3_0.png"
-  },
-  "cc9a8e3e-0d3e-43f8-9561-c62122a7447f": {
-    "asset": 1758180054826,
-    "meta": 1758181669366,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num4_0.png"
-  },
-  "aa095133-5cd5-411b-9317-704aa7486404": {
-    "asset": 1758180054827,
-    "meta": 1758181669369,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num5_0.png"
-  },
-  "578fcdcb-72a3-4cda-99ae-04def88b2049": {
-    "asset": 1758180054827,
-    "meta": 1758181669370,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num6_0.png"
-  },
-  "6546e25a-1996-459d-805b-68cda34be8c4": {
-    "asset": 1758180054827,
-    "meta": 1758181669374,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num7_0.png"
-  },
-  "ce49078d-000a-43d1-8321-f00e818fe9b5": {
-    "asset": 1758180054828,
-    "meta": 1758181669373,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num8_0.png"
-  },
-  "b5394fb6-abf9-4546-8a55-87bf9d546990": {
-    "asset": 1758180054828,
-    "meta": 1758181669375,
-    "relativePath": "zeusGame\\fonts\\gates_oly_num9_0.png"
-  },
-  "97690c2e-e9c5-4f12-a9d1-8140592f7d6d": {
-    "asset": 1758180054829,
-    "meta": 1758181673356,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_1.png"
-  },
-  "65c14518-2a05-4919-88f2-d0a99e4619c0": {
-    "asset": 1758180054831,
-    "meta": 1758181673369,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_add_btn_bottom.png"
-  },
-  "906ff0c0-b076-4ecd-8810-b486b7333e94": {
-    "asset": 1758180054830,
-    "meta": 1758181673369,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_33.png"
-  },
-  "1e219c05-ef2b-4e81-8c5f-a652317fd833": {
-    "asset": 1758180054829,
-    "meta": 1758181673357,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_32.png"
-  },
-  "93e75a52-dc33-4f9a-bf94-f466ecece9b0": {
-    "asset": 1758180054832,
-    "meta": 1758181673366,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_auto_btn_checked.png"
-  },
-  "f2b3495b-e6c1-4525-a2ac-61ec45bd068b": {
-    "asset": 1758180054833,
-    "meta": 1758181673367,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_auto_btn_unchecked.png"
-  },
-  "8efc3547-43f1-4a99-94fb-5074036d6b65": {
-    "asset": 1758180054833,
-    "meta": 1758181673375,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_back_btn.png"
-  },
-  "044c1d49-6af0-4a04-a4c0-ec327cea82fa": {
-    "asset": 1758180054834,
-    "meta": 1758181673375,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_flash0.png"
-  },
-  "f394bf10-5ffe-47c8-954f-7310ab1d963d": {
-    "asset": 1758180054834,
-    "meta": 1758181673383,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_flash001.png"
-  },
-  "a370f5d2-1f83-4419-9ad6-c3d33c0c4abc": {
-    "asset": 1758180054835,
-    "meta": 1758181673390,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_getcoin_btn.png"
-  },
-  "04dedf1a-f40e-4647-8ef6-4d5eff692183": {
-    "asset": 1758180054831,
-    "meta": 1758181673389,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_L4.png"
-  },
-  "3c8df66c-0027-4c3b-b4be-fbe862acc6a0": {
-    "asset": 1758180054830,
-    "meta": 1758181673392,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_L1.png"
-  },
-  "909fafc2-a851-4d2b-ad5f-245d488a3b0d": {
-    "asset": 1758180054831,
-    "meta": 1758181673391,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_L3.png"
-  },
-  "daa3187a-08a1-45dc-be51-509eb747830b": {
-    "asset": 1758180054836,
-    "meta": 1758181673401,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_quick_btn_checked.png"
-  },
-  "db454b00-e5ea-491b-9ef8-9fc94afff7bc": {
-    "asset": 1758180054836,
-    "meta": 1758181673395,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_maxbet_btn_normal.png"
-  },
-  "37a552c9-895b-4a2e-aff3-17b81e5c7e2c": {
-    "asset": 1758180054837,
-    "meta": 1758181673401,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_quick_btn_uncheked.png"
-  },
-  "14379f2e-c3cf-4179-a368-3d9707b46c91": {
-    "asset": 1758180054837,
-    "meta": 1758181673403,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_rules_btn.png"
-  },
-  "ae710f7f-3bab-44c4-9c48-16014f9ebd08": {
-    "asset": 1758180054838,
-    "meta": 1758181673407,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_setting_btn.png"
-  },
-  "d899296d-70d2-4448-8399-dff3daaf5279": {
-    "asset": 1758180054838,
-    "meta": 1758181673409,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_spin_btn_normal.png"
-  },
-  "5348e840-eb40-4b32-b6e9-e7282062bf2c": {
-    "asset": 1758180054839,
-    "meta": 1758181673415,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_win1.png"
-  },
-  "ab5faba3-52b2-4ea2-b56f-5e098d743e6c": {
-    "asset": 1758180054840,
-    "meta": 1758181673427,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\Flash01.png"
-  },
-  "4c5aeb7b-d781-480c-8c1f-d43b025f9bbd": {
-    "asset": 1758180054841,
-    "meta": 1758181673430,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\flash00.png"
-  },
-  "beb5d7f1-9da3-40ef-9988-f070b16836e2": {
-    "asset": 1758180054839,
-    "meta": 1758181673415,
-    "relativePath": "zeusGame\\images\\folder\\gates_oly_win2.png"
-  },
-  "c4fd9af2-eb4a-4f18-a641-8d4f6336e2d7": {
-    "asset": 1758180054845,
-    "meta": 1758181673438,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_bg2.png"
-  },
-  "b7e32ccf-adb2-4d99-87cd-24c1c51c2e89": {
-    "asset": 1758180054847,
-    "meta": 1758181673429,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_glwo.png"
-  },
-  "33264b5f-3cf6-4a58-8c2c-0329fa9ed45a": {
-    "asset": 1758180054846,
-    "meta": 1758181673429,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_downarea_bottom.png"
-  },
-  "dd327db8-bfc8-4977-88e0-38ac0f75a4ec": {
-    "asset": 1758180054850,
-    "meta": 1758181673435,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_win22.png"
-  },
-  "c65f09d0-b7a2-4e3a-bb93-e97814765f7f": {
-    "asset": 1758180054842,
-    "meta": 1758181673457,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\flash1.png"
-  },
-  "03ff64f2-9ac4-4963-8f0f-cdd923ed2cb6": {
-    "asset": 1758180054846,
-    "meta": 1758181673446,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_bg3.png"
-  },
-  "6009a718-c3f4-4f23-a418-3c2a30790a67": {
-    "asset": 1758180054849,
-    "meta": 1758181673456,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_win12.png"
-  },
-  "a7feded6-7cfc-4e1d-a760-a08a22924201": {
-    "asset": 1758180054850,
-    "meta": 1758181673437,
-    "relativePath": "zeusGame\\images\\symbols\\crown.png"
-  },
-  "f65e2a4f-3c4b-439a-b07c-6996141d804f": {
-    "asset": 1758180054850,
-    "meta": 1758181673451,
-    "relativePath": "zeusGame\\images\\symbols\\ring.png"
-  },
-  "1e001c44-7013-42d4-934d-e9fa2bf9b4f0": {
-    "asset": 1758180054850,
-    "meta": 1758181673459,
-    "relativePath": "zeusGame\\images\\symbols\\sandglass.png"
-  },
-  "cb1ad130-d60c-4275-8f17-f87f9034ec10": {
-    "asset": 1758180054851,
-    "meta": 1758181673461,
-    "relativePath": "zeusGame\\images\\symbols\\scatter.png"
-  },
-  "0dabde73-d564-4818-bd6c-259c1624437b": {
-    "asset": 1758180054852,
-    "meta": 1758181673466,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_buy_freespin.png"
-  },
-  "8f3efa5b-18ee-4ce2-822f-3fd48782d7cd": {
-    "asset": 1758180054844,
-    "meta": 1758181673483,
-    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_bg1.jpg"
-  },
-  "3d88d889-6b30-4dfc-a87f-5848e54e5fd8": {
-    "asset": 1758180054851,
-    "meta": 1758181673471,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_FREE SPINS.png"
-  },
-  "3588aafd-96a4-4603-ba05-ba0e8c372608": {
-    "asset": 1758180054853,
-    "meta": 1758181673467,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_congra.png"
-  },
-  "88ccfdcc-6438-41f4-8639-417ad26ed821": {
-    "asset": 1758180054853,
-    "meta": 1758181673473,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_freespins_2.png"
-  },
-  "4d25cea2-dca9-46e0-8f09-319be975687c": {
-    "asset": 1758180054851,
-    "meta": 1758181673472,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_FreeSpins.png"
-  },
-  "d77d01b4-4803-4c80-8d70-d255055f5d8c": {
-    "asset": 1758180054852,
-    "meta": 1758181673477,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_InIsFreeSpins.png"
-  },
-  "31aee03c-7e81-48a4-a9cc-d4187869e655": {
-    "asset": 1758180054853,
-    "meta": 1758181673495,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_se1.png"
-  },
-  "f90de89b-5568-4b01-a4fc-18fd16529759": {
-    "asset": 1758180054854,
-    "meta": 1758181673487,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_se3.png"
-  },
-  "acb240a2-5603-4b6a-9cd0-1707e0f7246d": {
-    "asset": 1758180054854,
-    "meta": 1758181673495,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_se2.png"
-  },
-  "bb6ba6be-03c7-410b-b889-2bb889c043f6": {
-    "asset": 1758180054855,
-    "meta": 1758181673500,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_se4.png"
-  },
-  "811968f8-ca8c-4e5e-8c53-e420079609f4": {
-    "asset": 1758180054856,
-    "meta": 1758181673497,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_text_2.png"
-  },
-  "de252ca1-164e-42b1-895b-0ac3a29ab90c": {
-    "asset": 1758180054857,
-    "meta": 1758181673496,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_text_3.png"
-  },
-  "a5250dbd-128d-4e0c-9cdc-98d8acddbbfe": {
-    "asset": 1758180054856,
-    "meta": 1758181673505,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_se5.png"
-  },
-  "0a640021-9f24-4c5e-a812-e3380b20e5ec": {
-    "asset": 1758180054857,
-    "meta": 1758181673498,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_title_1.png"
-  },
-  "84b80f69-634a-4481-a71b-f24bb94769ab": {
-    "asset": 1758180054857,
-    "meta": 1758181673504,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_title_2.png"
-  },
-  "b9bfec08-e372-485d-a8f2-f01dcbab7d61": {
-    "asset": 1758180054858,
-    "meta": 1758181673503,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_title_3.png"
-  },
-  "63f12869-e723-477b-9868-8ec6ef5a1b1f": {
-    "asset": 1758180054858,
-    "meta": 1758181673506,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_title_4.png"
-  },
-  "e343c0e0-0ab8-4673-b562-16b35b1b7fdf": {
-    "asset": 1758180054852,
-    "meta": 1758181673515,
-    "relativePath": "zeusGame\\images\\text\\gates_oly_YouHaveWon.png"
-  },
-  "80504043-f17d-4ccc-af16-7e7658331952": {
-    "asset": 1758180054875,
-    "meta": 1758181673541,
-    "relativePath": "zeusGame\\spines\\fall_coins\\gatesofolympus_fall_coin.png"
-  },
-  "1bf810fe-68b7-4547-b58f-5cd62f37a3d0": {
-    "asset": 1758180054875,
-    "meta": 1758181673548,
-    "relativePath": "zeusGame\\spines\\reward_frame\\reward_frame.png"
-  },
-  "1231432f-396f-4319-9135-1e50f41521f0": {
-    "asset": 1758180054861,
-    "meta": 1758181673555,
-    "relativePath": "zeusGame\\spines\\Fire2\\fire2.png"
-  },
-  "32680baa-2fd9-4991-a55f-9aec7036ce74": {
-    "asset": 1758180054876,
-    "meta": 1758181675962,
-    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond\\gatesolympus_bluediamond.png"
-  },
-  "f358102a-b30f-49bd-83f0-b7d0422f6db4": {
-    "asset": 1758180054859,
-    "meta": 1758181673556,
-    "relativePath": "zeusGame\\spines\\Boom\\boom.png"
-  },
-  "24a79649-1408-43fb-aab0-47f3490703ee": {
-    "asset": 1758180054882,
-    "meta": 1758181669076,
-    "relativePath": "zeusGame\\src\\zeusCentreAreaCtrl.js"
-  },
-  "4bc98a51-e288-4894-aeae-20766687af1b": {
-    "asset": 1758180054882,
-    "meta": 1758181669159,
-    "relativePath": "zeusGame\\src\\zeusSceneCtrl.js"
-  },
-  "a6fb2dbe-80c9-4724-b31e-b54bae31c628": {
-    "asset": 1758180054876,
-    "meta": 1758181675963,
-    "relativePath": "zeusGame\\spines\\symbols\\Crown\\gatesolympus_crown.png"
-  },
   "a1daac0a-bc28-4a34-9222-59271f1b9b26": {
     "asset": 1758180054885,
     "meta": 1758181669359,
     "relativePath": "zooGame\\prefabs\\player.prefab"
-  },
-  "f19a20b3-fa58-488f-a999-eab798ddd1b4": {
-    "asset": 1758180054876,
-    "meta": 1758181675967,
-    "relativePath": "zeusGame\\spines\\symbols\\Grail\\gatesolympus_grail.png"
-  },
-  "7e72561e-b4c9-4a25-8f60-927134351785": {
-    "asset": 1758180054877,
-    "meta": 1758181675971,
-    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond\\gatesolympus_greendiamond.png"
-  },
-  "45c877de-bfc8-4423-bb7f-b788bc40a4b8": {
-    "asset": 1758180054860,
-    "meta": 1758181673560,
-    "relativePath": "zeusGame\\spines\\Fire1\\fire1.png"
-  },
-  "fa0e32aa-379e-4c6c-be33-1e698d9390f4": {
-    "asset": 1758180054877,
-    "meta": 1758181675990,
-    "relativePath": "zeusGame\\spines\\symbols\\Multiple\\gatesolympus_multiple.png"
-  },
-  "eceb8b90-4e11-4fd6-ba5e-a056d896ca05": {
-    "asset": 1758180054878,
-    "meta": 1758181675989,
-    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond\\gatesolympus_purplediamond.png"
-  },
-  "f2818aca-db66-463b-bed0-6b3fee7f4824": {
-    "asset": 1758180054879,
-    "meta": 1758181676002,
-    "relativePath": "zeusGame\\spines\\symbols\\Ring\\gatesolympus_ring.png"
-  },
-  "00196364-3d5b-4e83-a174-25dc10bacdd2": {
-    "asset": 1758180054864,
-    "meta": 1758181673617,
-    "relativePath": "zeusGame\\spines\\Renwu\\ren.skel.png"
-  },
-  "aa8532e1-c761-42d3-b550-cfe420fd6aae": {
-    "asset": 1758180054879,
-    "meta": 1758181676002,
-    "relativePath": "zeusGame\\spines\\symbols\\Sandglass\\gatesolympus_sandglass.png"
-  },
-  "702644d4-40e7-4a7c-aec8-6e6bd426dd9b": {
-    "asset": 1758180054878,
-    "meta": 1758181675996,
-    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond\\gatesolympus_reddiamond.png"
-  },
-  "bb93cd98-ca1d-4d60-bc39-8901fb484bf5": {
-    "asset": 1758180054882,
-    "meta": 1758181676006,
-    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond\\gatesolympus_yellowdiamond.png"
-  },
-  "2227c9cb-2ec3-4fa0-9b1d-694a412849d9": {
-    "asset": 1758180054874,
-    "meta": 1758181673599,
-    "relativePath": "zeusGame\\spines\\enterFree\\zc.png"
-  },
-  "05d0c1a7-237f-487b-85ae-8421dcdbf70f": {
-    "asset": 1758180054867,
-    "meta": 1758181673571,
-    "relativePath": "zeusGame\\spines\\X2\\X2.png"
-  },
-  "0fdf2d64-4f07-4578-b16c-fb147d7b5e26": {
-    "asset": 1758180054869,
-    "meta": 1758181673567,
-    "relativePath": "zeusGame\\spines\\ZSSF\\zssf.png"
-  },
-  "ce89c111-d9c6-4360-9d99-b4e83bfba5c6": {
-    "asset": 1758180054865,
-    "meta": 1758181673612,
-    "relativePath": "zeusGame\\spines\\WIN\\Jiang.skel.png"
-  },
-  "10033563-4644-4521-a731-f8a791518bb5": {
-    "asset": 1758180054881,
-    "meta": 1758181676055,
-    "relativePath": "zeusGame\\spines\\symbols\\Scatter\\gatesolympus_scatter.png"
   },
   "88ad4fb3-9ab0-4fcc-84af-1d2edd4d1d03": {
     "asset": 1758180054891,
@@ -30290,14 +28960,9 @@
     "relativePath": "MustBundle"
   },
   "77880efb-4936-4d68-9c67-7d604753bb33": {
-    "asset": 1758247284218,
-    "meta": 1758247609145,
+    "asset": 1758248374423,
+    "meta": 1758268762547,
     "relativePath": "MustBundle\\Normal"
-  },
-  "e4830f5b-97bc-4e41-a99b-2e33a4723931": {
-    "asset": 1758176901183,
-    "meta": 1758181671147,
-    "relativePath": "ResourcesBundle.zip"
   },
   "46f5b84e-c160-4296-9a26-16fa5fd607e7": {
     "asset": 1758183034606,
@@ -30500,8 +29165,8 @@
     "relativePath": "LanguageEnglish\\AutoAtlas.pac"
   },
   "7f11e82e-b65c-4ecc-8499-00b3e488c1c4": {
-    "asset": 1758247910938,
-    "meta": 1758247910940,
+    "asset": 1758248762692,
+    "meta": 1758268762544,
     "relativePath": "notBundle"
   },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
@@ -30518,11 +29183,6 @@
     "asset": 1758252043021,
     "meta": 1758252307459,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
-  },
-  "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1758266013017,
-    "meta": 1758266018469,
-    "relativePath": "Main\\Update.js"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
     "asset": 1757581761708,
@@ -31023,5 +29683,1340 @@
     "asset": 1757581761725,
     "meta": 1758267280160,
     "relativePath": "model\\primitives.fbx"
+  },
+  "f9a0e65a-2f82-4e7b-9762-5cab24c09adb": {
+    "asset": 1758270694695,
+    "meta": 1758271015096,
+    "relativePath": "zeusGame"
+  },
+  "c6ab5c9a-4265-4fef-97d3-64cd3b4ff0a0": {
+    "asset": 1758270694312,
+    "meta": 1758270697784,
+    "relativePath": "zeusGame\\audios"
+  },
+  "3897d489-fb57-4eaa-9fd4-b91293be4f91": {
+    "asset": 1757322086199,
+    "meta": 1758270698075,
+    "relativePath": "zeusGame\\audios\\bigWin2End.mp3"
+  },
+  "87e2a906-ef1d-45ae-8360-39578d2ed751": {
+    "asset": 1757322086206,
+    "meta": 1758270698075,
+    "relativePath": "zeusGame\\audios\\bigWin3ShowNotFree.mp3"
+  },
+  "f931c10c-f551-4339-af40-81cea6f537e5": {
+    "asset": 1757322086190,
+    "meta": 1758270698082,
+    "relativePath": "zeusGame\\audios\\addAllCoin2s.mp3"
+  },
+  "9ac8fd1c-abbe-4639-8530-7d516b7bfc2b": {
+    "asset": 1757322086222,
+    "meta": 1758270698084,
+    "relativePath": "zeusGame\\audios\\boom3.mp3"
+  },
+  "f0035ce7-794d-4469-9236-c661b6200a7c": {
+    "asset": 1757322086218,
+    "meta": 1758270698085,
+    "relativePath": "zeusGame\\audios\\bigWin5End.mp3"
+  },
+  "aa7bdd82-53f6-4357-a1e9-e6478b30e94a": {
+    "asset": 1757322086222,
+    "meta": 1758270698085,
+    "relativePath": "zeusGame\\audios\\buyFreeTipsCliclOk.mp3"
+  },
+  "9b9e4d0b-9e05-4501-85d4-a1dd7b79a329": {
+    "asset": 1757322086222,
+    "meta": 1758270698086,
+    "relativePath": "zeusGame\\audios\\buyFreeTipsHide.mp3"
+  },
+  "7d279c72-7f9a-47c5-8586-bd2ce1afa70d": {
+    "asset": 1757322086200,
+    "meta": 1758270698087,
+    "relativePath": "zeusGame\\audios\\bigWin2ShowNotFree.mp3"
+  },
+  "12a327de-797e-4ace-bc70-db787ada5b80": {
+    "asset": 1757322086223,
+    "meta": 1758270698088,
+    "relativePath": "zeusGame\\audios\\buyFreeTipsShow.mp3"
+  },
+  "ccea4f1c-edec-415b-b6cc-247dcca101ae": {
+    "asset": 1757322086221,
+    "meta": 1758270698089,
+    "relativePath": "zeusGame\\audios\\boom2.mp3"
+  },
+  "73de641b-7fbf-4653-988f-11c2bf5701bd": {
+    "asset": 1757322086199,
+    "meta": 1758270698090,
+    "relativePath": "zeusGame\\audios\\bigWin2ShowFree.mp3"
+  },
+  "da054cc4-b54f-4f43-a44f-931b69f09803": {
+    "asset": 1757322086210,
+    "meta": 1758270698090,
+    "relativePath": "zeusGame\\audios\\bigWin4End.mp3"
+  },
+  "0fed6cfe-4944-40c9-a732-01395aea1f57": {
+    "asset": 1757322086221,
+    "meta": 1758270698091,
+    "relativePath": "zeusGame\\audios\\boom1.mp3"
+  },
+  "aa27cd70-6f0e-4fd5-9c74-b3c1a2b283af": {
+    "asset": 1757322086205,
+    "meta": 1758270698092,
+    "relativePath": "zeusGame\\audios\\bigWin3End.mp3"
+  },
+  "af606d61-15e8-4784-b246-7be822dfdbe7": {
+    "asset": 1757322086224,
+    "meta": 1758270698092,
+    "relativePath": "zeusGame\\audios\\click125Times.mp3"
+  },
+  "c468d39c-8990-4626-a379-ccab8702f921": {
+    "asset": 1757322086190,
+    "meta": 1758270698094,
+    "relativePath": "zeusGame\\audios\\addAllCoin3s.mp3"
+  },
+  "44971899-8d23-4f14-8976-648f2b33d67a": {
+    "asset": 1757322086205,
+    "meta": 1758270698094,
+    "relativePath": "zeusGame\\audios\\bigWin3ShowFree.mp3"
+  },
+  "521e94e0-68d8-4fdb-a6ca-1577b40bb029": {
+    "asset": 1757322086220,
+    "meta": 1758270698095,
+    "relativePath": "zeusGame\\audios\\bigWin5ShowNotFree.mp3"
+  },
+  "a454cdc7-e29d-4333-900f-77eaa02114b5": {
+    "asset": 1757322086212,
+    "meta": 1758270698096,
+    "relativePath": "zeusGame\\audios\\bigWin4ShowNotFree.mp3"
+  },
+  "3e6afe54-7253-4cdd-916e-068687484457": {
+    "asset": 1757322086191,
+    "meta": 1758270698096,
+    "relativePath": "zeusGame\\audios\\allMultWordFly.mp3"
+  },
+  "9c31439e-37f9-4336-8e24-a7ed9b2b909b": {
+    "asset": 1757322086211,
+    "meta": 1758270698097,
+    "relativePath": "zeusGame\\audios\\bigWin4ShowFree.mp3"
+  },
+  "1ff42dcc-8502-48c8-a260-acb43518d325": {
+    "asset": 1757322086192,
+    "meta": 1758270698098,
+    "relativePath": "zeusGame\\audios\\bigWin1End.mp3"
+  },
+  "d7e0fc35-a065-44b4-ac94-bc857773751a": {
+    "asset": 1757322086219,
+    "meta": 1758270698098,
+    "relativePath": "zeusGame\\audios\\bigWin5ShowFree.mp3"
+  },
+  "a6b9c185-069d-419e-95b1-0984b4e5082c": {
+    "asset": 1757322086224,
+    "meta": 1758270698104,
+    "relativePath": "zeusGame\\audios\\clickNormalBtn.mp3"
+  },
+  "59df97d0-4b28-4f9c-94a8-823d83a7678a": {
+    "asset": 1757322086224,
+    "meta": 1758270698105,
+    "relativePath": "zeusGame\\audios\\clickSpinBtn.mp3"
+  },
+  "5d17c8d5-0331-446e-899e-24de690aa9c9": {
+    "asset": 1757322086198,
+    "meta": 1758270698106,
+    "relativePath": "zeusGame\\audios\\bigWin2AddCoin.mp3"
+  },
+  "b71e78e6-081b-443b-bca8-a463ef700123": {
+    "asset": 1758270694342,
+    "meta": 1758270698107,
+    "relativePath": "zeusGame\\fonts"
+  },
+  "77bc1284-4e23-40f1-abe1-31720c6b5352": {
+    "asset": 1757322086209,
+    "meta": 1758270698107,
+    "relativePath": "zeusGame\\audios\\bigWin4AddCoin.mp3"
+  },
+  "e69fce58-1ee8-48ba-a21d-21cb690f7657": {
+    "asset": 1757322086242,
+    "meta": 1758270698108,
+    "relativePath": "zeusGame\\fonts\\auto-atlas.pac"
+  },
+  "ca72b397-742a-4bda-814c-e86da8744cd4": {
+    "asset": 1757322086242,
+    "meta": 1758270698715,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num1.fnt"
+  },
+  "48aa9a1f-3f7a-44b0-946e-0c51fe852211": {
+    "asset": 1757322086243,
+    "meta": 1758270698716,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num2.fnt"
+  },
+  "24fcee3d-0d78-4c77-a27f-cf21642878b8": {
+    "asset": 1757322086225,
+    "meta": 1758270698112,
+    "relativePath": "zeusGame\\audios\\flyMultScore.mp3"
+  },
+  "eab70175-4f0c-4481-ba91-999f03d03b18": {
+    "asset": 1757322086244,
+    "meta": 1758270698717,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num3.fnt"
+  },
+  "4d7d011f-f9d8-40c5-a426-f573abba469a": {
+    "asset": 1757322086195,
+    "meta": 1758270698113,
+    "relativePath": "zeusGame\\audios\\bigWin1Show.mp3"
+  },
+  "0b9e64e0-d98b-4179-95a7-80b33eb6d1be": {
+    "asset": 1757322086244,
+    "meta": 1758270698719,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num4.fnt"
+  },
+  "e299b3bd-7e83-4a1e-a653-0b18406e06d3": {
+    "asset": 1757322086204,
+    "meta": 1758270698116,
+    "relativePath": "zeusGame\\audios\\bigWin3AddCoin.mp3"
+  },
+  "7afcdf7a-03ae-46c8-b8f4-cb8cafd2ae80": {
+    "asset": 1757322086245,
+    "meta": 1758270698720,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num5.fnt"
+  },
+  "c1420672-17b5-4024-927a-f42dd0132625": {
+    "asset": 1757322086226,
+    "meta": 1758270698117,
+    "relativePath": "zeusGame\\audios\\freeFinished.mp3"
+  },
+  "ba125dd7-b837-4bb2-90a5-30bfc065f625": {
+    "asset": 1757322086246,
+    "meta": 1758270698721,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num6.fnt"
+  },
+  "128d41df-1904-43ba-8d15-ed5639619430": {
+    "asset": 1757322086227,
+    "meta": 1758270698123,
+    "relativePath": "zeusGame\\audios\\freeFinishedResultLongEffect.mp3"
+  },
+  "cec3a5b4-dfba-47ec-92dd-cd04e96375a0": {
+    "asset": 1757322086247,
+    "meta": 1758270698722,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num7.fnt"
+  },
+  "8459d43c-0377-4618-a66d-fbe54fb32a2e": {
+    "asset": 1757322086232,
+    "meta": 1758270698125,
+    "relativePath": "zeusGame\\audios\\freeTipsShow.mp3"
+  },
+  "e25a51ce-2b87-4282-8119-7800ddb01ed4": {
+    "asset": 1757322086248,
+    "meta": 1758270698723,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num8.fnt"
+  },
+  "7cb6c103-1012-4666-a038-c2e56b73f703": {
+    "asset": 1757322086217,
+    "meta": 1758270698126,
+    "relativePath": "zeusGame\\audios\\bigWin5AddCoin.mp3"
+  },
+  "b094737b-1326-4fe0-a274-6cfb8fa964ac": {
+    "asset": 1757322086249,
+    "meta": 1758270698724,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num9.fnt"
+  },
+  "754f64eb-8fbc-46e3-b5b5-cbdf5e98f9c1": {
+    "asset": 1757322086228,
+    "meta": 1758270698128,
+    "relativePath": "zeusGame\\audios\\freeFinishedResultShow.mp3"
+  },
+  "3d9a327c-b5d3-4cfe-8204-b0166a3662d4": {
+    "asset": 1757322086232,
+    "meta": 1758270698129,
+    "relativePath": "zeusGame\\audios\\freeXuLi1.mp3"
+  },
+  "491dec95-5fda-4bb5-912c-be897d09fa64": {
+    "asset": 1758270694459,
+    "meta": 1758270698130,
+    "relativePath": "zeusGame\\images"
+  },
+  "311afe8f-efbd-4445-82d8-a405bab7eccb": {
+    "asset": 1758270694424,
+    "meta": 1758270698133,
+    "relativePath": "zeusGame\\images\\folder"
+  },
+  "8dfb998f-1769-4988-9226-3f8cb4d16d28": {
+    "asset": 1758270694441,
+    "meta": 1758270698133,
+    "relativePath": "zeusGame\\images\\gatesofolympus"
+  },
+  "ec590c79-1e78-4f55-a40a-ecaec92a732a": {
+    "asset": 1757322086234,
+    "meta": 1758270698134,
+    "relativePath": "zeusGame\\audios\\headMultAdd.mp3"
+  },
+  "8781ec98-624d-4ed2-af43-1322e5dd0d67": {
+    "asset": 1758270694458,
+    "meta": 1758270698135,
+    "relativePath": "zeusGame\\images\\symbols"
+  },
+  "b0394044-b017-4089-bd73-feb2931bc505": {
+    "asset": 1757322086234,
+    "meta": 1758270698136,
+    "relativePath": "zeusGame\\audios\\lightNing.mp3"
+  },
+  "6fea6bb7-0b73-4662-aad4-c133d94b98e1": {
+    "asset": 1758270694505,
+    "meta": 1758270698136,
+    "relativePath": "zeusGame\\images\\text"
+  },
+  "36a2eee4-5927-4dcd-802d-c9117535d8a5": {
+    "asset": 1757322086237,
+    "meta": 1758270698137,
+    "relativePath": "zeusGame\\audios\\normalXuLi.mp3"
+  },
+  "0b0c6197-fc35-4e4d-ad69-81253af289f5": {
+    "asset": 1757322086250,
+    "meta": 1758270698137,
+    "relativePath": "zeusGame\\images\\folder\\auto-atlas.pac"
+  },
+  "98aa2729-6072-495a-a6fd-0162638025f1": {
+    "asset": 1757322086239,
+    "meta": 1758270698138,
+    "relativePath": "zeusGame\\audios\\scatterEleAppear.mp3"
+  },
+  "1f354bf3-e449-49d1-aae8-23bb923816b6": {
+    "asset": 1757322086240,
+    "meta": 1758270698139,
+    "relativePath": "zeusGame\\audios\\scatterEleAppearFree.mp3"
+  },
+  "1326a06f-57c0-4065-9d5c-15b3bed2000d": {
+    "asset": 1757322086231,
+    "meta": 1758270698140,
+    "relativePath": "zeusGame\\audios\\freeTipsLongEffect.mp3"
+  },
+  "4124a259-b6a2-4646-a31e-da1724743ee5": {
+    "asset": 1757322086233,
+    "meta": 1758270698141,
+    "relativePath": "zeusGame\\audios\\freeXuLi2.mp3"
+  },
+  "52f85654-1f7f-4365-b431-a23d5964e9d7": {
+    "asset": 1757322086240,
+    "meta": 1758270698141,
+    "relativePath": "zeusGame\\audios\\scatterTrigger.mp3"
+  },
+  "85a7530b-2018-47c8-b037-024a9beb8e13": {
+    "asset": 1757322086233,
+    "meta": 1758270698142,
+    "relativePath": "zeusGame\\audios\\freeXuLi3.mp3"
+  },
+  "88d06cc6-e128-4bf6-9718-c4a1cc8b8d75": {
+    "asset": 1757322086237,
+    "meta": 1758270698143,
+    "relativePath": "zeusGame\\audios\\reachBottom.mp3"
+  },
+  "cca0c647-bab7-4c03-a0bf-4411423c10ed": {
+    "asset": 1757322086241,
+    "meta": 1758270698143,
+    "relativePath": "zeusGame\\audios\\scoreMultiply.mp3"
+  },
+  "55becfcc-42ce-474e-93f9-1e33c9daf103": {
+    "asset": 1757322086234,
+    "meta": 1758270698144,
+    "relativePath": "zeusGame\\audios\\multEleShow.mp3"
+  },
+  "1c3729a7-8a2c-4c11-8ff6-5d64ae4374a1": {
+    "asset": 1757322086238,
+    "meta": 1758270698146,
+    "relativePath": "zeusGame\\audios\\reachOut.mp3"
+  },
+  "4b268381-87ed-4105-9a1e-43cf1fbef122": {
+    "asset": 1757322086239,
+    "meta": 1758270698149,
+    "relativePath": "zeusGame\\audios\\roleLightNing.mp3"
+  },
+  "e29cd368-d603-4d48-a1e2-4ed6670ec6ef": {
+    "asset": 1757322086241,
+    "meta": 1758270698150,
+    "relativePath": "zeusGame\\audios\\scoreMultiplyEnd.mp3"
+  },
+  "534f14d0-d78c-4182-b4f1-41477fc57168": {
+    "asset": 1757322086231,
+    "meta": 1758270698151,
+    "relativePath": "zeusGame\\audios\\freeStateBg.mp3"
+  },
+  "6da18c2d-3c37-4760-986a-5f0e8a6b97cb": {
+    "asset": 1757322086236,
+    "meta": 1758270698155,
+    "relativePath": "zeusGame\\audios\\normalStateBg.mp3"
+  },
+  "f584ee21-1540-4766-a5b6-390069b7ef61": {
+    "asset": 1758180054825,
+    "meta": 1758270698147,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num1_0.png"
+  },
+  "f919d284-0cf2-4605-8bb0-122410d38c01": {
+    "asset": 1758180054826,
+    "meta": 1758270698148,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num2_0.png"
+  },
+  "7bd351df-1f50-47db-8c25-3c2ce083269e": {
+    "asset": 1758180054826,
+    "meta": 1758270698153,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num3_0.png"
+  },
+  "cc9a8e3e-0d3e-43f8-9561-c62122a7447f": {
+    "asset": 1758180054826,
+    "meta": 1758270698159,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num4_0.png"
+  },
+  "aa095133-5cd5-411b-9317-704aa7486404": {
+    "asset": 1758180054827,
+    "meta": 1758270698163,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num5_0.png"
+  },
+  "578fcdcb-72a3-4cda-99ae-04def88b2049": {
+    "asset": 1758180054827,
+    "meta": 1758270698167,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num6_0.png"
+  },
+  "6546e25a-1996-459d-805b-68cda34be8c4": {
+    "asset": 1758180054827,
+    "meta": 1758270698169,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num7_0.png"
+  },
+  "ce49078d-000a-43d1-8321-f00e818fe9b5": {
+    "asset": 1758180054828,
+    "meta": 1758270698173,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num8_0.png"
+  },
+  "b5394fb6-abf9-4546-8a55-87bf9d546990": {
+    "asset": 1758180054828,
+    "meta": 1758270698174,
+    "relativePath": "zeusGame\\fonts\\gates_oly_num9_0.png"
+  },
+  "98e18c2a-3dde-49a9-828b-eb006ae3f47e": {
+    "asset": 1757322086277,
+    "meta": 1758270698201,
+    "relativePath": "zeusGame\\images\\symbols\\AutoAtlas.pac"
+  },
+  "97690c2e-e9c5-4f12-a9d1-8140592f7d6d": {
+    "asset": 1758180054829,
+    "meta": 1758270698176,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_1.png"
+  },
+  "ce9e66d5-8a30-4b79-bd90-5d81a18ec3c2": {
+    "asset": 1757322086254,
+    "meta": 1758270698180,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_add_btn_normal.png"
+  },
+  "65c14518-2a05-4919-88f2-d0a99e4619c0": {
+    "asset": 1758180054831,
+    "meta": 1758270698181,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_add_btn_bottom.png"
+  },
+  "906ff0c0-b076-4ecd-8810-b486b7333e94": {
+    "asset": 1758180054830,
+    "meta": 1758270698182,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_33.png"
+  },
+  "f2b3495b-e6c1-4525-a2ac-61ec45bd068b": {
+    "asset": 1758180054833,
+    "meta": 1758270698184,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_auto_btn_unchecked.png"
+  },
+  "93e75a52-dc33-4f9a-bf94-f466ecece9b0": {
+    "asset": 1758180054832,
+    "meta": 1758270698188,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_auto_btn_checked.png"
+  },
+  "8efc3547-43f1-4a99-94fb-5074036d6b65": {
+    "asset": 1758180054833,
+    "meta": 1758270698189,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_back_btn.png"
+  },
+  "f394bf10-5ffe-47c8-954f-7310ab1d963d": {
+    "asset": 1758180054834,
+    "meta": 1758270698192,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_flash001.png"
+  },
+  "044c1d49-6af0-4a04-a4c0-ec327cea82fa": {
+    "asset": 1758180054834,
+    "meta": 1758270698193,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_flash0.png"
+  },
+  "84d4492b-ce32-442e-9cc8-6c11087dcaea": {
+    "asset": 1757322086252,
+    "meta": 1758270698194,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_Flash02.png"
+  },
+  "1adb62d4-15b0-42da-bb4b-35ba3df122f7": {
+    "asset": 1757322086253,
+    "meta": 1758270698198,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_Flash02_2.png"
+  },
+  "a370f5d2-1f83-4419-9ad6-c3d33c0c4abc": {
+    "asset": 1758180054835,
+    "meta": 1758270698199,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_getcoin_btn.png"
+  },
+  "70c306d9-f43b-4a45-85ad-29081029265b": {
+    "asset": 1757322086257,
+    "meta": 1758270698200,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_freespins_2.png"
+  },
+  "3c8df66c-0027-4c3b-b4be-fbe862acc6a0": {
+    "asset": 1758180054830,
+    "meta": 1758270698203,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_L1.png"
+  },
+  "909fafc2-a851-4d2b-ad5f-245d488a3b0d": {
+    "asset": 1758180054831,
+    "meta": 1758270698206,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_L3.png"
+  },
+  "1e219c05-ef2b-4e81-8c5f-a652317fd833": {
+    "asset": 1758180054829,
+    "meta": 1758270698207,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_32.png"
+  },
+  "04dedf1a-f40e-4647-8ef6-4d5eff692183": {
+    "asset": 1758180054831,
+    "meta": 1758270698209,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_L4.png"
+  },
+  "db454b00-e5ea-491b-9ef8-9fc94afff7bc": {
+    "asset": 1758180054836,
+    "meta": 1758270698212,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_maxbet_btn_normal.png"
+  },
+  "dd04202b-c346-43a1-90dc-77fbb2bfcfc3": {
+    "asset": 1757322086256,
+    "meta": 1758270698214,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_bg_shadow.png"
+  },
+  "0f911539-ebc3-4e92-a892-958c9239aacb": {
+    "asset": 1757322086258,
+    "meta": 1758270698216,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_mycoin_bottom.png"
+  },
+  "daa3187a-08a1-45dc-be51-509eb747830b": {
+    "asset": 1758180054836,
+    "meta": 1758270698216,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_quick_btn_checked.png"
+  },
+  "37a552c9-895b-4a2e-aff3-17b81e5c7e2c": {
+    "asset": 1758180054837,
+    "meta": 1758270698220,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_quick_btn_uncheked.png"
+  },
+  "71d29d54-c554-43ab-bd08-4abf23d67a17": {
+    "asset": 1757322086260,
+    "meta": 1758270698225,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_reduce_btn_normal.png"
+  },
+  "14379f2e-c3cf-4179-a368-3d9707b46c91": {
+    "asset": 1758180054837,
+    "meta": 1758270698228,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_rules_btn.png"
+  },
+  "d899296d-70d2-4448-8399-dff3daaf5279": {
+    "asset": 1758180054838,
+    "meta": 1758270698232,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_spin_btn_normal.png"
+  },
+  "a76c284f-f694-483e-bb9a-57dc5a758b6d": {
+    "asset": 1757322086262,
+    "meta": 1758270698233,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_switch_btn_off.png"
+  },
+  "ae710f7f-3bab-44c4-9c48-16014f9ebd08": {
+    "asset": 1758180054838,
+    "meta": 1758270698234,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_setting_btn.png"
+  },
+  "91b6d3dd-e2c0-479c-a9ba-0c00b8086be8": {
+    "asset": 1757322086262,
+    "meta": 1758270698235,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_switch_btn_on.png"
+  },
+  "5348e840-eb40-4b32-b6e9-e7282062bf2c": {
+    "asset": 1758180054839,
+    "meta": 1758270698241,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_win1.png"
+  },
+  "ab5faba3-52b2-4ea2-b56f-5e098d743e6c": {
+    "asset": 1758180054840,
+    "meta": 1758270698244,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\Flash01.png"
+  },
+  "beb5d7f1-9da3-40ef-9988-f070b16836e2": {
+    "asset": 1758180054839,
+    "meta": 1758270698245,
+    "relativePath": "zeusGame\\images\\folder\\gates_oly_win2.png"
+  },
+  "4c5aeb7b-d781-480c-8c1f-d43b025f9bbd": {
+    "asset": 1758180054841,
+    "meta": 1758270698246,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\flash00.png"
+  },
+  "33264b5f-3cf6-4a58-8c2c-0329fa9ed45a": {
+    "asset": 1758180054846,
+    "meta": 1758270698252,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_downarea_bottom.png"
+  },
+  "a7feded6-7cfc-4e1d-a760-a08a22924201": {
+    "asset": 1758180054850,
+    "meta": 1758270698253,
+    "relativePath": "zeusGame\\images\\symbols\\crown.png"
+  },
+  "b7e32ccf-adb2-4d99-87cd-24c1c51c2e89": {
+    "asset": 1758180054847,
+    "meta": 1758270698254,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_glwo.png"
+  },
+  "f06af664-c354-469f-936c-49f02b2f90f1": {
+    "asset": 1758270694511,
+    "meta": 1758270698289,
+    "relativePath": "zeusGame\\prefabs"
+  },
+  "e44bba45-f9de-439a-8f14-827ffcc23f2c": {
+    "asset": 1757322086277,
+    "meta": 1758270698255,
+    "relativePath": "zeusGame\\images\\symbols\\blue.png"
+  },
+  "8d069d54-4f03-4aba-9853-657843df8506": {
+    "asset": 1757322086279,
+    "meta": 1758270698261,
+    "relativePath": "zeusGame\\images\\symbols\\purple.png"
+  },
+  "94646bad-2c58-45f6-b25b-328c3205f033": {
+    "asset": 1757322086278,
+    "meta": 1758270698262,
+    "relativePath": "zeusGame\\images\\symbols\\grail.png"
+  },
+  "a15b2665-8092-4200-bd52-ebbd8eaf871a": {
+    "asset": 1758270694514,
+    "meta": 1758270698301,
+    "relativePath": "zeusGame\\res"
+  },
+  "da8bf759-7738-4200-b97b-d284a6354b26": {
+    "asset": 1757322086279,
+    "meta": 1758270698263,
+    "relativePath": "zeusGame\\images\\symbols\\green.png"
+  },
+  "dd327db8-bfc8-4977-88e0-38ac0f75a4ec": {
+    "asset": 1758180054850,
+    "meta": 1758270698264,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_win22.png"
+  },
+  "2cf7cbf9-7604-4550-b91d-04276e965533": {
+    "asset": 1758270694689,
+    "meta": 1758270698305,
+    "relativePath": "zeusGame\\spines"
+  },
+  "8a335b67-5a1c-404a-ab08-5e780a03ed83": {
+    "asset": 1758270694529,
+    "meta": 1758270698306,
+    "relativePath": "zeusGame\\spines\\Boom"
+  },
+  "03ff64f2-9ac4-4963-8f0f-cdd923ed2cb6": {
+    "asset": 1758180054846,
+    "meta": 1758270698272,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_bg3.png"
+  },
+  "f65e2a4f-3c4b-439a-b07c-6996141d804f": {
+    "asset": 1758180054850,
+    "meta": 1758270698273,
+    "relativePath": "zeusGame\\images\\symbols\\ring.png"
+  },
+  "1ce8c1dd-fa00-4575-9c4d-83fe9918ee72": {
+    "asset": 1758270694535,
+    "meta": 1758270698307,
+    "relativePath": "zeusGame\\spines\\enterFree"
+  },
+  "8f45493d-c2b5-4f98-b65a-1a4d600a6b48": {
+    "asset": 1757322086279,
+    "meta": 1758270698275,
+    "relativePath": "zeusGame\\images\\symbols\\red.png"
+  },
+  "514fac33-683d-482b-880a-50e2adb9cdc8": {
+    "asset": 1758270694541,
+    "meta": 1758270698308,
+    "relativePath": "zeusGame\\spines\\fall_coins"
+  },
+  "c4fd9af2-eb4a-4f18-a641-8d4f6336e2d7": {
+    "asset": 1758180054845,
+    "meta": 1758270698276,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_bg2.png"
+  },
+  "45d0dfb1-39f8-4fb0-b843-248c2b21f7e0": {
+    "asset": 1758270694548,
+    "meta": 1758270698310,
+    "relativePath": "zeusGame\\spines\\Fire1"
+  },
+  "05342380-5033-4878-8bd7-2ce33924b44b": {
+    "asset": 1758270694554,
+    "meta": 1758270698310,
+    "relativePath": "zeusGame\\spines\\Fire2"
+  },
+  "cb1ad130-d60c-4275-8f17-f87f9034ec10": {
+    "asset": 1758180054851,
+    "meta": 1758270698278,
+    "relativePath": "zeusGame\\images\\symbols\\scatter.png"
+  },
+  "13936eae-41f5-4696-9a4d-ef44db1e824e": {
+    "asset": 1758270694560,
+    "meta": 1758270698311,
+    "relativePath": "zeusGame\\spines\\Renwu"
+  },
+  "6009a718-c3f4-4f23-a418-3c2a30790a67": {
+    "asset": 1758180054849,
+    "meta": 1758270698286,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_win12.png"
+  },
+  "9cb3a2e0-0bfa-434a-8b9b-1b3dd987fe57": {
+    "asset": 1758270694566,
+    "meta": 1758270698312,
+    "relativePath": "zeusGame\\spines\\reward_frame"
+  },
+  "1e001c44-7013-42d4-934d-e9fa2bf9b4f0": {
+    "asset": 1758180054850,
+    "meta": 1758270698287,
+    "relativePath": "zeusGame\\images\\symbols\\sandglass.png"
+  },
+  "9249b412-482d-48b3-acd6-75ac1d289976": {
+    "asset": 1758270694671,
+    "meta": 1758270698313,
+    "relativePath": "zeusGame\\spines\\symbols"
+  },
+  "c78a1dc6-6d8f-4383-ac8b-750995d44683": {
+    "asset": 1758270694682,
+    "meta": 1758270698313,
+    "relativePath": "zeusGame\\spines\\WIN"
+  },
+  "0d56fb03-1193-43f2-9b51-e3a5ffddfde6": {
+    "asset": 1757322086281,
+    "meta": 1758270698288,
+    "relativePath": "zeusGame\\images\\symbols\\yellow.png"
+  },
+  "e535a36e-0884-4e08-af1b-e2c2d36f7575": {
+    "asset": 1758270694688,
+    "meta": 1758270698314,
+    "relativePath": "zeusGame\\spines\\X2"
+  },
+  "a32ba7bc-0e00-4e9a-ad98-9cc49a38cbb4": {
+    "asset": 1758270694694,
+    "meta": 1758270698314,
+    "relativePath": "zeusGame\\spines\\ZSSF"
+  },
+  "c65f09d0-b7a2-4e3a-bb93-e97814765f7f": {
+    "asset": 1758180054842,
+    "meta": 1758270698294,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\flash1.png"
+  },
+  "e33ab93c-f8ec-4cce-91b7-3082baf73982": {
+    "asset": 1757322086283,
+    "meta": 1758270698297,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_bouns.png"
+  },
+  "0dabde73-d564-4818-bd6c-259c1624437b": {
+    "asset": 1758180054852,
+    "meta": 1758270698300,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_buy_freespin.png"
+  },
+  "4d25cea2-dca9-46e0-8f09-319be975687c": {
+    "asset": 1758180054851,
+    "meta": 1758270698304,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_FreeSpins.png"
+  },
+  "3588aafd-96a4-4603-ba05-ba0e8c372608": {
+    "asset": 1758180054853,
+    "meta": 1758270698306,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_congra.png"
+  },
+  "4ab46d86-41b1-4d82-829e-c348c617eba1": {
+    "asset": 1757322086294,
+    "meta": 1758270698326,
+    "relativePath": "zeusGame\\prefabs\\zeusBuyFreeTips.prefab"
+  },
+  "3d88d889-6b30-4dfc-a87f-5848e54e5fd8": {
+    "asset": 1758180054851,
+    "meta": 1758270698308,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_FREE SPINS.png"
+  },
+  "88ccfdcc-6438-41f4-8639-417ad26ed821": {
+    "asset": 1758180054853,
+    "meta": 1758270698311,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_freespins_2.png"
+  },
+  "078fc0cd-faa3-4baa-ae22-65d6e92f94f1": {
+    "asset": 1757322086294,
+    "meta": 1758270698335,
+    "relativePath": "zeusGame\\prefabs\\zeusChangeStateTips.prefab"
+  },
+  "cb4159fd-32c8-4f57-9177-0a6fb3bebe3e": {
+    "asset": 1757322086295,
+    "meta": 1758270698342,
+    "relativePath": "zeusGame\\prefabs\\zeusRewardTips.prefab"
+  },
+  "81b097e8-0210-413f-9608-e5325d29af24": {
+    "asset": 1757322086285,
+    "meta": 1758270698315,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_freespins_3.png"
+  },
+  "ccc5b4ec-d7a5-4835-85c2-bc67466539d8": {
+    "asset": 1757322086282,
+    "meta": 1758270698316,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_PRESS ANYWHERE TO CONTINUE.png"
+  },
+  "d77d01b4-4803-4c80-8d70-d255055f5d8c": {
+    "asset": 1758180054852,
+    "meta": 1758270698317,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_InIsFreeSpins.png"
+  },
+  "bd7a9e61-0737-4a39-9e09-5f6caf75ab65": {
+    "asset": 1758270694583,
+    "meta": 1758270698346,
+    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond"
+  },
+  "f90de89b-5568-4b01-a4fc-18fd16529759": {
+    "asset": 1758180054854,
+    "meta": 1758270698321,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_se3.png"
+  },
+  "4a707643-a45c-4000-b68c-effe3c0f49fe": {
+    "asset": 1758270694590,
+    "meta": 1758270698348,
+    "relativePath": "zeusGame\\spines\\symbols\\Crown"
+  },
+  "13273704-4881-405d-9f1e-4b4edc1f4cf6": {
+    "asset": 1757322086295,
+    "meta": 1758270698348,
+    "relativePath": "zeusGame\\res\\Symbol.csv"
+  },
+  "31aee03c-7e81-48a4-a9cc-d4187869e655": {
+    "asset": 1758180054853,
+    "meta": 1758270698323,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_se1.png"
+  },
+  "d4b48bd9-60e2-44a1-a638-691aee050f25": {
+    "asset": 1758270694596,
+    "meta": 1758270698349,
+    "relativePath": "zeusGame\\spines\\symbols\\Grail"
+  },
+  "acb240a2-5603-4b6a-9cd0-1707e0f7246d": {
+    "asset": 1758180054854,
+    "meta": 1758270698324,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_se2.png"
+  },
+  "d467eaca-79aa-4417-ac32-0ac1226ab641": {
+    "asset": 1758270694602,
+    "meta": 1758270698351,
+    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond"
+  },
+  "8f3efa5b-18ee-4ce2-822f-3fd48782d7cd": {
+    "asset": 1758180054844,
+    "meta": 1758270698327,
+    "relativePath": "zeusGame\\images\\gatesofolympus\\gates_oly_bg1.jpg"
+  },
+  "e4ef3df5-cda7-4725-a173-b75e6975ab1d": {
+    "asset": 1758270694639,
+    "meta": 1758270698352,
+    "relativePath": "zeusGame\\spines\\symbols\\Multiple"
+  },
+  "bb6ba6be-03c7-410b-b889-2bb889c043f6": {
+    "asset": 1758180054855,
+    "meta": 1758270698329,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_se4.png"
+  },
+  "801d0441-4206-4e56-917a-3d24d777e24d": {
+    "asset": 1758270694645,
+    "meta": 1758270698352,
+    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond"
+  },
+  "811968f8-ca8c-4e5e-8c53-e420079609f4": {
+    "asset": 1758180054856,
+    "meta": 1758270698332,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_text_2.png"
+  },
+  "4799688a-b03a-4213-a845-6c6ae47ac69b": {
+    "asset": 1758270694651,
+    "meta": 1758270698353,
+    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond"
+  },
+  "188fef18-8e41-4869-aae1-a67d1d69d5b4": {
+    "asset": 1758270694657,
+    "meta": 1758270698353,
+    "relativePath": "zeusGame\\spines\\symbols\\Ring"
+  },
+  "a5250dbd-128d-4e0c-9cdc-98d8acddbbfe": {
+    "asset": 1758180054856,
+    "meta": 1758270698332,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_se5.png"
+  },
+  "71e42280-f6f2-41f5-b9d8-1cad7c51acd7": {
+    "asset": 1758270694663,
+    "meta": 1758270698354,
+    "relativePath": "zeusGame\\spines\\symbols\\Sandglass"
+  },
+  "34d722e6-6294-425d-8cd2-7f423310e2da": {
+    "asset": 1758270694669,
+    "meta": 1758270698354,
+    "relativePath": "zeusGame\\spines\\symbols\\Scatter"
+  },
+  "93ce1880-d278-4ccb-befe-e5aa5f311932": {
+    "asset": 1757322086290,
+    "meta": 1758270698334,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_texte_1.png"
+  },
+  "0594e612-b49a-4c08-9854-a09c2e7f1c43": {
+    "asset": 1758270694676,
+    "meta": 1758270698355,
+    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond"
+  },
+  "de252ca1-164e-42b1-895b-0ac3a29ab90c": {
+    "asset": 1758180054857,
+    "meta": 1758270698341,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_text_3.png"
+  },
+  "0a640021-9f24-4c5e-a812-e3380b20e5ec": {
+    "asset": 1758180054857,
+    "meta": 1758270698344,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_title_1.png"
+  },
+  "84b80f69-634a-4481-a71b-f24bb94769ab": {
+    "asset": 1758180054857,
+    "meta": 1758270698345,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_title_2.png"
+  },
+  "b9bfec08-e372-485d-a8f2-f01dcbab7d61": {
+    "asset": 1758180054858,
+    "meta": 1758270698345,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_title_3.png"
+  },
+  "05b0acae-2cf9-4c6f-8821-a851fec6cedc": {
+    "asset": 1757322086296,
+    "meta": 1758270698373,
+    "relativePath": "zeusGame\\spines\\Boom\\boom.atlas"
+  },
+  "05e8fdb6-24ca-4f84-9d54-b418635c67b7": {
+    "asset": 1757322086322,
+    "meta": 1758270698376,
+    "relativePath": "zeusGame\\spines\\enterFree\\zc.atlas"
+  },
+  "63f12869-e723-477b-9868-8ec6ef5a1b1f": {
+    "asset": 1758180054858,
+    "meta": 1758270698350,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_title_4.png"
+  },
+  "db395d4c-77e5-436d-86b6-a73db7899d07": {
+    "asset": 1757322086326,
+    "meta": 1758270698377,
+    "relativePath": "zeusGame\\spines\\fall_coins\\gatesofolympus_fall_coin.atlas"
+  },
+  "dc8478a0-923b-45b4-8407-3cd9efa7e03e": {
+    "asset": 1757322086300,
+    "meta": 1758270698378,
+    "relativePath": "zeusGame\\spines\\Fire1\\fire1.atlas"
+  },
+  "3324163c-1a53-4437-b636-f38e4acc954e": {
+    "asset": 1757322086292,
+    "meta": 1758270698351,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_total_multiply.png"
+  },
+  "5d6c054f-fe87-4f96-a820-1f8c1f0e5425": {
+    "asset": 1757322086302,
+    "meta": 1758270698382,
+    "relativePath": "zeusGame\\spines\\Fire2\\fire2.atlas"
+  },
+  "5f03a887-be30-4ba7-b612-6f624c05aeaa": {
+    "asset": 1757322086305,
+    "meta": 1758270698384,
+    "relativePath": "zeusGame\\spines\\Renwu\\ren.skel.atlas"
+  },
+  "577ac4a2-be4c-4f3b-b835-986fd6e67a62": {
+    "asset": 1757322086328,
+    "meta": 1758270698385,
+    "relativePath": "zeusGame\\spines\\reward_frame\\reward_frame.atlas"
+  },
+  "14980fb0-2dfc-4952-83a2-b8bd840ec403": {
+    "asset": 1757322086283,
+    "meta": 1758270698359,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_TUMBLEWIN.png"
+  },
+  "cdbed91e-7763-48e2-8323-f640d0ad4cfc": {
+    "asset": 1757322086309,
+    "meta": 1758270698391,
+    "relativePath": "zeusGame\\spines\\WIN\\Jiang.skel.atlas"
+  },
+  "e343c0e0-0ab8-4673-b562-16b35b1b7fdf": {
+    "asset": 1758180054852,
+    "meta": 1758270698369,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_YouHaveWon.png"
+  },
+  "25cf05a5-e935-4041-bc09-f7b42e9a07f6": {
+    "asset": 1757322086312,
+    "meta": 1758270698394,
+    "relativePath": "zeusGame\\spines\\X2\\X2.atlas"
+  },
+  "f9d36a9a-01d1-48bf-937a-bc7cf99d2b5f": {
+    "asset": 1757322086317,
+    "meta": 1758270698396,
+    "relativePath": "zeusGame\\spines\\ZSSF\\zssf.atlas"
+  },
+  "cc6b9f16-bbd2-463c-949e-bac9235faa04": {
+    "asset": 1757322086293,
+    "meta": 1758270698371,
+    "relativePath": "zeusGame\\images\\text\\gates_oly_youwin_text.png"
+  },
+  "c99832d8-1066-47ac-b5dd-31491a67f98f": {
+    "asset": 1757322086330,
+    "meta": 1758270698397,
+    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond\\gatesolympus_bluediamond.atlas"
+  },
+  "81c7cea1-2b4b-44e5-b257-d750554b64b7": {
+    "asset": 1757322086332,
+    "meta": 1758270698403,
+    "relativePath": "zeusGame\\spines\\symbols\\Crown\\gatesolympus_crown.atlas"
+  },
+  "80504043-f17d-4ccc-af16-7e7658331952": {
+    "asset": 1758180054875,
+    "meta": 1758270698388,
+    "relativePath": "zeusGame\\spines\\fall_coins\\gatesofolympus_fall_coin.png"
+  },
+  "97b89611-f0c5-4d20-bc18-2284c25dbcb2": {
+    "asset": 1757322086333,
+    "meta": 1758270698412,
+    "relativePath": "zeusGame\\spines\\symbols\\Grail\\gatesolympus_grail.atlas"
+  },
+  "35381f5f-e051-4856-90b9-973c541a8f9a": {
+    "asset": 1757322086335,
+    "meta": 1758270698414,
+    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond\\gatesolympus_greendiamond.atlas"
+  },
+  "1bf810fe-68b7-4547-b58f-5cd62f37a3d0": {
+    "asset": 1758180054875,
+    "meta": 1758270698401,
+    "relativePath": "zeusGame\\spines\\reward_frame\\reward_frame.png"
+  },
+  "7aa8a699-9888-419e-a417-1f8e13be9131": {
+    "asset": 1758270694729,
+    "meta": 1758270698416,
+    "relativePath": "zeusGame\\src"
+  },
+  "e9b9747b-7186-4547-9af5-60b15fc106db": {
+    "asset": 1757322086355,
+    "meta": 1758270698438,
+    "relativePath": "zeusGame\\src\\zeusAudiosCtrl.js"
+  },
+  "1231432f-396f-4319-9135-1e50f41521f0": {
+    "asset": 1758180054861,
+    "meta": 1758270698405,
+    "relativePath": "zeusGame\\spines\\Fire2\\fire2.png"
+  },
+  "45c877de-bfc8-4423-bb7f-b788bc40a4b8": {
+    "asset": 1758180054860,
+    "meta": 1758270698409,
+    "relativePath": "zeusGame\\spines\\Fire1\\fire1.png"
+  },
+  "fd457857-e992-4d85-8e4c-595f98b013b9": {
+    "asset": 1757322086356,
+    "meta": 1758270698453,
+    "relativePath": "zeusGame\\src\\zeusBottomAreaCtrl.js"
+  },
+  "6b1b79d1-9560-4f3b-be04-34bc415ba156": {
+    "asset": 1757322086356,
+    "meta": 1758270698461,
+    "relativePath": "zeusGame\\src\\zeusBuyFreeTipsCtrl.js"
+  },
+  "b371cd1b-7959-4e68-aa8e-e290ac57c34d": {
+    "asset": 1757322086356,
+    "meta": 1758270698473,
+    "relativePath": "zeusGame\\src\\zeusCellCtrl.js"
+  },
+  "24a79649-1408-43fb-aab0-47f3490703ee": {
+    "asset": 1758180054882,
+    "meta": 1758270698534,
+    "relativePath": "zeusGame\\src\\zeusCentreAreaCtrl.js"
+  },
+  "32680baa-2fd9-4991-a55f-9aec7036ce74": {
+    "asset": 1758180054876,
+    "meta": 1758270698415,
+    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond\\gatesolympus_bluediamond.png"
+  },
+  "843d40e7-d5c8-4212-82e3-93e49d05750d": {
+    "asset": 1757322086336,
+    "meta": 1758270698535,
+    "relativePath": "zeusGame\\spines\\symbols\\Multiple\\gatesolympus_multiple.atlas"
+  },
+  "d4148778-20a3-4cfb-acdc-74ddb4ce135a": {
+    "asset": 1757322086357,
+    "meta": 1758270698542,
+    "relativePath": "zeusGame\\src\\zeusChangeStateTipsCtrl.js"
+  },
+  "f358102a-b30f-49bd-83f0-b7d0422f6db4": {
+    "asset": 1758180054859,
+    "meta": 1758270698439,
+    "relativePath": "zeusGame\\spines\\Boom\\boom.png"
+  },
+  "545dd7d4-6a18-4ff0-8378-5ff93fb2ab7c": {
+    "asset": 1757322086357,
+    "meta": 1758270698550,
+    "relativePath": "zeusGame\\src\\zeusFiresAreaCtrl.js"
+  },
+  "ee68ae4d-2095-4450-a22e-afe4e90c56d7": {
+    "asset": 1757322086358,
+    "meta": 1758270698567,
+    "relativePath": "zeusGame\\src\\zeusHeadAreaCtrl.js"
+  },
+  "81aaa65e-a15e-4f4c-9aa5-ceae2fa07d15": {
+    "asset": 1757322086358,
+    "meta": 1758270698582,
+    "relativePath": "zeusGame\\src\\zeusLeftAreaCtrl.js"
+  },
+  "0fdf2d64-4f07-4578-b16c-fb147d7b5e26": {
+    "asset": 1758180054869,
+    "meta": 1758270698544,
+    "relativePath": "zeusGame\\spines\\ZSSF\\zssf.png"
+  },
+  "d7af4d90-1e6f-4564-a0e4-923f682afb58": {
+    "asset": 1757322086358,
+    "meta": 1758270698590,
+    "relativePath": "zeusGame\\src\\zeusMyCoinCtrl.js"
+  },
+  "f8e3f653-3a47-4aef-9ef7-ab62b45c1dc0": {
+    "asset": 1757322086359,
+    "meta": 1758270698597,
+    "relativePath": "zeusGame\\src\\zeusRecordItemCtrl.js"
+  },
+  "a6fb2dbe-80c9-4724-b31e-b54bae31c628": {
+    "asset": 1758180054876,
+    "meta": 1758270698567,
+    "relativePath": "zeusGame\\spines\\symbols\\Crown\\gatesolympus_crown.png"
+  },
+  "b9bfaf10-ef57-46e1-9b57-dedc8019d623": {
+    "asset": 1757322086338,
+    "meta": 1758270698597,
+    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond\\gatesolympus_purplediamond.atlas"
+  },
+  "3baabab9-68f2-4404-911f-30cea82a7ab2": {
+    "asset": 1757322086360,
+    "meta": 1758270698602,
+    "relativePath": "zeusGame\\src\\zeusReelCtrl.js"
+  },
+  "ccdea9b6-713e-4840-919e-77ac2cd98a67": {
+    "asset": 1757322086360,
+    "meta": 1758270698614,
+    "relativePath": "zeusGame\\src\\zeusRewardTipsCtrl.js"
+  },
+  "05d0c1a7-237f-487b-85ae-8421dcdbf70f": {
+    "asset": 1758180054867,
+    "meta": 1758270698582,
+    "relativePath": "zeusGame\\spines\\X2\\X2.png"
+  },
+  "2369bd7c-6cf8-4636-884b-6ea325a74a25": {
+    "asset": 1757322086360,
+    "meta": 1758270698620,
+    "relativePath": "zeusGame\\src\\zeusRightAreaCtrl.js"
+  },
+  "4bc98a51-e288-4894-aeae-20766687af1b": {
+    "asset": 1758180054882,
+    "meta": 1758270698651,
+    "relativePath": "zeusGame\\src\\zeusSceneCtrl.js"
+  },
+  "f19a20b3-fa58-488f-a999-eab798ddd1b4": {
+    "asset": 1758180054876,
+    "meta": 1758270698592,
+    "relativePath": "zeusGame\\spines\\symbols\\Grail\\gatesolympus_grail.png"
+  },
+  "de5e5c7b-bb46-4d85-a859-d41d7a613975": {
+    "asset": 1757322086340,
+    "meta": 1758270698658,
+    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond\\gatesolympus_reddiamond.atlas"
+  },
+  "b2934bdf-88a4-423e-b659-4542a38a0cdb": {
+    "asset": 1757322086341,
+    "meta": 1758270698660,
+    "relativePath": "zeusGame\\spines\\symbols\\Ring\\gatesolympus_ring.atlas"
+  },
+  "7e72561e-b4c9-4a25-8f60-927134351785": {
+    "asset": 1758180054877,
+    "meta": 1758270698656,
+    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond\\gatesolympus_greendiamond.png"
+  },
+  "0032af25-9b98-40cf-bf0f-9b9b4377872b": {
+    "asset": 1757322086343,
+    "meta": 1758270698666,
+    "relativePath": "zeusGame\\spines\\symbols\\Sandglass\\gatesolympus_sandglass.atlas"
+  },
+  "67ac8171-d45b-434c-bab2-1475d42487a4": {
+    "asset": 1757322086363,
+    "meta": 1758270698672,
+    "relativePath": "zeusGame\\zeus.fire"
+  },
+  "fa0e32aa-379e-4c6c-be33-1e698d9390f4": {
+    "asset": 1758180054877,
+    "meta": 1758270698662,
+    "relativePath": "zeusGame\\spines\\symbols\\Multiple\\gatesolympus_multiple.png"
+  },
+  "7db6881e-4ad9-4ec2-b8c9-68a07f140adc": {
+    "asset": 1757322086345,
+    "meta": 1758270698674,
+    "relativePath": "zeusGame\\spines\\symbols\\Scatter\\gatesolympus_scatter.atlas"
+  },
+  "eceb8b90-4e11-4fd6-ba5e-a056d896ca05": {
+    "asset": 1758180054878,
+    "meta": 1758270698665,
+    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond\\gatesolympus_purplediamond.png"
+  },
+  "d827134f-c39f-4a6a-8cdd-1e6d0743e7e5": {
+    "asset": 1757322086354,
+    "meta": 1758270698676,
+    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond\\gatesolympus_yellowdiamond.atlas"
+  },
+  "ce89c111-d9c6-4360-9d99-b4e83bfba5c6": {
+    "asset": 1758180054865,
+    "meta": 1758270698673,
+    "relativePath": "zeusGame\\spines\\WIN\\Jiang.skel.png"
+  },
+  "702644d4-40e7-4a7c-aec8-6e6bd426dd9b": {
+    "asset": 1758180054878,
+    "meta": 1758270698676,
+    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond\\gatesolympus_reddiamond.png"
+  },
+  "f2818aca-db66-463b-bed0-6b3fee7f4824": {
+    "asset": 1758180054879,
+    "meta": 1758270698679,
+    "relativePath": "zeusGame\\spines\\symbols\\Ring\\gatesolympus_ring.png"
+  },
+  "00196364-3d5b-4e83-a174-25dc10bacdd2": {
+    "asset": 1758180054864,
+    "meta": 1758270698688,
+    "relativePath": "zeusGame\\spines\\Renwu\\ren.skel.png"
+  },
+  "aa8532e1-c761-42d3-b550-cfe420fd6aae": {
+    "asset": 1758180054879,
+    "meta": 1758270698691,
+    "relativePath": "zeusGame\\spines\\symbols\\Sandglass\\gatesolympus_sandglass.png"
+  },
+  "e3a5959d-51fe-4f0e-aab7-aac48cffeb1f": {
+    "asset": 1757322086303,
+    "meta": 1758270698775,
+    "relativePath": "zeusGame\\spines\\Fire2\\fire2.json"
+  },
+  "43bbb11e-f5ac-4dad-a47d-f1903aea09a8": {
+    "asset": 1757322086296,
+    "meta": 1758270698776,
+    "relativePath": "zeusGame\\spines\\Boom\\boom.json"
+  },
+  "6c055ff8-2c62-418b-974a-88618e7286a6": {
+    "asset": 1757322086327,
+    "meta": 1758270698778,
+    "relativePath": "zeusGame\\spines\\fall_coins\\gatesofolympus_fall_coin.json"
+  },
+  "e506b15e-d3f0-4945-b18f-ad5a7a319336": {
+    "asset": 1757322086323,
+    "meta": 1758270698778,
+    "relativePath": "zeusGame\\spines\\enterFree\\zc.json"
+  },
+  "875f045e-f887-4cfa-bd70-d5cad93c90c5": {
+    "asset": 1757322086328,
+    "meta": 1758270698779,
+    "relativePath": "zeusGame\\spines\\reward_frame\\reward_frame.json"
+  },
+  "03bb5867-c26a-4385-ac3f-c06de81960eb": {
+    "asset": 1757322086301,
+    "meta": 1758270698780,
+    "relativePath": "zeusGame\\spines\\Fire1\\fire1.json"
+  },
+  "47cbd15d-7113-4b06-94b3-8c711195204f": {
+    "asset": 1757322086317,
+    "meta": 1758270698781,
+    "relativePath": "zeusGame\\spines\\ZSSF\\zssf.json"
+  },
+  "e42f2e24-7fca-44ef-a222-750f4e2500df": {
+    "asset": 1757322086306,
+    "meta": 1758270698786,
+    "relativePath": "zeusGame\\spines\\Renwu\\ren.skel.json"
+  },
+  "9851f5ed-397c-462a-98a4-15635deeb2c8": {
+    "asset": 1757322086313,
+    "meta": 1758270698787,
+    "relativePath": "zeusGame\\spines\\X2\\X2.json"
+  },
+  "b56c6924-9c0c-4e21-b737-98b1cccfc22e": {
+    "asset": 1757322086332,
+    "meta": 1758270698788,
+    "relativePath": "zeusGame\\spines\\symbols\\Crown\\gatesolympus_crown.json"
+  },
+  "5d602558-07a9-45c9-b69d-e9b7f0f92899": {
+    "asset": 1757322086310,
+    "meta": 1758270698790,
+    "relativePath": "zeusGame\\spines\\WIN\\Jiang.skel.json"
+  },
+  "bb365cb3-e499-4c71-b548-f2ae7ae69836": {
+    "asset": 1757322086334,
+    "meta": 1758270698791,
+    "relativePath": "zeusGame\\spines\\symbols\\Grail\\gatesolympus_grail.json"
+  },
+  "b36a33f6-6e90-4487-ab4f-e6d04874fd8c": {
+    "asset": 1757322086330,
+    "meta": 1758270698792,
+    "relativePath": "zeusGame\\spines\\symbols\\Bluediamond\\gatesolympus_bluediamond.json"
+  },
+  "36d38671-5e26-473a-af3e-29dd95feb13e": {
+    "asset": 1757322086335,
+    "meta": 1758270698793,
+    "relativePath": "zeusGame\\spines\\symbols\\Greendiamond\\gatesolympus_greendiamond.json"
+  },
+  "84f952b9-5c05-44ce-873b-91060ecaf826": {
+    "asset": 1757322086337,
+    "meta": 1758270698795,
+    "relativePath": "zeusGame\\spines\\symbols\\Multiple\\gatesolympus_multiple.json"
+  },
+  "bb93cd98-ca1d-4d60-bc39-8901fb484bf5": {
+    "asset": 1758180054882,
+    "meta": 1758270698692,
+    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond\\gatesolympus_yellowdiamond.png"
+  },
+  "2227c9cb-2ec3-4fa0-9b1d-694a412849d9": {
+    "asset": 1758180054874,
+    "meta": 1758270698694,
+    "relativePath": "zeusGame\\spines\\enterFree\\zc.png"
+  },
+  "10033563-4644-4521-a731-f8a791518bb5": {
+    "asset": 1758180054881,
+    "meta": 1758270698708,
+    "relativePath": "zeusGame\\spines\\symbols\\Scatter\\gatesolympus_scatter.png"
+  },
+  "0afd76a6-af6c-4bbc-9268-30bc1b7314e1": {
+    "asset": 1757322086339,
+    "meta": 1758270698797,
+    "relativePath": "zeusGame\\spines\\symbols\\Purplediamond\\gatesolympus_purplediamond.json"
+  },
+  "f585d3a4-591c-4646-b829-510014d2552a": {
+    "asset": 1757322086342,
+    "meta": 1758270698798,
+    "relativePath": "zeusGame\\spines\\symbols\\Ring\\gatesolympus_ring.json"
+  },
+  "f19eea1d-8200-4960-86d1-c351802ab48f": {
+    "asset": 1757322086340,
+    "meta": 1758270698799,
+    "relativePath": "zeusGame\\spines\\symbols\\Reddiamond\\gatesolympus_reddiamond.json"
+  },
+  "d3505384-4016-4d0b-ba28-f64d089552e0": {
+    "asset": 1757322086344,
+    "meta": 1758270698800,
+    "relativePath": "zeusGame\\spines\\symbols\\Sandglass\\gatesolympus_sandglass.json"
+  },
+  "e28d64b6-f4f6-4f03-824d-985733c97930": {
+    "asset": 1757322086346,
+    "meta": 1758270698804,
+    "relativePath": "zeusGame\\spines\\symbols\\Scatter\\gatesolympus_scatter.json"
+  },
+  "b6e9ad95-6440-4fc1-925a-95891de493e5": {
+    "asset": 1757322086354,
+    "meta": 1758270698806,
+    "relativePath": "zeusGame\\spines\\symbols\\Yellowdiamond\\gatesolympus_yellowdiamond.json"
+  },
+  "0ca21298-1686-4454-abc3-3a93d8963e40": {
+    "asset": 1758271585658,
+    "meta": 1758271591821,
+    "relativePath": "Main\\Update.js"
   }
 }

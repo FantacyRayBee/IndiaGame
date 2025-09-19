@@ -873,16 +873,17 @@ cc.Class({
         console.error("加载 LanguageEnglish 失败:", err);
         return;
       }
-      console.log("开始加载 config.f5aba");
-      // 确保加载完成后再进行其他操作
-      cc.assetManager.loadBundle('zeus', function (err, bundle) {
-        if (err) {
-          console.error("加载 zeus 资源包失败:", err);
-        } else {
-          console.log("zeus 资源包加载成功");
-          // 继续执行后续操作
-        }
-      });
+      callback && callback();
+      // // 确保加载完成后再进行其他操作
+      // cc.assetManager.loadBundle('zeusGame', (err, bundle) => {
+      //     if (err) {
+      //         console.error("加载 zeusGame 资源包失败:", err);
+      //     } else {
+      //         console.log("zeusGame 资源包加载成功");
+      //         callback && callback();
+      //         // 继续执行后续操作
+      //     }
+      // });
     });
   },
 
@@ -898,7 +899,7 @@ cc.Class({
   loadBundleAndRunScene: function loadBundleAndRunScene() {
     var _this6 = this;
     // Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
-    Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadZeus()]).then(function (arr) {
+    Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()]).then(function (arr) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
         window.ResourcesBundle = bundle;
         GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");

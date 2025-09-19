@@ -1,13 +1,21 @@
 {
   "ver": "1.1.3",
-  "uuid": "faaef6f1-6f01-4539-81d9-59932688893f",
+  "uuid": "f9a0e65a-2f82-4e7b-9762-5cab24c09adb",
   "importer": "folder",
   "isBundle": true,
-  "bundleName": "zeus",
+  "bundleName": "",
   "priority": 1,
-  "compressionType": {},
-  "optimizeHotUpdate": {},
-  "inlineSpriteFrames": {},
-  "isRemoteBundle": {},
+  "compressionType": {
+    "web-mobile": "merge_all_json"
+  },
+  "optimizeHotUpdate": {
+    "web-mobile": false
+  },
+  "inlineSpriteFrames": {
+    "web-mobile": false
+  },
+  "isRemoteBundle": {
+    "web-mobile": false
+  },
   "subMetas": {}
 }
