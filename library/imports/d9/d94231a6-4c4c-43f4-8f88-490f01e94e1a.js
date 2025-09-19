@@ -73,7 +73,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 是否强制进测试服
    */
-  is_force_gotoTest: false,
+  is_force_gotoTest: true,
   /**
    * 渠道信息
    */
@@ -692,13 +692,13 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 推广员
    */
-  PROMOTER: "MustBundle/Normal/Promoter/Promoter",
+  PROMOTER: "ResourcesBundle/NewPlan/Promoter/Promoter",
   // PROMOTERMAIN: "ResourcesBundle/NewPlan/Promoter/PromoterMain",
   // PROMOTERRULE: "ResourcesBundle/NewPlan/Promoter/PromoterRule",
   /**
    * 推广员左侧详情
    */
-  PROMOTERLEFTVIEW: "MustBundle/Normal/Promoter/PromoterLeftView",
+  PROMOTERLEFTVIEW: "ResourcesBundle/NewPlan/Promoter/PromoterLeftView",
   /**
    * 救济金
    */
@@ -748,11 +748,11 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 日常奖励卡
    */
-  DAILYBONUSCARD: "MustBundle/Normal/DailyBonusCard/DailyBonusCard",
+  DAILYBONUSCARD: "ResourcesBundle/NewPlan/DailyBonusCard/DailyBonusCard",
   /**
    * 新人礼
    */
-  FIRSTGIFTDIAMOND: "ResourcesBundle/NewPlan/FirstGiftDiamond/FirstGiftDiamond",
+  FIRSTGIFTDIAMOND: "MustBundle/Normal/FirstGiftDiamond/FirstGiftDiamond",
   /**
    * 规则
    */
@@ -866,7 +866,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 游戏中的菜单
    */
-  GAMEMENU: "MustBundle/Normal/GameMenu/GameMenu",
+  GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
   /**
    * 活动 Go Betting
    */
@@ -883,7 +883,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 破产礼包
    */
-  BANKRUPTCY_GIFT: "MustBundle/Normal/BankruptcyGift/BankruptcyGift",
+  BANKRUPTCY_GIFT: "ResourcesBundle/NewPlan/BankruptcyGift/BankruptcyGift",
   /**
    * 诱导充值
    */
@@ -1175,7 +1175,8 @@ if (GlobalCfg.isOfflineDeve == 1) {
   * 渠道名：5007
 */
 // GlobalCfg.isOfflineDeve2 = 1;
-if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
+// if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
+if (GlobalCfg.is_force_gotoTest == true) {
   GlobalCfg.IsDownloadPackage2 = 0;
   cc.sys.localStorage.setItem("PackageChannel", "0_8001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;

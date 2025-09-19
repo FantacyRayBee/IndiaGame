@@ -6,16 +6,20 @@
   "bundleName": "resources",
   "priority": 8,
   "compressionType": {
-    "android": "default"
+    "android": "default",
+    "web-mobile": "merge_all_json"
   },
   "optimizeHotUpdate": {
-    "android": false
+    "android": false,
+    "web-mobile": false
   },
   "inlineSpriteFrames": {
-    "android": false
+    "android": false,
+    "web-mobile": false
   },
   "isRemoteBundle": {
-    "android": false
+    "android": false,
+    "web-mobile": false
   },
   "subMetas": {}
 }
