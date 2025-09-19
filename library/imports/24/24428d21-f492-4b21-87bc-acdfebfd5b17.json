@@ -1,1685 +1,1700 @@
 {
-  "skeleton": {
-    "hash": "HH2UygG+mCE+bB5+tgKWzQK+4r8",
-    "spine": "3.3.07",
-    "width": 500,
-    "height": 500,
-    "images": "./images/"
-  },
-  "bones": [
-    {
-      "name": "root"
+  "__type__": "sp.SkeletonData",
+  "_name": "win-tiger",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "HH2UygG+mCE+bB5+tgKWzQK+4r8",
+      "spine": "3.3.07",
+      "width": 500,
+      "height": 500,
+      "images": "./images/"
     },
-    {
-      "name": "win-tiger",
-      "parent": "root"
-    },
-    {
-      "name": "win-tiger-he",
-      "parent": "win-tiger"
-    },
-    {
-      "name": "bg",
-      "parent": "win-tiger-he",
-      "scaleX": 2,
-      "scaleY": 2
-    },
-    {
-      "name": "hu",
-      "parent": "win-tiger-he"
-    },
-    {
-      "name": "hu2",
-      "parent": "win-tiger-he"
-    },
-    {
-      "name": "hu3",
-      "parent": "win-tiger-he"
-    },
-    {
-      "name": "hu4",
-      "parent": "win-tiger-he"
-    },
-    {
-      "name": "huoquan",
-      "parent": "win-tiger-he",
-      "scaleX": 2,
-      "scaleY": 2
-    },
-    {
-      "name": "huoyan",
-      "parent": "win-tiger-he",
-      "scaleX": 2,
-      "scaleY": 2
-    },
-    {
-      "name": "win",
-      "parent": "win-tiger",
-      "y": -117.27
-    }
-  ],
-  "slots": [
-    {
-      "name": "bg",
-      "bone": "bg"
-    },
-    {
-      "name": "bg2",
-      "bone": "bg",
-      "blend": "additive"
-    },
-    {
-      "name": "huoyan",
-      "bone": "huoyan",
-      "blend": "screen"
-    },
-    {
-      "name": "hu",
-      "bone": "hu"
-    },
-    {
-      "name": "hu4",
-      "bone": "hu4",
-      "blend": "screen"
-    },
-    {
-      "name": "hu2",
-      "bone": "hu2",
-      "blend": "screen"
-    },
-    {
-      "name": "hu3",
-      "bone": "hu3",
-      "blend": "screen"
-    },
-    {
-      "name": "win",
-      "bone": "win",
-      "attachment": "win/win_00000"
-    },
-    {
-      "name": "huoquan",
-      "bone": "huoquan",
-      "blend": "additive"
-    },
-    {
-      "name": "huoquan2",
-      "bone": "huoquan",
-      "blend": "additive"
-    }
-  ],
-  "skins": {
-    "default": {
-      "bg": {
-        "Win-tiger-bg/bg_00000": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00002": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00004": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00006": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00008": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00010": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00012": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00014": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00016": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00018": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00020": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00022": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00024": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00026": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00028": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00030": {
-          "width": 250,
-          "height": 250
-        }
+    "bones": [
+      {
+        "name": "root"
       },
-      "bg2": {
-        "Win-tiger-bg/bg_00000": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00002": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00004": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00006": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00008": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00010": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00012": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00014": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00016": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00018": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00020": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00022": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00024": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00026": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00028": {
-          "width": 250,
-          "height": 250
-        },
-        "Win-tiger-bg/bg_00030": {
-          "width": 250,
-          "height": 250
-        }
+      {
+        "name": "win-tiger",
+        "parent": "root"
       },
-      "hu": {
-        "tiger_00000": {
-          "width": 500,
-          "height": 500
-        }
+      {
+        "name": "win-tiger-he",
+        "parent": "win-tiger"
       },
-      "hu2": {
-        "tiger_00000": {
-          "width": 500,
-          "height": 500
-        }
+      {
+        "name": "bg",
+        "parent": "win-tiger-he",
+        "scaleX": 2,
+        "scaleY": 2
       },
-      "hu3": {
-        "tiger_00000": {
-          "width": 500,
-          "height": 500
-        }
+      {
+        "name": "hu",
+        "parent": "win-tiger-he"
       },
-      "hu4": {
-        "tiger_00000": {
-          "width": 500,
-          "height": 500
-        }
+      {
+        "name": "hu2",
+        "parent": "win-tiger-he"
       },
-      "huoquan": {
-        "huoquan/huoquan_00001": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00003": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00005": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00007": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00009": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00011": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00013": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00015": {
-          "width": 250,
-          "height": 250
-        }
+      {
+        "name": "hu3",
+        "parent": "win-tiger-he"
       },
-      "huoquan2": {
-        "huoquan/huoquan_00001": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00003": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00005": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00007": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00009": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00011": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00013": {
-          "width": 250,
-          "height": 250
-        },
-        "huoquan/huoquan_00015": {
-          "width": 250,
-          "height": 250
-        }
+      {
+        "name": "hu4",
+        "parent": "win-tiger-he"
       },
-      "huoyan": {
-        "huo/huo_00000": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00002": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00004": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00006": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00008": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00010": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00012": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00014": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00016": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00018": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00020": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00022": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00024": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00026": {
-          "width": 250,
-          "height": 250
-        },
-        "huo/huo_00028": {
-          "width": 250,
-          "height": 250
-        }
+      {
+        "name": "huoquan",
+        "parent": "win-tiger-he",
+        "scaleX": 2,
+        "scaleY": 2
       },
-      "win": {
-        "win/win_00000": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+      {
+        "name": "huoyan",
+        "parent": "win-tiger-he",
+        "scaleX": 2,
+        "scaleY": 2
+      },
+      {
+        "name": "win",
+        "parent": "win-tiger",
+        "y": -117.27
+      }
+    ],
+    "slots": [
+      {
+        "name": "bg",
+        "bone": "bg"
+      },
+      {
+        "name": "bg2",
+        "bone": "bg",
+        "blend": "additive"
+      },
+      {
+        "name": "huoyan",
+        "bone": "huoyan",
+        "blend": "screen"
+      },
+      {
+        "name": "hu",
+        "bone": "hu"
+      },
+      {
+        "name": "hu4",
+        "bone": "hu4",
+        "blend": "screen"
+      },
+      {
+        "name": "hu2",
+        "bone": "hu2",
+        "blend": "screen"
+      },
+      {
+        "name": "hu3",
+        "bone": "hu3",
+        "blend": "screen"
+      },
+      {
+        "name": "win",
+        "bone": "win",
+        "attachment": "win/win_00000"
+      },
+      {
+        "name": "huoquan",
+        "bone": "huoquan",
+        "blend": "additive"
+      },
+      {
+        "name": "huoquan2",
+        "bone": "huoquan",
+        "blend": "additive"
+      }
+    ],
+    "skins": {
+      "default": {
+        "bg": {
+          "Win-tiger-bg/bg_00000": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00002": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00004": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00006": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00008": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00010": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00012": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00014": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00016": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00018": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00020": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00022": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00024": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00026": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00028": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00030": {
+            "width": 250,
+            "height": 250
+          }
         },
-        "win/win_00002": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "bg2": {
+          "Win-tiger-bg/bg_00000": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00002": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00004": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00006": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00008": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00010": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00012": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00014": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00016": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00018": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00020": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00022": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00024": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00026": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00028": {
+            "width": 250,
+            "height": 250
+          },
+          "Win-tiger-bg/bg_00030": {
+            "width": 250,
+            "height": 250
+          }
         },
-        "win/win_00004": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "hu": {
+          "tiger_00000": {
+            "width": 500,
+            "height": 500
+          }
         },
-        "win/win_00006": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "hu2": {
+          "tiger_00000": {
+            "width": 500,
+            "height": 500
+          }
         },
-        "win/win_00008": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "hu3": {
+          "tiger_00000": {
+            "width": 500,
+            "height": 500
+          }
         },
-        "win/win_00010": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "hu4": {
+          "tiger_00000": {
+            "width": 500,
+            "height": 500
+          }
         },
-        "win/win_00012": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "huoquan": {
+          "huoquan/huoquan_00001": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00003": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00005": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00007": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00009": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00011": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00013": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00015": {
+            "width": 250,
+            "height": 250
+          }
         },
-        "win/win_00014": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "huoquan2": {
+          "huoquan/huoquan_00001": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00003": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00005": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00007": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00009": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00011": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00013": {
+            "width": 250,
+            "height": 250
+          },
+          "huoquan/huoquan_00015": {
+            "width": 250,
+            "height": 250
+          }
         },
-        "win/win_00016": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "huoyan": {
+          "huo/huo_00000": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00002": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00004": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00006": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00008": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00010": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00012": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00014": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00016": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00018": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00020": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00022": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00024": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00026": {
+            "width": 250,
+            "height": 250
+          },
+          "huo/huo_00028": {
+            "width": 250,
+            "height": 250
+          }
         },
-        "win/win_00018": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
-        },
-        "win/win_00020": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
-        },
-        "win/win_00022": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
-        },
-        "win/win_00024": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
-        },
-        "win/win_00026": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
-        },
-        "win/win_00028": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
-        },
-        "win/win_00030": {
-          "y": 117.27,
-          "width": 500,
-          "height": 500
+        "win": {
+          "win/win_00000": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00002": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00004": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00006": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00008": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00010": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00012": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00014": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00016": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00018": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00020": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00022": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00024": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00026": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00028": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          },
+          "win/win_00030": {
+            "y": 117.27,
+            "width": 500,
+            "height": 500
+          }
         }
+      }
+    },
+    "animations": {
+      "win-tiger-loop": {
+        "slots": {
+          "bg": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "Win-tiger-bg/bg_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "Win-tiger-bg/bg_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "Win-tiger-bg/bg_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "Win-tiger-bg/bg_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "Win-tiger-bg/bg_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "Win-tiger-bg/bg_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "Win-tiger-bg/bg_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "Win-tiger-bg/bg_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "Win-tiger-bg/bg_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "Win-tiger-bg/bg_00018"
+              },
+              {
+                "time": 1,
+                "name": "Win-tiger-bg/bg_00020"
+              },
+              {
+                "time": 1.1,
+                "name": "Win-tiger-bg/bg_00022"
+              },
+              {
+                "time": 1.2,
+                "name": "Win-tiger-bg/bg_00024"
+              },
+              {
+                "time": 1.3,
+                "name": "Win-tiger-bg/bg_00026"
+              },
+              {
+                "time": 1.4,
+                "name": "Win-tiger-bg/bg_00028"
+              },
+              {
+                "time": 1.5,
+                "name": "Win-tiger-bg/bg_00030"
+              }
+            ]
+          },
+          "hu": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "hu2": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              }
+            ]
+          },
+          "hu3": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              }
+            ]
+          },
+          "hu4": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "huoyan": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.3,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.9,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1.1666,
+                "color": "ffffff00",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 0.1666,
+                "name": "huo/huo_00000"
+              },
+              {
+                "time": 0.2333,
+                "name": "huo/huo_00002"
+              },
+              {
+                "time": 0.3,
+                "name": "huo/huo_00004"
+              },
+              {
+                "time": 0.3666,
+                "name": "huo/huo_00006"
+              },
+              {
+                "time": 0.4333,
+                "name": "huo/huo_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "huo/huo_00010"
+              },
+              {
+                "time": 0.5666,
+                "name": "huo/huo_00012"
+              },
+              {
+                "time": 0.6333,
+                "name": "huo/huo_00014"
+              },
+              {
+                "time": 0.7,
+                "name": "huo/huo_00016"
+              },
+              {
+                "time": 0.7666,
+                "name": "huo/huo_00018"
+              },
+              {
+                "time": 0.8333,
+                "name": "huo/huo_00020"
+              },
+              {
+                "time": 0.9,
+                "name": "huo/huo_00022"
+              },
+              {
+                "time": 0.9666,
+                "name": "huo/huo_00024"
+              },
+              {
+                "time": 1.0333,
+                "name": "huo/huo_00026"
+              },
+              {
+                "time": 1.1,
+                "name": "huo/huo_00028"
+              },
+              {
+                "time": 1.1666,
+                "name": null
+              },
+              {
+                "time": 1.5,
+                "name": null
+              }
+            ]
+          },
+          "win": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": "win/win_00000"
+              },
+              {
+                "time": 1.5,
+                "name": "win/win_00000"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "win": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 0.7333,
+                "x": 1.1,
+                "y": 1.1
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "hu3": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "hu2": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "win-tiger-he": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          }
+        },
+        "drawOrder": [
+          {
+            "time": 0,
+            "offsets": [
+              {
+                "slot": "huoyan",
+                "offset": 1
+              }
+            ]
+          }
+        ]
+      },
+      "win-tiger-out": {
+        "slots": {
+          "bg": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "Win-tiger-bg/bg_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "Win-tiger-bg/bg_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "Win-tiger-bg/bg_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "Win-tiger-bg/bg_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "Win-tiger-bg/bg_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "Win-tiger-bg/bg_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "Win-tiger-bg/bg_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "Win-tiger-bg/bg_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "Win-tiger-bg/bg_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "Win-tiger-bg/bg_00018"
+              },
+              {
+                "time": 1,
+                "name": "Win-tiger-bg/bg_00020"
+              }
+            ]
+          },
+          "bg2": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ]
+          },
+          "hu": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "hu2": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              }
+            ]
+          },
+          "hu3": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              }
+            ]
+          },
+          "hu4": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "huoquan": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ]
+          },
+          "huoquan2": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ]
+          },
+          "huoyan": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.3,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.7333,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 0.1666,
+                "name": "huo/huo_00000"
+              },
+              {
+                "time": 0.2333,
+                "name": "huo/huo_00002"
+              },
+              {
+                "time": 0.3,
+                "name": "huo/huo_00004"
+              },
+              {
+                "time": 0.3666,
+                "name": "huo/huo_00006"
+              },
+              {
+                "time": 0.4333,
+                "name": "huo/huo_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "huo/huo_00010"
+              },
+              {
+                "time": 0.5666,
+                "name": "huo/huo_00012"
+              },
+              {
+                "time": 0.6333,
+                "name": "huo/huo_00014"
+              },
+              {
+                "time": 0.7,
+                "name": "huo/huo_00016"
+              },
+              {
+                "time": 0.7666,
+                "name": "huo/huo_00018"
+              },
+              {
+                "time": 0.8333,
+                "name": "huo/huo_00020"
+              },
+              {
+                "time": 0.9,
+                "name": "huo/huo_00022"
+              },
+              {
+                "time": 0.9666,
+                "name": "huo/huo_00024"
+              }
+            ]
+          },
+          "win": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "win/win_00000"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "hu2": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "hu3": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "win-tiger-he": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          }
+        },
+        "drawOrder": [
+          {
+            "time": 0,
+            "offsets": [
+              {
+                "slot": "huoyan",
+                "offset": 1
+              }
+            ]
+          }
+        ]
+      },
+      "win-tiger-star": {
+        "slots": {
+          "bg": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffffff"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "Win-tiger-bg/bg_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "Win-tiger-bg/bg_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "Win-tiger-bg/bg_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "Win-tiger-bg/bg_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "Win-tiger-bg/bg_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "Win-tiger-bg/bg_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "Win-tiger-bg/bg_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "Win-tiger-bg/bg_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "Win-tiger-bg/bg_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "Win-tiger-bg/bg_00018"
+              },
+              {
+                "time": 1,
+                "name": "Win-tiger-bg/bg_00020"
+              },
+              {
+                "time": 1.1,
+                "name": "Win-tiger-bg/bg_00022"
+              },
+              {
+                "time": 1.2,
+                "name": "Win-tiger-bg/bg_00024"
+              },
+              {
+                "time": 1.3,
+                "name": "Win-tiger-bg/bg_00026"
+              },
+              {
+                "time": 1.4,
+                "name": "Win-tiger-bg/bg_00028"
+              },
+              {
+                "time": 1.5,
+                "name": "Win-tiger-bg/bg_00030"
+              }
+            ]
+          },
+          "bg2": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffffff"
+              }
+            ]
+          },
+          "hu": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffffff"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "hu2": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff"
+              },
+              {
+                "time": 0.5,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "hu3": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff"
+              },
+              {
+                "time": 0.6666,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "hu4": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "tiger_00000"
+              }
+            ]
+          },
+          "huoquan": {
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 0.1,
+                "name": "huoquan/huoquan_00001"
+              },
+              {
+                "time": 0.1666,
+                "name": "huoquan/huoquan_00003"
+              },
+              {
+                "time": 0.2333,
+                "name": "huoquan/huoquan_00005"
+              },
+              {
+                "time": 0.3,
+                "name": "huoquan/huoquan_00007"
+              },
+              {
+                "time": 0.3666,
+                "name": "huoquan/huoquan_00009"
+              },
+              {
+                "time": 0.4333,
+                "name": "huoquan/huoquan_00011"
+              },
+              {
+                "time": 0.5,
+                "name": "huoquan/huoquan_00013"
+              },
+              {
+                "time": 0.5666,
+                "name": "huoquan/huoquan_00015"
+              },
+              {
+                "time": 0.6333,
+                "name": null
+              },
+              {
+                "time": 1.5,
+                "name": null
+              }
+            ]
+          },
+          "huoquan2": {
+            "attachment": [
+              {
+                "time": 0.3,
+                "name": "huoquan/huoquan_00001"
+              },
+              {
+                "time": 0.3666,
+                "name": "huoquan/huoquan_00003"
+              },
+              {
+                "time": 0.4333,
+                "name": "huoquan/huoquan_00005"
+              },
+              {
+                "time": 0.5,
+                "name": "huoquan/huoquan_00007"
+              },
+              {
+                "time": 0.5666,
+                "name": "huoquan/huoquan_00009"
+              },
+              {
+                "time": 0.6333,
+                "name": "huoquan/huoquan_00011"
+              },
+              {
+                "time": 0.7,
+                "name": "huoquan/huoquan_00013"
+              },
+              {
+                "time": 0.7666,
+                "name": "huoquan/huoquan_00015"
+              },
+              {
+                "time": 0.8333,
+                "name": null
+              }
+            ]
+          },
+          "huoyan": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.3,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 0.9,
+                "color": "ffffffff"
+              },
+              {
+                "time": 1.1666,
+                "color": "ffffff00",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffff00"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": null
+              },
+              {
+                "time": 0.1666,
+                "name": "huo/huo_00000"
+              },
+              {
+                "time": 0.2333,
+                "name": "huo/huo_00002"
+              },
+              {
+                "time": 0.3,
+                "name": "huo/huo_00004"
+              },
+              {
+                "time": 0.3666,
+                "name": "huo/huo_00006"
+              },
+              {
+                "time": 0.4333,
+                "name": "huo/huo_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "huo/huo_00010"
+              },
+              {
+                "time": 0.5666,
+                "name": "huo/huo_00012"
+              },
+              {
+                "time": 0.6333,
+                "name": "huo/huo_00014"
+              },
+              {
+                "time": 0.7,
+                "name": "huo/huo_00016"
+              },
+              {
+                "time": 0.7666,
+                "name": "huo/huo_00018"
+              },
+              {
+                "time": 0.8333,
+                "name": "huo/huo_00020"
+              },
+              {
+                "time": 0.9,
+                "name": "huo/huo_00022"
+              },
+              {
+                "time": 0.9666,
+                "name": "huo/huo_00024"
+              },
+              {
+                "time": 1.0333,
+                "name": "huo/huo_00026"
+              },
+              {
+                "time": 1.1,
+                "name": "huo/huo_00028"
+              },
+              {
+                "time": 1.1666,
+                "name": null
+              },
+              {
+                "time": 1.5,
+                "name": null
+              }
+            ]
+          },
+          "win": {
+            "color": [
+              {
+                "time": 0,
+                "color": "ffffff00"
+              },
+              {
+                "time": 0.1666,
+                "color": "ffffffff",
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "color": "ffffffff"
+              }
+            ],
+            "attachment": [
+              {
+                "time": 0,
+                "name": "win/win_00000"
+              },
+              {
+                "time": 0.1,
+                "name": "win/win_00002"
+              },
+              {
+                "time": 0.2,
+                "name": "win/win_00004"
+              },
+              {
+                "time": 0.3,
+                "name": "win/win_00006"
+              },
+              {
+                "time": 0.4,
+                "name": "win/win_00008"
+              },
+              {
+                "time": 0.5,
+                "name": "win/win_00010"
+              },
+              {
+                "time": 0.6,
+                "name": "win/win_00012"
+              },
+              {
+                "time": 0.7,
+                "name": "win/win_00014"
+              },
+              {
+                "time": 0.8,
+                "name": "win/win_00016"
+              },
+              {
+                "time": 0.9,
+                "name": "win/win_00018"
+              },
+              {
+                "time": 1,
+                "name": "win/win_00020"
+              },
+              {
+                "time": 1.1,
+                "name": "win/win_00022"
+              },
+              {
+                "time": 1.2,
+                "name": "win/win_00024"
+              },
+              {
+                "time": 1.3,
+                "name": "win/win_00026"
+              },
+              {
+                "time": 1.4,
+                "name": "win/win_00028"
+              },
+              {
+                "time": 1.5,
+                "name": "win/win_00030"
+              }
+            ]
+          }
+        },
+        "bones": {
+          "win-tiger-he": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 0.319,
+                "y": 0.319
+              },
+              {
+                "time": 0.1666,
+                "x": 1.15,
+                "y": 1.15
+              },
+              {
+                "time": 1.1,
+                "x": 1.2,
+                "y": 1.2
+              },
+              {
+                "time": 1.2,
+                "x": 1,
+                "y": 1,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "hu2": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 0.1666,
+                "x": 1.097,
+                "y": 1.097
+              },
+              {
+                "time": 0.5,
+                "x": 1.366,
+                "y": 1.366
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "hu3": {
+            "scale": [
+              {
+                "time": 0,
+                "x": 1,
+                "y": 1
+              },
+              {
+                "time": 0.1666,
+                "x": 1.031,
+                "y": 1.031
+              },
+              {
+                "time": 0.6666,
+                "x": 1.275,
+                "y": 1.275
+              },
+              {
+                "time": 1.5,
+                "x": 1,
+                "y": 1
+              }
+            ]
+          },
+          "huoquan": {
+            "translate": [
+              {
+                "time": 0,
+                "x": 10.06,
+                "y": 0,
+                "curve": "stepped"
+              },
+              {
+                "time": 1.5,
+                "x": 10.06,
+                "y": 0
+              }
+            ]
+          }
+        },
+        "drawOrder": [
+          {
+            "time": 0,
+            "offsets": [
+              {
+                "slot": "huoyan",
+                "offset": 7
+              }
+            ]
+          }
+        ]
       }
     }
   },
-  "animations": {
-    "win-tiger-loop": {
-      "slots": {
-        "bg": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": "Win-tiger-bg/bg_00000"
-            },
-            {
-              "time": 0.1,
-              "name": "Win-tiger-bg/bg_00002"
-            },
-            {
-              "time": 0.2,
-              "name": "Win-tiger-bg/bg_00004"
-            },
-            {
-              "time": 0.3,
-              "name": "Win-tiger-bg/bg_00006"
-            },
-            {
-              "time": 0.4,
-              "name": "Win-tiger-bg/bg_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "Win-tiger-bg/bg_00010"
-            },
-            {
-              "time": 0.6,
-              "name": "Win-tiger-bg/bg_00012"
-            },
-            {
-              "time": 0.7,
-              "name": "Win-tiger-bg/bg_00014"
-            },
-            {
-              "time": 0.8,
-              "name": "Win-tiger-bg/bg_00016"
-            },
-            {
-              "time": 0.9,
-              "name": "Win-tiger-bg/bg_00018"
-            },
-            {
-              "time": 1,
-              "name": "Win-tiger-bg/bg_00020"
-            },
-            {
-              "time": 1.1,
-              "name": "Win-tiger-bg/bg_00022"
-            },
-            {
-              "time": 1.2,
-              "name": "Win-tiger-bg/bg_00024"
-            },
-            {
-              "time": 1.3,
-              "name": "Win-tiger-bg/bg_00026"
-            },
-            {
-              "time": 1.4,
-              "name": "Win-tiger-bg/bg_00028"
-            },
-            {
-              "time": 1.5,
-              "name": "Win-tiger-bg/bg_00030"
-            }
-          ]
-        },
-        "hu": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "hu2": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            }
-          ]
-        },
-        "hu3": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            }
-          ]
-        },
-        "hu4": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "huoyan": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.3,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.9,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1.1666,
-              "color": "ffffff00",
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            },
-            {
-              "time": 0.1666,
-              "name": "huo/huo_00000"
-            },
-            {
-              "time": 0.2333,
-              "name": "huo/huo_00002"
-            },
-            {
-              "time": 0.3,
-              "name": "huo/huo_00004"
-            },
-            {
-              "time": 0.3666,
-              "name": "huo/huo_00006"
-            },
-            {
-              "time": 0.4333,
-              "name": "huo/huo_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "huo/huo_00010"
-            },
-            {
-              "time": 0.5666,
-              "name": "huo/huo_00012"
-            },
-            {
-              "time": 0.6333,
-              "name": "huo/huo_00014"
-            },
-            {
-              "time": 0.7,
-              "name": "huo/huo_00016"
-            },
-            {
-              "time": 0.7666,
-              "name": "huo/huo_00018"
-            },
-            {
-              "time": 0.8333,
-              "name": "huo/huo_00020"
-            },
-            {
-              "time": 0.9,
-              "name": "huo/huo_00022"
-            },
-            {
-              "time": 0.9666,
-              "name": "huo/huo_00024"
-            },
-            {
-              "time": 1.0333,
-              "name": "huo/huo_00026"
-            },
-            {
-              "time": 1.1,
-              "name": "huo/huo_00028"
-            },
-            {
-              "time": 1.1666,
-              "name": null
-            },
-            {
-              "time": 1.5,
-              "name": null
-            }
-          ]
-        },
-        "win": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": "win/win_00000"
-            },
-            {
-              "time": 1.5,
-              "name": "win/win_00000"
-            }
-          ]
-        }
-      },
-      "bones": {
-        "win": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1
-            },
-            {
-              "time": 0.7333,
-              "x": 1.1,
-              "y": 1.1
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "hu3": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "hu2": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "win-tiger-he": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        }
-      },
-      "drawOrder": [
-        {
-          "time": 0,
-          "offsets": [
-            {
-              "slot": "huoyan",
-              "offset": 1
-            }
-          ]
-        }
-      ]
-    },
-    "win-tiger-out": {
-      "slots": {
-        "bg": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "Win-tiger-bg/bg_00000"
-            },
-            {
-              "time": 0.1,
-              "name": "Win-tiger-bg/bg_00002"
-            },
-            {
-              "time": 0.2,
-              "name": "Win-tiger-bg/bg_00004"
-            },
-            {
-              "time": 0.3,
-              "name": "Win-tiger-bg/bg_00006"
-            },
-            {
-              "time": 0.4,
-              "name": "Win-tiger-bg/bg_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "Win-tiger-bg/bg_00010"
-            },
-            {
-              "time": 0.6,
-              "name": "Win-tiger-bg/bg_00012"
-            },
-            {
-              "time": 0.7,
-              "name": "Win-tiger-bg/bg_00014"
-            },
-            {
-              "time": 0.8,
-              "name": "Win-tiger-bg/bg_00016"
-            },
-            {
-              "time": 0.9,
-              "name": "Win-tiger-bg/bg_00018"
-            },
-            {
-              "time": 1,
-              "name": "Win-tiger-bg/bg_00020"
-            }
-          ]
-        },
-        "bg2": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ]
-        },
-        "hu": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "hu2": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            }
-          ]
-        },
-        "hu3": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            }
-          ]
-        },
-        "hu4": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "huoquan": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ]
-        },
-        "huoquan2": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ]
-        },
-        "huoyan": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.3,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.7333,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            },
-            {
-              "time": 0.1666,
-              "name": "huo/huo_00000"
-            },
-            {
-              "time": 0.2333,
-              "name": "huo/huo_00002"
-            },
-            {
-              "time": 0.3,
-              "name": "huo/huo_00004"
-            },
-            {
-              "time": 0.3666,
-              "name": "huo/huo_00006"
-            },
-            {
-              "time": 0.4333,
-              "name": "huo/huo_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "huo/huo_00010"
-            },
-            {
-              "time": 0.5666,
-              "name": "huo/huo_00012"
-            },
-            {
-              "time": 0.6333,
-              "name": "huo/huo_00014"
-            },
-            {
-              "time": 0.7,
-              "name": "huo/huo_00016"
-            },
-            {
-              "time": 0.7666,
-              "name": "huo/huo_00018"
-            },
-            {
-              "time": 0.8333,
-              "name": "huo/huo_00020"
-            },
-            {
-              "time": 0.9,
-              "name": "huo/huo_00022"
-            },
-            {
-              "time": 0.9666,
-              "name": "huo/huo_00024"
-            }
-          ]
-        },
-        "win": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "win/win_00000"
-            }
-          ]
-        }
-      },
-      "bones": {
-        "hu2": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "hu3": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "win-tiger-he": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        }
-      },
-      "drawOrder": [
-        {
-          "time": 0,
-          "offsets": [
-            {
-              "slot": "huoyan",
-              "offset": 1
-            }
-          ]
-        }
-      ]
-    },
-    "win-tiger-star": {
-      "slots": {
-        "bg": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "color": "ffffffff"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "Win-tiger-bg/bg_00000"
-            },
-            {
-              "time": 0.1,
-              "name": "Win-tiger-bg/bg_00002"
-            },
-            {
-              "time": 0.2,
-              "name": "Win-tiger-bg/bg_00004"
-            },
-            {
-              "time": 0.3,
-              "name": "Win-tiger-bg/bg_00006"
-            },
-            {
-              "time": 0.4,
-              "name": "Win-tiger-bg/bg_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "Win-tiger-bg/bg_00010"
-            },
-            {
-              "time": 0.6,
-              "name": "Win-tiger-bg/bg_00012"
-            },
-            {
-              "time": 0.7,
-              "name": "Win-tiger-bg/bg_00014"
-            },
-            {
-              "time": 0.8,
-              "name": "Win-tiger-bg/bg_00016"
-            },
-            {
-              "time": 0.9,
-              "name": "Win-tiger-bg/bg_00018"
-            },
-            {
-              "time": 1,
-              "name": "Win-tiger-bg/bg_00020"
-            },
-            {
-              "time": 1.1,
-              "name": "Win-tiger-bg/bg_00022"
-            },
-            {
-              "time": 1.2,
-              "name": "Win-tiger-bg/bg_00024"
-            },
-            {
-              "time": 1.3,
-              "name": "Win-tiger-bg/bg_00026"
-            },
-            {
-              "time": 1.4,
-              "name": "Win-tiger-bg/bg_00028"
-            },
-            {
-              "time": 1.5,
-              "name": "Win-tiger-bg/bg_00030"
-            }
-          ]
-        },
-        "bg2": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "color": "ffffffff"
-            }
-          ]
-        },
-        "hu": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "color": "ffffffff"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "hu2": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff"
-            },
-            {
-              "time": 0.5,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "hu3": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff"
-            },
-            {
-              "time": 0.6666,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "hu4": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "tiger_00000"
-            }
-          ]
-        },
-        "huoquan": {
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            },
-            {
-              "time": 0.1,
-              "name": "huoquan/huoquan_00001"
-            },
-            {
-              "time": 0.1666,
-              "name": "huoquan/huoquan_00003"
-            },
-            {
-              "time": 0.2333,
-              "name": "huoquan/huoquan_00005"
-            },
-            {
-              "time": 0.3,
-              "name": "huoquan/huoquan_00007"
-            },
-            {
-              "time": 0.3666,
-              "name": "huoquan/huoquan_00009"
-            },
-            {
-              "time": 0.4333,
-              "name": "huoquan/huoquan_00011"
-            },
-            {
-              "time": 0.5,
-              "name": "huoquan/huoquan_00013"
-            },
-            {
-              "time": 0.5666,
-              "name": "huoquan/huoquan_00015"
-            },
-            {
-              "time": 0.6333,
-              "name": null
-            },
-            {
-              "time": 1.5,
-              "name": null
-            }
-          ]
-        },
-        "huoquan2": {
-          "attachment": [
-            {
-              "time": 0.3,
-              "name": "huoquan/huoquan_00001"
-            },
-            {
-              "time": 0.3666,
-              "name": "huoquan/huoquan_00003"
-            },
-            {
-              "time": 0.4333,
-              "name": "huoquan/huoquan_00005"
-            },
-            {
-              "time": 0.5,
-              "name": "huoquan/huoquan_00007"
-            },
-            {
-              "time": 0.5666,
-              "name": "huoquan/huoquan_00009"
-            },
-            {
-              "time": 0.6333,
-              "name": "huoquan/huoquan_00011"
-            },
-            {
-              "time": 0.7,
-              "name": "huoquan/huoquan_00013"
-            },
-            {
-              "time": 0.7666,
-              "name": "huoquan/huoquan_00015"
-            },
-            {
-              "time": 0.8333,
-              "name": null
-            }
-          ]
-        },
-        "huoyan": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.3,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.9,
-              "color": "ffffffff"
-            },
-            {
-              "time": 1.1666,
-              "color": "ffffff00",
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "color": "ffffff00"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": null
-            },
-            {
-              "time": 0.1666,
-              "name": "huo/huo_00000"
-            },
-            {
-              "time": 0.2333,
-              "name": "huo/huo_00002"
-            },
-            {
-              "time": 0.3,
-              "name": "huo/huo_00004"
-            },
-            {
-              "time": 0.3666,
-              "name": "huo/huo_00006"
-            },
-            {
-              "time": 0.4333,
-              "name": "huo/huo_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "huo/huo_00010"
-            },
-            {
-              "time": 0.5666,
-              "name": "huo/huo_00012"
-            },
-            {
-              "time": 0.6333,
-              "name": "huo/huo_00014"
-            },
-            {
-              "time": 0.7,
-              "name": "huo/huo_00016"
-            },
-            {
-              "time": 0.7666,
-              "name": "huo/huo_00018"
-            },
-            {
-              "time": 0.8333,
-              "name": "huo/huo_00020"
-            },
-            {
-              "time": 0.9,
-              "name": "huo/huo_00022"
-            },
-            {
-              "time": 0.9666,
-              "name": "huo/huo_00024"
-            },
-            {
-              "time": 1.0333,
-              "name": "huo/huo_00026"
-            },
-            {
-              "time": 1.1,
-              "name": "huo/huo_00028"
-            },
-            {
-              "time": 1.1666,
-              "name": null
-            },
-            {
-              "time": 1.5,
-              "name": null
-            }
-          ]
-        },
-        "win": {
-          "color": [
-            {
-              "time": 0,
-              "color": "ffffff00"
-            },
-            {
-              "time": 0.1666,
-              "color": "ffffffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "color": "ffffffff"
-            }
-          ],
-          "attachment": [
-            {
-              "time": 0,
-              "name": "win/win_00000"
-            },
-            {
-              "time": 0.1,
-              "name": "win/win_00002"
-            },
-            {
-              "time": 0.2,
-              "name": "win/win_00004"
-            },
-            {
-              "time": 0.3,
-              "name": "win/win_00006"
-            },
-            {
-              "time": 0.4,
-              "name": "win/win_00008"
-            },
-            {
-              "time": 0.5,
-              "name": "win/win_00010"
-            },
-            {
-              "time": 0.6,
-              "name": "win/win_00012"
-            },
-            {
-              "time": 0.7,
-              "name": "win/win_00014"
-            },
-            {
-              "time": 0.8,
-              "name": "win/win_00016"
-            },
-            {
-              "time": 0.9,
-              "name": "win/win_00018"
-            },
-            {
-              "time": 1,
-              "name": "win/win_00020"
-            },
-            {
-              "time": 1.1,
-              "name": "win/win_00022"
-            },
-            {
-              "time": 1.2,
-              "name": "win/win_00024"
-            },
-            {
-              "time": 1.3,
-              "name": "win/win_00026"
-            },
-            {
-              "time": 1.4,
-              "name": "win/win_00028"
-            },
-            {
-              "time": 1.5,
-              "name": "win/win_00030"
-            }
-          ]
-        }
-      },
-      "bones": {
-        "win-tiger-he": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 0.319,
-              "y": 0.319
-            },
-            {
-              "time": 0.1666,
-              "x": 1.15,
-              "y": 1.15
-            },
-            {
-              "time": 1.1,
-              "x": 1.2,
-              "y": 1.2
-            },
-            {
-              "time": 1.2,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "hu2": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1
-            },
-            {
-              "time": 0.1666,
-              "x": 1.097,
-              "y": 1.097
-            },
-            {
-              "time": 0.5,
-              "x": 1.366,
-              "y": 1.366
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "hu3": {
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1
-            },
-            {
-              "time": 0.1666,
-              "x": 1.031,
-              "y": 1.031
-            },
-            {
-              "time": 0.6666,
-              "x": 1.275,
-              "y": 1.275
-            },
-            {
-              "time": 1.5,
-              "x": 1,
-              "y": 1
-            }
-          ]
-        },
-        "huoquan": {
-          "translate": [
-            {
-              "time": 0,
-              "x": 10.06,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 1.5,
-              "x": 10.06,
-              "y": 0
-            }
-          ]
-        }
-      },
-      "drawOrder": [
-        {
-          "time": 0,
-          "offsets": [
-            {
-              "slot": "huoyan",
-              "offset": 7
-            }
-          ]
-        }
-      ]
+  "_atlasText": "\r\nwin-tiger.png\r\nsize: 1776,548\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nWin-tiger-bg/bg_00000\r\n  rotate: true\r\n  xy: 1046, 282\r\n  size: 131, 144\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00002\r\n  rotate: true\r\n  xy: 605, 274\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00004\r\n  rotate: true\r\n  xy: 609, 415\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00006\r\n  rotate: false\r\n  xy: 489, 32\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00008\r\n  rotate: false\r\n  xy: 622, 32\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00010\r\n  rotate: true\r\n  xy: 752, 282\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00012\r\n  rotate: true\r\n  xy: 756, 415\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00014\r\n  rotate: false\r\n  xy: 755, 39\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00016\r\n  rotate: true\r\n  xy: 899, 282\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00018\r\n  rotate: false\r\n  xy: 337, 400\r\n  size: 131, 146\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00020\r\n  rotate: false\r\n  xy: 338, 252\r\n  size: 131, 146\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00022\r\n  rotate: true\r\n  xy: 903, 415\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00024\r\n  rotate: false\r\n  xy: 888, 66\r\n  size: 131, 145\r\n  orig: 200, 200\r\n  offset: 35, 28\r\n  index: -1\r\nWin-tiger-bg/bg_00026\r\n  rotate: false\r\n  xy: 471, 261\r\n  size: 132, 144\r\n  orig: 200, 200\r\n  offset: 34, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00028\r\n  rotate: true\r\n  xy: 1050, 415\r\n  size: 131, 144\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nWin-tiger-bg/bg_00030\r\n  rotate: false\r\n  xy: 1021, 68\r\n  size: 131, 144\r\n  orig: 200, 200\r\n  offset: 35, 29\r\n  index: -1\r\nhuo/huo_00000\r\n  rotate: false\r\n  xy: 1196, 415\r\n  size: 137, 131\r\n  orig: 200, 200\r\n  offset: 40, 39\r\n  index: -1\r\nhuo/huo_00002\r\n  rotate: true\r\n  xy: 1280, 151\r\n  size: 137, 128\r\n  orig: 200, 200\r\n  offset: 37, 43\r\n  index: -1\r\nhuo/huo_00004\r\n  rotate: true\r\n  xy: 1549, 17\r\n  size: 134, 124\r\n  orig: 200, 200\r\n  offset: 37, 46\r\n  index: -1\r\nhuo/huo_00006\r\n  rotate: false\r\n  xy: 1622, 298\r\n  size: 132, 127\r\n  orig: 200, 200\r\n  offset: 35, 44\r\n  index: -1\r\nhuo/huo_00008\r\n  rotate: false\r\n  xy: 1487, 295\r\n  size: 133, 128\r\n  orig: 200, 200\r\n  offset: 33, 42\r\n  index: -1\r\nhuo/huo_00010\r\n  rotate: false\r\n  xy: 1335, 416\r\n  size: 136, 130\r\n  orig: 200, 200\r\n  offset: 32, 42\r\n  index: -1\r\nhuo/huo_00012\r\n  rotate: true\r\n  xy: 1300, 11\r\n  size: 138, 125\r\n  orig: 200, 200\r\n  offset: 33, 44\r\n  index: -1\r\nhuo/huo_00014\r\n  rotate: true\r\n  xy: 1410, 153\r\n  size: 139, 123\r\n  orig: 200, 200\r\n  offset: 34, 46\r\n  index: -1\r\nhuo/huo_00016\r\n  rotate: true\r\n  xy: 1535, 153\r\n  size: 140, 120\r\n  orig: 200, 200\r\n  offset: 34, 51\r\n  index: -1\r\nhuo/huo_00018\r\n  rotate: false\r\n  xy: 1618, 427\r\n  size: 143, 119\r\n  orig: 200, 200\r\n  offset: 32, 51\r\n  index: -1\r\nhuo/huo_00020\r\n  rotate: false\r\n  xy: 1340, 294\r\n  size: 145, 120\r\n  orig: 200, 200\r\n  offset: 30, 50\r\n  index: -1\r\nhuo/huo_00022\r\n  rotate: false\r\n  xy: 1192, 290\r\n  size: 146, 123\r\n  orig: 200, 200\r\n  offset: 29, 48\r\n  index: -1\r\nhuo/huo_00024\r\n  rotate: true\r\n  xy: 1154, 83\r\n  size: 146, 124\r\n  orig: 200, 200\r\n  offset: 28, 47\r\n  index: -1\r\nhuo/huo_00026\r\n  rotate: false\r\n  xy: 1473, 425\r\n  size: 143, 121\r\n  orig: 200, 200\r\n  offset: 28, 49\r\n  index: -1\r\nhuo/huo_00028\r\n  rotate: true\r\n  xy: 1427, 10\r\n  size: 141, 120\r\n  orig: 200, 200\r\n  offset: 27, 50\r\n  index: -1\r\nhuoquan/huoquan_00001\r\n  rotate: false\r\n  xy: 1657, 181\r\n  size: 117, 115\r\n  orig: 200, 200\r\n  offset: 41, 38\r\n  index: -1\r\nhuoquan/huoquan_00003\r\n  rotate: true\r\n  xy: 470, 407\r\n  size: 139, 137\r\n  orig: 200, 200\r\n  offset: 30, 30\r\n  index: -1\r\nhuoquan/huoquan_00005\r\n  rotate: true\r\n  xy: 334, 18\r\n  size: 159, 153\r\n  orig: 200, 200\r\n  offset: 19, 22\r\n  index: -1\r\nhuoquan/huoquan_00007\r\n  rotate: true\r\n  xy: 170, 3\r\n  size: 172, 162\r\n  orig: 200, 200\r\n  offset: 11, 18\r\n  index: -1\r\nhuoquan/huoquan_00009\r\n  rotate: true\r\n  xy: 2, 2\r\n  size: 173, 166\r\n  orig: 200, 200\r\n  offset: 11, 16\r\n  index: -1\r\nhuoquan/huoquan_00011\r\n  rotate: true\r\n  xy: 2, 177\r\n  size: 173, 172\r\n  orig: 200, 200\r\n  offset: 12, 13\r\n  index: -1\r\nhuoquan/huoquan_00013\r\n  rotate: true\r\n  xy: 176, 179\r\n  size: 171, 160\r\n  orig: 200, 200\r\n  offset: 12, 27\r\n  index: -1\r\nhuoquan/huoquan_00015\r\n  rotate: true\r\n  xy: 191, 383\r\n  size: 163, 144\r\n  orig: 200, 200\r\n  offset: 17, 39\r\n  index: -1\r\ntiger_00000\r\n  rotate: false\r\n  xy: 2, 352\r\n  size: 187, 194\r\n  orig: 400, 400\r\n  offset: 107, 102\r\n  index: -1\r\nwin/win_00000\r\n  rotate: false\r\n  xy: 1084, 231\r\n  size: 90, 49\r\n  orig: 400, 400\r\n  offset: 155, 80\r\n  index: -1\r\nwin/win_00026\r\n  rotate: false\r\n  xy: 1084, 231\r\n  size: 90, 49\r\n  orig: 400, 400\r\n  offset: 155, 80\r\n  index: -1\r\nwin/win_00028\r\n  rotate: false\r\n  xy: 1084, 231\r\n  size: 90, 49\r\n  orig: 400, 400\r\n  offset: 155, 80\r\n  index: -1\r\nwin/win_00030\r\n  rotate: false\r\n  xy: 1084, 231\r\n  size: 90, 49\r\n  orig: 400, 400\r\n  offset: 155, 80\r\n  index: -1\r\nwin/win_00002\r\n  rotate: false\r\n  xy: 976, 214\r\n  size: 106, 66\r\n  orig: 400, 400\r\n  offset: 152, 74\r\n  index: -1\r\nwin/win_00004\r\n  rotate: true\r\n  xy: 994, 12\r\n  size: 52, 85\r\n  orig: 400, 400\r\n  offset: 182, 67\r\n  index: -1\r\nwin/win_00006\r\n  rotate: false\r\n  xy: 722, 186\r\n  size: 110, 86\r\n  orig: 400, 400\r\n  offset: 144, 66\r\n  index: -1\r\nwin/win_00008\r\n  rotate: false\r\n  xy: 480, 179\r\n  size: 133, 80\r\n  orig: 400, 400\r\n  offset: 132, 68\r\n  index: -1\r\nwin/win_00010\r\n  rotate: false\r\n  xy: 615, 179\r\n  size: 105, 93\r\n  orig: 400, 400\r\n  offset: 146, 63\r\n  index: -1\r\nwin/win_00012\r\n  rotate: true\r\n  xy: 1081, 3\r\n  size: 63, 97\r\n  orig: 400, 400\r\n  offset: 160, 61\r\n  index: -1\r\nwin/win_00014\r\n  rotate: false\r\n  xy: 1180, 6\r\n  size: 118, 75\r\n  orig: 400, 400\r\n  offset: 136, 69\r\n  index: -1\r\nwin/win_00016\r\n  rotate: false\r\n  xy: 338, 183\r\n  size: 140, 67\r\n  orig: 400, 400\r\n  offset: 130, 71\r\n  index: -1\r\nwin/win_00018\r\n  rotate: false\r\n  xy: 834, 213\r\n  size: 140, 67\r\n  orig: 400, 400\r\n  offset: 130, 71\r\n  index: -1\r\nwin/win_00020\r\n  rotate: true\r\n  xy: 1675, 53\r\n  size: 126, 69\r\n  orig: 400, 400\r\n  offset: 137, 70\r\n  index: -1\r\nwin/win_00022\r\n  rotate: false\r\n  xy: 888, 7\r\n  size: 104, 57\r\n  orig: 400, 400\r\n  offset: 148, 76\r\n  index: -1\r\nwin/win_00024\r\n  rotate: false\r\n  xy: 1176, 233\r\n  size: 86, 47\r\n  orig: 400, 400\r\n  offset: 157, 81\r\n  index: -1\r\n",
+  "textures": [
+    {
+      "__uuid__": "0c759550-72b9-4e38-8fd4-08f3e1cf9027"
     }
-  },
-  "_name": "win-tiger"
+  ],
+  "textureNames": [
+    "win-tiger.png"
+  ],
+  "scale": 1
 }
