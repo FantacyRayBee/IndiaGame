@@ -2222,6 +2222,9 @@ cc.Class({
             case "aviator":
                 this.btn_miniaviator.node.getChildByName("upDateMask").active = false;
                 break;
+            case "chickenroad":
+                this.btn_minichicken.node.getChildByName("upDateMask").active = false;
+                break;
             case "zooGame":
                 this.btn_minizoo.node.getChildByName("upDateMask").active = false;
                 break;
@@ -2450,6 +2453,11 @@ cc.Class({
             skeleton = this.btn_miniaviator.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             skeleton.setAnimation(0, 'idle', true);
+        };
+        if (this.btn_minichicken.node.active) {
+            skeleton = this.btn_minichicken.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minicricket.node.active) {
             skeleton = this.btn_minicricket.node.getChildByName('Background').getComponent(sp.Skeleton);
