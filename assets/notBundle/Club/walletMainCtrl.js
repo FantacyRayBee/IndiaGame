@@ -69,8 +69,8 @@ cc.Class({
     refreshView: function () {
         this.btn_takeout.interactable = this.curAmount <= (GlobalCfg.USER_DATAS.clubInfo.safe / 100);
         this.btn_takein.interactable = this.curAmount <= (GlobalCfg.USER_DATAS.userDiamond / 100);
-        this.lb_wallet.string = "₹" + CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.clubInfo.safe / 100);
-        this.lb_game.string = "₹" + CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        this.lb_wallet.string = "$" + CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.clubInfo.safe / 100);
+        this.lb_game.string = "$" + CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
     },
 
     toggleClick: function (tog) {

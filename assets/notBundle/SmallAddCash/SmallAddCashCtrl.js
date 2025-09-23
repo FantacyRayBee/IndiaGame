@@ -87,7 +87,7 @@ cc.Class({
         coin = Math.floor(coin / 100);
         this.selectCoin = coin;
 
-        this.lab_cion.string = `₹${coin}`;
+        this.lab_cion.string = `$${coin}`;
     },
 
     onDestroy: function() {

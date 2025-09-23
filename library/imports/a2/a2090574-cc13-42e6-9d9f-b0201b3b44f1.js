@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'a2090V0zBNC5p2fsCAbO0Tx', 'DiversionFreeTPCtrl');
-// ResourcesBundle/NewPlan/DiversionFreeTP/DiversionFreeTPCtrl.ts
+// notBundle/DiversionFreeTP/DiversionFreeTPCtrl.ts
 
 "use strict";
 var __extends = (this && this.__extends) || (function () {

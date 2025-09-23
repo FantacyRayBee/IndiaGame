@@ -48,19 +48,19 @@ cc.Class({
                 let percent = (point * 100).toFixed(0);
                 if (i == 0) {
                     this.firstCommodityId = data.id;
-                    this.lab_cash1.string = `₹${price}`;
-                    this.lab_addCash1.string = `₹${price}`;
-                    this.lab_bonus1.string = `₹${bonus}`;
-                    this.lab_totalGet1.string = `₹${total}`;
+                    this.lab_cash1.string = `$${price}`;
+                    this.lab_addCash1.string = `$${price}`;
+                    this.lab_bonus1.string = `$${bonus}`;
+                    this.lab_totalGet1.string = `$${total}`;
                     this.lab_percent1.string = `${percent}`;
                     this.price1 = price
                 }
                 else if (i == 1) {
                     this.secondCommodityId = data.id;
-                    this.lab_cash2.string = `₹${price}`;
-                    this.lab_addCash2.string = `₹${price}`;
-                    this.lab_bonus2.string = `₹${bonus}`;
-                    this.lab_totalGet2.string = `₹${total}`;
+                    this.lab_cash2.string = `$${price}`;
+                    this.lab_addCash2.string = `$${price}`;
+                    this.lab_bonus2.string = `$${bonus}`;
+                    this.lab_totalGet2.string = `$${total}`;
                     this.lab_percent2.string = `${percent}`;
                     this.price2 = price
                 };

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'c06e57z9oBESoQqsN7vH+6w', 'ChangeLabelToSetNum');
-// ResourcesBundle/NewPlan/NewFirstRechargeTips/ChangeLabelToSetNum.js
+// notBundle/NewFirstRechargeTips/ChangeLabelToSetNum.js
 
 "use strict";
 

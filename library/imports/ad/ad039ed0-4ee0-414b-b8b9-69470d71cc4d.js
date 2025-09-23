@@ -41,7 +41,7 @@ cc.Class({
     for (var i = 0; i < 3; i++) {
       this.togList[i].node.on("toggle", CommonFun.getInstance().debounce(this.togClick, 1), this);
     }
-    this.lab_userDiamond.string = "\u20B9" + FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
+    this.lab_userDiamond.string = "$" + FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
@@ -79,7 +79,7 @@ cc.Class({
       GlobalCfg.USER_DATAS.userDiamond = deposit + winnings;
       var tempCoin = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.userDiamond, 0);
       var coin = FloatCalculation.accDiv(tempCoin, 100);
-      self.lab_userDiamond.string = "\u20B9" + coin;
+      self.lab_userDiamond.string = "$" + coin;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM) {
       var shopItemData = notify.shopItemData;
       SHOPPING.cashID = shopItemData.id;
@@ -87,9 +87,9 @@ cc.Class({
       var amount = Math.floor(shopItemData.amount / 100);
       var gift = Math.floor(shopItemData.gift / 100);
       if (shopItemData.loop_status == 0) {
-        self.lab_cash.string = "\u20B9" + amount;
-        self.lab_bonus.string = "\u20B9" + gift;
-        self.lab_totalGet.string = "\u20B9" + (amount + gift);
+        self.lab_cash.string = "$" + amount;
+        self.lab_bonus.string = "$" + gift;
+        self.lab_totalGet.string = "$" + (amount + gift);
         var _languagesType = I18NUtil.getInstance().getLanguageType();
         switch (_languagesType) {
           case I18NLanguagesEnum.English:
@@ -110,9 +110,9 @@ cc.Class({
         }
         ;
       } else if (shopItemData.loop_status == 1) {
-        self.lab_cash.string = "\u20B9" + amount;
-        self.lab_bonus.string = "\u20B90";
-        self.lab_totalGet.string = "\u20B9" + amount;
+        self.lab_cash.string = "$" + amount;
+        self.lab_bonus.string = "$0";
+        self.lab_totalGet.string = "$" + amount;
         self.lab_details.string = "Get 0% Cash Back on \nyour losing amount";
         var _languagesType2 = I18NUtil.getInstance().getLanguageType();
         switch (_languagesType2) {
@@ -138,7 +138,7 @@ cc.Class({
       self.lab_addMarkTips.string = "+";
       var languagesType = I18NUtil.getInstance().getLanguageType();
       var descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Shop_Add Cash']);
-      self.lab_addCash.string = descriptionStr + " \u20B9" + amount;
+      self.lab_addCash.string = descriptionStr + " $" + amount;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.REFRESH_SHOP_COMMODITY) {
       self.setShopItems();
     } else if (msgId == "REFRESH_SHOP_ITEM") {

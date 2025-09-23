@@ -567,7 +567,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lab_ ₹100",
+    "_name": "lab_ $100",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -647,8 +647,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹200",
-    "_N$string": "₹200",
+    "_string": "$200",
+    "_N$string": "$200",
     "_fontSize": 28,
     "_lineHeight": 28,
     "_enableWrapText": true,
@@ -1119,7 +1119,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lab_ ₹500",
+    "_name": "lab_ $500",
     "_objFlags": 0,
     "_parent": {
       "__id__": 22
@@ -1199,8 +1199,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹500",
-    "_N$string": "₹500",
+    "_string": "$500",
+    "_N$string": "$500",
     "_fontSize": 28,
     "_lineHeight": 28,
     "_enableWrapText": true,

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '101ad7DHKFGWZH5IG8URiqI', 'GameMenuCtrl');
-// ResourcesBundle/NewPlan/GameMenu/GameMenuCtrl.js
+// notBundle/GameMenu/GameMenuCtrl.js
 
 "use strict";
 

@@ -582,11 +582,11 @@ window.GlobalCfg = {
       [1]: {taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
       [2]: {taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
       [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [4]: {taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need ₹10 to withdraw ₹5000"},
-      [5]: {taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need ₹1 to withdraw ₹5000"},
-      [6]: {taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need ₹0.1 to withdraw ₹5000"},
-      [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need ₹0.01 to withdraw ₹5000"},
-      [8]: {taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
+      [4]: {taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need $10 to withdraw $5000"},
+      [5]: {taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need $1 to withdraw $5000"},
+      [6]: {taskName: 'Complete a recharge of $500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need $0.1 to withdraw $5000"},
+      [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need $0.01 to withdraw $5000"},
+      [8]: {taskName: 'Total recharge $50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
   },
   /**
    * 预制体路径

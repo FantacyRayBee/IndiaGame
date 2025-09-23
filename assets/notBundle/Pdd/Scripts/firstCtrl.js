@@ -121,7 +121,7 @@ cc.Class({
         this.flyPlusCount = 0;    // 飞加号气泡
         this.quota = this.data.quota / 100;
         this.unclaimed = (data.unclaimed / 100).toFixed(2);
-        // this.lab_glod_2.string = "₹ " + (this.data.quota / 100) + ".00";
+        // this.lab_glod_2.string = "$ " + (this.data.quota / 100) + ".00";
         this.playPddSound("show", false);
     },
 
@@ -265,7 +265,7 @@ cc.Class({
         lab_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 6);
 
         let lab_gold = this.bg_zj.getChildByName('lab_gold').getComponent(cc.Label);        // 待领取的金额
-        lab_gold.string = "₹ " + Number(this.unclaimed).toFixed(2);
+        lab_gold.string = "$ " + Number(this.unclaimed).toFixed(2);
 
         this.bg_zj.active = true;
         this.bg_zj.setPosition(cc.v2(0, 0));
@@ -315,7 +315,7 @@ cc.Class({
         let lan_unclaimed = cc.find("ATTACHED_NODE_TREE/ATTACHED_NODE:root/ATTACHED_NODE:hengfu/lan_unclaimed", this.node_ske_hengfu.node);
         lan_unclaimed.getComponent(cc.Label).string = this.unclaimed;
         let lab_quota = cc.find("ATTACHED_NODE_TREE/ATTACHED_NODE:root/ATTACHED_NODE:hengfu/lab_quota", this.node_ske_hengfu.node);
-        lab_quota.getComponent(cc.Label).string = "₹ " + Number(this.quota);
+        lab_quota.getComponent(cc.Label).string = "$ " + Number(this.quota);
         lab_quota.parent.active = true;
         this.node_ske_hengfu.setCompleteListener((trackEntry, loopCount) => {
             lab_quota.parent.active = false;

@@ -83,7 +83,7 @@ cc.Class({
     var status = data.status;
     var previous_pay = data.previous_pay; // 充值之前的金额，为 0 代表 此条记录为首充订单
 
-    this.lab_amount.string = "\u20B9" + (Number(amount) / 100).toFixed(2);
+    this.lab_amount.string = "$" + (Number(amount) / 100).toFixed(2);
     this.lab_id.string = "" + id;
     this.lab_time.string = "" + this.getTimeStrByCreatedAt(createdAt);
     var languagesType = I18NUtil.getInstance().getLanguageType();
@@ -92,9 +92,9 @@ cc.Class({
       var descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Processing']);
       this.lab_state.string = descriptionStr;
       this.lab_state.node.color = new cc.color(247, 114, 21, 255);
-      this.lab_changeAmount.string = "+\u20B9" + Number(amount / 100).toFixed(2);
-      this.lab_before.string = "\u20B9" + Number(before / 100).toFixed(2);
-      this.lab_after.string = "\u20B9" + ((Number(before) + Number(amount)) / 100).toFixed(2);
+      this.lab_changeAmount.string = "+$" + Number(amount / 100).toFixed(2);
+      this.lab_before.string = "$" + Number(before / 100).toFixed(2);
+      this.lab_after.string = "$" + ((Number(before) + Number(amount)) / 100).toFixed(2);
       this.btn_detail.node.active = true;
       this.lab_btnDetailTips.string = "Help";
     } else if (status == 1) {
@@ -102,16 +102,16 @@ cc.Class({
       var _descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Succeeded']);
       this.lab_state.string = _descriptionStr;
       this.lab_state.node.color = new cc.color(26, 182, 51, 255);
-      this.lab_changeAmount.string = "+\u20B9" + Number(amount / 100).toFixed(2);
+      this.lab_changeAmount.string = "+$" + Number(amount / 100).toFixed(2);
       if (previous_pay == 0 && GlobalCfg.uncleaned == false) {
         var descriptionStr1 = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Experience Coins']);
         this.lab_before.string = descriptionStr1;
-        this.lab_after.string = "\u20B9" + Number(amount / 100).toFixed(2);
+        this.lab_after.string = "$" + Number(amount / 100).toFixed(2);
         this.btn_detail.node.active = true;
         this.lab_btnDetailTips.string = "Detail";
       } else {
-        this.lab_before.string = "\u20B9" + Number(before / 100).toFixed(2);
-        this.lab_after.string = "\u20B9" + ((Number(before) + Number(amount)) / 100).toFixed(2);
+        this.lab_before.string = "$" + Number(before / 100).toFixed(2);
+        this.lab_after.string = "$" + ((Number(before) + Number(amount)) / 100).toFixed(2);
         this.lab_btnDetailTips.string = "";
         this.btn_detail.node.active = false;
       }
@@ -121,9 +121,9 @@ cc.Class({
       var _descriptionStr2 = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Failed']);
       this.lab_state.string = _descriptionStr2;
       this.lab_state.node.color = new cc.color(255, 125, 0, 255);
-      this.lab_changeAmount.string = "\u20B90";
-      this.lab_before.string = "\u20B90";
-      this.lab_after.string = "\u20B90";
+      this.lab_changeAmount.string = "$0";
+      this.lab_before.string = "$0";
+      this.lab_after.string = "$0";
       this.lab_btnDetailTips.string = "";
       this.btn_detail.node.active = false;
     }
@@ -139,12 +139,12 @@ cc.Class({
     var status = data.status;
     this.btn_detail.node.active = false;
     this.lab_btnDetailTips.string = "";
-    this.lab_amount.string = "\u20B9" + (Number(amount) / 100).toFixed(2);
+    this.lab_amount.string = "$" + (Number(amount) / 100).toFixed(2);
     this.lab_id.string = "" + orderno;
     this.lab_time.string = "" + this.getTimeStrByCreatedAt(applytime);
-    this.lab_changeAmount.string = "-\u20B9" + (Number(deduction) / 100).toFixed(2);
-    this.lab_before.string = "\u20B9" + (Number(before) / 100).toFixed(2);
-    this.lab_after.string = "\u20B9" + ((Number(before) - Number(deduction)) / 100).toFixed(2);
+    this.lab_changeAmount.string = "-$" + (Number(deduction) / 100).toFixed(2);
+    this.lab_before.string = "$" + (Number(before) / 100).toFixed(2);
+    this.lab_after.string = "$" + ((Number(before) - Number(deduction)) / 100).toFixed(2);
     var languagesType = I18NUtil.getInstance().getLanguageType();
     if (status == 0) {
       // 等待审核 

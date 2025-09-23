@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '9ed3cUCJspHJJyUOOO4vMgB', 'propSkeCtrl');
-// ResourcesBundle/NewPlan/GameGifInteraction/propSkeCtrl.js
+// notBundle/GameGifInteraction/propSkeCtrl.js
 
 "use strict";
 

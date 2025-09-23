@@ -8,6 +8,7 @@ cc.Class({
         btn_icon: cc.Button,
         node_quan: cc.Node,
         atlas_benifits: cc.SpriteAtlas,
+        atlas_benifits2: cc.SpriteAtlas,
     },
 
     ctor: function() {
@@ -63,17 +64,17 @@ cc.Class({
                     this.rewardTimer = null;
 
                     if (this.benifitsType == 5) {
-                        this.lab_tips2.string = `₹${this.benifitsData.dayTake/100}`;
+                        this.lab_tips2.string = `$${this.benifitsData.dayTake/100}`;
                         this.btn_icon.interactable = true;
                         this.node_quan.active = true;
                     }
                     else if (this.benifitsType == 4) {
-                        this.lab_tips2.string = `₹${this.benifitsData.weekTake/100}`;
+                        this.lab_tips2.string = `$${this.benifitsData.weekTake/100}`;
                         this.btn_icon.interactable = true;
                         this.node_quan.active = true;
                     }
                     else if (this.benifitsType == 3) {
-                        this.lab_tips2.string = `₹${this.benifitsData.monthTake/100}`;
+                        this.lab_tips2.string = `$${this.benifitsData.monthTake/100}`;
                         this.btn_icon.interactable = true;
                         this.node_quan.active = true;
                     }
@@ -161,7 +162,12 @@ cc.Class({
         }; 
 
         this.lab_tips1.string = nameStr;
-        this.sprite_icon.spriteFrame = this.atlas_benifits.getSpriteFrame(`${type}`);
+        if (type == 1 || type == 3 || type == 4 || type == 5 || type == 9 || type == 10) {
+            this.sprite_icon.spriteFrame = this.atlas_benifits2.getSpriteFrame(`${type}`);
+        }
+        else{
+            this.sprite_icon.spriteFrame = this.atlas_benifits.getSpriteFrame(`${type}`);
+        }
 
         if (GlobalCfg.USER_DATAS.userVip.level == data.level) {
             let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
@@ -172,7 +178,7 @@ cc.Class({
                     this.node_quan.active = false;
                 }
                 else {
-                    this.lab_tips2.string = `₹${data.dayTake/100}`;
+                    this.lab_tips2.string = `$${data.dayTake/100}`;
                     this.btn_icon.interactable = true;
                     this.node_quan.active = true;
 
@@ -189,7 +195,7 @@ cc.Class({
                     this.node_quan.active = false;
                 }
                 else {
-                    this.lab_tips2.string = `₹${data.weekTake/100}`;
+                    this.lab_tips2.string = `$${data.weekTake/100}`;
                     this.btn_icon.interactable = true;
                     this.node_quan.active = true;
 
@@ -206,7 +212,7 @@ cc.Class({
                     this.node_quan.active = false;
                 }
                 else {
-                    this.lab_tips2.string = `₹${data.monthTake/100}`;
+                    this.lab_tips2.string = `$${data.monthTake/100}`;
                     this.btn_icon.interactable = true;
                     this.node_quan.active = true;
 
@@ -217,7 +223,7 @@ cc.Class({
                 this.lab_tips2.node.active = true;
             }
             else if (type == 2) {
-                this.lab_tips2.string = `₹${data.withdrawTotalLimit/100}`;
+                this.lab_tips2.string = `$${data.withdrawTotalLimit/100}`;
                 this.lab_tips2.node.active = true;
                 this.btn_icon.interactable = false;
                 this.node_quan.active = false;

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '969fcE+caRHf6bAfQaaIi/y', 'SuperDiscountCtrl');
-// ResourcesBundle/NewPlan/SuperDiscount/SuperDiscountCtrl.js
+// notBundle/SuperDiscount/SuperDiscountCtrl.js
 
 "use strict";
 
@@ -106,9 +106,9 @@ cc.Class({
     ;
   },
   setData: function setData(before, after) {
-    this.labBefore.string = '₹' + Number(before / 100);
-    this.labAfter.string = '₹' + Number(after / 100);
-    this.btnShop.target.getChildByName('Label').getComponent(cc.Label).string = '₹' + Number(before / 100);
+    this.labBefore.string = '$' + Number(before / 100);
+    this.labAfter.string = '$' + Number(after / 100);
+    this.btnShop.target.getChildByName('Label').getComponent(cc.Label).string = '$' + Number(before / 100);
   },
   // 点击去充值
   clickToRecharge: function clickToRecharge(type) {

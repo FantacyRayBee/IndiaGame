@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'bae31VlJDpHl5JljCrUtER4', 'GameGifInteractionItemCtrl');
-// ResourcesBundle/NewPlan/GameGifInteraction/GameGifInteractionItemCtrl.js
+// notBundle/GameGifInteraction/GameGifInteractionItemCtrl.js
 
 "use strict";
 
@@ -38,7 +38,7 @@ cc.Class({
     var price = data.price;
     var name = data.name;
     this.itemData = data;
-    this.lab_price.string = "\u20B9" + price;
+    this.lab_price.string = "$" + price;
     ResourcesBundle.load("NewPlan/GameGifInteraction/res/item/" + name, cc.SpriteFrame, function (err, spriteFrame) {
       if (!err) {
         if (CommonFun.getInstance().isValidForScr(_this)) {

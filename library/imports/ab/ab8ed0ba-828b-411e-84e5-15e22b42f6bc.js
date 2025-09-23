@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'ab8edC6gotBHoTlFeIrQva8', 'HallTipCtrl');
-// ResourcesBundle/NewPlan/HallTip/HallTipCtrl.js
+// notBundle/HallTip/HallTipCtrl.js
 
 "use strict";
 

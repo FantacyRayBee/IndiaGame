@@ -33,12 +33,12 @@ cc.Class({
         let loop_status = data.loop_status;
         let gift = Math.floor(data.gift / 100);   // 赠送
 
-        this.lab_shopCoin1.string = `₹${amount}`;
-        this.lab_shopCoin2.string = `₹${amount}`;
+        this.lab_shopCoin1.string = `$${amount}`;
+        this.lab_shopCoin2.string = `$${amount}`;
 
         if (loop_status == 0 && gift != 0) {
             this.node_bonus.active = true;
-            this.lab_bonus.string = '+₹' + Number(gift);
+            this.lab_bonus.string = '+$' + Number(gift);
         }
         else if (loop_status == 1) {
             this.node_bonus.active = false;

@@ -7,7 +7,7 @@ cc.Class({
     },
 
     onLoad: function() {
-        this.lab_amount.string = `₹${GlobalCfg.USER_DATAS.reliefGiftDiamond/100}`;
+        this.lab_amount.string = `${GlobalCfg.USER_DATAS.reliefGiftDiamond/100}`;
         this.btn_get.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     },
 

@@ -83,11 +83,11 @@ var RechargeToastCtrl = /** @class */ (function (_super) {
         var amount = data.amount;
         var add = data.add;
         var bonus = data.bonus;
-        this.lab_cash.string = "\u20B9" + amount / 100;
-        this.lab_extraCash.string = "\u20B9" + add / 100;
-        this.lab_bonus.string = "\u20B9" + bonus / 100;
-        this.lab_total.string = "\u20B9" + (amount + add + bonus) / 100;
-        this.lab_amount.string = "\u20B9" + amount / 100;
+        this.lab_cash.string = "$" + amount / 100;
+        this.lab_extraCash.string = "$" + add / 100;
+        this.lab_bonus.string = "$" + bonus / 100;
+        this.lab_total.string = "$" + (amount + add + bonus) / 100;
+        this.lab_amount.string = "$" + amount / 100;
         this._setRechargeToastTime(time);
     };
     RechargeToastCtrl.prototype._setRechargeToastTime = function (time) {

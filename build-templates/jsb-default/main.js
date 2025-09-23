@@ -39,7 +39,7 @@ window.boot = function () {
         cc.view.resizeWithBrowserSize(true);
 
         if (cc.sys.isBrowser) {
-            setLoadingDisplay();
+            // setLoadingDisplay();
         }
 
         if (cc.sys.isMobile) {

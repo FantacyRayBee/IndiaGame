@@ -148,7 +148,7 @@ cc.Class({
 
         teamTipsViewTipsStr = "The friends you invite, as well as the friends they invite, Can loop indefinitely. All belong to your team.";
         opuPutTipsViewTipsStr = "Anyone in your team, as long as they win money, you will get a certain reward. The more people you invite, the more rewards you get.";
-        inviteTipsViewTipsStr = "For anyone you invite, if they recharge < ₹100 for the firs time, you will receive a reward of <₹5. If they recharge< ₹1000 for the first time, you will receive a reward of ₹50";
+        inviteTipsViewTipsStr = "For anyone you invite, if they recharge < $100 for the firs time, you will receive a reward of <$5. If they recharge< $1000 for the first time, you will receive a reward of $50";
         bonusTipsViewTipsStr = "The system will calculate the bonus basedon the output value at am00 : 00, So your bonus for the day will be received the next day.";
 
         btnFXStr = "Share More";
@@ -159,11 +159,11 @@ cc.Class({
         btnBonusTableStr = "Bonus Table";
         btnGetStr = "GET \nBONUS";
 
-        bgLabForStr = "For every ₹100 win , the system will reward ₹5";
+        bgLabForStr = "For every $100 win , the system will reward $5";
         bgLabYouCanStr = "You can see the details at \"Bonus Table\"";
         bgLabShareStr = "Share with friend";
         bgLabYouReStr = "You're going to be a ";
-        bgLabIfYouStr = "If your team has 1000 people a day, they each win <₹100. You can get a bonus of <₹5000 every day.";
+        bgLabIfYouStr = "If your team has 1000 people a day, they each win <$100. You can get a bonus of <$5000 every day.";
         bgLabIfYouHaveStr = "If you have 10000 or 100000 people?";
         
 

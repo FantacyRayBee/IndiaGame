@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '7a825H+oe9IIL5cj418Dy3i', 'propCtrl');
-// ResourcesBundle/NewPlan/GameGifInteraction/propCtrl.js
+// notBundle/GameGifInteraction/propCtrl.js
 
 "use strict";
 

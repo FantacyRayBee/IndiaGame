@@ -543,7 +543,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lab_₹Tips",
+    "_name": "lab_$Tips",
     "_objFlags": 0,
     "_parent": {
       "__id__": 12
@@ -650,7 +650,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lab_₹Tips",
+    "_name": "lab_$Tips",
     "_objFlags": 0,
     "_parent": {
       "__id__": 12
@@ -2502,8 +2502,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹200",
-    "_N$string": "₹200",
+    "_string": "$200",
+    "_N$string": "$200",
     "_fontSize": 28,
     "_lineHeight": 28,
     "_enableWrapText": true,
@@ -2806,7 +2806,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lab_₹Tips",
+    "_name": "lab_$Tips",
     "_objFlags": 0,
     "_parent": {
       "__id__": 75
@@ -2913,7 +2913,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lab_₹Tips",
+    "_name": "lab_$Tips",
     "_objFlags": 0,
     "_parent": {
       "__id__": 75
@@ -4765,8 +4765,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹200",
-    "_N$string": "₹200",
+    "_string": "$200",
+    "_N$string": "$200",
     "_fontSize": 28,
     "_lineHeight": 28,
     "_enableWrapText": true,

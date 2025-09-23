@@ -161,7 +161,7 @@ cc.Class({
         _this3.node.addChild(signItemNode);
       } else if (index == 6) {
         _this3.lab_day7.string = "Day7";
-        _this3.lab_day7Reward.string = "\u20B9" + gift / 100;
+        _this3.lab_day7Reward.string = "$" + gift / 100;
         if (signData.today > 7) {
           _this3.node_day7Signed.active = true;
           _this3.node_day7Unsigned.active = false;

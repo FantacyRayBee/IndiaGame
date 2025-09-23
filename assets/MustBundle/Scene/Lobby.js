@@ -1194,13 +1194,13 @@ cc.Class({
         //     this.updateToastLocalStorageByHours("BonusCard", BonusCardFrequency);
         //     this.showBonusCardToast();
         // }
-        /**
-         * 推广员
-         */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(15) && this.isNeedShowPointToastByHours("Promoter", 1)) {
-            this.updateToastLocalStorageByHours("Promoter", 1);
-            this.showPromoterToast();
-        };
+        // /**
+        //  * 推广员
+        //  */
+        // else if (GlobalCfg.USER_DATAS.openModules.includes(15) && this.isNeedShowPointToastByHours("Promoter", 1)) {
+        //     this.updateToastLocalStorageByHours("Promoter", 1);
+        //     this.showPromoterToast();
+        // };
 
         /**
          * 救济金

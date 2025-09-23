@@ -17,6 +17,9 @@ let CommonFun = cc.Class({
         this._loadedPrefabMap = new Map();
         this._verticalAcc = 0;
         this._curOrientation = EnumOrientation.HORIZONTAL;
+
+        this.resoucesBundleIsDownloadedByH5 = false;
+        this.resoucesBundleOpenList = {}
     },
 
     checkShiPei: function(node) {
@@ -596,6 +599,60 @@ let CommonFun = cc.Class({
         };
     },
 
+    checkBundleIsDownloadedByH5: function(packageName, callback) {
+        if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
+            callback && callback();
+            return;
+        }
+        if (this.resoucesBundleIsDownloadedByH5 || this.resoucesBundleOpenList[packageName]) { // 如果已经下载过，则直接返回
+            LoggerUtil.getInstance().log(`ResourcesBundle下载完毕`);
+            callback && callback();
+            return;
+        }
+        this.showProgress();  // 显示进度
+        // 添加一个标志，避免重复调用回调
+        let isCallbackCalled = false;
+        // 设置一个1秒的超时定时器
+        let timeout = setTimeout(() => {
+            if (!isCallbackCalled) {
+                LoggerUtil.getInstance().log("ResourcesBundle 下载超时，执行回调");
+                this.hidProgress();  // 超时后隐藏进度条
+                callback && callback();  // 执行回调
+                isCallbackCalled = true;  // 标记回调已被调用
+                this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
+            }
+        }, 1000); // 超过1秒后执行
+
+        // 加载资源包
+        cc.assetManager.loadBundle("ResourcesBundle", (err, bundle) => {
+            if (err) {
+                clearTimeout(timeout);  // 发生错误时清除定时器
+                this.hidProgress();  // 隐藏进度条
+                if (!isCallbackCalled) {
+                    callback && callback(err);  // 调用失败回调
+                    isCallbackCalled = true;  // 标记回调已被调用
+                }
+                return;
+            }
+            // 预加载资源包中的目录并获取进度
+            bundle.preloadDir("/", (completedCount, totalCount) => { 
+                let rawProgress = completedCount / totalCount;  // 计算进度
+                LoggerUtil.getInstance().log(`下载进度 ： ${(rawProgress * 100).toFixed(2)}%`);
+            }, (err) => { 
+                clearTimeout(timeout);  // 下载完成后清除超时定时器
+                if (err) { 
+                } else { 
+                    this.hidProgress();  // 隐藏进度
+                    this.resoucesBundleIsDownloadedByH5 = true; // 标记资源已下载
+                    if (!isCallbackCalled) {
+                        callback && callback();  // 执行回调
+                        isCallbackCalled = true;  // 标记回调已被调用
+                    }
+                }
+            }); 
+        });
+    },
+
     /**
      * 判断脚本是否有效
      * @param {cc.Script} target 脚本实例化的对象
@@ -1097,10 +1154,12 @@ let CommonFun = cc.Class({
      * 显示设置界面
      */
     showSetting: function() {
-        let settingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SETTING);
-        settingPrefabPromise.then((prefab) => {
-            let settingNode = cc.instantiate(prefab);
-            this.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Setting", () =>{
+            let settingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SETTING);
+            settingPrefabPromise.then((prefab) => {
+                let settingNode = cc.instantiate(prefab);
+                this.addToPointParent(settingNode, GlobalCfg.PREFAB_PARENT.SETTING);
+            });
         });
     },
 
@@ -1108,11 +1167,13 @@ let CommonFun = cc.Class({
      * 打开游戏列表界面
      */
     showGameIconList: function() {
-        let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEICONLIST);
-        PrefabPromise.then((prefab) => {
-            CommonFun.getInstance().addVerticalAcc();
-            let Node = cc.instantiate(prefab);
-            this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.GAMEICONLIST);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GameIconList", () =>{
+            let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEICONLIST);
+            PrefabPromise.then((prefab) => {
+                CommonFun.getInstance().addVerticalAcc();
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.GAMEICONLIST);
+            });
         });
     },
 
@@ -1157,12 +1218,14 @@ let CommonFun = cc.Class({
      * @param {boolean} trial 是否是体验用户
      */
     showUserIU: function(headUrl = "", playerName = "", playerCoin = 0, trial = true) {
-        let userHeadPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.USERHEAD);
-        userHeadPrefabPromise.then((prefab) => {
-            let userHeadNode = cc.instantiate(prefab);
-            let userHeadCtrl = userHeadNode.getComponent('UserHeadCtrl');
-            userHeadCtrl.setUserDate(headUrl, playerName, playerCoin, trial);
-            this.addToPointParent(userHeadNode, GlobalCfg.PREFAB_PARENT.USERHEAD);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("UserHead", () => {
+            let userHeadPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.USERHEAD);
+            userHeadPrefabPromise.then((prefab) => {
+                let userHeadNode = cc.instantiate(prefab);
+                let userHeadCtrl = userHeadNode.getComponent('UserHeadCtrl');
+                userHeadCtrl.setUserDate(headUrl, playerName, playerCoin, trial);
+                this.addToPointParent(userHeadNode, GlobalCfg.PREFAB_PARENT.USERHEAD);
+            });
         });
     },
 
@@ -1170,11 +1233,13 @@ let CommonFun = cc.Class({
      * 显示金币散落动画
      */
     scatterGoldCoinsAim: function() {
-        let scatterCoinPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SCATTERCOIN);
-        scatterCoinPrefabPromise.then((prefab) => {
-            let scatterCoinNode = cc.instantiate(prefab);
-            let scatterCoinCtrl = scatterCoinNode.getComponent('ScatterCoinCtrl');
-            this.addToPointParent(scatterCoinNode, GlobalCfg.PREFAB_PARENT.SCATTERCOIN);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("ScatterCoin", () => {
+            let scatterCoinPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SCATTERCOIN);
+            scatterCoinPrefabPromise.then((prefab) => {
+                let scatterCoinNode = cc.instantiate(prefab);
+                let scatterCoinCtrl = scatterCoinNode.getComponent('ScatterCoinCtrl');
+                this.addToPointParent(scatterCoinNode, GlobalCfg.PREFAB_PARENT.SCATTERCOIN);
+            });
         });
     },
 
@@ -1219,12 +1284,14 @@ let CommonFun = cc.Class({
      * 显示活动界面
      */
     showActivity: function(pointView = null) {
-        let activityPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY);
-        activityPrefabPromise.then((prefab) => {
-            let activityNode = cc.instantiate(prefab);
-            let activityCtrl = activityNode.getComponent('ActivityCtrl');
-            pointView && activityCtrl.setPointView(pointView);
-            this.addToPointParent(activityNode, GlobalCfg.PREFAB_PARENT.ACTIVITY);  
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Activity", () => {
+            let activityPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY);
+            activityPrefabPromise.then((prefab) => {
+                let activityNode = cc.instantiate(prefab);
+                let activityCtrl = activityNode.getComponent('ActivityCtrl');
+                pointView && activityCtrl.setPointView(pointView);
+                this.addToPointParent(activityNode, GlobalCfg.PREFAB_PARENT.ACTIVITY);  
+            });
         });
     },
 
@@ -1232,15 +1299,17 @@ let CommonFun = cc.Class({
      * 显示首充界面
      */
     showFirstRecharge: function() {
-        let path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
-        if(GlobalCfg.CURSCENE_DIRECTION == "vertical"){
-            path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
-        }
-        let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
-        firstRechargePrefabPromise.then((prefab) => {
-            let firstRechargeNode = cc.instantiate(prefab);
-            let firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
-            this.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("FirstRecharge", () => {
+            let path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
+            if(GlobalCfg.CURSCENE_DIRECTION == "vertical"){
+                path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
+            }
+            let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+            firstRechargePrefabPromise.then((prefab) => {
+                let firstRechargeNode = cc.instantiate(prefab);
+                let firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
+                this.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
+            });
         });
     },
 
@@ -1252,28 +1321,33 @@ let CommonFun = cc.Class({
         if (isExist) {
             return;
         };
-        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
-        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
-            if (msg.result == 0) {
-                GlobalCfg.USER_DATAS.inducement = msg.data;
-                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
-                prefabPromise.then((prefab) => {
-                    let node = cc.instantiate(prefab);
-                    this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
-                });
-            }
-        }, null, GlobalCfg.USER_DATAS.BearerToken);
+
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Inducement", () => {
+            let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/RechargeInducement/GetInfo";
+            CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+                if (msg.result == 0) {
+                    GlobalCfg.USER_DATAS.inducement = msg.data;
+                    let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INDUCEMENT);
+                    prefabPromise.then((prefab) => {
+                        let node = cc.instantiate(prefab);
+                        this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.INDUCEMENT);
+                    });
+                }
+            }, null, GlobalCfg.USER_DATAS.BearerToken);
+        });
     },
 
     /**
      * 显示联系我们界面
      */
     showContactUs: function() {
-        let contactUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CONTACTUS);
-        contactUsPrefabPromise.then((prefab) => {
-            let contactUsNode = cc.instantiate(prefab);
-            let contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');    
-            this.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("ContactUs", () => {
+            let contactUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CONTACTUS);
+            contactUsPrefabPromise.then((prefab) => {
+                let contactUsNode = cc.instantiate(prefab);
+                let contactUsCtrl = contactUsNode.getComponent('ContactUsCtrl');    
+                this.addToPointParent(contactUsNode, GlobalCfg.PREFAB_PARENT.CONTACTUS);
+            });
         });
     },
 
@@ -1325,26 +1399,30 @@ let CommonFun = cc.Class({
      * 打开钱包
      */
     showWalletPanel: function() {
-        this.getClubData(() => {
-            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WALLET);
-            prefabPromise.then((prefab) => {
-                let Node = cc.instantiate(prefab);
-                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.WALLET);
-            });
-        })
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("wallet", () => {
+            this.getClubData(() => {
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WALLET);
+                prefabPromise.then((prefab) => {
+                    let Node = cc.instantiate(prefab);
+                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.WALLET);
+                });
+            })
+        });
     }, 
 
     /**
      * 打开俱乐部
      */
     showClub: function() {
-        this.getClubData(() => {
-            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
-            prefabPromise.then((prefab) => {
-                let Node = cc.instantiate(prefab);
-                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
-            });
-        })
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("club", () => {
+            this.getClubData(() => {
+                let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CLUB);
+                prefabPromise.then((prefab) => {
+                    let Node = cc.instantiate(prefab);
+                    this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CLUB);
+                });
+            })
+        });
     },    
 
     /**
@@ -1445,11 +1523,13 @@ let CommonFun = cc.Class({
      * 显示评分界面
      */
     showRateUs: function() {
-        let rateUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RATEUS);
-        rateUsPrefabPromise.then((prefab) => {
-            let rateUsNode = cc.instantiate(prefab);
-            let rateUsCtrl = rateUsNode.getComponent('RateUsCtrl');    
-            this.addToPointParent(rateUsNode, GlobalCfg.PREFAB_PARENT.RATEUS);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("rateUs", () => {
+            let rateUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RATEUS);
+            rateUsPrefabPromise.then((prefab) => {
+                let rateUsNode = cc.instantiate(prefab);
+                let rateUsCtrl = rateUsNode.getComponent('RateUsCtrl');    
+                this.addToPointParent(rateUsNode, GlobalCfg.PREFAB_PARENT.RATEUS);
+            });
         });
     },
 
@@ -1457,11 +1537,13 @@ let CommonFun = cc.Class({
      * 显示绑定手机奖励界面
      */
     showBindPhoneRewards: function() {
-        let bindPhoneRewardsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONEREWARDS);
-        bindPhoneRewardsPrefabPromise.then((prefab) => {
-            let bindPhoneRewardsNode = cc.instantiate(prefab);
-            let bindPhoneRewardsCtrl = bindPhoneRewardsNode.getComponent('BindPhoneRewardsCtrl');    
-            this.addToPointParent(bindPhoneRewardsNode, GlobalCfg.PREFAB_PARENT.BINDPHONEREWARDS);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("bindPhoneRewards", () => {
+            let bindPhoneRewardsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONEREWARDS);
+            bindPhoneRewardsPrefabPromise.then((prefab) => {
+                let bindPhoneRewardsNode = cc.instantiate(prefab);
+                let bindPhoneRewardsCtrl = bindPhoneRewardsNode.getComponent('BindPhoneRewardsCtrl');    
+                this.addToPointParent(bindPhoneRewardsNode, GlobalCfg.PREFAB_PARENT.BINDPHONEREWARDS);
+            });
         });
     },
 
@@ -1503,13 +1585,15 @@ let CommonFun = cc.Class({
      * @param {String} str  Lobby (大厅) Personal (个人中心) AddCash (充值填写) 
      */
     showBindPhone: function(str = 'Lobby') {
-        let bindPhonePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONE);
-        bindPhonePrefabPromise.then((prefab) => {
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MOBILE_VIEW);
-            let bindPhoneNode = cc.instantiate(prefab);
-            let bindPhoneCtrl = bindPhoneNode.getComponent('BindPhoneCtrl');    
-            bindPhoneCtrl.setNodeStateStr(str);
-            this.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("bindPhone", () => {
+            let bindPhonePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONE);
+            bindPhonePrefabPromise.then((prefab) => {
+                CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MOBILE_VIEW);
+                let bindPhoneNode = cc.instantiate(prefab);
+                let bindPhoneCtrl = bindPhoneNode.getComponent('BindPhoneCtrl');    
+                bindPhoneCtrl.setNodeStateStr(str);
+                this.addToPointParent(bindPhoneNode, GlobalCfg.PREFAB_PARENT.BINDPHONE);
+            });
         });
     },
 
@@ -1517,11 +1601,13 @@ let CommonFun = cc.Class({
      * 显示推广员界面
      */
     showPromoter: function() {
-        let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-        promoterPrefabPromise.then((prefab) => {
-            let promoterNode = cc.instantiate(prefab);
-            let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
-            this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("promoter", () => {
+            let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+            promoterPrefabPromise.then((prefab) => {
+                let promoterNode = cc.instantiate(prefab);
+                let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+                this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+            });
         });
     },
     
@@ -1582,12 +1668,14 @@ let CommonFun = cc.Class({
      * @param {string} typeStr 显示类型
      */
     showPromoterLeftView: function(typeStr) {
-        let promoterLeftViewPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERLEFTVIEW);
-        promoterLeftViewPrefabPromise.then((prefab) => {
-            let promoterLeftViewNode = cc.instantiate(prefab);
-            let promoterLeftViewCtrl = promoterLeftViewNode.getComponent('PromoterLeftViewCtrl');   
-            promoterLeftViewCtrl.showLeftViewByTypeStr(typeStr); 
-            this.addToPointParent(promoterLeftViewNode, GlobalCfg.PREFAB_PARENT.PROMOTERLEFTVIEW);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("promoter", () => {
+            let promoterLeftViewPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTERLEFTVIEW);
+            promoterLeftViewPrefabPromise.then((prefab) => {
+                let promoterLeftViewNode = cc.instantiate(prefab);
+                let promoterLeftViewCtrl = promoterLeftViewNode.getComponent('PromoterLeftViewCtrl');   
+                promoterLeftViewCtrl.showLeftViewByTypeStr(typeStr); 
+                this.addToPointParent(promoterLeftViewNode, GlobalCfg.PREFAB_PARENT.PROMOTERLEFTVIEW);
+            });
         });
     },
 
@@ -1595,23 +1683,27 @@ let CommonFun = cc.Class({
      * 显示救济金界面
      */
     showRelief: function() {
-        let reliefPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RELIEF);
-        reliefPrefabPromise.then((prefab) => {
-            let reliefNode = cc.instantiate(prefab);
-            let reliefCtrl = reliefNode.getComponent('ReliefCtrl');    
-            this.addToPointParent(reliefNode, GlobalCfg.PREFAB_PARENT.RELIEF);  
-        }); 
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("relief", () => {
+            let reliefPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RELIEF);
+            reliefPrefabPromise.then((prefab) => {
+                let reliefNode = cc.instantiate(prefab);
+                let reliefCtrl = reliefNode.getComponent('ReliefCtrl');    
+                this.addToPointParent(reliefNode, GlobalCfg.PREFAB_PARENT.RELIEF);  
+            }); 
+        });
     },
 
     /**
      * 显示邮箱界面
      */
     showEmail: function() {
-        let emailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.EMAIL);
-        emailPrefabPromise.then((prefab) => {
-            let emailNode = cc.instantiate(prefab);
-            let emailCtrl = emailNode.getComponent('EmailCtrl');    
-            this.addToPointParent(emailNode, GlobalCfg.PREFAB_PARENT.EMAIL);    
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Email", () => {
+            let emailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.EMAIL);
+            emailPrefabPromise.then((prefab) => {
+                let emailNode = cc.instantiate(prefab);
+                let emailCtrl = emailNode.getComponent('EmailCtrl');    
+                this.addToPointParent(emailNode, GlobalCfg.PREFAB_PARENT.EMAIL);    
+            });
         });
     },
 
@@ -1619,12 +1711,14 @@ let CommonFun = cc.Class({
      * 显示反馈邮件界面
      */
     showFeedbackMail: function(dataContent, emailCtrl) {
-        let feedbackMailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FEEDBACKEMAIL);
-        feedbackMailPrefabPromise.then((prefab) => {
-            let feedbackMailNode = cc.instantiate(prefab);
-            let feedbackMailCtrl = feedbackMailNode.getComponent('FeedbackMailCtrl');   
-            feedbackMailCtrl.setState(dataContent, emailCtrl); 
-            this.addToPointParent(feedbackMailNode, GlobalCfg.PREFAB_PARENT.FEEDBACKEMAIL);    
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Feedback", () => {
+            let feedbackMailPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FEEDBACKEMAIL);
+            feedbackMailPrefabPromise.then((prefab) => {
+                let feedbackMailNode = cc.instantiate(prefab);
+                let feedbackMailCtrl = feedbackMailNode.getComponent('FeedbackMailCtrl');   
+                feedbackMailCtrl.setState(dataContent, emailCtrl); 
+                this.addToPointParent(feedbackMailNode, GlobalCfg.PREFAB_PARENT.FEEDBACKEMAIL);    
+            });
         });
     },
     
@@ -1636,50 +1730,58 @@ let CommonFun = cc.Class({
         if (isExist) {
             return;
         };
-        let superDiscountPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SUPERDISCOUNT);
-        superDiscountPrefabPromise.then((prefab) => {
-            let superDiscountNode = cc.instantiate(prefab);
-            let superDiscountCtrl = superDiscountNode.getComponent('SuperDiscountCtrl');    
-            superDiscountCtrl.initByType();
-            this.addToPointParent(superDiscountNode, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);    
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("SuperDiscount", () => {
+            let superDiscountPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SUPERDISCOUNT);
+            superDiscountPrefabPromise.then((prefab) => {
+                let superDiscountNode = cc.instantiate(prefab);
+                let superDiscountCtrl = superDiscountNode.getComponent('SuperDiscountCtrl');    
+                superDiscountCtrl.initByType();
+                this.addToPointParent(superDiscountNode, GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT);    
+            });
+        });
     },
 
     /**
      * 显示客服界面
      */
     showCustomerService: function() {
-        let customerServicePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CUSTOMERSERVICE);
-        customerServicePrefabPromise.then((prefab) => {
-            let customerServiceNode = cc.instantiate(prefab);
-            let customerServiceCtrl = customerServiceNode.getComponent('CustomerServiceCtrl');    
-            this.addToPointParent(customerServiceNode, GlobalCfg.PREFAB_PARENT.CUSTOMERSERVICE);        
-        }); 
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("CustomerService", () => {
+            let customerServicePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CUSTOMERSERVICE);
+            customerServicePrefabPromise.then((prefab) => {
+                let customerServiceNode = cc.instantiate(prefab);
+                let customerServiceCtrl = customerServiceNode.getComponent('CustomerServiceCtrl');    
+                this.addToPointParent(customerServiceNode, GlobalCfg.PREFAB_PARENT.CUSTOMERSERVICE);        
+            }); 
+        });
     },
     
     /**
      * 显示快速反馈界面
      */
     showFastFeedBack: function() {
-        let fastFeedBackPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FASTFEEDBACK);
-        fastFeedBackPrefabPromise.then((prefab) => {
-            let fastFeedBackNode = cc.instantiate(prefab);
-            let fastFeedBackCtrl = fastFeedBackNode.getComponent('FastFeedBackCtrl');    
-            this.addToPointParent(fastFeedBackNode, GlobalCfg.PREFAB_PARENT.FASTFEEDBACK);   
-        }); 
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("FastFeedBack", () => {
+            let fastFeedBackPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FASTFEEDBACK);
+            fastFeedBackPrefabPromise.then((prefab) => {
+                let fastFeedBackNode = cc.instantiate(prefab);
+                let fastFeedBackCtrl = fastFeedBackNode.getComponent('FastFeedBackCtrl');    
+                this.addToPointParent(fastFeedBackNode, GlobalCfg.PREFAB_PARENT.FASTFEEDBACK);   
+            }); 
+        });
     },
     
     /**
      * 显示个人中心界面
      */
     showPersonal: function() {
-        this.getClubData(()=>{
-            let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
-            personalPrefabPromise.then((prefab) => {
-                let personalNode = cc.instantiate(prefab);
-                let personalCtrl = personalNode.getComponent('PersonalCtrl');    
-                this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);      
-            }); 
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Personal", () => {
+            this.getClubData(()=>{
+                let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
+                personalPrefabPromise.then((prefab) => {
+                    let personalNode = cc.instantiate(prefab);
+                    let personalCtrl = personalNode.getComponent('PersonalCtrl');    
+                    this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);      
+                }); 
+            });
         });
     },
     
@@ -1687,6 +1789,7 @@ let CommonFun = cc.Class({
      * 显示个人中心修改昵称界面
      */
     showChangeName: function() {
+        
         let changeNamePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.CHANGENAME);
         changeNamePrefabPromise.then((prefab) => {
             let changeNameNode = cc.instantiate(prefab);
@@ -1767,11 +1870,13 @@ let CommonFun = cc.Class({
      * 显示每日奖励卡片
      */
     showDailyBonusCard: function() {
-        let dailyBonusCardPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DAILYBONUSCARD);
-        dailyBonusCardPrefabPromise.then((prefab) => {
-            let dailyBonusCardNode = cc.instantiate(prefab);
-            let dailyBonusCardCtrl = dailyBonusCardNode.getComponent('DailyBonusCardCtrl');
-            this.addToPointParent(dailyBonusCardNode, GlobalCfg.PREFAB_PARENT.DAILYBONUSCARD);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("dailyBonusCard", () => {
+            let dailyBonusCardPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DAILYBONUSCARD);
+            dailyBonusCardPrefabPromise.then((prefab) => {
+                let dailyBonusCardNode = cc.instantiate(prefab);
+                let dailyBonusCardCtrl = dailyBonusCardNode.getComponent('DailyBonusCardCtrl');
+                this.addToPointParent(dailyBonusCardNode, GlobalCfg.PREFAB_PARENT.DAILYBONUSCARD);
+            });
         });
     },
 
@@ -1779,11 +1884,13 @@ let CommonFun = cc.Class({
      * 显示新人礼品界面
      */
     showFirstGiftDiamond: function() {
-        let firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
-        firstGiftDiamondPrefabPromise.then((prefab) => {
-            let firstGiftDiamondNode = cc.instantiate(prefab);
-            let firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');    
-            this.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND); 
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("firstGiftDiamond", () => {
+            let firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
+            firstGiftDiamondPrefabPromise.then((prefab) => {
+                let firstGiftDiamondNode = cc.instantiate(prefab);
+                let firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');    
+                this.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND); 
+            });
         });
     },
 
@@ -1792,13 +1899,15 @@ let CommonFun = cc.Class({
      * @param {string} typeStr 
      */
     showRule: function(typeStr) {
-        let rulePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RULE);
-        rulePrefabPromise.then((prefab) => {
-            let ruleNode = cc.instantiate(prefab);
-            let ruleCtrl = ruleNode.getComponent('RuleCtrl');   
-            ruleCtrl.SmallGameRule(typeStr); 
-            this.addToPointParent(ruleNode, GlobalCfg.PREFAB_PARENT.RULE);   
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Rule", () => {
+            let rulePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RULE);
+            rulePrefabPromise.then((prefab) => {
+                let ruleNode = cc.instantiate(prefab);
+                let ruleCtrl = ruleNode.getComponent('RuleCtrl');   
+                ruleCtrl.SmallGameRule(typeStr); 
+                this.addToPointParent(ruleNode, GlobalCfg.PREFAB_PARENT.RULE);   
+            });
+        });
     },
 
     /**
@@ -1816,16 +1925,18 @@ let CommonFun = cc.Class({
     },
 
     _showShop: function(from){
-        this.getPayChannel((payData) => {
-            let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
-            shopPrefabPromise.then((prefab) => {
-                CommonFun.getInstance().addVerticalAcc();
-                let shopNode = cc.instantiate(prefab);
-                let shopCtrl = shopNode.getComponent("ShopCtrl");
-                shopCtrl.setPayChannel(payData);
-                shopCtrl.setJumpFrom(from);
-                this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP); 
-            });   
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Shop", () => {
+            this.getPayChannel((payData) => {
+                let shopPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOP);
+                shopPrefabPromise.then((prefab) => {
+                    CommonFun.getInstance().addVerticalAcc();
+                    let shopNode = cc.instantiate(prefab);
+                    let shopCtrl = shopNode.getComponent("ShopCtrl");
+                    shopCtrl.setPayChannel(payData);
+                    shopCtrl.setJumpFrom(from);
+                    this.addToPointParent(shopNode, GlobalCfg.PREFAB_PARENT.SHOP); 
+                });   
+            });
         });
     },
 
@@ -1880,13 +1991,15 @@ let CommonFun = cc.Class({
      * @param {Function} callback 
      */
     showWithDraw: function(callback) {
-        let withdrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW);
-        withdrawPrefabPromise.then((prefab) => {
-            CommonFun.getInstance().addVerticalAcc();
-            let withdrawNode = cc.instantiate(prefab);
-            callback && callback();
-            this.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW); 
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Withdraw", () => {
+            let withdrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW);
+            withdrawPrefabPromise.then((prefab) => {
+                CommonFun.getInstance().addVerticalAcc();
+                let withdrawNode = cc.instantiate(prefab);
+                callback && callback();
+                this.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW); 
+            });
+        });
     },
 
     
@@ -1910,11 +2023,13 @@ let CommonFun = cc.Class({
      * 显示交易记录界面
      */
     showTransactionRecord: function() {
-        let transactionRecordPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORD);
-        transactionRecordPrefabPromise.then((prefab) => {
-            CommonFun.getInstance().addVerticalAcc();
-            let transactionRecordNode = cc.instantiate(prefab);
-            this.addToPointParent(transactionRecordNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORD);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("TransactionRecord", () => {
+            let transactionRecordPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORD);
+            transactionRecordPrefabPromise.then((prefab) => {
+                CommonFun.getInstance().addVerticalAcc();
+                let transactionRecordNode = cc.instantiate(prefab);
+                this.addToPointParent(transactionRecordNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORD);
+            });
         });
     },
 
@@ -1923,10 +2038,12 @@ let CommonFun = cc.Class({
      * 显示交易记录界的说明提示框
      */
     showTransactionRecordTips: function() {
-        let transactionRecordTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDTIPS);
-        transactionRecordTipsPrefabPromise.then((prefab) => {
-            let transactionRecordTipsNode = cc.instantiate(prefab);
-            this.addToPointParent(transactionRecordTipsNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDTIPS);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("TransactionRecord", () => {
+            let transactionRecordTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDTIPS);
+            transactionRecordTipsPrefabPromise.then((prefab) => {
+                let transactionRecordTipsNode = cc.instantiate(prefab);
+                this.addToPointParent(transactionRecordTipsNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDTIPS);
+            });
         });
     },
 
@@ -1934,12 +2051,14 @@ let CommonFun = cc.Class({
      * 显示交易记录界面的“help”提示框
      */
     showTransactionRecordHelp: function(data) {
-        let transactionRecordHelpPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDHELP);
-        transactionRecordHelpPrefabPromise.then((prefab) => {
-            let transactionRecordHelpNode = cc.instantiate(prefab);
-            let transactionRecordHelpCtrl = transactionRecordHelpNode.getComponent('TransactionRecordHelpCtrl');
-            transactionRecordHelpCtrl.setTransactionRecordHelpData(data);
-            this.addToPointParent(transactionRecordHelpNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDHELP);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("TransactionRecord", () => {
+            let transactionRecordHelpPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TRANSACTIONRECORDHELP);
+            transactionRecordHelpPrefabPromise.then((prefab) => {
+                let transactionRecordHelpNode = cc.instantiate(prefab);
+                let transactionRecordHelpCtrl = transactionRecordHelpNode.getComponent('TransactionRecordHelpCtrl');
+                transactionRecordHelpCtrl.setTransactionRecordHelpData(data);
+                this.addToPointParent(transactionRecordHelpNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDHELP);
+            });
         });
     },
 
@@ -1947,11 +2066,13 @@ let CommonFun = cc.Class({
      * 显示提现诱导弹框
      */
     showPopUpWithDraw: function() {
-        let popUpWithDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.POPUPWITHDRAW);
-        popUpWithDrawPrefabPromise.then((prefab) => {
-            let popUpWithDrawNode = cc.instantiate(prefab);
-            this.addToPointParent(popUpWithDrawNode, GlobalCfg.PREFAB_PARENT.POPUPWITHDRAW);
-        });   
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("PopUpWithDraw", () => {
+            let popUpWithDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.POPUPWITHDRAW);
+            popUpWithDrawPrefabPromise.then((prefab) => {
+                let popUpWithDrawNode = cc.instantiate(prefab);
+                this.addToPointParent(popUpWithDrawNode, GlobalCfg.PREFAB_PARENT.POPUPWITHDRAW);
+            });
+        });
     },
 
     /**
@@ -2017,18 +2138,20 @@ let CommonFun = cc.Class({
      * @param {Boolean} bool 是否可以直接关闭
      */
     showAdvancedMode: function(bool) {
-        let path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE;
-        let parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
-        if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
-            path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V;
-            parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
-        }
-        let advancedModePrefabPromise = this.loadPrefabByPromise(path);
-        advancedModePrefabPromise.then((prefab) => {
-            let advancedModeNode = cc.instantiate(prefab);
-            let advancedModeCtrl = advancedModeNode.getComponent("AdvancedModeCtrl");
-            this.addToPointParent(advancedModeNode, parentNode); 
-            advancedModeCtrl.show(bool);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("advancedMode", () => {
+            let path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE;
+            let parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
+            if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+                path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE_V;
+                parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
+            }
+            let advancedModePrefabPromise = this.loadPrefabByPromise(path);
+            advancedModePrefabPromise.then((prefab) => {
+                let advancedModeNode = cc.instantiate(prefab);
+                let advancedModeCtrl = advancedModeNode.getComponent("AdvancedModeCtrl");
+                this.addToPointParent(advancedModeNode, parentNode); 
+                advancedModeCtrl.show(bool);
+            });
         });
     },
 
@@ -2047,11 +2170,13 @@ let CommonFun = cc.Class({
                 shopParentNode.getChildByName("newWithdrawal").destroy(); 
             }
         }
-        APPManager.setOrientation("H");
-        let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
-        firstRechargePrefabPromise.then((prefab) => {
-            let firstRechargeTipsNode = cc.instantiate(prefab);
-            this.addToPointParent(firstRechargeTipsNode, parentNode);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("RechargeTip", () =>{
+            APPManager.setOrientation("H");
+            let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+            firstRechargePrefabPromise.then((prefab) => {
+                let firstRechargeTipsNode = cc.instantiate(prefab);
+                this.addToPointParent(firstRechargeTipsNode, parentNode);
+            });
         });
     },
 
@@ -2059,20 +2184,24 @@ let CommonFun = cc.Class({
      * 展示Go Betting活动
      */
     showGoBetting: function () {
-        let goBettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_GOBETTING);
-        goBettingPrefabPromise.then((prefab) => {
-            let goBettingNode = cc.instantiate(prefab);
-            let consumerActivities = goBettingNode.getComponent("ConsumerActivities");
-            this.addToPointParent(goBettingNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_GOBETTING);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GoBetting", () =>{
+            let goBettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_GOBETTING);
+            goBettingPrefabPromise.then((prefab) => {
+                let goBettingNode = cc.instantiate(prefab);
+                let consumerActivities = goBettingNode.getComponent("ConsumerActivities");
+                this.addToPointParent(goBettingNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_GOBETTING);
+            });
         });
     },
 
     showPddActivity:function () {
-        let pddPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_PDD_FIRST);
-        pddPrefabPromise.then((prefab) => {
-            let pddFirstNode = cc.instantiate(prefab);
-            let firstCtrl = pddFirstNode.getComponent("firstCtrl");
-            this.addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("PDD", () =>{
+            let pddPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_PDD_FIRST);
+            pddPrefabPromise.then((prefab) => {
+                let pddFirstNode = cc.instantiate(prefab);
+                let firstCtrl = pddFirstNode.getComponent("firstCtrl");
+                this.addToPointParent(pddFirstNode, GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD);
+            });
         });
     },
 
@@ -2200,35 +2329,41 @@ let CommonFun = cc.Class({
      * 显示我的VIP
      */
     showMyVip: function() {
-        let myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
-        myVipPrefabPromise.then((prefab) => {
-            let myVipNode = cc.instantiate(prefab);
-            this.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.MYVIP); 
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
+            myVipPrefabPromise.then((prefab) => {
+                let myVipNode = cc.instantiate(prefab);
+                this.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.MYVIP); 
+            });     
+        });
     },
 
     /**
      * 显示VIP幸运抽奖
      */
     showVipLuckyDraw: function() {  
-        let vipLuckyDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
-        vipLuckyDrawPrefabPromise.then((prefab) => {
-            let vipLuckyDrawNode = cc.instantiate(prefab);
-            this.addToPointParent(vipLuckyDrawNode, GlobalCfg.PREFAB_PARENT.VIPLUCKYDRAW);
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let vipLuckyDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
+            vipLuckyDrawPrefabPromise.then((prefab) => {
+                let vipLuckyDrawNode = cc.instantiate(prefab);
+                this.addToPointParent(vipLuckyDrawNode, GlobalCfg.PREFAB_PARENT.VIPLUCKYDRAW);
+            });     
+        });
     },
 
     /**
      * 显示VIP规则
      */ 
     showVipRules: function(childViewType = "vipRules") {  
-        let vipRulesPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULES);
-        vipRulesPrefabPromise.then((prefab) => {
-            let vipRulesNode = cc.instantiate(prefab);
-            let scr = vipRulesNode.getComponent("VipRulesCtrl");
-            scr.setVipRulesChildViewType(childViewType);
-            this.addToPointParent(vipRulesNode, GlobalCfg.PREFAB_PARENT.VIPRULES);
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let vipRulesPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULES);
+            vipRulesPrefabPromise.then((prefab) => {
+                let vipRulesNode = cc.instantiate(prefab);
+                let scr = vipRulesNode.getComponent("VipRulesCtrl");
+                scr.setVipRulesChildViewType(childViewType);
+                this.addToPointParent(vipRulesNode, GlobalCfg.PREFAB_PARENT.VIPRULES);
+            });     
+        });
     },
 
 
@@ -2238,46 +2373,54 @@ let CommonFun = cc.Class({
      * @param {boolean} isBonus 
      */
     showVipRewardToast: function(amount, isBonus) {    
-        let vipRewardToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPREWARDTOAST);
-        vipRewardToastPrefabPromise.then((prefab) => {
-            let vipRewardToastNode = cc.instantiate(prefab);
-            let vipRewardToastCtrl = vipRewardToastNode.getComponent("VipRewardToastCtrl");
-            this.addToPointParent(vipRewardToastNode, GlobalCfg.PREFAB_PARENT.VIPREWARDTOAST);
-            vipRewardToastCtrl.setVipRewardToastAmount(amount, isBonus);
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let vipRewardToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPREWARDTOAST);
+            vipRewardToastPrefabPromise.then((prefab) => {
+                let vipRewardToastNode = cc.instantiate(prefab);
+                let vipRewardToastCtrl = vipRewardToastNode.getComponent("VipRewardToastCtrl");
+                this.addToPointParent(vipRewardToastNode, GlobalCfg.PREFAB_PARENT.VIPREWARDTOAST);
+                vipRewardToastCtrl.setVipRewardToastAmount(amount, isBonus);
+            });     
+        });
     },
 
     /**
      * 显示VIP充值弹框
      */
     showVipRechargeToast: function() {    
-        let vipRechargeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRECHARGETOAST);
-        vipRechargeToastPrefabPromise.then((prefab) => {
-            let vipRechargeToastNode = cc.instantiate(prefab);
-            this.addToPointParent(vipRechargeToastNode, GlobalCfg.PREFAB_PARENT.VIPRECHARGETOAST);
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let vipRechargeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRECHARGETOAST);
+            vipRechargeToastPrefabPromise.then((prefab) => {
+                let vipRechargeToastNode = cc.instantiate(prefab);
+                this.addToPointParent(vipRechargeToastNode, GlobalCfg.PREFAB_PARENT.VIPRECHARGETOAST);
+            });
+        });
     },
 
     /**
      * 显示VIP升级弹框
      */
     showVipUpgradeToast: function() {    
-        let vipUpgradeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPUPGRADETOAST);
-        vipUpgradeToastPrefabPromise.then((prefab) => {
-            let vipUpgradeToastNode = cc.instantiate(prefab);
-            this.addToPointParent(vipUpgradeToastNode, GlobalCfg.PREFAB_PARENT.VIPUPGRADETOAST);
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let vipUpgradeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPUPGRADETOAST);
+            vipUpgradeToastPrefabPromise.then((prefab) => {
+                let vipUpgradeToastNode = cc.instantiate(prefab);
+                this.addToPointParent(vipUpgradeToastNode, GlobalCfg.PREFAB_PARENT.VIPUPGRADETOAST);
+            });     
+        });
     },
 
     /**
      * 显示VIP快充弹框
      */
     showVipForOnceToast: function() {    
-        let vipForOnceToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
-        vipForOnceToastPrefabPromise.then((prefab) => {
-            let vipForOnceToastNode = cc.instantiate(prefab);
-            this.addToPointParent(vipForOnceToastNode, GlobalCfg.PREFAB_PARENT.VIPFORONCETOAST);
-        });     
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+            let vipForOnceToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
+            vipForOnceToastPrefabPromise.then((prefab) => {
+                let vipForOnceToastNode = cc.instantiate(prefab);
+                this.addToPointParent(vipForOnceToastNode, GlobalCfg.PREFAB_PARENT.VIPFORONCETOAST);
+            });
+        });
     },
 
     /**
@@ -2611,16 +2754,16 @@ let CommonFun = cc.Class({
      * @param {Number} targetSeat 默认-1，表示群发
      */
     showGameGifInteraction: function(targetSeat = -1) {
-        let gameGifInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTION);
-        gameGifInteractionPrefabPromise.then((prefab) => {
-            let gameGifInteractionNode = cc.instantiate(prefab);
-            let gameGifInteractionCtrl = gameGifInteractionNode.getComponent('GameGifInteractionCtrl');
-            gameGifInteractionCtrl.setTargetSeat(targetSeat);
-            this.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GameGifInteraction", () =>{
+            let gameGifInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTION);
+            gameGifInteractionPrefabPromise.then((prefab) => {
+                let gameGifInteractionNode = cc.instantiate(prefab);
+                let gameGifInteractionCtrl = gameGifInteractionNode.getComponent('GameGifInteractionCtrl');
+                gameGifInteractionCtrl.setTargetSeat(targetSeat);
+                this.addToPointParent(gameGifInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEGIFINTERACTION);
+            });
         });
     },
-
-
 
     /**
      * 
@@ -2660,12 +2803,14 @@ let CommonFun = cc.Class({
      * @param {Number} targetSeat 默认-1，表示群发
      */
     showGameWordInteraction: function(targetSeat) {
-        let gameWordInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTION);
-        gameWordInteractionPrefabPromise.then((prefab) => {
-            let gameWordInteractionNode = cc.instantiate(prefab);
-            let gameWordInteractionCtrl = gameWordInteractionNode.getComponent('GameWordInteractionCtrl');
-            gameWordInteractionCtrl.setTargetSeat(targetSeat);
-            this.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GameGifInteraction", () =>{
+            let gameWordInteractionPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTION);
+            gameWordInteractionPrefabPromise.then((prefab) => {
+                let gameWordInteractionNode = cc.instantiate(prefab);
+                let gameWordInteractionCtrl = gameWordInteractionNode.getComponent('GameWordInteractionCtrl');
+                gameWordInteractionCtrl.setTargetSeat(targetSeat);
+                this.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
+            });
         });
     },
 
@@ -2681,13 +2826,15 @@ let CommonFun = cc.Class({
         if (cc.isValid(targetNode) == false) {
             return;
         };
-        let gameWordInteractionShowrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTIONSHOW);
-        gameWordInteractionShowrefabPromise.then((prefab) => {
-            let gameWordInteractionShowNode = cc.instantiate(prefab);
-            let gameWordInteractionShowCtrl = gameWordInteractionShowNode.getComponent('GameWordInteractionShowCtrl');
-            let parentNode = this.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
-            gameWordInteractionShowCtrl.setGameWordInteraction(type, name, targetNode, offset, parentNode);
-            this.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GameGifInteraction", () =>{
+            let gameWordInteractionShowrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTIONSHOW);
+            gameWordInteractionShowrefabPromise.then((prefab) => {
+                let gameWordInteractionShowNode = cc.instantiate(prefab);
+                let gameWordInteractionShowCtrl = gameWordInteractionShowNode.getComponent('GameWordInteractionShowCtrl');
+                let parentNode = this.getLayerNode(GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+                gameWordInteractionShowCtrl.setGameWordInteraction(type, name, targetNode, offset, parentNode);
+                this.addToPointParent(gameWordInteractionShowNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTIONSHOW);
+            });
         });
     },
 
@@ -2695,11 +2842,13 @@ let CommonFun = cc.Class({
      * 显示游戏中的设置界面
      */
     showGameSetting: function() {
-        let gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
-        gameSettingPrefabPromise.then((prefab) => {
-            let gameSettingNode = cc.instantiate(prefab);
-            let gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
-            this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GameSetting", () =>{
+            let gameSettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMESETTING);
+            gameSettingPrefabPromise.then((prefab) => {
+                let gameSettingNode = cc.instantiate(prefab);
+                let gameSettingCtrl = gameSettingNode.getComponent('GameSettingCtrl');
+                this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMESETTING);
+            });
         });
     },
 
@@ -2741,12 +2890,14 @@ let CommonFun = cc.Class({
      * @param {boolean} isShowSwitchBtn 是否显示换桌按钮
      */
     showGameMenu: function(isShowSwitchBtn = true) {
-        let gameMenuPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEMENU);
-        gameMenuPrefabPromise.then((prefab) => {
-            let gameSettingNode = cc.instantiate(prefab);
-            let gameMenuCtrl = gameSettingNode.getComponent('GameMenuCtrl');
-            gameMenuCtrl.setSwitchTableBtnActive(isShowSwitchBtn);
-            this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("GameMenu", () =>{
+            let gameMenuPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEMENU);
+            gameMenuPrefabPromise.then((prefab) => {
+                let gameSettingNode = cc.instantiate(prefab);
+                let gameMenuCtrl = gameSettingNode.getComponent('GameMenuCtrl');
+                gameMenuCtrl.setSwitchTableBtnActive(isShowSwitchBtn);
+                this.addToPointParent(gameSettingNode, GlobalCfg.PREFAB_PARENT.GAMEMENU);
+            });
         });
     },
 
@@ -3103,11 +3254,13 @@ let CommonFun = cc.Class({
      * 显示签到弹窗
      */
     showSignToast: function() {
-        let signPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SIGN);
-        signPrefabPromise.then((prefab) => {
-            let signNode = cc.instantiate(prefab);
-            let gameMenuCtrl = signNode.getComponent('SignCtrl');
-            this.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Sign", () =>{
+            let signPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SIGN);
+            signPrefabPromise.then((prefab) => {
+                let signNode = cc.instantiate(prefab);
+                let gameMenuCtrl = signNode.getComponent('SignCtrl');
+                this.addToPointParent(signNode, GlobalCfg.PREFAB_PARENT.SIGN);
+            });
         });
     },
 
@@ -3127,7 +3280,7 @@ let CommonFun = cc.Class({
      * 购买之前显示提示框
      */
     ShowTipsBeforeBuy: function(msg, callback) {
-        let str = 'Go to Recharge ₹ '+ msg + '?'
+        let str = 'Go to Recharge $ '+ msg + '?'
         CommonFun.getInstance().showMsgBox(str, "SHOP", () => {
             if(callback){
                 callback()
@@ -3170,17 +3323,19 @@ let CommonFun = cc.Class({
         if (isExist) {
             return;
         };
-        GlobalCfg.IS_SHOW_BANKRUPT = true;
-        let curScene = SceneManager.getInstance().curSceneType;
-        let bankruptcyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
-        bankruptcyPrefabPromise.then((prefab) => {
-            let bankruptcyNode = cc.instantiate(prefab);
-            if(curScene == SceneManager.getInstance().sceneType.BENZ){
-                bankruptcyNode.setScale(0.7);
-            }
-            let BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
-            BankruptcyGiftCtrl.init(isPlotPlay);
-            this.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Bankruptcy", () =>{
+            GlobalCfg.IS_SHOW_BANKRUPT = true;
+            let curScene = SceneManager.getInstance().curSceneType;
+            let bankruptcyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);
+            bankruptcyPrefabPromise.then((prefab) => {
+                let bankruptcyNode = cc.instantiate(prefab);
+                if(curScene == SceneManager.getInstance().sceneType.BENZ){
+                    bankruptcyNode.setScale(0.7);
+                }
+                let BankruptcyGiftCtrl = bankruptcyNode.getComponent("BankruptcyGiftCtrl");
+                BankruptcyGiftCtrl.init(isPlotPlay);
+                this.addToPointParent(bankruptcyNode, GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT);
+            });
         });
     },
 
@@ -3216,13 +3371,16 @@ let CommonFun = cc.Class({
         if(SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.BENZ){
             return;
         }
-        GlobalCfg.IS_SHOW_BANKRUPT = true;
-        let OnlyPayPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ONLY_PAY);
-        OnlyPayPromise.then((prefab) => {
-            let OnlyPayNode = cc.instantiate(prefab);
-            let OnlyPayCtrl = OnlyPayNode.getComponent("OnlyPayCtrl");
-            OnlyPayCtrl.init();
-            this.addToPointParent(OnlyPayNode, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
+
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Onlypay", () =>{
+            GlobalCfg.IS_SHOW_BANKRUPT = true;
+            let OnlyPayPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ONLY_PAY);
+            OnlyPayPromise.then((prefab) => {
+                let OnlyPayNode = cc.instantiate(prefab);
+                let OnlyPayCtrl = OnlyPayNode.getComponent("OnlyPayCtrl");
+                OnlyPayCtrl.init();
+                this.addToPointParent(OnlyPayNode, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
+            });
         });
     },
 });

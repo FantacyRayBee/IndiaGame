@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '07a48ufXFBNaKp4peQDEERG', 'SmallAddCashCtrl');
-// ResourcesBundle/NewPlan/SmallAddCash/SmallAddCashCtrl.js
+// notBundle/SmallAddCash/SmallAddCashCtrl.js
 
 "use strict";
 
@@ -94,7 +94,7 @@ cc.Class({
     ;
     coin = Math.floor(coin / 100);
     this.selectCoin = coin;
-    this.lab_cion.string = "\u20B9" + coin;
+    this.lab_cion.string = "$" + coin;
   },
   onDestroy: function onDestroy() {
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SMALLADDCASH);

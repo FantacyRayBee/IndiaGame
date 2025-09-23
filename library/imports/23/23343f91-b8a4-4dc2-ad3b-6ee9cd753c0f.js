@@ -20,7 +20,7 @@ cc.Class({
   },
   setVipRewardToastAmount: function setVipRewardToastAmount(amount, isBonus) {
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sajinbi", false);
-    this.lab_tips.string = "\u20B9" + amount;
+    this.lab_tips.string = "$" + amount;
     this.spine_reward.setAnimation(0, isBonus ? "animation2" : "animation", true);
   }
 });

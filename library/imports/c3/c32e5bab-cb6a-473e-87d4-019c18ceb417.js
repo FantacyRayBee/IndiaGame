@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'c32e5ury2pHPofUAZwYzrQX', 'setBankCtrl');
-// ResourcesBundle/NewPlan/Pdd/Scripts/setBankCtrl.js
+// notBundle/Pdd/Scripts/setBankCtrl.js
 
 "use strict";
 

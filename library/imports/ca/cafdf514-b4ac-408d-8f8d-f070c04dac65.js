@@ -22,8 +22,8 @@ cc.Class({
     this.btn_pay.node.runAction(cc.repeatForever(cc.sequence(cc.scaleTo(.5, .8), cc.scaleTo(.5, 1))));
   },
   setLabs: function setLabs() {
-    this.lab_upgradeBagAmount.string = "\u20B9" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
-    this.lab_upgradeBagGift.string = "\u20B9" + (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100;
+    this.lab_upgradeBagAmount.string = "$" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
+    this.lab_upgradeBagGift.string = "$" + (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100;
     this.lab_upgradeBagBtnAmount.string = "" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
   },
   btnClick: function btnClick(btn) {

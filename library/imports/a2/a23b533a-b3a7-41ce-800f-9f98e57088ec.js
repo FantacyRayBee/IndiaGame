@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'a23b5M6s6dBzoAPn5jlcIjs', 'FirstGiftDiamondCtrl');
-// ResourcesBundle/NewPlan/FirstGiftDiamond/FirstGiftDiamondCtrl.js
+// MustBundle/Normal/FirstGiftDiamond/FirstGiftDiamondCtrl.js
 
 "use strict";
 
@@ -45,8 +45,8 @@ cc.Class({
         break;
     }
     ;
-    this.lab_diamond.string = "\u20B9" + GlobalCfg.USER_DATAS.firstGiftDiamond / 100;
-    this.lab_diamondMini.string = "" + GlobalCfg.USER_DATAS.firstGiftDiamond / 100;
+    this.lab_diamond.string = "$" + GlobalCfg.USER_DATAS.firstGiftDiamond / 100;
+    this.lab_diamondMini.string = "Get $" + GlobalCfg.USER_DATAS.firstGiftDiamond / 100 + " for free";
     this.btn_get.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btn_close.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
   },

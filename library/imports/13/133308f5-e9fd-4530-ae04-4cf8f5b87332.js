@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '13330j16f1FMK4ETPj1uHMy', 'pddShareCtrl');
-// ResourcesBundle/NewPlan/Pdd/Scripts/pddShareCtrl.js
+// notBundle/Pdd/Scripts/pddShareCtrl.js
 
 "use strict";
 

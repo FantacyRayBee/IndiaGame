@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '5465cotUkJNwZtd46FFUhku', 'selectRoomCtrl');
-// ResourcesBundle/NewPlan/SelectRoom/selectRoomCtrl.js
+// notBundle/SelectRoom/selectRoomCtrl.js
 
 "use strict";
 

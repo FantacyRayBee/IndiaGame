@@ -81,9 +81,9 @@ cc.Class({
       return a.level - b.level;
     });
     this.showBenifitsByLevel(this.selectVipLevel, false);
-    this.lab_upgradeBagAmount.string = "\u20B9" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
-    this.lab_upgradeBagGift.string = "\u20B9" + (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100;
-    this.lab_upgradeBagBtnAmount.string = "Pay \u20B9" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
+    this.lab_upgradeBagAmount.string = "$" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
+    this.lab_upgradeBagGift.string = "$" + (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100;
+    this.lab_upgradeBagBtnAmount.string = "Pay $" + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100;
   },
   setUpgradeVipAnim: function setUpgradeVipAnim() {
     var _this = this;

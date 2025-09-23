@@ -35,7 +35,7 @@ cc.Class({
   },
   setConfig: function setConfig(num) {
     this.labNum.string = "" + num;
-    this.labNum2.string = "₹" + num;
+    this.labNum2.string = "$" + num;
   },
   showWithDraw: function showWithDraw() {
     if (SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.LOBBY) {

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '12c5176jP5Lro71giCxnzqL', 'pddRedPackCtrl');
-// ResourcesBundle/NewPlan/Pdd/Scripts/pddRedPackCtrl.js
+// notBundle/Pdd/Scripts/pddRedPackCtrl.js
 
 "use strict";
 

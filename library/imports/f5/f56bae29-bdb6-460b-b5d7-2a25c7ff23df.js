@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'f56ba4pvbZGC7XXKiXH/yPf', 'SmallAddExperienceCtrl');
-// ResourcesBundle/NewPlan/SmallAddExperience/SmallAddExperienceCtrl.js
+// notBundle/SmallAddExperience/SmallAddExperienceCtrl.js
 
 "use strict";
 

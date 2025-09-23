@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'e7a05WlnP5OwJaUk3vlc7WC', 'GameWordInteractionCtrl');
-// ResourcesBundle/NewPlan/GameWordInteraction/GameWordInteractionCtrl.js
+// notBundle/GameWordInteraction/GameWordInteractionCtrl.js
 
 "use strict";
 

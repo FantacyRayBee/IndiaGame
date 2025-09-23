@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'e8b8eU8y0NDYb/TlY/8+v18', 'setBankInFirstCtrl');
-// ResourcesBundle/NewPlan/Pdd/Scripts/setBankInFirstCtrl.js
+// notBundle/Pdd/Scripts/setBankInFirstCtrl.js
 
 "use strict";
 
@@ -16,7 +16,7 @@ cc.Class({
     this.lab_bank = this.node.getChildByName("lab_bank").getComponent(cc.Label);
     this.lab_bank.string = "HDFC Bank";
     this.lab_amount = this.node.getChildByName("lab_amount").getComponent(cc.Label);
-    this.lab_amount.string = "₹" + this.firstCtrl.quota;
+    this.lab_amount.string = "$" + this.firstCtrl.quota;
     this.btn_proceed = this.node.getChildByName("btn_proceed").getComponent(cc.Button);
     this.btn_proceed.node.on('click', this.btnClick, this);
     this.btn_close = this.node.getChildByName("btn_close").getComponent(cc.Button);

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'ccbb8v9f0JLsZHRy/99cXAj', 'GameGifInteractionCtrl');
-// ResourcesBundle/NewPlan/GameGifInteraction/GameGifInteractionCtrl.js
+// notBundle/GameGifInteraction/GameGifInteractionCtrl.js
 
 "use strict";
 

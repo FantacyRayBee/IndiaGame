@@ -230,7 +230,7 @@ export default class SignCtrl extends cc.Component {
             }
             else if (index == 6) {
                 this.lab_day7.string = "Day7";
-                this.lab_day7Reward.string = `₹${gift/100}`;
+                this.lab_day7Reward.string = `$${gift/100}`;
                 if (signData.today > 7) {
                     this.node_day7Signed.active = true;
                     this.node_day7Unsigned.active = false;

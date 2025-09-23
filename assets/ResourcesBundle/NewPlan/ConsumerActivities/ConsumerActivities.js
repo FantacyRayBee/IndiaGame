@@ -111,7 +111,7 @@ cc.Class({
         let percent = Number((selfCurBet / bet).toFixed(2));
         if (percent >= 1) {
             progressBar.progress = 1;
-            labelGet.string = "₹" + CommonFun.getInstance().numberToShow(rebate);
+            labelGet.string = "$" + CommonFun.getInstance().numberToShow(rebate);
             progressBarLabel.string = CommonFun.getInstance().numberToShow(bet) + " / " + CommonFun.getInstance().numberToShow(bet);
             if (received == true) {
                 nodeReceived.active = true;
@@ -131,13 +131,13 @@ cc.Class({
                 labelGet.string = '???'
             }else{
                 progressBar.progress = percent;
-                labelGet.string = "₹" + CommonFun.getInstance().numberToShow(rebate);
+                labelGet.string = "$" + CommonFun.getInstance().numberToShow(rebate);
                 progressBarLabel.string = CommonFun.getInstance().numberToShow(selfCurBet) + " / " + CommonFun.getInstance().numberToShow(bet);
             }
         }
         if(index == itemLength -1){
             // 特殊对待最后一项，展示出来
-            labelGet.string = "₹" + rebate;
+            labelGet.string = "$" + rebate;
         }
         itemNode.parent = this.itemParent;
     },

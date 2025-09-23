@@ -35,8 +35,8 @@ cc.Class({
     ;
     this.itemData = data;
     var price = data.price;
-    this.lab_amoount1.string = "\u20B9" + price;
-    this.lab_amoount2.string = "\u20B9" + price;
+    this.lab_amoount1.string = "$" + price;
+    this.lab_amoount2.string = "$" + price;
     var service_rate = data.service_rate;
     if (service_rate > 0) {
       this.node_handlingFee.active = true;

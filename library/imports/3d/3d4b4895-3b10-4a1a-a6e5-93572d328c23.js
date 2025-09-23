@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '3d4b4iVOxBKGqblk1ctMowj', 'turnTableCtrl');
-// ResourcesBundle/NewPlan/Pdd/Scripts/turnTableCtrl.js
+// notBundle/Pdd/Scripts/turnTableCtrl.js
 
 "use strict";
 
@@ -17,7 +17,7 @@ cc.Class({
     this.lab_gold = this.node_yhk.getChildByName("lab_gold").getComponent(cc.Label);
     this.lab_gold.string = "0.00";
     this.lab_cha = this.node_yhk.getChildByName("lab_cha").getComponent(cc.Label);
-    this.lab_cha.string = "₹" + "0.00";
+    this.lab_cha.string = "$" + "0.00";
     this.lab_count = this.node_yhk.getChildByName("lab_count").getComponent(cc.Label);
     this.lab_bankCardId = this.node_yhk.getChildByName("lab_bankCardId").getComponent(cc.Label);
     this.btn_changeBankInfo = this.node_yhk.getChildByName("btn_changeBankInfo").getComponent(cc.Button);
@@ -76,7 +76,7 @@ cc.Class({
     this.lab_gold.string = "" + this.unclaimed.toFixed(2);
     this.quota = Math.round(data.quota / 100);
     this.lab_count.string = this.quota;
-    this.lab_cha.string = "₹" + Number(this.quota - this.unclaimed).toFixed(2);
+    this.lab_cha.string = "$" + Number(this.quota - this.unclaimed).toFixed(2);
     this.lab_spinNum.string = data.remain_count;
     if (data.quota == data.unclaimed) {
       this.lab_time.string = "00: 00: 00";
@@ -258,7 +258,7 @@ cc.Class({
   },
   endShowCallback: function endShowCallback() {
     this.lab_gold.string = "" + (this._luckydrawData.unclaimed_after / 100).toFixed(2);
-    this.lab_cha.string = "₹" + Number(this.quota - this.lab_gold.string).toFixed(2);
+    this.lab_cha.string = "$" + Number(this.quota - this.lab_gold.string).toFixed(2);
     this.lab_spinNum.string = this._luckydrawData.remain_count;
   },
   /**

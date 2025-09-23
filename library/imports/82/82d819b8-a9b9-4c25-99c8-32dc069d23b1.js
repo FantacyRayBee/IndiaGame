@@ -11,7 +11,7 @@ cc.Class({
     btn_get: cc.Button
   },
   onLoad: function onLoad() {
-    this.lab_amount.string = "\u20B9" + GlobalCfg.USER_DATAS.reliefGiftDiamond / 100;
+    this.lab_amount.string = "" + GlobalCfg.USER_DATAS.reliefGiftDiamond / 100;
     this.btn_get.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
   },
   btnClick: function btnClick(btn) {

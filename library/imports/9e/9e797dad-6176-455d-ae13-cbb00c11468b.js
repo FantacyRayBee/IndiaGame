@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '9e7972tYXZFXa4Ty7AMEUaL', 'MsgBoxCtrl');
-// ResourcesBundle/NewPlan/MsgBox/MsgBoxCtrl.js
+// MustBundle/Normal/MsgBox/MsgBoxCtrl.js
 
 "use strict";
 

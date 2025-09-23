@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '1e562ny1CBLrb5lbxMeksiz', 'SignItemCtrl');
-// ResourcesBundle/NewPlan/Sign/SignItemCtrl.ts
+// notBundle/Sign/SignItemCtrl.ts
 
 "use strict";
 var __extends = (this && this.__extends) || (function () {
@@ -35,7 +35,7 @@ var SignItemCtrl = /** @class */ (function (_super) {
         return _this;
     }
     SignItemCtrl.prototype.setSignItemData = function (gift, today, done, day) {
-        this.lab_reward.string = "\u20B9" + gift / 100;
+        this.lab_reward.string = "$" + gift / 100;
         this.lab_day.string = "Day" + day;
         if (today > day) {
             this.node_signed.active = true;

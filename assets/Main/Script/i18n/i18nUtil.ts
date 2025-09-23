@@ -10,7 +10,7 @@ export enum I18NLabelTransIdEnum {
     'Login_Play instant online any time' ,
     'Login_Win cash prizes instantly',
     'Login_100% Secure 100% Legal',
-    'Login_Register to get  ₹10 Bonus',
+    'Login_Register to get  $10 Bonus',
     'Login_Input phone number here',
     'Login_Please enter the correct phone number',
     'Login_Login',
@@ -121,13 +121,13 @@ export enum I18NLabelTransIdEnum {
      */
     'Promoter_REFER ＆EARN' = 3000,
     'Promoter_Get a bonus every time they win',
-    'Promoter_For every a ₹100 win , the system will reward ₹5',
+    'Promoter_For every a $100 win , the system will reward $5',
     'Promoter_You can see the details at Bonus Table',
     'Promoter_Share With friend',
     'Promoter_all belong to your team',
     'Promoter_You`re going to be a',
     'Promoter_If your team has 1000 people a day',
-    'Promoter_they each win ₹100 . You can get a bonus of ₹5000 every day<₹5000的奖金',
+    'Promoter_they each win $100 . You can get a bonus of $5000 every day<$5000的奖金',
     'Promoter_If you have 10000 or 100000 people?',
     'Promoter_Share more',
     'Promoter_Copy Link',
@@ -136,7 +136,7 @@ export enum I18NLabelTransIdEnum {
     'Promoter_History',
     'Promoter_Bonus Table',
     'Promoter_Anyone in your team , as long as they win money , you will get a certain reward . The more people you invite , the more rewards you get.',
-    'Promoter_For anyone you invite , if they recharge < ₹100 for the firs time , you will receive a reward of <₹5 . If they recharge< ₹1000 for the first time , you will receive a reward of ₹50',
+    'Promoter_For anyone you invite , if they recharge < $100 for the firs time , you will receive a reward of <$5 . If they recharge< $1000 for the first time , you will receive a reward of $50',
     'Promoter_Total Bonus',
     'Promoter_The system will calculate the bonus basedon the output value at am00 : 00 , So your bonus for the day will be received the next day.',
     'Promoter_GET BONUS',
@@ -531,7 +531,7 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'Play instant online any time');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'Win cash prizes instantly');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_100% Secure 100% Legal'], '100% Secure 100% Legal');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Login_Register to get  ₹10 Bonus'], 'Register to get  ₹10 Bonus');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Login_Register to get  $10 Bonus'], 'Register to get  $10 Bonus');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Input phone number here'], 'Input phone number here');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Please enter the correct phone number'], 'Please enter the correct phone number');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Login'], 'Login');
@@ -628,13 +628,13 @@ export class I18NUtil {
 
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_REFER ＆EARN'], 'REFER ＆EARN');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Get a bonus every time they win'], 'Get a bonus every time they win');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_For every a ₹100 win , the system will reward ₹5'], 'For every a ₹100 win , the system will reward ₹5');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_For every a $100 win , the system will reward $5'], 'For every a $100 win , the system will reward $5');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_You can see the details at Bonus Table'], 'You can see the details at "Bonus Table"');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Share With friend'], 'Share \nWith \nfriend');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_all belong to your team'], 'all belong to your team');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_You`re going to be a'], 'You`re going to be a');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_If your team has 1000 people a day'], 'If your team has 1000 people a day');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_they each win ₹100 . You can get a bonus of ₹5000 every day<₹5000的奖金'], 'they each win ₹100 . You can get a bonus of ₹5000 every day');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_they each win $100 . You can get a bonus of $5000 every day<$5000的奖金'], 'they each win $100 . You can get a bonus of $5000 every day');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_If you have 10000 or 100000 people?'], 'If you have 10000 or 100000 people?');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Share more'], 'Share More');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Copy Link'], 'Copy Link');
@@ -643,7 +643,7 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_History'], 'History');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Bonus Table'], 'Bonus Table');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Anyone in your team , as long as they win money , you will get a certain reward . The more people you invite , the more rewards you get.'], 'Anyone in your team , as long as they win money , you will get a certain reward . The more people you invite , the more rewards you get.');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < ₹100 for the firs time , you will receive a reward of <₹5 . If they recharge< ₹1000 for the first time , you will receive a reward of ₹50'], 'For anyone you invite , if they recharge < ₹100 for the firs time , you will receive a reward of <₹5 . If they recharge< ₹1000 for the first time , you will receive a reward of ₹50');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < $100 for the firs time , you will receive a reward of <$5 . If they recharge< $1000 for the first time , you will receive a reward of $50'], 'For anyone you invite , if they recharge < $100 for the firs time , you will receive a reward of <$5 . If they recharge< $1000 for the first time , you will receive a reward of $50');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_Total Bonus'], 'Total Bonus');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_The system will calculate the bonus basedon the output value at am00 : 00 , So your bonus for the day will be received the next day.'], 'The system will calculate the bonus basedon the output value at am00 : 00 , So your bonus for the day will be received the next day.');
         this.EnglishMap.set(I18NLabelTransIdEnum['Promoter_GET BONUS'], 'Get Bonus');
@@ -867,7 +867,7 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'किसी भी समय तत्काल ऑनलाइन खेलें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'तुरंत नकद जीत');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_100% Secure 100% Legal'], '१oo% सुरक्षा, १oo% कानूनी');
-        this.HindiMap.set(I18NLabelTransIdEnum['Login_Register to get  ₹10 Bonus'], 'मोबाइल ₹10 बोनस');
+        this.HindiMap.set(I18NLabelTransIdEnum['Login_Register to get  $10 Bonus'], 'मोबाइल $10 बोनस');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Input phone number here'], 'यहां फोन नंबर डालें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Please enter the correct phone number'], 'कृपया सही फोन नंबर दर्ज');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Login'], 'लॉग इन करें');
@@ -964,13 +964,13 @@ export class I18NUtil {
 
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_REFER ＆EARN'], 'दोस्तों को सूचित करें और कमाएं');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Get a bonus every time they win'], 'हर बार उनके जीतने पर बोनस प्राप्त करें');
-        this.HindiMap.set(I18NLabelTransIdEnum['Promoter_For every a ₹100 win , the system will reward ₹5'], 'प्रत्येक ₹100 की जीत पर, सिस्टम ₹ 5 का इनाम देगा');
+        this.HindiMap.set(I18NLabelTransIdEnum['Promoter_For every a $100 win , the system will reward $5'], 'प्रत्येक $100 की जीत पर, सिस्टम $ 5 का इनाम देगा');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_You can see the details at "Bonus Table"'], 'आप "बोनस टेबल" पर विवरण देख सकते हैं');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Share \nWith \nfriend'], 'दोस्त के साथ साझा करें');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_all belong to your team'], 'सभी आपकी टीम के हैं');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_You`re going to be a'], 'आप करोड़पति बनने जा रहे हैं');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_If your team has 1000 people a day'], 'अगर आपकी टीम में एक दिन में 1000 लोग हैं');
-        this.HindiMap.set(I18NLabelTransIdEnum['Promoter_they each win ₹100 . You can get a bonus of ₹5000 every day<₹5000的奖金'], 'वे प्रत्येक <₹100 जीतते हैं। आप हर दिन <₹5000 का बोनस प्राप्त कर सकते हैं');
+        this.HindiMap.set(I18NLabelTransIdEnum['Promoter_they each win $100 . You can get a bonus of $5000 every day<$5000的奖金'], 'वे प्रत्येक <$100 जीतते हैं। आप हर दिन <$5000 का बोनस प्राप्त कर सकते हैं');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_If you have 10000 or 100000 people?'], 'अगर आपके पास 10000 या 100000 लोग हैं?');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Share more'], 'अधिक साझा करें');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Copy Link'], 'प्रतिरूप जोड़ना');
@@ -979,7 +979,7 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_History'], 'इतिहास');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Bonus Table'], 'बोनस तालिका');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Anyone in your team , as long as they win money , you will get a certain reward . The more people you invite , the more rewards you get.'], 'आपकी टीम में कोई भी, जब तक वे पैसा जीतते हैं, आपको एक निश्चित इनाम मिलेगा। आप जितने अधिक लोगों को आमंत्रित करेंगे, आपको उतने ही अधिक पुरस्कार मिलेंगे।');
-        this.HindiMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < ₹100 for the firs time , you will receive a reward of <₹5 . If they recharge< ₹1000 for the first time , you will receive a reward of ₹50'], 'आपके द्वारा आमंत्रित किसी भी व्यक्ति के लिए, अगर वह पहली बार <₹100 का रिचार्ज करते हैं, तो आपको <₹5 का इनाम मिलेगा। अगर वह पहली बार <₹1000 का रिचार्ज करते हैं, तो आपको ₹50 का इनाम मिलेगा। ');
+        this.HindiMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < $100 for the firs time , you will receive a reward of <$5 . If they recharge< $1000 for the first time , you will receive a reward of $50'], 'आपके द्वारा आमंत्रित किसी भी व्यक्ति के लिए, अगर वह पहली बार <$100 का रिचार्ज करते हैं, तो आपको <$5 का इनाम मिलेगा। अगर वह पहली बार <$1000 का रिचार्ज करते हैं, तो आपको $50 का इनाम मिलेगा। ');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_Total Bonus'], 'कुल बोनस');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_The system will calculate the bonus basedon the output value at am00 : 00 , So your bonus for the day will be received the next day.'], 'सिस्टम सुबह 00: 00 बजे आउटपुट मूल्य के आधार पर बोनस की गणना करेगा, इसलिए किसी दिन के लिए आपका बोनस अगले दिन प्राप्त होगा।');
         this.HindiMap.set(I18NLabelTransIdEnum['Promoter_GET BONUS'], 'बोनस प्राप्त करें');
@@ -1204,7 +1204,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'যেকোনো সময় তৎক্ষণাৎ অনলাইনে খেলুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'অবিলম্বে ক্যাশ প্রাইজ জিতুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_100% Secure 100% Legal'], '100% সুরক্ষিত 100% আইনসম্মত');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Register to get  ₹10 Bonus'], '₹10 বোনাস পেতে নিবন্ধন করুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Register to get  $10 Bonus'], '$10 বোনাস পেতে নিবন্ধন করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Input phone number here'], 'এখানে ফোন নম্বর লিপিবদ্ধ করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Please enter the correct phone number'], 'অনুগ্রহ করে সঠিক ফোন নম্বর লিখুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Login'], 'লগইন করুন');
@@ -1300,13 +1300,13 @@ export class I18NUtil {
 
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_REFER ＆EARN'], 'রেফার করুন ও জিতুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Get a bonus every time they win'], 'প্রতিবার তারা জিতলে একটি বোনাস পান');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_For every a ₹100 win , the system will reward ₹5'], 'প্রতি ₹100 জয়ে, সিস্টেম ₹5 পুরস্কার দেবে');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_For every a $100 win , the system will reward $5'], 'প্রতি $100 জয়ে, সিস্টেম $5 পুরস্কার দেবে');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_You can see the details at "Bonus Table"'], 'আপনি "বোনাস টেবিল" এ বিস্তারিত দেখতে পাবেন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Share \nWith \nfriend'], 'বন্ধুদের সাথে শেয়ার করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_all belong to your team'], 'সবগুলিই আপনার টিমের');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_You`re going to be a'], 'আপনি একজন কোটিপতি হতে চলেছেন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_If your team has 1000 people a day'], 'আপনার টিমের এক দিনে 1000 জন থাকলে');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_they each win ₹100 . You can get a bonus of ₹5000 every day<₹5000的奖金'], 'তারা প্রত্যেকে < ₹100 টাকা জিতবে। আপনি প্রতিদিন < ₹5000 এর একটি বোনাস পেতে পারেন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_they each win $100 . You can get a bonus of $5000 every day<$5000的奖金'], 'তারা প্রত্যেকে < $100 টাকা জিতবে। আপনি প্রতিদিন < $5000 এর একটি বোনাস পেতে পারেন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_If you have 10000 or 100000 people?'], 'আপনার কাছে 10000 বা 100000 জন থাকলে?');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Share more'], 'আরও শেয়ার করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Copy Link'], 'লিঙ্ক কপি করুন');
@@ -1315,7 +1315,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_History'], 'ইতিহাস');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Bonus Table'], 'বোনাস টেবিল');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Anyone in your team , as long as they win money , you will get a certain reward . The more people you invite , the more rewards you get.'], 'আপনার টিমে যে কেউ, যতক্ষণ পর্যন্ত টাকা জিতবেন, ততক্ষণ আপনি একটি নির্দিষ্ট পুরস্কার পাবেন। আপনি যত বেশি লোককে আমন্ত্রণ জানাবেন, তত বেশি পুরস্কার পাবেন।');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < ₹100 for the firs time , you will receive a reward of <₹5 . If they recharge< ₹1000 for the first time , you will receive a reward of ₹50'], 'আপনার আমন্ত্রণ জানানো যে কেউ, প্রথমবারের জন্য < ₹100 এর রিচার্জ করলে, আপনি ₹5 এর একটি পুরস্কার পাবেন। তারা প্রথমবারের জন্য < ₹1000 রিচার্জ করলে, আপনি ₹50 এর একটি পুরস্কার পাবেন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < $100 for the firs time , you will receive a reward of <$5 . If they recharge< $1000 for the first time , you will receive a reward of $50'], 'আপনার আমন্ত্রণ জানানো যে কেউ, প্রথমবারের জন্য < $100 এর রিচার্জ করলে, আপনি $5 এর একটি পুরস্কার পাবেন। তারা প্রথমবারের জন্য < $1000 রিচার্জ করলে, আপনি $50 এর একটি পুরস্কার পাবেন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_Total Bonus'], 'মোট বোনাস');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_The system will calculate the bonus basedon the output value at am00 : 00 , So your bonus for the day will be received the next day.'], 'সিস্টেম am00 : 00 এ আউটপুট মূল্যের ভিত্তিতে বোনাসের হিসাব করবে, তাই আপনার সেই দিনের বোনাস পরের দিন পাবেন।');
         this.BengaliMap.set(I18NLabelTransIdEnum['Promoter_GET BONUS'], 'বোনাস পান');
@@ -1542,7 +1542,7 @@ export class I18NUtil {
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'کسی بھی وقت فوری طور پر آن لائن کھیلیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'فوری طور پر کیش انعامات جیتیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_100% Secure 100% Legal'], '100 فیصد محفوظ 100 فیصد قانونی');
-        this.UrduMap.set(I18NLabelTransIdEnum['Login_Register to get  ₹10 Bonus'], '10₹ بونس حاصل کرنے کے لیے رجسٹر ہوجائیں');
+        this.UrduMap.set(I18NLabelTransIdEnum['Login_Register to get  $10 Bonus'], '10$ بونس حاصل کرنے کے لیے رجسٹر ہوجائیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Input phone number here'], 'یہاں فون نمبر درج کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Please enter the correct phone number'], 'براہِ کرم درست فون نمبر درج کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Login'], 'لاگ ان کریں');
@@ -1638,13 +1638,13 @@ export class I18NUtil {
 
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_REFER ＆EARN'], 'ریفر کریں اور جیتیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Get a bonus every time they win'], 'ان کے جیتنے پر ہر مرتبہ بونس حاصل کریں');
-        this.UrduMap.set(I18NLabelTransIdEnum['Promoter_For every a ₹100 win , the system will reward ₹5'], 'ہر ₹100 جیت پر، سسٹم ₹5 انعام دے گا');
+        this.UrduMap.set(I18NLabelTransIdEnum['Promoter_For every a $100 win , the system will reward $5'], 'ہر $100 جیت پر، سسٹم $5 انعام دے گا');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_You can see the details at "Bonus Table"'], 'آپ ’’بونس ٹیبل‘‘ پر تفصیلات دیکھ سکتے ہیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Share \nWith \nfriend'], 'دوست کے ساتھ اشتراک کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_all belong to your team'], 'سب آپ کی ٹیم سے متعلقہ ہیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_You`re going to be a'], 'آپ لکھ پتی بننے والے ہیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_If your team has 1000 people a day'], 'اگر آپ کی ٹیم کے پاس یومیہ 1000 افراد ہو جاتے ہیں');
-        this.UrduMap.set(I18NLabelTransIdEnum['Promoter_they each win ₹100 . You can get a bonus of ₹5000 every day<₹5000的奖金'], 'ان میں سے ہر ایک ₹100 سے کم جیتے۔ آپ ₹5000 سے کم کا بونس روزانہ حاصل کرسکتے ہیں');
+        this.UrduMap.set(I18NLabelTransIdEnum['Promoter_they each win $100 . You can get a bonus of $5000 every day<$5000的奖金'], 'ان میں سے ہر ایک $100 سے کم جیتے۔ آپ $5000 سے کم کا بونس روزانہ حاصل کرسکتے ہیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_If you have 10000 or 100000 people?'], 'اگر آپ کے پاس 10000 یا 100000 افراد ہوئے تو ؟');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Share more'], 'مزید کا اشتراک کریں');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Copy Link'], 'لنک کاپی کریں');
@@ -1653,7 +1653,7 @@ export class I18NUtil {
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_History'], 'سابقہ ریکارڈ');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Bonus Table'], 'بونس کا ٹیبل');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Anyone in your team , as long as they win money , you will get a certain reward . The more people you invite , the more rewards you get.'], 'آپ کی ٹیم میں کوئی بھی، جب تک کہ وہ رقم جیتتا رہے، آپ کو ایک یقینی انعام دلواتا رہے گا۔ آپ جتنے زیادہ لوگوں کو مدعو کریں گے، اتنے ہی زیادہ انعامات آپ جیت پائیں گے۔');
-        this.UrduMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < ₹100 for the firs time , you will receive a reward of <₹5 . If they recharge< ₹1000 for the first time , you will receive a reward of ₹50'], 'آپ کو مدعو کردہ کوئی بھی فرد، اگر پہلی مرتبہ ₹100 سے کم رقم ریچارج کرے گا، تو آپ کو ₹5 سے کم کا انعام ملے گا۔ اگر وہ پہلی مرتبہ ₹1000 سے کم ریچارج کرے گا، تو آپ کو ₹50 کا انعام حاصل ہوگا۔');
+        this.UrduMap.set(I18NLabelTransIdEnum['Promoter_For anyone you invite , if they recharge < $100 for the firs time , you will receive a reward of <$5 . If they recharge< $1000 for the first time , you will receive a reward of $50'], 'آپ کو مدعو کردہ کوئی بھی فرد، اگر پہلی مرتبہ $100 سے کم رقم ریچارج کرے گا، تو آپ کو $5 سے کم کا انعام ملے گا۔ اگر وہ پہلی مرتبہ $1000 سے کم ریچارج کرے گا، تو آپ کو $50 کا انعام حاصل ہوگا۔');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_Total Bonus'], 'مجموعی بونس');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_The system will calculate the bonus basedon the output value at am00 : 00 , So your bonus for the day will be received the next day.'], 'سسٹم رات 00 : 00 بجے حاصل شدہ ویلیو کی بنیاد پر بونس کا تخمینہ لگائے گا، لہٰذا اُس دن کا آپ کا بونس اگلے دن موصول ہوگا۔');
         this.UrduMap.set(I18NLabelTransIdEnum['Promoter_GET BONUS'], 'بونس حاصل کریں');

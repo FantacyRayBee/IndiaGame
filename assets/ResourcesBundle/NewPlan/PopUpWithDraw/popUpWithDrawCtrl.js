@@ -34,7 +34,7 @@ cc.Class({
     
     setConfig(num) {
         this.labNum.string = "" + num;
-        this.labNum2.string = "₹" + num;
+        this.labNum2.string = "$" + num;
     },
 
     showWithDraw() {

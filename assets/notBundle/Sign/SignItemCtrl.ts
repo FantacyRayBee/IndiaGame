@@ -16,7 +16,7 @@ export default class SignItemCtrl extends cc.Component {
     private node_unsigned: cc.Node = null;
 
     setSignItemData(gift, today, done, day) {
-        this.lab_reward.string = `₹${gift/100}`;
+        this.lab_reward.string = `$${gift/100}`;
         this.lab_day.string = `Day${day}`;
 
         if (today > day) {

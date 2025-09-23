@@ -42,9 +42,9 @@ cc.Class({
         //     [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti'},
         //     [4]: {taskName: 'Play 10 games of Fruit Party', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit'},
         //     [5]: {taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon'},
-        //     [6]: {taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop'},
+        //     [6]: {taskName: 'Complete a recharge of $500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop'},
         //     [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw'},
-        //     [8]: {taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop'},
+        //     [8]: {taskName: 'Total recharge $50000', reward: 5000, status: 1, pais: [], jump: 'shop'},
         // }
 
         this.progressArr = [0,0.90,0.91,0.92,0.94,0.95,0.96,0.99];
@@ -106,12 +106,12 @@ cc.Class({
             this.node_hand.active = this.isCollect || needShow;
             this.jumpId = info[curRound].jump;
             if (curRound == 1) {
-                this.lab_remind.string = `Only need ₹${allNumber} to withdraw ₹${allNumber}`;
+                this.lab_remind.string = `Only need $${allNumber} to withdraw $${allNumber}`;
                 let canGetReward = info[curRound].reward
-                this.lab_totalNum.string = "₹0";
+                this.lab_totalNum.string = "$0";
                 this.lab_progress.string = `0/${allNumber}`
                 let decimals = this.countDecimals(canGetReward);
-                this.node_task_reward1.getComponent(cc.Label).string = "₹" + canGetReward.toFixed(decimals > 2 ? 2 : decimals);
+                this.node_task_reward1.getComponent(cc.Label).string = "$" + canGetReward.toFixed(decimals > 2 ? 2 : decimals);
             }
             else{
                 if (isShowNextRoundAnim) { //需要播放金币滚动动画
@@ -123,15 +123,15 @@ cc.Class({
                     }
                 }
                 else {
-                    this.lab_totalNum.string = "₹" + info[curRound - 1].reward;
+                    this.lab_totalNum.string = "$" + info[curRound - 1].reward;
                 }
                 let remind = (allNumber - info[curRound - 1].reward);
                 
-                this.lab_remind.string = `Only need ₹${parseFloat(remind.toFixed(2))} to withdraw ₹${allNumber}`;
+                this.lab_remind.string = `Only need $${parseFloat(remind.toFixed(2))} to withdraw $${allNumber}`;
                 this.lab_progress.string = `${info[curRound - 1].reward}/${allNumber}`
 
                 let canGetReward = info[curRound].reward - info[curRound - 1].reward
-                this.node_task_reward1.getComponent(cc.Label).string = "₹" + parseFloat(canGetReward.toFixed(2));
+                this.node_task_reward1.getComponent(cc.Label).string = "$" + parseFloat(canGetReward.toFixed(2));
             }
         }
         else{ //已经达到最大轮次 能够领取最终大奖
@@ -142,11 +142,11 @@ cc.Class({
             this.lab_taskDesc.string = `${info[8].taskName}`;
             this.lab_taskTime.string =`50000/50000`;
             this.lab_remind.string = ``;
-            // this.lab_remind.string = `Only need ₹0 to withdraw ₹5000`;
+            // this.lab_remind.string = `Only need $0 to withdraw $5000`;
             this.lab_progress.string = `${allNumber}/${allNumber}`;
             this.node_task_reward1.active = false;
             this.node_task_reward2.active = false;
-            this.lab_totalNum.string = `₹${allNumber}`;
+            this.lab_totalNum.string = `$${allNumber}`;
             this.progressbar.progress = 1;
             this.node_hand.active = false;
         }
@@ -239,10 +239,10 @@ cc.Class({
             this.node_paiArrs[i].getChildByName(""+i).getComponent(cc.Button).interactable = false;
             let label = this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").getChildByName("price").getComponent(cc.Label)
             if (i == parseInt(btnName)) { //即将翻开的这张牌 使用inducement_info里的index
-                label.string = "₹" + info[curRound].pais[info[curRound].paiIndex];
+                label.string = "$" + info[curRound].pais[info[curRound].paiIndex];
             }
             else{ //其他三张牌 使用paiIndex以外的值
-                label.string = "₹" + info[curRound].pais[tmpPais[paiIndex]];
+                label.string = "$" + info[curRound].pais[tmpPais[paiIndex]];
                 paiIndex++;
             }
         }
@@ -326,7 +326,7 @@ cc.Class({
         let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
         for (let i = 1; i < 5; i++) {
             descs[i] = node.getChildByName("" + i).getChildByName("desc").getComponent(cc.RichText);
-            descs[i].string = "User" + infos[i - 1] +` Withdraw <color=#F9D95A>₹${allNumber}</color>`;
+            descs[i].string = "User" + infos[i - 1] +` Withdraw <color=#F9D95A>$${allNumber}</color>`;
         };
     },
     
@@ -467,7 +467,7 @@ cc.Class({
             this.node_paiArrs[i].getChildByName(""+i).scale = 1; // 恢复原始大小
             this.node_paiArrs[i].getChildByName(""+i).getChildByName("back").active = false;
             this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").active = true;
-            this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").getChildByName("price").getComponent(cc.Label).string = "₹" + info[curRound].pais[i];
+            this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").getChildByName("price").getComponent(cc.Label).string = "$" + info[curRound].pais[i];
         }
     },
 

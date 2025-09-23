@@ -47,11 +47,11 @@ cc.Class({
     var add = data.add; // 额外赠送-dep
     var bonus = data.bonus; // 额外赠送-bonus
 
-    this.lab_cash.string = "\u20B9" + amount / 100;
-    this.lab_extraCash.string = "\u20B9" + add / 100;
-    this.lab_bonus.string = "\u20B9" + bonus / 100;
-    this.lab_total.string = "\u20B9" + (amount + add + bonus) / 100;
-    this.lab_amount.string = "\u20B9" + amount / 100;
+    this.lab_cash.string = "$" + amount / 100;
+    this.lab_extraCash.string = "$" + add / 100;
+    this.lab_bonus.string = "$" + bonus / 100;
+    this.lab_total.string = "$" + (amount + add + bonus) / 100;
+    this.lab_amount.string = "$" + amount / 100;
   },
   setTeenPattiRechargeTime: function setTeenPattiRechargeTime(time) {
     var _this = this;

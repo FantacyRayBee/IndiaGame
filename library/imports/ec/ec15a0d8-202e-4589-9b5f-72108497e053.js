@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'ec15aDYIC5FiZtfchCEl+BT', 'activityModulesCtrl');
-// ResourcesBundle/NewPlan/CommActivity/activityModulesCtrl.js
+// MustBundle/Normal/CommActivity/activityModulesCtrl.js
 
 "use strict";
 

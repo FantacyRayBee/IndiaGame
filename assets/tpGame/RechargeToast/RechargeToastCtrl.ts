@@ -83,11 +83,11 @@ export default class RechargeToastCtrl extends cc.Component {
         let add = data.add;
         let bonus = data.bonus;    
 
-        this.lab_cash.string = `₹${amount/100}`;
-        this.lab_extraCash.string = `₹${add/100}`;
-        this.lab_bonus.string = `₹${bonus/100}`;
-        this.lab_total.string = `₹${(amount + add + bonus)/100}`;
-        this.lab_amount.string = `₹${amount/100}`;
+        this.lab_cash.string = `$${amount/100}`;
+        this.lab_extraCash.string = `$${add/100}`;
+        this.lab_bonus.string = `$${bonus/100}`;
+        this.lab_total.string = `$${(amount + add + bonus)/100}`;
+        this.lab_amount.string = `$${amount/100}`;
 
         this._setRechargeToastTime(time);
     }

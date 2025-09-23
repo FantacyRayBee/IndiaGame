@@ -23,8 +23,8 @@ cc.Class({
     },
 
     setLabs: function() {
-        this.lab_upgradeBagAmount.string = `₹${GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100}`;
-        this.lab_upgradeBagGift.string = `₹${(GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount)/100}`;
+        this.lab_upgradeBagAmount.string = `$${GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100}`;
+        this.lab_upgradeBagGift.string = `$${(GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount)/100}`;
         this.lab_upgradeBagBtnAmount.string = `${GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100}`
     },
 

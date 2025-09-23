@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '99c61txZKNHwqYMYUSFti/0', 'NewFirstRecharge');
-// ResourcesBundle/NewPlan/NewFirstRechargeTips/NewFirstRecharge.js
+// notBundle/NewFirstRechargeTips/NewFirstRecharge.js
 
 "use strict";
 

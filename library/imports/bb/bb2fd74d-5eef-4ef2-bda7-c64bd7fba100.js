@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'bb2fddNXu9O8r2nxkvX+6EA', 'SignCtrl');
-// ResourcesBundle/NewPlan/Sign/SignCtrl.ts
+// notBundle/Sign/SignCtrl.ts
 
 "use strict";
 var __extends = (this && this.__extends) || (function () {
@@ -242,7 +242,7 @@ var SignCtrl = /** @class */ (function (_super) {
             }
             else if (index == 6) {
                 _this.lab_day7.string = "Day7";
-                _this.lab_day7Reward.string = "\u20B9" + gift / 100;
+                _this.lab_day7Reward.string = "$" + gift / 100;
                 if (signData.today > 7) {
                     _this.node_day7Signed.active = true;
                     _this.node_day7Unsigned.active = false;

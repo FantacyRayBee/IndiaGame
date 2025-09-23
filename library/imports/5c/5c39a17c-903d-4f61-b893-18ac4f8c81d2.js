@@ -13,7 +13,8 @@ cc.Class({
     sprite_icon: cc.Sprite,
     btn_icon: cc.Button,
     node_quan: cc.Node,
-    atlas_benifits: cc.SpriteAtlas
+    atlas_benifits: cc.SpriteAtlas,
+    atlas_benifits2: cc.SpriteAtlas
   },
   ctor: function ctor() {
     this.tipsStr = {
@@ -61,15 +62,15 @@ cc.Class({
           clearInterval(_this.rewardTimer);
           _this.rewardTimer = null;
           if (_this.benifitsType == 5) {
-            _this.lab_tips2.string = "\u20B9" + _this.benifitsData.dayTake / 100;
+            _this.lab_tips2.string = "$" + _this.benifitsData.dayTake / 100;
             _this.btn_icon.interactable = true;
             _this.node_quan.active = true;
           } else if (_this.benifitsType == 4) {
-            _this.lab_tips2.string = "\u20B9" + _this.benifitsData.weekTake / 100;
+            _this.lab_tips2.string = "$" + _this.benifitsData.weekTake / 100;
             _this.btn_icon.interactable = true;
             _this.node_quan.active = true;
           } else if (_this.benifitsType == 3) {
-            _this.lab_tips2.string = "\u20B9" + _this.benifitsData.monthTake / 100;
+            _this.lab_tips2.string = "$" + _this.benifitsData.monthTake / 100;
             _this.btn_icon.interactable = true;
             _this.node_quan.active = true;
           } else {
@@ -139,7 +140,11 @@ cc.Class({
     }
     ;
     this.lab_tips1.string = nameStr;
-    this.sprite_icon.spriteFrame = this.atlas_benifits.getSpriteFrame("" + type);
+    if (type == 1 || type == 3 || type == 4 || type == 5 || type == 9 || type == 10) {
+      this.sprite_icon.spriteFrame = this.atlas_benifits2.getSpriteFrame("" + type);
+    } else {
+      this.sprite_icon.spriteFrame = this.atlas_benifits.getSpriteFrame("" + type);
+    }
     if (GlobalCfg.USER_DATAS.userVip.level == data.level) {
       var timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
       if (type == 5) {
@@ -148,7 +153,7 @@ cc.Class({
           this.btn_icon.interactable = false;
           this.node_quan.active = false;
         } else {
-          this.lab_tips2.string = "\u20B9" + data.dayTake / 100;
+          this.lab_tips2.string = "$" + data.dayTake / 100;
           this.btn_icon.interactable = true;
           this.node_quan.active = true;
           this.btn_icon.node.on("click", CommonFun.getInstance().debounce(function () {
@@ -168,7 +173,7 @@ cc.Class({
           this.btn_icon.interactable = false;
           this.node_quan.active = false;
         } else {
-          this.lab_tips2.string = "\u20B9" + data.weekTake / 100;
+          this.lab_tips2.string = "$" + data.weekTake / 100;
           this.btn_icon.interactable = true;
           this.node_quan.active = true;
           this.btn_icon.node.on("click", CommonFun.getInstance().debounce(function () {
@@ -188,7 +193,7 @@ cc.Class({
           this.btn_icon.interactable = false;
           this.node_quan.active = false;
         } else {
-          this.lab_tips2.string = "\u20B9" + data.monthTake / 100;
+          this.lab_tips2.string = "$" + data.monthTake / 100;
           this.btn_icon.interactable = true;
           this.node_quan.active = true;
           this.btn_icon.node.on("click", CommonFun.getInstance().debounce(function () {
@@ -203,7 +208,7 @@ cc.Class({
         ;
         this.lab_tips2.node.active = true;
       } else if (type == 2) {
-        this.lab_tips2.string = "\u20B9" + data.withdrawTotalLimit / 100;
+        this.lab_tips2.string = "$" + data.withdrawTotalLimit / 100;
         this.lab_tips2.node.active = true;
         this.btn_icon.interactable = false;
         this.node_quan.active = false;

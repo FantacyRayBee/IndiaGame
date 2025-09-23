@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '4c8cbZcVU9OfrGPngxqKxvw', 'chatCtrl');
-// ResourcesBundle/NewPlan/GameGifInteraction/chatCtrl.js
+// notBundle/GameGifInteraction/chatCtrl.js
 
 "use strict";
 

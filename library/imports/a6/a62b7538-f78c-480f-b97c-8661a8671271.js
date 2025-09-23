@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'a62b7U494xID7l8hmGoZxJx', 'FastFeedBackCtrl');
-// ResourcesBundle/NewPlan/FastFeedBack/FastFeedBackCtrl.js
+// notBundle/FastFeedBack/FastFeedBackCtrl.js
 
 "use strict";
 
