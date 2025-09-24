@@ -253,6 +253,7 @@ cc.Class({
     startGame() {
         let curbet = this.node_betinfo.getComponent('ChickenBet').getCurBet();
         if (curbet > GlobalCfg.USER_DATAS.userDiamond) {
+            this.stopAutoSchedule(true);
             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false);

@@ -947,7 +947,6 @@ cc.Class({
             this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
-
     },
 
     showCommonLoginView: function() {
