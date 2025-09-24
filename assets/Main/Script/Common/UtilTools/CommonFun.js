@@ -20,6 +20,7 @@ let CommonFun = cc.Class({
 
         this.resoucesBundleIsDownloadedByH5 = false;
         this.resoucesBundleOpenList = {}
+        this.gameBundleOpenList = {}
     },
 
     checkShiPei: function(node) {
@@ -584,19 +585,44 @@ let CommonFun = cc.Class({
      * @returns 
      */
     isNeedUpdata: function(subpackgeName) {
-        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
             return false;
-        };
-        
-        let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
-        let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
-        LoggerUtil.getInstance().log(`${subpackgeName}版本号对比===> 远程版本号: ${serverVersionNum}, 本地版本号: ${localVersionNum}`);
-        if (serverVersionNum !== localVersionNum) {
-            return true;
-        } 
-        else {
+        }
+        if (this.gameBundleOpenList[subpackgeName]) { // 如果已经下载过，则直接返回
             return false;
-        };
+        }
+        return true;
+    },
+
+    gameLoadBundleByH5: function(subpackgeName, callback) {
+        // 加载资源包
+        cc.assetManager.loadBundle(subpackgeName, (err, bundle) => {
+            if (err) {
+                callback && callback();  // 调用失败回调
+                return;
+            }
+            // 预加载资源包中的目录并获取进度
+            bundle.preloadDir("/", (completedCount, totalCount) => {
+                let progress = completedCount / totalCount;  // [0,1]
+                if (progress >= 1) {
+                    progress = 1;
+                };
+                let progressStr = (progress * 100).toFixed(2);
+                let msgData = {
+                    progress: progressStr,
+                    subpackgeName: subpackgeName,
+                };
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS, msgData: msgData});
+            }, (err) => { 
+                if (err) {
+                    callback && callback();  // 调用失败回调
+                    return;
+                }
+                this.gameBundleOpenList[subpackgeName] = true;  // 保存已经下载过的bundle
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE, msgData: {subpackgeName: subpackgeName}});
+                callback && callback();  // 调用成功回调
+            }); 
+        });
     },
 
     checkBundleIsDownloadedByH5: function(packageName, callback) {

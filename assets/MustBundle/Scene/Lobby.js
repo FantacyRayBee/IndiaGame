@@ -1881,7 +1881,7 @@ cc.Class({
             // CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_slots") {
-            CommonFun.getInstance().showGameIconList();
+            // CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_INDIA_GAME);
@@ -2015,7 +2015,8 @@ cc.Class({
         }
         else {
             //@ts-ignore
-            GameDownloader.getInstance().priorLoadGame("tpGame");
+            // GameDownloader.getInstance().priorLoadGame("tpGame");
+            CommonFun.getInstance().gameLoadBunleByH5("tpGame")
         };
     },
 
@@ -2024,14 +2025,13 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
             callFun();
             return;
         };
-
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
-            GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            CommonFun.getInstance().gameLoadBundleByH5(subpackgeName);
             if (this.LoadCompletedCallback == null) {
                 this.LoadCompletedCallback = callFun;
             }

@@ -26,6 +26,7 @@ cc.Class({
       ;
     }
     ;
+    cc.assetManager.downloader.maxConcurrency = 20; // 下载最大并发数
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);
     /**
      * 日志开关
