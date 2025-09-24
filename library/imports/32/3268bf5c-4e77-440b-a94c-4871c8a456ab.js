@@ -50,6 +50,7 @@ cc.Class({
   },
   ctor: function ctor() {
     this._curSpriteTypeId = 0; //默认值
+
     this.spritesNameObject = {
       0: "shark_01",
       // 鲨鱼
@@ -69,6 +70,7 @@ cc.Class({
       // 孔雀  
       8: "bird_03",
       // 老鹰
+
       /**  
       9: "Beast",     // 走兽
       10: "Bird",     // 飞禽
@@ -78,6 +80,7 @@ cc.Class({
       10: "bx",
       // 宝箱, 全赢
       11: "shark_02" // 金鲨鱼
+
     };
   },
   onLoad: function onLoad() {},
@@ -90,11 +93,11 @@ cc.Class({
   },
   setNodeContentSize: function setNodeContentSize() {
     var spriteName = this.spritesNameObject[this.curSpriteTypeId];
+
     if (spriteName == "bx" || spriteName == "ZD" || spriteName == "shark_01" || spriteName == "shark_02") {
       var size = this.curSprite.node.getContentSize();
       this.curSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-      this.curSprite.node.setContentSize(size.width * 0.75, size.height * 0.75);
-      // this.curSprite.node.setContentSize(size.width, size.height);
+      this.curSprite.node.setContentSize(size.width * 0.75, size.height * 0.75); // this.curSprite.node.setContentSize(size.width, size.height);
     } else {
       this.curSprite.sizeMode = cc.Sprite.SizeMode.TRIMMED;
     }
@@ -103,6 +106,7 @@ cc.Class({
     this.bgSprite.enabled = bool;
   } // LIFE-CYCLE CALLBACKS:
   // update (dt) {},
+
 });
 
 cc._RF.pop();

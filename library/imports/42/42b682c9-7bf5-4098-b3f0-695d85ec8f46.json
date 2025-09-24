@@ -428,7 +428,7 @@
       }
     }
   },
-  "_atlasText": "\r\nviprukou.png\r\nsize: 186,263\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\n1\r\n  rotate: true\r\n  xy: 114, 2\r\n  size: 107, 70\r\n  orig: 152, 101\r\n  offset: 23, 26\r\n  index: -1\r\n2222\r\n  rotate: true\r\n  xy: 121, 111\r\n  size: 150, 58\r\n  orig: 152, 101\r\n  offset: 1, 0\r\n  index: -1\r\nshaoguang_8\r\n  rotate: true\r\n  xy: 2, 41\r\n  size: 102, 110\r\n  orig: 135, 135\r\n  offset: 19, 18\r\n  index: -1\r\nstaraY\r\n  rotate: true\r\n  xy: 2, 145\r\n  size: 116, 117\r\n  orig: 128, 128\r\n  offset: 8, 6\r\n  index: -1\r\n",
+  "_atlasText": "\nviprukou.png\nsize: 186,263\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\n1\n  rotate: true\n  xy: 114, 2\n  size: 107, 70\n  orig: 152, 101\n  offset: 23, 26\n  index: -1\n2222\n  rotate: true\n  xy: 121, 111\n  size: 150, 58\n  orig: 152, 101\n  offset: 1, 0\n  index: -1\nshaoguang_8\n  rotate: true\n  xy: 2, 41\n  size: 102, 110\n  orig: 135, 135\n  offset: 19, 18\n  index: -1\nstaraY\n  rotate: true\n  xy: 2, 145\n  size: 116, 117\n  orig: 128, 128\n  offset: 8, 6\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "3f3a5189-0f06-4ddb-8268-f0756646b02a"

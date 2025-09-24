@@ -29,12 +29,15 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
+
     if (btnName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
       return;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (btnName == "toggle1") {
       this.node_jackpot.active = true;
       this.node_myHistory.active = false;
@@ -70,6 +73,7 @@ cc.Class({
       this.node_jackpotContent.destroyAllChildren();
       var newList = list.sort(this.compare("time"));
       var index = 0;
+
       if (newList.length > 0) {
         this.schedule(function () {
           var date = newList[index];
@@ -82,8 +86,11 @@ cc.Class({
       }
     } else if (str == "bigWinner") {
       this.node_bigWinnerContent.destroyAllChildren();
+
       var _newList = list.sort(this.compare("time"));
+
       var _index = 0;
+
       if (_newList.length > 0) {
         this.schedule(function () {
           var date = _newList[_index];
@@ -96,8 +103,11 @@ cc.Class({
       }
     } else if (str == "myhistory") {
       this.node_myHistoryContent.destroyAllChildren();
+
       var _newList2 = list.sort(this.compare("time"));
+
       var _index2 = 0;
+
       if (_newList2.length > 0) {
         this.schedule(function () {
           var date = _newList2[_index2];
@@ -118,6 +128,7 @@ cc.Class({
     };
   },
   start: function start() {} // update (dt) {},
+
 });
 
 cc._RF.pop();

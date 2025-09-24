@@ -19,6 +19,7 @@ cc.Class({
   // LIFE-CYCLE CALLBACKS:
   // onLoad () {},
   start: function start() {},
+
   /**
    * 更新当前 Rate
    * @param {Number} value Rate
@@ -28,6 +29,7 @@ cc.Class({
     value = Number(value);
     var color = this.node.getChildByName('Label').color;
     var _sp = this.node.getComponent(cc.Sprite).spriteFrame;
+
     if (value >= 0 && value < 3) {
       color = this.greenLabColor;
       _sp = this.greenSpriteFrame;
@@ -41,10 +43,12 @@ cc.Class({
       color = this.orangeLabColor;
       _sp = this.orangeSpriteFrame;
     }
+
     this.node.getComponent(cc.Sprite).spriteFrame = _sp;
     this.node.getChildByName('Label').color = color;
     this.node.getChildByName('Label').getComponent(cc.Label).string = value.toFixed(2) + 'x';
   } // update (dt) {},
+
 });
 
 cc._RF.pop();

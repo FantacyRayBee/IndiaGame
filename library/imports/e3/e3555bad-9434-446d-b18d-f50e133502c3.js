@@ -9,6 +9,7 @@ cc.Class({
   properties: {},
   onLoad: function onLoad() {
     var _this = this;
+
     cc.tween(this.node).to(2, {
       opacity: 0
     }).call(function () {

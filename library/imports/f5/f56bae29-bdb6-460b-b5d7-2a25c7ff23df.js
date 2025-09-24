@@ -15,18 +15,22 @@ cc.Class({
       var btn = this.btns[i];
       btn.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     }
+
     var width = cc.winSize.width;
+
     if (width > 1335) {
       this.node.scale = 1.3;
     } else {
       this.node.scale = 1;
     }
+
     this.lab_wz.string = otherLanguage.dailyBonusTisp[language];
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var scene = cc.director.getScene();
+
     if (btnName == "btn_get") {
       if (scene.name == "rummy") {
         GameServerManager.send("gameservice.receivefreetrial", "ReceiveFreeTrialReq", {
@@ -52,7 +56,9 @@ cc.Class({
         CommonFun.getInstance().showTips("Need to fill in vour mobile number");
         return;
       }
+
       ;
+
       if (scene.name == "rummy") {
         GameServerManager.send("gameservice.receivefreetrial", "ReceiveFreeTrialReq", {
           times: 2
@@ -73,6 +79,7 @@ cc.Class({
         });
       }
     }
+
     ;
     this.node.destroy();
   },

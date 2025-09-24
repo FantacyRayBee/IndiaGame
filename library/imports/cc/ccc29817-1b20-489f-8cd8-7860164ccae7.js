@@ -13,12 +13,15 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.btn_close.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
+
       _this.node.destroy();
     }, this);
     this.btn_ok.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       _this.node.destroy();
     }, this);
     this.labs[0].string = lobbyRuleLanguage.lab_sscWaFa_01[language];
@@ -39,10 +42,12 @@ cc.Class({
   showSpriteTranslate: function showSpriteTranslate(scene) {
     var languageStr = ["", "English", "Hindi", "Urdu", "Bengali"];
     this.spriteAll = scene.getComponentsInChildren(cc.Sprite);
+
     for (var i = 0; i < this.spriteAll.length; i++) {
       var sprite = this.spriteAll[i];
       var name = sprite.node.name;
       var str = name.split("@");
+
       if ((str[0] == "English" || str[0] == "Hindi" || str[0] == "Urdu" || str[0] == "Bengali") && sprite.node) {
         sprite.node.active = str[0] == languageStr[language];
       }

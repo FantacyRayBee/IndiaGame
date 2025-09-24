@@ -40,6 +40,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_ONCE_ERASE_FINISHED) {
       self.dealOnceEraseFinishedEvent(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_SPIN_STARTING) {
@@ -50,9 +51,11 @@ cc.Class({
   },
   dealOnceEraseFinishedEvent: function dealOnceEraseFinishedEvent(notify) {
     var _this = this;
+
     if (!notify) {
       return;
     }
+
     ;
     var erase = notify.erase;
     var currentElfMul = erase.currentElfMul;
@@ -62,14 +65,19 @@ cc.Class({
     this.currentElfMul = currentElfMul;
     this.currentXMul = currentXMul;
     this.currentBet = bet;
+
     if (this.isHaveTitleTimer) {
       this.stopTitleAnima();
     }
+
     ;
+
     if (erase.elf == 12) {
       this.curSpinHaveXMul = true;
     }
+
     ;
+
     if (this.curSpinHaveXMul) {
       this.lab_currentXMark.string = "X";
       this.lab_notMulWinScore.string = "";
@@ -82,14 +90,18 @@ cc.Class({
       currentXMul = currentXMul > 0 ? currentXMul : 1;
       this.setCurrentElfMul2(currentXMul * currentElfMul * bet / 2000);
     }
+
     ;
+
     if (isLastOne && this.curSpinHaveXMul) {
       this.scheduleOnce(function () {
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playScoreMultiplyEffect();
         currentXMul = currentXMul > 0 ? currentXMul : 1;
+
         _this.playMultiplyAnima(currentElfMul * currentXMul * bet / 2000);
       }, 0.6);
     }
+
     ;
   },
   dealSpinStartingEvent: function dealSpinStartingEvent(notify) {
@@ -103,14 +115,17 @@ cc.Class({
     this.lab_mulWinScore.node.setPosition(cc.v2(1.6, -15));
     this.lab_currentXMul.node.setPosition(cc.v2(44.2, -15));
     this.lab_notMulWinScore.string = "$0.00";
+
     if (this.isHaveTitleTimer == false) {
       this.startTitleAnima();
     }
+
     ;
   },
   dealAllSpinFinishedEvent: function dealAllSpinFinishedEvent(notify) {},
   playMultiplyAnima: function playMultiplyAnima(winScore) {
     var _this2 = this;
+
     cc.tween(this.lab_mulWinScore.node).to(0.2, {
       position: cc.v2(1.6 + 50, -15)
     }).start();
@@ -119,8 +134,11 @@ cc.Class({
     }).start();
     this.scheduleOnce(function () {
       GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playScoreMultiplyEndEffect();
+
       _this2.lab_mulWinScore.node.setPosition(cc.v2(1.6, -15));
+
       _this2.lab_currentXMul.node.setPosition(cc.v2(44.2, -15));
+
       _this2.lab_currentXMark.string = "";
       _this2.lab_currentXMul.string = "";
       _this2.lab_mulWinScore.string = "";
@@ -134,22 +152,28 @@ cc.Class({
   },
   setCurrentElfMul: function setCurrentElfMul(score) {
     var _this3 = this;
+
     if (score == 0) {
       this.lab_mulWinScore.string = "";
       return;
     }
+
     ;
     var obj = {};
     var str = this.lab_mulWinScore.string;
+
     if (str.includes("$")) {
       obj.num = Number(str.slice(1));
     } else {
       obj.num = Number(str);
     }
+
     ;
+
     if (obj.num == score) {
       return;
     }
+
     ;
     cc.tween(obj).to(0.5, {
       num: score
@@ -159,6 +183,7 @@ cc.Class({
           var temp = end - start == 0 ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t);
           _this3.lab_mulWinScore.string = "$" + temp;
         }
+
         ;
         return start + (end - start) * t;
       }
@@ -166,22 +191,28 @@ cc.Class({
   },
   setCurrentElfMul2: function setCurrentElfMul2(score) {
     var _this4 = this;
+
     if (score == 0) {
       this.lab_notMulWinScore.string = "$0.00";
       return;
     }
+
     ;
     var obj = {};
     var str = this.lab_notMulWinScore.string;
+
     if (str.includes("$")) {
       obj.num = Number(str.slice(1));
     } else {
       obj.num = Number(str);
     }
+
     ;
+
     if (obj.num == score) {
       return;
     }
+
     ;
     cc.tween(obj).to(0.5, {
       num: score
@@ -191,6 +222,7 @@ cc.Class({
           var temp = end - start == 0 ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t);
           _this4.lab_notMulWinScore.string = "$" + temp;
         }
+
         ;
         return start + (end - start) * t;
       }
@@ -201,11 +233,14 @@ cc.Class({
       this.lab_currentXMul.string = "";
       return;
     }
+
     ;
     var oldXMul = Number(this.lab_currentXMul.string);
+
     if (oldXMul == mul) {
       return;
     }
+
     ;
     this.lab_currentXMul.string = Number(mul).toFixed(0);
     cc.tween(this.lab_currentXMul.node).to(0.1, {
@@ -249,6 +284,7 @@ cc.Class({
     if (this.curTitleIndex >= 4) {
       this.curTitleIndex = 0;
     }
+
     ;
     this.node_title0.active = this.curTitleIndex == 0;
     this.node_title1.active = this.curTitleIndex == 1;

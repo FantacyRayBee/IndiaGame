@@ -102,7 +102,7 @@
       }
     }
   },
-  "_atlasText": "\r\nk_ys.png\r\nsize: 306,194\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nk_ys\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 302, 190\r\n  orig: 302, 190\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nk_ys.png\nsize: 306,194\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nk_ys\n  rotate: false\n  xy: 2, 2\n  size: 302, 190\n  orig: 302, 190\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "0d2b54e7-bb81-4016-9faf-859a2d35da76"

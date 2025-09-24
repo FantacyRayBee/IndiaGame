@@ -186,16 +186,20 @@ cc.Class({
     this.btn_close.node.on('click', this.clickCallback, this);
     this.btn_othersSupport.node.on('click', this.clickCallback, this);
     var toggleItems = this.toggleContainerLang.toggleItems;
+
     for (var i = 0, len = toggleItems.length; i < len; i++) {
       var toggleItem = toggleItems[i];
       toggleItem.node.on('toggle', this.toggleCallback, this);
     }
+
     ;
+
     if (toggleItems[0].isChecked == true) {
       this.curLang = "hindi";
     } else {
       this.curLang = "english";
     }
+
     ;
     this.setLangByCurLang();
     this.node_enumMain.active = true;
@@ -207,6 +211,7 @@ cc.Class({
     var enumItemTypeArr = ["rechargeTips", "withdrawalTips", "rewardTips", "winningsTips", "depositTips"];
     var len = enumItemTypeArr.length;
     var index = 0;
+
     var addEnumItem = function addEnumItem() {
       var enumItemType = enumItemTypeArr[index];
       var enumItemNode = cc.instantiate(this.prefab_enumItem);
@@ -218,15 +223,19 @@ cc.Class({
       this.enumItemNodeArr.push(enumItemNode);
       this.scrollView_itemParent.content.addChild(enumItemNode);
       index += 1;
+
       if (index == len) {
         this.unschedule(addEnumItem);
         return;
       }
+
       ;
     };
+
     this.schedule(addEnumItem, 0.1, len - 1, 0);
     var len1 = 5;
     var index1 = 0;
+
     var addAnswerItem = function addAnswerItem() {
       var answerItemNode = cc.instantiate(this.prefab_answerItem);
       answerItemNode.active = false;
@@ -235,35 +244,45 @@ cc.Class({
       this.answerItemNodeArr.push(answerItemNode);
       this.scrollView_itemParent.content.addChild(answerItemNode);
       index1 += 1;
+
       if (index1 == len1) {
         this.unschedule(addAnswerItem);
         return;
       }
+
       ;
     };
+
     this.schedule(addAnswerItem, 0.2, len1 - 1, 0);
   },
   setLangByCurLang: function setLangByCurLang() {
     var curLang = this.curLang;
     this.lab_linksTips.string = this[curLang]["lab_linksTips"];
     this.lab_btnOtherSupport.string = this[curLang]["lab_btnOtherSupport"];
+
     for (var i = 0, len = this.enumItemNodeArr.length; i < len; i++) {
       var enumItemNode = this.enumItemNodeArr[i];
       var enumItemCtrl = enumItemNode.getComponent("ShopInstructionsEnumItemCtrl");
       enumItemCtrl.setBtnTipsLanguageType(curLang);
       enumItemCtrl.showBtnTipsStr();
     }
+
     ;
+
     for (var _i = 0, _len = this.answerItemNodeArr.length; _i < _len; _i++) {
       var answerItemNode = this.answerItemNodeArr[_i];
+
       if (answerItemNode.active == true) {
         var answerItemCtrl = answerItemNode.getComponent("ShopInstructionsAnswerItemCtrl");
         answerItemCtrl.setAnswerLanguageType(curLang);
         answerItemCtrl.showAnswerTitle();
       }
+
       ;
     }
+
     ;
+
     if (this.curTextTagArr.length != 0) {
       var enumType = this.curTextTagArr[0];
       var itemIndex = this.curTextTagArr[1];
@@ -271,15 +290,18 @@ cc.Class({
       this.lab_textMain.string = this[curLang]["text_" + enumType][itemIndex];
       this.lab_textPS.string = this[curLang]["ps_" + enumType][itemIndex];
     }
+
     ;
   },
   clickCallback: function clickCallback(btn) {
     var btnName = btn.node.name;
+
     if (btnName === "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
       return;
     }
+
     if (btnName === "btn_othersSupport") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.curTextTagArr = [];
@@ -287,30 +309,38 @@ cc.Class({
       this.node_text.active = false;
       var enumType = this.curLevelTagArr[0];
       var level2 = this.curLevelTagArr[1];
+
       if (level2) {
         this.curLevelTagArr.splice(1, 1);
         this.showAnswerItem(enumType);
         return;
       }
+
       ;
       this.curLevelTagArr.splice(0, 1);
       this.btn_othersSupport.node.active = false;
+
       for (var i = 0, len = this.enumItemNodeArr.length; i < len; i++) {
         var enumItemNode = this.enumItemNodeArr[i];
         enumItemNode.active = true;
       }
+
       ;
+
       for (var _i2 = 0, _len2 = this.answerItemNodeArr.length; _i2 < _len2; _i2++) {
         var answerItemNode = this.answerItemNodeArr[_i2];
         answerItemNode.active = false;
       }
+
       ;
     }
+
     ;
   },
   toggleCallback: function toggleCallback(toggle) {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var toggleName = toggle.node.name;
+
     if (toggleName === "toggle_hindi") {
       this.curLang = "hindi";
       this.setLangByCurLang();
@@ -318,19 +348,23 @@ cc.Class({
       this.curLang = "english";
       this.setLangByCurLang();
     }
+
     ;
   },
   clickEnumItemCall: function clickEnumItemCall(enumType) {
     if (!enumType) {
       return;
     }
+
     ;
     this.curLevelTagArr.push(enumType);
     this.btn_othersSupport.node.active = true;
+
     for (var i = 0, len = this.enumItemNodeArr.length; i < len; i++) {
       var enumItemNode = this.enumItemNodeArr[i];
       enumItemNode.active = false;
     }
+
     ;
     this.showAnswerItem(enumType);
   },
@@ -343,8 +377,10 @@ cc.Class({
       "depositTips": 2
     }[enumType];
     var curLang = this.curLang;
+
     for (var i = 0, len = this.answerItemNodeArr.length; i < len; i++) {
       var answerItemNode = this.answerItemNodeArr[i];
+
       if (i < answerItemLen) {
         var answerItemCtrl = answerItemNode.getComponent("ShopInstructionsAnswerItemCtrl");
         answerItemCtrl.setAnswerItemEnumType(enumType);
@@ -355,8 +391,10 @@ cc.Class({
       } else {
         answerItemNode.active = false;
       }
+
       ;
     }
+
     ;
   },
   clickAnswerItemCall: function clickAnswerItemCall(enumType, itemIndex) {

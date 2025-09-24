@@ -57,9 +57,11 @@ cc.Class({
     this.lab_tip2.node.active = false;
     this.NodeSended.active = false;
     this.phoneNumber = '';
+
     if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
       this.zhuNode.setScale(0.8);
     }
+
     ;
     this.showRealName();
   },
@@ -73,6 +75,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId === "lobbyservice.sendverifycode") {
       self.resendCountDown();
     } else if (msgId === "lobbyservice.bindphonenumber") {
@@ -86,6 +89,7 @@ cc.Class({
   },
   editBeganCallback: function editBeganCallback(editbox) {
     var editboxName = editbox.node.name;
+
     if (editboxName == "EditBox_Phone") {
       this.lab_tips_mobile1.active = false;
     } else if (editboxName == "EditBox_Verficode") {
@@ -99,6 +103,7 @@ cc.Class({
   editEndedCallback: function editEndedCallback(editbox) {
     if (editbox.node.name == "EditBox_Phone") {
       var phone = this.isPoneAvailable("91" + this.editBox_phoneNumber.string);
+
       if (this.phoneNumber != this.editBox_phoneNumber.string && phone) {
         this.phoneNumber = this.editBox_phoneNumber.string;
         this.NodeSend.active = true;
@@ -106,18 +111,22 @@ cc.Class({
         this.btn_fsyzm.interactable = true;
         this.lab_time.unschedule(this.callback);
       }
+
       ;
     }
   },
   bntclick: function bntclick(button) {
     var _this = this;
+
     var btnName = button.node.name;
+
     if (btnName === "btn_close" || btnName === "btn_cancel") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       SHOPPING.cashID = -1;
       this.node.destroy();
     } else {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       if (btnName === "btn_fsyzm") {
         this.sendVerifycodeReq();
       } else if (btnName === "btn_bd") {
@@ -136,23 +145,28 @@ cc.Class({
         };
         var isExistence = this.chack_name(_name);
         var isChina = this.funcChina(_name);
+
         if (GlobalCfg.USER_DATAS.phone.length <= 0) {
           if (phoneNum.length == 0 || _code.length == 0 || mail.length == 0 || !this.isEmail(mail) || isExistence || isChina) {
             this.testBindPhoneSuccess(_name, '91' + phoneNum, _code, mail);
             return;
           }
+
           ;
         } else {
           if (_name.length == 0 || mail.length == 0 || !this.isEmail(mail) || isExistence || isChina) {
             this.testBindPhoneSuccess(_name, '91' + phoneNum, _code, mail);
             return;
           }
+
           ;
         }
+
         ;
         CommonFun.getInstance().showProgress();
         CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
           CommonFun.getInstance().hidProgress();
+
           if (msg.result == 0) {
             var give = msg.data.give ? msg.data.give : 0;
             GlobalCfg.USER_DATAS.bonus = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.bonus, give);
@@ -165,6 +179,7 @@ cc.Class({
             GlobalCfg.USER_DATAS.phone = httpParam.phone;
             GlobalCfg.USER_DATAS.mail = httpParam.mail;
             GlobalCfg.USER_DATAS.realname = httpParam.realname;
+
             if (CommonFun.getInstance().isValidForScr(_this)) {
               switch (_this.clickOkToView) {
                 case "Lobby":
@@ -173,14 +188,17 @@ cc.Class({
                     amount: give / 100
                   }]);
                   break;
+
                 case "Personal":
                   CommonFun.getInstance().showRewardsTips([{
                     id: 10,
                     amount: give / 100
                   }]);
                   break;
+
                 case "AddCash":
                   CommonFun.getInstance().showTips("Bind succeeded");
+
                   if (SHOPPING.cashID != -1) {
                     CommonFun.getInstance().rechargeByCommodityId(SHOPPING.cashID, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
                       SHOPPING.cashID = -1;
@@ -188,17 +206,23 @@ cc.Class({
                   } else {
                     CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.BindPhone);
                   }
+
                   break;
+
                 default:
                   break;
               }
+
               ;
+
               _this.node.destroy();
             }
+
             ;
           } else {
             CommonFun.getInstance().showTips(msg.msg);
           }
+
           ;
         }, null, GlobalCfg.USER_DATAS.BearerToken);
       }
@@ -206,7 +230,9 @@ cc.Class({
   },
   sendVerifycodeReq: function sendVerifycodeReq() {
     var _this2 = this;
+
     var phoneNum = this.editBox_phoneNumber.string;
+
     if (!this.isPoneAvailable("91" + phoneNum)) {
       this.lab_tip1.active = true;
     } else {
@@ -222,6 +248,7 @@ cc.Class({
         } else {
           CommonFun.getInstance().showTips(msg.msg);
         }
+
         ;
       }, null, GlobalCfg.USER_DATAS.BearerToken);
     }
@@ -236,6 +263,7 @@ cc.Class({
     var validateEmail = function validateEmail(email) {
       return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     };
+
     if (validateEmail(email)) {
       return true;
     } else {
@@ -249,6 +277,7 @@ cc.Class({
     this.NodeSended.active = true;
     this.btn_fsyzm.interactable = false;
     this.lab_time.string = countDownTime + "s";
+
     this.callback = function () {
       if (countDownTime <= 0) {
         self.lab_time.unschedule(self.callback);
@@ -257,9 +286,11 @@ cc.Class({
         self.NodeSended.active = false;
         return;
       }
+
       self.lab_time.string = countDownTime + "s";
       countDownTime--;
     };
+
     this.lab_time.schedule(self.callback, 1);
   },
   //检测绑定手机信息是否正确成功
@@ -270,8 +301,10 @@ cc.Class({
     this.lab_tips_mobile1.active = phoneNum.length == 0 ? true : false;
     this.lab_tips_mobile2.active = code.length == 0 ? true : false;
     this.lab_tips_mobile3.active = name.length == 0 ? true : false;
+
     if (mail.length > 0) {
       var isEmail = this.isEmail(mail);
+
       if (isEmail) {
         str.string = "";
       } else {
@@ -280,14 +313,18 @@ cc.Class({
     } else {
       this.lab_tips_mobile4.active = true;
     }
+
     ;
+
     if (name.length > 0) {
       var isExistence = this.chack_name(name);
       var isChina = this.funcChina(name);
+
       if (isExistence || isChina) {
         this.lab_tips_mobile3.active = true;
       }
     }
+
     ;
   },
   // 
@@ -313,6 +350,7 @@ cc.Class({
     this.sz_input_yzm.setPosition(-95, -30);
     this.sz_input_mail.setPosition(-38, -120);
     this.sz_input_name.active = true;
+
     if (GlobalCfg.USER_DATAS.phone.length > 0) {
       this.sz_input_yzm.active = false;
       this.sz_input_sj.setPosition(0, 15);
@@ -322,13 +360,17 @@ cc.Class({
       this.sz_input_sj.setPosition(0, 50);
       this.sz_input_mail.setPosition(0, -120);
     }
+
     ;
+
     if (GlobalCfg.USER_DATAS.realname.length > 0) {
       this.editBox_name.string = GlobalCfg.USER_DATAS.realname;
     } else if (GlobalCfg.USER_DATAS.transferAddress.name.length > 0) {
       this.editBox_name.string = GlobalCfg.USER_DATAS.transferAddress.name;
     }
+
     ;
+
     if (GlobalCfg.USER_DATAS.phone.length > 0) {
       this.editBox_phoneNumber.string = GlobalCfg.USER_DATAS.phone.slice(2, GlobalCfg.USER_DATAS.phone.length);
       var btn_mask = this.sz_input_sj.getChildByName("btn_mask");
@@ -336,29 +378,37 @@ cc.Class({
     } else if (GlobalCfg.USER_DATAS.transferAddress.mobile.length > 0) {
       this.editBox_phoneNumber.string = GlobalCfg.USER_DATAS.transferAddress.mobile.slice(2, GlobalCfg.USER_DATAS.transferAddress.mobile.length);
     }
+
     ;
+
     if (GlobalCfg.USER_DATAS.mail.length > 0) {
       this.editBox_mail.string = GlobalCfg.USER_DATAS.mail;
     } else if (GlobalCfg.USER_DATAS.transferAddress.email.length > 0) {
       this.editBox_mail.string = GlobalCfg.USER_DATAS.transferAddress.email;
     }
+
     ;
   },
   //检测是否有特殊符号
   chack_name: function chack_name(str) {
     var isChina = this.funcChina(str);
+
     if (isChina) {
       return false;
     }
+
     var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+
     if (pattern.test(str)) {
       return true;
     }
+
     return false;
   },
   //检测是否有中文字
   funcChina: function funcChina(str) {
     var patrn = /[\u4E00-\u9FA5]|[\uFE30-\uFFA0]/gi;
+
     if (!patrn.exec(str)) {
       return false;
     } else {

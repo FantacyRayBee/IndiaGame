@@ -6,6 +6,7 @@ cc._RF.push(module, '6abf4h63EBGaY5YxrjR+HiY', 'lhdSendReq');
 
 cc.Class({
   "extends": cc.Component,
+
   /*  =================================================龙虎斗数据请求======================================*/
   // 游戏登录
   loginReq: function loginReq() {
@@ -15,9 +16,9 @@ cc.Class({
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
       fromid: GlobalCfg.PRODUCT_ID //平台
+
     });
   },
-
   //   获取普通玩家列表
   playerlistReq: function playerlistReq(page, rows) {
     GameServerManager.send("gameservice.playerlist", "PlayerListReq", {

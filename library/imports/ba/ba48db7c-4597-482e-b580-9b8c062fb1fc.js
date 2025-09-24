@@ -36,46 +36,58 @@ cc.Class({
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var name = toggle.node.name;
     var languageType = null;
+
     switch (name) {
       case "toggle_English":
         languageType = I18NLanguagesEnum.English;
         break;
+
       case "toggle_Hindi":
         languageType = I18NLanguagesEnum.Hindi;
         break;
+
       case "toggle_Urdu":
         languageType = I18NLanguagesEnum.Urdu;
         break;
+
       case "toggle_Bengali":
         languageType = I18NLanguagesEnum.Bengali;
         break;
+
       default:
         languageType = I18NLanguagesEnum.English;
         break;
     }
+
     ;
     I18NUtil.getInstance().setLanguageType(languageType);
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
+
     switch (btnName) {
       case this.btn_music.node.name:
         this.dealMusicEffectBtnEvent(EnumBtnType.Music);
         break;
+
       case this.btn_effect.node.name:
         this.dealMusicEffectBtnEvent(EnumBtnType.Effect);
         break;
+
       case this.btn_close.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.node.destroy();
         return;
+
       default:
         break;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
   },
   dealMusicEffectBtnEvent: function dealMusicEffectBtnEvent(type) {
     var state = null;
+
     if (type == EnumBtnType.Music) {
       if (true === GlobalCfg.G_COMPONENTS.Audio.checkState("toggle_yinyun")) {
         GlobalCfg.G_COMPONENTS.Audio.closeMusic();
@@ -89,6 +101,7 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.openSound();
       }
     }
+
     ;
     this.setMusicEffectBtns(type);
   },
@@ -105,9 +118,11 @@ cc.Class({
       this.btn_music.node.getChildByName("Background").getChildByName("btn_kai").active = state;
     } else if (type == EnumBtnType.Effect) {
       var _state = GlobalCfg.G_COMPONENTS.Audio.checkState('toggle_yinxiao');
+
       this.btn_effect.node.getChildByName("Background").getChildByName("btn_guan").active = !_state;
       this.btn_effect.node.getChildByName("Background").getChildByName("btn_kai").active = _state;
     }
+
     ;
   },
   onDestroy: function onDestroy() {

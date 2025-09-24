@@ -28,39 +28,54 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.ACTIVITY_CHALLENGES_COLLECT) {
       self.dealChallengesCollect(notify);
     }
+
     ;
   },
   start: function start() {
     var _this = this;
+
     Promise.all([this.getChallengesInfo(), this.getChallengesItemPrefab()]).then(function (arr) {
       if (!Array.isArray(arr)) {
         return;
       }
+
       ;
       var data = arr[0];
       var prefab = arr[1];
+
       if (!data) {
         return;
       }
+
       ;
+
       if (!prefab) {
         return;
       }
+
       ;
       var taskArr = data.Tasks; // 任务列表
+
       var duration = data.Duration; // 活动持续时间(用于完成任务的时间-3D-单位秒)
+
       var createdAt = data.CreatedAt; // 创建时间
+
       var completedAt = data.CompletedAt; // 完成时间(所有奖励已领取了)
+
       var receivedBoxAward = data.ReceivedBoxAward; // 领取了的宝箱奖励
 
       if (CommonFun.getInstance().isValidForScr(_this)) {
         _this.setChallengesEndTime(createdAt + duration, completedAt);
+
         _this.setChallengesProgress(taskArr, receivedBoxAward);
+
         _this.setChallengesTasks(taskArr, prefab);
       }
+
       ;
     })["catch"](function (err) {
       LoggerUtil.getInstance().error(err);
@@ -68,13 +83,16 @@ cc.Class({
   },
   btnClick: function btnClick() {
     var _this2 = this;
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/challenge/receiveboxaward";
     CommonFun.getInstance().httpPost(httpUrl, {}, function (msg) {
       if (msg.result == 0) {
         var data = msg.data;
         var receivedAward = data.ReceivedAward; // 领取的奖励
+
         var afterD = data.AfterD; // 领取后Dep
+
         var afterW = data.AfterW; // 领取后Win
 
         GlobalCfg.USER_DATAS.challengeRunning = false;
@@ -89,19 +107,23 @@ cc.Class({
             price: receivedAward
           }
         });
+
         if (CommonFun.getInstance().isValidForScr(_this2)) {
           _this2.btn_challengesBox.interactable = false;
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
   setChallengesEndTime: function setChallengesEndTime(endTime, completedAt) {
     var nowTime = parseInt(new Date().getTime() / 1000);
     var chaTime = endTime - nowTime;
+
     if (chaTime <= 0) {
       this.lab_challengesTime.string = "0d:0hrs";
     } else {
@@ -109,24 +131,32 @@ cc.Class({
       var hrs = Math.floor((chaTime - day * 86400) / 3600);
       this.lab_challengesTime.string = day + "d:" + hrs + "hrs";
     }
+
     ;
   },
   setChallengesProgress: function setChallengesProgress(taskArr, receivedBoxAward) {
     var _this3 = this;
+
     var finishNum = 0;
     var taskArrLen = taskArr.length;
+
     for (var i = 0; i < taskArrLen; i++) {
       var task = taskArr[i];
       var need = task.Need; // 需要完成的次数
+
       var progress = task.Progress; // 进度(完成次数)
+
       if (need == progress) {
         finishNum += 1;
       }
+
       ;
     }
+
     ;
     this.progress_challenges.progress = finishNum / taskArrLen;
     this.lab_challengesProgress.string = finishNum + "/" + taskArrLen + "Completed";
+
     if (finishNum == taskArrLen) {
       if (receivedBoxAward == 0) {
         this.btn_challengesBox.interactable = true;
@@ -149,35 +179,45 @@ cc.Class({
       } else {
         this.btn_challengesBox.interactable = false;
       }
+
       ;
     } else {
       this.btn_challengesBox.interactable = false;
     }
+
     ;
   },
   setChallengesTasks: function setChallengesTasks(taskArr, prefab) {
     var len = taskArr.length;
     var index = 0;
+
     var addChallengesItem = function addChallengesItem() {
       var taskData = taskArr[index];
       var state = taskData.State;
+
       if (state != 3) {
         var challengesItem = cc.instantiate(prefab);
         this.node_challengesContent.addChild(challengesItem);
         var activityChallengesItemCtrl = challengesItem.getComponent("ActivityChallengesItemCtrl");
+
         if (activityChallengesItemCtrl) {
           activityChallengesItemCtrl.setChallengesItemInfo(taskData, index);
         }
+
         ;
       }
+
       ;
       index += 1;
+
       if (index == len) {
         this.unschedule(addChallengesItem);
         return;
       }
+
       ;
     };
+
     this.schedule(addChallengesItem, 2 / cc.game.getFrameRate(), len - 1, 0);
   },
   getChallengesInfo: function getChallengesInfo() {
@@ -191,6 +231,7 @@ cc.Class({
           CommonFun.getInstance().showTips(jsonObj.msg);
           reject(jsonObj.msg);
         }
+
         ;
       }, null, GlobalCfg.USER_DATAS.BearerToken);
     });
@@ -208,6 +249,7 @@ cc.Class({
           } else {
             reject("Failed to obtain challenges item prefab", error);
           }
+
           ;
         });
       }, function (err) {
@@ -217,6 +259,7 @@ cc.Class({
   },
   dealChallengesCollect: function dealChallengesCollect(notify) {
     var _this4 = this;
+
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/challenge/receivetaskaward";
     var httpParam = {
       TaskIndex: notify.taskIndex
@@ -225,9 +268,13 @@ cc.Class({
       if (jsonObj.result == 0) {
         var data = jsonObj.data;
         var openTask = data.OpenTask; // 新开启的任务,可能为空
+
         var receivedAward = data.ReceivedAward; // 领取的奖励
+
         var afterD = data.AfterD; // 领取后Dep
+
         var afterW = data.AfterW; // 领取后Win
+
         GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
         CommonFun.getInstance().showRewardsTips([{
           id: 10,
@@ -239,35 +286,48 @@ cc.Class({
             price: receivedAward
           }
         });
+
         if (CommonFun.getInstance().isValidForScr(_this4)) {
           var taskNodesArr = _this4.node_challengesContent.children;
           var openItemTaskIndex = -1;
+
           if (openTask) {
             openItemTaskIndex = notify.taskIndex + 1;
           }
+
           ;
+
           for (var i = 0, len = taskNodesArr.length; i < len; i++) {
             var challengesItem = taskNodesArr[i];
             var activityChallengesItemCtrl = challengesItem.getComponent("ActivityChallengesItemCtrl");
+
             if (activityChallengesItemCtrl) {
               var itemTaskIndex = activityChallengesItemCtrl.getChallengesItemTaskIndex();
+
               if (itemTaskIndex == notify.taskIndex) {
                 activityChallengesItemCtrl.node.destroy();
               }
+
               ;
+
               if (openItemTaskIndex == itemTaskIndex) {
                 activityChallengesItemCtrl.setChallengesItemOpenStatus();
               }
+
               ;
             }
+
             ;
           }
+
           ;
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(jsonObj.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   }

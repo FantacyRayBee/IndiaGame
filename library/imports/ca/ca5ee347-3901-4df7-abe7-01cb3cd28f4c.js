@@ -25,10 +25,10 @@ cc.Class({
   },
   onLoad: function onLoad() {
     // this.node_cradValue = this.node.getChildByName("node_cradValue");
-
     for (var i = 0; i < this.toggs.length; i++) {
       this.toggs[i].node.on('click', this.toggleClick, this);
     }
+
     this.ScrollView_myCrad.scrollToLeft(0);
     this.ScrollView_rightPlayCrad.scrollToLeft(0);
   },
@@ -37,16 +37,19 @@ cc.Class({
     var loggName = toggle.node.name;
     var rightChildren = this.node_rightPlayContent.children;
     var myChildren = this.node_myContent.children;
+
     if (rightChildren.length >= 11) {
       this.ScrollView_rightPlayCrad.scrollToRight(0);
     } else {
       this.ScrollView_rightPlayCrad.scrollToLeft(0);
     }
+
     if (myChildren.length >= 11) {
       this.ScrollView_myCrad.scrollToRight(0);
     } else {
       this.ScrollView_myCrad.scrollToLeft(0);
     }
+
     if (loggName == 'toggle_myPlay ') {
       this.node_myContent.active = true;
       this.node_rightPlayContent.active = false;
@@ -64,7 +67,9 @@ cc.Class({
       this.setpalyName(true);
       this.cardArr = [];
     }
+
     var outs = date.outs ? date.outs : date;
+
     for (var i = 0; i < outs.length; i++) {
       var card = outs[i].card;
       var isShowCradSprite = outs.length - 1 == i ? true : false;
@@ -81,6 +86,7 @@ cc.Class({
       pab_card.getComponent(cc.Sprite).spriteFrame = sprite;
       this.setCradMap(card, isShowCradSprite);
       var paiNumber = GlobalCfg.ACT_SCENE_CTRL.getPaiNum(card);
+
       if (paiNumber == GlobalCfg.ACT_SCENE_CTRL.laiNumber) {
         var lai = pab_card.getChildByName("lai");
         var img = lai.getChildByName("img");
@@ -90,10 +96,12 @@ cc.Class({
         lai.active = true;
         img.active = false;
       }
+
       if (sourceSeat == -1) {
         pab_card.setPosition(-335, 53);
         this.oneCrad = pab_card;
         this.node.addChild(pab_card);
+
         if (isPicked) {
           pab_card.getChildByName("cradMask").active = true;
         }
@@ -101,6 +109,7 @@ cc.Class({
         // 自己的牌库出的牌
         pab_card.y = -30;
         this.node_myContent.addChild(pab_card);
+
         if (isPicked) {
           pab_card.getChildByName("cradMask").active = true;
         }
@@ -108,18 +117,22 @@ cc.Class({
         // 对家的牌库出的牌
         pab_card.y = -30;
         this.node_rightPlayContent.addChild(pab_card);
+
         if (isPicked) {
           pab_card.getChildByName("cradMask").active = true;
         }
       }
+
       this.scheduleOnce(function () {
         var rightChildren = this.node_rightPlayContent.children;
         var myChildren = this.node_myContent.children;
+
         if (rightChildren.length >= 11) {
           this.ScrollView_rightPlayCrad.scrollToRight(0);
         } else {
           this.ScrollView_myCrad.scrollToLeft(0);
         }
+
         if (myChildren.length >= 11) {
           this.ScrollView_myCrad.scrollToRight(0);
         } else {
@@ -131,16 +144,20 @@ cc.Class({
   // 判断是否有同一张牌
   isEquallyCrad: function isEquallyCrad(card) {
     var cradPosOne = -313.5; // 第一个相同牌的初始位子
+
     var cradPosTwo = -288.5; // 第二个相同牌初始的位子
+
     if (this.cardArr.length == 0) {
       this.cardArr.push(card);
     } else {
       for (var i = 0; i < this.cardArr.length; i++) {
         var cradNun = this.cardArr[i];
+
         if (cradNun == card) {
           return cradPosOne;
         }
       }
+
       this.cardArr.push(card);
       return cradPosTwo;
     }
@@ -154,6 +171,7 @@ cc.Class({
     this.lab_playName[1].string = "Me";
     this.lab_playName[2].string = GlobalCfg.ACT_SCENE_CTRL.otherUserCtrl.nickname;
     this.lab_playName[3].string = GlobalCfg.ACT_SCENE_CTRL.otherUserCtrl.nickname;
+
     if (bool) {
       this.toggs[0].isChecked = true;
       this.node_myContent.active = true;
@@ -169,7 +187,9 @@ cc.Class({
     var strCrad = '';
     var cradPos = this.isEquallyCrad(card);
     var cradSpacing = 50; // 两个牌之间的间距
+
     var cradValue = GlobalCfg.ACT_SCENE_CTRL.getPaiNum(card); // 牌的值
+
     var cradColor = GlobalCfg.ACT_SCENE_CTRL.getPaiType(card); // 牌的花色
 
     if (cradColor == "fangkuai") {
@@ -193,12 +213,14 @@ cc.Class({
     } else {
       strCrad = cradValue + 1;
     }
+
     colorX = cradPos + cradSpacing * cradValue;
     var lab_cradValue = cc.instantiate(this.lab_cradValue);
     var sprite_crad = lab_cradValue.getChildByName("sprite_crad");
     var lab_cradNun = lab_cradValue.getChildByName("lab_cradNun");
     var str = lab_cradNun.getComponent(cc.Label);
     str.string = strCrad;
+
     if (isShowCradSprite) {
       sprite_crad.active = true;
       str.node.color = new cc.Color(255, 255, 255);
@@ -206,6 +228,7 @@ cc.Class({
       sprite_crad.active = false;
       str.node.color = new cc.Color(54, 114, 205);
     }
+
     lab_cradValue.setPosition(colorX, colorY);
     this.node_cradValue.addChild(lab_cradValue);
   },
@@ -214,6 +237,7 @@ cc.Class({
     var card = notify.card;
     var seat = notify.seat;
     var children = this.node_cradValue.children;
+
     for (var i = 0; i < children.length; ++i) {
       var node = children[i];
       var str = node.getChildByName("lab_cradNun").getComponent(cc.Label);
@@ -233,6 +257,7 @@ cc.Class({
     };
     this.resetLabelCoior(notify);
     this.setCradListInOf([outs], false);
+
     if (this.oneCrad && this.oneCrad.card == card) {
       var cradMask = this.oneCrad.getChildByName("cradMask");
       cradMask.active = false;
@@ -241,20 +266,27 @@ cc.Class({
   // 玩家起牌    play 1 对家
   playTouchCrad: function playTouchCrad(notify, play) {
     var side = notify.side; // 起牌方位 0左1右
+
     var card = notify.card;
+
     if (side == 1) {
       // 玩家起手对家打的牌 要从牌库中的文字去除
       if (this.oneCrad && this.oneCrad.card == card) {
         var cradMask = this.oneCrad.getChildByName("cradMask");
         cradMask.active = true;
       }
+
       var children = this.node_cradValue.children;
+
       if (children.length > 0) {
         if (children.length == 1) {
           var _node_crad = children[children.length - 1];
+
           _node_crad.destroy();
+
           return;
         }
+
         var node_crad = children[children.length - 1];
         node_crad.destroy();
         var node_crad2 = children[children.length - 2];
@@ -262,26 +294,32 @@ cc.Class({
         sprite_crad.active = true;
         var str = node_crad2.getChildByName("lab_cradNun").getComponent(cc.Label);
         str.node.color = new cc.Color(255, 255, 255);
-      }
+      } // 玩家起手对家打的牌 要从牌库中的牌变黑
 
-      // 玩家起手对家打的牌 要从牌库中的牌变黑
+
       var rightChildren = this.node_rightPlayContent.children;
       var myChildren = this.node_myContent.children;
+
       if (rightChildren.length > 0) {
         for (var i = rightChildren.length - 1; i >= 0; i--) {
           var node = rightChildren[i];
+
           if (node.card == card) {
             var _cradMask = node.getChildByName("cradMask");
+
             _cradMask.active = true;
             break;
           }
         }
       }
+
       if (myChildren.length > 0) {
         for (var _i = myChildren.length - 1; _i >= 0; _i--) {
           var _node = myChildren[_i];
+
           if (_node.card == card) {
             var _cradMask2 = _node.getChildByName("cradMask");
+
             _cradMask2.active = true;
             break;
           }
@@ -290,6 +328,7 @@ cc.Class({
     }
   },
   start: function start() {} // update (dt) {},
+
 });
 
 cc._RF.pop();

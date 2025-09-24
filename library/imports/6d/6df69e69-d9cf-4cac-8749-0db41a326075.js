@@ -20,6 +20,7 @@ cc.Class({
     if (this.node.y < -300) {
       this.node.destroy();
     }
+
     if (cc.game.getFrameRate() >= 60) {
       this.node.y -= 2 * 3;
       this.node.x -= 1 * 3;

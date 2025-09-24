@@ -18,6 +18,7 @@ cc.Class({
   start: function start() {},
   init: function init() {
     this.bankCradInfo = JSON.parse(cc.sys.localStorage.getItem("bankCradInfo"));
+
     if (this.bankCradInfo) {
       this.lab_bank.string = this.bankCradInfo.bankName;
       this.initEditBoxString(this.bankCradInfo);
@@ -32,6 +33,7 @@ cc.Class({
         bankEmail: ""
       };
     }
+
     this.btn_bg = this.node.getChildByName('bg').getComponent(cc.Button);
     this.btn_bg.node.on('click', this.btnClick, this);
     this.bankScrollView.node.active = false;
@@ -46,6 +48,7 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
+
     if (btnName == 'btn_changeBank') {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.showBankList();
@@ -61,22 +64,28 @@ cc.Class({
   },
   editEventEndListen: function editEventEndListen(editbox) {
     var editBoxName = editbox.node.name;
+
     switch (editBoxName) {
       case "editBox_BankAccount":
         this.bankCradInfo.bankCard = editbox.string;
         break;
+
       case "editBox_IFS":
         this.bankCradInfo.IFSCode = editbox.string;
         break;
+
       case "editBox_holderName":
         this.bankCradInfo.bankHolder = editbox.string;
         break;
+
       case "editBox_phoneNumber":
         this.bankCradInfo.bankCardPhone = editbox.string;
         break;
+
       case "":
         this.bankCradInfo.bankEmail = editbox.string;
         break;
+
       default:
         break;
     }
@@ -92,6 +101,7 @@ cc.Class({
   setBankInfoToLocal: function setBankInfoToLocal() {
     cc.sys.localStorage.setItem("bankCradInfo", JSON.stringify(this.bankCradInfo));
     var turnTableCtrl = this.node.parent.getComponent('turnTableCtrl');
+
     if (turnTableCtrl.quota == turnTableCtrl.unclaimed) {
       this.modifyBankCard();
     } else {
@@ -102,6 +112,7 @@ cc.Class({
   //修改银行卡的信息
   modifyBankCard: function modifyBankCard() {
     var _this = this;
+
     var self = this;
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/payment/india_address";
     var httpParam = {
@@ -120,11 +131,13 @@ cc.Class({
     };
     CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
       cc.log("修改银行卡的信息", msg);
+
       if (msg.result == 0) {
         _this.withDraw();
       } else {
         CommonFun.getInstance().showTips(msg.result);
       }
+
       _this.node.destroy();
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
@@ -132,6 +145,7 @@ cc.Class({
     var url = GlobalCfg.HTTP_SERVER + "/v1/pdd/withdraw";
     CommonFun.getInstance().httpGet(url, function (strInfo) {
       cc.log("提现", strInfo);
+
       if (strInfo.result == 0) {
         CommonFun.getInstance().showTips("Successfully withdraw");
       } else {
@@ -145,6 +159,7 @@ cc.Class({
     var content = this.bankScrollView.content;
     var item = content.getChildByName('item');
     content.removeAllChildren();
+
     for (var i = 0; i < bankList.length; i++) {
       var element = bankList[i];
       var itemNode = cc.instantiate(item);
@@ -153,6 +168,7 @@ cc.Class({
       var btn_itemNode = itemNode.getComponent(cc.Button);
       btn_itemNode.node.on('click', this.itemButtonClick, this);
     }
+
     this.bankScrollView.node.active = true;
   },
   itemButtonClick: function itemButtonClick(button) {
@@ -160,9 +176,8 @@ cc.Class({
     this.lab_bank.string = bankName;
     this.bankCradInfo.bankName = bankName;
     this.bankScrollView.node.active = false;
-  }
+  } // update (dt) {},
 
-  // update (dt) {},
 });
 
 cc._RF.pop();

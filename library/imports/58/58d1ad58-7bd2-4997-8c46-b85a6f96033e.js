@@ -17,15 +17,18 @@ cc.Class({
   },
   setFruitSkeletonJing: function setFruitSkeletonJing(type) {
     var skeletonName = this.skeletonNameArr[type - 1];
+
     if (!skeletonName) {
       return;
     }
+
     ;
     this.loadFruitSkeletonData(skeletonName, function (skeletonData, self) {
       if (self && self.skeleton_fruit) {
         self.skeleton_fruit.skeletonData = skeletonData;
         self.skeleton_fruit.setAnimation(0, 'jing', false);
       }
+
       ;
     }, this);
   },
@@ -33,6 +36,7 @@ cc.Class({
     if (this.skeleton_fruit) {
       this.skeleton_fruit.addAnimation(0, 'dong', false);
     }
+
     ;
   },
   setKuangSkeletonDong: function setKuangSkeletonDong() {
@@ -40,21 +44,27 @@ cc.Class({
       this.skeleton_kuang.node.active = true;
       this.skeleton_kuang.setAnimation(0, 'animation', true);
     }
+
     ;
   },
   setCloseSkeletonDong: function setCloseSkeletonDong(time) {
     var _this = this;
+
     if (time === void 0) {
       time = 2;
     }
+
     this.scheduleOnce(function () {
       if (_this && _this.skeleton_fruit) {
         _this.skeleton_fruit.setAnimation(0, 'jing', false);
       }
+
       ;
+
       if (_this && _this.skeleton_kuang) {
         _this.skeleton_kuang.node.active = false;
       }
+
       ;
     }, time);
   },
@@ -71,12 +81,15 @@ cc.Class({
     if (func === void 0) {
       func = null;
     }
+
     if (target === void 0) {
       target = null;
     }
+
     if (!skeletonName || skeletonName.length == 0) {
       return;
     }
+
     ;
     var self = this;
     this.loadGameAssets(self.loadBundleName, function (bundle, target) {

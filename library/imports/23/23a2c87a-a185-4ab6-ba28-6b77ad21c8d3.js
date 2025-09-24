@@ -10,7 +10,6 @@ cc._RF.push(module, '23a2ch6oYVKtrooa3etIcjT', 'ShopTogItemCtrl');
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -19,8 +18,7 @@ cc.Class({
     checkmark: cc.Node
   },
   // onLoad () {},
-  start: function start() {
-    // var graphics = this.checkmark.getComponent(cc.Graphics);
+  start: function start() {// var graphics = this.checkmark.getComponent(cc.Graphics);
     // // 清除之前的绘图指令
     // graphics.clear();
     // graphics.lineWidth = 3;
@@ -35,13 +33,14 @@ cc.Class({
   },
   toggleCallback: function toggleCallback(toggle) {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (this.node.getComponent(cc.Toggle).isChecked) {
       GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;
     }
+
     ;
   },
   // update (dt) {},
-
   setLabel: function setLabel(txt, pay_channel) {
     this.lab_1.string = "UPI " + txt;
     this.lab_2.string = "UPI " + txt;
@@ -49,9 +48,10 @@ cc.Class({
   },
   setNewShopItemChecked: function setNewShopItemChecked(isChecked) {
     this.node.getComponent(cc.Toggle).isChecked = isChecked;
-    if (isChecked) {
-      // GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;   
+
+    if (isChecked) {// GlobalCfg.PAY_CHANNEL = this.PAY_CHANNEL;   
     }
+
     ;
   }
 });

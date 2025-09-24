@@ -20,11 +20,13 @@ cc.Class({
   },
   bntclick: function bntclick(button) {
     var btnName = button.node.name;
+
     if (btnName === "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
     } else {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       if (btnName === "btn_binding") {
         CommonFun.getInstance().showBindPhone('Lobby');
         this.node.destroy();

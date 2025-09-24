@@ -29,6 +29,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_ZEUS_GAME);
     GlobalCfg.ACT_SCENE_CTRL = this;
     this.node_lightNingBg.active = false;
@@ -37,28 +38,43 @@ cc.Class({
       var name = trackEntry.animation.name;
       _this.node_lightNingBg.active = false;
       _this.skeleton_lightNing.node.active = false;
+
       if (_this.curGameState == "freeState") {
         _this.leftAreaCtrl.setMutil(0);
+
         _this.leftAreaCtrl.setFreeStatus(true);
+
         _this.zeusAudiosCtrl.playFreeStateBg();
+
         _this.firesAreaCtrl.setFireSpinFreeType();
       } else if (_this.curGameState == "normalState") {
         _this.leftAreaCtrl.setMutil(0);
+
         _this.leftAreaCtrl.setFreeStatus(false);
+
         _this.zeusAudiosCtrl.playNormalStateBg();
+
         _this.firesAreaCtrl.setFireSpinNormalType();
+
         if (_this.isAuto) {
           _this.dealSendSpinReqEvent(_this.bet, _this.isDoubleMulti);
         } else {
           _this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
+
           _this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
+
           _this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
+
           var curBetIndex = _this.bottomAreaCtrl.getCurBetIndex();
+
           _this.bottomAreaCtrl.setBetBtnsAndLabByIndex(curBetIndex);
+
           _this.curRoundAddCoinFinish();
         }
+
         ;
       }
+
       ;
     });
     this.zeusAudiosCtrl = this.node.getComponent("zeusAudiosCtrl");
@@ -68,23 +84,22 @@ cc.Class({
     this.bottomAreaCtrl = this.node_bottomArea.getComponent("zeusBottomAreaCtrl");
     this.leftAreaCtrl = this.node_leftArea.getComponent("zeusLeftAreaCtrl");
     this.rightAreaCtrl = this.node_rightArea.getComponent("zeusRightAreaCtrl");
-    this.firesAreaCtrl = this.node_fireArea.getComponent("zeusFiresAreaCtrl");
+    this.firesAreaCtrl = this.node_fireArea.getComponent("zeusFiresAreaCtrl"); // this.zeusAudiosCtrl.setMusicVolume(0.6);
 
-    // this.zeusAudiosCtrl.setMusicVolume(0.6);
     this.zeusAudiosCtrl.setSoundVolume(1);
     this.zeusAudiosCtrl.playNormalStateBg();
-
     /**
      * 注册按钮点击事件
      */
+
     this.btn_back.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btn_getCoin.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-
     /**
      * 监听后台切换事件
      */
+
     cc.game.on(cc.game.EVENT_HIDE, function () {
       GameServerManager.hideFilterMag(1);
       _this.isCCGameEventHideStutas = true;
@@ -93,6 +108,7 @@ cc.Class({
       if (_this.isCCGameEventHideStutas == false) {
         return;
       }
+
       ;
       GameServerManager.hideFilterMag(2, function () {
         _this.isCCGameEventHideStutas = false;
@@ -203,6 +219,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == 'gameservice.login' && self.isLoginFinished == false) {
       self.isLoginFinished = true;
       self.dealLoginAckEvent(notify);
@@ -247,6 +264,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (!notify) {
       var info = {
         errorMessage: "zeus\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684\u975E\u6B63\u786E\u6D88\u606F\u4E2D\u7ED3\u6784\u4F53\u5F02\u5E38$ringify(webData)}"
@@ -254,12 +272,16 @@ cc.Class({
       CommonFun.getInstance().reportToTelegram(info);
       return;
     }
+
     ;
     var result = notify.result;
+
     if (notify.Result) {
       result = notify.Result;
     }
+
     ;
+
     if (msgId === "gameservice.login") {
       CommonFun.getInstance().showMsgBox(result.message, "YES", function () {
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
@@ -268,25 +290,28 @@ cc.Class({
       self.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
       self.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
       self.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
+
       if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
         if (result.result == 57) {
           CommonFun.getInstance().showDiversionFreeTP(function () {
             var proroID = "gameservice.exit";
             var message = "ExitReq";
-            GameServerManager.send(proroID, message, {});
-            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
+            GameServerManager.send(proroID, message, {}); // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
           });
         } else {
           CommonFun.getInstance().showTips(result.message);
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(result.message);
       }
+
       ;
     } else {
       CommonFun.getInstance().showTips(result.message);
     }
+
     ;
   },
   dealLoginAckEvent: function dealLoginAckEvent(notify) {
@@ -294,20 +319,25 @@ cc.Class({
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体异常");
       return;
     }
+
     ;
     var whole = notify.whole;
+
     if (!whole) {
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole字段异常");
       return;
     }
-    ;
 
+    ;
     /**
      * 配置信息
      */
+
     var config = whole.config;
+
     if (config) {
       var chipOption = config.chipOption;
+
       if (Array.isArray(chipOption) && chipOption.length > 0) {
         var state = this.leftAreaCtrl.getTogDoubleMultiCheckedStatus();
         this.bottomAreaCtrl.setDoubleMultiState(state);
@@ -319,51 +349,67 @@ cc.Class({
       } else {
         LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole.config.chipOption字段异常");
       }
+
       ;
     } else {
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole.config字段异常");
     }
-    ;
 
+    ;
     /**
      * 玩家信息
      */
+
     var requester = whole.requester;
+
     if (requester) {
       var userInfo = requester.userInfo;
+
       if (userInfo) {
         var playerId = userInfo.playerId; // 玩家游戏Id
+
         var uid = userInfo.uid; // userid
+
         var imgUrl = userInfo.imgUrl; // 头像
+
         var nickname = userInfo.nickname; // 昵称
+
         var diamond = userInfo.diamond; // 金币
+
         var vipLevel = userInfo.vipLevel; // vip等级
+
         this.myCoinCtrl.setMyCoin(diamond);
         this.curPlayerId = playerId;
       } else {
         LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole.requester.userInfo字段异常");
       }
+
       ;
       var leftFreeSpin = requester.leftFreeSpin;
       this.leftAreaCtrl.setFreeCount(leftFreeSpin);
     } else {
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole.requester字段异常");
     }
-    ;
 
+    ;
     /**
      * 场景信息
      */
+
     var scene = whole.scene;
+
     if (scene) {
       var scroll = scene.scroll;
+
       if (!scroll || !Array.isArray(scroll) || scroll.length != 6) {
         LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole.scene.scroll字段异常");
       } else {}
+
       ;
     } else {
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.login结构体中whole.scene字段异常");
     }
+
     ;
   },
   dealCallAckEvent: function dealCallAckEvent(notify, isBuy) {
@@ -374,32 +420,39 @@ cc.Class({
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.call结构体异常");
       return;
     }
-    ;
 
+    ;
     /**
      * 开始时免费次数
      */
+
     var startFreeSpin = notify.startFreeSpin;
     /**
      * 常规SPIN
      */
+
     var generalSpin = notify.spin;
     /**
      * 常规SPIN结算后剩余金币
      */
+
     var normalAfter = notify.normalAfter;
     /**
      * FreeSPIN列表
      */
+
     var freeSpin = notify.freeSpin;
     /**
      * 结算后剩余金币
      */
+
     var finalAfter = notify.finalAfter;
     /**
      * 下注金额(底注)
      */
+
     var bet = notify.bet;
+
     if (!isBuy) {
       if (!generalSpin) {
         LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.call结构体中spin字段异常");
@@ -408,8 +461,10 @@ cc.Class({
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
         return;
       }
+
       ;
       var generalSpinStartScroll = generalSpin.startScroll;
+
       if (!generalSpinStartScroll || !Array.isArray(generalSpinStartScroll) || generalSpinStartScroll.length != 6) {
         LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.call结构体中spin.startScroll字段异常");
         this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -417,10 +472,13 @@ cc.Class({
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
         return;
       }
+
       ;
+
       for (var i = 0, len = generalSpinStartScroll.length; i < len; i++) {
         var axis = generalSpinStartScroll[i];
         var cellArr = axis.cell;
+
         if (!cellArr || !Array.isArray(cellArr) || cellArr.length < 5) {
           LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684gameservice.call\u7ED3\u6784\u4F53\u4E2Dspin.startScroll[" + i + "].cell\u5B57\u6BB5\u5F02\u5E38");
           this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -428,10 +486,13 @@ cc.Class({
           this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
           return;
         }
+
         ;
       }
+
       ;
       var generalSpinErase = generalSpin.erase;
+
       if (!Array.isArray(generalSpinErase)) {
         LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.call结构体中spin.erase字段异常");
         this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -439,9 +500,12 @@ cc.Class({
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
         return;
       }
+
       ;
     }
+
     ;
+
     if (!Array.isArray(freeSpin)) {
       LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.call结构体中freeSpin字段异常");
       this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -449,10 +513,13 @@ cc.Class({
       this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
       return;
     }
+
     ;
+
     for (var _i = 0, _len = freeSpin.length; _i < _len; _i++) {
       var freeSpinOnce = freeSpin[_i];
       var freeSpinOnceStartScroll = freeSpinOnce.startScroll;
+
       if (!freeSpinOnceStartScroll || !Array.isArray(freeSpinOnceStartScroll) || freeSpinOnceStartScroll.length != 6) {
         LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684gameservice.call\u7ED3\u6784\u4F53\u4E2DfreeSpin[" + _i + "].startScroll\u5B57\u6BB5\u5F02\u5E38");
         this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -460,8 +527,10 @@ cc.Class({
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
         return;
       }
+
       ;
       var freeSpinOnceErase = freeSpinOnce.erase;
+
       if (!Array.isArray(freeSpinOnceErase)) {
         LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684gameservice.call\u7ED3\u6784\u4F53\u4E2DfreeSpin[" + _i + "].erase\u5B57\u6BB5\u5F02\u5E38");
         this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -469,10 +538,13 @@ cc.Class({
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
         return;
       }
+
       ;
+
       for (var k = 0, _len2 = freeSpinOnceStartScroll.length; k < _len2; k++) {
         var _axis = freeSpinOnceStartScroll[k];
         var _cellArr = _axis.cell;
+
         if (!_cellArr || !Array.isArray(_cellArr) || _cellArr.length < 5) {
           LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684gameservice.call\u7ED3\u6784\u4F53\u4E2DfreeSpin[" + _i + "].startScroll[" + k + "].cell\u5B57\u6BB5\u5F02\u5E38");
           this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
@@ -480,32 +552,34 @@ cc.Class({
           this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
           return;
         }
+
         ;
       }
+
       ;
     }
-    ;
 
-    // LoggerUtil.getInstance().log("服务器下发的源数据 =======> ", JSON.parse(JSON.stringify(notify)));
+    ; // LoggerUtil.getInstance().log("服务器下发的源数据 =======> ", JSON.parse(JSON.stringify(notify)));
 
     /**
      * 先扣除bet金额
      */
+
     var coin = this.myCoinCtrl.getMyCoin();
     var coinTemp = coin - (isBuy ? bet * 100 : bet);
     this.myCoinCtrl.setMyCoin(coinTemp);
     LoggerUtil.getInstance().log("服务器下发的源数据 =======> ", JSON.parse(JSON.stringify(notify)));
-
     /**
      * 清空上次SPIN相关内容
      */
+
     this.bottomAreaCtrl.removeWinScore();
     this.centreAreaCtrl.removeSpinData();
     this.leftAreaCtrl.removeAllRecordItems();
-
     /**
      * 处理本次SPIN相关内容
      */
+
     this.leftAreaCtrl.setFreeCount(startFreeSpin);
     this.leftAreaCtrl.setFreeStatus(false);
     this.centreAreaCtrl.dealSpinResultProcess(notify);
@@ -517,26 +591,33 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var playerId = notify.playerId; // 玩家Id
+
     var balance = notify.balance; // 剩余数量
+
     var reason = notify.reason; // 原因 1:支付; 其他：未知
 
     if (this.curPlayerId == playerId) {
       this.myCoinCtrl.setMyCoin(balance);
     }
+
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     switch (btnName) {
       case this.btn_back.node.name:
         this.dealBtnBackEvent();
         break;
+
       case this.btn_getCoin.node.name:
         this.dealBtnGetCoinEvent();
         break;
+
       default:
         break;
     }
@@ -549,6 +630,7 @@ cc.Class({
   },
   dealAllSpinFinishedEvent: function dealAllSpinFinishedEvent(notify) {
     var isHaveFreeSpin = notify.isHaveFreeSpin;
+
     if (isHaveFreeSpin) {
       this.playLightNingAnim("normalState");
       var finalAfter = notify.finalAfter;
@@ -558,6 +640,7 @@ cc.Class({
     } else {
       var _finalAfter = notify.finalAfter;
       this.myCoinCtrl.setMyCoin(_finalAfter);
+
       if (this.isAuto) {
         this.dealSendSpinReqEvent(this.bet, this.isDoubleMulti);
       } else {
@@ -568,8 +651,10 @@ cc.Class({
         this.bottomAreaCtrl.setBetBtnsAndLabByIndex(curBetIndex);
         this.curRoundAddCoinFinish();
       }
+
       ;
     }
+
     ;
   },
   dealSendSpinReqEvent: function dealSendSpinReqEvent(bet, isDoubleMulti) {
@@ -577,8 +662,10 @@ cc.Class({
       LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, \u81EA\u5B9A\u4E49ZEUS_SEND_SPIN_REQ\u6D88\u606F\u7684\u6570\u636E\u5F02\u5E38", bet);
       return;
     }
+
     ;
     var coin = this.myCoinCtrl.getMyCoin();
+
     if (coin < bet) {
       this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);
       this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
@@ -586,6 +673,7 @@ cc.Class({
       CommonFun.getInstance().showSmallAddCash();
       return;
     }
+
     ;
     this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(false);
     this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(false);
@@ -602,6 +690,7 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     this.isAuto = notify.isAuto;
   },
@@ -609,19 +698,20 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var bet = notify.bet;
     this.bet = bet;
-    var score = bet * 1.5 / 100;
-    // this.bottomAreaCtrl.setMutilPrice(score);
+    var score = bet * 1.5 / 100; // this.bottomAreaCtrl.setMutilPrice(score);
   },
-
   dealShowBuyFreeTipsEvent: function dealShowBuyFreeTipsEvent(notify) {
     var _this2 = this;
+
     if (!notify || notify.bet <= 0) {
       LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, dealShowBuyFreeTipsEvent", notify);
       return;
     }
+
     ;
     CommonFun.getInstance().loadBundle('zeusGame', function (bundle) {
       bundle.load("prefabs/zeusBuyFreeTips", cc.Prefab, function (err, prefab) {
@@ -630,8 +720,10 @@ cc.Class({
           var zeusBuyFreeTips = cc.instantiate(prefab);
           var zeusBuyFreeTipsCtrl = zeusBuyFreeTips.getComponent("zeusBuyFreeTipsCtrl");
           zeusBuyFreeTipsCtrl.setBuyFreeTipsData(notify.bet);
+
           _this2.node.addChild(zeusBuyFreeTips);
         }
+
         ;
       });
     }, function (err) {
@@ -643,10 +735,13 @@ cc.Class({
       LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, dealSendBuyFreeReqEvent", notify);
       return;
     }
+
     ;
     var isAgree = notify.isAgree;
+
     if (isAgree) {
       var coin = this.myCoinCtrl.getMyCoin();
+
       if (coin < notify.bet * 100) {
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBuyFreeTipsHideEffect();
         CommonFun.getInstance().showSmallAddCash();
@@ -657,6 +752,7 @@ cc.Class({
         this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
         return;
       }
+
       ;
       GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playBuyFreeTipsCliclOkEffect();
       this.leftAreaCtrl.setBuyFreeState(true);
@@ -677,6 +773,7 @@ cc.Class({
       this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true);
       this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);
     }
+
     ;
   },
   dealOnceEraseFinishedEvent: function dealOnceEraseFinishedEvent(notify) {
@@ -684,17 +781,20 @@ cc.Class({
       LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, dealOnceEraseFinishedEvent", notify);
       return;
     }
+
     ;
     var erase = notify.erase;
     var bet = erase.bet;
     var mul = erase.mul; // 倍数
 
     var addCoin = bet * mul / 20;
+
     if (addCoin > 0) {
       var coin = this.myCoinCtrl.getMyCoin();
       var coinTemp = coin + addCoin;
       this.myCoinCtrl.setMyCoin(coinTemp);
     }
+
     ;
   },
   dealTriggerDoubleToggleEvent: function dealTriggerDoubleToggleEvent(notify) {
@@ -702,6 +802,7 @@ cc.Class({
       LoggerUtil.getInstance().warn("zeus\u6E38\u620F\u4E2D, dealTriggerDoubleToggleEvent", notify);
       return;
     }
+
     ;
     this.isDoubleMulti = notify.isDoubleMulti;
     this.bottomAreaCtrl.setDoubleMultiState(this.isDoubleMulti);
@@ -725,6 +826,7 @@ cc.Class({
   },
   getCoinDecimalPlaces: function getCoinDecimalPlaces(coin) {
     var decimalPlaces = 0;
+
     if (coin < 100000) {
       decimalPlaces = 2;
     } else if (100000 <= coin && coin < 1000000) {
@@ -732,6 +834,7 @@ cc.Class({
     } else if (1000000 <= coin) {
       decimalPlaces = 0;
     }
+
     ;
     return decimalPlaces;
   }

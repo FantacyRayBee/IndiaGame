@@ -16,6 +16,7 @@ cc.Class({
     if (str === void 0) {
       str = "";
     }
+
     this.lab_content.string = str;
   }
 });

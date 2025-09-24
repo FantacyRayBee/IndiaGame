@@ -60,8 +60,8 @@ cc.Class({
         return this._isShow;
       },
       set: function set(value) {
-        this._isShow = value;
-        // LoggerUtil.getInstance().warn("重新设置侧边栏显示状态", this._isShow);
+        this._isShow = value; // LoggerUtil.getInstance().warn("重新设置侧边栏显示状态", this._isShow);
+
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
           msgCode: GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED,
           msgData: {
@@ -101,29 +101,37 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
       if (notify.reason == 102) {
         if (GlobalCfg.USER_DATAS.openModules.includes(11)) {
           self.btnBonusCard.node.active = true;
         }
+
         ;
       }
+
       ;
     }
   },
   btnClick: function btnClick(button) {
     var name = button.node.name;
+
     if (name == this.btnShowOrHide.node.name) {
       this.isShow = !this.isShow;
+
       if (true == this.isShow) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
       } else {
         GlobalCfg.G_COMPONENTS.Audio.playBack();
       }
+
       this.onBtnShowOrHideClick();
       return;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (name == this.btnMobile.node.name) {
       this.dealBtnMobileEvent();
     } else if (name == this.btnActivity.node.name) {
@@ -146,6 +154,7 @@ cc.Class({
   setHideActivity: function setHideActivity() {
     this.node.active = false;
   },
+
   /**
    * 数据更新，展示模块
    */
@@ -157,6 +166,7 @@ cc.Class({
     if (GlobalCfg.USER_DATAS.openModules.includes(6) && GlobalCfg.USER_DATAS.phone.length == 0 || GlobalCfg.USER_DATAS.openModules.includes(8) || GlobalCfg.USER_DATAS.openModules.includes(9) || GlobalCfg.USER_DATAS.openModules.includes(10) || GlobalCfg.USER_DATAS.openModules.includes(17) || GlobalCfg.USER_DATAS.openModules.includes(15) || GlobalCfg.USER_DATAS.openModules.includes(11) && GlobalCfg.USER_DATAS.recharged > 0 || GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && GlobalCfg.USER_DATAS.nextDisco.show) {
       this.node.active = true;
       this.showOtherModules();
+
       if (this.isShow == true) {
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
           msgCode: GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED,
@@ -174,13 +184,16 @@ cc.Class({
         }
       });
     }
+
     ;
   },
   onBtnShowOrHideClick: function onBtnShowOrHideClick() {
     var _this = this;
+
     var w = this.visibleSizeWidth;
     var pos = cc.v2(0, 0);
     this.node.getPosition(pos);
+
     if (this.isShow == true) {
       ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
         msgCode: GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED,
@@ -210,36 +223,42 @@ cc.Class({
         _this.node_btnDirection.scaleX = -1;
       }).start();
     }
+
     ;
   },
   showOtherModules: function showOtherModules() {
     var _this2 = this;
+
     clearInterval(this.changeTime);
     /**
      * 绑定手机
      */
+
     if (GlobalCfg.USER_DATAS.openModules.includes(6) && GlobalCfg.USER_DATAS.phone.length == 0) {
       this.btnMobile.node.active = true;
     } else {
       this.btnMobile.node.active = false;
     }
-    ;
 
+    ;
     /**
      * 活动
      */
+
     if (GlobalCfg.USER_DATAS.openModules.includes(8) || GlobalCfg.USER_DATAS.openModules.includes(9) || GlobalCfg.USER_DATAS.openModules.includes(10) || GlobalCfg.USER_DATAS.openModules.includes(17)) {
       this.btnActivity.node.active = true;
     } else {
       this.btnActivity.node.active = false;
     }
-    ;
 
+    ;
     /**
      * 破产礼包
     * 运营活动，SuperDiscount
     */
+
     var Show_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('SuperDiscount_Show_Rate', 0.4));
+
     if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged > 0 && (GlobalCfg.USER_DATAS.userDiamond <= 20 * 100 || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * Show_Rate)) {
       this.btnBrokeGift.node.active = true;
       this.btnSuperDiscount.node.active = false;
@@ -247,51 +266,62 @@ cc.Class({
       this.btnBrokeGift.node.active = false;
       this.btnSuperDiscount.node.active = false;
     }
-    ;
 
+    ;
     /**
      * Bonus系统
      * 金卡，银卡
      * 玩家未充值，该活动按钮不出现，玩家完成第一次充值后，该按钮出现在大厅内，且触发弹框机制。
      * 充值玩家（非免费玩家），每次从登录进入到游戏大厅时，触发弹框
      */
+
     if (GlobalCfg.USER_DATAS.openModules.includes(11)) {
       this.btnBonusCard.node.active = true;
+
       if (GlobalCfg.USER_DATAS.voucherCard != 0) {
         var endDay = 0;
         var seriesCard = GlobalCfg.USER_DATAS.seriesCard;
+
         for (var i = 0, len = seriesCard.length; i < len; i++) {
           var cardInfo = seriesCard[i];
           var id = cardInfo.id;
           var days = cardInfo.days;
+
           if (id === GlobalCfg.USER_DATAS.voucherCard) {
             endDay = days;
             break;
           }
+
           ;
         }
+
         ;
         var lab_time = this.btnBonusCard.node.getChildByName("lab_time").getComponent(cc.Label);
+
         if (endDay == 0) {
           lab_time.node.active = false;
           return;
         }
-        ;
 
-        // 格式化时分秒
+        ; // 格式化时分秒
+
         var formatDuring = function formatDuring(mss) {
           if (mss < 0) {
             return "";
           }
+
           var days = Math.floor(mss / (24 * 60 * 60));
           var hours = Math.floor(mss % (60 * 60 * 24) / (60 * 60));
           var minutes = Math.floor(mss % (60 * 60) / 60);
           var seconds = Math.floor(mss % 60);
           return days + "Day " + hours + ": " + (minutes < 10 ? '0' + minutes : minutes) + ": " + (seconds < 10 ? '0' + seconds : seconds);
         };
+
         lab_time.node.active = true;
         var endTime = GlobalCfg.USER_DATAS.voucherCardCreated + endDay * 24 * 60 * 60; // 结束时间 
+
         var timeLeft = endTime - new Date().getTime() / 1000; // 剩余时间
+
         lab_time.string = formatDuring(timeLeft);
         this.changeTime = setInterval(function () {
           if (cc.isValid(lab_time) && lab_time.node.active) {
@@ -301,6 +331,7 @@ cc.Class({
               _this2.changeTime = null;
               return;
             }
+
             timeLeft -= 1;
             lab_time.string = formatDuring(timeLeft);
           } else {
@@ -308,6 +339,7 @@ cc.Class({
             _this2.changeTime = null;
             return;
           }
+
           ;
         }, 1000);
       } else {
@@ -316,18 +348,20 @@ cc.Class({
     } else {
       this.btnBonusCard.node.active = false;
     }
-    ;
 
+    ;
     /**
      * 推广员
      * 玩家登录到游戏，并进行200局游戏以上时，退出到游戏大厅页面后，弹出该弹框
      * 弹出次数：每日弹1次，每天0点重置规则
      */
+
     if (GlobalCfg.USER_DATAS.openModules.includes(15)) {
       this.btnNewTGY.node.active = true;
     } else {
       this.btnNewTGY.node.active = false;
     }
+
     ;
   },
   dealBtnMobileEvent: function dealBtnMobileEvent() {
@@ -336,6 +370,7 @@ cc.Class({
     } else {
       CommonFun.getInstance().showTips("Already bind your Phone Number: " + GlobalCfg.USER_DATAS.phone);
     }
+
     ;
   },
   showPromoterToast: function showPromoterToast() {
@@ -355,9 +390,8 @@ cc.Class({
   },
   dealBtnActivityEvent: function dealBtnActivityEvent() {
     CommonFun.getInstance().showActivity();
-  }
+  } // update (dt) {},
 
-  // update (dt) {},
 });
 
 cc._RF.pop();

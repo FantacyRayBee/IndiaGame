@@ -5,10 +5,10 @@ cc._RF.push(module, 'fd6ea3nuApAAryrTex/m1Vu', 'english');
 "use strict";
 
 var _window$loginLanguage;
-// 1是英文 2是印地语 3乌尔都 4孟加拉语  默认英语 
-window.language = cc.sys.localStorage.getItem("language") ? cc.sys.localStorage.getItem("language") : 1;
 
-// 登录界面
+// 1是英文 2是印地语 3乌尔都 4孟加拉语  默认英语 
+window.language = cc.sys.localStorage.getItem("language") ? cc.sys.localStorage.getItem("language") : 1; // 登录界面
+
 window.loginLanguage = (_window$loginLanguage = {
   lab_fbLogin: ["lab_fbLogin", "Login Via Facebook", "फेसबुक लॉग इन", "فیس بک کے ذریعے لاگ ان کریں", "Facebook দিয়ে লগইন করুন"],
   lab_mobile: ["lab_mobile", "Login", "लॉग इन करें", "لاگ ان کریں", "লগইন করুন"],
@@ -25,9 +25,8 @@ window.loginLanguage = (_window$loginLanguage = {
 }, _window$loginLanguage["lab_Verify"] = ["lab_Verify", "Verify", "सत्यापित", "تصدیق کریں", "যাচাই করুন"], _window$loginLanguage.lab_backOTP = ["lab_backOTP", ">>Back & Change Mobile", ">>वापस करें और मोबाइल बदलें", ">>پیچھے جائیں اور موبائل تبدیل کریں", ">>ফিরে যান ও মোবাইল নম্বর পরিবর্তন করুন"], _window$loginLanguage);
 window.UpdateLanguage = {
   lab_repeatBets: ["lab_repeatBets", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"]
-};
+}; //  个人中心 
 
-//  个人中心 
 window.playerCenterLanguage = {
   node_deposited: ["node_deposited", "Deposited", "जमा", "ڈپازٹ کریں", "জমা"],
   node_bonus: ["node_bonus", "Bonus", "बोनास", "بونس", "বোনাস"],
@@ -45,9 +44,8 @@ window.playerCenterLanguage = {
   lab_Photograph: ["lab_Photograph", "Photograph", "तस्वीर", "فوٹوگراف", "ফোটোগ্রাফ"],
   lab_SelectFromPhotos: ["lab_SelectFromPhotos", "Select From Photo", "तस्वीरों में से चुनें", "تصاویر میں سے منتخب کریں", "ছবিগুলির থেকে বেছে নিন"],
   lab_Cancel: ["lab_Cancel", "Cancel", "रद्द करना", "منسوخ کریں", "বাতিল করুন"]
-};
+}; // 活动
 
-// 活动
 window.activityLanguage = {
   lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
   lab_day: ["lab_day", "Day", "दिन", "دن", "দিন"],
@@ -69,9 +67,8 @@ window.activityLanguage = {
   lab_cm_zp: ["lab_cm_zp", "LUCKY" + "\n" + "TURNTABLE", "लकी" + "\n" + "टर्नटेबल", "لکی" + "\n" + "ٹرن ٹیبل", "LUCKY" + "\n" + "TURNTABLE"],
   lab_bg_sc: ["lab_bg_sc", "GET" + "\n" + "YOUR BONUS", "आप" + "\n" + "बोनस प्राप्त करो", "اپنا بونس" + "\n" + "حاصل کریں", "আপনার" + "\n" + "বোনাস পান"],
   lab_cm_sc: ["lab_cm_sc", "GET" + "\n" + "YOUR BONUS", "आप" + "\n" + "बोनस प्राप्त करो", "اپنا بونس" + "\n" + "حاصل کریں", "আপনার" + "\n" + "বোনাস পান"]
-};
+}; // 奖券卡
 
-// 奖券卡
 window.bonusCardLanguage = {
   lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
   lab_getmore: ["lab_getmore", "Get more", "ज्यादा पाएं", "مزید حاصل کریں", "আরও পান"],
@@ -88,9 +85,8 @@ window.bonusCardLanguage = {
   lab_noticeCardHelp1: ["lab_noticeCardHelp1", "1 . You can recharge to buy the Daily Bonus Card，you can get the recharged amount right now , and extra bonus rewards will be given out a few days", "1. आप दैनिक बोनस कार्ड खरीदने के लिए रिचार्ज कर सकते हैं， आप अभी रिचार्ज की गई राशि प्राप्त कर सकते हैं, और अतिरिक्त बोनस पुरस्कार कुछ दिनों में दिए जाएंगे", "1. آپ یومیہ بونس کارڈ خریدنے کے لیے ریچارج کرسکتے ہیں، آپ ابھی اور اسی وقت ریچارج کردہ رقم حاصل کرسکتے ہیں، اور چند ہی دنوں میں اضافی بونس کے انعامات دے دیے جائیں گے", "1. আপনি প্রতিদিনের বোনাস কার্ড ক্রয় করার জন্য রিচার্জ করতে পারেন, আপনি এখনই রিচার্জ করা পরিমাণ পেতে পারেন, এবং অতিরিক্ত বোনাস পুরস্কারগুলি কিছু দিনে দেওয়া হবে"],
   lab_noticeCardHelp2: ["lab_noticeCardHelp2", "2 . You can only choose one type to purchase . On-ly one card is allowed at the same time", "2. आप खरीदने के लिए सिर्फ एक प्रकार का चयन कर सकते हैं। एक ही समय में सिर्फ एक कार्ड की अनुमति है", "2. آپ خریداری کے لیے صرف ایک قسم کو منتخب کرسکتے ہیں۔ ایک وقت میں صرف ایک کارڈ کی اجازت ہے", "2. আপনি ক্রয় করার জন্য শুধু একটি প্রকারই বেছে নিতে পারেন। এক সময়ে শুধু একটি কার্ডই অনুমোদিত"],
   lab_noticeCardHelp3: ["lab_noticeCardHelp3", "3 . You can buy the Daily Bonus Card only after the first deposit.", "3. आप पहली जमा राशि के बाद ही दैनिक बोनस कार्ड खरीद सकते हैं।", "3. آپ صرف پہلے ڈپازٹ کے بعد ہی یومیہ بونس کارڈ خرید سکتے ہیں۔", "3. আপনি প্রতিদিনের বোনাস কার্ড শুধু প্রথমবার জমা দেওয়ার পরেই ক্রয় করতে পারবেন।"]
-};
+}; // 设置
 
-// 设置
 window.settingLanguage = {
   label_sz: ['label_sz', 'SETTINGS', "समायोजन", "ترتیبات", "বিন্যাস"],
   lab_yx: ['lab_yx', 'Backgroud music', "बैकग्राउड संगीत", "پس منظر کی موسیقی", "ব্যাকগ্রাউন্ড সঙ্গীত"],
@@ -108,9 +104,8 @@ window.serviceLanguage = {
   lab_tip_2: ["lab_tip_2", "2.Your feedback will be answered within 1-2 working days", "2. आपकी प्रतिक्रिया का जवाब  1-2 कार्य दिवसों के भीतर दिया जाएगा", "2. آپ کے فیڈ بیک پر 1 سے 2 کاروباری دنوں کے اندر اندر جواب دے دیا جائے گا", "2. আপনার প্রতিক্রিয়ার উত্তর 1-2 কর্মদিবসের মধ্যে দেওয়া হবে "],
   PLACEHOLDER_LABEL: ["PLACEHOLDER_LABEL", "Please fill in your questions and suggestions here and send them to us.", "कृपया अपने प्रश्नों और सुझावों को यहां भरें और हमें भेजें।", "براہِ کرم اپنے سوالات اور تجاویز یہاں لکھیں اور ہمیں بھیج دیں۔", "অনুগ্রহ করে এখানে আপনার প্রশ্ন ও পরামর্শগুলি এখানে পূরণ করুন এবং তাদেরকে আমাদের কাছে পাঠান।"],
   lab_send: ["lab_send", "Send", "भेजना", "بھیجیں", "পাঠান"]
-};
+}; // 商城
 
-// 商城
 window.shopLanguage = {
   lab_title: ["lab_title", "Add  Cash", "नकद जोड़ें", "نقد رقم جمع کریں", "ক্যাশ যোগ করুন"],
   // lab_QuickAdd:["lab_QuickAdd","Select payment amount","शीघ्र जोड़ें","فوری شامل کریں","দ্রুত যোগ করুন"],
@@ -142,9 +137,8 @@ window.shopLanguage = {
   lab_WithdrawAmount: ["lab_WithdrawAmount", "Withdraw Amount:", "निकासी की राशि", "نکالی گئی رقم ", "টাকা তোলার পরিমাণ"],
   lab_WithdrawableBalance: ["lab_WithdrawableBalance", "Withdrawable Balance:", "निकासी योग्य शेष राशि", "نکالنے کا بیلنس  رقم", "টাকা তোলারযোগ্য ব্যালেন্স"],
   lab_warn: ["lab_warn", "1 . Money will be remitted to you within 7 days" + "\n" + "2 . The user's daily withdrawal limit is 3 times and the" + "\n" + "withdrawal limit is 15000 ", "1. पैसा 7 दिनों के अंदर आपको भेज दिया जाएगा" + "\n" + "2. उपयोगकर्ता की दैनिक निकासी सीमा 3 बार है और " + "\n" + "    निकासी सीमा 15000 है", "1.	آپ کو 7 ایام کے اندر رقم جمع کروا دی جائے گی" + "\n" + "2.	صارف کی یومیہ رقم نکالنے کی تعداد 3 بار اور نکالنے کی حد 15000 ہے", "1. টাকা 7 দিনের মধ্যে আপনার কাছে প্রেরণ করা হবে" + "\n" + "2. ব্যবহারকারীর প্রতিদিনের টাকা তোলার সীমা 3 বার এবং" + "\n" + "   15000 পর্যন্ত টাকা তোলা যাবে"]
-};
+}; // 手机登录 手机绑定
 
-// 手机登录 手机绑定
 window.MobileLoginLanguage = {
   lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
   lab_on: ["lab_on", "Cancel", "रद्द करना", "منسوخ کریں", "বাতিল করুন"],
@@ -160,9 +154,8 @@ window.MobileLoginLanguage = {
   tipsEmail: ["", "Email can not be empty", "इनपुट जानकारी खाली नहीं हो सकती", "ای میل کا خانہ خالی نہیں چھوڑا جاسکتا", "ইমেল খালি রাখা যাবে না"],
   tipsEmail01: ["", "Please fill in the correct email", "इनपुट जानकारी खाली नहीं हो सकती", "براہِ کرم درست ای میل پُر کریں", "অনুগ্রহ করে সঠিক ইমেল পূরণ করুন"],
   tipsOTP: ["", "X  Invalid OTP. Please  try  again.", "इनपुट जानकारी खाली नहीं हो सकती", "X غلط OTP۔ براہِ کرم دوبارہ کوشش کریں.", "X অবৈধ OTP। অনুগ্রহ করে আবার চেষ্টা করুন।"]
-};
+}; // 选场列表
 
-// 选场列表
 window.xuanChangLanguage = {
   lab_cash: ["lab_cash", "Cash", "नकद", "کیش", "নগদ"],
   lab_practice: ["lab_practice", "Practice", "अभ्यास", "مشق کریں", "অনুশীলন"],
@@ -203,12 +196,10 @@ window.xuanChangLanguage = {
   lab_goAhead: ['lab_goAhead', 'Go ahead', 'आगे बढ़ो', 'ہاں ضرور', 'এগিয়ে যান'],
   lab_notNow: ['lab_notNow', 'Not now', 'अभी नहीं', 'ابھی نہیں', 'এখন নয়'],
   lab_content: ['lab_content', 'You have much more money than other players in current level , go to challenge higher level and win more money ?', 'वर्तमान स्तर में आपके पास अन्य खिलाड़ियों की तुलना में काफी अधिक पैसा है, और ऊँचे स्तर पर जाना और अधिक धन जीतना चाहेंगे ?', 'موجودہ لیول میں آپ کے پاس دوسرے کھلاڑیوں سے کافی زیادہ رقم ہے، زیادہ اونچے لیول میں جاکر چیلنج کریں گے اور مزید رقم جیتیں گے؟', 'বর্তমান লেভেলের অন্যান্য খেলোয়াড়দের তুলনায় আপনার কাছে অনেক বেশি অর্থ আছে, উপরের লেভেলে চ্যালেঞ্জ করতে এবং আরও বেশি অর্থ জিততে যাওয়া যাক ?']
-};
+}; //  俏皮话
 
-//  俏皮话
-window.zjhQiaoPiHau = [["", "Play Fast", " तेजी से खेलना", "Play Fast", "Play Fast"], ["", "Jaldi Khelo", "जल्दी खेलो", "Jaldi Khelo", "Jaldi Khelo"], ["", "Please Play Blind", "प्लीज प्ले ब्लाइंड", "Please Play Blind", "Please Play Blind"], ["", "Blind Khelo!", "अंधे खेलो", "Blind Khelo!", "Blind Khelo!"], ["", "I Won!", "मैं जीता!", "I Won!", "I Won!"], ["", "Good Luck", "शुभ लाभ", "Good Luck", "Good Luck"], ["", "Hi All!", "नमस्ते!", "Hi All!", "Hi All!"], ["", "It is your day", "आपका दिन है", "It is your day", "It is your day"], ["", "Thanks!", "धन्यवाद", "Thanks!", "Thanks!"], ["", "Try next time", "अगली बार कोशिश करें", "Try next time", "Try next time"], ["", "Nice Game", " अच्छा खेल है", "Nice Game", "Nice Game"]];
+window.zjhQiaoPiHau = [["", "Play Fast", " तेजी से खेलना", "Play Fast", "Play Fast"], ["", "Jaldi Khelo", "जल्दी खेलो", "Jaldi Khelo", "Jaldi Khelo"], ["", "Please Play Blind", "प्लीज प्ले ब्लाइंड", "Please Play Blind", "Please Play Blind"], ["", "Blind Khelo!", "अंधे खेलो", "Blind Khelo!", "Blind Khelo!"], ["", "I Won!", "मैं जीता!", "I Won!", "I Won!"], ["", "Good Luck", "शुभ लाभ", "Good Luck", "Good Luck"], ["", "Hi All!", "नमस्ते!", "Hi All!", "Hi All!"], ["", "It is your day", "आपका दिन है", "It is your day", "It is your day"], ["", "Thanks!", "धन्यवाद", "Thanks!", "Thanks!"], ["", "Try next time", "अगली बार कोशिश करें", "Try next time", "Try next time"], ["", "Nice Game", " अच्छा खेल है", "Nice Game", "Nice Game"]]; // 大厅规则
 
-// 大厅规则
 window.lobbyRuleLanguage = {
   lab_repeatBets: ["lab_repeatBets", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
   lab_teenpatti: ['lab_teenpatti', 'Teen Patti', "तीन पत्ती", "تین پتی", 'তিন পাত্তি'],
@@ -272,7 +263,6 @@ window.lobbyRuleLanguage = {
   lab_ander_04: ["lab_ander_04", "Second bet happens aftertwo cards have been dealtto the table.", " दूसरी बेट तब होती है जब टेबल पर दो कार्ड डिलिट हो जाते हैं |", "دوسری بیٹ تب ہوتی ہے جب دو کارڈز ٹیبل پر تقسیم کر دیے گئے ہوں۔", "দ্বিতীয় বাজি টেবিলে দুটি তাস ডিল করার পরে হয়।"],
   lab_ander_05: ["lab_ander_05", "The game ends when a cardof the same rank as the Jokerlands on Andar or Bahar.", "खेल तब समाप्त होता है जब जोकर के समान रैंक का कार्ड अंदर या बहार पर उतरता है।", "جب جوکر کے مساوی رینک کا کارڈ اندر یا باہر آجاتا ہے تو گیم ختم ہو جاتا ہے۔", "খেলাটি জোকারের সমান র‍্যাঙ্কের একটি তাস Andar or Bahar-এ চলে আসলে শেষ হয়ে যাবে।"],
   // 7上7下
-
   lab_7up_01: ["lab_7up_01", "7 Up 7 Down is a simple dice game", "7 अप 7 डाउन एक साधारण पासा खेल है।", "7 اپ 7 ڈاؤن ایک سادہ ڈائس گیم ہے", "7 Up 7 Down পাশার একটি সাধারণ খেলা। "],
   lab_7up_02: ["lab_7up_02", "Two 6 sided dice are rolled and the results are totalled up", "दो 6 भुजाओं वाले पासों को लुढ़काया जाता है और परिणामों का योग किया जाता है।", "6 پہلوئی دو ڈائس پھینکی جاتی ہیں اور ان پر آنے والے نمبرز کو جمع کرلیا جاتا ہے", "দুটি 6 দিকওয়ালা পাশা ঘুরিয়ে ফেলা হয় এবং ফলাফলগুলির সমষ্টি বের করা হয়।"],
   lab_7up_03: ["lab_7up_03", "You can bet on the total being under 7, exactly 7 ,or over 7.", "आप कुल 7 से कम, ठीक 7 या 7 से अधिक होने पर बेट लगा सकते हैं।", " آپ 7 سے کم، پورے 7 یا 7 سے زائد کے ٹوٹل پر بیٹ لگا سکتے ہیں۔", " আপনি মোটকে 7 এর চেয়ে কম, ঠিক 7 বা 7-এর বেশি হলে বাজি ধরতে পারেন।"],
@@ -332,9 +322,8 @@ window.lobbyRuleLanguage = {
   lab_sscWaFa_10: ["lab_sscWaFa_10", "Win=bet * 4", "जीत= शर्त* 4", "کامیابی=بیٹ * 4", "জিতুন=বাজি * 4"],
   lab_sscWaFa_11: ["lab_sscWaFa_11", "Win=bet * 3", "जीत= शर्त* 3", "کامیابی=بیٹ * 3", "জিতুন=বাজি * 3"],
   lab_sscWaFa_12: ["lab_sscWaFa_12", "Win=bet * 10", "जीत= शर्त* 10", "کامیابی=بیٹ * 10", "জিতুন=বাজি * 10"]
-};
+}; // 其他 
 
-// 其他 
 window.otherLanguage = {
   lab_Copy: ["", "Copy", "कॉपी", "کاپی کریں", "কপি করুন"],
   nameTips: ["", "Invalid nickname , please use common letters and numbers", "अवैध उपनाम, कृपया सामान्य शब्दों और संख्याओं का इस्तेमाल करें", "غلط عرفیت، براہِ کرم عام حروفِ تہجی اور اعداد استعمال کریں", "অবৈধ ডাকনাম, অনুগ্রহ করে প্রচলিত বর্ণ ও সংখ্যাগুলি ব্যবহার করুন"],
@@ -369,9 +358,8 @@ window.otherLanguage = {
   rummyTisp_11: ["", "Game starting in 0 sec", "खेल 0 सेकेंड में शुरू होने वाला है", "گیم 0 سیکنڈز میں شروع ہو رہا ہے", "খেলা 0 সেকেন্ডে শুরু হচ্ছে"],
   rummyTisp_12: ["", "Game starting in 5 sec", "खेल 5 सेकेंड में शुरू होने वाला है", "گیم 5 سیکنڈز میں شروع ہو رہا ہے", "খেলা 5 সেকেন্ডে শুরু হচ্ছে"],
   rummyTisp_13: ["", "Game starting in 4 sec", "खेल 4 सेकेंड में शुरू होने वाला है", "گیم 4 سیکنڈز میں شروع ہو رہا ہے", "খেলা 4 সেকেন্ডে শুরু হচ্ছে"]
-};
+}; // 拉米游戏
 
-// 拉米游戏
 window.rummyLanguage = {
   lab_OPEN: ["lab_OPEN", "OPEN", "खुला", "کھولیں", "খোলা"],
   lab_CLOSE: ["lab_CLOSE", "CLOSE", "बंद", "بند کریں", "বন্ধ"],
@@ -388,9 +376,8 @@ window.rummyLanguage = {
   textPlayers: ["textPlayers", "Start", "डेक्स की संख्या", "ڈیکس کی تعداد", "ডেকের সংখ্যা"],
   lab_Okay: ["lab_Okay", "Okay", "अच्छा", "ٹھیک ہے", "আচ্ছা"],
   lab_note: ["lab_note", "Note:If you quit a game in progress you will lose up to 40 point", "नोट: अगर आप किसी खेल को प्रगति के दौरान छोड़ देते हैं तो 40 अंक खो देंगे", "نوٹ: اگر آپ جاری گیم کو چھوڑ دیں گے تو آپ کے 40 پوائنٹس تک ضائع ہو جائیں گے", "দ্রষ্টব্য: আপনি চালু থাকা কোনো খেলা ত্যাগ করলে 40 পয়েন্ট পর্যন্ত হারাতে পারেন"]
-};
+}; // 炸金花游戏内翻译
 
-// 炸金花游戏内翻译
 window.teenPattiLanguage = {
   lab_bootAmountTips: ['lab_bootAmountTips', 'Boot Amount', "बूट मूल्य", "بوٹ رقم", "বুট মূল্য"],
   lab_chaalLimitTips: ['lab_chaalLimitTips', "Chaal Limit", "चल सीमा", "چال حد", "চালের সীমা"],
@@ -403,9 +390,8 @@ window.teenPattiLanguage = {
   waitFor: ["", "You have 200s to recharge", "आपके पास रिचार्ज करने के लिए 200एस हैं", "ری چارج کے لیے آپ کے پاس 200 سیکنڈز ہیں", "রিচার্জ করার জন্য আপনার কাছে 200 সেকেন্ড আছে"],
   tips: ["", "tips", "रिचार्ज", "Recharge", "Recharge"],
   rich: ["", "is recharging , please wait for him", "रिचार्ज कर रहा है, कृपया उसके लिए इंतजार करें", "ری چارج کر رہا ہے، براہِ کرم اس کا انتظار کریں", "রিচার্জ করছেন, অনুগ্রহ করে তার জন্য অপেক্ষা করুন"]
-};
+}; // 安德尔游戏
 
-// 安德尔游戏
 window.andeerLanguage = {
   lab_title: ["lab_title", 'Andar Bahar', "आंदर बहारी", "اندر باہر", "Andar Bahar"],
   lab_PofLimif: ["lab_PofLimif", "Totai Players", "कुल खिलाड़ी", "مجموعی کھلاڑی", "没有"],
@@ -421,15 +407,13 @@ window.andeerLanguage = {
   lab_andeer: ["lab_andeer", 'Andar Bahar', "आंदर बहारी", "اندر باہر", "Andar Bahar"],
   skipped: ["", "Skipped", "छोड़ा गया", "چھوڑا ہوا", "এড়িয়ে যাওয়া হয়েছে"],
   packed: ["", "PACKED", "पैक", "پیک شدہ", "প্যাকার"]
-};
+}; // 七上七下
 
-// 七上七下
 window.updownLanguage = {
   lab_title: ["lab_title", "ONLINE PLAYERS", "ऑनलाइन खिलाड़ी", "آن لائن کھلاڑی", "অনলাইন খেলোয়াড়"],
   lab_playerTotal: ["lab_playerTotal", "Total online players:", "कुल ऑनलाइन खिलाड़ी:", "مجموعی آن لائن کھلاڑی", "মোট অনলাইন খেলোয়াড়:"]
-};
+}; // 龙虎斗
 
-// 龙虎斗
 window.lhdLanguage = {
   lab_tiger: ["", "Tiger", "बाघ", "ٹائیگر", "টাইগার"],
   lab_dragon: ["", "Dragon", "ड्रैगन", "ڈریگن", "ড্রাগন"],
@@ -440,9 +424,8 @@ window.lhdLanguage = {
   lab_repeat: ["lab_repeat", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
   lab_repeatBets: ["lab_repeatBets", "Repeat bets", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
   lab_playerTotal: ["", "Total online players:", "कुल ऑनलाइन खिलाड़ी:", ":مجموعی آن لائن کھلاڑی", "মোট অনলাইন খেলোয়াড়:"]
-};
+}; // 时时猜
 
-// 时时猜
 window.loToLanguage = {
   Betting: ["", "Betting:", "शर्त लगाना:", "بیٹنگ:", "বাজি ধরুন:"],
   lab_repeatBets: ["lab_repeatBets", "REPEAT BET", "शर्तों को दोहराएं", "بیٹس دہرائیں", "আবার বাজি ধরুন"],
@@ -465,9 +448,8 @@ window.loToLanguage = {
   lab_HighCard3X: ["lab_HighCard3X", "HIGH CARD 3X", "उच्च कार्ड 10X", "بلند کارڈ 10X", "বড় তাস 10X"],
   lab_player: ["lab_player", "Player", "खिलाड़ी", "کھلاڑی", "জন"],
   lab_winnerBetAmount: ["lab_winnerBetAmount", "Bet Amount", "शर्त की रकम", "بیٹ کی رقم", "বাজির পরিমাণ"]
-};
+}; //提现信息填写   
 
-//提现信息填写   
 window.WithdrawNews = {
   lab_title_name: ["", "Payee Name", "प्राप्तकर्ता का नाम", "وصول کنندہ کا نام", "প্রাপকের নাম"],
   lab_title_email: ["", "Payee Email", "भुगतानकर्ताईमेल", "وصول کنندہ کا ای میل", "প্রাপকের ইমেল"],
@@ -477,18 +459,13 @@ window.WithdrawNews = {
   lab_title_code: ["", "Bank Code", "बैंक का सांकेतिक अंक", " بینک کا کوڈ", "ব্যাঙ্ক কোড"],
   Pleaseenteryour: ["", "Please enter your ", "कृपया अपना डालें", "براہ کرم درج کریں اپن", "অনুগ্রহ করে লিখুন আপনার"],
   lab_modification: ["", "Modification", "संशोधन", "ترمیم", "সংশোধন"]
-};
+}; //动态修改Label
 
-//动态修改Label
-window.dynamicChangeLabel = [["", "There is no announcement at this time", "इस समय कोई घोषणा नहीं है"], ["", "Already bind your Phone Number：", "अपना फ़ोन नंबर पहले से ही बाँध लें："], ["", "You can not bind yourself", "आप खुद को बांध नहीं सकते"], ["", "Congratulations on your successfully binding 5 rupees has been sent to your account", "आपके खाते में ५ रुपये सफलतापूर्वक बाध्यकारी होने पर बधाई भेज दी गई है"], ["", "Blind ID : ", "बिंदो: "], ["", "This feature is available only for premium players Add cash now to become a premium player.", "यह सुविधा केवल वरिष्ठ खिलाड़ियों के लिए उपलब्ध है,  और एक वरिष्ठ खिलाड़ी बनने के लिए तुरंत नकद जोड़ती है।"], ["", "Brick", "ब्रिक"], ["", "Hammer", "हथौड़ा"], ["", "Sandal", "चन्दन"], ["", "Bat", "बल्ला"], ["", "Gold Pot", "सोने का बर्तन"], ["", "Declare", "没有"], ["", "Oops！", "उफ़"],
-//炸金花
-["", "Chaal ", "चाली "], ["", "Blind ", "अंधा ", "ব্লাইন্ড "], ["", "Side Show", "साइड शो"], ["", "Show", "साइड"],
-//7上7下
-["", "Billing...", "बिलिंग...", "...بلنگ", "বিলিং..."], ["", " seconds", "बेटिंग"], ["", "Betting starts in 0 seconds", "बेटिंग 0 सेकंड में शुरू होती है", "بیٹنگ 0 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 0 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 1 seconds", "बेटिंग 1 सेकंड में शुरू होती है", "بیٹنگ 1 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 1 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 2 seconds", "बेटिंग 2 सेकंड में शुरू होती है", "بیٹنگ 2 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 2 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 3 seconds", "बेटिंग 3 सेकंड में शुरू होती है", "بیٹنگ 3 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 3 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting end in 0 seconds", "बेटिंग 0 सेकंड में समाप्त होती है", "بیٹنگ 0 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 0 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 1 seconds", "बेटिंग 1 सेकंड में समाप्त होती है", "بیٹنگ 1 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 1 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 2 seconds", "बेटिंग 2 सेकंड में समाप्त होती है", "بیٹنگ 2 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 2 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 3 seconds", "बेटिंग 3 सेकंड में समाप्त होती है", "بیٹنگ 3 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 3 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 4 seconds", "बेटिंग 4 सेकंड में समाप्त होती है", "بیٹنگ 4 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 4 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 5 seconds", "बेटिंग 5 सेकंड में समाप्त होती है", "بیٹنگ 5 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 5 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 6 seconds", "बेटिंग 6 सेकंड में समाप्त होती है", "بیٹنگ 6 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 6 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 7 seconds", "बेटिंग 7 सेकंड में समाप्त होती है", "بیٹنگ 7 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 7 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 8 seconds", "बेटिंग 8 सेकंड में समाप्त होती है", "بیٹنگ 9 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 8 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 9 seconds", "बेटिंग 9 सेकंड में समाप्त होती है", "بیٹنگ 10 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 9 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 10 seconds", "बेटिंग 10 सेकंड में समाप्त होती है", "بیٹنگ 11 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 10 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 11 seconds", "बेटिंग 11 सेकंड में समाप्त होती है", "بیٹنگ 11 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 11 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 12 seconds", "बेटिंग 12 सेकंड में समाप्त होती है", "بیٹنگ 12 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 12 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 13 seconds", "बेटिंग 13 सेकंड में समाप्त होती है", "بیٹنگ 13 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 13 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 14 seconds", "बेटिंग 14 सेकंड में समाप्त होती है", "بیٹنگ 14 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 14 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 15 seconds", "बेटिंग 15 सेकंड में समाप्त होती है", "بیٹنگ 15 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 15 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 16 seconds", "बेटिंग 16 सेकंड में समाप्त होती है", "بیٹنگ 16 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 16 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 17 seconds", "बेटिंग 17 सेकंड में समाप्त होती है", "بیٹنگ 17 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 17 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 18 seconds", "बेटिंग 18 सेकंड में समाप्त होती है", "بیٹنگ 18 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 18 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 19 seconds", "बेटिंग 19 सेकंड में समाप्त होती है", "بیٹنگ 19 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 19 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 20 seconds", "बेटिंग 20 सेकंड में समाप्त होती है", "بیٹنگ 20 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 20 সেকেন্ডে শেষ হচ্ছে"],
-//  安德尔
-["", "      Gamestartingin 5 s", "गेम 5 सेकंड में शुरू हो रहा है ", "گیم 5 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 5 সেকেন্ডে"], ["", "      Gamestartingin 4 s", "गेम 4 सेकंड में शुरू हो रहा है ", "گیم 4 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 4 সেকেন্ডে"], ["", "      Gamestartingin 3 s", "गेम 3 सेकंड में शुरू हो रहा है ", "گیم 3 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 3 সেকেন্ডে"], ["", "      Gamestartingin 2 s", "गेम 2 सेकंड में शुरू हो रहा है ", "گیم 2 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 2 সেকেন্ডে"], ["", "      Gamestartingin 1 s", "गेम 1 सेकंड में शुरू हो रहा है ", "گیم 1 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 1 সেকেন্ডে"], ["", "      Gamestartingin 0 s", "गेम 0 सेकंड में शुरू हो रहा है ", "گیم 0 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 0 সেকেন্ডে"], ["", "Dealing Cards...", "Dealing Cards...", "Dealing Cards...", "Dealing Cards..."], ["", "Bahar Win!", "         बहार जीत！", "Bahar Win!", "Bahar Win!"], ["", "Andar Win!", "         आंदर विंस！", "Andar Win!", "Andar Win!"], ["", "Andar Win And Bahar Win!", "         आंदर विंस！", "Andar Win And Bahar Win!", "Andar Win And Bahar Win!"], ["", "The first round starts to bet!", "पहला राउंड दांव लगाना शुरू करता है!", "پہلا راؤنڈ بیٹ کے لیے شروع ہو رہا ہے", "বাজি ধরার জন্য প্রথম রাউন্ড শুরু হচ্ছে"], ["", "The second round starts to bet!", "दूसरा दौर दांव लगाना  शुरूकरता है!", "دوسرا راؤنڈ بیٹ کے لیے شروع ہو رہا ہے !", "বাজি ধরার জন্য দ্বিতীয় রাউন্ড শুরু হচ্ছে"], ["", "Failure", "विफलता"], ["", "Progressing", "प्रसंस्करण"], ["", "Pending", "लंबित"], ["", "Processing", "प्रसंस्करण"], ["", "Released", "जारी किया गया"], ["", "Rejected", "अस्वीकृत"], ["", "Cancelled", "रद्द"], ["", "Closed", "बंद किया हुआ"], ["", "Unpaid", "अवैतनिक"], ["", "Paid", "भुगतान किया"]];
+window.dynamicChangeLabel = [["", "There is no announcement at this time", "इस समय कोई घोषणा नहीं है"], ["", "Already bind your Phone Number：", "अपना फ़ोन नंबर पहले से ही बाँध लें："], ["", "You can not bind yourself", "आप खुद को बांध नहीं सकते"], ["", "Congratulations on your successfully binding 5 rupees has been sent to your account", "आपके खाते में ५ रुपये सफलतापूर्वक बाध्यकारी होने पर बधाई भेज दी गई है"], ["", "Blind ID : ", "बिंदो: "], ["", "This feature is available only for premium players Add cash now to become a premium player.", "यह सुविधा केवल वरिष्ठ खिलाड़ियों के लिए उपलब्ध है,  और एक वरिष्ठ खिलाड़ी बनने के लिए तुरंत नकद जोड़ती है।"], ["", "Brick", "ब्रिक"], ["", "Hammer", "हथौड़ा"], ["", "Sandal", "चन्दन"], ["", "Bat", "बल्ला"], ["", "Gold Pot", "सोने का बर्तन"], ["", "Declare", "没有"], ["", "Oops！", "उफ़"], //炸金花
+["", "Chaal ", "चाली "], ["", "Blind ", "अंधा ", "ব্লাইন্ড "], ["", "Side Show", "साइड शो"], ["", "Show", "साइड"], //7上7下
+["", "Billing...", "बिलिंग...", "...بلنگ", "বিলিং..."], ["", " seconds", "बेटिंग"], ["", "Betting starts in 0 seconds", "बेटिंग 0 सेकंड में शुरू होती है", "بیٹنگ 0 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 0 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 1 seconds", "बेटिंग 1 सेकंड में शुरू होती है", "بیٹنگ 1 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 1 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 2 seconds", "बेटिंग 2 सेकंड में शुरू होती है", "بیٹنگ 2 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 2 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting starts in 3 seconds", "बेटिंग 3 सेकंड में शुरू होती है", "بیٹنگ 3 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 3 সেকেন্ডে শুরু হচ্ছে"], ["", "Betting end in 0 seconds", "बेटिंग 0 सेकंड में समाप्त होती है", "بیٹنگ 0 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 0 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 1 seconds", "बेटिंग 1 सेकंड में समाप्त होती है", "بیٹنگ 1 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 1 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 2 seconds", "बेटिंग 2 सेकंड में समाप्त होती है", "بیٹنگ 2 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 2 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 3 seconds", "बेटिंग 3 सेकंड में समाप्त होती है", "بیٹنگ 3 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 3 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 4 seconds", "बेटिंग 4 सेकंड में समाप्त होती है", "بیٹنگ 4 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 4 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 5 seconds", "बेटिंग 5 सेकंड में समाप्त होती है", "بیٹنگ 5 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 5 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 6 seconds", "बेटिंग 6 सेकंड में समाप्त होती है", "بیٹنگ 6 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 6 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 7 seconds", "बेटिंग 7 सेकंड में समाप्त होती है", "بیٹنگ 7 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 7 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 8 seconds", "बेटिंग 8 सेकंड में समाप्त होती है", "بیٹنگ 9 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 8 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 9 seconds", "बेटिंग 9 सेकंड में समाप्त होती है", "بیٹنگ 10 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 9 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 10 seconds", "बेटिंग 10 सेकंड में समाप्त होती है", "بیٹنگ 11 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 10 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 11 seconds", "बेटिंग 11 सेकंड में समाप्त होती है", "بیٹنگ 11 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 11 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 12 seconds", "बेटिंग 12 सेकंड में समाप्त होती है", "بیٹنگ 12 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 12 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 13 seconds", "बेटिंग 13 सेकंड में समाप्त होती है", "بیٹنگ 13 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 13 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 14 seconds", "बेटिंग 14 सेकंड में समाप्त होती है", "بیٹنگ 14 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 14 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 15 seconds", "बेटिंग 15 सेकंड में समाप्त होती है", "بیٹنگ 15 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 15 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 16 seconds", "बेटिंग 16 सेकंड में समाप्त होती है", "بیٹنگ 16 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 16 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 17 seconds", "बेटिंग 17 सेकंड में समाप्त होती है", "بیٹنگ 17 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 17 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 18 seconds", "बेटिंग 18 सेकंड में समाप्त होती है", "بیٹنگ 18 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 18 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 19 seconds", "बेटिंग 19 सेकंड में समाप्त होती है", "بیٹنگ 19 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 19 সেকেন্ডে শেষ হচ্ছে"], ["", "Betting end in 20 seconds", "बेटिंग 20 सेकंड में समाप्त होती है", "بیٹنگ 20 سیکنڈز میں شروع ہو رہی ہے", "বাজি ধরা 20 সেকেন্ডে শেষ হচ্ছে"], //  安德尔
+["", "      Gamestartingin 5 s", "गेम 5 सेकंड में शुरू हो रहा है ", "گیم 5 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 5 সেকেন্ডে"], ["", "      Gamestartingin 4 s", "गेम 4 सेकंड में शुरू हो रहा है ", "گیم 4 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 4 সেকেন্ডে"], ["", "      Gamestartingin 3 s", "गेम 3 सेकंड में शुरू हो रहा है ", "گیم 3 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 3 সেকেন্ডে"], ["", "      Gamestartingin 2 s", "गेम 2 सेकंड में शुरू हो रहा है ", "گیم 2 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 2 সেকেন্ডে"], ["", "      Gamestartingin 1 s", "गेम 1 सेकंड में शुरू हो रहा है ", "گیم 1 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 1 সেকেন্ডে"], ["", "      Gamestartingin 0 s", "गेम 0 सेकंड में शुरू हो रहा है ", "گیم 0 سیکنڈز میں شروع ہو رہا ہے", "খেলা শুরু হচ্ছে 0 সেকেন্ডে"], ["", "Dealing Cards...", "Dealing Cards...", "Dealing Cards...", "Dealing Cards..."], ["", "Bahar Win!", "         बहार जीत！", "Bahar Win!", "Bahar Win!"], ["", "Andar Win!", "         आंदर विंस！", "Andar Win!", "Andar Win!"], ["", "Andar Win And Bahar Win!", "         आंदर विंस！", "Andar Win And Bahar Win!", "Andar Win And Bahar Win!"], ["", "The first round starts to bet!", "पहला राउंड दांव लगाना शुरू करता है!", "پہلا راؤنڈ بیٹ کے لیے شروع ہو رہا ہے", "বাজি ধরার জন্য প্রথম রাউন্ড শুরু হচ্ছে"], ["", "The second round starts to bet!", "दूसरा दौर दांव लगाना  शुरूकरता है!", "دوسرا راؤنڈ بیٹ کے لیے شروع ہو رہا ہے !", "বাজি ধরার জন্য দ্বিতীয় রাউন্ড শুরু হচ্ছে"], ["", "Failure", "विफलता"], ["", "Progressing", "प्रसंस्करण"], ["", "Pending", "लंबित"], ["", "Processing", "प्रसंस्करण"], ["", "Released", "जारी किया गया"], ["", "Rejected", "अस्वीकृत"], ["", "Cancelled", "रद्द"], ["", "Closed", "बंद किया हुआ"], ["", "Unpaid", "अवैतनिक"], ["", "Paid", "भुगतान किया"]]; // 所有提示语言
 
-// 所有提示语言
 window.TipsMsgBox = [["服务器繁忙", "Server busy", "व्यस्त सर्वर"], ["该账号无法绑定手机号", "The account cannot be bound with a mobile phone number", "खाते को मोबाइल फ़ोन नंबर से बाध्य नहीं किया जा सकता"], ["用户昵称重复", "Duplicate user nickname", "डुप्लिकेट उपयोगकर्ता उपनाम"], ["验证码错误", "Verification code error", "सत्यापन कोड त्रुटि"], ["接口服务繁忙", "Interface service busy", "इंटरफ़ेस सेवा व्यस्त"], ["验证码已发送请稍候重新发送", "The verification code has been sent. Please resend it later", "सत्यापन कोड भेज दिया गया है। कृपया इसे बाद में भेजें"], ["请勿重复登录", "Do not repeat login", "लॉगिन दोहराएं नहीं"], ["金币不足，您已退出该场次", "Insufficient gold coins", "अपर्याप्त सोने के सिक्के"], ["没有足够的金币", "", ""], ["余额不足", "Insufficient balance", "अपर्याप्त शेषराशि"], ["游戏还未开始", "The game hasn't started yet", "खेल अभी शुरू नहीं हुआ है"], ["关键参数不能为空", "The key parameter cannot be empty", "मुख्य पैरामीटर खाली नहीं हो सकता"], ["获取用户信息失败", "Failed to obtain user information", "उपयोगकर्ता जानकारी प्राप्त करने में विफल"], ["", "Bind succeeded", "अंधी सफलता", "اندھی کامیابی ", "ব্লাইন্ড সফল"], ["", "Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", "आपका खेल अभी खत्म नहीं हुआ है, टेबल में पैसा होगा| वापस न किया जाए। क्या आपका जाना निश्चित है?", "آپ کا گیم ابھی تک ختم نہیں ہوا ہے۔ اگر آپ ٹیبل سے باہر نکلنا چاہتے ہیں، تو آپ کی رقم ڈوب جائے گی۔ کیا آپ ٹیبل چھوڑنا چاہتے ہیں؟", "আপনার খেলা এখনও শেষ হয়নি। আপনি টেবিলে পয়সা থাকবে, যা ফেরত দেওয়া হবে না। আপনি কি প্রস্থান করতে নিশ্চিত?"], ["", "Nickname can not be Empty!", "पनाम खाली नहीं हो सकता", "عرفیت کا خانہ خالی نہیں چھوڑا جاسکتا", "ডাকনাম খালি রাখা যাবে না"], ["", "Please enter the correct phone number!", "कृपया सही फोन नंबर दर्ज करें", "براہِ کرم درست فون نمبر درج کریں", "অনুগ্রহ করে সথ্জিক ফোন নম্বর লিখুন"], ["", "Nickname modified successfully!", "उपनाम सफलतापूर्वक संशोधित किया गया", "عرفیت میں کامیابی سے ترمیم کر دی گئی", "ডাকনাম সফলভাবে সংশোধন করা হয়েছে"], ["", "Insufficient amount, unable to withdraw cash!", "अपर्याप्त राशि, नकदी निकालने में असमर्थ"], ["", "The application for cash withdrawal has been submitted. Please wait patiently!", "नकद निकासी के लिए आवेदन जमा कर दिया गया है। - कृपया धैर्यपूर्वक प्रतीक्षा करें"], ["", "Please check your recharge status in the add history", "कृपया ऐड हिस्ट्री में अपना रिचार्ज स्टेटस चेक करें"], ["", "Input your new nickname below", "अपना नया उपनाम नीचे दर्ज करें", "اپنی نئی عرفیت ذیل میں درج کریں", "আপনার নতুন ডাকনাম নীচে লিপিবদ্ধ করুন"], ["", "Input your new nickname", "अपना नया उपनाम डालें", "اپنی نئی عرفیت ذیل میں درج کریں", "আপনার নতুন ডাকনাম নীচে লিপিবদ্ধ করুন"], ["", "Verification code error", "सत्यापन कोड त्रुटि"], ["", "The game hasn't started yet", "खेल अभी शुरू नहीं हुआ है"], ["", "The user ID is not exist", "उपयोगकर्ता आईडी मौजूद नहीं है"], ["", "Binding error", "बाध्यकारी त्रुटि"], ["", "Please input player ID !", "कृपया इनपुट प्लेयर आईडी"], ["", "Modified successfully!", "सफलतापूर्वक संशोधित", "کامیابی سے ترمیم کی گئی", "সফলভাবে সংশোধন করা হয়েছে!"], ["", "Your cash is insufficient,Please recharge in time！", "क्षमा करें, पर्याप्त सोने के सिक्के नहीं हैं"], ["", "Sharing is temporarily closed", "साझाकरण अस्थायी रूप से बंद है"], ["", "There are other players in the VIP seat!", " वीआईपी सीट पर अन्य खिलाड़ी हैंहै"], ["", "Login exception", "लॉगिन अपवाद"], ["", "Login type error,please check and then login!", "लॉगिन टाइप एरर, कृपया चेक करें और फिर लॉग इन करें"], ["", "Congratulate on binding your Mobile Phone Number!", "अपना मोबाइल फ़ोन नंबर बाइंड करने पर बधाई!"], ["", "Avatar modified successfully", "अवतार सफलतापूर्वक संशोधित"], ["", "Copy Successfully!", "सफलतापूर्वक कॉपी करें!"], ["", "Skill cooling...", "कौशल ठंडा करना.."], ["", "modificationing successfully", "सफलतापूर्वक संशोधित"], ["", "Daily withdrawal limit", "दैनिक निकासी की सीमा"], ["", "Input information cannot be empty!", "इनपुट जानकारी खाली नहीं हो सकती"], ["", "please check the information you entered", "कृपया आपके द्वारा दर्ज की गई जानकारी की जांच करें"], ["", "Top-up success", "टॉप-अप सफलता"], ["", "last page", "अंतिम पृष्ठ"], ["", "first page", "पहिला पृष्ठ"], ["", "Submitted successfully, waiting for review", "सफलतापूर्वक सबमिट किया गया, समीक्षा की प्रतीक्षा में"], ["", "The withdrawal amount is less than 100", "निकासी राशि 100 से कम है"], ["", "It's already mentioned today", "यह आज पहले ही उल्लेख किया जा चुका है"], ["", "Unable to withdraw cash", "नकदी निकालने में असमर्थ"], ["", "Please be wait and check your phone!", "कृपया प्रतीक्षा करें और अपना फोन जांचें!", "براہِ کرم انتظار کریں اور اپنا فون چیک کریں !", "অনুগ্রহ করে অপেক্ষা করে আপনার ফোন চেক করুন"], ["", "Incorrect phone number or vertification code!", "गलत फोन नंबर या सत्यापन कोड!"], ["", "The current network is not good", "वर्तमान नेटवर्क अच्छा नहीं है"], ["", "Busy game server,please login later!", "व्यस्त गेम सर्वर, कृपया बाद में पुन: प्रयास करें!"], ["", "Please do not log in again!", "कृपया दोबारा लॉग इन न करें"], ["", "Downloading, please wait！", "डाउनलोड कर रहा है, कृपया प्रतीक्षा करें"], ["", "Auto Logining...", "ऑटो लॉगिंग..."], ["", "In the game, unable to exit", "खेल में, बाहर निकलने में असमर्थ"], ["", "No changing tables in the game", "खेल में कोई बदलती मेज नहीं"], ["", "Interface loading...", "इंटरफ़ेस लोड हो रहा है..."], ["", "Insufficient balance to continue", "जारी रखने के लिए अपर्याप्त शेष"], ["", "Are you sure you want to join the VIP seat?", "क्या आप वाकई वीआईपी सीट से जुड़ना चाहते हैं?", "کیا آپ واقعی VIP نشست میں شامل ہونا چاہتے ہیں", "আপনি কি নিশ্চিত যে আপনি ভিআইপি সীটে যোগ দিতে চান"], ["", "You can't be a VIP if you carry less than 100 gold coins", "अगर आपके पास 100 से कम सोने के सिक्के हैं तो आप वीआईपी नहीं हो सकते", "اگر آپ کے پاس سونے کے سکے 100 سے کم ہیں تو آپ VIP نہیں بن سکتے", "যদি আপনার কাছে 100 এর চেয়ে কম সোনার কয়েন থাকে তাহলে আপনি ভিআইপি হতে পারবেন না "], ["", "On other VIP seats, are you sure you want to enter this VIP seat?", "अन्य वीआईपी सीटों पर, क्या आप वाकई इस वीआईपी सीट में प्रवेश करना चाहते हैं?", "دیگر VIP نشستوں پر، کیا آپ واقعی اس VIP نشست میں داخل ہونا چاہتے ہیں؟", "অন্য ভিআইপি সীটে, আপনি কি নিশ্চিত অপি এই ভিআইপি সীটে প্রবেশ করতে চান?"], ["", "Do you want to exit the VIP seat?", "क्या आप वीआईपी सीट से बाहर निकलना चाहते हैं", "کیا آپ VIP نشست سے باہر نکلنا چاہتے ہیں ؟", "আপনি কি ভিআইপি সীটের থেকে বেরিয়ে আসতে চান?"], ["", "There are other players in this VIP seat. Please choose again!", "इस वीआईपी सीट पर और भी खिलाड़ी हैं। कृपया फिर से चुनें", "اس VIP نشست میں دیگر کھلاڑی موجود ہیں۔ براہِ کرم دوبارہ منتخب کریں !", "এই ভিআইপি সীটে অন্য খেলোয়াড়রাও আছেন। অনুগ্রহ করে আবার বেছে নিন!"], ["", "Do you wish to use this turret?", "क्या आप इस बुर्ज का उपयोग करना चाहते हैं?"], ["", "You need to carry at least 50RS to withdraw cash!", "नकदी निकालने के लिए आपके पास कम से कम 50 रुपये होने चाहिए"], ["", "Are you sure you want to withdraw cash", "क्या आप सुनिश्चित हैं कि आप नकद निकालना चाहते हैं"], ["", "Internet connection closed or failed!", "इंटरनेट कनेक्शन बंद या विफल"], ["", "Account remote login, please login again!", "खाता दूरस्थ लॉगिन, कृपया फिर से लॉगिन करें"], ["", "No operation for a long time, please exit the room", "लंबे समय से कोई ऑपरेशन नहीं, कृपया कमरे से बाहर निकलें"], ["", "Facebook Copied Successfully", "सफलतापूर्वक कॉपी किया गया", "کامیابی سے کاپی کر لیا گیا", "সফলভাবে কপি করা হয়েছে"], ["", "Email Copied Successfully", "सफलतापूर्वक कॉपी किया गया", "کامیابی سے کاپی کر لیا گیا", "সফলভাবে কপি করা হয়েছে"], ["", "Send error!", "त्रुटि भेजें", "کی غلطی", "পাঠাতে ত্রুটি"], ["", 'Send successfully!\n please pay attention to Message', "सफलतापूर्वक भेजें！\n कृपया संदेश पर ध्यान दें", "کامیابی سے بھیجیں !\n براہِ کرم پیغام پر دھیان دیں", "সফলভাবে পাঠান \n অনুগ্রহ করে বার্তায় মনোযোগ দিন"]];
 
 cc._RF.pop();

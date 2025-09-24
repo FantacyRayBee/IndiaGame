@@ -65,6 +65,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.node.on("click", CommonFun.getInstance().debounce(function () {
       _this.node.destroy();
     }, 1), this);
@@ -76,6 +77,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_GIF_CLICK_ITEM) {
       this.dealGameGifClickItemEvent(notify);
     }
@@ -94,58 +96,75 @@ cc.Class({
   },
   addGifItemsByToggleType: function addGifItemsByToggleType() {
     var _this2 = this;
+
     CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEGIFINTERACTIONITEM).then(function (itemPrefab) {
       if (CommonFun.getInstance().isValidForScr(_this2)) {
         var giftDataArr = _this2.toggle_gift1.isChecked ? _this2.gift1DataArr : _this2.gift2DataArr;
+
         _this2.addGiftItems(giftDataArr, itemPrefab);
       } else {
         itemPrefab.addRef();
         itemPrefab.decRef();
         itemPrefab = null;
       }
+
       ;
     })["catch"](function (err) {});
   },
   addGiftItems: function addGiftItems(giftDataArr, itemPrefab) {
     var _this3 = this;
+
     this.unscheduleAllCallbacks();
+
     for (var i = 0, _len = this.node_content.children.length; i < _len; i++) {
       var node = this.node_content.children[i];
       node.destroy();
     }
+
     ;
+
     if (Array.isArray(giftDataArr) == false || giftDataArr.length == 0) {
       return;
     }
+
     ;
     var len = giftDataArr.length;
     var index = 0;
+
     var addItem = function addItem() {
       var itemData = giftDataArr[index];
       var itemNode = cc.instantiate(itemPrefab);
       itemNode.active = false;
       var itemCtrl = itemNode.getComponent('GameGifInteractionItemCtrl');
       itemCtrl.setGameGiftItemData(itemData);
+
       _this3.node_content.addChild(itemNode);
+
       index += 1;
+
       if (index == len) {
         _this3.unschedule(addItem);
+
         return;
       }
+
       ;
     };
+
     this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
   },
   dealGameGifClickItemEvent: function dealGameGifClickItemEvent(notify) {
     if (!notify) {
       return;
     }
+
     ;
     var itemData = notify.itemData;
     var name = itemData.name;
     var price = itemData.price;
     this.targetSeat = this.toggle_all.isChecked ? -1 : this.targetSeat;
     price = this.targetSeat == -1 ? price * 200 : price * 100;
+
     if (GlobalCfg.USER_DATAS.userDiamond >= price) {
       GameServerManager.send("gameservice.shortmessage", "ShortMessageReq", {
         msgType: 2,
@@ -155,6 +174,7 @@ cc.Class({
     } else {
       CommonFun.getInstance().showTips("Insufficient cash to send");
     }
+
     ;
     this.node.destroy();
   },

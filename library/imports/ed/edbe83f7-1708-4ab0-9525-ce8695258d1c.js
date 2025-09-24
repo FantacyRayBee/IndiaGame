@@ -25,15 +25,18 @@ cc.Class({
     var playerlist = notify.list;
     this.allcount = notify.total;
     this.content.removeAllChildren();
+
     for (var i = 0; i < playerlist.length; i++) {
       var pab_player = cc.instantiate(this.pab_player);
       var ctrl = pab_player.getComponent("cricketPlayerItem");
       ctrl.setPlayData(playerlist[i]);
       this.content.addChild(pab_player);
     }
+
     this.allPlayer.string = this.allcount;
     this.allPage = Math.ceil(this.allcount / 12);
     this.lab_page.string = this.page + "/" + this.allPage;
+
     if (this.page == this.allPage) {
       this.btn_next.interactable = false;
       this.btn_next.target.getChildByName('lab_next').color = new cc.Color(106, 123, 172, 255);
@@ -54,23 +57,24 @@ cc.Class({
     this.btn_Prev.interactable = false;
     this.btn_Prev.enableAutoGrayEffect = true;
     this.btn_next.interactable = true;
-    this.btn_next.enableAutoGrayEffect = true;
-
-    // this.lab_playerTotal.string = lhdLanguage.lab_playerTotal[language];
+    this.btn_next.enableAutoGrayEffect = true; // this.lab_playerTotal.string = lhdLanguage.lab_playerTotal[language];
     // this.lab_prev.string = lhdLanguage.lab_prev[language];
     // this.lab_next.string = lhdLanguage.lab_next[language];
   },
-
   clickBtn: function clickBtn(button) {
     var btnName = button.node.name;
+
     if (btnName == "btn_close") {
       this.node.destroy();
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       return;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (btnName == "btn_Prev") {
       this.page--;
+
       if (this.page <= 1) {
         this.btn_next.target.getChildByName('lab_next').color = new cc.Color(255, 255, 255, 255);
         this.btn_Prev.target.getChildByName('lab_prev').color = new cc.Color(106, 123, 172, 255);
@@ -90,6 +94,7 @@ cc.Class({
       }
     } else if (btnName == "btn_next") {
       this.page++;
+
       if (this.page >= this.allPage) {
         this.btn_Prev.target.getChildByName('lab_prev').color = new cc.Color(255, 255, 255, 255);
         this.btn_next.target.getChildByName('lab_next').color = new cc.Color(106, 123, 172, 255);
@@ -110,6 +115,7 @@ cc.Class({
     }
   },
   start: function start() {} // update (dt) {},
+
 });
 
 cc._RF.pop();

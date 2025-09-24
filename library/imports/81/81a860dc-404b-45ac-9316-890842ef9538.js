@@ -44,6 +44,7 @@ cc.Class({
   ctor: function ctor() {},
   onLoad: function onLoad() {
     var _this = this;
+
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     this.underLayout = this.node.getChildByName("underLayout");
     var width = cc.view.getVisibleSize().width;
@@ -85,6 +86,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
       self.dealChangeLanguageEvent(notify);
     }
@@ -95,12 +97,15 @@ cc.Class({
   },
   btnClick: function btnClick(sender) {
     var senderName = sender.node.name;
+
     if (senderName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.outAct();
       return;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (senderName === "btn_tuichu") {
       this.node.destroy();
       GlobalCfg.G_COMPONENTS.Audio.pauseMusic();
@@ -128,6 +133,7 @@ cc.Class({
     } else if (senderName == "btn_wanFa") {
       CommonFun.getInstance().showRule("allGame");
     }
+
     ;
   },
   SetToggle: function SetToggle(senderName, index) {
@@ -144,6 +150,7 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.closeMusic();
       }
     }
+
     this.InitToggle(senderName, index);
   },
   InitToggle: function InitToggle(senderName, index) {
@@ -170,23 +177,29 @@ cc.Class({
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     var name = toggle.node.name;
     var languageType = I18NLanguagesEnum.English;
+
     switch (name) {
       case "toggle_English":
         languageType = I18NLanguagesEnum.English;
         break;
+
       case "toggle_Hindi":
         languageType = I18NLanguagesEnum.Hindi;
         break;
+
       case "toggle_Urdu":
         languageType = I18NLanguagesEnum.Urdu;
         break;
+
       case "toggle_Bengali":
         languageType = I18NLanguagesEnum.Bengali;
         break;
+
       default:
         languageType = I18NLanguagesEnum.English;
         break;
     }
+
     ;
     I18NUtil.getInstance().setLanguageType(languageType);
   },
@@ -203,6 +216,7 @@ cc.Class({
   // 退出动画
   outAct: function outAct() {
     var _this2 = this;
+
     var width = cc.view.getVisibleSize().width;
     var underLayout = this.node.getChildByName('underLayout');
     cc.tween(underLayout).to(0.3, {

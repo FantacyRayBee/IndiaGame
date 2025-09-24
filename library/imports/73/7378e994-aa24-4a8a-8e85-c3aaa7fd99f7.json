@@ -99,7 +99,7 @@
       }
     }
   },
-  "_atlasText": "\r\nui_guangdian.png\r\nsize: 20,20\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nyanjingguang_00000\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 16, 16\r\n  orig: 40, 40\r\n  offset: 12, 12\r\n  index: -1\r\n",
+  "_atlasText": "\nui_guangdian.png\nsize: 20,20\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nyanjingguang_00000\n  rotate: false\n  xy: 2, 2\n  size: 16, 16\n  orig: 40, 40\n  offset: 12, 12\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "4069c0f2-d407-4667-ad5f-f3a70341f1fc"

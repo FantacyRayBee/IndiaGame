@@ -18,6 +18,7 @@ cc.Class({
       this.face_spriteFrame.decRef();
       this.face_spriteFrame = null;
     }
+
     ;
   },
   onLoad: function onLoad() {
@@ -34,6 +35,7 @@ cc.Class({
   },
   setFaceItemFaceName: function setFaceItemFaceName(faceName) {
     var _this = this;
+
     faceName = faceName >= 10 ? "emotion_0" + faceName : "emotion_00" + faceName;
     this.itemData.name = faceName;
     ResourcesBundle.load("NewPlan/GameWordInteraction/face/" + faceName, cc.SpriteFrame, function (err, spriteFrame) {
@@ -47,10 +49,12 @@ cc.Class({
           spriteFrame.decRef();
           spriteFrame = null;
         }
+
         ;
       } else {
         LoggerUtil.getInstance().error(err);
       }
+
       ;
     });
   }

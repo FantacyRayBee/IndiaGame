@@ -41,8 +41,10 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
+
     if (btnName == "btn_play") {
       var actName = '';
+
       if (this.ChallengesItemTask >= 0 && this.ChallengesItemTask <= 4) {
         actName = SceneManager.getInstance().sceneType.TEENPATTI;
       } else if (this.ChallengesItemTask == 5) {
@@ -64,6 +66,7 @@ cc.Class({
       } else if (this.ChallengesItemTask == 13) {
         actName = SceneManager.getInstance().sceneType.BENZ;
       }
+
       ;
       ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
         msgCode: GlobalCfg.CLIENT_MSG_ID.CHALLENGES_ACT,
@@ -83,17 +86,23 @@ cc.Class({
         }
       });
     }
+
     ;
   },
   setChallengesItemInfo: function setChallengesItemInfo(taskData, taskIndex) {
     this.taskIndex = taskIndex;
     this.ChallengesItemTask = taskData.Task; // 任务代号
+
     var need = taskData.Need; // 需要完成的次数
+
     var award = taskData.Award; // 奖励
+
     var state = taskData.State; // 0未开启, 1开启, 2待领取, 3已领取
+
     var progress = taskData.Progress; // 进度(完成次数)
 
     this.ChallengesItemState = state;
+
     if (state == 0) {
       this.lab_task.string = "TASK " + (taskIndex + 1);
       this.node_state1.active = false;
@@ -102,7 +111,9 @@ cc.Class({
       this.node_state1.active = true;
       this.node_state2.active = false;
     }
+
     ;
+
     if (state == 1) {
       this.btn_play.node.active = true;
       this.btn_collect.node.active = false;
@@ -113,16 +124,19 @@ cc.Class({
       this.btn_play.node.active = false;
       this.btn_collect.node.active = false;
     }
+
     ;
     this.lab_win.string = "\u20B9" + award / 100;
     this.lab_winCompleted.string = progress + "/" + need + " Games won";
     this.lab_sub.string = "Win " + need + " games " + this.taskGameNameObj[this.ChallengesItemTask];
+
     if (this.ChallengesItemTask == 12) {
       this.lab_playTips.string = 'Add Cash';
       this.lab_win.string = "\u20B9" + award / 100;
       this.lab_winCompleted.string = '';
       this.lab_sub.string = "" + this.taskGameNameObj[this.ChallengesItemTask];
     }
+
     ;
   },
   getChallengesItemTaskIndex: function getChallengesItemTaskIndex() {

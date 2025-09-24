@@ -6,6 +6,7 @@ cc._RF.push(module, '193aeCnph9InrxaHiM7VtDs', 'AudioBase');
 
 var AudioBase = cc.Class({
   "extends": cc.Component,
+
   /**
    * 播放音乐
    * @param {cc.AudioClip} clip 
@@ -17,14 +18,17 @@ var AudioBase = cc.Class({
     if (!clip) {
       return;
     }
+
     if (true === this.checkState("toggle_yinyun")) {
       volume = volume ? volume : 1;
       this.setMusicVolume(volume);
     } else {
       this.setMusicVolume(0);
     }
+
     cc.audioEngine.playMusic(clip, loop);
   },
+
   /**
    * 播放音效
    * @param {cc.AudioClip} clip 
@@ -36,12 +40,14 @@ var AudioBase = cc.Class({
     if (!clip) {
       return;
     }
+
     if (true === this.checkState("toggle_yinxiao")) {
       volume = volume ? volume : 1;
       this.setSoundVolume(volume);
     } else {
       this.setSoundVolume(0);
     }
+
     return cc.audioEngine.playEffect(clip, loop);
   },
   pauseMusic: function pauseMusic() {
@@ -58,6 +64,7 @@ var AudioBase = cc.Class({
       console.error("audioID is null");
       return;
     }
+
     cc.audioEngine.pauseEffect(audioID);
   },
   resumeEffect: function resumeEffect(audioID) {
@@ -65,6 +72,7 @@ var AudioBase = cc.Class({
       console.error("audioID is null");
       return;
     }
+
     cc.audioEngine.resumeEffect(audioID);
   },
   stopEffect: function stopEffect(audioID) {
@@ -72,14 +80,17 @@ var AudioBase = cc.Class({
       console.error("audioID is null");
       return;
     }
+
     cc.audioEngine.stopEffect(audioID);
   },
+
   /**
    * 停止播放所有音效
    */
   stopAllEffects: function stopAllEffects() {
     cc.audioEngine.stopAllEffects();
   },
+
   /**
    * 停止正在播放的所有音频 (包括背景音乐)
    */
@@ -120,10 +131,12 @@ var AudioBase = cc.Class({
     if (!key) {
       return false;
     }
+
     if (this.getLocalData(key) == null || this.getLocalData(key) == true || this.getLocalData(key) == "true") {
       if (this.getLocalData(key) == null || this.getLocalData(key) == "0") {
         this.setLocalData(key, true);
       }
+
       return true;
     } else {
       this.setLocalData(key, false);
@@ -136,6 +149,7 @@ var AudioBase = cc.Class({
   getLocalData: function getLocalData(key) {
     return cc.sys.localStorage.getItem(key);
   },
+
   /**
    * 设置一个音频结束后的回调
    * @param {number} audioID 
@@ -147,8 +161,10 @@ var AudioBase = cc.Class({
       console.error("audioID is null");
       return;
     }
+
     cc.audioEngine.setFinishCallback(audioID, _cb);
   },
+
   /**
    * 获取音频状态
    * @param {number} audioID 

@@ -5,10 +5,15 @@ cc._RF.push(module, '3a013NaVlZL57Ecl4DHLZvH', 'baccarat3PattiCtrl');
 "use strict";
 
 var _gameServiceSendCtrl = _interopRequireDefault(require("../src/gameServiceSendCtrl"));
+
 var _buttonClickCtrl = _interopRequireDefault(require("../src/buttonClickCtrl"));
+
 var _skeAimPlayCtrl = _interopRequireDefault(require("../src/skeAimPlayCtrl"));
+
 var _soundPlayCtrl = _interopRequireDefault(require("../src/soundPlayCtrl"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -22,43 +27,50 @@ cc.Class({
     pokseAtlas: cc.SpriteAtlas,
     pokseBei: cc.SpriteFrame,
     sprite_vipLevelIcon: cc.Sprite,
-    atlas_icon: cc.SpriteAtlas
-    // btn_openMenu: cc.Button,
+    atlas_icon: cc.SpriteAtlas // btn_openMenu: cc.Button,
     // btn_tableInfo: cc.Button,
-  },
 
+  },
   ctor: function ctor() {
     this.coinArr = []; // 所有金币
+
     this.userArryNode = []; // vip玩家
+
     this.openBlueRedArr = []; // 大厅红蓝记录
+
     this.myRepeatArr = null; // 自己重复下注记录
+
     this.newMyRepeatArr = []; // 新的自己重复下注记录
+
     this.IsMyBet = false;
     this.interveneBetCion = true; // 干预游戏开始动画不显示分数
+
     this.myBetStar = 0; //自己本场下注总金额
+
     this.myBetCoin = 50; // 按钮自己下注金额
+
     this.stopBetState = 0; // 玩家停止下注状态 0下注状态 1非下注状态
 
     this.puTongBetArr = []; //普通玩家下注奖池
+
     this.gameEnd = true; //进入游戏结算阶段只请求一次游戏结算结果
+
     this.openRecord = [];
     this.First = true; // 是否第一次进入游戏
+
     this.limitBetPlaySound = true; //限制普通玩家吸住播放音效   
+
     this.limitMyBetCoinSound = true; //限自己播放音效 
 
-    this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?",
-    // 退出游戏
-    "Sorry, there are not enough gold coins.",
-    //金币不足请充值
-    "In the game, unable to exit",
-    // 游戏中无法退出
-    "Sorry, your gold coin can't be played in this game",
-    // 对不起，您的金币无法在本场内游戏）
-    "Can't bet temporarily",
-    //请选择下注的范围
+    this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
+    "Sorry, there are not enough gold coins.", //金币不足请充值
+    "In the game, unable to exit", // 游戏中无法退出
+    "Sorry, your gold coin can't be played in this game", // 对不起，您的金币无法在本场内游戏）
+    "Can't bet temporarily", //请选择下注的范围
     "Your cash is insufficient, Please recharge in time!"];
     this.isGameEndStatus = false;
     this.showBetSpineTimeInterval = 15; // 显示下注动画的时间间隔
+
     this.showBetSpineTime = 0;
   },
   onLoad: function onLoad() {
@@ -91,6 +103,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == "gameservice.login") {
       self.noVIPPlayerCtrl.setMyDate(notify.userinfo);
     } else if (msgId == "gameservice.gamescene") {
@@ -100,10 +113,12 @@ cc.Class({
       self.gamestartnotify(); //游戏开始
     } else if (msgId == "gameservice.callnotify") {
       self.callnotify(notify); //下注通知
+
       self.stopBetState = 0;
     } else if (msgId == "gameservice.gameendnotify") {
       self.isGameEndStatus = true;
       self.gameendnotify(notify); //游戏结束
+
       self.stopBetState = 1;
     } else if (msgId == "gameservice.exitgame") {
       //退出游戏
@@ -130,13 +145,17 @@ cc.Class({
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
     } else if (msgId == "gameservice.joinvippos") {
       var result = notify.result;
+
       if (notify.Result) {
         result = notify.Result;
       }
+
       ;
+
       if (result) {
         CommonFun.getInstance().showMsgBox(result.message, "YES", function () {}, false);
       }
+
       ;
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
       self.gameServiceSendCtrl.ExitGameReq();
@@ -151,6 +170,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (!notify) {
       var info = {
         errorMessage: "\u767E\u4EBATP\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684\u975E\u6B63\u786E\u6D88\u606F\u4E2D\u7ED3\u6784\u4F53\u5F02\u5E38, \u5185\u5BB9\u4E3A===>" + JSON.stringify(webData)
@@ -158,12 +178,16 @@ cc.Class({
       CommonFun.getInstance().reportToTelegram(info);
       return;
     }
+
     ;
     var result = notify.result;
+
     if (notify.Result) {
       result = notify.Result;
     }
+
     ;
+
     if (msgId === "gameservice.login") {
       CommonFun.getInstance().showMsgBox(result.message, "YES", function () {
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
@@ -172,21 +196,23 @@ cc.Class({
       if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
         if (result.result == 57) {
           CommonFun.getInstance().showDiversionFreeTP(function () {
-            GameServerManager.send("gameservice.exitgame", "ExitGameReq", {});
-            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
+            GameServerManager.send("gameservice.exitgame", "ExitGameReq", {}); // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
           });
         } else {
           CommonFun.getInstance().showTips(result.message);
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(result.message);
       }
+
       ;
     } else {
       CommonFun.getInstance().showTips(result.message);
     }
   },
+
   /**
    * 场景推送
    * @param {场景数据} notify 
@@ -212,14 +238,17 @@ cc.Class({
     this.lab_players.string = notify.playerNumber;
     this.utils.outTime(remaining, status);
     if (this.interveneBetCion) this.setSidePool(pools);
+
     if (First || this.First) {
       //true 是首次进入 
       this.First = false;
       this.setRecordIcon(openBlueRed);
       this.addVIPPlayer(vipPlayerList);
+
       if (status == 0) {
         this.utils.addCion(pools);
         if (this.skeAimPlayCtrl) this.skeAimPlayCtrl.setKuang();
+
         if (this.cradCtrl) {
           this.cradCtrl.setCradValue();
           this.cradCtrl.inOfCradAim();
@@ -227,16 +256,19 @@ cc.Class({
       } else if (status == 1) {
         this.gameServiceSendCtrl.QueryGameEndInfoReq();
       }
+
       if (this.my_bg_js && this.my_bg_js.active) {
         this.my_bg_js.x = 0;
         this.my_bg_js.active = false;
       }
     }
+
     if (status == 1) {
       this.remaining = remaining;
       this.btn_repeat.active = false;
     }
   },
+
   /**
    * 游戏开始
    */
@@ -254,17 +286,21 @@ cc.Class({
     this.btn_repeat.active = this.IsMyBet;
     this.IsMyBet = false;
   },
+
   /**
    * 下注通知
    */
   callnotify: function callnotify(notify) {
     var _this = this;
+
     var playerId = notify.playerId;
     var pos = notify.pos; // 客户端
+
     var side = notify.side;
     var amount = notify.amount;
     var selfAll = notify.selfAll;
     var after = notify.after;
+
     if (pos == 0) {
       //普通玩家下注
       if (playerId == this.myPlayerId) {
@@ -274,6 +310,7 @@ cc.Class({
         this.noVIPPlayerCtrl.myCoinAct(side, amount);
         this.noVIPPlayerCtrl.myHeadSpriteShake();
         this.newMyRepeatArr = [];
+
         if (this.limitMyBetCoinSound) {
           this.limitMyBetCoinSound = false;
           this.soundPlayCtrl.playGameSound('mytouCoin');
@@ -283,6 +320,7 @@ cc.Class({
         }
       } else {
         this.puTongBetArr.push(side);
+
         if (this.limitBetPlaySound) {
           this.limitBetPlaySound = false;
           this.noVIPPlayerCtrl.noVIPPlayerAct(this.puTongBetArr);
@@ -302,20 +340,24 @@ cc.Class({
       } else {
         // vip下注
         var VipCtrl = this.getPlayerInfoByUserId(pos);
+
         if (VipCtrl) {
           VipCtrl.vipHeadSpriteAct(pos);
           VipCtrl.playerCoinAct(side, amount);
           VipCtrl.setVipCion(after);
         }
+
         this.soundPlayCtrl.playGameSound('otherCoin');
       }
     }
   },
   gameendnotify: function gameendnotify(notify) {
     var _this2 = this;
+
     if (!notify) {
       LoggerUtil.getInstance().error("服务器数据错误: gameendnotify");
     }
+
     var cards = notify.cards;
     var winSide = notify.winSide;
     var winBlueRed = notify.winBlueRed;
@@ -332,6 +374,7 @@ cc.Class({
     this.infos = calcResult.sort(this.utils.compare("pos"));
     this.cradCtrl.cradAct(cards, function () {
       _this2.cradCtrl.playCradAct(winSide, winBlueRed);
+
       _this2.huiShouCoin(winBlueRed, winSide);
     });
     this.noVIPPlayerCtrl.setMyCoin(after);
@@ -339,18 +382,22 @@ cc.Class({
     this.skeAimPlayCtrl.kuangBlinkAct(winSide, winBlueRed, 5);
     this.scheduleOnce(function () {
       _this2.skeAimPlayCtrl.playKuangAim(winBlueRed);
+
       _this2.curRoundAddCoinFinish();
     }, 1.6);
   },
   playerlist: function playerlist(notify) {
     var node = this.node.getChildByName("playerList");
+
     if (node) {
       var ctrl = node.getComponent("playersListCtrl");
       if (ctrl) ctrl.setPlayerDate(notify);
     } else {
       var pab_playerList = cc.instantiate(this.pab_playerList);
       this.node.addChild(pab_playerList);
+
       var _ctrl = pab_playerList.getComponent("playersListCtrl");
+
       if (_ctrl) _ctrl.setPlayerDate(notify);
     }
   },
@@ -358,8 +405,10 @@ cc.Class({
     if (!notify) {
       LoggerUtil.getInstance().error("服务器数据错误: joinvipnotify");
     }
+
     var Act = notify.Act;
     var userinfo = notify.userinfo || notify;
+
     if (Act == 1) {
       var pab_VIPPlayer = cc.instantiate(this.pab_VIPPlayer);
       this.node_palyers.addChild(pab_VIPPlayer);
@@ -369,19 +418,26 @@ cc.Class({
     } else if (Act == 2) {
       for (var i = 0; i < this.userArryNode.length; i++) {
         var VIPNode = this.userArryNode[i];
+
         var _VIPCtrl = VIPNode.getComponent("VIPCtrl");
+
         if (_VIPCtrl.vipPlayerId == userinfo.playerId) {
           _VIPCtrl.setVIPDate(userinfo);
+
           break;
         }
       }
     } else if (Act == 0) {
       for (var _i = 0; _i < this.userArryNode.length; _i++) {
         var _VIPNode = this.userArryNode[_i];
+
         var _VIPCtrl2 = _VIPNode.getComponent("VIPCtrl");
+
         if (_VIPCtrl2.vipPlayerId == userinfo.playerId) {
           this.userArryNode.splice(_i, 1);
+
           _VIPNode.destroy();
+
           break;
         }
       }
@@ -391,17 +447,24 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var msgType = notify.msgType; // 消息类型 0短语 1表情 2礼物
+
     var target = notify.target; // 接收者seat (-1表示群发)
+
     var sender = notify.sender; // 发送者seat
+
     var price = notify.price; // 消息价格
+
     var senderAfter = notify.senderAfter; // 发送者扣价后货币
+
     var name = notify.name; // 表情名/短语内容
 
     if (msgType != 2) {
       // 1表情
       var ctrl = this.getPlayerInfoByUserId(sender);
+
       if (ctrl) {
         var pos = ctrl.node.getPosition();
         CommonFun.getInstance().sendFace(notify, pos);
@@ -409,38 +472,49 @@ cc.Class({
     } else {
       var targetNodeArr = [];
       var senderCtrl = this.getPlayerInfoByUserId(sender);
+
       if (!senderCtrl || !senderCtrl.node) {
         return;
       } else {
         senderCtrl.setVipCion(senderAfter);
+
         if (senderCtrl.vipPlayerId == this.myPlayerId) {
           this.noVIPPlayerCtrl.setMyCoin(senderAfter);
         }
       }
+
       if (target == -1) {
         for (var i = 0; i < this.userArryNode.length; i++) {
           var VIPNode = this.userArryNode[i];
           var VIPCtrl = VIPNode.getComponent("VIPCtrl");
+
           if (VIPCtrl && VIPCtrl !== senderCtrl) {
             targetNodeArr.push(VIPCtrl.node);
           }
+
           ;
         }
+
         ;
       } else {
         var playersCtrl = this.getPlayerInfoByUserId(target);
+
         if (playersCtrl) {
           targetNodeArr.push(playersCtrl.node);
         }
+
         ;
       }
+
       ;
       CommonFun.getInstance().playGameGifInteraction(name, senderCtrl.node, targetNodeArr);
     }
+
     ;
   },
   querygameendinfo: function querygameendinfo(notify) {
     var _this3 = this;
+
     this.gameEnd = false;
     var winBlueRed = notify.winBlueRed;
     var winSide = notify.winSide;
@@ -455,6 +529,7 @@ cc.Class({
     calcResult.push(myWin);
     this.infos = calcResult.sort(this.utils.compare("pos"));
     if (this.utils) this.utils.endGameAddCion(notify);
+
     if (this.remaining == 6) {
       this.gameendnotify(notify);
       return;
@@ -466,15 +541,16 @@ cc.Class({
       this.utils.tuCion();
     } else if (this.remaining == 3 || this.remaining == 2) {
       this.utils.tuCion();
-    } else if (this.remaining == 1 || this.remaining == 0) {
-      // this.utils.endGameAddCion(notify);
+    } else if (this.remaining == 1 || this.remaining == 0) {// this.utils.endGameAddCion(notify);
     }
+
     this.cradCtrl.cradAct(notify.cards, function () {
       _this3.cradCtrl.playCradAct(winSide, winBlueRed);
     }, true);
     this.skeAimPlayCtrl.kuangBlinkAct(notify.winSide, notify.winBlueRed, 4);
     this.cradCtrl.playCradAct(winSide, winBlueRed);
   },
+
   /**
    * 加载大厅历史记录
    */
@@ -482,12 +558,15 @@ cc.Class({
     if (openRecord) {
       this.openBlueRedArr = [];
       var last_15ItemArr = [];
+
       if (openRecord.length > 15) {
         last_15ItemArr = openRecord.slice(openRecord.length - 15, openRecord.length);
       } else {
         last_15ItemArr = openRecord.slice();
       }
+
       if (this.node_historyRecord) this.node_historyRecord.removeAllChildren();
+
       for (var i = 0; i < last_15ItemArr.length; i++) {
         var type = last_15ItemArr[i];
         var node = this.utils.installWinIcon(type, "LOBBY");
@@ -499,13 +578,17 @@ cc.Class({
         this.openBlueRedArr[0].destroy();
         this.openBlueRedArr.splice(0, 1);
       }
+
       ;
+
       var _node = this.utils.installWinIcon(this.winBlueRed, "LOBBY");
+
       this.node_historyRecord.addChild(_node);
       this.openBlueRedArr.push(_node);
       cc.tween(_node).tag(1).blink(5, 6).start();
     }
   },
+
   /**
    *进入游戏加载vip玩家
    * @param {VIP列表} vipList 
@@ -514,6 +597,7 @@ cc.Class({
     if (vipList && vipList.length > 0) {
       this.userArryNode = [];
       this.node_palyers.removeAllChildren();
+
       for (var i = 0; i < vipList.length; i++) {
         var vip = vipList[i];
         vip.Act = 1;
@@ -521,6 +605,7 @@ cc.Class({
       }
     }
   },
+
   /**
    * 玩家充值
    */
@@ -528,10 +613,12 @@ cc.Class({
     var pos = notify.pos;
     var diamond = notify.diamond;
     var ctrl = this.getPlayerInfoByUserId(pos);
+
     if (ctrl) {
       ctrl.setVipCion(diamond);
     }
   },
+
   /**
    * 根据用户ID获取用户控制脚本
    * @param {VIP的id} pos 
@@ -539,18 +626,23 @@ cc.Class({
    */
   getPlayerInfoByUserId: function getPlayerInfoByUserId(vipPos) {
     var playerInfo = null;
+
     for (var i = 0; i < this.userArryNode.length; i++) {
       var userNode = this.userArryNode[i];
+
       if (userNode.name != '') {
         var VIPCtrl = userNode.getComponent('VIPCtrl');
+
         if (VIPCtrl && VIPCtrl.date.vipPos === vipPos) {
           playerInfo = VIPCtrl;
           break;
         }
       }
     }
+
     return playerInfo;
   },
+
   /**
    * 根据金币的名字来回收对应的金币
    * @param {红蓝赢的类型} winBlueRed 
@@ -558,17 +650,20 @@ cc.Class({
    */
   huiShouCoin: function huiShouCoin(winBlueRed, winCradType) {
     var _this4 = this;
+
     this.soundPlayCtrl.playGameSound('jbrecover');
     var arr = ["0", "1", "2", "3", "4", "5", "6", "7"];
     arr.splice(winBlueRed, 1);
     arr.splice(winCradType, 1);
-    var endPos = winBlueRed == 6 ? cc.v2(-333, 258) : cc.v2(365, 258);
-    // this.coinArr = this.node_coinAll.children;
-    var _loop = function _loop() {
+    var endPos = winBlueRed == 6 ? cc.v2(-333, 258) : cc.v2(365, 258); // this.coinArr = this.node_coinAll.children;
+
+    var _loop = function _loop(i) {
       var chouMa = _this4.coinArr[i];
+
       for (var k = 0; k < arr.length; k++) {
         if (arr[k] == chouMa.name) {
           _this4.coinArr.splice(i, 1);
+
           cc.tween(chouMa).tag(1).delay((Math.random() * 0.3).toFixed(2)).to(0.5, {
             position: endPos
           }, {
@@ -579,15 +674,19 @@ cc.Class({
         }
       }
     };
+
     for (var i = this.coinArr.length - 1; i >= 0; i--) {
-      _loop();
+      _loop(i);
     }
+
     this.scheduleOnce(function () {
       _this4.ZhuangShu(endPos, winBlueRed);
+
       _this4.ZhuangShu(endPos, winCradType);
     }, 1.6);
     this.utils.tuCion();
   },
+
   /**
    * 庄吐金币的动作
    * @param {开始移动坐标} startPos 
@@ -595,11 +694,14 @@ cc.Class({
    */
   ZhuangShu: function ZhuangShu(startPos, winType) {
     if (winType == 5) return; // 高牌直接忽略 
+
     this.soundPlayCtrl.playGameSound('shouCoin');
+
     for (var i = 0; i < 50; i++) {
       var newChouMa = this.utils.createEnemy(startPos);
       newChouMa.name = "" + winType;
       var endPos = this.utils.setCoinEndPos(winType);
+
       if (newChouMa && endPos) {
         cc.tween(newChouMa).tag(1).delay((Math.random() * 0.3).toFixed(2)).to(0.5, {
           position: endPos
@@ -611,11 +713,15 @@ cc.Class({
   },
   playWinCoin: function playWinCoin(vipWinPos, arr) {
     var _this5 = this;
+
     // 
     this.soundPlayCtrl.playGameSound('shouCoin');
-    var _loop2 = function _loop2() {
+
+    var _loop2 = function _loop2(i) {
       var chouMa = _this5.coinArr[i];
+
       _this5.coinArr.splice(i, 1);
+
       if (chouMa) {
         var endPos = cc.v2(-538, -321);
         cc.tween(chouMa).tag(1).delay((Math.random() * 0.5).toFixed(2)).to(0.3, {
@@ -627,8 +733,9 @@ cc.Class({
         }).start();
       }
     };
+
     for (var i = this.coinArr.length - 1; i >= 0; i--) {
-      _loop2();
+      _loop2(i);
     }
   },
   curRoundAddCoinFinish: function curRoundAddCoinFinish() {
@@ -639,6 +746,7 @@ cc.Class({
       CommonFun.getInstance().showWithdrawToastInGame();
     }
   },
+
   /**
    * 
    * @param {根据pools来显示奖池数据} pools 
@@ -647,8 +755,10 @@ cc.Class({
     if (pools === void 0) {
       pools = null;
     }
+
     if (pools) {
       this.myBetStar = 0;
+
       for (var i = 0; i < pools.length; i++) {
         if (pools[i]) {
           var side = pools[i].side;
@@ -656,10 +766,12 @@ cc.Class({
           var self = pools[i].self / 100;
           var lab = this.betLabArr[side];
           this.myBetStar += self;
+
           if (lab) {
             // lab.string  = `${self}/${all}`;
             lab.string = "<color=#ffc705>" + self + "</c><color=#ffffff>/" + all + "</color>";
           }
+
           if (this.curSelfBetNums[side] < self) {
             this.curSelfBetNums[side] = self;
             cc.tween(lab.node).to(0.1, {
@@ -668,6 +780,7 @@ cc.Class({
               scale: 1
             }).start();
           }
+
           if (self > 0) {
             this.newMyRepeatArr[side] = self;
           }
@@ -680,9 +793,11 @@ cc.Class({
           if (_lab) _lab.string = "0/0";
         }
       }
+
       this.curSelfBetNums.fill(0, 0);
     }
   },
+
   /**
    * 下注投注飞金币动作
    * @param {根据玩家的座位ID来获取玩家节点坐标} betPlayerSeat 
@@ -694,6 +809,7 @@ cc.Class({
       return i;
     }).indexOf(this.myBetCoin);
     var coins = [1, 3, 5, 10, 12][index] || 3;
+
     for (var i = 0; i < coins; i++) {
       var pos = this.utils.setCoinEndPos(betType);
       var chouMa = this.utils.createEnemy(cc.v2(-340, -300));
@@ -748,12 +864,14 @@ cc.Class({
     this.cradCtrl = cc.find('Canvas/node_bg').getComponent("cradCtrl");
     this.noVIPPlayerCtrl = cc.find('Canvas/node_bg').getComponent("noVIPPlayerCtrl");
   },
+
   /**
    * 游戏切到前台
    */
   eventShow: function eventShow() {
     cc.game.on(cc.game.EVENT_SHOW, function () {
       var _this6 = this;
+
       // cc.Tween.stopAll();
       cc.Tween.stopAllByTag(1);
       this.unscheduleAllCallbacks();
@@ -767,6 +885,7 @@ cc.Class({
       });
     }, this);
   },
+
   /**
    * 游戏切后台
    */
@@ -779,6 +898,7 @@ cc.Class({
       GameServerManager.hideFilterMag(1);
     }, this);
   },
+
   /**
    * 删除金币节点
    */
@@ -788,26 +908,29 @@ cc.Class({
       this.coinArr = [];
     }
   },
+
   /**+
    * 
    */
-
   // start () {},
   showBtnBetSpine: function showBtnBetSpine() {
     var animationName = 'animation';
     var betCoinBtn = this.node.getChildByName('node_betCoinBtn');
     var btnArr = ['btn_10', 'btn_50', 'btn_100', 'btn_1000', 'btn_2000'];
     var len = btnArr.length,
-      i = 0;
+        i = 0;
+
     this.scheduleBetSpineTimeCallback = function () {
       var spine = betCoinBtn.getChildByName(btnArr[i]).getChildByName('spine').getComponent(sp.Skeleton);
       spine.setAnimation(0, animationName, false);
       i++;
     };
+
     this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len - 1);
   },
   update: function update(dt) {
     this.showBetSpineTime += dt;
+
     if (this.showBetSpineTime > this.showBetSpineTimeInterval) {
       this.showBetSpineTime = 0;
       this.showBtnBetSpine();
@@ -819,19 +942,24 @@ cc.Class({
     var btnName = button.node.name;
     var betCoinBtn = this.node.getChildByName('node_betCoinBtn');
     selectLight.setScale(scale);
+
     for (var i = 0; i < btnArr.length; i++) {
       var name = btnArr[i];
       var nodeBtn = betCoinBtn.getChildByName(name);
+
       if (name == btnName) {
         nodeBtn.setScale(scale);
       } else {
         nodeBtn.setScale(1);
       }
+
       var widget = nodeBtn.getComponent(cc.Widget);
+
       if (widget) {
         widget.updateAlignment();
       }
     }
+
     var pos = button.node.getPosition();
     selectLight.setPosition(pos.x, pos.y + 3.5);
   }

@@ -1799,7 +1799,7 @@
       }
     }
   },
-  "_atlasText": "\r\nzhuanpanguang.png\r\nsize: 787,787\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/111\r\n  rotate: false\r\n  xy: 2, 132\r\n  size: 653, 653\r\n  orig: 653, 653\r\n  offset: 0, 0\r\n  index: -1\r\nimg/star3_2\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 128, 128\r\n  orig: 128, 128\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nzhuanpanguang.png\nsize: 787,787\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/111\n  rotate: false\n  xy: 2, 132\n  size: 653, 653\n  orig: 653, 653\n  offset: 0, 0\n  index: -1\nimg/star3_2\n  rotate: false\n  xy: 2, 2\n  size: 128, 128\n  orig: 128, 128\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "c5ee4118-51d0-42ea-8955-8e24e22c76f0"

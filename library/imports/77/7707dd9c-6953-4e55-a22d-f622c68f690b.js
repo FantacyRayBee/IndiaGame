@@ -25,6 +25,7 @@ cc.Class({
   },
   start: function start() {
     var _this = this;
+
     Promise.all([this.getSignList(), this.getSignItemPrefab()]).then(function (arr) {
       _this.setSignListItem(arr);
     })["catch"](function (err) {
@@ -33,38 +34,49 @@ cc.Class({
   },
   onSignClick: function onSignClick() {
     var _this2 = this;
+
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
     CommonFun.getInstance().httpPost(httpUrl, {}, function (msg) {
       if (msg.result == 0 && msg.data) {
         var data = msg.data;
+
         if (data && CommonFun.getInstance().isValidForScr(_this2)) {
           CommonFun.getInstance().showRewardsTips([{
             id: 10,
             amount: data.gift / 100
           }]);
+
           if (GlobalCfg.USER_DATAS.signInfo) {
             GlobalCfg.USER_DATAS.signInfo.today = data.today;
             GlobalCfg.USER_DATAS.signInfo.done = true;
           }
+
           ;
+
           if (_this2.signItemCtrlMap.has(data.today)) {
             var signItemCtrl = _this2.signItemCtrlMap.get(data.today);
+
             signItemCtrl.setSignItemSigned();
           }
+
           ;
+
           if (data.today == 7) {
             _this2.node_day7Signed.active = true;
             _this2.node_day7Unsigned.active = false;
           }
+
           ;
           _this2.btn_sign.interactable = false;
           _this2.btn_sign.enableAutoGrayEffect = true;
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
@@ -74,6 +86,7 @@ cc.Class({
         resolve(GlobalCfg.USER_DATAS.signInfo);
         return;
       }
+
       ;
       var url = GlobalCfg.HTTP_SERVER + "/v1/signlist";
       CommonFun.getInstance().httpGet(url, function (strInfo) {
@@ -84,6 +97,7 @@ cc.Class({
           CommonFun.getInstance().showTips(strInfo.msg);
           reject(strInfo.msg);
         }
+
         ;
       }, null, GlobalCfg.USER_DATAS.BearerToken);
     });
@@ -101,6 +115,7 @@ cc.Class({
           } else {
             reject(error);
           }
+
           ;
         });
       }, function (err) {
@@ -110,50 +125,67 @@ cc.Class({
   },
   setSignListItem: function setSignListItem(arr) {
     var _this3 = this;
+
     if (!Array.isArray(arr)) {
       return;
     }
+
     ;
     var signData = arr[0];
     var itemPrefab = arr[1];
+
     if (!itemPrefab) {
       return;
     }
+
     ;
+
     if (!signData) {
       LoggerUtil.getInstance().log("No check-in data available");
       return;
     }
+
     ;
+
     if (!signData.gifts || !Array.isArray(signData.gifts)) {
       LoggerUtil.getInstance().log("The check-in list data is empty or not in array format");
       return;
     }
+
     ;
+
     if (signData.gifts.length != 7) {
       LoggerUtil.getInstance().log("Check in list data length error");
       return;
     }
+
     ;
     var len = signData.gifts.length;
     var index = 0;
+
     var addSignItem = function addSignItem() {
       var gift = signData.gifts[index];
+
       if (index <= 5) {
         var signItemPos = _this3.itemPosArr[index];
         var signItemNode = cc.instantiate(itemPrefab);
         var activitySignItemCtrl = signItemNode.getComponent("ActivitySignItemCtrl");
+
         if (activitySignItemCtrl) {
           activitySignItemCtrl.setSignItemData(gift, signData.today, signData.done, index + 1);
+
           _this3.signItemCtrlMap.set(index + 1, activitySignItemCtrl);
         }
+
         ;
         signItemNode.name = "signItemDay" + (index + 1);
         signItemNode.setPosition(signItemPos);
+
         _this3.node.addChild(signItemNode);
       } else if (index == 6) {
         _this3.lab_day7.string = "Day7";
         _this3.lab_day7Reward.string = "\u20B9" + gift / 100;
+
         if (signData.today > 7) {
           _this3.node_day7Signed.active = true;
           _this3.node_day7Unsigned.active = false;
@@ -167,22 +199,31 @@ cc.Class({
           _this3.node_day7Signed.active = false;
           _this3.node_day7Unsigned.active = false;
         }
+
         ;
       }
+
       ;
       index += 1;
+
       if (index == len) {
         _this3.btn_sign.node.active = true;
+
         if (signData.done == true) {
           _this3.btn_sign.interactable = false;
           _this3.btn_sign.enableAutoGrayEffect = true;
         }
+
         ;
+
         _this3.unschedule(addSignItem);
+
         return;
       }
+
       ;
     };
+
     this.schedule(addSignItem, 2 / cc.game.getFrameRate(), len - 1, 0);
   }
 });

@@ -25,9 +25,9 @@ cc.Class({
   },
   ctor: function ctor() {
     this.haveFromData = false; // 是否有跳转来源数据
+
     this.upiChannel = 1; // upi渠道
   },
-
   onLoad: function onLoad() {
     SHOPPING.cashID = -1;
     this.node_bonusTips.active = false;
@@ -40,6 +40,7 @@ cc.Class({
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
   },
+
   /**
    * 设置跳转来源
    * @param {string} from 
@@ -51,6 +52,7 @@ cc.Class({
     } else {
       this.haveFromData = false;
     }
+
     ;
   },
   start: function start() {
@@ -62,11 +64,16 @@ cc.Class({
     var notify = webData.msgData;
     LoggerUtil.getInstance().log("onEventMsg msgId ===> ", msgId);
     LoggerUtil.getInstance().log("onEventMsg notify ===> ", JSON.stringify(notify));
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
       var reason = notify.reason; // 原因
+
       var changed = notify.changed; // 变化值
+
       var winnings = notify.winnings; // winnings(后)
+
       var deposit = notify.deposit; // deposit(后)
+
       var voucher = notify.voucher; // 代金券(后)
 
       GlobalCfg.USER_DATAS.userDiamond = deposit + winnings;
@@ -79,54 +86,70 @@ cc.Class({
       SHOPPING.cashAmount = shopItemData.amount;
       var amount = Math.floor(shopItemData.amount / 100);
       var gift = Math.floor(shopItemData.gift / 100);
+
       if (shopItemData.loop_status == 0) {
         self.lab_cash.string = "\u20B9" + amount;
         self.lab_bonus.string = "\u20B9" + gift;
         self.lab_totalGet.string = "\u20B9" + (amount + gift);
+
         var _languagesType = I18NUtil.getInstance().getLanguageType();
+
         switch (_languagesType) {
           case I18NLanguagesEnum.English:
             self.lab_details.string = "Get " + Number(gift / amount * 100).toFixed(0) + "% Cash Back on your losing amount";
             break;
+
           case I18NLanguagesEnum.Hindi:
             self.lab_details.string = "\u0905\u092A\u0928\u0940 \u0916\u094B\u0908 \u0939\u0941\u0908 \u0930\u093E\u0936\u093F \u092A\u0930 " + Number(gift / amount * 100).toFixed(0) + "% \u0915\u0948\u0936 \u092C\u0948\u0915 \u092A\u094D\u0930\u093E\u092A\u094D\u0924 \u0915\u0930\u0947\u0902";
             break;
+
           case I18NLanguagesEnum.Urdu:
             self.lab_details.string = "\u0627\u067E\u0646\u06CC \u06A9\u06BE\u0648\u0626\u06CC \u06C1\u0648\u0626\u06CC \u0631\u0642\u0645 \u067E\u0631 " + Number(gift / amount * 100).toFixed(0) + "% \u06A9\u06CC\u0634 \u0628\u06CC\u06A9 \u062D\u0627\u0635\u0644 \u06A9\u0631\u06CC\u06BA\u06D4";
             break;
+
           case I18NLanguagesEnum.Bengali:
             self.lab_details.string = "\u0986\u09AA\u09A8\u09BE\u09B0 \u09B9\u09BE\u09B0\u09BE\u09A8\u09CB \u09AA\u09B0\u09BF\u09AE\u09BE\u09A3\u09C7 " + Number(gift / amount * 100).toFixed(0) + "% \u09A8\u0997\u09A6 \u09AB\u09C7\u09B0\u09A4 \u09AA\u09BE\u09A8";
             break;
+
           default:
             self.lab_details.string = "Get " + Number(gift / amount * 100).toFixed(0) + "% Cash Back on your losing amount";
             break;
         }
+
         ;
       } else if (shopItemData.loop_status == 1) {
         self.lab_cash.string = "\u20B9" + amount;
         self.lab_bonus.string = "\u20B90";
         self.lab_totalGet.string = "\u20B9" + amount;
         self.lab_details.string = "Get 0% Cash Back on \nyour losing amount";
+
         var _languagesType2 = I18NUtil.getInstance().getLanguageType();
+
         switch (_languagesType2) {
           case I18NLanguagesEnum.English:
             self.lab_details.string = "Get 0% Cash Back on your losing amount";
             break;
+
           case I18NLanguagesEnum.Hindi:
             self.lab_details.string = "\u0905\u092A\u0928\u0940 \u0916\u094B\u0908 \u0939\u0941\u0908 \u0930\u093E\u0936\u093F \u092A\u0930 0% \u0915\u0948\u0936 \u092C\u0948\u0915 \u092A\u094D\u0930\u093E\u092A\u094D\u0924 \u0915\u0930\u0947\u0902";
             break;
+
           case I18NLanguagesEnum.Urdu:
             self.lab_details.string = "\u0627\u067E\u0646\u06CC \u06A9\u06BE\u0648\u0626\u06CC \u06C1\u0648\u0626\u06CC \u0631\u0642\u0645 \u067E\u0631 0% \u06A9\u06CC\u0634 \u0628\u06CC\u06A9 \u062D\u0627\u0635\u0644 \u06A9\u0631\u06CC\u06BA\u06D4";
             break;
+
           case I18NLanguagesEnum.Bengali:
             self.lab_details.string = "\u0986\u09AA\u09A8\u09BE\u09B0 \u09B9\u09BE\u09B0\u09BE\u09A8\u09CB \u09AA\u09B0\u09BF\u09AE\u09BE\u09A3\u09C7 0% \u09A8\u0997\u09A6 \u09AB\u09C7\u09B0\u09A4 \u09AA\u09BE\u09A8";
             break;
+
           default:
             self.lab_details.string = "Get 0% Cash Back on your losing amount";
             break;
         }
+
         ;
       }
+
       ;
       self.lab_addMarkTips.string = "+";
       var languagesType = I18NUtil.getInstance().getLanguageType();
@@ -140,45 +163,56 @@ cc.Class({
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
     CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPITEM);
-    CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOP);
-    // CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPTOGITEM);
+    CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOP); // CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPTOGITEM);
   },
-
   setShopItems: function setShopItems() {
     var _this = this;
+
     Promise.all([this.getStoreListInfo(), CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPITEM)]).then(function (arr) {
       var storeList = arr[0];
       var itemPrefab = arr[1];
+
       if (CommonFun.getInstance().isValidForScr(_this)) {
         var couldWithdraw = GlobalCfg.USER_DATAS.userDiamond;
+
         var _arr = CommonFun.getInstance().dealShopList(couldWithdraw, storeList);
+
         _this.addShopItems(_arr, itemPrefab);
       }
+
       ;
     })["catch"](function (err) {});
   },
   setPayChannel: function setPayChannel(payChannels) {
     var _this2 = this;
+
     Promise.all([CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPTOGITEM)]).then(function (arr) {
       var itemPrefab = arr[0];
+
       if (CommonFun.getInstance().isValidForScr(_this2)) {
         _this2.addShopTogItems(payChannels, itemPrefab);
       }
+
       ;
     })["catch"](function (err) {});
   },
   addShopItems: function addShopItems(arr, itemPrefab) {
     var _this3 = this;
+
     var children = this.node_shopItemContent.children;
+
     for (var i = 0, _len = children.length; i < _len; i++) {
       var node = children[i];
       node.destroy();
     }
+
     ;
     var len = arr.length;
+
     if (len == 0) {
       return;
     }
+
     ;
     arr = arr.sort(function (a, b) {
       var value1 = a["amount"];
@@ -188,67 +222,94 @@ cc.Class({
     var firstShopItemCtrl = null;
     var isHaveSelectRechargeAcount = false;
     var index = 0;
+
     var addItem = function addItem() {
       var shopItemData = arr[index];
       var shopItemNode = cc.instantiate(itemPrefab);
       var shopItemCtrl = shopItemNode.getComponent("ShopItemCtrl");
+
       if (index == 0) {
         firstShopItemCtrl = shopItemCtrl;
       }
+
       ;
       shopItemCtrl.setNewShopItemData(shopItemData);
+
       if (shopItemData.amount == GlobalCfg.SELECT_RECHARGE_ACOUNT) {
         isHaveSelectRechargeAcount = true;
         shopItemCtrl.setNewShopItemChecked(true);
       } else {
         shopItemCtrl.setNewShopItemChecked(false);
       }
+
       ;
+
       _this3.node_shopItemContent.addChild(shopItemNode);
+
       index += 1;
+
       if (index == len) {
         if (!isHaveSelectRechargeAcount) {
           firstShopItemCtrl && firstShopItemCtrl.setNewShopItemChecked(true);
         }
+
         ;
+
         _this3.unschedule(addItem);
+
         return;
       }
+
       ;
     };
+
     this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
   },
   addShopTogItems: function addShopTogItems(arr, itemPrefab) {
     var _this4 = this;
+
     var children = this.node_shopTogItemContent.children;
+
     for (var i = 0, _len2 = children.length; i < _len2; i++) {
       var node = children[i];
       node.destroy();
     }
+
     ;
     var len = arr.length;
+
     if (len == 0) {
       return;
     }
+
     ;
     var index = 0;
+
     var addtogItem = function addtogItem() {
       var shopItemNode = cc.instantiate(itemPrefab);
       var shopItemCtrl = shopItemNode.getComponent("ShopTogItemCtrl");
+
       if (index == 0) {
         shopItemCtrl.setNewShopItemChecked(true);
         GlobalCfg.PAY_CHANNEL = arr[0]; //角标默认选择第一个
       }
+
       ;
       shopItemCtrl.setLabel(index + 1, arr[index]);
+
       _this4.node_shopTogItemContent.addChild(shopItemNode);
+
       index += 1;
+
       if (index == arr.length) {
         _this4.unschedule(addtogItem);
+
         return;
       }
+
       ;
     };
+
     this.schedule(addtogItem, 1 / cc.game.getFrameRate(), 3, 0);
   },
   getStoreListInfo: function getStoreListInfo() {
@@ -257,6 +318,7 @@ cc.Class({
         resolve(GlobalCfg.USER_DATAS.store);
         return;
       }
+
       ;
       var url = GlobalCfg.HTTP_SERVER + "/v1/payment/commodity/storelist";
       CommonFun.getInstance().httpGet(url, function (json) {
@@ -269,33 +331,40 @@ cc.Class({
           CommonFun.getInstance().showTips(json.msg);
           reject();
         }
+
         ;
       }, null, GlobalCfg.USER_DATAS.BearerToken);
     });
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
+
     switch (btnName) {
       case this.btn_back.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.dealBtnBackEvent();
         break;
+
       case this.btn_instructions.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnInstructionsEvent();
         break;
+
       case this.btn_record.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnRecordEvent();
         break;
+
       case this.btn_addCash.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnAddCashEvent();
         break;
+
       case this.btn_bonusTips.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnBonusTipsEvent();
         break;
+
       default:
         break;
     }
@@ -314,17 +383,22 @@ cc.Class({
     if (SHOPPING.cashID == -1) {
       return;
     }
+
     ;
     var arr = SceneManager.getInstance().curSceneType.split("/");
     var curScene = arr[arr.length - 1];
+
     if (SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.SSC) {
       curScene = 'ssc';
     }
+
     ;
     var commodityId = Number(SHOPPING.cashID);
+
     if (this.haveFromData == false) {
       SHOPPING.from = curScene;
     }
+
     ;
     CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
   },

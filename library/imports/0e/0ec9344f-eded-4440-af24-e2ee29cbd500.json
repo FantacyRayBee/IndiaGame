@@ -77,7 +77,7 @@
       }
     }
   },
-  "_atlasText": "\r\nui_kuang1.png\r\nsize: 261,274\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nui_kuang1\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 257, 270\r\n  orig: 271, 286\r\n  offset: 7, 8\r\n  index: -1\r\n",
+  "_atlasText": "\nui_kuang1.png\nsize: 261,274\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nui_kuang1\n  rotate: false\n  xy: 2, 2\n  size: 257, 270\n  orig: 271, 286\n  offset: 7, 8\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "8ba73834-43b0-4ee1-b447-4c1c2046d76c"

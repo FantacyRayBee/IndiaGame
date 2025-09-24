@@ -14,9 +14,9 @@ cc.Class({
       token: GlobalCfg.USER_DATAS.token,
       //登录服拿到的token
       fromid: GlobalCfg.PRODUCT_ID //平台
+
     });
   },
-
   // 加入vip座位
   JoinVipReq: function JoinVipReq(seat, act) {
     GameServerManager.send("gameservice.joinvip", "JoinVipReq", {

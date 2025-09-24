@@ -4,7 +4,7 @@
   "_objFlags": 0,
   "_native": ".bin",
   "_skeletonJson": null,
-  "_atlasText": "\r\nlingdang.png\r\nsize: 297,662\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nsanguang\r\n  rotate: false\r\n  xy: 2, 256\r\n  size: 247, 244\r\n  orig: 256, 256\r\n  offset: 4, 6\r\n  index: -1\r\nwaiguang\r\n  rotate: false\r\n  xy: 147, 502\r\n  size: 148, 158\r\n  orig: 152, 161\r\n  offset: 2, 1\r\n  index: -1\r\nzhuanguang\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 251, 252\r\n  orig: 256, 256\r\n  offset: 2, 2\r\n  index: -1\r\nzhuti\r\n  rotate: false\r\n  xy: 2, 507\r\n  size: 143, 153\r\n  orig: 149, 159\r\n  offset: 3, 3\r\n  index: -1\r\n",
+  "_atlasText": "\nlingdang.png\nsize: 297,662\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nsanguang\n  rotate: false\n  xy: 2, 256\n  size: 247, 244\n  orig: 256, 256\n  offset: 4, 6\n  index: -1\nwaiguang\n  rotate: false\n  xy: 147, 502\n  size: 148, 158\n  orig: 152, 161\n  offset: 2, 1\n  index: -1\nzhuanguang\n  rotate: false\n  xy: 2, 2\n  size: 251, 252\n  orig: 256, 256\n  offset: 2, 2\n  index: -1\nzhuti\n  rotate: false\n  xy: 2, 507\n  size: 143, 153\n  orig: 149, 159\n  offset: 3, 3\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "8608e7b9-1088-47ea-a679-6399442603bb"

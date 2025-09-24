@@ -11,6 +11,7 @@ cc.Class({
   // onLoad () {},
   start: function start() {},
   // update (dt) {},
+
   /**
    * 登录
    */
@@ -20,18 +21,21 @@ cc.Class({
       token: GlobalCfg.USER_DATAS.token
     });
   },
+
   /**
    * 刷新游戏场景
    */
   sendRefreshMessage: function sendRefreshMessage() {
     GameServerManager.send("gameservice.loadwhole", "LoadWholeReq", {});
   },
+
   /**
    * 退出
    */
   sendExitMessage: function sendExitMessage() {
     GameServerManager.send("gameservice.exit", "ExitReq", {});
   },
+
   /**
    * 获取玩家列表
    * @param {Number} _page 页数 , 0 代表第一页
@@ -43,6 +47,7 @@ cc.Class({
       rows: _rows
     });
   },
+
   /**
    * 玩家下注
    * @param {Number} amount 下注金额
@@ -52,6 +57,7 @@ cc.Class({
       amount: amount
     });
   },
+
   /**
    * 领取奖励
    * @param {Number} _time 时间坐标

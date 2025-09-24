@@ -14,6 +14,7 @@ cc.Class({
   addClickTouch: function addClickTouch(btnNames, parent, context) {
     var dataType = Object.prototype.toString.call(btnNames);
     var btn = null;
+
     if (dataType == "[object Null]") {
       btn = context.node;
       btn.on('click', context.btnClick, context);
@@ -21,6 +22,7 @@ cc.Class({
     } else if (dataType === "[object Array]") {
       for (var index = 0; index < btnNames.length; index++) {
         var element = btnNames[index];
+
         if (parent.node) {
           parent.node.getChildByName(element).on('click', parent.btnClick, parent);
         } else {
@@ -35,6 +37,7 @@ cc.Class({
         btn = parent.getChildByName(btnNames);
         btn.on('click', context.btnClick, context);
       }
+
       return btn;
     }
   },
@@ -43,7 +46,9 @@ cc.Class({
     if (isAct === null || isAct === undefined) {
       isAct = true;
     }
+
     var rootNode = this.node.getChildByName('root');
+
     if (isAct) {
       rootNode.scale = 0;
       cc.tween(rootNode).to(0.12, {
@@ -56,10 +61,13 @@ cc.Class({
   //UI出场动画表现
   closeViewAction: function closeViewAction(isAct) {
     var _this = this;
+
     if (isAct === null || isAct === undefined) {
       isAct = true;
     }
+
     var rootNode = this.node.getChildByName('root');
+
     if (isAct) {
       cc.tween(rootNode).to(0.12, {
         scale: 0
@@ -73,6 +81,7 @@ cc.Class({
   //添加加载头像
   loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
     var _this2 = this;
+
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'

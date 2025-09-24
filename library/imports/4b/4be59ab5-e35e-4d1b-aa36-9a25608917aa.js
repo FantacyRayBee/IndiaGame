@@ -24,22 +24,26 @@ cc.Class({
     this.redDot.active = false;
     CommonFun.getInstance().showFeedbackMail(this.dataContent);
   },
+
   /**
    * 设置邮件在邮箱中的显示部分
    * @param {Object} data 
    */
   setData: function setData(data) {
     this.dataContent = data;
+
     if (data.title != "") {
       this.lab_title.string = data.title;
     } else {
       this.lab_title.string = "Feedback Mail";
     }
+
     ;
     this.lab_date.string = this.getDateToDay(data.create_at);
     this.lab_time.string = this.getDateToMinute(data.create_at);
     this.redDot.active = this.setRedDotState(data);
   },
+
   /**
    * 设置红点状态，false 为未读
    * @param {Object} data 
@@ -53,6 +57,7 @@ cc.Class({
       } else {
         return false;
       }
+
       ;
     } else {
       var state = data.state;
@@ -60,8 +65,10 @@ cc.Class({
       LoggerUtil.getInstance().log("无附件，未领取", state);
       return state;
     }
+
     ;
   },
+
   /**
    * 
    * @param {Object} data 
@@ -74,6 +81,7 @@ cc.Class({
     var d = date.getDate();
     return y + '-' + this.add0(m) + '-' + this.add0(d);
   },
+
   /**
    * 返回时间
    * @param {Object} data 

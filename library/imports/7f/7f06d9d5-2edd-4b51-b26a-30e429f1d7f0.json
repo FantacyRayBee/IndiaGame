@@ -671,7 +671,7 @@
       }
     }
   },
-  "_atlasText": "\r\nRS_gift.png\r\nsize: 348,132\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg_1\r\n  rotate: false\r\n  xy: 132, 2\r\n  size: 126, 128\r\n  orig: 128, 128\r\n  offset: 2, 0\r\n  index: -1\r\nimg_2\r\n  rotate: false\r\n  xy: 260, 8\r\n  size: 83, 28\r\n  orig: 83, 28\r\n  offset: 0, 0\r\n  index: -1\r\nimg_3\r\n  rotate: false\r\n  xy: 260, 38\r\n  size: 86, 92\r\n  orig: 86, 92\r\n  offset: 0, 0\r\n  index: -1\r\nimg_4\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 128, 128\r\n  orig: 128, 128\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nRS_gift.png\nsize: 348,132\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg_1\n  rotate: false\n  xy: 132, 2\n  size: 126, 128\n  orig: 128, 128\n  offset: 2, 0\n  index: -1\nimg_2\n  rotate: false\n  xy: 260, 8\n  size: 83, 28\n  orig: 83, 28\n  offset: 0, 0\n  index: -1\nimg_3\n  rotate: false\n  xy: 260, 38\n  size: 86, 92\n  orig: 86, 92\n  offset: 0, 0\n  index: -1\nimg_4\n  rotate: false\n  xy: 2, 2\n  size: 128, 128\n  orig: 128, 128\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "01034668-1e22-47a4-91af-ddda7c3363fa"

@@ -31,6 +31,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.nodeHow.active = false;
     this.editBoxUTR.node.on('editing-did-ended', function (editbox) {
       _this.utrString = editbox.string;
@@ -53,6 +54,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == "SelectPhotoCallBack") {
       self.photoPath = notify.photoPath;
       var width = notify.width;
@@ -65,11 +67,14 @@ cc.Class({
           self.sprite_upload.spriteFrame = new cc.SpriteFrame(img);
           self.btnUploadPhoto.interactable = true;
         }
+
         ;
       });
     }
+
     ;
   },
+
   /**
    * 
    * @param {Object} data 
@@ -89,6 +94,7 @@ cc.Class({
     this.labDate.string = data.date;
     this.labState.string = data.state;
     var self = this;
+
     if (data.feedback && data.feedback.length > 0) {
       var remoteUrl = data.feedback;
       cc.assetManager.loadRemote(remoteUrl, function (err, texture) {
@@ -104,6 +110,7 @@ cc.Class({
   // update (dt) {},
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
+
     if (btnName == this.btnClose.node.name) {
       this.node.destroy();
     } else if (btnName == this.btnOkay.node.name) {
@@ -131,27 +138,36 @@ cc.Class({
   scrollPageView: function scrollPageView(type) {
     var pages = this.pageView.getPages();
     var curIndex = this.pageView.getCurrentPageIndex();
+
     switch (type) {
       case 'left':
         curIndex--;
+
         if (curIndex < 0) {
           curIndex = pages.length - 1;
         }
+
         break;
+
       case 'right':
         curIndex++;
+
         if (curIndex >= pages.length) {
           curIndex = 0;
         }
+
         break;
+
       default:
         break;
     }
+
     this.labTitle.string = "TYPE" + (Number(curIndex) + 1);
     this.pageView.scrollToPage(curIndex);
   },
   checkSubmit: function checkSubmit() {
     var pattern = new RegExp('^[0-9]+$');
+
     if (this.utrString.length < 12 || pattern.test(this.utrString) == false) {
       CommonFun.getInstance().showTips('Input a 12 digit combination.\nClick "How to Find Your UTR for help."');
     } else {
@@ -162,6 +178,7 @@ cc.Class({
     if (!this.uploadPhotoBase64Data) {
       return;
     }
+
     ;
     CommonFun.getInstance().showProgress();
     var url = GlobalCfg.HTTP_SERVER + '/v1/payment/uploadfeedback';
@@ -171,15 +188,17 @@ cc.Class({
       "photo_data": this.uploadPhotoBase64Data,
       // 截图二进制base64数据
       "format": this.uploadPhotoFormat // 截图文件格式(png，jpg等)
-    };
 
+    };
     CommonFun.getInstance().httpPost(url, httpParam, function (msg) {
       CommonFun.getInstance().hidProgress();
+
       if (msg && msg.result == 0) {
         CommonFun.getInstance().showTips("Submit successful!");
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   }

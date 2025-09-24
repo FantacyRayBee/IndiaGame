@@ -40,6 +40,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
       self.dealChangeLanguageEvent(notify);
     }
@@ -49,10 +50,13 @@ cc.Class({
   },
   inGame: function inGame() {
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (!this.roomItemType || !this.roomItemData) {
       return;
     }
+
     ;
+
     if (this.btnEnterGameState == btnState.AddCash) {
       CommonFun.getInstance().showNewShop();
     } else {
@@ -70,6 +74,7 @@ cc.Class({
       this.btn_inGame.interactable = true;
       return;
     }
+
     if (GlobalCfg.USER_DATAS.userDiamond < data.entrycondition) {
       this.btnEnterState = btnState.AddCash;
     } else if (GlobalCfg.USER_DATAS.userDiamond >= data.entrycondition && GlobalCfg.USER_DATAS.userDiamond <= data.entryconditionmax) {
@@ -77,9 +82,11 @@ cc.Class({
     } else {
       this.btnEnterState = btnState.Grey;
     }
+
     ;
     this.setBtnEnterState(this.btnEnterState);
   },
+
   /**
    * 
    * @param {btnState} state 
@@ -90,11 +97,13 @@ cc.Class({
     var languagesType = I18NUtil.getInstance().getLanguageType();
     this.btn_inGame.target.getChildByName("lab_playNow").getComponent(cc.Label).string = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Select_Play Now']);
     this.btn_inGameSke.node.getChildByName("lab_playNow").getComponent(cc.Label).string = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Select_Play Now']);
+
     switch (state) {
       case btnState.Grey:
         this.btn_inGame.interactable = false;
         this.btn_inGameSke.node.active = false;
         break;
+
       case btnState.AddCash:
         this.btn_inGame.interactable = true;
         this.btn_inGame.node.active = true;
@@ -102,11 +111,13 @@ cc.Class({
         this.btn_inGame.target.getChildByName("lab_playNow").getComponent(cc.Label).string = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Select_Add Cash']);
         this.btn_inGame.target.getComponent(cc.Sprite).spriteFrame = this.spriteYellow;
         break;
+
       case btnState.EnterGame:
         this.btn_inGame.interactable = true;
         this.btn_inGame.node.active = false;
         this.btn_inGameSke.node.active = true;
         break;
+
       default:
         break;
     }
@@ -116,22 +127,31 @@ cc.Class({
       this.node.active = false;
       return;
     }
+
     ;
     this.roomItemType = itemType;
     this.roomItemData = data;
     this.labAll[0].string = data.cellscore / 100; // 底注 
+
     this.labAll[1].string = data.entrycondition / 100; // 入场限制
+
     this.labAll[2].string = data.maxjetton / 100; // 最大单注
+
     this.labAll[3].string = data.maxtablescore / 100; // 桌面最大分数
+
     this.labAll[4].string = data.onlinenum;
     var positions = [];
+
     switch (itemType) {
       case 'rummy':
         positions = [].concat(this.rummyLabelPos);
         this.labAll[2].string = data.num; // 2是2人场  6是6人场
+
         this.labAll[3].string = data.onlinenum; // 在线人数
+
         this.labAll[4].node.active = false;
         break;
+
       case 'andar':
         positions = [].concat(this.andarLabelPos);
         this.labAll[1].string = data.maxscore / 100;
@@ -139,16 +159,20 @@ cc.Class({
         this.labAll[3].string = data.onlinenum;
         this.labAll[4].node.active = false;
         break;
+
       case 'teenpatti':
         positions = [].concat(this.teenPattiLabelPos);
         this.node_pot.active = data.trial && data.isblind;
         break;
+
       default:
         break;
     }
+
     for (var i = 0, len = positions.length; i < len; i++) {
       this.labAll[i].node.setPosition(positions[i]);
     }
+
     ;
     this.checkGameEnterData(data);
     cb && cb(this.btnEnterGameState);

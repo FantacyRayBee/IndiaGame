@@ -6,6 +6,7 @@ cc._RF.push(module, 'cc3703q//1JNZMrS7prcKFG', 'buttonClickCtrl');
 
 cc.Class({
   "extends": cc.Component,
+
   /**
    * 监听按钮
    */
@@ -25,28 +26,37 @@ cc.Class({
     var betCoinBtns = self.node_betCoinBtn.getComponentsInChildren(cc.Button);
     var node_playerBetChildren = self.node_playerBet.children;
     var btn_VipChildren = self.node_vip.children;
+
     for (var i = 0; i < btnArr.length; i++) {
       var btn = btnArr[i].getComponent(cc.Button);
       btn.node.on("click", this.btnClick, self);
     }
+
     for (var _i = 0; _i < betCoinBtns.length; _i++) {
       var _btn = betCoinBtns[_i];
+
       _btn.node.on("click", this.btnClick, self);
     }
+
     for (var _i2 = 0; _i2 < node_playerBetChildren.length; _i2++) {
       var _btn2 = node_playerBetChildren[_i2].getComponent(cc.Button);
+
       _btn2.node.on("click", this.btnClick, self);
     }
+
     for (var _i3 = 0; _i3 < btn_VipChildren.length; _i3++) {
       var _btn3 = btn_VipChildren[_i3].getComponent(cc.Button);
+
       _btn3.node.on("click", this.btnClick, self);
     }
   },
   initBetBtn: function initBetBtn(self) {
     self.betCoinList = [10, 50, 100, 1000, 2000];
+
     if (GlobalCfg.USER_DATAS.gamePattern == 1) {
       self.betCoinList = [1, 10, 50, 100, 1000];
     }
+
     self.myBetCoin = self.betCoinList[0];
     var btn_10 = self.node.getChildByName("node_betCoinBtn").getChildByName('btn_10').getComponent(cc.Button);
     self.choiceBetButton(btn_10, self.selectLight);
@@ -60,6 +70,7 @@ cc.Class({
   btnClick: function btnClick(button) {
     var self = GlobalCfg.ACT_SCENE_CTRL;
     var btnName = button.node.name;
+
     if (btnName == "btn_10") {
       self.myBetCoin = button.node.getChildByName('lab').getComponent(cc.Label).string;
       self.choiceBetButton(button, self.selectLight);
@@ -120,16 +131,19 @@ cc.Class({
       if (self.stopBetState == 0) {
         for (var i = 0; i < self.myRepeatArr.length; i++) {
           var betCoin = self.myRepeatArr[i];
+
           if (betCoin) {
             self.gameServiceSendCtrl.CallReq(betCoin, i);
           }
         }
+
         self.newMyRepeatArr = [];
       }
     } else if (btnName == "btn_playerNum") {
       self.gameServiceSendCtrl.PlayerListReq(1, 12);
     } else if (btnName == "btn_chat") {
       var myVipPos = self.getPlayerInfoByUserId(self.myVipPos);
+
       if (myVipPos) {
         var pab_chat = cc.instantiate(self.pab_chat);
         self.node.addChild(pab_chat);
@@ -142,6 +156,7 @@ cc.Class({
     } else if (btnName == "btn_openMenu") {
       CommonFun.getInstance().showGameMenu(false);
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
   }
 });

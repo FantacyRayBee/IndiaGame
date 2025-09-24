@@ -20,13 +20,17 @@ cc.Class({
   },
   ctor: function ctor() {
     this.recordDataList = []; // 历史记录数据
+
     this.recordNodeList = []; // 历史记录节点
+
     this.gameMaxRecordCount = 14; // 游戏界面最大记录条数
+
     this.historyShowRecordCount = 20; // 历史记录界面显示最大记录条数(存储数据条数)
   },
   // onLoad () {},
   start: function start() {},
   // update (dt) {},
+
   /**
    * 初始化节点 / 多条记录刷新节点 
    */
@@ -36,12 +40,15 @@ cc.Class({
     var dataArr = this.getRecordDataByLength(this.gameMaxRecordCount);
     this.recordNodeList.length = 0;
     var length = dataArr.length;
+
     for (var i = 0; i < length; i++) {
       var spriteType = dataArr[i];
+
       if (spriteType == 0 || spriteType > 8) {
         LoggerUtil.getInstance().error("服务器消息Team类型错误", spriteType);
         continue;
       }
+
       var itemNode = cc.instantiate(this.prefabItem);
       var spNode = itemNode.getChildByName('sp');
       var spFrame = GlobalCfg.ACT_SCENE_CTRL.teamSpriteFrames[spriteType - 1];
@@ -49,15 +56,18 @@ cc.Class({
       var size = spFrame.getOriginalSize();
       spNode.width = size.width * 0.14;
       spNode.height = size.height * 0.14;
+
       if (i == length - 1) {
         itemNode.getChildByName('new').active = true;
       } else {
         itemNode.getChildByName('new').active = false;
       }
+
       this.nodeList.addChild(itemNode);
       this.recordNodeList.push(itemNode);
     }
   },
+
   /**
    * 初始化历史记录数据
    * @param {Array} data 
@@ -69,6 +79,7 @@ cc.Class({
       this.recordDataList = data;
     }
   },
+
   /**
    * 获取指定长度的历史记录数据
    * @param {Number} length 
@@ -80,6 +91,7 @@ cc.Class({
       return this.recordDataList;
     }
   },
+
   /**
    * 单条记录更新节点展示
    * @param {*} newRecord 最新记录
@@ -89,19 +101,25 @@ cc.Class({
       LoggerUtil.getInstance().error("服务器消息Team类型错误", newRecord);
       return;
     }
+
     if (this.recordNodeList.length >= this.gameMaxRecordCount) {
       var firstNode = this.recordNodeList.shift();
+
       if (firstNode && firstNode.isValid) {
         firstNode.destroy();
       }
     }
+
     var lastNode = this.recordNodeList[this.recordNodeList.length - 1];
+
     if (lastNode) {
       lastNode.getChildByName('new').active = false;
     }
+
     if (this.recordDataList.length >= this.historyShowRecordCount) {
       this.recordDataList.shift();
     }
+
     this.recordDataList.push(newRecord);
     var itemNode = cc.instantiate(this.prefabItem);
     var spNode = itemNode.getChildByName('sp');
@@ -121,6 +139,7 @@ cc.Class({
       }
     });
   },
+
   /**
    * 返回最新的记录坐标
    * @returns {cc.v2 | null}
@@ -130,9 +149,11 @@ cc.Class({
       return cc.v2(40, 0);
     } else {
       var pos = this.recordNodeList[this.recordNodeList.length - 1].getPosition();
+
       if (this.recordNodeList.length < this.gameMaxRecordCount) {
         pos.x = pos.x + 80;
       }
+
       return pos;
     }
   },

@@ -11,7 +11,6 @@ cc._RF.push(module, 'c356a6k3O5F66RDRi4v8Gk2', 'teenPattiCardCtrl');
  * @LastEditors: Please set LastEditors
  * @FilePath: \rummy_zjh\assets\teenPatti\src\teenPattiCardCtrl.js
  */
-
 cc.Class({
   "extends": cc.Component,
   properties: {},
@@ -31,6 +30,7 @@ cc.Class({
     if (!pos) {
       return;
     }
+
     ;
     this.node.setPosition(pos);
   },

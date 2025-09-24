@@ -11,14 +11,17 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.ske_saJinBi.node.active = true;
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sajinbi", false);
     this.ske_saJinBi.setAnimation(0, 'sajinbi', false);
     this.ske_saJinBi.setCompleteListener(function (trackEntry, loopCount) {
       var name = trackEntry.animation.name;
+
       if (name == "sajinbi") {
         _this.node.destroy();
       }
+
       ;
     });
   },

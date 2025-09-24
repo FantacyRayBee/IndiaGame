@@ -1258,7 +1258,7 @@
       }
     }
   },
-  "_atlasText": "\r\ndaojishilianyi.png\r\nsize: 286,284\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\ndiguang\r\n  rotate: false\r\n  xy: 2, 85\r\n  size: 152, 197\r\n  orig: 152, 197\r\n  offset: 0, 0\r\n  index: -1\r\ntuo\r\n  rotate: false\r\n  xy: 2, 57\r\n  size: 27, 26\r\n  orig: 27, 26\r\n  offset: 0, 0\r\n  index: -1\r\ntuo2\r\n  rotate: false\r\n  xy: 156, 109\r\n  size: 128, 173\r\n  orig: 128, 173\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\ndaojishilianyi.png\nsize: 286,284\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\ndiguang\n  rotate: false\n  xy: 2, 85\n  size: 152, 197\n  orig: 152, 197\n  offset: 0, 0\n  index: -1\ntuo\n  rotate: false\n  xy: 2, 57\n  size: 27, 26\n  orig: 27, 26\n  offset: 0, 0\n  index: -1\ntuo2\n  rotate: false\n  xy: 156, 109\n  size: 128, 173\n  orig: 128, 173\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "1874905d-db4d-4b86-b214-84b4666f08ba"

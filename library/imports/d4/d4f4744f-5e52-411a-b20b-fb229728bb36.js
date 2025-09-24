@@ -12,6 +12,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.viewList = CommonFun.getInstance().getAllChildrensNodeList(this.node, "");
     this.node_teamView = this.viewList["teamView"];
     this.node_teamView_lab_whatIsATeam = this.viewList["teamView/lab1"];
@@ -111,6 +112,7 @@ cc.Class({
     this.node_bonusView_lab_bonus_8 = this.viewList["bonusView/itemNode8/lab_bonus"];
     this.node.on("click", function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       _this.node.destroy();
     }, this);
     this.setInviteLeftViewLanguage();
@@ -165,6 +167,7 @@ cc.Class({
     this.node_bonusView_lab3.getComponent(cc.Label).string = bonusTips3Str;
     this.node_bonusView_titleNode_lab_number.getComponent(cc.Label).string = bonusNumberStr;
     this.node_bonusView_titleNode_lab_bonus.getComponent(cc.Label).string = bonusBonusStr;
+
     if (this.curTypeStr == "teamView") {
       this.node_teamView.active = true;
       this.node_historyView.active = false;
@@ -180,6 +183,7 @@ cc.Class({
       this.node_historyView.active = false;
       this.node_bonusView.active = true;
     }
+
     ;
   },
   showLeftViewByTypeStr: function showLeftViewByTypeStr(typeStr) {
@@ -187,31 +191,37 @@ cc.Class({
   },
   sendTeamRecordReq: function sendTeamRecordReq() {
     var _this2 = this;
+
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/teamplayerincomerank";
     CommonFun.getInstance().httpGet(httpUrl, function (msg) {
       if (msg.result == 0) {
         if (msg.data && msg.data.rank && CommonFun.getInstance().isValidForScr(_this2)) {
           _this2.setTeamRecord(msg.data.rank);
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
   sendHistoryRecordReq: function sendHistoryRecordReq() {
     var _this3 = this;
+
     var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/income/record";
     CommonFun.getInstance().httpGet(httpUrl, function (msg) {
       if (msg.result == 0) {
         if (msg.data && CommonFun.getInstance().isValidForScr(_this3)) {
           _this3.setHistoryRecord(msg.data);
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
   },
@@ -221,6 +231,7 @@ cc.Class({
         if (i >= 9) {
           return;
         }
+
         ;
         var element = rank[i];
         this["node_teamView_lab_id_" + i].getComponent(cc.Label).string = element["did"];
@@ -228,37 +239,47 @@ cc.Class({
         this["node_teamView_lab_invited_" + i].getComponent(cc.Label).string = element["invite_num"];
         this["node_teamView_lab_totalBonus_" + i].getComponent(cc.Label).string = element["total_income"] / 100;
       }
+
       ;
     }
+
     ;
   },
   setHistoryRecord: function setHistoryRecord(data) {
     if (!data) {
       return;
     }
+
     ;
     this.node_historyView_lab_totalOutput.getComponent(cc.Label).string = data["total_income"] / 100;
     this.node_historyView_lab_totalBonus.getComponent(cc.Label).string = data["total_bonus"] / 100;
+
     if (data["day_record"]) {
       for (var i = 0, len = data["day_record"].length; i < len; i++) {
         if (i >= 7) {
           return;
         }
+
         ;
         var element = data["day_record"][i];
         this["node_historyView_lab_time_" + i].getComponent(cc.Label).string = this.transformTimestamp(element["time"]);
         this["node_historyView_lab_outPut_" + i].getComponent(cc.Label).string = element["income"] / 100;
         this["node_historyView_lab_invited_" + i].getComponent(cc.Label).string = element["bonus"] / 100;
       }
+
       ;
     }
+
     ;
   },
   transformTimestamp: function transformTimestamp(timestamp) {
     var time = new Date(timestamp * 1000);
     var y = time.getFullYear(); //getFullYear方法以四位数字返回年份
+
     var M = time.getMonth() + 1; // getMonth方法从 Date 对象返回月份 (0 ~ 11)，返回结果需要手动加一
+
     var d = time.getDate(); // getDate方法从 Date 对象返回一个月中的某一天 (1 ~ 31)
+
     return y + '-' + M + '-' + d;
   }
 });

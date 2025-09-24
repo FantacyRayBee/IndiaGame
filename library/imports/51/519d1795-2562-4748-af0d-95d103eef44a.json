@@ -85,7 +85,7 @@
       }
     }
   },
-  "_atlasText": "\r\nui_jiemian_hu.png\r\nsize: 150,150\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nyanjingguang_00000\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 146, 146\r\n  orig: 400, 400\r\n  offset: 127, 127\r\n  index: -1\r\n",
+  "_atlasText": "\nui_jiemian_hu.png\nsize: 150,150\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nyanjingguang_00000\n  rotate: false\n  xy: 2, 2\n  size: 146, 146\n  orig: 400, 400\n  offset: 127, 127\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "c5b21a3b-eb48-40c6-836b-60e54d5374c9"

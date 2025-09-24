@@ -22,6 +22,7 @@ cc.Class({
   start: function start() {
     this.duringTime = 0;
   },
+
   /**
    * 
    * @param {Point {x,mul}} data 
@@ -30,6 +31,7 @@ cc.Class({
     var value = Number((data.mul / 1000).toFixed(2));
     var color = this.node.getChildByName('Label').color;
     var _sp = this.node.getComponent(cc.Sprite).spriteFrame;
+
     if (value >= 0 && value < 3) {
       color = this.greenLabColor;
       _sp = this.greenSpriteFrame;
@@ -43,6 +45,7 @@ cc.Class({
       color = this.orangeLabColor;
       _sp = this.orangeSpriteFrame;
     }
+
     this.node.getComponent(cc.Sprite).spriteFrame = _sp;
     this.node.getChildByName('Label').color = color;
     this.node.getChildByName('Label').getComponent(cc.Label).string = value + 'x';
@@ -54,11 +57,13 @@ cc.Class({
     if (this.isShowLight == true) {
       this.duringTime += dt;
       var count = Math.floor(this.duringTime / 0.2);
+
       if (count % 2 == 0) {
         this.rectLight.active = true;
       } else if (count % 2 == 1) {
         this.rectLight.active = false;
       }
+
       if (count > 10) {
         this.isShowLight = false;
       }

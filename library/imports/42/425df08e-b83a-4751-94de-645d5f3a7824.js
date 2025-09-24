@@ -25,6 +25,7 @@ cc.Class({
   update: function update(dt) {
     if (this.newAnimation.node.active == true) {
       this.time += dt;
+
       if (this.time >= this.timeInterval) {
         this.newAnimation.play();
         this.time = 0;

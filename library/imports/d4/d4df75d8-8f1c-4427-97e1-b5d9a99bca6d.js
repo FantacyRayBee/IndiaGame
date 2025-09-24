@@ -14,12 +14,14 @@ cc.Class({
     if (this.lab_tishi) {
       this.lab_tishi.string = content;
     }
+
     return;
   },
   removeFromParentNode: function removeFromParentNode(parentNode) {
     parentNode.removeChild(this.node);
   },
   start: function start() {} // update (dt) {},
+
 });
 
 cc._RF.pop();

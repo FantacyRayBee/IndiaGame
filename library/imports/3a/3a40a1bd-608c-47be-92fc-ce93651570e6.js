@@ -17,32 +17,43 @@ cc.Class({
   },
   ctor: function ctor() {
     this.hideBet = false; // 记录切后台是否有下注
+
     this.bigWinnerPlayerId = null; // 大赢家ID
+
     this.isOneInGame = 0; // 是否第一次进入游戏 
+
     this.betTime = 0; // 记录切后台回来时 重复下注按钮是否显示 
+
     this.isRepeatBet = false; // 是否可以重复下注
+
     this.remaining = -1; // 等待游戏开始的时间 
+
     this.startBetTime = 0; // 下注时间
+
     this.isBackStage = true; // 是否切后台进入游戏
+
     this.LotteryRecord = null; // 开奖记录
+
     this.betIndex = 0; //玩家下注的下标
+
     this.betCion = 1; //玩家下注的金额
+
     this.myBetCoinAll = 0; //统计自己下注全部金额
+
     this.paymentSwitch = false;
     this.betCionArr = [10, 50, 100, 200, 500, 1000]; //下注的钱的数组
+
     this.recordArr = []; //大厅历史记录数组
+
     this.recordBet = [0, 0, 0, 0, 0, 0]; //记录自己上局下注金额 
+
     this.recordBetAll = [0, 0, 0, 0, 0, 0];
     this.hideBetArr = [0, 0, 0, 0, 0, 0]; //记录切后台自己上局下注金额 
 
-    this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?",
-    // 退出游戏
-    "Sorry, there are not enough gold coins.",
-    //金币不足请充值
-    "In the game, unable to exit",
-    // 游戏中无法退出
-    "Sorry, your gold coin can't be played in this game",
-    // 对不起，您的金币无法在本场内游戏）
+    this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
+    "Sorry, there are not enough gold coins.", //金币不足请充值
+    "In the game, unable to exit", // 游戏中无法退出
+    "Sorry, your gold coin can't be played in this game", // 对不起，您的金币无法在本场内游戏）
     "Your cash is insufficient, Please recharge in time!"];
     this.isGameEndStatus = false;
   },
@@ -63,9 +74,9 @@ cc.Class({
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
       fromid: GlobalCfg.PRODUCT_ID //平台ID
+
     });
   },
-
   onDestroy: function onDestroy() {
     GlobalCfg.ACT_SCENE_CTRL = null;
     ClientNotify.removeByHandle("PUSHPAYSUCCESS", this.pushpaysuccess);
@@ -78,6 +89,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == "gameservice.login") {
       self.setLogin(notify);
     } else if (msgId == "gameservice.gamescene") {
@@ -106,22 +118,27 @@ cc.Class({
           msgCode: GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY,
           msgData: {}
         });
+
         if (CommonFun.getInstance().isValidForScr(self)) {
           self.node.destroy();
         }
+
         ;
       })["catch"](function (error) {
         LoggerUtil.getInstance().log(error);
       });
     } else if (msgId == "gameservice.queryopenrecord") {
       var pab_record = self.node.getChildByName("pab_record");
+
       if (pab_record) {
         var ctrl = pab_record.getComponent("recordCtrl");
         ctrl.setRecordDate(notify);
       } else {
         var pab_newRecord = cc.instantiate(self.pab_record);
         self.node.addChild(pab_newRecord);
+
         var _ctrl = pab_newRecord.getComponent("recordCtrl");
+
         _ctrl.setRecordDate(notify);
       }
     } else if (msgId == "gameservice.querygameendinfo") {
@@ -138,10 +155,12 @@ cc.Class({
         self.sprite_cradType.node.active = false;
         self.node_cradKuang.active = true;
         self.node_winKuang.active = true;
+
         for (var i = 0; i < self.node_cradArr.length; i++) {
           self.node_cradArr[i].scale = 0.63;
           self.node_cradArr[i].getComponent(cc.Sprite).spriteFrame = self.spite_cradBei;
         }
+
         self.betCionAct(6, notify.score / 100);
       }
     } else if (msgId == "lobbyservice.pushcurrencychanged") {
@@ -160,6 +179,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (!notify) {
       var info = {
         errorMessage: "TP\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684\u975E\u6B63\u786E\u6D88\u606F\u4E2D\u7ED3\u6784\u4F53\u5F02\u5E38, \u5185\u5BB9\u4E3A===>" + JSON.stringify(webData)
@@ -167,31 +187,37 @@ cc.Class({
       CommonFun.getInstance().reportToTelegram(info);
       return;
     }
+
     ;
     var result = notify.result;
+
     if (notify.Result) {
       result = notify.Result;
     }
+
     ;
     var msg = result.message;
+
     if (msgId == "gameservice.call") {
       if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
         if (result.result == 57) {
           CommonFun.getInstance().showDiversionFreeTP(function () {
-            GameServerManager.send("gameservice.exitgame", "ExitGameReq", {});
-            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
+            GameServerManager.send("gameservice.exitgame", "ExitGameReq", {}); // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
           });
         } else {
           CommonFun.getInstance().showTips(result.message);
         }
+
         ;
       } else {
         CommonFun.getInstance().showTips(result.message);
       }
+
       ;
     } else {
       CommonFun.getInstance().showTips(result.message);
     }
+
     ;
   },
   cashSwitch: function cashSwitch() {
@@ -199,14 +225,17 @@ cc.Class({
       var btn_add = this.btn_shop.getChildByName('Background').getChildByName('btn_shop');
       btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
     }
+
     this.btn_shop.active = GlobalCfg.USER_DATAS.openModules.includes(4);
     this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
   },
   setLogin: function setLogin(notify) {
     LoggerUtil.getInstance().log("notify", notify);
+
     if (!notify) {
       return;
     }
+
     if (!notify.Result) {
       this.myId = notify.playerId;
       var diamond = FloatCalculation.accDiv(notify.diamond, 100);
@@ -231,9 +260,11 @@ cc.Class({
     this.lab_bigWinnerName.string = CommonFun.getInstance().getStrByLength(bigWinner.bigWinner.nickname, 14);
     this.lab_bigWinnerCoin.string = FloatCalculation.accDiv(bigWinner.win, 100);
     this.loadHeadSp(bigWinner.bigWinner.imgUrl, 89, this.node_bigWinnerImage);
+
     if (status == 1) {
       this.node_betBtn.active = false;
       this.remaining = notify.remaining;
+
       if (this.isBackStage) {
         this.isBackStage = false;
         GameServerManager.send("gameservice.querygameendinfo", "QueryGameEndInfoReq", {});
@@ -245,16 +276,19 @@ cc.Class({
       this.sprite_cradType.node.active = false;
       this.node_cradKuang.active = false;
       this.node_winKuang.active = false;
+
       for (var i = 0; i < this.node_cradArr.length; i++) {
         this.node_cradArr[i].scale = 0.63;
         this.node_cradArr[i].getComponent(cc.Sprite).spriteFrame = this.spite_cradBei;
       }
     }
+
     if (requester) {
       var diamond = FloatCalculation.accDiv(requester.diamond, 100);
       this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
       GlobalCfg.USER_DATAS.userDiamond = requester.diamond;
     }
+
     this.jackpotTime(lastJackpotTime);
     this.setSidePool(notify.pools);
     this.insHistoricalRecords(openRecord);
@@ -265,20 +299,25 @@ cc.Class({
     this.node_betBtn.active = true;
     this.node_cradKuang.active = false;
     this.node_winKuang.active = false;
+
     for (var i = 0; i < this.myBetLabArr.length; i++) {
       this.myBetLabArr[i].string = "0";
     }
+
     for (var _i = 0; _i < this.betLabArr.length; _i++) {
       this.betLabArr[_i].string = "0";
     }
+
     for (var _i2 = 0; _i2 < this.node_cradArr.length; _i2++) {
       this.node_cradArr[_i2].getComponent(cc.Sprite).spriteFrame = this.spite_cradBei;
     }
+
     if (this.myBetCoinAll > 0) {
       this.btn_repeat.active = true;
     } else {
       this.btn_repeat.active = false;
     }
+
     this.myBetCoinAll = 0;
   },
   // 游戏结束
@@ -300,33 +339,41 @@ cc.Class({
     this.scheduleOnce(function () {
       this.lab_betTime.string = "";
       this.showCradTypeAct(winSide);
+
       if (score > 0 && str == "endGame") {
         this.betCionAct(6, Math.floor(score / 100));
         this.sscAudioCtrl.playGameSound("touCoin");
         GlobalCfg.USER_DATAS.userDiamond = after;
         this.lab_coin.string = CommonFun.getInstance().numberToShow(after / 100);
       }
+
       this.curRoundAddCoinFinish();
     }, 1.5);
+
     if (this.bigWinnerPlayerId != bigWinner.bigWinner.playerId) {
       this.loadHeadSp(bigWinner.bigWinner.imgUrl, 89, this.node_bigWinnerImage);
       this.lab_bigWinnerName.string = CommonFun.getInstance().getStrByLength(bigWinner.bigWinner.nickname, 14);
       this.lab_bigWinnerCoin.string = FloatCalculation.accDiv(bigWinner.win, 100);
     }
+
     var pab_record = this.node.getChildByName("pab_record");
+
     if (pab_record) {
       GameServerManager.send("gameservice.queryopenrecord", "QueryOpenRecordReq", {});
     }
+
     if (!this.isRepeatBet) {
       this.recordBet = [0, 0, 0, 0, 0, 0];
       this.recordBetAll = [0, 0, 0, 0, 0, 0];
     } else {
       this.recordBet = [0, 0, 0, 0, 0, 0];
+
       for (var i = 0; i < this.recordBetAll.length; i++) {
         this.recordBet[i] = this.recordBetAll[i];
         this.recordBetAll[i] = 0;
       }
     }
+
     this.isRepeatBet = false;
   },
   curRoundAddCoinFinish: function curRoundAddCoinFinish() {
@@ -345,6 +392,7 @@ cc.Class({
     var amount = notify.amount / 100;
     var after = FloatCalculation.accDiv(notify.after, 100);
     this.betLabArr[side].string = allAmount;
+
     if (this.myId == playerId) {
       this.hideBet = true;
       this.isRepeatBet = true;
@@ -359,8 +407,10 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var btnName = button.node.name;
+
     if (btnName == "btn_close") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
+
       if (this.myBetCoinAll > 0 && this.isGameEndStatus == false) {
         CommonFun.getInstance().showMsgBox(this.tipsLabel[0], "YES_NO", function () {
           GameServerManager.send("gameservice.exitgame", "ExitGameReq", {});
@@ -368,9 +418,12 @@ cc.Class({
       } else {
         GameServerManager.send("gameservice.exitgame", "ExitGameReq", {});
       }
+
       return;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (btnName == "btn_shop") {
       CommonFun.getInstance().showSmallAddCash();
     } else if (btnName == "btn_waFa") {
@@ -436,17 +489,21 @@ cc.Class({
     this.sscAudioCtrl.playGameSound("touCoin");
     this.node_cradArr = [this.node_crad01, this.node_crad02, this.node_crad03];
     var btnArr = this.node.getComponentsInChildren(cc.Button);
+
     for (var i = 0; i < btnArr.length; i++) {
       var btn = btnArr[i].node;
+
       if (btn.name != "btn_mask") {
         if (btn.name == "btn_close") {
           btnArr[i].node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         } else {
           btnArr[i].node.on("click", this.btnClick, this);
         }
+
         ;
       }
     }
+
     this.betLabArr = [this.FindNode('lab_setAll'), this.FindNode('lab_pureSeqAll'), this.FindNode('lab_seqAll'), this.FindNode('lab_colorAll'), this.FindNode('lab_pailAll'), this.FindNode('lab_hifhCardAll')];
     this.myBetLabArr = [this.FindNode('lab_mySet'), this.FindNode('lab_myPureSeq'), this.FindNode('lab_mySeq'), this.FindNode('lab_myColor'), this.FindNode('lab_myPail'), this.FindNode('lab_myHifhCard')];
   },
@@ -454,27 +511,35 @@ cc.Class({
   setRecord: function setRecord(notify, num) {
     var nameArr = ['jackpot', 'myhistory', 'bigWinner'];
     var pab_historyRecords = this.node.getChildByName("pab_historyRecords");
+
     if (pab_historyRecords) {
       var Ctrl = pab_historyRecords.getComponent("historyRecordsCtrl");
       Ctrl.showUI(nameArr[num]);
       Ctrl.showDate(nameArr[num], notify.list);
     } else {
       var newPab = cc.instantiate(this.pab_historyRecords);
+
       var _Ctrl = newPab.getComponent("historyRecordsCtrl");
+
       this.node.addChild(newPab);
+
       _Ctrl.showUI(nameArr[num]);
+
       _Ctrl.showDate(nameArr[num], notify.list);
     }
   },
   // 重复下注
   repeatBet: function repeatBet() {
     var myBetCoinAll = 0;
+
     for (var i = 0; i < this.recordBet.length; i++) {
       myBetCoinAll += this.recordBet[i];
     }
+
     if (myBetCoinAll <= GlobalCfg.USER_DATAS.userDiamond) {
       for (var _i3 = 0; _i3 < this.recordBet.length; _i3++) {
         var coin = this.recordBet[_i3];
+
         if (coin > 0) {
           this.callReq(_i3, coin);
         }
@@ -491,15 +556,19 @@ cc.Class({
     var h = Math.floor(time / 3600);
     var f = Math.floor(time / 60) % 60;
     var s = time % 60;
+
     if (h < 10) {
       h = h <= 0 ? "00" : "0" + h;
     }
+
     if (f < 10) {
       f = f <= 0 ? "00" : "0" + f;
     }
+
     if (s < 10) {
       s = s <= 0 ? "00" : "0" + s;
     }
+
     this.FindNode("lab_time").string = h + ":" + f + ":" + s;
   },
   //设置玩家下注的金额
@@ -507,21 +576,27 @@ cc.Class({
     var myCion = 0;
     var play = 0;
     var arr = SidePool;
+
     for (var i = 0; i < arr.length; i++) {
       var date = arr[i];
       var coin = this.betLabArr[i].string;
       myCion = date.self / 100;
       var betCion = Math.abs(Number(coin) - date.all / 100);
+
       if (this.isOneInGame > 0) {
         this.betCionAct(date.side, betCion, "play");
       }
+
       if (betCion > 0) {
         play++;
       }
+
       this.betLabArr[i].string = date.all / 100;
       this.myBetLabArr[i].string = myCion;
     }
+
     this.isOneInGame++;
+
     if (play > 0) {
       this.sscAudioCtrl.playGameSound("otherCoin");
     }
@@ -529,9 +604,11 @@ cc.Class({
   //倒计时
   countDown: function countDown(time, status) {
     var newTime = time;
+
     if (status == 1) {
       this.lab_betTime.string = "Waitting:" + newTime;
     }
+
     {
       if (newTime < 14) {
         this.lab_betTime.string = loToLanguage.Betting[language] + newTime;
@@ -546,6 +623,7 @@ cc.Class({
       if (str != "play") {
         this.sscAudioCtrl.playGameSound("otherCoin");
       }
+
       var betPosArr = [cc.v2(-483, -83), cc.v2(-287, -83), cc.v2(-92, -83), cc.v2(102, -83), cc.v2(295, -83), cc.v2(490, -83), cc.v2(-450, -288)];
       var pos = betPosArr[num];
       var time = num == 6 ? 1 : 0.6;
@@ -576,12 +654,15 @@ cc.Class({
   //游戏结束后显示牌型
   cradAct: function cradAct(cards, str) {
     var _this = this;
+
     var arr = cards;
+
     var _loop = function _loop(i) {
       var cradNode = _this.node_cradArr[i];
       cradNode.scale = 0.63;
       cradNode.getComponent(cc.Sprite).spriteFrame = _this.spite_cradBei;
       var cradScrpit = cradNode.getComponent("sscCradCtrl");
+
       if (str == "isAct") {
         cc.tween(cradNode).tag(1).delay(i * 0.5).to(0.25, {
           scaleX: 0
@@ -594,6 +675,7 @@ cc.Class({
         cradScrpit.setCardInfo(arr[i]);
       }
     };
+
     for (var i = 0; i < this.node_cradArr.length; i++) {
       _loop(i);
     }
@@ -621,12 +703,15 @@ cc.Class({
         return;
       }
     }
+
     this.LotteryRecord = list;
     this.node_HistoricalRecords.destroyAllChildren();
     var len = list.length > 10 ? list.length - 10 : 0;
     var count = 0;
+
     for (var i = len; i < list.length; i++) {
       count++;
+
       if (count <= 10) {
         var pab_winTepy = cc.instantiate(this.pab_winTepy);
         this.node_HistoricalRecords.addChild(pab_winTepy);
@@ -635,6 +720,7 @@ cc.Class({
         this.recordArr.push(pab_winTepy);
       }
     }
+
     if (this.recordArr.length > 0) {
       this.recordArr[this.recordArr.length - 1].getChildByName("bq_new").active = true;
     }
@@ -642,8 +728,10 @@ cc.Class({
   //查找组件
   FindNode: function FindNode(nodeName) {
     var labArr = this.node.getComponentsInChildren(cc.Label);
+
     for (var i = 0; i < labArr.length; i++) {
       var node = labArr[i].node;
+
       if (nodeName == node.name) {
         return labArr[i];
       }
@@ -654,9 +742,12 @@ cc.Class({
     if (GlobalCfg.USER_DATAS.gamePattern == 1) {
       this.betCionArr = [1, 10, 50, 100, 200, 500];
     }
+
     var len = this.betCionArr.length - 1;
+
     if (str == "jia") {
       this.betIndex++;
+
       if (this.betIndex >= len) {
         this.btn_jia.active = false;
       } else {
@@ -665,6 +756,7 @@ cc.Class({
       }
     } else if (str == "jian") {
       this.betIndex--;
+
       if (this.betIndex <= 0) {
         this.btn_jian.active = false;
       } else {
@@ -679,6 +771,7 @@ cc.Class({
       this.btn_jia.active = true;
       this.btn_jian.active = false;
     }
+
     if (this.betIndex >= 0 && this.betIndex <= len) {
       this.lab_betCion.string = this.betCionArr[this.betIndex];
       this.betCion = this.betCionArr[this.betIndex];
@@ -689,11 +782,12 @@ cc.Class({
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
       fromid: GlobalCfg.PRODUCT_ID //平台ID
+
     });
   },
-
   callReq: function callReq(CardType, coin) {
     var amount = 0;
+
     if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", function () {
@@ -701,11 +795,14 @@ cc.Class({
       }, false);
       return;
     }
+
     ;
+
     if (coin) {
       amount = coin;
     } else {
       amount = this.betCion * 100;
+
       if (amount > GlobalCfg.USER_DATAS.userDiamond) {
         CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", function () {
           CommonFun.getInstance().showSmallAddCash();
@@ -713,6 +810,7 @@ cc.Class({
         return;
       }
     }
+
     ;
     GameServerManager.send("gameservice.call", "CallReq", {
       amount: amount,
@@ -747,16 +845,20 @@ cc.Class({
       cc.sys.localStorage.setItem("timeStamp", timeStamp);
     } else {
       var _timeStamp = Date.parse(new Date());
+
       var newTimeStamp = cc.sys.localStorage.getItem("timeStamp");
       var time = (_timeStamp - newTimeStamp) / 1000;
+
       if (time > this.betTime + 6) {
         if (time < 21 + this.betTime + 6) {
           // 下局
           if (this.hideBet) {
             this.recordBet = [0, 0, 0, 0, 0, 0];
+
             for (var i = 0; i < this.hideBetArr.length; i++) {
               this.recordBet[i] = this.hideBetArr[i];
             }
+
             this.hideBet = false;
             this.isRepeatBet = true;
             this.btn_repeat.active = true;
@@ -774,10 +876,9 @@ cc.Class({
         }
       }
     }
-  }
-
-  // start () {},
+  } // start () {},
   // update (dt) {},
+
 });
 
 cc._RF.pop();

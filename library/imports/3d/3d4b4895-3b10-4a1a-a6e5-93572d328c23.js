@@ -9,6 +9,7 @@ cc.Class({
   properties: {},
   init: function init() {
     var _this = this;
+
     this.isSpinning = false; // 是否正在转动
 
     this.node_yhk = this.node.getChildByName("bg_yhk");
@@ -43,21 +44,24 @@ cc.Class({
     CommonFun.getInstance().httpGet(GlobalCfg.HTTP_SERVER + "/v1/pdd/winninglist", function (strInfo) {
       if (strInfo.result == 0) {
         var data = strInfo.data;
+
         _this.showLuckNodeFunc(data.list);
       }
-    }, null, GlobalCfg.USER_DATAS.BearerToken);
+    }, null, GlobalCfg.USER_DATAS.BearerToken); // 旋转角度 金币、金币、幸运卡、双倍卡、现金、现金
 
-    // 旋转角度 金币、金币、幸运卡、双倍卡、现金、现金
     this.awardAngle = [150, 330, -90, 90, 30, 210];
     this.showDataCount = 0;
   },
+
   /**
    * 显示抽奖界面
    * @param {*} data 接口 /v1/pdd/info
    */
   setData: function setData(data) {
     var _this2 = this;
+
     console.log("setData的data", data);
+
     if (data.used_count == 0) {
       this.intervalID = setInterval(function () {
         _this2.fingerAction();
@@ -66,23 +70,28 @@ cc.Class({
       this.greyMask.active = false;
       this.btnFinger.node.active = false;
     }
+
     var bankCardinfo = JSON.parse(cc.sys.localStorage.getItem("bankCradInfo"));
+
     if (bankCardinfo) {
       this.lab_bank.string = bankCardinfo.bankName;
     } else {
       this.lab_bank.string = "HDFC BANK";
     }
+
     this.unclaimed = data.unclaimed / 100;
     this.lab_gold.string = "" + this.unclaimed.toFixed(2);
     this.quota = Math.round(data.quota / 100);
     this.lab_count.string = this.quota;
     this.lab_cha.string = "₹" + Number(this.quota - this.unclaimed).toFixed(2);
     this.lab_spinNum.string = data.remain_count;
+
     if (data.quota == data.unclaimed) {
       this.lab_time.string = "00: 00: 00";
     } else {
       this.Countdown(data.create_time, 3);
     }
+
     this.lab_withdrawCount.string = this.quota;
   },
   onLoad: function onLoad() {},
@@ -96,13 +105,14 @@ cc.Class({
     }).start();
   },
   btnClick: function btnClick(Button) {
-    var btnName = Button.node.name;
-    // if (this.isSpinning == true) { return }
+    var btnName = Button.node.name; // if (this.isSpinning == true) { return }
+
     if (btnName == "btn_back") {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
       this.node.destroy();
     } else if (btnName == "btn_withDraw") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       if (this.quota == this.unclaimed) {
         // this.withDraw();
         this.changeBankInfo();
@@ -112,16 +122,15 @@ cc.Class({
     } else if (btnName == "btn_spin") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.isSpinning = true;
-      this.spinCallBack();
-      // this.trunPlateRotation();
+      this.spinCallBack(); // this.trunPlateRotation();
     } else if (btnName == "btn_changeBankInfo") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.changeBankInfo();
     } else if (btnName == "finger") {
       this.greyMask.active = false;
       this.btnFinger.node.active = false;
-      clearInterval(this.intervalID);
-      // 停止手指动作
+      clearInterval(this.intervalID); // 停止手指动作
+
       cc.Tween.stopAllByTag(21);
       this.isSpinning = true;
       this.spinCallBack();
@@ -129,13 +138,17 @@ cc.Class({
   },
   shareToInvite: function shareToInvite() {
     var _this3 = this;
+
     ResourcesBundle.load('NewPlan/Pdd/prefab/pddShare', function (err, prefab) {
       if (err) {
         console.error(err);
         return;
       }
+
       var node = cc.instantiate(prefab);
+
       _this3.node.addChild(node);
+
       node.getComponent("pddShareCtrl").init();
     });
   },
@@ -146,11 +159,13 @@ cc.Class({
     var url = GlobalCfg.HTTP_SERVER + "/v1/pdd/luckydraw";
     CommonFun.getInstance().httpGet(url, function (strInfo) {
       console.log("pdd消息:", strInfo);
+
       if (strInfo.result == 5036) {
         self.shareToInvite();
         self.isSpinning = false;
         return;
       }
+
       if (strInfo.result == 0) {
         /**
          * data:
@@ -168,32 +183,38 @@ cc.Class({
         var data = strInfo.data;
         self.unclaimed = data.unclaimed_after / 100;
         self.lab_spinNum.string = data.remain_count < self.lab_spinNum.string ? data.remain_count : self.lab_spinNum.string;
+
         if (data.award) {
           switch (data.award.type) {
             case 0:
               // 幸运卡
               self.trunPlateRotation(2);
               break;
+
             case 1:
               // 双倍卡
               self.trunPlateRotation(3);
               break;
+
             case 2:
               // 金币
               var awardno = Math.round(Math.random());
               self.trunPlateRotation(awardno);
               break;
+
             case 3:
               // 货币
               var awardno1 = Math.round(Math.random()) + 4;
               self.trunPlateRotation(awardno1);
               break;
+
             default:
               break;
           }
         } else {
           console.error("Data.award is null");
         }
+
         self.setSpinData(data);
       }
     }, null, GlobalCfg.USER_DATAS.BearerToken);
@@ -204,12 +225,13 @@ cc.Class({
   // awardno 0:金币 1:金币 2:幸运卡 3:双倍卡 4:货币 5:货币
   trunPlateRotation: function trunPlateRotation(awardno) {
     var _this4 = this;
-    this.compensation = this.node_zp.angle % 360 + 360;
-    //旋转时间
-    var rotationTime = 1.8;
-    //旋转圈数
-    var rotationcircle = 3;
-    //奖励圈数
+
+    this.compensation = this.node_zp.angle % 360 + 360; //旋转时间
+
+    var rotationTime = 1.8; //旋转圈数
+
+    var rotationcircle = 3; //奖励圈数
+
     var RotationAngle = this.node_zp.angle - rotationcircle * 360 - this.awardAngle[awardno] - this.compensation;
     cc.tween(this.node_zp).to(rotationTime, {
       angle: RotationAngle
@@ -233,23 +255,28 @@ cc.Class({
         self.tableLight_ske.node.active = false;
         self.isSpinning = false;
         self.playPddSound("showRedPacket", false);
+
         switch (type) {
           case 0:
             // 幸运卡
             pddRedPackCtrl.initNodeLuckyCard(self._luckydrawData);
             break;
+
           case 1:
             // 双倍卡
             pddRedPackCtrl.initNodeDoubleCard(self._luckydrawData);
             break;
+
           case 2:
             // 金币
             pddRedPackCtrl.initNodeGetTenCoin(self._luckydrawData);
             break;
+
           case 3:
             // 货币
             pddRedPackCtrl.initNodeRedPack(self._luckydrawData);
             break;
+
           default:
             break;
         }
@@ -261,16 +288,18 @@ cc.Class({
     this.lab_cha.string = "₹" + Number(this.quota - this.lab_gold.string).toFixed(2);
     this.lab_spinNum.string = this._luckydrawData.remain_count;
   },
+
   /**
    * 倒计时 
    * @param {Number} startTime 单位 秒
    * @param {Number} endDay 单位  天
    */
   Countdown: function Countdown(startTime, endDay) {
-    var count = 0;
-    // 轮询计算时间
+    var count = 0; // 轮询计算时间
+
     this.loop = function () {
       var _this5 = this;
+
       count++;
       var that = this;
       clearTimeout(this.changeTime);
@@ -280,37 +309,47 @@ cc.Class({
           that.init();
         }
       }, 1000);
-    };
-    // 格式化时分秒
+    }; // 格式化时分秒
+
+
     this.formatDuring = function (mss) {
       var hours = Math.floor(mss / (60 * 60));
       var minutes = Math.floor(mss % (60 * 60) / 60);
       var seconds = Math.floor(mss % 60);
       return hours + ": " + (minutes < 10 ? '0' + minutes : minutes) + ": " + (seconds < 10 ? '0' + seconds : seconds);
-    };
-    // 初始化倒计时
+    }; // 初始化倒计时
+
+
     this.init = function () {
       var _this6 = this;
+
       if (count == 5) {
         count = 0;
         CommonFun.getInstance().httpGet(GlobalCfg.HTTP_SERVER + "/v1/pdd/winninglist", function (strInfo) {
           if (strInfo.result == 0) {
             var data = strInfo.data;
+
             _this6.showLuckNodeFunc(data.list);
           }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
       }
+
       if (cc.isValid(this.node)) {
         var endTime = startTime + endDay * 24 * 60 * 60; // 结束时间 
+
         var timeLeft = endTime - new Date().getTime() / 1000; // 剩余时间
+
         this.lab_time.string = this.formatDuring(timeLeft);
+
         if (timeLeft <= 0) {
           this.lab_time.string = "00: 00: 00";
           return;
         }
+
         this.loop();
       }
     };
+
     this.init();
   },
   getDateToDay: function getDateToDay(data) {
@@ -320,6 +359,7 @@ cc.Class({
     var d = date.getDate();
     return y + '-' + this.add0(m) + '-' + this.add0(d);
   },
+
   /**
    * 返回时间
    * @param {Object} data 
@@ -353,14 +393,17 @@ cc.Class({
     var self = this;
     CommonFun.getInstance().httpGet(url, function (strInfo) {
       cc.log("提现列表", strInfo);
+
       if (strInfo.result == 0) {
         if (strInfo.data.code == 9999) {
           // 没有充值
           var curScene = cc.director.getScene();
           var MsgBoxNode = curScene.getChildByName("MsgBox");
+
           if (MsgBoxNode && MsgBoxNode.active == true) {
             return;
           }
+
           if (GlobalCfg.USER_DATAS.mail.length <= 0 || GlobalCfg.USER_DATAS.phone.length <= 0) {
             var str = "This feature is available only for premium players Add cash ";
             str += "now to become a premium player.";
@@ -374,13 +417,14 @@ cc.Class({
         } else {
           self.showWithDraw();
         }
+
         self.node.destroy();
       }
-    }, null, GlobalCfg.USER_DATAS.BearerToken);
-    // this.node.destroy();
+    }, null, GlobalCfg.USER_DATAS.BearerToken); // this.node.destroy();
   },
   showWithDraw: function showWithDraw() {
     var _this7 = this;
+
     CommonFun.getInstance().showProgress();
     var path = 'NewPlan/Pdd/prefab/WithDraw_PreData';
     var data = GlobalCfg.USER_DATAS.transferAddress;
@@ -391,20 +435,25 @@ cc.Class({
       } else {
         var pab_WithDraw_PreData = cc.instantiate(prefab);
         var ctrl = pab_WithDraw_PreData.getComponent('WithDraw_PreDataCtrl');
+
         _this7.node.parent.addChild(pab_WithDraw_PreData);
+
         ctrl.setData(data);
       }
     });
   },
   showTips: function showTips() {
     var _this8 = this;
+
     ResourcesBundle.load('NewPlan/Pdd/prefab/pddTip', function (err, prefab) {
       if (err) {
         console.error("setBank 预制体生成错误！");
         return;
       } else {
         var pddTip = cc.instantiate(prefab);
+
         _this8.node.addChild(pddTip);
+
         setTimeout(function () {
           pddTip.destroy();
         }, 500);
@@ -422,6 +471,7 @@ cc.Class({
         lab_name.string = CommonFun.getInstance().getStrByLength(data[i].name, 6);
         lab_count.string = data[i].quota / 100;
       }
+
       this.showDataCount++;
       this.showHaveWithDraw(data[data.length - 1], this.showDataCount % 2 == 0 ? false : true);
     }
@@ -429,6 +479,7 @@ cc.Class({
   showHaveWithDraw: function showHaveWithDraw(data, isShowData) {
     var havaWithDraw = this.node.getChildByName('haveWithDraw');
     var bg_tx_01 = this.node.getChildByName('bg_tx_01');
+
     if (isShowData == true) {
       bg_tx_01.active = false;
       var tx = havaWithDraw.getChildByName('nodeMask').getChildByName('tx_tx').getComponent(cc.Sprite);
@@ -442,10 +493,12 @@ cc.Class({
       havaWithDraw.active = false;
       bg_tx_01.active = true;
     }
+
     this.changeBottomLab(isShowData);
   },
   changeBottomLab: function changeBottomLab(bool) {
     var lab = cc.find('zhuanpan/bg_zp_up/lab', this.node).getComponent(cc.Label);
+
     if (bool) {
       lab.string = 'Estimata 1-2 more to withdraw!';
     } else {
@@ -456,12 +509,12 @@ cc.Class({
     if (isLoop === void 0) {
       isLoop = false;
     }
+
     soundName = "pddSound/" + soundName;
     GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources(soundName, isLoop);
   },
-  showFinger: function showFinger() {}
+  showFinger: function showFinger() {} // update (dt) {},
 
-  // update (dt) {},
 });
 
 cc._RF.pop();

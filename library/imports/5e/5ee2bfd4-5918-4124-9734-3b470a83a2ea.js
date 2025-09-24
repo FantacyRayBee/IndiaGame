@@ -18,6 +18,7 @@ cc.Class({
   setCardInfo: function setCardInfo(cardValue) {
     var cardSpriteName = "";
     var num = this.getNum(cardValue);
+
     if (cardValue >= 0 && cardValue <= 12) {
       cardSpriteName = "fangkuai" + num;
     } else if (cardValue >= 13 && cardValue <= 25) {
@@ -34,6 +35,7 @@ cc.Class({
       LoggerUtil.getInstance().error("\u724C\u503C\u6709\u9519\u8BEF, \u6B63\u5E38\u7684\u724C\u503C\u4E3A\uFF1A0 ~ 53. \u6B64\u724C\u503C\u4E3A: " + cardValue);
       return;
     }
+
     ;
     this.node.getComponent(cc.Sprite).spriteFrame = this.pokseAtlas.getSpriteFrame(cardSpriteName);
     this.node.width = 143;
@@ -41,6 +43,7 @@ cc.Class({
   },
   getNum: function getNum(cardValue) {
     var m = cardValue % 13;
+
     if (m == 0) {
       return 12;
     } else if (m == 1) {
@@ -68,6 +71,7 @@ cc.Class({
     } else if (m == 12) {
       return 11;
     }
+
     ;
   }
 });

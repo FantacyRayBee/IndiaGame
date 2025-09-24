@@ -7,6 +7,7 @@ cc._RF.push(module, 'de49d+HbkpE36c9yNCQ+IAW', 'ProtoCfg');
 cc.Class({
   ctor: function ctor() {
     var _this$protoZJH, _this$protoHW, _this$protoHorseRace, _this$protoBaccarat3P;
+
     this.protoLOBBY = {
       "lobbyservice.pingpang": "PingPang",
       "lobbyservice.login": "LoginAck",
@@ -36,10 +37,8 @@ cc.Class({
       //删除邮件
       "lobbyservice.querymaildetail": "QueryMailDetailAck",
       //已读邮件
-
       "lobbyservice.signininfo": "SignInInfoAck",
       //获取签到信息
-
       "lobbyservice.watchneptuneeducation": "WatchNeptuneEducationAck",
       "lobbyservice.pushpaysuccess": "PushPaySuccessAck",
       // 印度项目 充值成功
@@ -62,9 +61,9 @@ cc.Class({
       "lobbyservice.gobroke": "Broke",
       // 破产
       "lobbyservice.firstchargenotification": "FirstChargeNotification" // 首充通知
-    };
 
-    // 炸金花游戏协议
+    }; // 炸金花游戏协议
+
     this.protoZJH = (_this$protoZJH = {
       "gameservice.login": "LoginAck",
       //登录
@@ -75,9 +74,8 @@ cc.Class({
       "gameservice.kickout": "KickOutAck",
       //异地登录踢人
       "gameservice.receivefreetrial": "ReceiveFreeTrialAck"
-    }, _this$protoZJH["gameservice.querygoldlist"] = "QueryGoldListAck", _this$protoZJH["gameservice.exitgame"] = "ExitGameAck", _this$protoZJH["gameservice.changeroom"] = "ChangeRoomAck", _this$protoZJH["gameservice.shortmessage"] = "ShortMessageAck", _this$protoZJH["gameservice.shortmessagenotify"] = "ShortMessageNotify", _this$protoZJH["gameservice.updatecoinnotify"] = "UpdateCoinNotify", _this$protoZJH["gameservice.gamescene"] = "GameSceneNotify", _this$protoZJH["gameservice.playerjoinnotify"] = "PlayerJoinNotify", _this$protoZJH["gameservice.playerleavenotify"] = "PlayerLeaveNotify", _this$protoZJH["gameservice.playerofflinenotify"] = "PlayerOfflineNotify", _this$protoZJH["gameservice.gamestartnotify"] = "GameStartNotify", _this$protoZJH["gameservice.askchipnotify"] = "AskChipNotify", _this$protoZJH["gameservice.chip"] = "ChipAck", _this$protoZJH["gameservice.playerchipnotify"] = "PlayerChipNotify", _this$protoZJH["gameservice.drop"] = "DropAck", _this$protoZJH["gameservice.playerdropnotify"] = "PlayerDropNotify", _this$protoZJH["gameservice.look"] = "LookAck", _this$protoZJH["gameservice.playerlooknotify"] = "PlayerLookNotify", _this$protoZJH["gameservice.launchcompare"] = "LaunchCompareAck", _this$protoZJH["gameservice.playerlaunchcomparenotify"] = "LaunchCompareNotify", _this$protoZJH["gameservice.answercompare"] = "AnswerCompareAck", _this$protoZJH["gameservice.playeranswercomparenotify"] = "AnswerCompareNotify", _this$protoZJH["gameservice.gameovernotify"] = "GameOverNotify", _this$protoZJH["gameservice.playerluanchcomparenotify"] = "LaunchCompareNotify", _this$protoZJH["gameservice.preparepayment"] = "PreparePaymentAck", _this$protoZJH["gameservice.preparepaymentnotify"] = "PreparePaymentNotify", _this$protoZJH["gameservice.paymentfinishnotify"] = "PaymentFinishNotify", _this$protoZJH["gameservice.destroyandmatchingnotify"] = "DestroyAndMatchingNotify", _this$protoZJH);
+    }, _this$protoZJH["gameservice.querygoldlist"] = "QueryGoldListAck", _this$protoZJH["gameservice.exitgame"] = "ExitGameAck", _this$protoZJH["gameservice.changeroom"] = "ChangeRoomAck", _this$protoZJH["gameservice.shortmessage"] = "ShortMessageAck", _this$protoZJH["gameservice.shortmessagenotify"] = "ShortMessageNotify", _this$protoZJH["gameservice.updatecoinnotify"] = "UpdateCoinNotify", _this$protoZJH["gameservice.gamescene"] = "GameSceneNotify", _this$protoZJH["gameservice.playerjoinnotify"] = "PlayerJoinNotify", _this$protoZJH["gameservice.playerleavenotify"] = "PlayerLeaveNotify", _this$protoZJH["gameservice.playerofflinenotify"] = "PlayerOfflineNotify", _this$protoZJH["gameservice.gamestartnotify"] = "GameStartNotify", _this$protoZJH["gameservice.askchipnotify"] = "AskChipNotify", _this$protoZJH["gameservice.chip"] = "ChipAck", _this$protoZJH["gameservice.playerchipnotify"] = "PlayerChipNotify", _this$protoZJH["gameservice.drop"] = "DropAck", _this$protoZJH["gameservice.playerdropnotify"] = "PlayerDropNotify", _this$protoZJH["gameservice.look"] = "LookAck", _this$protoZJH["gameservice.playerlooknotify"] = "PlayerLookNotify", _this$protoZJH["gameservice.launchcompare"] = "LaunchCompareAck", _this$protoZJH["gameservice.playerlaunchcomparenotify"] = "LaunchCompareNotify", _this$protoZJH["gameservice.answercompare"] = "AnswerCompareAck", _this$protoZJH["gameservice.playeranswercomparenotify"] = "AnswerCompareNotify", _this$protoZJH["gameservice.gameovernotify"] = "GameOverNotify", _this$protoZJH["gameservice.playerluanchcomparenotify"] = "LaunchCompareNotify", _this$protoZJH["gameservice.preparepayment"] = "PreparePaymentAck", _this$protoZJH["gameservice.preparepaymentnotify"] = "PreparePaymentNotify", _this$protoZJH["gameservice.paymentfinishnotify"] = "PaymentFinishNotify", _this$protoZJH["gameservice.destroyandmatchingnotify"] = "DestroyAndMatchingNotify", _this$protoZJH); // 7上7下游戏协议
 
-    // 7上7下游戏协议
     this.protoUPDOWN = {
       "gameservice.login": "LoginAck",
       //登录
@@ -122,9 +120,9 @@ cc.Class({
       "gameservice.shortmessage": "ShortMessageAck",
       //短消息
       "gameservice.shortmessagenotify": "ShortMessageNotify" //短消息广播
-    };
 
-    // 安德尔游戏
+    }; // 安德尔游戏
+
     this.protoAndeer = {
       "gameservice.login": "LoginAck",
       // 登录
@@ -159,9 +157,9 @@ cc.Class({
       "gameservice.updatecoinnotify": "UpdateCoinNotify",
       // 货币更新广播(非游戏行为)
       "gameservice.asktrial": "AskTrialAck" // 获取积分
-    };
 
-    // 打地鼠游戏
+    }; // 打地鼠游戏
+
     this.protoDds = {
       "gameservice.login": "LoginAck",
       // 登录游戏
@@ -189,7 +187,6 @@ cc.Class({
       //刚进入游戏后游戏场景发送
       "gameservice.joinvipnotify": "JoinVipNotify",
       //控制VIP上下座.
-
       "gameservice.enterusernotify": "EnterUserNotify",
       //玩家加入房间
       "gameservice.callnotify": "CallNotify",
@@ -226,11 +223,9 @@ cc.Class({
       //拉取所有玩家列表
       "gameservice.querygameendinfo": "QueryGameEndInfoAck",
       //拉取游戏结算结果
-
       "gameservice.kickout": "KickOutAck"
-    }, _this$protoHW["gameservice.joinvipnotify"] = "JoinVipNotify", _this$protoHW["gameservice.leavevipnotify"] = "LeaveVipNotify", _this$protoHW["gameservice.gameendnotify"] = "GameEndNotify", _this$protoHW["gameservice.changefort"] = "ChangeFortAck", _this$protoHW["gameservice.vipchangefortnotify"] = "VipChangeFortNotify", _this$protoHW["gameservice.exitgamereq"] = "ExitGameAck", _this$protoHW["gameservice.updatebalance"] = "UpdateBalanceAck", _this$protoHW["gameservice.refreshusernotify"] = "CoinPlayer", _this$protoHW["gameservice.currencycovert"] = "CovertAck", _this$protoHW["gameservice.updatesafe"] = "UpdateSafeAck", _this$protoHW["gameservice.querysafeleft"] = "QuerySafeLeftAck", _this$protoHW["gameservice.vipplayerlist"] = "VipPlayerListAck", _this$protoHW);
+    }, _this$protoHW["gameservice.joinvipnotify"] = "JoinVipNotify", _this$protoHW["gameservice.leavevipnotify"] = "LeaveVipNotify", _this$protoHW["gameservice.gameendnotify"] = "GameEndNotify", _this$protoHW["gameservice.changefort"] = "ChangeFortAck", _this$protoHW["gameservice.vipchangefortnotify"] = "VipChangeFortNotify", _this$protoHW["gameservice.exitgamereq"] = "ExitGameAck", _this$protoHW["gameservice.updatebalance"] = "UpdateBalanceAck", _this$protoHW["gameservice.refreshusernotify"] = "CoinPlayer", _this$protoHW["gameservice.currencycovert"] = "CovertAck", _this$protoHW["gameservice.updatesafe"] = "UpdateSafeAck", _this$protoHW["gameservice.querysafeleft"] = "QuerySafeLeftAck", _this$protoHW["gameservice.vipplayerlist"] = "VipPlayerListAck", _this$protoHW); // Rummy游戏
 
-    // Rummy游戏
     this.protoRummy = {
       "gameservice.login": "LoginAck",
       //登录
@@ -294,9 +289,9 @@ cc.Class({
       "gameservice.ondrop": "OnDrop",
       //弃牌广播
       "gameservice.ontidyfinalcards": "OnTidyFinalCards" //摆牌广播
-    };
 
-    //弹弹球游戏协议
+    }; //弹弹球游戏协议
+
     this.protoTTQ = {
       "gameservice.pingpang": "PingPang",
       "gameservice.login": "LoginAck",
@@ -351,9 +346,9 @@ cc.Class({
       "gameservice.shortmessagenotify": "ShortMessageNotify",
       // 短消息广播
       "gameservice.updatecoinnotify": "UpdateCoinNotify" // 货币更新广播
-    };
 
-    //Munda
+    }; //Munda
+
     this.protoMunda = {
       "gameservice.login": "LoginAck",
       "gameservice.joinvip": "JoinVipAck",
@@ -373,8 +368,8 @@ cc.Class({
       "gameservice.shortmessage": "ShortMessageAck",
       //短消息
       "gameservice.shortmessagenotify": "ShortMessageNotify" //短消息广播
-    };
 
+    };
     this.protoHorseRace = (_this$protoHorseRace = {
       "gameservice.login": "LoginAck",
       //登录
@@ -433,21 +428,23 @@ cc.Class({
       "gameservice.login": "LoginAck",
       //登录
       "gameservice.call": "CallAck" //下注    
-    };
-    //玛雅机台
+
+    }; //玛雅机台
+
     this.protoMaya = {
       "gameservice.login": "LoginAck",
       //登录
       "gameservice.call": "CallAck" //下注    
-    };
-    //印度舞娘机台
+
+    }; //印度舞娘机台
+
     this.protoIndia = {
       "gameservice.login": "LoginAck",
       //登录
       "gameservice.call": "CallAck" //下注    
-    };
 
-    //猫王游戏协议
+    }; //猫王游戏协议
+
     this.protoMW = {
       "gameservice.pingpang": "PingPang",
       "gameservice.login": "LoginAck",
@@ -483,9 +480,8 @@ cc.Class({
       "gameservice.gamescene": "GameSceneAck",
       "gameservice.exit": "ExitAck",
       "gameservice.updatecoinnotify": "UpdateCoinNotify"
-    };
+    }; //百人场炸金花
 
-    //百人场炸金花
     this.protoBaccarat3Patti = (_this$protoBaccarat3P = {
       "gameservice.login": "LoginAck",
       "gameservice.gamescene": "GameSceneAck",
@@ -502,9 +498,8 @@ cc.Class({
       "gameservice.joinvipposnotify": "JoinVipPosNotify",
       "gameservice.vipplayerlist": "VipPlayerListAck",
       "gameservice.joinvipnotify": "JoinVipPosNotify"
-    }, _this$protoBaccarat3P["gameservice.querygameendinfo"] = "GameEndNotify", _this$protoBaccarat3P["gameservice.shortmessage"] = "ShortMessageAck", _this$protoBaccarat3P["gameservice.shortmessagenotify"] = "ShortMessageNotify", _this$protoBaccarat3P["gameservice.updatecoinnotify"] = "UpdateCoinNotify", _this$protoBaccarat3P["gameservice.paymentfinishnotify"] = "PaymentFinishNotify", _this$protoBaccarat3P);
+    }, _this$protoBaccarat3P["gameservice.querygameendinfo"] = "GameEndNotify", _this$protoBaccarat3P["gameservice.shortmessage"] = "ShortMessageAck", _this$protoBaccarat3P["gameservice.shortmessagenotify"] = "ShortMessageNotify", _this$protoBaccarat3P["gameservice.updatecoinnotify"] = "UpdateCoinNotify", _this$protoBaccarat3P["gameservice.paymentfinishnotify"] = "PaymentFinishNotify", _this$protoBaccarat3P); // 火箭
 
-    // 火箭
     this.protoRocket = {
       "gameservice.login": "LoginAck",
       "gameservice.loadwhole": "LoadWholeAck",
@@ -519,9 +514,8 @@ cc.Class({
       "gameservice.flyfinishnotify": "FlyFinishNotify",
       "gameservice.bettingupdatenotify": "BettingUpdateNotify",
       "gameservice.updatecoinnotify": "UpdateCoinNotify"
-    };
+    }; // 动物园
 
-    // 动物园
     this.protoZoo = {
       "gameservice.login": "LoginAck",
       "gameservice.loadwhole": "LoadWholeAck",
@@ -538,9 +532,8 @@ cc.Class({
       "gameservice.joinvipnotify": "JoinVipNotify",
       "gameservice.shortmessage": "ShortMessageAck",
       "gameservice.shortmessagenotify": "ShortMessageNotify"
-    };
+    }; // 板球
 
-    // 板球
     this.protoCricket = {
       "gameservice.login": "LoginAck",
       "gameservice.loadwhole": "LoadWholeAck",
@@ -557,9 +550,8 @@ cc.Class({
       "gameservice.joinvipnotify": "JoinVipNotify",
       "gameservice.shortmessage": "ShortMessageAck",
       "gameservice.shortmessagenotify": "ShortMessageNotify"
-    };
+    }; // 宙斯
 
-    // 宙斯
     this.protoZeus = {
       "gameservice.login": "LoginAck",
       "gameservice.call": "CallAck",

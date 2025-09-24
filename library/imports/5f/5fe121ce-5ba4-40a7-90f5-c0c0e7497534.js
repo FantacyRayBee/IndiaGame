@@ -20,12 +20,14 @@ cc.Class({
   },
   setName: function setName(nickname) {
     this.nickname = nickname;
+
     if (this.lab_name) {
       this.lab_name.string = CommonFun.getInstance().getStrByLength(nickname, 8);
     }
   },
   setCoin: function setCoin(coin) {
     this.coin = FloatCalculation.accDiv(coin, 100);
+
     if (this.lab_coin && coin != null) {
       this.lab_coin.string = CommonFun.getInstance().numberToShow(this.coin);
     }

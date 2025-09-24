@@ -22,19 +22,28 @@ cc.Class({
   ctor: function ctor() {
     this.isCCGameEventHideStutas = false;
     this.selfAbsoluteSeatId = 0; //自己的绝对座位ID
+
     this.huSeat = true; // 是否胡牌
+
     this.isChange = false; // 游戏结算动画播完才能换桌
+
     this.isTuiChu = true; // ture 是直接退出游戏  falae是投降
+
     this.dealCount = 13; //发牌的数目
+
     this.groupObject = {
       group: "",
       type: "",
       node: cc.Node
     };
     this.isSelfTurn = false; //是否是自己操作的回合      
+
     this.isPickOneCard = false; //是否已经摸了一张牌
+
     this.barCount = 0; //记录bar的数量
+
     this.isKicked = false; // 结算超时被踢
+
     /**
      * 是自己回合，点击摸牌，发送起牌的消息请求，收到牌之后，isPickOneCard = true,再点击弹消息          【"you have already picked a card"】
      * 不是自己回合，点击摸牌，this.isSelfTurn = false，弹消息                                       【"please wait for your turn"】
@@ -43,46 +52,36 @@ cc.Class({
     this.paiZIndexArr = [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73];
     this.continueCount = 0;
     this.paiGroupArr = []; //存放手牌的数组
+
     this.userArryNode = []; //发送表情使用的数组，存放所有玩家节点
+
     this.clickPaiArr = []; //点击起来的牌组
-    this.textArr = [otherLanguage.rummyTisp_01[language], otherLanguage.rummyTisp_02[language],
-    //从关闭或者公开的牌库中拾取
-    otherLanguage.rummyTisp_03[language],
-    //你已经选了一张牌    
-    otherLanguage.rummyTisp_04[language],
-    //你确定要申报嘛？
-    otherLanguage.rummyTisp_06[language],
-    //xxx已经宣布将您的卡分组并申报
-    "Please wait for all the players to declare.",
-    //请等待所有玩家申报
-    otherLanguage.rummyTisp_05[language],
-    //请等待你的回合
-    otherLanguage.rummyTisp_07[language],
-    //等待玩家加入游戏（下一局时，对方未准备时）
+
+    this.textArr = [otherLanguage.rummyTisp_01[language], otherLanguage.rummyTisp_02[language], //从关闭或者公开的牌库中拾取
+    otherLanguage.rummyTisp_03[language], //你已经选了一张牌    
+    otherLanguage.rummyTisp_04[language], //你确定要申报嘛？
+    otherLanguage.rummyTisp_06[language], //xxx已经宣布将您的卡分组并申报
+    "Please wait for all the players to declare.", //请等待所有玩家申报
+    otherLanguage.rummyTisp_05[language], //请等待你的回合
+    otherLanguage.rummyTisp_07[language], //等待玩家加入游戏（下一局时，对方未准备时）
     otherLanguage.rummyTisp_01[language], // 等待其他玩家加入游戏
     "Your balance is under min Entry"];
     this.tempOpenSpriteFrame = null; //存放右边open区域牌的精灵
+
     this.tidyFinalCardsAck = false; //是否收到最后摆牌的ACK
-    this.tweenTagArr = [1,
-    //actionFirstPai  1054
-    2,
-    //OutCard   1326
-    3,
-    //对家出牌   1406
-    4,
-    //设置坐标   1565
-    5,
-    //按钮从下方滑上来 1776
-    6,
-    //发牌  1813
-    7,
-    //翻转扑克牌 1842
-    8,
-    //移动至close的位置 1863
-    9,
-    //移动至close的位置 1922
+
+    this.tweenTagArr = [1, //actionFirstPai  1054
+    2, //OutCard   1326
+    3, //对家出牌   1406
+    4, //设置坐标   1565
+    5, //按钮从下方滑上来 1776
+    6, //发牌  1813
+    7, //翻转扑克牌 1842
+    8, //移动至close的位置 1863
+    9, //移动至close的位置 1922
     10];
     this.lastGameLifeCount = 0; //上一次组牌的生命序列数目
+
     this.nowGameLifeCount = 0; //这一次组牌的生命序列数目
 
     this.paiDistance = 60;
@@ -115,14 +114,15 @@ cc.Class({
       this.isCCGameEventHideStutas = true;
       window.isNeedShowRoomList = "rummy";
       GameServerManager.hideFilterMag(1);
-      this.unscheduleAllCallbacks();
-      // this.tsetCrad();
+      this.unscheduleAllCallbacks(); // this.tsetCrad();
+
       this.paiGroupArr = [];
       this.putSelfCardToPool();
       this.openNode.active = false;
       this.closeNode.active = false;
       this.initNodeState(false);
       this.userInfoCtrl && this.userInfoCtrl.countDown(false);
+
       for (var i = 0, len = this.playersNode.children.length; i < len; i++) {
         var otherUserNode = this.playersNode.children[i];
         var otherUserCtrl = otherUserNode.getComponent("rummyOtherUserCtrl");
@@ -131,37 +131,45 @@ cc.Class({
     }, this);
     var self = this;
     cc.game.on(cc.game.EVENT_SHOW, function () {
-      LoggerUtil.getInstance().log("重新返回游戏");
-      // if (GameServerManager.socket == null) {
+      LoggerUtil.getInstance().log("重新返回游戏"); // if (GameServerManager.socket == null) {
       //     GameServerManager.connectServer();
       // }
+
       if (this.isCCGameEventHideStutas == false) {
         return;
       }
+
       ;
       GameServerManager.hideFilterMag(2, function () {
         self.isCCGameEventHideStutas = false;
         GameServerManager.send("gameservice.refreshgamescene", "RefreshGameSceneReq", {});
       });
     }, this);
+
     if (this.node && GlobalCfg.SMALL_GAME_DATAS.rummyData.notify) {
       this.check_newPlayerJoinData(GlobalCfg.SMALL_GAME_DATAS.rummyData.notify);
     }
+
     this.enterRoomReq();
   },
   initNode: function initNode() {
     this.node_recorderCard_6 = this.node.getChildByName("node_recorderCard_6");
     this.btn_cardListShow = this.node.getChildByName("btn_cardListShow").getComponent(cc.Button);
     this.ske_shouZhi_close = this.node.getChildByName("close").getChildByName("ske_shouzhi"); // 左边手指动画
+
     this.ske_shouZhi_open = this.node.getChildByName("open").getChildByName("ske_shouzhi"); // 右边手指动画
+
     this.ske_close_guang = this.node.getChildByName("node_crad_guang").getChildByName("pai_guang_01"); // 左边牌发光动画
+
     this.ske_cardLib_guang = this.node.getChildByName("node_crad_guang").getChildByName("pai_guang_02"); // 中间牌发光动画
+
     this.ske_open_guang = this.node.getChildByName("node_crad_guang").getChildByName("pai_guang_03"); // 右边手指动画
 
     this.anim_sanjiao_01 = this.ske_close_guang.getChildByName("arri_01");
     this.anim_sanjiao_02 = this.ske_cardLib_guang.getChildByName("arri_01");
     this.anim_sanjiao_03 = this.ske_open_guang.getChildByName("arri_01");
     this.animArr = [this.anim_sanjiao_01, this.anim_sanjiao_02, this.anim_sanjiao_03];
+
     for (var i = 0; i < this.animArr.length; i++) {
       this.animArr[i].setPosition(0, 114);
       cc.tween(this.animArr[i]).tag(1).repeat(1000000, cc.tween().tag(1).by(0.5, {
@@ -170,7 +178,9 @@ cc.Class({
         position: cc.v2(0, 10)
       })).start();
     }
+
     this.recorderCardCtrl_6 = this.node_recorderCard_6.getComponent('recorderCardCtrl_6'); // 记牌器的脚本
+
     this.rummyAudioCtrl = this.node.getChildByName("rummyAudio").getComponent('rummyAudio'); //播放声音脚本
 
     this.btn_wf = this.node.getChildByName("btn_wanfa").getComponent(cc.Button);
@@ -182,33 +192,38 @@ cc.Class({
     this.btn_group = this.btnNode.getChildByName("btn_group").getComponent(cc.Button);
     this.btn_discard = this.btnNode.getChildByName("btn_discard").getComponent(cc.Button);
     this.userNode = this.node.getChildByName("userNode"); //玩家自己
+
     this.userInfoCtrl = this.userNode.getComponent("rummyUserInfoCtrl"); //玩家信息控制脚本
+
     this.userInfoCtrl.setSeatId(0);
     this.btn_gift = this.userNode.getChildByName("btn_gift").getComponent(cc.Button);
     this.lab_jb = this.userNode.getChildByName("score_bg").getChildByName("lab_jb").getComponent(cc.Label);
     this.playersNode = this.node.getChildByName("players"); //存放除自己以外玩家节点
+
     for (var _i = 0, len = this.playersNode.children.length; _i < len; _i++) {
       var otherUserNode = this.playersNode.children[_i];
       otherUserNode.active = true;
       var otherUserCtrl = otherUserNode.getComponent("rummyOtherUserCtrl");
       otherUserCtrl.setSeatId(_i + 1); //初始化座位号 1-5
+
       var btn_gift_other = otherUserNode.getChildByName("tx_k").getChildByName("btn_gift_other").getComponent(cc.Button);
       btn_gift_other.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
-    }
-    // this.otherNode = this.playersNode.getChildByName("otherNode");     //对战玩家
+    } // this.otherNode = this.playersNode.getChildByName("otherNode");     //对战玩家
     // otherUserCtrl     //对战玩家信息控制脚本
 
+
     this.closeNode = this.node.getChildByName("close"); //扣着的牌，待发的牌
+
     this.btn_close = this.closeNode.getChildByName("btn_pickCard").getComponent(cc.Button);
     this.lab_close = this.closeNode.getChildByName("lab_close").getComponent(cc.Label);
     this.bg_lab_close = this.closeNode.getChildByName("text_bg");
     this.laizi_closeNode = this.closeNode.getChildByName("universal_card");
     this.openNode = this.node.getChildByName("open"); //玩家出的牌
+
     this.btn_open = this.openNode.getChildByName("btn_open").getComponent(cc.Button);
     this.lab_open = this.openNode.getChildByName("lab_open").getComponent(cc.Label);
-    this.bg_lab_open = this.openNode.getChildByName("text_bg");
+    this.bg_lab_open = this.openNode.getChildByName("text_bg"); // 区别
 
-    // 区别
     this.bg_lab_close.active = false;
     this.lab_close.node.active = false;
     this.bg_lab_open.active = false;
@@ -216,17 +231,20 @@ cc.Class({
     this.openPaiNode = this.openNode.getChildByName("open_card");
     this.cardMask = this.openPaiNode.getChildByName('mask');
     this.selfCardNode = this.node.getChildByName("card"); //手牌
+
     this.cardLibNode = this.node.getChildByName("cardLib"); //牌库，开始时发牌
 
     this.line = this.node.getChildByName("line");
     this.node_prop = this.node.getChildByName('node_prop').getChildByName('prop').getChildByName("node_all"); // 是否显示聊天动画
 
     var array = [this.btn_wf, this.btn_shop, this.btn_chat, this.btn_drop, this.btn_finish, this.btn_group, this.btn_discard, this.btn_gift, this.btn_close, this.btn_open, this.btn_cardListShow];
+
     for (var _i2 = 0; _i2 < array.length; _i2++) {
-      var btn = array[_i2];
-      // btn.node.on('click', this.btnClick, this);
+      var btn = array[_i2]; // btn.node.on('click', this.btnClick, this);
+
       btn.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     }
+
     ;
     this.btn_openMenu.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btn_tableInfo.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -235,10 +253,13 @@ cc.Class({
   //  下载骨骼动画
   loadSkeleData: function loadSkeleData() {
     var _this = this;
+
     this.skeleDataMap = new Map();
     this.assetBundle = cc.assetManager.getBundle('Rummy');
+
     if (this.assetBundle) {
       var skeleArr = ['rummySke/winner_zj', 'rummySke/winner_dj'];
+
       for (var index = 0; index < skeleArr.length; index++) {
         var url = skeleArr[index];
         this.assetBundle.load(url, sp.SkeletonData, function (err, asset) {
@@ -258,25 +279,33 @@ cc.Class({
     this.openNode.active = false;
     this.closeNode.active = false;
     this.cardLibNode.active = false; //开始时显示，做发牌动作
+
     this.line.active = false; //出牌线
+
     this.btnNode.setPosition(0, -120);
     this.cardLibNode.getComponent(cc.Sprite).spriteFrame = this.poke_back;
     this.clickPaiArr.length = 0;
+
     if (!bool) {
       this.tableStatus = 0;
       this.putSelfCardToPool();
     }
+
     this.setDropScore(this.round);
     this.isPickOneCard = false;
     this.tidyFinalCardsAck = false;
+
     if (this.node.getChildByName("pai")) {
       this.node.getChildByName("pai").destroy();
     }
+
     if (this.node.getChildByName('tishi_finish')) {
       this.node.getChildByName('tishi_finish').destroy();
     }
+
     for (var i = 0; i < this.node.children.length; i++) {
       var childNode = this.node.children[i];
+
       if (childNode.name == "pai") {
         this.onCardRemoved(childNode);
       }
@@ -286,6 +315,7 @@ cc.Class({
   initCardPool: function initCardPool() {
     this.cardPool = new cc.NodePool();
     var initCount = 17;
+
     for (var i = 0; i < initCount; i++) {
       var card = cc.instantiate(this.prefab_pai);
       this.paiWidth = card.width;
@@ -294,11 +324,13 @@ cc.Class({
   },
   createPaiNode: function createPaiNode() {
     var card = null;
+
     if (this.cardPool.size > 0) {
       card = this.cardPool.get();
     } else {
       card = cc.instantiate(this.prefab_pai);
     }
+
     return card;
   },
   //将对象返回对象池
@@ -313,8 +345,10 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var _this2 = this;
+
     var btnName = button.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (btnName == "btn_tableInfo") {
       //添加玩法的预制体
       var self = this;
@@ -326,6 +360,7 @@ cc.Class({
           var pab_rule = cc.instantiate(prefab);
           var roomInfoCtrl = pab_rule.getComponent('roomInfoCtrl');
           roomInfoCtrl.setValue(); //此处传参（房间底分）
+
           cc.director.getScene().getChildByName("Canvas_rummy").addChild(pab_rule);
         }
       });
@@ -337,6 +372,7 @@ cc.Class({
         // 真金场充值
         CommonFun.getInstance().showSmallAddCash("rummy", this.cellScore * 100);
       }
+
       ;
     } else if (btnName == "btn_chat") {
       var pab_chat = cc.instantiate(this.pab_chat);
@@ -364,56 +400,71 @@ cc.Class({
         return a.groupIndex - b.groupIndex;
       });
       var group = [];
+
       for (var i = this.clickPaiArr.length - 1; i >= 0; i--) {
         var data = this.clickPaiArr[i];
+
         if (!this.paiGroupArr[data.groupTag]) {
           this.setPaiNodeIndex(this.paiGroupArr);
           return;
         }
+
         for (var j = 0, len = this.paiGroupArr[data.groupTag].length; j < len; j++) {
           var paiNode = this.paiGroupArr[data.groupTag][j];
+
           if (paiNode) {
             var src = paiNode.getComponent("paiCtrl");
             var paiValue = src.getPaiValue();
+
             if (paiValue == data.paiValue) {
               var tempArr = this.paiGroupArr[data.groupTag].splice(j, 1);
               group.push(tempArr[0]);
             }
           }
         }
-        continue;
-        // let tempArr = this.paiGroupArr[data.groupTag].splice(data.groupIndex, 1);
+
+        continue; // let tempArr = this.paiGroupArr[data.groupTag].splice(data.groupIndex, 1);
         // group.push(tempArr[0]);
       }
 
       for (var _i3 = 0; _i3 < group.length; _i3++) {
         var _paiNode = group[_i3];
+
         if (_paiNode) {
           var _src = _paiNode.getComponent("paiCtrl");
+
           var _paiValue = _src.getPaiValue();
+
           LoggerUtil.getInstance().log(_i3 + "选择组牌的牌值为：" + this.getPaiNum(_paiValue) + " , paiValue = " + _paiValue);
         }
       }
+
       group.sort(function (a, b) {
         if (a && b) {
           var paiValueA = a.getComponent("paiCtrl").getPaiValue();
           var paiValueB = b.getComponent("paiCtrl").getPaiValue();
+
           var paiNumA = _this2.getPaiNum(paiValueA);
+
           var paiNumB = _this2.getPaiNum(paiValueB);
+
           if (paiNumA < paiNumB) {
             // 按某种排序标准进行比较, a 小于 b
             return -1;
           }
+
           if (paiNumA > paiNumB) {
             return 1;
           }
+
           return 0;
         }
       });
-      var type = this.checkGroupLiftBar(group);
-      // 防止数组中有空值
+      var type = this.checkGroupLiftBar(group); // 防止数组中有空值
+
       for (var _i4 = 0; _i4 < this.paiGroupArr.length; _i4++) {
         var arr = this.paiGroupArr[_i4];
+
         if (arr) {
           if (arr.length == 0) {
             this.paiGroupArr.splice(_i4, 1);
@@ -422,17 +473,21 @@ cc.Class({
           this.paiGroupArr.splice(_i4, 1);
         }
       }
+
       if (type == 1 || type == 2 || type == 3) {
         GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("zupaichenggong");
       } else {
         GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("zupai");
       }
+
       this.paiGroupArr.splice(0, 0, group);
+
       if (this.paiGroupArr.length > 6) {
         this.clickPaiArr.sort(function (a, b) {
           return a.groupTag - b.groupTag;
         });
         var a = this.clickPaiArr[0].groupTag;
+
         if (a == this.paiGroupArr.length - 2) {
           //点起来的是最后面一个组的几张牌
           var aArr = this.paiGroupArr[a].concat(this.paiGroupArr[a + 1]);
@@ -441,9 +496,12 @@ cc.Class({
         } else if (a == 0) {
           //点起的是最左边的组
           var _aArr = this.paiGroupArr[a + 1].concat(this.paiGroupArr[a + 2]);
+
           this.paiGroupArr[a + 1] = _aArr;
+
           for (var _i5 = a + 2; _i5 < this.paiGroupArr.length; _i5++) {
             this.paiGroupArr[_i5] = this.paiGroupArr[_i5 + 1];
+
             if (_i5 + 1 == this.paiGroupArr.length - 1) {
               this.paiGroupArr.length -= 1;
               LoggerUtil.getInstance().log("合并数组完毕");
@@ -452,9 +510,12 @@ cc.Class({
           }
         } else {
           var _aArr2 = this.paiGroupArr[a + 1].concat(this.paiGroupArr[a + 2]);
+
           this.paiGroupArr[a + 1] = _aArr2;
+
           for (var _i6 = a + 2; _i6 < this.paiGroupArr.length; _i6++) {
             this.paiGroupArr[_i6] = this.paiGroupArr[_i6 + 1];
+
             if (_i6 + 1 == this.paiGroupArr.length - 1) {
               this.paiGroupArr.length -= 1;
               LoggerUtil.getInstance().log("合并数组完毕");
@@ -463,8 +524,10 @@ cc.Class({
           }
         }
       }
+
       for (var _i7 = 0; _i7 < this.paiGroupArr.length; _i7++) {
         var _arr = this.paiGroupArr[_i7];
+
         if (_arr) {
           if (_arr.length == 0) {
             this.paiGroupArr.splice(_i7, 1);
@@ -472,9 +535,9 @@ cc.Class({
         } else {
           this.paiGroupArr.splice(_i7, 1);
         }
-      }
+      } // this.setPaiNodeIndex(this.paiGroupArr);
 
-      // this.setPaiNodeIndex(this.paiGroupArr);
+
       this.lifeBar(this.paiGroupArr, true);
       this.clickPaiArr.length = 0;
       this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
@@ -504,6 +567,7 @@ cc.Class({
             LoggerUtil.getInstance().log("当前提示存在！！");
             return;
           }
+
           var tishi = cc.instantiate(this.prefab_tishi);
           var tishiCtrl = tishi.getComponent("tishiCtrl");
           tishiCtrl.setTishi(this.textArr[2]);
@@ -519,9 +583,13 @@ cc.Class({
           LoggerUtil.getInstance().log("当前提示存在！！");
           return;
         }
+
         var _tishi = cc.instantiate(this.prefab_tishi);
+
         var _tishiCtrl = _tishi.getComponent("tishiCtrl");
+
         _tishiCtrl.setTishi(this.textArr[6]);
+
         _tishi.parent = this.node;
         setTimeout(function () {
           _tishiCtrl.removeFromParentNode(_this2.node);
@@ -536,9 +604,13 @@ cc.Class({
             LoggerUtil.getInstance().log("当前提示存在！！");
             return;
           }
+
           var _tishi2 = cc.instantiate(this.prefab_tishi);
+
           var _tishiCtrl2 = _tishi2.getComponent("tishiCtrl");
+
           _tishiCtrl2.setTishi(this.textArr[2]);
+
           _tishi2.parent = this.node;
           setTimeout(function () {
             _tishiCtrl2.removeFromParentNode(_this2.node);
@@ -551,9 +623,13 @@ cc.Class({
           LoggerUtil.getInstance().log("当前提示存在！！");
           return;
         }
+
         var _tishi3 = cc.instantiate(this.prefab_tishi);
+
         var _tishiCtrl3 = _tishi3.getComponent("tishiCtrl");
+
         _tishiCtrl3.setTishi(this.textArr[6]);
+
         _tishi3.parent = this.node;
         setTimeout(function () {
           _tishiCtrl3.removeFromParentNode(_this2.node);
@@ -567,9 +643,11 @@ cc.Class({
   },
   onEventMsg: function onEventMsg(webData, target) {
     var _this3 = this;
+
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId === "gameservice.enterroom") {
       // 进入房间
       self.RefreshGameSceneReq();
@@ -590,9 +668,11 @@ cc.Class({
       self.tableStatus = 1;
       self.TipsLab();
       var settlement = self.node.getChildByName("settlement");
+
       if (settlement) {
         return;
       }
+
       var time = notify.time;
       LoggerUtil.getInstance().log("倒计时：：：：", time);
       var tishi = cc.instantiate(self.prefab_tishi);
@@ -604,11 +684,15 @@ cc.Class({
           clearInterval(myVar);
           return;
         }
+
         time--;
+
         if (time == 1) {
           _this3.tableStatus = 3;
         }
+
         tishiCtrl.setTishi(arr[time][language]);
+
         if (time == 0) {
           clearInterval(myVar);
           tishi.destroy();
@@ -623,31 +707,31 @@ cc.Class({
     } else if (msgId == "gameservice.onplayerout") {
       //出牌广播(依据)
       LoggerUtil.getInstance().log("出牌广播，当前出牌玩家：", notify.seat, "nextSeat:", notify.nextSeat);
-      self.OutCard(notify);
-      // self.tsetCrad(notify, "outCrad");
+      self.OutCard(notify); // self.tsetCrad(notify, "outCrad");
     } else if (msgId === "gameservice.choosehu") {
       //胡牌，显示信息弹框  Please wait for all the players to declare
       if (self.node.getChildByName("settlement")) {
         if (self.node.getChildByName("tishi")) {
           self.node.getChildByName("tishi").destroy();
         }
-      } else {
-        // let tishi = cc.instantiate(self.prefab_tishi);
+      } else {// let tishi = cc.instantiate(self.prefab_tishi);
         // let tishiCtrl = tishi.getComponent("tishiCtrl");
         // tishiCtrl.setTishi(self.textArr[5]);
         // tishi.parent = self.node;
-      }
-      // self.finishAction(self.finishCardData);
+      } // self.finishAction(self.finishCardData);
+
     } else if (msgId === "gameservice.ongamecalc") {
       //游戏结算  展示结算界面
       if (self.node.getChildByName("tishi")) {
         self.node.getChildByName("tishi").destroy();
       }
+
       if (self.node.getChildByName("tishi_finish")) {
         self.node.getChildByName("tishi_finish").destroy();
       }
-      self.check_onGamecalcData(notify);
-      // self.tsetCrad(notify, "jieSuan")
+
+      self.check_onGamecalcData(notify); // self.tsetCrad(notify, "jieSuan")
+
       self.showLobbyUI("offCradGuang");
     } else if (msgId === "gameservice.ongamestart") {
       //游戏开始广播
@@ -655,8 +739,7 @@ cc.Class({
     } else if (msgId === "gameservice.onplayerpick") {
       //玩家起牌广播
       LoggerUtil.getInstance().log("起牌广播，当前起牌操作的座位号", notify.seat);
-      self.check_PickCardData(notify);
-      // self.tsetCrad(notify, "moCrad")
+      self.check_PickCardData(notify); // self.tsetCrad(notify, "moCrad")
     } else if (msgId === "gameservice.onchoosehu") {
       //选择胡牌广播
       self.check_ChooseHuData(notify);
@@ -667,28 +750,28 @@ cc.Class({
       self.putSelfCardToPool();
       self.userInfoCtrl && self.userInfoCtrl.countDown(false);
       self.getAbsoluteSelfSeatId(notify);
+
       for (var i = 0, len = self.playersNode.children.length; i < len; i++) {
         var otherUserNode = self.playersNode.children[i];
         var otherUserCtrl = otherUserNode.getComponent("rummyOtherUserCtrl");
         otherUserCtrl && otherUserCtrl.countDown(false);
       }
-      self.userArryNode = self.getUserArrayNode(notify.players);
-      // self.tsetCrad();
+
+      self.userArryNode = self.getUserArrayNode(notify.players); // self.tsetCrad();
+
       self.check_GameSceneData(notify);
-      var num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-      // self.tsetCrad(notify, "gameStart");
+      var num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100); // self.tsetCrad(notify, "gameStart");
     } else if (msgId == "gameservice.onplayerjoin") {
       //新玩家进入
       self.check_newPlayerJoinData(notify);
     } else if (msgId == "gameservice.onplayerleave") {
       //玩家退出广播
       var selfID = self.userInfoCtrl.getPlayerId();
-      LoggerUtil.getInstance().log("selfID", selfID);
-      //6人场其他玩家开局，将自己踢出游戏
+      LoggerUtil.getInstance().log("selfID", selfID); //6人场其他玩家开局，将自己踢出游戏
+
       if (notify.uid == selfID && notify.reason == 3) {
         self.isKicked = true;
-      }
-      // for (let i = 0,len = this.playersNode.children.length; i < len; i++) {
+      } // for (let i = 0,len = this.playersNode.children.length; i < len; i++) {
       //     let otherNode = this.playersNode.children[i];
       //     let otherUserCtrl = otherNode.getComponent("rummyOtherUserCtrl");
       //     let otherID = otherUserCtrl.getPlayerId();
@@ -701,6 +784,8 @@ cc.Class({
       //         return 
       //     }
       // }
+
+
       if (selfID == notify.uid && (notify.reason == 2 || notify.reason == 0)) {
         // let settlement = self.node.getChildByName("settlement_6");
         // if(settlement !== null){
@@ -710,13 +795,15 @@ cc.Class({
         //         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.RUMMY, SceneManager.getInstance().sceneType.LOBBY);
         //     }, false);
         // } else {
-        self.exitGame();
-        // }
+        self.exitGame(); // }
       } else {
         var _otherUserCtrl = self.getOtherNodeCtrlByPlayerId(notify.uid);
+
         if (notify.reason == 0 || notify.reason == 2) {
           _otherUserCtrl.freshUser();
+
           var _settlement = self.node.getChildByName("settlement_6");
+
           if (notify.reason != 2 && _settlement == null) {
             self.TipsLab(8);
           }
@@ -725,11 +812,11 @@ cc.Class({
     } else if (msgId == "gameservice.drop") {
       //弃牌
       LoggerUtil.getInstance().log("玩家已弃牌");
-      self.exitGame();
-      // self.playdrop();
+      self.exitGame(); // self.playdrop();
     } else if (msgId == "gameservice.setcontinue") {
       //继续下一局
       LoggerUtil.getInstance().log("继续下一局！！！");
+
       if (self.node.getChildByName("settlement")) {
         self.node.getChildByName("settlement").destroy();
         self.userInfoCtrl.lab_scoreName.string = "Score:";
@@ -738,16 +825,21 @@ cc.Class({
         window.isNeedShowRoomList = "rummy";
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.RUMMY, SceneManager.getInstance().sceneType.LOBBY);
       }
+
       var isShowTips = false;
+
       for (var _i8 = 0, _len = self.playersNode.children.length; _i8 < _len; _i8++) {
         var otherNode = self.playersNode.children[_i8];
+
         var _otherUserCtrl2 = otherNode.getComponent("rummyOtherUserCtrl");
+
         if (_otherUserCtrl2.isUserGame) {
           self.TipsLab(8);
           isShowTips = true;
           break;
         }
       }
+
       if (!isShowTips) {
         self.TipsLab(7);
       }
@@ -761,23 +853,28 @@ cc.Class({
       self.freshNotifyCallback = function () {
         self.flowPaiAction(notify);
       };
+
       self.scheduleOnce(self.freshNotifyCallback, 1);
     } else if (msgId == "gameservice.tidyfinalcards") {
       LoggerUtil.getInstance().log("最后自己的摆牌的回调");
+
       if (self.node.getChildByName("tishi_finish")) {
         self.node.getChildByName("tishi_finish").destroy();
         self.userInfoCtrl.countDown(false);
       }
+
       self.tidyFinalCardsAck = true;
     } else if (msgId == "gameservice.movehandgroup") {
       self.check_moveHandGroup(notify);
     } else if (msgId == "gameservice.ondiamondupdate") {
       var playerId = notify.playerId;
       var after = notify.after;
+
       if (self.userInfoCtrl.playerid == playerId) {
         self.userInfoCtrl.setCoin(after);
       } else {
         var _otherUserCtrl3 = self.getOtherNodeCtrlByPlayerId(playerId);
+
         _otherUserCtrl3.setCoin(after);
       }
     } else if (msgId == "lobbyservice.pushcurrencychanged") {
@@ -788,6 +885,7 @@ cc.Class({
     } else if (msgId == "gameservice.ontidyfinalcards") {
       if (notify.seat !== self.selfAbsoluteSeatId) {
         var _otherUserCtrl4 = self.getOtherNodeCtrlBySeat(notify.seat);
+
         _otherUserCtrl4.gameDropOrFinalcards(notify, false);
       } else {
         //自己的广播
@@ -798,6 +896,7 @@ cc.Class({
       if (notify.seat !== self.selfAbsoluteSeatId) {
         //自己的广播，忽略
         var _otherUserCtrl5 = self.getOtherNodeCtrlBySeat(notify.seat);
+
         _otherUserCtrl5.gameDropOrFinalcards(notify, true);
       }
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
@@ -805,6 +904,7 @@ cc.Class({
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
       self.isTuiChu = true;
       var lab_drop = self.btn_drop.node.getChildByName("lab").getComponent(cc.Label);
+
       if (self.tableStatus == 0 || self.tableStatus == 1) {
         self.exitGame();
       } else if (self.tableStatus == 2 || self.tableStatus == 3 || self.tableStatus == 4) {
@@ -825,6 +925,7 @@ cc.Class({
   cashSwitch: function cashSwitch() {
     this.node.getChildByName("btn_shop").active = GlobalCfg.USER_DATAS.openModules.includes(4);
     this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
+
     if (this.entrycondition == 0) {
       this.node.getChildByName("btn_shop").active = true;
     }
@@ -833,6 +934,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (!notify) {
       var info = {
         errorMessage: "\u62C9\u7C73\u516D\u4EBA\u573A\u6E38\u620F\u4E2D, \u670D\u52A1\u5668\u4E0B\u53D1\u7684\u975E\u6B63\u786E\u6D88\u606F\u4E2D\u7ED3\u6784\u4F53\u5F02\u5E38, \u5185\u5BB9\u4E3A===>" + JSON.stringify(webData)
@@ -840,14 +942,19 @@ cc.Class({
       CommonFun.getInstance().reportToTelegram(info);
       return;
     }
+
     ;
     var result = notify.result;
+
     if (notify.Result) {
       result = notify.Result;
     }
+
     ;
+
     if (msgId === "gameservice.outcard") {
       LoggerUtil.getInstance().error("出牌消息ACK", notify.result.message);
+
       if (notify.result.result == 20523) {
         // 找不到该牌
         self.RefreshGameSceneReq();
@@ -862,8 +969,8 @@ cc.Class({
         CommonFun.getInstance().showTips(msg);
       }
     } else if (msgId == "gameservice.receivefreetrial") {
-      var _msg = notify.result.message;
-      // CommonFun.getInstance().showTips("Daily bonus Limit Exceeded. Please retry tomorrow");
+      var _msg = notify.result.message; // CommonFun.getInstance().showTips("Daily bonus Limit Exceeded. Please retry tomorrow");
+
       CommonFun.getInstance().showTips(_msg);
     } else if (msgId === "gameservice.enterroom") {
       if (notify.result.result == 20519) {
@@ -879,6 +986,7 @@ cc.Class({
       }
     } else if (msgId == "gameservice.refreshgamescene") {
       var _msg3 = notify.result.message;
+
       if (notify.result.result == 20529) {
         // 不在游戏中
         CommonFun.getInstance().showMsgBox("Connection error " + "\n" + "403", "YES", function () {
@@ -890,6 +998,7 @@ cc.Class({
       }
     } else if (msgId === "gameservice.exitgame") {
       var _msg4 = notify.result.message;
+
       if (notify.result.result == 20515) {
         // 不允许退出
         CommonFun.getInstance().showTips(_msg4);
@@ -905,6 +1014,7 @@ cc.Class({
           self.userInfoCtrl.lab_scoreName.string = "Score:";
           self.userInfoCtrl.lab_score.string = "0";
         }
+
         self.isChange = false;
         self.changeRoomReq();
       }
@@ -925,6 +1035,7 @@ cc.Class({
     var msgId = Data.msgCode;
     var notify = Data.msgData;
     LoggerUtil.getInstance().log(">>>>>>>>>>onPaiEventMsg666666666>>>>>>>", msgId);
+
     if (msgId == "limitTips") {
       //牌超出限制线，设置 open部分的牌值
       if (self.isSelfTurn == true && self.isPickOneCard == true) {
@@ -947,12 +1058,16 @@ cc.Class({
     } else if (msgId == "outPai") {
       //移动出牌
       LoggerUtil.getInstance().log("自定义事件 outPai ");
+
       if (self.isSelfTurn && self.isPickOneCard) {
         self.outPaiCallBack(notify);
       }
+
       var tempPaiGroup = self.paiGroupArr[notify.groupTag];
+
       if (tempPaiGroup) {
         var tempPaiNode = tempPaiGroup[notify.groupIndex];
+
         if (tempPaiNode) {
           var src = tempPaiNode.getComponent("paiCtrl");
           src && src.setOrignStatus(); //不是自己回合，设置恢复原位
@@ -972,10 +1087,13 @@ cc.Class({
         self.checkScore(value);
       } else {
         var _tempPaiGroup = self.paiGroupArr[notify.groupTag];
+
         if (_tempPaiGroup) {
           var _tempPaiNode = _tempPaiGroup[notify.groupIndex];
+
           if (_tempPaiNode) {
             var _src2 = _tempPaiNode.getComponent("paiCtrl");
+
             _src2 && _src2.setOrignStatus(); //不是自己回合，设置恢复原位
           }
         }
@@ -1013,10 +1131,12 @@ cc.Class({
       LoggerUtil.getInstance().error("游戏开始的数据为空！！！");
       return;
     }
+
     if (notify.result && notify.result.message == "成功") {
       // LoggerUtil.getInstance().log("啦啦啦啦啦啦啦啦绿绿绿绿绿绿绿");
       return;
     }
+
     if (notify.result && (notify.result.message == "牌组与服务数据不一致" || notify.result.result == 20527)) {
       var cards = notify.handCards;
       this.reConnectGame(cards);
@@ -1026,20 +1146,25 @@ cc.Class({
     if (!notify) {
       LoggerUtil.getInstance().error("游戏开始的数据为空！！！");
       return;
-    }
-    // this.isChange = false;
+    } // this.isChange = false;
+
+
     this.initNodeState(false);
     this.TipsLab();
     this.tableStatus = 2;
     this.setRecorderCard(true);
     var banker = notify.banker;
     var firstCards = notify.firstPickCard; //第一张牌比大小的
+
     var firstPickWinSeat = notify.firstPickWinSeat;
+
     for (var i = 0; i < firstCards.length; i++) {
       var element = firstCards[i];
+
       if (element < 0) {
         continue;
       }
+
       if (this.selfAbsoluteSeatId == i) {
         //自己的牌，用来确认谁是庄家
         LoggerUtil.getInstance().log("自己的第一张牌的数组下标：", i);
@@ -1057,6 +1182,7 @@ cc.Class({
         });
       }
     }
+
     if (this.selfAbsoluteSeatId == firstPickWinSeat) {
       //自己是庄家
       this.isSelfTurn = true;
@@ -1065,6 +1191,7 @@ cc.Class({
       this.isSelfTurn = false;
       this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
     }
+
     this.btn_close.node.active = true;
     this.btn_open.node.active = true;
   },
@@ -1079,9 +1206,11 @@ cc.Class({
       LoggerUtil.getInstance().error("起牌的数据为空！！");
       return;
     }
+
     if (notify.side == 1) {
       this.recorderCardCtrl_6.pickCrad(notify.card);
     }
+
     if (this.selfSeat == notify.seat) {
       //自己的起牌广播
       LoggerUtil.getInstance().log("自己起牌广播");
@@ -1094,6 +1223,7 @@ cc.Class({
       this.setDropScore(this.round);
       GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("yipai");
     }
+
     this.showLobbyUI("shouZhi", false);
     this.fapaiAction(notify, this.selfSeat == notify.seat);
   },
@@ -1102,8 +1232,10 @@ cc.Class({
       LoggerUtil.getInstance().error("选择胡牌的数据为空！！！");
       return;
     }
+
     LoggerUtil.getInstance().log("报胡的广播");
     this.huSeat = false;
+
     if (notify.huSeat == this.selfSeat) {
       //自己胡牌
       for (var i = 0, len = this.playersNode.children.length; i < len; i++) {
@@ -1111,14 +1243,18 @@ cc.Class({
         var otherUserCtrl = otherNode.getComponent("rummyOtherUserCtrl");
         otherUserCtrl.countDown(true, notify.simpleTimeout - 1, 0, true);
       }
+
       this.userInfoCtrl.countDown(false);
+
       if (notify.isHu) {
         var tishi;
+
         if (this.node.getChildByName("tishi")) {
           tishi = this.node.getChildByName("tishi");
         } else {
           tishi = cc.instantiate(this.prefab_tishi);
         }
+
         var tishiCtrl = tishi.getComponent("tishiCtrl");
         tishiCtrl.setTishi(this.textArr[5]);
         tishi.parent = this.node;
@@ -1131,24 +1267,31 @@ cc.Class({
       tishi_finish.parent = this.node;
       this.userInfoCtrl.countDown(true, notify.simpleTimeout - 1, 0, true);
       var huSeatRelative = this.changeAbsoluteSeatIdToRelative(notify.huSeat);
+
       for (var _i9 = 0, _len2 = this.playersNode.children.length; _i9 < _len2; _i9++) {
         var _otherNode = this.playersNode.children[_i9];
+
         var otherNodeCtrl = _otherNode.getComponent("rummyOtherUserCtrl");
+
         if (otherNodeCtrl.getSeatId() != huSeatRelative) {
           otherNodeCtrl.countDown(true, notify.simpleTimeout - 1, 0, true);
         } else {
           otherNodeCtrl.countDown(false);
         }
       }
+
       var tidyfinalcards = function tidyfinalcards() {
         this.TidyFinalCardsReq(this.getPaiValueArr(), +this.userInfoCtrl.getScore());
       };
+
       this.scheduleOnce(tidyfinalcards, notify.simpleTimeout - 1);
+
       if (this.tidyFinalCardsAck == true) {
         this.unschedule(tidyfinalcards);
         this.tidyFinalCardsAck = false;
       }
     }
+
     this.cardLibNode.getComponent(cc.Sprite).spriteFrame = this.getPaiSpriteFrameByValue(notify.outCard);
     this.cardLibNode.active = true;
     this.btn_close.node.active = false;
@@ -1158,15 +1301,18 @@ cc.Class({
   check_onGamecalcData: function check_onGamecalcData(notify) {
     this.tableStatus = 6;
     this.isChange = true;
+
     if (!notify) {
       LoggerUtil.getInstance().error("结算的数据为空！！！");
       return;
     }
+
     for (var i = 0, len = this.tweenTagArr.length; i < len; i++) {
       var tag = this.tweenTagArr[i];
       cc.Tween.stopAllByTag(tag);
-    }
-    // cc.Tween.stopAll();
+    } // cc.Tween.stopAll();
+
+
     this.unschedule(this.dealCallback);
     this.unschedule(this.fapaiCallBack1);
     this.unschedule(this.fapaiCallBack2);
@@ -1175,16 +1321,20 @@ cc.Class({
     clearTimeout(this.dealTimeOutID);
     this.setRecorderCard(false);
     this.userInfoCtrl.countDown(false);
+
     for (var _i10 = 0, _len3 = this.playersNode.children.length; _i10 < _len3; _i10++) {
       var otherNode = this.playersNode.children[_i10];
       var otherUserCtrl = otherNode.getComponent("rummyOtherUserCtrl");
       otherUserCtrl.countDown(false);
     }
+
     this.initNodeState(false);
     this.putSelfCardToPool();
     var players = notify.players;
+
     for (var _i11 = 0; _i11 < players.length; _i11++) {
       var seat = players[_i11].seat;
+
       if (seat == this.selfSeat) {
         this.userInfoCtrl.gameover(notify, players[_i11].calc);
       } else {
@@ -1194,6 +1344,7 @@ cc.Class({
         //     otherUserCtrl.gameover(notify, players[i].calc);
         // }
         var _otherUserCtrl6 = this.getOtherNodeCtrlBySeat(seat);
+
         _otherUserCtrl6.gameover(notify, players[_i11].calc);
       }
     }
@@ -1201,39 +1352,55 @@ cc.Class({
   //换桌
   changetable: function changetable() {
     CommonFun.getInstance().showGameStartMask();
+
     for (var i = 0, len = this.playersNode.children.length; i < len; i++) {
       var otherNode = this.playersNode.children[i];
       var otherUserCtrl = otherNode.getComponent("rummyOtherUserCtrl");
       otherUserCtrl.freshUser();
     }
-    this.initNodeState(false);
-    // this.RefreshGameSceneReq();
-  },
 
+    this.initNodeState(false); // this.RefreshGameSceneReq();
+  },
   check_GameSceneData: function check_GameSceneData(notify) {
     var _this4 = this;
+
     var playerList = notify.players;
     var status = notify.status; //牌桌状态
+
     this.tableStatus = notify.status;
     this.cellScore = (notify.cellScore / 100).toFixed(2); //底分
+
     var laiId = notify.laiId; //癞子的牌,左侧区域展示的癞子牌的value
+
     var roomType = notify.roomType; //房间类型
+
     var dissolveSeat = notify.dissolveSeat; //解散的座位号,默认为-1
+
     var banker = notify.banker; //庄家
+
     this.round = notify.round; //回合数 
+
     var step = notify.step; //当前阶段
+
     var curSeat = notify.curSeat; //当前操作的座位号
+
     var leftRemain = notify.leftRemain; //左侧剩余张数
+
     var rightFace = notify.rightFace; //右侧展示的牌
+
     var rightRemain = notify.rightRemain; //右-剩余张数
+
     LoggerUtil.getInstance().log("GameScene消息执行了-----", "当前操作的座位号" + curSeat);
     this.initNodeState(true);
     this.laiValue = notify.laiId;
     this.laiNumber = this.getPaiNum(laiId); //癞子的牌值
+
     this.setDropScore(this.round);
+
     for (var i = 0; i < playerList.length; i++) {
       var item = playerList[i];
       var userinfo = item.user;
+
       if (GlobalCfg.USER_DATAS.userId == userinfo.displayName) {
         this.userInfoCtrl.setUserInfo(userinfo, item.seat);
         this.selfSeat = item.seat;
@@ -1242,48 +1409,62 @@ cc.Class({
         otherUserCtrl.setUserInfo(userinfo, item.seat);
       }
     }
+
     if (status == 0) {
       this.TipsLab(8);
     } else {
       this.TipsLab();
     }
+
     switch (status) {
       case 0:
         //游戏准备阶段
         LoggerUtil.getInstance().log("游戏状态为准备阶段");
         break;
+
       case 1:
         //开局(开局倒计时的3秒内)
         LoggerUtil.getInstance().log("游戏阶段：开局预备");
         break;
+
       case 2:
         //(游戏正式开始但未发牌)
         LoggerUtil.getInstance().log("游戏阶段：开局比牌中");
         break;
+
       case 3:
         //发牌中
         LoggerUtil.getInstance().log("游戏阶段为：发牌中");
         this.setRecorderCard(true);
-        var _loop = function _loop() {
+
+        var _loop = function _loop(_i12) {
           var item = playerList[_i12];
           var userinfo = item.user;
+
           if (GlobalCfg.USER_DATAS.userId == userinfo.displayName) {
             _this4.startSetPai(item.cards, laiId, leftRemain, rightFace, rightRemain);
+
             _this4.selfSeat = item.seat;
+
             if (_this4.selfSeat == curSeat) {
               _this4.isSelfTurn = true;
+
               if (item.cards.length == 14) {
                 _this4.isPickOneCard = true;
+
                 _this4.showLobbyUI("outCard");
               } else {
                 _this4.scheduleOnce(function () {
                   _this4.showLobbyUI("qiCrad");
                 }, 2.5);
               }
+
               _this4.fapaiCallBack1 = function () {
                 _this4.controlButton(_this4.isSelfTurn, _this4.isPickOneCard, _this4.clickPaiArr.length);
+
                 _this4.userInfoCtrl.countDown(true, 20, item.extraCountdown);
               };
+
               _this4.scheduleOnce(_this4.fapaiCallBack1, 2);
             } else {
               _this4.isSelfTurn = false;
@@ -1292,29 +1473,40 @@ cc.Class({
           } else if (item.seat == curSeat) {
             _this4.fapaiCallBack2 = function () {
               _this4.controlButton(_this4.isSelfTurn, _this4.isPickOneCard, _this4.clickPaiArr.length);
+
               var otherUserCtrl = _this4.getOtherNodeCtrlBySeat(curSeat);
+
               otherUserCtrl.countDown(true, 20, item.extraCountdown);
             };
+
             _this4.scheduleOnce(_this4.fapaiCallBack2, 2);
           }
         };
+
         for (var _i12 = 0; _i12 < playerList.length; _i12++) {
-          _loop();
+          _loop(_i12);
         }
+
         LoggerUtil.getInstance().log("是不是自己回合：" + this.isSelfTurn, '是否已经摸了一张牌' + this.isPickOneCard);
         break;
+
       case 4:
         //游戏中
         LoggerUtil.getInstance().log("游戏阶段为：游戏中"); //用于断线重连
+
         this.setRecorderCard(true);
+
         for (var _i13 = 0; _i13 < playerList.length; _i13++) {
           var _item = playerList[_i13]; // PlayerInfo
+
           var _userinfo = _item.user;
           var handGroup = _item.handGroup;
+
           if (GlobalCfg.USER_DATAS.userId == _userinfo.displayName) {
             //自己
             this.userInfoCtrl.setUserInfo(_userinfo, _item.seat);
             this.selfSeat = _item.seat;
+
             if (handGroup.length > 0) {
               LoggerUtil.getInstance().log("需要牌组》》》》》》》》》》");
               this.reConnectGameByGroup(handGroup);
@@ -1322,51 +1514,63 @@ cc.Class({
               LoggerUtil.getInstance().log("不需要牌组》》》》》》》》》》");
               this.reConnectGame(_item.cards);
             }
+
             if (this.selfSeat == curSeat) {
               this.isSelfTurn = true;
+
               if (_item.cards.length == 14) {
                 this.isPickOneCard = true;
                 this.showLobbyUI("outCard");
               } else {
                 this.showLobbyUI("qiCrad");
               }
+
               this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
               this.userInfoCtrl.countDown(true, _item.simpleCountdown, _item.extraCountdown);
             } else {
               this.isSelfTurn = false;
-              this.isPickOneCard = false;
-              // this.otherUserCtrl.countDown(true, simpleCountdown, extraCountdown);
+              this.isPickOneCard = false; // this.otherUserCtrl.countDown(true, simpleCountdown, extraCountdown);
             }
           } else {
             // 此处需确保第一个数据为玩家自己
             if (_item.seat == curSeat) {
               //当前操作的玩家
               var _otherUserCtrl7 = this.getOtherNodeCtrlBySeat(_item.seat);
+
               _otherUserCtrl7.setUserInfo(_userinfo, _item.seat);
+
               _otherUserCtrl7.countDown(true, _item.simpleCountdown, _item.extraCountdown);
             } else {
               var _otherUserCtrl8 = this.getOtherNodeCtrlBySeat(_item.seat);
+
               _otherUserCtrl8.setUserInfo(_userinfo, _item.seat);
+
               _otherUserCtrl8.countDown(false);
             }
           }
+
           this.setNodeActive(laiId, leftRemain, rightFace, rightRemain);
         }
+
         LoggerUtil.getInstance().log("是不是自己回合：" + this.isSelfTurn);
         break;
+
       case 5:
         //报胡中 (等待下家应答胡)
         LoggerUtil.getInstance().log("游戏阶段为：报胡中");
         window.isNeedShowRoomList = "rummy";
         var winSeat = curSeat;
+
         for (var _i14 = 0; _i14 < playerList.length; _i14++) {
           var _item2 = playerList[_i14];
           var _userinfo2 = _item2.user;
           var _handGroup = _item2.handGroup;
+
           if (GlobalCfg.USER_DATAS.userId == _userinfo2.displayName) {
             //自己
             this.userInfoCtrl.setUserInfo(_userinfo2, _item2.seat);
             this.selfSeat = _item2.seat;
+
             if (_handGroup.length > 0) {
               LoggerUtil.getInstance().log("需要牌组》》》》》》》》》》");
               this.reConnectGameByGroup(_handGroup);
@@ -1374,6 +1578,7 @@ cc.Class({
               LoggerUtil.getInstance().log("不需要牌组》》》》》》》》》》");
               this.reConnectGame(_item2.cards);
             }
+
             if (this.selfSeat == curSeat) {
               //当前操作的玩家，即赢家
               // this.isSelfTurn = true;
@@ -1398,27 +1603,32 @@ cc.Class({
           } else {
             // this.otherUserCtrl.setUserInfo(userinfo, item.seat);
             var _otherUserCtrl9 = this.getOtherNodeCtrlBySeat(_item2.seat);
+
             _otherUserCtrl9 && _otherUserCtrl9.setUserInfo(_userinfo2, _item2.seat);
+
             if (curSeat == _item2.seat) {
               _otherUserCtrl9.countDown(false);
             } else {
               LoggerUtil.getInstance().log("\u62A5\u80E1\u4E2D\uFF0C\u5F53\u524Dfor\u5FAA\u73AF\u7684i\u4E3A" + _i14 + ",simpleCountdown\u4E3A\uFF0C" + _item2.simpleCountdown + "\u989D\u5916\u65F6\u95F4\u4E3A\uFF1A" + _item2.extraCountdown);
+
               _otherUserCtrl9.countDown(true, _item2.simpleCountdown - 1, _item2.extraCountdown, true, _item2.playerStatus);
             }
           }
         }
-        this.setNodeActive(laiId, leftRemain, rightFace, rightRemain);
-        // let deat = {
+
+        this.setNodeActive(laiId, leftRemain, rightFace, rightRemain); // let deat = {
         //     huSeat: winSeat,
         //     isHu: this.selfSeat == curSeat,
         //     simpleTimeout: Number(simpleCountdown) + Number(extraCountdown),
         // }
         // this.check_ChooseHuData(deat)
+
         break;
+
       case 6:
         //结算阶段
-        LoggerUtil.getInstance().log("游戏阶段为：结算阶段");
-        // this.tsetCrad();
+        LoggerUtil.getInstance().log("游戏阶段为：结算阶段"); // this.tsetCrad();
+
         window.isNeedShowRoomList = "rummy";
       // if(this.node.getChildByName("settlement")){
       //     break;
@@ -1429,6 +1639,7 @@ cc.Class({
       //     settleMent.parent = this.node;
       //     break;
       // }
+
       default:
         LoggerUtil.getInstance().log("switch默认结果");
         break;
@@ -1438,6 +1649,7 @@ cc.Class({
     var userInfo = notify.userInfo;
     var seatId = notify.seatId;
     var isReconnect = notify.isReconnect;
+
     if (userInfo.displayName == GlobalCfg.USER_DATAS.userId) {
       this.selfSeat = seatId;
       this.userInfoCtrl.setUserInfo(userInfo, notify.seatId);
@@ -1447,20 +1659,22 @@ cc.Class({
     }
   },
   // ==================================== 检测数据  end ============================================
-
   // ===========================================================
   //断线重连按服务器发的牌组信息展示牌
   reConnectGameByGroup: function reConnectGameByGroup(groups) {
     this.paiGroupArr = [];
+
     for (var i = 0, len = groups.length; i < len; i++) {
       var group = groups[i].cards;
       this.paiGroupArr[i] = [];
+
       if (group) {
         for (var k = 0, len1 = group.length; k < len1; k++) {
           var paiValue = group[k];
           var paiNode = this.createPaiNode();
           var spriteFrame = this.getPaiSpriteFrameByValue(paiValue);
           var src = paiNode.getComponent("paiCtrl");
+
           if (src) {
             src.setLaiActive(false);
             src.setUpClickDistance(this.upClickDistance);
@@ -1471,11 +1685,13 @@ cc.Class({
             src.setIsCanMove(true);
             src.setGroupTag(i, k);
           }
+
           this.paiGroupArr[i][k] = paiNode;
           this.selfCardNode.addChild(paiNode);
         }
       }
     }
+
     var totalWidth = this.getPaiTotalWidthByPaiGroupArr(this.paiGroupArr);
     this.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, this.paiGroupArr);
     this.btnAction();
@@ -1487,19 +1703,24 @@ cc.Class({
       return a - b;
     });
     this.putSelfCardToPool();
+
     for (var i = 0; i < valueArr.length; i++) {
       var element = valueArr[i];
+
       if (element == 53 || element == 52) {
         valueArr.splice(i, 1);
         valueArr.splice(0, 0, element);
       }
     }
+
     var paiNodeArr = [];
     var initPaiTotalWidth = this.paiWidth + 12 * this.paiDistance;
+
     for (var _i15 = 0; _i15 < valueArr.length; _i15++) {
       var paiNode = this.createPaiNode();
       var spriteFrame = this.getPaiSpriteFrameByValue(valueArr[_i15]);
       var src = paiNode.getComponent("paiCtrl");
+
       if (src) {
         src.setLaiActive(false);
         src.setUpClickDistance(this.upClickDistance);
@@ -1509,10 +1730,12 @@ cc.Class({
         src.setPaiValue(valueArr[_i15]);
         src.setIsCanMove(true);
       }
+
       paiNode.setPosition(-initPaiTotalWidth / 2 + this.paiDistance / 2 + _i15 * this.paiDistance, 0);
       this.selfCardNode.addChild(paiNode);
       paiNodeArr.push(paiNode);
     }
+
     this.paiGroupArr = this.initPaiGroupArr(paiNodeArr);
     var totalWidth = this.getPaiTotalWidthByPaiGroupArr(this.paiGroupArr);
     this.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, this.paiGroupArr);
@@ -1527,20 +1750,24 @@ cc.Class({
     this.showUniversalCard(spriteFrame, leftRemain);
     this.lab_close.string = "(" + leftRemain + ")";
     var openValue;
+
     if (rightFace.length > 0) {
       openValue = rightFace[0] && rightFace[0].card;
       this.lab_open.string = "OPEN(" + rightRemain + ")";
       var openSpriteFrame = this.getPaiSpriteFrameByValue(openValue);
       this.openPaiNode.getComponent(cc.Sprite).spriteFrame = openSpriteFrame;
       var paiNum = this.getPaiNum(openValue);
+
       if (paiNum == this.laiNumber) {
         this.openPaiNode.getChildByName("lai").active = true;
       }
+
       this.openNode.active = true;
     }
   },
   actionFirstPai: function actionFirstPai(value, arg) {
     var _this5 = this;
+
     // LoggerUtil.getInstance().log("第一张牌比大小");
     var spriteFrame = this.getPaiSpriteFrameByValue(value);
     var paiNode = this.createPaiNode();
@@ -1553,33 +1780,39 @@ cc.Class({
   },
   startSetPai: function startSetPai(valueArr, laiId, leftRemain, rightFace, rightRemain) {
     // 初始化牌,处理牌组数据排列顺序
-
     // let valueArr = [3, 4, 5, 13, 16, 19, 26, 27, 28, 50, 51, 52, 53];
     valueArr.sort(function (a, b) {
       return a - b;
     });
+
     for (var i = 0; i < valueArr.length; i++) {
       var element = valueArr[i];
+
       if (element == 53 || element == 52) {
         valueArr.splice(i, 1);
         valueArr.splice(0, 0, element);
       }
     }
+
     this.deal(valueArr, laiId, leftRemain, rightFace, rightRemain);
   },
   clickPaiCallBack: function clickPaiCallBack(data) {
     LoggerUtil.getInstance().log("clickPaiCallBack>>>>>>>>>>>", data);
+
     if (!data) {
       return;
     }
+
     var paiValue = data.paiValue;
     var groupTag = data.groupTag;
     var isCancal = data.isCancal;
+
     if (isCancal) {
       for (var i = 0, len = this.clickPaiArr.length; i < len; i++) {
         var clickPai = this.clickPaiArr[i];
         var clickPaiTag = clickPai.groupTag;
         var clickPaiValue = clickPai.paiValue;
+
         if (clickPaiTag == groupTag && clickPaiValue == paiValue) {
           this.clickPaiArr.splice(i, 1);
           break;
@@ -1588,38 +1821,45 @@ cc.Class({
     } else {
       this.clickPaiArr.push(data);
     }
+
     if (this.clickPaiArr.length >= 2) {
       this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
     } else {
       this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
     }
+
     LoggerUtil.getInstance().log("点击牌的数组是：", this.clickPaiArr);
   },
   insertPaiCallBack: function insertPaiCallBack(data) {
     if (!data) {
       return;
     }
+
     LoggerUtil.getInstance().log("insertPaiCallBack>>>>>>>>>>>", data);
     var paiValue = data.paiValue;
     var groupTag = data.groupTag;
     var groupIndex = data.groupIndex;
     var posX = data.posX;
     var movePaiNode = null;
-    LoggerUtil.getInstance().log("从这个组中删除元素：", this.paiGroupArr[groupTag], "长度" + this.paiGroupArr[groupTag].length);
-    // 从原来的组中删除
+    LoggerUtil.getInstance().log("从这个组中删除元素：", this.paiGroupArr[groupTag], "长度" + this.paiGroupArr[groupTag].length); // 从原来的组中删除
+
     movePaiNode = this.paiGroupArr[groupTag][groupIndex];
     var tempArr = [];
+
     if (movePaiNode) {
-      var src = movePaiNode.getComponent("paiCtrl");
-      //再次确定一下当前位置的牌跟拖动的牌是不是一张
+      var src = movePaiNode.getComponent("paiCtrl"); //再次确定一下当前位置的牌跟拖动的牌是不是一张
+
       if (src.getPaiValue() == paiValue) {
         tempArr = this.paiGroupArr[groupTag].splice(groupIndex, 1);
       } else {
         LoggerUtil.getInstance().error("当前位置的牌跟拖动的牌是不是同一张，根据牌值来此牌组中寻找");
+
         for (var i = this.paiGroupArr[groupTag].length - 1; i >= 0; i--) {
           var paiNode = this.paiGroupArr[groupTag][i];
+
           if (paiNode) {
             var _src3 = paiNode.getComponent("paiCtrl");
+
             if (_src3.getPaiValue() == paiValue) {
               tempArr = this.paiGroupArr[groupTag].splice(i, 1);
               break;
@@ -1628,37 +1868,49 @@ cc.Class({
         }
       }
     }
-    movePaiNode = tempArr[0];
 
-    // 加入到新的组中
+    movePaiNode = tempArr[0]; // 加入到新的组中
+
     var isFinishJoin = false;
+
     for (var _i16 = 0, len = this.paiGroupArr.length; _i16 < len; _i16++) {
       if (isFinishJoin) {
         break;
       }
+
       if (this.paiGroupArr[_i16].length == 0) {
         continue;
       }
+
       for (var k = 0, len1 = this.paiGroupArr[_i16].length; k < len1; k++) {
         var _paiNode2 = this.paiGroupArr[_i16][k];
+
         if (!_paiNode2) {
           continue;
         }
+
         var paiNodeLeftX = _paiNode2.x - this.paiWidth / 2;
+
         if (k == 0) {
           if (_i16 == 0 && posX <= paiNodeLeftX) {
             LoggerUtil.getInstance().log("牌插入最左面");
+
             this.paiGroupArr[_i16].unshift(movePaiNode);
+
             isFinishJoin = true;
             break;
           } else if (posX >= paiNodeLeftX - this.groupDistance && posX < paiNodeLeftX) {
             LoggerUtil.getInstance().log("牌插入组最前面");
+
             this.paiGroupArr[_i16].unshift(movePaiNode);
+
             isFinishJoin = true;
             break;
           } else if (posX >= paiNodeLeftX && posX < paiNodeLeftX + this.paiDistance) {
             LoggerUtil.getInstance().log("牌插入组第一位");
+
             this.paiGroupArr[_i16].splice(1, 0, movePaiNode);
+
             isFinishJoin = true;
             break;
           }
@@ -1666,27 +1918,35 @@ cc.Class({
           if (_i16 == len - 1) {
             if (posX > _paiNode2.x + this.paiWidth / 2) {
               LoggerUtil.getInstance().log("牌插入组最右面");
+
               this.paiGroupArr[_i16].push(movePaiNode);
+
               isFinishJoin = true;
               break;
             }
           }
+
           if (posX >= paiNodeLeftX && posX < paiNodeLeftX + this.paiWidth) {
             LoggerUtil.getInstance().log("牌插入组最后面");
+
             this.paiGroupArr[_i16].push(movePaiNode);
+
             isFinishJoin = true;
             break;
           }
         } else {
           if (posX >= paiNodeLeftX && posX < paiNodeLeftX + this.paiDistance) {
             LoggerUtil.getInstance().log("牌插入组的第" + (k + 1) + "位");
+
             this.paiGroupArr[_i16].splice(k + 1, 0, movePaiNode);
+
             isFinishJoin = true;
             break;
           }
         }
       }
     }
+
     if (isFinishJoin == false) {
       this.paiGroupArr[groupTag].splice(groupIndex, 0, movePaiNode);
     } else {
@@ -1698,6 +1958,7 @@ cc.Class({
         }
       }
     }
+
     this.setPaiNodeIndex(this.paiGroupArr); // 更新组的信息
 
     this.clickPaiArr.length = 0;
@@ -1724,23 +1985,30 @@ cc.Class({
     if (tipsStr === void 0) {
       tipsStr = "";
     }
+
     if (paiGroupArr === void 0) {
       paiGroupArr = [];
     }
+
     var t = [];
+
     for (var i = 0, len = paiGroupArr.length; i < len; i++) {
       var paiGroup = paiGroupArr[i];
       var t1 = [];
+
       for (var k = 0, len1 = paiGroup.length; k < len1; k++) {
         var paiNode = paiGroup[k];
+
         if (paiNode) {
           var src = paiNode.getComponent("paiCtrl");
           var paiValue = src.getPaiValue();
           t1.push(paiValue);
         }
       }
+
       t.push(t1);
     }
+
     LoggerUtil.getInstance().log(tipsStr, t);
   },
   changeOpenAreaSpriteFrame: function changeOpenAreaSpriteFrame(paiValue, bool) {
@@ -1756,104 +2024,130 @@ cc.Class({
   //出牌
   OutCard: function OutCard(notify) {
     var _this6 = this;
+
     GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("selectCard");
     this.recorderCardCtrl_6.outCard(notify.card);
+
     if (notify.seat == this.selfSeat) {
       this.showLobbyUI("offCradGuang");
+
       if (notify.index == -1) {
         //超时自动出牌
         var isDel = false;
+
         for (var i = this.paiGroupArr.length - 1; i >= 0; i--) {
           var childArr = this.paiGroupArr[i];
+
           for (var j = 0; j < childArr.length; j++) {
             var node = childArr[j];
             var src = node.getComponent("paiCtrl");
-            var paiValue = src.getPaiValue();
-            // LoggerUtil.getInstance().log("超时自动出牌的节点牌值", paiValue, "收到的出牌值", notify.card)
+            var paiValue = src.getPaiValue(); // LoggerUtil.getInstance().log("超时自动出牌的节点牌值", paiValue, "收到的出牌值", notify.card)
+
             if (paiValue == notify.card) {
               this.paiGroupArr[i].splice(j, 1);
               this.onCardRemoved(node);
-              isDel = true;
-              //删除出牌之后导致的空数组
+              isDel = true; //删除出牌之后导致的空数组
+
               for (var _i18 = 0; _i18 < this.paiGroupArr.length; _i18++) {
                 var element = this.paiGroupArr[_i18];
+
                 if (element.length == 0) {
                   this.paiGroupArr.splice(_i18, 1);
                 }
               }
             }
+
             if (isDel == true) {
               break;
             }
           }
+
           if (isDel == true) {
             break;
           }
         }
+
         var totalWidth = this.getPaiTotalWidthByPaiGroupArr(this.paiGroupArr);
         this.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, this.paiGroupArr);
       } else {
-        var groupData = this.getSliceNum(notify.index);
-        // LoggerUtil.getInstance().log("________________", groupData);
+        var groupData = this.getSliceNum(notify.index); // LoggerUtil.getInstance().log("________________", groupData);
+
         if (this.clickPaiArr.length != 0 && this.clickPaiArr.length == 1) {
           var paiNode = this.paiGroupArr[groupData.groupTag][groupData.groupIndex];
+
           var _src4 = paiNode.getComponent("paiCtrl");
+
           LoggerUtil.getInstance().log("点击出牌~~~~", _src4.getPaiValue(), notify.card);
+
           if (notify.card == _src4.getPaiValue()) {
             cc.tween(paiNode).tag(2).to(0.2, {
               position: cc.v2(195.8, 195),
               scale: 0.8
             }).call(function () {
               _this6.paiGroupArr[groupData.groupTag] && _this6.paiGroupArr[groupData.groupTag].splice(groupData.groupIndex, 1);
+
               var openSpriteFrame = _this6.getPaiSpriteFrameByValue(notify.card);
+
               _this6.openPaiNode && _this6.openPaiNode.getComponent(cc.Sprite) && (_this6.openPaiNode.getComponent(cc.Sprite).spriteFrame = openSpriteFrame);
-              _this6.onCardRemoved(paiNode);
-              //删除出牌之后导致的空数组
+
+              _this6.onCardRemoved(paiNode); //删除出牌之后导致的空数组
+
+
               for (var _i19 = 0; _i19 < _this6.paiGroupArr.length; _i19++) {
                 var _element = _this6.paiGroupArr[_i19];
+
                 if (_element.length == 0) {
                   _this6.paiGroupArr.splice(_i19, 1);
                 }
               }
+
               _this6.clickPaiArr = [];
+
               var totalWidth = _this6.getPaiTotalWidthByPaiGroupArr(_this6.paiGroupArr);
+
               _this6.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, _this6.paiGroupArr);
+
               _this6.openPaiNode && _this6.openPaiNode.getComponent(cc.Sprite) && (_this6.tempOpenSpriteFrame = _this6.openPaiNode.getComponent(cc.Sprite).spriteFrame);
+
               _this6.reqMovehandgroup(_this6.paiGroupArr);
             }).start();
           }
         } else {
           var _paiNode3 = this.paiGroupArr[groupData.groupTag][groupData.groupIndex];
+
           var _src5 = _paiNode3.getComponent("paiCtrl");
+
           if (notify.card == _src5.getPaiValue()) {
-            this.paiGroupArr[groupData.groupTag].splice(groupData.groupIndex, 1);
-            // this.onCardRemoved(paiNode);
-            _paiNode3.destroy();
-            //删除出牌之后导致的空数组
+            this.paiGroupArr[groupData.groupTag].splice(groupData.groupIndex, 1); // this.onCardRemoved(paiNode);
+
+            _paiNode3.destroy(); //删除出牌之后导致的空数组
+
+
             for (var _i20 = 0; _i20 < this.paiGroupArr.length; _i20++) {
               var _element2 = this.paiGroupArr[_i20];
+
               if (_element2.length == 0) {
                 this.paiGroupArr.splice(_i20, 1);
               }
             }
+
             var _totalWidth = this.getPaiTotalWidthByPaiGroupArr(this.paiGroupArr);
+
             this.setPaiPosByTotalWidthAndpaiGroupArr(_totalWidth, this.paiGroupArr);
           }
         }
-      }
-      //出完牌更新牌的 index
-      this.setPaiNodeIndex(this.paiGroupArr);
+      } //出完牌更新牌的 index
 
-      // let totalWidth = this.getPaiTotalWidthByPaiGroupArr(this.paiGroupArr);
+
+      this.setPaiNodeIndex(this.paiGroupArr); // let totalWidth = this.getPaiTotalWidthByPaiGroupArr(this.paiGroupArr);
       // this.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, this.paiGroupArr);
 
       this.tempOpenSpriteFrame = this.openPaiNode.getComponent(cc.Sprite).spriteFrame;
       this.isSelfTurn = false;
       this.isPickOneCard = false;
       this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
-      this.userInfoCtrl.countDown(false);
+      this.userInfoCtrl.countDown(false); // m默认自己出完牌轮右手边下家，seatId = 5
 
-      // m默认自己出完牌轮右手边下家，seatId = 5
       var otherUserCtrl = this.getOtherNodeCtrlBySeat(notify.nextSeat);
       otherUserCtrl.countDown(true, notify.simpleTimeout, notify.extraTimeout);
     } else {
@@ -1861,12 +2155,20 @@ cc.Class({
       if (notify.nextSeat == this.selfSeat) {
         // 自己
         this.showLobbyUI("qiCrad");
+
         var _paiNode4 = this.createPaiNode();
+
         var paiSprite = this.getPaiSpriteFrameByValue(notify.card);
+
         var _otherUserCtrl10 = this.getOtherNodeCtrlBySeat(notify.seat);
+
         var fromPos = _otherUserCtrl10.getPosition();
+
         _paiNode4.getComponent(cc.Sprite).spriteFrame = paiSprite;
+
         _paiNode4.setPosition(fromPos); //出牌玩家的位置， 需赋值
+
+
         _paiNode4.scale = 0.8;
         _paiNode4.parent = this.node;
         cc.tween(_paiNode4).tag(3).to(0.2, {
@@ -1877,6 +2179,7 @@ cc.Class({
           _paiNode4 && _this6.onCardRemoved(_paiNode4);
         }).start();
         this.isSelfTurn = true; //对家出完牌，轮到自己
+
         this.isPickOneCard = false;
         this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
         this.userInfoCtrl.countDown(true, notify.simpleTimeout, notify.extraTimeout);
@@ -1884,11 +2187,18 @@ cc.Class({
         curOtherUserCtrl.countDown(false);
       } else {
         var _paiNode5 = this.createPaiNode();
+
         var _paiSprite = this.getPaiSpriteFrameByValue(notify.card);
+
         var _curOtherUserCtrl = this.getOtherNodeCtrlBySeat(notify.seat);
+
         var _fromPos = _curOtherUserCtrl.getPosition();
+
         _paiNode5.getComponent(cc.Sprite).spriteFrame = _paiSprite;
+
         _paiNode5.setPosition(_fromPos); //出牌玩家的位置， 需赋值
+
+
         _paiNode5.scale = 0.8;
         _paiNode5.parent = this.node;
         cc.tween(_paiNode5).tag(3).to(0.2, {
@@ -1898,11 +2208,15 @@ cc.Class({
           _this6.openPaiNode && _this6.openPaiNode.getComponent(cc.Sprite) && (_this6.openPaiNode.getComponent(cc.Sprite).spriteFrame = _paiSprite);
           _paiNode5 && _this6.onCardRemoved(_paiNode5);
         }).start();
+
         _curOtherUserCtrl.countDown(false);
+
         var _otherUserCtrl11 = this.getOtherNodeCtrlBySeat(notify.nextSeat);
+
         _otherUserCtrl11.countDown(true, notify.simpleTimeout, notify.extraTimeout);
       }
     }
+
     this.showOpenAreaCard(notify.rightFace, notify.rightRemain);
   },
   // 0 ~ 51; 
@@ -1912,35 +2226,44 @@ cc.Class({
     if (paiValue < 0) {
       return;
     }
-    var paiType = this.getPaiType(paiValue);
-    // let paiNum = this.getPaiNum(paiValue);
+
+    var paiType = this.getPaiType(paiValue); // let paiNum = this.getPaiNum(paiValue);
+
     var getNum = function getNum(paiValue) {
       var paiNum = (paiValue + 12) % 13;
+
       if (paiValue == 52) {
         paiNum = "d";
       } else if (paiValue == 53) {
         paiNum = "x";
       }
+
       return paiNum;
     };
+
     var paiNum = getNum(paiValue);
+
     if (paiNum == 0) {
       paiNum = 13;
     }
+
     var spriteFrame = this.spriteAtlas_pai.getSpriteFrame(paiType + paiNum);
     return spriteFrame;
   },
   getPaiNum: function getPaiNum(paiValue) {
     var paiNum = paiValue % 13;
+
     if (paiValue == 52) {
       paiNum = "d";
     } else if (paiValue == 53) {
       paiNum = "x";
     }
+
     return paiNum;
   },
   getPaiType: function getPaiType(paiValue) {
     var paiType = "";
+
     if (paiValue <= 12) {
       paiType = "fangkuai";
     } else if (paiValue > 12 && paiValue <= 25) {
@@ -1954,6 +2277,7 @@ cc.Class({
     } else if (paiValue == 53) {
       paiType = "w_";
     }
+
     return paiType;
   },
   initPaiGroupArr: function initPaiGroupArr(paiNodeArr) {
@@ -1962,10 +2286,12 @@ cc.Class({
     var meiHuaGroup = [];
     var fangKuaiGroup = [];
     var wangGroup = [];
+
     for (var i = 0, len = paiNodeArr.length; i < len; i++) {
       var paiNode = paiNodeArr[i];
       var src = paiNode.getComponent("paiCtrl");
       var paiValue = src.getPaiValue();
+
       if (paiValue == 52 || paiValue == 53) {
         wangGroup.push(paiNode);
       } else if (paiValue <= 12) {
@@ -1978,59 +2304,76 @@ cc.Class({
         heiTaoGroup.push(paiNode);
       }
     }
-    var paiGroupArr = [];
-    // let groupTag = 0;
+
+    var paiGroupArr = []; // let groupTag = 0;
+
     if (wangGroup.length > 0) {
       paiGroupArr.push(wangGroup);
     }
+
     if (fangKuaiGroup.length > 0) {
       paiGroupArr.push(fangKuaiGroup);
     }
+
     if (meiHuaGroup.length > 0) {
       paiGroupArr.push(meiHuaGroup);
     }
+
     if (hongXinGroup.length > 0) {
       paiGroupArr.push(hongXinGroup);
     }
+
     if (heiTaoGroup.length > 0) {
       paiGroupArr.push(heiTaoGroup);
     }
+
     for (var _i21 = 0; _i21 < paiGroupArr.length; _i21++) {
       var tempArr = paiGroupArr[_i21];
+
       for (var j = 0; j < tempArr.length; j++) {
         var _paiNode6 = tempArr[j];
+
         var _src6 = _paiNode6.getComponent("paiCtrl");
+
         _src6.setGroupTag(_i21, j);
       }
     }
+
     LoggerUtil.getInstance().log("Push之后的数组", paiGroupArr);
     return paiGroupArr;
   },
   getPaiTotalWidthByPaiGroupArr: function getPaiTotalWidthByPaiGroupArr(paiGroupArr) {
     var totalWidth = 0;
+
     for (var i = 0, len = paiGroupArr.length; i < len; i++) {
       var paiGroup = paiGroupArr[i];
       var paiGroupLen = paiGroup.length;
       var tempWidth = (paiGroupLen - 1) * this.paiDistance + this.paiWidth;
       totalWidth += tempWidth;
     }
+
     return totalWidth;
   },
   setPaiPosByTotalWidthAndpaiGroupArr: function setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, paiGroupArr, isBtnGroup, isFirstFaPai) {
     var _this7 = this;
+
     isBtnGroup = isBtnGroup ? isBtnGroup : false;
     LoggerUtil.getInstance().log("是否是按钮组牌：" + isBtnGroup);
     var qiPos = totalWidth / 2;
     var tempX = 0;
     var handGroup = [];
+
     var _loop2 = function _loop2(i, len) {
       var paiGroup = paiGroupArr[i];
       handGroup[i] = [];
+
       var _loop3 = function _loop3(k, len1) {
         var paiNode = paiGroup[k];
+
         if (!paiNode) {
           return "continue";
         }
+
         if (i == 0) {
           tempX = -qiPos + _this7.paiWidth / 2 + _this7.paiDistance * k;
         } else {
@@ -2040,8 +2383,10 @@ cc.Class({
             tempX = tempX + _this7.paiDistance;
           }
         }
+
         var paiValue = paiNode.getComponent("paiCtrl").getPaiValue();
         handGroup[i][k] = paiValue;
+
         if (isFirstFaPai) {
           cc.tween(paiNode).tag(4).to(0.1, {
             position: cc.v2(tempX, 0)
@@ -2049,14 +2394,18 @@ cc.Class({
             if (i == len - 1 && k == len1 - 1) {
               for (var j = 0; j < paiGroupArr.length; j++) {
                 var element = paiGroupArr[j];
+
                 for (var l = 0; l < element.length; l++) {
                   var _paiNode7 = element[l];
+
                   if (_paiNode7) {
                     var src = _paiNode7.getComponent("paiCtrl");
+
                     src.setIsCanMove(true);
                   }
                 }
               }
+
               _this7.lifeBar(paiGroupArr, isBtnGroup);
             }
           }).start();
@@ -2066,29 +2415,34 @@ cc.Class({
           src.setIsCanMove(true);
         }
       };
+
       for (var k = 0, len1 = paiGroup.length; k < len1; k++) {
         var _ret = _loop3(k, len1);
+
         if (_ret === "continue") continue;
       }
     };
+
     for (var i = 0, len = paiGroupArr.length; i < len; i++) {
       _loop2(i, len);
     }
+
     if (!isFirstFaPai) {
       this.lifeBar(paiGroupArr, isBtnGroup);
     }
+
     this.setPaiNodeIndex(paiGroupArr);
     this.clickPaiArr.length = 0;
     this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length);
   },
   lifeBar: function lifeBar(paiGroupArr, isBtnGroup) {
-    isBtnGroup = isBtnGroup ? isBtnGroup : false;
-    // LoggerUtil.getInstance().log("lifeBar中的isBtnGroup" + isBtnGroup);
+    isBtnGroup = isBtnGroup ? isBtnGroup : false; // LoggerUtil.getInstance().log("lifeBar中的isBtnGroup" + isBtnGroup);
+
     for (var j = 0; j < this.barCount; j++) {
       // LoggerUtil.getInstance().log("bar========>:", "bar" + j)
       // LoggerUtil.getInstance().log("this.selfCardNode.name:", this.selfCardNode.name)
-
       var node = this.selfCardNode.getChildByName("bar" + j);
+
       if (node != null) {
         // LoggerUtil.getInstance().log("node.name:", node.name)
         // node.destroy();
@@ -2097,18 +2451,23 @@ cc.Class({
         break;
       }
     }
+
     this.barCount = 0;
     this.lifeArr = [];
+
     for (var _j = 0, len = paiGroupArr.length; _j < len; _j++) {
       var childArr = paiGroupArr[_j];
+
       if (childArr && Array.isArray(childArr)) {
         for (var _i22 = 0; _i22 < childArr.length; _i22++) {
           var element = childArr[_i22];
+
           if (element == undefined) {
             childArr.splice(_i22, 1);
             LoggerUtil.getInstance().error("当前数组" + _j + "的第" + _i22 + "个元素为undefined");
           }
         }
+
         if (childArr.length != 0) {
           var type = this.checkGroupLiftBar(childArr);
           this.lifeArr.push({
@@ -2120,23 +2479,31 @@ cc.Class({
         continue;
       }
     }
+
     var groupPai = this.lifeArr[0]; //点击button  group组的牌组
+
     LoggerUtil.getInstance().log("!!!!!!!!!!groupPai", groupPai);
+
     for (var _i23 = 0; _i23 < this.lifeArr.length; _i23++) {
       var _element3 = this.lifeArr[_i23];
       LoggerUtil.getInstance().log("lifeArr 的第" + _i23 + "个节点", _element3);
     }
+
     this.lifeArr.sort(function (a, b) {
       return a.type - b.type;
     });
+
     if (isBtnGroup == true) {
       LoggerUtil.getInstance().log("~~~~~~~~~~groupPai", groupPai);
+
       if (groupPai.type == 1 || groupPai.type == 2 || groupPai.type == 3) {
         LoggerUtil.getInstance().log("当前组的牌成序列");
       } else {
         for (var _i24 = 1; _i24 < paiGroupArr.length; _i24++) {
           var _type = this.checkGroupLiftBar(paiGroupArr[_i24]);
+
           LoggerUtil.getInstance().log("type" + _type, paiGroupArr[_i24]);
+
           if (_type == 1 || _type == 2 || _type == 3) {
             var temp = paiGroupArr[_i24];
             paiGroupArr[_i24] = paiGroupArr[_i24 - 1];
@@ -2147,15 +2514,19 @@ cc.Class({
           }
         }
       }
-    }
-    // LoggerUtil.getInstance().log("存放生命序列的数组：", this.lifeArr);
+    } // LoggerUtil.getInstance().log("存放生命序列的数组：", this.lifeArr);
+
+
     var _1StCount = 0;
     var _2ndCount = 0;
     var _3rdCount = 0;
     var scoreCount = 0; //分数
+
     var i = 0;
+
     for (var _j2 = 0, _len5 = this.lifeArr.length; _j2 < _len5; _j2++) {
       var _element4 = this.lifeArr[_j2];
+
       if (_element4.type == 0) {
         scoreCount += this.getGameScore(_element4.childArr);
         continue;
@@ -2170,6 +2541,7 @@ cc.Class({
       } else if (_element4.type == 3) {
         _3rdCount++;
       }
+
       if (_1StCount == 1) {
         if (_element4.type == 1) {
           this.setBar(_element4.childArr, _element4.type);
@@ -2184,6 +2556,7 @@ cc.Class({
             this.setBar(_element4.childArr, _element4.type);
           } else {
             this.setBar(_element4.childArr, 6); //2nd Need
+
             scoreCount += this.getGameScore(_element4.childArr);
           }
         }
@@ -2207,30 +2580,39 @@ cc.Class({
         //无第一序列
         if (_element4.type == 2) {
           this.setBar(_element4.childArr, 5); //1st Need
+
           scoreCount += this.getGameScore(_element4.childArr);
         } else if (_element4.type == 3) {
           this.setBar(_element4.childArr, 5); //1st Need
+
           scoreCount += this.getGameScore(_element4.childArr);
         }
       }
     }
+
     this.nowGameLifeCount = _1StCount + _2ndCount + _3rdCount;
+
     if (this.nowGameLifeCount > this.lastGameLifeCount && isBtnGroup == false) {
       GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("zupaichenggong");
     }
+
     this.lastGameLifeCount = this.nowGameLifeCount;
     this.nowGameLifeCount = 0;
     LoggerUtil.getInstance().log("此时的牌分数：", scoreCount);
+
     if (scoreCount >= 80) {
       scoreCount = 80;
     }
+
     this.userInfoCtrl.setScore(scoreCount);
   },
   // =====================================================================================
   //检查分数是不是等于 0
   checkScore: function checkScore(paiValue) {
     var _this8 = this;
+
     var score = this.userInfoCtrl.getScore();
+
     if (score == 0) {
       // 发送结算消息
       this.finishReq(paiValue, this.getPaiValueArr());
@@ -2241,18 +2623,25 @@ cc.Class({
       }, false, null, "Declare", function () {
         //取消结算
         LoggerUtil.getInstance().log("finishCardData", _this8.finishCardData);
+
         if (_this8.paiGroupArr[_this8.finishCardData.groupTag] && Array.isArray(_this8.paiGroupArr[_this8.finishCardData.groupTag])) {
           _this8.paiGroupArr[_this8.finishCardData.groupTag].splice(_this8.finishCardData.paiIndex, 0, _this8.finishCrad);
         } else {
           _this8.paiGroupArr.splice(_this8.finishCardData.groupTag, 0, []);
+
           _this8.paiGroupArr[_this8.finishCardData.groupTag].splice(_this8.finishCardData.paiIndex, 0, _this8.finishCrad);
         }
+
         _this8.finishCrad.active = true;
+
         _this8.setPaiNodeIndex(_this8.paiGroupArr);
+
         _this8.cardLibNode.getComponent(cc.Sprite).spriteFrame = null;
         _this8.cardLibNode.active = false;
         _this8.clickPaiArr = [];
+
         var totalWidth = _this8.getPaiTotalWidthByPaiGroupArr(_this8.paiGroupArr);
+
         _this8.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, _this8.paiGroupArr);
       });
     }
@@ -2261,6 +2650,7 @@ cc.Class({
   setDropScore: function setDropScore(round) {
     LoggerUtil.getInstance().log("当前回合：", round);
     var lab_dropScore = this.btn_drop.node.getChildByName("lab").getComponent(cc.Label);
+
     if (round <= 1) {
       lab_dropScore.string = 20 * this.cellScore;
     } else {
@@ -2270,34 +2660,40 @@ cc.Class({
   //finish，发送paiValue组到服务器
   getPaiValueArr: function getPaiValueArr() {
     var paiValueArr = [];
+
     for (var i = 0; i < this.paiGroupArr.length; i++) {
       var groupArr = this.paiGroupArr[i];
       var groupValueArr = [];
+
       for (var j = 0; j < groupArr.length; j++) {
         var paiNode = groupArr[j];
         var src = paiNode.getComponent("paiCtrl");
         var value = src.getPaiValue();
         groupValueArr.push(value);
       }
+
       paiValueArr.push({
         cards: groupValueArr
       });
     }
+
     return paiValueArr;
   },
   //finish出牌
   finishAction: function finishAction(notify) {
     this.finishCrad = this.paiGroupArr[notify.groupTag][notify.groupIndex];
-    this.paiGroupArr[notify.groupTag].splice(notify.groupIndex, 1);
-    // this.onCardRemoved(paiNode);
-    this.finishCrad.active = false;
-    // this.onCardRemoved(this.finishCrad);
+    this.paiGroupArr[notify.groupTag].splice(notify.groupIndex, 1); // this.onCardRemoved(paiNode);
+
+    this.finishCrad.active = false; // this.onCardRemoved(this.finishCrad);
+
     for (var i = 0, len = this.paiGroupArr.length; i < len; i++) {
       var childArr = this.paiGroupArr[i];
+
       if (childArr && childArr.length == 0) {
         this.paiGroupArr.splice(i, 1);
       }
     }
+
     var spriteFrame = this.getPaiSpriteFrameByValue(notify.paiValue);
     this.cardLibNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
     this.cardLibNode.active = true;
@@ -2314,35 +2710,43 @@ cc.Class({
     }).start();
     this.controlButton(this.isSelfTurn, this.isPickOneCard, this.clickPaiArr.length); //全部禁止
   },
-
   // 发牌
   deal: function deal(valueArr, laiId, leftRemain, rightFace, rightRemain) {
     this.cardLibNode.active = true;
     var interval = 0.05; // 以秒为单位的时间间隔
+
     var repeat = 12; // 重复次数
+
     var delay = 0; // 开始延时
+
     var time = -1; //发牌的次数
     // let spaceX = 70;            //每个牌之间的间距
 
     var paiNodeArr = [];
     var initPaiTotalWidth = this.paiWidth + 12 * this.paiDistance;
+
     this.dealCallback = function () {
       var _this9 = this;
+
       time += 1;
+
       if (time == 0 || time == 3 || time == 7 || time == 10) {
         GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("fapai");
-      }
-      // let posX = (-410 + (spaceX * time))
+      } // let posX = (-410 + (spaceX * time))
+
+
       var paiNode = this.createPaiNode();
       var src = paiNode.getComponent("paiCtrl");
+
       if (src) {
         src.setLaiActive(false);
         src.setUpClickDistance(this.upClickDistance);
         src.setUpLimitDistance(this.upLimitDistance);
-        src.setPaiDistance(this.paiDistance);
-        // src.setPaiSpriteFrame(spriteFrame);
+        src.setPaiDistance(this.paiDistance); // src.setPaiSpriteFrame(spriteFrame);
+
         src.setPaiValue(valueArr[time]);
       }
+
       paiNode.parent = this.selfCardNode;
       paiNode.setPosition(1, 194.5);
       paiNode.scale = 0.8;
@@ -2351,16 +2755,18 @@ cc.Class({
         position: cc.v2(-initPaiTotalWidth / 2 + this.paiDistance / 2 + time * this.paiDistance, 0, 0)
       }).call(function () {
         paiNodeArr.push(paiNode);
+
         if (paiNodeArr.length == 13) {
           _this9.dealTimeOutID = setTimeout(function () {
             _this9.setCardNum(paiNodeArr, valueArr, laiId, leftRemain, rightFace, rightRemain);
           }, 500);
         }
       }).start();
-    };
-    // for (let i = 0; i < 13; i++) {
+    }; // for (let i = 0; i < 13; i++) {
     //     this.dealCallback(i);
     // }
+
+
     this.schedule(this.dealCallback, interval, repeat, delay);
   },
   //翻转扑克牌，赋值
@@ -2374,26 +2780,37 @@ cc.Class({
         scaleX: 1
       }).start();
     };
+
     for (var i = 0; i < array.length; i++) {
       var spriteFrame = this.getPaiSpriteFrameByValue(valueArr[i]);
       this.turnCard(array[i], spriteFrame);
     }
+
     this.paiGroupArr = this.initPaiGroupArr(array);
     this.moveCard(laiId, leftRemain, rightFace, rightRemain);
   },
   //移动至close的位置
   moveCard: function moveCard(laiId, leftRemain, rightFace, rightRemain) {
     var _this10 = this;
+
     var img = this.getPaiSpriteFrameByValue(laiId); //获取癞子牌的图片资源
+
     cc.tween(this.cardLibNode).tag(8).to(0.5, {
       position: cc.v2(-195.74, 20)
     }).to(0.1).call(function () {
       GlobalCfg.ACT_SCENE_CTRL.rummyAudioCtrl.playGameSound("selectCard");
+
       _this10.showUniversalCard(img, leftRemain); //传入
+
+
       _this10.showOpenAreaCard(rightFace, rightRemain);
+
       var totalWidth = _this10.getPaiTotalWidthByPaiGroupArr(_this10.paiGroupArr);
+
       _this10.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, _this10.paiGroupArr, false, true);
+
       _this10.openPaiNode && _this10.openPaiNode.getComponent(cc.Sprite) && (_this10.tempOpenSpriteFrame = _this10.openPaiNode.getComponent(cc.Sprite).spriteFrame);
+
       _this10.btnAction();
     }).start();
   },
@@ -2409,8 +2826,10 @@ cc.Class({
       this.openPaiNode.getComponent(cc.Sprite).spriteFrame = openPai;
       var paiNum = this.getPaiNum(value);
       LoggerUtil.getInstance().log("当前阶段右边展示的牌", value, paiNum);
+
       if (paiNum == this.laiNumber || paiNum == "d" || paiNum == "x") {
         this.openPaiNode.getChildByName("lai").active = true;
+
         if (paiNum == "d" || paiNum == "x") {
           this.openPaiNode.getChildByName("lai").getChildByName("img_hat").active = false;
         } else {
@@ -2420,6 +2839,7 @@ cc.Class({
         this.openPaiNode.getChildByName("lai").active = false;
       }
     }
+
     this.lab_open.string = "OPEN(" + rightRemain + ")";
     this.cardMask.active = false;
     this.openNode.active = true;
@@ -2440,8 +2860,10 @@ cc.Class({
       position: cc.v2(-29.407, 0.436),
       angle: 12
     }).start();
+
     for (var i = 0; i < this.paiGroupArr.length; i++) {
       var childArr = this.paiGroupArr[i];
+
       for (var j = 0; j < childArr.length; j++) {
         var paiNode = childArr[j];
         var src = paiNode.getComponent("paiCtrl");
@@ -2455,10 +2877,12 @@ cc.Class({
   //起牌动作
   fapaiAction: function fapaiAction(notify, isSelf) {
     var _this11 = this;
+
     if (isSelf) {
       if (this.paiGroupArr.length == 0) {
         return;
       }
+
       var spriteFrame = this.getPaiSpriteFrameByValue(notify.card);
       var paiNode = this.createPaiNode();
       var src = paiNode.getComponent("paiCtrl");
@@ -2467,6 +2891,7 @@ cc.Class({
       var childArr = this.paiGroupArr[this.paiGroupArr.length - 1];
       childArr.push(paiNode);
       LoggerUtil.getInstance().log("起牌：", notify.card);
+
       if (src) {
         src.setLaiActive(paiNum == this.laiNumber || paiNum == "d" || paiNum == "x");
         src.setUpClickDistance(this.upClickDistance);
@@ -2475,6 +2900,7 @@ cc.Class({
         src.setPaiSpriteFrame(spriteFrame);
         src.setPaiValue(notify.card);
       }
+
       if (notify.side == 0) {
         paiNode.scale = 0.8;
         paiNode.parent = this.selfCardNode;
@@ -2485,9 +2911,13 @@ cc.Class({
         }).call(function () {
           // 更新组的信息
           _this11.setPaiNodeIndex(_this11.paiGroupArr);
+
           src.setIsCanMove(true);
+
           var totalWidth = _this11.getPaiTotalWidthByPaiGroupArr(_this11.paiGroupArr);
+
           _this11.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, _this11.paiGroupArr);
+
           _this11.openPaiNode && _this11.openPaiNode.getComponent(cc.Sprite) && (_this11.tempOpenSpriteFrame = _this11.openPaiNode.getComponent(cc.Sprite).spriteFrame);
         }).start();
       } else {
@@ -2500,9 +2930,13 @@ cc.Class({
         }).call(function () {
           // 更新组的信息
           _this11.setPaiNodeIndex(_this11.paiGroupArr);
+
           src.setIsCanMove(true);
+
           var totalWidth = _this11.getPaiTotalWidthByPaiGroupArr(_this11.paiGroupArr);
+
           _this11.setPaiPosByTotalWidthAndpaiGroupArr(totalWidth, _this11.paiGroupArr);
+
           _this11.openPaiNode && _this11.openPaiNode.getComponent(cc.Sprite) && (_this11.tempOpenSpriteFrame = _this11.openPaiNode.getComponent(cc.Sprite).spriteFrame);
         }).start();
       }
@@ -2510,12 +2944,16 @@ cc.Class({
       var otherUserCtrl = this.getOtherNodeCtrlBySeat(notify.seat);
       var toPostion = otherUserCtrl.getPosition();
       var _spriteFrame = this.poke_back;
+
       var _paiNode8 = this.createPaiNode();
+
       _paiNode8.getComponent(cc.Sprite).spriteFrame = _spriteFrame;
       _paiNode8.scale = 0.8;
       _paiNode8.parent = this.node;
+
       if (notify.side == 0) {
         _paiNode8.setPosition(-194.2, 22);
+
         cc.tween(_paiNode8).tag(1).to(0.2, {
           scale: 0.8,
           position: toPostion
@@ -2527,7 +2965,9 @@ cc.Class({
       } else {
         var openSpriteFrame = this.getPaiSpriteFrameByValue(notify.card);
         _paiNode8.getComponent(cc.Sprite).spriteFrame = openSpriteFrame;
+
         _paiNode8.setPosition(195.8, 22);
+
         cc.tween(_paiNode8).to(0, {
           scale: 0.8,
           position: cc.v2(195.8, 22)
@@ -2541,6 +2981,7 @@ cc.Class({
         }).start();
       }
     }
+
     this.lab_open.string = "(" + notify.rightRemain + ")";
     this.lab_close.string = "(" + notify.leftRemain + ")";
     this.showOpenAreaCard(notify.rightFace, notify.rightRemain);
@@ -2548,10 +2989,12 @@ cc.Class({
   setPaiNodeIndex: function setPaiNodeIndex(paiGroupArr) {
     // 更新组的信息
     var t = 0;
+
     for (var i = 0, len = paiGroupArr.length; i < len; i++) {
       if (Array.isArray(paiGroupArr[i])) {
         for (var k = 0, len1 = paiGroupArr[i].length; k < len1; k++) {
           var paiNode = paiGroupArr[i][k];
+
           if (paiNode) {
             paiNode.setSiblingIndex(this.paiZIndexArr[t]);
             var src = paiNode.getComponent("paiCtrl");
@@ -2559,6 +3002,7 @@ cc.Class({
           } else {
             LoggerUtil.getInstance().error("当前组" + i + "位" + k + "节点不存在");
           }
+
           t++;
         }
       }
@@ -2566,41 +3010,53 @@ cc.Class({
   },
   getLastPaiPosX: function getLastPaiPosX() {
     LoggerUtil.getInstance().log("获取牌组DASdsadas坐标", this.paiGroupArr.length);
+
     if (this.paiGroupArr.length == 0) {
       return 0;
     }
+
     var tempArr = [];
+
     for (var i = 0, len = this.paiGroupArr.length; i < len; i++) {
       var group = this.paiGroupArr[i];
+
       if (group) {
         var tempArr1 = [];
+
         for (var k = 0, len1 = group.length; k < len1; k++) {
           var node = group[k];
+
           if (node) {
             tempArr1.push(node);
           }
         }
+
         if (tempArr1.length > 0) {
           tempArr.push(tempArr1);
         }
       }
     }
+
     this.paiGroupArr = tempArr;
     var childArr = this.paiGroupArr[this.paiGroupArr.length - 1];
     LoggerUtil.getInstance().log("获取牌组最后一个组", childArr);
     var lastNode = Array.isArray(childArr) ? childArr[childArr.length - 1] : childArr;
+
     if (!lastNode) {
       LoggerUtil.getInstance().error("lastNode不存在！");
       return 0;
     }
+
     return lastNode.x;
   },
   //流局牌型动画
   flowPaiAction: function flowPaiAction(notify) {
     var _this12 = this;
+
     for (var j = 0; j < this.barCount; j++) {
       LoggerUtil.getInstance().log("bar========>:", "bar" + j);
       var node = this.selfCardNode.getChildByName("bar" + j);
+
       if (node != null) {
         // node.destroy();
         this.selfCardNode && this.selfCardNode.removeChild(node);
@@ -2608,15 +3064,21 @@ cc.Class({
         break;
       }
     }
+
     this.barCount = 0;
+
     for (var i = 0; i < this.paiGroupArr.length; i++) {
       var childArr = this.paiGroupArr[i];
-      var _loop4 = function _loop4() {
+
+      var _loop4 = function _loop4(k) {
         var paiNode = childArr[k];
         var originPos = paiNode.getPosition();
+
         if (paiNode) {
           var src = paiNode.getComponent("paiCtrl");
+
           var paiNum = _this12.getPaiNum(src.getPaiValue());
+
           src.setLaiActive(false);
           var tempSpriteFrame = paiNode.getComponent(cc.Sprite).spriteFrame;
           src.setIsCanMove(false);
@@ -2634,25 +3096,28 @@ cc.Class({
             scaleX: 1
           }).call(function () {
             _this12.lab_close.string = "(" + notify.leftRemain + ")";
+
             _this12.showOpenAreaCard(notify.rightFace, notify.rightRemain);
+
             src.setLaiActive(paiNum == _this12.laiNumber || paiNum == "d" || paiNum == "x");
             src.setIsCanMove(true);
           }).start();
         }
       };
+
       for (var k = 0; k < childArr.length; k++) {
-        _loop4();
+        _loop4(k);
       }
     }
+
     this.flowPaiCallBack = function () {
       _this12.lifeBar(_this12.paiGroupArr);
     };
+
     this.scheduleOnce(this.flowPaiCallBack, 2);
   },
   // ----------------------------------- 发牌    end----------------------------------------------------
-
   // ======================================= 牌组 start=========================================================
-
   // 小组的生命序列是什么
   // 1 同花顺， 2 软顺，  3 AAA或AAAA， 4 错误组，5 无 
   checkGroupLiftBar: function checkGroupLiftBar(group) {
@@ -2660,6 +3125,7 @@ cc.Class({
       // LoggerUtil.getInstance().log("传入的数组长度小于2");
       return 0;
     }
+
     var laiZiNum = 0;
     var laiZiArr = [];
     var heiTaoGroup = [];
@@ -2667,11 +3133,14 @@ cc.Class({
     var meiHuaGroup = [];
     var fangKuaiGroup = [];
     var paivalueArr = [];
+
     for (var i = 0, len = group.length; i < len; i++) {
       var paiNode = group[i];
+
       if (paiNode) {
         var src = paiNode.getComponent("paiCtrl");
         var paiValue = src.getPaiValue();
+
         if (paiValue == 52 || paiValue == 53 || this.getPaiNum(paiValue) == this.laiNumber) {
           // 癞子牌
           laiZiNum++;
@@ -2686,41 +3155,50 @@ cc.Class({
           } else if (paiValue <= 51) {
             heiTaoGroup.push(paiValue);
           }
+
           paivalueArr.push(paiValue);
         }
       }
     }
+
     ;
     var huaSeNum = 0;
+
     if (fangKuaiGroup.length > 0) {
       huaSeNum++;
     }
+
     if (meiHuaGroup.length > 0) {
       huaSeNum++;
     }
+
     if (hongXinGroup.length > 0) {
       huaSeNum++;
     }
+
     if (heiTaoGroup.length > 0) {
       huaSeNum++;
-    }
-    // LoggerUtil.getInstance().log("GroupLiftBar花色-=----------------", huaSeNum);
+    } // LoggerUtil.getInstance().log("GroupLiftBar花色-=----------------", huaSeNum);
+
+
     if (huaSeNum == 0) {
       return 2;
     } else if (huaSeNum == 1) {
       var chaNum = 0;
       var nary = paivalueArr.sort(function (a, b) {
         return a - b;
-      });
-      //先判断是不是QKA，
+      }); //先判断是不是QKA，
+
       if (this.getPaiNum(nary[0]) == 0) {
         //第一张为A
         var exceptA_Arr = nary.slice(1, nary.length);
+
         if (this.getPaiNum(exceptA_Arr[0]) == 0) {
           //第二张也为 A
           return 4;
         } else if (exceptA_Arr.length == 1) {
           var cha = this.containA(nary[0], exceptA_Arr[0]);
+
           if (cha == 0) {
             //含有同一张牌
             return 4;
@@ -2732,7 +3210,9 @@ cc.Class({
             if (this.getPaiNum(exceptA_Arr[_i25]) == 0) {
               return 4;
             }
+
             var _cha = exceptA_Arr[_i25 + 1] - exceptA_Arr[_i25];
+
             if (_cha == 0) {
               //含有同一张牌
               return 4;
@@ -2740,12 +3220,14 @@ cc.Class({
               chaNum += _cha - 1;
             }
           }
+
           var diff = this.containA(nary[0], exceptA_Arr[0]) >= this.containA(nary[0], exceptA_Arr[exceptA_Arr.length - 1]) ? this.containA(nary[0], exceptA_Arr[exceptA_Arr.length - 1]) : this.containA(nary[0], exceptA_Arr[0]);
           chaNum += diff - 1;
         }
       } else {
         for (var _i26 = 0, _len6 = nary.length; _i26 < _len6 - 1; _i26++) {
           var _cha2 = nary[_i26 + 1] - nary[_i26];
+
           if (_cha2 == 0) {
             //含有同一张牌
             return 4;
@@ -2754,8 +3236,11 @@ cc.Class({
           }
         }
       }
+
       var isSameType = this.isSameType(nary, laiZiArr); //是不是同一个花色
+
       var isContinuity = this.isContinuity(nary, laiZiArr); //是不是连续的
+
       if (chaNum == 0) {
         if (laiZiNum > 0) {
           if (isSameType && isContinuity) {
@@ -2779,22 +3264,27 @@ cc.Class({
       }
     } else if (huaSeNum == 2 || huaSeNum == 3 || huaSeNum == 4) {
       var isRepeat = this.isRepeat(paivalueArr);
+
       if (isRepeat) {
         return 4;
       } else {
         var paiTotal = 0;
         var paiNumArr = [];
+
         var _nary = paivalueArr.sort(function (a, b) {
           return a - b;
         });
+
         for (var _i27 = 0, _len7 = _nary.length; _i27 < _len7; _i27++) {
           var pai = this.getPaiNum(_nary[_i27]);
           paiNumArr.push(pai);
           paiTotal += pai;
         }
+
         paiNumArr.sort(function (a, b) {
           return a - b;
         });
+
         if (paiTotal == paiNumArr[0] * _nary.length && laiZiNum + _nary.length <= 4) {
           return 3;
         } else {
@@ -2805,6 +3295,7 @@ cc.Class({
       return 4;
     }
   },
+
   /**
    * 
    * @param {Number} A 牌A的值
@@ -2813,89 +3304,111 @@ cc.Class({
    */
   containA: function containA(A, indexValue) {
     var cha = 0,
-      diff = indexValue - A;
+        diff = indexValue - A;
+
     switch (diff) {
       case 12:
         //最后一张为K
         cha = 1;
         break;
+
       case 11:
         //最后一张为Q
         cha = 2;
         break;
+
       case 10:
         //最后一张为J
         cha = 3;
         break;
+
       case 9:
         //最后一张为10
         cha = 4;
         break;
+
       case 8:
         //最后一张为9
         cha = 5;
         break;
+
       case 7:
         //最后一张为8
         cha = 6;
         break;
+
       case 6:
         //最后一张为7
         cha = 6;
         break;
+
       case 5:
         //最后一张为6
         cha = 5;
         break;
+
       case 4:
         //最后一张为5
         cha = 4;
         break;
+
       case 3:
         //最后一张为4
         cha = 3;
         break;
+
       case 2:
         //最后一张为3
         cha = 2;
         break;
+
       case 1:
         //最后一张为2
         cha = 1;
         break;
+
       default:
         break;
     }
+
     return cha;
   },
   isRepeat: function isRepeat(arr) {
     var hash = {};
+
     for (var i in arr) {
       if (hash[arr[i]]) {
         return true;
       }
+
       hash[arr[i]] = true;
     }
+
     return false;
   },
   isSameType: function isSameType(a, b) {
     if (a === void 0) {
       a = [];
     }
+
     if (b === void 0) {
       b = [];
     }
+
     var paiValue = a[0];
     var a_paiType = this.getPaiType(paiValue);
+
     for (var i = 0, len = b.length; i < len; i++) {
       var value = b[i];
       var b_paiType = this.getPaiType(value);
+
       if (a_paiType == b_paiType) {
         continue;
       } else {
         return false;
       }
     }
+
     return true;
   },
   //是不是连续
@@ -2903,27 +3416,35 @@ cc.Class({
     if (a === void 0) {
       a = [];
     }
+
     if (b === void 0) {
       b = [];
     }
+
     var c = a.concat(b);
     c = c.sort(function (a, b) {
       return a - b;
     });
+
     for (var i = 0, len = c.length; i < len - 1; i++) {
       if (c[i + 1] == c[i]) {
         return false;
       } //有两张相同的癞子牌
+
+
       if (c[i + 1] - c[i] != 1) {
         //第一张牌为 A，最后一张为 K
         if (this.getPaiNum(c[i]) == 0 && this.getPaiNum(c[len - 1]) == 12) {
           continue;
         }
+
         return false;
       }
     }
+
     return true;
   },
+
   /**
    * 设置牌型底部的颜色条
    * temp = [x1,x2,x3,x4],length = n
@@ -2935,31 +3456,32 @@ cc.Class({
     isShowText = isShowText ? false : true;
     parentNode = parentNode ? parentNode : this.selfCardNode;
     LoggerUtil.getInstance().log("获得的牌组的生命序列type：" + type, "isShowText", isShowText, "parentNode", parentNode);
+
     if (type == 0) {
       // LoggerUtil.getInstance().log("数组长度小于2，type不存在，跳过，数组为", paiGroup);
       return;
     }
+
     var barNode = this.setBarColor(type, isShowText);
-    var barArea = this.setBarArea(paiGroup);
-    // LoggerUtil.getInstance().log("底部条的区域===========:", barArea);
+    var barArea = this.setBarArea(paiGroup); // LoggerUtil.getInstance().log("底部条的区域===========:", barArea);
+
     barNode.x = barArea.posX;
     barNode.width = barArea.width;
     barNode.y = -68;
     LoggerUtil.getInstance().log("this.barCount===============>", this.barCount);
     barNode.name = "bar" + this.barCount;
     this.barCount = this.barCount + 1;
-    barNode.parent = parentNode;
-    // barNode.setSiblingIndex(74);
-    barNode.zIndex = 74;
-    // LoggerUtil.getInstance().log("当前生命条的index：",barNode.getSiblingIndex());
-  },
+    barNode.parent = parentNode; // barNode.setSiblingIndex(74);
 
+    barNode.zIndex = 74; // LoggerUtil.getInstance().log("当前生命条的index：",barNode.getSiblingIndex());
+  },
   setBarArea: function setBarArea(group) {
     LoggerUtil.getInstance().log("group==================>", group.length);
     var width = 0;
     var posX = 0;
     var posY = 0;
     width = (group.length - 1) * this.paiDistance + group[0].width;
+
     if (group.length % 2 == 1) {
       var index = Math.floor(group.length / 2);
       posX = group[index].x;
@@ -2968,6 +3490,7 @@ cc.Class({
       var index2 = Math.floor(group.length / 2);
       posX = (group[index1].x + group[index2].x) / 2;
     }
+
     return {
       width: width,
       posX: posX
@@ -2977,103 +3500,133 @@ cc.Class({
     var barNode = cc.instantiate(this.prefab_bar);
     var spriteFrame = null;
     var barCtrl = barNode.getComponent("barCtrl");
-    var lab = barNode.getChildByName("lab_life").getComponent(cc.Label);
-    // lab.string = ""
+    var lab = barNode.getChildByName("lab_life").getComponent(cc.Label); // lab.string = ""
     //1 同花顺， 2 软顺，  3 AAA或AAAA， 4 错误组，5 无 
     // 1st Life  2nd Life  Not Correct  Pure Sequence  Sequenc  1st Life Needed  2nd Life Needed  Set
+
     switch (type) {
       case 1:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_green');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(6, 66, 0);
+
         if (isShowText == true) {
           // lab.string = "1st Life";
           barCtrl.setBarLabel("1st Life");
         }
+
         break;
+
       case 2:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_green');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(6, 66, 0);
+
         if (isShowText == true) {
           // lab.string = "2nd Life";
           barCtrl.setBarLabel("2nd Life");
         }
+
         break;
+
       case 3:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_green');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(6, 66, 0);
+
         if (isShowText == true) {
           // lab.string = "Set";
           barCtrl.setBarLabel("Set");
         }
+
         break;
+
       case 4:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_red');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(128, 1, 1); //红
+
         if (isShowText == true) {
           // lab.string = "Not Correct";
           barCtrl.setBarLabel("Not Correct");
         }
+
         break;
+
       case 5:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_yellow');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(139, 95, 1); //黄
+
         if (isShowText == true) {
           // lab.string = "1st Life Needed";
           barCtrl.setBarLabel("1st Life Needed");
         }
+
         break;
+
       case 6:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_yellow');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(139, 95, 1); //黄
+
         if (isShowText == true) {
           // lab.string = "2nd Life Needed";
           barCtrl.setBarLabel("2nd Life Needed");
         }
+
         break;
+
       case 7:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_green');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(6, 66, 0);
+
         if (isShowText == true) {
           // lab.string = "Pure Sequence";
           barCtrl.setBarLabel("Pure Sequence");
         }
+
         break;
+
       case 8:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_green');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(6, 66, 0);
+
         if (isShowText == true) {
           // lab.string = "Sequence";
           barCtrl.setBarLabel("Sequence");
         }
+
         break;
+
       default:
         spriteFrame = this.spriteAtlas_colorBar.getSpriteFrame('bar_red');
         barNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         lab.node.color = new cc.Color(128, 1, 1); //红
+
         if (isShowText == true) {
           // lab.string = "Not Correct";
           barCtrl.setBarLabel("Not Correct");
         }
+
         break;
     }
+
     return barNode;
   },
   getGameScore: function getGameScore(group) {
     var countScore = 0;
+
     for (var j = 0; j < group.length; j++) {
       var paiNode = group[j];
+
       if (paiNode) {
         var src = paiNode.getComponent("paiCtrl");
         var paiValue = src.getPaiValue();
         var paiNum = this.getPaiNum(paiValue);
+
         if (paiNum == this.laiNumber || paiNum == "d" || paiNum == "x") {
           continue;
         } else {
@@ -3082,12 +3635,14 @@ cc.Class({
             countScore += 10;
             continue;
           }
+
           countScore += paiNum + 1;
         }
       } else {
         LoggerUtil.getInstance().error("获取当前组" + group + "的第" + j + "个节点不存在");
       }
     }
+
     return countScore;
   },
   // 玩家发送表情
@@ -3095,12 +3650,18 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var msgType = notify.msgType; // 消息类型 0短语 1表情 2礼物
+
     var target = notify.target; // 接收者seat (-1表示群发)
+
     var sender = notify.sender; // 发送者seat
+
     var price = notify.price; // 消息价格
+
     var senderAfter = notify.senderAfter; // 发送者扣价后货币
+
     var name = notify.name; // 表情名/短语内容
 
     if (msgType == 0 || msgType == 1) {
@@ -3109,36 +3670,47 @@ cc.Class({
     } else if (msgType == 2) {
       var targetNodeArr = [];
       var senderCtrl = this.getPlayerInfoByUserId(sender);
+
       if (!senderCtrl || !senderCtrl.node) {
         return;
       }
+
       ;
+
       if (target == -1) {
         for (var i = 0; i < this.userArryNode.length; i++) {
           var userNode = this.userArryNode[i];
           var userInfoCtrl = null;
+
           if (userNode.name == 'userNode') {
             userInfoCtrl = userNode.getComponent('rummyUserInfoCtrl');
           } else if (userNode.name == 'otherNode') {
             userInfoCtrl = userNode.getComponent('rummyOtherUserCtrl');
           }
+
           ;
+
           if (userInfoCtrl && userInfoCtrl !== senderCtrl) {
             targetNodeArr.push(userNode);
           }
+
           ;
         }
       } else {
         var playersCtrl = this.getPlayerInfoByUserId(target);
+
         if (playersCtrl) {
           targetNodeArr.push(playersCtrl.node);
         }
+
         ;
       }
+
       ;
       CommonFun.getInstance().playGameGifInteraction(name, senderCtrl.node, targetNodeArr);
     }
   },
+
   /**
    * 根据用户ID获取用户控制脚本
    * @param {*} userID 绝对座位ID
@@ -3147,29 +3719,34 @@ cc.Class({
   getPlayerInfoByUserId: function getPlayerInfoByUserId(userID) {
     var playerInfo = null;
     var userInfoCtrl = null;
+
     if (userID == this.selfAbsoluteSeatId) {
       userInfoCtrl = this.userInfoCtrl;
     } else {
       userInfoCtrl = this.getOtherNodeCtrlBySeat(userID);
     }
+
     var relativeSeatId = this.changeAbsoluteSeatIdToRelative(userID);
+
     if (userInfoCtrl && userInfoCtrl.seatId === relativeSeatId) {
       playerInfo = userInfoCtrl;
     }
+
     return playerInfo;
   },
   getUserArrayNode: function getUserArrayNode(players) {
     var arr = [];
+
     for (var i = 0; i < players.length; i++) {
       var item = players[i];
       var nodeCtrl = this.getOtherNodeCtrlBySeat(item.seat);
       var node = nodeCtrl && nodeCtrl.node;
       node && arr.push(node);
     }
+
     return arr;
   },
   // ====================================== 牌组  end ==============================================================
-
   //控制下半部分的几个按钮的交互  type 分别为 0(点起0张牌) 1(点起 1 张牌) 2(点起超过 2 张牌) default
   controlButton: function controlButton(isSelfTurn, isPickOneCard, length) {
     if (isSelfTurn == false) {
@@ -3178,21 +3755,25 @@ cc.Class({
       } else {
         this.changButtonSprite(this.btn_group, false, "group");
       }
+
       this.changButtonSprite(this.btn_drop, false, "drop");
       this.changButtonSprite(this.btn_discard, false, "discord");
       this.changButtonSprite(this.btn_finish, false, "finish");
     } else {
       if (isPickOneCard == false) {
         this.changButtonSprite(this.btn_drop, true, "drop");
+
         if (length >= 2) {
           this.changButtonSprite(this.btn_group, true, "group");
         } else {
           this.changButtonSprite(this.btn_group, false, "group");
         }
+
         this.changButtonSprite(this.btn_discard, false, "discord");
         this.changButtonSprite(this.btn_finish, false, "finish");
       } else {
         this.changButtonSprite(this.btn_drop, false, "drop");
+
         if (length == 1) {
           this.changButtonSprite(this.btn_discard, true, "discord");
           this.changButtonSprite(this.btn_finish, true, "finish");
@@ -3212,9 +3793,10 @@ cc.Class({
   //删除手牌，放置到对象池
   putSelfCardToPool: function putSelfCardToPool() {
     var children = this.selfCardNode.children || [];
+
     for (var i = children.length - 1; i >= 0; i--) {
-      var item = children[i];
-      // LoggerUtil.getInstance().log(`手牌的第${i}个子节点：`,item);
+      var item = children[i]; // LoggerUtil.getInstance().log(`手牌的第${i}个子节点：`,item);
+
       if (item && item.name == 'pai') {
         this.onCardRemoved(item);
       } else {
@@ -3240,9 +3822,11 @@ cc.Class({
     var arr = str.split("");
     LoggerUtil.getInstance().log("~~~~~~", arr, number);
     var last = arr[2];
+
     if (arr.length >= 4) {
       last = [arr[2], arr[3]].join('');
     }
+
     return {
       groupTag: arr[1],
       groupIndex: last
@@ -3250,6 +3834,7 @@ cc.Class({
   },
   deepClone: function deepClone(obj) {
     var objClone = Array.isArray(obj) ? [] : {};
+
     if (obj && typeof obj === "object") {
       for (key in obj) {
         if (obj.hasOwnProperty(key)) {
@@ -3263,14 +3848,17 @@ cc.Class({
         }
       }
     }
+
     return objClone;
   },
   getAbsoluteSelfSeatId: function getAbsoluteSelfSeatId(notify) {
     if (Array.isArray(notify.players) == false) {
       return;
     }
+
     for (var i = 0; i < notify.players.length; i++) {
       var player = notify.players[i];
+
       if (player.user.displayName == GlobalCfg.USER_DATAS.userId) {
         this.selfAbsoluteSeatId = player.seat;
         break;
@@ -3291,17 +3879,21 @@ cc.Class({
   //通过 seat 获取其他玩家节点脚本，错误返回 false
   getOtherNodeCtrlBySeat: function getOtherNodeCtrlBySeat(seat) {
     var relativeSeatId = this.changeAbsoluteSeatIdToRelative(seat);
+
     for (var i = 0, len = this.playersNode.children.length; i < len; i++) {
       var otherUserNode = this.playersNode.children[i];
       var rummyOtherUserCtrl = otherUserNode.getComponent("rummyOtherUserCtrl");
       var otherSeat = rummyOtherUserCtrl.getSeatId();
+
       if (otherSeat == relativeSeatId) {
         return rummyOtherUserCtrl;
       }
     }
+
     if (relativeSeatId == this.userInfoCtrl.getSeatId()) {
       return this.userInfoCtrl;
     }
+
     return false;
   },
   //通过 playerId 获取其他玩家节点脚本，错误返回 false
@@ -3310,12 +3902,15 @@ cc.Class({
       var otherUserNode = this.playersNode.children[i];
       var rummyOtherUserCtrl = otherUserNode.getComponent("rummyOtherUserCtrl");
       var otherPlayerId = rummyOtherUserCtrl.getPlayerId();
+
       if (otherPlayerId == playerId) {
         return rummyOtherUserCtrl;
       }
     }
+
     return false;
   },
+
   /**
    * 
    * @param {cc.Node} parentNode 传入的节点
@@ -3339,9 +3934,11 @@ cc.Class({
     if (!this.node) {
       return;
     }
+
     if (str == "shouZhi" && this.huSeat) {
       this.ske_shouZhi_close.active = bool;
       this.ske_shouZhi_open.active = bool;
+
       if (!bool) {
         this.ske_close_guang.active = false;
         this.ske_cardLib_guang.active = false;
@@ -3363,23 +3960,21 @@ cc.Class({
     }
   },
   // ========================================= 向服务器发送请求 START ====================================================================
-
   // //获取房间列表
   // getRoomListReq: function (type) {
   //     GameServerManager.send("gameservice.queryroomlist", "QueryRoomListReq", {
   //         gameType: type,	    //游戏类型
   //     });
   // },
-
   //进入房间
   enterRoomReq: function enterRoomReq() {
     // let roomid = cc.sys.localStorage.getItem("rummyID");
     LoggerUtil.getInstance().log("进入房间id", GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID);
     GameServerManager.send("gameservice.enterroom", "EnterRoomReq", {
       id: GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID //游戏类型
+
     });
   },
-
   //换桌
   changeRoomReq: function changeRoomReq() {
     if (!this.isChange) {
@@ -3409,9 +4004,9 @@ cc.Class({
   pickCardReq: function pickCardReq(num) {
     GameServerManager.send("gameservice.pickcard", "PickCardReq", {
       side: num // 起牌方位 0左1右
+
     });
   },
-
   //出牌 
   outCardReq: function outCardReq(num, groupIndex) {
     this.line.active = false;
@@ -3419,6 +4014,7 @@ cc.Class({
       card: num,
       // 牌
       index: groupIndex //牌组
+
     });
   },
   //弃牌 
@@ -3447,16 +4043,19 @@ cc.Class({
   SetContinueReq: function SetContinueReq(settlement) {
     this.settlement = settlement;
     LoggerUtil.getInstance().log("this.isKicked: ", this.isKicked);
+
     if (this.isKicked == true) {
-      this.settlement.destroy();
-      // this.userInfoCtrl.lab_scoreName.string = "Score:";
+      this.settlement.destroy(); // this.userInfoCtrl.lab_scoreName.string = "Score:";
       // this.userInfoCtrl.lab_score.string = "0";
+
       this.initNodeState(false);
+
       for (var i = 0, len = this.playersNode.children.length; i < len; i++) {
         var otherUserNode = this.playersNode.children[i];
         var otherUserCtrl = otherUserNode.getComponent("rummyOtherUserCtrl");
         otherUserCtrl && otherUserCtrl.freshUser();
       }
+
       this.enterRoomReq();
     } else {
       GameServerManager.send("gameservice.setcontinue", "SetContinueReq", {});
@@ -3468,6 +4067,7 @@ cc.Class({
     if (this.node.getChildByName("pai")) {
       this.node.getChildByName("pai").destroy();
     }
+
     this.cardPool.clear();
     cc.Tween.stopAll();
     this.unschedule(this.dealCallback);
@@ -3485,19 +4085,24 @@ cc.Class({
   TipsLab: function TipsLab(num) {
     if (num) {
       var gameStartTips = this.node.getChildByName("gameStartTips");
+
       if (gameStartTips) {
         var tishiCtrl = gameStartTips.getComponent("tishiCtrl");
         tishiCtrl.setTishi(this.textArr[num]);
       } else {
         var Tips = cc.instantiate(this.prefab_tishi);
         Tips.name = "gameStartTips";
+
         var _tishiCtrl4 = Tips.getComponent("tishiCtrl");
+
         this.node.addChild(Tips);
+
         _tishiCtrl4.setTishi(this.textArr[num]);
       }
     } else {
       for (var i = 0; i < 3; i++) {
         var _gameStartTips = this.node.getChildByName("gameStartTips");
+
         if (_gameStartTips) {
           _gameStartTips.destroy();
         }
@@ -3507,31 +4112,41 @@ cc.Class({
   // 摆牌
   reqMovehandgroup: function reqMovehandgroup(paiNodeArr) {
     var groups = [];
+
     for (var i = 0; i < paiNodeArr.length; i++) {
       var paiGroup = paiNodeArr[i];
       groups[i] = [];
+
       for (var k = 0; k < paiGroup.length; k++) {
         var paiNode = paiGroup[k];
+
         if (!paiNode) {
           continue;
         }
+
         var paiValue = paiNode.getComponent("paiCtrl").getPaiValue();
         groups[i][k] = paiValue;
       }
     }
+
     if (!groups) {
       return;
     }
+
     var tempGroups = [];
+
     for (var _i28 = 0, len = groups.length; _i28 < len; _i28++) {
       var group = groups[_i28];
+
       if (!group || group.length <= 0) {
         return;
       }
+
       tempGroups.push({
         cards: group
       });
     }
+
     LoggerUtil.getInstance().log("向服务器发送的手牌的数据是：", tempGroups);
     GameServerManager.send("gameservice.movehandgroup", "MoveHandGroupReq", {
       groups: tempGroups

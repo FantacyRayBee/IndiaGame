@@ -15,8 +15,10 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.btn_close.node.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       _this.node.destroy();
     }, this);
   },
@@ -28,17 +30,21 @@ cc.Class({
   },
   loadHeadSp: function loadHeadSp(spriteurl, realWidth) {
     var _this2 = this;
+
     if (spriteurl && spriteurl.length > 0) {
       cc.assetManager.loadRemote(spriteurl, {
         ext: '.png'
       }, function (err, texture) {
         if (!err && cc.isValid(_this2) && cc.isValid(_this2.node_head)) {
           _this2.node_head.spriteFrame = new cc.SpriteFrame(texture);
+
           _this2.node_head.node.setScale(realWidth / _this2.node_head.node.width);
         }
+
         ;
       });
     }
+
     ;
   },
   onDestroy: function onDestroy() {

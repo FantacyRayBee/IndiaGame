@@ -172,7 +172,7 @@
       }
     }
   },
-  "_atlasText": "\r\nzhong_fx.png\r\nsize: 337,337\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/quanguang\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 324, 333\r\n  orig: 363, 377\r\n  offset: 23, 21\r\n  index: -1\r\n",
+  "_atlasText": "\nzhong_fx.png\nsize: 337,337\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/quanguang\n  rotate: false\n  xy: 2, 2\n  size: 324, 333\n  orig: 363, 377\n  offset: 23, 21\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "9bdef06b-1aa3-4172-8e9c-a7d4e399be60"

@@ -5,6 +5,7 @@ cc._RF.push(module, '5c39aF8kD1PYbiTGKxPjIHS', 'BenefitsItemCtrl');
 "use strict";
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -54,12 +55,15 @@ cc.Class({
   },
   setBenifitsTimeForDay: function setBenifitsTimeForDay(diffTime) {
     var _this = this;
+
     var downTimer = function downTimer() {
       diffTime -= 1;
+
       if (diffTime < 0) {
         if (CommonFun.getInstance().isValidForScr(_this)) {
           clearInterval(_this.rewardTimer);
           _this.rewardTimer = null;
+
           if (_this.benifitsType == 5) {
             _this.lab_tips2.string = "\u20B9" + _this.benifitsData.dayTake / 100;
             _this.btn_icon.interactable = true;
@@ -77,32 +81,39 @@ cc.Class({
             _this.btn_icon.interactable = false;
             _this.node_quan.active = false;
           }
+
           ;
         }
+
         ;
         return;
       }
+
       ;
+
       if (CommonFun.getInstance().isValidForScr(_this)) {
         _this.lab_tips2.string = formatDuring(diffTime);
       }
+
       ;
     };
+
     var formatDuring = function formatDuring(mss) {
       var hours = Math.floor(mss % (60 * 60 * 24) / (60 * 60));
       var minutes = Math.floor(mss % (60 * 60) / 60);
       var seconds = Math.floor(mss % 60);
       return (hours < 10 ? '0' + hours : hours) + ": " + (minutes < 10 ? '0' + minutes : minutes) + ": " + (seconds < 10 ? '0' + seconds : seconds);
     };
+
     this.lab_tips2.string = formatDuring(diffTime);
     this.rewardTimer = setInterval(downTimer, 1000);
   },
   setBenifitsTimeForWeekOrMonth: function setBenifitsTimeForWeekOrMonth(endTime) {
-    var dateObj = new Date(endTime * 1000);
+    var dateObj = new Date(endTime * 1000); // 获取年、月、日
 
-    // 获取年、月、日
     var year = dateObj.getFullYear();
     var month = dateObj.getMonth() + 1; // JavaScript中月份从0开始计数，所以加上1
+
     var day = dateObj.getDate();
     this.lab_tips2.string = (day < 10 ? '0' + day : day) + " " + this.monthObj[month] + "," + year;
   },
@@ -111,11 +122,13 @@ cc.Class({
       this.node.active = false;
       return;
     }
+
     ;
     this.benifitsType = type;
     this.benifitsData = data;
     var languagesType = I18NUtil.getInstance().getLanguageType();
     var nameStr = "";
+
     if (type == 1) {
       nameStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['MyVip_Daily Withdrawal Count']);
     } else if (type == 2) {
@@ -137,11 +150,14 @@ cc.Class({
     } else if (type == 11) {
       nameStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['MyVip_Lucky Draw']);
     }
+
     ;
     this.lab_tips1.string = nameStr;
     this.sprite_icon.spriteFrame = this.atlas_benifits.getSpriteFrame("" + type);
+
     if (GlobalCfg.USER_DATAS.userVip.level == data.level) {
       var timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
+
       if (type == 5) {
         if (timestamp < GlobalCfg.USER_DATAS.userVip.next_day_take_time) {
           this.setBenifitsTimeForDay(GlobalCfg.USER_DATAS.userVip.next_day_take_time - timestamp);
@@ -160,6 +176,7 @@ cc.Class({
             });
           }, 3), this);
         }
+
         ;
         this.lab_tips2.node.active = true;
       } else if (type == 4) {
@@ -180,6 +197,7 @@ cc.Class({
             });
           }, 3), this);
         }
+
         ;
         this.lab_tips2.node.active = true;
       } else if (type == 3) {
@@ -200,6 +218,7 @@ cc.Class({
             });
           }, 3), this);
         }
+
         ;
         this.lab_tips2.node.active = true;
       } else if (type == 2) {
@@ -207,24 +226,28 @@ cc.Class({
         this.lab_tips2.node.active = true;
         this.btn_icon.interactable = false;
         this.node_quan.active = false;
+
         if (GlobalCfg.USER_DATAS.userVip.withdraw_total >= data.withdrawTotalLimit) {
           this.btn_icon.interactable = true;
           this.btn_icon.node.on("click", CommonFun.getInstance().debounce(function () {
             CommonFun.getInstance().showTips('The current withdrawal limit has been used up, please raise the VIP level!');
           }, 1), this);
         }
+
         ;
       } else if (type == 1) {
         this.lab_tips2.string = data.dayWithdrawCountLimit - GlobalCfg.USER_DATAS.userVip.day_withdraw_count + " times";
         this.lab_tips2.node.active = true;
         this.btn_icon.interactable = false;
         this.node_quan.active = false;
+
         if (data.dayWithdrawCountLimit - GlobalCfg.USER_DATAS.userVip.day_withdraw_count <= 0) {
           this.btn_icon.interactable = true;
           this.btn_icon.node.on("click", CommonFun.getInstance().debounce(function () {
             CommonFun.getInstance().showTips('The current withdrawal times have been used up, please raise the VIP level!');
           }, 1), this);
         }
+
         ;
       } else if (type == 7) {
         this.btn_icon.interactable = true;
@@ -232,6 +255,7 @@ cc.Class({
         this.lab_tips2.node.active = false;
         this.btn_icon.node.on("click", CommonFun.getInstance().debounce(function () {
           var channel_info = _extends({}, GlobalCfg.USER_DATAS.customerService);
+
           var whatsAppInfos = channel_info.whatsApp.split(',');
           var mobileNum = whatsAppInfos[0].match(/\d+/g);
           APPManager.skipToOtherApp("com.whatsapp", "https://api.whatsapp.com/send?phone=" + mobileNum);
@@ -248,6 +272,7 @@ cc.Class({
         this.btn_icon.interactable = false;
         this.node_quan.active = false;
       }
+
       ;
     } else {
       this.lab_tips2.node.active = false;
@@ -255,6 +280,7 @@ cc.Class({
       this.btn_icon.enableAutoGrayEffect = true;
       this.node_quan.active = false;
     }
+
     ;
   }
 });

@@ -39,6 +39,7 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.ZEUS_ONCE_ERASE_FINISHED) {
       self.dealOnceEraseFinishedEvent(notify);
     }
@@ -50,6 +51,7 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var erase = notify.erase;
     var bet = erase.bet;
@@ -58,16 +60,20 @@ cc.Class({
   },
   setAllWinScore: function setAllWinScore(score, isAnim) {
     var _this = this;
+
     if (!isAnim || score == 0) {
       this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score);
       return;
     }
+
     ;
     var oldScore = Number(this.lab_allWin.string);
+
     if (score == oldScore) {
       this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score);
       return;
     }
+
     ;
     var obj = {};
     obj.num = Number(this.lab_allWin.string);
@@ -79,6 +85,7 @@ cc.Class({
           var temp = end - start == 0 ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t);
           _this.lab_allWin.string = temp;
         }
+
         ;
         return start + (end - start) * t;
       }
@@ -89,27 +96,33 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
+
     switch (btnName) {
       case this.btn_rule.node.name:
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         this.dealBtnRuleEvent();
         break;
+
       case this.btn_reduce.node.name:
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickNormalBtnEffect();
         this.dealBtnReduceEvent();
         break;
+
       case this.btn_add.node.name:
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickNormalBtnEffect();
         this.dealBtnAddEvent();
         break;
+
       case this.btn_maxBet.node.name:
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickNormalBtnEffect();
         this.dealBtnMaxBetEvent();
         break;
+
       case this.btn_spin.node.name:
         GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickSpinBtnEffect();
         this.dealBtnSpinEvent();
         break;
+
       default:
         break;
     }
@@ -117,10 +130,12 @@ cc.Class({
   toggleClick: function toggleClick(tog) {
     var togName = tog.node.name;
     GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickNormalBtnEffect();
+
     switch (togName) {
       case this.tog_auto.node.name:
         this.dealTogAutoEvent();
         break;
+
       default:
         break;
     }
@@ -140,6 +155,7 @@ cc.Class({
     if (this.betIndex > 0) {
       this.betIndex -= 1;
     }
+
     ;
     this.setBetBtnsAndLabByIndex(this.betIndex);
   },
@@ -147,6 +163,7 @@ cc.Class({
     if (this.betIndex < this.betArr.length - 1) {
       this.betIndex += 1;
     }
+
     ;
     this.setBetBtnsAndLabByIndex(this.betIndex);
   },
@@ -170,6 +187,7 @@ cc.Class({
       LoggerUtil.getInstance().warn("setBetArr: arr is not an array");
       return;
     }
+
     ;
     this.betArr = arr;
   },
@@ -180,6 +198,7 @@ cc.Class({
     if (betIndex === void 0) {
       betIndex = 0;
     }
+
     this.betIndex = betIndex;
     this.setBetBtnsAndLabByIndex(this.betIndex);
   },
@@ -194,19 +213,24 @@ cc.Class({
       this.setBtnAddInteractableStatus(true);
       this.setBtnMaxBetInteractableStatus(true);
     }
+
     ;
+
     if (betIndex == 0) {
       this.setBtnReduceInteractableStatus(false);
     } else {
       this.setBtnReduceInteractableStatus(true);
     }
+
     ;
     var bet = this.betArr[betIndex];
+
     if (typeof bet != "number") {
       LoggerUtil.getInstance().warn("bet is not a number");
       this.lab_bet.string = "$0";
       return;
     }
+
     ;
     var tempBet = this.isDoubleMulti ? bet * 1.25 : bet;
     this.lab_bet.string = "$" + tempBet / 100;

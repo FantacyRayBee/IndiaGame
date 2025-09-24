@@ -18,6 +18,7 @@ cc.Class({
   btnClick: function btnClick(Button) {
     var btnName = Button.node.name;
     GlobalCfg.G_COMPONENTS.Audio.playButton();
+
     if (btnName == "btn_share") {
       this.share();
     } else if (btnName == "btn_bg") {
@@ -28,6 +29,7 @@ cc.Class({
     var shareUrl = GlobalCfg.APP_SHARE_URL + "?inviteCode=" + GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
     APPManager.Share(shareUrl);
   } // update (dt) {},
+
 });
 
 cc._RF.pop();

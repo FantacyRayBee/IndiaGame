@@ -61,7 +61,9 @@ cc.Class({
     this.curBtnLabelIndex = 0;
     this.posArr = [cc.v2(-400, 0), cc.v2(-100, 0), cc.v2(350, 0)];
     this.couldClickStep1 = false; // 步骤1点击是否可以响应
+
     this.audioIDs = []; // 音效ID
+
     this.couldClickStep2 = false;
   },
   onLoad: function onLoad() {
@@ -79,6 +81,7 @@ cc.Class({
     for (var i = 0; i < this.audioIDs.length; i++) {
       GlobalCfg.G_COMPONENTS.Audio.stopEffect(this.audioIDs[i]);
     }
+
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
   },
   start: function start() {
@@ -89,6 +92,7 @@ cc.Class({
   onTouch: function onTouch(event) {
     this.playEffect(this.audioClips[0]);
     var name = event.target.name;
+
     if (name == "1") {
       if (this.couldClickStep1 == true) {
         this.showStep_2();
@@ -98,11 +102,13 @@ cc.Class({
       if (this.couldClickStep2 == false) {
         return;
       }
+
       if (this.curBtnLabelIndex < 2) {
         this.curBtnLabelIndex++;
         this.newNode.setPosition(this.posArr[this.curBtnLabelIndex]);
         this.btnLabel.string = this.btnNextLabels[this.curBtnLabelIndex];
         this.updateLabDesr(this.labelStrs[this.curBtnLabelIndex]);
+
         if (this.curBtnLabelIndex == 2) {
           this.newNode.getChildByName('qpbg').setPosition(-500, 194);
           this.newNode.getChildByName('qpbg').setScale(1, 1);
@@ -113,6 +119,7 @@ cc.Class({
         for (var i = 0; i < this.stepNodeList.length; i++) {
           this.stepNodeList[i].active = false;
         }
+
         this.showSpineAnimation();
       }
     }
@@ -120,15 +127,18 @@ cc.Class({
   onBtnClick: function onBtnClick(Button) {
     var name = Button.node.name;
     this.playEffect(this.audioClips[0]);
+
     if (name == this.btnNext.node.name) {
       if (this.couldClickStep2 == false) {
         return;
       }
+
       if (this.curBtnLabelIndex < 2) {
         this.curBtnLabelIndex++;
         this.newNode.setPosition(this.posArr[this.curBtnLabelIndex]);
         this.btnLabel.string = this.btnNextLabels[this.curBtnLabelIndex];
         this.updateLabDesr(this.labelStrs[this.curBtnLabelIndex]);
+
         if (this.curBtnLabelIndex == 2) {
           this.newNode.getChildByName('qpbg').setPosition(-500, 194);
           this.newNode.getChildByName('qpbg').setScale(1, 1);
@@ -139,6 +149,7 @@ cc.Class({
         for (var i = 0; i < this.stepNodeList.length; i++) {
           this.stepNodeList[i].active = false;
         }
+
         this.showSpineAnimation();
       }
     } else if (name == this.btnGet.node.name) {
@@ -147,17 +158,20 @@ cc.Class({
   },
   updateLabDesr: function updateLabDesr(str, time) {
     var _this = this;
+
     if (time === void 0) {
       time = 0.7;
     }
+
     this.couldClickStep2 = false;
     var gameFrameRate = cc.game.getFrameRate();
     var len = str.length;
     var frameAddStr = Number(Number(len / (gameFrameRate * time)).toFixed(2));
     var displayed = 0,
-      count = 0;
+        count = 0;
     this.schedule(function () {
       count++;
+
       if (count == time * gameFrameRate) {
         _this.labelDesr.string = str;
         _this.couldClickStep2 = true;
@@ -171,6 +185,7 @@ cc.Class({
     var self = target;
     var msgId = msgData.msgCode;
     var notify = msgData.msgData;
+
     if (msgId == "FirstRechargeReduceLabelFinsh") {
       self.couldClickStep1 = true;
       self.setTimeToStep2(10);
@@ -178,23 +193,29 @@ cc.Class({
       self.btnGet.node.active = true;
     }
   },
+
   /**
    * 设置经过指定时间自动跳转第二步
    * @param {number} time 时间 s 
    */
   setTimeToStep2: function setTimeToStep2(time) {
     var _this2 = this;
+
     this.scheduleTimetoStep2 = function () {
       _this2.showStep_2();
     };
+
     this.scheduleOnce(this.scheduleTimetoStep2, time);
   },
   showStep_1: function showStep_1() {
     var _this3 = this;
+
     this.scheduleOnce(function () {
       _this3.changeStepNode(0);
+
       GlobalCfg.G_COMPONENTS.Audio.pauseMusic();
       var oldNum = GlobalCfg.USER_DATAS.oldUserDiamond ? GlobalCfg.USER_DATAS.oldUserDiamond / 100 : 200;
+
       _this3.setLabelToNewNumber(oldNum, 0, LabelAnimationType.Reduce, 1);
     }, 0);
   },
@@ -207,6 +228,7 @@ cc.Class({
   },
   showStep_3: function showStep_3() {
     var _this4 = this;
+
     this.changeStepNode(2);
     this.node.getChildByName("bg").active = false;
     this.node.getChildByName('bg_zhuozi').active = false;
@@ -214,10 +236,13 @@ cc.Class({
     this.scheduleOnce(function () {
       GlobalCfg.G_COMPONENTS.Audio.resumeMusic();
       var newNum = Number(GlobalCfg.USER_DATAS.userDiamond / 100);
+
       _this4.setLabelToNewNumber(0, newNum, LabelAnimationType.Add, 3);
+
       _this4.playEffect(_this4.audioClips[2]);
     }, 0.5);
   },
+
   /**
    * 
    * @param {*} oldNum 
@@ -229,6 +254,7 @@ cc.Class({
     oldNum = oldNum || 0;
     newNum = newNum || 0;
     duringTime = duringTime || 1;
+
     if (type == LabelAnimationType.Add) {
       this.newAmount.getComponent('ChangeLabelToSetNum').setLabelShowAnimation(true, oldNum, newNum, type, duringTime);
     } else if (type == LabelAnimationType.Reduce) {
@@ -239,6 +265,7 @@ cc.Class({
     for (var i = 0; i < this.stepNodeList.length; i++) {
       this.stepNodeList[i].active = false;
     }
+
     this.stepNodeList[step].active = true;
   },
   showSpineAnimation: function showSpineAnimation() {

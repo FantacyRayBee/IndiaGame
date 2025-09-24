@@ -28,20 +28,25 @@ cc.Class({
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
+
     switch (btnName) {
       case "btn_close":
         GlobalCfg.G_COMPONENTS.Audio.playBack();
         this.node.destroy();
         return;
+
       case "btn_tips":
         this.dealBtnTipsEvent();
         break;
+
       case "btn_pay":
         this.dealBtnPayEvent();
         break;
+
       default:
         break;
     }
+
     GlobalCfg.G_COMPONENTS.Audio.playButton();
   },
   dealBtnTipsEvent: function dealBtnTipsEvent() {
@@ -50,25 +55,32 @@ cc.Class({
   },
   dealBtnPayEvent: function dealBtnPayEvent() {
     var _this = this;
+
     SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.VipOnceToast;
     ;
+
     var _cb = function _cb() {
       if (CommonFun.getInstance().isValidForScr(_this)) {
         _this.node.destroy();
       }
+
       ;
     };
+
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
+
     if (rechargeNeedInfo) {
       if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
         CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
       } else {
         CommonFun.getInstance().showBindPhone('AddCash');
       }
+
       ;
     } else {
       CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb);
     }
+
     ;
   },
   onDestroy: function onDestroy() {

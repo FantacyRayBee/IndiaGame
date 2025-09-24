@@ -16,14 +16,22 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.lab_jb = this.node.getChildByName("score_bg").getChildByName("lab_jb").getComponent(cc.Label); //金币
+
     this.lab_score = this.node.getChildByName("score_bg").getChildByName("lab_score").getComponent(cc.Label); //分数
+
     this.lab_scoreName = this.node.getChildByName("score_bg").getChildByName("lab_Score").getComponent(cc.Label);
     this.tx = this.node.getChildByName("tx_k").getChildByName("tx").getComponent(cc.Sprite); //头像
+
     this.time_green = this.node.getChildByName("time_sprite_green").getComponent(cc.Sprite); //绿色时间圈
+
     this.lab_roundTime = this.time_green.node.getChildByName("ovel_green").getChildByName("lab_roundTime").getComponent(cc.Label); //回合的20秒时间
+
     this.time_yellow = this.node.getChildByName("time_sprite_yellow").getComponent(cc.Sprite); //黄色时间圈
+
     this.lab_time_yellow = this.time_yellow.node.getChildByName("ovel_yellow").getChildByName("lab_overTime").getComponent(cc.Label); //超时之后的30秒时间，以lab_allTime时间为准
+
     this.overTimeNode = this.node.getChildByName("over_time");
     this.lab_allTime = this.overTimeNode.getChildByName("lab_allTime").getComponent(cc.Label); //剩余的时间
 
@@ -37,11 +45,12 @@ cc.Class({
     this.overTimeNode.active = false;
     this.nodePos = this.node.getPosition();
     this.coinBG = this.node.getChildByName('coinMask').getChildByName('coin'); //金币图片类型
+
     if (GlobalCfg.ACT_SCENE_CTRL.entrycondition == 0) {
       this.coinBG.active = false;
-    }
+    } //点击玩家弹出图像
 
-    //点击玩家弹出图像
+
     this.node.on(cc.Node.EventType.TOUCH_START, function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       CommonFun.getInstance().showUserIU(_this.imgUrl, _this.nickname, _this.coin, GlobalCfg.ACT_SCENE_CTRL.entrycondition);
@@ -53,29 +62,37 @@ cc.Class({
   //倒计时
   countDown: function countDown(isShow, roundTime, extraTime, isGameOver, playerstatus) {
     var _this2 = this;
+
     if (roundTime === void 0) {
       roundTime = 0;
     }
+
     if (extraTime === void 0) {
       extraTime = 0;
     }
+
     if (isGameOver === void 0) {
       isGameOver = false;
     }
+
     clearInterval(this.myVar);
     this.myVar = null;
     this.callback = null;
+
     if (playerstatus == 5) {
       //已完成摆牌
       return;
     }
+
     this.shouZhiCount = true;
     var tempRoundTime = roundTime;
     var tempExtraTime = extraTime ? extraTime : 0;
     var roundTimelememt = roundTime == 0 ? 0 : (1 / 20).toFixed(3); //0.1 为下方计时器的刷新时间
+
     var extraTimelememt = extraTime == 0 ? 0 : (1 / 30).toFixed(3);
     var time = roundTime + 1;
     var time01 = tempExtraTime;
+
     if (isShow) {
       this.time_green.node.active = true;
       this.time_yellow.node.active = false;
@@ -84,9 +101,11 @@ cc.Class({
       this.lab_allTime.string = tempExtraTime;
       this.time_green.fillRange = roundTimelememt * tempRoundTime;
       this.time_yellow.fillRange = extraTimelememt * tempExtraTime;
+
       if (roundTime == 0) {
         this.time_green.node.active = false;
       }
+
       if (isGameOver == true) {
         this.time_green.node.getChildByName("ovel_green").active = false;
         this.time_yellow.node.getChildByName("ovel_yellow").active = false;
@@ -106,16 +125,20 @@ cc.Class({
       this.overTimeNode.active = false;
       return;
     }
+
     this.callback = function () {
       if (tempRoundTime <= 0) {
         if (tempExtraTime > 0) {
           //还有额外时间
           _this2.time_green && (_this2.time_green.node.active = false);
           _this2.time_yellow && (_this2.time_yellow.node.active = true);
+
           if (_this2.time_yellow && _this2.time_yellow.fillRange >= extraTimelememt) {
             _this2.time_yellow.fillRange = extraTimelememt * time01;
+
             _this2.fillRangeRoundTime(extraTimelememt, 2);
           }
+
           _this2.lab_time_yellow && (_this2.lab_time_yellow.string = tempExtraTime.toFixed(0));
           _this2.lab_allTime && (_this2.lab_allTime.string = tempExtraTime.toFixed(0));
           tempExtraTime && (tempExtraTime -= 1);
@@ -136,23 +159,29 @@ cc.Class({
       } else {
         time--;
         _this2.time_green && (_this2.time_green.fillRange = roundTimelememt * time);
+
         _this2.fillRangeRoundTime(roundTimelememt, 1);
+
         _this2.lab_roundTime && (_this2.lab_roundTime.string = tempRoundTime.toFixed(0));
         tempRoundTime && (tempRoundTime -= 1);
+
         if (tempRoundTime && tempRoundTime <= 8 && _this2.shouZhiCount && !GlobalCfg.ACT_SCENE_CTRL.isPickOneCard) {
           _this2.shouZhiCount = false;
           GlobalCfg.ACT_SCENE_CTRL.showLobbyUI("shouZhi", true);
         }
       }
     };
+
     this.myVar = setInterval(this.callback, 1000);
   },
   fillRangeRoundTime: function fillRangeRoundTime(roundTimelememt0, nodeNum) {
     var roundTimelememt = Number(roundTimelememt0) / 5;
     var num = 0;
     this.unschedule(this.callbackCion);
+
     this.callbackCion = function () {
       num++;
+
       if (num >= 5) {
         num = 0;
         this.unschedule(this.callbackCion);
@@ -164,41 +193,50 @@ cc.Class({
         }
       }
     };
+
     this.schedule(this.callbackCion, 0.2);
   },
   setUserInfo: function setUserInfo(userinfo, seat) {
     if (seat === void 0) {
       seat = 0;
     }
+
     var relativeSeatId = 0;
+
     if (GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum == 6) {
       relativeSeatId = GlobalCfg.ACT_SCENE_CTRL.changeAbsoluteSeatIdToRelative(seat);
     } else {
       relativeSeatId = seat;
     }
+
     this.setPlayerState(userinfo.playerStatus);
     this.displayName = userinfo.displayName;
     this.sex = userinfo.sex;
     this.setCoin(userinfo.diamond);
     this.setPlayerId(userinfo.playerId);
     this.nickname = userinfo.nickname;
+
     if (relativeSeatId >= 0) {
       this.setSeatId(relativeSeatId);
     }
+
     if (GlobalCfg.USER_DATAS.userHeadimgurl !== null) {
       this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 76, this.tx);
     } else {
       LoggerUtil.getInstance().log("收到的头像URL为空！");
       this.loadHeadSp(userinfo.imgUrl, 76, this.tx);
     }
+
     this.imgUrl = userinfo.imgUrl;
     this.setScore(0);
+
     if (userinfo.vipLevel >= 1 && userinfo.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
       this.sprite_vipLevelIcon.node.active = true;
       this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame("" + userinfo.vipLevel);
     } else {
       this.sprite_vipLevelIcon.node.active = false;
     }
+
     ;
   },
   getNickName: function getNickName() {
@@ -220,15 +258,20 @@ cc.Class({
       case 0:
         // this.state_mask.active = false;
         break;
+
       case 1:
         // this.state_mask.active = true;
         break;
+
       case 2:
         break;
+
       case 3:
         break;
+
       case 4:
         break;
+
       default:
         // this.state_mask.active = false;
         break;
@@ -241,6 +284,7 @@ cc.Class({
     if (!this.playerid) {
       return null;
     }
+
     return this.playerid;
   },
   setSeatId: function setSeatId(data) {
@@ -252,6 +296,7 @@ cc.Class({
   },
   loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
     var _this3 = this;
+
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'
@@ -268,9 +313,10 @@ cc.Class({
   },
   setCoin: function setCoin(coin) {
     this.coin = coin / 100;
+
     if (this.lab_jb && coin != null) {
-      this.lab_jb.string = CommonFun.getInstance().numberToShow(this.coin);
-      // this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
+      this.lab_jb.string = CommonFun.getInstance().numberToShow(this.coin); // this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
+
       if (GlobalCfg.ACT_SCENE_CTRL.entrycondition != 0) {
         GlobalCfg.USER_DATAS.userDiamond = coin;
       }
@@ -287,11 +333,13 @@ cc.Class({
   // 处理弃牌或者摆牌的广播
   gameDropOrFinalcards: function gameDropOrFinalcards(notify, isDrop) {
     var curSeat = GlobalCfg.ACT_SCENE_CTRL.changeAbsoluteSeatIdToRelative(notify.seat);
+
     if (curSeat == this.seatId) {
       if (isDrop) {
         //弃牌
         this.setPlayerState(1);
       }
+
       this.setCoin(notify.afterCalc);
       var coinMask = this.node.getChildByName("coinMask");
       coinMask.setPosition(0, 0);
@@ -313,6 +361,7 @@ cc.Class({
   },
   gameover: function gameover(notify, score) {
     var _this4 = this;
+
     var winSeat = notify.singleEventSeat;
     var newScore = Math.abs(score);
     var win_anim = this.node.getChildByName("win_anim");
@@ -320,19 +369,22 @@ cc.Class({
     var star = win_anim.getChildByName("star");
     star.active = false;
     img_winner.setPosition(0, -43);
-    var coinMask = this.node.getChildByName("coinMask");
-    // coinMask.setPosition(0,0)
+    var coinMask = this.node.getChildByName("coinMask"); // coinMask.setPosition(0,0)
+
     var lab_coin = coinMask.getChildByName("lab_coin").getComponent(cc.Label);
-    lab_coin.string = newScore / 100;
-    // 炸胡
+    lab_coin.string = newScore / 100; // 炸胡
+
     if (notify.reason == 1) {
       var settleMent;
+
       if (GlobalCfg.ACT_SCENE_CTRL.node.getChildByName("settlement")) {
         settleMent = GlobalCfg.ACT_SCENE_CTRL.node.getChildByName("settlement");
       } else {
         settleMent = cc.instantiate(GlobalCfg.ACT_SCENE_CTRL.prefab_jiesuan);
       }
+
       var settleMentCtrl = null;
+
       if (GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum == 6) {
         settleMentCtrl = settleMent.getComponent("settlementCtrl_6");
         settleMentCtrl.setGameOverPlayerInfo(notify, GlobalCfg.ACT_SCENE_CTRL, GlobalCfg.ACT_SCENE_CTRL.userInfoCtrl);
@@ -340,10 +392,12 @@ cc.Class({
         settleMentCtrl = settleMent.getComponent("settlementCtrl");
         settleMentCtrl.setGameOverPlayerInfo(notify, GlobalCfg.ACT_SCENE_CTRL, GlobalCfg.ACT_SCENE_CTRL.userInfoCtrl, GlobalCfg.ACT_SCENE_CTRL.otherUserCtrl);
       }
+
       LoggerUtil.getInstance().log("当前的singleEventSeat座位ID：", this.seatId, settleMentCtrl);
       settleMent.parent = GlobalCfg.ACT_SCENE_CTRL.node;
     } else {
       LoggerUtil.getInstance().log("执行UserCtrl的 GAMEOVER ！");
+
       if (winSeat == GlobalCfg.ACT_SCENE_CTRL.selfAbsoluteSeatId) {
         this.lab_01.string = "";
         this.lab_02.string = "";
@@ -353,27 +407,36 @@ cc.Class({
         this.win.setAnimation(0, "star", false);
         this.win.setCompleteListener(function (trackEntry, loopCount) {
           var name = trackEntry.animation.name;
+
           if (name == "star") {
             _this4.win.setAnimation(0, "loop", true);
+
             _this4.scheduleOnce(function () {
               this.win.setAnimation(0, "out", false);
             }, 1);
           } else if (name == "out") {
             coinMask.active = false;
+
             var _settleMent;
+
             if (GlobalCfg.ACT_SCENE_CTRL.node.getChildByName("settlement")) {
               _settleMent = GlobalCfg.ACT_SCENE_CTRL.node.getChildByName("settlement");
             } else {
               _settleMent = cc.instantiate(GlobalCfg.ACT_SCENE_CTRL.prefab_jiesuan);
             }
+
             var _settleMentCtrl = null;
+
             if (GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum == 6) {
               _settleMentCtrl = _settleMent.getComponent("settlementCtrl_6");
+
               _settleMentCtrl.setGameOverPlayerInfo(notify, GlobalCfg.ACT_SCENE_CTRL, GlobalCfg.ACT_SCENE_CTRL.userInfoCtrl);
             } else {
               _settleMentCtrl = _settleMent.getComponent("settlementCtrl");
+
               _settleMentCtrl.setGameOverPlayerInfo(notify, GlobalCfg.ACT_SCENE_CTRL, GlobalCfg.ACT_SCENE_CTRL.userInfoCtrl, GlobalCfg.ACT_SCENE_CTRL.otherUserCtrl);
             }
+
             LoggerUtil.getInstance().log("当前的singleEventSeat座位ID：", _this4.seatId, _settleMentCtrl);
             _settleMent.parent = GlobalCfg.ACT_SCENE_CTRL.node;
           }
@@ -385,6 +448,7 @@ cc.Class({
         LoggerUtil.getInstance().log("=======未转换前赢家的位置：", pos, "posToWorld:" + posToWorld);
         var pos_end = this.node.convertToNodeSpaceAR(posToWorld);
         LoggerUtil.getInstance().log("UserInfo----赢家的位置：", pos_end);
+
         if (coinMask.x == 0 && coinMask.y == 0) {
           cc.Tween.stopAllByTag(10 + this.seatId);
           cc.tween(coinMask).to(0.3, {
@@ -407,8 +471,7 @@ cc.Class({
         } else {
           coinMask.opacity = 255;
           coinMask.setPosition(0, 250);
-          cc.tween(coinMask)
-          // .to(0.5, { opacity:255 },{easing: 'fade'})
+          cc.tween(coinMask) // .to(0.5, { opacity:255 },{easing: 'fade'})
           // .to(0.7, { position: cc.v2(0, 130)},{easing: 'cubicIn'})
           .delay(1).to(0.7, {
             position: pos_end
@@ -426,9 +489,11 @@ cc.Class({
   // 发送表情  消息类型 0短语 1表情
   face: function face(notify) {
     var _this5 = this;
+
     var data = notify;
     var msgtype = notify.msgType;
     var msgid = data.name;
+
     if (msgtype == 0) {
       this.lab_my_qph.stopAllActions();
       this.sprite_my_qph.active = true;
@@ -451,9 +516,8 @@ cc.Class({
         _this5.sprite_myEmotion.getComponent(cc.Sprite).spriteFrame = null;
       }).start();
     }
-  }
+  } // update (dt) {},
 
-  // update (dt) {},
 });
 
 cc._RF.pop();

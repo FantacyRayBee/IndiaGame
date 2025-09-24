@@ -13,8 +13,10 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.btn_close.node.on("click", function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       _this.node.destroy();
     }, this);
   },

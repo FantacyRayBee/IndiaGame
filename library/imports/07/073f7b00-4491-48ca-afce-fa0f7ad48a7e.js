@@ -38,8 +38,10 @@ cc.Class({
   },
   onEventMsg: function onEventMsg(webData, target) {
     var _this = this;
+
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == "SelectPhotoCallBack") {
       var photoPath = notify.photoPath;
       var width = notify.width;
@@ -51,29 +53,37 @@ cc.Class({
         if (!err && cc.isValid(_this) && cc.isValid(_this.sprite_upload)) {
           _this.sprite_upload.spriteFrame = new cc.SpriteFrame(img);
         }
+
         ;
       });
     }
+
     ;
   },
   btnClick: function btnClick(btn) {
     var btnName = btn.node.name;
+
     switch (btnName) {
       case this.btn_close.node.name:
         this.dealBtnCloseEvent();
         break;
+
       case this.btn_how.node.name:
         this.dealBtnHowEvent();
         break;
+
       case this.btn_submit.node.name:
         this.dealBtnSubmitEvent();
         break;
+
       case this.btn_upload.node.name:
         this.dealBtnUploadEvent();
         break;
+
       case this.btn_tipClose.node.name:
         this.dealBtnTipCloseEvent();
         break;
+
       default:
         break;
     }
@@ -87,15 +97,19 @@ cc.Class({
   },
   dealBtnSubmitEvent: function dealBtnSubmitEvent() {
     var utrString = this.editBox_utr.string;
+
     if (utrString.length < 12) {
       CommonFun.getInstance().showTips('Input a 12 digit combination.\nClick "How to Find Your UTR for help."');
       return;
     }
+
     ;
+
     if (this.uploadPhotoBase64Data == null) {
       CommonFun.getInstance().showTips('Please upload a screenshot of your payment voucher');
       return;
     }
+
     ;
     this.uploadFeedback();
   },
@@ -115,15 +129,17 @@ cc.Class({
       "photo_data": this.uploadPhotoBase64Data,
       // 截图二进制base64数据
       "format": this.uploadPhotoFormat // 截图文件格式(png，jpg等)
-    };
 
+    };
     CommonFun.getInstance().httpPost(url, httpParam, function (msg) {
       CommonFun.getInstance().hidProgress();
+
       if (msg && msg.result == 0) {
         CommonFun.getInstance().showTips("Submit successful!");
       } else {
         CommonFun.getInstance().showTips(msg.msg);
       }
+
       ;
     }, null, GlobalCfg.USER_DATAS.BearerToken);
     this.node.destroy();
@@ -141,11 +157,17 @@ cc.Class({
     var timestamp = Date.parse(createdAt);
     var date = new Date(timestamp);
     var year = date.getFullYear(); // 获取年份
+
     var month = date.getMonth() + 1; // 获取月份（返回值为0~11，需要加1）
+
     var day = date.getDate(); // 获取日期
+
     var hours = date.getHours(); // 获取小时
+
     var minutes = date.getMinutes(); // 获取分钟
+
     var seconds = date.getSeconds(); // 获取秒数
+
     return year + "-" + (month >= 10 ? month : '0' + month) + "-" + (day >= 10 ? day : '0' + day) + " " + (hours >= 10 ? hours : "0" + hours) + ":" + (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds);
   }
 });

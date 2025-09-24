@@ -19,9 +19,11 @@ cc.Class({
     this.heaSprite.spriteFrame = this.atlas_head.getSpriteFrame(this.id);
     this.loadHeadSp(this.url, 110, this.heaSprite);
     this.btn_head.node.on('click', this.btnClick, this);
+
     if (GlobalCfg.USER_DATAS.userHeadimgurl && this.url && GlobalCfg.USER_DATAS.userHeadimgurl == this.url) {
       this.node_choice.active = true;
     }
+
     ;
   },
   btnClick: function btnClick(button) {
@@ -30,11 +32,13 @@ cc.Class({
   },
   userinfoUpdateReq: function userinfoUpdateReq() {
     var _this = this;
+
     var parm = {
       userid: GlobalCfg.USER_DATAS.userId,
       token: GlobalCfg.USER_DATAS.token,
       imageurl: this.url
     };
+
     if (Object.keys(parm).length > 2) {
       var url = GlobalCfg.HTTP_USER_LOGIN + '/v1/userinfoupdate';
       CommonFun.getInstance().httpPost(url, parm, function (jsonObj) {
@@ -47,9 +51,11 @@ cc.Class({
               nickname: GlobalCfg.USER_DATAS.userName
             }
           });
+
           if (CommonFun.getInstance().isValidForScr(_this) && CommonFun.getInstance().isValidForScr(_this.changeHeadCtrl)) {
             _this.changeHeadCtrl.node.destroy();
           }
+
           ;
           CommonFun.getInstance().showTips("Avatar modified successfully");
         } else {
@@ -60,6 +66,7 @@ cc.Class({
   },
   loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
     var _this2 = this;
+
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'

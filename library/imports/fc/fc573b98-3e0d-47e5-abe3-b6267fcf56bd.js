@@ -11,14 +11,17 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.btn_close = this.node.getChildByName("btn_close");
     this.btn_ok = this.node.getChildByName("btn_ok");
     this.btn_close.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playBack();
+
       _this.node.destroy();
     }, this);
     this.btn_ok.on('click', function () {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
+
       _this.node.destroy();
     }, this);
   },
@@ -39,6 +42,7 @@ cc.Class({
       this.labs[12].string = playerCenterLanguage.lab_Okay[language];
     }
   } // update (dt) {},
+
 });
 
 cc._RF.pop();

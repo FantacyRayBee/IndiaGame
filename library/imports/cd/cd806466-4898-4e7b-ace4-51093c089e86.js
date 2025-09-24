@@ -10,16 +10,13 @@ cc._RF.push(module, 'cd806RmSJhOe6zkUQk8CJ6G', 'barCtrl');
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 cc.Class({
   "extends": cc.Component,
   properties: {
     lab_life: cc.Label
   },
   // LIFE-CYCLE CALLBACKS:
-
   // onLoad () {},
-
   setBarLabel: function setBarLabel(name) {
     if (cc.isValid(this.node) && this.lab_life) {
       this.lab_life.string = name;
@@ -31,6 +28,7 @@ cc.Class({
     if (cc.isValid(this.node) && this.lab_life) {
       var str = this.labelName;
       var strName = '';
+
       if (str == "1st Life") {
         // 字体的原因字符串排序有问题
         if (language == 3) {
@@ -73,6 +71,7 @@ cc.Class({
       } else if (str == "Sequence") {
         strName = otherLanguage.Sequence[language];
       }
+
       this.lab_life.string = strName;
     }
   }

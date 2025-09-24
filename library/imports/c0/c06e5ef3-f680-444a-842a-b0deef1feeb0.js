@@ -13,12 +13,15 @@ cc.Class({
   },
   ctor: function ctor() {
     this.reduceOldAmount = false; // 减少原始金币
+
     this.addOldAmount = false; // 增加原始金币
+
     this.oldNum = 0;
     this.newNum = 0;
     this.rateSection = 0; // 帧减少金币
   },
   start: function start() {},
+
   /**
    * 
    * @param {boolean} isShow 是否开始
@@ -30,17 +33,21 @@ cc.Class({
     if (duringTime === void 0) {
       duringTime = 1;
     }
+
     this.label.string = this.oldNum;
     this.oldNum = oldNum;
     this.newNum = newNum;
     var gameFrameRate = cc.game.getFrameRate();
     this.rateSection = Number(Number(Math.abs(oldNum - newNum) / (gameFrameRate * duringTime)).toFixed(2));
+
     if (type == 1) {
       this.reduceOldAmount = isShow;
     } else {
       this.addOldAmount = isShow;
     }
+
     var yinXiaoState = cc.sys.localStorage.getItem("toggle_yinxiao");
+
     if (yinXiaoState == null || yinXiaoState == "0") {
       this.sound.play();
     }
@@ -48,6 +55,7 @@ cc.Class({
   update: function update(dt) {
     if (this.reduceOldAmount == true) {
       var newNum = Number(this.oldNum - this.rateSection);
+
       if (newNum <= this.newNum) {
         this.label.string = this.newNum.toFixed(2);
         this.reduceOldAmount = false;
@@ -58,8 +66,10 @@ cc.Class({
         this.label.string = Number(newNum).toFixed(2);
       }
     }
+
     if (this.addOldAmount == true) {
       var _newNum = Number(this.oldNum + this.rateSection);
+
       if (_newNum >= this.newNum) {
         this.label.string = this.newNum.toFixed(2);
         this.addOldAmount = false;

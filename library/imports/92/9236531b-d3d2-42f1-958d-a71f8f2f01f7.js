@@ -16,9 +16,11 @@ cc.Class({
       this.node.active = false;
       return;
     }
+
     ;
     var id = itemData[0] ? itemData[0] : 10;
     var mount = itemData[1] ? itemData[1] : 0;
+
     if (id == 12) {
       this.node_iconBonus.active = true;
       this.node_iconCash.active = false;
@@ -28,6 +30,7 @@ cc.Class({
       this.node_iconCash.active = true;
       this.lab_tips.string = mount / 100 + " Cash";
     }
+
     ;
   }
 });

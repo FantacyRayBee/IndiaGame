@@ -20,10 +20,10 @@ cc.Class({
   },
   start: function start() {},
   // update (dt) {},
-
   // 红包
   initNodeRedPack: function initNodeRedPack(data) {
     var _this = this;
+
     this.nodeRedPack = this.node.getChildByName('nodeRedPack');
     this.lab_num_nodeRedPack = this.nodeRedPack.getChildByName('lab_num').getComponent(cc.Label);
     this.lan_numOn = this.nodeRedPack.getChildByName('lab_numOn').getComponent(cc.Label);
@@ -31,6 +31,7 @@ cc.Class({
     this.lan_numOn.string = data.award.number / 100;
     this.btn_hongbao = this.nodeRedPack.getChildByName('hongbao').getComponent(cc.Button);
     this.btn_hongbao.node.on('click', this.btnClick, this);
+
     if (data["double"] == true) {
       //双倍模式
       this.ske_huojian = this.node.getChildByName('node_ske_huojian').getComponent(sp.Skeleton);
@@ -39,6 +40,7 @@ cc.Class({
       this.ske_huojian.setAnimation(0, 'animation', false);
       this.ske_huojian.setCompleteListener(function (trackEntry) {
         _this.ske_huojian.node.active = false;
+
         _this.initLucky(data);
       });
     } else {
@@ -48,14 +50,17 @@ cc.Class({
   // 双倍卡
   initNodeDoubleCard: function initNodeDoubleCard(data) {
     var _this2 = this;
+
     this.nodeDoubleCard = this.node.getChildByName('nodeDoubleCard');
     this.nodeDoubleCard.active = true;
+
     if (data.give_count == 3) {
       // 赠送次数
       setTimeout(function () {
         _this2.nodeDoubleCard.active = false;
-        _this2.initNodeZhuanpan(data);
-        // this.closeNodeAfterTime(8);
+
+        _this2.initNodeZhuanpan(data); // this.closeNodeAfterTime(8);
+
       }, 1000);
     } else {
       this.closeNodeAfterTime(8);
@@ -67,6 +72,7 @@ cc.Class({
     this.nodeZhuanpan = this.node.getChildByName('nodeZhuanpan');
     this.btn_getCishu = this.nodeZhuanpan.getChildByName('btn_getCishu').getComponent(cc.Button);
     this.lab_time_cishu = this.btn_getCishu.target.getChildByName('Label').getComponent(cc.Label); // 倒计时
+
     this.lab_time_cishu.string = "8S";
     this.closeAfertTime(this.node, 8, this.lab_time_cishu);
     this.turnTableCtrl.endShowCallback();
@@ -78,6 +84,7 @@ cc.Class({
     this.nodeLucky = this.node.getChildByName('nodeLucky');
     this.btn_exchange = this.nodeLucky.getChildByName('btn_exchange').getComponent(cc.Button);
     this.lab_time_exchange = this.btn_exchange.target.getChildByName('Label').getComponent(cc.Label); // 倒计时
+
     this.lab_time_exchange.string = "8S";
     this.closeAfertTime(this.node, 8, this.lab_time_exchange);
     this.btn_exchange.node.on('click', this.btnClick, this);
@@ -96,6 +103,7 @@ cc.Class({
     this.lab_numCoin = this.nodeGetTenCoin.getChildByName('lab_numCoin').getComponent(cc.Label);
     this.lab_curCoin = this.nodeGetTenCoin.getChildByName('lab_curCoin').getComponent(cc.Label);
     this.lab_curCoin.string = this.getFloatNum(data.gold_coin_after / 100); //当前金币总额
+
     this.lab_numCoin.string = this.getFloatNum(data.award.number / 100); //获得金币数量
 
     if (data.convert_coin == true) {
@@ -105,6 +113,7 @@ cc.Class({
       this.btn_closeAll.node.active = true;
       this.nodeGetTenCoin.active = true;
     }
+
     this.turnTableCtrl.endShowCallback();
   },
   // 提现
@@ -125,7 +134,9 @@ cc.Class({
   },
   btnClick: function btnClick(button) {
     var _this3 = this;
+
     var btnName = button.node.name;
+
     if (btnName == 'btn_getCishu') {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.closeAfertTime(this.node, 0, this.lab_time_cishu);
@@ -149,6 +160,7 @@ cc.Class({
         easing: 'sineInOut'
       }).call(function () {
         _this3.turnTableCtrl.endShowCallback();
+
         _this3.node.destroy();
       }).start();
     } else if (btnName == 'btn_close') {
@@ -167,6 +179,7 @@ cc.Class({
   },
   closeNodeAfterTime: function closeNodeAfterTime(time) {
     var _this4 = this;
+
     if (time == 0) {
       this.isStopTimer = true;
       this.node.destroy();
@@ -174,6 +187,7 @@ cc.Class({
       setTimeout(function () {
         console.log("执行了 closeNodeAfterTime ,此时的time", time);
         time--;
+
         if (time >= 0 && !_this4.isStopTimer) {
           _this4.closeNodeAfterTime(time);
         }
@@ -183,8 +197,10 @@ cc.Class({
   // 指定时间之后关闭指定节点
   closeAfertTime: function closeAfertTime(node, time, label) {
     var _this5 = this;
+
     var timeString = time;
     label.string = timeString + "S";
+
     if (time == 0) {
       this.ifStopBtnLabTimer = true;
       this.turnTableCtrl.endShowCallback();
@@ -193,12 +209,14 @@ cc.Class({
       setTimeout(function () {
         console.log("timeString", timeString);
         time--;
+
         if (time >= 0 && !_this5.ifStopBtnLabTimer) {
           _this5.closeAfertTime(node, time, label);
         }
       }, 1000);
     }
   },
+
   /**
    * 小数点后保留非0位数
    * @param {Number} num 小数
@@ -206,6 +224,7 @@ cc.Class({
    */
   getFloatNum: function getFloatNum(num) {
     var numString = num.toString();
+
     if (numString.charAt(numString.length - 1) == '0') {
       numString = numString.substring(0, numString.length - 1);
       return this.getFloatNum(numString);
@@ -217,6 +236,7 @@ cc.Class({
     if (isLoop === void 0) {
       isLoop = false;
     }
+
     ResourcesBundle.load("sound/pddSound/" + soundName, cc.AudioClip, function (err, audioClip) {
       if (!err) {
         cc.audioEngine.playMusic(audioClip, isLoop);

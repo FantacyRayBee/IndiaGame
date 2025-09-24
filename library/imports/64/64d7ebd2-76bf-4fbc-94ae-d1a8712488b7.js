@@ -21,14 +21,17 @@ cc.Class({
   // onLoad () {},
   start: function start() {
     var _this = this;
+
     this.winLabel.node.active = false;
     this.btnGift.node.on('click', CommonFun.getInstance().debounce(function () {
       var seatId = _this.node.parent.getComponent('zooSeatCtrl').seatId;
+
       if (GlobalCfg.ACT_SCENE_CTRL.zooSeatManager.selfSeatId != -1) {
         CommonFun.getInstance().showGameGifInteraction(seatId);
       } else {
         CommonFun.getInstance().showTips("You're not a VIP. You can't send expressions");
       }
+
       ;
     }, 1), this);
   },
@@ -45,27 +48,33 @@ cc.Class({
     this.labCoin.string = diamond / 100;
     var giftPos = this.btnGift.node.getPosition();
     var vipPos = this.sprite_vipLevelIcon.node.getPosition();
+
     if (pos >= 3) {
       this.sprite_vipLevelIcon.node.setPosition(giftPos.x, giftPos.y);
       this.btnGift.node.setPosition(vipPos.x, vipPos.y);
     }
+
     if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
       this.sprite_vipLevelIcon.node.active = true;
       this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame("" + vipLevel);
     } else {
       this.sprite_vipLevelIcon.node.active = false;
     }
+
     ;
     var isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
+
     if (isCanShowVIPFont) {
       this.labName.node.color = new cc.Color(250, 225, 76);
     } else {
       this.labName.node.color = new cc.Color(255, 255, 255);
     }
+
     ;
   },
   loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
     var _this2 = this;
+
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'
@@ -79,6 +88,7 @@ cc.Class({
   },
   setUserCoinLabel: function setUserCoinLabel(diamond) {
     this.labCoin.string = diamond / 100;
+
     if (this.userId == GlobalCfg.USER_DATAS.userId) {
       // 玩家自己
       GlobalCfg.USER_DATAS.userDiamond = diamond;
@@ -88,12 +98,14 @@ cc.Class({
       });
     }
   },
+
   /**
    * 展示胜利的奖励
    * @param {Number} win 
    */
   showWinLabel: function showWinLabel(win) {
     var _this3 = this;
+
     if (win > 0) {
       this.winLabel.node.setPosition(cc.v2(0, 0));
       this.winLabel.string = "+" + Math.round(win / 100);
@@ -105,6 +117,7 @@ cc.Class({
       }).start();
     }
   } // update (dt) {},
+
 });
 
 cc._RF.pop();

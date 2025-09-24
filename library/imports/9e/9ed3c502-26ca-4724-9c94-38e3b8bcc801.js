@@ -8,7 +8,6 @@ cc.Class({
   "extends": cc.Component,
   properties: {},
   // onLoad () {},
-
   // 这里我把骨骼动画的声音的名字跟他的音效的名字都是一样的
   shortmessagenotify: function shortmessagenotify(notify, seatid, node) {
     this.nodeProp = node;
@@ -20,6 +19,7 @@ cc.Class({
     var url = 'skeleton/propSke/' + skeName;
     var startPlayScript = GlobalCfg.ACT_SCENE_CTRL.getPlayerInfoByUserId(launchID);
     var endPlayScript = GlobalCfg.ACT_SCENE_CTRL.getPlayerInfoByUserId(targetID);
+
     if (CommonFun.getInstance().isValidForScr(startPlayScript) && CommonFun.getInstance().isValidForScr(endPlayScript)) {
       var startPos = startPlayScript.nodePos || startPlayScript.node.getPosition();
       var endPos = endPlayScript.nodePos || endPlayScript.node.getPosition();
@@ -30,28 +30,35 @@ cc.Class({
           LoggerUtil.getInstance().log(err.message || err);
           return;
         }
+
         self.ske = self.node.getComponent(sp.Skeleton);
         self.ske.skeletonData = spine;
         self.ske.premultipliedAlpha = false;
+
         if (skeName != "hd_huojian01" && skeName != "hd_dapao01") {
           self.ske.setAnimation(0, 'fly', true);
         }
       });
       self.loaderAudioClip(skeName);
+
       if (skeName == "hd_dapao01") {
         movePos = startPos;
       } else {
         movePos = endPos;
       }
+
       cc.tween(self.node).to(0.3, {
         position: cc.v2(movePos.x, movePos.y)
       }).call(function () {
         self.ske.setAnimation(0, 'animation', false);
+
         if (skeName == "hd_dapao01") {
           self.playDaPaoAim(endPos);
         }
+
         self.ske.setCompleteListener(function (trackEntry, loopCount) {
           var name = trackEntry.animation.name;
+
           if (name == "animation") {
             self.node.destroy();
           }
@@ -62,6 +69,7 @@ cc.Class({
   setSpinePos: function setSpinePos(skeName, Ctrl) {
     var curSeat = Ctrl.curSeat;
     var sceneName = cc.director.getScene().name;
+
     if (sceneName == "7up7down") {
       if (skeName == "hd_huojian01" || skeName == "hd_daocha01") {
         if (curSeat == 1 || curSeat == 2 || curSeat == 5) {
@@ -105,6 +113,7 @@ cc.Class({
         }
       }
     }
+
     if (skeName == "hd_dapao01") {
       this.node.scale = 0.6;
     } else if (skeName == "puke01_xipai02") {
@@ -114,6 +123,7 @@ cc.Class({
   loaderAudioClip: function loaderAudioClip(skeName) {
     var url = "sound/sounProp/" + skeName;
     var time = 0;
+
     if (skeName == "hd_mtb01") {
       time = 0.5;
     } else if (skeName == "hd_shuaibiti01") {
@@ -121,6 +131,7 @@ cc.Class({
     } else if (skeName == "hd_huojian01") {
       time = 1;
     }
+
     this.scheduleOnce(function () {
       ResourcesBundle.load(url, cc.AudioClip, function (err, audioClip) {
         if (!err) {
@@ -138,6 +149,7 @@ cc.Class({
           LoggerUtil.getInstance().log(err.message || err);
           return;
         }
+
         self.nodeDP = new cc.Node();
         self.nodeDP.scale = 1;
         self.nodeDP.setPosition(endPos.x, endPos.y);
@@ -150,6 +162,7 @@ cc.Class({
     }, 2);
   },
   start: function start() {} // update (dt) {},
+
 });
 
 cc._RF.pop();

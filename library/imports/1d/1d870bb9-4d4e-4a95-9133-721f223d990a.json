@@ -675,7 +675,7 @@
       }
     }
   },
-  "_atlasText": "\r\nshouzhi.png\r\nsize: 512,512\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/RingGlowWhite4 (2)\r\n  rotate: false\r\n  xy: 2, 96\r\n  size: 256, 256\r\n  orig: 256, 256\r\n  offset: 0, 0\r\n  index: -1\r\nimg/shou\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 79, 92\r\n  orig: 79, 92\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nshouzhi.png\nsize: 512,512\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/RingGlowWhite4 (2)\n  rotate: false\n  xy: 2, 96\n  size: 256, 256\n  orig: 256, 256\n  offset: 0, 0\n  index: -1\nimg/shou\n  rotate: false\n  xy: 2, 2\n  size: 79, 92\n  orig: 79, 92\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "df3bd02d-e826-4b27-9044-befc22e5cc14"

@@ -21,6 +21,7 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var _this = this;
+
     this.node.on("click", CommonFun.getInstance().debounce(function () {
       _this.node.destroy();
     }, 1), this);
@@ -39,11 +40,13 @@ cc.Class({
     var self = target;
     var msgId = webData.msgCode;
     var notify = webData.msgData;
+
     if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_WORD_CLICK_ITEM) {
       this.dealGameWordClickItemEvent(notify);
     } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_FACE_CLICK_ITEM) {
       this.dealGameFaceClickItemEvent(notify);
     }
+
     ;
   },
   toggleCallBack: function toggleCallBack(toggle) {
@@ -54,24 +57,30 @@ cc.Class({
     if (toggleName == this.toggle_word.node.name) {
       this.scrollView_word.node.active = true;
       this.scrollView_face.node.active = false;
+
       if (this.isLoadedWord == false) {
         this.loadWordItems();
       }
+
       ;
       this.isLoadedWord = true;
     } else if (toggleName == this.toggle_face.node.name) {
       this.scrollView_word.node.active = false;
       this.scrollView_face.node.active = true;
+
       if (this.isLoadedFace == false) {
         this.loadFaceItems();
       }
+
       ;
       this.isLoadedFace = true;
     }
+
     ;
   },
   loadWordItems: function loadWordItems() {
     var _this2 = this;
+
     CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTIONWORDITEM).then(function (itemPrefab) {
       if (CommonFun.getInstance().isValidForScr(_this2)) {
         _this2.addWordItems(itemPrefab);
@@ -80,30 +89,40 @@ cc.Class({
         itemPrefab.decRef();
         itemPrefab = null;
       }
+
       ;
     })["catch"](function (err) {});
   },
   addWordItems: function addWordItems(itemPrefab) {
     var _this3 = this;
+
     var len = this.wordArr.length;
     var index = 0;
+
     var addItem = function addItem() {
       var word = _this3.wordArr[index];
       var itemNode = cc.instantiate(itemPrefab);
       var itemCtrl = itemNode.getComponent('GameWordInteractionWordItemCtrl');
       itemCtrl.setWordItemContent(word);
+
       _this3.scrollView_word.content.addChild(itemNode);
+
       index += 1;
+
       if (index == len) {
         _this3.unschedule(addItem);
+
         return;
       }
+
       ;
     };
+
     this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
   },
   loadFaceItems: function loadFaceItems() {
     var _this4 = this;
+
     CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWORDINTERACTIONFACEITEM).then(function (itemPrefab) {
       if (CommonFun.getInstance().isValidForScr(_this4)) {
         _this4.addFaceItems(itemPrefab);
@@ -112,26 +131,35 @@ cc.Class({
         itemPrefab.decRef();
         itemPrefab = null;
       }
+
       ;
     })["catch"](function (err) {});
   },
   addFaceItems: function addFaceItems(itemPrefab) {
     var _this5 = this;
+
     var len = this.faceLimitNum;
     var index = 0;
+
     var addItem = function addItem() {
       var faceName = index + 1;
       var itemNode = cc.instantiate(itemPrefab);
       var itemCtrl = itemNode.getComponent('GameWordInteractionFaceItemCtrl');
       itemCtrl.setFaceItemFaceName(faceName);
+
       _this5.scrollView_face.content.addChild(itemNode);
+
       index += 1;
+
       if (index == len) {
         _this5.unschedule(addItem);
+
         return;
       }
+
       ;
     };
+
     this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
   },
   setTargetSeat: function setTargetSeat(targetSeat) {
@@ -141,11 +169,11 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var itemData = notify.itemData;
-    var name = itemData.name;
+    var name = itemData.name; // 0短语 1表情 2礼物
 
-    // 0短语 1表情 2礼物
     GameServerManager.send("gameservice.shortmessage", "ShortMessageReq", {
       msgType: 0,
       name: "" + name,
@@ -157,11 +185,11 @@ cc.Class({
     if (!notify) {
       return;
     }
+
     ;
     var itemData = notify.itemData;
-    var name = itemData.name;
+    var name = itemData.name; // 0短语 1表情 2礼物
 
-    // 0短语 1表情 2礼物
     GameServerManager.send("gameservice.shortmessage", "ShortMessageReq", {
       msgType: 1,
       name: "" + name,

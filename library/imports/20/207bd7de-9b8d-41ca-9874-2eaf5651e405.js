@@ -27,6 +27,7 @@ cc.Class({
     var name = node.name;
     var node_y = null;
     var node_x = null;
+
     if (name == "node_horse_1") {
       // 1
       node_x = this.betPosArr[1].x + Math.ceil(Math.random() * 140);
@@ -52,9 +53,11 @@ cc.Class({
       node_x = this.betPosArr[6].x + Math.ceil(Math.random() * 140);
       node_y = this.betPosArr[6].y + Math.ceil(Math.random() * 30);
     }
+
     return cc.v2(node_x, node_y);
   },
   start: function start() {} // update (dt) {},
+
 });
 
 cc._RF.pop();

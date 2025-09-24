@@ -1364,7 +1364,7 @@
       }
     }
   },
-  "_atlasText": "\r\nfeihuojian_heng.png\r\nsize: 1408,1406\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/cankao\r\n  rotate: false\r\n  xy: 2, 965\r\n  size: 641, 61\r\n  orig: 641, 61\r\n  offset: 0, 0\r\n  index: -1\r\nimg/hengtiao\r\n  rotate: false\r\n  xy: 2, 1254\r\n  size: 1404, 150\r\n  orig: 1404, 150\r\n  offset: 0, 0\r\n  index: -1\r\nimg/huojian\r\n  rotate: false\r\n  xy: 2, 1028\r\n  size: 759, 224\r\n  orig: 759, 224\r\n  offset: 0, 0\r\n  index: -1\r\nimg/sudux\r\n  rotate: false\r\n  xy: 763, 1240\r\n  size: 226, 12\r\n  orig: 226, 12\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nfeihuojian_heng.png\nsize: 1408,1406\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/cankao\n  rotate: false\n  xy: 2, 965\n  size: 641, 61\n  orig: 641, 61\n  offset: 0, 0\n  index: -1\nimg/hengtiao\n  rotate: false\n  xy: 2, 1254\n  size: 1404, 150\n  orig: 1404, 150\n  offset: 0, 0\n  index: -1\nimg/huojian\n  rotate: false\n  xy: 2, 1028\n  size: 759, 224\n  orig: 759, 224\n  offset: 0, 0\n  index: -1\nimg/sudux\n  rotate: false\n  xy: 763, 1240\n  size: 226, 12\n  orig: 226, 12\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "ad7dd6ce-61e9-4b64-b3bc-0690b46bc338"

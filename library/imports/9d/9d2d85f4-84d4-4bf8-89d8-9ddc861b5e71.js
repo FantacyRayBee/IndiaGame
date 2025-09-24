@@ -23,6 +23,7 @@ cc.Class({
   // onLoad () {},
   start: function start() {
     var _this = this;
+
     this.btnClose.node.on('click', function () {
       _this.node.destroy();
     });
@@ -42,6 +43,7 @@ cc.Class({
     var index = -1;
     var all_recharged = allRecharged / 100;
     var putAmount = 300;
+
     if (all_recharged <= 5000) {
       putAmount = 300;
     } else if (all_recharged <= 10000) {
@@ -51,15 +53,19 @@ cc.Class({
     } else {
       putAmount = 2000;
     }
+
     for (var i = 0; i < arr.length; i++) {
       var element = arr[i];
+
       if (element && element.amount == putAmount * 100) {
         index = i;
         break;
       }
     }
+
     return index;
   },
+
   /**
    * 获取当前低商品 Index 通过用户最后一次充值金额
    * @param {*} arr 
@@ -68,18 +74,23 @@ cc.Class({
    */
   getLowerOptionIndexByLastRecharge: function getLowerOptionIndexByLastRecharge(arr, lastRecharged) {
     var index = -1;
+
     for (var i = 0; i < arr.length; i++) {
       var element = arr[i];
+
       if (element && element.amount > lastRecharged) {
         index = i;
         break;
       }
+
       if (i == arr.length - 1) {
         index = arr.length - 1;
       }
     }
+
     return index;
   },
+
   /**
    * 
    * @param {Array<PaymentProduct>} options 
@@ -99,14 +110,17 @@ cc.Class({
     var curIndex = this.getLowerOptionIndexByLastRecharge(options, GlobalCfg.USER_DATAS.lastRecharged);
     var curIndex2 = this.getLowerOptionIndexByAllRecharge(options, GlobalCfg.USER_DATAS.recharged);
     curIndex = curIndex2 > curIndex ? curIndex2 : curIndex;
+
     if (curIndex + 2 >= options.length) {
       curIndex2 = options.length - 1;
     } else {
       curIndex2 = curIndex + 2;
     }
+
     if (curIndex == options.length - 1) {
       curIndex -= 1;
     }
+
     var option_1 = options[curIndex];
     var option_2 = options[curIndex2];
     this.initItem(option_1, this.item1);
@@ -114,11 +128,13 @@ cc.Class({
   },
   initItem: function initItem(data, node) {
     var _this2 = this;
+
     if (!data) {
       LoggerUtil.getInstance().error('BankruptcyGiftCtrl.initItem Data error');
       this.node.destroy();
       return;
     }
+
     var id = data.id;
     var cash = data.amount;
     var extraCash = data.add;
@@ -140,6 +156,7 @@ cc.Class({
     button.node.on('click', function () {
       CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, function () {
         button.node.off('click');
+
         _this2.node.destroy();
       });
     });

@@ -11,7 +11,6 @@ cc._RF.push(module, '08ecerxCp9G7q6sugSKY4gu', 'teenPattiChipCtrl');
  * @LastEditors: Please set LastEditors
  * @FilePath: \rummy_zjh\assets\teenPatti\src\teenPattiChipCtrl.js
  */
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -26,14 +25,18 @@ cc.Class({
   },
   setTeenPattiChipAmount: function setTeenPattiChipAmount(amount) {
     var index = 0;
+
     for (var i = 0, len = this.chipAmountArr.length; i < len; i++) {
       var chipAmountArr = this.chipAmountArr[i];
+
       if (chipAmountArr.indexOf("" + amount) != -1) {
         index = i;
         break;
       }
+
       ;
     }
+
     ;
     this.lab_num.string = amount;
     this.lab_num.font = this.fontArr[index];

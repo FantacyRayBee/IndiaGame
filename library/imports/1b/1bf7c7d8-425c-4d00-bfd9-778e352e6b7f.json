@@ -251,7 +251,7 @@
       }
     }
   },
-  "_atlasText": "\r\nloding.png\r\nsize: 382,210\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/di\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 206, 206\r\n  orig: 206, 206\r\n  offset: 0, 0\r\n  index: -1\r\nimg/f\r\n  rotate: false\r\n  xy: 320, 148\r\n  size: 60, 60\r\n  orig: 60, 60\r\n  offset: 0, 0\r\n  index: -1\r\nimg/m\r\n  rotate: false\r\n  xy: 320, 86\r\n  size: 60, 60\r\n  orig: 60, 60\r\n  offset: 0, 0\r\n  index: -1\r\nimg/quan\r\n  rotate: false\r\n  xy: 210, 100\r\n  size: 108, 108\r\n  orig: 108, 108\r\n  offset: 0, 0\r\n  index: -1\r\nimg/t\r\n  rotate: false\r\n  xy: 210, 38\r\n  size: 60, 60\r\n  orig: 60, 60\r\n  offset: 0, 0\r\n  index: -1\r\nimg/x\r\n  rotate: false\r\n  xy: 272, 24\r\n  size: 60, 60\r\n  orig: 60, 60\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nloding.png\nsize: 382,210\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/di\n  rotate: false\n  xy: 2, 2\n  size: 206, 206\n  orig: 206, 206\n  offset: 0, 0\n  index: -1\nimg/f\n  rotate: false\n  xy: 320, 148\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\nimg/m\n  rotate: false\n  xy: 320, 86\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\nimg/quan\n  rotate: false\n  xy: 210, 100\n  size: 108, 108\n  orig: 108, 108\n  offset: 0, 0\n  index: -1\nimg/t\n  rotate: false\n  xy: 210, 38\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\nimg/x\n  rotate: false\n  xy: 272, 24\n  size: 60, 60\n  orig: 60, 60\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "6e0b4065-c8e3-47c8-8d9a-26cfca4b9319"

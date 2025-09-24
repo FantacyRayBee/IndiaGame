@@ -1401,7 +1401,7 @@
       }
     }
   },
-  "_atlasText": "\r\nhengfu_sudu.png\r\nsize: 1115,1113\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nimg/Tex_0860\r\n  rotate: false\r\n  xy: 2, 45\r\n  size: 239, 244\r\n  orig: 256, 256\r\n  offset: 9, 8\r\n  index: -1\r\nimg/di\r\n  rotate: false\r\n  xy: 2, 517\r\n  size: 1097, 594\r\n  orig: 1097, 594\r\n  offset: 0, 0\r\n  index: -1\r\nimg/hengf\r\n  rotate: false\r\n  xy: 2, 361\r\n  size: 1103, 154\r\n  orig: 1103, 154\r\n  offset: 0, 0\r\n  index: -1\r\nimg/suduxian\r\n  rotate: true\r\n  xy: 1101, 885\r\n  size: 226, 12\r\n  orig: 226, 12\r\n  offset: 0, 0\r\n  index: -1\r\nimg/suduxian2\r\n  rotate: false\r\n  xy: 2, 291\r\n  size: 770, 68\r\n  orig: 770, 68\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "_atlasText": "\nhengfu_sudu.png\nsize: 1115,1113\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nimg/Tex_0860\n  rotate: false\n  xy: 2, 45\n  size: 239, 244\n  orig: 256, 256\n  offset: 9, 8\n  index: -1\nimg/di\n  rotate: false\n  xy: 2, 517\n  size: 1097, 594\n  orig: 1097, 594\n  offset: 0, 0\n  index: -1\nimg/hengf\n  rotate: false\n  xy: 2, 361\n  size: 1103, 154\n  orig: 1103, 154\n  offset: 0, 0\n  index: -1\nimg/suduxian\n  rotate: true\n  xy: 1101, 885\n  size: 226, 12\n  orig: 226, 12\n  offset: 0, 0\n  index: -1\nimg/suduxian2\n  rotate: false\n  xy: 2, 291\n  size: 770, 68\n  orig: 770, 68\n  offset: 0, 0\n  index: -1\n",
   "textures": [
     {
       "__uuid__": "dd5a73fd-e6ad-4684-b421-4ba239633ab4"
