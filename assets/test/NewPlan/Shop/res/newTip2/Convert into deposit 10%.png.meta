@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "abc449e7-5caf-442c-ae95-98a84d4646d0",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 528,
+  "height": 47,
+  "platformSettings": {},
+  "subMetas": {
+    "Convert into deposit 10%": {
+      "ver": "1.0.6",
+      "uuid": "06a76cbd-5d87-4384-9644-f1209ddec2bf",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "abc449e7-5caf-442c-ae95-98a84d4646d0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 528,
+      "height": 47,
+      "rawWidth": 528,
+      "rawHeight": 47,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

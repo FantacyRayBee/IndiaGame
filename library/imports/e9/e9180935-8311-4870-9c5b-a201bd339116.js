@@ -41,8 +41,8 @@ cc.Class({
         var bonus = Math.floor(Number(data.gift) / 100);
         if (i == 0) {
           this.firstCommodityId = data.id;
-          this.lab_item0Cash.string = price;
-          this.lab_item0Bonus.string = bonus;
+          this.lab_item0Cash.string = "$" + price;
+          this.lab_item0Bonus.string = "$" + bonus;
           var total = price + bonus;
           this.lab_item0TotalGet.string = "$" + total;
           var point = bonus / price;
@@ -51,8 +51,8 @@ cc.Class({
           this.lab_item0Btn.string = "$" + price;
         } else if (i == 1) {
           this.secondCommodityId = data.id;
-          this.lab_item1Cash.string = price;
-          this.lab_item1Bonus.string = bonus;
+          this.lab_item1Cash.string = "$" + price;
+          this.lab_item1Bonus.string = "$" + bonus;
           var _total = price + bonus;
           this.lab_item1TotalGet.string = "$" + _total;
           var _point = bonus / price;

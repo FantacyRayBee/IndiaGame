@@ -5,7 +5,7 @@ let SceneManager = cc.Class({
     ctor: function() {
         this.sceneType = {
             UPDATE: 'resources/Update',
-            LOBBY: 'MustBundle/Lobby', 
+            LOBBY: 'ResourcesBundle/Lobby', 
             SEVENUPDOWN: '7up7downGame/7up7down',
             ANDAER: 'andaerGame/Andeer',
             BACCARAT: 'baccarat3PattiGame/baccarat3Patti',   

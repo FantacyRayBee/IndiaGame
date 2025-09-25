@@ -18,7 +18,6 @@ let CommonFun = cc.Class({
         this._verticalAcc = 0;
         this._curOrientation = EnumOrientation.HORIZONTAL;
 
-        this.resoucesBundleIsDownloadedByH5 = false;
         this.resoucesBundleOpenList = {}
         this.gameBundleOpenList = {}
     },
@@ -630,25 +629,12 @@ let CommonFun = cc.Class({
             callback && callback();
             return;
         }
-        if (this.resoucesBundleIsDownloadedByH5 || this.resoucesBundleOpenList[packageName]) { // 如果已经下载过，则直接返回
+        if (this.resoucesBundleOpenList[packageName]) { // 如果已经下载过，则直接返回
             LoggerUtil.getInstance().log(`ResourcesBundle下载完毕`);
             callback && callback();
             return;
         }
         this.showProgress();  // 显示进度
-        // 添加一个标志，避免重复调用回调
-        let isCallbackCalled = false;
-        // 设置一个1秒的超时定时器
-        let timeout = setTimeout(() => {
-            if (!isCallbackCalled) {
-                LoggerUtil.getInstance().log("ResourcesBundle 下载超时，执行回调");
-                this.hidProgress();  // 超时后隐藏进度条
-                callback && callback();  // 执行回调
-                isCallbackCalled = true;  // 标记回调已被调用
-                this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
-            }
-        }, 1000); // 超过1秒后执行
-
         // 加载资源包
         cc.assetManager.loadBundle("ResourcesBundle", (err, bundle) => {
             if (err) {
@@ -661,19 +647,15 @@ let CommonFun = cc.Class({
                 return;
             }
             // 预加载资源包中的目录并获取进度
-            bundle.preloadDir("/", (completedCount, totalCount) => { 
+            bundle.preloadDir(packageName, (completedCount, totalCount) => { 
                 let rawProgress = completedCount / totalCount;  // 计算进度
-                LoggerUtil.getInstance().log(`下载进度 ： ${(rawProgress * 100).toFixed(2)}%`);
+                LoggerUtil.getInstance().log(`packageName 下载进度 ： ${(rawProgress * 100).toFixed(2)}%`);
             }, (err) => { 
-                clearTimeout(timeout);  // 下载完成后清除超时定时器
                 if (err) { 
                 } else { 
                     this.hidProgress();  // 隐藏进度
-                    this.resoucesBundleIsDownloadedByH5 = true; // 标记资源已下载
-                    if (!isCallbackCalled) {
-                        callback && callback();  // 执行回调
-                        isCallbackCalled = true;  // 标记回调已被调用
-                    }
+                    this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
+                    callback && callback();  // 执行回调
                 }
             }); 
         });

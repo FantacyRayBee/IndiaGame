@@ -739,6 +739,18 @@ cc.Class({
         };
     },
 
+    setUpdateProgressBarProgress: function(progress = 0) {
+        this.progressBar.progress = progress;
+    },
+
+    setLabUpdateContentTipsStr: function(str = "") {
+        this.lab_updateContentTips.string = str;
+    },
+
+    setLabUpdateProgressStr: function(str) {
+        this.lab_updateProgress.string = str;
+    },
+
     setLabUpdatePointAnim: function(isAct = false) {
         if (isAct == false) {
             this.unschedule(this.setDianTipsAnima);
@@ -861,7 +873,7 @@ cc.Class({
         };
     },
 
-    preloadMainH5: function() {
+    preloadMainH5:function(){
         this.node_loginLayer.active = false;
         this.progressBar.node.active = true;
         this.lab_updatePoint.node.active = true;
@@ -873,85 +885,36 @@ cc.Class({
         this.setUpdateProgressBarProgress(0);
         this.setLabUpdateContentTipsStr("Getting Version Information");
 
-        let fakeDuration = 1 + Math.random(); // 随机 1~2 秒，作为假进度条的时长
-        let elapsed = 0;
+        let packgeName = "MustBundle";
 
-        // ====== 先跑 0~20% 假进度条 ======
-        this.schedule((dt) => {
-            elapsed += dt;
-            let ratio = Math.min(elapsed / fakeDuration, 1);
-            let fakeProgress = ratio * 0.2; // 映射到 0~0.2
-
-            this.setLabUpdateProgressStr(`${(fakeProgress * 100).toFixed(2)}%`);
-            this.setUpdateProgressBarProgress(fakeProgress);
-            this.setLabUpdateContentTipsStr("Checking files...");
-
-            if (ratio >= 1) {
-                this.unscheduleAllCallbacks(); // 停掉假进度
-                this.startRealPreload("MustBundle"); // 开始真正的预加载
-            }
-        }, 0); // 每帧调度一次
+        this.checkDownloadH5Main(()=>{
+            this.startRealPreload(packgeName); // 开始预加载必要资源
+        });
     },
 
-    // ====== 真正的预加载逻辑（20% → 40%） ======
-    startRealPreload: function(packgeName) {
+    // ====== 真正的预加载逻辑（80% → 100%） ======
+    startRealPreload:function(packgeName){
         cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
             bundle.preloadDir("/", (completedCount, totalCount) => { 
-                let rawProgress = completedCount / totalCount;  // [0,1]
-                let mappedProgress = 0.2 + rawProgress * 0.2;   // [0.2,0.4] 映射到 20% 到 40%
-
-                this.setLabUpdateProgressStr(`${(mappedProgress * 100).toFixed(2)}%`);
-                this.setUpdateProgressBarProgress(mappedProgress);
-                this.setLabUpdateContentTipsStr("Downloading files...");
+                let rawProgress = completedCount / totalCount;
+                this.setLabUpdateProgressStr(`${(rawProgress * 100).toFixed(2)}%`);
+                this.setUpdateProgressBarProgress(rawProgress);
+                this.setLabUpdateContentTipsStr("Downloading files");
             }, (err) => { 
                 if (err) { 
-                    console.error(packgeName + " 资源加载失败:", err);
+                    console.error(packgeName+ " 资源加载失败:", err);
                 } else { 
-                    this.setLabUpdateProgressStr("40%"); // Ensure smooth transition to 40%
-                    this.setUpdateProgressBarProgress(0.4);
-                    this.startRealPreloadResourcesBundle(); // 继续加载 ResourcesBundle
+                    this.setLabUpdateProgressStr("100%");
+                    this.setUpdateProgressBarProgress(1);
+                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                    this.scheduleOnce(() => {
+                        this.changeSceneToLobby();
+                    }, 1);
                 }
             }); 
         });
     },
 
-    // ====== 继续加载 ResourcesBundle（40% → 100%） ======
-    startRealPreloadResourcesBundle: function() {
-        cc.assetManager.loadBundle("ResourcesBundle", (_, bundle) => {
-            bundle.preloadDir("/", (completedCount, totalCount) => {
-                let rawProgress = completedCount / totalCount;  // [0,1]
-                let mappedProgress = 0.4 + rawProgress * 0.6;   // [0.4,1] 映射到 40% 到 100%
-
-                this.setLabUpdateProgressStr(`${(mappedProgress * 100).toFixed(2)}%`);
-                this.setUpdateProgressBarProgress(mappedProgress);
-                this.setLabUpdateContentTipsStr("Downloading files...");
-            }, (err) => {
-                if (err) {
-                    console.error("ResourcesBundle 资源加载失败:", err);
-                } else {
-                    this.setLabUpdateProgressStr("100%"); // 完成时设置为 100%
-                    this.setUpdateProgressBarProgress(1);
-                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
-                    this.scheduleOnce(() => {
-                        this.changeSceneToLobby(); // 加载完成后，进入 Lobby 场景
-                    }, 1);
-                }
-            });
-        });
-    },
-
-    // 更新进度条的显示
-    setUpdateProgressBarProgress: function(progress = 0) {
-        this.progressBar.progress = progress;
-    },
-
-    setLabUpdateContentTipsStr: function(str = "") {
-        this.lab_updateContentTips.string = str;
-    },
-
-    setLabUpdateProgressStr: function(str) {
-        this.lab_updateProgress.string = str;
-    },
     checkDownloadH5Main(callback = null){
         cc.assetManager.loadBundle('LanguageEnglish', function(err, bundle) {
             if (err) {

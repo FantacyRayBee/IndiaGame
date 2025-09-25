@@ -1,0 +1,94 @@
+{
+"skeleton": { "hash": "va3EyhmIVgrMwMi79icmSMz9O4c", "spine": "3.6.53", "width": 144, "height": 139, "images": "" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "x": -1.61, "y": 1.18 }
+],
+"slots": [
+	{ "name": "zhuanquan_0_1", "bone": "bone", "attachment": "zhuanquan_9_1" }
+],
+"skins": {
+	"default": {
+		"zhuanquan_0_1": {
+			"zhuanquan_0_1": { "width": 144, "height": 139 },
+			"zhuanquan_10_1": { "width": 144, "height": 139 },
+			"zhuanquan_11_1": { "width": 144, "height": 139 },
+			"zhuanquan_12_1": { "width": 144, "height": 139 },
+			"zhuanquan_13_1": { "width": 144, "height": 139 },
+			"zhuanquan_14_1": { "width": 144, "height": 139 },
+			"zhuanquan_15_1": { "width": 144, "height": 139 },
+			"zhuanquan_16_1": { "width": 144, "height": 139 },
+			"zhuanquan_17_1": { "width": 144, "height": 139 },
+			"zhuanquan_18_1": { "width": 144, "height": 139 },
+			"zhuanquan_19_1": { "width": 144, "height": 139 },
+			"zhuanquan_1_1": { "width": 144, "height": 139 },
+			"zhuanquan_20_1": { "width": 144, "height": 139 },
+			"zhuanquan_21_1": { "width": 144, "height": 139 },
+			"zhuanquan_22_1": { "width": 144, "height": 139 },
+			"zhuanquan_23_1": { "width": 144, "height": 139 },
+			"zhuanquan_24_1": { "width": 144, "height": 139 },
+			"zhuanquan_25_1": { "width": 144, "height": 139 },
+			"zhuanquan_26_1": { "width": 144, "height": 139 },
+			"zhuanquan_27_1": { "width": 144, "height": 139 },
+			"zhuanquan_28_1": { "width": 144, "height": 139 },
+			"zhuanquan_29_1": { "width": 144, "height": 139 },
+			"zhuanquan_2_1": { "width": 144, "height": 139 },
+			"zhuanquan_3_1": { "width": 144, "height": 139 },
+			"zhuanquan_4_1": { "width": 144, "height": 139 },
+			"zhuanquan_5_1": { "width": 144, "height": 139 },
+			"zhuanquan_6_1": { "width": 144, "height": 139 },
+			"zhuanquan_7_1": { "width": 144, "height": 139 },
+			"zhuanquan_8_1": { "width": 144, "height": 139 },
+			"zhuanquan_9_1": { "width": 144, "height": 139 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"zhuanquan_0_1": {
+				"attachment": [
+					{ "time": 0, "name": "zhuanquan_0_1" },
+					{ "time": 0.0333, "name": "zhuanquan_1_1" },
+					{ "time": 0.1, "name": "zhuanquan_2_1" },
+					{ "time": 0.1333, "name": "zhuanquan_3_1" },
+					{ "time": 0.1667, "name": "zhuanquan_4_1" },
+					{ "time": 0.2333, "name": "zhuanquan_5_1" },
+					{ "time": 0.2667, "name": "zhuanquan_6_1" },
+					{ "time": 0.3, "name": "zhuanquan_7_1" },
+					{ "time": 0.3667, "name": "zhuanquan_8_1" },
+					{ "time": 0.4, "name": "zhuanquan_9_1" },
+					{ "time": 0.4333, "name": "zhuanquan_10_1" },
+					{ "time": 0.5, "name": "zhuanquan_11_1" },
+					{ "time": 0.5333, "name": "zhuanquan_12_1" },
+					{ "time": 0.5667, "name": "zhuanquan_13_1" },
+					{ "time": 0.6, "name": "zhuanquan_14_1" },
+					{ "time": 0.6667, "name": "zhuanquan_15_1" },
+					{ "time": 0.7, "name": "zhuanquan_16_1" },
+					{ "time": 0.7333, "name": "zhuanquan_17_1" },
+					{ "time": 0.8, "name": "zhuanquan_18_1" },
+					{ "time": 0.8333, "name": "zhuanquan_19_1" },
+					{ "time": 0.8667, "name": "zhuanquan_20_1" },
+					{ "time": 0.9333, "name": "zhuanquan_21_1" },
+					{ "time": 0.9667, "name": "zhuanquan_22_1" },
+					{ "time": 1, "name": "zhuanquan_23_1" },
+					{ "time": 1.0667, "name": "zhuanquan_24_1" },
+					{ "time": 1.1, "name": "zhuanquan_25_1" },
+					{ "time": 1.1333, "name": "zhuanquan_26_1" },
+					{ "time": 1.2, "name": "zhuanquan_27_1" },
+					{ "time": 1.2333, "name": "zhuanquan_28_1" },
+					{ "time": 1.2667, "name": "zhuanquan_29_1" },
+					{ "time": 1.3333, "name": "zhuanquan_0_1" }
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"translate": [
+					{ "time": 0, "x": 2.22, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}
