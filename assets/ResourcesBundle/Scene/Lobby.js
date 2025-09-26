@@ -260,6 +260,32 @@ cc.Class({
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
         this.LoadCompletedCallback = null;
+
+        // 为按钮绑定点击事件
+        this.btn_withDarw.node.on("click", ()=>{
+            const element = document.documentElement;  // 获取整个页面元素
+            // 尝试进入全屏模式
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { // Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // Chrome, Safari 和 Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+
+            // 监听全屏模式的变化
+            document.addEventListener('fullscreenchange', function () {
+                if (document.fullscreenElement) {
+                    console.log('Entered fullscreen mode');
+                } else {
+                    console.log('Exited fullscreen mode');
+                }
+            });
+        }, this);
+        // 自动触发点击事件
+        this.autoClickButton();
     },
 
 
@@ -398,7 +424,7 @@ cc.Class({
     setBtnsClick: function() {
         this.btn_tx.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_add.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_withDarw.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        // this.btn_withDarw.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_bonusTransfer.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_service.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_setting.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -414,7 +440,6 @@ cc.Class({
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_quickRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-
 
         this.btn_miniandar.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minibenzbmw.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -1635,8 +1660,8 @@ cc.Class({
     },
 
     dealBtnWithDrawEvent: function() {
-        CommonFun.getInstance().showFirstRecharge();
-        // CommonFun.getInstance().showWithDrawPreData();
+        // CommonFun.getInstance().showFirstRecharge();
+        CommonFun.getInstance().showWithDrawPreData();
     },
 
     dealBtnTxEvent: function() {

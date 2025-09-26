@@ -10,7 +10,11 @@ cc.Class({
     btn_test1: cc.Button,
     btn_testLogin: cc.Button,
     editBox_invited_test: cc.EditBox,
-    editBox_chanel_test: cc.EditBox
+    editBox_chanel_test: cc.EditBox,
+    editBox_account: cc.EditBox,
+    editBox_password: cc.EditBox,
+    editBox_confirm: cc.EditBox,
+    node_editBox_confirm: cc.Node
   },
   ctor: function ctor() {
     this.reqComparisonMainMD5InfoAcount = 0; // 请求远程assets下的manifest文件的次数（请求次数超过3次，判定为异常）
@@ -56,53 +60,22 @@ cc.Class({
 
     // login节点部分
     this.node_loginLayer = this.node.getChildByName("loginLayer");
-    this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
-    this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
-    this.node_btn_accountDelete = this.node_loginLayer.getChildByName("btn_accountDelete");
-    this.node_btn_passwordDelete = this.node_loginLayer.getChildByName("btn_passwordDelete");
-    this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
-    this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
+    // this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
+    // this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
+    // this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
+    // this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
     this.node_btn_accountLogin = this.node_loginLayer.getChildByName("btn_accountLogin");
-    this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
-    this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
-    this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
+    this.node_btn_register = this.node_loginLayer.getChildByName("btn_register");
+    // this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
+    // this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
     this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
     this.node_bg_title = this.node_loginLayer.getChildByName("bg_title");
-    this.node_lab_accountTips = this.node_loginLayer.getChildByName("lab_accountTips");
-    this.node_lab_passwordTips = this.node_loginLayer.getChildByName("lab_passwordTips");
+    this.node_lab_accountTips = this.editBox_account.node.getChildByName("lab_accountTips");
+    this.node_lab_passwordTips = this.editBox_password.node.getChildByName("lab_passwordTips");
+    this.node_lab_confirmTips = this.editBox_confirm.node.getChildByName("lab_confirmTips");
     this.node_btn_wenZi = this.node_loginLayer.getChildByName("btn_wenZi");
-    this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
-    var languagesType = I18NUtil.getInstance().getLanguageType();
-    var checkedName = "";
-    switch (languagesType) {
-      case I18NLanguagesEnum.English:
-        checkedName = "toggle_English";
-        break;
-      case I18NLanguagesEnum.Hindi:
-        checkedName = "toggle_Hindi";
-        break;
-      case I18NLanguagesEnum.Urdu:
-        checkedName = "toggle_Urdu";
-        break;
-      case I18NLanguagesEnum.Bengali:
-        checkedName = "toggle_Bengali";
-        break;
-      default:
-        checkedName = "toggle_English";
-        break;
-    }
-    ;
-    this.toggleContainer_language = this.node_loginLayer.getChildByName("toggleContainer_language").getComponent(cc.ToggleContainer);
-    var toggleItems = this.toggleContainer_language.toggleItems;
-    for (var i = 0, len = toggleItems.length; i < len; i++) {
-      var toggle = toggleItems[i];
-      if (toggle.node.name == checkedName) {
-        toggle.isChecked = true;
-      }
-      ;
-      toggle.node.on('toggle', this.toggleLanguageCallback, this);
-    }
-    ;
+    // this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
+
     this.progressBar.node.active = false;
     this.lab_updateContentTips.node.active = false;
     this.lab_updatePoint.node.active = false;
@@ -110,14 +83,16 @@ cc.Class({
     this.node_loginLayer.active = false;
     this.editBox_account.node.on('editing-did-began', this.editBoxCallback, this);
     this.editBox_password.node.on('editing-did-began', this.editBoxCallback, this);
+    this.editBox_confirm.node.on('editing-did-began', this.editBoxCallback, this);
     this.editBox_invited_test.node.on('editing-did-began', this.editBoxCallback, this);
     this.editBox_chanel_test.node.on('editing-did-began', this.editBoxCallback, this);
-    this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-    this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-    this.node_btn_passwordDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+
+    // this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_accountLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-    this.node_btn_quickLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-    this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+    this.node_btn_register.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+
+    // this.node_btn_quickLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+    // this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
     this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
     this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
@@ -210,52 +185,61 @@ cc.Class({
       this.node_lab_accountTips.active = false;
     } else if (editBoxName === "editBox_password") {
       this.node_lab_passwordTips.active = false;
+    } else if (editBoxName === "editBox_confirm") {
+      this.node_lab_confirmTips.active = false;
     }
     ;
   },
   clickCallBack: function clickCallBack(btn) {
     var btnName = btn.node.name;
-    if (btnName == "btn_accountDelete") {
-      GlobalCfg.G_COMPONENTS.Audio.playButton();
-      this.editBox_account.string = "";
-      this.node_lab_accountTips.active = false;
-      this.sendVerifyCodeReqAcount = 0;
-      this.btn_reqVerify.interactable = true;
-      this.btn_reqVerify.enableAutoGrayEffect = false;
-      clearInterval(this.verifyTimer);
-      this.verifyTimer = null;
-      this.lab_otpTips.string = 'OTP';
-      this.showCommonLoginView();
-    } else if (btnName == "btn_passwordDelete") {
-      GlobalCfg.G_COMPONENTS.Audio.playButton();
-      this.editBox_password.string = "";
-      this.node_lab_passwordTips.active = false;
-    } else if (btnName == "btn_accountLogin") {
+    // if (btnName == "btn_accountDelete") {
+    //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+    //     this.editBox_account.string = "";
+    //     this.node_lab_accountTips.active = false;
+    //     this.sendVerifyCodeReqAcount = 0;
+    //     this.btn_reqVerify.interactable = true;
+    //     this.btn_reqVerify.enableAutoGrayEffect = false;
+    //     clearInterval(this.verifyTimer);
+    //     this.verifyTimer = null;
+    //     this.lab_otpTips.string = 'OTP';
+    //     this.showCommonLoginView();
+    // }
+    // else if (btnName == "btn_passwordDelete") {
+    //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+    //     this.editBox_password.string = "";
+    //     this.node_lab_passwordTips.active = false;
+    // }
+    if (btnName == "btn_accountLogin") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       this.dealAccountLoginEvent();
-    } else if (btnName == "btn_quickLogin") {
+    } else if (btnName == "btn_register") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
-      this.dealQuickLoginEvent();
-    } else if (btnName === "btn_facebookLogin") {
-      GlobalCfg.G_COMPONENTS.Audio.playButton();
-      CommonFun.getInstance().showProgress();
-      this.dealFacebookLoginEvent();
-    } else if (btnName === "btn_reqVerify") {
-      GlobalCfg.G_COMPONENTS.Audio.playButton();
-      var accountOrPhoneStr = this.editBox_account.string;
-      if (accountOrPhoneStr.length == 0) {
-        this.node_lab_accountTips.active = true;
-        return;
-      }
-      ;
-      if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-        this.node_lab_accountTips.active = true;
-        return;
-      }
-      ;
-      CommonFun.getInstance().showProgress("Sending SMS request ...");
-      this.dealReqVerifyEvent(accountOrPhoneStr);
-    } else if (btnName === "btn_guestLogin") {
+      this.dealRegisterEvent();
+    }
+    // else if (btnName == "btn_quickLogin") {
+    //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+    //     this.dealQuickLoginEvent();
+    // }
+    // else if (btnName === "btn_facebookLogin") {
+    //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+    //     CommonFun.getInstance().showProgress();
+    //     this.dealFacebookLoginEvent();
+    // }
+    // else if (btnName === "btn_reqVerify") {
+    //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+    //     let accountOrPhoneStr = this.editBox_account.string;
+    //     if (accountOrPhoneStr.length == 0) {
+    //         this.node_lab_accountTips.active = true;
+    //         return;
+    //     };
+    //     if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
+    //         this.node_lab_accountTips.active = true;
+    //         return;
+    //     };
+    //     CommonFun.getInstance().showProgress("Sending SMS request ...");
+    //     this.dealReqVerifyEvent(accountOrPhoneStr);
+    // }
+    else if (btnName === "btn_guestLogin") {
       GlobalCfg.G_COMPONENTS.Audio.playButton();
       CommonFun.getInstance().showProgress();
       this.dealGuestLoginEvent();
@@ -403,63 +387,134 @@ cc.Class({
       _this.dealReqVerifyEvent(accountOrPhoneStr);
     });
   },
-  dealAccountLoginEvent: function dealAccountLoginEvent() {
-    var accountOrPhoneStr = this.editBox_account.string;
-    if (accountOrPhoneStr.length == 0) {
+  dealRegisterEvent: function dealRegisterEvent() {
+    var _this2 = this;
+    if (this.node_editBox_confirm.active == false) {
+      this.node_editBox_confirm.active = true;
+      this.node_lab_accountTips.active = false;
+      this.node_lab_passwordTips.active = false;
+      this.node_lab_confirmTips.active = false;
+      this.editBox_account.string = "";
+      this.editBox_password.string = "";
+      this.editBox_confirm.string = "";
+      return;
+    }
+    var accountStr = this.editBox_account.string;
+    if (accountStr.length < 6) {
       this.node_lab_accountTips.active = true;
+      this.node_lab_accountTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
+      return;
+    }
+    ;
+    var passwordStr = this.editBox_password.string;
+    if (passwordStr.length < 6) {
+      this.node_lab_passwordTips.active = true;
+      this.node_lab_passwordTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
+      return;
+    }
+    ;
+    var confirmStr = this.editBox_confirm.string;
+    if (confirmStr.length < 6) {
+      this.node_lab_confirmTips.active = true;
+      this.node_lab_confirmTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
+      return;
+    }
+    ;
+    if (passwordStr != confirmStr) {
+      this.node_lab_confirmTips.active = true;
+      this.node_lab_confirmTips.getComponent(cc.Label).string = "The two passwords are inconsistent";
+      return;
+    }
+    CommonFun.getInstance().showProgress();
+    var obj = {
+      loginType: "ACCOUNT",
+      account: accountStr,
+      password: passwordStr,
+      isRegister: true
+    };
+    var promise = SceneManager.getInstance().reqTokenInfo(obj);
+    promise.then(function () {
+      _this2.onRegisterSuccess();
+    })["catch"](function (error) {
+      LoggerUtil.getInstance().log(error);
+      _this2.editBox_account.string = "";
+      _this2.editBox_password.string = "";
+      _this2.editBox_confirm.string = "";
+    });
+  },
+  dealAccountLoginEvent: function dealAccountLoginEvent() {
+    if (this.node_editBox_confirm.active == true) {
+      this.node_editBox_confirm.active = false;
+      this.editBox_password.string = "";
+      this.editBox_confirm.string = "";
+      this.node_lab_accountTips.active = false;
+      this.node_lab_passwordTips.active = false;
+      this.node_lab_confirmTips.active = false;
+      return;
+    }
+    var accountOrPhoneStr = this.editBox_account.string;
+    if (accountOrPhoneStr.length < 6) {
+      this.node_lab_accountTips.active = true;
+      this.node_lab_accountTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
       return;
     }
     ;
     var passwordOrVerCodeStr = this.editBox_password.string;
-    if (passwordOrVerCodeStr.length == 0) {
+    if (passwordOrVerCodeStr.length < 6) {
       this.node_lab_passwordTips.active = true;
+      this.node_lab_passwordTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
       return;
     }
     ;
-    if (this.isCustomAccount(accountOrPhoneStr)) {
+
+    // if (this.isCustomAccount(accountOrPhoneStr)) {
+    CommonFun.getInstance().showProgress();
+    var obj = {
+      loginType: "ACCOUNT",
+      account: accountOrPhoneStr,
+      password: passwordOrVerCodeStr,
+      isRegister: false
+    };
+    var promise = SceneManager.getInstance().reqTokenInfo(obj);
+    promise.then(function () {
+      return SceneManager.getInstance().reqBearerToken();
+    }).then(function () {
+      return SceneManager.getInstance().reqUserDataInfo();
+    }).then(function () {
       CommonFun.getInstance().showProgress();
-      var obj = {
-        loginType: "ACCOUNT",
-        account: accountOrPhoneStr,
-        password: passwordOrVerCodeStr
-      };
-      var promise = SceneManager.getInstance().reqTokenInfo(obj);
-      promise.then(function () {
-        return SceneManager.getInstance().reqBearerToken();
-      }).then(function () {
-        return SceneManager.getInstance().reqUserDataInfo();
-      }).then(function () {
-        CommonFun.getInstance().showProgress();
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-      })["catch"](function (error) {
-        LoggerUtil.getInstance().log(error);
-      });
-    } else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-      CommonFun.getInstance().showProgress();
-      var _obj = {
-        loginType: "PHONE",
-        phone: '91' + accountOrPhoneStr,
-        code: passwordOrVerCodeStr,
-        token: ""
-      };
-      var _promise = SceneManager.getInstance().reqTokenInfo(_obj);
-      _promise.then(function () {
-        return SceneManager.getInstance().reqBearerToken();
-      }).then(function () {
-        return SceneManager.getInstance().reqUserDataInfo();
-      }).then(function () {
-        CommonFun.getInstance().showProgress();
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-      })["catch"](function (error) {
-        LoggerUtil.getInstance().log(error);
-      });
-    } else {
-      this.node_lab_accountTips.active = true;
-    }
-    ;
+      SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+    })["catch"](function (error) {
+      LoggerUtil.getInstance().log(error);
+    });
+    // }
+    // else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
+    //     CommonFun.getInstance().showProgress();
+    //     let obj = {
+    //         loginType: "PHONE",
+    //         phone: '91' + accountOrPhoneStr,
+    //         code: passwordOrVerCodeStr,
+    //         token: "",
+    //     };
+    //     let promise = SceneManager.getInstance().reqTokenInfo(obj);
+    //     promise.then(() => {
+    //         return SceneManager.getInstance().reqBearerToken();
+    //     }).then(() => {
+    //         return SceneManager.getInstance().reqUserDataInfo();
+    //     }).then(() => {
+    //         CommonFun.getInstance().showProgress();
+    //         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+    //     }).catch(error => {
+
+    //         LoggerUtil.getInstance().log(error);
+    //     });
+    // }
+    // else {
+    //     this.node_lab_accountTips.active = true;
+    // };
   },
+
   dealQuickLoginEvent: function dealQuickLoginEvent() {
-    var _this2 = this;
+    var _this3 = this;
     GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
     var accountOrPhoneStr = this.editBox_account.string;
     if (accountOrPhoneStr.length == 0) {
@@ -485,7 +540,7 @@ cc.Class({
         CommonFun.getInstance().showProgress();
         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
       })["catch"](function (error) {
-        _this2.showCommonLoginView();
+        _this3.showCommonLoginView();
         LoggerUtil.getInstance().log(error);
       });
     } else {
@@ -548,6 +603,13 @@ cc.Class({
     ;
     return false;
   },
+  onRegisterSuccess: function onRegisterSuccess() {
+    CommonFun.getInstance().showTips("Register Success");
+    CommonFun.getInstance().hidProgress();
+    this.node_editBox_confirm.active = false;
+    this.editBox_password.string = "";
+    this.editBox_confirm.string = "";
+  },
   start: function start() {
     if (GlobalCfg.SERVERRELOAD == true) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
@@ -605,7 +667,7 @@ cc.Class({
     ;
   },
   reqMainManifestInfo: function reqMainManifestInfo() {
-    var _this3 = this;
+    var _this4 = this;
     if (this.reqComparisonMainMD5InfoAcount == 5) {
       LoggerUtil.getInstance().error("Exception in requesting manifest file under remote resource file assets!");
       this.setLabUpdateContentTipsStr("Getting Assets Manifest File Error");
@@ -620,11 +682,11 @@ cc.Class({
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_SUCCESS, endTime - startTime);
       LoggerUtil.getInstance().log("httpGet has requested data from manifest!");
-      _this3.comparisonFilesByMainManifestInfo(json);
+      _this4.comparisonFilesByMainManifestInfo(json);
     }, function () {
       var endTime = cc.sys.now();
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_FAIL, endTime - startTime);
-      _this3.reqMainManifestInfo();
+      _this4.reqMainManifestInfo();
     });
   },
   comparisonFilesByMainManifestInfo: function comparisonFilesByMainManifestInfo(json) {
@@ -808,7 +870,7 @@ cc.Class({
     ;
   },
   preloadMainH5: function preloadMainH5() {
-    var _this4 = this;
+    var _this5 = this;
     this.node_loginLayer.active = false;
     this.progressBar.node.active = true;
     this.lab_updatePoint.node.active = true;
@@ -820,28 +882,28 @@ cc.Class({
     this.setLabUpdateContentTipsStr("Getting Version Information");
     var packgeName = "MustBundle";
     this.checkDownloadH5Main(function () {
-      _this4.startRealPreload(packgeName); // 开始预加载必要资源
+      _this5.startRealPreload(packgeName); // 开始预加载必要资源
     });
   },
 
   // ====== 真正的预加载逻辑（80% → 100%） ======
   startRealPreload: function startRealPreload(packgeName) {
-    var _this5 = this;
+    var _this6 = this;
     cc.assetManager.loadBundle(packgeName, function (_, bundle) {
       bundle.preloadDir("/", function (completedCount, totalCount) {
         var rawProgress = completedCount / totalCount;
-        _this5.setLabUpdateProgressStr((rawProgress * 100).toFixed(2) + "%");
-        _this5.setUpdateProgressBarProgress(rawProgress);
-        _this5.setLabUpdateContentTipsStr("Downloading files");
+        _this6.setLabUpdateProgressStr((rawProgress * 100).toFixed(2) + "%");
+        _this6.setUpdateProgressBarProgress(rawProgress);
+        _this6.setLabUpdateContentTipsStr("Downloading files");
       }, function (err) {
         if (err) {
           console.error(packgeName + " 资源加载失败:", err);
         } else {
-          _this5.setLabUpdateProgressStr("100%");
-          _this5.setUpdateProgressBarProgress(1);
-          _this5.setLabUpdateContentTipsStr("Please Enjoy The Game");
-          _this5.scheduleOnce(function () {
-            _this5.changeSceneToLobby();
+          _this6.setLabUpdateProgressStr("100%");
+          _this6.setUpdateProgressBarProgress(1);
+          _this6.setLabUpdateContentTipsStr("Please Enjoy The Game");
+          _this6.scheduleOnce(function () {
+            _this6.changeSceneToLobby();
           }, 1);
         }
       });
@@ -869,7 +931,7 @@ cc.Class({
     this.loadBundleAndRunScene();
   },
   loadBundleAndRunScene: function loadBundleAndRunScene() {
-    var _this6 = this;
+    var _this7 = this;
     // Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
     Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()]).then(function (arr) {
       CommonFun.getInstance().loadBundle('ResourcesBundle', function (bundle) {
@@ -877,17 +939,17 @@ cc.Class({
         GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
         GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
         if (!GlobalCfg.USER_DATAS.token) {
-          _this6.node_loginLayer.active = true;
-          var phoneToken = cc.sys.localStorage.getItem("phone_token");
-          if (phoneToken) {
-            _this6.showMemoryPhoneView();
-          } else {
-            _this6.showCommonLoginView();
-          }
-          ;
+          _this7.node_loginLayer.active = true;
+          // let phoneToken = cc.sys.localStorage.getItem("phone_token");
+          // if (phoneToken) {
+          //     this.showMemoryPhoneView();
+          // }
+          // else {
+          _this7.showCommonLoginView();
+          // };
         } else {
           CommonFun.getInstance().showProgress('Memory login ...');
-          _this6.node_loginLayer.active = false;
+          _this7.node_loginLayer.active = false;
           var promise = SceneManager.getInstance().reqBearerToken();
           promise.then(function () {
             return SceneManager.getInstance().reqUserDataInfo();
@@ -896,17 +958,11 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
           })["catch"](function (error) {
             LoggerUtil.getInstance().log(error);
-            _this6.node_loginLayer.active = true;
-            _this6.showCommonLoginView("");
+            _this7.node_loginLayer.active = true;
+            _this7.showCommonLoginView();
           });
         }
         ;
-        if (GlobalCfg.IS_CLUB_MODE == 1) {
-          //代理模式不显示游客登录
-          _this6.node_btn_guestLogin.active = false;
-          _this6.node_or_sprite.active = false;
-          _this6.node_bg_title.active = false;
-        }
       }, function (err) {
         LoggerUtil.getInstance().error("\u52A0\u8F7DResourcesBundle-Bundle\u5F02\u5E38: " + JSON.stringify(err));
       });
@@ -916,12 +972,10 @@ cc.Class({
   },
   showMemoryPhoneView: function showMemoryPhoneView() {
     this.editBox_password.node.active = false;
-    this.node_btn_passwordDelete.active = false;
     this.node_btn_reqVerify.active = false;
     this.node_btn_accountLogin.active = false;
     this.node_btn_quickLogin.active = true;
     this.editBox_account.string = cc.sys.localStorage.getItem("login_phone").slice(2);
-    this.node_or_sprite.setPosition(this.or_sprite_pos1);
     this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
     this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
     if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
@@ -933,23 +987,11 @@ cc.Class({
   },
   showCommonLoginView: function showCommonLoginView() {
     this.editBox_password.node.active = true;
-    this.node_btn_passwordDelete.active = true;
-    this.node_btn_reqVerify.active = true;
     this.node_btn_accountLogin.active = true;
-    this.node_btn_quickLogin.active = false;
     this.editBox_account.string = "";
-    this.node_or_sprite.setPosition(this.or_sprite_pos);
-    this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
-    this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
-    if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-      this.node_btn_facebookLogin.active = false;
-      this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
-      this.node_btn_guestLogin.setContentSize(512, 79);
-    }
-    ;
   },
   baseBundlesHotUpdate: function baseBundlesHotUpdate() {
-    var _this7 = this;
+    var _this8 = this;
     this.loadBundlesStartTime = cc.sys.now();
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
     LoggerUtil.getInstance().log("Start downloading baseBundles zip files!");
@@ -960,7 +1002,7 @@ cc.Class({
             baseBundle: baseBundle,
             progress: 0
           };
-          _this7.baseBundlesNeedUpdateArr.push(tempObj);
+          _this8.baseBundlesNeedUpdateArr.push(tempObj);
         }
         ;
       });
@@ -973,7 +1015,7 @@ cc.Class({
       this.setUpdateProgressBarProgress(1);
       this.setLabUpdateContentTipsStr("Please Enjoy The Game");
       this.scheduleOnce(function () {
-        if (_this7.isHaveUpdateForResources) {
+        if (_this8.isHaveUpdateForResources) {
           GlobalCfg.G_COMPONENTS.Audio.stopAll();
           var searchPaths = jsb.fileUtils.getSearchPaths();
           var storagePath1 = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'remote-asset/';
@@ -983,7 +1025,7 @@ cc.Class({
           jsb.fileUtils.setSearchPaths(searchPaths);
           cc.game.restart();
         } else {
-          _this7.changeSceneToLobby();
+          _this8.changeSceneToLobby();
         }
         ;
       }, 1);

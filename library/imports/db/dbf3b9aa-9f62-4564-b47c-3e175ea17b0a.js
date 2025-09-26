@@ -341,7 +341,7 @@ LobbyServerManager.checkDistributed = function (webData) {
       // 此处 标准事件 参数命名需参照官方标准，不可自行定义，https://developers.facebook.com/docs/app-events/reference ，AppEventsConstants类中定义
       var content = {
         fb_content: 'Recharge',
-        fb_currency: 'INR'
+        fb_currency: 'USD'
       };
       var obj = {
         eventName: 'fb_mobile_purchase',

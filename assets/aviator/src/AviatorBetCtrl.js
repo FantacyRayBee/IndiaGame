@@ -90,7 +90,7 @@ cc.Class({
         this.lab_bet_tip.string = "Bet";
         // this.lab_curBet1.string = this.curBet + ".00";
         this.edit_Bet.string = CommonFun.getInstance().fixed(this.curBet / 100);
-        this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
+        this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
         this.setButtonEnabled(true);
     },
 
@@ -105,7 +105,7 @@ cc.Class({
             this.node_waitnextround.active = false;
             this.lab_bet_tip.string = "Bet";
             this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.greenSpriteFrame;
-            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
+            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
         }
         else{
             this.Init();
@@ -128,7 +128,7 @@ cc.Class({
             this.btn_bet_cancel.node.active = false;
             this.lab_bet_tip.string = "Bet";
             this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.greenSpriteFrame;
-            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
+            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
         }
     },
 
@@ -218,7 +218,7 @@ cc.Class({
         if(this.betStatus != 2) return;
         value = Number(value);
         let finalValue = value * this.curBet /100;
-        this.lab_curBet2.string = CommonFun.getInstance().fixed(finalValue) + " INR";
+        this.lab_curBet2.string = CommonFun.getInstance().fixed(finalValue) + " USD";
 
         if (this.toggle_isAuto.isChecked) { //自动下注 需要判断是否达到设置的倍率
             let curValue = Number(this.edit_Mult.string);
@@ -261,7 +261,7 @@ cc.Class({
         }
         // this.lab_curBet1.string = this.curBet + ".00";
         this.edit_Bet.string = CommonFun.getInstance().fixed(this.curBet / 100);
-        this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
+        this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
     },
 
     dealQuickBetEvent: function (type) {
@@ -272,14 +272,14 @@ cc.Class({
 
             // this.lab_curBet1.string = this.curBet + ".00";
             this.edit_Bet.string = CommonFun.getInstance().fixed(this.curBet / 100);
-            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
+            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
         }
         else{
             this.choiceQuickIndex = type;
             this.curBet = this.quickBetStr[type];
             // this.lab_curBet1.string = this.quickBetStr[type] + ".00";
             this.edit_Bet.string = CommonFun.getInstance().fixed(this.quickBetStr[type] / 100);
-            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.quickBetStr[type] / 100) + " INR";
+            this.lab_curBet2.string = CommonFun.getInstance().fixed(this.quickBetStr[type] / 100) + " USD";
         }
     },
 
@@ -425,7 +425,7 @@ cc.Class({
         }
         const value = editBox.string < 10 ? 10 : editBox.string;
         this.curBet = parseFloat(value) * 100;
-        this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
+        this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
     },
 
     //设置自动下注次数

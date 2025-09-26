@@ -150,10 +150,10 @@ cc.Class({
         else if (btnName === "btn_bind") {
             CommonFun.getInstance().showBindPhone('Personal');
         }else if (btnName == "tx") {
-            if (GlobalCfg.IS_Freestyle_Head == 0)  //老包不能用自定义头像
+            // if (GlobalCfg.IS_Freestyle_Head == 0)  //老包不能用自定义头像
                 CommonFun.getInstance().showChangeHead();
-            else 
-                APPManager.openAlbum();
+            // else 
+            //     APPManager.openAlbum();
         }else if(btnName == "btn_add"){
             this.node_checkClick.active = true
         }else if(btnName == "btn_photograph"){

@@ -1,6 +1,6 @@
 //定义全局配置 
 window.GlobalCfg = {
-  
+
   /**
    * 服务器重启
    */
@@ -12,7 +12,7 @@ window.GlobalCfg = {
   /**
    * 平台标识
    */
-  PRODUCT_ID: 2001, 
+  PRODUCT_ID: 2001,
   /**
    * 渠道信息
    */
@@ -61,11 +61,11 @@ window.GlobalCfg = {
   /**
    * 是否触发热更（测试服专用，线上服这个值必须为true）
    */
-   is_need_update: true,
+  is_need_update: true,
   /**
    * 是否强制进测试服
    */
-   is_force_gotoTest: true,
+  is_force_gotoTest: true,
 
   /**
    * 渠道信息
@@ -122,11 +122,11 @@ window.GlobalCfg = {
     OPEN_EMAIL: "OPEN_EMAIL",
     ENTER_GAME_FROM_SELECT_ROOM: "ENTER_GAME_FROM_SELECT_ROOM",
     BINDPHONE_SUCCESS: "BINDPHONE_SUCCESS",
-    REFRESH_SHOP_COMMODITY: "REFRESH_SHOP_COMMODITY",   
+    REFRESH_SHOP_COMMODITY: "REFRESH_SHOP_COMMODITY",
     FIRST_RECHARGE_TIPS: "FIRST_RECHARGE_TIPS",       // 首充提示
     EXIT_GAME: "EXIT_GAME",
-    VIP_TAKE_WELFARE: "VIP_TAKE_WELFARE",  
-    VIP_INFO_UPDATE: "VIP_INFO_UPDATE",  
+    VIP_TAKE_WELFARE: "VIP_TAKE_WELFARE",
+    VIP_INFO_UPDATE: "VIP_INFO_UPDATE",
     VIP_REWARD: "VIP_REWARD",
     APP_DOWNLOAD_PROGRESS: "APP_DOWNLOAD_PROGRESS",
     SIDEBAT_DISPLAYED: "sidebar_displayed",     // 侧边栏显示
@@ -164,7 +164,7 @@ window.GlobalCfg = {
     TPGAME_CLICK_LUCKYPLAYER_GET: "TPGAME_CLICK_LUCKYPLAYER_GET",
   },
 
-  
+
   /**
    * 埋点事件名称
    */
@@ -210,7 +210,7 @@ window.GlobalCfg = {
     UPDATE_ERROR: "热更新错误",
 
     SHOW_LOGIN_VIEW: "显示登录界面",
-  
+
     REQ_TOKEN_INFO_START: "请求TokenInfo信息开始",
     REQ_TOKEN_INFO_SUCCESS: "请求TokenInfo信息成功",
     REQ_TOKEN_INFO_FAIL: "请求TokenInfo信息失败",
@@ -223,7 +223,7 @@ window.GlobalCfg = {
     REQ_USERDATA_INFO_SUCCESS: "请求UserInfo信息成功",
     REQ_USERDATA_INFO_FAIL: "请求UserInfo信息失败",
 
-    LOGIN_LOBBY_START:  "登录大厅开始",
+    LOGIN_LOBBY_START: "登录大厅开始",
     SHOW_LOBBY: "显示大厅界面",
     SHOW_CASH_GIFT: "显示新人礼界面",
     HIDE_CASH_GIFT: "关闭新人礼界面",
@@ -348,7 +348,7 @@ window.GlobalCfg = {
   DOWN_IPA_URL: "http://ddz.aikayu.com/",
 
   // 小游戏是否更新   true更新  false不更新
-  IS_SMALL_GAME_UPDATE : true,  
+  IS_SMALL_GAME_UPDATE: true,
 
   // 更新子游戏版本信息
   SUB_GAME_VERSION_INFO: null,
@@ -357,44 +357,44 @@ window.GlobalCfg = {
   SUB_GAME_ROOT_UPDATE: null,
 
   // 支付开关，即渠道风控，0关闭，1开启，2 IOS
-  PAYMENT_SWITCH: null,    
+  PAYMENT_SWITCH: null,
 
   // 风控配置类型，1表示线下，2表示sdk风控，3表示自己的风控
-  SWITCH_TYPE: 3, 
- 
+  SWITCH_TYPE: 3,
+
   // 苹果商城ios 
-  CHANNEL : "Android", 
+  CHANNEL: "Android",
 
   // 默认选中充值的额度 
   SELECT_RECHARGE_ACOUNT: 20000,
 
   // 跑马灯数据
-  MAR_QUEE_DATA:[],       
+  MAR_QUEE_DATA: [],
 
   // 跑马灯数据
-  MAR_QUEE_DATA_ROBOT:[],       
+  MAR_QUEE_DATA_ROBOT: [],
 
   // 充值成功后游戏回调断网刷新金币（打补丁） 
-  PUSH_PAY_SUCCESS: false,    
- 
+  PUSH_PAY_SUCCESS: false,
+
   // 是否第一次提现 
-  HAVE_WITHDRAW : false, 
+  HAVE_WITHDRAW: false,
 
   // 
   GAID: "",
 
   // 表示是否从登录界面进入大厅界面，主要用于活动弹框的判断
-  IS_FROM_LOGIN_TO_LOBBY: false, 
+  IS_FROM_LOGIN_TO_LOBBY: false,
 
   // 表示设备是否安装了微信和支付宝，主要用于国内人进入游戏
-  HAVE_WECHAT_AND_ALIPAY: false,     
+  HAVE_WECHAT_AND_ALIPAY: false,
 
   // 通过Openinstall的SDK收到的邀请码(上级的绑定码)             
-  OPENINSTALL_INVITE_CODE: "",   
-  
+  OPENINSTALL_INVITE_CODE: "",
+
   // 落地页数据上报所需的fbclid，以便服务器上报事件给投放
-  OPENINSTALL_FB_CLID: "",    
-  
+  OPENINSTALL_FB_CLID: "",
+
   // 落地页广告id，以便服务器上报事件给投放
   OPENINSTALL_ADS_ID: "",
 
@@ -408,7 +408,7 @@ window.GlobalCfg = {
   PAY_CHANNEL: "",
   // 支付渠道
   PAY_CHANNEL2: "",
-  
+
   /* APP_STATUS说明
     0: 未设置状态; 
     1：正式服谷歌审核状态, 俗称马甲状态; 
@@ -418,10 +418,10 @@ window.GlobalCfg = {
     5: 正式服测试包状态;
     6：正式服正式包状态;
   */
-  APP_STATUS: 0,    
-  
+  APP_STATUS: 0,
+
   // 判断是否为谷歌审核状态时，获取相关信息的路径
-  APP_INFO_URL: "",   
+  APP_INFO_URL: "",
   /** 备用路径 */
   APP_INFO_URL_SPARE: "",
   /** APP 配置文件路径 */
@@ -440,7 +440,7 @@ window.GlobalCfg = {
 
   // 远程文件加密秘钥
   STR_KEY: "kb1234",
-  
+
   ADS_ID: '',
   /**
    * 用于服务器做事件埋点
@@ -510,11 +510,11 @@ window.GlobalCfg = {
   /**
    * APP 服务器错误代码
    */
-  APP_SERVER_ERR_CODE:{
+  APP_SERVER_ERR_CODE: {
     REPEAT_LOGIN: 9,      // 重复登录
     SERVER_RELOAD: 29,    // 服务器重启
   },
-  
+
   OPEN_MODULES: {
     4: false,    // 充值
     5: false,    // 提现
@@ -553,7 +553,7 @@ window.GlobalCfg = {
     120: false,  // 印度舞娘机台
   },
 
-  ChildzIndex:{
+  ChildzIndex: {
     defaultChildViewIndex: 10,
 
     // 父节点为Lobby场景 Canvas
@@ -571,22 +571,22 @@ window.GlobalCfg = {
   /**
    * APP 服务器错误代码
    */
-  APP_SERVER_ERR_CODE:{
+  APP_SERVER_ERR_CODE: {
     REPEAT_LOGIN: 9,      // 重复登录
     SERVER_RELOAD: 29,    // 服务器重启
   },
   /**
    * 诱导充值配置
    */
-  INDUCEMENT_INFO :{
-      [1]: {taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [2]: {taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [3]: {taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1,tips:""},
-      [4]: {taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100,200,90,50], jump: 'Fruit', paiIndex: 2,tips:"Only need $10 to withdraw $5000"},
-      [5]: {taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10,9,10,8], jump: 'Dragon', paiIndex: 1,tips:"Only need $1 to withdraw $5000"},
-      [6]: {taskName: 'Complete a recharge of $500', reward: 4999.9, status: 2, pais: [0.1,0.9,0.5,1], jump: 'shop', paiIndex: 1,tips:"Only need $0.1 to withdraw $5000"},
-      [7]: {taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1,0.09,0.1,0.09], jump: 'withdraw', paiIndex: 1,tips:"Only need $0.01 to withdraw $5000"},
-      [8]: {taskName: 'Total recharge $50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1,tips:""},
+  INDUCEMENT_INFO: {
+    [1]: { taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1, tips: "" },
+    [2]: { taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1, tips: "" },
+    [3]: { taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1, tips: "" },
+    [4]: { taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100, 200, 90, 50], jump: 'Fruit', paiIndex: 2, tips: "Only need $10 to withdraw $5000" },
+    [5]: { taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10, 9, 10, 8], jump: 'Dragon', paiIndex: 1, tips: "Only need $1 to withdraw $5000" },
+    [6]: { taskName: 'Complete a recharge of $500', reward: 4999.9, status: 2, pais: [0.1, 0.9, 0.5, 1], jump: 'shop', paiIndex: 1, tips: "Only need $0.1 to withdraw $5000" },
+    [7]: { taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1, 0.09, 0.1, 0.09], jump: 'withdraw', paiIndex: 1, tips: "Only need $0.01 to withdraw $5000" },
+    [8]: { taskName: 'Total recharge $50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1, tips: "" },
   },
   /**
    * 预制体路径
@@ -766,7 +766,7 @@ window.GlobalCfg = {
     /**
      * 首充之后，清空金币窗帘动画弹窗提示
      */
-    NEW_FIRSTRECHARGETIPS:"ResourcesBundle/NewPlan/NewFirstRechargeTips/NewFirstRechargeTips",
+    NEW_FIRSTRECHARGETIPS: "ResourcesBundle/NewPlan/NewFirstRechargeTips/NewFirstRechargeTips",
     /**
      * 首充之后，清空金币弹窗提示
      */
@@ -798,7 +798,7 @@ window.GlobalCfg = {
     /**
      * 填写提现资料
      */
-    WITHDRAWPREDATA:"ResourcesBundle/NewPlan/WithDrawPreData/WithDrawPreData",
+    WITHDRAWPREDATA: "ResourcesBundle/NewPlan/WithDrawPreData/WithDrawPreData",
     /**
      * 提现弹窗
      */
@@ -861,6 +861,10 @@ window.GlobalCfg = {
      * 游戏中的菜单
      */
     GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
+    /**
+     * 注册界面
+     */
+    REGISTER: "ResourcesBundle/NewPlan/register/registerView",
     /**
      * 活动 Go Betting
      */
@@ -935,7 +939,7 @@ window.GlobalCfg = {
     PROMOTERMAIN: "FirstLayer",
     CLUB: "FirstLayer",
     WALLET: "FirstLayer",
-    
+
     ACTIVITY: "SecondLayer",
     FIRSTRECHARGE: "SecondLayer",
     CONTACTUS: "SecondLayer",
@@ -969,6 +973,7 @@ window.GlobalCfg = {
     INDUCEMENTPOP: "SecondLayer",
     ONLY_PAY: "SecondLayer",
     GAMEICONLIST: "SecondLayer",
+    REGISTER: "SecondLayer",
 
     SMALLADDCASH: "ThirdLayer",
     SMALLADDEXPERIENCE: "ThirdLayer",
@@ -985,7 +990,7 @@ window.GlobalCfg = {
     FIRSTRECHARGETIPS: "ToastLayer",
     VIPRECHARGETOAST: "ToastLayer",
     VIPFORONCETOAST: "ToastLayer",
-    
+
     SHOP: "ShopLayer",
     WITHDRAW: "ShopLayer",
     WITHDRAWTIPS: "ShopLayer",
@@ -1011,11 +1016,11 @@ window.GlobalCfg = {
    */
   LAYER_TAG: {
     CAROUSELLAYER: "CarouselLayer",     // 跑马灯
-    FIRSTLAYER: "FirstLayer",           
+    FIRSTLAYER: "FirstLayer",
     SECONDLAYER: "SecondLayer",
     THIRDLAYER: "ThirdLayer",
     TOASTLAYER: "ToastLayer",         // 通用弹窗类父节点，(MsgBox)
-    SHOPLAYER:  "ShopLayer",          // 商城、提现界面节点
+    SHOPLAYER: "ShopLayer",          // 商城、提现界面节点
     PROGRESSLAYER: "ProgressLayer",   // 加载等待动画
     TIPSLAYER: "TipsLayer",           // 提示语父节点，（Tips）
   },
@@ -1023,7 +1028,7 @@ window.GlobalCfg = {
   /**
    * 充值来源
    */
-  SHOP_RECHARGE_FROM:{
+  SHOP_RECHARGE_FROM: {
     ActivityFirstRecharge: '活动内首次充值',
     BindPhone: '绑定手机',
     firstRecharge: '首充',
@@ -1045,10 +1050,10 @@ window.GlobalCfg = {
     BankruptcyGift: "破产礼包",
     OnlyPay: "终身一次支付",
   },
-}; 
+};
 
 GlobalCfg.NATIVE_CALL_URL = "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy";
-GlobalCfg.NATIVE_CALL_NAME_OBJ = { 
+GlobalCfg.NATIVE_CALL_NAME_OBJ = {
   getOpenInstallData: "getOpenInstallDataByBloom3Rummy",
   openPhotoAlbum: 'openPhotoAlbumByBloom3Rummy',
   getAdjustId: "getAdjustIdByBloom3Rummy",
@@ -1494,12 +1499,12 @@ if (GlobalCfg.isPackage6002 == 1) {
 let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
 if (packageChannel && packageChannel.indexOf("_") != -1) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  let packageChannelArr = packageChannel.split("_"); 
+  let packageChannelArr = packageChannel.split("_");
   let server = packageChannelArr[0];
-  console.log("packageChannelArr == " , packageChannelArr)
-  console.log("server == " , server)
-  console.log("cc.sys.isNative == " , cc.sys.isNative)
-  
+  console.log("packageChannelArr == ", packageChannelArr)
+  console.log("server == ", server)
+  console.log("cc.sys.isNative == ", cc.sys.isNative)
+
   GlobalCfg.server_id = server;
   switch (server) {
     case "0":     // 测试服
@@ -1526,12 +1531,12 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       GlobalCfg.APP_CONFIG_URL = `https://download.3tpattiyi.in/Release3/AppConfig.json`;
       break;
     case "4":     // 联运(2服)
-      GlobalCfg.APP_VERSION = "4.0.8.7"; 
+      GlobalCfg.APP_VERSION = "4.0.8.7";
       GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release4/AppInfo.json`;
       GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
       break;
     case "5":     // 5服
-      GlobalCfg.APP_VERSION = "5.0.0.34"; 
+      GlobalCfg.APP_VERSION = "5.0.0.34";
       // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
       GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
 
@@ -1582,7 +1587,7 @@ window.SHOPPING = {
   account_num: 0,
   commodityid: 0,
   withDrawNum: 10,
-  applyID:0,
+  applyID: 0,
   cashID: -1,
   cashAmount: 0,
   totalGet: 0,
@@ -1595,7 +1600,7 @@ window.SHOPPING = {
 
 // 小游戏自己ID
 window.gamescene = null;
-window.gameLogin = null; 
+window.gameLogin = null;
 window.gameconfig = null;
 
 cc.Node.prototype.gcpt = cc.Node.prototype.getComponent;
@@ -1605,19 +1610,19 @@ cc.macro.ENABLE_MULTI_TOUCH = false;
 
 Date.prototype.Format = function (fmt) { // author: meizz
   var o = {
-      "M+": this.getMonth() + 1, // 月份
-      "d+": this.getDate(), // 日
-      "h+": this.getHours(), // 小时
-      "m+": this.getMinutes(), // 分
-      "s+": this.getSeconds(), // 秒
-      "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
-      "S": this.getMilliseconds() // 毫秒
+    "M+": this.getMonth() + 1, // 月份
+    "d+": this.getDate(), // 日
+    "h+": this.getHours(), // 小时
+    "m+": this.getMinutes(), // 分
+    "s+": this.getSeconds(), // 秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+    "S": this.getMilliseconds() // 毫秒
   };
   if (/(y+)/.test(fmt))
-      fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
   for (var k in o)
-      if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-          return fmt;
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return fmt;
 };
 
 String.prototype.byteCheck = function (byteLength) {
@@ -1641,15 +1646,15 @@ String.prototype.byteCheck = function (byteLength) {
 
 
 if (cc.sys.isNative) {
-	window.__errorHandler = (file, line, errorMessage, error) => {
-		let exception = {};
-		exception.file = file;
-		exception.line = line;
+  window.__errorHandler = (file, line, errorMessage, error) => {
+    let exception = {};
+    exception.file = file;
+    exception.line = line;
     exception.error = error;
     exception.errorMessage = errorMessage;
-		if (window.exception != JSON.stringify(exception)) {
-			window.exception = JSON.stringify(exception);
-			if (window.CommonFun) {
+    if (window.exception != JSON.stringify(exception)) {
+      window.exception = JSON.stringify(exception);
+      if (window.CommonFun) {
         let appInfo = {
           UserId: GlobalCfg.USER_DATAS.userId,
           Channel: GlobalCfg.CHANNEL_INFO,
@@ -1661,8 +1666,8 @@ if (cc.sys.isNative) {
           chat_id: "-4071072256",
           text: `【基本信息】:\n ${JSON.stringify(appInfo)}\n【异常信息】:\n ${JSON.stringify(exception)}`
         };
-        window.CommonFun.getInstance().httpPost(url, params, (msg) => {});
+        window.CommonFun.getInstance().httpPost(url, params, (msg) => { });
       };
-		};
-	};
+    };
+  };
 };

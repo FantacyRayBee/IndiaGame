@@ -32,6 +32,13 @@ cc.Class({
         BranchBankNameEditBox: cc.EditBox,
         EmailEditBox: cc.EditBox,
         MobileEditBox: cc.EditBox,
+
+        // WithDraw2
+        nodeWirte2: cc.Node,
+        btnCloseWrite2: cc.Button,
+        btnSave2: cc.Button,
+        CashEditBox: cc.EditBox,
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -111,8 +118,10 @@ cc.Class({
         this.btnRule.node.on('click', this.clickCallback, this);
         this.btnCLoseRule.node.on('click', this.clickCallback, this);
         this.btnCloseWrite.node.on('click', this.clickCallback, this);
+        this.btnCloseWrite2.node.on('click', this.clickCallback, this);
 
         this.btnSave.node.on('click', this.clickCallback, this);
+        this.btnSave2.node.on('click', this.clickCallback, this);
         this.AccountEditBox.node.on('editing-did-ended', this.checkAccound, this);
         this.UserNameEditBox.node.on('editing-did-ended', this.checkUserName, this);
         this.IFSCEditBox.node.on('editing-did-ended', this.checkIFSCCode, this);
@@ -120,6 +129,7 @@ cc.Class({
         this.BranchBankNameEditBox.node.on('editing-did-ended', this.checkBranchBankName, this);
         this.EmailEditBox.node.on('editing-did-ended', this.checkEmail, this);
         this.MobileEditBox.node.on('editing-did-ended', this.checkMobile, this);
+        this.CashEditBox.node.on('editing-did-ended', this.checkCash, this);
 
         this.initConfigData();
     },
@@ -156,7 +166,8 @@ cc.Class({
         }
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (name == this.btnAddAccount.node.name) {
-            this.showWriteData();
+            // this.showWriteData();
+            this.showWriteData2();
         }
         else if (name == this.btnWithDraw.node.name) {
             if (this.labBankAccount.node.active == true) {       // 已有银行卡号，
@@ -193,7 +204,8 @@ cc.Class({
                 };
             } 
             else {
-                this.showWriteData();
+                this.showWriteData2();
+                // this.showWriteData();
             };
         }
         else if (name == this.btnRule.node.name) {
@@ -202,8 +214,15 @@ cc.Class({
         else if (name == this.btnSave.node.name) {
             this.saveAddress();
         }
+        else if (name == this.btnSave2.node.name) {
+            this.saveCashIFSC();
+        }
         else if (name == this.btnCloseWrite.node.name) {
             this.nodeWirte.active = false;
+            this.nodeMain.active = true;
+        }
+        else if (name == this.btnCloseWrite2.node.name) {
+            this.nodeWirte2.active = false;
             this.nodeMain.active = true;
         }
     },
@@ -285,9 +304,15 @@ cc.Class({
 
         this.nodeMain.active = false;
         this.nodeWirte.active = true;
-
     },
+    
+    showWriteData2() {
+        LoggerUtil.getInstance().log("展示玩家WithDraw信息", this.address);
+        this.CashEditBox.string = this.address.ifsc;
 
+        this.nodeMain.active = false;
+        this.nodeWirte2.active = true;
+    },
     saveAddress() {
         if (this.writeDataErrorList.size == 0) {
             CommonFun.getInstance().showProgress();
@@ -313,6 +338,33 @@ cc.Class({
             let errorStr = this.errorStrArr[value];
             CommonFun.getInstance().showTips(errorStr);
         }
+    },
+
+    saveCashIFSC() {
+        let str = this.CashEditBox.string;
+        if (str.length == 0) {
+            CommonFun.getInstance().showTips("Input cannot be empty");
+            return;
+        };
+        this.address.ifsc = str;
+        this.address.country = 1;
+        CommonFun.getInstance().showProgress();
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/payment/india_address";
+        CommonFun.getInstance().httpPost(httpUrl, { address: this.address }, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                CommonFun.getInstance().showTips('Save Info Success!');
+                if (CommonFun.getInstance().isValidForScr(this)) { 
+                    this.initServiceData();
+                    this.nodeMain.active = true;
+                    this.nodeWirte.active = false;
+                    GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(this.address);
+                };
+            } 
+            else {
+                CommonFun.getInstance().showTips(msg.msg);
+            };
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
     loadHeadSp: function (headUrl,realWidth,heaSprite) {
@@ -408,4 +460,9 @@ cc.Class({
             this.writeDataErrorList.add('mobile');
         }
     },
+
+    checkCash(editBox) {
+        let str = editBox.string;
+        this.address.cash = str;
+    }
 });

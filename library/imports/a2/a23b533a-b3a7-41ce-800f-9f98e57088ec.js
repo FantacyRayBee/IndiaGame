@@ -26,25 +26,6 @@ cc.Class({
   },
   onLoad: function onLoad() {
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_CASH_GIFT);
-    var languagesType = I18NUtil.getInstance().getLanguageType();
-    switch (languagesType) {
-      case I18NLanguagesEnum.English:
-        this.lab_diamondMini.node.setPosition(cc.v2(89, 76));
-        break;
-      case I18NLanguagesEnum.Hindi:
-        this.lab_diamondMini.node.setPosition(cc.v2(115, 76));
-        break;
-      case I18NLanguagesEnum.Urdu:
-        this.lab_diamondMini.node.setPosition(cc.v2(95, 76));
-        break;
-      case I18NLanguagesEnum.Bengali:
-        this.lab_diamondMini.node.setPosition(cc.v2(115, 76));
-        break;
-      default:
-        this.lab_diamondMini.node.setPosition(cc.v2(115, 76));
-        break;
-    }
-    ;
     this.lab_diamond.string = "$" + GlobalCfg.USER_DATAS.firstGiftDiamond / 100;
     this.lab_diamondMini.string = "Get $" + GlobalCfg.USER_DATAS.firstGiftDiamond / 100 + " for free";
     this.btn_get.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);

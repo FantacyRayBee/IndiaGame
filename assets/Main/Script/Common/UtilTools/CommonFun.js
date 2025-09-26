@@ -806,25 +806,7 @@ let CommonFun = cc.Class({
             CommonFun.getInstance().showMsgBox("Not yet open", "NO", () => { }, false);
             return
         };
-        // 首充 且 首充活动模块开关开启
-        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(10)) {
-            // if (isFromFirstRecharge == true) {
-                // 展示商城
-                if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0){
-                    this._showShop(from);
-
-                }
-                else {
-                    this.showBindPhone('AddCash');
-                }
-            // }
-            // else {
-            //     this.showFirstRecharge();
-            // }
-        } 
-        else {
-            this._showShop(from);
-        }
+        this._showShop(from);
     },
 
     debounce: function(action, delayTime) {
@@ -1432,6 +1414,17 @@ let CommonFun = cc.Class({
             })
         });
     },    
+
+    /**
+     * 打开注册界面
+     */
+    showRegister: function() {
+        let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.REGISTER);
+        prefabPromise.then((prefab) => {
+            let Node = cc.instantiate(prefab);
+            this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.REGISTER);
+        });
+    },
 
     /**
      * 添加跑马灯
@@ -2931,7 +2924,7 @@ let CommonFun = cc.Class({
         this._verticalAcc = 0;
         if (this._curOrientation == EnumOrientation.VERTICAL) {
             this._curOrientation = EnumOrientation.HORIZONTAL;
-            APPManager.setOrientation('H');
+            APPManager.setOrientation("H");
         };
     },
 
@@ -2942,10 +2935,9 @@ let CommonFun = cc.Class({
         this._verticalAcc += 1;
         if (this._verticalAcc > 0 && this._curOrientation == EnumOrientation.HORIZONTAL) {
             this._curOrientation = EnumOrientation.VERTICAL;
-            APPManager.setOrientation('V');
+            APPManager.setOrientation("V");
         };
     },
-
     /**
      * 减少竖屏次数，当累加次数等于0，则横屏
      */

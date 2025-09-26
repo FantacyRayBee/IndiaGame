@@ -2,13 +2,19 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        btn_test1:cc.Button,
-        btn_testLogin:cc.Button,
-        editBox_invited_test:cc.EditBox,
-        editBox_chanel_test:cc.EditBox,
+        btn_test1: cc.Button,
+        btn_testLogin: cc.Button,
+        editBox_invited_test: cc.EditBox,
+        editBox_chanel_test: cc.EditBox,
+
+        editBox_account: cc.EditBox,
+        editBox_password: cc.EditBox,
+        editBox_confirm: cc.EditBox,
+
+        node_editBox_confirm: cc.Node,
     },
 
-    ctor: function () {   
+    ctor: function () {
         this.reqComparisonMainMD5InfoAcount = 0;        // 请求远程assets下的manifest文件的次数（请求次数超过3次，判定为异常）
         this.needUpdateFileArr = [];                    // 存放需要更新的文件的容器
         this.simulationCheckFileAcount = 0;             // 模拟远程和本地文件比较差异的次数
@@ -59,9 +65,9 @@ cc.Class({
             "proto/zeus/gameservice",
         ];
 
-        this.baseBundlesCheckUpdateArr = ['ResourcesBundle','tpGame'];
+        this.baseBundlesCheckUpdateArr = ['ResourcesBundle', 'tpGame'];
         this.baseBundlesNeedUpdateArr = [];
-        this.baseBundlesUpdateCompleteArr = []; 
+        this.baseBundlesUpdateCompleteArr = [];
 
         this.updateStartTime = 0;
         this.btnWenZiClickTimes = 0;
@@ -81,60 +87,30 @@ cc.Class({
 
         CommonFun.getInstance().removeCarouselStrip();
         CommonFun.getInstance().removeSidebar();
-   
+
         // Update节点部分
         this.progressBar = this.node.getChildByName("updateLayer").getComponent(cc.ProgressBar);
         this.lab_updateContentTips = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_up").getComponent(cc.Label);
         this.lab_updatePoint = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_point").getComponent(cc.Label);
         this.lab_updateProgress = this.progressBar.node.getChildByName("NodeUpdateTips").getChildByName("lab_%").getComponent(cc.Label);
-        
+
         // login节点部分
         this.node_loginLayer = this.node.getChildByName("loginLayer");
-        this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
-        this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
-        this.node_btn_accountDelete = this.node_loginLayer.getChildByName("btn_accountDelete");
-        this.node_btn_passwordDelete = this.node_loginLayer.getChildByName("btn_passwordDelete");
-        this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
-        this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
+        // this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
+        // this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
+        // this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
+        // this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
         this.node_btn_accountLogin = this.node_loginLayer.getChildByName("btn_accountLogin");
-        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
-        this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
-        this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
+        this.node_btn_register = this.node_loginLayer.getChildByName("btn_register");
+        // this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
+        // this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
         this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
         this.node_bg_title = this.node_loginLayer.getChildByName("bg_title");
-        this.node_lab_accountTips = this.node_loginLayer.getChildByName("lab_accountTips");
-        this.node_lab_passwordTips = this.node_loginLayer.getChildByName("lab_passwordTips");
+        this.node_lab_accountTips = this.editBox_account.node.getChildByName("lab_accountTips");
+        this.node_lab_passwordTips = this.editBox_password.node.getChildByName("lab_passwordTips");
+        this.node_lab_confirmTips = this.editBox_confirm.node.getChildByName("lab_confirmTips");
         this.node_btn_wenZi = this.node_loginLayer.getChildByName("btn_wenZi");
-        this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
-
-        let languagesType = I18NUtil.getInstance().getLanguageType();
-        let checkedName = "";
-        switch (languagesType) {
-            case I18NLanguagesEnum.English:
-                checkedName = "toggle_English";
-                break;
-            case I18NLanguagesEnum.Hindi:
-                checkedName = "toggle_Hindi";
-                break;
-            case I18NLanguagesEnum.Urdu:
-                checkedName = "toggle_Urdu";
-                break;
-            case I18NLanguagesEnum.Bengali:
-                checkedName = "toggle_Bengali";
-                break;
-            default:
-                checkedName = "toggle_English";
-                break;
-        };
-        this.toggleContainer_language = this.node_loginLayer.getChildByName("toggleContainer_language").getComponent(cc.ToggleContainer);
-        let toggleItems = this.toggleContainer_language.toggleItems;
-        for (let i = 0, len = toggleItems.length; i < len; i++) {
-            let toggle = toggleItems[i];
-            if (toggle.node.name == checkedName) {
-                toggle.isChecked = true;
-            };
-            toggle.node.on('toggle', this.toggleLanguageCallback, this);
-        };
+        // this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
 
         this.progressBar.node.active = false;
         this.lab_updateContentTips.node.active = false;
@@ -144,16 +120,17 @@ cc.Class({
 
         this.editBox_account.node.on('editing-did-began', this.editBoxCallback, this);
         this.editBox_password.node.on('editing-did-began', this.editBoxCallback, this);
+        this.editBox_confirm.node.on('editing-did-began', this.editBoxCallback, this);
 
         this.editBox_invited_test.node.on('editing-did-began', this.editBoxCallback, this);
         this.editBox_chanel_test.node.on('editing-did-began', this.editBoxCallback, this);
-  
-        this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
-        this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
-        this.node_btn_passwordDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+
+        // this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_accountLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-        this.node_btn_quickLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-        this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        this.node_btn_register.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+
+        // this.node_btn_quickLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        // this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_wenZi.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
         this.btn_test1.node.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 0), this);
@@ -162,7 +139,7 @@ cc.Class({
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     },
 
-    onEventMsg: function(webData, target) {
+    onEventMsg: function (webData, target) {
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
@@ -182,17 +159,17 @@ cc.Class({
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
             self.setZipFileLoadProgress(notify);
-        } 
+        }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
             self.setZipFileLoadComplete(notify);
-        } 
+        }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_ERROR) {
             let subpackgeName = notify.subpackgeName;
             CommonFun.getInstance().behaviorReporting(`${GlobalCfg.BEHAVIOR_TYPE.UPDATE_ERROR}-${subpackgeName}`);
-        } 
+        }
     },
 
-    setZipFileLoadProgress: function(notify) {
+    setZipFileLoadProgress: function (notify) {
         if (!notify) {
             return;
         };
@@ -201,7 +178,7 @@ cc.Class({
 
         let baseBundle = notify.subpackgeName;
         let progress = Number(notify.progress);
-        
+
         let allProgress = 0;
         let len = this.baseBundlesNeedUpdateArr.length
         for (let i = 0; i < len; i++) {
@@ -212,20 +189,20 @@ cc.Class({
             allProgress += tempObj.progress;
         };
 
-        let tempProgress = allProgress/(len * 100);
+        let tempProgress = allProgress / (len * 100);
 
         this.setLabUpdateProgressStr(`${(80 + tempProgress * 20).toFixed(2)}%`);
-        this.setUpdateProgressBarProgress(Number(((80 + tempProgress * 20)/100).toFixed(2)));
+        this.setUpdateProgressBarProgress(Number(((80 + tempProgress * 20) / 100).toFixed(2)));
         this.setLabUpdateContentTipsStr("Downloading files");
     },
 
-    setZipFileLoadComplete: function(notify) {
+    setZipFileLoadComplete: function (notify) {
         if (!notify) {
             return;
         };
 
         let baseBundle = notify.subpackgeName;
-        
+
         if (!this.baseBundlesUpdateCompleteArr.includes(baseBundle)) {
             this.baseBundlesUpdateCompleteArr.push(baseBundle);
         };
@@ -238,7 +215,7 @@ cc.Class({
             this.unscheduleAllCallbacks();
             this.setLabUpdateProgressStr("100%");
             this.setUpdateProgressBarProgress(1);
-          
+
             this.scheduleOnce(() => {
                 let searchPaths = jsb.fileUtils.getSearchPaths();
                 let storagePath1 = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'remote-asset/');
@@ -252,62 +229,69 @@ cc.Class({
         };
     },
 
-    editBoxCallback: function(editBox) {
+    editBoxCallback: function (editBox) {
         let editBoxName = editBox.node.name;
         if (editBoxName === "editBox_account") {
             this.node_lab_accountTips.active = false;
         }
         else if (editBoxName === "editBox_password") {
             this.node_lab_passwordTips.active = false;
+        }
+        else if (editBoxName === "editBox_confirm") {
+            this.node_lab_confirmTips.active = false;
         };
     },
 
-    clickCallBack: function(btn) {
+    clickCallBack: function (btn) {
         let btnName = btn.node.name;
-        if (btnName == "btn_accountDelete") {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.editBox_account.string = "";
-            this.node_lab_accountTips.active = false;
-            this.sendVerifyCodeReqAcount = 0;
-            this.btn_reqVerify.interactable = true;
-            this.btn_reqVerify.enableAutoGrayEffect = false;
-            clearInterval(this.verifyTimer);
-            this.verifyTimer = null;
-            this.lab_otpTips.string = 'OTP';
-            this.showCommonLoginView();
-        }
-        else if (btnName == "btn_passwordDelete") {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.editBox_password.string = "";
-            this.node_lab_passwordTips.active = false;
-        }
-        else if (btnName == "btn_accountLogin") {
+        // if (btnName == "btn_accountDelete") {
+        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+        //     this.editBox_account.string = "";
+        //     this.node_lab_accountTips.active = false;
+        //     this.sendVerifyCodeReqAcount = 0;
+        //     this.btn_reqVerify.interactable = true;
+        //     this.btn_reqVerify.enableAutoGrayEffect = false;
+        //     clearInterval(this.verifyTimer);
+        //     this.verifyTimer = null;
+        //     this.lab_otpTips.string = 'OTP';
+        //     this.showCommonLoginView();
+        // }
+        // else if (btnName == "btn_passwordDelete") {
+        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+        //     this.editBox_password.string = "";
+        //     this.node_lab_passwordTips.active = false;
+        // }
+        if (btnName == "btn_accountLogin") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.dealAccountLoginEvent();
         }
-        else if (btnName == "btn_quickLogin") {
+        else if (btnName == "btn_register") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.dealQuickLoginEvent();
+            this.dealRegisterEvent();
         }
-        else if (btnName === "btn_facebookLogin") {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            CommonFun.getInstance().showProgress();
-            this.dealFacebookLoginEvent();
-        }
-        else if (btnName === "btn_reqVerify") {
-            GlobalCfg.G_COMPONENTS.Audio.playButton();
-            let accountOrPhoneStr = this.editBox_account.string;
-            if (accountOrPhoneStr.length == 0) {
-                this.node_lab_accountTips.active = true;
-                return;
-            };
-            if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-                this.node_lab_accountTips.active = true;
-                return;
-            };
-            CommonFun.getInstance().showProgress("Sending SMS request ...");
-            this.dealReqVerifyEvent(accountOrPhoneStr);
-        }
+        // else if (btnName == "btn_quickLogin") {
+        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+        //     this.dealQuickLoginEvent();
+        // }
+        // else if (btnName === "btn_facebookLogin") {
+        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+        //     CommonFun.getInstance().showProgress();
+        //     this.dealFacebookLoginEvent();
+        // }
+        // else if (btnName === "btn_reqVerify") {
+        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+        //     let accountOrPhoneStr = this.editBox_account.string;
+        //     if (accountOrPhoneStr.length == 0) {
+        //         this.node_lab_accountTips.active = true;
+        //         return;
+        //     };
+        //     if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
+        //         this.node_lab_accountTips.active = true;
+        //         return;
+        //     };
+        //     CommonFun.getInstance().showProgress("Sending SMS request ...");
+        //     this.dealReqVerifyEvent(accountOrPhoneStr);
+        // }
         else if (btnName === "btn_guestLogin") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             CommonFun.getInstance().showProgress();
@@ -321,7 +305,7 @@ cc.Class({
             if (this.testIndexNum > 2) {
                 let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
                 if (packageChannel && packageChannel.indexOf("_") != -1) {
-                    let packageChannelArr = packageChannel.split("_"); 
+                    let packageChannelArr = packageChannel.split("_");
                     let server = packageChannelArr[0];
                     if (server == "0") { //只有测试服才能打开测试按钮
                         this.testButtonIsActive = true;
@@ -334,7 +318,7 @@ cc.Class({
         else if (btnName === "btn_testLogin") {
             let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
             if (packageChannel && packageChannel.indexOf("_") != -1) {
-                let packageChannelArr = packageChannel.split("_"); 
+                let packageChannelArr = packageChannel.split("_");
                 let server = packageChannelArr[0];
                 if (server == "0") { //只有测试服才能打开测试按钮
                     if (this.editBox_account.string == "") {
@@ -348,7 +332,7 @@ cc.Class({
         }
     },
 
-    toggleLanguageCallback: function(toggle) {
+    toggleLanguageCallback: function (toggle) {
         let toggleName = toggle.node.name;
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         let languageType = I18NLanguagesEnum.English;
@@ -372,7 +356,7 @@ cc.Class({
         I18NUtil.getInstance().setLanguageType(languageType);
     },
 
-    dealBtnWenZiEvent: function() {
+    dealBtnWenZiEvent: function () {
         if (!cc.sys.isNative) {
             return;
         };
@@ -387,7 +371,7 @@ cc.Class({
         };
     },
 
-    dealReqVerifyEvent: function(accountOrPhoneStr) {
+    dealReqVerifyEvent: function (accountOrPhoneStr) {
         if (this.sendVerifyCodeReqAcount == 3) {
             this.sendVerifyCodeReqAcount = 0;
             this.btn_reqVerify.interactable = true;
@@ -434,11 +418,11 @@ cc.Class({
         let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
         let channel = 0;
         if (packageChannel && packageChannel.indexOf("_") != -1) {
-            let packageChannelArr = packageChannel.split("_"); 
+            let packageChannelArr = packageChannel.split("_");
             channel = packageChannelArr[1];
         }
         let device = CommonFun.getInstance().getDeviceId();
-        let reqVerifyCodeParamObj = {phone: "", device: device, channel: channel};
+        let reqVerifyCodeParamObj = { phone: "", device: device, channel: channel };
         reqVerifyCodeParamObj.phone = '91' + accountOrPhoneStr;
 
         let url = `${GlobalCfg.HTTP_USER_LOGIN}/v1/sendverificationcode`;
@@ -447,31 +431,99 @@ cc.Class({
             if (msg.result != 0) {
                 CommonFun.getInstance().showTips(msg.msg);
             };
-        }, 
-        () => {
-            this.dealReqVerifyEvent(accountOrPhoneStr);
+        },
+            () => {
+                this.dealReqVerifyEvent(accountOrPhoneStr);
+            });
+    },
+
+    dealRegisterEvent: function () {
+        if (this.node_editBox_confirm.active == false) {
+            this.node_editBox_confirm.active = true;
+            this.node_lab_accountTips.active = false;
+            this.node_lab_passwordTips.active = false;
+            this.node_lab_confirmTips.active = false;
+            this.editBox_account.string = "";
+            this.editBox_password.string = "";
+            this.editBox_confirm.string = "";
+            return;
+        }
+
+        let accountStr = this.editBox_account.string;
+        if (accountStr.length < 6) {
+            this.node_lab_accountTips.active = true;
+            this.node_lab_accountTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
+            return;
+        };
+        let passwordStr = this.editBox_password.string;
+        if (passwordStr.length < 6) {
+            this.node_lab_passwordTips.active = true;
+            this.node_lab_passwordTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
+            return;
+        };
+        let confirmStr = this.editBox_confirm.string;
+        if (confirmStr.length < 6) {
+            this.node_lab_confirmTips.active = true;
+            this.node_lab_confirmTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
+            return;
+        };
+
+        if (passwordStr != confirmStr) {
+            this.node_lab_confirmTips.active = true;
+            this.node_lab_confirmTips.getComponent(cc.Label).string = "The two passwords are inconsistent";
+            return;
+        }
+        
+        CommonFun.getInstance().showProgress();
+        let obj = {
+            loginType: "ACCOUNT",
+            account: accountStr,
+            password: passwordStr,
+            isRegister: true,
+        };
+        let promise = SceneManager.getInstance().reqTokenInfo(obj);
+        promise.then(() => {
+            this.onRegisterSuccess();
+        }).catch(error => {
+            LoggerUtil.getInstance().log(error);
+            this.editBox_account.string = "";
+            this.editBox_password.string = "";
+            this.editBox_confirm.string = "";
         });
     },
 
-    dealAccountLoginEvent: function() {
+    dealAccountLoginEvent: function () {
+        if (this.node_editBox_confirm.active == true) {
+            this.node_editBox_confirm.active = false;
+            this.editBox_password.string = "";
+            this.editBox_confirm.string = "";
+            this.node_lab_accountTips.active = false;
+            this.node_lab_passwordTips.active = false;
+            this.node_lab_confirmTips.active = false;
+            return;
+        }
+
         let accountOrPhoneStr = this.editBox_account.string;
-        if (accountOrPhoneStr.length == 0) {
+        if (accountOrPhoneStr.length < 6) {
             this.node_lab_accountTips.active = true;
+            this.node_lab_accountTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
         };
 
         let passwordOrVerCodeStr = this.editBox_password.string;
-        if (passwordOrVerCodeStr.length == 0) {
+        if (passwordOrVerCodeStr.length < 6) {
             this.node_lab_passwordTips.active = true;
+            this.node_lab_passwordTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
         };
 
-        if (this.isCustomAccount(accountOrPhoneStr)) {
+        // if (this.isCustomAccount(accountOrPhoneStr)) {
             CommonFun.getInstance().showProgress();
             let obj = {
                 loginType: "ACCOUNT",
                 account: accountOrPhoneStr,
                 password: passwordOrVerCodeStr,
+                isRegister: false,
             };
             let promise = SceneManager.getInstance().reqTokenInfo(obj);
             promise.then(() => {
@@ -484,34 +536,34 @@ cc.Class({
             }).catch(error => {
                 LoggerUtil.getInstance().log(error);
             });
-        }
-        else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-            CommonFun.getInstance().showProgress();
-            let obj = {
-                loginType: "PHONE",
-                phone: '91' + accountOrPhoneStr,
-                code: passwordOrVerCodeStr,
-                token: "",
-            };
-            let promise = SceneManager.getInstance().reqTokenInfo(obj);
-            promise.then(() => {
-                return SceneManager.getInstance().reqBearerToken();
-            }).then(() => {
-                return SceneManager.getInstance().reqUserDataInfo();
-            }).then(() => {
-                CommonFun.getInstance().showProgress();
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-            }).catch(error => {
+        // }
+        // else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
+        //     CommonFun.getInstance().showProgress();
+        //     let obj = {
+        //         loginType: "PHONE",
+        //         phone: '91' + accountOrPhoneStr,
+        //         code: passwordOrVerCodeStr,
+        //         token: "",
+        //     };
+        //     let promise = SceneManager.getInstance().reqTokenInfo(obj);
+        //     promise.then(() => {
+        //         return SceneManager.getInstance().reqBearerToken();
+        //     }).then(() => {
+        //         return SceneManager.getInstance().reqUserDataInfo();
+        //     }).then(() => {
+        //         CommonFun.getInstance().showProgress();
+        //         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+        //     }).catch(error => {
 
-                LoggerUtil.getInstance().log(error);
-            });
-        }
-        else {
-            this.node_lab_accountTips.active = true;
-        };
+        //         LoggerUtil.getInstance().log(error);
+        //     });
+        // }
+        // else {
+        //     this.node_lab_accountTips.active = true;
+        // };
     },
 
-    dealQuickLoginEvent: function() {
+    dealQuickLoginEvent: function () {
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         let accountOrPhoneStr = this.editBox_account.string;
         if (accountOrPhoneStr.length == 0) {
@@ -545,12 +597,12 @@ cc.Class({
         };
     },
 
-    dealFacebookLoginEvent: function() {
+    dealFacebookLoginEvent: function () {
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         WXManager.login();
     },
 
-    dealTestLoginEvent: function() {
+    dealTestLoginEvent: function () {
         let obj = {
             loginType: "USERID",
             userid: this.editBox_account.string,
@@ -569,7 +621,7 @@ cc.Class({
         });
     },
 
-    dealGuestLoginEvent: function() {
+    dealGuestLoginEvent: function () {
         if (this.testButtonIsActive) {
             GlobalCfg.OPENINSTALL_INVITE_CODE = this.editBox_invited_test.string;
             GlobalCfg.CHANNEL_INFO = this.editBox_chanel_test.string;
@@ -591,24 +643,32 @@ cc.Class({
         });
     },
 
-    isPhoneAvailable: function(phone) {
+    isPhoneAvailable: function (phone) {
         let myreg = /^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[6789]\d{9}|(\d[ -]?){10}\d$/;
         return myreg.test(phone);
     },
 
-    isCustomAccount: function(account) {
+    isCustomAccount: function (account) {
         let str = account.substring(0, 5);
         if (str == "00000") {
             return true;
         };
         return false;
     },
- 
-    start: function() {
+
+    onRegisterSuccess: function () {
+        CommonFun.getInstance().showTips("Register Success");
+        CommonFun.getInstance().hidProgress();
+        this.node_editBox_confirm.active = false;
+        this.editBox_password.string = "";
+        this.editBox_confirm.string = "";
+    },
+
+    start: function () {
         if (GlobalCfg.SERVERRELOAD == true) {
             CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
                 window.ResourcesBundle = bundle;
-                CommonFun.getInstance().showMsgBox(GlobalCfg.SERVERRELOAD_Descr, "YES", ()=>{
+                CommonFun.getInstance().showMsgBox(GlobalCfg.SERVERRELOAD_Descr, "YES", () => {
                     cc.game.end();
                 }, false);
             }, (err) => {
@@ -624,21 +684,21 @@ cc.Class({
         }
         else if (cc.sys.isBrowser) {
             // H5 环境
-            this.preloadMainH5();  
+            this.preloadMainH5();
         }
         else {
             this.changeSceneToLobby();
         }
     },
 
-    onDestroy: function() {
-        this.downloaderArr = null; 
+    onDestroy: function () {
+        this.downloaderArr = null;
         clearInterval(this.verifyTimer);
         this.verifyTimer = null;
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
     },
 
-    runUpdateProcess: function() {
+    runUpdateProcess: function () {
         this.node_loginLayer.active = false;
         this.progressBar.node.active = true;
         this.lab_updatePoint.node.active = true;
@@ -649,11 +709,11 @@ cc.Class({
         this.setLabUpdateProgressStr("0%");
         this.setUpdateProgressBarProgress(0);
         this.setLabUpdateContentTipsStr("Getting Version Information");
-        
+
         this.comparisonVersionInfo();
     },
 
-    comparisonVersionInfo: function() {
+    comparisonVersionInfo: function () {
         let localVersion = Number(cc.sys.localStorage.getItem("localVersion"));
         LoggerUtil.getInstance().log(`Remote resource file version：${GlobalCfg.ASSETS_VERSION}, Local resource file version：${localVersion}`);
         if (localVersion != GlobalCfg.ASSETS_VERSION && GlobalCfg.is_need_update) {
@@ -668,7 +728,7 @@ cc.Class({
         };
     },
 
-    reqMainManifestInfo: function() {
+    reqMainManifestInfo: function () {
         if (this.reqComparisonMainMD5InfoAcount == 5) {
             LoggerUtil.getInstance().error("Exception in requesting manifest file under remote resource file assets!");
             this.setLabUpdateContentTipsStr("Getting Assets Manifest File Error");
@@ -684,15 +744,15 @@ cc.Class({
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_SUCCESS, endTime - startTime);
             LoggerUtil.getInstance().log("httpGet has requested data from manifest!");
             this.comparisonFilesByMainManifestInfo(json);
-        }, 
-        () => {
-            let endTime = cc.sys.now();
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_FAIL, endTime - startTime);
-            this.reqMainManifestInfo(); 
-        });
+        },
+            () => {
+                let endTime = cc.sys.now();
+                CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_FAIL, endTime - startTime);
+                this.reqMainManifestInfo();
+            });
     },
 
-    comparisonFilesByMainManifestInfo: function(json) {
+    comparisonFilesByMainManifestInfo: function (json) {
         let startTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_COMPARE_FILES_START);
 
@@ -739,19 +799,19 @@ cc.Class({
         };
     },
 
-    setUpdateProgressBarProgress: function(progress = 0) {
+    setUpdateProgressBarProgress: function (progress = 0) {
         this.progressBar.progress = progress;
     },
 
-    setLabUpdateContentTipsStr: function(str = "") {
+    setLabUpdateContentTipsStr: function (str = "") {
         this.lab_updateContentTips.string = str;
     },
 
-    setLabUpdateProgressStr: function(str) {
+    setLabUpdateProgressStr: function (str) {
         this.lab_updateProgress.string = str;
     },
 
-    setLabUpdatePointAnim: function(isAct = false) {
+    setLabUpdatePointAnim: function (isAct = false) {
         if (isAct == false) {
             this.unschedule(this.setDianTipsAnima);
             this.updateStatusPoints = 0;
@@ -760,10 +820,10 @@ cc.Class({
         else {
             this.updateStatusPoints = 0;
             this.schedule(this.setDianTipsAnima, 0.5);
-        }; 
+        };
     },
 
-    setDianTipsAnima: function() {
+    setDianTipsAnima: function () {
         if (this.updateStatusPoints == 5) {
             this.updateStatusPoints = 0;
         };
@@ -772,7 +832,7 @@ cc.Class({
         this.updateStatusPoints += 1;
     },
 
-    prepareDownDifferenceFiles: function() {
+    prepareDownDifferenceFiles: function () {
         this.loadDiffFilesStartTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_START);
 
@@ -807,7 +867,7 @@ cc.Class({
         };
     },
 
-    downDifferenceFiles: function() {
+    downDifferenceFiles: function () {
         for (let i = 0, len = this.downloaderArr.length; i < len; i++) {
             let downloader = this.downloaderArr[i];
             if (downloader.storagePath.length == 0) {
@@ -833,7 +893,7 @@ cc.Class({
         };
     },
 
-    setOnFileTaskSuccess: function(task) {
+    setOnFileTaskSuccess: function (task) {
         this.totalNumberOfFilesDownloaded += 1;
         let needUpdateFileArrLen = this.needUpdateFileArr.length;
 
@@ -858,7 +918,7 @@ cc.Class({
             this.baseBundlesHotUpdate();
         }
         else {
-            let percent = this.totalNumberOfFilesDownloaded/needUpdateFileArrLen;
+            let percent = this.totalNumberOfFilesDownloaded / needUpdateFileArrLen;
             this.setLabUpdateProgressStr((Math.floor(percent * 100) * 0.8).toFixed(2) + "%");
             this.setUpdateProgressBarProgress(Number((percent * 0.8).toFixed(2)));
             this.downDifferenceFiles();
@@ -873,7 +933,7 @@ cc.Class({
         };
     },
 
-    preloadMainH5:function(){
+    preloadMainH5: function () {
         this.node_loginLayer.active = false;
         this.progressBar.node.active = true;
         this.lab_updatePoint.node.active = true;
@@ -887,23 +947,23 @@ cc.Class({
 
         let packgeName = "MustBundle";
 
-        this.checkDownloadH5Main(()=>{
+        this.checkDownloadH5Main(() => {
             this.startRealPreload(packgeName); // 开始预加载必要资源
         });
     },
 
     // ====== 真正的预加载逻辑（80% → 100%） ======
-    startRealPreload:function(packgeName){
-        cc.assetManager.loadBundle(packgeName, (_, bundle) => { 
-            bundle.preloadDir("/", (completedCount, totalCount) => { 
+    startRealPreload: function (packgeName) {
+        cc.assetManager.loadBundle(packgeName, (_, bundle) => {
+            bundle.preloadDir("/", (completedCount, totalCount) => {
                 let rawProgress = completedCount / totalCount;
                 this.setLabUpdateProgressStr(`${(rawProgress * 100).toFixed(2)}%`);
                 this.setUpdateProgressBarProgress(rawProgress);
                 this.setLabUpdateContentTipsStr("Downloading files");
-            }, (err) => { 
-                if (err) { 
-                    console.error(packgeName+ " 资源加载失败:", err);
-                } else { 
+            }, (err) => {
+                if (err) {
+                    console.error(packgeName + " 资源加载失败:", err);
+                } else {
                     this.setLabUpdateProgressStr("100%");
                     this.setUpdateProgressBarProgress(1);
                     this.setLabUpdateContentTipsStr("Please Enjoy The Game");
@@ -911,12 +971,12 @@ cc.Class({
                         this.changeSceneToLobby();
                     }, 1);
                 }
-            }); 
+            });
         });
     },
 
-    checkDownloadH5Main(callback = null){
-        cc.assetManager.loadBundle('LanguageEnglish', function(err, bundle) {
+    checkDownloadH5Main(callback = null) {
+        cc.assetManager.loadBundle('LanguageEnglish', function (err, bundle) {
             if (err) {
                 console.error("加载 LanguageEnglish 失败:", err);
                 return;
@@ -925,7 +985,7 @@ cc.Class({
         });
     },
 
-    changeSceneToLobby: function() {
+    changeSceneToLobby: function () {
         LoggerUtil.getInstance().log("Update completed, now enter Login-view");
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_LOGIN_VIEW);
 
@@ -938,62 +998,55 @@ cc.Class({
         this.loadBundleAndRunScene();
     },
 
-    loadBundleAndRunScene: function() {
+    loadBundleAndRunScene: function () {
         // Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
         Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
-        .then((arr) => {
-            CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
-                window.ResourcesBundle = bundle;
-                GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
-                GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
-                if (!GlobalCfg.USER_DATAS.token) {
-                    this.node_loginLayer.active = true;
-                    let phoneToken = cc.sys.localStorage.getItem("phone_token");
-                    if (phoneToken) {
-                        this.showMemoryPhoneView();
+            .then((arr) => {
+                CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
+                    window.ResourcesBundle = bundle;
+                    GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
+                    GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
+                    if (!GlobalCfg.USER_DATAS.token) {
+                        this.node_loginLayer.active = true;
+                        // let phoneToken = cc.sys.localStorage.getItem("phone_token");
+                        // if (phoneToken) {
+                        //     this.showMemoryPhoneView();
+                        // }
+                        // else {
+                            this.showCommonLoginView();
+                        // };
                     }
                     else {
-                        this.showCommonLoginView();
+                        CommonFun.getInstance().showProgress('Memory login ...');
+                        this.node_loginLayer.active = false;
+                        let promise = SceneManager.getInstance().reqBearerToken();
+                        promise.then(() => {
+                            return SceneManager.getInstance().reqUserDataInfo();
+                        }).then(() => {
+                            CommonFun.getInstance().showProgress();
+                            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+                        }).catch(error => {
+                            LoggerUtil.getInstance().log(error);
+                            this.node_loginLayer.active = true;
+                            this.showCommonLoginView();
+                        });
                     };
-                }
-                else {
-                    CommonFun.getInstance().showProgress('Memory login ...');
-                    this.node_loginLayer.active = false;
-                    let promise = SceneManager.getInstance().reqBearerToken();
-                    promise.then(() => {
-                        return SceneManager.getInstance().reqUserDataInfo();
-                    }).then(() => {
-                        CommonFun.getInstance().showProgress();
-                        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-                    }).catch(error => {
-                        LoggerUtil.getInstance().log(error);
-                        this.node_loginLayer.active = true;
-                        this.showCommonLoginView("");
-                    });
-                };
-                if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
-                    this.node_btn_guestLogin.active = false;
-                    this.node_or_sprite.active = false;
-                    this.node_bg_title.active = false;
-                }
-            }, (err) => {
-                LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
+                }, (err) => {
+                    LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
+                });
+            })
+            .catch((err) => {
+                LoggerUtil.getInstance().error(err);
             });
-        })
-        .catch((err) => {
-            LoggerUtil.getInstance().error(err);
-        });
     },
 
-    showMemoryPhoneView: function() {
+    showMemoryPhoneView: function () {
         this.editBox_password.node.active = false;
-        this.node_btn_passwordDelete.active = false;
         this.node_btn_reqVerify.active = false;
         this.node_btn_accountLogin.active = false;
         this.node_btn_quickLogin.active = true;
-      
+
         this.editBox_account.string = cc.sys.localStorage.getItem("login_phone").slice(2);
-        this.node_or_sprite.setPosition(this.or_sprite_pos1);
         this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
         this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
 
@@ -1005,26 +1058,13 @@ cc.Class({
 
     },
 
-    showCommonLoginView: function() {
+    showCommonLoginView: function () {
         this.editBox_password.node.active = true;
-        this.node_btn_passwordDelete.active = true;
-        this.node_btn_reqVerify.active = true;
         this.node_btn_accountLogin.active = true;
-        this.node_btn_quickLogin.active = false;
-
         this.editBox_account.string = "";
-        this.node_or_sprite.setPosition(this.or_sprite_pos);
-        this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
-        this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
-
-        if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-            this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
-            this.node_btn_guestLogin.setContentSize(512, 79);
-        };
     },
 
-    baseBundlesHotUpdate: function() {
+    baseBundlesHotUpdate: function () {
         this.loadBundlesStartTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
         LoggerUtil.getInstance().log(`Start downloading baseBundles zip files!`);
@@ -1036,7 +1076,7 @@ cc.Class({
                         progress: 0
                     };
                     this.baseBundlesNeedUpdateArr.push(tempObj);
-                }; 
+                };
             });
         }
 

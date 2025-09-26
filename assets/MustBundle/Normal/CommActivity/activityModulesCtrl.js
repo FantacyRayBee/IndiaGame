@@ -58,6 +58,7 @@ cc.Class({
             visible: true,
         },
         red_act: cc.Node, //活动红点
+        btn_register: cc.Button,
         isShow: {
             get: function () {
                 return this._isShow;
@@ -98,6 +99,8 @@ cc.Class({
         this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
+
+        this.btn_register.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
 
         // this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
@@ -157,6 +160,9 @@ cc.Class({
         }
         else if (name == this.btn_club.node.name) {
             CommonFun.getInstance().showClub();
+        }
+        else if (name == this.btn_register.node.name) {
+            CommonFun.getInstance().showRegister();
         }
     },
 

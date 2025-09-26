@@ -85,13 +85,13 @@ cc.Class({
             if (awardno != 2) {
                 GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
                 let rewaird = {
-                    1: 5,
-                    3: 10,
-                    4: 1000,
-                    5: 1,
-                    6: 50,
-                    7: 100,
-                    8: 500
+                    1: 0.5,
+                    3: 1,
+                    4: 100,
+                    5: 0.1,
+                    6: 5,
+                    7: 10,
+                    8: 50
                 };
                 CommonFun.getInstance().showRewardsTips([{
                     id: 10,

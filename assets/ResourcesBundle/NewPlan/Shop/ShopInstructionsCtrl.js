@@ -104,7 +104,7 @@ cc.Class({
             "lab_btnOtherSupport": "<<Others Support",
 
             "enum_rechargeTips": "Recharge help",
-            "enum_withdrawalTips": "Withdrawal help",
+            // "enum_withdrawalTips": "Withdrawal help",
             "enum_rewardTips": "Welcome reward",
             "enum_winningsTips": "About Winnings",
             "enum_depositTips": "About Deposit Cash",
@@ -113,13 +113,13 @@ cc.Class({
                 0: "How to add cash?",
                 1: "Add not receive",
             },
-            "answer_withdrawalTips": {
-                0: "How to withdraw cash?",
-                1: "What is the minimum withdrawal amount?",
-                2: "How long does it take to withdraw money?",
-                3: "Withdraw filed",
-                4: "Withdraw finsh but not receive money",
-            },
+            // "answer_withdrawalTips": {
+            //     0: "How to withdraw cash?",
+            //     1: "What is the minimum withdrawal amount?",
+            //     2: "How long does it take to withdraw money?",
+            //     3: "Withdraw filed",
+            //     4: "Withdraw finsh but not receive money",
+            // },
             "answer_rewardTips": {
                 0: "Welcome reward",
             },
@@ -136,13 +136,13 @@ cc.Class({
                 0: "Pease choose the amount and payment method youneed in the game, after payment please wait 3-10 minutes for your money to arive in your game account, I wish you a pleasant game.",
                 1: "Please wait 3-10 minutes, maybe the arrival delay. If you still do not receive money after refreshing the game please click \"Whatsapp Service\" to upload your successful payment voucher which needs to contain the payment time, payment amount payee information,UTR or UPI payment number or upi transcation number",
             },
-            "text_withdrawalTips": {
-                0: "Hello, after you recharge 200 and the amount you win reaches 500,you need to KYC first, fill in your correct bank card、 Email、Mobile and IFSC/UPI information to withdraw.",
-                1: "The minimum withdrawal amount is 500, the maximum withdrawal amount is 10000and there is no limit to the number of withdrawals.",
-                2: "The withdrawal review takes 30-60 minutesand the bank processing period takes 3-7workdays. Please wait patiently. Usually completed within 72 hours Each withdrawal bank has different processing time, your money is very safe, don't worry.",
-                3: "1 Due to fluctuations in the banking system your withdrawal amount is all returned to your gameyou can withdraw again, or please try to replace the bank card. \n2 Your bank card information is filled in incorrectly please check your bank card informationthe bank information is filled in correctly after the withdrawal. \n3 The system detects that there are users cheating in your hand, your money is returned after deducting the handling fee,you need to withdraw after playing the game again. \n4.Your email and phone calls must be real",
-                4: "After the withdrawal is completedplease wait 24 hours there may be a delay in arriving.If you have not received money after 24 hoursplease select \"Whatsapp Service\" to upload a screenshot of your withdrawal pageand please mark the withdrawal in the screenshot which one you have not received money.",
-            },
+            // "text_withdrawalTips": {
+            //     0: "Hello, after you recharge 200 and the amount you win reaches 500,you need to KYC first, fill in your correct bank card、 Email、Mobile and IFSC/UPI information to withdraw.",
+            //     1: "The minimum withdrawal amount is 500, the maximum withdrawal amount is 10000and there is no limit to the number of withdrawals.",
+            //     2: "The withdrawal review takes 30-60 minutesand the bank processing period takes 3-7workdays. Please wait patiently. Usually completed within 72 hours Each withdrawal bank has different processing time, your money is very safe, don't worry.",
+            //     3: "1 Due to fluctuations in the banking system your withdrawal amount is all returned to your gameyou can withdraw again, or please try to replace the bank card. \n2 Your bank card information is filled in incorrectly please check your bank card informationthe bank information is filled in correctly after the withdrawal. \n3 The system detects that there are users cheating in your hand, your money is returned after deducting the handling fee,you need to withdraw after playing the game again. \n4.Your email and phone calls must be real",
+            //     4: "After the withdrawal is completedplease wait 24 hours there may be a delay in arriving.If you have not received money after 24 hoursplease select \"Whatsapp Service\" to upload a screenshot of your withdrawal pageand please mark the withdrawal in the screenshot which one you have not received money.",
+            // },
             "text_rewardTips": {
                 0: "Hello,the welcome reward is to recharge 500 and the total amount is 800. 500Cash + 300Bonus",
             },
@@ -160,13 +160,13 @@ cc.Class({
                 0: "Note: You can get more cash by selecting recharge activities",
                 1: "",
             },
-            "ps_withdrawalTips": {
-                0: "",
-                1: "",
-                2: "",
-                3: "",
-                4: "",
-            },
+            // "ps_withdrawalTips": {
+            //     0: "",
+            //     1: "",
+            //     2: "",
+            //     3: "",
+            //     4: "",
+            // },
             "ps_rewardTips": {
                 0: "",
             },
@@ -179,7 +179,7 @@ cc.Class({
                 1: "",
             },
         };
-        this.curLang = "hindi";
+        this.curLang = "english";
         this.enumItemNodeArr = [];
         this.answerItemNodeArr = [];
         this.curLevelTagArr = [];
@@ -216,7 +216,8 @@ cc.Class({
 
     start: function() {
         let curLang = this.curLang;
-        let enumItemTypeArr = ["rechargeTips", "withdrawalTips", "rewardTips", "winningsTips", "depositTips"];
+        // let enumItemTypeArr = ["rechargeTips", "withdrawalTips", "rewardTips", "winningsTips", "depositTips"];
+        let enumItemTypeArr = ["rechargeTips", "rewardTips", "winningsTips", "depositTips"];
         let len = enumItemTypeArr.length;
         let index = 0;
         let addEnumItem = function() {

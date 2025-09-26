@@ -778,7 +778,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Minimum bet INR:",
+    "_name": "Minimum bet USD:",
     "_objFlags": 0,
     "_parent": {
       "__id__": 12
@@ -855,8 +855,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Minimum bet INR:",
-    "_N$string": "Minimum bet INR:",
+    "_string": "Minimum bet USD:",
+    "_N$string": "Minimum bet USD:",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,

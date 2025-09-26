@@ -497,13 +497,13 @@ var SceneManager = cc.Class({
         "sign": CommonFun.getInstance().encryptByRSA(notify.code.UserId)
       };
     } else if (notify.loginType == "ACCOUNT") {
-      httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/accountlogin";
+      httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/accountloginv1";
       httpParam = {
         "device": device,
         "account": notify.account,
         "password": notify.password,
         "admin_mode": 0,
-        "channel": GlobalCfg.CHANNEL_INFO,
+        "channel_info": GlobalCfg.CHANNEL_INFO,
         "googleId": googleId,
         "adv": GlobalCfg.ADVERTISING_ID,
         "adid": GlobalCfg.ADJUST_ID,
@@ -513,7 +513,8 @@ var SceneManager = cc.Class({
         "afid": GlobalCfg.APPSFLYER_ID,
         "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
         "sign": CommonFun.getInstance().encryptByRSA(notify.account),
-        "cl": conversionListener
+        "cl": conversionListener,
+        "isRegister": notify.isRegister
       };
     } else if (notify.loginType == "GUEST") {
       // httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/visitorlogin"
@@ -568,8 +569,11 @@ var SceneManager = cc.Class({
           var isNew = msgData.is_new;
           GlobalCfg.USER_DATAS.userId = msgData.userid;
           GlobalCfg.USER_DATAS.token = msgData.token;
-          cc.sys.localStorage.setItem("login_token", msgData.token);
-          cc.sys.localStorage.setItem("login_userid", msgData.userid);
+          if (!notify.isRegister) {
+            //非注册消息，需要保存token
+            cc.sys.localStorage.setItem("login_token", msgData.token);
+            cc.sys.localStorage.setItem("login_userid", msgData.userid);
+          }
           if (notify.loginType == "PHONE" && notify.phone) {
             cc.sys.localStorage.setItem("login_phone", notify.phone);
             cc.sys.localStorage.setItem("phone_token", msgData.token);

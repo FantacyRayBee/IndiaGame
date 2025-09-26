@@ -344,7 +344,7 @@ LobbyServerManager.checkDistributed = function(webData) {
             }
             // 上传充值数据到FB账号后台
             // 此处 标准事件 参数命名需参照官方标准，不可自行定义，https://developers.facebook.com/docs/app-events/reference ，AppEventsConstants类中定义
-            let content = {fb_content: 'Recharge', fb_currency: 'INR'};
+            let content = {fb_content: 'Recharge', fb_currency: 'USD'};
             let obj = {eventName: 'fb_mobile_purchase', valueToSum: Math.ceil(changed / 100), eventContent: content};
             APPManager.faceBookLogEvent(JSON.stringify(obj));
 

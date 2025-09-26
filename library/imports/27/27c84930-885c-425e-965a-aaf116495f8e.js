@@ -33,7 +33,12 @@ cc.Class({
     BankNameEditBox: cc.EditBox,
     BranchBankNameEditBox: cc.EditBox,
     EmailEditBox: cc.EditBox,
-    MobileEditBox: cc.EditBox
+    MobileEditBox: cc.EditBox,
+    // WithDraw2
+    nodeWirte2: cc.Node,
+    btnCloseWrite2: cc.Button,
+    btnSave2: cc.Button,
+    CashEditBox: cc.EditBox
   },
   // LIFE-CYCLE CALLBACKS:
   ctor: function ctor() {
@@ -117,7 +122,9 @@ cc.Class({
     this.btnRule.node.on('click', this.clickCallback, this);
     this.btnCLoseRule.node.on('click', this.clickCallback, this);
     this.btnCloseWrite.node.on('click', this.clickCallback, this);
+    this.btnCloseWrite2.node.on('click', this.clickCallback, this);
     this.btnSave.node.on('click', this.clickCallback, this);
+    this.btnSave2.node.on('click', this.clickCallback, this);
     this.AccountEditBox.node.on('editing-did-ended', this.checkAccound, this);
     this.UserNameEditBox.node.on('editing-did-ended', this.checkUserName, this);
     this.IFSCEditBox.node.on('editing-did-ended', this.checkIFSCCode, this);
@@ -125,6 +132,7 @@ cc.Class({
     this.BranchBankNameEditBox.node.on('editing-did-ended', this.checkBranchBankName, this);
     this.EmailEditBox.node.on('editing-did-ended', this.checkEmail, this);
     this.MobileEditBox.node.on('editing-did-ended', this.checkMobile, this);
+    this.CashEditBox.node.on('editing-did-ended', this.checkCash, this);
     this.initConfigData();
   },
   onEventMsg: function onEventMsg(webData, target) {
@@ -160,7 +168,8 @@ cc.Class({
     }
     GlobalCfg.G_COMPONENTS.Audio.playButton();
     if (name == this.btnAddAccount.node.name) {
-      this.showWriteData();
+      // this.showWriteData();
+      this.showWriteData2();
     } else if (name == this.btnWithDraw.node.name) {
       if (this.labBankAccount.node.active == true) {
         // 已有银行卡号，
@@ -198,15 +207,21 @@ cc.Class({
         }
         ;
       } else {
-        this.showWriteData();
+        this.showWriteData2();
+        // this.showWriteData();
       }
       ;
     } else if (name == this.btnRule.node.name) {
       this.nodeRule.active = true;
     } else if (name == this.btnSave.node.name) {
       this.saveAddress();
+    } else if (name == this.btnSave2.node.name) {
+      this.saveCashIFSC();
     } else if (name == this.btnCloseWrite.node.name) {
       this.nodeWirte.active = false;
+      this.nodeMain.active = true;
+    } else if (name == this.btnCloseWrite2.node.name) {
+      this.nodeWirte2.active = false;
       this.nodeMain.active = true;
     }
   },
@@ -280,6 +295,12 @@ cc.Class({
     this.nodeMain.active = false;
     this.nodeWirte.active = true;
   },
+  showWriteData2: function showWriteData2() {
+    LoggerUtil.getInstance().log("展示玩家WithDraw信息", this.address);
+    this.CashEditBox.string = this.address.ifsc;
+    this.nodeMain.active = false;
+    this.nodeWirte2.active = true;
+  },
   saveAddress: function saveAddress() {
     var _this2 = this;
     if (this.writeDataErrorList.size == 0) {
@@ -310,13 +331,44 @@ cc.Class({
       CommonFun.getInstance().showTips(errorStr);
     }
   },
-  loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
+  saveCashIFSC: function saveCashIFSC() {
     var _this3 = this;
+    var str = this.CashEditBox.string;
+    if (str.length == 0) {
+      CommonFun.getInstance().showTips("Input cannot be empty");
+      return;
+    }
+    ;
+    this.address.ifsc = str;
+    this.address.country = 1;
+    CommonFun.getInstance().showProgress();
+    var httpUrl = GlobalCfg.HTTP_SERVER + "/v1/payment/india_address";
+    CommonFun.getInstance().httpPost(httpUrl, {
+      address: this.address
+    }, function (msg) {
+      CommonFun.getInstance().hidProgress();
+      if (msg.result == 0) {
+        CommonFun.getInstance().showTips('Save Info Success!');
+        if (CommonFun.getInstance().isValidForScr(_this3)) {
+          _this3.initServiceData();
+          _this3.nodeMain.active = true;
+          _this3.nodeWirte.active = false;
+          GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(_this3.address);
+        }
+        ;
+      } else {
+        CommonFun.getInstance().showTips(msg.msg);
+      }
+      ;
+    }, null, GlobalCfg.USER_DATAS.BearerToken);
+  },
+  loadHeadSp: function loadHeadSp(headUrl, realWidth, heaSprite) {
+    var _this4 = this;
     if (headUrl && headUrl.length > 0) {
       cc.assetManager.loadRemote(headUrl, {
         ext: '.png'
       }, function (err, texture) {
-        if (!err && cc.isValid(_this3) && cc.isValid(heaSprite)) {
+        if (!err && cc.isValid(_this4) && cc.isValid(heaSprite)) {
           heaSprite.spriteFrame = new cc.SpriteFrame(texture);
           heaSprite.node.setScale(realWidth / heaSprite.node.width);
         }
@@ -396,6 +448,10 @@ cc.Class({
     } else {
       this.writeDataErrorList.add('mobile');
     }
+  },
+  checkCash: function checkCash(editBox) {
+    var str = editBox.string;
+    this.address.cash = str;
   }
 });
 

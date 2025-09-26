@@ -868,6 +868,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
    */
   GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
   /**
+   * 注册界面
+   */
+  REGISTER: "ResourcesBundle/NewPlan/register/registerView",
+  /**
    * 活动 Go Betting
    */
   ACTIVITY_GOBETTING: "ResourcesBundle/NewPlan/ConsumerActivities/ConsumerActivities",
@@ -966,6 +970,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   INDUCEMENTPOP: "SecondLayer",
   ONLY_PAY: "SecondLayer",
   GAMEICONLIST: "SecondLayer",
+  REGISTER: "SecondLayer",
   SMALLADDCASH: "ThirdLayer",
   SMALLADDEXPERIENCE: "ThirdLayer",
   USERHEAD: "ThirdLayer",
