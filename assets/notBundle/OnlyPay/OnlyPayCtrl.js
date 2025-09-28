@@ -189,11 +189,18 @@ cc.Class({
         let buttonLabelNum = button.node.getChildByName('LabelNum').getComponent(cc.Label);
 
         // labelRate.string = rate + '%';
-        labelCash.string = Math.round(cash / 100);
-        labelExtraCash.string = Math.round(extraCash / 100);
-        labelBonus.string = Math.round(bonus / 100);
-        labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
-        buttonLabelNum.string = Math.round(cash / 100);
+        // labelCash.string = Math.round(cash / 100);
+        // labelExtraCash.string = Math.round(extraCash / 100);
+        // labelBonus.string = Math.round(bonus / 100);
+        // labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
+        // buttonLabelNum.string = Math.round(cash / 100);
+
+        labelCash.string = (cash / 100);
+        labelExtraCash.string = (extraCash / 100);
+        labelBonus.string = (bonus / 100);
+        labelTotalGet.string = ((cash + extraCash + bonus) / 100);
+        buttonLabelNum.string = (cash / 100);
+
         button.node.on('click', () => {
             let callback = () => {
                 CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.OnlyPay, () => {
@@ -201,7 +208,8 @@ cc.Class({
                 }, GlobalCfg.PAY_CHANNEL);
             }
             this.node.destroy();
-            let _data = {price: Math.round((data.amount + data.add)/100), bonus: Math.round(data.bonus/100)}
+            // let _data = {price: Math.round((data.amount + data.add)/100), bonus: Math.round(data.bonus/100)}
+            let _data = {price: ((data.amount + data.add)/100), bonus: (data.bonus/100)}
             CommonFun.getInstance().showPayChannel(_data, callback);
         });
     },

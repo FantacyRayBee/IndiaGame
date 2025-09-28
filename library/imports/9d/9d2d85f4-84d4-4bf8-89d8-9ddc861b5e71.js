@@ -131,7 +131,9 @@ cc.Class({
     var cash = data.amount;
     var extraCash = data.add;
     var bonus = data.bonus;
-    var rate = Math.round((extraCash + bonus) * 100 / cash);
+    var rate = (extraCash + bonus) * 100 / cash;
+    // let rate = Math.round((extraCash + bonus) * 100 / cash);
+
     var labelRate = node.getChildByName('LabelRate').getComponent(cc.Label);
     var labelCash = node.getChildByName('LabelCash').getComponent(cc.Label);
     var labelExtraCash = node.getChildByName('LabelExtraCash').getComponent(cc.Label);
@@ -140,11 +142,17 @@ cc.Class({
     var button = node.getChildByName('Button').getComponent(cc.Button);
     var buttonLabelNum = button.node.getChildByName('LabelNum').getComponent(cc.Label);
     labelRate.string = rate + '%';
-    labelCash.string = Math.round(cash / 100);
-    labelExtraCash.string = Math.round(extraCash / 100);
-    labelBonus.string = Math.round(bonus / 100);
-    labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
-    buttonLabelNum.string = Math.round(cash / 100);
+    // labelCash.string = Math.round(cash / 100);
+    // labelExtraCash.string = Math.round(extraCash / 100);
+    // labelBonus.string = Math.round(bonus / 100);
+    // labelTotalGet.string = Math.round((cash + extraCash + bonus) / 100);
+    // buttonLabelNum.string = Math.round(cash / 100);
+
+    labelCash.string = (cash / 100).toString();
+    labelExtraCash.string = (extraCash / 100).toString();
+    labelBonus.string = (bonus / 100).toString();
+    labelTotalGet.string = ((cash + extraCash + bonus) / 100).toString();
+    buttonLabelNum.string = (cash / 100).toString();
     button.node.on('click', function () {
       var callback = function callback() {
         CommonFun.getInstance().rechargeByCommodityId(id, GlobalCfg.SHOP_RECHARGE_FROM.BankruptcyGift, function () {
@@ -152,9 +160,10 @@ cc.Class({
           _this2.node.destroy();
         }, GlobalCfg.PAY_CHANNEL);
       };
+      // let data1 = {price: Math.round((data.amount + data.add) / 100), bonus: Math.round(data.bonus / 100)}
       var data1 = {
-        price: Math.round((data.amount + data.add) / 100),
-        bonus: Math.round(data.bonus / 100)
+        price: (data.amount + data.add) / 100,
+        bonus: data.bonus / 100
       };
       CommonFun.getInstance().showPayChannel(data1, callback);
     });

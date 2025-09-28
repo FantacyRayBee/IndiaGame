@@ -353,7 +353,7 @@ cc.Class({
         if (CommonFun.getInstance().isValidForScr(_this3)) {
           _this3.initServiceData();
           _this3.nodeMain.active = true;
-          _this3.nodeWirte.active = false;
+          _this3.nodeWirte2.active = false;
           GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(_this3.address);
         }
         ;

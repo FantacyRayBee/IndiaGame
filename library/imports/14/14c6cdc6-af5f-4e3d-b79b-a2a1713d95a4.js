@@ -34,10 +34,10 @@ cc.Class({
     }
     ;
     this.shopItemData = data;
-    var amount = Math.floor(data.amount / 100);
+    var amount = data.amount / 100;
     var id = data.id;
     var loop_status = data.loop_status;
-    var gift = Math.floor(data.gift / 100); // 赠送
+    var gift = data.gift / 100; // 赠送
 
     this.lab_shopCoin1.string = "$" + amount;
     this.lab_shopCoin2.string = "$" + amount;

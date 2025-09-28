@@ -28,10 +28,10 @@ cc.Class({
 
         this.shopItemData = data;
 
-        let amount = Math.floor(data.amount / 100);
+        let amount = data.amount / 100
         let id = data.id;
         let loop_status = data.loop_status;
-        let gift = Math.floor(data.gift / 100);   // 赠送
+        let gift = data.gift / 100   // 赠送
 
         this.lab_shopCoin1.string = `$${amount}`;
         this.lab_shopCoin2.string = `$${amount}`;

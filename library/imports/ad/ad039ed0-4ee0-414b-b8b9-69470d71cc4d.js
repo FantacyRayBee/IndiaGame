@@ -84,8 +84,11 @@ cc.Class({
       var shopItemData = notify.shopItemData;
       SHOPPING.cashID = shopItemData.id;
       SHOPPING.cashAmount = shopItemData.amount;
-      var amount = Math.floor(shopItemData.amount / 100);
-      var gift = Math.floor(shopItemData.gift / 100);
+
+      // let amount = Math.floor(shopItemData.amount / 100);
+      // let gift = Math.floor(shopItemData.gift / 100);
+      var amount = shopItemData.amount / 100;
+      var gift = shopItemData.gift / 100;
       if (shopItemData.loop_status == 0) {
         self.lab_cash.string = "$" + amount;
         self.lab_bonus.string = "$" + gift;

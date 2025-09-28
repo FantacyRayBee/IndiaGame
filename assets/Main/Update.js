@@ -150,13 +150,13 @@ cc.Class({
             self.progressBar.node.active = false;
             self.node_loginLayer.active = true;
             self.sendVerifyCodeReqAcount = 0;
-            self.btn_reqVerify.interactable = true;
-            self.btn_reqVerify.enableAutoGrayEffect = false;
+            // self.btn_reqVerify.interactable = true;
+            // self.btn_reqVerify.enableAutoGrayEffect = false;
             self.lab_updatePoint.node.active = false;
             self.lab_updateProgress.node.active = false;
-            clearInterval(self.verifyTimer);
-            self.verifyTimer = null;
-            self.lab_otpTips.string = 'OTP';
+            // clearInterval(self.verifyTimer);
+            // self.verifyTimer = null;
+            // self.lab_otpTips.string = 'OTP';
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
             self.setZipFileLoadProgress(notify);
@@ -375,45 +375,45 @@ cc.Class({
     dealReqVerifyEvent: function (accountOrPhoneStr) {
         if (this.sendVerifyCodeReqAcount == 3) {
             this.sendVerifyCodeReqAcount = 0;
-            this.btn_reqVerify.interactable = true;
-            this.btn_reqVerify.enableAutoGrayEffect = false;
-            clearInterval(this.verifyTimer);
-            this.verifyTimer = null;
-            this.lab_otpTips.string = 'OTP';
+            // this.btn_reqVerify.interactable = true;
+            // this.btn_reqVerify.enableAutoGrayEffect = false;
+            // clearInterval(this.verifyTimer);
+            // this.verifyTimer = null;
+            // this.lab_otpTips.string = 'OTP';
             CommonFun.getInstance().showTips("Server SMS interface exception");
             return;
         };
         this.sendVerifyCodeReqAcount += 1;
 
         if (this.sendVerifyCodeReqAcount == 1) {
-            this.btn_reqVerify.interactable = false;
-            this.btn_reqVerify.enableAutoGrayEffect = true;
-            if (this.verifyTimer) {
-                clearInterval(this.verifyTimer);
-                this.verifyTimer = null;
-            };
-            let waitTime = 180;
-            this.lab_otpTips.string = `${waitTime}S`;
-            this.verifyTimer = setInterval(() => {
-                waitTime -= 1;
-                if (waitTime == 0) {
-                    if (this && this.verifyTimer) {
-                        clearInterval(this.verifyTimer);
-                        this.verifyTimer = null;
-                    };
-                    if (this && this.btn_reqVerify) {
-                        this.btn_reqVerify.interactable = true;
-                        this.btn_reqVerify.enableAutoGrayEffect = false;
-                    }
-                    if (this && this.lab_otpTips) {
-                        this.lab_otpTips.string = 'OTP';
-                    }
-                    return;
-                }
-                if (this && this.lab_otpTips) {
-                    this.lab_otpTips.string = `${waitTime}S`;
-                }
-            }, 1000);
+            // this.btn_reqVerify.interactable = false;
+            // this.btn_reqVerify.enableAutoGrayEffect = true;
+            // if (this.verifyTimer) {
+            //     clearInterval(this.verifyTimer);
+            //     this.verifyTimer = null;
+            // };
+            // let waitTime = 180;
+            // this.lab_otpTips.string = `${waitTime}S`;
+            // this.verifyTimer = setInterval(() => {
+            //     waitTime -= 1;
+            //     if (waitTime == 0) {
+            //         if (this && this.verifyTimer) {
+            //             clearInterval(this.verifyTimer);
+            //             this.verifyTimer = null;
+            //         };
+            //         // if (this && this.btn_reqVerify) {
+            //         //     this.btn_reqVerify.interactable = true;
+            //         //     this.btn_reqVerify.enableAutoGrayEffect = false;
+            //         // }
+            //         if (this && this.lab_otpTips) {
+            //             this.lab_otpTips.string = 'OTP';
+            //         }
+            //         return;
+            //     }
+            //     if (this && this.lab_otpTips) {
+            //         this.lab_otpTips.string = `${waitTime}S`;
+            //     }
+            // }, 1000);
         };
 
         let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
@@ -484,7 +484,24 @@ cc.Class({
         };
         let promise = SceneManager.getInstance().reqTokenInfo(obj);
         promise.then(() => {
-            this.onRegisterSuccess();
+            CommonFun.getInstance().showProgress();
+            let obj = {
+                loginType: "ACCOUNT",
+                account: accountStr,
+                password: passwordStr,
+                isRegister: false,
+            };
+            let promise = SceneManager.getInstance().reqTokenInfo(obj);
+            promise.then(() => {
+                return SceneManager.getInstance().reqBearerToken();
+            }).then(() => {
+                return SceneManager.getInstance().reqUserDataInfo();
+            }).then(() => {
+                CommonFun.getInstance().showProgress();
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+            }).catch(error => {
+                LoggerUtil.getInstance().log(error);
+            });
         }).catch(error => {
             LoggerUtil.getInstance().log(error);
             this.editBox_account.string = "";
@@ -694,8 +711,8 @@ cc.Class({
 
     onDestroy: function () {
         this.downloaderArr = null;
-        clearInterval(this.verifyTimer);
-        this.verifyTimer = null;
+        // clearInterval(this.verifyTimer);
+        // this.verifyTimer = null;
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
     },
 

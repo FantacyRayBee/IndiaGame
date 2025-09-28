@@ -242,9 +242,20 @@ cc.Class({
   dealBtnMainCloseEvent: function dealBtnMainCloseEvent() {
     this.node.destroy();
   },
+  // dealBtnFXEvent: function () {
+  //     let shareUrl = `Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
+  //     APPManager.Share(shareUrl);
+  // },
+
   dealBtnFXEvent: function dealBtnFXEvent() {
-    var shareUrl = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go\uFF01 " + GlobalCfg.APP_SHARE_URL + "?inviteCode=" + GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
-    APPManager.Share(shareUrl);
+    var shareText = "Your cash will expire in three hours, download the No.1 card game in US to receive your cash, do not let it go！";
+    var inviteCode = GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
+    var shareUrl = GlobalCfg.APP_SHARE_URL + "?inviteCode=" + inviteCode;
+
+    // 只拼接，保持最终是明文
+    var finalStr = shareText + " " + shareUrl;
+    // 输出或分享
+    APPManager.Share(finalStr);
   },
   dealBtnFZEvent: function dealBtnFZEvent() {
     if (cc.sys.isNative) {

@@ -37,8 +37,10 @@ cc.Class({
     for (var i = 0; i < 2; i++) {
       var data = commodity[i];
       if (data) {
-        var price = Math.floor(Number(data.amount) / 100);
-        var bonus = Math.floor(Number(data.gift) / 100);
+        // let price = Math.floor(Number(data.amount) / 100);
+        // let bonus = Math.floor(Number(data.gift) / 100);
+        var price = Number(data.amount) / 100;
+        var bonus = Number(data.gift) / 100;
         if (i == 0) {
           this.firstCommodityId = data.id;
           this.lab_item0Cash.string = "$" + price;
@@ -85,7 +87,8 @@ cc.Class({
         return;
       case "btn_item0":
         if (commodity[0]) {
-          price = Math.floor(Number(commodity[0].amount) / 100);
+          // price = Math.floor(Number(commodity[0].amount) / 100);
+          price = Number(commodity[0].amount) / 100;
         }
         // CommonFun.getInstance().ShowTipsBeforeBuy(price, ()=>{
         var callback = function callback() {
@@ -119,7 +122,8 @@ cc.Class({
       case "btn_item1":
         price = 1000;
         if (commodity[1]) {
-          price = Math.floor(Number(commodity[1].amount) / 100);
+          // price = Math.floor(Number(commodity[1].amount) / 100);
+          price = Number(commodity[1].amount) / 100;
         }
         // CommonFun.getInstance().ShowTipsBeforeBuy(price, ()=>{
         var callback2 = function callback2() {

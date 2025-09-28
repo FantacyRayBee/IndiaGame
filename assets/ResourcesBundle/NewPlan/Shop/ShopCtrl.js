@@ -92,8 +92,11 @@ cc.Class({
             SHOPPING.cashID = shopItemData.id;
             SHOPPING.cashAmount = shopItemData.amount;
             
-            let amount = Math.floor(shopItemData.amount / 100);
-            let gift = Math.floor(shopItemData.gift / 100);
+            // let amount = Math.floor(shopItemData.amount / 100);
+            // let gift = Math.floor(shopItemData.gift / 100);
+            let amount = shopItemData.amount / 100
+            let gift = shopItemData.gift / 100
+
 
             if (shopItemData.loop_status == 0) {
                 self.lab_cash.string = `$${amount}`;
