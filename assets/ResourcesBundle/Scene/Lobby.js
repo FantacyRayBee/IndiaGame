@@ -247,6 +247,8 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
         };
+
+        this.loadBundleByH5();
     
         this.checkShiPei();
         this.setBtnsClick();
@@ -260,34 +262,24 @@ cc.Class({
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
         this.LoadCompletedCallback = null;
-
-        // 为按钮绑定点击事件
-        this.btn_withDarw.node.on("click", ()=>{
-            const element = document.documentElement;  // 获取整个页面元素
-            // 尝试进入全屏模式
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) { // Firefox
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) { // Chrome, Safari 和 Opera
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) { // IE/Edge
-                element.msRequestFullscreen();
-            }
-
-            // 监听全屏模式的变化
-            document.addEventListener('fullscreenchange', function () {
-                if (document.fullscreenElement) {
-                    console.log('Entered fullscreen mode');
-                } else {
-                    console.log('Exited fullscreen mode');
-                }
-            });
-        }, this);
-        // 自动触发点击事件
-        this.autoClickButton();
     },
 
+
+    //偷偷下载
+    loadBundleByH5 : function () {
+        cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
+            bundle.preloadDir("/", (completedCount, totalCount) => {
+                let rawProgress = completedCount / totalCount;  // 计算进度
+                LoggerUtil.getInstance().log(`packageName 下载进度 ： ${(rawProgress * 100).toFixed(2)}%`);
+            }, (err) => {
+                if (err) {
+                    console.error("ResourcesBundle 资源加载失败:", err);
+                } else {
+                    console.error("ResourcesBundle 资源加载成功");
+                }
+            });
+        });
+    },
 
     start: function () {
         CommonFun.getInstance().addCarouselStrip();
@@ -422,24 +414,24 @@ cc.Class({
      * 设置按钮点击事件监听
      */
     setBtnsClick: function() {
-        this.btn_tx.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_add.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        // this.btn_withDarw.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_bonusTransfer.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_service.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_setting.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_mail.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_vip.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_addCash.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_goBetiing.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-        this.btn_pdd.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-        this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-        this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
-        this.btn_inducement.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_tx.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_add.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_withDarw.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_bonusTransfer.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_service.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_setting.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_mail.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_vip.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_addCash.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_goBetiing.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this)
+        this.btn_pdd.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this)
+        this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this)
+        this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this)
+        this.btn_inducement.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this)
         
-        this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_quickRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
+        this.btn_quickRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 2), this);
 
         this.btn_miniandar.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minibenzbmw.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);

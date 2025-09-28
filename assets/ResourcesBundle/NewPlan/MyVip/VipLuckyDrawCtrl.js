@@ -219,7 +219,8 @@ cc.Class({
                     if (id == 10) {
                         GlobalCfg.USER_DATAS.deposit += amount;
                         GlobalCfg.USER_DATAS.userDiamond += amount;
-                        CommonFun.getInstance().showVipRewardToast(amount/100, false);
+                        // CommonFun.getInstance().showVipRewardToast(amount/100, false);
+                        CommonFun.getInstance().showRewardsTips([{ id: 10, amount: amount/100 }]);
                     }
                     else if (id == 11) {
                         GlobalCfg.USER_DATAS.winnings += amount;

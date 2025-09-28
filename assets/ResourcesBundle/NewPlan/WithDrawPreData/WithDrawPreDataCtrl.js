@@ -271,7 +271,8 @@ cc.Class({
     },
 
     initServiceData() {
-        this.setBankAccount(this.address.bank_card_id);
+        // this.setBankAccount(this.address.bank_card_id);
+        this.setBankAccount(this.address.ifsc);
     },
 
     /**

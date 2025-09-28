@@ -123,7 +123,7 @@ cc.Class({
         this.btn_500 = cc.find('Canvas_mtp/node_playerBetBtn/btn_500').getComponent(cc.Button);
         this.btn_1000 = cc.find('Canvas_mtp/node_playerBetBtn/btn_1000').getComponent(cc.Button);
         this.btn_5000 = cc.find('Canvas_mtp/node_playerBetBtn/btn_5000').getComponent(cc.Button);
-        this.betAmountList = [10, 50, 100, 500, 1000, 5000];
+        this.betAmountList = [1, 10, 50, 100, 500, 1000];
         this.userBtnCion = this.betAmountList[0];
         this.choiceBetButton(this.btn_10);
 

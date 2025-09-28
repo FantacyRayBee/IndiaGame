@@ -99,7 +99,7 @@ cc.Class({
         this.isRunningMultAnim = false; 
         this.isRunningJpAnim = false; 
         //投注额度数组
-        this.betAmountArr = [1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500, 800, 1000];
+        this.betAmountArr = [0.5, 1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500, 800];
         this.jackpotArr = [5, 10, 15, 30, 50, 200, 1000]; //分别对应的是minor 5-10倍 major 15-30倍 grand 50-200倍 joker 1000倍
         this.multArr = [1, 2, 3, 5, 10, 15];
         this.autoSpinTypeNumArr = [50, 100, 800, 3000];

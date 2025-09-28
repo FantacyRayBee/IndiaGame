@@ -999,40 +999,46 @@ cc.Class({
     },
 
     loadBundleAndRunScene: function () {
-        // Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
+        Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
         Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
             .then((arr) => {
-                CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
+                let packgeName = "Activity"
+                cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
                     window.ResourcesBundle = bundle;
-                    GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
-                    GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
-                    if (!GlobalCfg.USER_DATAS.token) {
-                        this.node_loginLayer.active = true;
-                        // let phoneToken = cc.sys.localStorage.getItem("phone_token");
-                        // if (phoneToken) {
-                        //     this.showMemoryPhoneView();
-                        // }
-                        // else {
-                            this.showCommonLoginView();
-                        // };
-                    }
-                    else {
-                        CommonFun.getInstance().showProgress('Memory login ...');
-                        this.node_loginLayer.active = false;
-                        let promise = SceneManager.getInstance().reqBearerToken();
-                        promise.then(() => {
-                            return SceneManager.getInstance().reqUserDataInfo();
-                        }).then(() => {
-                            CommonFun.getInstance().showProgress();
-                            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-                        }).catch(error => {
-                            LoggerUtil.getInstance().log(error);
-                            this.node_loginLayer.active = true;
-                            this.showCommonLoginView();
-                        });
-                    };
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
+                    bundle.preloadDir(packgeName, null, (err) => {
+                        if (err) {
+                            console.error(packgeName + " 资源加载失败:", err);
+                        } else {
+                            console.error(packgeName + " 资源加载成功");
+                            GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
+                            GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
+                            if (!GlobalCfg.USER_DATAS.token) {
+                                this.node_loginLayer.active = true;
+                                // let phoneToken = cc.sys.localStorage.getItem("phone_token");
+                                // if (phoneToken) {
+                                //     this.showMemoryPhoneView();
+                                // }
+                                // else {
+                                    this.showCommonLoginView();
+                                // };
+                            }
+                            else {
+                                CommonFun.getInstance().showProgress('Memory login ...');
+                                this.node_loginLayer.active = false;
+                                let promise = SceneManager.getInstance().reqBearerToken();
+                                promise.then(() => {
+                                    return SceneManager.getInstance().reqUserDataInfo();
+                                }).then(() => {
+                                    CommonFun.getInstance().showProgress();
+                                    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+                                }).catch(error => {
+                                    LoggerUtil.getInstance().log(error);
+                                    this.node_loginLayer.active = true;
+                                    this.showCommonLoginView();
+                                });
+                            }
+                        }
+                    });
                 });
             })
             .catch((err) => {

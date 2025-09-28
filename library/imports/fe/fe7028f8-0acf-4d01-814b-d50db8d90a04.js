@@ -49,7 +49,7 @@ cc.Class({
   ctor: function ctor() {
     // Config
     this.isHide = false; // 是否后台隐藏
-    this.btnBetCoinNum = [10, 50, 200, 500, 1000]; // 配置下注按钮数值
+    this.btnBetCoinNum = [1, 10, 50, 200, 500]; // 配置下注按钮数值
     this.curSingleNote = this.btnBetCoinNum[0]; // 当前单注数值
     this.betDuration = 15000; // 下注持续时间 ms
     this.calcDuration = 3000; // 爆炸后结算时长 ms

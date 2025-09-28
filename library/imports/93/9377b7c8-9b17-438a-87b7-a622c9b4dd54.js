@@ -45,7 +45,7 @@ cc.Class({
     //请选择下注的范围
     "Your cash is insufficient, Please recharge in time!"];
     //投注额度数组
-    this.betAmountArr = ['10', '20', '50', '100', '200', '500', '1000', '2000'];
+    this.betAmountArr = ["1", '10', '20', '50', '100', '200', '500', '1000'];
     if (GlobalCfg.USER_DATAS.gamePattern == 1) {
       this.betAmountArr = ['1', '10', '20', '50', '100', '200', '500', '1000', '2000'];
     }

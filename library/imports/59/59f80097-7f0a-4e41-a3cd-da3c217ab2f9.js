@@ -65,13 +65,13 @@ cc.Class({
   dealBtnOtherAmountEvent: function dealBtnOtherAmountEvent() {
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
     if (rechargeNeedInfo) {
-      if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-        CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast);
-      } else {
-        CommonFun.getInstance().showBindPhone('AddCash');
-        this.node.destroy();
-      }
-      ;
+      // if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+      CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast);
+      // }
+      // else {
+      //     CommonFun.getInstance().showBindPhone('AddCash');
+      //     this.node.destroy();
+      // };
     } else {
       CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.VipRechargeToast);
     }

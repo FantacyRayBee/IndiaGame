@@ -47,7 +47,7 @@ cc.Class({
     },
 
     initBetBtn(self){
-        self.betCoinList = [10, 50, 100, 1000, 2000];
+        self.betCoinList = [1, 10, 50, 100, 1000];
         if (GlobalCfg.USER_DATAS.gamePattern == 1) {
             self.betCoinList = [1, 10, 50, 100, 1000];
         }

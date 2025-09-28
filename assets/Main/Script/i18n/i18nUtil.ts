@@ -304,7 +304,7 @@ export enum I18NLabelTransIdEnum {
     'MyVip_RULES',
     'MyVip_Benefits',
     'MyVip_Only VIP players can use this feature',
-    'MyVip_Add cash 200 now to become a VIP player.',
+    'MyVip_Add cash 15 now to become a VIP player.',
     'MyVip_VIP Rules',
     'MyVip_Level up gift',
     
@@ -793,7 +793,7 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_Benefits'], 'Benefits');
         this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_RULES'], 'Rules');
         this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_Only VIP players can use this feature'], 'Only VIP players can use this feature');
-        this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_Add cash 200 now to become a VIP player.'], 'Add cash 200 now to become a VIP player.');
+        this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_Add cash 15 now to become a VIP player.'], 'Add cash 15 now to become a VIP player.');
         this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_VIP Rules'], 'VIP Rules');
         this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_Level up gift'], 'Level up gift');
         this.EnglishMap.set(I18NLabelTransIdEnum['MyVip_Daily Withdrawal Count'], 'Daily \nWithdrawal Count');
@@ -1129,7 +1129,7 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['MyVip_Benefits'], 'फ़ायदे');
         this.HindiMap.set(I18NLabelTransIdEnum['MyVip_RULES'], 'नियम');
         this.HindiMap.set(I18NLabelTransIdEnum['MyVip_Only VIP players can use this feature'], 'इस सुविधा का उपयोग केवल वीआईपी खिलाड़ी ही कर सकते हैं');
-        this.HindiMap.set(I18NLabelTransIdEnum['MyVip_Add cash 200 now to become a VIP player.'], 'वीआईपी खिलाड़ी बनने के लिए अभी नकद 200 जोड़ें।');
+        this.HindiMap.set(I18NLabelTransIdEnum['MyVip_Add cash 15 now to become a VIP player.'], 'वीआईपी खिलाड़ी बनने के लिए अभी नकद 200 जोड़ें।');
         this.HindiMap.set(I18NLabelTransIdEnum['MyVip_VIP Rules'], 'वीआईपी नियम');
         this.HindiMap.set(I18NLabelTransIdEnum['MyVip_Level up gift'], 'उपहार का स्तर बढ़ाएँ');
         this.HindiMap.set(I18NLabelTransIdEnum['MyVip_Daily Withdrawal Count'], 'दैनिक \nनिकासी गणना');
@@ -1465,7 +1465,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_Benefits'], 'সুবিধা');
         this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_RULES'], 'নিয়ম');
         this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_Only VIP players can use this feature'], 'শুধুমাত্র ভিআইপি খেলোয়াড়রাই এই বৈশিষ্ট্যটি ব্যবহার করতে পারবেন');
-        this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_Add cash 200 now to become a VIP player.'], 'ভিআইপি প্লেয়ার হতে এখন নগদ 200 যোগ করুন।');
+        this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_Add cash 15 now to become a VIP player.'], 'ভিআইপি প্লেয়ার হতে এখন নগদ 200 যোগ করুন।');
         this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_VIP Rules'], 'ভিআইপি নিয়ম');
         this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_Level up gift'], 'লেভেল আপ উপহার');
         this.BengaliMap.set(I18NLabelTransIdEnum['MyVip_Daily Withdrawal Count'], 'দৈনিক \nউত্তোলনের গণনা');
@@ -1803,7 +1803,7 @@ export class I18NUtil {
         this.UrduMap.set(I18NLabelTransIdEnum['MyVip_Benefits'], 'فوائد');
         this.UrduMap.set(I18NLabelTransIdEnum['MyVip_RULES'], 'قواعد');
         this.UrduMap.set(I18NLabelTransIdEnum['MyVip_Only VIP players can use this feature'], 'صرف VIP کھلاڑی ہی اس فیچر کو استعمال کر سکتے ہیں۔');
-        this.UrduMap.set(I18NLabelTransIdEnum['MyVip_Add cash 200 now to become a VIP player.'], 'VIP کھلاڑی بننے کے لیے ابھی 200 کیش شامل کریں۔');
+        this.UrduMap.set(I18NLabelTransIdEnum['MyVip_Add cash 15 now to become a VIP player.'], 'VIP کھلاڑی بننے کے لیے ابھی 200 کیش شامل کریں۔');
         this.UrduMap.set(I18NLabelTransIdEnum['MyVip_VIP Rules'], 'VIP رولز');
         this.UrduMap.set(I18NLabelTransIdEnum['MyVip_Level up gift'], 'لیول اپ گفٹ');
         this.UrduMap.set(I18NLabelTransIdEnum['MyVip_Daily Withdrawal Count'], 'روزانہ \nواپسی کی گنتی');

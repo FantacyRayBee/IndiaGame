@@ -73,7 +73,7 @@ cc.Class({
         this.finishedSlotItemNum = 0; //已经滚动停止的item数量
         this.isRunningSlotAnim = false; 
         //投注额度数组
-        this.betAmountArr = [1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500, 800, 1000];
+        this.betAmountArr = [0.5, 1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500, 800];
         this.autoSpinTypeNumArr = [50, 100, 800, 3000];
         this.autoSpinData = [true, false, false, false];
         this.itemHeight = 130; // 每个slotitem的高度

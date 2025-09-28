@@ -26,7 +26,7 @@ cc.Class({
     this.is_can_ackClick = true;
     // this.bPMDRun = false;
     this.curUseAdapt = 1; // 适配模式
-    this.singleBetNums = [100, 1000, 2000, 5000, 10000]; // 单注金额
+    this.singleBetNums = [50, 1000, 2000, 5000, 10000]; // 单注金额
     this.singleBet = this.singleBetNums[0];
     this.rotating = false; // 旋转中
     this.showBetSpineTimeInterval = 15; // 显示下注动画的时间间隔

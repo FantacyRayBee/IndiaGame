@@ -1311,17 +1311,15 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showFirstRecharge: function showFirstRecharge() {
     var _this16 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("FirstRecharge", function () {
-      var path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
-      if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
-        path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
-      }
-      var firstRechargePrefabPromise = _this16.loadPrefabByPromise(path);
-      firstRechargePrefabPromise.then(function (prefab) {
-        var firstRechargeNode = cc.instantiate(prefab);
-        var firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
-        _this16.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
-      });
+    var path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
+    if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+      path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
+    }
+    var firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+    firstRechargePrefabPromise.then(function (prefab) {
+      var firstRechargeNode = cc.instantiate(prefab);
+      var firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
+      _this16.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
     });
   },
   /**
@@ -1442,10 +1440,12 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showRegister: function showRegister() {
     var _this22 = this;
-    var prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.REGISTER);
-    prefabPromise.then(function (prefab) {
-      var Node = cc.instantiate(prefab);
-      _this22.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.REGISTER);
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("register", function () {
+      var prefabPromise = _this22.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.REGISTER);
+      prefabPromise.then(function (prefab) {
+        var Node = cc.instantiate(prefab);
+        _this22.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.REGISTER);
+      });
     });
   },
   /**
@@ -1544,7 +1544,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showRateUs: function showRateUs() {
     var _this25 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("rateUs", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("RateUs", function () {
       var rateUsPrefabPromise = _this25.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RATEUS);
       rateUsPrefabPromise.then(function (prefab) {
         var rateUsNode = cc.instantiate(prefab);
@@ -1558,7 +1558,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showBindPhoneRewards: function showBindPhoneRewards() {
     var _this26 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("bindPhoneRewards", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("BindPhoneRewards", function () {
       var bindPhoneRewardsPrefabPromise = _this26.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONEREWARDS);
       bindPhoneRewardsPrefabPromise.then(function (prefab) {
         var bindPhoneRewardsNode = cc.instantiate(prefab);
@@ -1610,7 +1610,7 @@ var CommonFun = cc.Class((_cc$Class = {
     if (str === void 0) {
       str = 'Lobby';
     }
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("bindPhone", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("BindPhone", function () {
       var bindPhonePrefabPromise = _this28.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONE);
       bindPhonePrefabPromise.then(function (prefab) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MOBILE_VIEW);
@@ -1706,7 +1706,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showRelief: function showRelief() {
     var _this31 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("relief", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("Relief", function () {
       var reliefPrefabPromise = _this31.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RELIEF);
       reliefPrefabPromise.then(function (prefab) {
         var reliefNode = cc.instantiate(prefab);
@@ -1892,7 +1892,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showDailyBonusCard: function showDailyBonusCard() {
     var _this42 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("dailyBonusCard", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("DailyBonusCard", function () {
       var dailyBonusCardPrefabPromise = _this42.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DAILYBONUSCARD);
       dailyBonusCardPrefabPromise.then(function (prefab) {
         var dailyBonusCardNode = cc.instantiate(prefab);
@@ -1906,13 +1906,11 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showFirstGiftDiamond: function showFirstGiftDiamond() {
     var _this43 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("firstGiftDiamond", function () {
-      var firstGiftDiamondPrefabPromise = _this43.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
-      firstGiftDiamondPrefabPromise.then(function (prefab) {
-        var firstGiftDiamondNode = cc.instantiate(prefab);
-        var firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');
-        _this43.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND);
-      });
+    var firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
+    firstGiftDiamondPrefabPromise.then(function (prefab) {
+      var firstGiftDiamondNode = cc.instantiate(prefab);
+      var firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');
+      _this43.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND);
     });
   },
   /**
@@ -2154,7 +2152,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showAdvancedMode: function showAdvancedMode(bool) {
     var _this59 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("advancedMode", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("AdvancedMode", function () {
       var path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE;
       var parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
       if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
@@ -2186,13 +2184,11 @@ var CommonFun = cc.Class((_cc$Class = {
         shopParentNode.getChildByName("newWithdrawal").destroy();
       }
     }
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("RechargeTip", function () {
-      APPManager.setOrientation("H");
-      var firstRechargePrefabPromise = _this60.loadPrefabByPromise(path);
-      firstRechargePrefabPromise.then(function (prefab) {
-        var firstRechargeTipsNode = cc.instantiate(prefab);
-        _this60.addToPointParent(firstRechargeTipsNode, parentNode);
-      });
+    APPManager.setOrientation("H");
+    var firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+    firstRechargePrefabPromise.then(function (prefab) {
+      var firstRechargeTipsNode = cc.instantiate(prefab);
+      _this60.addToPointParent(firstRechargeTipsNode, parentNode);
     });
   },
   /**
@@ -2200,7 +2196,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showGoBetting: function showGoBetting() {
     var _this61 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("GoBetting", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("ConsumerActivities", function () {
       var goBettingPrefabPromise = _this61.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_GOBETTING);
       goBettingPrefabPromise.then(function (prefab) {
         var goBettingNode = cc.instantiate(prefab);
@@ -2343,7 +2339,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showMyVip: function showMyVip() {
     var _this64 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var myVipPrefabPromise = _this64.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
       myVipPrefabPromise.then(function (prefab) {
         var myVipNode = cc.instantiate(prefab);
@@ -2356,7 +2352,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showVipLuckyDraw: function showVipLuckyDraw() {
     var _this65 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var vipLuckyDrawPrefabPromise = _this65.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
       vipLuckyDrawPrefabPromise.then(function (prefab) {
         var vipLuckyDrawNode = cc.instantiate(prefab);
@@ -2372,7 +2368,7 @@ var CommonFun = cc.Class((_cc$Class = {
     if (childViewType === void 0) {
       childViewType = "vipRules";
     }
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var vipRulesPrefabPromise = _this66.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULES);
       vipRulesPrefabPromise.then(function (prefab) {
         var vipRulesNode = cc.instantiate(prefab);
@@ -2389,7 +2385,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showVipRewardToast: function showVipRewardToast(amount, isBonus) {
     var _this67 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var vipRewardToastPrefabPromise = _this67.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPREWARDTOAST);
       vipRewardToastPrefabPromise.then(function (prefab) {
         var vipRewardToastNode = cc.instantiate(prefab);
@@ -2404,7 +2400,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showVipRechargeToast: function showVipRechargeToast() {
     var _this68 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var vipRechargeToastPrefabPromise = _this68.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRECHARGETOAST);
       vipRechargeToastPrefabPromise.then(function (prefab) {
         var vipRechargeToastNode = cc.instantiate(prefab);
@@ -2417,7 +2413,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showVipUpgradeToast: function showVipUpgradeToast() {
     var _this69 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var vipUpgradeToastPrefabPromise = _this69.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPUPGRADETOAST);
       vipUpgradeToastPrefabPromise.then(function (prefab) {
         var vipUpgradeToastNode = cc.instantiate(prefab);
@@ -2430,7 +2426,7 @@ var CommonFun = cc.Class((_cc$Class = {
    */
   showVipForOnceToast: function showVipForOnceToast() {
     var _this70 = this;
-    CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", function () {
+    CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", function () {
       var vipForOnceToastPrefabPromise = _this70.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
       vipForOnceToastPrefabPromise.then(function (prefab) {
         var vipForOnceToastNode = cc.instantiate(prefab);
@@ -3094,7 +3090,7 @@ var CommonFun = cc.Class((_cc$Class = {
     return;
   }
   ;
-  var defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100); // 提现弹窗限制默认值
+  var defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 30); // 提现弹窗限制默认值
   var func = function func(date) {
     var _date = date * 1000;
     var _curDate = new Date().getTime();
@@ -3179,7 +3175,7 @@ var CommonFun = cc.Class((_cc$Class = {
   // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
   var toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
   LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
-  var defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100); // 提现弹窗限制默认值
+  var defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 30); // 提现弹窗限制默认值
   if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > defaultPopupWithdrawLimit * 100 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
     this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
     this.showPopUpWithDraw();
@@ -3258,7 +3254,7 @@ var CommonFun = cc.Class((_cc$Class = {
     return;
   }
   ;
-  CommonFun.getInstance().checkBundleIsDownloadedByH5("Bankruptcy", function () {
+  CommonFun.getInstance().checkBundleIsDownloadedByH5("BankruptcyGift", function () {
     GlobalCfg.IS_SHOW_BANKRUPT = true;
     var curScene = SceneManager.getInstance().curSceneType;
     var bankruptcyPrefabPromise = _this81.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);

@@ -107,8 +107,8 @@ cc.Class({
     this.btn_register.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
     // this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
+    this.btn_register.node.active = !GlobalCfg.USER_DATAS.isBindAccount;
   },
-
   onDestroy: function onDestroy() {
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
@@ -125,6 +125,7 @@ cc.Class({
         ;
       }
       ;
+      this.btn_register.node.active = !GlobalCfg.USER_DATAS.isBindAccount;
     }
     // if (msgId == "RefreshActivity_RedPoint") {
     //     this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;

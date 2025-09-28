@@ -29,7 +29,7 @@ cc.Class({
     this.betCion = 1; //玩家下注的金额
     this.myBetCoinAll = 0; //统计自己下注全部金额
     this.paymentSwitch = false;
-    this.betCionArr = [10, 50, 100, 200, 500, 1000]; //下注的钱的数组
+    this.betCionArr = [1, 10, 50, 100, 200, 500]; //下注的钱的数组
     this.recordArr = []; //大厅历史记录数组
     this.recordBet = [0, 0, 0, 0, 0, 0]; //记录自己上局下注金额 
     this.recordBetAll = [0, 0, 0, 0, 0, 0];

@@ -104,6 +104,7 @@ cc.Class({
 
 
         // this.btn_club.node.active = (GlobalCfg.USER_DATAS.is_club || GlobalCfg.IS_CLUB_MODE == 0); //已经加入过俱乐部或者不是代理包展示俱乐部入口
+        this.btn_register.node.active = !GlobalCfg.USER_DATAS.isBindAccount;
     },
 
     onDestroy: function () {
@@ -121,6 +122,7 @@ cc.Class({
                     self.btnBonusCard.node.active = true;
                 };
             };
+            this.btn_register.node.active = !GlobalCfg.USER_DATAS.isBindAccount;
         }
         // if (msgId == "RefreshActivity_RedPoint") {
         //     this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;

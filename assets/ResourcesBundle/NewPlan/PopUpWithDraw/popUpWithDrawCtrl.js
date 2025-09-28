@@ -10,7 +10,7 @@ cc.Class({
     },
 
     onLoad() {
-        let defaultWithDrawNum = 100;
+        let defaultWithDrawNum = 30;
         let curDiamond = GlobalCfg.USER_DATAS.userDiamond;
         if (curDiamond > 10000) {
             defaultWithDrawNum = Math.floor(curDiamond / 10000) * 100;

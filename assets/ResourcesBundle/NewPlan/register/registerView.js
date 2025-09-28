@@ -67,21 +67,23 @@ cc.Class({
             return;
         }
 
-        CommonFun.getInstance().showProgress();
-        let obj = {
-            loginType: "ACCOUNT",
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/bindAccount";
+        let httpParam = {
             account: accountStr,
             password: passwordStr,
-            isRegister: true,
         };
-        let promise = SceneManager.getInstance().reqTokenInfo(obj);
-        promise.then(() => {
-            // this.onRegisterSuccess();
-            //TODO 跳奖励
-        }).catch(error => {
-            LoggerUtil.getInstance().log(error);
-            this.editBox_password.string = "";
-            this.editBox_confirm.string = "";
-        });
+        CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            if (msg.result == 0) {
+                CommonFun.getInstance().showTips("bind success");
+                GlobalCfg.USER_DATAS.isBindAccount = true;
+                GlobalCfg.USER_DATAS.bonus += msg.data.give;
+                CommonFun.getInstance().showRewardsTips([{ id: 12, amount: msg.data.give / 100 }]);
+                this.node.destroy()
+            }
+            if (msg.result != 0) {
+                CommonFun.getInstance().showTips(msg.msg);
+            };
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 });

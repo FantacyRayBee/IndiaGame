@@ -803,6 +803,10 @@ let SceneManager = cc.Class({
                      */
                     let phone = msgData.phone ? msgData.phone : "";
                     /**
+                     * 玩家是否绑定账号
+                     */
+                    let is_bind_account = msgData.is_bind_account ? msgData.is_bind_account : false;
+                    /**
                      * 玩家邮箱号
                      */
                     let mail = msgData.mail ? msgData.mail : "";
@@ -991,6 +995,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.userHeadimgurl = image_url;
                     GlobalCfg.USER_DATAS.phone = phone;
                     GlobalCfg.USER_DATAS.mail = mail;
+                    GlobalCfg.USER_DATAS.isBindAccount = is_bind_account;
                     GlobalCfg.USER_DATAS.realname = real_name;
                     GlobalCfg.USER_DATAS.inGame = in_game;
                     GlobalCfg.USER_DATAS.userDiamond = amount;

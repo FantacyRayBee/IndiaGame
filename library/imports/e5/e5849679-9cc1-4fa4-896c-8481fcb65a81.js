@@ -26,7 +26,7 @@ cc.Class({
   },
   ctor: function ctor() {
     this._curBetNum = 10;
-    this.betNumList = [1000, 2000, 5000, 10000, 20000];
+    this.betNumList = [100, 1000, 2000, 5000, 10000];
     this.showBetSpineTimeInterval = 15; // 显示下注动画的时间间隔
     this.showBetSpineTime = 0;
   },

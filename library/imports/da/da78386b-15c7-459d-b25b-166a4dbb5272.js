@@ -136,11 +136,6 @@ APPManager.showWebView = function (Url, isPortrait) {
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
-  if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
-    jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.setOrientation, '(Ljava/lang/String;)V', dir);
-    jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);
-    jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.setOrientation, '(Ljava/lang/String;)V', dir);
-  }
   var frameSize = cc.view.getFrameSize();
   if (dir == 'V') {
     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
@@ -156,9 +151,6 @@ APPManager.setOrientation = function (dir) {
       cc.Canvas.instance.designResolution = cc.size(1625, 750);
     }
     GlobalCfg.CURSCENE_DIRECTION = "horizontal";
-  }
-  if (CC_JSB) {
-    window.dispatchEvent(new cc.Event.EventCustom('resize', true));
   }
 };
 APPManager.getConcactsArrStr = function () {

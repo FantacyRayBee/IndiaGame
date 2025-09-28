@@ -1289,17 +1289,15 @@ let CommonFun = cc.Class({
      * 显示首充界面
      */
     showFirstRecharge: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("FirstRecharge", () => {
-            let path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
-            if(GlobalCfg.CURSCENE_DIRECTION == "vertical"){
-                path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
-            }
-            let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
-            firstRechargePrefabPromise.then((prefab) => {
-                let firstRechargeNode = cc.instantiate(prefab);
-                let firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
-                this.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
-            });
+        let path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
+        if(GlobalCfg.CURSCENE_DIRECTION == "vertical"){
+            path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
+        }
+        let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+        firstRechargePrefabPromise.then((prefab) => {
+            let firstRechargeNode = cc.instantiate(prefab);
+            let firstRechargeCtrl = firstRechargeNode.getComponent('FirstRechargeCtrl');
+            this.addToPointParent(firstRechargeNode, GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE);
         });
     },
 
@@ -1419,10 +1417,12 @@ let CommonFun = cc.Class({
      * 打开注册界面
      */
     showRegister: function() {
-        let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.REGISTER);
-        prefabPromise.then((prefab) => {
-            let Node = cc.instantiate(prefab);
-            this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.REGISTER);
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("register", () => {
+            let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.REGISTER);
+            prefabPromise.then((prefab) => {
+                let Node = cc.instantiate(prefab);
+                this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.REGISTER);
+            });
         });
     },
 
@@ -1524,7 +1524,7 @@ let CommonFun = cc.Class({
      * 显示评分界面
      */
     showRateUs: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("rateUs", () => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("RateUs", () => {
             let rateUsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RATEUS);
             rateUsPrefabPromise.then((prefab) => {
                 let rateUsNode = cc.instantiate(prefab);
@@ -1538,7 +1538,7 @@ let CommonFun = cc.Class({
      * 显示绑定手机奖励界面
      */
     showBindPhoneRewards: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("bindPhoneRewards", () => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("BindPhoneRewards", () => {
             let bindPhoneRewardsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONEREWARDS);
             bindPhoneRewardsPrefabPromise.then((prefab) => {
                 let bindPhoneRewardsNode = cc.instantiate(prefab);
@@ -1586,7 +1586,7 @@ let CommonFun = cc.Class({
      * @param {String} str  Lobby (大厅) Personal (个人中心) AddCash (充值填写) 
      */
     showBindPhone: function(str = 'Lobby') {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("bindPhone", () => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("BindPhone", () => {
             let bindPhonePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BINDPHONE);
             bindPhonePrefabPromise.then((prefab) => {
                 CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MOBILE_VIEW);
@@ -1684,7 +1684,7 @@ let CommonFun = cc.Class({
      * 显示救济金界面
      */
     showRelief: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("relief", () => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("Relief", () => {
             let reliefPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.RELIEF);
             reliefPrefabPromise.then((prefab) => {
                 let reliefNode = cc.instantiate(prefab);
@@ -1871,7 +1871,7 @@ let CommonFun = cc.Class({
      * 显示每日奖励卡片
      */
     showDailyBonusCard: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("dailyBonusCard", () => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("DailyBonusCard", () => {
             let dailyBonusCardPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.DAILYBONUSCARD);
             dailyBonusCardPrefabPromise.then((prefab) => {
                 let dailyBonusCardNode = cc.instantiate(prefab);
@@ -1885,13 +1885,11 @@ let CommonFun = cc.Class({
      * 显示新人礼品界面
      */
     showFirstGiftDiamond: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("firstGiftDiamond", () => {
-            let firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
-            firstGiftDiamondPrefabPromise.then((prefab) => {
-                let firstGiftDiamondNode = cc.instantiate(prefab);
-                let firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');    
-                this.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND); 
-            });
+        let firstGiftDiamondPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND);
+        firstGiftDiamondPrefabPromise.then((prefab) => {
+            let firstGiftDiamondNode = cc.instantiate(prefab);
+            let firstGiftDiamondCtrl = firstGiftDiamondNode.getComponent('FirstGiftDiamondCtrl');    
+            this.addToPointParent(firstGiftDiamondNode, GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND); 
         });
     },
 
@@ -2139,7 +2137,7 @@ let CommonFun = cc.Class({
      * @param {Boolean} bool 是否可以直接关闭
      */
     showAdvancedMode: function(bool) {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("advancedMode", () => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("AdvancedMode", () => {
             let path = GlobalCfg.PREFAB_PATH.ADVANCEDMODE;
             let parentNode = GlobalCfg.PREFAB_PARENT.ADVANCEDMODE;
             if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
@@ -2171,13 +2169,11 @@ let CommonFun = cc.Class({
                 shopParentNode.getChildByName("newWithdrawal").destroy(); 
             }
         }
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("RechargeTip", () =>{
-            APPManager.setOrientation("H");
-            let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
-            firstRechargePrefabPromise.then((prefab) => {
-                let firstRechargeTipsNode = cc.instantiate(prefab);
-                this.addToPointParent(firstRechargeTipsNode, parentNode);
-            });
+        APPManager.setOrientation("H");
+        let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
+        firstRechargePrefabPromise.then((prefab) => {
+            let firstRechargeTipsNode = cc.instantiate(prefab);
+            this.addToPointParent(firstRechargeTipsNode, parentNode);
         });
     },
 
@@ -2185,7 +2181,7 @@ let CommonFun = cc.Class({
      * 展示Go Betting活动
      */
     showGoBetting: function () {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("GoBetting", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("ConsumerActivities", () =>{
             let goBettingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.ACTIVITY_GOBETTING);
             goBettingPrefabPromise.then((prefab) => {
                 let goBettingNode = cc.instantiate(prefab);
@@ -2330,7 +2326,7 @@ let CommonFun = cc.Class({
      * 显示我的VIP
      */
     showMyVip: function() {
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
             myVipPrefabPromise.then((prefab) => {
                 let myVipNode = cc.instantiate(prefab);
@@ -2343,7 +2339,7 @@ let CommonFun = cc.Class({
      * 显示VIP幸运抽奖
      */
     showVipLuckyDraw: function() {  
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let vipLuckyDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
             vipLuckyDrawPrefabPromise.then((prefab) => {
                 let vipLuckyDrawNode = cc.instantiate(prefab);
@@ -2356,7 +2352,7 @@ let CommonFun = cc.Class({
      * 显示VIP规则
      */ 
     showVipRules: function(childViewType = "vipRules") {  
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let vipRulesPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULES);
             vipRulesPrefabPromise.then((prefab) => {
                 let vipRulesNode = cc.instantiate(prefab);
@@ -2374,7 +2370,7 @@ let CommonFun = cc.Class({
      * @param {boolean} isBonus 
      */
     showVipRewardToast: function(amount, isBonus) {    
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let vipRewardToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPREWARDTOAST);
             vipRewardToastPrefabPromise.then((prefab) => {
                 let vipRewardToastNode = cc.instantiate(prefab);
@@ -2389,7 +2385,7 @@ let CommonFun = cc.Class({
      * 显示VIP充值弹框
      */
     showVipRechargeToast: function() {    
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let vipRechargeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRECHARGETOAST);
             vipRechargeToastPrefabPromise.then((prefab) => {
                 let vipRechargeToastNode = cc.instantiate(prefab);
@@ -2402,7 +2398,7 @@ let CommonFun = cc.Class({
      * 显示VIP升级弹框
      */
     showVipUpgradeToast: function() {    
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let vipUpgradeToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPUPGRADETOAST);
             vipUpgradeToastPrefabPromise.then((prefab) => {
                 let vipUpgradeToastNode = cc.instantiate(prefab);
@@ -2415,7 +2411,7 @@ let CommonFun = cc.Class({
      * 显示VIP快充弹框
      */
     showVipForOnceToast: function() {    
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Vip", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("MyVip", () =>{
             let vipForOnceToastPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPFORONCETOAST);
             vipForOnceToastPrefabPromise.then((prefab) => {
                 let vipForOnceToastNode = cc.instantiate(prefab);
@@ -2507,6 +2503,7 @@ let CommonFun = cc.Class({
         cc.assetManager.loadBundle(`${bundleName}`, (err, bundle) => {
             if (!err) {
                 succCallback && succCallback(bundle);
+
             }
             else {
                 failCallback && failCallback(err);
@@ -3122,7 +3119,7 @@ let CommonFun = cc.Class({
         if (this.isNeedShowWithdrawToastInGame() == false) {
             return;
         };
-        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 30);    // 提现弹窗限制默认值
         let func = (date)=>{
             let _date = date * 1000;
             let _curDate = new Date().getTime();
@@ -3217,7 +3214,7 @@ let CommonFun = cc.Class({
         // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
         let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
         LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
-        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 30);    // 提现弹窗限制默认值
         if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
             && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
                 this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
@@ -3323,7 +3320,7 @@ let CommonFun = cc.Class({
         if (isExist) {
             return;
         };
-        CommonFun.getInstance().checkBundleIsDownloadedByH5("Bankruptcy", () =>{
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("BankruptcyGift", () =>{
             GlobalCfg.IS_SHOW_BANKRUPT = true;
             let curScene = SceneManager.getInstance().curSceneType;
             let bankruptcyPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT);

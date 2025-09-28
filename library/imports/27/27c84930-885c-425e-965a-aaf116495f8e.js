@@ -265,7 +265,8 @@ cc.Class({
     this.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
   },
   initServiceData: function initServiceData() {
-    this.setBankAccount(this.address.bank_card_id);
+    // this.setBankAccount(this.address.bank_card_id);
+    this.setBankAccount(this.address.ifsc);
   },
   /**
    * 更新提现按钮显示次数
