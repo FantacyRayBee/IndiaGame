@@ -153,8 +153,11 @@ cc.Class({
         let btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
             let name = btnArr[i].node.name
-            btnArr[i].node.on("click", this.btnClick, this)
+            if (name != "btn_shop"){
+                btnList[i].node.on("click", this.btnClick, this)
+            }
         }
+        this.btn_shop.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this)
     },
 
     start() {

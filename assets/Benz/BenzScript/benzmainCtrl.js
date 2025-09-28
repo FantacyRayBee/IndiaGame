@@ -111,7 +111,8 @@ cc.Class({
         }
         this.addClickTouch(['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100', 'btn_repeat', 'btn_start', 'btn_start1', 'btn_repeat1', 'btn_reset', 'btn_reset1', 'btn_collect', 'btn_collect1'], cc.find('BetButton', this.node), this);
         this.addClickTouch(['btn_back', 'btn_set'], this.node, this);
-        this.btn_add.node.on('click', this.btnClick, this);
+        this.btn_add.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        
         this.node.on(cc.Node.EventType.TOUCH_START, this.touchstart, this);
         this.btnBet1 = cc.find('benz_Canvas/BetButton/btnBet_1');
         this.choiceBetButton(this.btnBet1.getComponent(cc.Button));

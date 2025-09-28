@@ -21,10 +21,11 @@ cc.Class({
     self.node_playerBet = self.node.getChildByName("node_playerBet");
     self.btn_openMenu = self.node.getChildByName("btn_openMenu");
     self.btn_tableInfo = self.node.getChildByName("btn_tableInfo");
-    var btnArr = [self.btn_shop, self.btn_jiLu, self.btn_jiLu_01, self.btn_chat, self.btn_playerNum, self.btn_tableInfo, self.btn_openMenu];
+    var btnArr = [self.btn_jiLu, self.btn_jiLu_01, self.btn_chat, self.btn_playerNum, self.btn_tableInfo, self.btn_openMenu];
     var betCoinBtns = self.node_betCoinBtn.getComponentsInChildren(cc.Button);
     var node_playerBetChildren = self.node_playerBet.children;
     var btn_VipChildren = self.node_vip.children;
+    self.btn_shop.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     for (var i = 0; i < btnArr.length; i++) {
       var btn = btnArr[i].getComponent(cc.Button);
       btn.node.on("click", this.btnClick, self);

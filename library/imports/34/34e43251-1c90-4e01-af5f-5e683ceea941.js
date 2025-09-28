@@ -104,7 +104,6 @@ cc.Class({
     ;
   },
   bonusRecharge: function bonusRecharge(id, price, bonus) {
-    var _this3 = this;
     // CommonFun.getInstance().ShowTipsBeforeBuy(price / 100, ()=>{
     var data = {
       price: price,
@@ -113,19 +112,19 @@ cc.Class({
     CommonFun.getInstance().showPayChannel(data, function () {
       SHOPPING.from = GlobalCfg.SHOP_RECHARGE_FROM.DailyBonusCard;
       var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-      if (rechargeNeedInfo) {
-        if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-          CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
-        } else {
-          CommonFun.getInstance().showBindPhone('AddCash');
-          SHOPPING.cashID = id;
-          _this3.node.destroy();
-        }
-        ;
-      } else {
-        CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
-      }
-      ;
+      // if (rechargeNeedInfo) {
+      //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+      //         CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
+      //     }
+      //     else {
+      //         CommonFun.getInstance().showBindPhone('AddCash');
+      //         SHOPPING.cashID = id;
+      //         this.node.destroy();
+      //     };
+      // }
+      // else {
+      CommonFun.getInstance().rechargeByCommodityId(id, SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
+      // };
     });
     // })
   },

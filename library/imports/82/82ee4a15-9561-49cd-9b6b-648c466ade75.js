@@ -146,8 +146,11 @@ cc.Class({
     var btnArr = this.node.getComponentsInChildren(cc.Button);
     for (var i = 0; i < btnArr.length; i++) {
       var name = btnArr[i].node.name;
-      btnArr[i].node.on("click", this.btnClick, this);
+      if (name != "btn_shop") {
+        btnList[i].node.on("click", this.btnClick, this);
+      }
     }
+    this.btn_shop.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
   },
   start: function start() {
     GameServerManager.send("gameservice.login", "LoginReq", {

@@ -1204,7 +1204,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
 if (GlobalCfg.is_force_gotoTest == true) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+  cc.sys.localStorage.setItem("PackageChannel", "5_7001");
   // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
   // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };
@@ -1538,9 +1538,9 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     case "5":     // 5服
       GlobalCfg.APP_VERSION = "5.0.0.34";
       // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
-      GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+      GlobalCfg.APP_INFO_URL = `https://down.cj777.net/AppInfo.json`;
 
-      GlobalCfg.APP_CONFIG_URL = `https://download.rax8.com/production/AppConfig.json`;
+      GlobalCfg.APP_CONFIG_URL = `https://down.cj777.net/AppConfig.json`;
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
         GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfo.json`;
       }

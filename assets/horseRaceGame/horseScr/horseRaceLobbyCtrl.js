@@ -712,12 +712,13 @@ cc.Class({
 
         var btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
-            if (btnArr[i].node.name != "btn_openMenu"){
+            if (btnArr[i].node.name != "btn_openMenu" && btnArr[i].node.name != "btn_shop"){
                 btnArr[i].node.on("click", this.btnClick, this)
             }
         };
 
         this.btn_openMenu.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_shop.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this)
 
         this.node_horse1.on(cc.Node.EventType.TOUCH_START, this.touchstart, this)
         this.node_horse2.on(cc.Node.EventType.TOUCH_START, this.touchstart, this)

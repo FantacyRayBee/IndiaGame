@@ -1174,18 +1174,18 @@ let CommonFun = cc.Class({
      */
     showSmallAddCash: function(gameName = null, gameCoin = null) {
         let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-        if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                this.showNewShop();
-            }
-            else {
-                // CommonFun.getInstance().showFirstRecharge();
-                this.showBindPhone('AddCash');
-            };
-        }
-        else {
+        // if (rechargeNeedInfo) {
+        //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+        //         this.showNewShop();
+        //     }
+        //     else {
+        //         // CommonFun.getInstance().showFirstRecharge();
+        //         this.showBindPhone('AddCash');
+        //     };
+        // }
+        // else {
             this.showNewShop();
-        };
+        // };
     },
     
     /**

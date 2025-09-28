@@ -81,18 +81,18 @@ cc.Class({
                 // CommonFun.getInstance().ShowTipsBeforeBuy(this.price1, ()=>{
                 // })
                 let callback = ()=>{
-                    if (rechargeNeedInfo) {
-                        if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                            CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
-                        }
-                        else {
-                            CommonFun.getInstance().showBindPhone('AddCash');
-                            SHOPPING.cashID = this.firstCommodityId;
-                        };
-                    }
-                    else {
+                    // if (rechargeNeedInfo) {
+                    //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                    //         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
+                    //     }
+                    //     else {
+                    //         CommonFun.getInstance().showBindPhone('AddCash');
+                    //         SHOPPING.cashID = this.firstCommodityId;
+                    //     };
+                    // }
+                    // else {
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
-                    };
+                    // };
                 }
                 let data1 = {price: Math.floor(Number(commodity[0].amount) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data1, callback);
@@ -101,34 +101,34 @@ cc.Class({
                 // CommonFun.getInstance().ShowTipsBeforeBuy(this.price2, ()=>{
                 // })
                 let callback2 = ()=>{
-                    if (rechargeNeedInfo) {
-                        if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                            CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
-                        }
-                        else {
-                            CommonFun.getInstance().showBindPhone('AddCash');
-                            SHOPPING.cashID = this.firstCommodityId;
-                        };
-                    }
-                    else {
+                    // if (rechargeNeedInfo) {
+                    //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                    //         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
+                    //     }
+                    //     else {
+                    //         CommonFun.getInstance().showBindPhone('AddCash');
+                    //         SHOPPING.cashID = this.firstCommodityId;
+                    //     };
+                    // }
+                    // else {
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
-                    };
+                    // };
                 }
                 let data2 = {price: Math.floor(Number(commodity[1].amount) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data2, callback2);
                 break;
             case "btn_otherAmount":
-                if (rechargeNeedInfo) {
-                    if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-                        CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
-                    }
-                    else {
-                        CommonFun.getInstance().showBindPhone('AddCash');
-                    };
-                }
-                else {
+                // if (rechargeNeedInfo) {
+                //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                //         CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
+                //     }
+                //     else {
+                //         CommonFun.getInstance().showBindPhone('AddCash');
+                //     };
+                // }
+                // else {
                     CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
-                };
+                // };
                 break;
             default:
                 break;

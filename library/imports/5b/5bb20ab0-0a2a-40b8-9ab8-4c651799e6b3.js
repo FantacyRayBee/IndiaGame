@@ -96,8 +96,11 @@ cc.Class({
     this.lab_tip = this.node_tip.getChildByName("lab_djs").getComponent(cc.Label);
     this.initAll();
     for (var i = 0, j = this.btnList.length; i < j; i++) {
-      this.btnList[i].node.on("click", this.btnClick, this);
+      if (btnList[i].node.name != "btn_addcash") {
+        btnList[i].node.on("click", this.btnClick, this);
+      }
     }
+    this.node.getChildByName("btn_addcash").on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
     this.btnRepeat.node.on("click", this.btnClick, this);
     this.btn_openMenu.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 0.5), this);
     this.cashSwitch();

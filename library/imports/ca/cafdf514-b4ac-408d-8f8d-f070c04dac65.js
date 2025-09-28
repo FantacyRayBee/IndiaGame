@@ -60,18 +60,19 @@ cc.Class({
       ;
       var _cb = function _cb() {};
       var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-      if (rechargeNeedInfo) {
-        if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-          CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
-        } else {
-          CommonFun.getInstance().showBindPhone('AddCash');
-        }
-        ;
-      } else {
-        CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
-      }
-      ;
+      // if (rechargeNeedInfo) {
+      //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+      //         CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
+      //     }
+      //     else {
+      //         CommonFun.getInstance().showBindPhone('AddCash');
+      //     };
+      // }
+      // else {
+      CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
+      // };
     };
+
     var data = {
       price: GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100,
       bonus: (GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100

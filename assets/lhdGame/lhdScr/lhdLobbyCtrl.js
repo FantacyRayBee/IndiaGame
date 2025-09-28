@@ -976,11 +976,12 @@ cc.Class({
         var btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
             let btn =  btnArr[i].node
-            if (btn.name != "btn_openMenu"){
+            if (btn.name != "btn_openMenu" && btn.name != "btn_shop"){
                 btnArr[i].node.on("click", this.btnClick, this) 
             }
-        };
-
+        }
+        
+        this.btn_shop.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_openMenu.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this)
         
         this.node_dragonChip.on(cc.Node.EventType.TOUCH_START,this.touchstart,this)

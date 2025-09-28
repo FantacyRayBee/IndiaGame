@@ -1181,19 +1181,20 @@ var CommonFun = cc.Class((_cc$Class = {
       gameCoin = null;
     }
     var rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
-    if (rechargeNeedInfo) {
-      if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-        this.showNewShop();
-      } else {
-        // CommonFun.getInstance().showFirstRecharge();
-        this.showBindPhone('AddCash');
-      }
-      ;
-    } else {
-      this.showNewShop();
-    }
-    ;
+    // if (rechargeNeedInfo) {
+    //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+    //         this.showNewShop();
+    //     }
+    //     else {
+    //         // CommonFun.getInstance().showFirstRecharge();
+    //         this.showBindPhone('AddCash');
+    //     };
+    // }
+    // else {
+    this.showNewShop();
+    // };
   },
+
   /**
    * 小游戏中显示加经验
    */

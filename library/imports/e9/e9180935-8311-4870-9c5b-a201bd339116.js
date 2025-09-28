@@ -89,25 +89,26 @@ cc.Class({
         }
         // CommonFun.getInstance().ShowTipsBeforeBuy(price, ()=>{
         var callback = function callback() {
-          if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-              // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
-              CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
-                _this.node.destroy();
-              }, GlobalCfg.PAY_CHANNEL);
-            } else {
-              CommonFun.getInstance().showBindPhone('AddCash');
-              SHOPPING.cashID = _this.firstCommodityId;
-              _this.node.destroy();
-            }
-            ;
-          } else {
-            CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
-              _this.node.destroy();
-            }, GlobalCfg.PAY_CHANNEL);
-          }
-          ;
+          // if (rechargeNeedInfo) {
+          //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+          //         // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
+          //         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, () => {
+          //             this.node.destroy();
+          //         }, GlobalCfg.PAY_CHANNEL);
+          //     }
+          //     else {
+          //         CommonFun.getInstance().showBindPhone('AddCash');
+          //         SHOPPING.cashID = this.firstCommodityId;
+          //         this.node.destroy(); 
+          //     };
+          // }
+          // else {
+          CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+            _this.node.destroy();
+          }, GlobalCfg.PAY_CHANNEL);
+          // };
         };
+
         var data1 = {
           price: this.lab_item0Cash.string,
           bonus: this.lab_item0Bonus.string
@@ -122,24 +123,24 @@ cc.Class({
         }
         // CommonFun.getInstance().ShowTipsBeforeBuy(price, ()=>{
         var callback2 = function callback2() {
-          if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-              // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
-              CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
-                _this.node.destroy();
-              }, GlobalCfg.PAY_CHANNEL);
-            } else {
-              CommonFun.getInstance().showBindPhone('AddCash');
-              SHOPPING.cashID = _this.secondCommodityId;
-              _this.node.destroy();
-            }
-            ;
-          } else {
-            CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
-              _this.node.destroy();
-            }, GlobalCfg.PAY_CHANNEL);
-          }
-          ;
+          // if (rechargeNeedInfo) {
+          //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+          //         // CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
+          //         CommonFun.getInstance().rechargeByCommodityId(this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, () => {
+          //             this.node.destroy();
+          //         },GlobalCfg.PAY_CHANNEL);
+          //     }
+          //     else {
+          //         CommonFun.getInstance().showBindPhone('AddCash');
+          //         SHOPPING.cashID = this.secondCommodityId;
+          //         this.node.destroy(); 
+          //     };
+          // }
+          // else {
+          CommonFun.getInstance().rechargeByCommodityId(_this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+            _this.node.destroy();
+          }, GlobalCfg.PAY_CHANNEL);
+          // };
           // })
         };
 
@@ -150,20 +151,20 @@ cc.Class({
         CommonFun.getInstance().showPayChannel(data2, callback2);
         break;
       case "btn_otherAmount":
-        if (rechargeNeedInfo) {
-          if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
-            CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
-            this.node.destroy();
-          } else {
-            CommonFun.getInstance().showBindPhone('AddCash');
-            this.node.destroy();
-          }
-          ;
-        } else {
-          CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
-          this.node.destroy();
-        }
-        ;
+        // if (rechargeNeedInfo) {
+        //     if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+        //         CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
+        //         this.node.destroy(); 
+        //     }
+        //     else {
+        //         CommonFun.getInstance().showBindPhone('AddCash');
+        //         this.node.destroy(); 
+        //     };
+        // }
+        // else {
+        CommonFun.getInstance().showNewShop(true, GlobalCfg.SHOP_RECHARGE_FROM.firstRechargeOtherAmount);
+        this.node.destroy();
+        // };
         break;
       default:
         break;
