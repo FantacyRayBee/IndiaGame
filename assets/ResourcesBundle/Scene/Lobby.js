@@ -112,6 +112,10 @@ cc.Class({
          */
         btn_miniaviator: cc.Button,
         /**
+         * 小鸡
+         */
+        btn_minichicken: cc.Button,
+        /**
          * 动物园
          */
         btn_minizoo:cc.Button,
@@ -367,6 +371,7 @@ cc.Class({
             "miniclown": 18,
             "minimultiteenpatti": 19,
             "miniaviator": 20,
+            "minichickenroad": 21,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -378,6 +383,7 @@ cc.Class({
         let btnsMap = {
             "minirocket": this.btn_minirocket,
             "miniaviator": this.btn_miniaviator,
+            "minichickenroad": this.btn_minichicken,
             "minijhandimunda": this.btn_minijhandimunda,
             "minimultiteenpatti": this.btn_minimultiteenpatti,
             "miniteenpatti": this.btn_miniteenpatti,
@@ -454,6 +460,7 @@ cc.Class({
         this.btn_miniteenpattibaccarat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minirocket.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniaviator.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_minichicken.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minizoo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minicricket.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minizeus.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -614,6 +621,7 @@ cc.Class({
         this.btn_miniteenpattibaccarat.node.active = false;
         this.btn_minirocket.node.active = false;
         this.btn_miniaviator.node.active = false;
+        this.btn_minichicken.node.active = false;
         this.btn_minizoo.node.active = false;
         this.btn_minicricket.node.active = false;
         this.btn_minizeus.node.active = false;
@@ -877,6 +885,17 @@ cc.Class({
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("aviator");
                         if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("aviator");
+                        }
+                    }
+                    break;
+                case "minichickenroad":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(127)) {
+                        this.btn_minichicken.node.active = true;
+                        GlobalCfg.SMALL_GAME_DATAS.chickenData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.chickenData.product = gameProduct;
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("chickenroad");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("chickenroad");
                         }
                     }
                     break;
@@ -1965,6 +1984,14 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.AVIATOR);
             });
         }
+        else if (btnName == 'btn_chicken'){
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_CRASH_GAME);
+            this.checkUpdate("chickenroad", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.chickenData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CHICKEN);
+            });
+        }
         else if (btnName == 'btn_zoo'){
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ZOO_GAME);
             this.checkUpdate("zooGame", () => {
@@ -2124,6 +2151,9 @@ cc.Class({
             case "aviator":
                 upDateMaskNode = this.btn_miniaviator.node.getChildByName("upDateMask");
                 break;
+            case "chickenroad":
+                upDateMaskNode = this.btn_minichicken.node.getChildByName("upDateMask");
+                break;
             case "zooGame":
                 upDateMaskNode = this.btn_minizoo.node.getChildByName("upDateMask");
                 break;
@@ -2209,6 +2239,9 @@ cc.Class({
                 break;
             case "aviator":
                 this.btn_miniaviator.node.getChildByName("upDateMask").active = false;
+                break;
+            case "chickenroad":
+                this.btn_minichicken.node.getChildByName("upDateMask").active = false;
                 break;
             case "zooGame":
                 this.btn_minizoo.node.getChildByName("upDateMask").active = false;
@@ -2438,6 +2471,11 @@ cc.Class({
             skeleton = this.btn_miniaviator.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             skeleton.setAnimation(0, 'idle', true);
+        };
+        if (this.btn_minichicken.node.active) {
+            skeleton = this.btn_minichicken.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minicricket.node.active) {
             skeleton = this.btn_minicricket.node.getChildByName('Background').getComponent(sp.Skeleton);
