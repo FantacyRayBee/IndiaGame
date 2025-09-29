@@ -171,7 +171,7 @@ cc.Class({
     }
   },
   btnBetsClick: function btnBetsClick(button) {
-    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniandar"] == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
         CommonFun.getInstance().showSmallAddCash();
@@ -192,7 +192,7 @@ cc.Class({
     }
     ;
     if (btnName == "btn_aBet") {
-      if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+      if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniandar"] == true) {
         //未曾充值
         CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
           CommonFun.getInstance().showSmallAddCash();
@@ -203,7 +203,7 @@ cc.Class({
       var num = Number(this.lab_A.string);
       this.UserSelectionActionReq(0, num);
     } else if (btnName == "btn_bBet") {
-      if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+      if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniandar"] == true) {
         //未曾充值
         CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
           CommonFun.getInstance().showSmallAddCash();

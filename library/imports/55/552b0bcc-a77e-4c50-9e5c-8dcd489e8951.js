@@ -67,6 +67,8 @@ cc.Class({
     CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.PROGRESSLAYER, progressLayer);
     var tipsLayer = persistNode.getChildByName("TipsLayer");
     CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.TIPSLAYER, tipsLayer);
+    var keyboradLayer = persistNode.getChildByName("KeyboardLayer");
+    CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.KEYBORADLAYER, keyboradLayer);
     GlobalCfg.G_COMPONENTS.Audio = persistNode.getComponent('AudioManager');
     this.node_loadTipsLayer = this.node.getChildByName('loadTipsLayer');
     this.lab_loadTips = this.node_loadTipsLayer.getChildByName('lab_loadTips').getComponent(cc.Label);

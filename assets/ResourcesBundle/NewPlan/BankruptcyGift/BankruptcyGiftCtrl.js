@@ -132,8 +132,7 @@ cc.Class({
         let cash = data.amount;
         let extraCash = data.add;
         let bonus = data.bonus;
-        let rate = (extraCash + bonus) * 100 / cash
-        // let rate = Math.round((extraCash + bonus) * 100 / cash);
+        let rate = Math.round((extraCash + bonus) * 100 / cash);
 
         let labelRate = node.getChildByName('LabelRate').getComponent(cc.Label);
         let labelCash = node.getChildByName('LabelCash').getComponent(cc.Label);

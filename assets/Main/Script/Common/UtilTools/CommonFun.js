@@ -957,43 +957,55 @@ let CommonFun = cc.Class({
         let bundleName = arr[0];
         let path = prefabPath.substring(bundleName.length + 1);
         LoggerUtil.getInstance().log(`Loading prefab ===> ${prefabPath}`);
+
         let assetBundle = cc.assetManager.getBundle(bundleName);
         return new Promise((resolve, reject) => {  
-            if (assetBundle) {
-                assetBundle.load(path, cc.Prefab, (error, prefab) => {
+            let doLoad = (bundle) => {
+                bundle.load(path, cc.Prefab, (error, prefab) => {
                     if (!error) {
                         if (this._loadedPrefabMap.has(prefabPath) == false) {
                             prefab.addRef();
                             this._loadedPrefabMap.set(prefabPath, prefab);
                         };
+
+                        // ✅ 实例化一次，挂桥接脚本
+                        let tempNode = cc.instantiate(prefab);
+                        this._attachBridgeToEditBox(tempNode);
+                        tempNode.destroy(); // 只是为了挂脚本，不留实例
+
                         resolve(prefab);
-                    }
-                    else {
+                    } else {
                         reject(error);
-                    };
-                });
-            } 
-            else {
-                CommonFun.getInstance().loadBundle(bundleName, (bundle) => {
-                    bundle.load(path, cc.Prefab, (error, prefab) => {
-                        if (!error) {
-                            if (this._loadedPrefabMap.has(prefabPath) == false) {
-                                prefab.addRef();
-                                this._loadedPrefabMap.set(prefabPath, prefab);
-                            };
-                            resolve(prefab);
-                        }
-                        else {
-                            reject(error);
-                        };
-                    });
-                }, (err) => {
-                    reject(err);
+                    }
                 });
             };
+
+            if (assetBundle) {
+                doLoad(assetBundle);
+            } else {
+                CommonFun.getInstance().loadBundle(bundleName, (bundle) => {
+                    doLoad(bundle);
+                }, (err) => reject(err));
+            }
         });
     },
 
+    /**
+     * 扫描节点树，给所有 EditBox 挂上 EditBoxSoftKeyboardBridge
+     */
+    _attachBridgeToEditBox(rootNode) {
+        if (!rootNode) return;
+        const EditBoxSoftKeyboardBridge = require("EditBoxSoftKeyboardBridge");
+        rootNode.walk((node) => {
+            let editBox = node.getComponent(cc.EditBox);
+            if (editBox && !node.getComponent(EditBoxSoftKeyboardBridge)) {
+                node.addComponent(EditBoxSoftKeyboardBridge);
+                let comp = node.addComponent(EditBoxSoftKeyboardBridge);
+                cc.log("挂载结果", node.name, comp)
+                cc.log('[Bridge Attached]', node.name);
+            }
+        });
+    },
 
     /**
      * 释放预制体及其资源

@@ -703,6 +703,13 @@ cc.Class({
         else if (cc.sys.isBrowser) {
             // H5 环境
             this.preloadMainH5();
+            // //预加载软键盘
+            // let kb = CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SOFTKEYBORAD);
+            // kb.then((prefab) => {
+            //     let node = cc.instantiate(prefab);
+            //     CommonFun.getInstance().addToPointParent(node, GlobalCfg.PREFAB_PARENT.SOFTKEYBORAD);
+            //     kb.active = false;
+            // });
         }
         else {
             this.changeSceneToLobby();

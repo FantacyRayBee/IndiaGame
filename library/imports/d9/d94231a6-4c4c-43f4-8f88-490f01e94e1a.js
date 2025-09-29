@@ -917,7 +917,11 @@ window.GlobalCfg = (_window$GlobalCfg = {
   /**
    * 俱乐部
    */
-  WALLET: "ResourcesBundle/NewPlan/Club/walletMain"
+  WALLET: "ResourcesBundle/NewPlan/Club/walletMain",
+  /**
+   * 软键盘
+   */
+  SOFTKEYBORAD: "MustBundle/Normal/keyboard/SoftKeyboard"
 }, _window$GlobalCfg.PREFAB_PARENT = {
   CAROUSELSTRIP: "CarouselLayer",
   SIDEBAR: "FirstLayer",
@@ -980,6 +984,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   PRIVACYPOLICY: "ThirdLayer",
   VIPREWARDTOAST: "ThirdLayer",
   POPUPWITHDRAW: "ThirdLayer",
+  SOFTKEYBORAD: "ThirdLayer",
   VIPUPGRADETOAST: "ToastLayer",
   MSGBOX: "ToastLayer",
   WITHDRAWERRORTIPS: "ToastLayer",
@@ -1014,7 +1019,9 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 商城、提现界面节点
   PROGRESSLAYER: "ProgressLayer",
   // 加载等待动画
-  TIPSLAYER: "TipsLayer" // 提示语父节点，（Tips）
+  TIPSLAYER: "TipsLayer",
+  // 提示语父节点，（Tips）
+  KEYBOARDLAYER: "KeyboardLayer" // 软键盘父节点
 }, _window$GlobalCfg.SHOP_RECHARGE_FROM = {
   ActivityFirstRecharge: '活动内首次充值',
   BindPhone: '绑定手机',

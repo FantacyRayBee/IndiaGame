@@ -733,6 +733,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.avatarList = avatar_list;
                     GlobalCfg.USER_DATAS.customerService = support;
                     GlobalCfg.USER_DATAS.refuseUnpayHundred = refuse_unpay_hundred;
+                    LoggerUtil.getInstance().log("refuse_unpay_hundred:" , refuse_unpay_hundred);
                     GlobalCfg.USER_DATAS.gamePattern = game_pattern;
                     GlobalCfg.USER_DATAS.thirdPaymentOpened = third_payment_opened;
                     GlobalCfg.USER_DATAS.proofPaymentOpened = proof_payment_opened; 

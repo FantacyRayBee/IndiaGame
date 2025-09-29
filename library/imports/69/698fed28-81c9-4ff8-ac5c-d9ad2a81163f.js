@@ -42,9 +42,11 @@ cc.Class({
     });
     if (CommonFun.getInstance().isValidForScr(this)) {
       for (var i = 0; i < 2; i++) {
-        var data = commodity[i];
-        var price = Math.floor(Number(data.amount) / 100);
-        var bonus = Math.floor(Number(data.gift) / 100);
+        // let data = commodity[i];
+        // let price = Math.floor(Number(data.amount) / 100);
+        // let bonus = Math.floor(Number(data.gift) / 100);
+        var price = Number(data.amount) / 100;
+        var bonus = Number(data.gift) / 100;
         var total = price + bonus;
         var point = bonus / price;
         var percent = (point * 100).toFixed(0);
@@ -97,10 +99,10 @@ cc.Class({
           CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
           // };
         };
-
+        // let data1 = {price: Math.floor(Number(commodity[0].amount) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
         var data1 = {
-          price: Math.floor(Number(commodity[0].amount) / 100),
-          bonus: Math.floor(Number(commodity[0].gift) / 100)
+          price: Number(commodity[0].amount) / 100,
+          bonus: Number(commodity[0].gift) / 100
         };
         CommonFun.getInstance().showPayChannel(data1, callback);
         break;
@@ -121,10 +123,10 @@ cc.Class({
           CommonFun.getInstance().rechargeByCommodityId(_this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
           // };
         };
-
+        // let data2 = {price: Math.floor(Number(commodity[1].amount) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
         var data2 = {
-          price: Math.floor(Number(commodity[1].amount) / 100),
-          bonus: Math.floor(Number(commodity[1].gift) / 100)
+          price: Number(commodity[1].amount) / 100,
+          bonus: Number(commodity[1].gift) / 100
         };
         CommonFun.getInstance().showPayChannel(data2, callback2);
         break;

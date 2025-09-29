@@ -913,6 +913,11 @@ window.GlobalCfg = {
      * 俱乐部
      */
     WALLET: "ResourcesBundle/NewPlan/Club/walletMain",
+
+    /**
+     * 软键盘
+     */
+    SOFTKEYBORAD: "MustBundle/Normal/keyboard/SoftKeyboard",
   },
 
 
@@ -984,6 +989,8 @@ window.GlobalCfg = {
     PRIVACYPOLICY: "ThirdLayer",
     VIPREWARDTOAST: "ThirdLayer",
     POPUPWITHDRAW: "ThirdLayer",
+    SOFTKEYBORAD: "ThirdLayer",
+
 
     VIPUPGRADETOAST: "ToastLayer",
     MSGBOX: "ToastLayer",
@@ -1024,6 +1031,7 @@ window.GlobalCfg = {
     SHOPLAYER: "ShopLayer",          // 商城、提现界面节点
     PROGRESSLAYER: "ProgressLayer",   // 加载等待动画
     TIPSLAYER: "TipsLayer",           // 提示语父节点，（Tips）
+    KEYBOARDLAYER: "KeyboardLayer",           // 软键盘父节点
   },
 
   /**

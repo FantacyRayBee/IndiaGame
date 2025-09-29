@@ -88,23 +88,26 @@
       //     console.log("不是pwa模式")
       //     return;
       //   }
-      let CURSCENE_DIRECTION = ""
-
       //启动一个检测计时器
       const interval = setInterval(function () {
         if (!GlobalCfg.CURSCENE_DIRECTION) {
           console.log("GlobalCfg.CURSCENE_DIRECTION 不存在")
           return
         }
-        if (GlobalCfg.CURSCENE_DIRECTION == "vertical" && CURSCENE_DIRECTION != GlobalCfg.CURSCENE_DIRECTION) {
-          screen.orientation.lock("portrait-primary")
-            .then(() => console.log("锁定成功"))
-            .catch(err => console.error("锁定失败:", err));
+        if (GlobalCfg.CURSCENE_DIRECTION == "vertical")  {
+          if (screen.orientation.type.indexOf("portrait") == -1) {
+            screen.orientation.lock("portrait-primary")
+              .then(() => console.log("锁定成功"))
+              .catch(err => console.error("锁定失败:", err));
+          }
         }
-        if (GlobalCfg.CURSCENE_DIRECTION == "horizontal" && CURSCENE_DIRECTION != GlobalCfg.CURSCENE_DIRECTION) {
-          screen.orientation.lock("landscape-primary")
-            .then(() => console.log("锁定成功"))
-            .catch(err => console.error("锁定失败:", err));
+        if (GlobalCfg.CURSCENE_DIRECTION == "horizontal") {
+          if (screen.orientation.type.indexOf("landscape") == -1) {
+            screen.orientation.lock("landscape-primary")
+              .then(() => console.log("锁定成功"))
+              .catch(err => console.error("锁定失败:", err));
+          }
+
         }
       }, 100)
 
@@ -120,38 +123,38 @@
     autoLock();
   </script>
   <script type="text/javascript">
-      (function () {
-        // open web debugger console
-        if (typeof VConsole !== 'undefined') {
-          window.vConsole = new VConsole();
+    (function () {
+      // open web debugger console
+      if (typeof VConsole !== 'undefined') {
+        window.vConsole = new VConsole();
+      }
+
+      var debug = window._CCSettings.debug;
+      var splash = document.getElementById('splash');
+      splash.style.display = 'block';
+
+      function loadScript(moduleName, cb) {
+        function scriptLoaded() {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+        };
+        var domScript = document.createElement('script');
+        domScript.async = true;
+        domScript.src = moduleName;
+        domScript.addEventListener('load', scriptLoaded, false);
+        document.body.appendChild(domScript);
+      }
+
+      loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.js', function () {
+        if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+          loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
         }
-
-        var debug = window._CCSettings.debug;
-        var splash = document.getElementById('splash');
-        splash.style.display = 'block';
-
-        function loadScript(moduleName, cb) {
-          function scriptLoaded() {
-            document.body.removeChild(domScript);
-            domScript.removeEventListener('load', scriptLoaded, false);
-            cb && cb();
-          };
-          var domScript = document.createElement('script');
-          domScript.async = true;
-          domScript.src = moduleName;
-          domScript.addEventListener('load', scriptLoaded, false);
-          document.body.appendChild(domScript);
+        else {
+          window.boot();
         }
-
-        loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.js', function () {
-          if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
-            loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
-          }
-          else {
-            window.boot();
-          }
-        });
-      })();
+      });
+    })();
   </script>
 </body>
 

@@ -949,40 +949,51 @@ var CommonFun = cc.Class((_cc$Class = {
     LoggerUtil.getInstance().log("Loading prefab ===> " + prefabPath);
     var assetBundle = cc.assetManager.getBundle(bundleName);
     return new Promise(function (resolve, reject) {
-      if (assetBundle) {
-        assetBundle.load(path, cc.Prefab, function (error, prefab) {
+      var doLoad = function doLoad(bundle) {
+        bundle.load(path, cc.Prefab, function (error, prefab) {
           if (!error) {
             if (_this3._loadedPrefabMap.has(prefabPath) == false) {
               prefab.addRef();
               _this3._loadedPrefabMap.set(prefabPath, prefab);
             }
             ;
+
+            // ✅ 实例化一次，挂桥接脚本
+            var tempNode = cc.instantiate(prefab);
+            _this3._attachBridgeToEditBox(tempNode);
+            tempNode.destroy(); // 只是为了挂脚本，不留实例
+
             resolve(prefab);
           } else {
             reject(error);
           }
-          ;
         });
+      };
+      if (assetBundle) {
+        doLoad(assetBundle);
       } else {
         CommonFun.getInstance().loadBundle(bundleName, function (bundle) {
-          bundle.load(path, cc.Prefab, function (error, prefab) {
-            if (!error) {
-              if (_this3._loadedPrefabMap.has(prefabPath) == false) {
-                prefab.addRef();
-                _this3._loadedPrefabMap.set(prefabPath, prefab);
-              }
-              ;
-              resolve(prefab);
-            } else {
-              reject(error);
-            }
-            ;
-          });
+          doLoad(bundle);
         }, function (err) {
-          reject(err);
+          return reject(err);
         });
       }
-      ;
+    });
+  },
+  /**
+   * 扫描节点树，给所有 EditBox 挂上 EditBoxSoftKeyboardBridge
+   */
+  _attachBridgeToEditBox: function _attachBridgeToEditBox(rootNode) {
+    if (!rootNode) return;
+    var EditBoxSoftKeyboardBridge = require("EditBoxSoftKeyboardBridge");
+    rootNode.walk(function (node) {
+      var editBox = node.getComponent(cc.EditBox);
+      if (editBox && !node.getComponent(EditBoxSoftKeyboardBridge)) {
+        node.addComponent(EditBoxSoftKeyboardBridge);
+        var comp = node.addComponent(EditBoxSoftKeyboardBridge);
+        cc.log("挂载结果", node.name, comp);
+        cc.log('[Bridge Attached]', node.name);
+      }
     });
   },
   /**

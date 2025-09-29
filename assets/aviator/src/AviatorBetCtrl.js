@@ -60,11 +60,11 @@ cc.Class({
         this.NowToggleName = 'tog_bet';
         this.isAuto = false; //是否自动投注
         this.autoCount = 0;
-        this.quickBetStr = [10000, 20000, 50000, 100000]; //需要除以100
+        this.quickBetStr = [100, 1000, 5000, 10000]; //需要除以100
         this.choiceQuickIndex = -1; //当前选择的快捷下注索引，如果和上次一样则执行加法逻辑
-        this.curBet = 1000;
-        this.minBet = 1000; //最小下注
-        this.maxBet = 1000000; //最大下注
+        this.curBet = 100;
+        this.minBet = 100; //最小下注
+        this.maxBet = 800000; //最大下注
         for (let i = 0; i < this.btn_bet_quicks.length; i++) {
             this.btn_bet_quicks[i].node.getChildByName('lab').getComponent(cc.Label).string = this.quickBetStr[i] / 100 + '';
         }
@@ -284,6 +284,12 @@ cc.Class({
     },
 
     dealBetEvent: function () {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniaviator"] == true){   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash();
+            }, false, null, null, null, null, 0.85);
+            return;
+        };
         if (this.betStatus == 0) {//可下注状态
             if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
@@ -371,7 +377,7 @@ cc.Class({
     },
 
     dealAutoPlayEvent: function () {
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true){   //未曾充值
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniaviator"] == true){   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false, null, null, null, null, 0.85);
@@ -423,7 +429,9 @@ cc.Class({
         if (editBox.string == "") {
             editBox.string = editBox.placeholder;
         }
-        const value = editBox.string < 10 ? 10 : editBox.string;
+        let value = editBox.string < 1 ? 1 : editBox.string;
+        value = editBox.string > 8000 ? 8000 : editBox.string;
+
         this.curBet = parseFloat(value) * 100;
         this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
     },

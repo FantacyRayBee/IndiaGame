@@ -1203,7 +1203,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 80.92,
+      "width": 76.58,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1255,8 +1255,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "10 INR",
-    "_N$string": "10 INR",
+    "_string": "1 USD",
+    "_N$string": "1 USD",
     "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1533,7 +1533,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 109.84,
+      "width": 119.96,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1585,8 +1585,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "1000 INR",
-    "_N$string": "1000 INR",
+    "_string": "1000 USD",
+    "_N$string": "1000 USD",
     "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1863,7 +1863,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 153.22,
+      "width": 163.34,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1915,8 +1915,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "1000000 INR",
-    "_N$string": "1000000 INR",
+    "_string": "1000000 USD",
+    "_N$string": "1000000 USD",
     "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,

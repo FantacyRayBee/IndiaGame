@@ -65,6 +65,8 @@ cc.Class({
         CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.PROGRESSLAYER, progressLayer);
         let tipsLayer = persistNode.getChildByName("TipsLayer");
         CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.TIPSLAYER, tipsLayer);
+        let keyboradLayer = persistNode.getChildByName("KeyboardLayer");
+        CommonFun.getInstance().setLayerNode(GlobalCfg.LAYER_TAG.KEYBORADLAYER, keyboradLayer);
 
         GlobalCfg.G_COMPONENTS.Audio = persistNode.getComponent('AudioManager');
 

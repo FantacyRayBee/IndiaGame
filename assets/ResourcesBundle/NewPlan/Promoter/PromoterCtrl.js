@@ -282,7 +282,21 @@ cc.Class({
         // 只拼接，保持最终是明文
         let finalStr = `${shareText} ${shareUrl}`;
         // 输出或分享
-        APPManager.Share(finalStr);
+        // APPManager.Share(finalStr);
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'C777 Slots',
+                text: shareText,
+                url: shareUrl,
+            }).then(() => {
+                console.log('分享成功');
+            }).catch(err => {
+                console.error('分享失败:', err);
+            });
+        } else {
+            console.log('当前浏览器不支持 Web Share API');
+}
     },
 
     dealBtnFZEvent: function () {

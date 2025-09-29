@@ -91,31 +91,31 @@ cc.Class({
             self.choiceBetButton(button, self.selectLight);
 
         } else if (btnName == "btn_blue") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,6);
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,6, "miniteenpattibaccarat");
             return
 
         } else if(btnName == "btn_red") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,7);
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,7, "miniteenpattibaccarat");
             return
 
         } else if(btnName == "btn_set") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,0)
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,0, "miniteenpattibaccarat");
             return
 
         } else if(btnName == "btn_PureSEQ") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,1)
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,1, "miniteenpattibaccarat");
             return
 
         } else if(btnName == "btn_SEQ") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,2)
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,2, "miniteenpattibaccarat");
             return
 
         } else if (btnName == "btn_color") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,3)
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,3, "miniteenpattibaccarat");
             return
 
         } else if(btnName == "btn_Palr") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,4)
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin,4, "miniteenpattibaccarat");
             return
 
         } else if(btnName == "btn_jiLu" || btnName == "btn_jiLu_01") {
@@ -151,7 +151,7 @@ cc.Class({
                 for (let i = 0; i <  self.myRepeatArr.length; i++) {
                     let betCoin = self.myRepeatArr[i];
                     if(betCoin) {
-                        self.gameServiceSendCtrl.CallReq(betCoin,i);
+                        self.gameServiceSendCtrl.CallReq(betCoin,i, "miniteenpattibaccarat");
                     }
                 }
                 self.newMyRepeatArr = [];

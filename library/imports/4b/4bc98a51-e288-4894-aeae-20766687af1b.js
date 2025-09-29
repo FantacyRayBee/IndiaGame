@@ -575,7 +575,7 @@ cc.Class({
     ;
   },
   dealSendSpinReqEvent: function dealSendSpinReqEvent(bet, isDoubleMulti) {
-    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {
+    if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minizeus"] == true) {
       //未曾充值
       CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", function () {
         if (GlobalCfg.USER_DATAS.openModules.includes(4)) {

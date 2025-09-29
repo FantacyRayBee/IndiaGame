@@ -40,9 +40,11 @@ cc.Class({
         });
         if (CommonFun.getInstance().isValidForScr(this)) {
             for (let i = 0; i < 2; i++) {
-                let data = commodity[i];
-                let price = Math.floor(Number(data.amount) / 100);
-                let bonus = Math.floor(Number(data.gift) / 100);
+                // let data = commodity[i];
+                // let price = Math.floor(Number(data.amount) / 100);
+                // let bonus = Math.floor(Number(data.gift) / 100);
+                let price = (Number(data.amount) / 100);
+                let bonus = (Number(data.gift) / 100);
                 let total = price + bonus;
                 let point = bonus / price;
                 let percent = (point * 100).toFixed(0);
@@ -94,7 +96,8 @@ cc.Class({
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
                     // };
                 }
-                let data1 = {price: Math.floor(Number(commodity[0].amount) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
+                // let data1 = {price: Math.floor(Number(commodity[0].amount) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
+                let data1 = {price: (Number(commodity[0].amount) / 100), bonus: (Number(commodity[0].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data1, callback);
                 break;
             case "btn_addCash2":
@@ -114,7 +117,8 @@ cc.Class({
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
                     // };
                 }
-                let data2 = {price: Math.floor(Number(commodity[1].amount) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
+                // let data2 = {price: Math.floor(Number(commodity[1].amount) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
+                let data2 = {price: (Number(commodity[1].amount) / 100), bonus: (Number(commodity[1].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data2, callback2);
                 break;
             case "btn_otherAmount":

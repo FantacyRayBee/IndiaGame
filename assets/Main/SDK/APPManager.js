@@ -44,13 +44,45 @@ APPManager.setFaceBookID = function (fbid) {
     }
 }
 
-APPManager.copyToPasteBoard = function (str) {
-    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
-        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.copyToPasteBoard, "(Ljava/lang/String;)V", str);
-        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.copyToPasteBoard, "(Ljava/lang/String;)V", str);
-        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.copyToPasteBoard, "(Ljava/lang/String;)V", str);
+APPManager.copyToPasteBoard = function (text) {
+    // if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+    //     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.copyToPasteBoard, "(Ljava/lang/String;)V", str);
+    //     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.copyToPasteBoard, "(Ljava/lang/String;)V", str);
+    //     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.copyToPasteBoard, "(Ljava/lang/String;)V", str);
+    // }
+
+    if (navigator.clipboard && window.isSecureContext) {
+        // 只有 HTTPS 或 localhost 才能用
+        return navigator.clipboard.writeText(text)
+        .then(() => {
+            console.log("复制成功:", text);
+        })
+        .catch(err => {
+            console.error("复制失败:", err);
+        });
+    } else {
+        // 兼容老方法
+        return APPManager.legacyCopyText(text);
     }
 }
+
+APPManager.legacyCopyText = function(text) {
+    let textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";  // 避免滚动
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+        document.execCommand("copy");
+        console.log("复制成功:", text);
+    } catch (err) {
+        console.error("复制失败:", err);
+    }
+    document.body.removeChild(textarea);
+}
+
 
 //银联商务支付
 APPManager.YLPay = function (orderJson) {
