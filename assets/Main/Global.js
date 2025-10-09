@@ -1276,7 +1276,7 @@ function SetPackageChannel() {
         return;
     }
     //存在就不设置
-    if (localStorage.getItem('PackageChannel') ){
+    if (localStorage.getItem('PackageChannel')) {
         return
     }
     // 获取当前页面完整URL
@@ -1302,7 +1302,8 @@ function SetPackageChannel() {
 if (GlobalCfg.is_force_gotoTest == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
     SetPackageChannel();
-};
+}
+;
 
 /**
  * 新的渠道模式, 格式为：x_xxxx，x表示对应的服务器, xxxx表示对应的渠道.

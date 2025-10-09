@@ -225,7 +225,7 @@ let CommonFun = cc.Class({
         /**
          * 渠道标识
          */
-        if ( localStorage.getItem('PackageChannel')){
+        if (localStorage.getItem('PackageChannel')){
             let s =  localStorage.getItem('PackageChannel')
             GlobalCfg.CHANNEL_INFO =   s.split("_")[1];
         }
@@ -288,7 +288,10 @@ let CommonFun = cc.Class({
 
             let packageConfig = packageConfigDict[channel];
             if (Reflect.has(packageConfig, "CHANNEL_INFO") == true) {
-                GlobalCfg.CHANNEL_INFO = packageConfig["CHANNEL_INFO"];
+                if (localStorage.getItem('PackageChannel')){
+                    let s =  localStorage.getItem('PackageChannel')
+                    GlobalCfg.CHANNEL_INFO =   s.split("_")[1];
+                }
             };
             if (Reflect.has(packageConfig, "GOOGLE_ID") == true) {
                 GlobalCfg.GOOGLE_ID = packageConfig["GOOGLE_ID"];
