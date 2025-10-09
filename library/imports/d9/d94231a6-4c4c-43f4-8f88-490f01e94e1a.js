@@ -32,20 +32,20 @@ window.GlobalCfg = (_window$GlobalCfg = {
    */
   PACKAGE_REPORT_METHOD: 0,
   /**
-  * 是否不使用Facebook, 0:表示使用; 1:表示不使用
-  */
+   * 是否不使用Facebook, 0:表示使用; 1:表示不使用
+   */
   UNUSE_FACEBOOK: 0,
   /**
-  * 是否是代理模式, 0:不是; 1:表示是
-  */
+   * 是否是代理模式, 0:不是; 1:表示是
+   */
   IS_CLUB_MODE: 0,
   /**
-  * 是否能自定义换头像, 0:不是; 1:表示是
-  */
+   * 是否能自定义换头像, 0:不是; 1:表示是
+   */
   IS_Freestyle_Head: 0,
   /**
-  * 是否是需要充值才能进入的游戏
-  */
+   * 是否是需要充值才能进入的游戏
+   */
   isPayGame: true,
   /**
    * 消息订阅的大类型
@@ -318,25 +318,25 @@ window.GlobalCfg = (_window$GlobalCfg = {
   PAYMENT_SWITCH: null,
   // 风控配置类型，1表示线下，2表示sdk风控，3表示自己的风控
   SWITCH_TYPE: 3,
-  // 苹果商城ios 
+  // 苹果商城ios
   CHANNEL: "Android",
-  // 默认选中充值的额度 
+  // 默认选中充值的额度
   SELECT_RECHARGE_ACOUNT: 20000,
   // 跑马灯数据
   MAR_QUEE_DATA: [],
   // 跑马灯数据
   MAR_QUEE_DATA_ROBOT: [],
-  // 充值成功后游戏回调断网刷新金币（打补丁） 
+  // 充值成功后游戏回调断网刷新金币（打补丁）
   PUSH_PAY_SUCCESS: false,
-  // 是否第一次提现 
+  // 是否第一次提现
   HAVE_WITHDRAW: false,
-  // 
+  //
   GAID: "",
   // 表示是否从登录界面进入大厅界面，主要用于活动弹框的判断
   IS_FROM_LOGIN_TO_LOBBY: false,
   // 表示设备是否安装了微信和支付宝，主要用于国内人进入游戏
   HAVE_WECHAT_AND_ALIPAY: false,
-  // 通过Openinstall的SDK收到的邀请码(上级的绑定码)             
+  // 通过Openinstall的SDK收到的邀请码(上级的绑定码)
   OPENINSTALL_INVITE_CODE: "",
   // 落地页数据上报所需的fbclid，以便服务器上报事件给投放
   OPENINSTALL_FB_CLID: "",
@@ -351,10 +351,10 @@ window.GlobalCfg = (_window$GlobalCfg = {
   // 支付渠道
   PAY_CHANNEL2: "",
   /* APP_STATUS说明
-    0: 未设置状态; 
-    1：正式服谷歌审核状态, 俗称马甲状态; 
-    2: 正式服谷歌已审核状态, 俗称非马甲状态; 
-    3: 测试服对外包状态; 
+    0: 未设置状态;
+    1：正式服谷歌审核状态, 俗称马甲状态;
+    2: 正式服谷歌已审核状态, 俗称非马甲状态;
+    3: 测试服对外包状态;
     4: 测试服测试包状态;
     5: 正式服测试包状态;
     6：正式服正式包状态;
@@ -512,7 +512,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
     114: false,
     // 打地鼠
     115: false,
-    // 火箭    
+    // 火箭
     119: false,
     // 玛雅机台
     120: false // 印度舞娘机台
@@ -830,16 +830,16 @@ window.GlobalCfg = (_window$GlobalCfg = {
    */
   VIPREWARDTOAST: "ResourcesBundle/NewPlan/MyVip/VipRewardToast",
   /**
-    * VIP充值提示弹框
-    */
+   * VIP充值提示弹框
+   */
   VIPRECHARGETOAST: "ResourcesBundle/NewPlan/MyVip/VipRechargeToast",
   /**
-    * VIP升级提示弹框
-    */
+   * VIP升级提示弹框
+   */
   VIPUPGRADETOAST: "ResourcesBundle/NewPlan/MyVip/VipUpgradeToast",
   /**
-    * VIP快充提示弹框
-    */
+   * VIP快充提示弹框
+   */
   VIPFORONCETOAST: "ResourcesBundle/NewPlan/MyVip/VipForOnceToast",
   /**
    * 游戏开始遮罩
@@ -1182,6 +1182,28 @@ if (GlobalCfg.isOfflineDeve == 1) {
 }
 ;
 
+//SetPackageChannel 一般在load投流页就设置好了这里主要防止错误
+function SetPackageChannel() {
+  if (!location) {
+    //是通过页面进来的
+    return;
+  }
+  //存在就不设置
+  if (localStorage.getItem('PackageChannel')) {
+    return;
+  }
+  // 获取当前页面完整URL
+  var url = new URL(window.location.href);
+
+  // 获取参数值
+  var pkg = url.searchParams.get('PackageChannel');
+  if (!pkg || pkg.length === 0) {
+    //如果不存在强制设置5_7001
+    pkg = "5_7001";
+  }
+  localStorage.setItem('PackageChannel', pkg);
+}
+
 /* 
   * 最新测试包
   * 包名： com.taara.saara.master
@@ -1191,7 +1213,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
 if (GlobalCfg.is_force_gotoTest == true) {
   GlobalCfg.IsDownloadPackage2 = 0;
-  cc.sys.localStorage.setItem("PackageChannel", "5_7001");
+  SetPackageChannel();
 }
 ;
 

@@ -240,6 +240,6 @@ cc.Class({
     },
 
     update(){
-        this.curBet = parseInt(this.edit_Bet.string) * 100;
+        this.curBet = parseFloat(this.edit_Bet.string) * 100;
     }
 });

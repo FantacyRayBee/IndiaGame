@@ -31494,11 +31494,6 @@
     "meta": 1759140522810,
     "relativePath": "zooGame\\Scripts\\zooMain.js"
   },
-  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
-    "asset": 1759140504090,
-    "meta": 1759140532474,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
-  },
   "fefb990b-20d0-432a-963a-70de135d3793": {
     "asset": 1759140499796,
     "meta": 1759140519103,
@@ -31528,11 +31523,6 @@
     "asset": 1759140499510,
     "meta": 1759140515533,
     "relativePath": "aviator\\src\\AviatorEditbox.js"
-  },
-  "ed27ea93-10b0-4daf-9dea-3ad942a27495": {
-    "asset": 1759140504123,
-    "meta": 1759140516302,
-    "relativePath": "chickenroad\\src\\ChickenBet.js"
   },
   "1e996578-af9b-4161-acf0-1860be546a2c": {
     "asset": 1759140504124,
@@ -31638,11 +31628,6 @@
     "asset": 1759140504086,
     "meta": 1759140514369,
     "relativePath": "Main\\Main.js"
-  },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1759140504085,
-    "meta": 1759140514339,
-    "relativePath": "Main\\Global.js"
   },
   "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
     "asset": 1759140504118,
@@ -31758,5 +31743,20 @@
     "asset": 1760004307386,
     "meta": 1760004308857,
     "relativePath": "chickenroad\\src\\ChickenEditbox.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1760004460676,
+    "meta": 1760004509991,
+    "relativePath": "Main\\Global.js"
+  },
+  "f2a86e19-7ddc-4457-8773-690b697ecb54": {
+    "asset": 1760004460677,
+    "meta": 1760004510072,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
+  },
+  "ed27ea93-10b0-4daf-9dea-3ad942a27495": {
+    "asset": 1760005719692,
+    "meta": 1760005724037,
+    "relativePath": "chickenroad\\src\\ChickenBet.js"
   }
 }

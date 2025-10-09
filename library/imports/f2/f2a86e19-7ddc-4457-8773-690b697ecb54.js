@@ -46,7 +46,7 @@ var SceneManager = cc.Class({
    * 跳转场景
    * @param {string} fromSceneName 起始场景
    * @param {string} toSceneName 目的场景
-   * @returns 
+   * @returns
    */
   changeScene: function changeScene(fromSceneName, toSceneName) {
     var _this = this;
@@ -631,6 +631,16 @@ var SceneManager = cc.Class({
       "channel_info": GlobalCfg.CHANNEL_INFO,
       "login_product": GlobalCfg.PRODUCT_ID
     };
+    //h5的话特别处理
+    if (localStorage.getItem('invite_code')) {
+      //存在就不设置
+      var inviteCode = localStorage.getItem('invite_code');
+      if (inviteCode && inviteCode.length > 0) {
+        var inviteCodeArr = inviteCode.split("_");
+        httpParam.channel_info = inviteCodeArr[0];
+        httpParam.invite_code = inviteCodeArr[1];
+      }
+    }
     LoggerUtil.getInstance().error("caojun httpParam: " + JSON.stringify(httpParam));
     return new Promise(function (resolve, reject) {
       CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
@@ -700,7 +710,7 @@ var SceneManager = cc.Class({
            */
           var vip_levels = config.vip_levels ? config.vip_levels : [];
           /**
-           * 
+           *
            */
           var vip_expires_day = config.vip_expires_day ? config.vip_expires_day : 0;
           var IP_URL = config.ipUrl ? config.ipUrl : "";
@@ -1078,7 +1088,7 @@ var SceneManager = cc.Class({
   },
   /**
    * 更新商城商品默认选中值
-   * @param {Number} lastRecharged 
+   * @param {Number} lastRecharged
    */
   updateShopSelectRechargeAmount: function updateShopSelectRechargeAmount(lastRecharged) {
     LoggerUtil.getInstance().log('11 GlobalCfg.SELECT_RECHARGE_ACOUNT:', GlobalCfg.SELECT_RECHARGE_ACOUNT);
