@@ -65,20 +65,20 @@ cc.Class({
       _str2 += "&email=" + GlobalCfg.USER_DATAS.mail;
 
       // LoggerUtil.getInstance().log('btn_service str:' , str);
-      // cc.sys.openURL(str);
-      if (navigator.share) {
-        navigator.share({
-          title: 'C777 Slots',
-          text: "",
-          url: _str2
-        }).then(function () {
-          console.log('分享成功');
-        })["catch"](function (err) {
-          console.error('分享失败:', err);
-        });
-      } else {
-        console.log('当前浏览器不支持 Web Share API');
-      }
+      cc.sys.openURL(_str2);
+      // if (navigator.share) {
+      //     navigator.share({
+      //         title: 'C777 Slots',
+      //         text: "",
+      //         url: str,
+      //     }).then(() => {
+      //         console.log('分享成功');
+      //     }).catch(err => {
+      //         console.error('分享失败:', err);
+      //     });
+      // } else {
+      //     console.log('当前浏览器不支持 Web Share API');
+      // }
     } else if (btnName == 'btn_go_feedback') {
       CommonFun.getInstance().showFastFeedBack();
     }

@@ -40,7 +40,7 @@ cc.Class({
         });
         if (CommonFun.getInstance().isValidForScr(this)) {
             for (let i = 0; i < 2; i++) {
-                // let data = commodity[i];
+                let data = commodity[i];
                 // let price = Math.floor(Number(data.amount) / 100);
                 // let bonus = Math.floor(Number(data.gift) / 100);
                 let price = (Number(data.amount) / 100);

@@ -272,13 +272,13 @@ cc.Class({
     }
   },
   dealBtnFZEvent: function dealBtnFZEvent() {
-    if (cc.sys.isNative) {
-      var shareUrl = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go\uFF01 " + GlobalCfg.APP_SHARE_URL + "?inviteCode=" + GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
-      APPManager.copyToPasteBoard(shareUrl);
-      CommonFun.getInstance().showTips("Copy successful!");
-    }
-    ;
+    // if (cc.sys.isNative) {
+    var shareUrl = "Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go\uFF01 " + GlobalCfg.APP_SHARE_URL + "?inviteCode=" + GlobalCfg.CHANNEL_INFO + "_" + GlobalCfg.USER_DATAS.inviteCode;
+    APPManager.copyToPasteBoard(shareUrl);
+    CommonFun.getInstance().showTips("Copy successful!");
+    // };
   },
+
   dealBtnSFEvent: function dealBtnSFEvent() {
     // // 跳转至WhatsApp
     // let channel_info = {...GlobalCfg.USER_DATAS.customerService};

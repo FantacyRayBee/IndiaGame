@@ -39,11 +39,14 @@ cc.Class({
 
     onLoad() {
         if (GlobalCfg.CURSCENE_DIRECTION == 'vertical') {
-            this.root.scale = 0.65;
+            this.root.scale = 0.75;
+            let targetY = -(this.node.width / 2 - this.root.height) - 85;
+            cc.tween(this.root).to(0.3, { y: targetY }, { easing: 'quadOut' }).start();
         }
-        const size = cc.view.getFrameSize();
-        let targetY = -(size.height / 2 - this.root.height) + 10;
-        cc.tween(this.root).to(0.3, { y: targetY }, { easing: 'quadOut' }).start();
+        else{
+            let targetY = -(this.node.height / 2 - this.root.height) + 10;
+            cc.tween(this.root).to(0.3, { y: targetY }, { easing: 'quadOut' }).start();
+        }
         // 进场动画：从下边界外进入
 
         // 点击遮罩关闭（可选）

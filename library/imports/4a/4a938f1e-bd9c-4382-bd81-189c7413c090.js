@@ -125,7 +125,12 @@ cc.Class({
       default:
         break;
     }
-    lab_coin.string = "" + amount;
+    // ✅ 判断是否有小数，只保留最多两位
+    if (Number.isInteger(amount)) {
+      lab_coin.string = "" + amount;
+    } else {
+      lab_coin.string = parseFloat(amount.toFixed(2)).toString();
+    }
   }
 });
 

@@ -300,11 +300,11 @@ cc.Class({
     },
 
     dealBtnFZEvent: function () {
-        if (cc.sys.isNative) {
+        // if (cc.sys.isNative) {
             let shareUrl = `Your cash will expire in three hours, download theNo.1 card game in India to receive your cash, do not let it go！\ ${GlobalCfg.APP_SHARE_URL}?inviteCode=${GlobalCfg.CHANNEL_INFO}_${GlobalCfg.USER_DATAS.inviteCode}`;
             APPManager.copyToPasteBoard(shareUrl);
             CommonFun.getInstance().showTips("Copy successful!");
-        };
+        // };
     },
 
     dealBtnSFEvent: function () {

@@ -970,8 +970,8 @@
     "relativePath": "Rummy\\rummyPab"
   },
   "23c8e7a2-ccf8-40c5-bea3-7b674ab2663b": {
-    "asset": 1759140504090,
-    "meta": 1759140514586,
+    "asset": 1759980188802,
+    "meta": 1759980188808,
     "relativePath": "Main\\Update.fire"
   },
   "f5da5873-68cc-4735-80ab-3dea8a387052": {
@@ -19229,11 +19229,6 @@
     "meta": 1759140535321,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\res\\atlas\\VipIcon.png"
   },
-  "4a938f1e-bd9c-4382-bd81-189c7413c090": {
-    "asset": 1758180053822,
-    "meta": 1759140528177,
-    "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips\\RewardsTipsCtrl.js"
-  },
   "d7b76bb3-9e60-4412-b5d0-72cc1d766ecb": {
     "asset": 1758180053806,
     "meta": 1759140535335,
@@ -26910,8 +26905,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\Activity\\res\\getBonus\\bg_hd_cz.jpg"
   },
   "fbbb36fb-2bb9-4616-905b-3a98adf4d9e7": {
-    "asset": 1759140498988,
-    "meta": 1759140526574,
+    "asset": 1759990570061,
+    "meta": 1759990570066,
     "relativePath": "MustBundle\\Normal\\FirstRecharge\\FirstRecharge.prefab"
   },
   "c0e412e5-4f24-4fd1-99f1-8b1a8b636110": {
@@ -31240,8 +31235,8 @@
     "relativePath": "notBundle\\Pdd\\res\\pdd\\altas\\turnTable\\line_sr.png"
   },
   "f94ac5e2-1209-42e8-ab51-3f5bb75e2245": {
-    "asset": 1759140499291,
-    "meta": 1759140528520,
+    "asset": 1759992106171,
+    "meta": 1759992106175,
     "relativePath": "ResourcesBundle\\NewPlan\\register\\registerView.prefab"
   },
   "a8fe996a-68bd-4267-a48e-e20a5a0da4fb": {
@@ -31539,11 +31534,6 @@
     "meta": 1759140527408,
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
   },
-  "698fed28-81c9-4ff8-ac5c-d9ad2a81163f": {
-    "asset": 1759140504105,
-    "meta": 1759140527340,
-    "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivityGetBonusCtrl.js"
-  },
   "6cf4fb21-462c-445c-a1ff-3e628530c3ac": {
     "asset": 1759140504121,
     "meta": 1759140514069,
@@ -31610,14 +31600,9 @@
     "relativePath": "MustBundle\\Normal\\keyboard\\res\\Rectangle 1.png"
   },
   "ec192412-ec6c-4816-8c86-787a884d93ee": {
-    "asset": 1759975199848,
-    "meta": 1759975199853,
+    "asset": 1759982861525,
+    "meta": 1759982861532,
     "relativePath": "MustBundle\\Normal\\keyboard\\SoftKeyboard.prefab"
-  },
-  "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1759140504113,
-    "meta": 1759140519579,
-    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   },
   "f248425d-7cd6-4327-93ab-952ead6d5c7c": {
     "asset": 1759140504098,
@@ -31704,11 +31689,6 @@
     "meta": 1759140514396,
     "relativePath": "Main\\OrientationManager.js"
   },
-  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1759140504088,
-    "meta": 1759140532068,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
-  },
   "c8324c2c-18bf-4267-9b62-d82662aeae9d": {
     "asset": 1759140504089,
     "meta": 1759140532088,
@@ -31740,23 +31720,43 @@
     "relativePath": "mayaMachine\\sprite\\main\\jinbi.png"
   },
   "da78386b-15c7-459d-b25b-166a4dbb5272": {
-    "asset": 1759975816086,
-    "meta": 1759975914365,
+    "asset": 1759979171344,
+    "meta": 1759979173515,
     "relativePath": "Main\\SDK\\APPManager.js"
   },
   "39b5c8f8-d498-4a07-adc4-2d8a61036959": {
-    "asset": 1759976032888,
-    "meta": 1759976036215,
+    "asset": 1759983226601,
+    "meta": 1759983228168,
     "relativePath": "MustBundle\\Normal\\keyboard\\scripts\\SoftKeyboard.js"
   },
-  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
-    "asset": 1759976362242,
-    "meta": 1759976539223,
-    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
+  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
+    "asset": 1759988737544,
+    "meta": 1759988761044,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
+  },
+  "698fed28-81c9-4ff8-ac5c-d9ad2a81163f": {
+    "asset": 1759988864918,
+    "meta": 1759988874271,
+    "relativePath": "ResourcesBundle\\NewPlan\\Activity\\ActivityGetBonusCtrl.js"
+  },
+  "4a938f1e-bd9c-4382-bd81-189c7413c090": {
+    "asset": 1759989115491,
+    "meta": 1759989118474,
+    "relativePath": "ResourcesBundle\\NewPlan\\RewardsTips\\RewardsTipsCtrl.js"
   },
   "bdd8efe0-a025-410b-8f7f-ee49587af317": {
-    "asset": 1759976272437,
-    "meta": 1759976539273,
+    "asset": 1759990148958,
+    "meta": 1759990164737,
     "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterCtrl.js"
+  },
+  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
+    "asset": 1759990305709,
+    "meta": 1759990308433,
+    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
+  },
+  "94e34e55-245d-4bd3-8a84-60774f575028": {
+    "asset": 1759990590233,
+    "meta": 1759990591976,
+    "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
   }
 }
