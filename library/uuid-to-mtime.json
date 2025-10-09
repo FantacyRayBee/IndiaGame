@@ -12965,8 +12965,8 @@
     "relativePath": "fruitMachine\\font\\winFont.fnt"
   },
   "a85928a3-eeb7-4532-bd41-7bf33b72e0ea": {
-    "asset": 1757322085302,
-    "meta": 1759140514090,
+    "asset": 1759975440838,
+    "meta": 1759975440845,
     "relativePath": "fruitMachine\\fruitMachine.fire"
   },
   "dce0fc1b-f00f-443a-a0c9-dec65e919b57": {
@@ -13264,11 +13264,6 @@
     "meta": 1759140524922,
     "relativePath": "fruitMachine\\sprite\\main\\xuanze.png"
   },
-  "bb8ccaee-49e8-424e-a0e6-09eb6b96ab2f": {
-    "asset": 1757322085339,
-    "meta": 1759140524928,
-    "relativePath": "fruitMachine\\sprite\\main\\jinbi.png"
-  },
   "7efb9bf8-077a-4854-877c-cf63c948ee74": {
     "asset": 1757322085754,
     "meta": 1759140527288,
@@ -13370,8 +13365,8 @@
     "relativePath": "mayaMachine\\src"
   },
   "2036f362-7780-4f77-b9f6-7dcc43fa7374": {
-    "asset": 1757322085631,
-    "meta": 1759140514585,
+    "asset": 1759975722554,
+    "meta": 1759975722562,
     "relativePath": "mayaMachine\\mayaMachine.fire"
   },
   "62d8eec4-8a74-4c2e-a345-b2d37ac21a7a": {
@@ -14009,11 +14004,6 @@
     "meta": 1759140537767,
     "relativePath": "vampireMachine\\spine\\WIN\\Jiang.skel.json"
   },
-  "ce094c42-8d54-4675-b160-a585de6913a0": {
-    "asset": 1758180054820,
-    "meta": 1759140530205,
-    "relativePath": "vampireMachine\\sprite\\main\\jinbi.png"
-  },
   "c24eae34-b9bb-44ea-b54e-e65fad6040c0": {
     "asset": 1758180054819,
     "meta": 1759140530200,
@@ -14179,11 +14169,6 @@
     "meta": 1759140526121,
     "relativePath": "mayaMachine\\sprite\\main\\btn_wf.png"
   },
-  "7b125c44-4bdc-4d70-b8d2-752ab4f97ef2": {
-    "asset": 1757322085670,
-    "meta": 1759140526133,
-    "relativePath": "mayaMachine\\sprite\\main\\jinbi.png"
-  },
   "4e83ca9b-926d-4517-9e0c-2b8f48af6f1a": {
     "asset": 1757322085670,
     "meta": 1759140526132,
@@ -14235,8 +14220,8 @@
     "relativePath": "vampireMachine\\prefab\\vampireItem.prefab"
   },
   "e3073bf7-25d7-4624-ad5e-c4fe1c1f5ad1": {
-    "asset": 1758180054825,
-    "meta": 1759140515134,
+    "asset": 1759975492094,
+    "meta": 1759975492102,
     "relativePath": "vampireMachine\\vampireMachine.fire"
   },
   "2e6ebc53-57ee-4e0f-ab16-5cfe6e4d834b": {
@@ -15963,11 +15948,6 @@
     "asset": 1759140499154,
     "meta": 1759140528252,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\Personal.prefab"
-  },
-  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
-    "asset": 1758180053637,
-    "meta": 1759140527559,
-    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
   },
   "81a860dc-404b-45ac-9316-890842ef9538": {
     "asset": 1759140499220,
@@ -31444,11 +31424,6 @@
     "meta": 1759140533931,
     "relativePath": "ResourcesBundle\\NewPlan\\register\\res\\弹窗.png"
   },
-  "bdd8efe0-a025-410b-8f7f-ee49587af317": {
-    "asset": 1759140504110,
-    "meta": 1759140528087,
-    "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterCtrl.js"
-  },
   "fe2af053-b982-4670-868e-ae455a4da2c3": {
     "asset": 1759140504117,
     "meta": 1759140530874,
@@ -31609,11 +31584,6 @@
     "meta": 1759140535317,
     "relativePath": "ResourcesBundle\\NewPlan\\Personal\\res\\atlas\\heads_atlas-0.png"
   },
-  "da78386b-15c7-459d-b25b-166a4dbb5272": {
-    "asset": 1759140504087,
-    "meta": 1759140518329,
-    "relativePath": "Main\\SDK\\APPManager.js"
-  },
   "4be59ab5-e35e-4d1b-aa36-9a25608917aa": {
     "asset": 1759055504611,
     "meta": 1759140527631,
@@ -31640,8 +31610,8 @@
     "relativePath": "MustBundle\\Normal\\keyboard\\res\\Rectangle 1.png"
   },
   "ec192412-ec6c-4816-8c86-787a884d93ee": {
-    "asset": 1759140504092,
-    "meta": 1759140526587,
+    "asset": 1759975199848,
+    "meta": 1759975199853,
     "relativePath": "MustBundle\\Normal\\keyboard\\SoftKeyboard.prefab"
   },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
@@ -31744,11 +31714,6 @@
     "meta": 1759140532088,
     "relativePath": "Main\\Script\\Common\\UtilTools\\EditBoxSoftKeyboardBridge.js"
   },
-  "39b5c8f8-d498-4a07-adc4-2d8a61036959": {
-    "asset": 1759140504104,
-    "meta": 1759140532701,
-    "relativePath": "MustBundle\\Normal\\keyboard\\scripts\\SoftKeyboard.js"
-  },
   "571909fa-baaf-4bda-80a5-b697edc04e25": {
     "asset": 1759974745272,
     "meta": 1759974771507,
@@ -31758,5 +31723,40 @@
     "asset": 1759975004610,
     "meta": 1759975056956,
     "relativePath": "cricketGame\\scripts\\cricketCurBetCtrl.js"
+  },
+  "bb8ccaee-49e8-424e-a0e6-09eb6b96ab2f": {
+    "asset": 1759975408990,
+    "meta": 1759975422297,
+    "relativePath": "fruitMachine\\sprite\\main\\jinbi.png"
+  },
+  "ce094c42-8d54-4675-b160-a585de6913a0": {
+    "asset": 1759975408990,
+    "meta": 1759975479286,
+    "relativePath": "vampireMachine\\sprite\\main\\jinbi.png"
+  },
+  "7b125c44-4bdc-4d70-b8d2-752ab4f97ef2": {
+    "asset": 1759975408990,
+    "meta": 1759975562168,
+    "relativePath": "mayaMachine\\sprite\\main\\jinbi.png"
+  },
+  "da78386b-15c7-459d-b25b-166a4dbb5272": {
+    "asset": 1759975816086,
+    "meta": 1759975914365,
+    "relativePath": "Main\\SDK\\APPManager.js"
+  },
+  "39b5c8f8-d498-4a07-adc4-2d8a61036959": {
+    "asset": 1759976032888,
+    "meta": 1759976036215,
+    "relativePath": "MustBundle\\Normal\\keyboard\\scripts\\SoftKeyboard.js"
+  },
+  "335f4471-f96a-40a1-bdde-0bd21a8e757e": {
+    "asset": 1759976362242,
+    "meta": 1759976539223,
+    "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
+  },
+  "bdd8efe0-a025-410b-8f7f-ee49587af317": {
+    "asset": 1759976272437,
+    "meta": 1759976539273,
+    "relativePath": "ResourcesBundle\\NewPlan\\Promoter\\PromoterCtrl.js"
   }
 }

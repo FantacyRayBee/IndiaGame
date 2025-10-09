@@ -60,13 +60,27 @@ cc.Class({
         else if (btnName == 'btn_service') {
             // Skip to service
             let str = GlobalCfg.USER_DATAS.web_customer_service;
-            str += "?userId=" + GlobalCfg.USER_DATAS.userId;
+            str += "?userId=" + GlobalCfg.USER_DATAS.userId+"_us";
             str += "&nickname=" + GlobalCfg.USER_DATAS.userName;
             str += "&mobile=" + GlobalCfg.USER_DATAS.phone;
             str += "&email=" + GlobalCfg.USER_DATAS.mail;
 
-            LoggerUtil.getInstance().log('btn_service str:' , str);
-            cc.sys.openURL(str);
+            // LoggerUtil.getInstance().log('btn_service str:' , str);
+            // cc.sys.openURL(str);
+            if (navigator.share) {
+                navigator.share({
+                    title: 'C777 Slots',
+                    text: "",
+                    url: str,
+                }).then(() => {
+                    console.log('分享成功');
+                }).catch(err => {
+                    console.error('分享失败:', err);
+                });
+            } else {
+                console.log('当前浏览器不支持 Web Share API');
+            }
+
         } 
         else if (btnName == 'btn_go_feedback') {
             CommonFun.getInstance().showFastFeedBack();

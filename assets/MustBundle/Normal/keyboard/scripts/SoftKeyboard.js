@@ -271,7 +271,7 @@ cc.Class({
             // Row4：ABC  ·  ,  ?  !  `   GO
             [
                 { text: '',   type: EnumBtnType.ABC },  // ABC（用底图，隐藏label）
-                { text: '·',  type: EnumBtnType.NORMAL },
+                { text: '.',  type: EnumBtnType.NORMAL },
                 { text: ',',  type: EnumBtnType.NORMAL },
                 { text: '?',  type: EnumBtnType.NORMAL },
                 { text: '!',  type: EnumBtnType.NORMAL },

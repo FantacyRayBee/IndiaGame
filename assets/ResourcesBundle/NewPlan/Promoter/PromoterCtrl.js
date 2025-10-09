@@ -296,7 +296,7 @@ cc.Class({
             });
         } else {
             console.log('当前浏览器不支持 Web Share API');
-}
+        }
     },
 
     dealBtnFZEvent: function () {
