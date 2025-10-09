@@ -2070,17 +2070,13 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
-            callFun();
-            return;
-        };
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
-            CommonFun.getInstance().showTips("Download the game now!");
+            // CommonFun.getInstance().showTips("Download the game now!");
             CommonFun.getInstance().gameLoadBundleByH5(subpackgeName);
             if (this.LoadCompletedCallback == null) {
                 this.LoadCompletedCallback = callFun;
             }
-        } 
+        }
         else {
             callFun();
         };

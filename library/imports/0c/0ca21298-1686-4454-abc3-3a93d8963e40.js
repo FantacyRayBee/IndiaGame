@@ -642,7 +642,7 @@ cc.Class({
     if (cc.sys.isNative) {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
       this.runUpdateProcess();
-    } else if (cc.sys.isBrowser) {
+    } else if (location) {
       // H5 环境
       this.preloadMainH5();
       // //预加载软键盘

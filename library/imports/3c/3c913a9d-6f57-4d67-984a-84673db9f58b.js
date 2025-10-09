@@ -587,9 +587,6 @@ var CommonFun = cc.Class((_cc$Class = {
    * @returns 
    */
   isNeedUpdata: function isNeedUpdata(subpackgeName) {
-    if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
-      return false;
-    }
     if (this.gameBundleOpenList[subpackgeName]) {
       // 如果已经下载过，则直接返回
       return false;

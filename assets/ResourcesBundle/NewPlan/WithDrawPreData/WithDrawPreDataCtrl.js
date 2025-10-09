@@ -266,7 +266,7 @@ cc.Class({
             this.labWithdrawAble.string = "" + (GlobalCfg.USER_DATAS.userDiamond / 100);
         }
 
-        this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 110, this.headSp);
+        this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 70, this.headSp);
         this.lab_user_name.string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 12);
     },
 

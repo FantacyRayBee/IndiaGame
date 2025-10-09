@@ -27554,11 +27554,6 @@
     "meta": 1759140516316,
     "relativePath": "chickenroad\\src\\ChickenDefault.js"
   },
-  "d254611b-674b-4036-b40b-56730dd73690": {
-    "asset": 1759140499632,
-    "meta": 1759140516323,
-    "relativePath": "chickenroad\\src\\ChickenEditbox.js"
-  },
   "965b2d0b-7d88-4c63-a51b-b38924235060": {
     "asset": 1759140499569,
     "meta": 1759140516265,
@@ -27644,11 +27639,6 @@
     "meta": 1759140516274,
     "relativePath": "chickenroad\\anim\\fire_max.atlas"
   },
-  "a7f700a7-62fe-4df0-a931-5e537fdb9273": {
-    "asset": 1759140499551,
-    "meta": 1759140516427,
-    "relativePath": "chickenroad\\anim\\win_k.atlas"
-  },
   "bd9526a8-84c0-4f35-97a5-c779e98a8087": {
     "asset": 1759140499550,
     "meta": 1759140516606,
@@ -27673,11 +27663,6 @@
     "asset": 1759140499566,
     "meta": 1759140516648,
     "relativePath": "chickenroad\\font\\succeedFont_ret_max_x1_0.png"
-  },
-  "804316b6-e1f4-4725-800d-8a0f15b78ab4": {
-    "asset": 1759140499552,
-    "meta": 1759140516641,
-    "relativePath": "chickenroad\\anim\\win_k.png"
   },
   "81bebe9d-3e1d-4dcf-b221-16167e848f51": {
     "asset": 1759140499579,
@@ -28178,11 +28163,6 @@
     "asset": 1759140499779,
     "meta": 1759140514480,
     "relativePath": "notBundle\\NewFirstRechargeTips"
-  },
-  "3efd3f7c-a6f0-4fbf-af5d-aa501a332d30": {
-    "asset": 1759140499551,
-    "meta": 1759140536461,
-    "relativePath": "chickenroad\\anim\\win_k.json"
   },
   "e77b8665-d1c7-4803-b8a1-fe14069c4a0f": {
     "asset": 1759140499796,
@@ -31224,11 +31204,6 @@
     "meta": 1759140536025,
     "relativePath": "notBundle\\Pdd\\res\\pdd\\altas\\turnTable\\jp_03.png"
   },
-  "27c84930-885c-425e-965a-aaf116495f8e": {
-    "asset": 1759140499258,
-    "meta": 1759140528640,
-    "relativePath": "ResourcesBundle\\NewPlan\\WithDrawPreData\\WithDrawPreDataCtrl.js"
-  },
   "96b7fb1c-e038-42eb-becb-b454c6bfe277": {
     "asset": 1759140499912,
     "meta": 1759140536027,
@@ -31535,8 +31510,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
   },
   "6cf4fb21-462c-445c-a1ff-3e628530c3ac": {
-    "asset": 1759140504121,
-    "meta": 1759140514069,
+    "asset": 1760004319120,
+    "meta": 1760004319129,
     "relativePath": "chickenroad\\chickenroad.fire"
   },
   "19de4ccc-2586-4838-a577-ddb34507bcc6": {
@@ -31669,11 +31644,6 @@
     "meta": 1759140514339,
     "relativePath": "Main\\Global.js"
   },
-  "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1759140504091,
-    "meta": 1759140514465,
-    "relativePath": "Main\\Update.js"
-  },
   "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
     "asset": 1759140504118,
     "meta": 1759140515509,
@@ -31729,11 +31699,6 @@
     "meta": 1759983228168,
     "relativePath": "MustBundle\\Normal\\keyboard\\scripts\\SoftKeyboard.js"
   },
-  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1759988737544,
-    "meta": 1759988761044,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
-  },
   "698fed28-81c9-4ff8-ac5c-d9ad2a81163f": {
     "asset": 1759988864918,
     "meta": 1759988874271,
@@ -31754,9 +31719,44 @@
     "meta": 1759990308433,
     "relativePath": "ResourcesBundle\\NewPlan\\CustomerService\\CustomerServiceCtrl.js"
   },
+  "27c84930-885c-425e-965a-aaf116495f8e": {
+    "asset": 1759993727101,
+    "meta": 1759993728794,
+    "relativePath": "ResourcesBundle\\NewPlan\\WithDrawPreData\\WithDrawPreDataCtrl.js"
+  },
+  "a7f700a7-62fe-4df0-a931-5e537fdb9273": {
+    "asset": 1759996571102,
+    "meta": 1759997421785,
+    "relativePath": "chickenroad\\anim\\win_k.atlas"
+  },
+  "804316b6-e1f4-4725-800d-8a0f15b78ab4": {
+    "asset": 1759996571064,
+    "meta": 1759997421796,
+    "relativePath": "chickenroad\\anim\\win_k.png"
+  },
+  "3efd3f7c-a6f0-4fbf-af5d-aa501a332d30": {
+    "asset": 1759996570911,
+    "meta": 1759997421798,
+    "relativePath": "chickenroad\\anim\\win_k.json"
+  },
+  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
+    "asset": 1760003490226,
+    "meta": 1760003800240,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
+  },
+  "0ca21298-1686-4454-abc3-3a93d8963e40": {
+    "asset": 1760003354697,
+    "meta": 1760003800308,
+    "relativePath": "Main\\Update.js"
+  },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
-    "asset": 1759990590233,
-    "meta": 1759990591976,
+    "asset": 1760003789238,
+    "meta": 1760003800424,
     "relativePath": "ResourcesBundle\\Scene\\Lobby.js"
+  },
+  "d254611b-674b-4036-b40b-56730dd73690": {
+    "asset": 1760004307386,
+    "meta": 1760004308857,
+    "relativePath": "chickenroad\\src\\ChickenEditbox.js"
   }
 }
