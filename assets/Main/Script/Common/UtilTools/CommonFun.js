@@ -225,7 +225,11 @@ let CommonFun = cc.Class({
         /**
          * 渠道标识
          */
-        GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+        if ( localStorage.getItem('PackageChannel')){
+            let s =  localStorage.getItem('PackageChannel')
+            GlobalCfg.CHANNEL_INFO =   s.split("_")[1];
+        }
+
         /**
          * 谷歌ID
          */
