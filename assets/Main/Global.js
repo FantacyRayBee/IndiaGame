@@ -1057,7 +1057,7 @@ window.GlobalCfg = {
 
 
         VIPUPGRADETOAST: "ToastLayer",
-        MSGBOX: "ToastLayer",
+        MSGBOX: "TipsLayer",
         WITHDRAWERRORTIPS: "ToastLayer",
         FIRSTRECHARGETIPS: "ToastLayer",
         VIPRECHARGETOAST: "ToastLayer",

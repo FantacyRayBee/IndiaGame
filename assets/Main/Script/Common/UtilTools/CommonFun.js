@@ -226,8 +226,6 @@ let CommonFun = cc.Class({
          * 渠道标识
          */
         GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
-
-
         /**
          * 谷歌ID
          */
@@ -2725,7 +2723,14 @@ let CommonFun = cc.Class({
             CommonFun.getInstance().hidProgress();
             if (strInfo && strInfo.result == 0) {
                 if (strInfo.data.pay_url && strInfo.data.pay_url.length > 0) {
-                    cc.sys.openURL(strInfo.data.pay_url);
+                    if (cc.sys.os === cc.sys.OS_IOS) {
+                        console.log("ios xiaowei");
+                        CommonFun.getInstance().showMsgBox("Go to the top-up page", "YES", () => {
+                            window.open(strInfo.data.pay_url);
+                        }, false)
+                    } else {
+                        cc.sys.openURL(strInfo.data.pay_url);
+                    }
                     callback && callback();
                 } else {
                     CommonFun.getInstance().showTips("Payment link is empty!");
