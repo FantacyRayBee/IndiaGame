@@ -33,37 +33,38 @@ function autoLock() {
     //     return;
     //   }
     //启动一个检测计时器
-    // const interval = setInterval(function () {
-    //     if (!GlobalCfg.CURSCENE_DIRECTION) {
-    //         console.log("GlobalCfg.CURSCENE_DIRECTION 不存在")
-    //         return
-    //     }
-    //     if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
-    //         if (screen.orientation.type.indexOf("portrait") == -1) {
-    //             screen.orientation.lock("portrait-primary")
-    //                 .then(() => console.log("锁定成功"))
-    //                 .catch(err => console.error("锁定失败:", err));
-    //         }
-    //     }
-    //     if (GlobalCfg.CURSCENE_DIRECTION == "horizontal") {
-    //         if (screen.orientation.type.indexOf("landscape") == -1) {
-    //             screen.orientation.lock("landscape-primary")
-    //                 .then(() => console.log("锁定成功"))
-    //                 .catch(err => console.error("锁定失败:", err));
-    //         }
-    //     }
-    // }, 100)
     const parser = new UAParser(navigator.userAgent);
     const result = parser.getResult();
     if (result.os.name === "Android") {
-        const interval1 = setInterval(function () {
-            if (!isFullScreen()) {
-                console.log("当前不是全屏");
-                startquan();
-            } else {
-                console.log("当前是全屏");
-            }
-        }, 1000)
+        // const interval = setInterval(function () {
+        //     if (!GlobalCfg.CURSCENE_DIRECTION) {
+        //         console.log("GlobalCfg.CURSCENE_DIRECTION 不存在")
+        //         return
+        //     }
+        //     if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+        //         if (screen.orientation.type.indexOf("portrait") == -1) {
+        //             screen.orientation.lock("portrait-primary")
+        //                 .then(() => console.log("锁定成功"))
+        //                 .catch(err => console.error("锁定失败:", err));
+        //         }
+        //     }
+        //     if (GlobalCfg.CURSCENE_DIRECTION == "horizontal") {
+        //         if (screen.orientation.type.indexOf("landscape") == -1) {
+        //             screen.orientation.lock("landscape-primary")
+        //                 .then(() => console.log("锁定成功"))
+        //                 .catch(err => console.error("锁定失败:", err));
+        //         }
+        //     }
+        // }, 100)
+
+        // const interval1 = setInterval(function () {
+        //     if (!isFullScreen()) {
+        //         console.log("当前不是全屏");
+        //         startquan();
+        //     } else {
+        //         console.log("当前是全屏");
+        //     }
+        // }, 1000)
     }
 }
 
