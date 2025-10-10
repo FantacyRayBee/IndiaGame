@@ -23,7 +23,8 @@ cc.Class({
     node_shopItemContent: cc.Node,
     node_shopTogItemContent: cc.Node,
     node_tog: cc.Node,
-    togList: [cc.Toggle]
+    togList: [cc.Toggle],
+    node_root: cc.Node
   },
   ctor: function ctor() {
     this.haveFromData = false; // 是否有跳转来源数据
@@ -44,6 +45,13 @@ cc.Class({
     this.lab_userDiamond.string = "$" + FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
     this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
     this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+    var size = cc.view.getFrameSize();
+    var frameW = size.width;
+    var frameH = size.height;
+    LoggerUtil.getInstance().log("当前屏幕分辨率 ", frameW, frameH);
+    if (frameH / frameW < 2) {
+      this.node_root.scale = 1.3;
+    }
   },
   /**
    * 设置跳转来源

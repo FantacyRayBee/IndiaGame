@@ -954,43 +954,46 @@ cc.Class({
   },
   loadBundleAndRunScene: function loadBundleAndRunScene() {
     var _this7 = this;
+    var downAfter = function downAfter() {
+      GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
+      GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
+      if (!GlobalCfg.USER_DATAS.token) {
+        _this7.node_loginLayer.active = true;
+        // let phoneToken = cc.sys.localStorage.getItem("phone_token");
+        // if (phoneToken) {
+        //     this.showMemoryPhoneView();
+        // }
+        // else {
+        _this7.showCommonLoginView();
+        // };
+      } else {
+        CommonFun.getInstance().showProgress('Memory login ...');
+        _this7.node_loginLayer.active = false;
+        var promise = SceneManager.getInstance().reqBearerToken();
+        promise.then(function () {
+          return SceneManager.getInstance().reqUserDataInfo();
+        }).then(function () {
+          CommonFun.getInstance().showProgress();
+          SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+        })["catch"](function (error) {
+          LoggerUtil.getInstance().log(error);
+          _this7.node_loginLayer.active = true;
+          _this7.showCommonLoginView();
+        });
+      }
+    };
     Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()]);
     Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()]).then(function (arr) {
       var packgeName = "Activity";
       cc.assetManager.loadBundle('ResourcesBundle', function (_, bundle) {
         window.ResourcesBundle = bundle;
         bundle.preloadDir(packgeName, null, function (err) {
-          if (err) {
-            console.error(packgeName + " 资源加载失败:", err);
-          } else {
-            console.error(packgeName + " 资源加载成功");
-            GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
-            GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
-            if (!GlobalCfg.USER_DATAS.token) {
-              _this7.node_loginLayer.active = true;
-              // let phoneToken = cc.sys.localStorage.getItem("phone_token");
-              // if (phoneToken) {
-              //     this.showMemoryPhoneView();
-              // }
-              // else {
-              _this7.showCommonLoginView();
-              // };
-            } else {
-              CommonFun.getInstance().showProgress('Memory login ...');
-              _this7.node_loginLayer.active = false;
-              var promise = SceneManager.getInstance().reqBearerToken();
-              promise.then(function () {
-                return SceneManager.getInstance().reqUserDataInfo();
-              }).then(function () {
-                CommonFun.getInstance().showProgress();
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-              })["catch"](function (error) {
-                LoggerUtil.getInstance().log(error);
-                _this7.node_loginLayer.active = true;
-                _this7.showCommonLoginView();
-              });
-            }
-          }
+          // bundle.preloadDir("MainSound", null, (err) => {
+          //     if (!err) {
+          //         console.error("MainSound 资源加载成功");
+          downAfter();
+          // }
+          // });
         });
       });
     })["catch"](function (err) {

@@ -20,7 +20,11 @@ cc.Class({
     setData: function(payChannels, infos, callback) {
         this.callback = callback;
         this.addShopTogItems(payChannels);   
+        LoggerUtil.getInstance().log("infos：", infos);
         let final = parseFloat(infos.price) + parseFloat(infos.bonus);
+        if (!Number.isInteger(final)) {
+            final = parseFloat(final.toFixed(2)).toString();
+        }
         this.lab_num.string = `<color=#EE6E37>${infos.price}</c> deposit + <color=#EE6E37>${infos.bonus}</c> Bonus = <color=#EE6E37>${final}</c>`
     },
 

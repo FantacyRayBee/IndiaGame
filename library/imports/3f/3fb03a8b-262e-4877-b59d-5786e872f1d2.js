@@ -11,7 +11,7 @@ cc.Class({
   },
   preloadAudioClip: function preloadAudioClip() {
     var _this = this;
-    var soundArry = ["sound/lobby", "sound/button", "sound/back"];
+    var soundArry = ["MainSound/lobby", "MainSound/button", "MainSound/back"];
     for (var index = 0; index < soundArry.length; index++) {
       var element = soundArry[index];
       ResourcesBundle.load(element, cc.AudioClip, function (err, audioClip) {
@@ -28,7 +28,7 @@ cc.Class({
     if (clip) {
       this.playSound(clip, loop);
     } else {
-      ResourcesBundle.load("sound/" + soundName, cc.AudioClip, function (err, audioClip) {
+      ResourcesBundle.load("MainSound/" + soundName, cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this2.soundAudioClips[audioClip._name] = audioClip;
           _this2.playSound(audioClip, loop);
@@ -42,7 +42,7 @@ cc.Class({
     if (clip) {
       this.playMusic(clip, true);
     } else {
-      ResourcesBundle.load("sound/lobby", cc.AudioClip, function (err, audioClip) {
+      ResourcesBundle.load("MainSound/lobby", cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this3.soundAudioClips[audioClip._name] = audioClip;
           _this3.playMusic(audioClip, true);
@@ -56,7 +56,7 @@ cc.Class({
     if (clip) {
       this.playSound(clip, false);
     } else {
-      ResourcesBundle.load("sound/button", cc.AudioClip, function (err, audioClip) {
+      ResourcesBundle.load("MainSound/button", cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this4.soundAudioClips[audioClip._name] = audioClip;
           _this4.playSound(audioClip, false);
@@ -70,7 +70,7 @@ cc.Class({
     if (clip) {
       this.playSound(clip, false);
     } else {
-      ResourcesBundle.load("sound/back", cc.AudioClip, function (err, audioClip) {
+      ResourcesBundle.load("MainSound/back", cc.AudioClip, function (err, audioClip) {
         if (!err) {
           _this5.soundAudioClips[audioClip._name] = audioClip;
           _this5.playSound(audioClip, false);

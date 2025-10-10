@@ -22,18 +22,20 @@ cc.Class({
 
         node_tog: cc.Node,
         togList: [cc.Toggle],
+
+        node_root: cc.Node,
     },
 
-    ctor: function() {
+    ctor: function () {
         this.haveFromData = false;  // 是否有跳转来源数据
         this.upiChannel = 1;    // upi渠道
-        this.entryStrList = ['paytm','upi','phonepe']
+        this.entryStrList = ['paytm', 'upi', 'phonepe']
     },
 
-    onLoad: function() {
+    onLoad: function () {
         SHOPPING.cashID = -1;
         this.node_bonusTips.active = false;
-        
+
         this.btn_back.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_instructions.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_record.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -47,13 +49,21 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+
+        const size = cc.view.getFrameSize();
+        let frameW = size.width;
+        let frameH = size.height;
+        LoggerUtil.getInstance().log("当前屏幕分辨率 ", frameW, frameH);
+        if (frameH / frameW < 2) {
+            this.node_root.scale = 1.3;
+        }
     },
 
     /**
      * 设置跳转来源
      * @param {string} from 
      */
-    setJumpFrom: function(from) {
+    setJumpFrom: function (from) {
         if (from && from.length > 0) {
             this.haveFromData = true;
             SHOPPING.from = from;
@@ -63,19 +73,19 @@ cc.Class({
         };
     },
 
-    start: function() {
+    start: function () {
         this.togList[0].isChecked = true;
         GlobalCfg.PAY_CHANNEL2 = this.entryStrList[0];
         this.setShopItems();
     },
 
-    onEventMsg: function(webData, target) {
+    onEventMsg: function (webData, target) {
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
-        LoggerUtil.getInstance().log("onEventMsg msgId ===> ",  msgId);
-        LoggerUtil.getInstance().log("onEventMsg notify ===> ",  JSON.stringify(notify));
-        if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) { 
+        LoggerUtil.getInstance().log("onEventMsg msgId ===> ", msgId);
+        LoggerUtil.getInstance().log("onEventMsg notify ===> ", JSON.stringify(notify));
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             let reason = notify.reason;         // 原因
             let changed = notify.changed;       // 变化值
             let winnings = notify.winnings;     // winnings(后)
@@ -91,7 +101,7 @@ cc.Class({
             let shopItemData = notify.shopItemData;
             SHOPPING.cashID = shopItemData.id;
             SHOPPING.cashAmount = shopItemData.amount;
-            
+
             // let amount = Math.floor(shopItemData.amount / 100);
             // let gift = Math.floor(shopItemData.gift / 100);
             let amount = shopItemData.amount / 100
@@ -164,7 +174,7 @@ cc.Class({
     },
 
 
-    onDestroy: function() {
+    onDestroy: function () {
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPITEM);
@@ -172,33 +182,33 @@ cc.Class({
         // CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPTOGITEM);
     },
 
-    setShopItems: function() {
+    setShopItems: function () {
         Promise.all([this.getStoreListInfo(), CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPITEM)])
-        .then((arr) => {
-            let storeList = arr[0];
-            let itemPrefab = arr[1];
-            if (CommonFun.getInstance().isValidForScr(this)) {
-                let couldWithdraw = GlobalCfg.USER_DATAS.userDiamond;
-                let arr = CommonFun.getInstance().dealShopList(couldWithdraw, storeList);
-                this.addShopItems(arr, itemPrefab);         
-            };       
-        })
-        .catch((err) => {});
+            .then((arr) => {
+                let storeList = arr[0];
+                let itemPrefab = arr[1];
+                if (CommonFun.getInstance().isValidForScr(this)) {
+                    let couldWithdraw = GlobalCfg.USER_DATAS.userDiamond;
+                    let arr = CommonFun.getInstance().dealShopList(couldWithdraw, storeList);
+                    this.addShopItems(arr, itemPrefab);
+                };
+            })
+            .catch((err) => { });
     },
 
-    setPayChannel : function(payChannels) {
+    setPayChannel: function (payChannels) {
         Promise.all([CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPTOGITEM)])
-        .then((arr) => {
-            let itemPrefab = arr[0];
-            if (CommonFun.getInstance().isValidForScr(this)) {
-                this.addShopTogItems(payChannels, itemPrefab);         
-            };
-        })
-        .catch((err) => {}); 
+            .then((arr) => {
+                let itemPrefab = arr[0];
+                if (CommonFun.getInstance().isValidForScr(this)) {
+                    this.addShopTogItems(payChannels, itemPrefab);
+                };
+            })
+            .catch((err) => { });
     },
 
 
-    addShopItems: function(arr, itemPrefab) {
+    addShopItems: function (arr, itemPrefab) {
         let children = this.node_shopItemContent.children;
         for (let i = 0, len = children.length; i < len; i++) {
             const node = children[i];
@@ -244,13 +254,13 @@ cc.Class({
                 };
                 this.unschedule(addItem);
                 return;
-            }; 
+            };
         };
-        this.schedule(addItem, 1/cc.game.getFrameRate(), len - 1, 0);
+        this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
     },
 
 
-    addShopTogItems : function(data, itemPrefab) {
+    addShopTogItems: function (data, itemPrefab) {
         let children = this.node_shopTogItemContent.children;
         for (let i = 0, len = children.length; i < len; i++) {
             const node = children[i];
@@ -277,15 +287,15 @@ cc.Class({
         }
     },
 
-    getStoreListInfo: function() {
+    getStoreListInfo: function () {
         return new Promise((resolve, reject) => {
             if (GlobalCfg.USER_DATAS.store) {
                 resolve(GlobalCfg.USER_DATAS.store);
                 return;
             };
 
-            let url = `${GlobalCfg.HTTP_SERVER}/v1/payment/commodity/storelist`;  
-            CommonFun.getInstance().httpGet(url, (json) => {  
+            let url = `${GlobalCfg.HTTP_SERVER}/v1/payment/commodity/storelist`;
+            CommonFun.getInstance().httpGet(url, (json) => {
                 if (json && json.result == 0 && json.data) {
                     let data = json.data;
                     let list = data.list;
@@ -301,7 +311,7 @@ cc.Class({
     },
 
 
-    btnClick: function(btn) {
+    btnClick: function (btn) {
         let btnName = btn.node.name;
         switch (btnName) {
             case this.btn_back.node.name:
@@ -318,9 +328,9 @@ cc.Class({
                 break;
             case this.btn_addCash.node.name:
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
-                this.dealBtnAddCashEvent(); 
+                this.dealBtnAddCashEvent();
                 break;
-            case  this.btn_bonusTips.node.name:
+            case this.btn_bonusTips.node.name:
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
                 this.dealBtnBonusTipsEvent();
                 break;
@@ -329,27 +339,27 @@ cc.Class({
         }
     },
 
-    togClick: function(tog) {
+    togClick: function (tog) {
         if (tog.isChecked) {
             let index = parseInt(tog.node.name);
             GlobalCfg.PAY_CHANNEL2 = this.entryStrList[index];
         }
     },
 
-    dealBtnBackEvent: function() {
+    dealBtnBackEvent: function () {
         CommonFun.getInstance().decVerticalAcc();
         this.node.destroy();
     },
 
-    dealBtnInstructionsEvent: function() {
+    dealBtnInstructionsEvent: function () {
         CommonFun.getInstance().showShopInstructions();
     },
 
-    dealBtnRecordEvent: function() {
+    dealBtnRecordEvent: function () {
         CommonFun.getInstance().showTransactionRecord();
     },
 
-    dealBtnAddCashEvent: function() {
+    dealBtnAddCashEvent: function () {
         if (SHOPPING.cashID == -1) {
             return;
         };
@@ -365,9 +375,9 @@ cc.Class({
         CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
     },
 
-    dealBtnBonusTipsEvent: function() {
+    dealBtnBonusTipsEvent: function () {
         this.node_bonusTips.active = !this.node_bonusTips.active;
     },
 
-    
+
 });

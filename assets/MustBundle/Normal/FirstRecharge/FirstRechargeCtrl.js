@@ -108,7 +108,7 @@ cc.Class({
                             },GlobalCfg.PAY_CHANNEL);
                         // };
                     }
-                    let data1 = {price:this.lab_item0Cash.string, bonus:this.lab_item0Bonus.string}
+                    let data1 = {price: (Number(commodity[0].amount) / 100), bonus: (Number(commodity[0].gift) / 100)}
                     CommonFun.getInstance().showPayChannel(data1, callback);
                 // })
                 break;
@@ -140,7 +140,7 @@ cc.Class({
                     // };
                 // })
                 }
-                let data2 = {price:this.lab_item1Cash.string, bonus:this.lab_item1Bonus.string}
+                let data2 = {price: (Number(commodity[1].amount) / 100), bonus: (Number(commodity[1].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data2, callback2);
                 break;
             case "btn_otherAmount":

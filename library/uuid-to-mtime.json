@@ -829,11 +829,6 @@
     "meta": 1759140514127,
     "relativePath": "lhdGame\\lhdSound"
   },
-  "3fb03a8b-262e-4877-b59d-5786e872f1d2": {
-    "asset": 1757322084158,
-    "meta": 1759140514208,
-    "relativePath": "Main\\AudioManager.js"
-  },
   "ceee7136-97df-412d-b944-4c9c4ff7bf9f": {
     "asset": 1759140498958,
     "meta": 1759140514397,
@@ -942,7 +937,7 @@
   "42ce453d-73a6-44dc-9a6d-3fa6ec02be39": {
     "asset": 1758181462018,
     "meta": 1759140514501,
-    "relativePath": "ResourcesBundle\\sound"
+    "relativePath": "ResourcesBundle\\MainSound"
   },
   "86d31621-f0da-4d9f-bd32-0fa4a6edd0d2": {
     "asset": 1759140499957,
@@ -5452,7 +5447,7 @@
   "b5bcc961-923c-4205-8b2a-3dfaa7ed9b2a": {
     "asset": 1758181462015,
     "meta": 1759140519588,
-    "relativePath": "ResourcesBundle\\sound\\pddSound"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound"
   },
   "73287d81-90b6-449b-ac93-afe4d3a08b39": {
     "asset": 1757322085746,
@@ -5462,7 +5457,7 @@
   "08edcc4f-fcae-4b29-8c0b-ea601305efcf": {
     "asset": 1758181462020,
     "meta": 1759140519590,
-    "relativePath": "ResourcesBundle\\sound\\vipSound"
+    "relativePath": "ResourcesBundle\\MainSound\\vipSound"
   },
   "d811f8a7-8c97-4215-ab77-bae0fd8e0fd0": {
     "asset": 1757322085762,
@@ -5517,7 +5512,7 @@
   "abf2cd24-5723-4fc1-b6c4-54ebac56705f": {
     "asset": 1758181462002,
     "meta": 1759140520710,
-    "relativePath": "ResourcesBundle\\sound\\back.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\back.mp3"
   },
   "9a46b9ce-605e-4b85-9768-721d03ea0175": {
     "asset": 1758180054681,
@@ -5557,7 +5552,7 @@
   "a100d1c5-4d1a-400f-833d-87dd539591cf": {
     "asset": 1758181462003,
     "meta": 1759140520712,
-    "relativePath": "ResourcesBundle\\sound\\button.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\button.mp3"
   },
   "acf25fe4-3cac-480a-a654-9ea20904667f": {
     "asset": 1757322085765,
@@ -5607,17 +5602,17 @@
   "3bbcf6b2-59bb-4414-8354-81cccfd2b7b2": {
     "asset": 1758181462016,
     "meta": 1759140520714,
-    "relativePath": "ResourcesBundle\\sound\\sajinbi.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\sajinbi.mp3"
   },
   "fe346f50-13fe-4521-b5be-c1039e606cdf": {
     "asset": 1758181462017,
     "meta": 1759140520719,
-    "relativePath": "ResourcesBundle\\sound\\sign.wav"
+    "relativePath": "ResourcesBundle\\MainSound\\sign.wav"
   },
   "c8b96142-5967-4bb6-a7ce-3b96ef7ae886": {
     "asset": 1758181462018,
     "meta": 1759140520723,
-    "relativePath": "ResourcesBundle\\sound\\turnPlate.wav"
+    "relativePath": "ResourcesBundle\\MainSound\\turnPlate.wav"
   },
   "04739fc2-ab9c-4ccc-aefa-1bccaca62c44": {
     "asset": 1757322085073,
@@ -5708,11 +5703,6 @@
     "asset": 1758180054005,
     "meta": 1759140519862,
     "relativePath": "Rummy\\rummyRes\\newbtn"
-  },
-  "6239c708-3e54-4dfa-85f9-f067b9e963da": {
-    "asset": 1758181462008,
-    "meta": 1759140520797,
-    "relativePath": "ResourcesBundle\\sound\\lobby.ogg"
   },
   "a81dc312-94f3-4373-9d83-af9903d0a023": {
     "asset": 1757322085088,
@@ -8962,7 +8952,7 @@
   "b0092f08-37c3-4e48-b722-04af7ea8bf4a": {
     "asset": 1758181462009,
     "meta": 1759140528796,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\addNum.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\addNum.mp3"
   },
   "0fa50989-9d1f-4b4c-b63e-a6c4d5e9e23f": {
     "asset": 1757322084996,
@@ -8972,52 +8962,52 @@
   "d14099be-ad11-406a-9910-665a91010dfc": {
     "asset": 1758181462010,
     "meta": 1759140528809,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\firstShowRedPacket.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\firstShowRedPacket.mp3"
   },
   "0a0b50d1-9be6-45e5-998a-f9a7b32a5213": {
     "asset": 1758181462012,
     "meta": 1759140528839,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\plus.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\plus.mp3"
   },
   "665fb5b2-66f8-4449-b261-52421a94b967": {
     "asset": 1758181462011,
     "meta": 1759140528838,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\huojian.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\huojian.mp3"
   },
   "64b1b425-811c-4e82-a5ac-420b32cb3d3b": {
     "asset": 1758181462013,
     "meta": 1759140528823,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\saqian.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\saqian.mp3"
   },
   "8a8f06e4-d24b-4dc2-9d74-1731a5f32f5e": {
     "asset": 1758181462015,
     "meta": 1759140528829,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\showRedPacket.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\showRedPacket.mp3"
   },
   "d1350ef8-f33c-42a4-91cd-8ec3a1407f42": {
     "asset": 1758181462015,
     "meta": 1759140528828,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\turnTable.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\turnTable.mp3"
   },
   "2e093f7d-5575-459f-9d22-af03cf817c82": {
     "asset": 1758181462015,
     "meta": 1759140528842,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\star.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\star.mp3"
   },
   "55eb9981-a2b7-405b-b451-a3ff791671b9": {
     "asset": 1758181462014,
     "meta": 1759140528825,
-    "relativePath": "ResourcesBundle\\sound\\pddSound\\show.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\pddSound\\show.mp3"
   },
   "089db287-2b80-4f37-81fe-79255dc537dc": {
     "asset": 1758181462018,
     "meta": 1759140528826,
-    "relativePath": "ResourcesBundle\\sound\\vipSound\\btnNiu.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\vipSound\\btnNiu.mp3"
   },
   "b93a5326-db9f-4fde-902d-8944772d6c77": {
     "asset": 1758181462019,
     "meta": 1759140528833,
-    "relativePath": "ResourcesBundle\\sound\\vipSound\\qiuNiu.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\vipSound\\qiuNiu.mp3"
   },
   "2bdf5e29-c0a3-4bfc-b5f8-f2096b9beaa4": {
     "asset": 1757322085770,
@@ -9027,7 +9017,7 @@
   "87410265-31ef-43a0-a73d-e36a62ac3ff6": {
     "asset": 1758181462020,
     "meta": 1759140528831,
-    "relativePath": "ResourcesBundle\\sound\\vipSound\\qiuOut.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\vipSound\\qiuOut.mp3"
   },
   "23ba0ef4-7d17-4e29-a54a-f91ca36b1046": {
     "asset": 1757322085773,
@@ -9037,7 +9027,7 @@
   "ee12cb36-ab1f-4998-840c-bd8ac3427242": {
     "asset": 1758181462020,
     "meta": 1759140528841,
-    "relativePath": "ResourcesBundle\\sound\\vipSound\\vipUpgrade.mp3"
+    "relativePath": "ResourcesBundle\\MainSound\\vipSound\\vipUpgrade.mp3"
   },
   "b56bd892-b072-470b-905f-98f94bfd1fe2": {
     "asset": 1757322085774,
@@ -22624,11 +22614,6 @@
     "meta": 1759140533826,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\res\\channel"
   },
-  "c34a3fe7-dcaf-467e-b19a-afc69cf05791": {
-    "asset": 1759140499251,
-    "meta": 1759140528248,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\shopChannel.js"
-  },
   "8be607a1-0b3c-47df-848b-92f2b174687f": {
     "asset": 1758180053862,
     "meta": 1759140528368,
@@ -26250,8 +26235,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\PopUpWithDraw\\PopUpWithDraw.prefab"
   },
   "7de309a3-1ea2-4d5c-8b4b-e6c746164ae1": {
-    "asset": 1759140499231,
-    "meta": 1759140528599,
+    "asset": 1760062155757,
+    "meta": 1760062155765,
     "relativePath": "ResourcesBundle\\NewPlan\\Shop\\Shop.prefab"
   },
   "8e6215da-4117-4490-be22-05ef9ef73410": {
@@ -27349,11 +27334,6 @@
     "meta": 1759140527465,
     "relativePath": "ResourcesBundle\\NewPlan\\BonusTransfer\\BonusTransferCtrl.js"
   },
-  "9e868479-d7cb-4773-86af-0812c20abe0f": {
-    "asset": 1759140499132,
-    "meta": 1759140527853,
-    "relativePath": "ResourcesBundle\\NewPlan\\MyVip\\VipLuckyDrawCtrl.js"
-  },
   "5cc6c332-2846-458f-b5d3-8253148662ed": {
     "asset": 1759140499171,
     "meta": 1759140528036,
@@ -28073,11 +28053,6 @@
     "asset": 1759140499600,
     "meta": 1759140524443,
     "relativePath": "chickenroad\\res\\main\\Rectangle 86.png"
-  },
-  "e9180935-8311-4870-9c5b-a201bd339116": {
-    "asset": 1759140498989,
-    "meta": 1759140526526,
-    "relativePath": "MustBundle\\Normal\\FirstRecharge\\FirstRechargeCtrl.js"
   },
   "8078d065-0579-49e1-b306-0f6b57662a33": {
     "asset": 1759140499600,
@@ -31184,11 +31159,6 @@
     "meta": 1759140536032,
     "relativePath": "notBundle\\Pdd\\res\\pdd\\altas\\turnTable\\jp_02.png"
   },
-  "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
-    "asset": 1759140499232,
-    "meta": 1759140528282,
-    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
-  },
   "9f108f80-936d-4436-b2ca-1cf977f0a5cc": {
     "asset": 1759140499912,
     "meta": 1759140536024,
@@ -31729,11 +31699,6 @@
     "meta": 1760003800240,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
-  "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1760003354697,
-    "meta": 1760003800308,
-    "relativePath": "Main\\Update.js"
-  },
   "94e34e55-245d-4bd3-8a84-60774f575028": {
     "asset": 1760003789238,
     "meta": 1760003800424,
@@ -31758,5 +31723,45 @@
     "asset": 1760005719692,
     "meta": 1760005724037,
     "relativePath": "chickenroad\\src\\ChickenBet.js"
+  },
+  "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
+    "asset": 1760062227703,
+    "meta": 1760062229319,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\ShopCtrl.js"
+  },
+  "e9180935-8311-4870-9c5b-a201bd339116": {
+    "asset": 1760063053188,
+    "meta": 1760063055956,
+    "relativePath": "MustBundle\\Normal\\FirstRecharge\\FirstRechargeCtrl.js"
+  },
+  "c34a3fe7-dcaf-467e-b19a-afc69cf05791": {
+    "asset": 1760063208100,
+    "meta": 1760063214738,
+    "relativePath": "ResourcesBundle\\NewPlan\\Shop\\shopChannel.js"
+  },
+  "2688e0df-2eaa-4c6c-9681-fe91a322b0bd": {
+    "asset": 1760063933938,
+    "meta": 1760063933939,
+    "relativePath": "MustBundle\\sound"
+  },
+  "9e868479-d7cb-4773-86af-0812c20abe0f": {
+    "asset": 1760065900578,
+    "meta": 1760065933672,
+    "relativePath": "ResourcesBundle\\NewPlan\\MyVip\\VipLuckyDrawCtrl.js"
+  },
+  "10e08cd4-c347-410c-bfb4-71175dd0d329": {
+    "asset": 1760067215740,
+    "meta": 1760067230715,
+    "relativePath": "ResourcesBundle\\MainSound\\lobby.mp3"
+  },
+  "3fb03a8b-262e-4877-b59d-5786e872f1d2": {
+    "asset": 1760067246624,
+    "meta": 1760067255744,
+    "relativePath": "Main\\AudioManager.js"
+  },
+  "0ca21298-1686-4454-abc3-3a93d8963e40": {
+    "asset": 1760067279456,
+    "meta": 1760067283329,
+    "relativePath": "Main\\Update.js"
   }
 }
