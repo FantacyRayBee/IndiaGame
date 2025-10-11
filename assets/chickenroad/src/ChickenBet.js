@@ -114,6 +114,12 @@ cc.Class({
 
     // ====== 按钮交互 ======
     onPlayClick() {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minichickenroad"] == true) { //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return
+        }
         const scene = GlobalCfg.ACT_SCENE_CTRL;
         if (!scene) return;
         if (scene.isAutoGame) {
@@ -145,6 +151,12 @@ cc.Class({
     },
 
     onAutoClick() {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minichickenroad"] == true) { //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return
+        }
         const scene = GlobalCfg.ACT_SCENE_CTRL;
         if (scene) scene.showAutoSetting();
     },

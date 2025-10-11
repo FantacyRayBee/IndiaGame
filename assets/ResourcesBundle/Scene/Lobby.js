@@ -1787,7 +1787,7 @@ cc.Class({
             if (!err && cc.isValid(this) && cc.isValid(this.sprite_tx)) {
                 let spriteFrame = new cc.SpriteFrame(img);
                 this.sprite_tx.spriteFrame = spriteFrame;
-                this.sprite_tx.node.setContentSize(100, 100);
+                // this.sprite_tx.node.setContentSize(100, 100);
             };
         });
     },

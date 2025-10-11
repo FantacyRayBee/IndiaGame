@@ -764,7 +764,7 @@ cc.Class({
 
     callReq:function(CardType,coin){
         let amount = 0
-        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred == true) {   //未曾充值
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniluckyloto"]== true) {   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash();
             }, false);
