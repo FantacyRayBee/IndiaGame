@@ -284,6 +284,12 @@ cc.Class({
     },
 
     dealBetEvent: function () {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniaviator"] == true){   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false, null, null, null, null, 0.85);
+            return;
+        };
         if (this.betStatus == 0) {//可下注状态
             if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
