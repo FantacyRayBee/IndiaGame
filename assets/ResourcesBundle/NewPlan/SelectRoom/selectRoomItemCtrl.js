@@ -51,6 +51,22 @@ cc.Class({
         if (!this.roomItemType || !this.roomItemData) {
             return;
         };
+        let gameName = "miniteenpatti"
+        if (this.roomItemType == "rummy") {
+            gameName = "minirummy";
+        }
+        else if (this.roomItemType == "andar") {
+            gameName = "miniandar";
+        }
+
+        //体验场不添加判断
+        if (this.roomToggleType != "practice" && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred[gameName] == true){   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false, null, null, null, null, 0.85);
+            return;
+        };
+
         if(this.btnEnterGameState == btnState.AddCash){
             CommonFun.getInstance().showNewShop();
         }else{
@@ -115,12 +131,13 @@ cc.Class({
         }
     },
 
-    setGameData(data, itemType, cb){
+    setGameData(data, itemTypeData, cb){
         if (!data) {
             this.node.active = false;
             return;
         };
-        this.roomItemType = itemType;
+        this.roomItemType = itemTypeData.gameType;
+        this.roomToggleType = itemTypeData.toggle;
         this.roomItemData = data;
 
         LoggerUtil.getInstance().log("🎯 setGameData data :", data );
@@ -133,7 +150,7 @@ cc.Class({
 
         this.labAll[3].node.active = true;
         let positions = [];
-        switch (itemType) {
+        switch (this.roomItemType) {
             case 'rummy':
                 positions = [...this.rummyLabelPos];
                 this.labAll[2].string = data.num;                    // 2是2人场  6是6人场

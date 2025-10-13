@@ -169,7 +169,7 @@ cc.Class({
                             CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.WithDrawPreData);
                         }, false); 
                     };
-                } 
+                }
                 else {
                     if (CommonFun.getInstance().isOpenVipModule()) {
                         let option = GlobalCfg.USER_DATAS.transferConfig.option ? GlobalCfg.USER_DATAS.transferConfig.option.sort((a, b) => {return a.price - b.price;}) : [];
@@ -301,7 +301,18 @@ cc.Class({
                         this.nodeMain.active = true;
                         this.nodeWirte.active = false;
                         GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(this.address);
+                        if (GlobalCfg.USER_DATAS.recharged == 0) {// 未充值的玩家 第一次保存消息时 自动打开vip提示界面
+                            if (CommonFun.getInstance().isOpenVipModule()) {
+                                CommonFun.getInstance().showVipRechargeToast();
+                            }
+                            else {
+                                CommonFun.getInstance().showMsgBox("You can recharge any amount to active \n the withdraw function,recharge now?", "ADDCASH", () => {
+                                    CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.WithDrawPreData);
+                                }, false); 
+                            };
+                        }
                     };
+
                 } 
                 else {
                     CommonFun.getInstance().showTips(msg.msg);

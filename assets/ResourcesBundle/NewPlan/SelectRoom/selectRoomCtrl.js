@@ -584,7 +584,8 @@ cc.Class({
             let roomItemData = roomList[index];
             let roomItemNode = cc.instantiate(this.prefab_RoomItem);
             let roomItemCtrl = roomItemNode.getComponent("selectRoomItemCtrl");
-            roomItemCtrl.setGameData(roomItemData, smallGameType, (btnState)=>{
+            let currencyType = this.getCurrencyType();  
+            roomItemCtrl.setGameData(roomItemData, {gameType: smallGameType, toggle: currencyType}, (btnState)=>{
                 let len = this.roomItemBtnState.length;
                 this.roomItemBtnState[len] = btnState;
             });
