@@ -701,7 +701,7 @@ cc.Class({
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
             this.runUpdateProcess();
         }
-        else if (location) {
+        else if (GlobalCfg.isH5) {
             // H5 环境
             this.preloadMainH5();
             // //预加载软键盘
@@ -1054,25 +1054,33 @@ cc.Class({
                 });
             }
         }
-        Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
-        Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
+        if (GlobalCfg.isH5) {
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
             .then((arr) => {
                 let packgeName = "Activity"
                 cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
                     window.ResourcesBundle = bundle;
                     bundle.preloadDir(packgeName, null, (err) => {
-                        // bundle.preloadDir("MainSound", null, (err) => {
-                        //     if (!err) {
-                        //         console.error("MainSound 资源加载成功");
-                                downAfter();
-                            // }
-                        // });
+                        downAfter();
                     });
                 });
             })
             .catch((err) => {
                 LoggerUtil.getInstance().error(err);
             });
+        }
+        else{
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
+            .then((arr) => {
+                cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
+                    window.ResourcesBundle = bundle;
+                    downAfter();
+                });
+            })
+            .catch((err) => {
+                LoggerUtil.getInstance().error(err);
+            }); 
+        }
     },
 
     showMemoryPhoneView: function () {

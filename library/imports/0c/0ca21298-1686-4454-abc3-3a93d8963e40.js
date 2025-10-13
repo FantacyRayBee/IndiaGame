@@ -643,7 +643,7 @@ cc.Class({
     if (cc.sys.isNative) {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
       this.runUpdateProcess();
-    } else if (location) {
+    } else if (GlobalCfg.isH5) {
       // H5 环境
       this.preloadMainH5();
       // //预加载软键盘
@@ -983,23 +983,28 @@ cc.Class({
         });
       }
     };
-    Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()]);
-    Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()]).then(function (arr) {
-      var packgeName = "Activity";
-      cc.assetManager.loadBundle('ResourcesBundle', function (_, bundle) {
-        window.ResourcesBundle = bundle;
-        bundle.preloadDir(packgeName, null, function (err) {
-          // bundle.preloadDir("MainSound", null, (err) => {
-          //     if (!err) {
-          //         console.error("MainSound 资源加载成功");
-          downAfter();
-          // }
-          // });
+    if (GlobalCfg.isH5) {
+      Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()]).then(function (arr) {
+        var packgeName = "Activity";
+        cc.assetManager.loadBundle('ResourcesBundle', function (_, bundle) {
+          window.ResourcesBundle = bundle;
+          bundle.preloadDir(packgeName, null, function (err) {
+            downAfter();
+          });
         });
+      })["catch"](function (err) {
+        LoggerUtil.getInstance().error(err);
       });
-    })["catch"](function (err) {
-      LoggerUtil.getInstance().error(err);
-    });
+    } else {
+      Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()]).then(function (arr) {
+        cc.assetManager.loadBundle('ResourcesBundle', function (_, bundle) {
+          window.ResourcesBundle = bundle;
+          downAfter();
+        });
+      })["catch"](function (err) {
+        LoggerUtil.getInstance().error(err);
+      });
+    }
   },
   showMemoryPhoneView: function showMemoryPhoneView() {
     this.editBox_password.node.active = false;

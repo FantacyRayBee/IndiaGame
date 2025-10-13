@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {},
 
-    ctor: function() {
+    ctor: function () {
         this.reqRemoteVersionUrlAcount = 0;
         this.loadPrecess = 0;
 
@@ -11,7 +11,7 @@ cc.Class({
         this.reqAppConfigCount = 0;
     },
 
-    onLoad: function() {
+    onLoad: function () {
         /**
          * 首次进入上报
          */
@@ -19,11 +19,11 @@ cc.Class({
             let firstEnterStatus = Number(cc.sys.localStorage.getItem("FIRST_ENTER_STATUS"));
             if (firstEnterStatus == 0) {
                 cc.sys.localStorage.setItem("FIRST_ENTER_STATUS", 1);
-                CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.FIRST_ENTER);  
+                CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.FIRST_ENTER);
             };
         };
         cc.assetManager.downloader.maxConcurrency = 20; // 下载最大并发数
-        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);  
+        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);
         /**
          * 日志开关
          */
@@ -83,40 +83,40 @@ cc.Class({
         let clubMode = Number(cc.sys.localStorage.getItem("IsClubMode") || 0); //是否是代理模式 0:不是 1:是
         GlobalCfg.IS_CLUB_MODE = clubMode;
 
-        let freestyleHead = Number(cc.sys.localStorage.getItem("IsfreestyleHead") || 0); 
+        let freestyleHead = Number(cc.sys.localStorage.getItem("IsfreestyleHead") || 0);
         GlobalCfg.IS_Freestyle_Head = freestyleHead;
-
-
+        GlobalCfg.isH5 = location ? true : false;
+        
         let needToLogEncrypt = false;
-        if(needToLogEncrypt) {
+        if (needToLogEncrypt) {
             let appConfigPathObj = {
-                "0":"json/AppConfig_test",
-                "1":"json/AppConfig_1",
-                "2":"json/AppConfig_2",
-                "3":"json/AppConfig_3",
-                "4":"json/AppConfig_4",
+                "0": "json/AppConfig_test",
+                "1": "json/AppConfig_1",
+                "2": "json/AppConfig_2",
+                "3": "json/AppConfig_3",
+                "4": "json/AppConfig_4",
             }
             let appConfigPath = appConfigPathObj[GlobalCfg.server_id];
             // appConfigPath = appConfigPathObj['2'];
-            cc.loader.loadRes(appConfigPath, (err, asset)=> {
-                let enStrb = CommonFun.getInstance().encrypt(JSON.stringify(asset.json)); 
+            cc.loader.loadRes(appConfigPath, (err, asset) => {
+                let enStrb = CommonFun.getInstance().encrypt(JSON.stringify(asset.json));
                 LoggerUtil.getInstance().log("appConfig加密后的值：\n", enStrb);
                 let deStrb = CommonFun.getInstance().decrypt(enStrb);
                 LoggerUtil.getInstance().log("appConfig解密后的值：", JSON.parse(deStrb));
             });
 
             let appInfoPathObj = {
-                "0":"json/AppInfo_test",
-                "1":"json/AppInfo_1",
-                "2":"json/AppInfo_2",
-                "3":"json/AppInfo_3",
-                "4":"json/AppInfo_4",
-                "5":"json/AppInfo_5",
+                "0": "json/AppInfo_test",
+                "1": "json/AppInfo_1",
+                "2": "json/AppInfo_2",
+                "3": "json/AppInfo_3",
+                "4": "json/AppInfo_4",
+                "5": "json/AppInfo_5",
             }
             let appInfoPath = appInfoPathObj[GlobalCfg.server_id];
             // appInfoPath = appInfoPathObj['5'];
-            cc.loader.loadRes(appInfoPath, (err, asset)=> {
-                let enStr = CommonFun.getInstance().encrypt(JSON.stringify(asset.json)); 
+            cc.loader.loadRes(appInfoPath, (err, asset) => {
+                let enStr = CommonFun.getInstance().encrypt(JSON.stringify(asset.json));
                 LoggerUtil.getInstance().log("appInfo加密后的值：\n", enStr);
                 let deStr = CommonFun.getInstance().decrypt(enStr);
                 LoggerUtil.getInstance().log("appInfo解密后的值：", JSON.parse(deStr));
@@ -124,26 +124,26 @@ cc.Class({
         }
     },
 
-    playLoadTipsAct: function() {
+    playLoadTipsAct: function () {
         let dt = 0;
         let pointArr = ['.', '..', '...'];
         this.schedule(() => {
-            this.lab_loadTips.string = `Resource loading ${pointArr[dt%3]} ${this.loadPrecess}%`;
+            this.lab_loadTips.string = `Resource loading ${pointArr[dt % 3]} ${this.loadPrecess}%`;
             dt += 1;
         }, 0.5);
 
         cc.tween(this.node_loadMark)
-        .by(1, {angle: -360})
-        .repeatForever()
-        .start()
+            .by(1, { angle: -360 })
+            .repeatForever()
+            .start()
     },
 
-    start: function() {
+    start: function () {
         APPManager.getFirebaseToken();
         let packageChannel = "";
         let channel = 0;
 
-        if(window.parent && window.parent.uni){// H5端
+        if (window.parent && window.parent.uni) {// H5端
             packageChannel = cc.sys.localStorage.getItem("PackageChannel");
             window.postMessage({
                 action: 'getChannel',  // 动作类型，可以根据需要传递不同的 action
@@ -156,45 +156,45 @@ cc.Class({
             //     }
             // });
         }
-        else{
+        else {
             packageChannel = cc.sys.localStorage.getItem("PackageChannel");
         }
 
-        LoggerUtil.getInstance().log("caojun packageChannel:",packageChannel);
+        LoggerUtil.getInstance().log("caojun packageChannel:", packageChannel);
 
         if (packageChannel && packageChannel.indexOf("_") != -1) {
-            let packageChannelArr = packageChannel.split("_"); 
+            let packageChannelArr = packageChannel.split("_");
             channel = packageChannelArr[1];
         }
-        if(channel == "7001"){
+        if (channel == "7001") {
             GlobalCfg.PACKAGE_REPORT_METHOD = 4;
         }
 
-        if(channel == "4001"){
+        if (channel == "4001") {
             this.reqAppInfo(() => {
                 Promise.all([this.getAdvertisingId()])
-                .then((arr) => {
-                    this.loadUpdateScene();
-                });
+                    .then((arr) => {
+                        this.loadUpdateScene();
+                    });
             }, GlobalCfg.APP_INFO_URL);
         }
-        else if (GlobalCfg.PACKAGE_REPORT_METHOD == 2 ||  
-            GlobalCfg.isPattiHunt == 1 || 
+        else if (GlobalCfg.PACKAGE_REPORT_METHOD == 2 ||
+            GlobalCfg.isPattiHunt == 1 ||
             GlobalCfg.ISPackage2019 == 1) {
 
             this.reqAppInfo(() => {
                 Promise.all([this.getAppsFlyerId(), this.getAdvertisingId()])
-                .then((arr) => {
-                    this.loadUpdateScene();
-                });
+                    .then((arr) => {
+                        this.loadUpdateScene();
+                    });
             }, GlobalCfg.APP_INFO_URL);
         }
         else if (GlobalCfg.PACKAGE_REPORT_METHOD == 3 ||
-            GlobalCfg.ISPackage2009 == 1 || 
-            GlobalCfg.isPackage2010 == 1 || 
+            GlobalCfg.ISPackage2009 == 1 ||
+            GlobalCfg.isPackage2010 == 1 ||
             GlobalCfg.isPackage2014 == 1 ||
-            GlobalCfg.ISPackage2018 == 1 || 
-            GlobalCfg.isBloom3Rummy == 1 || 
+            GlobalCfg.ISPackage2018 == 1 ||
+            GlobalCfg.isBloom3Rummy == 1 ||
             GlobalCfg.isPackage2020 == 1) {
             // Jsut need AppInfo, PIX上报(UA+IP)
             this.reqAppInfo(() => {
@@ -203,32 +203,32 @@ cc.Class({
         }
         else if (GlobalCfg.PACKAGE_REPORT_METHOD == 4 || channel == "2058" ||
             channel == "4003" || channel == "4004" ||
-            channel == "6019" || channel == "6020" || channel == "6021" || channel == "7001"|| channel == "7002") {
+            channel == "6019" || channel == "6020" || channel == "6021" || channel == "7001" || channel == "7002") {
 
             this.reqAppInfo(() => {
                 Promise.all([this.getAdjustId(), this.getAdvertisingId()])
-                .then((arr) => {
-                    this.loadUpdateScene();
-                });
+                    .then((arr) => {
+                        this.loadUpdateScene();
+                    });
             }, GlobalCfg.APP_INFO_URL);
         }
         else {
             this.reqAppInfo(() => {
                 Promise.all([this.getAdjustId()])
-                .then((arr) => {
-                    this.loadUpdateScene();
-                })
+                    .then((arr) => {
+                        this.loadUpdateScene();
+                    })
             }, GlobalCfg.APP_INFO_URL);
-        };  
-    
+        };
+
         this.reqAppConfig(GlobalCfg.APP_CONFIG_URL);
     },
 
-    getAdjustId: function() {
+    getAdjustId: function () {
         let startTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADJUSTID_START);
         return new Promise((resolve, reject) => {
-            let getAdjustIDCallback = () =>  {
+            let getAdjustIDCallback = () => {
                 let adjustId_tmp = cc.sys.localStorage.getItem(`adjustId_local`);
                 if (!adjustId_tmp) {
                     let endTime = cc.sys.now();
@@ -250,7 +250,7 @@ cc.Class({
                         return;
                     };
                 }
-                else{
+                else {
                     GlobalCfg.ADJUST_ID = adjustId_tmp;
                     this.unschedule(getAdjustIDCallback);
                     resolve(adjustId_tmp);
@@ -260,14 +260,14 @@ cc.Class({
         });
     },
 
-    getAppsFlyerId: function() {
+    getAppsFlyerId: function () {
         let startTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_START);
         return new Promise((resolve, reject) => {
-            let getAppsFlyerIdCallback = () =>  {
+            let getAppsFlyerIdCallback = () => {
                 let endTime = cc.sys.now();
                 let appsFlyerId = APPManager.getAppsFlyerId();
-                if (appsFlyerId && appsFlyerId.length > 0) {    
+                if (appsFlyerId && appsFlyerId.length > 0) {
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_SUCCESS, endTime - startTime);
                     GlobalCfg.APPSFLYER_ID = appsFlyerId;
                     LoggerUtil.getInstance().log("appsFlyerId:", GlobalCfg.APPSFLYER_ID);
@@ -277,22 +277,22 @@ cc.Class({
                 }
                 else if (endTime - startTime > 10000) {
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPSFLYID_FAIL, endTime - startTime);
-                    GlobalCfg.APPSFLYER_ID = "";   
+                    GlobalCfg.APPSFLYER_ID = "";
                     LoggerUtil.getInstance().log("appsFlyerId is empty");
                     this.unschedule(getAppsFlyerIdCallback);
                     resolve("");
                     return;
                 };
             };
-            this.schedule(getAppsFlyerIdCallback, 0.5); 
+            this.schedule(getAppsFlyerIdCallback, 0.5);
         });
     },
 
-    getAdvertisingId: function() {
+    getAdvertisingId: function () {
         let startTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_ADVERTISINGID_START);
         return new Promise((resolve, reject) => {
-            let getAdvertisingIdCallback = () =>  {
+            let getAdvertisingIdCallback = () => {
                 //只有第一次打开APP的时候 需要获取广告ID ，获取成功后保存到本地
                 let advertisingId_tmp = cc.sys.localStorage.getItem(`advertisingId_local`);
                 if (!advertisingId_tmp) {
@@ -317,7 +317,7 @@ cc.Class({
                         return;
                     };
                 }
-                else{
+                else {
                     GlobalCfg.ADVERTISING_ID = advertisingId_tmp;
                     this.unschedule(getAdvertisingIdCallback);
                     resolve(advertisingId_tmp);
@@ -328,51 +328,51 @@ cc.Class({
         });
     },
 
-    installApp: function() {
+    installApp: function () {
         if (!cc.sys.localStorage.getItem("install")) {
             let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
             let channel = '';
             if (packageChannel && packageChannel.indexOf("_") != -1) {
-                let packageChannelArr = packageChannel.split("_"); 
+                let packageChannelArr = packageChannel.split("_");
                 channel = packageChannelArr[1];
             }
             let device = CommonFun.getInstance().getDeviceId();
             let httpParam = {
                 "adv": GlobalCfg.ADVERTISING_ID,
                 "channel": channel,
-                "device":device,
+                "device": device,
             };
             let httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/install";
-            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {});
+            CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => { });
             cc.sys.localStorage.setItem("install", "1");
         }
     },
 
-    reqAppConfig: function(url) {
+    reqAppConfig: function (url) {
         this.reqAppConfigCount++;
-        CommonFun.getInstance().httpGet(url,(jsonObj)=>{
+        CommonFun.getInstance().httpGet(url, (jsonObj) => {
             LoggerUtil.getInstance().log("APP Config Datas", jsonObj);
             GlobalCfg.APP_CONFIG_DATAS = jsonObj.list;
         },
-        ()=>{
-            LoggerUtil.getInstance().warn("APPCONFIG GET ERROR!");
-            if(this.reqAppConfigCount < 5){
-                this.reqAppConfig(url);
-            }else{
-                if(url == GlobalCfg.APP_CONFIG_URL){
-                    this.reqAppConfigCount = 0;
-                    this.reqAppConfig(GlobalCfg.APP_CONFIG_URL_SPARE);
-                }else{
-                    GlobalCfg.APP_CONFIG_DATAS = [];
+            () => {
+                LoggerUtil.getInstance().warn("APPCONFIG GET ERROR!");
+                if (this.reqAppConfigCount < 5) {
+                    this.reqAppConfig(url);
+                } else {
+                    if (url == GlobalCfg.APP_CONFIG_URL) {
+                        this.reqAppConfigCount = 0;
+                        this.reqAppConfig(GlobalCfg.APP_CONFIG_URL_SPARE);
+                    } else {
+                        GlobalCfg.APP_CONFIG_DATAS = [];
+                    }
                 }
-            }
-        });
+            });
     },
 
-    reqAppInfo: function(finishCallback, url) {
-        if(url.length == 0){
+    reqAppInfo: function (finishCallback, url) {
+        if (url.length == 0) {
             console.error("reqAppInfo url is empty");
-            return ;
+            return;
         }
         this.reqAppInfoCount++;
         let startTime = cc.sys.now();
@@ -381,26 +381,26 @@ cc.Class({
             let endTime = cc.sys.now();
             CommonFun.getInstance().dealAppInfoJson(json);
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_SUCCESS, endTime - startTime);
-            finishCallback && finishCallback(); 
+            finishCallback && finishCallback();
         },
-        () => {
-            let endTime = cc.sys.now();
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);
-            if(this.reqAppInfoCount < 5){
-                this.reqAppInfo(finishCallback, url);
-            }else{
-                LoggerUtil.getInstance().warn("APPINFO GET ERROR!!");
-                if(url == GlobalCfg.APP_INFO_URL){
-                    this.reqAppInfoCount = 0;
-                    this.reqAppInfo(finishCallback, GlobalCfg.APP_INFO_URL_SPARE);
-                }else{
+            () => {
+                let endTime = cc.sys.now();
+                CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_APPINFO_FAIL, endTime - startTime);
+                if (this.reqAppInfoCount < 5) {
                     this.reqAppInfo(finishCallback, url);
+                } else {
+                    LoggerUtil.getInstance().warn("APPINFO GET ERROR!!");
+                    if (url == GlobalCfg.APP_INFO_URL) {
+                        this.reqAppInfoCount = 0;
+                        this.reqAppInfo(finishCallback, GlobalCfg.APP_INFO_URL_SPARE);
+                    } else {
+                        this.reqAppInfo(finishCallback, url);
+                    }
                 }
-            }
-        });
+            });
     },
 
-    loadUpdateScene: function() {
+    loadUpdateScene: function () {
         let localAppVersion = Number(cc.sys.localStorage.getItem("LocalAppVersion"));
         let isCanDownApp = Number(cc.sys.localStorage.getItem("IsCanDownApp"));
         // LoggerUtil.getInstance().log("localAppVersion: ", localAppVersion);

@@ -81,6 +81,7 @@ cc.Class({
     GlobalCfg.IS_CLUB_MODE = clubMode;
     var freestyleHead = Number(cc.sys.localStorage.getItem("IsfreestyleHead") || 0);
     GlobalCfg.IS_Freestyle_Head = freestyleHead;
+    GlobalCfg.isH5 = location ? true : false;
     var needToLogEncrypt = false;
     if (needToLogEncrypt) {
       var appConfigPathObj = {
