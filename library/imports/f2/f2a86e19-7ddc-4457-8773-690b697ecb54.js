@@ -632,10 +632,10 @@ var SceneManager = cc.Class({
       "login_product": GlobalCfg.PRODUCT_ID
     };
     //h5的话特别处理
-    if (localStorage.getItem('invite_code')) {
+    var inviteCode = CommonFun.getInstance().getInviteCodeV1();
+    if (inviteCode) {
       //存在就不设置
-      var inviteCode = localStorage.getItem('invite_code');
-      if (inviteCode && inviteCode.length > 0) {
+      if (inviteCode.length > 0) {
         var inviteCodeArr = inviteCode.split("_");
         httpParam.channel_info = inviteCodeArr[0];
         httpParam.invite_code = inviteCodeArr[1];

@@ -355,6 +355,12 @@ cc.Class({
           _this3.nodeMain.active = true;
           _this3.nodeWirte2.active = false;
           GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(_this3.address);
+          if (GlobalCfg.USER_DATAS.recharged == 0) {
+            // 未充值的玩家 第一次保存消息时 自动打开vip提示界面
+            if (CommonFun.getInstance().isOpenVipModule()) {
+              CommonFun.getInstance().showVipRechargeToast();
+            }
+          }
         }
         ;
       } else {

@@ -986,7 +986,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
   POPUPWITHDRAW: "ThirdLayer",
   SOFTKEYBORAD: "ThirdLayer",
   VIPUPGRADETOAST: "ToastLayer",
-  MSGBOX: "ToastLayer",
+  MSGBOX: "TipsLayer",
   WITHDRAWERRORTIPS: "ToastLayer",
   FIRSTRECHARGETIPS: "ToastLayer",
   VIPRECHARGETOAST: "ToastLayer",
@@ -1202,6 +1202,7 @@ function SetPackageChannel() {
     pkg = "5_7001";
   }
   localStorage.setItem('PackageChannel', pkg);
+  GlobalCfg.CHANNEL_INFO = pkg;
 }
 
 /* 

@@ -162,7 +162,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 处理App的配置信息数据
-   * @param {Object} json App配置信息的数据对象 
+   * @param {Object} json App配置信息的数据对象
    */
   dealAppInfoJson: function dealAppInfoJson(json) {
     /**
@@ -195,7 +195,7 @@ var CommonFun = cc.Class((_cc$Class = {
      */
     GlobalCfg.SUB_GAME_VERSION_INFO = json["SUB_GAME_VERSION_INFO"];
     /**
-     * Http根路由 
+     * Http根路由
      */
     GlobalCfg.HTTP_ROOT_URL = json["HTTP_ROOT_URL"];
 
@@ -222,7 +222,7 @@ var CommonFun = cc.Class((_cc$Class = {
     /**
      * 渠道标识
      */
-    GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+    GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
     /**
      * 谷歌ID
      */
@@ -282,7 +282,7 @@ var CommonFun = cc.Class((_cc$Class = {
       ;
       var packageConfig = packageConfigDict[channel];
       if (Reflect.has(packageConfig, "CHANNEL_INFO") == true) {
-        GlobalCfg.CHANNEL_INFO = packageConfig["CHANNEL_INFO"];
+        GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
       }
       ;
       if (Reflect.has(packageConfig, "GOOGLE_ID") == true) {
@@ -317,7 +317,7 @@ var CommonFun = cc.Class((_cc$Class = {
     ;
   },
   /**
-   * 
+   *
    * @param {String} prefabPath 预制体路径
    * @param {cc.Node} parent 父节点
    * @param {Number} siblingIndex 设置在父节点上的层级
@@ -403,12 +403,12 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * // UploadGameErrorReq 上报游戏错误消息 POST v1/upload/gameerror
-      type UploadGameErrorReq struct {
-      Product string `json:"product"` // 游戏项目appID(对应small_game/list接口product)
-      Event   int    `json:"event"`   // 错误事件枚举(前后端对应，0:未知错误，1:未充值拒绝游戏)
-      Message string `json:"message"` // 其他附带信息
-      }
-  */
+   type UploadGameErrorReq struct {
+   Product string `json:"product"` // 游戏项目appID(对应small_game/list接口product)
+   Event   int    `json:"event"`   // 错误事件枚举(前后端对应，0:未知错误，1:未充值拒绝游戏)
+   Message string `json:"message"` // 其他附带信息
+   }
+   */
   UploadGameErrorReq: function UploadGameErrorReq(params) {},
   httpGet: function httpGet(url, callFun, outCallFun, Authorization) {
     var xhr = new XMLHttpRequest();
@@ -584,7 +584,7 @@ var CommonFun = cc.Class((_cc$Class = {
   /**
    * 检测小游戏是需要版本更新
    * @param {string} subpackgeName 小游戏bundle名
-   * @returns 
+   * @returns
    */
   isNeedUpdata: function isNeedUpdata(subpackgeName) {
     if (this.gameBundleOpenList[subpackgeName]) {
@@ -794,7 +794,7 @@ var CommonFun = cc.Class((_cc$Class = {
   /**
    * 展示商城
    * @param {Boolean} isFromFirstRecharge 直接展示商城
-   * @returns 
+   * @returns
    */
   showNewShop: function showNewShop(isFromFirstRecharge, from) {
     if (from === void 0) {
@@ -937,7 +937,7 @@ var CommonFun = cc.Class((_cc$Class = {
   /**
    * 加载预制体
    * @param {String} prefabPath 预制体路径
-  */
+   */
   loadPrefabByPromise: function loadPrefabByPromise(prefabPath) {
     var _this3 = this;
     var arr = prefabPath.split("/");
@@ -1037,7 +1037,7 @@ var CommonFun = cc.Class((_cc$Class = {
   /**
    * 获取LayerNode节点
    * @param {string} tag
-   * @returns 
+   * @returns
    */
   getLayerNode: function getLayerNode(tag) {
     var layerNode = this._layerNodeMap.get(tag);
@@ -1612,7 +1612,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 显示绑定手机界面
-   * @param {String} str  Lobby (大厅) Personal (个人中心) AddCash (充值填写) 
+   * @param {String} str  Lobby (大厅) Personal (个人中心) AddCash (充值填写)
    */
   showBindPhone: function showBindPhone(str) {
     var _this28 = this;
@@ -1924,7 +1924,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 显示规则界面
-   * @param {string} typeStr 
+   * @param {string} typeStr
    */
   showRule: function showRule(typeStr) {
     var _this44 = this;
@@ -2015,7 +2015,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 展示提现界面
-   * @param {Function} callback 
+   * @param {Function} callback
    */
   showWithDraw: function showWithDraw(callback) {
     var _this50 = this;
@@ -2032,8 +2032,8 @@ var CommonFun = cc.Class((_cc$Class = {
   /**
    * 展示提现界面回调的提示框
    * @param {string} btnTipsType
-   * @param {string} content 
-   * @param {Function} callFun 
+   * @param {string} content
+   * @param {Function} callFun
    */
   showWithDrawTips: function showWithDrawTips(btnTipsType, content, callFun) {
     var _this51 = this;
@@ -2178,7 +2178,7 @@ var CommonFun = cc.Class((_cc$Class = {
     });
   },
   /**
-   * 
+   *
    */
   showNewRechargeTip: function showNewRechargeTip() {
     var _this60 = this;
@@ -2327,7 +2327,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 上报错误至 Telegram
-   * @param {String} info 
+   * @param {String} info
    */
   reportToTelegram: function reportToTelegram(info) {
     var appInfo = {
@@ -2389,8 +2389,8 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 显示VIP奖励弹框
-   * @param {number} amount 
-   * @param {boolean} isBonus 
+   * @param {number} amount
+   * @param {boolean} isBonus
    */
   showVipRewardToast: function showVipRewardToast(amount, isBonus) {
     var _this67 = this;
@@ -2471,7 +2471,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * vip模块是否开启
-   * @returns boolean 
+   * @returns boolean
    */
   isOpenVipModule: function isOpenVipModule() {
     if (GlobalCfg.USER_DATAS.openModules.includes(21)) {
@@ -2493,7 +2493,7 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 数组去重
-   * @param {Array} arr 
+   * @param {Array} arr
    */
   arrayDeduplication: function arrayDeduplication(arr) {
     var map = new Map();
@@ -2509,9 +2509,9 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 加载bundle
-   * @param {string} bundleName 
+   * @param {string} bundleName
    * @param {function} succCallback
-   * @param {function} failCallback 
+   * @param {function} failCallback
    */
   loadBundle: function loadBundle(bundleName, succCallback, failCallback) {
     cc.assetManager.loadBundle("" + bundleName, function (err, bundle) {
@@ -2647,7 +2647,7 @@ var CommonFun = cc.Class((_cc$Class = {
   /**
    * 直接通过商品ID跳转H5充值
    * @param {Number} commodityId 商品ID
-   * @param {Function} callback 
+   * @param {Function} callback
    */
   rechargeByCommodityId: function rechargeByCommodityId(commodityId, from, callback, PAY_CHANNEL) {
     var _this71 = this;
@@ -2679,7 +2679,14 @@ var CommonFun = cc.Class((_cc$Class = {
       CommonFun.getInstance().hidProgress();
       if (strInfo && strInfo.result == 0) {
         if (strInfo.data.pay_url && strInfo.data.pay_url.length > 0) {
-          cc.sys.openURL(strInfo.data.pay_url);
+          if (cc.sys.os === cc.sys.OS_IOS) {
+            console.log("ios xiaowei");
+            CommonFun.getInstance().showMsgBox("Go to the top-up page", "YES", function () {
+              window.open(strInfo.data.pay_url);
+            }, false);
+          } else {
+            cc.sys.openURL(strInfo.data.pay_url);
+          }
           callback && callback();
         } else {
           CommonFun.getInstance().showTips("Payment link is empty!");
@@ -2779,11 +2786,11 @@ var CommonFun = cc.Class((_cc$Class = {
     });
   },
   /**
-   * 
+   *
    * @param {String} skeletonName 动画名称
    * @param {cc.Node} senderNode 发送者的节点
    * @param {[cc.Node]} targetNodeArr 接收者的节点
-   * @returns 
+   * @returns
    */
   playGameGifInteraction: function playGameGifInteraction(skeletonName, senderNode, targetNodeArr) {
     var _this74 = this;
@@ -2833,11 +2840,11 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 显示文字/Face互动内容
-   * @param {number} type 
-   * @param {string} name 
-   * @param {cc.Node} targetNode 
-   * @param {cc.Vec2} offset 
-   * @returns 
+   * @param {number} type
+   * @param {string} name
+   * @param {cc.Node} targetNode
+   * @param {cc.Vec2} offset
+   * @returns
    */
   playGameWordInteraction: function playGameWordInteraction(type, name, targetNode, offset) {
     var _this76 = this;
@@ -2972,8 +2979,8 @@ var CommonFun = cc.Class((_cc$Class = {
   },
   /**
    * 处理商品列表
-   * @param {number} couldWithdraw 
-   * @param {Array} commoditys 商品列表 
+   * @param {number} couldWithdraw
+   * @param {Array} commoditys 商品列表
    * @returns 处理后的商品列表
    */
   dealShopList: function dealShopList(couldWithdraw, commoditys) {
@@ -3318,6 +3325,75 @@ var CommonFun = cc.Class((_cc$Class = {
       _this83.addToPointParent(OnlyPayNode, GlobalCfg.PREFAB_PARENT.ONLY_PAY);
     });
   });
+}, _cc$Class.getChannelId = function getChannelId() {
+  var channelId = cc.sys.localStorage.getItem("channelId");
+  if (!channelId) {
+    channelId = "unknown";
+  }
+  return channelId;
+}, _cc$Class.cookieGetAll = function cookieGetAll() {
+  var cookies = {};
+  var all = document.cookie;
+  if (!all) return cookies;
+  all.split(';').forEach(function (pair) {
+    var _pair$split = pair.split('='),
+      name = _pair$split[0],
+      value = _pair$split[1];
+    if (name && value !== undefined) {
+      cookies[name.trim()] = decodeURIComponent(value);
+    }
+  });
+  return cookies;
+}, _cc$Class.cookieGet = function cookieGet(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}, _cc$Class.cookieSet = function cookieSet(name, value, days, path) {
+  if (days === void 0) {
+    days = 7;
+  }
+  if (path === void 0) {
+    path = "/";
+  }
+  var exp = new Date();
+  exp.setDate(exp.getDate() + days);
+  document.cookie = name + "=" + encodeURIComponent(value) + "; path=" + path + "; expires=" + exp.toUTCString();
+}, _cc$Class.cookieAdd = function cookieAdd(name, value, days, path) {
+  if (days === void 0) {
+    days = 7;
+  }
+  if (path === void 0) {
+    path = "/";
+  }
+  var existing = this.cookieGet(name);
+  if (existing === null) {
+    this.cookieSet(name, value, days, path);
+  } else {
+    console.warn("[CookieManager] '" + name + "' \u5DF2\u5B58\u5728\uFF0C\u8DF3\u8FC7\u6DFB\u52A0");
+  }
+}, _cc$Class.cookieRemove = function cookieRemove(name, path) {
+  if (path === void 0) {
+    path = "/";
+  }
+  document.cookie = name + "=; path=" + path + "; max-age=0";
+}, _cc$Class.getChannelIdV1 = function getChannelIdV1() {
+  //首先尝试用 cookie获取
+  var id = this.cookieGet("PackageChannel");
+  if (!id) {
+    id = cc.sys.localStorage.getItem("PackageChannel");
+  }
+  if (!id) {
+    id = "5_7001";
+  }
+  cc.sys.localStorage.setItem("PackageChannel", id);
+  return id.split("_")[1];
+}, _cc$Class.getInviteCodeV1 = function getInviteCodeV1() {
+  //首先尝试用 cookie获取
+  var id = this.cookieGet("invite_code");
+  if (!id) {
+    id = cc.sys.localStorage.getItem("invite_code");
+  }
+  console.log("获取InviteCode", id);
+  return id;
 }, _cc$Class));
 CommonFun.getInstance = function () {
   if (!CommonFun._instance) {

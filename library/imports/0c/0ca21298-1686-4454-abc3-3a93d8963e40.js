@@ -589,6 +589,7 @@ cc.Class({
     if (this.testButtonIsActive) {
       GlobalCfg.OPENINSTALL_INVITE_CODE = this.editBox_invited_test.string;
       GlobalCfg.CHANNEL_INFO = this.editBox_chanel_test.string;
+      console.log("dealGuestLoginEvent: ", "xiaowei");
     }
     GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
     var obj = {

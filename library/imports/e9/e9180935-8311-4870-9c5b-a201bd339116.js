@@ -112,11 +112,18 @@ cc.Class({
           // };
         };
 
-        var data1 = {
-          price: Number(commodity[0].amount) / 100,
-          bonus: Number(commodity[0].gift) / 100
-        };
-        CommonFun.getInstance().showPayChannel(data1, callback);
+        if (GlobalCfg.USER_DATAS.recharged == 0) {
+          // 未充值的玩家 直接充值
+          CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+            _this.node.destroy();
+          }, GlobalCfg.PAY_CHANNEL);
+        } else {
+          var data1 = {
+            price: this.lab_item0Cash.string,
+            bonus: this.lab_item0Bonus.string
+          };
+          CommonFun.getInstance().showPayChannel(data1, callback);
+        }
         // })
         break;
       case "btn_item1":
@@ -148,11 +155,18 @@ cc.Class({
           // })
         };
 
-        var data2 = {
-          price: Number(commodity[1].amount) / 100,
-          bonus: Number(commodity[1].gift) / 100
-        };
-        CommonFun.getInstance().showPayChannel(data2, callback2);
+        if (GlobalCfg.USER_DATAS.recharged == 0) {
+          // 未充值的玩家 直接充值
+          CommonFun.getInstance().rechargeByCommodityId(this.secondCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.firstRecharge, function () {
+            _this.node.destroy();
+          }, GlobalCfg.PAY_CHANNEL);
+        } else {
+          var data2 = {
+            price: this.lab_item1Cash.string,
+            bonus: this.lab_item1Bonus.string
+          };
+          CommonFun.getInstance().showPayChannel(data2, callback2);
+        }
         break;
       case "btn_otherAmount":
         // if (rechargeNeedInfo) {
