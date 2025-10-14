@@ -67,7 +67,7 @@ window.GlobalCfg = {
      */
     is_force_gotoTest: true,
 
-    isH5: false,
+    isH5: true,
 
     /**
      * 渠道信息

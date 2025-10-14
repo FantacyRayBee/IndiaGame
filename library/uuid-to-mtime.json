@@ -31759,11 +31759,6 @@
     "meta": 1760408477803,
     "relativePath": "Main\\SDK\\APPManager.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1760409314887,
-    "meta": 1760409320872,
-    "relativePath": "Main\\Global.js"
-  },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
     "asset": 1760409495836,
     "meta": 1760409498155,
@@ -31773,5 +31768,10 @@
     "asset": 1760409827212,
     "meta": 1760409943006,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1760424861433,
+    "meta": 1760424877360,
+    "relativePath": "Main\\Global.js"
   }
 }
