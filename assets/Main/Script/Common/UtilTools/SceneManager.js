@@ -53,7 +53,6 @@ let SceneManager = cc.Class({
             LoggerUtil.getInstance().error("Loading scene......");
             return;
         }
-        ;
         this.isLoadingScene = true;
 
         if (!toSceneName) {
@@ -61,7 +60,6 @@ let SceneManager = cc.Class({
             LoggerUtil.getInstance().error("Please specify the target scene!");
             return;
         }
-        ;
 
         CommonFun.getInstance().showProgress();
 
@@ -140,28 +138,24 @@ let SceneManager = cc.Class({
         let protoPathArr = ["proto/baseproto", "proto/lobbyservice"];
         let protoCfg = ProtoObj.getProto("LOBBY");
         let websocketUrl = GlobalCfg.WEB_SOCKET_LOBBY;
-
         if (!protoCfg) {
             this.isLoadingScene = false;
             CommonFun.getInstance().hidProgress();
             LoggerUtil.getInstance().error(`When jumping to the scene, the corresponding protocol configuration was not found`);
             return;
         }
-        ;
         if (!protoPathArr) {
             this.isLoadingScene = false;
             CommonFun.getInstance().hidProgress();
             LoggerUtil.getInstance().error(`When jumping to the scene, the corresponding protocol bundle path was not found`);
             return;
         }
-        ;
         if (!websocketUrl) {
             this.isLoadingScene = false;
             CommonFun.getInstance().hidProgress();
             LoggerUtil.getInstance().error(`When jumping to the scene, the corresponding websocket URL was not found`);
             return;
         }
-        ;
 
         let isSuccess = ProtobufManager.loadProtoFiles(protoPathArr);
         if (!isSuccess) {
@@ -170,7 +164,6 @@ let SceneManager = cc.Class({
             LoggerUtil.getInstance().error(`Failed to load the corresponding proto file`);
             return;
         }
-        ;
 
         LobbyServerManager.setProtoCfgAndUrl(protoCfg, websocketUrl);
 
@@ -667,17 +660,19 @@ let SceneManager = cc.Class({
             "channel_info": GlobalCfg.CHANNEL_INFO,
             "login_product": GlobalCfg.PRODUCT_ID
         };
-        //h5的话特别处理
-        const inviteCode =CommonFun.getInstance().getInviteCodeV1();
-        if (inviteCode) {
-            //存在就不设置
-            if (inviteCode.length > 0) {
-                let inviteCodeArr = inviteCode.split("_");
-                httpParam.channel_info = inviteCodeArr[0];
-                httpParam.invite_code = inviteCodeArr[1];
+        if(GlobalCfg.isH5){
+            //h5的话特别处理
+            const inviteCode =CommonFun.getInstance().getInviteCodeV1();
+            if (inviteCode) {
+                //存在就不设置
+                if (inviteCode.length > 0) {
+                    let inviteCodeArr = inviteCode.split("_");
+                    httpParam.channel_info = inviteCodeArr[0];
+                    httpParam.invite_code = inviteCodeArr[1];
+                }
             }
         }
-        LoggerUtil.getInstance().error(`caojun httpParam: ${JSON.stringify(httpParam)}`);
+        console.log(`caojun httpParam: ${JSON.stringify(httpParam)}`);
         return new Promise((resolve, reject) => {
             CommonFun.getInstance().httpPost(httpUrl, httpParam, (msg) => {
                     if (msg && msg.result == 0 && msg.data) {
@@ -791,7 +786,6 @@ let SceneManager = cc.Class({
                         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_FAIL);
                         reject("/V1/login interface, server returned abnormal data!");
                     }
-                    ;
                 },
                 (msg) => {
                     CommonFun.getInstance().hidProgress();

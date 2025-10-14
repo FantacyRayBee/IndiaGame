@@ -20,11 +20,10 @@ cc.Class({
             cc.error('[EditBoxSoftKeyboardBridge] 需要挂在含有 EditBox 的节点上');
             return;
         }
-        if (CC_JSB) { // 只在 Web 生效
+        if (!GlobalCfg.isH5) { // 只在H5生效
             cc.warn('[EditBoxSoftKeyboardBridge] 原生端无法在 JS 层禁止系统键盘。');
             return;
         }
-
 
         this._kbNode = null;          // 当前软键盘实例
         this._kbParent = null;        // 软键盘父节点（用于监听 CHILD_REMOVED）

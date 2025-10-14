@@ -54,14 +54,14 @@ var SceneManager = cc.Class({
       LoggerUtil.getInstance().error("Loading scene......");
       return;
     }
-    ;
+    console.log("caojun changeScene 1");
     this.isLoadingScene = true;
     if (!toSceneName) {
       this.isLoadingScene = false;
       LoggerUtil.getInstance().error("Please specify the target scene!");
       return;
     }
-    ;
+    console.log("caojun changeScene 2");
     CommonFun.getInstance().showProgress();
 
     // this.proloadBundleScene(toSceneName);
@@ -69,6 +69,7 @@ var SceneManager = cc.Class({
     if (fromSceneName === this.sceneType.UPDATE && toSceneName === this.sceneType.LOBBY) {
       CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LOGIN_LOBBY_START);
       this.dealEnterLobbyScene(toSceneName);
+      console.log("caojun changeScene 3");
     }
     // 从大厅场景跳转到更新登录场景
     else if (fromSceneName === this.sceneType.LOBBY && toSceneName === this.sceneType.UPDATE) {
@@ -134,27 +135,28 @@ var SceneManager = cc.Class({
     var protoPathArr = ["proto/baseproto", "proto/lobbyservice"];
     var protoCfg = ProtoObj.getProto("LOBBY");
     var websocketUrl = GlobalCfg.WEB_SOCKET_LOBBY;
+    console.log("caojun dealEnterLobbyScene ");
     if (!protoCfg) {
       this.isLoadingScene = false;
       CommonFun.getInstance().hidProgress();
       LoggerUtil.getInstance().error("When jumping to the scene, the corresponding protocol configuration was not found");
       return;
     }
-    ;
+    console.log("caojun dealEnterLobbyScene 1");
     if (!protoPathArr) {
       this.isLoadingScene = false;
       CommonFun.getInstance().hidProgress();
       LoggerUtil.getInstance().error("When jumping to the scene, the corresponding protocol bundle path was not found");
       return;
     }
-    ;
+    console.log("caojun dealEnterLobbyScene 2");
     if (!websocketUrl) {
       this.isLoadingScene = false;
       CommonFun.getInstance().hidProgress();
       LoggerUtil.getInstance().error("When jumping to the scene, the corresponding websocket URL was not found");
       return;
     }
-    ;
+    console.log("caojun dealEnterLobbyScene 3");
     var isSuccess = ProtobufManager.loadProtoFiles(protoPathArr);
     if (!isSuccess) {
       this.isLoadingScene = false;
@@ -162,10 +164,11 @@ var SceneManager = cc.Class({
       LoggerUtil.getInstance().error("Failed to load the corresponding proto file");
       return;
     }
-    ;
+    console.log("caojun dealEnterLobbyScene 4");
     LobbyServerManager.setProtoCfgAndUrl(protoCfg, websocketUrl);
     Promise.all([LobbyServerManager.connectServer(true), this.loadBundleScene(toSceneName)]).then(function (arr) {
       var scene = arr[1];
+      console.log("caojun Promise scene == ", toSceneName);
       _this2.curSceneType = toSceneName;
       cc.director.runScene(scene, function () {}, function () {
         _this2.isLoadingScene = false;
@@ -619,6 +622,7 @@ var SceneManager = cc.Class({
   },
   reqBearerToken: function reqBearerToken() {
     var _this4 = this;
+    console.log("caojun reqBearerToken 0");
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_START);
     CommonFun.getInstance().showProgress();
     var device = CommonFun.getInstance().getDeviceId();
@@ -631,23 +635,26 @@ var SceneManager = cc.Class({
       "channel_info": GlobalCfg.CHANNEL_INFO,
       "login_product": GlobalCfg.PRODUCT_ID
     };
-    //h5的话特别处理
-    var inviteCode = CommonFun.getInstance().getInviteCodeV1();
-    if (inviteCode) {
-      //存在就不设置
-      if (inviteCode.length > 0) {
-        var inviteCodeArr = inviteCode.split("_");
-        httpParam.channel_info = inviteCodeArr[0];
-        httpParam.invite_code = inviteCodeArr[1];
+    if (GlobalCfg.isH5) {
+      //h5的话特别处理
+      var inviteCode = CommonFun.getInstance().getInviteCodeV1();
+      if (inviteCode) {
+        //存在就不设置
+        if (inviteCode.length > 0) {
+          var inviteCodeArr = inviteCode.split("_");
+          httpParam.channel_info = inviteCodeArr[0];
+          httpParam.invite_code = inviteCodeArr[1];
+        }
       }
     }
-    LoggerUtil.getInstance().error("caojun httpParam: " + JSON.stringify(httpParam));
+    console.log("caojun httpParam: " + JSON.stringify(httpParam));
     return new Promise(function (resolve, reject) {
       CommonFun.getInstance().httpPost(httpUrl, httpParam, function (msg) {
         if (msg && msg.result == 0 && msg.data) {
           var msgData = msg.data;
           var token = msgData.token;
           LoggerUtil.getInstance().error("v1/login msgData: " + JSON.stringify(msgData));
+          console.log("caojun reqBearerToken 1");
           var login_way = msgData.login_way;
           /**
            * 用户token的有效时间截点
@@ -737,11 +744,13 @@ var SceneManager = cc.Class({
           GlobalCfg.USER_DATAS.vipExpiresDay = vip_expires_day;
           GlobalCfg.USER_DATAS.gacha = gacha;
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_SUCCESS);
+          console.log("caojun reqBearerToken 1.1");
           if (IP_URL && IP_URL != "") {
             _this4.dealIpUrl(IP_URL);
           }
           resolve();
         } else {
+          console.log("caojun reqBearerToken 2");
           CommonFun.getInstance().hidProgress();
           ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
             msgCode: GlobalCfg.CLIENT_MSG_ID.FAILURE_TO_OBTAIN_USER_INFO,
@@ -752,8 +761,8 @@ var SceneManager = cc.Class({
           CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_FAIL);
           reject("/V1/login interface, server returned abnormal data!");
         }
-        ;
       }, function (msg) {
+        console.log("caojun reqBearerToken 3");
         CommonFun.getInstance().hidProgress();
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
           msgCode: GlobalCfg.CLIENT_MSG_ID.FAILURE_TO_OBTAIN_USER_INFO,

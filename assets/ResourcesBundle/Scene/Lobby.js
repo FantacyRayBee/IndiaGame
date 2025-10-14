@@ -252,7 +252,9 @@ cc.Class({
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
         };
 
-        // this.loadBundleByH5();
+        if (GlobalCfg.isH5) {
+            this.loadBundleByH5();
+        }
     
         this.checkShiPei();
         this.setBtnsClick();
@@ -2069,17 +2071,30 @@ cc.Class({
         CommonFun.getInstance().showSelectRoom();
     },
 
-    checkUpdate: function(subpackgeName, callFun) {
+    checkUpdate: function (subpackgeName, callFun) {
+        // ✅ 在编辑器点 Play 的预览环境（浏览器/模拟器）直接走回调，跳过下载
+        const isEditorPreview =
+            (typeof CC_PREVIEW !== 'undefined' && CC_PREVIEW) ||
+            (typeof Editor !== 'undefined'); // 少数内嵌预览场景的兜底
+
+        if (isEditorPreview) {
+            callFun && callFun();
+            return;
+        }
+
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
-            // CommonFun.getInstance().showTips("Download the game now!");
-            CommonFun.getInstance().gameLoadBundleByH5(subpackgeName);
-            if (this.LoadCompletedCallback == null) {
+            if (!GlobalCfg.isH5) {
+                CommonFun.getInstance().showTips("Download the game now!");
+                GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            } else {
+                CommonFun.getInstance().gameLoadBundleByH5(subpackgeName);
+            }
+            if (!this.LoadCompletedCallback) {
                 this.LoadCompletedCallback = callFun;
             }
+        } else {
+            callFun && callFun();
         }
-        else {
-            callFun();
-        };
     },
 
     setSmallGameLoadProgress: function(notify) {

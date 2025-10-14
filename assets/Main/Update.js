@@ -66,7 +66,7 @@ cc.Class({
             "proto/zeus/gameservice",
         ];
 
-        this.baseBundlesCheckUpdateArr = ['ResourcesBundle', 'tpGame'];
+        this.baseBundlesCheckUpdateArr = ['MustBundle', 'ResourcesBundle'];
         this.baseBundlesNeedUpdateArr = [];
         this.baseBundlesUpdateCompleteArr = [];
 
@@ -366,7 +366,7 @@ cc.Class({
         if (this.btnWenZiClickTimes >= 3) {
             this.btnWenZiClickTimes = 0;
             let loggerStatus = LoggerUtil.getInstance().getLoggerStatus();
-            console.log(`LoggerUtil Status Set as ${!loggerStatus}`);
+            console.log(`caojun  LoggerUtil Status Set as ${!loggerStatus}`);
             LoggerUtil.getInstance().setLoggerStatus(!loggerStatus);
             cc.sys.localStorage.setItem("LOGGERUTIL_STATUS", loggerStatus ? 0 : 1);
         };
@@ -651,10 +651,13 @@ cc.Class({
         };
         let promise = SceneManager.getInstance().reqTokenInfo(obj);
         promise.then(() => {
+            console.log("caojun dealGuestLoginEvent 1")
             return SceneManager.getInstance().reqBearerToken();
         }).then(() => {
+            console.log("caojun dealGuestLoginEvent 2")
             return SceneManager.getInstance().reqUserDataInfo();
         }).then(() => {
+            console.log("caojun dealGuestLoginEvent 3")
             CommonFun.getInstance().showProgress();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
         }).catch(error => {
@@ -698,6 +701,7 @@ cc.Class({
         };
 
         if (cc.sys.isNative) {
+            this.updateStartTime = cc.sys.now();
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
             this.runUpdateProcess();
         }
@@ -741,22 +745,22 @@ cc.Class({
 
     comparisonVersionInfo: function () {
         let localVersion = Number(cc.sys.localStorage.getItem("localVersion"));
-        LoggerUtil.getInstance().log(`Remote resource file version：${GlobalCfg.ASSETS_VERSION}, Local resource file version：${localVersion}`);
+        console.log(`caojun Remote resource file version：${GlobalCfg.ASSETS_VERSION}, Local resource file version：${localVersion}`);
         if (localVersion != GlobalCfg.ASSETS_VERSION && GlobalCfg.is_need_update) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_RESOURCES_UPDATE);
-            LoggerUtil.getInstance().log(`The remote version that needs to be updated is：${GlobalCfg.ASSETS_VERSION}`);
+            console.log(`caojun The remote version that needs to be updated is：${GlobalCfg.ASSETS_VERSION}`);
             this.reqMainManifestInfo();
         }
         else {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
-            LoggerUtil.getInstance().log("Remote versions that are consistent and do not require updates at this time!");
+            console.log(`caojun Remote versions that are consistent and do not require updates at this time!`);
             this.baseBundlesHotUpdate();
         };
     },
 
     reqMainManifestInfo: function () {
         if (this.reqComparisonMainMD5InfoAcount == 5) {
-            LoggerUtil.getInstance().error("Exception in requesting manifest file under remote resource file assets!");
+            console.log("Exception in requesting manifest file under remote resource file assets!");
             this.setLabUpdateContentTipsStr("Getting Assets Manifest File Error");
             return;
         };
@@ -864,7 +868,7 @@ cc.Class({
 
         let needUpdateFileArrLen = this.needUpdateFileArr.length;
 
-        LoggerUtil.getInstance().log(`Starting to download differentiated files, the number of files that need to be downloaded is ${needUpdateFileArrLen}`);
+        console.log(`caojun Starting to download differentiated files, the number of files that need to be downloaded is ${needUpdateFileArrLen}`);
 
         if (needUpdateFileArrLen == 0) {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_DIFF_FILES_WITH_NO_LOADED_END);
@@ -899,7 +903,7 @@ cc.Class({
             if (downloader.storagePath.length == 0) {
                 let fileInfo = this.needUpdateFileArr[this.curNumberOfJoinedDownloader];
                 if (fileInfo) {
-                    LoggerUtil.getInstance().log("The file being updated is " + fileInfo.filename);
+                    console.log("caojun The file being updated is " + fileInfo.filename);
                     let md5 = fileInfo.md5;
                     let url = `${GlobalCfg.ASSETS_UPDATE_URL}/${fileInfo.filename}?md5=${md5}`;
                     downloader.storagePath = this.storagePath + fileInfo.filename;
@@ -923,7 +927,7 @@ cc.Class({
         this.totalNumberOfFilesDownloaded += 1;
         let needUpdateFileArrLen = this.needUpdateFileArr.length;
 
-        LoggerUtil.getInstance().log(`The number of successful file updates is: ${this.totalNumberOfFilesDownloaded}, The total number of updates needed is: ${needUpdateFileArrLen}`);
+        console.log(`caojun The number of successful file updates is: ${this.totalNumberOfFilesDownloaded}, The total number of updates needed is: ${needUpdateFileArrLen}`);
 
         let downloader = this.getDownLoaderByStoragePath(task.storagePath);
         if (downloader) {
@@ -1070,7 +1074,7 @@ cc.Class({
             });
         }
         else{
-            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadSelectRoom()])
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
             .then((arr) => {
                 cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
                     window.ResourcesBundle = bundle;
@@ -1109,7 +1113,7 @@ cc.Class({
     baseBundlesHotUpdate: function () {
         this.loadBundlesStartTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_LOAD_BUNDLES_START);
-        LoggerUtil.getInstance().log(`Start downloading baseBundles zip files!`);
+        console.log(`caojun Start downloading baseBundles zip files!`);
         if (GlobalCfg.is_need_update) {
             this.baseBundlesCheckUpdateArr.forEach(baseBundle => {
                 if (CommonFun.getInstance().isNeedUpdata(baseBundle)) {
@@ -1121,6 +1125,8 @@ cc.Class({
                 };
             });
         }
+        console.log(`caojun baseBundlesHotUpdate this.baseBundlesNeedUpdateArr.length :${this.baseBundlesNeedUpdateArr.length}`);
+        console.log(`caojun baseBundlesHotUpdate this.isHaveUpdateForResources :${this.isHaveUpdateForResources}`);
 
         if (this.baseBundlesNeedUpdateArr.length == 0) {
             let endTime = cc.sys.now();

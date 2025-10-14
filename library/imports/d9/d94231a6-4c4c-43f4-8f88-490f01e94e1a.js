@@ -74,6 +74,7 @@ window.GlobalCfg = (_window$GlobalCfg = {
    * 是否强制进测试服
    */
   is_force_gotoTest: true,
+  isH5: false,
   /**
    * 渠道信息
    */
@@ -1233,9 +1234,9 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
   switch (server) {
     case "0":
       // 测试服
-      GlobalCfg.APP_VERSION = "0.1.2.7";
-      GlobalCfg.APP_INFO_URL = "https://down.buddha9.com/AppInfo.json?time=" + new Date().getTime();
-      GlobalCfg.APP_CONFIG_URL = "https://down.buddha9.com/AppConfig.json?time=" + new Date().getTime();
+      GlobalCfg.APP_VERSION = "US 1.0.0";
+      GlobalCfg.APP_INFO_URL = "https://down.jok7.com/AppInfo.json?time=" + new Date().getTime();
+      GlobalCfg.APP_CONFIG_URL = "https://down.jok7.com/AppConfig.json?time=" + new Date().getTime();
       break;
     case "1":
       // 1服

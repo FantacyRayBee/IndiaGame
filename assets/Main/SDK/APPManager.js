@@ -151,12 +151,14 @@ APPManager.appCallBack = function (dataType, data1, data2, data3) {
 
 //安卓原生分享
 APPManager.Share = function (Url) {
-    // if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
-    //     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.Share, "(Ljava/lang/String;)V", Url);
-    //     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.Share, "(Ljava/lang/String;)V", Url);
-    //     jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.Share, "(Ljava/lang/String;)V", Url);
-    // }
-    cc.sys.openURL(Url);
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.Share, "(Ljava/lang/String;)V", Url);
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.Share, "(Ljava/lang/String;)V", Url);
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.Share, "(Ljava/lang/String;)V", Url);
+    }
+    else{
+        cc.sys.openURL(Url);
+    }
 }
 
 //安卓内嵌网页调起
@@ -173,6 +175,11 @@ APPManager.showWebView = function (Url, isPortrait) {
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.setOrientation, '(Ljava/lang/String;)V', dir);
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);
+        jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.setOrientation, '(Ljava/lang/String;)V', dir);
+    }
     let frameSize = cc.view.getFrameSize();
     if (dir == 'V') {
         cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);

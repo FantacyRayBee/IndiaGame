@@ -222,7 +222,12 @@ var CommonFun = cc.Class((_cc$Class = {
     /**
      * 渠道标识
      */
-    GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+    if (GlobalCfg.isH5) {
+      //H5渠道
+      GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+    } else {
+      GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+    }
     /**
      * 谷歌ID
      */
@@ -282,9 +287,13 @@ var CommonFun = cc.Class((_cc$Class = {
       ;
       var packageConfig = packageConfigDict[channel];
       if (Reflect.has(packageConfig, "CHANNEL_INFO") == true) {
-        GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+        if (GlobalCfg.isH5) {
+          //H5渠道
+          GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+        } else {
+          GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+        }
       }
-      ;
       if (Reflect.has(packageConfig, "GOOGLE_ID") == true) {
         GlobalCfg.GOOGLE_ID = packageConfig["GOOGLE_ID"];
       }
@@ -587,11 +596,27 @@ var CommonFun = cc.Class((_cc$Class = {
    * @returns
    */
   isNeedUpdata: function isNeedUpdata(subpackgeName) {
-    if (this.gameBundleOpenList[subpackgeName]) {
-      // 如果已经下载过，则直接返回
-      return false;
+    if (GlobalCfg.isH5) {
+      if (this.gameBundleOpenList[subpackgeName]) {
+        // 如果已经下载过，则直接返回
+        return false;
+      }
+      return true;
+    } else {
+      if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        return false;
+      }
+      ;
+      var serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
+      var localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
+      LoggerUtil.getInstance().log(subpackgeName + "\u7248\u672C\u53F7\u5BF9\u6BD4===> \u8FDC\u7A0B\u7248\u672C\u53F7: " + serverVersionNum + ", \u672C\u5730\u7248\u672C\u53F7: " + localVersionNum);
+      if (serverVersionNum !== localVersionNum) {
+        return true;
+      } else {
+        return false;
+      }
+      ;
     }
-    return true;
   },
   gameLoadBundleByH5: function gameLoadBundleByH5(subpackgeName, callback) {
     var _this = this;
@@ -636,7 +661,8 @@ var CommonFun = cc.Class((_cc$Class = {
 
   checkBundleIsDownloadedByH5: function checkBundleIsDownloadedByH5(packageName, callback) {
     var _this2 = this;
-    if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
+    if (!GlobalCfg.isH5) {
+      // 非h5平台，直接返回
       callback && callback();
       return;
     }

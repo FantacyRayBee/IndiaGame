@@ -225,7 +225,12 @@ let CommonFun = cc.Class({
         /**
          * 渠道标识
          */
-        GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+        if (GlobalCfg.isH5) { //H5渠道
+            GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+        }
+        else {
+            GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+        }
         /**
          * 谷歌ID
          */
@@ -288,9 +293,13 @@ let CommonFun = cc.Class({
 
             let packageConfig = packageConfigDict[channel];
             if (Reflect.has(packageConfig, "CHANNEL_INFO") == true) {
-                GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+                if (GlobalCfg.isH5) { //H5渠道
+                    GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
+                }
+                else {
+                    GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+                }
             }
-            ;
             if (Reflect.has(packageConfig, "GOOGLE_ID") == true) {
                 GlobalCfg.GOOGLE_ID = packageConfig["GOOGLE_ID"];
             }
@@ -601,10 +610,26 @@ let CommonFun = cc.Class({
      * @returns
      */
     isNeedUpdata: function (subpackgeName) {
-        if (this.gameBundleOpenList[subpackgeName]) { // 如果已经下载过，则直接返回
-            return false;
+        if(GlobalCfg.isH5){
+            if (this.gameBundleOpenList[subpackgeName]) { // 如果已经下载过，则直接返回
+                return false;
+            }
+            return true;
         }
-        return true;
+        else{
+            if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+                return false;
+            };
+            let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
+            let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
+            LoggerUtil.getInstance().log(`${subpackgeName}版本号对比===> 远程版本号: ${serverVersionNum}, 本地版本号: ${localVersionNum}`);
+            if (serverVersionNum !== localVersionNum) {
+                return true;
+            } 
+            else {
+                return false;
+            };
+        }
     },
 
     gameLoadBundleByH5: function (subpackgeName, callback) {
@@ -646,7 +671,7 @@ let CommonFun = cc.Class({
     },
 
     checkBundleIsDownloadedByH5: function (packageName, callback) {
-        if (cc.sys.os == cc.sys.OS_ANDROID || !cc.sys.isBrowser) {
+        if (!GlobalCfg.isH5) { // 非h5平台，直接返回
             callback && callback();
             return;
         }

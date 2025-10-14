@@ -45,6 +45,7 @@ cc.Class({
     console.log("UpdateVersion: " + cc.sys.localStorage.getItem("UpdateVersion"));
     console.log("PackageName: " + APPManager.getPackageName());
     console.log("PackageChannel: " + cc.sys.localStorage.getItem("PackageChannel"));
+    console.log("GlobalCfg.isH5: " + GlobalCfg.isH5);
 
     /**
      * 常驻节点
@@ -81,7 +82,8 @@ cc.Class({
     GlobalCfg.IS_CLUB_MODE = clubMode;
     var freestyleHead = Number(cc.sys.localStorage.getItem("IsfreestyleHead") || 0);
     GlobalCfg.IS_Freestyle_Head = freestyleHead;
-    GlobalCfg.isH5 = location ? true : false;
+    // GlobalCfg.isH5 = location ? true : false;
+
     var needToLogEncrypt = false;
     if (needToLogEncrypt) {
       var appConfigPathObj = {
