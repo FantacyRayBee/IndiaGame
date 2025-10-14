@@ -192,10 +192,10 @@ cc.Class({
             }
         };
         return fn;
-    }, 
+    },
 
     start: function() {
-        this.playEntryAnim()
+        // this.playEntryAnim()
         this.sendLoginReq();
         this.initSlotData();
     },
@@ -229,8 +229,9 @@ cc.Class({
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_BULL_GAME);
-        cc.Tween.stopAllByTarget(this.title_logo1.node);
-        cc.Tween.stopAllByTarget(this.title_logo2.node);
+        cc.Tween.stopAllByTarget(this); // ★ 停掉所有挂在本组件上的 tween
+        this.coinRunAnimTween && this.coinRunAnimTween.stop();
+        this.coinRunAnimTween = null;
         this.stopAutoSwitch();
     },
 
@@ -837,46 +838,50 @@ cc.Class({
      * @param {*} time 动画时间
      */
     runChangeBigWinScore: function(label, startValue, endValue, time, callback) {
-        if (startValue == 0 && endValue == 0) {
-            if (callback) {
-                callback();
-            }
+        // 目标无效就直接回调
+        if (!cc.isValid(label) || !cc.isValid(label.node) || !cc.isValid(this)) {
+            callback && callback();
             return;
         }
+        if (startValue === 0 && endValue === 0) {
+            callback && callback();
+            return;
+        }
+
+        // 停掉旧动画
         if (this.coinRunAnimTween) {
             this.coinRunAnimTween.stop();
-            this.coinRunAnimTween = null; // 清空引用
+            this.coinRunAnimTween = null;
         }
-        let obj = {};
-        obj.currentValue = startValue;
-        this.popCoinIsRun = true;
-        // 判断是否为整数
-        const isInteger = (value) => Math.floor(value) === value;
-        this.coinRunAnimTween = cc.tween(obj)
-        .to(time, { currentValue: endValue }, {
-            onUpdate: (target, ratio) => {
-                if (this.stopNumScroll == false) {
-                    const value = startValue + (endValue - startValue) * ratio;
-                    // 根据是否为整数决定显示格式
-                    label.string = isInteger(value) ? Math.floor(value).toString() : value.toFixed(2);
-                } else { 
-                    // 立即停止动画，并且不执行后续的 call()
-                    this.coinRunAnimTween.stop(); // 停止 Tween 动画
-                    // 如果停止了，则直接显示最终值
-                    label.string = isInteger(endValue) ? Math.floor(endValue).toString() : endValue.toFixed(2);
-                    this.popCoinIsRun = false; // 手动标记动画结束
-                    return; // 提前退出，避免后续逻辑
-                }
-            }
-        }).call(() => {
-            // 最后要显示的值，根据是否为整数决定显示格式
-            label.string = isInteger(endValue) ? Math.floor(endValue).toString() : endValue.toFixed(2);
-            this.popCoinIsRun = false; // 动画结束
-            if (callback) {
-                callback();
-            }
 
-        }).start();
+        this.popCoinIsRun = true;
+        this._bigNumTweenVal = startValue;
+
+        const isInteger = (n) => Math.floor(n) === n;
+
+        // 这里也挂到组件自身，便于统一 stop
+        this.coinRunAnimTween = cc.tween(this)
+            .to(time, { _bigNumTweenVal: endValue }, {
+                onUpdate: () => {
+                    if (!cc.isValid(this) || !cc.isValid(label) || !cc.isValid(label.node)) {
+                        cc.Tween.stopAllByTarget(this);
+                        this.popCoinIsRun = false;
+                        this.coinRunAnimTween = null;
+                        return;
+                    }
+                    const v = this._bigNumTweenVal;
+                    label.string = isInteger(v) ? Math.floor(v).toString() : v.toFixed(2);
+                }
+            })
+            .call(() => {
+                if (cc.isValid(label) && cc.isValid(label.node)) {
+                    label.string = isInteger(endValue) ? Math.floor(endValue).toString() : endValue.toFixed(2);
+                }
+                this.popCoinIsRun = false;
+                this.coinRunAnimTween = null;
+                callback && callback();
+            })
+            .start();
     },
 
     /**
@@ -889,42 +894,53 @@ cc.Class({
      * @param {Boolean} [isInt=false] 是否以整数形式变化(默认false，即允许小数动画)
      */
     runChangeTotalWinScore: function(label, startValue, endValue, time, callback, isInt = false) {
-        if (startValue === 0 && endValue === 0) {
+        // 目标无效就直接回调
+        if (!cc.isValid(label) || !cc.isValid(label.node) || !cc.isValid(this)) {
             callback && callback();
             return;
         }
-    
-        let obj = { currentValue: startValue };
+
         this.popCoinIsRun = true;
-        const shouldShowTwoDecimals = !isInt && 
-            (Math.abs(endValue - Math.floor(endValue)) > 0.01 || 
-             Math.abs(startValue - Math.floor(startValue)) > 0.01);
-    
-        cc.tween(obj)
-            .to(time, { currentValue: endValue }, {
-                onUpdate: function(_, ratio) {
-                    let currentValue = startValue + (endValue - startValue) * ratio;
-                    if (isInt) {
-                        currentValue = Math.floor(currentValue);
-                    } else {
-                        if (shouldShowTwoDecimals) {
-                            currentValue = parseFloat(currentValue.toFixed(2));
-                        } else {
-                            currentValue = parseFloat(currentValue.toFixed(1));
-                        }
+
+        // 将动画状态挂到组件自身，方便 stopAllByTarget(this)
+        this._numTweenVal = startValue;
+
+        // 是否需要两位小数
+        const shouldShowTwoDecimals = !isInt &&
+            (Math.abs(endValue - Math.floor(endValue)) > 0.01 ||
+            Math.abs(startValue - Math.floor(startValue)) > 0.01);
+
+        cc.tween(this)
+            .to(time, { _numTweenVal: endValue }, {
+                onUpdate: () => {
+                    // 任一对象无效 → 立刻停掉
+                    if (!cc.isValid(this) || !cc.isValid(label) || !cc.isValid(label.node)) {
+                        cc.Tween.stopAllByTarget(this);
+                        this.popCoinIsRun = false;
+                        return;
                     }
-                    label.string = currentValue.toString();
+
+                    let v = this._numTweenVal;
+                    if (isInt) {
+                        v = Math.floor(v);
+                    } else {
+                        v = shouldShowTwoDecimals ? parseFloat(v.toFixed(2)) : parseFloat(v.toFixed(1));
+                    }
+
+                    // 再次防御
+                    if (cc.isValid(label) && cc.isValid(label.node)) {
+                        label.string = v.toString();
+                    }
                 }
             })
-            .call(function() {
-                if (isInt) {
-                    label.string = Math.floor(endValue).toString();
-                } else {
-                    label.string = shouldShowTwoDecimals ? endValue.toFixed(2) : endValue.toFixed(1);
+            .call(() => {
+                if (cc.isValid(this) && cc.isValid(label) && cc.isValid(label.node)) {
+                    if (isInt) label.string = Math.floor(endValue).toString();
+                    else label.string = (shouldShowTwoDecimals ? endValue.toFixed(2) : endValue.toFixed(1));
                 }
                 this.popCoinIsRun = false;
                 callback && callback();
-            }.bind(this))
+            })
             .start();
     },
 

@@ -31175,8 +31175,8 @@
     "relativePath": "notBundle\\Pdd\\res\\pdd\\altas\\turnTable\\line_sr.png"
   },
   "f94ac5e2-1209-42e8-ab51-3f5bb75e2245": {
-    "asset": 1760423226016,
-    "meta": 1760423226021,
+    "asset": 1760435071326,
+    "meta": 1760435071331,
     "relativePath": "ResourcesBundle\\NewPlan\\register\\registerView.prefab"
   },
   "a8fe996a-68bd-4267-a48e-e20a5a0da4fb": {
@@ -31455,8 +31455,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
   },
   "6cf4fb21-462c-445c-a1ff-3e628530c3ac": {
-    "asset": 1760334825698,
-    "meta": 1760334837829,
+    "asset": 1760428199149,
+    "meta": 1760428199153,
     "relativePath": "chickenroad\\chickenroad.fire"
   },
   "19de4ccc-2586-4838-a577-ddb34507bcc6": {
@@ -31568,11 +31568,6 @@
     "asset": 1760334825464,
     "meta": 1760334844192,
     "relativePath": "MustBundle\\Normal\\keyboard\\res\\Union.png"
-  },
-  "d72a4330-183b-4fa7-aaa0-ab2a54fb4036": {
-    "asset": 1760334825695,
-    "meta": 1760334838638,
-    "relativePath": "bullMachine\\src\\bullMachineCtrl.js"
   },
   "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
     "asset": 1760334825691,
@@ -31744,11 +31739,6 @@
     "meta": 1760338211867,
     "relativePath": "Main\\Main.js"
   },
-  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
-    "asset": 1760345073680,
-    "meta": 1760345079272,
-    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
-  },
   "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
     "asset": 1760406963040,
     "meta": 1760406985720,
@@ -31759,19 +31749,29 @@
     "meta": 1760408477803,
     "relativePath": "Main\\SDK\\APPManager.js"
   },
-  "0ca21298-1686-4454-abc3-3a93d8963e40": {
-    "asset": 1760409495836,
-    "meta": 1760409498155,
-    "relativePath": "Main\\Update.js"
-  },
   "f2a86e19-7ddc-4457-8773-690b697ecb54": {
     "asset": 1760409827212,
     "meta": 1760409943006,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
+  "d72a4330-183b-4fa7-aaa0-ab2a54fb4036": {
+    "asset": 1760428695568,
+    "meta": 1760428754582,
+    "relativePath": "bullMachine\\src\\bullMachineCtrl.js"
+  },
+  "0ca21298-1686-4454-abc3-3a93d8963e40": {
+    "asset": 1760433176928,
+    "meta": 1760433188623,
+    "relativePath": "Main\\Update.js"
+  },
+  "3c913a9d-6f57-4d67-984a-84673db9f58b": {
+    "asset": 1760434059612,
+    "meta": 1760434061714,
+    "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
+  },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1760424861433,
-    "meta": 1760424877360,
+    "asset": 1760434113773,
+    "meta": 1760434204018,
     "relativePath": "Main\\Global.js"
   }
 }

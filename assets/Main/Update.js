@@ -66,7 +66,7 @@ cc.Class({
             "proto/zeus/gameservice",
         ];
 
-        this.baseBundlesCheckUpdateArr = ['MustBundle', 'ResourcesBundle'];
+        this.baseBundlesCheckUpdateArr = ['ResourcesBundle'];
         this.baseBundlesNeedUpdateArr = [];
         this.baseBundlesUpdateCompleteArr = [];
 

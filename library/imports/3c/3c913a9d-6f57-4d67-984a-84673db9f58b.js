@@ -291,7 +291,7 @@ var CommonFun = cc.Class((_cc$Class = {
           //H5渠道
           GlobalCfg.CHANNEL_INFO = this.getChannelIdV1();
         } else {
-          GlobalCfg.CHANNEL_INFO = json["CHANNEL_INFO"];
+          GlobalCfg.CHANNEL_INFO = packageConfig["CHANNEL_INFO"];
         }
       }
       if (Reflect.has(packageConfig, "GOOGLE_ID") == true) {
@@ -303,7 +303,6 @@ var CommonFun = cc.Class((_cc$Class = {
         if (GlobalCfg.FACEBOOK_ID && GlobalCfg.FACEBOOK_ID.length > 0) {
           APPManager.setFaceBookID(GlobalCfg.FACEBOOK_ID);
         }
-        ;
       }
       ;
       if (Reflect.has(packageConfig, "REMOTE_APP_UPDATE") == true) {
