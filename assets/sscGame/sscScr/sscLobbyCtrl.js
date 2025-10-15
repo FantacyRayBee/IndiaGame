@@ -29,7 +29,7 @@ cc.Class({
         this.myBetCoinAll = 0   //统计自己下注全部金额
         this.paymentSwitch = false;
 
-        this.betCionArr = [1, 10, 50, 100, 200, 500];  //下注的钱的数组
+        this.betCionArr = [0.2, 1, 10, 50, 100, 200];  //下注的钱的数组
         this.recordArr = [];                        //大厅历史记录数组
         this.recordBet = [0,0,0,0,0,0];             //记录自己上局下注金额 
         this.recordBetAll = [0,0,0,0,0,0];  
@@ -560,7 +560,7 @@ cc.Class({
             let betCion = Math.abs(Number(coin) - date.all/100);
            
             if( this.isOneInGame > 0 ){
-                this.betCionAct(date.side,betCion,"play");
+                this.betCionAct(date.side, parseFloat((betCion).toFixed(2)),"play");
             }
 
             if(betCion > 0 ) {
@@ -593,7 +593,7 @@ cc.Class({
     // 玩家下注金币向上的动作
     betCionAct:function(num,coin,str){ 
         if( coin > 0){
-            LoggerUtil.getInstance().log("下注金币向上动作 ", coin);
+            LoggerUtil.getInstance().error("下注金币向上动作 ", coin);
             if(str != "play"){this.sscAudioCtrl.playGameSound("otherCoin")}
             let betPosArr =  [cc.v2(-483,-83),cc.v2(-287,-83),cc.v2(-92,-83),cc.v2(102,-83),cc.v2(295,-83),cc.v2(490,-83),cc.v2(-450,-288)]   
             let pos = betPosArr[num];

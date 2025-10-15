@@ -293,7 +293,7 @@ cc.Class({
       if (CommonFun.getInstance().isValidForScr(_this3)) {
         CommonFun.getInstance().showWithDrawTips("Okay", strTip, function () {
           if (_this3.isWithdrawSuccess == true) {
-            CommonFun.getInstance().showWithDrawShare();
+            // CommonFun.getInstance().showWithDrawShare();
             _this3.isWithdrawSuccess = false;
           }
           ;

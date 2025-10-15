@@ -53,11 +53,20 @@ cc.Class({
     clearTimeout(this.changeTime);
     clearTimeout(this.stopMusic);
     clearTimeout(this.btnTime);
-    this.scheduleOnce = null;
-    this.unschedule(this.scheduleBetSpineTimeCallback);
+    // ❌ 不要覆盖 scheduleOnce：this.scheduleOnce = null;
+    if (this.scheduleBetSpineTimeCallback) {
+      this.unschedule(this.scheduleBetSpineTimeCallback);
+    }
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
     ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgHandle);
     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_BENZ_GAME);
+    try {
+      cc.Tween.stopAllByTarget && cc.Tween.stopAllByTarget(this.node);
+      this.betNode && cc.Tween.stopAllByTarget(this.betNode);
+      this.nodeWinAnim && this.nodeWinAnim.node && cc.Tween.stopAllByTarget(this.nodeWinAnim.node);
+      this.nodePmdAnim && this.nodePmdAnim.node && cc.Tween.stopAllByTarget(this.nodePmdAnim.node);
+    } catch (e) {}
+    this.unscheduleAllCallbacks();
   },
   start: function start() {
     GlobalCfg.ACT_SCENE_CTRL = this;
@@ -101,10 +110,8 @@ cc.Class({
     this.nodeWinAnim = cc.find('benz_Canvas/node_winAnim').getComponent(sp.Skeleton);
     this.nodePmdAnim = cc.find('benz_Canvas/node_pmd').getComponent(sp.Skeleton);
     this.labCount = [null];
-    // this.sprGuang = [null,]
     for (var index = 1; index < 9; index++) {
       this.labCount[index] = cc.find('benz_Canvas/BetArea/btn_' + index + '/lab_count').getComponent(cc.Label);
-      // this.sprGuang[index] = cc.find('benz_Canvas/BetArea/btn_' + index + '/Background/k_guang');
       var btn_bet = cc.find('benz_Canvas/BetArea/btn_' + index);
       btn_bet.on(cc.Node.EventType.TOUCH_START, this.touchstart, this);
     }
@@ -136,8 +143,6 @@ cc.Class({
         betCoin += this.betArr[index];
       }
       if (betCoin > 0) {
-        // CommonFun.getInstance().showMsgBox(this.tipsLabel[0], "YES_NO", () => {        
-        // }, false);
         var call = [];
         if (!this.betStatus) {
           this.betArr = [null, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -324,12 +329,7 @@ cc.Class({
         return;
       }
     }
-    // if(bBet){
-    //     this.reStart();
-    //     this.callReq();
-    // }
   },
-
   reStart: function reStart() {
     this.betStatus = false;
     for (var index = 1; index < 9; index++) {
@@ -379,7 +379,6 @@ cc.Class({
       if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
         if (result.result == 57) {
           CommonFun.getInstance().showDiversionFreeTP(function () {
-            // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
             CommonFun.getInstance().decVerticalAcc();
           });
         } else {
@@ -425,12 +424,7 @@ cc.Class({
         }
       }
       ;
-    }
-    // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-    //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
-    //     CommonFun.getInstance().decVerticalAcc();
-    // }
-    else if (msgId == "lobbyservice.kicktolobby") {
+    } else if (msgId == "lobbyservice.kicktolobby") {
       SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
       CommonFun.getInstance().decVerticalAcc();
     }
@@ -494,13 +488,9 @@ cc.Class({
         }, false);
         return;
       } else if (this.singleBet > GlobalCfg.USER_DATAS.userDiamond) {
-        // if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-        //     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-        // else {
         CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", function () {
           CommonFun.getInstance().showSmallAddCash();
         }, false);
-        // }
       } else {
         var num = this.betArr[types] + this.singleBet;
         if (num > 1000000) {
@@ -521,7 +511,39 @@ cc.Class({
       LoggerUtil.getInstance().log("游戏未结束");
     }
   },
+  // 零中奖/异常统一收尾（一定会触发 countDown -> reSetData）
+  _endRoundNoWin: function _endRoundNoWin() {
+    this.bActOver = true;
+    this.rotating = false;
+
+    // UI
+    this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
+    this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
+    this.showBtnCollect(false);
+
+    // 确保总赢额清 0，避免上局残留
+    this._winGold = 0;
+    this.totalWinNum = 0;
+    if (this.labTotalWin && cc.isValid(this.labTotalWin.node)) {
+      this.labTotalWin.string = '0';
+    }
+
+    // 用普通分支把余额同步显示，并在完成时 reSetData
+    this.countDown(this.labCoin, GlobalCfg.USER_DATAS.userDiamond);
+  },
   collectCoin: function collectCoin() {
+    // 兜底：如果没有在播中奖动画且处于结算中，直接结束
+    if (!this.nodeWinAnim.node.active && !this.betStatus) {
+      if (this.totalWinNum > 0) {
+        this.setBtnInteractableAndOutLineLabel(false, this.btnStart);
+        this.setBtnInteractableAndOutLineLabel(false, this.btnStart1);
+        this.countDown(this.labTotalWin, 0, 2);
+        this.showBtnCollect(false);
+      } else {
+        this._endRoundNoWin();
+      }
+      return;
+    }
     var bActable = false;
     if (this.btnStart.node.active) {
       bActable = this.btnStart.interactable;
@@ -602,7 +624,6 @@ cc.Class({
       this.labCount[type].string = this.betArr[type] / 100;
       cc.tween(pabWinLab).to(1, {
         position: cc.v2(pos.x, pos.y + 60)
-        // opacity: 220
       }).call(function () {
         pabWinLab.destroy();
       }).start();
@@ -667,11 +688,24 @@ cc.Class({
     this.sendReqCtrl.sendCallReq(call);
   },
   callNotify: function callNotify(notify) {
+    // --- 服务端数据兜底校验 ---
+    LoggerUtil.getInstance().log('[BENZ notify]', JSON.stringify({
+      AllAmount: notify && notify.AllAmount,
+      Diamond: notify && notify.Userinfo && notify.Userinfo.Diamond,
+      WinLen: notify && Array.isArray(notify.Win) ? notify.Win.length : 'NA',
+      GameSceneLen: notify && Array.isArray(notify.GameScene) ? notify.GameScene.length : 'NA',
+      PlayType: notify && notify.PlayType
+    }));
+    if (!notify || typeof notify.AllAmount !== 'number' || !notify.Userinfo || typeof notify.Userinfo.Diamond !== 'number') {
+      LoggerUtil.getInstance().error('[BENZ] bad notify payload, force end no-win');
+      this._endRoundNoWin();
+      return;
+    }
     this.rotating = true;
     this.totalWinNum = notify.AllAmount;
     GlobalCfg.USER_DATAS.userDiamond = notify.Userinfo.Diamond;
-    var winArr = notify.Win;
-    var winIndexArr = notify.GameScene;
+    var winArr = notify.Win || [];
+    var winIndexArr = (notify.GameScene || []).slice();
     var playType = notify.PlayType;
     winIndexArr.sort(function (m, n) {
       if (m < n) return -1;else if (m > n) return 1;else return 0;
@@ -735,87 +769,126 @@ cc.Class({
     };
     this.init4 = function () {
       var _this3 = this;
-      if (cc.isValid(this.node)) {
-        if (this.startIndex >= logoLength) {
-          this.startIndex = 0;
-        }
-        if (musicIndex > 8) {
-          musicIndex = 1;
-        }
-        for (var index = 0; index < 5; index++) {
-          if (index <= runNum) {
-            var jndex = this.startIndex - index;
-            var start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
-            this.dataConfig.changeLogo(start - index, true);
-            this.dataConfig.setLogoOpacity(start - index, 255 - index * 60);
-            if (index > 3) {
-              this.dataConfig.changeLogo(start - index, false);
-            }
-          } else if (addNum == -1) {
-            var _jndex = this.startIndex - index;
-            var _start = _jndex < 0 ? logoLength + this.startIndex : this.startIndex;
-            this.dataConfig.changeLogo(_start - index, false);
-          }
-        }
-        if (runNum >= runResult - 5) {
-          runNum = 5;
-          addNum = -1;
-        } else if (runNum == 0 && addNum == -1) {
-          this.bActOver = true;
-          if (this.totalWinNum > 0) {
-            this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
-            this.rotating = false;
-            var type = this.dataConfig.getType(this.startIndex);
-            var _str = this.getTypeStr(type);
-            this.playGameSound('Sound/' + _str);
-            this.scheduleOnce(function () {
-              _this3.playWinAnim(_str);
-            }, 0.8);
-          } else {
-            this.playGameSound('Sound/meizhongjiang');
-            this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
-            this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-            this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-            this.collectCoin();
-          }
-          return;
-        }
-        var arr = [null, 300, 200, 100, 50, 16];
-        if (runNum < 6 && runNum > 0 && addNum == -1) {
-          this.loopTime = arr[runNum];
-        } else if (runNum < 6 && runNum > 0 && addNum == 1) {
-          this.loopTime = arr[runNum];
-        } else {
-          this.loopTime = 16;
-        }
-        musicIndex++;
-        this.startIndex++;
-        runNum += addNum;
-        this.loop4();
+      if (!cc.isValid(this.node)) return;
+      if (this.startIndex >= logoLength) {
+        this.startIndex = 0;
       }
+      if (musicIndex > 8) musicIndex = 1;
+      for (var index = 0; index < 5; index++) {
+        if (index <= runNum) {
+          var jndex = this.startIndex - index;
+          var start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
+          this.dataConfig.changeLogo(start - index, true);
+          this.dataConfig.setLogoOpacity(start - index, 255 - index * 60);
+          if (index > 3) {
+            this.dataConfig.changeLogo(start - index, false);
+          }
+        } else if (addNum == -1) {
+          var _jndex = this.startIndex - index;
+          var _start = _jndex < 0 ? logoLength + this.startIndex : this.startIndex;
+          this.dataConfig.changeLogo(_start - index, false);
+        }
+      }
+      if (runNum >= runResult - 5) {
+        runNum = 5;
+        addNum = -1;
+      } else if (runNum == 0 && addNum == -1) {
+        this.bActOver = true;
+        if (this.totalWinNum > 0) {
+          // ✅ 有中奖
+          this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
+          this.rotating = false;
+          var type = this.dataConfig.getType(this.startIndex);
+          var _str = this.getTypeStr(type);
+          this.playGameSound('Sound/' + _str);
+          this.scheduleOnce(function () {
+            _this3.playWinAnim(_str);
+          }, 0.8);
+        } else {
+          // ❌ 没中奖
+          this.playGameSound('Sound/meizhongjiang');
+          this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
+          // 👉 延迟 0.8 秒再解锁按钮
+          this.scheduleOnce(function () {
+            if (!cc.isValid(_this3.node)) return;
+            _this3.setBtnInteractableAndOutLineLabel(true, _this3.btnStart);
+            _this3.setBtnInteractableAndOutLineLabel(true, _this3.btnStart1);
+            _this3.collectCoin();
+          }, 0.8);
+        }
+        return;
+      }
+      var arr = [null, 300, 200, 100, 50, 16];
+      if (runNum < 6 && runNum > 0 && addNum == -1) {
+        this.loopTime = arr[runNum];
+      } else if (runNum < 6 && runNum > 0 && addNum == 1) {
+        this.loopTime = arr[runNum];
+      } else {
+        this.loopTime = 16;
+      }
+      musicIndex++;
+      this.startIndex++;
+      runNum += addNum;
+      this.loop4();
     };
     this.init4();
   },
-  playWinAnim: function playWinAnim(str) {
+  playWinAnim: function playWinAnim(animName) {
     var _this4 = this;
-    this.nodeWinAnim.node.active = true;
-    this.nodeWinAnim.setAnimation(0, str, false);
-    this.playGameSound('Sound/prize');
-    this.nodeWinAnim.setCompleteListener(function (trackEntry, loopCount) {
-      var name = trackEntry.animation.name;
-      if (name == str) {
-        _this4.playGameSound('Sound/bg');
-        _this4.countDown(_this4.labTotalWin, _this4.totalWinNum, 1);
-        _this4.nodeWinAnim.node.active = false;
-      }
+    var skel = this.nodeWinAnim; // sp.Skeleton
+    if (!skel || !skel.skeletonData) return;
+    skel.node.active = true;
+
+    // 清旧监听，避免多次叠加
+    skel.setCompleteListener(null);
+
+    // 统一的完成函数（带去重）
+    var done = false;
+    var finish = function finish() {
+      if (done) return;
+      done = true;
+      _this4.playGameSound('Sound/bg');
+      _this4.countDown(_this4.labTotalWin, _this4.totalWinNum, 1); // ✅ 保证一定进来
+      skel.node.active = false;
+    };
+
+    // 先挂监听，再开播；并做“动画名一致”的保护
+    skel.setCompleteListener(function (trackEntry /*, loopCount*/) {
+      var name = trackEntry && trackEntry.animation ? trackEntry.animation.name : animName;
+      if (name === animName) finish();
     });
+    var entry = skel.setAnimation(0, animName, false);
+    this.playGameSound('Sound/prize');
+
+    // 兜底：按动画时长 + 偏移定时触发 finish，防止“监听丢失/早完成”
+    var dur = this._getSpineAnimDurationSafe(skel, animName);
+    this.scheduleOnce(function () {
+      return finish();
+    }, Math.max(0.1, dur + 0.1));
+  },
+  _getSpineAnimDurationSafe: function _getSpineAnimDurationSafe(skel, animName) {
+    try {
+      var sd = skel.skeletonData;
+      var rd = sd && sd.getRuntimeData ? sd.getRuntimeData() : null;
+      if (rd) {
+        if (typeof rd.findAnimation === 'function') {
+          var anim = rd.findAnimation(animName);
+          if (anim && typeof anim.duration === 'number') return anim.duration;
+        }
+        if (Array.isArray(rd.animations)) {
+          var _anim = rd.animations.find(function (a) {
+            return a && a.name === animName;
+          });
+          if (_anim && typeof _anim.duration === 'number') return _anim.duration;
+        }
+      }
+    } catch (e) {}
+    return 0.8;
   },
   playPmdAnim: function playPmdAnim(str) {
     this.nodePmdAnim.node.active = true;
     this.nodePmdAnim.setAnimation(0, str, true);
-    // this.runPMD()
   },
-
   getTypeStr: function getTypeStr(type) {
     var _str = "";
     switch (type) {
@@ -850,32 +923,37 @@ cc.Class({
   },
   countDown: function countDown(StartNumNode, endNum, bMove) {
     var _this5 = this;
-    this.bTouch = 2; //表示正在倒数计
-    // 轮询递增递减
-    var StartNum = Number(StartNumNode.string) * 100;
-    this.loop5 = function () {
-      var that = _this5;
-      clearTimeout(_this5.changeTime);
-      _this5.changeTime = null;
-      _this5.changeTime = setTimeout(function () {
-        if (cc.isValid(_this5.node)) {
-          that.init5();
-        }
-      }, 50);
-    };
+    LoggerUtil.getInstance().error("countDown : ", StartNumNode, endNum, bMove);
 
-    // 递增递减
-    this.init5 = function () {
-      var _this6 = this;
-      if (cc.isValid(this.node)) {
-        if (this.bTouch == 1) {
-          //表示停止
-          this.bTouch = 0; //表示既没有倒数也没有需要停止
-          this.reSetData();
-          return;
-        }
-        ;
-        var Num = Math.abs(StartNum - endNum);
+    // --- 统一用“分”为单位并四舍五入，干掉浮点误差 ---
+    var toCents = function toCents(v) {
+      return Math.round(Number(v) * 100);
+    };
+    var StartNum = toCents(StartNumNode && StartNumNode.string ? StartNumNode.string : 0);
+    endNum = Math.round(endNum); // 服务器这边都是“分”，这里确保整数
+
+    this.bTouch = 2; // 表示正在倒数计
+
+    var stepOnce = function stepOnce() {
+      // 组件被销毁时停止
+      if (!cc.isValid(_this5.node) || !StartNumNode || !cc.isValid(StartNumNode.node)) return;
+
+      // 外部要求立即停止（例如中奖动画被点跳过）
+      if (_this5.bTouch == 1) {
+        _this5.bTouch = 0;
+        _this5.reSetData();
+        return;
+      }
+
+      // 与目标差值（分）
+      var Num = Math.abs(StartNum - endNum);
+
+      // --- 这里是原先卡死的点：Num < 100 且 bMove != 0 时没有推进 ---
+      // 现在直接“贴合”到目标，保证能收敛退出。
+      if (Num < 100) {
+        StartNum = endNum;
+      } else {
+        // 大步长优先，快速收敛
         if (Num >= 1000000) {
           StartNum += StartNum < endNum ? 1000000 : -1000000;
         } else if (Num >= 100000) {
@@ -884,76 +962,75 @@ cc.Class({
           StartNum += StartNum < endNum ? 10000 : -10000;
         } else if (Num >= 1000) {
           StartNum += StartNum < endNum ? 1000 : -1000;
-        } else if (Num >= 100) {
+        } else {
+          // 100 <= Num < 1000
           StartNum += StartNum < endNum ? 100 : -100;
         }
-        ;
-        var num = FloatCalculation.accDiv(StartNum, 100);
-        StartNumNode.string = num;
-        if (!bMove && Num < 100) {
-          var _num3 = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-          this.labCoin.string = _num3;
-          this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-          this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-          this.bTouch = 0; //表示既没有倒数也没有需要停止
-          this.reSetData();
-          return;
-        }
-        ;
-        if (bMove == 1) {
-          if (Number(this.labTotalWin.string) * 100 > this.totalWinNum) {
-            this.labTotalWin.string = this.totalWinNum / 100;
-          }
-          ;
-        }
-        if (StartNum == endNum) {
-          if (bMove == 1) {
-            if (Number(this.labTotalWin.string) * 100 == this.totalWinNum && this.totalWinNum > 0) {
-              if (this.rotating == false) {
-                this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-                this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-              }
-              this.showBtnCollect(true);
-            }
-          } else if (bMove == 2) {
-            // 回收金币，有获胜金币
-            var nodeLizi = cc.instantiate(this.nodeLizi);
-            if (this.totalWinNum != 0) {
-              var pos = this.labTotalWin.node.getPosition();
-              nodeLizi.setPosition(pos);
-              this.node.addChild(nodeLizi);
-            }
-            this.scheduleOnce(function () {
-              if (cc.isValid(nodeLizi)) {
-                nodeLizi.destroy();
-              }
-              ;
-              _this6.totalWinNum = 0;
-              _this6._winGold = 0;
-              _this6.countDown(_this6.labCoin, GlobalCfg.USER_DATAS.userDiamond);
-            }, 0.5);
-          } else {
-            if (Number(this.labCoin.string) * 100 == GlobalCfg.USER_DATAS.userDiamond) {
-              var _num4 = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-              this.labCoin.string = _num4;
-              this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-              this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-              this.bTouch = 0; //表示既没有倒数也没有需要停止
-              this.reSetData();
-              return;
-            }
-          }
-          ;
-          return;
-        }
-        ;
-        this.loop5();
       }
-      ;
+
+      // 同步数值到 UI（单位：元）
+      StartNumNode.string = FloatCalculation.accDiv(StartNum, 100);
+
+      // bMove==1：防止越界
+      if (bMove == 1) {
+        if (Number(_this5.labTotalWin.string) * 100 > _this5.totalWinNum) {
+          _this5.labTotalWin.string = _this5.totalWinNum / 100;
+        }
+      }
+
+      // 是否到达目标
+      if (StartNum === endNum) {
+        if (bMove == 1) {
+          // 奖金跳字完成
+          if (Number(_this5.labTotalWin.string) * 100 == _this5.totalWinNum && _this5.totalWinNum > 0) {
+            if (_this5.rotating == false) {
+              _this5.setBtnInteractableAndOutLineLabel(true, _this5.btnStart);
+              _this5.setBtnInteractableAndOutLineLabel(true, _this5.btnStart1);
+            }
+            _this5.showBtnCollect(true);
+          }
+          return;
+        } else if (bMove == 2) {
+          // 从“总赢额”收集到“余额”
+          var nodeLizi = cc.instantiate(_this5.nodeLizi);
+          if (_this5.totalWinNum != 0) {
+            var pos = _this5.labTotalWin.node.getPosition();
+            nodeLizi.setPosition(pos);
+            _this5.node.addChild(nodeLizi);
+          }
+          _this5.scheduleOnce(function () {
+            if (cc.isValid(nodeLizi)) nodeLizi.destroy();
+            _this5.totalWinNum = 0;
+            _this5._winGold = 0;
+            // 再把余额跳到服务器最新值（普通分支，结束自动 reSetData）
+            _this5.countDown(_this5.labCoin, GlobalCfg.USER_DATAS.userDiamond);
+          }, 0.5);
+          return;
+        } else {
+          // 普通分支：余额跳字结束，收尾
+          if (Number(_this5.labCoin.string) * 100 == GlobalCfg.USER_DATAS.userDiamond) {
+            _this5.labCoin.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
+            _this5.setBtnInteractableAndOutLineLabel(true, _this5.btnStart);
+            _this5.setBtnInteractableAndOutLineLabel(true, _this5.btnStart1);
+            _this5.bTouch = 0;
+            _this5.reSetData();
+            return;
+          }
+        }
+      }
+
+      // 继续下一帧
+      clearTimeout(_this5.changeTime);
+      _this5.changeTime = setTimeout(stepOnce, 50);
+      LoggerUtil.getInstance().log('caojun Num:' + Math.abs(StartNum - endNum) + ' bMove' + bMove);
     };
-    this.init5();
+
+    // 启动循环
+    clearTimeout(this.changeTime);
+    this.changeTime = setTimeout(stepOnce, 50);
   },
   reSetData: function reSetData() {
+    LoggerUtil.getInstance().error("caojun reSetData....");
     this.betArr = [null, 0, 0, 0, 0, 0, 0, 0, 0];
     this.betNum = [null, [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
     for (var index = 1; index < this.betNum.length; index++) {
@@ -978,18 +1055,16 @@ cc.Class({
     this.setBtnInteractableAndOutLineLabel(true, this.btnRepeat1);
     this.betNode.removeAllChildren();
     this.betStatus = true;
-    // clearTimeout(this.zhuanTime)
-    // this.zhuanTime = null;
     for (var _index10 = 1; _index10 < 9; _index10++) {
       var btn_bet = cc.find('benz_Canvas/BetArea/btn_' + _index10).getComponent(cc.Button);
       btn_bet.interactable = true;
-      // this.sprGuang[index].active = false;
     }
-
     this.bActOver = false;
     this.bTouch = 0;
     clearTimeout(this.runTime);
-    cc.Tween.stopAll();
+    try {
+      cc.Tween.stopAllByTarget && cc.Tween.stopAllByTarget(this.node);
+    } catch (e) {}
     this.unscheduleAllCallbacks();
   },
   getReward: function getReward(id, bMove) {
@@ -1046,9 +1121,8 @@ cc.Class({
       if (index == WinArr.length - 1) {
         if (!this.totalWinNum) {
           this.playGameSound('Sound/meizhongjiang');
-          this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-          this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-          this.collectCoin();
+          // 统一走零中奖收尾，避免 collectCoin 条件卡死
+          this._endRoundNoWin();
         }
       } else {
         index++;
@@ -1056,18 +1130,18 @@ cc.Class({
       }
     };
     this.loop6 = function () {
-      var _this7 = this;
+      var _this6 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this7.node)) {
+        if (cc.isValid(_this6.node)) {
           that.init6();
         }
       }, 50);
     };
     this.init6 = function () {
-      var _this8 = this;
+      var _this7 = this;
       if (cc.isValid(this.node)) {
         if (this.startIndex > 23) {
           this.startIndex = 0;
@@ -1090,9 +1164,9 @@ cc.Class({
           }
           this.getReward(type, 1);
           this.scheduleOnce(function () {
-            _this8.startIndex = 0;
+            _this7.startIndex = 0;
             runNum = 0;
-            _this8.checkResult();
+            _this7.checkResult();
           }, 1);
           return;
         }
@@ -1108,18 +1182,18 @@ cc.Class({
     this.dataConfig.changeLogo(this.startIndex, false);
     this.startIndex = 0;
     this.loop1 = function () {
-      var _this9 = this;
+      var _this8 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this9.node)) {
+        if (cc.isValid(_this8.node)) {
           that.init1();
         }
       }, 125);
     };
     this.init1 = function () {
-      var _this10 = this;
+      var _this9 = this;
       if (cc.isValid(this.node)) {
         for (var index = runNum % 2; index < 24; index += 2) {
           this.dataConfig.changeLogo(index, true);
@@ -1136,14 +1210,14 @@ cc.Class({
               this.dataConfig.changeLogo(WinArr[_index12], true);
             }
             var _loop = function _loop(_index13) {
-              _this10.scheduleOnce(function () {
+              _this9.scheduleOnce(function () {
                 if (_index13 == WinArr.length - 1) {
-                  _this10.rotating = false;
+                  _this9.rotating = false;
                 }
-                _this10.playGameSound('Sound/dingdong');
-                _this10.dataConfig.setLogoOpacity(WinArr[_index13], 255, true);
-                var type = _this10.dataConfig.getType(WinArr[_index13]);
-                _this10.getReward(type, 1);
+                _this9.playGameSound('Sound/dingdong');
+                _this9.dataConfig.setLogoOpacity(WinArr[_index13], 255, true);
+                var type = _this9.dataConfig.getType(WinArr[_index13]);
+                _this9.getReward(type, 1);
               }, _index13 * 0.8);
             };
             for (var _index13 = 0; _index13 < WinArr.length; _index13++) {
@@ -1153,14 +1227,13 @@ cc.Class({
             for (var _index14 = 0; _index14 < WinArr.length; _index14++) {
               this.dataConfig.changeLogo(WinArr[_index14], true);
             }
-            // if(!this.bPMDRun){
             this.playGameSound('Sound/meizhongjiang');
-            this.collectCoin();
-            // }
+            // 统一走零中奖收尾
+            this._endRoundNoWin();
             var _loop2 = function _loop2(_index15) {
-              _this10.scheduleOnce(function () {
-                _this10.playGameSound('Sound/dingdong');
-                _this10.dataConfig.setLogoOpacity(WinArr[_index15], 255, true);
+              _this9.scheduleOnce(function () {
+                _this9.playGameSound('Sound/dingdong');
+                _this9.dataConfig.setLogoOpacity(WinArr[_index15], 255, true);
               }, _index15 * 0.8);
             };
             for (var _index15 = 0; _index15 < WinArr.length; _index15++) {
@@ -1182,33 +1255,31 @@ cc.Class({
     this.dataConfig.changeLogo(this.startIndex, false);
     this.startIndex = 0;
     this.loop2 = function () {
-      var _this11 = this;
+      var _this10 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this11.node)) {
+        if (cc.isValid(_this10.node)) {
           that.init2();
         }
       }, 400);
     };
     this.init2 = function () {
-      var _this12 = this;
+      var _this11 = this;
       if (cc.isValid(this.node)) {
         this.dataConfig.changeLogo(runNum, true);
         if (runNum == 23) {
           var _loop3 = function _loop3(index) {
-            _this12.dataConfig.changeLogo(runNum, true);
-            _this12.scheduleOnce(function () {
+            _this11.dataConfig.changeLogo(runNum, true);
+            _this11.scheduleOnce(function () {
               if (index == 24 - 1) {
-                _this12.rotating = false;
+                _this11.rotating = false;
               }
-              _this12.playGameSound('Sound/dingdong');
-              _this12.dataConfig.setLogoOpacity(index, 255, true);
-              var type = _this12.dataConfig.getType(index);
-              // if(!this.bPMDRun){
-              _this12.getReward(type, 1);
-              // }
+              _this11.playGameSound('Sound/dingdong');
+              _this11.dataConfig.setLogoOpacity(index, 255, true);
+              var type = _this11.dataConfig.getType(index);
+              _this11.getReward(type, 1);
             }, index * 0.8);
           };
           for (var index = 0; index < 24; index++) {
@@ -1230,18 +1301,18 @@ cc.Class({
     this.dataConfig.changeLogo(this.startIndex, false);
     this.startIndex = 0;
     this.loop3 = function () {
-      var _this13 = this;
+      var _this12 = this;
       var that = this;
       clearTimeout(this.runTime);
       this.runTime = null;
       this.runTime = setTimeout(function () {
-        if (cc.isValid(_this13.node)) {
+        if (cc.isValid(_this12.node)) {
           that.init3();
         }
       }, this.loopTime);
     };
     this.init3 = function () {
-      var _this14 = this;
+      var _this13 = this;
       if (cc.isValid(this.node)) {
         if (this.startIndex >= logoLength) {
           this.startIndex = 0;
@@ -1269,33 +1340,32 @@ cc.Class({
         } else if (runNum == 0 && addNum == -1) {
           if (this.totalWinNum > 0) {
             var _loop4 = function _loop4(_index16) {
-              var jndex = _this14.startIndex - _index16;
-              var start = jndex < 0 ? logoLength + _this14.startIndex : _this14.startIndex;
-              _this14.dataConfig.changeLogo(start - _index16, true);
-              _this14.dataConfig.setLogoOpacity(start - _index16, 255);
-              _this14.scheduleOnce(function () {
+              var jndex = _this13.startIndex - _index16;
+              var start = jndex < 0 ? logoLength + _this13.startIndex : _this13.startIndex;
+              _this13.dataConfig.changeLogo(start - _index16, true);
+              _this13.dataConfig.setLogoOpacity(start - _index16, 255);
+              _this13.scheduleOnce(function () {
                 if (_index16 == 2) {
-                  _this14.rotating = false;
+                  _this13.rotating = false;
                 }
-                _this14.playGameSound('Sound/dingdong');
-                _this14.dataConfig.setLogoOpacity(start - _index16, 255, true);
-                _this14.getReward(_this14.dataConfig.getType(start - _index16, 1), 1);
+                _this13.playGameSound('Sound/dingdong');
+                _this13.dataConfig.setLogoOpacity(start - _index16, 255, true);
+                _this13.getReward(_this13.dataConfig.getType(start - _index16, 1), 1);
               }, _index16 * 0.8);
             };
             for (var _index16 = 2; _index16 >= 0; _index16--) {
               _loop4(_index16);
             }
           } else {
-            // if(!this.bPMDRun){
             this.playGameSound('Sound/meizhongjiang');
-            this.collectCoin();
-            // }
+            // 统一零中奖收尾
+            this._endRoundNoWin();
             var _loop5 = function _loop5(_index17) {
-              _this14.scheduleOnce(function () {
-                _this14.playGameSound('Sound/dingdong');
-                var jndex = _this14.startIndex - _index17;
-                var start = jndex < 0 ? logoLength + _this14.startIndex : _this14.startIndex;
-                _this14.dataConfig.setLogoOpacity(start - _index17, 255, true);
+              _this13.scheduleOnce(function () {
+                _this13.playGameSound('Sound/dingdong');
+                var jndex = _this13.startIndex - _index17;
+                var start = jndex < 0 ? logoLength + _this13.startIndex : _this13.startIndex;
+                _this13.dataConfig.setLogoOpacity(start - _index17, 255, true);
               }, _index17 * 0.8);
             };
             for (var _index17 = 0; _index17 < 3; _index17++) {

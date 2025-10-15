@@ -52,7 +52,7 @@ cc.Class({
       this.betNumList = arr.slice(0, 5);
       for (var i = 0; i < this.btns.length; i++) {
         var btn = this.btns[i];
-        btn.node.getChildByName('lab').getComponent(cc.Label).string = Math.round(this.betNumList[i] / 100);
+        btn.node.getChildByName('lab').getComponent(cc.Label).string = parseFloat((this.betNumList[i] / 100).toFixed(2));
       }
       this.curBetNum = this.betNumList[0];
     }

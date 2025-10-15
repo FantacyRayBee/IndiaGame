@@ -55,9 +55,9 @@ cc.Class({
             "Your cash is insufficient, Please recharge in time!"
         ];
         //投注额度数组
-        this.betAmountArr = ['1', '10', '20', '50', '100', '200', '500', '1000'];
+        this.betAmountArr = ['0.2', '1', '10', '20', '50', '100', '200', '500', '1000'];
         if(GlobalCfg.USER_DATAS.gamePattern == 1){
-            this.betAmountArr = ['1', '10', '20', '50', '100', '200', '500', '1000', '2000'];
+            this.betAmountArr = ['0.2', '1', '10', '20', '50', '100', '200', '500', '1000', '2000'];
         }
         this.betAmountArrIndex = 0;
 
@@ -304,7 +304,7 @@ cc.Class({
             let freePool = freeCountItem.freePool/100;
 
             this.lab_betAmount.string = amount;
-            this.lab_totalWin.string = freePool.toFixed(1);
+            this.lab_totalWin.string = freePool.toFixed(2);
             this.freeTotalWinNum = freePool;
             this.lab_autoBetCiShu.string = freeCount;
             this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
@@ -403,7 +403,7 @@ cc.Class({
 
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
-            let diamond = GlobalCfg.USER_DATAS.userDiamond - parseInt(this.lab_betAmount.string) * 100;
+            let diamond = GlobalCfg.USER_DATAS.userDiamond - parseFloat(this.lab_betAmount.string) * 100;
             let num = FloatCalculation.accDiv(diamond, 100);
             this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
         }
@@ -416,7 +416,7 @@ cc.Class({
         //次数递减
         let betStr = this.lab_autoBetCiShu.string;
         if (betStr != 'AUTO') {
-            let betNum = parseInt(betStr) - 1;
+            let betNum = parseFloat(betStr) - 1;
             if (betNum == 0) {
                 this.setBetCiShuAutoTips();
             }
@@ -563,7 +563,7 @@ cc.Class({
     runChangeTotalWinScore: function (startScore, endedScore, freeCount, time = 0.5) {
         let obj = {};
         obj.num = startScore;
-        this.lab_totalWin.string = obj.num == 0 ? obj.num : obj.num.toFixed(1);
+        this.lab_totalWin.string = obj.num == 0 ? obj.num : obj.num.toFixed(2);
         cc.tween(obj)
         .to(
             time,
@@ -686,7 +686,7 @@ cc.Class({
         this.btn_auto.interactable = true;
         this.btn_auto.enableAutoGrayEffect = false;
 
-        let betAmount = parseInt(this.lab_betAmount.string);
+        let betAmount = parseFloat(this.lab_betAmount.string);
         if (betAmount != 10) {
             this.btn_betJian.interactable = true;
             this.btn_betJian.enableAutoGrayEffect = false;
@@ -715,7 +715,7 @@ cc.Class({
             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
             let startScore = Number(this.freeTotalWinNum);
             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let bet = parseInt(this.lab_betAmount.string)
+            let bet = parseFloat(this.lab_betAmount.string)
             let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple *  bet / 10 + startScore;
             this.freeTotalWinNum = endedScore;
             let freeCount = this.gameResult.mianfeinum;
@@ -874,7 +874,7 @@ cc.Class({
         this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
         this.toggle_auto.interactable = false;
         this.autoSpineNode.active = true;
-        let amount = parseInt(this.lab_betAmount.string);
+        let amount = parseFloat(this.lab_betAmount.string);
         let proroID = 'gameservice.call';
         let message = 'CallReq';
         GameServerManager.send(proroID, message, {              
@@ -885,7 +885,7 @@ cc.Class({
     curRoundAddCoinFinish(){
         if(cc.isValid(this)){
             let minLimit = this.betAmountArr[0] || 0;
-            minLimit = parseInt(minLimit) * 100;
+            minLimit = parseFloat(minLimit) * 100;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, ()=>{
                 if(cc.isValid(this)){
                     if (GlobalCfg.IS_SHOW_BANKRUPT) { //破产界面显示时才需要暂停自动spin
@@ -1089,7 +1089,7 @@ cc.Class({
             return;
         };
 
-        let betAmount = parseInt(this.lab_betAmount.string) * 100;
+        let betAmount = parseFloat(this.lab_betAmount.string) * 100;
 
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;

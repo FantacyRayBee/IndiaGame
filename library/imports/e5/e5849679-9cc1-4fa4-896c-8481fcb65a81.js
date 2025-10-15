@@ -66,12 +66,13 @@ cc.Class({
     selectLight.setPosition(pos.x, pos.y + 3.5);
   },
   initBetNum: function initBetNum(arr) {
+    LoggerUtil.getInstance().log("caojun initBetNum arr = ", arr);
     if (arr && Array.isArray(arr)) {
       this.betNumList.length = 0;
       this.betNumList = arr.slice(0, 5);
       for (var i = 0; i < this.btns.length; i++) {
         var btn = this.btns[i];
-        btn.node.getChildByName('lab').getComponent(cc.Label).string = Math.round(this.betNumList[i] / 100);
+        btn.node.getChildByName('lab').getComponent(cc.Label).string = parseFloat((this.betNumList[i] / 100).toFixed(2));
       }
       this.curBetNum = this.betNumList[0];
     }

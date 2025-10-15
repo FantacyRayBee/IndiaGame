@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "autoReleaseAssets": true,
+    "autoReleaseAssets": false,
     "_id": "75131999-d098-4bb3-a686-081b2cbceaed"
   },
   {
@@ -4873,7 +4873,7 @@
       "__id__": 93
     },
     "maxValue": 8000,
-    "minValue": 1,
+    "minValue": 0.2,
     "_id": "77jHSBTV5BtofsYAXosmsg"
   },
   {
@@ -11581,7 +11581,7 @@
       "__id__": 219
     },
     "maxValue": 8000,
-    "minValue": 1,
+    "minValue": 0.2,
     "_id": "b9a4VtoNVN0ZT306QnDyw9"
   },
   {

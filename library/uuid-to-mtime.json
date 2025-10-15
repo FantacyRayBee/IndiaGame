@@ -315,8 +315,8 @@
     "relativePath": "LanguageBengali\\CustomerService"
   },
   "21b13378-6ad8-4404-a8ba-28dac60d73c8": {
-    "asset": 1760334825692,
-    "meta": 1760334837816,
+    "asset": 1760513644904,
+    "meta": 1760513644908,
     "relativePath": "baccarat3PattiGame\\baccarat3Patti.fire"
   },
   "2a3627f3-b9c1-4009-b50b-0572946aa8b9": {
@@ -1200,8 +1200,8 @@
     "relativePath": "7up7downGame\\7upFab\\node_score.prefab"
   },
   "5c67ed4c-8d41-4d67-b838-6ed48b74d702": {
-    "asset": 1760334825993,
-    "meta": 1760334839688,
+    "asset": 1760513624324,
+    "meta": 1760513624330,
     "relativePath": "zooGame\\zoo.fire"
   },
   "6083a91c-e4b6-45db-9995-a8b007eab489": {
@@ -6673,11 +6673,6 @@
     "asset": 1757322086364,
     "meta": 1760325864590,
     "relativePath": "zooGame\\Scripts\\zooAudioManager.js"
-  },
-  "5edfb187-d03e-4ec1-9ffe-b6014b65fc2b": {
-    "asset": 1757322086364,
-    "meta": 1760325864598,
-    "relativePath": "zooGame\\Scripts\\zooCurBetCtrl.js"
   },
   "38520345-cd3b-4410-8fd0-a0f15c742303": {
     "asset": 1757322086368,
@@ -12986,17 +12981,17 @@
   },
   "e4cf6759-f6f4-495f-b459-39379825ba07": {
     "asset": 1757322085304,
-    "meta": 1760422716919,
+    "meta": 1760492365697,
     "relativePath": "fruitMachine\\skeleton\\777.skel"
   },
   "7fc7a444-2527-430c-8c34-305307436c63": {
     "asset": 1757322085305,
-    "meta": 1760422716919,
+    "meta": 1760492365698,
     "relativePath": "fruitMachine\\skeleton\\bar.skel"
   },
   "d1f34d42-9b5d-4a35-bef5-40a4a02cfb00": {
     "asset": 1757322085307,
-    "meta": 1760422716918,
+    "meta": 1760492365701,
     "relativePath": "fruitMachine\\skeleton\\juzi.skel"
   },
   "98fc052a-da65-4a4c-baaa-156f3fb008f3": {
@@ -13011,7 +13006,7 @@
   },
   "82d1cb79-7e44-4384-93bc-b5524e5c13d0": {
     "asset": 1757322085309,
-    "meta": 1760422716920,
+    "meta": 1760492365698,
     "relativePath": "fruitMachine\\skeleton\\lingdang.skel"
   },
   "fbdc6cd7-ca05-497b-a68c-1d6071bfa68d": {
@@ -13021,12 +13016,12 @@
   },
   "3ede9969-0ba3-4be4-b1cc-3ca1b145158b": {
     "asset": 1757322085311,
-    "meta": 1760422716918,
+    "meta": 1760492365700,
     "relativePath": "fruitMachine\\skeleton\\pingguo.skel"
   },
   "eb53ec9f-68f4-4e21-9471-57a1a80f3c54": {
     "asset": 1757322085313,
-    "meta": 1760422716920,
+    "meta": 1760492365698,
     "relativePath": "fruitMachine\\skeleton\\putao.skel"
   },
   "e98ceb3f-a801-4c48-9e31-e54a3236fbf6": {
@@ -13036,7 +13031,7 @@
   },
   "fdde52a9-5e79-4d38-b8f6-68a2fc706bd9": {
     "asset": 1757322085315,
-    "meta": 1760422716917,
+    "meta": 1760492365699,
     "relativePath": "fruitMachine\\skeleton\\qingmang.skel"
   },
   "d8abb29c-c397-4fde-9114-5136149992a4": {
@@ -13046,7 +13041,7 @@
   },
   "fba16937-b520-4239-8dd4-bd9f08e6710c": {
     "asset": 1757322085317,
-    "meta": 1760422716920,
+    "meta": 1760492365700,
     "relativePath": "fruitMachine\\skeleton\\sanyecao.skel"
   },
   "48f777ad-c3bc-4954-90c2-07ec0ed2467e": {
@@ -13061,7 +13056,7 @@
   },
   "4d8021f5-37c4-4e64-9570-432c08b0f238": {
     "asset": 1757322085318,
-    "meta": 1760422716924,
+    "meta": 1760492365702,
     "relativePath": "fruitMachine\\skeleton\\uiquan.skel"
   },
   "0f75adde-5095-4a30-aa1d-bc02533c7dea": {
@@ -13071,12 +13066,12 @@
   },
   "7b0c5b5e-83eb-4285-bc26-0ad0d1fe4bba": {
     "asset": 1757322085320,
-    "meta": 1760422716922,
+    "meta": 1760492365703,
     "relativePath": "fruitMachine\\skeleton\\wild.skel"
   },
   "f6842ca9-7ae8-4431-92f9-c58aa8842efc": {
     "asset": 1757322085322,
-    "meta": 1760422716921,
+    "meta": 1760492365701,
     "relativePath": "fruitMachine\\skeleton\\xigua.skel"
   },
   "0430044f-25ce-49e7-8fe3-12daef78c352": {
@@ -13101,12 +13096,12 @@
   },
   "db15b4e7-813c-403a-abeb-6325ebcb2e49": {
     "asset": 1757322085324,
-    "meta": 1760422716922,
+    "meta": 1760492365702,
     "relativePath": "fruitMachine\\skeleton\\yingtao.skel"
   },
   "5da91794-7555-46f3-8b50-76491eef45a0": {
     "asset": 1757322085327,
-    "meta": 1760422716923,
+    "meta": 1760492365706,
     "relativePath": "fruitMachine\\skeleton\\zhuan.skel"
   },
   "e55d99a3-a054-4a4b-9868-73e1fddef77d": {
@@ -13831,7 +13826,7 @@
   },
   "e6efd503-2b03-48b2-bf6c-c69e99fe5778": {
     "asset": 1757322085485,
-    "meta": 1760422716921,
+    "meta": 1760492365704,
     "relativePath": "indiaMachine\\spine\\sysboms\\wild.skel"
   },
   "af2c7605-e0af-4231-ad0f-381ea211ded3": {
@@ -15376,12 +15371,12 @@
   },
   "3989a667-38dc-4f59-a9b1-f1ed4b2a2c0f": {
     "asset": 1758180054367,
-    "meta": 1760422716928,
+    "meta": 1760492365709,
     "relativePath": "jokerMachine\\anim\\spine\\Background\\Background.skel"
   },
   "8c4eab1d-1d68-49a8-8d6e-4695a69f69c1": {
     "asset": 1758180054368,
-    "meta": 1760422716928,
+    "meta": 1760492365708,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin\\BigWin.skel"
   },
   "32978865-0c6d-4f9f-8785-c2886404db76": {
@@ -15396,12 +15391,12 @@
   },
   "b2782bd8-94fa-400d-9ca1-7dd3da7af84e": {
     "asset": 1758180054383,
-    "meta": 1760422716925,
+    "meta": 1760492365705,
     "relativePath": "jokerMachine\\anim\\spine\\ExtraBet_Declare\\ExtraBet_Declare.skel"
   },
   "d979522e-f988-464f-9404-9dabfea95456": {
     "asset": 1758180054381,
-    "meta": 1760422716932,
+    "meta": 1760492365712,
     "relativePath": "jokerMachine\\anim\\spine\\Character\\Character.skel"
   },
   "cb5688b5-aff6-4c38-a67a-e5a8f6e6e429": {
@@ -15416,12 +15411,12 @@
   },
   "4f8398f0-52c4-4180-a4be-8bf2714ca928": {
     "asset": 1758180054389,
-    "meta": 1760422716927,
+    "meta": 1760492365706,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment\\JP_Compliment.skel"
   },
   "78fd7d0b-b8e8-4e2e-9760-dc60f84b9318": {
     "asset": 1758180054391,
-    "meta": 1760422716925,
+    "meta": 1760492365703,
     "relativePath": "jokerMachine\\anim\\spine\\JP_Compliment_Top\\JP_Compliment_Top.skel"
   },
   "2f57efcb-7f25-45ae-932a-f443eefd875a": {
@@ -15481,7 +15476,7 @@
   },
   "5cd9cddb-db95-401a-899d-224aac7c6991": {
     "asset": 1758180054413,
-    "meta": 1760422716926,
+    "meta": 1760492365707,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_00\\Symbol_00.skel"
   },
   "7a241750-4b99-4026-a977-2d71ddbc3038": {
@@ -15496,7 +15491,7 @@
   },
   "a312872a-1f1a-4918-8d56-9619f39a957f": {
     "asset": 1758180054416,
-    "meta": 1760422716925,
+    "meta": 1760492365704,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_01\\Symbol_01.skel"
   },
   "85f8c995-21fd-4a75-a710-535f628606cd": {
@@ -15506,12 +15501,12 @@
   },
   "c0c687b4-214c-46cb-993f-596d6db0ef40": {
     "asset": 1758180054418,
-    "meta": 1760422716926,
+    "meta": 1760492365707,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_02\\Symbol_02.skel"
   },
   "c744f48e-2119-47ff-81a2-ee68424cba03": {
     "asset": 1758180054421,
-    "meta": 1760422716927,
+    "meta": 1760492365707,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_03\\Symbol_03.skel"
   },
   "1e39b532-7ce2-4248-a526-8a07f492fe22": {
@@ -15521,7 +15516,7 @@
   },
   "2bc4d615-c98e-43c8-b318-417de59bbeb9": {
     "asset": 1758180054423,
-    "meta": 1760422716928,
+    "meta": 1760492365708,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_04\\Symbol_04.skel"
   },
   "1ba3209c-364d-488d-83a1-8d375861db8c": {
@@ -15531,7 +15526,7 @@
   },
   "771a0fb0-faba-4a78-bb17-71bbe39f846c": {
     "asset": 1758180054426,
-    "meta": 1760422716932,
+    "meta": 1760492365712,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_05\\Symbol_05.skel"
   },
   "32c165a5-a0bd-4587-b1da-cff36f7cddeb": {
@@ -15541,7 +15536,7 @@
   },
   "6dfb9b5c-8a19-4ad8-a06f-bdbbc1d97571": {
     "asset": 1758180054428,
-    "meta": 1760422716933,
+    "meta": 1760492365713,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_06\\Symbol_06.skel"
   },
   "3f19a8a6-37cf-49df-b673-31648275e302": {
@@ -15551,7 +15546,7 @@
   },
   "f9016b33-f406-4228-8ffb-48d1db25d5cd": {
     "asset": 1758180054431,
-    "meta": 1760422716933,
+    "meta": 1760492365713,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_07\\Symbol_07.skel"
   },
   "fef7babd-a3ab-489a-8203-cd3ac14e033a": {
@@ -15561,7 +15556,7 @@
   },
   "444a20e7-b50d-43a3-b66c-4f7b232837a1": {
     "asset": 1758180054435,
-    "meta": 1760422716934,
+    "meta": 1760492365714,
     "relativePath": "jokerMachine\\anim\\sysboms\\Symbol_08\\Symbol_08.skel"
   },
   "b8156e81-ec1d-4306-a6e2-c62ba3058b2b": {
@@ -15581,7 +15576,7 @@
   },
   "839fb34b-f2c3-4586-b8df-ff1df3333201": {
     "asset": 1758180053998,
-    "meta": 1760422716929,
+    "meta": 1760492365709,
     "relativePath": "ResourcesBundle\\skeleton\\Character.skel"
   },
   "a757fc0c-2da6-4a29-b314-4198d38cbc67": {
@@ -15596,7 +15591,7 @@
   },
   "fd90c990-f5d3-4c25-a46c-40f89fef898c": {
     "asset": 1758180054410,
-    "meta": 1760422716923,
+    "meta": 1760492365705,
     "relativePath": "jokerMachine\\anim\\spine\\other\\paomadeng.skel"
   },
   "30901e52-76f7-495d-b266-779de908de6e": {
@@ -15640,8 +15635,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\GameSetting\\GameSettingNew.prefab"
   },
   "f92f7d15-4274-42b8-a6fe-e77bbd08429f": {
-    "asset": 1757322084398,
-    "meta": 1760325867902,
+    "asset": 1760513456892,
+    "meta": 1760513456903,
     "relativePath": "ResourcesBundle\\NewPlan\\GameSetting\\GameSetting.prefab"
   },
   "04f52473-e613-450c-b30a-986279076d49": {
@@ -16446,7 +16441,7 @@
   },
   "72306e9b-3329-457c-9b74-e9c8d1ad4e74": {
     "asset": 1758180054373,
-    "meta": 1760422716924,
+    "meta": 1760492365704,
     "relativePath": "jokerMachine\\anim\\spine\\BigWin_Top\\BigWin_Top.skel"
   },
   "d1511798-6686-42f9-be9c-0ae7895f2a0d": {
@@ -16864,19 +16859,14 @@
     "meta": 1760325865159,
     "relativePath": "baccarat3PattiGame\\res\\lobby\\title (2).png"
   },
-  "f0b19fe6-999f-4f72-bc6a-cbb7ece53c60": {
-    "asset": 1758180053255,
-    "meta": 1760334837825,
-    "relativePath": "Benz\\benz.fire"
-  },
   "cd85b564-ba79-4208-b5ac-e36a68d4c4e6": {
     "asset": 1758180054135,
     "meta": 1760325865177,
     "relativePath": "baccarat3PattiGame\\res\\lobby\\title_Urdu.png"
   },
   "6527cdd1-df2a-454d-a730-b6511f8f2a21": {
-    "asset": 1760334825704,
-    "meta": 1760334837838,
+    "asset": 1760513574250,
+    "meta": 1760513574256,
     "relativePath": "cricketGame\\cricket.fire"
   },
   "3f5302c8-7f7f-47b8-b682-00a2c34916d9": {
@@ -18315,8 +18305,8 @@
     "relativePath": "lhdGame\\lhdPab\\lhdPlayer.prefab"
   },
   "dbc79ec0-2132-4b6e-b457-a6e1b72c953d": {
-    "asset": 1760334825719,
-    "meta": 1760334838648,
+    "asset": 1760513551977,
+    "meta": 1760513551986,
     "relativePath": "lhdGame\\LHD.fire"
   },
   "ba06ac27-3b9b-4dc3-97e4-ccf2984c0caa": {
@@ -19675,8 +19665,8 @@
     "relativePath": "rocket\\res\\image\\title_ONLINE PLAYERS_Urdu.png"
   },
   "f831a725-7866-4101-8429-ea11b64846bc": {
-    "asset": 1760334825968,
-    "meta": 1760334839086,
+    "asset": 1760513594093,
+    "meta": 1760513594097,
     "relativePath": "rocket\\rocket.fire"
   },
   "a7739af0-ce31-442a-bda7-33ae2a2d986a": {
@@ -26150,8 +26140,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\MyVip\\VipRulesRuleItemCtrl.js"
   },
   "3cf47d30-760f-42fa-bbfe-d033f0f5f384": {
-    "asset": 1760334825712,
-    "meta": 1760334837844,
+    "asset": 1760513767359,
+    "meta": 1760513767368,
     "relativePath": "horseRaceGame\\horseRace.fire"
   },
   "41bf30a9-c9ad-4d26-8e93-3108a1109186": {
@@ -26173,11 +26163,6 @@
     "asset": 1760334825643,
     "meta": 1760334843487,
     "relativePath": "ResourcesBundle\\NewPlan\\TransactionRecord\\TransactionRecordItemCtrl.js"
-  },
-  "35b4ad78-6e54-4292-9189-be00747ea5f1": {
-    "asset": 1760334825645,
-    "meta": 1760334843515,
-    "relativePath": "ResourcesBundle\\NewPlan\\WithDraw\\WithDrawCtrl.js"
   },
   "4118efd0-5817-4993-82b2-2cd41635bd16": {
     "asset": 1760334825646,
@@ -26255,8 +26240,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\WithDraw\\WithDrawItem.prefab"
   },
   "34efa4d7-86b7-49d3-a599-728840277159": {
-    "asset": 1760409642852,
-    "meta": 1760409642862,
+    "asset": 1760495651397,
+    "meta": 1760495651401,
     "relativePath": "ResourcesBundle\\NewPlan\\WithDrawPreData\\WithDrawPreData.prefab"
   },
   "fd41c687-ecf4-49bb-9522-56e7d120ec7e": {
@@ -27060,8 +27045,8 @@
     "relativePath": "sscGame\\sscPab\\sscWaFa.prefab"
   },
   "13ccbb9f-5eb6-476e-b607-0aadbecb3ab0": {
-    "asset": 1760334825970,
-    "meta": 1760334842046,
+    "asset": 1760494768084,
+    "meta": 1760494768090,
     "relativePath": "sscGame\\sscPab\\pab_ssc.prefab"
   },
   "bb6c3f82-36e5-400d-acd3-3ed313eb2d5c": {
@@ -27325,8 +27310,8 @@
     "relativePath": "aviator\\src\\AviatorRoundRoot3.js"
   },
   "75131999-d098-4bb3-a686-081b2cbceaed": {
-    "asset": 1760334825688,
-    "meta": 1760334838279,
+    "asset": 1760496091754,
+    "meta": 1760496091769,
     "relativePath": "aviator\\aviator.fire"
   },
   "243f82ba-11e0-4389-a16c-0d634876160d": {
@@ -27338,11 +27323,6 @@
     "asset": 1760334825600,
     "meta": 1760334843283,
     "relativePath": "ResourcesBundle\\NewPlan\\PopUpWithDraw\\popUpWithDrawCtrl.js"
-  },
-  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
-    "asset": 1760334825690,
-    "meta": 1760334838213,
-    "relativePath": "aviator\\src\\Aviator.js"
   },
   "908a8d5c-b6c5-46d4-bf7e-7ccb8d0c1dc2": {
     "asset": 1760334825406,
@@ -31364,55 +31344,20 @@
     "meta": 1760334844050,
     "relativePath": "aviator\\res\\V\\free\\game limits.png"
   },
-  "5bb20ab0-0a2a-40b8-9ab8-4c651799e6b3": {
-    "asset": 1760334825407,
-    "meta": 1760334838101,
-    "relativePath": "7up7downGame\\7upScript\\7upCtrl.js"
-  },
   "36cb1111-47aa-4a89-8750-8b786399aa7d": {
     "asset": 1760148564134,
     "meta": 1760325858893,
     "relativePath": "andaerGame\\andeerScr\\andeerLobbyCtrl.js"
-  },
-  "cc370dea-fffd-4935-932b-4bba6b70a146": {
-    "asset": 1760334825694,
-    "meta": 1760334838331,
-    "relativePath": "baccarat3PattiGame\\src\\buttonClickCtrl.js"
   },
   "44b5545f-2f84-4981-a27c-75f33f7fcc52": {
     "asset": 1760334825694,
     "meta": 1760334838360,
     "relativePath": "baccarat3PattiGame\\src\\gameServiceSendCtrl.js"
   },
-  "d234eb34-0867-48af-94b4-0c99a00f2219": {
-    "asset": 1760334825408,
-    "meta": 1760334838485,
-    "relativePath": "Benz\\BenzScript\\benzmainCtrl.js"
-  },
   "08230298-6d1e-4da0-87c4-d639c6da3ee7": {
     "asset": 1760334825707,
     "meta": 1760334838966,
     "relativePath": "cricketGame\\scripts\\cricketMainCtrl.js"
-  },
-  "9377b7c8-9b17-438a-87b7-a622c9b4dd54": {
-    "asset": 1760334825710,
-    "meta": 1760334839079,
-    "relativePath": "fruitMachine\\src\\fruitMachineCtrl.js"
-  },
-  "ae4e2826-8a51-4a8e-9fbd-c15f0450f098": {
-    "asset": 1760334825714,
-    "meta": 1760334839272,
-    "relativePath": "horseRaceGame\\horseScr\\horseRaceLobbyCtrl.js"
-  },
-  "b12aea8e-3f2d-466d-a425-694f08e769f1": {
-    "asset": 1760334825717,
-    "meta": 1760334839528,
-    "relativePath": "jokerMachine\\src\\jokerMachineCtrl.js"
-  },
-  "8c417a5b-6065-4897-808c-eadf542f8791": {
-    "asset": 1760334825721,
-    "meta": 1760334839673,
-    "relativePath": "lhdGame\\lhdScr\\lhdLobbyCtrl.js"
   },
   "81dcf937-f943-4bf0-b85a-d93846f982ed": {
     "asset": 1760334825727,
@@ -31428,11 +31373,6 @@
     "asset": 1760334825966,
     "meta": 1760334841214,
     "relativePath": "rocket\\Scripts\\Rocket.js"
-  },
-  "3a40a1bd-608c-47be-92fc-ce93651570e6": {
-    "asset": 1760334825972,
-    "meta": 1760334841283,
-    "relativePath": "sscGame\\sscScr\\sscLobbyCtrl.js"
   },
   "4bc98a51-e288-4894-aeae-20766687af1b": {
     "asset": 1760334825988,
@@ -31455,8 +31395,8 @@
     "relativePath": "ResourcesBundle\\NewPlan\\BankruptcyGift\\BankruptcyGiftCtrl.js"
   },
   "6cf4fb21-462c-445c-a1ff-3e628530c3ac": {
-    "asset": 1760428199149,
-    "meta": 1760428199153,
+    "asset": 1760497331264,
+    "meta": 1760497331272,
     "relativePath": "chickenroad\\chickenroad.fire"
   },
   "19de4ccc-2586-4838-a577-ddb34507bcc6": {
@@ -31569,11 +31509,6 @@
     "meta": 1760334844192,
     "relativePath": "MustBundle\\Normal\\keyboard\\res\\Union.png"
   },
-  "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
-    "asset": 1760334825691,
-    "meta": 1760334838264,
-    "relativePath": "aviator\\src\\AviatorBetCtrl.js"
-  },
   "fd4930bf-e9e3-4d1b-8862-3d80b7130878": {
     "asset": 1760334825466,
     "meta": 1760334844080,
@@ -31588,11 +31523,6 @@
     "asset": 1760334825701,
     "meta": 1760334842201,
     "relativePath": "chickenroad\\res\\main\\icon_₹.png"
-  },
-  "e5849679-9cc1-4fa4-896c-8481fcb65a81": {
-    "asset": 1760334825706,
-    "meta": 1760334838765,
-    "relativePath": "cricketGame\\scripts\\cricketCurBetCtrl.js"
   },
   "bb8ccaee-49e8-424e-a0e6-09eb6b96ab2f": {
     "asset": 1760334825709,
@@ -31659,11 +31589,6 @@
     "meta": 1760334838691,
     "relativePath": "chickenroad\\src\\ChickenEditbox.js"
   },
-  "ed27ea93-10b0-4daf-9dea-3ad942a27495": {
-    "asset": 1760334825702,
-    "meta": 1760334838678,
-    "relativePath": "chickenroad\\src\\ChickenBet.js"
-  },
   "ad039ed0-4ee0-414b-b8b9-69470d71cc4d": {
     "asset": 1760334825627,
     "meta": 1760334843409,
@@ -31688,21 +31613,6 @@
     "asset": 1760334825409,
     "meta": 1760334837335,
     "relativePath": "Main\\AudioManager.js"
-  },
-  "6f9f69c6-a9e0-4e4f-9954-418347d23500": {
-    "asset": 1760334825726,
-    "meta": 1760334839824,
-    "relativePath": "mayaMachine\\src\\mayaMachineCtrl.js"
-  },
-  "864e1957-9827-46ca-a44c-57fc6a7f8a1e": {
-    "asset": 1760334825716,
-    "meta": 1760334839358,
-    "relativePath": "indiaMachine\\src\\indiaMachineCtrl.js"
-  },
-  "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
-    "asset": 1760334825980,
-    "meta": 1760334841420,
-    "relativePath": "vampireMachine\\src\\vampireMachineCtrl.js"
   },
   "317cc250-8030-4888-8b65-9cf9f4ba3436": {
     "asset": 1760334825976,
@@ -31754,11 +31664,6 @@
     "meta": 1760409943006,
     "relativePath": "Main\\Script\\Common\\UtilTools\\SceneManager.js"
   },
-  "d72a4330-183b-4fa7-aaa0-ab2a54fb4036": {
-    "asset": 1760428695568,
-    "meta": 1760428754582,
-    "relativePath": "bullMachine\\src\\bullMachineCtrl.js"
-  },
   "0ca21298-1686-4454-abc3-3a93d8963e40": {
     "asset": 1760433176928,
     "meta": 1760433188623,
@@ -31769,9 +31674,109 @@
     "meta": 1760434061714,
     "relativePath": "Main\\Script\\Common\\UtilTools\\CommonFun.js"
   },
+  "b12aea8e-3f2d-466d-a425-694f08e769f1": {
+    "asset": 1760494550316,
+    "meta": 1760494553865,
+    "relativePath": "jokerMachine\\src\\jokerMachineCtrl.js"
+  },
+  "3a40a1bd-608c-47be-92fc-ce93651570e6": {
+    "asset": 1760495019236,
+    "meta": 1760495021938,
+    "relativePath": "sscGame\\sscScr\\sscLobbyCtrl.js"
+  },
+  "35b4ad78-6e54-4292-9189-be00747ea5f1": {
+    "asset": 1760495723936,
+    "meta": 1760495963892,
+    "relativePath": "ResourcesBundle\\NewPlan\\WithDraw\\WithDrawCtrl.js"
+  },
+  "05ff46e1-8878-4096-bd5a-d67f397fb9b7": {
+    "asset": 1760496687708,
+    "meta": 1760497028139,
+    "relativePath": "aviator\\src\\AviatorBetCtrl.js"
+  },
+  "ed27ea93-10b0-4daf-9dea-3ad942a27495": {
+    "asset": 1760497175666,
+    "meta": 1760497178445,
+    "relativePath": "chickenroad\\src\\ChickenBet.js"
+  },
+  "d72a4330-183b-4fa7-aaa0-ab2a54fb4036": {
+    "asset": 1760497683937,
+    "meta": 1760497686196,
+    "relativePath": "bullMachine\\src\\bullMachineCtrl.js"
+  },
+  "9377b7c8-9b17-438a-87b7-a622c9b4dd54": {
+    "asset": 1760508061017,
+    "meta": 1760508071667,
+    "relativePath": "fruitMachine\\src\\fruitMachineCtrl.js"
+  },
+  "864e1957-9827-46ca-a44c-57fc6a7f8a1e": {
+    "asset": 1760508035858,
+    "meta": 1760508071748,
+    "relativePath": "indiaMachine\\src\\indiaMachineCtrl.js"
+  },
+  "6f9f69c6-a9e0-4e4f-9954-418347d23500": {
+    "asset": 1760508070471,
+    "meta": 1760508071811,
+    "relativePath": "mayaMachine\\src\\mayaMachineCtrl.js"
+  },
+  "9053c53c-4fe8-46ec-9aa0-6542f8c74eb8": {
+    "asset": 1760508049641,
+    "meta": 1760508071864,
+    "relativePath": "vampireMachine\\src\\vampireMachineCtrl.js"
+  },
+  "5bb20ab0-0a2a-40b8-9ab8-4c651799e6b3": {
+    "asset": 1760508237121,
+    "meta": 1760508242384,
+    "relativePath": "7up7downGame\\7upScript\\7upCtrl.js"
+  },
+  "e5849679-9cc1-4fa4-896c-8481fcb65a81": {
+    "asset": 1760508594491,
+    "meta": 1760508599600,
+    "relativePath": "cricketGame\\scripts\\cricketCurBetCtrl.js"
+  },
+  "5edfb187-d03e-4ec1-9ffe-b6014b65fc2b": {
+    "asset": 1760508687006,
+    "meta": 1760508691557,
+    "relativePath": "zooGame\\Scripts\\zooCurBetCtrl.js"
+  },
   "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1760434113773,
-    "meta": 1760434204018,
+    "asset": 1760510210782,
+    "meta": 1760510212415,
     "relativePath": "Main\\Global.js"
+  },
+  "d234eb34-0867-48af-94b4-0c99a00f2219": {
+    "asset": 1760513273905,
+    "meta": 1760513275334,
+    "relativePath": "Benz\\BenzScript\\benzmainCtrl.js"
+  },
+  "69eef554-9f42-485d-8a85-da41f4153987": {
+    "asset": 1760513381530,
+    "meta": 1760513381547,
+    "relativePath": "Benz\\BenzRes\\res\\coin.png"
+  },
+  "f0b19fe6-999f-4f72-bc6a-cbb7ece53c60": {
+    "asset": 1760513408708,
+    "meta": 1760513424535,
+    "relativePath": "Benz\\benz.fire"
+  },
+  "8c417a5b-6065-4897-808c-eadf542f8791": {
+    "asset": 1760513516407,
+    "meta": 1760513519320,
+    "relativePath": "lhdGame\\lhdScr\\lhdLobbyCtrl.js"
+  },
+  "cc370dea-fffd-4935-932b-4bba6b70a146": {
+    "asset": 1760513698528,
+    "meta": 1760513728290,
+    "relativePath": "baccarat3PattiGame\\src\\buttonClickCtrl.js"
+  },
+  "ae4e2826-8a51-4a8e-9fbd-c15f0450f098": {
+    "asset": 1760513720369,
+    "meta": 1760513728465,
+    "relativePath": "horseRaceGame\\horseScr\\horseRaceLobbyCtrl.js"
+  },
+  "c8ba92ec-29e7-40f1-afc3-faf659b7fc37": {
+    "asset": 1760514910422,
+    "meta": 1760514916204,
+    "relativePath": "aviator\\src\\Aviator.js"
   }
 }

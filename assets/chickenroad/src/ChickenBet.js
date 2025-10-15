@@ -63,10 +63,10 @@ cc.Class({
     },
 
     start() {
-        this.quickBetStr = [1000, 2000, 5000, 10000];
-        this.minBet = 100;
+        this.quickBetStr = [100, 500, 1000, 2000];
+        this.minBet = 20;
         this.maxBet = 100000;
-        this.curBet = 100;
+        this.curBet = 20;
 
         this.NowToggleName = "tog_difficulty1";
         this.setViewByToggleName(this.NowToggleName);

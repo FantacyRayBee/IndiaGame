@@ -73,7 +73,7 @@ cc.Class({
         this.finishedSlotItemNum = 0; //已经滚动停止的item数量
         this.isRunningSlotAnim = false; 
         //投注额度数组
-        this.betAmountArr = [0.5, 1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500, 800];
+        this.betAmountArr = [0.2, 0.5, 1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500];
         this.autoSpinTypeNumArr = [50, 100, 800, 3000];
         this.autoSpinData = [true, false, false, false];
         this.itemHeight = 130; // 每个slotitem的高度
@@ -164,7 +164,7 @@ cc.Class({
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
         this.anim_curwin = this.lab_curWin.node.getComponent(cc.Animation);
 
-        this.betIndex = 4;
+        this.betIndex = 0;
         this.curBetAmount = this.betAmountArr[this.betIndex];
         this.lab_betAmount.string = "bet " + this.betAmountArr[this.betIndex];
         //总共赢的金额

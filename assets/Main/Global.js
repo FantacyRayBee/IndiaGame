@@ -63,11 +63,16 @@ window.GlobalCfg = {
      */
     is_need_update: true,
     /**
-     * 是否强制进测试服
+     * 是否强制进H5
      */
-    is_force_gotoTest: false,
+    is_force_gotoH5: false,
 
     isH5: false,
+
+    /**
+     * 是否强制进测试服
+     */
+    is_force_gotoTest: true,
 
     /**
      * 渠道信息
@@ -1300,12 +1305,16 @@ function SetPackageChannel() {
   * 渠道名：5007
 */
 // GlobalCfg.isOfflineDeve2 = 1;
-// if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
-if (GlobalCfg.is_force_gotoTest == true) {
+// if (GlobalCfg.is_force_gotoH5 == true && !cc.sys.isNative) {
+if (GlobalCfg.is_force_gotoH5 == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
     SetPackageChannel();
 }
-;
+
+if (GlobalCfg.is_force_gotoTest == true) {
+    GlobalCfg.IsDownloadPackage2 = 0;
+    localStorage.setItem('PackageChannel', '0_8001');
+}
 
 /**
  * 新的渠道模式, 格式为：x_xxxx，x表示对应的服务器, xxxx表示对应的渠道.

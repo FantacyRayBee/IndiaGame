@@ -621,9 +621,9 @@ cc.Class({
     this.btn_100 = cc.find('Canvas/node_playerBetBtn/btn_100').getComponent(cc.Button);
     this.btn_1000 = cc.find('Canvas/node_playerBetBtn/btn_1000').getComponent(cc.Button);
     this.btn_2000 = cc.find('Canvas/node_playerBetBtn/btn_2000').getComponent(cc.Button);
-    this.betAmountList = [1, 10, 50, 100, 1000];
+    this.betAmountList = [0.2, 0.5, 1, 10, 50];
     if (GlobalCfg.USER_DATAS.gamePattern == 1) {
-      this.betAmountList = [1, 10, 50, 100, 1000];
+      this.betAmountList = [0.2, 0.5, 1, 10, 50];
     }
     this.userBtnCion = this.betAmountList[0] * 100;
     this.choiceBetButton(this.btn_10);

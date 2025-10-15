@@ -45,9 +45,9 @@ cc.Class({
     //请选择下注的范围
     "Your cash is insufficient, Please recharge in time!"];
     //投注额度数组
-    this.betAmountArr = ["1", '10', '20', '50', '100', '200', '500', '1000'];
+    this.betAmountArr = ["0.2", "1", '10', '20', '50', '100', '200', '500'];
     if (GlobalCfg.USER_DATAS.gamePattern == 1) {
-      this.betAmountArr = ['1', '10', '20', '50', '100', '200', '500', '1000', '2000'];
+      this.betAmountArr = ['0.2', '1', '10', '20', '50', '100', '200', '500', '1000'];
     }
     this.betAmountArrIndex = 0;
     this.finishedFruitItemNum = 0;
@@ -256,7 +256,7 @@ cc.Class({
       var freeCount = freeCountItem.freeCount;
       var freePool = freeCountItem.freePool / 100;
       this.lab_betAmount.string = amount;
-      this.lab_totalWin.string = freePool.toFixed(1);
+      this.lab_totalWin.string = freePool.toFixed(2);
       this.freeTotalWinNum = freePool;
       this.lab_autoBetCiShu.string = freeCount;
       this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
@@ -336,7 +336,7 @@ cc.Class({
 
     //先扣除下注的金额
     if (this.gameResult.mianfeinum == 0) {
-      var diamond = GlobalCfg.USER_DATAS.userDiamond - parseInt(this.lab_betAmount.string) * 100;
+      var diamond = GlobalCfg.USER_DATAS.userDiamond - parseFloat(this.lab_betAmount.string) * 100;
       var num = FloatCalculation.accDiv(diamond, 100);
       this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
     }
@@ -350,7 +350,7 @@ cc.Class({
     //次数递减
     var betStr = this.lab_autoBetCiShu.string;
     if (betStr != 'AUTO') {
-      var betNum = parseInt(betStr) - 1;
+      var betNum = parseFloat(betStr) - 1;
       if (betNum == 0) {
         this.setBetCiShuAutoTips();
       } else {
@@ -464,7 +464,7 @@ cc.Class({
     }
     var obj = {};
     obj.num = startScore;
-    this.lab_totalWin.string = obj.num == 0 ? obj.num : obj.num.toFixed(1);
+    this.lab_totalWin.string = obj.num == 0 ? obj.num : obj.num.toFixed(2);
     cc.tween(obj).to(time, {
       num: endedScore
     }, {
@@ -582,7 +582,7 @@ cc.Class({
     this.btn_spin.enableAutoGrayEffect = false;
     this.btn_auto.interactable = true;
     this.btn_auto.enableAutoGrayEffect = false;
-    var betAmount = parseInt(this.lab_betAmount.string);
+    var betAmount = parseFloat(this.lab_betAmount.string);
     if (betAmount != 10) {
       this.btn_betJian.interactable = true;
       this.btn_betJian.enableAutoGrayEffect = false;
@@ -611,7 +611,7 @@ cc.Class({
       //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
       var startScore = Number(this.freeTotalWinNum);
       //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-      var endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool / 100 : totalMultiple * parseInt(this.lab_betAmount.string) / 10 + startScore;
+      var endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool / 100 : totalMultiple * parseFloat(this.lab_betAmount.string) / 10 + startScore;
       this.freeTotalWinNum = endedScore;
       var freeCount = this.gameResult.mianfeinum;
       this.runChangeTotalWinScore(startScore, endedScore, freeCount);
@@ -654,7 +654,7 @@ cc.Class({
           _this3.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
           _this3.toggle_auto.interactable = false;
           _this3.autoSpineNode.active = true;
-          var amount = parseInt(_this3.lab_betAmount.string);
+          var amount = parseFloat(_this3.lab_betAmount.string);
           var proroID = 'gameservice.call';
           var message = 'CallReq';
           GameServerManager.send(proroID, message, {
@@ -689,7 +689,7 @@ cc.Class({
     var _this4 = this;
     if (cc.isValid(this)) {
       var minLimit = this.betAmountArr[0] || 0;
-      minLimit = parseInt(minLimit) * 100;
+      minLimit = parseFloat(minLimit) * 100;
       CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, function () {
         if (cc.isValid(_this4)) {
           if (GlobalCfg.IS_SHOW_BANKRUPT) {
@@ -905,7 +905,7 @@ cc.Class({
       return;
     }
     ;
-    var betAmount = parseInt(this.lab_betAmount.string) * 100;
+    var betAmount = parseFloat(this.lab_betAmount.string) * 100;
     var freesItem = this.getFreesItem(betAmount);
     var freeCount = freesItem.freeCount;
     if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {

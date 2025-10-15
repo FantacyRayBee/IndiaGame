@@ -62,8 +62,8 @@ cc.Class({
         this.autoCount = 0;
         this.quickBetStr = [100, 1000, 5000, 10000]; //需要除以100
         this.choiceQuickIndex = -1; //当前选择的快捷下注索引，如果和上次一样则执行加法逻辑
-        this.curBet = 100;
-        this.minBet = 100; //最小下注
+        this.curBet = 20;
+        this.minBet = 20; //最小下注
         this.maxBet = 800000; //最大下注
         for (let i = 0; i < this.btn_bet_quicks.length; i++) {
             this.btn_bet_quicks[i].node.getChildByName('lab').getComponent(cc.Label).string = this.quickBetStr[i] / 100 + '';
@@ -429,10 +429,10 @@ cc.Class({
         if (editBox.string == "") {
             editBox.string = editBox.placeholder;
         }
-        let value = editBox.string < 1 ? 1 : editBox.string;
-        value = editBox.string > 8000 ? 8000 : editBox.string;
-
-        this.curBet = parseFloat(value) * 100;
+        let value = parseFloat(editBox.string)
+        value = value < 0.2 ? 0.2 : value;
+        value = value > 8000 ? 8000 : value;
+        this.curBet = value * 100;
         this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " USD";
     },
 

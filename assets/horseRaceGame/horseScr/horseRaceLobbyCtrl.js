@@ -11,7 +11,7 @@ cc.Class({
         btn_openMenu: cc.Button,
     },
 
-    onLoad: function() {
+    onLoad: function () {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_HORSE_GAME);
 
         this.myNodeCtrl = null;
@@ -24,15 +24,15 @@ cc.Class({
         this.loadSkeleData1();
 
         this.cashSwitch();
-        
+
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-       
+
         this.eventShow();
         this.eventHide();
     },
 
-    start () {
+    start() {
         GameServerManager.send("gameservice.login", "LoginReq", {
             userid: GlobalCfg.USER_DATAS.userId,
             token: GlobalCfg.USER_DATAS.token,
@@ -56,7 +56,7 @@ cc.Class({
             self.login(notify)
         } else if (msgId == "gameservice.joinroom") {
             self.joinroom(notify)
-            
+
         } else if (msgId == "gameservice.joinroomnotify") {
             //加入房间通知
 
@@ -93,8 +93,8 @@ cc.Class({
             let coin = notify.deposit + notify.winnings;
             let myVIPCtrl = self.setNodeCtrl(self.my_playerid);
             self.myNodeCtrl.shePlayCion(coin);
-            if(myVIPCtrl) myVIPCtrl.shePlayCion(coin);
-        } 
+            if (myVIPCtrl) myVIPCtrl.shePlayCion(coin);
+        }
         // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
         //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
         // }
@@ -108,7 +108,7 @@ cc.Class({
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", () => {
                     self.sendReqCtrl.OutGameReq();
                 }, false);
-            } 
+            }
             else {
                 self.sendReqCtrl.OutGameReq();
             };
@@ -122,13 +122,13 @@ cc.Class({
     },
 
     cashSwitch: function () {
-        if(GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.CHANNEL == "ios") {
-            let btn_add =  this.btn_shop.node.getChildByName('Background').getChildByName('icon_chipsshop');
+        if (GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.CHANNEL == "ios") {
+            let btn_add = this.btn_shop.node.getChildByName('Background').getChildByName('icon_chipsshop');
             btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
         }
         this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
         this.btn_shop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
-        
+
     },
 
 
@@ -192,20 +192,20 @@ cc.Class({
         }
     },
 
-    choiceBetButton: function (button){
+    choiceBetButton: function (button) {
         let scale = 1.1;
         let btnArr = [this.btn_10, this.btn_50, this.btn_100, this.btn_1000, this.btn_2000];
         let btnName = button.node.name;
         this.node_btnGuangQuan.setScale(scale);
         for (let i = 0; i < btnArr.length; i++) {
             let btn = btnArr[i];
-            if(btn.node.name == btnName){
+            if (btn.node.name == btnName) {
                 btn.node.setScale(scale);
-            }else{
+            } else {
                 btn.node.setScale(1);
             }
             let widget = btn.node.getComponent(cc.Widget);
-            if(widget){
+            if (widget) {
                 widget.updateAlignment();
             }
         }
@@ -214,7 +214,7 @@ cc.Class({
     },
 
     // 监听错误消息
-    checkWebMsgError: function(webData, target) {
+    checkWebMsgError: function (webData, target) {
         let self = target;
         var msgId = webData.msgCode;
         var notify = webData.msgData;
@@ -238,17 +238,17 @@ cc.Class({
                     });
                 }
                 else {
-                    CommonFun.getInstance().showTips(result.message);    
+                    CommonFun.getInstance().showTips(result.message);
                 };
             }
             else {
-                CommonFun.getInstance().showTips(result.message); 
+                CommonFun.getInstance().showTips(result.message);
             };
-        } 
+        }
         else if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
-            }, false);    
+            }, false);
         };
     },
 
@@ -304,12 +304,12 @@ cc.Class({
         this.setHistory(recordlist);
         this.node_djs.active = false;
         this.myNodeCtrl.bg_js.active = false;
-        if(ownerDiamond) {
+        if (ownerDiamond) {
             GlobalCfg.USER_DATAS.userDiamond = ownerDiamond;
-            this.myNodeCtrl.lab_coin.string = CommonFun.getInstance().numberToShow(ownerDiamond/100);
+            this.myNodeCtrl.lab_coin.string = CommonFun.getInstance().numberToShow(ownerDiamond / 100);
         }
 
-        if(this.recordBall){
+        if (this.recordBall) {
             this.recordBall.destroy()
         }
         for (let index = 0; index < this.sprWonHorse.children.length; index++) {
@@ -327,10 +327,10 @@ cc.Class({
         for (let index = 1; index < this.lab_OddsNum.length; index++) {
             this.lab_OddsNum[index].string = "Odds " + (betconf[index - 1] / 10).toFixed(1)
             cc.tween(this.lab_OddsNum[index].node).tag(1).to(0.3, {
-                    scale: 1.1
-                }, {
-                    easing: 'sineInOut'
-                })
+                scale: 1.1
+            }, {
+                easing: 'sineInOut'
+            })
                 .to(0.1, {
                     scale: 1
                 })
@@ -343,8 +343,8 @@ cc.Class({
             this.betStatus = true
         } else if (status == 3) { // 结束下注
             this.betStatus = false;
-            this.btn_repeatBet.node.active = false;   
-            this.random = betnotify && betnotify.rand; 
+            this.btn_repeatBet.node.active = false;
+            this.random = betnotify && betnotify.rand;
             this.winorlose = betnotify && betnotify.winorlose;
             Math.seed = this.random;
             Math.seededRandom = function (max, min) {
@@ -361,16 +361,16 @@ cc.Class({
                 ske_horse.skeletonData = null;
                 this.horseAnimNodeArr[index].x = this.originX;
             }
-            if(runtime > 10000){
+            if (runtime > 10000) {
                 let runtimeTemp = 27000 - runtime - 7000;
-                let kind = Math.seededRandom(10,0)+1
-                this.getHorseSpeedArr(this.horseSpeedData[kind], this.random, 10 - Number((runtimeTemp/1000).toFixed(3)))
-            }   
+                let kind = Math.seededRandom(10, 0) + 1
+                this.getHorseSpeedArr(this.horseSpeedData[kind], this.random, 10 - Number((runtimeTemp / 1000).toFixed(3)))
+            }
             return
         } else if (status == 4) { // 结算阶段
             this.betStatus = false;
             this.btn_repeatBet.node.active = false;
-            this.random = betnotify.rand; 
+            this.random = betnotify.rand;
             this.winorlose = betnotify.winorlose;
 
             this.leaderChange(0);
@@ -380,12 +380,12 @@ cc.Class({
                 ske_horse.skeletonData = null;
                 this.horseAnimNodeArr[index].x = this.originX;
             }
-            if(runtime > 20000){
+            if (runtime > 20000) {
                 this.showBetScore(betscore);
                 this.showBetScore(notify.betscore, "me");
-            }else if(runtime > 22000){
+            } else if (runtime > 22000) {
                 this.infos = gameoverinfo.infos;
-                if(winloseinfonotify){
+                if (winloseinfonotify) {
                     this.myScore = winloseinfonotify.score;
                     this.myCoin = winloseinfonotify.coin;
                 }
@@ -408,7 +408,7 @@ cc.Class({
                         }
                     }
                 }
-        
+
                 if (this.myScore > 0) {
                     this.allPlayerWinArr.push(6);
                     let UserInfo = {
@@ -427,7 +427,7 @@ cc.Class({
                     this.lab_betSelf[index].string = '0';
                     this.lab_betAll[index].string = '0';
                 }
-            }else{
+            } else {
                 this.node_coinAll.removeAllChildren();
                 this.myBetCoin = [null, 0, 0, 0, 0, 0, 0];
                 this.allBetCoin = [null, 0, 0, 0, 0, 0, 0];
@@ -440,7 +440,7 @@ cc.Class({
             return
         }
         this.repeatPreviousRound();
-        if(runtime < 10000){
+        if (runtime < 10000) {
             this.showRuntime(10000 - runtime);
         }
     },
@@ -460,7 +460,7 @@ cc.Class({
             this.myNodeCtrl.headAct("me");
             this.myNodeCtrl.showPlayCion(amount);
             let ctrl = this.getPlayerInfoByUserId(pos);  //自己在vip位置上下注
-            if(ctrl){
+            if (ctrl) {
                 ctrl.showPlayCion(amount);
             }
         } else {
@@ -498,8 +498,8 @@ cc.Class({
         let BetScore = notify.BetScore ? notify.BetScore : [];
         for (let i = 0; i < BetScore.length; i++) {
             let betCoin = BetScore[i];
-            this.lab_betAll[i+1].string = betCoin / 100;
-            this.allBetCoin[i+1] = betCoin / 100;
+            this.lab_betAll[i + 1].string = betCoin / 100;
+            this.allBetCoin[i + 1] = betCoin / 100;
         }
 
 
@@ -508,8 +508,8 @@ cc.Class({
             this.lab_betSelf[types].string = this.myBetCoin[types] / 100;
             this.lab_betSelf[types].node.color = new cc.color(255, 255, 0, 255)
             cc.tween(this.lab_betSelf[types].node)
-                .to(0.1, {scale: 1.2})
-                .to(0.1, {scale: 1})
+                .to(0.1, { scale: 1.2 })
+                .to(0.1, { scale: 1 })
                 .start();
         }
     },
@@ -532,7 +532,7 @@ cc.Class({
             types = 6;
         }
         if (this.betStatus) {
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minisaima"] == true){   //未曾充值
+            if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minisaima"] == true) {   //未曾充值
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
@@ -540,21 +540,22 @@ cc.Class({
                 }, false);
                 return
             } else if (this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond) {
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                }
                 else {
-                    CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
+                    CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
                         if (this.paymentSwitch) {
                             CommonFun.getInstance().showSmallAddCash()
                         }
-                    },false);
+                    }, false);
                 }
             } else {
                 let betCoinAll = this.userBtnCion;
                 for (let i = 1; i < this.myBetCoin.length; i++) {
                     betCoinAll += this.myBetCoin[i]
                 }
-                if( betCoinAll > 2000000){   // 限制玩家下注
+                if (betCoinAll > 2000000) {   // 限制玩家下注
                     CommonFun.getInstance().showTips("Upper limit of betting amount!");
                 } else {
                     this.sendReqCtrl.callReq(this.userBtnCion, types);
@@ -636,7 +637,7 @@ cc.Class({
         this.spr_LeaderNum = cc.find('Canvas/node_lx');
 
         this.sendReqCtrl = this.node.getComponent("horseRaceSendReq"); //跟服务器请求数据
-        this.horseRaceAudioCtrl = this.node.getComponent("horseRaceAudioCtrl"); 
+        this.horseRaceAudioCtrl = this.node.getComponent("horseRaceAudioCtrl");
 
 
         this.btn_chat = cc.find('Canvas/btn_chat').getComponent(cc.Button);
@@ -651,9 +652,9 @@ cc.Class({
         this.btn_100 = cc.find('Canvas/node_playerBetBtn/btn_100').getComponent(cc.Button);
         this.btn_1000 = cc.find('Canvas/node_playerBetBtn/btn_1000').getComponent(cc.Button);
         this.btn_2000 = cc.find('Canvas/node_playerBetBtn/btn_2000').getComponent(cc.Button);
-        this.betAmountList = [1, 10, 50, 100, 1000];
-        if(GlobalCfg.USER_DATAS.gamePattern == 1){
-            this.betAmountList = [1, 10, 50, 100, 1000];
+        this.betAmountList = [0.2, 0.5, 1, 10, 50];
+        if (GlobalCfg.USER_DATAS.gamePattern == 1) {
+            this.betAmountList = [0.2, 0.5, 1, 10, 50];
         }
         this.userBtnCion = this.betAmountList[0] * 100;
         this.choiceBetButton(this.btn_10);
@@ -701,9 +702,9 @@ cc.Class({
 
         this.ruZuoBtnArr = [this.wj_kong_01, this.wj_kong_02, this.wj_kong_03, this.wj_kong_04, this.wj_kong_05, this.wj_kong_06]
 
-        this.lab_betSelf = [null, ]
-        this.lab_betAll = [null, ]
-        this.lab_OddsNum = [null, ]
+        this.lab_betSelf = [null,]
+        this.lab_betAll = [null,]
+        this.lab_OddsNum = [null,]
         for (let index = 1; index < 7; index++) {
             this.lab_betSelf[index] = this.betNodeArr[index].getChildByName("lab_betSelf_" + index).getComponent(cc.Label);
             this.lab_betAll[index] = this.betNodeArr[index].getChildByName("lab_betAll_" + index).getComponent(cc.Label);
@@ -712,7 +713,7 @@ cc.Class({
 
         var btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
-            if (btnArr[i].node.name != "btn_openMenu" && btnArr[i].node.name != "btn_shop"){
+            if (btnArr[i].node.name != "btn_openMenu" && btnArr[i].node.name != "btn_shop") {
                 btnArr[i].node.on("click", this.btnClick, this)
             }
         };
@@ -731,7 +732,7 @@ cc.Class({
     //  下载骨骼动画
     loadSkeleData: function () {
         if (this.assetBundle) {
-            var skeleArr = ['horseSke/gamestart','horseSke/winner','horseSke/ui_touzhu_k'] 
+            var skeleArr = ['horseSke/gamestart', 'horseSke/winner', 'horseSke/ui_touzhu_k']
             for (let index = 0; index < skeleArr.length; index++) {
                 var url = skeleArr[index];
                 this.assetBundle.load(url, sp.SkeletonData, (err, asset) => {
@@ -748,14 +749,14 @@ cc.Class({
     //  下载骨骼动画
     loadSkeleData1: function () {
         if (this.assetBundle) {
-            var skeleArr = ['horseSke/saima_6','horseSke/saima_2','horseSke/saima_3','horseSke/saima_4'
-            ,'horseSke/saima_1','horseSke/saima_5'] 
+            var skeleArr = ['horseSke/saima_6', 'horseSke/saima_2', 'horseSke/saima_3', 'horseSke/saima_4'
+                , 'horseSke/saima_1', 'horseSke/saima_5']
             for (let index = 0; index < skeleArr.length; index++) {
                 var url = skeleArr[index];
                 this.assetBundle.load(url, sp.SkeletonData, (err, asset) => {
                     if (!err) {
                         if (asset._name && this.skeleDataMap) {
-                            this.skeleDataMap.set('horse_'+(index+1), asset);
+                            this.skeleDataMap.set('horse_' + (index + 1), asset);
                         }
                     }
                 });
@@ -788,12 +789,12 @@ cc.Class({
         let time = runtime / 1000
         this.lab_gameTime.string = Math.floor(time);
         let totalTime = 10;
-        let timeNum =  (1 / totalTime).toFixed(3);
+        let timeNum = (1 / totalTime).toFixed(3);
         let count = time
         this.spr_gameTime.fillRange = timeNum * count;
 
         this.node_djs.active = true;
-        this.fillRangeRoundTime(timeNum,this.spr_gameTime)
+        this.fillRangeRoundTime(timeNum, this.spr_gameTime)
         this.RuntimeCallback = function () {
             time--
             count--
@@ -801,30 +802,30 @@ cc.Class({
                 this.node_djs.active = false;
                 this.betStatus = false;
                 this.unschedule(this.RuntimeCallback);
-            } else{
+            } else {
                 if (time <= 3) {
                     this.horseRaceAudioCtrl.playGameSound("daojishi");
                 }
                 this.lab_gameTime.string = Math.ceil(time);
                 this.spr_gameTime.fillRange = count * timeNum;
-                this.fillRangeRoundTime(timeNum,this.spr_gameTime)
+                this.fillRangeRoundTime(timeNum, this.spr_gameTime)
             }
         }
         this.schedule(this.RuntimeCallback, 1);
     },
 
-    fillRangeRoundTime:function(roundTimelememt,sprite){
-        let roundTimelememt1 = Number(roundTimelememt)/10
+    fillRangeRoundTime: function (roundTimelememt, sprite) {
+        let roundTimelememt1 = Number(roundTimelememt) / 10
         let num = 0
         this.unschedule(this.callbackCheck)
         this.callbackCheck = function () {
             num++
-            if(num >=10){
-                num=0
+            if (num >= 10) {
+                num = 0
                 this.unschedule(this.callbackCheck)
-            }else{
+            } else {
                 sprite.fillRange -= roundTimelememt1
-                if(sprite.fillRange <= 0){
+                if (sprite.fillRange <= 0) {
                     this.node_djs.active = false;
                     this.betStatus = false;
                 }
@@ -855,12 +856,12 @@ cc.Class({
                 this.betNodeArr[index + 1].getChildByName('spr_cup').active = true;
                 this.betNodeArr[index + 1].getChildByName('bg_ma_light').active = true;
                 cc.tween(this.betNodeArr[index + 1]).tag(1).call(() => {
-                        this.ske_touzhuArr[index + 1].addAnimation(0, "animation", false);
-                    }).to(0.3, {
-                        scale: 1.1
-                    }, {
-                        easing: 'sineInOut'
-                    })
+                    this.ske_touzhuArr[index + 1].addAnimation(0, "animation", false);
+                }).to(0.3, {
+                    scale: 1.1
+                }, {
+                    easing: 'sineInOut'
+                })
                     .to(0.1, {
                         scale: 1
                     })
@@ -1168,19 +1169,19 @@ cc.Class({
         let price = notify.price;                   // 消息价格
         let senderAfter = notify.senderAfter;       // 发送者扣价后货币
         let name = notify.name;                     // 表情名/短语内容
-        
+
         if (msgType == 0 || msgType == 1) {
             let playScript = this.getPlayerInfoByUserId(target);
             if (playScript) playScript.face(notify);
-        } 
+        }
         else {
             let targetNodeArr = [];
             let senderCtrl = this.getPlayerInfoByUserId(sender);
             if (!senderCtrl || !senderCtrl.node) {
                 return;
-            }else{
+            } else {
                 senderCtrl.setVipCoin(senderAfter);
-                if(this.my_playerid == senderCtrl.playerid){
+                if (this.my_playerid == senderCtrl.playerid) {
                     this.myNodeCtrl.shePlayCion(senderAfter);
                 }
             }
@@ -1221,10 +1222,10 @@ cc.Class({
             this.coinAllArr[index] = [];
             this.lab_OddsNum[index].string = "Odds " + (notify.betconf[index - 1] / 10).toFixed(1)
             cc.tween(this.lab_OddsNum[index].node).tag(1).to(0.3, {
-                    scale: 1.1
-                }, {
-                    easing: 'sineInOut'
-                })
+                scale: 1.1
+            }, {
+                easing: 'sineInOut'
+            })
                 .to(0.1, {
                     scale: 1
                 })
@@ -1241,7 +1242,7 @@ cc.Class({
         if (Array.isArray(this.infos)) {
             this.infos = this.infos.sort(this.compare("pos"));
         };
-       
+
         for (let i = 0; i < this.infos.length; i++) {
             let playerid = this.infos[i].pid;
             let score = this.infos[i].score;
@@ -1367,7 +1368,7 @@ cc.Class({
             var rnd = Math.seed / 233280.0;
             return Math.floor(min + rnd * (max - min));
         };
-        let kind = Math.seededRandom(10,0)+1
+        let kind = Math.seededRandom(10, 0) + 1
         this.getHorseSpeedArr(this.horseSpeedData[kind], this.random)
     },
 
@@ -1387,7 +1388,7 @@ cc.Class({
     moveLeaderNum: function (time, id) {
         let totalDistance = 896
         this.spr_LeaderNum.x = -448;
-        if(!id){
+        if (!id) {
             return;
         }
         if (time != this.totalTime) {
@@ -1403,7 +1404,7 @@ cc.Class({
         }).start();
     },
 
-    
+
     //移动记录球
     moveHistoryBall: function (id, callback) {
         this.horseRaceAudioCtrl.playGameSound("moveRecord")
@@ -1428,19 +1429,19 @@ cc.Class({
                 this.lab_betSelf[index].string = '0';
                 this.lab_betAll[index].string = '0';
             }
-            if(callback){
+            if (callback) {
                 callback()
             }
         }).start();
     },
 
-    curRoundAddCoinFinish(){
+    curRoundAddCoinFinish() {
         let betCoin = 0;
         for (let index = 1; index < 7; index++) {
             betCoin += this.myBetCoin[index];
         };
 
-        if(cc.isValid(this)){
+        if (cc.isValid(this)) {
             let minLimit = this.betAmountList[0] || 0;
             minLimit *= 100;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, betCoin);
@@ -1535,12 +1536,12 @@ cc.Class({
         let animationName = 'animation';
         let btnArr = [this.btn_10, this.btn_50, this.btn_100, this.btn_1000, this.btn_2000];
         let len = btnArr.length, i = 0;
-        this.scheduleBetSpineTimeCallback = ()=>{
+        this.scheduleBetSpineTimeCallback = () => {
             let spine = btnArr[i].node.getChildByName('spine').getComponent(sp.Skeleton);
             spine.setAnimation(0, animationName, false);
             i++;
         }
-        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len-1);
+        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len - 1);
     },
 
     update: function (dt) {
@@ -1554,7 +1555,7 @@ cc.Class({
     //设置马匹数据
     setHorseSpeedData: function (TimeTemp) {
         // LoggerUtil.getInstance().warn("设置马匹数据", TimeTemp,this.horseSpeedArr);
-        if(TimeTemp < 0 || Number.isNaN(TimeTemp)){
+        if (TimeTemp < 0 || Number.isNaN(TimeTemp)) {
             TimeTemp = null;
         }
         this.moveTrack(1);
@@ -1635,14 +1636,14 @@ cc.Class({
         }
         let type = 1
         this.playAudioCallBack = function () {
-            if(type == 1){
+            if (type == 1) {
                 this.horseRaceAudioCtrl.playGameSound("horseshoe1")
                 for (let index = 0; index < 2; index++) {
                     this.scheduleOnce(function () {
                         this.horseRaceAudioCtrl.playGameSound("horseshoe1")
                     }, 0.5)
                 }
-            }else{
+            } else {
                 this.horseRaceAudioCtrl.playGameSound("horseshoe")
                 for (let index = 0; index < 2; index++) {
                     this.scheduleOnce(function () {
@@ -1652,7 +1653,7 @@ cc.Class({
                 type = 0;
 
             }
-            type ++
+            type++
         }
         this.schedule(this.playAudioCallBack, 1);
         this.schedule(this.horsesLisenerCallBack, speedConstant);
@@ -1666,7 +1667,7 @@ cc.Class({
      */
     getHorseSpeedArr: function (arr, seed, TimeTemp) {
         let arrTemp = arr.slice(0) //数组的深拷贝
-        this.horseSpeedArr = [null, ];
+        this.horseSpeedArr = [null,];
         Math.seed = seed;
         Math.seededRandom = function (max, min) {
             max = max || 1;
@@ -1689,16 +1690,16 @@ cc.Class({
         }
         arrTemp.splice(maxIndex, 1);
         while (arrTemp.length > 1) {
-            let i = Math.seededRandom(arrTemp.length,1)
+            let i = Math.seededRandom(arrTemp.length, 1)
             this.horseSpeedArr.push(arrTemp[i])
             arrTemp.splice(i, 1);
         }
 
         // this.originX = this.terminusX - (maxArr[0]*speedX*5 + maxArr[1]*speedX*5 + maxArr[2]*speedX*5)
         this.horseSpeedArr.splice(this.winorlose, 0, maxArr)
-        if(typeof TimeTemp == 'number'){
+        if (typeof TimeTemp == 'number') {
             this.setHorseSpeedData(Number(TimeTemp.toFixed(3)));
-        }else{
+        } else {
             this.setHorseSpeedData(TimeTemp);
         }
     },
@@ -1723,7 +1724,7 @@ cc.Class({
                 this.horseRaceAudioCtrl.playGameSound("out")
             }).to(1, {
                 position: cc.v2(1000, this.horseAnimNodeArr[index].y)
-            }).call(()=>{
+            }).call(() => {
                 // this.horseRaceAudioCtrl.stopGameEffectByName();
             }).start();
         }
@@ -1749,7 +1750,7 @@ cc.Class({
             this.unscheduleAllCallbacks();
             // cc.Tween.stopAll();
             cc.Tween.stopAllByTag(1);
-            GameServerManager.hideFilterMag(2,function () {
+            GameServerManager.hideFilterMag(2, function () {
                 GameServerManager.send("gameservice.joinroom", "JoinRoomReq", {});
             })
         }, this);
@@ -1768,7 +1769,7 @@ cc.Class({
             let pos = notify.userinfo.pos;
             if (playerid == this.myNodeCtrl.playerid) {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
-            } 
+            }
             else {
                 if (pos != -1) {
                     for (let i = 0; i < this.userArryNode.length; i++) {
@@ -1850,8 +1851,9 @@ cc.Class({
             this.repeatBetArr[3] + this.repeatBetArr[4] + this.repeatBetArr[5];
         if (str == "bet") {
             if (betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond == 0) {
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                }
                 else {
                     CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
                         if (this.paymentSwitch) {
@@ -1863,10 +1865,10 @@ cc.Class({
                 for (let i = 1; i < this.myBetCoin.length; i++) {
                     betCoinAll += this.myBetCoin[i]
                 }
-                if( betCoinAll > 2000000){
+                if (betCoinAll > 2000000) {
                     CommonFun.getInstance().showTips("Upper limit of betting amount!");
                     return
-                }else{
+                } else {
                     this.sendReqCtrl.callReq(this.repeatBetArr[0], 1);
                     this.sendReqCtrl.callReq(this.repeatBetArr[1], 2);
                     this.sendReqCtrl.callReq(this.repeatBetArr[2], 3);
@@ -1900,14 +1902,14 @@ cc.Class({
                 this.sendReqCtrl.JoinVipPosReq(-1);
             }, false);
             return;
-        }; 
+        };
 
         let ctrl = this.getPlayerInfoByUserId(pos);
         if (ctrl) {
-            CommonFun.getInstance().showTips("This seat already has a player, Please select another empty seat!"); 
+            CommonFun.getInstance().showTips("This seat already has a player, Please select another empty seat!");
             return;
         };
-     
+
         if (CommonFun.getInstance().isOpenVipModule()) {
             if (GlobalCfg.USER_DATAS.userVip.level == 0) {
                 CommonFun.getInstance().showFirstRecharge();
@@ -1919,17 +1921,18 @@ cc.Class({
                 this.sendReqCtrl.JoinVipPosReq(pos);
                 return;
             };
-            
+
             CommonFun.getInstance().showVipUpgradeToast();
             return;
         };
 
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
-            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+            }
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }
@@ -1940,7 +1943,7 @@ cc.Class({
     },
 
     //游戏结束输赢动画
-    endGameAim: function (selfScore=0) {
+    endGameAim: function (selfScore = 0) {
         this.horseRaceAudioCtrl.playGameSound("winPlay")
         let winType = this.winorlose;
         let spine = this.skeleDataMap.get('winner');
@@ -1955,7 +1958,7 @@ cc.Class({
             } else if (name == "loop") {
 
             } else if (name == "out") {
-                this.moveHistoryBall(winType, ()=>{
+                this.moveHistoryBall(winType, () => {
                     this.ske_endWin.skeletonData = null;
                     this.ske_endWin.node.active = false;
                 })
@@ -2032,12 +2035,12 @@ cc.Class({
         this.limitBetPlayAim = true; //限制普通玩家吸住播放音效    
         this.paymentSwitch = false;
         this.horseSpeedData = [null,
-            [null, [0.75,0.8,1.1],
-                [0.97,1,1.1],
-                [0.85,1,1.2],
-                [0.9,1,1.2],
-                [1.2,1.2,1.2],
-                [1.3,1.4,1.2],
+            [null, [0.75, 0.8, 1.1],
+                [0.97, 1, 1.1],
+                [0.85, 1, 1.2],
+                [0.9, 1, 1.2],
+                [1.2, 1.2, 1.2],
+                [1.3, 1.4, 1.2],
             ],
             [null, [0.9, 1, 1],
                 [0.9, 1.3, 1.1],

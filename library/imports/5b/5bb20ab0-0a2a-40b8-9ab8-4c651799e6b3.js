@@ -182,7 +182,7 @@ cc.Class({
   },
   initLabDanzhu: function initLabDanzhu() {
     if (this.danzhuNumArr.length !== 0) {
-      this.lab_danzhu.string = parseInt(this.danzhuNumArr[0] / 100);
+      this.lab_danzhu.string = parseFloat(this.danzhuNumArr[0] / 100);
       this.danzhuNum = 0;
       this.btnList[4].interactable = false;
       this.btnList[5].interactable = true;
@@ -207,7 +207,7 @@ cc.Class({
       } else {
         this.btnList[4].interactable = true;
         this.danzhuNum -= 1;
-        this.lab_danzhu.string = parseInt(this.danzhuNumArr[this.danzhuNum] / 100); //设置单注的金额
+        this.lab_danzhu.string = parseFloat(this.danzhuNumArr[this.danzhuNum] / 100); //设置单注的金额
         if (this.danzhuNum === 0) {
           this.btnList[4].interactable = false;
         }
@@ -219,7 +219,7 @@ cc.Class({
       } else {
         this.btnList[5].interactable = true;
         this.danzhuNum += 1;
-        this.lab_danzhu.string = parseInt(this.danzhuNumArr[this.danzhuNum] / 100);
+        this.lab_danzhu.string = parseFloat(this.danzhuNumArr[this.danzhuNum] / 100);
         if (this.danzhuNum === this.danzhuNumArr.length - 1) {
           this.btnList[5].interactable = false;
         }
@@ -1691,7 +1691,7 @@ cc.Class({
     }
     this.userInfoCtrl.setPlayerInfo(notify.userinfo);
     if (this.danzhuNumArr[0]) {
-      this.lab_danzhu.string = parseInt(this.danzhuNumArr[0] / 100);
+      this.lab_danzhu.string = parseFloat(this.danzhuNumArr[0] / 100);
     } else {
       this.lab_danzhu.string = "10";
     }

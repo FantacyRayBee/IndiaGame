@@ -44,9 +44,9 @@ cc.Class({
     }
   },
   initBetBtn: function initBetBtn(self) {
-    self.betCoinList = [1, 10, 50, 100, 1000];
+    self.betCoinList = [0.2, 0.5, 1, 10, 50];
     if (GlobalCfg.USER_DATAS.gamePattern == 1) {
-      self.betCoinList = [1, 10, 50, 100, 1000];
+      self.betCoinList = [0.2, 0.5, 1, 10, 50];
     }
     self.myBetCoin = self.betCoinList[0];
     var btn_10 = self.node.getChildByName("node_betCoinBtn").getChildByName('btn_10').getComponent(cc.Button);

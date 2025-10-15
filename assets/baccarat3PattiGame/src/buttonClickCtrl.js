@@ -2,11 +2,11 @@
 cc.Class({
     extends: cc.Component,
 
-    
+
     /**
      * 监听按钮
      */
-    monitorButton:function() {
+    monitorButton: function () {
         let self = GlobalCfg.ACT_SCENE_CTRL;
         self.btnClick = this.btnClick;
         self.btn_shop = self.node.getChildByName("btn_shop");
@@ -44,15 +44,15 @@ cc.Class({
 
         for (let i = 0; i < btn_VipChildren.length; i++) {
             let btn = btn_VipChildren[i].getComponent(cc.Button);
-            btn.node.on("click", this.btnClick, self);  
+            btn.node.on("click", this.btnClick, self);
         }
 
     },
 
-    initBetBtn(self){
-        self.betCoinList = [1, 10, 50, 100, 1000];
+    initBetBtn(self) {
+        self.betCoinList = [0.2, 0.5, 1, 10, 50];
         if (GlobalCfg.USER_DATAS.gamePattern == 1) {
-            self.betCoinList = [1, 10, 50, 100, 1000];
+            self.betCoinList = [0.2, 0.5, 1, 10, 50];
         }
         self.myBetCoin = self.betCoinList[0];
         let btn_10 = self.node.getChildByName("node_betCoinBtn").getChildByName('btn_10').getComponent(cc.Button);
@@ -63,13 +63,13 @@ cc.Class({
         self.node_betCoinBtn.getChildByName('btn_100').getChildByName('lab').getComponent(cc.Label).string = self.betCoinList[2];
         self.node_betCoinBtn.getChildByName('btn_1000').getChildByName('lab').getComponent(cc.Label).string = self.betCoinList[3];
         self.node_betCoinBtn.getChildByName('btn_2000').getChildByName('lab').getComponent(cc.Label).string = self.betCoinList[4];
-        
+
     },
 
-    btnClick:function(button){
+    btnClick: function (button) {
         let self = GlobalCfg.ACT_SCENE_CTRL;
         let btnName = button.node.name;
-        if(btnName == "btn_10") {
+        if (btnName == "btn_10") {
             self.myBetCoin = button.node.getChildByName('lab').getComponent(cc.Label).string;
             self.choiceBetButton(button, self.selectLight);
 
@@ -91,43 +91,43 @@ cc.Class({
             self.choiceBetButton(button, self.selectLight);
 
         } else if (btnName == "btn_blue") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,6, "miniteenpattibaccarat");
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 6, "miniteenpattibaccarat");
             return
 
-        } else if(btnName == "btn_red") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,7, "miniteenpattibaccarat");
+        } else if (btnName == "btn_red") {
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 7, "miniteenpattibaccarat");
             return
 
-        } else if(btnName == "btn_set") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,0, "miniteenpattibaccarat");
+        } else if (btnName == "btn_set") {
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 0, "miniteenpattibaccarat");
             return
 
-        } else if(btnName == "btn_PureSEQ") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,1, "miniteenpattibaccarat");
+        } else if (btnName == "btn_PureSEQ") {
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 1, "miniteenpattibaccarat");
             return
 
-        } else if(btnName == "btn_SEQ") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,2, "miniteenpattibaccarat");
+        } else if (btnName == "btn_SEQ") {
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 2, "miniteenpattibaccarat");
             return
 
         } else if (btnName == "btn_color") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,3, "miniteenpattibaccarat");
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 3, "miniteenpattibaccarat");
             return
 
-        } else if(btnName == "btn_Palr") {
-            self.gameServiceSendCtrl.CallReq(self.myBetCoin,4, "miniteenpattibaccarat");
+        } else if (btnName == "btn_Palr") {
+            self.gameServiceSendCtrl.CallReq(self.myBetCoin, 4, "miniteenpattibaccarat");
             return
 
-        } else if(btnName == "btn_jiLu" || btnName == "btn_jiLu_01") {
+        } else if (btnName == "btn_jiLu" || btnName == "btn_jiLu_01") {
             let pab_winningHistory = cc.instantiate(self.pab_winningHistory)
             self.node.addChild(pab_winningHistory);
 
-        } else if(btnName == "btn_shop") {
+        } else if (btnName == "btn_shop") {
             CommonFun.getInstance().showSmallAddCash();
 
-        } else if(btnName == "btn_Vip_0") {
+        } else if (btnName == "btn_Vip_0") {
             self.gameServiceSendCtrl.JoinVipPosReq(1);
-            
+
         } else if (btnName == "btn_Vip_1") {
             self.gameServiceSendCtrl.JoinVipPosReq(2);
 
@@ -147,28 +147,28 @@ cc.Class({
             self.gameServiceSendCtrl.JoinVipPosReq(7);
 
         } else if (btnName == "btn_repeat") {
-            if(self.stopBetState==0) {
-                for (let i = 0; i <  self.myRepeatArr.length; i++) {
+            if (self.stopBetState == 0) {
+                for (let i = 0; i < self.myRepeatArr.length; i++) {
                     let betCoin = self.myRepeatArr[i];
-                    if(betCoin) {
-                        self.gameServiceSendCtrl.CallReq(betCoin,i, "miniteenpattibaccarat");
+                    if (betCoin) {
+                        self.gameServiceSendCtrl.CallReq(betCoin, i, "miniteenpattibaccarat");
                     }
                 }
                 self.newMyRepeatArr = [];
             }
 
         } else if (btnName == "btn_playerNum") {
-            self.gameServiceSendCtrl.PlayerListReq(1,12);
+            self.gameServiceSendCtrl.PlayerListReq(1, 12);
 
         } else if (btnName == "btn_chat") {
             let myVipPos = self.getPlayerInfoByUserId(self.myVipPos);
-            if(myVipPos) {
+            if (myVipPos) {
                 let pab_chat = cc.instantiate(self.pab_chat);
                 self.node.addChild(pab_chat);
             } else {
                 CommonFun.getInstance().showTips("You're not a VIP. You can't send expressions");
             }
-        
+
         } else if (btnName == "btn_tableInfo") {
             let pab_wanFa = cc.instantiate(self.pab_wanFa);
             self.node.addChild(pab_wanFa);
