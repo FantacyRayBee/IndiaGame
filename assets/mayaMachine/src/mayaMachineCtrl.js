@@ -547,10 +547,10 @@ cc.Class({
                 progress: (start, end, current, t) => {
                     if (this && this.lab_totalWin) {
                         if(freeCount > 0){
-                            this.lab_totalWin.string = (end - start == 0) ? (endedScore == 0 ? endedScore : endedScore.toFixed(1)) : Number(start + (end - start) * t).toFixed(1); 
+                            this.lab_totalWin.string = (end - start == 0) ? (endedScore == 0 ? endedScore : endedScore.toFixed(2)) : Number(start + (end - start) * t).toFixed(2); 
                         }
                         else{
-                            this.lab_totalWin.string = (end - start == 0) ? 0 : Number(start + (end - start) * t).toFixed(1); 
+                            this.lab_totalWin.string = (end - start == 0) ? 0 : Number(start + (end - start) * t).toFixed(2); 
                         }
                     };
                     return start + (end - start) * t;

@@ -1577,18 +1577,18 @@ cc.Class({
         let leftBoss = notify.CurGameState.LeftBoss;
         let leftBossAllamount = leftBoss.AllAmount;
         let leftBossAmount = Number(leftBoss.Amount);
-        this.lab_dizhuList[0].string = parseInt(leftBossAmount / 100);
-        this.lab_dizhuList[3].string = parseInt(leftBossAllamount / 100);
+        this.lab_dizhuList[0].string = parseFloat(leftBossAmount / 100);
+        this.lab_dizhuList[3].string = parseFloat(leftBossAllamount / 100);
         let midBoss = notify.CurGameState.MidBoss;
         let midBossAllamount = midBoss.AllAmount;
         let midBossAmount = Number(midBoss.Amount);
-        this.lab_dizhuList[1].string = parseInt(midBossAmount / 100);
-        this.lab_dizhuList[4].string = parseInt(midBossAllamount / 100);
+        this.lab_dizhuList[1].string = parseFloat(midBossAmount / 100);
+        this.lab_dizhuList[4].string = parseFloat(midBossAllamount / 100);
         let rightBoss = notify.CurGameState.RightBoss;
         let rightBossAllamount = rightBoss.AllAmount;
         let rightBossAmount = Number(rightBoss.Amount);
-        this.lab_dizhuList[2].string = parseInt(rightBossAmount / 100);
-        this.lab_dizhuList[5].string = parseInt(rightBossAllamount / 100);
+        this.lab_dizhuList[2].string = parseFloat(rightBossAmount / 100);
+        this.lab_dizhuList[5].string = parseFloat(rightBossAllamount / 100);
         this.currentBetNum = leftBossAmount + midBossAmount + rightBossAmount;
         if (midBossAmount > 0 || leftBossAmount > 0 || rightBossAmount > 0) {
             this.myBetCion = true;

@@ -185,14 +185,14 @@ APPManager.setOrientation = function (dir) {
         cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
         if (frameSize.width > frameSize.height) {
             cc.view.setFrameSize(frameSize.height, frameSize.width);
-            cc.Canvas.instance.designResolution = cc.size(750, 1835);
+            cc.Canvas.instance.designResolution = cc.size(750, 1625);
         }
         GlobalCfg.CURSCENE_DIRECTION = "vertical";
     } else {
         cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
         if (frameSize.height > frameSize.width) {
             cc.view.setFrameSize(frameSize.height, frameSize.width);
-            cc.Canvas.instance.designResolution = cc.size(1835, 750);
+            cc.Canvas.instance.designResolution = cc.size(1625, 750);
         }
         GlobalCfg.CURSCENE_DIRECTION = "horizontal";
     }
