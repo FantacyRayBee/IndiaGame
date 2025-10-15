@@ -62,17 +62,13 @@ window.GlobalCfg = {
      * 是否触发热更（测试服专用，线上服这个值必须为true）
      */
     is_need_update: true,
-    /**
-     * 是否强制进H5
-     */
-    is_force_gotoH5: false,
 
-    isH5: false,
+    isH5: true,
 
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: true,
+    is_force_gotoTest: false,
 
     /**
      * 渠道信息
@@ -1306,7 +1302,7 @@ function SetPackageChannel() {
 */
 // GlobalCfg.isOfflineDeve2 = 1;
 // if (GlobalCfg.is_force_gotoH5 == true && !cc.sys.isNative) {
-if (GlobalCfg.is_force_gotoH5 == true) {
+if (GlobalCfg.isH5 == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
     SetPackageChannel();
 }
@@ -1359,7 +1355,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
         case "5":     // 5服
-            GlobalCfg.APP_VERSION = "US 5.0.1";
+            GlobalCfg.APP_VERSION = "US 5.0.2";
             // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
             GlobalCfg.APP_INFO_URL = `https://down.cj777.net/AppInfo.json`;
 

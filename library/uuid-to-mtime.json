@@ -19665,8 +19665,8 @@
     "relativePath": "rocket\\res\\image\\title_ONLINE PLAYERS_Urdu.png"
   },
   "f831a725-7866-4101-8429-ea11b64846bc": {
-    "asset": 1760515444247,
-    "meta": 1760515466432,
+    "asset": 1760518627233,
+    "meta": 1760518627242,
     "relativePath": "rocket\\rocket.fire"
   },
   "a7739af0-ce31-442a-bda7-33ae2a2d986a": {
@@ -31649,11 +31649,6 @@
     "meta": 1760515465877,
     "relativePath": "Main\\Main.js"
   },
-  "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
-    "asset": 1760515443696,
-    "meta": 1760515474651,
-    "relativePath": "Main\\Script\\i18n\\i18nUtil.ts"
-  },
   "da78386b-15c7-459d-b25b-166a4dbb5272": {
     "asset": 1760515456134,
     "meta": 1760515469908,
@@ -31714,11 +31709,6 @@
     "meta": 1760515472623,
     "relativePath": "zooGame\\Scripts\\zooCurBetCtrl.js"
   },
-  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
-    "asset": 1760515443690,
-    "meta": 1760515465844,
-    "relativePath": "Main\\Global.js"
-  },
   "d234eb34-0867-48af-94b4-0c99a00f2219": {
     "asset": 1760515443687,
     "meta": 1760515467514,
@@ -31778,5 +31768,15 @@
     "asset": 1760516350834,
     "meta": 1760516354423,
     "relativePath": "7up7downGame\\7upScript\\7upCtrl.js"
+  },
+  "531b7020-ca3b-4889-aa11-8639f8d1df6a": {
+    "asset": 1760521504062,
+    "meta": 1760521506320,
+    "relativePath": "Main\\Script\\i18n\\i18nUtil.ts"
+  },
+  "d94231a6-4c4c-43f4-8f88-490f01e94e1a": {
+    "asset": 1760523817536,
+    "meta": 1760523850583,
+    "relativePath": "Main\\Global.js"
   }
 }
