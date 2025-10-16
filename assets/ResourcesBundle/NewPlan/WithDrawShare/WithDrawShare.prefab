@@ -260,8 +260,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 945,
-      "height": 551
+      "width": 630,
+      "height": 368
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -324,8 +324,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 658,
-      "height": 60
+      "width": 650.41,
+      "height": 72.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -337,7 +337,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -352.23429,
+        -348.48144,
         0,
         0,
         0,
@@ -362,7 +362,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -376,21 +376,22 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "51e65780-395d-4985-83ea-a7152cb26833"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
+    "_string": "Invite your friends to play the game and get up to\n $500 from each friend",
+    "_N$string": "Invite your friends to play the game and get up to\n $500 from each friend",
+    "_fontSize": 30,
+    "_lineHeight": 32,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_batchAsBitmap": false,
+    "_styleFlags": 0,
+    "_underlineHeight": 0,
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0,
+    "_N$cacheMode": 0,
     "_id": ""
   },
   {
@@ -401,7 +402,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "17DKW7iz5BS5RfjSDbnidN",
+    "fileId": "ffefKxiTVKgIAImTHzTDvy",
     "sync": false
   },
   {

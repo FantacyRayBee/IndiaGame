@@ -1309,7 +1309,7 @@ if (GlobalCfg.isH5 == true) {
 
 if (GlobalCfg.is_force_gotoTest == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    localStorage.setItem('PackageChannel', '0_8001');
+    localStorage.setItem('PackageChannel', '5_8001');
 }
 
 /**
