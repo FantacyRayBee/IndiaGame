@@ -9,23 +9,25 @@ cc.Class({
         btn_setting: cc.Button,
         btn_betJian: cc.Button,
         btn_betJia: cc.Button,
-        btn_betMax: cc.Button,
         btn_betCiShuForever: cc.Button,
         btn_betCiShu100: cc.Button,
         btn_betCiShu50: cc.Button,
         btn_betCiShu20: cc.Button,
         btn_auto: cc.Button,
         btn_spin: cc.Button,
+        btn_stop: cc.Button,
 
         toggle_fast: cc.Toggle,
         toggle_auto: cc.Toggle,
 
         node_tcBg: cc.Node,
         node_lines: cc.Node,
+        node_goodluck: cc.Node,
         lab_autoBetCiShu: cc.Label,
         node_catContent: cc.Node,
 
         lab_betAmount: cc.Label,
+        lab_betAmount2: cc.Label,
 
         lab_totalWin: cc.Label,
 
@@ -44,9 +46,9 @@ cc.Class({
             "Your cash is insufficient, Please recharge in time!"
         ];
         //投注额度数组
-        this.betAmountArr = ['0.2', '1', '10', '20', '50', '100', '200', '500', '1000'];
+        this.betAmountArr = ['1.8', '4.5', '9', '18', '90', '180', '900', '1800'];
         if(GlobalCfg.USER_DATAS.gamePattern == 1){
-            this.betAmountArr = ['0.2', '1', '10', '20', '50', '100', '200', '500', '1000', '2000'];
+            this.betAmountArr = ['1.8', '4.5', '9', '18', '90', '180', '900', '1800'];
         }
         this.betAmountArrIndex = 0;
 
@@ -58,6 +60,7 @@ cc.Class({
         this.paymentSwitch = false;
 
         this.frees = [];
+        this.isAuto = false;
 
         this.isHaveMianFeiRecord = false;
         this.selectAutoBetStr = 'AUTO';
@@ -115,20 +118,21 @@ cc.Class({
         this.btn_setting.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_betJian.node.on('click', this.debounce(this.componentClickCall, 0), this);
         this.btn_betJia.node.on('click', this.debounce(this.componentClickCall, 0), this);
-        this.btn_betMax.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_betCiShuForever.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_betCiShu100.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_betCiShu50.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_betCiShu20.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_auto.node.on('click', this.debounce(this.componentClickCall, 0.5), this);
-        this.btn_spin.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        // this.btn_spin.node.on('click', this.debounce(this.componentClickCall, 1), this);
+        this.btn_stop.node.on('click', this.debounce(this.componentClickCall, 0.5), this);
+
+        
 
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
 
         this.autoSpineNode = this.btn_auto.node.getChildByName('uiquan');
         this.autoSpineNode.active = false;
-
-        this.lab_betAmount.string = this.betAmountArr[0];
+        this.setLabAmount(this.betAmountArr[0]);
         for (let i = 0; i < 5; i++) {
             let obj = this.node_catContent.getChildByName("ItemContent" + i)
             this.node_catContentArr.push(obj);
@@ -149,6 +153,10 @@ cc.Class({
             btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
             btn_addcash.active = GlobalCfg.USER_DATAS.isNotCharge;
         }
+        // ...你的原有代码...
+        this._initSpinHoldonToggle();
+        this.startSpinHoldonToggle(5); // 5 秒
+        this._initSpinLongPress();
     },
 
     cashSwitch:function(){
@@ -182,6 +190,91 @@ cc.Class({
         return fn;
     }, 
 
+    /**
+     * 初始化 btn_spin 的短按与长按检测
+     */
+    _initSpinLongPress: function () {
+        const spinNode = this.btn_spin.node;
+        if (!spinNode || !cc.isValid(spinNode)) return;
+
+        // 清理旧事件（避免重复绑定）
+        spinNode.off(cc.Node.EventType.TOUCH_START, this._onSpinTouchStart, this);
+        spinNode.off(cc.Node.EventType.TOUCH_END, this._onSpinTouchEnd, this);
+        spinNode.off(cc.Node.EventType.TOUCH_CANCEL, this._onSpinTouchCancel, this);
+        // 绑定新事件
+        spinNode.on(cc.Node.EventType.TOUCH_START, this._onSpinTouchStart, this);
+        spinNode.on(cc.Node.EventType.TOUCH_END, this._onSpinTouchEnd, this);
+        spinNode.on(cc.Node.EventType.TOUCH_CANCEL, this._onSpinTouchCancel, this);
+
+        this._spinHoldTime = 0;     // 记录长按时间
+        this._spinIsLongPress = false; // 标记是否触发长按
+        this._spinLongPressThreshold = 0.5; // 长按阈值（秒）可调
+    },
+
+    _onSpinTouchStart: function (event) {
+        this._spinIsLongPress = false;
+        this._spinHoldTime = 0;
+
+        // 开始计时长按
+        this.schedule(this._checkSpinHoldTime, 0.1);
+    },
+
+    _onSpinTouchEnd: function (event) {
+        this.unschedule(this._checkSpinHoldTime);
+
+        // 如果没触发长按 → 当成普通点击
+        if (!this._spinIsLongPress) {
+            this._onSpinShortClick();
+        } else {
+            this._onSpinLongPressRelease();
+        }
+    },
+
+    _onSpinTouchCancel: function (event) {
+        this.unschedule(this._checkSpinHoldTime);
+        this._spinIsLongPress = false;
+    },
+
+    _checkSpinHoldTime: function (dt) {
+        this._spinHoldTime += dt;
+        if (this._spinHoldTime >= this._spinLongPressThreshold && !this._spinIsLongPress) {
+            this._spinIsLongPress = true;
+            this.unschedule(this._checkSpinHoldTime);
+            this._onSpinLongPress();
+        }
+    },
+
+    _onSpinShortClick: function () {
+
+        // 这里走原本逻辑，不改动
+        this.sendCallReq();
+    },
+
+    /** ✅ 长按触发 — 预留接口 */
+    _onSpinLongPress: function () {
+        LoggerUtil.getInstance().log('[Spin] 长按触发：进入特殊状态');
+        this.isAuto = !this.isAuto;
+        this.btn_spin.node.active = !this.isAuto;
+        this.btn_stop.node.active = this.isAuto;
+
+        if (this.isAuto) {
+            this.sendCallReq();
+        }
+    },
+
+    /** ✅ 长按释放（松开时） */
+    _onSpinLongPressRelease: function () {
+        LoggerUtil.getInstance().log('[Spin] 长按结束');
+        // 👉 如果长按释放后需要退出特殊模式，可在这里补逻辑
+        // TODO: this.exitSpecialSpinMode();
+    },
+    
+    stopAuto: function() {
+        this.isAuto = false;
+        this.btn_spin.node.active = true;
+        this.btn_stop.node.active = false;
+    },
+
     start: function() {
         this.sendLoginReq();
         this.initSlotData();
@@ -193,6 +286,7 @@ cc.Class({
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_MAYA_GAME);
+        this.stopSpinHoldonToggle();
     },
 
 
@@ -288,7 +382,7 @@ cc.Class({
             let freeCount = freeCountItem.freeCount;
             let freePool = freeCountItem.freePool/100;
 
-            this.lab_betAmount.string = amount;
+            this.setLabAmount(amount)
             this.lab_totalWin.string = freePool.toFixed(2);
             this.freeTotalWinNum = freePool;
             this.lab_autoBetCiShu.string = freeCount;
@@ -304,10 +398,8 @@ cc.Class({
             
             return;
         }
-
-        let betStr = this.lab_autoBetCiShu.string;
-        let isAuto = this.toggle_auto.isChecked;
-        if (betStr != 'AUTO' && isAuto) {
+        
+        if (this.isAuto) {
             this.sendCallReq();
         }
         else {
@@ -324,12 +416,19 @@ cc.Class({
                 src.initIcon();
             };
         };
+        
     },
 
     setUserDiamond: function(diamond) {
         GlobalCfg.USER_DATAS.userDiamond = diamond;
         let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
         this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
+    },
+
+    setLabAmount: function(amount) {
+        this.lab_betAmount.string = amount;
+        let multiple = parseFloat(amount) / 9;
+        this.lab_betAmount2.string = multiple + "x9";
     },
 
     setFreesList: function(frees) {
@@ -398,18 +497,6 @@ cc.Class({
             this.freeTotalWinNum = 0;
         };
 
-        //次数递减
-        let betStr = this.lab_autoBetCiShu.string;
-        if (betStr != 'AUTO') {
-            let betNum = parseFloat(betStr) - 1;
-            if (betNum == 0) {
-                this.setBetCiShuAutoTips();
-            }
-            else {
-                this.lab_autoBetCiShu.string = betNum; 
-            };
-        };
-
         this.dealSpinBtnEvent();
         this.startSlotsAnim();
     },
@@ -439,9 +526,6 @@ cc.Class({
         else if (componentName == "btn_betJia") {
             this.dealbetBtnEvent("jia");
         }
-        else if (componentName == "btn_betMax") {
-            this.dealbetBtnEvent("max");
-        }
         else if (componentName == "toggle_fast") {
             this.dealFastBtnEvent();
         }
@@ -463,6 +547,9 @@ cc.Class({
         else if (componentName == "btn_spin") {
             this.sendCallReq();
         }
+        else if (componentName == "btn_stop") {
+            this.stopAuto();
+        }
     },
 
     dealbetBtnEvent: function (btnType) {
@@ -477,8 +564,7 @@ cc.Class({
         };
 
         let betAmount = this.betAmountArr[this.betAmountArrIndex];
-        this.lab_betAmount.string = betAmount;
-
+        this.setLabAmount(betAmount)
         if (this.betAmountArrIndex == 0) {
             this.setBetBtnActive(false, true);
         }
@@ -495,8 +581,6 @@ cc.Class({
         this.btn_betJian.enableAutoGrayEffect = !betJianActive;
         this.btn_betJia.interactable = betJiaActive;
         this.btn_betJia.enableAutoGrayEffect = !betJiaActive;
-        this.btn_betMax.interactable = betJiaActive;
-        this.btn_betMax.enableAutoGrayEffect = !betJiaActive;
     },
 
     dealFastBtnEvent: function () { },
@@ -522,14 +606,125 @@ cc.Class({
         this.btn_auto.interactable = false;
         this.btn_auto.enableAutoGrayEffect = true;
 
-        this.btn_betMax.interactable = false;
-        this.btn_betMax.enableAutoGrayEffect = true;
-
         this.btn_betJia.interactable = false;
         this.btn_betJia.enableAutoGrayEffect = true;
 
         this.btn_betJian.interactable = false;
         this.btn_betJian.enableAutoGrayEffect = true;
+    },
+    // 3) 切换实现（替换为这一版）
+    _initSpinHoldonToggle: function () {
+        const root = this.btn_spin && this.btn_spin.node;
+        if (!root || !cc.isValid(root)) return;
+
+        this._spinNode   = root.getChildByName('Background').getChildByName('spin');
+        this._holdonNode = root.getChildByName('Background').getChildByName('holdon');
+        this._holdonSkel = this._holdonNode ? this._holdonNode.getComponent(sp.Skeleton) : null;
+
+        // ✅ 让两个节点都保持 active=true，避免 onEnable/OnDisable 反复
+        if (this._spinNode)   this._spinNode.active   = true;
+        if (this._holdonNode) this._holdonNode.active = true;
+
+        // ✅ 用透明度控制显隐（初始显示 spin，隐藏 holdon）
+        if (this._spinNode)   this._spinNode.opacity   = 255;
+        if (this._holdonNode) this._holdonNode.opacity = 0;
+
+        // ✅ 关闭 Skeleton 的自动播放：清掉组件默认动画，并关掉 loop
+        if (this._holdonSkel) {
+            // 有的项目导出里 sd.animation 是“默认动画名”，清成空串即可阻止自动播
+            this._holdonSkel.animation = '';   // 关键：阻止 onEnable 自动播放
+            this._holdonSkel.loop = false;     // 组件层面的 loop 也关掉
+            this._holdonSkel.clearTracks();
+            this._holdonSkel.setToSetupPose();
+
+            // 保险：如果有人在别处给它绑了 complete 里“再播一次”，这里重置一次监听
+            this._holdonSkel.setCompleteListener(null);
+        }
+
+        this._showingHoldon = false;
+
+        // 全局调度器
+        this._spinToggleScheduler = cc.director.getScheduler();
+        this._spinToggleTarget = this._spinToggleTarget || {};
+        this._spinToggleFn = this._spinToggleFn || this._toggleSpinHoldon.bind(this);
+    },
+    
+    startSpinHoldonToggle: function (intervalSec = 5) {
+        if (!this._spinToggleScheduler) this._initSpinHoldonToggle();
+        this.stopSpinHoldonToggle();
+        this._spinToggleFn(); // 立即切一次（可去掉）
+        this._spinToggleScheduler.schedule(
+            this._spinToggleFn,
+            this._spinToggleTarget,
+            intervalSec,
+            cc.macro.REPEAT_FOREVER,
+            0,
+            false
+        );
+    },
+    stopSpinHoldonToggle: function () {
+        if (this._spinToggleScheduler && this._spinToggleFn && this._spinToggleTarget) {
+            this._spinToggleScheduler.unschedule(this._spinToggleFn, this._spinToggleTarget);
+        }
+    },
+
+    _toggleSpinHoldon: function () {
+        if (!cc.isValid(this)) return;
+        const spin = this._spinNode, holdon = this._holdonNode, skel = this._holdonSkel;
+        if (!spin || !holdon) return;
+
+        this._showingHoldon = !this._showingHoldon;
+
+        if (this._showingHoldon) {
+            // 显示 holdon（不改 active），仅用透明度
+            spin.opacity   = 0;
+            holdon.opacity = 255;
+
+            if (skel) {
+                skel.clearTracks();
+                skel.setToSetupPose();
+
+                const animName = this._getFirstSkeletonAnimName(skel);
+                if (animName) {
+                    // 单次播放：loop = false
+                    const entry = skel.setAnimation(0, animName, false);
+
+                    // 保险：确保没人把它在 complete 里再播一次
+                    skel.setCompleteListener(() => {
+                        // 播完还原到 setup（按需）
+                        skel.setToSetupPose();
+                        // 如果你希望播完后切回 spin，在这里手动切：
+                        // this._showingHoldon = false;
+                        // spin.opacity = 255; holdon.opacity = 0;
+                    });
+                }
+            }
+        } else {
+            // 显示 spin
+            holdon.opacity = 0;
+            spin.opacity   = 255;
+
+            // 停掉 holdon 的轨道，避免残留
+            if (skel) {
+                skel.clearTracks();
+                skel.setToSetupPose();
+            }
+        }
+    },
+
+
+    _getFirstSkeletonAnimName: function (skeleton) {
+        if (!skeleton) return 'animation';
+        const sd = skeleton.skeletonData;
+        if (sd && sd.skeletonJson && sd.skeletonJson.animations) {
+            const keys = Object.keys(sd.skeletonJson.animations);
+            if (keys.length) return keys[0];
+        }
+        if (sd && typeof sd.getAnims === 'function') {
+            const arr = sd.getAnims();
+            if (arr && arr.length) return arr[0].name || arr[0];
+        }
+        return 'animation';
     },
 
     /**
@@ -542,6 +737,8 @@ cc.Class({
     runChangeTotalWinScore: function (startScore, endedScore, freeCount, time = 0.5) {
         let obj = {};
         obj.num = startScore;
+        this.lab_totalWin.node.active = true;
+        this.node_goodluck.active = false;
         this.lab_totalWin.string = obj.num == 0 ? obj.num : obj.num.toFixed(2);
         cc.tween(obj)
         .to(
@@ -675,9 +872,6 @@ cc.Class({
         if (betAmount != 2000) {
             this.btn_betJia.interactable = true;
             this.btn_betJia.enableAutoGrayEffect = false;
-
-            this.btn_betMax.interactable = true;
-            this.btn_betMax.enableAutoGrayEffect = false;
         };
     },
 
@@ -888,8 +1082,7 @@ cc.Class({
                 this.autoSpineNode.active = false;
 
                 this.curRoundAddCoinFinish();
-                let isAuto = this.toggle_auto.isChecked;
-                if (isAuto) {
+                if (this.isAuto) {
                     this.sendCallReq();
                 }
                 else {
@@ -1102,9 +1295,8 @@ cc.Class({
         let betAmount = parseFloat(this.lab_betAmount.string) * 100;
 
         let freesItem = this.getFreesItem(betAmount);
-        let freeCount = freesItem.freeCount;
+        let freeCount = freesItem.freeCount || 0;
 
-        LoggerUtil.getInstance().error("GlobalCfg.USER_DATAS.userDiamond == " ,GlobalCfg.USER_DATAS.userDiamond); 
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城
@@ -1118,6 +1310,11 @@ cc.Class({
             }
             return;
         };
+
+        this.lab_totalWin.string = 0;
+        this.freeTotalWinNum = 0;
+        this.lab_totalWin.node.active = false;
+        this.node_goodluck.active = true;
        
         let proroID = 'gameservice.call';
         let message = 'CallReq';
@@ -1130,6 +1327,8 @@ cc.Class({
         let decimalPlaces = this.getCoinDecimalPlaces(coin);
         return coin.toFixed(decimalPlaces);
     },
+
+
 
 
     getCoinDecimalPlaces: function(coin) {

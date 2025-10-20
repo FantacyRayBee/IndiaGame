@@ -2,7 +2,6 @@
   "ver": "1.2.6",
   "uuid": "6fd32c18-7de3-4898-b564-48b79fc948a1",
   "importer": "asset",
-  "rawTextureUuid": "610e937d-68dd-4f58-bf63-fe7a801bcc29",
   "size": {
     "width": 256,
     "height": 256
@@ -13,7 +12,6 @@
       "ver": "1.0.6",
       "uuid": "1cb4b6be-439a-4d32-a212-fe2b296e2829",
       "importer": "sprite-frame",
-      "rawTextureUuid": "610e937d-68dd-4f58-bf63-fe7a801bcc29",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
