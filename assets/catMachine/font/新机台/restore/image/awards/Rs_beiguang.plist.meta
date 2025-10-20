@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "0f86ea0f-4bf9-46f8-aa82-ffaed2352f53",
+  "importer": "asset",
+  "rawTextureUuid": "ee828b2e-c147-4e8f-a077-41f89e022c7c",
+  "size": {
+    "width": 371,
+    "height": 371
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "Rs_beiguang.png": {
+      "ver": "1.0.6",
+      "uuid": "241e0976-590b-4f80-b74d-93e805e455e5",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "ee828b2e-c147-4e8f-a077-41f89e022c7c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -2,
+      "offsetY": 0,
+      "trimX": 21,
+      "trimY": 25,
+      "width": 325,
+      "height": 321,
+      "rawWidth": 371,
+      "rawHeight": 371,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

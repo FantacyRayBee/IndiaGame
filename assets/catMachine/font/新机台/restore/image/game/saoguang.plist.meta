@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "6543d5c2-60a5-4f7c-bdb9-ab432125ae01",
+  "importer": "asset",
+  "rawTextureUuid": "2631059b-5347-443a-a55e-cc122d51b2fd",
+  "size": {
+    "width": 251,
+    "height": 291
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "saoguang.png": {
+      "ver": "1.0.6",
+      "uuid": "58e5c603-a1c0-4873-9898-d7fbe7685831",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "2631059b-5347-443a-a55e-cc122d51b2fd",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -1,
+      "trimX": 0,
+      "trimY": 1,
+      "width": 251,
+      "height": 290,
+      "rawWidth": 251,
+      "rawHeight": 291,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

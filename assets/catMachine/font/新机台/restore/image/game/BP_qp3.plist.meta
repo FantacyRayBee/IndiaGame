@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "51fb21dc-db05-4c40-9eb3-ae2a4d11c7ed",
+  "importer": "asset",
+  "rawTextureUuid": "011246e3-b08b-4a9c-8b15-e7c8f3033db9",
+  "size": {
+    "width": 313,
+    "height": 836
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "BP_qp3.png": {
+      "ver": "1.0.6",
+      "uuid": "36627f1c-d814-4b81-a364-c8a22ace5a8a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "011246e3-b08b-4a9c-8b15-e7c8f3033db9",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 313,
+      "height": 836,
+      "rawWidth": 313,
+      "rawHeight": 836,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

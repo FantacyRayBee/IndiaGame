@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "cacf9d07-6414-4b9a-a72e-d28c1c0251c2",
+  "importer": "asset",
+  "rawTextureUuid": "64778ded-e6bb-46e0-825e-11b53e60134c",
+  "size": {
+    "width": 350,
+    "height": 200
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "mhdb_jiemian3.png": {
+      "ver": "1.0.6",
+      "uuid": "c2decfb2-2a85-49e1-86fa-acf8d9cf9890",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "64778ded-e6bb-46e0-825e-11b53e60134c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 350,
+      "height": 200,
+      "rawWidth": 350,
+      "rawHeight": 200,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

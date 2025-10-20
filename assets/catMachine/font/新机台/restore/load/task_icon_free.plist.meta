@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "ae72760d-6b1c-42ce-8a68-5e19c76c7ea3",
+  "importer": "asset",
+  "rawTextureUuid": "7353a414-638e-412e-ad39-912033f599e3",
+  "size": {
+    "width": 100,
+    "height": 100
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "task_icon_free.png": {
+      "ver": "1.0.6",
+      "uuid": "6b318aeb-d0ea-4ec4-84a5-688ff505166b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "7353a414-638e-412e-ad39-912033f599e3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -4,
+      "offsetY": 9,
+      "trimX": 0,
+      "trimY": 1,
+      "width": 93,
+      "height": 80,
+      "rawWidth": 100,
+      "rawHeight": 100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "902f2806-b744-4fa6-a5d7-0f547b39e0b8",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 589,
+  "height": 250,
+  "platformSettings": {},
+  "subMetas": {
+    "tx_haiwai_mohuandaobao_jiangchi3_00004": {
+      "ver": "1.0.6",
+      "uuid": "f5dfb8f6-7bc6-4601-a613-e06df2e79eb5",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "902f2806-b744-4fa6-a5d7-0f547b39e0b8",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -4,
+      "offsetY": 0,
+      "trimX": 20,
+      "trimY": 0,
+      "width": 541,
+      "height": 250,
+      "rawWidth": 589,
+      "rawHeight": 250,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

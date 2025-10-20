@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "82f39680-fd88-43d2-96c0-d99f9ad5cc20",
+  "importer": "asset",
+  "rawTextureUuid": "d1cdb1dd-f203-448c-b4bd-cbd2becc1094",
+  "size": {
+    "width": 1299,
+    "height": 107
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "TP_bg_paomadeng.png": {
+      "ver": "1.0.6",
+      "uuid": "9d987f31-eb06-4e4a-bf61-7783f885a68b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d1cdb1dd-f203-448c-b4bd-cbd2becc1094",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 12,
+      "trimX": 28,
+      "trimY": 0,
+      "width": 1243,
+      "height": 83,
+      "rawWidth": 1299,
+      "rawHeight": 107,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

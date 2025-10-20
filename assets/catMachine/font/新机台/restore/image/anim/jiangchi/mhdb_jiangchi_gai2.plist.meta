@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "8819ad35-2026-4e2c-8c16-315c1efe5b95",
+  "importer": "asset",
+  "rawTextureUuid": "15f57320-43af-497e-8e90-56a5cc53a0bd",
+  "size": {
+    "width": 306,
+    "height": 114
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "mhdb_jiangchi_gai2.png": {
+      "ver": "1.0.6",
+      "uuid": "4d0e01c6-1de0-4cfd-a8fb-e957311e3791",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "15f57320-43af-497e-8e90-56a5cc53a0bd",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -3,
+      "trimX": 5,
+      "trimY": 17,
+      "width": 296,
+      "height": 85,
+      "rawWidth": 306,
+      "rawHeight": 114,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

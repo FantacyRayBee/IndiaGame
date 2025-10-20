@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "568106a4-f99f-4c29-b10e-7ff53758f47b",
+  "importer": "asset",
+  "rawTextureUuid": "1e15eb1c-0586-43ad-a638-8aeab7372c83",
+  "size": {
+    "width": 64,
+    "height": 128
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "jackpot_num_3.png": {
+      "ver": "1.0.6",
+      "uuid": "288b0219-bd83-4bbf-9505-d282703f01ae",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "1e15eb1c-0586-43ad-a638-8aeab7372c83",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": 4,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 62,
+      "height": 120,
+      "rawWidth": 64,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

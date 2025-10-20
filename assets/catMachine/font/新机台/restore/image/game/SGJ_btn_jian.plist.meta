@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "a7138e39-ff70-47f5-bfff-e23dc6aa23d4",
+  "importer": "asset",
+  "rawTextureUuid": "a093f0e0-107d-42ca-b2fc-6d83635e39dc",
+  "size": {
+    "width": 132,
+    "height": 102
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "SGJ_btn_jian.png": {
+      "ver": "1.0.6",
+      "uuid": "5eb14fcc-ffa0-46cc-b25a-ce5f05e76318",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a093f0e0-107d-42ca-b2fc-6d83635e39dc",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 132,
+      "height": 102,
+      "rawWidth": 132,
+      "rawHeight": 102,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

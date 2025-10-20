@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "00802340-49b4-4f82-90cd-4018d2a784fb",
+  "importer": "asset",
+  "rawTextureUuid": "034d1262-d25e-4d55-8f67-e7cbae223245",
+  "size": {
+    "width": 891,
+    "height": 108
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "g_tips_bg.png": {
+      "ver": "1.0.6",
+      "uuid": "04343171-f51a-4317-aaca-f5fa3c84905f",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "034d1262-d25e-4d55-8f67-e7cbae223245",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -1,
+      "trimX": 0,
+      "trimY": 1,
+      "width": 891,
+      "height": 107,
+      "rawWidth": 891,
+      "rawHeight": 108,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

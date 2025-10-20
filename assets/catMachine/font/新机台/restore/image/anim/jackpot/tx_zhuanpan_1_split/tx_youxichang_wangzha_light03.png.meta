@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e5f47aca-3826-4d00-8966-b72b1c5dcb65",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 420,
+  "height": 433,
+  "platformSettings": {},
+  "subMetas": {
+    "tx_youxichang_wangzha_light03": {
+      "ver": "1.0.6",
+      "uuid": "5cfa7a74-969f-4acb-97b1-a9174b149c19",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e5f47aca-3826-4d00-8966-b72b1c5dcb65",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 0,
+      "width": 419,
+      "height": 433,
+      "rawWidth": 420,
+      "rawHeight": 433,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

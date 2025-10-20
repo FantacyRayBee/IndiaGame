@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "d06fc0ab-82b9-473f-81ef-88aba4c675f5",
+  "importer": "asset",
+  "rawTextureUuid": "9dc9911f-d2c3-443a-83aa-0a6b7e05e7d3",
+  "size": {
+    "width": 485,
+    "height": 105
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "goldbg_BD.png": {
+      "ver": "1.0.6",
+      "uuid": "b22f6009-6f11-4869-a600-801e6d6534f0",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "9dc9911f-d2c3-443a-83aa-0a6b7e05e7d3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 485,
+      "height": 105,
+      "rawWidth": 485,
+      "rawHeight": 105,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

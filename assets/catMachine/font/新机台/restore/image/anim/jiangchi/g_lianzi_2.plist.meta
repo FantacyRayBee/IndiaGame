@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "d2041b64-acb0-4241-a691-8774832b4b0e",
+  "importer": "asset",
+  "rawTextureUuid": "a1e148ce-8778-4ab8-8b39-32e05fa280e6",
+  "size": {
+    "width": 93,
+    "height": 83
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "g_lianzi_2.png": {
+      "ver": "1.0.6",
+      "uuid": "b7000946-0d5e-4257-8ae3-2c195d3eefe7",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a1e148ce-8778-4ab8-8b39-32e05fa280e6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 0,
+      "width": 92,
+      "height": 83,
+      "rawWidth": 93,
+      "rawHeight": 83,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

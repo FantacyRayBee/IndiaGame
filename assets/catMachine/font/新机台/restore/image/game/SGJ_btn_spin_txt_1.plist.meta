@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "629a8c65-63b8-42b1-a363-b83c6b22a0cd",
+  "importer": "asset",
+  "rawTextureUuid": "23b8b384-ee8e-40aa-b462-6bb374facbd2",
+  "size": {
+    "width": 162,
+    "height": 74
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "SGJ_btn_spin_txt_1.png": {
+      "ver": "1.0.6",
+      "uuid": "77d3a74e-0e69-4688-9eba-a1e6f6f65c8f",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "23b8b384-ee8e-40aa-b462-6bb374facbd2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 162,
+      "height": 74,
+      "rawWidth": 162,
+      "rawHeight": 74,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "c5929a8a-99c3-4c90-8952-78f5f580d9fb",
+  "importer": "asset",
+  "rawTextureUuid": "5b422bb4-6416-43a1-be66-46f2f4e30c97",
+  "size": {
+    "width": 112,
+    "height": 58
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "player_mingzi.png": {
+      "ver": "1.0.6",
+      "uuid": "442c4bea-e203-44d6-8231-32e27da0c32b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5b422bb4-6416-43a1-be66-46f2f4e30c97",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 111,
+      "height": 58,
+      "rawWidth": 112,
+      "rawHeight": 58,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

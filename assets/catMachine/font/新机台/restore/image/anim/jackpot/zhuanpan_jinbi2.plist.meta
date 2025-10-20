@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "d153f078-2440-42e9-8a09-bfa1de94fdcc",
+  "importer": "asset",
+  "rawTextureUuid": "43fabc7b-bf59-4eed-bf77-7c03a4a0670e",
+  "size": {
+    "width": 132,
+    "height": 172
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "zhuanpan_jinbi2.png": {
+      "ver": "1.0.6",
+      "uuid": "00a4baa7-703f-444c-afc0-8bccc6c2d819",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "43fabc7b-bf59-4eed-bf77-7c03a4a0670e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 132,
+      "height": 172,
+      "rawWidth": 132,
+      "rawHeight": 172,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}
