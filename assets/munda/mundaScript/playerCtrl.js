@@ -95,16 +95,46 @@ cc.Class({
     },
 
     setWinNum: function (num) {
-        if (num <= 0) { return };
-        let number = parseFloat((num / 100).toFixed(2));
-        this.lab_win.string = "+" + number;
-        this.textBg.active = true;
-        cc.tween(this.textBg)
-            .to(1, { position: cc.v2(0, 90) })
-            .delay(0.5)
+        if (num <= 0) return;
+
+        // 1) 文案
+        const amount = parseFloat((num / 100).toFixed(2)) ;
+        this.lab_win.string = "+" + amount;
+
+        const bg = this.textBg;
+
+        // 2) 彻底停掉旧动画（Action + Tween）
+        if (bg && bg.stopAllActions) bg.stopAllActions();
+        if (cc.Tween && cc.Tween.stopAllByTarget) {
+            cc.Tween.stopAllByTarget(bg);
+            cc.Tween.stopAllByTarget(this.lab_win && this.lab_win.node);
+        }
+        if (this._winTween) {
+            this._winTween.stop();
+            this._winTween = null;
+        }
+
+        // 3) 显式重置初始状态（很关键）
+        bg.active = true;
+        bg.opacity = 255;
+        bg.scale = 1;
+        bg.setPosition(0, 30);  // 你的初始位置
+        // 如 lab_win 也需要：this.lab_win.node.opacity = 255;
+
+        // 4) 重新启动一条新的 tween（随意换你喜欢的节奏）
+        this._winTween = cc.tween(bg)
+            .to(0.12, { scale: 1.06 })            // 小弹一下（可选）
+            .to(0.10, { scale: 1.00 })
+            .to(1.0,  { position: cc.v2(0, 90) }) // 上飘
+            .delay(0.5)                            // 停留
+            .to(0.15, { opacity: 0 })             // 淡出
             .call(() => {
-                this.textBg.position = cc.v2(0, 30);
-                this.textBg.active = false;
+                // 5) 结束时复原，避免“下一次”继承残留
+                bg.active = false;
+                bg.opacity = 255;
+                bg.scale = 1;
+                bg.setPosition(0, 30);
+                this._winTween = null;
             })
             .start();
     },
