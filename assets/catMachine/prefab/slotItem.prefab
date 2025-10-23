@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "slotItem",
+    "_name": "slotItem copy",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -162,9 +162,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "2927f1a3-489f-4674-a3bb-e14ce7b494f0"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -176,9 +174,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "b242c829-ed9c-4850-aa7c-0e794ae56f68"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -219,8 +215,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 208.8350830078125,
-      "height": 208.83505249023438
+      "width": 144.54,
+      "height": 128.7
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -271,7 +267,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "jing",
+    "defaultAnimation": "skill",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -282,13 +278,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "jing",
+    "_animationName": "skill",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "e6efd503-2b03-48b2-bf6c-c69e99fe5778"
+      "__uuid__": "606cabf2-ecd6-4621-9df3-be38330b79b7"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -336,8 +332,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 196.92,
-      "height": 176.36
+      "width": 252,
+      "height": 230
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -388,7 +384,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "LOCK_Loop",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -399,13 +395,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "LOCK_Loop",
+    "_animationName": "idle",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "80029c33-7842-4ce7-bfb5-7d63208e2da2"
+      "__uuid__": "0a6598f2-6300-4cfa-9d13-c6999d236f1f"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -441,7 +437,7 @@
       "__id__": 9
     },
     "spriteAtlas_icon": {
-      "__uuid__": "b242c829-ed9c-4850-aa7c-0e794ae56f68"
+      "__uuid__": "c3073ea3-8f30-4daf-92ac-5f1a093e7704"
     },
     "icon_node": {
       "__id__": 2

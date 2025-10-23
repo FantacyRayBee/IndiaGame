@@ -41,7 +41,7 @@ cc.Class({
                 return;
             };
             
-            CommonFun.getInstance().loadBundle('mayaMachine', (bundle) => {
+            CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
                 bundle.load(`audios/${audioClipName}`, cc.AudioClip, (err, audioClip) => {
                     if (!err) {
                         let audioClipName = audioClip.name;

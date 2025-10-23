@@ -16,11 +16,17 @@ cc.Class({
         this.skeletonNameArr = [
             'animation_bigwin','animation_megawin','animation_epicwin','animation_superwin','animation_superwin'
         ];
+        this.soundNameArr = [
+            'smallWin','midWin','bigWin','superWin','superWin'
+        ]
     },
 
     showRewardTips: function(curSpinAllWin, bigWinLevel, isNormal) {
         return new Promise((resolve, reject) => {
             // GlobalCfg.ACT_SCENE_CTRL.mayaAudiosCtrl.pauseMusic();
+
+            GlobalCfg.ACT_SCENE_CTRL.playGameMusic("win");
+            GlobalCfg.ACT_SCENE_CTRL.playGameSound(this.soundNameArr[bigWinLevel - 1]);
             let skeletonName = this.skeletonNameArr[bigWinLevel - 1];
             this.loadSkeletonData(skeletonName, (skeletonData, self) => {
                 if (self && this.skeleton_wing) {

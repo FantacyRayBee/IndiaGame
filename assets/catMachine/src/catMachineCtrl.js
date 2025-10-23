@@ -25,6 +25,7 @@ cc.Class({
         node_goodluck: cc.Node,
         lab_autoBetCiShu: cc.Label,
         node_catContent: cc.Node,
+        node_catSkelContent: cc.Node,
 
         lab_betAmount: cc.Label,
         lab_betAmount2: cc.Label,
@@ -68,36 +69,37 @@ cc.Class({
         this.freeTotalWinNum = 0;           // 三叶草免费时，总获取金额
 
         this.node_catContentArr = []; // 每个水果图片的节点
-
+        this.node_catSkelContentArr = []; // 每个水果图片的节点
     },
 
     loadAudioClip: function(audioClipUrl = "", func = null, target = null) {
-        // if (!audioClipUrl || audioClipUrl.length == 0) {
-        //     return;
-        // };
-        
-        // CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
-        //     bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
-        //         if (!err1) {
-        //             func && func(audioClip, target);
-        //         }
-        //         else {
-        //             LoggerUtil.getInstance().error(err1); 
-        //         };
-        //     });
-        // }, (err) => {
-        //     LoggerUtil.getInstance().error(err);
-        // });
+        if (!audioClipUrl || audioClipUrl.length == 0) {
+            return;
+        };
+        CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
+            bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
+                if (!err1) {
+                    func && func(audioClip, target);
+                }
+                else {
+                    LoggerUtil.getInstance().error(err1); 
+                };
+            });
+        }, (err) => {
+            LoggerUtil.getInstance().error(err);
+        });
     },
 
     playGameSound: function(name) {
-        this.loadAudioClip(name, (audioClip, target)=>{
+        let audioClipUrl = "audios/" + name;
+        this.loadAudioClip(audioClipUrl, (audioClip, target)=>{
             GlobalCfg.G_COMPONENTS.Audio.playSound(audioClip, false);
         }, this);
     },
 
     playGameMusic: function(name) {
-        this.loadAudioClip(name, (audioClip, target)=>{
+        let audioClipUrl = "audios/" + name;
+        this.loadAudioClip(audioClipUrl, (audioClip, target)=>{
             GlobalCfg.G_COMPONENTS.Audio.playMusic(audioClip, true)
         }, this);
     },
@@ -108,7 +110,7 @@ cc.Class({
         GlobalCfg.ACT_SCENE_CTRL = this,
         this.catAudiosCtrl = this.node.getComponent("catAudiosCtrl");
 
-        this.playGameMusic('sound/BGM');
+        this.playGameMusic('bgm');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.btn_back.node.on('click', this.debounce(this.componentClickCall, 1), this);
@@ -136,6 +138,8 @@ cc.Class({
         for (let i = 0; i < 5; i++) {
             let obj = this.node_catContent.getChildByName("ItemContent" + i)
             this.node_catContentArr.push(obj);
+            let obj2 = this.node_catSkelContent.getChildByName("ItemContent" + i)
+            this.node_catSkelContentArr.push(obj2);
         }
         //自动下注次数选择的展示
         this.node_tcBg.active = false;
@@ -474,16 +478,18 @@ cc.Class({
 
         for (let j = 0, len1 = this.node_catContentArr.length; j < len1; j++) {
             let children = this.node_catContentArr[j].children;
+            let children2 = this.node_catSkelContentArr[j].children;
             for (let k = 0, len2 = children.length; k < len2; k++) {
                 let src = children[k].getComponent('catItemCtrl');
-                src.setCloseSkeletonDong(0);
+                src.stopAnimation(0);
+                let src2 = children2[k].getComponent('catSkelItemCtrl');
+                src2.stopAnimation(0);
             };
         };
         
         //设置转动的音效
         let isFast = this.toggle_fast.isChecked;
-        let zhuangClipName = isFast ? 'sound/zhuang-fast' : 'sound/zhuang';
-        this.playGameSound(zhuangClipName);
+        this.playGameSound('scrollStart');
 
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
@@ -771,19 +777,21 @@ cc.Class({
         let catContentTime = 0.1 * this.kRate;
         for (let i = 0, len = this.node_catContentArr.length; i < len; i++) {
             let children = this.node_catContentArr[i].children;
+            let children2 = this.node_catSkelContentArr[i].children;
             for (let k = 0, lenk = children.length; k < lenk; k++) {
                 let item = children[k];
+                let item2 = children2[k];
                 item.repeat = 0;
                 item.index = k;
                 item.shu = i;
                 this.scheduleOnce(() => {
-                    this.runSlotsItemAnim(item, item.y, item.y + this.height);
+                    this.runSlotsItemAnim(item, item2, item.y, item.y + this.height);
                 }, catContentTime * i);
             };
         };
     },
     
-    runSlotsItemAnim: function(node, statrPositionY, endedPositionY) {
+    runSlotsItemAnim: function(node, skelNode, statrPositionY, endedPositionY) {
         let self = this;
         node.repeat += 1;
         node.setPosition(cc.v2(0, statrPositionY));
@@ -812,19 +820,23 @@ cc.Class({
             };
             if (endedPositionY >= this.height * 2) {
                 let src = node.getComponent('catItemCtrl');
+                let src2 = skelNode.getComponent('catSkelItemCtrl');
                 if (repeat == 17 && index == 0) {
                     let fruitType = self.gameResult.cards[shu].cards[0];
-                    src.setSkeletonJing(fruitType);
+                    src.setItemData(fruitType);
+                    src2.setItemData(fruitType);
                     node.fruitType = fruitType;
                 }
                 else if (repeat == 18 && index == 1) {
                     let fruitType = self.gameResult.cards[shu].cards[1];
-                    src.setSkeletonJing(fruitType);
+                    src.setItemData(fruitType);
+                    src2.setItemData(fruitType);
                     node.fruitType = fruitType;
                 }
                 else if (repeat == 19 && index == 2) {
                     let fruitType = self.gameResult.cards[shu].cards[2];
-                    src.setSkeletonJing(fruitType);
+                    src.setItemData(fruitType);
+                    src2.setItemData(fruitType);
                     node.fruitType = fruitType;
                 }
                 else {
@@ -835,13 +847,14 @@ cc.Class({
                     else if (shu >= 3 && num == 11) {
                         num = 10;
                     }
-                    src.setSkeletonJing(num);
+                    src.setItemData(num);
+                    src2.setItemData(num);
                     node.fruitType = num;
                 };
-                self.runSlotsItemAnim(node, -(this.height * 2), -this.height);
+                self.runSlotsItemAnim(node, skelNode, -(this.height * 2), -this.height);
             }
             else {
-                self.runSlotsItemAnim(node, endedPositionY, endedPositionY + this.height);
+                self.runSlotsItemAnim(node, skelNode, endedPositionY, endedPositionY + this.height);
             };
         })
         .start();
@@ -895,9 +908,9 @@ cc.Class({
             let freeCount = this.gameResult.mianfeinum;
             let isNormal = this.gameResult.rewardtype == 1;
             let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            bigWinLevel = 2
-            // if (bigWinLevel > 0) {
-            if (endedScore > 0) {
+            // bigWinLevel = 2
+            if (bigWinLevel > 0) {
+            // if (endedScore > 0) {
                 CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
                     bundle.load("prefab/catRewardTips", cc.Prefab, (err, prefab) => {
                         if (!err) {
@@ -1032,9 +1045,8 @@ cc.Class({
 
         let isFast = this.toggle_fast.isChecked;
         if (isNeedShowAnim) {
-            let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
-            this.playGameSound(winClipName);
-            this.showXianNun(totalMultiple/10, isFast);
+            this.playGameSound('lianxian');
+            this.showXianNum(totalMultiple/10, isFast);
         }
         else {
             this.isRunningCatAnim = false; 
@@ -1108,139 +1120,151 @@ cc.Class({
         }
     },
 
-    showXianNun: function(totalMultiple, isFast) {
-        if (this.gameResult) {
-            let lineArr = [];
-            for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
-                let xiannum = this.gameResult.xiannum[i];
-                let card = xiannum.card;        //中奖的牌
-                let xiannumLen = xiannum.len;   //线的长度
-                let xiannumNum = xiannum.num;   //线的数量
-                if (xiannumLen >= 3) {
-                    for (let j = 0; j < xiannumNum; j++) {
-                        let shu0 = this.node_catContentArr[0];
-                        let shu0Node = shu0.children[i];
-                        let shu1TypeArr = [];
-                        let shu1 = this.node_catContentArr[1];
-                        for (let j = 0; j < 3; j++) {
-                            let fruitNode = shu1.children[j];
-                            let fruitType = fruitNode.fruitType;
-                            if (fruitType == card || fruitType == 10) {
-                                shu1TypeArr.push(fruitNode);
-                            };
-                        };
-                        let shu2TypeArr = [];
-                        let shu2 = this.node_catContentArr[2];
-                        for (let j = 0; j < 3; j++) {
-                            let fruitNode = shu2.children[j];
-                            let fruitType = fruitNode.fruitType;
-                            if (fruitType == card || fruitType == 10) {
-                                shu2TypeArr.push(fruitNode);
-                            };
-                        };
-                        let shu3TypeArr = [];
-                        if (xiannumLen >= 4) {
-                            let shu3 = this.node_catContentArr[3];
-                            for (let j = 0; j < 3; j++) {
-                                let fruitNode = shu3.children[j];
-                                let fruitType = fruitNode.fruitType;
-                                if (fruitType == card || fruitType == 10) {
-                                    shu3TypeArr.push(fruitNode);
-                                };
-                            };
-                        };
-
-                        let shu4TypeArr = [];
-                        if (xiannumLen >= 5) {
-                            let shu4 = this.node_catContentArr[4];
-                            for (let j = 0; j < 3; j++) {
-                                let fruitNode = shu4.children[j];
-                                let fruitType = fruitNode.fruitType;
-                                if (fruitType == card || fruitType == 10) {
-                                    shu4TypeArr.push(fruitNode);
-                                };
-                            };
-                        };
-                        for (let i = 0; i < shu1TypeArr.length; i++) {
-                            let typeArr = [];
-                            typeArr.push(shu0Node);
-                            let shu1Node = shu1TypeArr[i];
-                            typeArr.push(shu1Node);
-                            for (let i2 = 0; i2 < shu2TypeArr.length; i2++) {
-                                let typeArr2 = [].concat(typeArr);
-                                let shu2Node = shu2TypeArr[i2];
-                                typeArr2.push(shu2Node);
-                                if (shu3TypeArr.length > 0) {
-                                    for (let i3 = 0; i3 < shu3TypeArr.length; i3++) {
-                                        let typeArr3 = [].concat(typeArr2);
-                                        let shu3Node = shu3TypeArr[i3];
-                                        typeArr3.push(shu3Node);
-                                        if (shu4TypeArr.length > 0) {
-                                            for (let i4 = 0; i4 < shu4TypeArr.length; i4++) {
-                                                let typeArr4 = [].concat(typeArr3);
-                                                let shu4Node = shu4TypeArr[i4];
-                                                typeArr4.push(shu4Node);
-                                                lineArr.push(typeArr4); 
-                                            };
-                                        }
-                                        else {
-                                            lineArr.push(typeArr3);  
-                                        };
-                                    };
-                                }
-                                else {
-                                    lineArr.push(typeArr2); 
-                                };
-                            };
-                        };
-                    };
-                };
-            };
-
-            if (totalMultiple >= 5) {
-                let allTime = 0;
-                for (let i = 0, len = lineArr.length; i < len; i++) {
-                    let typeArr = lineArr[i];
-                    let pointTime = isFast ? 0.1 : 0.2;
-                    let lineTime = i == 0 ? 0 : (pointTime * 2.5 * (lineArr[i - 1].length - 1));
-                    allTime += lineTime;
-                    this.scheduleOnce(() => {
-                        for (let k = 0, len1 = typeArr.length; k < len1 - 1; k++) {
-                            let itemNode1 = typeArr[k];
-                            let itemNode2 = typeArr[k + 1];
-                            this.scheduleOnce(() => {
-                                this.drawLine(itemNode1, itemNode2, pointTime);
-                            }, pointTime * k);
-
-                            if (k == len1 - 2) {
-                                this.scheduleOnce(() => {
-                                    this.isRunningCatAnim = false;
-                                }, pointTime * k + 3);
-                            };
-                        };
-                    }, lineTime);
-                };
-            }
-            else {
-                for (let i = 0, len = lineArr.length; i < len; i++) {
-                    let typeArr = lineArr[i];
-                    for (let k = 0, len1 = typeArr.length; k < len1 - 1; k++) {
-                        let itemNode1 = typeArr[k];
-                        let itemNode2 = typeArr[k + 1];
-                        let src1 = itemNode1.getComponent('catItemCtrl');
-                        src1.setSkeletonDong();
-                        src1.setKuangSkeletonDong();
-                        let src2 = itemNode2.getComponent('catItemCtrl');
-                        src2.setSkeletonDong();
-                        src2.setKuangSkeletonDong();
-                    };
-                };
-                this.scheduleOnce(() => {
-                    this.isRunningCatAnim = false;
-                }, 1);
-            };
-        };
+    /** 取第 col 列第 row 行的 icon 节点 */
+    _getIconByColRow: function (col, row) {
+        const colNode = this.node_catContentArr[col];
+        return colNode && colNode.children[row] || null;
     },
+
+    /** 取第 col 列第 row 行的 spine 节点 */
+    _getSkelByColRow: function (col, row) {
+        const colNode = this.node_catSkelContentArr && this.node_catSkelContentArr[col];
+        return colNode && colNode.children[row] || null;
+    },
+
+    /** 把 icon 节点配对上 skel 节点与其脚本，返回一个“配对对象” */
+    _makePair: function (iconNode) {
+        if (!iconNode) return null;
+        // 列、行：列=父容器在 node_catContentArr 的下标；行=子节点的 index（你在滚动时已赋过 index）
+        const col = iconNode.shu != null ? iconNode.shu : this.node_catContentArr.indexOf(iconNode.parent);
+        const row = iconNode.index != null ? iconNode.index : iconNode.parent.children.indexOf(iconNode);
+
+        const skelNode = this._getSkelByColRow(col, row);
+        const skelCtrl = skelNode ? skelNode.getComponent('catSkelItemCtrl') : null;
+        const iconCtrl = iconNode.getComponent('catItemCtrl');
+
+        return { icon: iconNode, iconCtrl, skel: skelNode, skelCtrl, col, row };
+    },
+
+
+    showXianNum: function(totalMultiple, isFast) {
+        if (!this.gameResult) return;
+
+        let lineArr = [];
+        for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
+            let xiannum = this.gameResult.xiannum[i];
+            let card = xiannum.card;        // 中奖的牌
+            let xiannumLen = xiannum.len;   // 线的长度
+            let xiannumNum = xiannum.num;   // 线的数量
+            if (xiannumLen < 3) continue;
+
+            for (let j = 0; j < xiannumNum; j++) {
+                // 第0列的起点（保持你原有的“用 i 当作行号”的逻辑）
+                let shu0Icon = this.node_catContentArr[0].children[i];
+                let startPair = this._makePair(shu0Icon);
+                if (!startPair) continue;
+
+                // 收集每列可匹配（card 或 10）的“配对对象”
+                const col1Pairs = [];
+                const col1 = this.node_catContentArr[1];
+                for (let r = 0; r < 3; r++) {
+                    let n = col1.children[r];
+                    let t = n.fruitType;
+                    if (t == card || t == 10) col1Pairs.push(this._makePair(n));
+                }
+
+                const col2Pairs = [];
+                const col2 = this.node_catContentArr[2];
+                for (let r = 0; r < 3; r++) {
+                    let n = col2.children[r];
+                    let t = n.fruitType;
+                    if (t == card || t == 10) col2Pairs.push(this._makePair(n));
+                }
+
+                const col3Pairs = [];
+                if (xiannumLen >= 4) {
+                    const col3 = this.node_catContentArr[3];
+                    for (let r = 0; r < 3; r++) {
+                        let n = col3.children[r];
+                        let t = n.fruitType;
+                        if (t == card || t == 10) col3Pairs.push(this._makePair(n));
+                    }
+                }
+
+                const col4Pairs = [];
+                if (xiannumLen >= 5) {
+                    const col4 = this.node_catContentArr[4];
+                    for (let r = 0; r < 3; r++) {
+                        let n = col4.children[r];
+                        let t = n.fruitType;
+                        if (t == card || t == 10) col4Pairs.push(this._makePair(n));
+                    }
+                }
+
+                // 组合（保持你原本的“多重循环”结构，只是元素换成 pair）
+                for (let a = 0; a < col1Pairs.length; a++) {
+                    const arr1 = [startPair, col1Pairs[a]];
+                    for (let b = 0; b < col2Pairs.length; b++) {
+                        const arr2 = arr1.concat(col2Pairs[b]);
+                        if (col3Pairs.length > 0) {
+                            for (let c = 0; c < col3Pairs.length; c++) {
+                                const arr3 = arr2.concat(col3Pairs[c]);
+                                if (col4Pairs.length > 0) {
+                                    for (let d = 0; d < col4Pairs.length; d++) {
+                                        lineArr.push(arr3.concat(col4Pairs[d]));
+                                    }
+                                } else {
+                                    lineArr.push(arr3);
+                                }
+                            }
+                        } else {
+                            lineArr.push(arr2);
+                        }
+                    }
+                }
+            }
+        }
+
+        // —— 后续逻辑：画线/高亮（改成使用 pair.icon 画线，同时预留 spine 调用）——
+        if (totalMultiple >= 5) {
+            let pointTime = isFast ? 0.1 : 0.2;
+            for (let i = 0; i < lineArr.length; i++) {
+                let typeArr = lineArr[i]; // 数组元素为 {icon, iconCtrl, skel, skelCtrl, ...}
+                let lineTime = i == 0 ? 0 : (pointTime * 2.5 * (lineArr[i - 1].length - 1));
+                this.scheduleOnce(() => {
+                    for (let k = 0; k < typeArr.length - 1; k++) {
+                        let p1 = typeArr[k];
+                        let p2 = typeArr[k + 1];
+                        this.scheduleOnce(() => {
+                            // 仍用 icon 的位置画线
+                            this.drawLine(p1.icon, p2.icon, pointTime);
+                        }, pointTime * k);
+
+                        if (k == typeArr.length - 2) {
+                            this.scheduleOnce(() => {
+                                this.isRunningCatAnim = false;
+                            }, pointTime * k + 3);
+                        }
+                    }
+                }, lineTime);
+            }
+        } else {
+            for (let i = 0; i < lineArr.length; i++) {
+                let typeArr = lineArr[i];
+                for (let k = 0; k < typeArr.length - 1; k++) {
+                    let p1 = typeArr[k];
+                    let p2 = typeArr[k + 1];
+
+                    if (p1.iconCtrl) { p1.iconCtrl.playAnimation(); p1.iconCtrl.setKuangSkeletonDong(); }
+                    if (p2.iconCtrl) { p2.iconCtrl.playAnimation(); p2.iconCtrl.setKuangSkeletonDong(); }
+                    if (p1.skelCtrl) { p1.skelCtrl.playAnimation()}
+                    if (p2.skelCtrl) { p2.skelCtrl.playAnimation()}
+                }
+            }
+            this.scheduleOnce(() => { this.isRunningCatAnim = false; }, 1);
+        }
+    },
+
 
     drawLine: function(startNode, endNode, time) {
         let worldPos1 = startNode.parent.convertToWorldSpaceAR(new cc.Vec2(startNode.x, startNode.y));
@@ -1259,7 +1283,7 @@ cc.Class({
 
         graphics.moveTo(localPos1.x, localPos1.y);
         let src1 = startNode.getComponent('catItemCtrl');
-        src1.setSkeletonDong();
+        src1.playAnimation();
         src1.setKuangSkeletonDong();
 
         this.scheduleOnce(() => {
@@ -1267,7 +1291,7 @@ cc.Class({
             graphics.stroke();
 
             let src2 = endNode.getComponent('catItemCtrl');
-            src2.setSkeletonDong();
+            src2.playAnimation();
             src2.setKuangSkeletonDong();
         }, time);
     },
