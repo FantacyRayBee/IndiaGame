@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "76ef262b-894f-43a8-9f8d-d336b7b4f970",
+  "uuid": "75ced06b-703c-4ca4-81b4-3d9971f1dd72",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "player_dengdai": {
       "ver": "1.0.6",
-      "uuid": "ebbd1c3f-b404-4e33-b95b-eb198ee4eb9a",
+      "uuid": "5e3321fa-da5e-4703-bebd-d18130a5caa6",
       "importer": "sprite-frame",
-      "rawTextureUuid": "76ef262b-894f-43a8-9f8d-d336b7b4f970",
+      "rawTextureUuid": "75ced06b-703c-4ca4-81b4-3d9971f1dd72",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

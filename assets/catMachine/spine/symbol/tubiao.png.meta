@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "19cc5217-9a15-452b-be0c-cae7f9af47a0",
+  "uuid": "a30f3763-990d-4538-9def-6a9afde10839",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "tubiao": {
       "ver": "1.0.6",
-      "uuid": "d8f059a0-89ff-41ee-8900-9626c00f4e73",
+      "uuid": "79d65da9-add5-49e5-b7d4-0e28a69cb708",
       "importer": "sprite-frame",
-      "rawTextureUuid": "19cc5217-9a15-452b-be0c-cae7f9af47a0",
+      "rawTextureUuid": "a30f3763-990d-4538-9def-6a9afde10839",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

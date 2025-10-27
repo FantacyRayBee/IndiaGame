@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "6543d5c2-60a5-4f7c-bdb9-ab432125ae01",
+  "uuid": "1b7a895a-fcba-4875-84be-33638529a8db",
   "importer": "asset",
-  "rawTextureUuid": "2631059b-5347-443a-a55e-cc122d51b2fd",
+  "rawTextureUuid": "a503f6e5-4c93-4f7f-83ba-b598547349c3",
   "size": {
     "width": 251,
     "height": 291
@@ -11,9 +11,9 @@
   "subMetas": {
     "saoguang.png": {
       "ver": "1.0.6",
-      "uuid": "58e5c603-a1c0-4873-9898-d7fbe7685831",
+      "uuid": "64b52401-f623-452e-b817-e797d1b202df",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2631059b-5347-443a-a55e-cc122d51b2fd",
+      "rawTextureUuid": "a503f6e5-4c93-4f7f-83ba-b598547349c3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

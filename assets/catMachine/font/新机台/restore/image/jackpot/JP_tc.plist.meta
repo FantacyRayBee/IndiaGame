@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "af9b2074-6263-4ec1-b5eb-dcfecacc8271",
+  "uuid": "9fc8d1e6-f6a3-4a82-818d-c592c780ba99",
   "importer": "asset",
-  "rawTextureUuid": "64769f5b-d7a1-454f-a9a3-cf6ef98eaa99",
+  "rawTextureUuid": "0e2d29ca-478b-424a-898e-085a8929b016",
   "size": {
     "width": 1223,
     "height": 594
@@ -11,9 +11,9 @@
   "subMetas": {
     "JP_tc.png": {
       "ver": "1.0.6",
-      "uuid": "e51ae4fb-2abb-407d-af8e-85af36302ad3",
+      "uuid": "6922f9b0-de76-48a5-bf96-2d2e62c986bc",
       "importer": "sprite-frame",
-      "rawTextureUuid": "64769f5b-d7a1-454f-a9a3-cf6ef98eaa99",
+      "rawTextureUuid": "0e2d29ca-478b-424a-898e-085a8929b016",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

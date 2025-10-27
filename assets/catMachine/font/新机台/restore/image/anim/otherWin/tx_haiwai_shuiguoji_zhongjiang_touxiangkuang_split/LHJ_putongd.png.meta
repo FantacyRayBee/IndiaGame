@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "6dc8fd7c-28fd-4c80-b291-21f495edac93",
+  "uuid": "ae8ab383-2bbc-49eb-b44b-c0d0ba44da2d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "LHJ_putongd": {
       "ver": "1.0.6",
-      "uuid": "79f64dd7-1665-422a-9f48-f43948b73d36",
+      "uuid": "d7726a47-7351-4c3d-9807-8c02a05c1e75",
       "importer": "sprite-frame",
-      "rawTextureUuid": "6dc8fd7c-28fd-4c80-b291-21f495edac93",
+      "rawTextureUuid": "ae8ab383-2bbc-49eb-b44b-c0d0ba44da2d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

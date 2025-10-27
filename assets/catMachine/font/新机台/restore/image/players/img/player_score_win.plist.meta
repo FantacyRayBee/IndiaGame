@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "8527b46b-de07-4b06-aa1f-e23b6034826a",
+  "uuid": "7172941f-aa6c-488b-9a53-6ab9923cc57c",
   "importer": "asset",
-  "rawTextureUuid": "39e2d372-7e37-4e1e-90b0-f0663f0e000d",
+  "rawTextureUuid": "f187a70c-6dd8-43e6-bcea-19dee74c4338",
   "size": {
     "width": 260,
     "height": 94
@@ -11,9 +11,9 @@
   "subMetas": {
     "player_score_win.png": {
       "ver": "1.0.6",
-      "uuid": "a6bab5fa-fd47-4856-ab4a-ced91b088704",
+      "uuid": "d68129e3-9f65-448c-a77d-c939aad22967",
       "importer": "sprite-frame",
-      "rawTextureUuid": "39e2d372-7e37-4e1e-90b0-f0663f0e000d",
+      "rawTextureUuid": "f187a70c-6dd8-43e6-bcea-19dee74c4338",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

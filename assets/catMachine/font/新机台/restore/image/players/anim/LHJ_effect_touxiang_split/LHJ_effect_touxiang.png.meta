@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "9ada75eb-ce2b-4a8d-a3fc-14211490498c",
+  "uuid": "b5bdf2cf-a0b2-4338-ae44-646e81ccdd90",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "LHJ_effect_touxiang": {
       "ver": "1.0.6",
-      "uuid": "1b0752c4-f5a9-4892-a59f-84c13db16cb1",
+      "uuid": "06d181bb-6695-41a7-8f88-76c349981ebf",
       "importer": "sprite-frame",
-      "rawTextureUuid": "9ada75eb-ce2b-4a8d-a3fc-14211490498c",
+      "rawTextureUuid": "b5bdf2cf-a0b2-4338-ae44-646e81ccdd90",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

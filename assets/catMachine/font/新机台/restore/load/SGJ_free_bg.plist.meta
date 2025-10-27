@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "8af45e18-1bc4-452b-a88a-3d10c835b59c",
+  "uuid": "e86e6033-7c67-4ebf-8640-845a614fb8d0",
   "importer": "asset",
-  "rawTextureUuid": "3d8fd2c4-b867-4b9c-9b5d-0cbedc794057",
+  "rawTextureUuid": "a13af702-f1e8-4039-81fc-bcbf1806ae3d",
   "size": {
     "width": 2640,
     "height": 1080
@@ -11,9 +11,9 @@
   "subMetas": {
     "SGJ_free_bg.png": {
       "ver": "1.0.6",
-      "uuid": "c22d7946-e5d5-4983-9572-13a314e0c786",
+      "uuid": "be4700e7-8a80-4455-b20e-a2d60c616765",
       "importer": "sprite-frame",
-      "rawTextureUuid": "3d8fd2c4-b867-4b9c-9b5d-0cbedc794057",
+      "rawTextureUuid": "a13af702-f1e8-4039-81fc-bcbf1806ae3d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

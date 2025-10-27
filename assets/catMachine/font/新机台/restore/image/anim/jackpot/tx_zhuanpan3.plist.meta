@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "f153ab75-2c0c-4e56-ac90-0492495ee5a8",
+  "uuid": "0f03eb4c-4051-49d4-a89d-bdab23670700",
   "importer": "asset",
-  "rawTextureUuid": "529b585f-0afe-46cb-b470-0fbe4d12a757",
+  "rawTextureUuid": "ba0d6781-342d-4906-81a9-d908770f3842",
   "size": {
     "width": 300,
     "height": 300
@@ -11,9 +11,9 @@
   "subMetas": {
     "tx_zhuanpan3.png": {
       "ver": "1.0.6",
-      "uuid": "9581119e-19ca-445b-82f1-4afd0fb3da6d",
+      "uuid": "335459c1-ff99-45f2-afe8-e9c94fd326fe",
       "importer": "sprite-frame",
-      "rawTextureUuid": "529b585f-0afe-46cb-b470-0fbe4d12a757",
+      "rawTextureUuid": "ba0d6781-342d-4906-81a9-d908770f3842",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "83ec22d0-3bd2-473a-b501-0aa22514adee",
+  "uuid": "4585a98d-c01a-4b25-841a-145eae7bd00d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "player_mingzi": {
       "ver": "1.0.6",
-      "uuid": "e79ef6e3-73f8-486c-b434-f73927a63e4c",
+      "uuid": "27ca6227-d3be-4aca-bba2-3bf578c518f7",
       "importer": "sprite-frame",
-      "rawTextureUuid": "83ec22d0-3bd2-473a-b501-0aa22514adee",
+      "rawTextureUuid": "4585a98d-c01a-4b25-841a-145eae7bd00d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

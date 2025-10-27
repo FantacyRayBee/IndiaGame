@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "4a62c419-c5fd-42a6-a152-f1e8aa696fd1",
+  "uuid": "b458a092-d40a-406f-8ba5-fddfd6c4cfd5",
   "importer": "asset",
-  "rawTextureUuid": "a215644c-b65c-47a7-b51f-db58c1825b7e",
+  "rawTextureUuid": "b2f1d04e-a4f5-41b6-93d3-a6cd7946f384",
   "size": {
     "width": 112,
     "height": 40
@@ -11,9 +11,9 @@
   "subMetas": {
     "btn_rules.png": {
       "ver": "1.0.6",
-      "uuid": "d779dc82-87f2-49dc-ac9f-c6bcc804b6e2",
+      "uuid": "83345dcc-ed48-4cd6-a3ad-922f77e2417c",
       "importer": "sprite-frame",
-      "rawTextureUuid": "a215644c-b65c-47a7-b51f-db58c1825b7e",
+      "rawTextureUuid": "b2f1d04e-a4f5-41b6-93d3-a6cd7946f384",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

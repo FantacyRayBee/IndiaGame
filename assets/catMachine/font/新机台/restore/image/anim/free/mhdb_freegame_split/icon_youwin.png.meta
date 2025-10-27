@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "86bf38d7-2b95-453a-863a-2cf419ce4b17",
+  "uuid": "d7c27a8f-b011-41b6-9cf7-d5e3877f8184",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "icon_youwin": {
       "ver": "1.0.6",
-      "uuid": "74bdce3e-4d68-4f30-9904-e81b78f8c887",
+      "uuid": "5d024707-dd7c-43e4-9d43-975020d58b16",
       "importer": "sprite-frame",
-      "rawTextureUuid": "86bf38d7-2b95-453a-863a-2cf419ce4b17",
+      "rawTextureUuid": "d7c27a8f-b011-41b6-9cf7-d5e3877f8184",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

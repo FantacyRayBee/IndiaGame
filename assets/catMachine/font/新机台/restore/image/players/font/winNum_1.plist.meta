@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "cbd6fe78-1157-4463-9659-ba39e5895ab8",
+  "uuid": "6890c088-4b33-495b-a688-9705447ec9ca",
   "importer": "asset",
-  "rawTextureUuid": "3af33176-1090-4095-8bff-934a9d21dbd6",
+  "rawTextureUuid": "049d4dd6-f679-4277-b5fe-c171060bcd6d",
   "size": {
     "width": 128,
     "height": 256
@@ -11,9 +11,9 @@
   "subMetas": {
     "winNum_1.png": {
       "ver": "1.0.6",
-      "uuid": "26cba8f2-c420-44b4-b124-30d4f93cd557",
+      "uuid": "7909331b-592a-4d61-960c-43da28a88ece",
       "importer": "sprite-frame",
-      "rawTextureUuid": "3af33176-1090-4095-8bff-934a9d21dbd6",
+      "rawTextureUuid": "049d4dd6-f679-4277-b5fe-c171060bcd6d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

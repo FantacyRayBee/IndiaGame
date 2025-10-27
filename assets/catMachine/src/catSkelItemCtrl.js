@@ -24,7 +24,14 @@ cc.Class({
     playAnimation: function() {
         if (this.skeleton_icon) {
             this.skeleton_icon.node.active = true;
-            this.skeleton_icon.setAnimation(0, "item_" + this.typeId, true);
+            let typeId = this.typeId;
+            if (typeId == 9) {
+                typeId = 10;
+            }
+            else if (typeId == 10) {
+                typeId = 9;
+            } // 9 10 对调
+            this.skeleton_icon.setAnimation(0, "item_" + typeId, true);
         };
     },
 
@@ -50,6 +57,8 @@ cc.Class({
         };
         let self = this;
         let url = this.skeletonUrl + skeletonName;
+
+        LoggerUtil.getInstance().log("caojun loadSkeletonData url = " + url);
         this.loadGameAssets(self.loadBundleName, (bundle, target) => {
             bundle.load(url, sp.SkeletonData, (err, skeletonData) => {
                 if (!err) {

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "29c10ffa-e157-49e8-b2a8-b5ea10fa7dcf",
+  "uuid": "2245dab9-3e99-4ee0-bb42-926ded552c2d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "mohuandaobao_1": {
       "ver": "1.0.6",
-      "uuid": "61dfc312-709d-4bdd-87b1-aa7cfcac76d1",
+      "uuid": "81f80328-c179-4921-bca1-ba7257f485e9",
       "importer": "sprite-frame",
-      "rawTextureUuid": "29c10ffa-e157-49e8-b2a8-b5ea10fa7dcf",
+      "rawTextureUuid": "2245dab9-3e99-4ee0-bb42-926ded552c2d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

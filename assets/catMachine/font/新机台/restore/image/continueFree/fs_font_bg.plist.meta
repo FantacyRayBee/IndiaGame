@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "2962b81c-30cd-4c8c-9a31-2cbe1e8a0400",
+  "uuid": "ac0fe823-ac64-4738-8605-8f362b227bd8",
   "importer": "asset",
-  "rawTextureUuid": "c00ba816-ae77-4ba3-842a-67ff18403c9d",
+  "rawTextureUuid": "26bc0fdd-eb03-4cbb-a51c-c5f6b95118f5",
   "size": {
     "width": 172,
     "height": 172
@@ -11,9 +11,9 @@
   "subMetas": {
     "fs_font_bg.png": {
       "ver": "1.0.6",
-      "uuid": "c5f0816d-032f-41c3-a43f-4a97a682bc8a",
+      "uuid": "760db7ae-928b-4fd1-bbec-061ba277bfc5",
       "importer": "sprite-frame",
-      "rawTextureUuid": "c00ba816-ae77-4ba3-842a-67ff18403c9d",
+      "rawTextureUuid": "26bc0fdd-eb03-4cbb-a51c-c5f6b95118f5",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "7d3c765e-3caa-47fa-bca1-fff9437c3ff7",
+  "uuid": "67473d89-3f7b-4d12-8eaf-6764859a1cec",
   "importer": "asset",
-  "rawTextureUuid": "cd88f1f6-e4ce-4132-b43b-e195410d7704",
+  "rawTextureUuid": "857176d3-1a5f-4319-9cf2-3087871c1d52",
   "size": {
     "width": 128,
     "height": 256
@@ -11,9 +11,9 @@
   "subMetas": {
     "jackpot_num_1.png": {
       "ver": "1.0.6",
-      "uuid": "4641c771-389c-4db0-8a4a-f6337f574e71",
+      "uuid": "9bad23aa-43f1-469b-83e9-bfe2df48b9d2",
       "importer": "sprite-frame",
-      "rawTextureUuid": "cd88f1f6-e4ce-4132-b43b-e195410d7704",
+      "rawTextureUuid": "857176d3-1a5f-4319-9cf2-3087871c1d52",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

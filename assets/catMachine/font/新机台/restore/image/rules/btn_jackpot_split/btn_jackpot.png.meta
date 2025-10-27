@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "c8caa7f1-46ce-46e7-8a75-fa73a098b80f",
+  "uuid": "f726ea38-9658-4f86-8763-03030df573a8",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "btn_jackpot": {
       "ver": "1.0.6",
-      "uuid": "43f92941-edad-46a4-858a-931496755e75",
+      "uuid": "8d07db74-30a9-4044-9dbf-c2a2153a189a",
       "importer": "sprite-frame",
-      "rawTextureUuid": "c8caa7f1-46ce-46e7-8a75-fa73a098b80f",
+      "rawTextureUuid": "f726ea38-9658-4f86-8763-03030df573a8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "6d4cd4dd-b442-4790-986d-9d9d084675e6",
+  "uuid": "5a005361-9633-4199-a17a-98e1096a1488",
   "importer": "asset",
-  "rawTextureUuid": "076b206f-e827-407d-ae69-28f8a61238bc",
+  "rawTextureUuid": "42f19638-c65b-41df-900f-092ddc3047b8",
   "size": {
     "width": 256,
     "height": 256
@@ -11,9 +11,9 @@
   "subMetas": {
     "LHJ_effect_touxiang.png": {
       "ver": "1.0.6",
-      "uuid": "a48428bb-b56e-4394-83b6-f3688ef0139a",
+      "uuid": "a3949588-3723-4cc1-93a1-0c8f6ab8bfce",
       "importer": "sprite-frame",
-      "rawTextureUuid": "076b206f-e827-407d-ae69-28f8a61238bc",
+      "rawTextureUuid": "42f19638-c65b-41df-900f-092ddc3047b8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

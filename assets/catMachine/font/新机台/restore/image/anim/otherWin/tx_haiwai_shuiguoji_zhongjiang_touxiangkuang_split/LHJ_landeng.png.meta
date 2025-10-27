@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "7761b6d8-afe5-48e5-a1f4-756e7eeebe22",
+  "uuid": "c9cb788c-de3b-44ae-93db-17ef8cd730f3",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "LHJ_landeng": {
       "ver": "1.0.6",
-      "uuid": "9cc8a4b9-380d-4fd7-8470-016aa6a1d8de",
+      "uuid": "03ed9616-908e-4135-a20f-60b33fffe9be",
       "importer": "sprite-frame",
-      "rawTextureUuid": "7761b6d8-afe5-48e5-a1f4-756e7eeebe22",
+      "rawTextureUuid": "c9cb788c-de3b-44ae-93db-17ef8cd730f3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

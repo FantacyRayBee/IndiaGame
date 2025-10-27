@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "bb99984d-a4a8-4f20-8c43-e21848e02e7b",
+  "uuid": "e6824e0a-6cbb-4aaf-a900-ee6b7901319f",
   "importer": "asset",
-  "rawTextureUuid": "017669b2-11f9-446a-b373-5be80f22f49e",
+  "rawTextureUuid": "6344db78-dc9b-49b4-b032-f8dd92d64d42",
   "size": {
     "width": 104,
     "height": 107
@@ -11,9 +11,9 @@
   "subMetas": {
     "g_close.png": {
       "ver": "1.0.6",
-      "uuid": "d6bb6999-a16b-4ac0-88d8-c50263772dbe",
+      "uuid": "1d51460e-1191-41d1-8a23-893f2d28be16",
       "importer": "sprite-frame",
-      "rawTextureUuid": "017669b2-11f9-446a-b373-5be80f22f49e",
+      "rawTextureUuid": "6344db78-dc9b-49b4-b032-f8dd92d64d42",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

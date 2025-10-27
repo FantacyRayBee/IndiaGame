@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "bc01e0ad-738b-43c8-865b-5bb658203974",
+  "uuid": "beae864a-a4a4-4d26-b5a0-76bbbb8e1bed",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "SGJ_free_bg": {
       "ver": "1.0.6",
-      "uuid": "b122c4ae-a529-428e-b0f5-6e4a88f7eea4",
+      "uuid": "e1e0acac-4649-4026-82c3-e8b161e7da3e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "bc01e0ad-738b-43c8-865b-5bb658203974",
+      "rawTextureUuid": "beae864a-a4a4-4d26-b5a0-76bbbb8e1bed",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

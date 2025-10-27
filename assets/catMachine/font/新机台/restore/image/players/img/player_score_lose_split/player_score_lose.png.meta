@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "6691af8d-9e8d-4998-a6d1-f3d20ef1429d",
+  "uuid": "10d3536b-b202-4e54-85a3-5760b9e40054",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "player_score_lose": {
       "ver": "1.0.6",
-      "uuid": "2eae689a-71b9-48a7-842e-d9db56179503",
+      "uuid": "917c822c-3498-4905-bad6-eee0a5d41d9a",
       "importer": "sprite-frame",
-      "rawTextureUuid": "6691af8d-9e8d-4998-a6d1-f3d20ef1429d",
+      "rawTextureUuid": "10d3536b-b202-4e54-85a3-5760b9e40054",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

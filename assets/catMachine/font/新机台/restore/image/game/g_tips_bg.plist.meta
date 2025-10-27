@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "00802340-49b4-4f82-90cd-4018d2a784fb",
+  "uuid": "b33134a4-b588-4ae9-93aa-cb23afaf8fda",
   "importer": "asset",
-  "rawTextureUuid": "034d1262-d25e-4d55-8f67-e7cbae223245",
+  "rawTextureUuid": "d330f88d-cb3c-497f-a92c-79a9a0ca96f9",
   "size": {
     "width": 891,
     "height": 108
@@ -11,9 +11,9 @@
   "subMetas": {
     "g_tips_bg.png": {
       "ver": "1.0.6",
-      "uuid": "04343171-f51a-4317-aaca-f5fa3c84905f",
+      "uuid": "bea47386-5645-478b-b8ab-0866e88fb74f",
       "importer": "sprite-frame",
-      "rawTextureUuid": "034d1262-d25e-4d55-8f67-e7cbae223245",
+      "rawTextureUuid": "d330f88d-cb3c-497f-a92c-79a9a0ca96f9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

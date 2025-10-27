@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "88279330-35cb-4dc1-bea4-bd205b3d3956",
+  "uuid": "029bba11-62f0-4835-ae9d-0cb1f5ff0785",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "jackpot_grand": {
       "ver": "1.0.6",
-      "uuid": "2f80455d-7ff6-4522-862c-d04123940b4c",
+      "uuid": "e1415036-6bae-45d4-bca4-eafe0626e859",
       "importer": "sprite-frame",
-      "rawTextureUuid": "88279330-35cb-4dc1-bea4-bd205b3d3956",
+      "rawTextureUuid": "029bba11-62f0-4835-ae9d-0cb1f5ff0785",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

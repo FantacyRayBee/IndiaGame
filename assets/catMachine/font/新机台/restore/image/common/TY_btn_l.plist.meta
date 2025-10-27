@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "037974bb-6977-4c28-8fa9-5c2f2a41c8e2",
+  "uuid": "586c3639-bdf8-47fb-8857-81556da4beaf",
   "importer": "asset",
-  "rawTextureUuid": "357b2ef1-912e-4dd3-baea-6fbeedbf26d8",
+  "rawTextureUuid": "424e1dce-fcdf-4f65-9110-957c053b070e",
   "size": {
     "width": 224,
     "height": 72
@@ -11,9 +11,9 @@
   "subMetas": {
     "TY_btn_l.png": {
       "ver": "1.0.6",
-      "uuid": "e59dd772-5c03-40cb-943a-046568ca5ca4",
+      "uuid": "6541a465-5538-4cb2-afed-8f3c3e660ede",
       "importer": "sprite-frame",
-      "rawTextureUuid": "357b2ef1-912e-4dd3-baea-6fbeedbf26d8",
+      "rawTextureUuid": "424e1dce-fcdf-4f65-9110-957c053b070e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "5576a96c-6749-4b9a-9f19-581c1182eff6",
+  "uuid": "b42734bc-56d0-41e2-b715-1341db1484b3",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "mgdb_bigwin4": {
       "ver": "1.0.6",
-      "uuid": "04248374-ec30-4930-a5f3-8e65d48b613c",
+      "uuid": "38a4a90b-21b4-4e18-9ebd-dd45fa0f59cd",
       "importer": "sprite-frame",
-      "rawTextureUuid": "5576a96c-6749-4b9a-9f19-581c1182eff6",
+      "rawTextureUuid": "b42734bc-56d0-41e2-b715-1341db1484b3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

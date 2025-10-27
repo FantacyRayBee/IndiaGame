@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "7f02727b-14ff-41b4-8e40-e92c3fc9fdcc",
+  "uuid": "e2e004eb-ceec-4344-9c47-6035bdb79b08",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "tx_new_duanwei_bg": {
       "ver": "1.0.6",
-      "uuid": "4be382d2-65b3-4d08-8781-61a795509abc",
+      "uuid": "a7df3ab3-9b99-4180-8a68-30881342cadd",
       "importer": "sprite-frame",
-      "rawTextureUuid": "7f02727b-14ff-41b4-8e40-e92c3fc9fdcc",
+      "rawTextureUuid": "e2e004eb-ceec-4344-9c47-6035bdb79b08",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

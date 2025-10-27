@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "eb75739a-d01c-4523-b71b-22c5c3f5399d",
+  "uuid": "6b1a8c6c-44e1-4969-b166-015a9fdc4407",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "J_jackpot": {
       "ver": "1.0.6",
-      "uuid": "1ae5bcb9-99c5-4f58-8f95-7fb45682637c",
+      "uuid": "de6be069-4a4f-4cc3-aa12-a7cd650b1250",
       "importer": "sprite-frame",
-      "rawTextureUuid": "eb75739a-d01c-4523-b71b-22c5c3f5399d",
+      "rawTextureUuid": "6b1a8c6c-44e1-4969-b166-015a9fdc4407",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

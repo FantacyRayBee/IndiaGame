@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "3002ef64-3d02-4407-ae15-d06247b4961f",
+  "uuid": "385c3338-c6cc-4c33-b19f-0bd1af87bd83",
   "importer": "asset",
-  "rawTextureUuid": "d6b4ac12-5765-4be3-b863-4966be3e86c8",
+  "rawTextureUuid": "d12ca86c-52cb-4c8e-8145-7bb0c34c5019",
   "size": {
     "width": 128,
     "height": 128
@@ -11,9 +11,9 @@
   "subMetas": {
     "mhdb_jiemian.png": {
       "ver": "1.0.6",
-      "uuid": "9f6f69cf-8e71-42ea-9039-2fc8e5b3e566",
+      "uuid": "49cab28c-9a03-416d-a691-90d31728e70d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "d6b4ac12-5765-4be3-b863-4966be3e86c8",
+      "rawTextureUuid": "d12ca86c-52cb-4c8e-8145-7bb0c34c5019",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "c5929a8a-99c3-4c90-8952-78f5f580d9fb",
+  "uuid": "83d92111-40e9-4399-ab04-6a0cf6577a94",
   "importer": "asset",
-  "rawTextureUuid": "5b422bb4-6416-43a1-be66-46f2f4e30c97",
+  "rawTextureUuid": "95d45acd-ddee-45a9-b81f-a4cb665b0884",
   "size": {
     "width": 112,
     "height": 58
@@ -11,9 +11,9 @@
   "subMetas": {
     "player_mingzi.png": {
       "ver": "1.0.6",
-      "uuid": "442c4bea-e203-44d6-8231-32e27da0c32b",
+      "uuid": "1f8dee48-e868-4c7e-9283-d4d4c137459d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "5b422bb4-6416-43a1-be66-46f2f4e30c97",
+      "rawTextureUuid": "95d45acd-ddee-45a9-b81f-a4cb665b0884",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

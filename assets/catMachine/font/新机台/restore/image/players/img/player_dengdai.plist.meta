@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "93f9292c-179b-488d-9432-535b6278bd42",
+  "uuid": "10f5344b-1970-43ea-bc7c-62b42d6a282d",
   "importer": "asset",
-  "rawTextureUuid": "68119c88-972f-4580-985b-30441589e078",
+  "rawTextureUuid": "2311d939-44db-414f-9d4b-6bf53b83a063",
   "size": {
     "width": 140,
     "height": 140
@@ -11,9 +11,9 @@
   "subMetas": {
     "player_dengdai.png": {
       "ver": "1.0.6",
-      "uuid": "80bc8512-3f04-4524-98c8-118667036786",
+      "uuid": "82d15bf7-a13e-464e-a532-3eb5031bccdb",
       "importer": "sprite-frame",
-      "rawTextureUuid": "68119c88-972f-4580-985b-30441589e078",
+      "rawTextureUuid": "2311d939-44db-414f-9d4b-6bf53b83a063",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

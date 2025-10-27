@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "1a683013-84c3-4aae-8f96-8842b5757d7b",
+  "uuid": "148b5f74-0dd1-4b57-af16-ef0080eef2dd",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "tx_jz_caidai_00017": {
       "ver": "1.0.6",
-      "uuid": "33ddac34-64c4-4b66-9863-cf95d83fc186",
+      "uuid": "9f2a60bd-3c25-4ed6-a06e-e9ac5f590dfc",
       "importer": "sprite-frame",
-      "rawTextureUuid": "1a683013-84c3-4aae-8f96-8842b5757d7b",
+      "rawTextureUuid": "148b5f74-0dd1-4b57-af16-ef0080eef2dd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

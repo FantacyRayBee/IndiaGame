@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "79e32cd8-7cdf-4afb-aed8-70499d7c3b39",
+  "uuid": "58db8f67-e314-409a-88cb-f30ba1a08e52",
   "importer": "asset",
-  "rawTextureUuid": "650055f6-7b6f-412d-b932-bdcff4e0cc50",
+  "rawTextureUuid": "c7efa49a-51d9-4575-b5bd-10897e9baff2",
   "size": {
     "width": 512,
     "height": 256
@@ -11,9 +11,9 @@
   "subMetas": {
     "continue_free_times_1.png": {
       "ver": "1.0.6",
-      "uuid": "09310978-0e29-480f-9370-5d152778b8b9",
+      "uuid": "7e8b06dc-1c27-404e-aa72-88deb9442100",
       "importer": "sprite-frame",
-      "rawTextureUuid": "650055f6-7b6f-412d-b932-bdcff4e0cc50",
+      "rawTextureUuid": "c7efa49a-51d9-4575-b5bd-10897e9baff2",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

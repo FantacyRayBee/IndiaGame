@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "37c95b9d-df20-4639-9067-fc53f68ec13e",
+  "uuid": "f506716c-81f8-4478-970d-3465d5bf1054",
   "importer": "asset",
-  "rawTextureUuid": "282456c2-f3f7-4444-b394-6de77e72d0dd",
+  "rawTextureUuid": "cc543e72-0e2b-40c9-b8b5-2def2f3ac3ff",
   "size": {
     "width": 142,
     "height": 142
@@ -11,9 +11,9 @@
   "subMetas": {
     "Rs_bonus.png": {
       "ver": "1.0.6",
-      "uuid": "8903848e-db96-40f8-afcc-e582b75df3ba",
+      "uuid": "582e6a00-3442-421c-b3e0-363efa505e23",
       "importer": "sprite-frame",
-      "rawTextureUuid": "282456c2-f3f7-4444-b394-6de77e72d0dd",
+      "rawTextureUuid": "cc543e72-0e2b-40c9-b8b5-2def2f3ac3ff",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

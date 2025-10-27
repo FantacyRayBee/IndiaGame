@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "59446f45-4825-4c76-8a1e-1fec98dfb8a4",
+  "uuid": "e6b433f4-e455-4cb2-b5ae-cef1149ec091",
   "importer": "asset",
-  "rawTextureUuid": "81dde544-c9b3-4e2a-8a7e-6a3ddd3e7038",
+  "rawTextureUuid": "93dd59cb-da93-4378-b2b5-fcc86fe151fb",
   "size": {
     "width": 534,
     "height": 75
@@ -11,9 +11,9 @@
   "subMetas": {
     "win_txt_good_luck.png": {
       "ver": "1.0.6",
-      "uuid": "35699a11-035c-403e-adfa-bdce812134af",
+      "uuid": "e8accdfa-3b9e-4d56-9619-31495dbb500e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "81dde544-c9b3-4e2a-8a7e-6a3ddd3e7038",
+      "rawTextureUuid": "93dd59cb-da93-4378-b2b5-fcc86fe151fb",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

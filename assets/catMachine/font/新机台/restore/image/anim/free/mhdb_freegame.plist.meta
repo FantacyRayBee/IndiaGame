@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "72a02092-ec81-45d4-9dfb-947b624c82ba",
+  "uuid": "a335c0c6-0137-4c75-9fda-420a3b1581d2",
   "importer": "asset",
-  "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+  "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
   "size": {
     "width": 765,
     "height": 956
@@ -11,9 +11,9 @@
   "subMetas": {
     "btn_spin.png": {
       "ver": "1.0.6",
-      "uuid": "28814594-62b9-44b9-af6c-e4b1870c3127",
+      "uuid": "f2ddc8bc-b7bb-4009-9720-986c7e41c15d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+      "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -34,9 +34,9 @@
     },
     "icon_freegamekuang.png": {
       "ver": "1.0.6",
-      "uuid": "068fbbc4-0eb9-4270-89d9-0327981db860",
+      "uuid": "50b3e68c-42d7-43b5-91b6-c313d099c4aa",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+      "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -57,9 +57,9 @@
     },
     "icon_freespins.png": {
       "ver": "1.0.6",
-      "uuid": "02140021-ac7f-4b11-99f2-277a3f765707",
+      "uuid": "d6dd414e-075d-4ab7-b1ad-2177567e373f",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+      "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -80,9 +80,9 @@
     },
     "icon_start.png": {
       "ver": "1.0.6",
-      "uuid": "8cce45f6-b497-4015-8e31-a795a85d0d33",
+      "uuid": "e4c53a7d-6889-4e17-b39c-5a6d659faa79",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+      "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -103,9 +103,9 @@
     },
     "icon_youwin.png": {
       "ver": "1.0.6",
-      "uuid": "efbf5296-5d0f-418e-883a-40690e783b45",
+      "uuid": "a6d59c5c-0eb8-4f7d-974d-ffa34841f75a",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+      "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -126,9 +126,9 @@
     },
     "mhdb_freegame2_00000.png": {
       "ver": "1.0.6",
-      "uuid": "1beb6b7b-857d-4dca-a70c-a19f65a8f127",
+      "uuid": "6ef46154-ee41-4f91-9418-a9a80e8b927e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ad1377be-cec5-4781-be4c-e45467cc1d31",
+      "rawTextureUuid": "2d624c51-365e-4d80-a922-d515eb37dbbd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

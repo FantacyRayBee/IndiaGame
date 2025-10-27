@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "d06fc0ab-82b9-473f-81ef-88aba4c675f5",
+  "uuid": "f9bccca5-ffbb-4602-b632-359738846b42",
   "importer": "asset",
-  "rawTextureUuid": "9dc9911f-d2c3-443a-83aa-0a6b7e05e7d3",
+  "rawTextureUuid": "127c77a4-f17f-4fa0-a12a-daa5ad23cfba",
   "size": {
     "width": 485,
     "height": 105
@@ -11,9 +11,9 @@
   "subMetas": {
     "goldbg_BD.png": {
       "ver": "1.0.6",
-      "uuid": "b22f6009-6f11-4869-a600-801e6d6534f0",
+      "uuid": "ba221dc8-d6cf-4955-8e65-5a5e73f1ceb4",
       "importer": "sprite-frame",
-      "rawTextureUuid": "9dc9911f-d2c3-443a-83aa-0a6b7e05e7d3",
+      "rawTextureUuid": "127c77a4-f17f-4fa0-a12a-daa5ad23cfba",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

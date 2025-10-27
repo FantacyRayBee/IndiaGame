@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "96088075-3ea8-4383-8779-5398e66566a3",
+  "uuid": "e53b68ea-1ae0-43b2-ad49-cc5335614463",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "mhdb_epicwin3": {
       "ver": "1.0.6",
-      "uuid": "c8f9b5a9-8eb8-447d-9b1f-d27f814947f9",
+      "uuid": "d5f1e981-4fa1-4043-858f-026776de395e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "96088075-3ea8-4383-8779-5398e66566a3",
+      "rawTextureUuid": "e53b68ea-1ae0-43b2-ad49-cc5335614463",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "08d97fd0-24ff-4318-8e38-918b9c7468e0",
+  "uuid": "f92e0f46-524a-4ce0-acb5-71a04649784e",
   "importer": "asset",
-  "rawTextureUuid": "83c152ac-0617-4951-a8f3-715ff10d865d",
+  "rawTextureUuid": "294f7c4c-15bc-448f-a0ce-54711907fa91",
   "size": {
     "width": 62,
     "height": 96
@@ -11,9 +11,9 @@
   "subMetas": {
     "dialog_bg_2.png": {
       "ver": "1.0.6",
-      "uuid": "96a422f4-dfd0-4c6f-996f-b3df1e68bc97",
+      "uuid": "96db8ef4-2ba5-4cc7-a0ab-53b369579d73",
       "importer": "sprite-frame",
-      "rawTextureUuid": "83c152ac-0617-4951-a8f3-715ff10d865d",
+      "rawTextureUuid": "294f7c4c-15bc-448f-a0ce-54711907fa91",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

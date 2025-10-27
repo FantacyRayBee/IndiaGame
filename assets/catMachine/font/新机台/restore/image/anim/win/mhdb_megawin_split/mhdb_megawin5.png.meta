@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "63e2eb32-7aa3-4244-baea-b0f68bc469f4",
+  "uuid": "73c68830-62cf-4fee-b0ec-540b0a859d4e",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "mhdb_megawin5": {
       "ver": "1.0.6",
-      "uuid": "b60dc081-bae7-45cd-8ed2-585a6604b9e4",
+      "uuid": "f6e1d609-60e0-42b4-8adc-96ab7656afd9",
       "importer": "sprite-frame",
-      "rawTextureUuid": "63e2eb32-7aa3-4244-baea-b0f68bc469f4",
+      "rawTextureUuid": "73c68830-62cf-4fee-b0ec-540b0a859d4e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

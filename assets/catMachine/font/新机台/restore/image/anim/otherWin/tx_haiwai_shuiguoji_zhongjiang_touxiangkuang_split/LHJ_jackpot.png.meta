@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "26682a16-abd8-4feb-bcb3-fc886190d049",
+  "uuid": "a3d0c2e8-83fe-4343-b4be-b7bd19474114",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "LHJ_jackpot": {
       "ver": "1.0.6",
-      "uuid": "6a245c4b-bc43-4e46-a4e1-050b3b406158",
+      "uuid": "7e1e5116-7eb2-4fcc-81b9-2448ed1b74c1",
       "importer": "sprite-frame",
-      "rawTextureUuid": "26682a16-abd8-4feb-bcb3-fc886190d049",
+      "rawTextureUuid": "a3d0c2e8-83fe-4343-b4be-b7bd19474114",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
