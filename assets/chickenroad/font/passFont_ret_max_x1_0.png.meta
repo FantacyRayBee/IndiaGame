@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "4f84ebb9-a6f7-4cb2-ba8f-7c3be3ea1517",
+  "uuid": "2ddb6703-fd8b-49cf-8923-e37579e37677",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "passFont_ret_max_x1_0": {
       "ver": "1.0.6",
-      "uuid": "d5e9e030-47b5-47d8-bdd9-acf540a2df82",
+      "uuid": "8b73006e-a1bd-42a0-abdd-286fc377ce52",
       "importer": "sprite-frame",
-      "rawTextureUuid": "4f84ebb9-a6f7-4cb2-ba8f-7c3be3ea1517",
+      "rawTextureUuid": "2ddb6703-fd8b-49cf-8923-e37579e37677",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

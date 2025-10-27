@@ -17,12 +17,12 @@ cc.Class({
         this.bTouch = 0;
         this._winGold = 0;
         this.bActOver = false;
-        this.startIndex = Math.ceil(Math.random() * 24)-1;
+        this.startIndex = Math.ceil(Math.random() * 24) - 1;
         this.betStatus = true;
         this.is_can_ackClick = true;
         // this.bPMDRun = false;
         this.curUseAdapt = 1;       // 适配模式
-        this.singleBetNums = [100, 1000, 2000, 5000, 10000];        // 单注金额
+        this.singleBetNums = [50, 1000, 2000, 5000, 10000];        // 单注金额
         this.singleBet = this.singleBetNums[0];
         this.rotating = false;      // 旋转中
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
@@ -31,7 +31,7 @@ cc.Class({
 
     onLoad() {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_BENZ_GAME);
-        
+
         CommonFun.getInstance().addVerticalAcc();
         GlobalCfg.G_COMPONENTS.Audio.pauseMusic();
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -50,12 +50,21 @@ cc.Class({
         clearTimeout(this.runTime);
         clearTimeout(this.changeTime);
         clearTimeout(this.stopMusic);
-        clearTimeout(this.btnTime)
-        this.scheduleOnce = null;
-        this.unschedule(this.scheduleBetSpineTimeCallback);
+        clearTimeout(this.btnTime);
+        // ❌ 不要覆盖 scheduleOnce：this.scheduleOnce = null;
+        if (this.scheduleBetSpineTimeCallback) {
+            this.unschedule(this.scheduleBetSpineTimeCallback);
+        }
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_BENZ_GAME);
+        try {
+            cc.Tween.stopAllByTarget && cc.Tween.stopAllByTarget(this.node);
+            this.betNode && cc.Tween.stopAllByTarget(this.betNode);
+            this.nodeWinAnim && this.nodeWinAnim.node && cc.Tween.stopAllByTarget(this.nodeWinAnim.node);
+            this.nodePmdAnim && this.nodePmdAnim.node && cc.Tween.stopAllByTarget(this.nodePmdAnim.node);
+        } catch (e) {}
+        this.unscheduleAllCallbacks();
     },
 
     start() {
@@ -63,17 +72,17 @@ cc.Class({
         this.sendLoginReq();
     },
 
-    ReSetPos:function () {
+    ReSetPos: function () {
         let height = cc.winSize.height;
         let BetButton = cc.find('benz_Canvas/BetButton')
         let array = ['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100']
-        let pos = [cc.v2(-311,96),cc.v2(-208,96),cc.v2(-104,96),cc.v2(-1,96),cc.v2(102,96)]
-        if(height < 1400){
+        let pos = [cc.v2(-311, 96), cc.v2(-208, 96), cc.v2(-104, 96), cc.v2(-1, 96), cc.v2(102, 96)]
+        if (height < 1400) {
             for (let index = 0; index < array.length; index++) {
                 let btn = BetButton.getChildByName(array[index]);
                 btn.setPosition(pos[index]);
             }
-            BetButton.setPosition(cc.v2(0,-715))
+            BetButton.setPosition(cc.v2(0, -715))
             BetButton.getChildByName("btn_repeat").active = true;
             BetButton.getChildByName("btn_start").active = true;
             this.curUseAdapt = 0;
@@ -102,22 +111,21 @@ cc.Class({
         this.nodeWinAnim = cc.find('benz_Canvas/node_winAnim').getComponent(sp.Skeleton);
         this.nodePmdAnim = cc.find('benz_Canvas/node_pmd').getComponent(sp.Skeleton);
         this.labCount = [null,]
-        // this.sprGuang = [null,]
         for (let index = 1; index < 9; index++) {
             this.labCount[index] = cc.find('benz_Canvas/BetArea/btn_' + index + '/lab_count').getComponent(cc.Label);
-            // this.sprGuang[index] = cc.find('benz_Canvas/BetArea/btn_' + index + '/Background/k_guang');
             let btn_bet = cc.find('benz_Canvas/BetArea/btn_' + index)
             btn_bet.on(cc.Node.EventType.TOUCH_START, this.touchstart, this)
         }
         this.addClickTouch(['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100', 'btn_repeat', 'btn_start', 'btn_start1', 'btn_repeat1', 'btn_reset', 'btn_reset1', 'btn_collect', 'btn_collect1'], cc.find('BetButton', this.node), this);
         this.addClickTouch(['btn_back', 'btn_set'], this.node, this);
-        this.btn_add.node.on('click', this.btnClick, this);
+        this.btn_add.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
+
         this.node.on(cc.Node.EventType.TOUCH_START, this.touchstart, this);
         this.btnBet1 = cc.find('benz_Canvas/BetButton/btnBet_1');
         this.choiceBetButton(this.btnBet1.getComponent(cc.Button));
         this.betArr = [null, 0, 0, 0, 0, 0, 0, 0, 0];
-        this.betNum = [null, [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], 
-        [0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+        this.betNum = [null, [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
         this.rebetArr = []
         this.rebetNum = []
 
@@ -125,9 +133,9 @@ cc.Class({
     },
 
     btnClick: function (button) {
-        if(!this.is_can_ackClick){return;}
+        if (!this.is_can_ackClick) { return; }
         let btnName = button.node.name;
-        LoggerUtil.getInstance().log("///:",btnName);
+        LoggerUtil.getInstance().log("///:", btnName);
         if (btnName == "btn_back") {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             //退出游戏
@@ -137,35 +145,33 @@ cc.Class({
                 betCoin += this.betArr[index];
             }
             if (betCoin > 0) {
-                // CommonFun.getInstance().showMsgBox(this.tipsLabel[0], "YES_NO", () => {        
-                // }, false);
                 let call = []
-                if(!this.betStatus){
+                if (!this.betStatus) {
                     this.betArr = [null, 0, 0, 0, 0, 0, 0, 0, 0];
-                    this.betNum = [null, [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], 
-                    [0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+                    this.betNum = [null, [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
                 }
-                for (let index = 0; index < this.betArr.length-1; index++) {
+                for (let index = 0; index < this.betArr.length - 1; index++) {
                     call[index] = {
-                        Amount: self.betArr[index+1],
-                        type: index+1,
-                        AmountType: self.betNum[index+1],
+                        Amount: self.betArr[index + 1],
+                        type: index + 1,
+                        AmountType: self.betNum[index + 1],
                     }
                 }
                 this.sendReqCtrl.exitGameReq(call);
             } else {
                 let call = []
-                for (let index = 0; index < this.betArr.length-1; index++) {
+                for (let index = 0; index < this.betArr.length - 1; index++) {
                     call[index] = {
-                        Amount: self.betArr[index+1],
-                        type: index+1,
-                        AmountType: self.betNum[index+1],
+                        Amount: self.betArr[index + 1],
+                        type: index + 1,
+                        AmountType: self.betNum[index + 1],
                     }
                 }
                 this.sendReqCtrl.exitGameReq(call);
             }
             return;
-        } 
+        }
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == 'btn_set') {
             let pab_setting = cc.instantiate(this.pab_setting);
@@ -201,12 +207,12 @@ cc.Class({
                 GlobalCfg.G_COMPONENTS.Audio.stopAll();
                 this.betFunc(true);
                 return;
-            } 
-            if(Number(this.labTotalWin.string)*100 == this.totalWinNum){
+            }
+            if (Number(this.labTotalWin.string) * 100 == this.totalWinNum) {
                 this.setBtnInteractableAndOutLineLabel(false, this.btnStart);
                 this.setBtnInteractableAndOutLineLabel(false, this.btnStart1);
-                this.countDown(this.labTotalWin,0,2);
-                if(Number(this.labTotalWin.string) > 0){
+                this.countDown(this.labTotalWin, 0, 2);
+                if (Number(this.labTotalWin.string) > 0) {
                     this.playGameSound("Sound/D_STAR")
                 }
             }
@@ -217,30 +223,30 @@ cc.Class({
                 GlobalCfg.G_COMPONENTS.Audio.stopAll();
                 this.betFunc(true);
                 return;
-            } 
-            if(Number(this.labTotalWin.string)*100 == this.totalWinNum){
+            }
+            if (Number(this.labTotalWin.string) * 100 == this.totalWinNum) {
                 this.setBtnInteractableAndOutLineLabel(false, this.btnStart);
                 this.setBtnInteractableAndOutLineLabel(false, this.btnStart1);
-                this.countDown(this.labTotalWin,0,2);
-                if(Number(this.labTotalWin.string) > 0){
+                this.countDown(this.labTotalWin, 0, 2);
+                if (Number(this.labTotalWin.string) > 0) {
                     this.playGameSound("Sound/D_STAR")
                 }
             }
         } else if (btnName == 'btn_add') {
             CommonFun.getInstance().showNewShop();
         }
-        else if(btnName == 'btn_reset1' || btnName == 'btn_reset'){
+        else if (btnName == 'btn_reset1' || btnName == 'btn_reset') {
             this.returnCoin();
             this.reSetData();
         }
-        else if(btnName == 'btn_collect' || btnName == 'btn_collect1'){
+        else if (btnName == 'btn_collect' || btnName == 'btn_collect1') {
             this.collectCoin();
         }
         this.is_can_ackClick = false;
-        this.btnTime = setTimeout(()=>{this.is_can_ackClick = true;}, 300);
+        this.btnTime = setTimeout(() => { this.is_can_ackClick = true; }, 300);
     },
 
-    returnCoin:function (){
+    returnCoin: function () {
         let count = 0;
         for (let i = 1; i < this.betArr.length; i++) {
             count += this.betArr[i];
@@ -250,19 +256,19 @@ cc.Class({
         this.labCoin.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
     },
 
-    betFunc:function (bBet) {
+    betFunc: function (bBet) {
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibenzbmw"] == true) { //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false);
             return
-        } 
-        if(bBet){
+        }
+        if (bBet) {
             let BetCoin = 0;
             for (let index = 1; index < this.betArr.length; index++) {
                 BetCoin += this.betArr[index];
             }
-            if(BetCoin!=0){
+            if (BetCoin != 0) {
                 this.reStart();
                 this.callReq();
                 return;
@@ -273,7 +279,7 @@ cc.Class({
         for (let index = 1; index < this.rebetArr.length; index++) {
             reBetCoin += this.rebetArr[index];
         }
-        if(reBetCoin > 0 && reBetCoin <= GlobalCfg.USER_DATAS.userDiamond){
+        if (reBetCoin > 0 && reBetCoin <= GlobalCfg.USER_DATAS.userDiamond) {
             for (let i = 1; i < this.rebetNum.length; i++) {
                 this.betArr[i] += this.rebetArr[i];
                 for (let j = 0; j < this.rebetNum[i].length; j++) {
@@ -281,43 +287,45 @@ cc.Class({
                 }
             }
             for (let index = 1; index < 9; index++) {
-                if(this.rebetArr[index]!=0){
-                    this.betTypeAnim(index,this.rebetArr[index]);
+                if (this.rebetArr[index] != 0) {
+                    this.betTypeAnim(index, this.rebetArr[index]);
                 }
             }
             this.setBtnInteractableAndOutLineLabel(false, this.btnRepeat);
             this.setBtnInteractableAndOutLineLabel(false, this.btnRepeat1);
             this.showBtnReset(true);
-        } else if(reBetCoin > GlobalCfg.USER_DATAS.userDiamond){
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-                else {
-                    CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }, false);
-                }
-                return;
-        } else if(reBetCoin == 0) {
-            if(!bBet){
+        } else if (reBetCoin > GlobalCfg.USER_DATAS.userDiamond) {
+            if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+            }
+            else {
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
+                    CommonFun.getInstance().showSmallAddCash()
+                }, false);
+            }
+            return;
+        } else if (reBetCoin == 0) {
+            if (!bBet) {
                 let num1 = this.betArr[1] + this.singleBet;
-                if(num1 > 1000000){
+                if (num1 > 1000000) {
                     CommonFun.getInstance().showTips("Upper limit of betting amount!");
                     return
                 }
             }
             let num = this.singleBet * 8;
-            if(GlobalCfg.USER_DATAS.userDiamond >= num){
+            if (GlobalCfg.USER_DATAS.userDiamond >= num) {
                 for (let i = 1; i < this.betArr.length; i++) {
                     this.betArr[i] += this.singleBet;
                     this.betNum[i][this.betIndex] += this.singleBet;
                 }
                 for (let index = 1; index < this.betArr.length; index++) {
-                    this.betTypeAnim(index,this.singleBet);
+                    this.betTypeAnim(index, this.singleBet);
                 }
                 this.showBtnReset(true);
-            }else{
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            } else {
+                if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                }
                 else {
                     CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
                         CommonFun.getInstance().showSmallAddCash()
@@ -326,13 +334,9 @@ cc.Class({
                 return;
             }
         }
-        // if(bBet){
-        //     this.reStart();
-        //     this.callReq();
-        // }
     },
 
-    reStart: function(){
+    reStart: function () {
         this.betStatus = false;
         for (let index = 1; index < 9; index++) {
             let btn_bet = cc.find('benz_Canvas/BetArea/btn_' + index).getComponent(cc.Button)
@@ -345,14 +349,14 @@ cc.Class({
         this.showBtnReset(false);
     },
 
-    setBtnInteractableAndOutLineLabel:function (bool, button){
-        if(!button) return;
+    setBtnInteractableAndOutLineLabel: function (bool, button) {
+        if (!button) return;
         button.interactable = bool;
         button.target.getChildByName('Label').getComponent(cc.LabelOutline).enabled = bool;
     },
 
     // 监听错误消息
-    checkWebMsgError: function(webData, target) {
+    checkWebMsgError: function (webData, target) {
         let self = target;
         var msgId = webData.msgCode;
         var notify = webData.msgData;
@@ -370,8 +374,8 @@ cc.Class({
         if (msgId === "gameservice.login") {
             let msg = result.message;
             CommonFun.getInstance().showMsgBox(msg, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);   
-                CommonFun.getInstance().decVerticalAcc();        
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
+                CommonFun.getInstance().decVerticalAcc();
             }, false);
         } else if (msgId === "gameservice.call") {
             this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
@@ -381,16 +385,15 @@ cc.Class({
             if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
                 if (result.result == 57) {
                     CommonFun.getInstance().showDiversionFreeTP(() => {
-                        // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
-                        CommonFun.getInstance().decVerticalAcc(); 
+                        CommonFun.getInstance().decVerticalAcc();
                     });
                 }
                 else {
-                    CommonFun.getInstance().showTips(result.message);    
+                    CommonFun.getInstance().showTips(result.message);
                 };
             }
             else {
-                CommonFun.getInstance().showTips(result.message); 
+                CommonFun.getInstance().showTips(result.message);
             };
         } else {
             CommonFun.getInstance().showTips(result.message);
@@ -411,33 +414,29 @@ cc.Class({
             self.refreshJackPot(notify)
         } else if (msgId == "gameservice.exit") {
             self.outgamenotify()
-        } else if (msgId == "gameservice.updatecoinnotify"){
+        } else if (msgId == "gameservice.updatecoinnotify") {
             if (self.DisplayName == notify.userinfo.DisplayName) {
                 let betCoin = 0
                 for (let index = 1; index < self.betArr.length; index++) {
                     betCoin += self.betArr[index];
                 }
-                if(betCoin != 0 && !self.betStatus){
+                if (betCoin != 0 && !self.betStatus) {
                     GlobalCfg.USER_DATAS.userDiamond = notify.userinfo.Diamond;
                     let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
                     self.labCoin.string = num;
-                }else{
+                } else {
                     GlobalCfg.USER_DATAS.userDiamond = notify.userinfo.Diamond - betCoin;
                     let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
                     self.labCoin.string = num;
                 }
             };
         }
-        // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
-        //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
-        //     CommonFun.getInstance().decVerticalAcc();
-        // }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
             CommonFun.getInstance().decVerticalAcc();
         }
     },
-    
+
 
     login: function (notify) {
         this.sendReqCtrl.gameSceneReq();
@@ -453,7 +452,7 @@ cc.Class({
         this.setBetLabel();
     },
 
-    setBetLabel:function(){
+    setBetLabel: function () {
         let BetButton = this.node.getChildByName('BetButton');
         let array = ['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100'];
         for (let i = 0; i < array.length; i++) {
@@ -472,92 +471,89 @@ cc.Class({
     touchstart: function (event) {
         let name = event.currentTarget.name;
         let types = null;
-        if (name == "btn_1") {
-            types = 1;
-        } else if (name == "btn_2") {
-            types = 2;
-        } else if (name == "btn_3") {
-            types = 3;
-        } else if (name == "btn_4") {
-            types = 4;
-        } else if (name == "btn_5") {
-            types = 5;
-        } else if (name == "btn_6") {
-            types = 6;
-        } else if (name == "btn_7") {
-            types = 7;
-        } else if (name == "btn_8") {
-            types = 8;
-        }else if(name == "benz_Canvas"){
-            this.collectCoin();
+        if (name == "btn_1")       types = 1;
+        else if (name == "btn_2")  types = 2;
+        else if (name == "btn_3")  types = 3;
+        else if (name == "btn_4")  types = 4;
+        else if (name == "btn_5")  types = 5;
+        else if (name == "btn_6")  types = 6;
+        else if (name == "btn_7")  types = 7;
+        else if (name == "btn_8")  types = 8;
 
-            return
-        }
+        if (types == null) return; // 点击到其他区域一律忽略（不再触发 collectCoin）
+
         if (this.betStatus) {
-            this.playGameSound('Sound/s' + types)
-            if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibenzbmw"] == true) { //未曾充值
+            this.playGameSound('Sound/s' + types);
+            if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibenzbmw"] == true) {
                 CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
-                return
+                return;
             } else if (this.singleBet > GlobalCfg.USER_DATAS.userDiamond) {
-                // if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                //     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-                // else {
-                    CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }, false);
-                // }
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
+                    CommonFun.getInstance().showSmallAddCash()
+                }, false);
             } else {
                 let num = this.betArr[types] + this.singleBet;
-                if(num > 1000000){
+                if (num > 1000000) {
                     CommonFun.getInstance().showTips("Upper limit of betting amount!");
-                    return
+                    return;
                 }
                 this.betNum[types][this.betIndex] += this.singleBet;
                 this.betArr[types] += this.singleBet;
-                this.betTypeAnim(types, this.singleBet)
+                this.betTypeAnim(types, this.singleBet);
             }
             let count = 0;
-            for (let i = 1; i < this.betArr.length; i++) {
-                count += this.betArr[i];
-            }
-            let type = count > 0 ? true : false;
-            this.showBtnReset(type);
+            for (let i = 1; i < this.betArr.length; i++) count += this.betArr[i];
+            this.showBtnReset(count > 0);
         } else {
-            LoggerUtil.getInstance().log("游戏未结束")
+            LoggerUtil.getInstance().log("游戏未结束");
         }
     },
 
-    collectCoin: function () {
-        let bActable = false;
-        if(this.btnStart.node.active){
-            bActable = this.btnStart.interactable;
-        }else{
-            bActable = this.btnStart1.interactable;
+    _canCollectNow() {
+        const btnCollectVisible = this.curUseAdapt == 0
+            ? (this.btnCollect && this.btnCollect.node && this.btnCollect.node.active)
+            : (this.btnCollect1 && this.btnCollect1.node && this.btnCollect1.node.active);
+        // 只有显示了 Collect 按钮、且不在旋转中、且当前处于结算阶段（betStatus==false）才允许收分
+        return !!btnCollectVisible && !this.rotating && !this.betStatus;
+    },
+
+    // 零中奖/异常统一收尾（一定会触发 countDown -> reSetData）
+    _endRoundNoWin() {
+        this.bActOver = true;
+        this.rotating = false;
+
+        // UI
+        this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
+        this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
+        this.showBtnCollect(false);
+
+        // 确保总赢额清 0，避免上局残留
+        this._winGold = 0;
+        this.totalWinNum = 0;
+        if (this.labTotalWin && cc.isValid(this.labTotalWin.node)) {
+            this.labTotalWin.string = '0';
         }
-        if (Number(this.labTotalWin.string)*100 == this.totalWinNum && bActable && !this.betStatus){
+
+        // 用普通分支把余额同步显示，并在完成时 reSetData
+        this.countDown(this.labCoin, GlobalCfg.USER_DATAS.userDiamond);
+    },
+
+    collectCoin: function () {
+        if (!this._canCollectNow()) return;
+
+        const bActable = this.btnStart.node.active ? this.btnStart.interactable : this.btnStart1.interactable;
+        if (Number(this.labTotalWin.string) * 100 == this.totalWinNum && bActable && !this.betStatus) {
             GlobalCfg.G_COMPONENTS.Audio.stopAll();
             this.setBtnInteractableAndOutLineLabel(false, this.btnStart);
             this.setBtnInteractableAndOutLineLabel(false, this.btnStart1);
             this.countDown(this.labTotalWin, 0, 2);
-            if(Number(this.labTotalWin.string) > 0){
+            if (Number(this.labTotalWin.string) > 0) {
                 this.playGameSound("Sound/D_STAR");
             }
             this.showBtnCollect(false);
         }
-        if (this.bActOver && this.nodeWinAnim.node.active && !this.betStatus) {
-            this.bTouch = 1;
-            this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-            this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-            this.labTotalWin.string = this.totalWinNum/100;
-            this.nodeWinAnim.node.active = false;
-            GlobalCfg.G_COMPONENTS.Audio.stopAll();
-            if(this.totalWinNum > 0){
-                this.showBtnCollect(true);
-            }
-        }
-        
     },
 
     showBtnReset: function (type) {
@@ -581,7 +577,7 @@ cc.Class({
     },
 
     showBtnCollect: function (bool) {
-        if(bool == true && this.rotating == false){
+        if (bool == true && this.rotating == false) {
             if (this.curUseAdapt == 0) {
                 this.btnCollect.node.active = true;
                 this.btnStart.node.active = false;
@@ -603,7 +599,7 @@ cc.Class({
     betTypeAnim: function (type, amount) {
         if (type) {
             let betAreaPos = [null, cc.v2(264, -88), cc.v2(92, -88), cc.v2(-82, -88), cc.v2(-254, -88),
-                cc.v2(264, 86), cc.v2(92, 86), cc.v2(-82, 86), cc.v2(-254, 86)
+            cc.v2(264, 86), cc.v2(92, 86), cc.v2(-82, 86), cc.v2(-254, 86)
             ]
             GlobalCfg.USER_DATAS.userDiamond -= amount;
             let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
@@ -617,7 +613,6 @@ cc.Class({
             cc.tween(pabWinLab)
                 .to(1, {
                     position: cc.v2(pos.x, pos.y + 60)
-                    // opacity: 220
                 })
                 .call(() => {
                     pabWinLab.destroy()
@@ -648,7 +643,7 @@ cc.Class({
             bundle.load(audioClipUrl, cc.AudioClip, (err1, audioClip) => {
                 if (!err1) {
                     func && func(audioClip, target);
-                } 
+                }
                 else {
                     LoggerUtil.getInstance().error(err1);
                 };
@@ -665,25 +660,39 @@ cc.Class({
             btn_betSpr.active = true;
         }
         let call = []
-        for (let index = 0; index < this.betArr.length-1; index++) {
+        for (let index = 0; index < this.betArr.length - 1; index++) {
             call[index] = {
-                Amount: self.betArr[index+1],
-                type: index+1,
-                AmountType: self.betNum[index+1],
+                Amount: self.betArr[index + 1],
+                type: index + 1,
+                AmountType: self.betNum[index + 1],
             }
         }
-        
+
         this.rebetArr = this.betArr.slice(0)
         this.rebetNum = this.betNum.slice(0)
         this.sendReqCtrl.sendCallReq(call)
     },
 
     callNotify: function (notify) {
+        // --- 服务端数据兜底校验 ---
+        LoggerUtil.getInstance().log('[BENZ notify]', JSON.stringify({
+            AllAmount: notify && notify.AllAmount,
+            Diamond: notify && notify.Userinfo && notify.Userinfo.Diamond,
+            WinLen: notify && Array.isArray(notify.Win) ? notify.Win.length : 'NA',
+            GameSceneLen: notify && Array.isArray(notify.GameScene) ? notify.GameScene.length : 'NA',
+            PlayType: notify && notify.PlayType
+        }));
+        if (!notify || typeof notify.AllAmount !== 'number' || !notify.Userinfo || typeof notify.Userinfo.Diamond !== 'number') {
+            LoggerUtil.getInstance().error('[BENZ] bad notify payload, force end no-win');
+            this._endRoundNoWin();
+            return;
+        }
+
         this.rotating = true;
         this.totalWinNum = notify.AllAmount;
         GlobalCfg.USER_DATAS.userDiamond = notify.Userinfo.Diamond
-        let winArr = notify.Win;
-        let winIndexArr = notify.GameScene;
+        let winArr = notify.Win || [];
+        let winIndexArr = (notify.GameScene || []).slice();
         let playType = notify.PlayType;
         winIndexArr.sort(function (m, n) {
             if (m < n) return -1
@@ -693,13 +702,13 @@ cc.Class({
 
         if (winArr.length == 1) {
             let index = this.startIndex - winIndexArr[0];
-            let num = index > 0 ?  96 - Math.abs(index) : 96 + Math.abs(index)
+            let num = index > 0 ? 96 - Math.abs(index) : 96 + Math.abs(index)
             this.runAct(num)
-        } 
+        }
         else if (playType == 4) {               //点兵点将*3
             this.paintedEggDBDJ(winIndexArr)
-            this.playGameSound('Sound/w1',true)
-        } 
+            this.playGameSound('Sound/w1', true)
+        }
         else if (playType == 5) {               //开火车
             let num1 = winIndexArr[2];
             if (winIndexArr.indexOf(1) != -1 && winIndexArr.indexOf(2) == -1) {
@@ -709,37 +718,37 @@ cc.Class({
                 num1 = 0
             }
             let index = 0 - num1
-            let num = index > 0 ?  96 - Math.abs(index) : 96 + Math.abs(index)
+            let num = index > 0 ? 96 - Math.abs(index) : 96 + Math.abs(index)
             this.paintedEggKHC(num)
-            this.playGameSound('Sound/w1',true)
-        } 
+            this.playGameSound('Sound/w1', true)
+        }
         else if (playType == 6) {               //点兵点将*6
             this.paintedEggDBDJ(winIndexArr)
-            this.playGameSound('Sound/w2',true)
-        } 
+            this.playGameSound('Sound/w2', true)
+        }
         else if (playType == 7) {               //满天星
             this.paintedEggMTX(winIndexArr)
-            this.playGameSound('Sound/w2',true)
-        } 
+            this.playGameSound('Sound/w2', true)
+        }
         else if (playType == 8) {               //大满贯
             this.paintedEggDMG(winIndexArr)
-            this.playGameSound('Sound/w9',true)
+            this.playGameSound('Sound/w9', true)
         }
-        if(winArr.length == 1){
+        if (winArr.length == 1) {
             this.playPmdAnim("pao")
         }
-        else{
+        else {
             this.playPmdAnim("shan")
         }
     },
-
     runAct: function (runResult) {
         let runNum = 0;
-        let addNum = 1
+        let addNum = 1;
         let musicIndex = 1;
         this.loopTime = 0;
         let logoLength = this.dataConfig.logoArr.length;
-        this.playGameSound('Sound/runact')
+        this.playGameSound('Sound/runact');
+
         this.loop4 = function () {
             var that = this;
             clearTimeout(this.runTime);
@@ -752,89 +761,129 @@ cc.Class({
         };
 
         this.init4 = function () {
-            if (cc.isValid(this.node)) {
-                if (this.startIndex >= logoLength) {
-                    this.startIndex = 0;
-                }
-                if(musicIndex > 8){
-                    musicIndex = 1;
-                }
-                for (let index = 0; index < 5; index++) {
-                    if (index <= runNum) {
-                        let jndex = this.startIndex - index;
-                        let start = jndex < 0 ? logoLength+this.startIndex : this.startIndex;
-                        this.dataConfig.changeLogo(start - index, true)
-                        this.dataConfig.setLogoOpacity(start - index, 255 - index * 60)
-                        if(index > 3){
-                            this.dataConfig.changeLogo(start - index, false)
-                        }
-                    } else if(addNum == -1) {
-                        let jndex = this.startIndex - index;
-                        let start = jndex < 0 ? logoLength+this.startIndex : this.startIndex;
-                        this.dataConfig.changeLogo(start - index, false)
-                    }
-                }
-                if (runNum >= runResult - 5) {
-                    runNum = 5;
-                    addNum = -1
-                } else if (runNum == 0 && addNum == -1) {
-                    this.bActOver = true;
-                    if(this.totalWinNum > 0){
-                        this.dataConfig.setLogoOpacity(this.startIndex,255,true)
-                        this.rotating = false;
-                        let type = this.dataConfig.getType(this.startIndex)
-                        let _str = this.getTypeStr(type);
-                        this.playGameSound('Sound/'+_str)
-                        this.scheduleOnce(()=>{
-                            this.playWinAnim(_str)
-                        },0.8)
-                    }else{
-                        this.playGameSound('Sound/meizhongjiang');
-                        this.dataConfig.setLogoOpacity(this.startIndex,255,true);
-                        this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-                        this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-                        this.collectCoin();
-                    }
-                    return;
-                }
-                let arr = [null,300,200,100,50,16]
-                if(runNum < 6 && runNum > 0 && addNum == -1){
-                    this.loopTime = arr[runNum];
-                }else if(runNum < 6 && runNum > 0 && addNum == 1){
-                    this.loopTime = arr[runNum];
-                }else{
-                    this.loopTime = 16;
-                }
-                musicIndex++
-                this.startIndex++
-                runNum += addNum
-                this.loop4();
+            if (!cc.isValid(this.node)) return;
+
+            if (this.startIndex >= logoLength) {
+                this.startIndex = 0;
             }
+            if (musicIndex > 8) musicIndex = 1;
+
+            for (let index = 0; index < 5; index++) {
+                if (index <= runNum) {
+                    let jndex = this.startIndex - index;
+                    let start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
+                    this.dataConfig.changeLogo(start - index, true);
+                    this.dataConfig.setLogoOpacity(start - index, 255 - index * 60);
+                    if (index > 3) {
+                        this.dataConfig.changeLogo(start - index, false);
+                    }
+                } else if (addNum == -1) {
+                    let jndex = this.startIndex - index;
+                    let start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
+                    this.dataConfig.changeLogo(start - index, false);
+                }
+            }
+
+            if (runNum >= runResult - 5) {
+                runNum = 5;
+                addNum = -1;
+            } else if (runNum == 0 && addNum == -1) {
+                this.bActOver = true;
+                if (this.totalWinNum > 0) {
+                    // ✅ 有中奖
+                    this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
+                    this.rotating = false;
+                    let type = this.dataConfig.getType(this.startIndex);
+                    let _str = this.getTypeStr(type);
+                    this.playGameSound('Sound/' + _str);
+                    this.scheduleOnce(() => {
+                        this.playWinAnim(_str);
+                    }, 0.8);
+                } else {
+                    // ❌ 没中奖 —— 不要再调用 collectCoin()，直接走统一收尾，确保会进 countDown
+                    this.playGameSound('Sound/meizhongjiang');
+                    this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
+                    this.scheduleOnce(() => {
+                        if (!cc.isValid(this.node)) return;
+                        this._endRoundNoWin();   // ← 关键：第一把没中奖会从这里进 countDown
+                    }, 0.8);
+                }
+                return;
+            }
+            let arr = [null, 300, 200, 100, 50, 16];
+            if (runNum < 6 && runNum > 0 && addNum == -1) {
+                this.loopTime = arr[runNum];
+            } else if (runNum < 6 && runNum > 0 && addNum == 1) {
+                this.loopTime = arr[runNum];
+            } else {
+                this.loopTime = 16;
+            }
+            musicIndex++;
+            this.startIndex++;
+            runNum += addNum;
+            this.loop4();
         };
         this.init4();
     },
-    
-    playWinAnim: function (str) {
-        this.nodeWinAnim.node.active = true;
-        this.nodeWinAnim.setAnimation(0, str, false)
-        this.playGameSound('Sound/prize')
-        this.nodeWinAnim.setCompleteListener((trackEntry, loopCount) => {
-            let name = trackEntry.animation.name;
-            if (name == str) {
-                this.playGameSound('Sound/bg')
-                this.countDown(this.labTotalWin, this.totalWinNum, 1);
-                this.nodeWinAnim.node.active = false;
+
+
+    playWinAnim: function (animName) {
+        const skel = this.nodeWinAnim;         // sp.Skeleton
+        if (!skel || !skel.skeletonData) return;
+
+        skel.node.active = true;
+
+        // 清旧监听，避免多次叠加
+        skel.setCompleteListener(null);
+
+        // 统一的完成函数（带去重）
+        let done = false;
+        const finish = () => {
+            if (done) return;
+            done = true;
+            this.playGameSound('Sound/bg');
+            this.countDown(this.labTotalWin, this.totalWinNum, 1);  // ✅ 保证一定进来
+            skel.node.active = false;
+        };
+
+        // 先挂监听，再开播；并做“动画名一致”的保护
+        skel.setCompleteListener((trackEntry /*, loopCount*/ ) => {
+            const name = trackEntry && trackEntry.animation ? trackEntry.animation.name : animName;
+            if (name === animName) finish();
+        });
+
+        const entry = skel.setAnimation(0, animName, false);
+        this.playGameSound('Sound/prize');
+
+        // 兜底：按动画时长 + 偏移定时触发 finish，防止“监听丢失/早完成”
+        const dur = this._getSpineAnimDurationSafe(skel, animName);
+        this.scheduleOnce(() => finish(), Math.max(0.1, dur + 0.1));
+    },
+
+    _getSpineAnimDurationSafe(skel, animName) {
+        try {
+            const sd = skel.skeletonData;
+            const rd = sd && sd.getRuntimeData ? sd.getRuntimeData() : null;
+            if (rd) {
+                if (typeof rd.findAnimation === 'function') {
+                    const anim = rd.findAnimation(animName);
+                    if (anim && typeof anim.duration === 'number') return anim.duration;
+                }
+                if (Array.isArray(rd.animations)) {
+                    const anim = rd.animations.find(a => a && a.name === animName);
+                    if (anim && typeof anim.duration === 'number') return anim.duration;
+                }
             }
-        })
+        } catch (e) { }
+        return 0.8;
     },
 
     playPmdAnim: function (str) {
         this.nodePmdAnim.node.active = true;
         this.nodePmdAnim.setAnimation(0, str, true)
-        // this.runPMD()
     },
 
-    getTypeStr:function (type) {
+    getTypeStr: function (type) {
         let _str = ""
         switch (type) {
             case 1:
@@ -866,118 +915,118 @@ cc.Class({
         }
         return _str
     },
-
     countDown: function (StartNumNode, endNum, bMove) {
-        this.bTouch = 2; //表示正在倒数计
-        // 轮询递增递减
-        let StartNum = Number(StartNumNode.string) * 100;
-        this.loop5 = () => {
-            var that = this;
-            clearTimeout(this.changeTime);
-            this.changeTime = null;
-            this.changeTime = setTimeout(() => {
-                if (cc.isValid(this.node)) {
-                    that.init5();
-                }
-            }, 50);
-        };
+        LoggerUtil.getInstance().error("countDown : ", StartNumNode, endNum, bMove);
 
-        // 递增递减
-        this.init5 = function () {
-            if (cc.isValid(this.node)) {
-                if (this.bTouch == 1) { //表示停止
-                    this.bTouch = 0;    //表示既没有倒数也没有需要停止
-                    this.reSetData();
-                    return;
-                };
+        // --- 统一用“分”为单位并四舍五入，干掉浮点误差 ---
+        const toCents = (v) => Math.round(Number(v) * 100);
+        let StartNum = toCents(StartNumNode && StartNumNode.string ? StartNumNode.string : 0);
+        endNum = Math.round(endNum); // 服务器这边都是“分”，这里确保整数
 
-                let Num = Math.abs(StartNum - endNum);
-                if (Num >= 1000000) { 
+        this.bTouch = 2; // 表示正在倒数计
+
+        const stepOnce = () => {
+            // 组件被销毁时停止
+            if (!cc.isValid(this.node) || !StartNumNode || !cc.isValid(StartNumNode.node)) return;
+
+            // 外部要求立即停止（例如中奖动画被点跳过）
+            if (this.bTouch == 1) {
+                this.bTouch = 0;
+                this.reSetData();
+                return;
+            }
+
+            // 与目标差值（分）
+            let Num = Math.abs(StartNum - endNum);
+
+            // --- 这里是原先卡死的点：Num < 100 且 bMove != 0 时没有推进 ---
+            // 现在直接“贴合”到目标，保证能收敛退出。
+            if (Num < 100) {
+                StartNum = endNum;
+            } else {
+                // 大步长优先，快速收敛
+                if (Num >= 1000000) {
                     StartNum += StartNum < endNum ? 1000000 : -1000000;
-                }
-                else if (Num >= 100000) { 
+                } else if (Num >= 100000) {
                     StartNum += StartNum < endNum ? 100000 : -100000;
-                } 
-                else if (Num >= 10000) { 
+                } else if (Num >= 10000) {
                     StartNum += StartNum < endNum ? 10000 : -10000;
-                } 
-                else if (Num >= 1000) { 
+                } else if (Num >= 1000) {
                     StartNum += StartNum < endNum ? 1000 : -1000;
-                }  
-                else if (Num >= 100) { 
+                } else { // 100 <= Num < 1000
                     StartNum += StartNum < endNum ? 100 : -100;
-                };
-
-                let num = FloatCalculation.accDiv(StartNum, 100);
-                StartNumNode.string = num;
-                if (!bMove && Num < 100) {
-                    let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-                    this.labCoin.string = num;
-                    this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-                    this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-                    this.bTouch = 0; //表示既没有倒数也没有需要停止
-                    this.reSetData();
-                    return;
-                };
-
-                if (bMove == 1) {
-                    if (Number(this.labTotalWin.string)*100 > this.totalWinNum) {
-                        this.labTotalWin.string = this.totalWinNum/100;
-                    };
                 }
-                if (StartNum == endNum) {
-                    if (bMove == 1) {
-                        if(Number(this.labTotalWin.string)*100 == this.totalWinNum && this.totalWinNum > 0){
-                            if(this.rotating == false){
-                                this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-                                this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-                            }
-                            this.showBtnCollect(true);
-                        }
-                    } 
-                    else if (bMove == 2) {
-                        // 回收金币，有获胜金币
-                        let nodeLizi = cc.instantiate(this.nodeLizi)
-                        if(this.totalWinNum != 0){
-                            let pos = this.labTotalWin.node.getPosition()
-                            nodeLizi.setPosition(pos);
-                            this.node.addChild(nodeLizi)
+            }
 
-                        }
-                        this.scheduleOnce(()=>{
-                            if(cc.isValid(nodeLizi)){
-                                nodeLizi.destroy()
-                            };
-                            this.totalWinNum = 0;
-                            this._winGold = 0
-                            this.countDown(this.labCoin, GlobalCfg.USER_DATAS.userDiamond);
-                        }, 0.5);
-                    }
-                    else {
-                        if (Number(this.labCoin.string)*100 == GlobalCfg.USER_DATAS.userDiamond) {
-                            let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-                            this.labCoin.string = num;
+            // 同步数值到 UI（单位：元）
+            StartNumNode.string = FloatCalculation.accDiv(StartNum, 100);
+
+            // bMove==1：防止越界
+            if (bMove == 1) {
+                if (Number(this.labTotalWin.string) * 100 > this.totalWinNum) {
+                    this.labTotalWin.string = this.totalWinNum / 100;
+                }
+            }
+
+            // 是否到达目标
+            if (StartNum === endNum) {
+                if (bMove == 1) {
+                    // 奖金跳字完成
+                    if (Number(this.labTotalWin.string) * 100 == this.totalWinNum && this.totalWinNum > 0) {
+                        if (this.rotating == false) {
                             this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
                             this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-                            this.bTouch = 0; //表示既没有倒数也没有需要停止
-                            this.reSetData();
-                            return;
                         }
-                    };
+                        this.showBtnCollect(true);
+                    }
                     return;
-                };
+                } else if (bMove == 2) {
+                    // 从“总赢额”收集到“余额”
+                    let nodeLizi = cc.instantiate(this.nodeLizi);
+                    if (this.totalWinNum != 0) {
+                        let pos = this.labTotalWin.node.getPosition();
+                        nodeLizi.setPosition(pos);
+                        this.node.addChild(nodeLizi);
+                    }
+                    this.scheduleOnce(() => {
+                        if (cc.isValid(nodeLizi)) nodeLizi.destroy();
+                        this.totalWinNum = 0;
+                        this._winGold = 0;
+                        // 再把余额跳到服务器最新值（普通分支，结束自动 reSetData）
+                        this.countDown(this.labCoin, GlobalCfg.USER_DATAS.userDiamond);
+                    }, 0.5);
+                    return;
+                } else {
+                    // 普通分支：余额跳字结束，收尾
+                    if (Number(this.labCoin.string) * 100 == GlobalCfg.USER_DATAS.userDiamond) {
+                        this.labCoin.string = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
+                        this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
+                        this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
+                        this.bTouch = 0;
+                        this.reSetData();
+                        return;
+                    }
+                }
+            }
 
-                this.loop5();
-            };
+            // 继续下一帧
+            clearTimeout(this.changeTime);
+            this.changeTime = setTimeout(stepOnce, 50);
+            LoggerUtil.getInstance().log('caojun Num:' + Math.abs(StartNum - endNum) + ' bMove' + bMove);
         };
-        this.init5();
+
+        // 启动循环
+        clearTimeout(this.changeTime);
+        this.changeTime = setTimeout(stepOnce, 50);
     },
 
-    reSetData: function() {
+
+    reSetData: function () {
+        LoggerUtil.getInstance().error("caojun reSetData....");
         this.betArr = [null, 0, 0, 0, 0, 0, 0, 0, 0];
         this.betNum = [
-            null, [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], 
-            [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0], [0,0,0,0,0]
+            null, [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]
         ];
         for (let index = 1; index < this.betNum.length; index++) {
             this.labCount[index].string = this.betArr[index];
@@ -987,36 +1036,34 @@ cc.Class({
             btn_betSpr.active = false;
         };
         for (let index = 0; index < 24; index++) {
-            this.dataConfig.setLogoOpacity(index,255);                
+            this.dataConfig.setLogoOpacity(index, 255);
             this.dataConfig.changeLogo(index, false)
         };
 
         this.showBtnReset(false);
         this.nodePmdAnim.node.active = false;
-        this.dataConfig.setLogoOpacity(this.startIndex,255);                
+        this.dataConfig.setLogoOpacity(this.startIndex, 255);
         this.dataConfig.changeLogo(this.startIndex, true)
         this.setBtnInteractableAndOutLineLabel(true, this.btnRepeat);
         this.setBtnInteractableAndOutLineLabel(true, this.btnRepeat1);
         this.betNode.removeAllChildren()
         this.betStatus = true;
-        // clearTimeout(this.zhuanTime)
-        // this.zhuanTime = null;
         for (let index = 1; index < 9; index++) {
             let btn_bet = cc.find('benz_Canvas/BetArea/btn_' + index).getComponent(cc.Button)
             btn_bet.interactable = true
-            // this.sprGuang[index].active = false;
-
         }
         this.bActOver = false;
         this.bTouch = 0;
         clearTimeout(this.runTime);
-        cc.Tween.stopAll();
+        try {
+            cc.Tween.stopAllByTarget && cc.Tween.stopAllByTarget(this.node);
+        } catch (e) { }
         this.unscheduleAllCallbacks();
     },
 
 
-    getReward: function (id,bMove) {
-        this.labTotalWin.string = this._winGold/100;
+    getReward: function (id, bMove) {
+        this.labTotalWin.string = this._winGold / 100;
         switch (id) {
             case 1:
                 this._winGold += this.betArr[id] * 2
@@ -1057,8 +1104,8 @@ cc.Class({
 
 
     outgamenotify: function () {
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);     
-        CommonFun.getInstance().decVerticalAcc();      
+        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BENZ, SceneManager.getInstance().sceneType.LOBBY);
+        CommonFun.getInstance().decVerticalAcc();
     },
 
     paintedEggDBDJ: function (WinArr) {
@@ -1067,16 +1114,15 @@ cc.Class({
         let index = 0;
         let runNum = 0;
         let tempArr = []
-        this.checkResult = function (){
+        this.checkResult = function () {
             var that = this;
-            if(index == WinArr.length-1){
-                if(!this.totalWinNum){
+            if (index == WinArr.length - 1) {
+                if (!this.totalWinNum) {
                     this.playGameSound('Sound/meizhongjiang');
-                    this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
-                    this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
-                    this.collectCoin();
+                    // 统一走零中奖收尾，避免 collectCoin 条件卡死
+                    this._endRoundNoWin();
                 }
-            }else{
+            } else {
                 index++
                 that.init6();
             }
@@ -1095,31 +1141,31 @@ cc.Class({
 
         this.init6 = function () {
             if (cc.isValid(this.node)) {
-                if(this.startIndex > 23){
+                if (this.startIndex > 23) {
                     this.startIndex = 0;
                 }
                 this.dataConfig.changeLogo(this.startIndex, true);
-                this.dataConfig.setLogoOpacity(this.startIndex,255);
+                this.dataConfig.setLogoOpacity(this.startIndex, 255);
                 let num = this.startIndex - 1 < 0 ? 23 : this.startIndex - 1
-                if(tempArr.indexOf(num) == -1){
+                if (tempArr.indexOf(num) == -1) {
                     this.dataConfig.changeLogo(num, false);
                 }
-                if(this.startIndex == WinArr[index] && runNum > 23){
+                if (this.startIndex == WinArr[index] && runNum > 23) {
                     tempArr.push(this.startIndex);
                     let type = this.dataConfig.getType(this.startIndex)
                     this.playGameSound('Sound/dingdong');
-                    this.dataConfig.setLogoOpacity(this.startIndex,255,true); 
+                    this.dataConfig.setLogoOpacity(this.startIndex, 255, true);
                     let _str = this.getTypeStr(type);
-                    this.playGameSound('Sound/'+_str)
-                    if(index == WinArr.length - 1){
+                    this.playGameSound('Sound/' + _str)
+                    if (index == WinArr.length - 1) {
                         this.rotating = false;
                     }
-                    this.getReward(type,1)
-                    this.scheduleOnce(()=>{
+                    this.getReward(type, 1)
+                    this.scheduleOnce(() => {
                         this.startIndex = 0;
                         runNum = 0;
                         this.checkResult()
-                    },1)
+                    }, 1)
                     return
                 }
                 this.startIndex++
@@ -1147,53 +1193,53 @@ cc.Class({
 
         this.init1 = function () {
             if (cc.isValid(this.node)) {
-                for (let index = runNum%2; index < 24; index+=2) {
+                for (let index = runNum % 2; index < 24; index += 2) {
                     this.dataConfig.changeLogo(index, true);
-                    this.dataConfig.setLogoOpacity(index,255);
-                    this.dataConfig.changeLogo(runNum%2==0?index+1:index-1, false)
-                    
+                    this.dataConfig.setLogoOpacity(index, 255);
+                    this.dataConfig.changeLogo(runNum % 2 == 0 ? index + 1 : index - 1, false)
+
                 }
 
-                if(runNum >= 23){
+                if (runNum >= 23) {
                     for (let index = 0; index < 24; index++) {
-                        this.dataConfig.setLogoOpacity(index,255);
+                        this.dataConfig.setLogoOpacity(index, 255);
                         this.dataConfig.changeLogo(index, false);
                     }
-                    if(this.totalWinNum > 0){
+                    if (this.totalWinNum > 0) {
                         for (let index = 0; index < WinArr.length; index++) {
                             this.dataConfig.changeLogo(WinArr[index], true);
                         }
                         for (let index = 0; index < WinArr.length; index++) {
-                            this.scheduleOnce(()=>{
-                                if(index == WinArr.length - 1){
+                            this.scheduleOnce(() => {
+                                if (index == WinArr.length - 1) {
                                     this.rotating = false;
                                 }
                                 this.playGameSound('Sound/dingdong');
-                                this.dataConfig.setLogoOpacity(WinArr[index],255,true); 
+                                this.dataConfig.setLogoOpacity(WinArr[index], 255, true);
                                 let type = this.dataConfig.getType(WinArr[index]);
-                                    this.getReward(type,1)
-                            },index*0.8)
+                                this.getReward(type, 1)
+                            }, index * 0.8)
                         }
-                    }else{
+                    } else {
                         for (let index = 0; index < WinArr.length; index++) {
                             this.dataConfig.changeLogo(WinArr[index], true);
                         }
-                        // if(!this.bPMDRun){
-                            this.playGameSound('Sound/meizhongjiang');
-                            this.collectCoin();
-                        // }
+                        this.playGameSound('Sound/meizhongjiang');
+                        // 统一走零中奖收尾
+                        this._endRoundNoWin();
+
                         for (let index = 0; index < WinArr.length; index++) {
-                            this.scheduleOnce(()=>{
+                            this.scheduleOnce(() => {
                                 this.playGameSound('Sound/dingdong');
-                                this.dataConfig.setLogoOpacity(WinArr[index],255,true); 
-                            },index*0.8)
+                                this.dataConfig.setLogoOpacity(WinArr[index], 255, true);
+                            }, index * 0.8)
                         }
                         this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
                         this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
                     }
                     return;
                 }
-                runNum ++
+                runNum++
                 this.loop1();
             }
         };
@@ -1216,26 +1262,24 @@ cc.Class({
         };
 
         this.init2 = function () {
-            if (cc.isValid(this.node)) {                
+            if (cc.isValid(this.node)) {
                 this.dataConfig.changeLogo(runNum, true);
-                if(runNum == 23){
+                if (runNum == 23) {
                     for (let index = 0; index < 24; index++) {
                         this.dataConfig.changeLogo(runNum, true);
-                        this.scheduleOnce(()=>{
-                            if(index == 24 - 1){
+                        this.scheduleOnce(() => {
+                            if (index == 24 - 1) {
                                 this.rotating = false;
                             }
                             this.playGameSound('Sound/dingdong');
-                            this.dataConfig.setLogoOpacity(index,255,true); 
+                            this.dataConfig.setLogoOpacity(index, 255, true);
                             let type = this.dataConfig.getType(index);
-                            // if(!this.bPMDRun){
-                                this.getReward(type,1)
-                            // }
-                        },index*0.8)
+                            this.getReward(type, 1)
+                        }, index * 0.8)
                     }
                     return;
                 }
-                runNum ++
+                runNum++
                 this.loop2();
             }
         };
@@ -1267,18 +1311,18 @@ cc.Class({
                     this.startIndex = 0;
                 }
                 for (let index = 0; index < 4; index++) {
-                    if(index <= runNum && addNum != -1){
+                    if (index <= runNum && addNum != -1) {
                         let jndex = this.startIndex - index;
-                        let start = jndex < 0 ? logoLength+this.startIndex : this.startIndex;
+                        let start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
                         this.dataConfig.changeLogo(start - index, true)
-                        if(index == 3){
+                        if (index == 3) {
                             this.dataConfig.changeLogo(start - index, false)
                         }
-                    }else if(addNum == -1){
+                    } else if (addNum == -1) {
                         let jndex = this.startIndex - index;
-                        let start = jndex < 0 ? logoLength+this.startIndex : this.startIndex;
+                        let start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
                         this.dataConfig.changeLogo(start - index, true)
-                        if(index == 3){
+                        if (index == 3) {
                             this.dataConfig.changeLogo(start - index, false)
                         }
                     }
@@ -1287,33 +1331,33 @@ cc.Class({
                     runNum = 7;
                     addNum = -1
                 } else if (runNum == 0 && addNum == -1) {
-                    if(this.totalWinNum > 0){
+                    if (this.totalWinNum > 0) {
                         for (let index = 2; index >= 0; index--) {
                             let jndex = this.startIndex - index;
-                            let start = jndex < 0 ? logoLength+this.startIndex : this.startIndex;
+                            let start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
                             this.dataConfig.changeLogo(start - index, true)
-                            this.dataConfig.setLogoOpacity(start - index,255);
-                            this.scheduleOnce(()=>{
-                                if(index == 2){
+                            this.dataConfig.setLogoOpacity(start - index, 255);
+                            this.scheduleOnce(() => {
+                                if (index == 2) {
                                     this.rotating = false;
                                 }
                                 this.playGameSound('Sound/dingdong');
-                                this.dataConfig.setLogoOpacity(start - index,255,true); 
-                                this.getReward(this.dataConfig.getType(start - index,1),1)
-                            },index*0.8)
+                                this.dataConfig.setLogoOpacity(start - index, 255, true);
+                                this.getReward(this.dataConfig.getType(start - index, 1), 1)
+                            }, index * 0.8)
                         }
-                    }else{
-                        // if(!this.bPMDRun){
-                            this.playGameSound('Sound/meizhongjiang');
-                            this.collectCoin();
-                        // }
+                    } else {
+                        this.playGameSound('Sound/meizhongjiang');
+                        // 统一零中奖收尾
+                        this._endRoundNoWin();
+
                         for (let index = 0; index < 3; index++) {
-                            this.scheduleOnce(()=>{
+                            this.scheduleOnce(() => {
                                 this.playGameSound('Sound/dingdong');
                                 let jndex = this.startIndex - index;
-                                let start = jndex < 0 ? logoLength+this.startIndex : this.startIndex;
-                                this.dataConfig.setLogoOpacity(start - index,255,true); 
-                            },index*0.8)
+                                let start = jndex < 0 ? logoLength + this.startIndex : this.startIndex;
+                                this.dataConfig.setLogoOpacity(start - index, 255, true);
+                            }, index * 0.8)
                         }
                         this.setBtnInteractableAndOutLineLabel(true, this.btnStart);
                         this.setBtnInteractableAndOutLineLabel(true, this.btnStart1);
@@ -1321,12 +1365,12 @@ cc.Class({
                     return;
                 }
 
-                if(runNum < 5){
-                    this.loopTime = Math.floor(750 / (runNum+1));
-                }else{
+                if (runNum < 5) {
+                    this.loopTime = Math.floor(750 / (runNum + 1));
+                } else {
                     this.loopTime = 15;
                 }
-                    
+
                 this.startIndex++
                 runNum += addNum
                 this.loop3();
@@ -1336,21 +1380,21 @@ cc.Class({
     },
 
 
-    winArrRandom:function (arr,arr1,num) {
-        let randomNum = Math.ceil(Math.random() * 24)-1
-        if(arr.indexOf(randomNum) == -1 && arr1.indexOf(randomNum) == -1){
+    winArrRandom: function (arr, arr1, num) {
+        let randomNum = Math.ceil(Math.random() * 24) - 1
+        if (arr.indexOf(randomNum) == -1 && arr1.indexOf(randomNum) == -1) {
             arr.push(randomNum)
-            if(arr.length == num){
+            if (arr.length == num) {
                 return;
             } else {
-                this.winArrRandom(arr,arr1,num)
+                this.winArrRandom(arr, arr1, num)
             }
         } else {
-            this.winArrRandom(arr,arr1,num)
+            this.winArrRandom(arr, arr1, num)
         }
     },
 
-    sendLoginReq: function() {
+    sendLoginReq: function () {
         let proroID = 'gameservice.login';
         let message = 'LoginReq';
         GameServerManager.send(proroID, message, {
@@ -1360,7 +1404,7 @@ cc.Class({
         });
     },
 
-    choiceBetButton: function (button){
+    choiceBetButton: function (button) {
         let scale = 1.1;
         let btnArr = ['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100'];
         let betButtonNode = this.node.getChildByName('BetButton');
@@ -1368,13 +1412,13 @@ cc.Class({
         this.light.setScale(scale);
         for (let i = 0; i < btnArr.length; i++) {
             let btn = betButtonNode.getChildByName(btnArr[i]).getComponent(cc.Button);
-            if(btn.node.name == btnName){
+            if (btn.node.name == btnName) {
                 btn.node.setScale(scale);
-            }else{
+            } else {
                 btn.node.setScale(1);
             }
             let widget = btn.node.getComponent(cc.Widget);
-            if(widget){
+            if (widget) {
                 widget.updateAlignment();
             }
         }
@@ -1387,12 +1431,12 @@ cc.Class({
         let btnArr = ['btnBet_1', 'btnBet_10', 'btnBet_20', 'btnBet_50', 'btnBet_100'];
         let betButtonNode = this.node.getChildByName('BetButton');
         let len = btnArr.length, i = 0;
-        this.scheduleBetSpineTimeCallback = ()=>{
+        this.scheduleBetSpineTimeCallback = () => {
             let spine = betButtonNode.getChildByName(btnArr[i]).getChildByName('spine').getComponent(sp.Skeleton);
             spine.setAnimation(0, animationName, false);
             i++;
         }
-        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len-1);
+        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len - 1);
     },
 
     update: function (dt) {

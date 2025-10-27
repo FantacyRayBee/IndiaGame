@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "018bde66-036d-4f3e-ae0e-ddb1cdadf7c9",
+  "uuid": "92c4249f-2517-4937-8fa1-35350d8e38cd",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "bg_chicken2": {
       "ver": "1.0.6",
-      "uuid": "34e52c65-2d2e-4274-a247-478c526604ff",
+      "uuid": "262c5db9-3270-4ed7-bc33-f23c54e70b8f",
       "importer": "sprite-frame",
-      "rawTextureUuid": "018bde66-036d-4f3e-ae0e-ddb1cdadf7c9",
+      "rawTextureUuid": "92c4249f-2517-4937-8fa1-35350d8e38cd",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

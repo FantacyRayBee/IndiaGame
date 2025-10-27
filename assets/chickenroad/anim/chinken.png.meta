@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "a519fe21-992d-4fc5-8584-6bc26758ec9a",
+  "uuid": "0c51b20c-7e3d-4f32-9c9e-6d5a7e069a6a",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "chinken": {
       "ver": "1.0.6",
-      "uuid": "a5695cf4-4a66-442a-bc22-93f02d38b13f",
+      "uuid": "6849f040-535d-40e9-a693-1669fea38c08",
       "importer": "sprite-frame",
-      "rawTextureUuid": "a519fe21-992d-4fc5-8584-6bc26758ec9a",
+      "rawTextureUuid": "0c51b20c-7e3d-4f32-9c9e-6d5a7e069a6a",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
