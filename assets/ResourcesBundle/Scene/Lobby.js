@@ -1920,7 +1920,7 @@ cc.Class({
             // CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_slots") {
-            // CommonFun.getInstance().showGameIconList();
+            CommonFun.getInstance().showGameIconList();
         } 
         else if (btnName == "btn_indiaMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_INDIA_GAME);

@@ -63,12 +63,12 @@ window.GlobalCfg = {
      */
     is_need_update: true,
 
-    isH5: true,
+    isH5: false,
 
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: false,
+    is_force_gotoTest: true,
 
     /**
      * 渠道信息
@@ -1309,7 +1309,7 @@ if (GlobalCfg.isH5 == true) {
 
 if (GlobalCfg.is_force_gotoTest == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    localStorage.setItem('PackageChannel', '5_8001');
+    localStorage.setItem('PackageChannel', '0_8001');
 }
 
 /**
