@@ -19,13 +19,14 @@ cc.Class({
         this.soundNameArr = [
             'smallWin','midWin','bigWin','superWin','superWin'
         ]
+        this.callback = null;
     },
 
-    showRewardTips: function(curSpinAllWin, bigWinLevel, isNormal) {
+    showRewardTips: function(curSpinAllWin, bigWinLevel, callback) {
         return new Promise((resolve, reject) => {
             // GlobalCfg.ACT_SCENE_CTRL.mayaAudiosCtrl.pauseMusic();
-
-            GlobalCfg.ACT_SCENE_CTRL.playGameMusic("win");
+            this.callback = callback;
+            GlobalCfg.ACT_SCENE_CTRL.playGameSound("win");
             GlobalCfg.ACT_SCENE_CTRL.playGameSound(this.soundNameArr[bigWinLevel - 1]);
             let skeletonName = this.skeletonNameArr[bigWinLevel - 1];
             this.loadSkeletonData(skeletonName, (skeletonData, self) => {
@@ -40,7 +41,7 @@ cc.Class({
                 this.stopShowScoreTween = true;
                 this.lab_score.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(curSpinAllWin); 
                 this.scheduleOnce(() => {
-                    this.playEndAnim(bigWinLevel);
+                    this.playEndAnim();
                     resolve();
                 }, 1);
             }, 1), this);
@@ -49,8 +50,9 @@ cc.Class({
         });
     },
 
-    playEndAnim: function(bigWinLevel) {
+    playEndAnim: function() {
         this.btn_quick.interactable = false;
+        this.callback && this.callback();
         this.node.destroy();
     },
 

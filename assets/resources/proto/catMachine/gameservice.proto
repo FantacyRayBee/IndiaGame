@@ -7,7 +7,6 @@ message ResponseBase {
   string message = 2;
 }
 
-
 //心跳
 message PingPang {
 	uint64 timestamp = 1;	//时间戳
@@ -24,32 +23,30 @@ message UserInfoAck {
   uint32 vipLevel = 7;
 }
 
+//登录 gameservice.login
+message LoginReq {
+  string userid = 1;  //用户ID
+  string token = 2;   //登录服拿到的token
+}
+
+message LoginAck {
+  ResponseBase result = 1;
+  UserInfoAck userinfo = 2;   //用户信息
+  repeated Free frees = 3;    //下注免费信息
+  repeated int32 betOption = 4; // 下注选项
+  repeated int64 jpMub = 5;//jp倍数
+}
+
 message Free {
   int64 amount = 1;     //下注倍数
   int64 freeCount = 2;  //免费次数
   int64 freePool = 3;   //免费奖池
 }
 
-//登录 gameservice.login
-message LoginReq {
-  string userid = 1;  //用户ID
-  string token = 2;   //登录服拿到的token
-  uint32 fromid = 3;  //来源平台ID
-}
-
-message LoginAck {
-  ResponseBase result = 1;
-  UserInfoAck userinfo = 2;   //用户信息
-  repeated Free frees = 3;    //免费信息(因为存在多个下注 登录推送的时候我吧所有有的免费信息全部推送,自行选择)
-}
-
-
-
 //下注   gameservice.call
 message CallReq {
   int64 amount = 1;     //金额
 }
-
 
 message Card {
   repeated int32 cards = 1;
@@ -57,18 +54,26 @@ message Card {
 
 message XianInfo {
   int32 card = 1;     //中奖的牌
-  int32 num = 2;      //线的数量
-  int32 len = 3;      //线的长度
-  int32 multiple = 4; //总倍数
+  int32 len = 2;      //线的长度
+  int32 multiple = 3; //线倍数(单个的)
+  int32 ref = 4;      //线位置
 }
-
 
 message CallAck {
   ResponseBase result = 1;
   UserInfoAck userinfo = 2;         //用户信息
   repeated Card cards = 3;          //牌组(是个3*6的二维数组因为pb协议不支持二维数组)
-  repeated XianInfo xiannum = 4;    //线的数量1 第一个 2第二个 3第三个
+  repeated XianInfo xiannum = 4;     //线的数量1 第一个 2第二个 3第三个
   int32 mianfeinum = 5;             //免费次数  (剩余的免费次数)
   int32 rewardtype = 6;             //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
   int64 freePool = 7;               //免费奖池 (这一轮后三叶草免费奖池)
+  int32  execNum = 8;               //执行次数
+  int32 addFgCount = 9;             //在fg中增加Fg次数
+  int64 jpWin = 10;                  //jp奖励
+}
+
+//货币更新广播(非游戏行为) gameservice.updatecoinnotify
+message UpdateCoinNotify {
+  int64 diamond = 1;  // 剩余数量
+  int32 reason = 2;   // 原因 1:支付; 其他：未知
 }

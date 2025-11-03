@@ -10,6 +10,10 @@ cc.Class({
         this.skeletonUrl = "spine/symbol/";
     },
 
+    onLoad: function() {
+        this.skeleton_kuang = this.node.getChildByName("skeleton_kuang").getComponent(sp.Skeleton);
+    },
+
     setItemData: function(itemID) {
         this.typeId = itemID;
         let spriteName = "tubiao";
@@ -25,20 +29,41 @@ cc.Class({
         if (this.skeleton_icon) {
             this.skeleton_icon.node.active = true;
             let typeId = this.typeId;
-            if (typeId == 9) {
-                typeId = 10;
-            }
-            else if (typeId == 10) {
-                typeId = 9;
-            } // 9 10 对调
             this.skeleton_icon.setAnimation(0, "item_" + typeId, true);
+            this.setKuangSkeletonDong();
         };
     },
 
     stopAnimation: function(time = 2) {
         this.scheduleOnce(()=>{
             this.skeleton_icon.node.active = false;
+            this.skeleton_kuang.node.active = false
         }, time);
+    },
+
+    setKuangSkeletonDong: function () {
+        if (this.skeleton_kuang && !this.skeleton_kuang.node.active) {
+            this.skeleton_kuang.node.active = true
+            this.skeleton_kuang.setAnimation(0, 'idle', true);
+        };
+    },
+
+    //播放Free元素 出现动画
+    playFreeGameApppear: function () {
+        if (this.skeleton_icon) {
+            this.skeleton_icon.node.active = true;
+            this.skeleton_icon.setAnimation(0, "item_10", false);
+        };
+    },
+
+    //播放Free元素 等待弹框动画
+    playFreeGameWait: function () {
+        if (this.skeleton_icon) {
+            this.skeleton_icon.setAnimation(0, "item_10_1", true);
+            this.scheduleOnce(()=>{
+                this.skeleton_icon.setAnimation(0, "item_10_2", true);
+            }, 2);
+        };
     },
 
     loadGameAssets: function (gameBundleName, func, target) {
@@ -58,7 +83,6 @@ cc.Class({
         let self = this;
         let url = this.skeletonUrl + skeletonName;
 
-        LoggerUtil.getInstance().log("caojun loadSkeletonData url = " + url);
         this.loadGameAssets(self.loadBundleName, (bundle, target) => {
             bundle.load(url, sp.SkeletonData, (err, skeletonData) => {
                 if (!err) {

@@ -67,6 +67,10 @@ cc.Class({
          */
         btn_minimaya: cc.Button,
         /**
+         * 猫子机台
+         */
+        btn_minicat: cc.Button,
+        /**
          * 小丑机台
          */
         btn_minijoker: cc.Button,
@@ -374,6 +378,7 @@ cc.Class({
             "minimultiteenpatti": 19,
             "miniaviator": 20,
             "minichickenroad": 21,
+            "minicat": 22,
         };
         let getAppConfigValue = CommonFun.getInstance().getAppConfigValueByKey("GAME_LOBBY_BTN_SIBLING_INDEX_DATA", defaultGameSiblingIndexObj);
         if (getAppConfigValue != defaultGameSiblingIndexObj) {
@@ -394,6 +399,7 @@ cc.Class({
             "minilonghu": this.btn_minilonghu,
             "minishuiguo": this.btn_minishuiguo,
             "minimaya": this.btn_minimaya,
+            "minicat": this.btn_minicat,
             "miniclown": this.btn_minijoker,
             'slots': this.btn_slots,
             "miniindia": this.btn_miniindia,
@@ -452,6 +458,7 @@ cc.Class({
         this.btn_miniseven.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minishuiguo.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minimaya.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
+        this.btn_minicat.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_minijoker.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_slots.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
         this.btn_miniindia.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
@@ -613,6 +620,7 @@ cc.Class({
         this.btn_miniseven.node.active = false;
         this.btn_minishuiguo.node.active = false;
         this.btn_minimaya.node.active = false;
+        this.btn_minicat.node.active = false;
         this.btn_minijoker.node.active = false;
         this.btn_slots.node.active = false;
         this.btn_miniindia.node.active = false;
@@ -898,6 +906,17 @@ cc.Class({
                         let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("chickenroad");
                         if (isNeedUpdata && cc.sys.isNative) {
                             needUpdataArr.push("chickenroad");
+                        }
+                    }
+                    break;
+                case "minicat":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(128)) {
+                        this.btn_minicat.node.active = true;
+                        GlobalCfg.SMALL_GAME_DATAS.catMachineData.endpoint = GlobalCfg.WEB_SOCKET_GAME + gameHost + "/echo";
+                        GlobalCfg.SMALL_GAME_DATAS.catMachineData.product = gameProduct;
+                        let isNeedUpdata = CommonFun.getInstance().isNeedUpdata("catMachine");
+                        if (isNeedUpdata && cc.sys.isNative) {
+                            needUpdataArr.push("catMachine");
                         }
                     }
                     break;
@@ -1910,6 +1929,14 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MAYA);
             });
         } 
+        else if (btnName == "btn_catMachine") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MAYA_GAME);
+            this.checkUpdate("catMachine", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.catMachineData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CAT);
+            });
+        } 
         else if (btnName == "btn_jokerMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_JOKER_GAME);
             this.checkUpdate("jokerMachine", () => {
@@ -2138,6 +2165,9 @@ cc.Class({
             case "mayaMachine":
                 upDateMaskNode = this.btn_minimaya.node.getChildByName("upDateMask");
                 break;
+            case "catMachine":
+                upDateMaskNode = this.btn_minicat.node.getChildByName("upDateMask");
+                break;
             case "jokerMachine":
                 upDateMaskNode = this.btn_minijoker.node.getChildByName("upDateMask");
                 break;
@@ -2226,6 +2256,9 @@ cc.Class({
                 break;
             case "mayaMachine":
                 this.btn_minimaya.node.getChildByName("upDateMask").active = false;
+                break;
+            case "catMachine":
+                this.btn_minicat.node.getChildByName("upDateMask").active = false;
                 break;
             case "jokerMachine":
                 this.btn_minijoker.node.getChildByName("upDateMask").active = false;
@@ -2407,6 +2440,12 @@ cc.Class({
         };
         if (this.btn_minimaya.node.active) {
             skeleton = this.btn_minimaya.node.getChildByName('Background').getComponent(sp.Skeleton);
+            skeleton.clearTrack(0);
+            // skeleton.setSkin(skinName);
+            skeleton.setAnimation(0, 'animation', true);
+        };
+        if (this.btn_minicat.node.active) {
+            skeleton = this.btn_minicat.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);

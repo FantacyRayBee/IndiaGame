@@ -1,0 +1,34 @@
+{
+  "ver": "1.2.6",
+  "uuid": "ad5bbbbd-c6f8-4257-b82e-c04b6ae37f8f",
+  "importer": "asset",
+  "size": {
+    "width": 132,
+    "height": 172
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "shuiguoji_kuang4.png": {
+      "ver": "1.0.6",
+      "uuid": "ecea3c8c-1cf3-4158-ae76-1579568618b3",
+      "importer": "sprite-frame",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 132,
+      "height": 172,
+      "rawWidth": 132,
+      "rawHeight": 172,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

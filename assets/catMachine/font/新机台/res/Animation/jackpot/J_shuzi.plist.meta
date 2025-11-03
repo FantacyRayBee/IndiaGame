@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "a51f4cae-5676-4f91-af37-a83d85502616",
+  "importer": "asset",
+  "rawTextureUuid": "fd7785e6-bb4f-4e92-847e-a64ebfbf1787",
+  "size": {
+    "width": 512,
+    "height": 256
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "J_shuzi.png": {
+      "ver": "1.0.6",
+      "uuid": "0b6236d6-1576-41f7-aaa3-7dc1facc5739",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "fd7785e6-bb4f-4e92-847e-a64ebfbf1787",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -42,
+      "offsetY": 10,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 428,
+      "height": 237,
+      "rawWidth": 512,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

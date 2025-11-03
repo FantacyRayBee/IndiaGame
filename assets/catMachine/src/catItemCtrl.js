@@ -27,13 +27,6 @@ cc.Class({
         this.icon_node.active = true;
     },
 
-    setKuangSkeletonDong: function () {
-        if (this.skeleton_kuang && !this.skeleton_kuang.node.active) {
-            this.skeleton_kuang.node.active = true
-            this.skeleton_kuang.setAnimation(0, 'idle', true);
-        };
-    },
-
     initIcon: function () {
         let type = Math.floor(Math.random() * 10 + 1);
         let spriteName = "icon_" + type;

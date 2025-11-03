@@ -1,0 +1,34 @@
+{
+  "ver": "1.2.6",
+  "uuid": "e77ebb5f-e6e5-43c3-8998-a42b9b464763",
+  "importer": "asset",
+  "size": {
+    "width": 31,
+    "height": 31
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "mhdb_jiemianlizi.png": {
+      "ver": "1.0.6",
+      "uuid": "c07446f1-f04b-4b75-a9a3-765eb2f7b903",
+      "importer": "sprite-frame",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 31,
+      "height": 31,
+      "rawWidth": 31,
+      "rawHeight": 31,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}
