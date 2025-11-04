@@ -945,9 +945,9 @@ cc.Class({
                     
             }
         };
-        if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
+        // if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
             this.btn_slots.node.active = true;
-        };
+        // };
         //自动下载小游戏
         // if (needUpdataArr.length > 0) {
         //     let gameSubPackageNames = {

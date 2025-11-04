@@ -1429,6 +1429,7 @@ let CommonFun = cc.Class({
             if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
                 APPManager.showWebView(msg.data.Url, isVertical);
             } else {
+                GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.closeMusic(); //关闭背景音乐
                 let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
                 PrefabPromise.then((prefab) => {
                     let Node = cc.instantiate(prefab);

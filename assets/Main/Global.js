@@ -63,12 +63,12 @@ window.GlobalCfg = {
      */
     is_need_update: true,
 
-    isH5: false,
+    isH5: true,
 
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: true,
+    is_force_gotoTest: false,
 
     /**
      * 渠道信息

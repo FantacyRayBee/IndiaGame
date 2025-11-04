@@ -2,33 +2,107 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        btn_close: cc.Button,
         webview: cc.WebView,
     },
 
-    ctor() {
+    onLoad() {
+        this._createDomCloseBtn();
     },
 
-    onLoad: function() {
-        this.btn_close.node.zIndex = 100;
-        this.btn_close.node.on('click', CommonFun.getInstance().debounce(this.bntclick, 1), this);
+    start() {
+        this._updateDomClosePos(); // 首次定位
     },
 
+    update(dt) {
+        // 每帧检测 WebView 位置变化（如屏幕旋转、动画）
+        this._updateDomClosePos();
+    },
 
-    setURL(url){
+    onDestroy() {
+        this._removeDomCloseBtn();
+    },
+
+    setURL(url) {
         this.webview.url = url;
     },
 
-    onDestroy: function () {
+    // ===============================
+    // 点击关闭逻辑
+    // ===============================
+    _onDomCloseClick() {
+        LoggerUtil.getInstance().log("caojun WebView关闭按钮点击");
+
+        GlobalCfg.G_COMPONENTS.Audio.playBack?.();
+
+        this.node.destroy();
+        this._removeDomCloseBtn();
+        GlobalCfg.G_COMPONENTS.Audio.openMusic();
+        SceneManager.getInstance().changeScene(
+            SceneManager.getInstance().sceneType.WEBVIEW,
+            SceneManager.getInstance().sceneType.LOBBY
+        );
     },
 
-    bntclick: function (button) {
-        LoggerUtil.getInstance().log("caojun 按钮点击");
-        let btnName = button.node.name;
-        if (btnName === "btn_close") {
-            GlobalCfg.G_COMPONENTS.Audio.playBack();
-            this.node.destroy();
-            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.WEBVIEW, SceneManager.getInstance().sceneType.LOBBY);
+    // ===============================
+    // DOM关闭按钮
+    // ===============================
+    _createDomCloseBtn() {
+        if (this._domCloseBtn) return;
+
+        const btn = document.createElement("button");
+        btn.id = "webview-close-btn";
+        btn.innerHTML = "&times;";
+        Object.assign(btn.style, {
+            position: "absolute",
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            border: "none",
+            outline: "none",
+            background: "rgba(0,0,0,0.6)",
+            color: "#fff",
+            fontSize: "21px",
+            lineHeight: "32px",
+            textAlign: "center",
+            cursor: "pointer",
+            zIndex: "9999",
+            boxShadow: "0 1.5px 6px rgba(0,0,0,0.4)",
+            backdropFilter: "blur(2px)",
+            WebkitTapHighlightColor: "transparent",
+            transition: "all 0.1s ease-out",
+        });
+
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            this._onDomCloseClick();
+        });
+
+        document.body.appendChild(btn);
+        this._domCloseBtn = btn;
+    },
+
+    _removeDomCloseBtn() {
+        if (this._domCloseBtn && this._domCloseBtn.parentNode) {
+            this._domCloseBtn.parentNode.removeChild(this._domCloseBtn);
+            this._domCloseBtn = null;
         }
+    },
+
+    // ===============================
+    // 按钮实时对齐 WebView 左上角
+    // ===============================
+    _updateDomClosePos() {
+        if (!this._domCloseBtn || !this.webview) return;
+        const iframe = this.webview._impl?._iframe || this.webview._impl?._frame || this.webview._impl?._domEL;
+        if (!iframe) return;
+
+        const rect = iframe.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+
+        // 偏移一点，避免挡住边缘
+        const offset = 8;
+        this._domCloseBtn.style.left = rect.left + offset + "px";
+        this._domCloseBtn.style.top = rect.top + offset + "px";
     },
 });

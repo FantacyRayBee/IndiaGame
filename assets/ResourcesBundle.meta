@@ -7,7 +7,7 @@
   "priority": 1,
   "compressionType": {
     "android": "default",
-    "web-mobile": "merge_all_json"
+    "web-mobile": "default"
   },
   "optimizeHotUpdate": {
     "android": true,
