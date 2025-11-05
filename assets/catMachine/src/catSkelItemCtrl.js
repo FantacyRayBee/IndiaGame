@@ -12,6 +12,8 @@ cc.Class({
 
     onLoad: function() {
         this.skeleton_kuang = this.node.getChildByName("skeleton_kuang").getComponent(sp.Skeleton);
+        this.mask_dragon = this.node.getChildByName("mask")
+        this.skel_dragon = this.mask_dragon.getChildByName("dragon")
     },
 
     setItemData: function(itemID) {
@@ -38,6 +40,7 @@ cc.Class({
         this.scheduleOnce(()=>{
             this.skeleton_icon.node.active = false;
             this.skeleton_kuang.node.active = false
+            this.mask_dragon.active = false;
         }, time);
     },
 
@@ -46,6 +49,26 @@ cc.Class({
             this.skeleton_kuang.node.active = true
             this.skeleton_kuang.setAnimation(0, 'idle', true);
         };
+    },
+
+    //type: 1为 1,2行 2为 2,3行 3为 1,2,3行
+    showDragon: function (type) {
+        this.mask_dragon.active = true;
+        if (type == 1) {
+            this.mask_dragon.height = 326;
+            this.mask_dragon.position = cc.v2(0, 234);
+            this.skel_dragon.position = cc.v2(0, -81.078);
+
+        } else if (type == 2) {
+            this.mask_dragon.height = 326;
+            this.mask_dragon.position = cc.v2(0, 84.66);
+            this.skel_dragon.position = cc.v2(0, -81.078);
+        } 
+        else if (type == 3) {
+            this.mask_dragon.height = 457.7;
+            this.mask_dragon.position = cc.v2(0, 84.66);
+            this.skel_dragon.position = cc.v2(0, 0);
+        }
     },
 
     //播放Free元素 出现动画

@@ -334,7 +334,9 @@ cc.Class({
     //猫机台
     this.protoCat = {
       "gameservice.login": "LoginAck", //登录
-      "gameservice.call": "CallAck", //下注    
+      "gameservice.call": "CallAck", //下注
+      "gameservice.getranking": "GetRankingAck",
+      "gameservice.claimtaskreward": "ClaimTaskRewardAck", 
     }
     //小丑机台
     this.protoJoker = {

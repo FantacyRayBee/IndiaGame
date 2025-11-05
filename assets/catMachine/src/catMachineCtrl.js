@@ -41,6 +41,9 @@ cc.Class({
         lab_jp_minor: cc.Label,
         lab_jp_major: cc.Label,
         lab_jp_grand: cc.Label,
+        btn_jp_minor: cc.Button,
+        btn_jp_major: cc.Button,
+        btn_jp_grand: cc.Button,
 
         node_fg_pop: cc.Node,
         node_fg: cc.Node,
@@ -53,11 +56,16 @@ cc.Class({
 
         lab_jb: cc.Label,
 
-        pab_setting: cc.Prefab, 
+        pab_setting: cc.Prefab,
 
         background: cc.Sprite,
         mg_bg: cc.SpriteFrame,
         fg_bg: cc.SpriteFrame,
+
+        //task
+        node_task: cc.Node,
+        btn_task_collect: cc.Button,
+        spriteAtlas_icon: cc.SpriteAtlas,
     },
 
     ctor: function () {
@@ -71,16 +79,16 @@ cc.Class({
         ];
         //投注额度数组
         this.betAmountArr = ['4.5', '9', '45', '90', '180', '450', '900', '1800'];
-        if(GlobalCfg.USER_DATAS.gamePattern == 1){
+        if (GlobalCfg.USER_DATAS.gamePattern == 1) {
             this.betAmountArr = ['4.5', '9', '45', '90', '180', '450', '900', '1800'];
         }
         this.betAmountArrIndex = 0;
 
         this.finishedCatItemNum = 0;
-        this.isRunningCatAnim = false; 
+        this.isRunningCatAnim = false;
 
         this.height = 150; // 每个水果图片的高度
-        this.wildId = 9 
+        this.wildId = 9
         this.paymentSwitch = false;
         this.curSendSpin = false;           // 当前是否在发送spin请求
         this.frees = [];
@@ -98,7 +106,7 @@ cc.Class({
         this._popupStates = new Map(); // key: pop.uuid -> { token, skel }
     },
 
-    loadAudioClip: function(audioClipUrl = "", func = null, target = null) {
+    loadAudioClip: function (audioClipUrl = "", func = null, target = null) {
         if (!audioClipUrl || audioClipUrl.length == 0) {
             return;
         };
@@ -108,7 +116,7 @@ cc.Class({
                     func && func(audioClip, target);
                 }
                 else {
-                    LoggerUtil.getInstance().error(err1); 
+                    LoggerUtil.getInstance().error(err1);
                 };
             });
         }, (err) => {
@@ -116,26 +124,26 @@ cc.Class({
         });
     },
 
-    playGameSound: function(name) {
+    playGameSound: function (name) {
         let audioClipUrl = "audios/" + name;
-        this.loadAudioClip(audioClipUrl, (audioClip, target)=>{
+        this.loadAudioClip(audioClipUrl, (audioClip, target) => {
             GlobalCfg.G_COMPONENTS.Audio.playSoundPro(audioClip, false);
         }, this);
     },
 
-    playGameMusic: function(name) {
+    playGameMusic: function (name) {
         let audioClipUrl = "audios/" + name;
-        
-        this.loadAudioClip(audioClipUrl, (audioClip, target)=>{
+
+        this.loadAudioClip(audioClipUrl, (audioClip, target) => {
             GlobalCfg.G_COMPONENTS.Audio.playMusic(audioClip, true)
         }, this);
     },
 
-    onLoad: function() {
+    onLoad: function () {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_MAYA_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this,
-        this.catAudiosCtrl = this.node.getComponent("catAudiosCtrl");
+            this.catAudiosCtrl = this.node.getComponent("catAudiosCtrl");
 
         this.playGameMusic('bgm');
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -155,7 +163,10 @@ cc.Class({
         // this.btn_spin.node.on('click', this.debounce(this.componentClickCall, 1), this);
         this.btn_stop.node.on('click', this.debounce(this.componentClickCall, 0.5), this);
         this.btn_fg_end.node.on('click', this.debounce(this.componentClickCall, 1), this);
-        
+        this.btn_jp_minor.node.on('click', this.debounce(this.jpClickCall, 1), this);
+        this.btn_jp_major.node.on('click', this.debounce(this.jpClickCall, 1), this);
+        this.btn_jp_grand.node.on('click', this.debounce(this.jpClickCall, 1), this);
+
 
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
 
@@ -168,7 +179,7 @@ cc.Class({
             let obj2 = this.node_catSkelContent.getChildByName("ItemContent" + i)
             this.node_catSkelContentArr.push(obj2);
         }
-        for (let i = 1; i < 10; i++){
+        for (let i = 1; i < 10; i++) {
             this.lineArr.push(this.node_line.getChildByName("line" + i));
         }
         //自动下注次数选择的展示
@@ -181,7 +192,7 @@ cc.Class({
 
         this.cashSwitch();
 
-        if(GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.CHANNEL == "ios") {
+        if (GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.CHANNEL == "ios") {
             let btn_add = this.btn_add.node.getChildByName('Background').getChildByName('btn_shop');
             let btn_addcash = this.btn_addcash.node.getChildByName('Background').getChildByName('btn_addcash_SHOP');
             btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
@@ -194,25 +205,24 @@ cc.Class({
         this._initSpinLongPress();
     },
 
-    cashSwitch:function(){
+    cashSwitch: function () {
         this.btn_add.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
         this.btn_addcash.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
         this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 
-    setBetCiShuAutoTips: function() {
+    setBetCiShuAutoTips: function () {
         this.toggle_auto.isChecked = false;
         this.toggle_auto.interactable = false;
-        this.lab_autoBetCiShu.string = 'AUTO'; 
+        this.lab_autoBetCiShu.string = 'AUTO';
     },
 
-    showRule: function() {
+    showRule: function () {
         CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
             bundle.load("prefab/catRule", cc.Prefab, (err, prefab) => {
                 if (!err) {
-                    let scene = cc.director.getScene();
                     let catRewardTipsNode = cc.instantiate(prefab);
-                    scene.addChild(catRewardTipsNode);
+                    CommonFun.getInstance().addToPointParent(catRewardTipsNode, "SecondLayer");
                 };
             });
         }, (err) => {
@@ -220,29 +230,50 @@ cc.Class({
         });
     },
 
-    debounce: function(action, delayTime) {  
+    dealJpRank: function (notify) {
+        CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
+            bundle.load("prefab/catJPInfo", cc.Prefab, (err, prefab) => {
+                if (!err) {
+                    let catJPInfoNode = cc.instantiate(prefab);
+                    let catJPInfoNodeCtrl = catJPInfoNode.getComponent("catJPInfoCtrl");
+                    CommonFun.getInstance().addToPointParent(catJPInfoNode, "SecondLayer");
+                    catJPInfoNodeCtrl.setData(notify);
+                };
+            });
+        }, (err) => {
+            LoggerUtil.getInstance().error(`加载catMachine-Bundle异常: ${JSON.stringify(err)}`);
+        });
+    },
+
+    dealTaskReward: function (notify) {
+        CommonFun.getInstance().showRewardsTips([{ id: 10, amount: notify.RewardCoin / 100 }]);
+        GlobalCfg.USER_DATAS.userDiamond = notify.userinfo.diamond;
+        this.setMyTask();
+        this.setTaskInfo();
+    },
+
+    debounce: function (action, delayTime) {
         if (!delayTime) {
             return action;
         }
-        let fn = function() { 
+        let fn = function () {
             let btnNode = arguments[0].node;
             if (!btnNode.timeOut) {
                 action.apply(this, arguments);
-                btnNode.timeOut = setTimeout(function() { 
+                btnNode.timeOut = setTimeout(function () {
                     if (btnNode) {
                         clearTimeout(btnNode.timeOut);
                         btnNode.timeOut = null;
-                    }; 
-                }, delayTime * 1000);  
+                    };
+                }, delayTime * 1000);
             }
         };
         return fn;
-    }, 
+    },
 
     //设置jackpot奖池
-    setJackPotNum: function() {
+    setJackPotNum: function () {
         LoggerUtil.getInstance().log(`catMachineCtrl this.jpMub  = `, this.jpMub)
-        LoggerUtil.getInstance().log(`catMachineCtrl this.betAmountArrIndex  = `, this.betAmountArrIndex)
         LoggerUtil.getInstance().log(`catMachineCtrl this.betAmountArrIndex  = `, this.betAmountArrIndex)
         const betAmountNum = parseFloat(this.betAmountArr[this.betAmountArrIndex]) || 0;
         const m = this.jpMub || [2000, 5000, 10000];  // 兜底
@@ -251,9 +282,9 @@ cc.Class({
         const grand = betAmountNum * m[2] / 100;
 
         // 若需要千分位或压小数位，可用你已有封装
-        this.lab_jp_minor.string  = minor;
-        this.lab_jp_major.string  = major;
-        this.lab_jp_grand.string  = grand;
+        this.lab_jp_minor.string = minor;
+        this.lab_jp_major.string = major;
+        this.lab_jp_grand.string = grand;
     },
 
     /**
@@ -344,20 +375,20 @@ cc.Class({
         // 👉 如果长按释放后需要退出特殊模式，可在这里补逻辑
         // TODO: this.exitSpecialSpinMode();
     },
-    
-    stopAuto: function() {
+
+    stopAuto: function () {
         this.isAuto = false;
         this.btn_spin.node.active = true;
         this.btn_stop.node.active = false;
     },
 
-    start: function() {
+    start: function () {
         this.sendLoginReq();
         this.initSlotData();
     },
 
-    
-    onDestroy: function() {
+
+    onDestroy: function () {
         // 安全清理：把仍在表演的弹窗全部停掉
         if (this._popupStates) {
             for (const [uuid, st] of this._popupStates.entries()) {
@@ -367,7 +398,7 @@ cc.Class({
                         st.skel.clearTracks();
                         st.skel.setToSetupPose();
                     }
-                } catch (e) {}
+                } catch (e) { }
             }
             this._popupStates.clear();
         }
@@ -380,7 +411,7 @@ cc.Class({
     },
 
 
-    onEventMsg: function(webData, target){
+    onEventMsg: function (webData, target) {
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
@@ -391,6 +422,11 @@ cc.Class({
             self.setCallNotify(notify);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
+            if (!notify.deposit || !notify.winnings){
+                let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
+                this.lab_jb.string = CommonFun.getInstance().numberToShow(num);   
+                return;
+            }
             let coin = notify.deposit + notify.winnings;
             self.setUserDiamond(coin);
         }
@@ -399,9 +435,9 @@ cc.Class({
         // }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             if (self.isRunningCatAnim) {
-                CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
+                CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", () => {
                     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CAT, SceneManager.getInstance().sceneType.LOBBY);
-                },  false);
+                }, false);
             }
             else {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CAT, SceneManager.getInstance().sceneType.LOBBY);
@@ -415,6 +451,13 @@ cc.Class({
         }
         else if (msgId == "STOP_GAME") {
             self.setBetCiShuAutoTips();
+        }
+        else if (msgId == 'gameservice.getranking') {
+            // 获取jp排行榜
+            self.dealJpRank(notify);
+        }
+        else if (msgId == 'gameservice.claimtaskreward') {
+            self.dealTaskReward(notify);
         }
     },
 
@@ -436,7 +479,7 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CAT, SceneManager.getInstance().sceneType.LOBBY);           
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CAT, SceneManager.getInstance().sceneType.LOBBY);
             }, false);
         }
         else if (msgId === "gameservice.call") {
@@ -453,13 +496,13 @@ cc.Class({
             else {
                 CommonFun.getInstance().showTips(result.message);
             };
-        } 
+        }
         else {
             CommonFun.getInstance().showTips(result.message);
         }
     },
 
-    setLoginNotify: function(notify) {
+    setLoginNotify: function (notify) {
         if (!notify) {
             return;
         }
@@ -473,10 +516,14 @@ cc.Class({
         let freeCountItem = this.getFreesItemOfFreeCount();
         LoggerUtil.getInstance().log("catMachineCtrl freeCountItem:", freeCountItem)
 
+        this.taskConfig = notify.tasks;
+        this.taskMyInfo = notify.playerTasks;
+        this.setTaskInfo();
+
         if (freeCountItem) {
-            let amount = freeCountItem.amount/100;
+            let amount = freeCountItem.amount / 100;
             let freeCount = freeCountItem.freeCount;
-            let freePool = freeCountItem.freePool/100;
+            let freePool = freeCountItem.freePool / 100;
 
             this.setLabAmount(amount)
             this.lab_totalWin.string = freePool.toFixed(2);
@@ -488,13 +535,13 @@ cc.Class({
 
             let proroID = 'gameservice.call';
             let message = 'CallReq';
-            GameServerManager.send(proroID, message, {              
+            GameServerManager.send(proroID, message, {
                 amount: amount * 100
             });
-            
+
             return;
         }
-        
+
         if (this.isAuto) {
             this.sendCallReq();
         }
@@ -504,7 +551,7 @@ cc.Class({
         }
     },
 
-    initSlotData: function() {
+    initSlotData: function () {
         for (let j = 0, len1 = this.node_catContentArr.length; j < len1; j++) {
             let children = this.node_catContentArr[j].children;
             for (let k = 0, len2 = children.length; k < len2; k++) {
@@ -515,19 +562,128 @@ cc.Class({
         this.setJackPotNum();
     },
 
-    setUserDiamond: function(diamond) {
+    setTaskInfo: function () {
+        if (!this.taskConfig || this.taskConfig.length === 0) {
+            LoggerUtil.getInstance().error('setTaskInfo: taskConfig is empty');
+            return;
+        }
+        if (!this.taskMyInfo || this.taskMyInfo.length === 0) {
+            // 没有我的任务进度，默认用第一个配置
+            this.setTaskItem(this.taskConfig[0].Cards, 0, this.taskConfig[0].Count);
+            return;
+        }
+
+        const betAmountNum = parseFloat(this.betAmountArr[this.betAmountArrIndex]) || 0;
+        let mybet = betAmountNum * 100;
+
+        let curBetTaskInfo = null;
+        for (let i = 0, len = this.taskMyInfo.length; i < len; i++) {
+            if (this.taskMyInfo[i] && this.taskMyInfo[i].Bet == mybet) {
+                curBetTaskInfo = this.taskMyInfo[i];
+                break;
+            }
+        }
+
+        if (!curBetTaskInfo) {
+            this.setTaskItem(this.taskConfig[0].Cards, 0, this.taskConfig[0].Count);
+            return;
+        }
+
+        let curTaskConfig = this.getTaskDetailById(curBetTaskInfo.Id) || this.taskConfig[0];
+        this.setTaskItem(curTaskConfig.Cards, curBetTaskInfo.Count, curTaskConfig.Count);
+    },
+
+    setTaskItem: function (itemId, cur, all) {
+        let taskProgress = this.node_task.getChildByName('updateLayer').getComponent(cc.ProgressBar)
+        let taskinfo = this.node_task.getChildByName('taskinfo')
+        let img_symbol = taskinfo.getChildByName('img_symbol').getComponent(cc.Sprite)
+        let win = taskinfo.getChildByName('win')
+        let lab_task = taskinfo.getChildByName('info').getChildByName('lab_task').getComponent(cc.Label)
+        let rewardtips = taskinfo.getChildByName('rewardtips')
+        let img_cat = taskProgress.node.getChildByName('bar').getChildByName('task_cat')
+        let btn_collect = win.getComponent(cc.Button)
+
+        let spriteFrame = this.spriteAtlas_icon.getSpriteFrame("icon_" + itemId);
+        img_symbol.spriteFrame = spriteFrame;
+        let progress = cur / all
+        taskProgress.progress = progress;
+
+        lab_task.string = `${cur}/${all}`
+        win.active = progress == 1
+        rewardtips.active = progress == 1
+        img_symbol.node.active = progress != 1
+        img_cat.setPosition(1040 * progress, img_cat.y);
+        if (progress == 1) {
+            win.getComponent(cc.Animation).play("move")
+            rewardtips.getComponent(cc.Animation).play("swing")
+
+            if (btn_collect && btn_collect.node) {
+                btn_collect.node.off('click');  // 防重
+                btn_collect.node.on('click', () => {
+                    const betAmountNum = parseFloat(this.betAmountArr[this.betAmountArrIndex]) || 0;
+                    GameServerManager.send(
+                        "gameservice.claimtaskreward",
+                        "ClaimTaskRewardReq",
+                        { bet: betAmountNum * 100 }
+                    );
+                });
+            }
+        }
+    },
+
+    setMyTask: function (task) {
+        if (task == null) {
+            const betAmountNum = parseFloat(this.betAmountArr[this.betAmountArrIndex]) || 0;
+            let mybet = parseFloat(betAmountNum) * 100;
+            for (let i = 0, len = this.taskMyInfo.length; i < len; i++) {
+                if (this.taskMyInfo[i].Bet == mybet) {
+                    this.taskMyInfo.splice(i, 1);  // ✅ 改成 splice
+                    break;
+                }
+            }
+            return;
+        }
+
+        LoggerUtil.getInstance().log("setMyTask task", task)
+        LoggerUtil.getInstance().log("1 setMyTask taskMyInfo", this.taskMyInfo)
+        let isHave = false;
+        for (let i = 0; i < this.taskMyInfo.length; i++) {
+            if (this.taskMyInfo[i].Id == task.Id) {
+                isHave = true;
+                this.taskMyInfo[i] = task;
+                break;
+            }
+        }
+        if (!isHave) {
+            this.taskMyInfo.push(task);
+        }
+        LoggerUtil.getInstance().log("2 setMyTask taskMyInfo", this.taskMyInfo)
+    },
+
+    getTaskDetailById: function (id) {
+        for (let i = 0; i < this.taskConfig.length; i++) {
+            if (this.taskConfig[i].Id == id) {
+                return this.taskConfig[i]
+            }
+        }
+        LoggerUtil.getInstance().log("getTaskDetailById error")
+        return this.taskConfig[0]
+    },
+
+
+    setUserDiamond: function (diamond) {
         GlobalCfg.USER_DATAS.userDiamond = diamond;
         let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
         this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
     },
 
-    setLabAmount: function(amount) {
+    setLabAmount: function (amount) {
         this.lab_betAmount.string = amount;
         let multiple = parseFloat(amount) / 9;
         this.lab_betAmount2.string = multiple + "x9";
     },
 
-    setFreesList: function(frees) {
+    setFreesList: function (frees) {
         if (!frees) {
             return;
         };
@@ -535,7 +691,7 @@ cc.Class({
     },
 
     // 通过下注倍数，获取对应的免费情况
-    getFreesItem: function(amount) {
+    getFreesItem: function (amount) {
         for (let i = 0, len = this.frees.length; i < len; i++) {
             const element = this.frees[i];
             if (element.amount == amount) {
@@ -545,7 +701,7 @@ cc.Class({
         return {};
     },
 
-    getFreesItemOfFreeCount: function() {
+    getFreesItemOfFreeCount: function () {
         for (let i = 0, len = this.frees.length; i < len; i++) {
             const element = this.frees[i];
             if (element.freeCount > 0) {
@@ -554,7 +710,7 @@ cc.Class({
         }
     },
 
-    setCallNotify: function(notify) {
+    setCallNotify: function (notify) {
         this.curSendSpin = false; //当前是否在发送请求 如果收到服务器回复，说明请求已经发送 避免多次发送
         this.gameResult = {};
         this.gameResult.userinfo = notify.userinfo;
@@ -566,9 +722,10 @@ cc.Class({
         this.gameResult.rewardtype = notify.rewardtype;
         this.gameResult.freePool = notify.freePool;
         this.gameResult.jpWin = notify.jpWin;
-        
+        this.setMyTask(notify.playerTask)
+
         this.hideSlotState();
-        
+
         //设置转动的音效
         this.playGameSound('zhuang');
 
@@ -586,6 +743,7 @@ cc.Class({
 
         this.dealSpinBtnEvent();
         this.startSlotsAnim();
+        this.setTaskInfo(); //设置任务信息
     },
 
     componentClickCall: function (component) {
@@ -606,7 +764,7 @@ cc.Class({
         else if (componentName == "btn_setting") {
             let pab_setting = cc.instantiate(this.pab_setting);
             this.node.addChild(pab_setting);
-        }   
+        }
         else if (componentName == "btn_betJian") {
             this.dealbetBtnEvent("jian");
         }
@@ -640,6 +798,10 @@ cc.Class({
         else if (componentName == "btn_fg_end") {
             this.dealFreeGameEndEvent();
         }
+    },
+
+    jpClickCall: function () {
+        GameServerManager.send("gameservice.getranking", "GetRankingReq", {});
     },
 
     hideSlotState: function () {
@@ -681,6 +843,7 @@ cc.Class({
         };
 
         this.setJackPotNum();
+        this.setTaskInfo(); //切换Bet金额时，更新任务信息
     },
 
     setBetBtnActive: function (betJianActive, betJiaActive) {
@@ -724,14 +887,14 @@ cc.Class({
         const root = this.btn_spin && this.btn_spin.node;
         if (!root || !cc.isValid(root)) return;
 
-        this._spinNode   = root.getChildByName('Background').getChildByName('spin');
+        this._spinNode = root.getChildByName('Background').getChildByName('spin');
         this._holdonNode = root.getChildByName('Background').getChildByName('holdon');
         this._holdonSkel = this._holdonNode ? this._holdonNode.getComponent(sp.Skeleton) : null;
 
         // 保持 active=true，用透明度控制
-        if (this._spinNode)   this._spinNode.active   = true;
+        if (this._spinNode) this._spinNode.active = true;
         if (this._holdonNode) this._holdonNode.active = true;
-        if (this._spinNode)   this._spinNode.opacity   = 255;
+        if (this._spinNode) this._spinNode.opacity = 255;
         if (this._holdonNode) this._holdonNode.opacity = 0;
 
         if (this._holdonSkel) {
@@ -748,7 +911,7 @@ cc.Class({
         // ✅ 仅保留函数引用，后续用 this.schedule/unschedule
         this._spinToggleFn = this._spinToggleFn || this._toggleSpinHoldon.bind(this);
     },
-    
+
     startSpinHoldonToggle: function (intervalSec = 5) {
         // 先停再启，防重复
         this.stopSpinHoldonToggle();
@@ -781,7 +944,7 @@ cc.Class({
 
         if (this._showingHoldon) {
             // 显示 holdon（不改 active），仅用透明度
-            spin.opacity   = 0;
+            spin.opacity = 0;
             holdon.opacity = 255;
 
             if (skel) {
@@ -806,7 +969,7 @@ cc.Class({
         } else {
             // 显示 spin
             holdon.opacity = 0;
-            spin.opacity   = 255;
+            spin.opacity = 255;
 
             // 停掉 holdon 的轨道，避免残留
             if (skel) {
@@ -840,7 +1003,7 @@ cc.Class({
      * @param {Function} [callback] 动画结束回调
      * @param {Boolean} [isInt=false] 是否以整数形式变化(默认false，即允许小数动画)
      */
-    runChangeTotalWinScore: function(label, startValue, endValue, time, callback, isInt = false) {
+    runChangeTotalWinScore: function (label, startValue, endValue, time, callback, isInt = false) {
         // 目标无效就直接回调
         if (!cc.isValid(label) || !cc.isValid(label.node) || !cc.isValid(this)) {
             callback && callback();
@@ -855,7 +1018,7 @@ cc.Class({
         // 是否需要两位小数
         const shouldShowTwoDecimals = !isInt &&
             (Math.abs(endValue - Math.floor(endValue)) > 0.01 ||
-            Math.abs(startValue - Math.floor(startValue)) > 0.01);
+                Math.abs(startValue - Math.floor(startValue)) > 0.01);
 
         cc.tween(this)
             .to(time, { _numTweenVal: endValue }, {
@@ -891,103 +1054,119 @@ cc.Class({
             .start();
     },
 
-    startSlotsAnim: function() {
-        if (this.isRunningCatAnim) {
-            return;
-        };
+    startSlotsAnim: function () {
+        if (this.isRunningCatAnim) return;
         this.isRunningCatAnim = true;
         let isFast = this.toggle_fast.isChecked;
-        this.kRate = isFast ? 0.45 : 1.1;
-        let catContentTime = 0.1 * this.kRate;
+        // ✅ 加快整体转速：把时间缩短一些（比你之前再快一档）
+        this.kRate = isFast ? 0.35 : 0.80;
+        // ✅ 允许停下的“当前列”从第0列开始
+        this._allowStopCol = 0;
+
+        // ✅ 每列启动间隔也缩短
+        let catContentTime = 0.03 * this.kRate;
+
         for (let i = 0, len = this.node_catContentArr.length; i < len; i++) {
             let children = this.node_catContentArr[i].children;
             let children2 = this.node_catSkelContentArr[i].children;
             for (let k = 0, lenk = children.length; k < lenk; k++) {
                 let item = children[k];
                 let item2 = children2[k];
-                item.repeat = 12;
-                item.index = k;
-                item.shu = i;
+                item.repeat = 4;     // 初始循环计数
+                item.index = k;       // 行索引：0=buffer 1/2/3=可见三行
+                item.shu = i;         // 列索引
                 this.scheduleOnce(() => {
-                    this.runSlotsItemAnim(item, item2, item.y, item.y + this.height);
+                    this.runSlotsItemAnim(item, item2, item.y, item.y - this.height);
                 }, catContentTime * i);
-            };
-        };
+            }
+        }
     },
-    
-    runSlotsItemAnim: function(node, skelNode, statrPositionY, endedPositionY) {
+
+    runSlotsItemAnim: function (node, skelNode, startPositionY, endedPositionY) {
         let self = this;
-        node.repeat += 1;
-        node.setPosition(cc.v2(0, statrPositionY));
+
+        // ✅ 只有“被允许的列”才能推进到 17+；其他列卡在 16 循环转动
+        if (node.repeat >= 16) {
+            if (node.shu <= this._allowStopCol) {
+                node.repeat += 1;   // 被允许 → 可以继续走 17/18/19/20
+            } else {
+                node.repeat = 16;   // 未到它 → 先固定在16，保持随机滚动
+            }
+        } else {
+            node.repeat += 1;       // 16以下都正常加
+        }
+
+        node.setPosition(cc.v2(0, startPositionY));
         let repeat = node.repeat;
         let index = node.index;
         let shu = node.shu;
+
+        // ✅ 再次稍微加快单步时间
+        let runTime = 0.06 * self.kRate;
         let easeType = '';
-        let runTime = 0.08 * self.kRate;
         if (repeat == 20) {
             easeType = 'backOut';
-            runTime = 0.5 * self.kRate;
-        };
+            runTime = 0.45 * self.kRate; // 停下来的回弹慢点更有“落停感”
+        }
+
         cc.tween(node)
-        .to(
-            runTime, 
-            {position: cc.v2(0, endedPositionY)}, 
-            {easing: easeType}
-        )
-        .call(() => {
-            if (repeat == 20) {
-                if (endedPositionY >= this.height * 2) {
-                    node.setPosition(cc.v2(0, -(this.height * 2)));
-                };
-                self.checkAnimFinish();
-                return;
-            };
-            if (endedPositionY >= this.height * 2) {
-                let src = node.getComponent('catItemCtrl');
-                let src2 = skelNode.getComponent('catSkelItemCtrl');
-                if (repeat == 17 && index == 0) {
-                    let itemID = self.gameResult.cards[shu].cards[0];
-                    src.setItemData(itemID);
-                    src2.setItemData(itemID);
-                    node.itemID = itemID;
-                    skelNode.itemID = itemID;
-                }
-                else if (repeat == 18 && index == 1) {
-                    let itemID = self.gameResult.cards[shu].cards[1];
-                    src.setItemData(itemID);
-                    src2.setItemData(itemID);
-                    node.itemID = itemID;
-                    skelNode.itemID = itemID;
-                }
-                else if (repeat == 19 && index == 2) {
-                    let itemID = self.gameResult.cards[shu].cards[2];
-                    src.setItemData(itemID);
-                    src2.setItemData(itemID);
-                    node.itemID = itemID;
-                    skelNode.itemID = itemID;
-                }
-                else {
-                    let num = Math.floor(Math.random() * 10 + 1);
-                    if (shu == 0 && num == 10) {
-                        num = 9;
+            .to(runTime, { position: cc.v2(0, endedPositionY) }, { easing: easeType })
+            .call(() => {
+                if (repeat == 20) {
+                    // 到达底部复位
+                    if (endedPositionY <= -(this.height * 2)) {
+                        node.setPosition(cc.v2(0, this.height * 2));
                     }
-                    else if (shu >= 3 && num == 11) {
-                        num = 10;
+
+                    // ✅ 这个列已经真正停下了，放行下一列
+                    if (shu === this._allowStopCol) {
+                        this._allowStopCol++;
                     }
-                    src.setItemData(num, false);
-                    src2.setItemData(num, false);
-                    node.itemID = num;
-                };
-                self.runSlotsItemAnim(node, skelNode, -(this.height * 2), -this.height);
-            }
-            else {
-                self.runSlotsItemAnim(node, skelNode, endedPositionY, endedPositionY + this.height);
-            };
-        })
-        .start();
+
+                    self.checkAnimFinish();
+                    return;
+                }
+
+                // 到达底部边界时重置 + 赋值/随机
+                if (endedPositionY <= -(this.height * 2)) {
+                    let src = node.getComponent('catItemCtrl');
+                    let src2 = skelNode.getComponent('catSkelItemCtrl');
+
+                    // ✅ 最后三圈按照你的结果表赋值（注意你之前的 19/18/17 与 index 映射）
+                    if (repeat == 19 && index == 1) {
+                        let itemID = self.gameResult.cards[shu].cards[0];
+                        src.setItemData(itemID);  src2.setItemData(itemID);
+                        node.itemID = itemID;     skelNode.itemID = itemID;
+                    } else if (repeat == 18 && index == 2) {
+                        let itemID = self.gameResult.cards[shu].cards[1];
+                        src.setItemData(itemID);  src2.setItemData(itemID);
+                        node.itemID = itemID;     skelNode.itemID = itemID;
+                    } else if (repeat == 17 && index == 3) {
+                        let itemID = self.gameResult.cards[shu].cards[2];
+                        src.setItemData(itemID);  src2.setItemData(itemID);
+                        node.itemID = itemID;     skelNode.itemID = itemID;
+                    } else {
+                        // 还在高速随机阶段
+                        let num = Math.floor(Math.random() * 10 + 1);
+                        if (shu == 0 && num == 10) num = 9;
+                        else if (shu >= 3 && num == 11) num = 10;
+                        src.setItemData(num, false);
+                        src2.setItemData(num, false);
+                        node.itemID = num;
+                    }
+
+                    // 复位到顶部继续向下滚
+                    self.runSlotsItemAnim(node, skelNode, this.height * 2, this.height);
+                } else {
+                    // 继续往下移动
+                    self.runSlotsItemAnim(node, skelNode, endedPositionY, endedPositionY - this.height);
+                }
+            })
+            .start();
     },
 
-    checkAnimFinish: function() {
+
+    checkAnimFinish: function () {
         this.finishedCatItemNum += 1;
         if (this.finishedCatItemNum == 20) {
             this.finishedCatItemNum = 0;
@@ -997,22 +1176,69 @@ cc.Class({
         };
     },
 
-    recoverySpinBtnEvent: function() {
+    recoverySpinBtnEvent: function () {
         this.btn_spin.interactable = true;
         this.btn_spin.enableAutoGrayEffect = false;
         this.btn_auto.interactable = true;
         this.btn_auto.enableAutoGrayEffect = false;
         const first = parseFloat(this.betAmountArr[0]);
-        const last  = parseFloat(this.betAmountArr[this.betAmountArr.length - 1]);
-        const cur   = parseFloat(this.lab_betAmount.string);
+        const last = parseFloat(this.betAmountArr[this.betAmountArr.length - 1]);
+        const cur = parseFloat(this.lab_betAmount.string);
         this.btn_betJian.interactable = cur > first;
         this.btn_betJian.enableAutoGrayEffect = !(cur > first);
         this.btn_betJia.interactable = cur < last;
         this.btn_betJia.enableAutoGrayEffect = !(cur < last);
     },
 
+    /**
+     * 取一列中“可见三行”节点（按 y 从高到低：上/中/下）
+     * @param {number} col 列索引 0..4
+     * @param {number} type 1:icon 2:skel
+     * @returns {cc.Node[]} [topNode, midNode, botNode]
+     */
+    _getVisibleRowNodes: function (col, type) {
+        const colArr = (type === 2 ? this.node_catSkelContentArr : this.node_catContentArr)[col];
+        if (!colArr) return [null, null, null];
+        let childrenSorted = colArr.children.slice().sort((a, b) => b.y - a.y);
+
+        // ✅ 如果是骨骼层，自动平移 y，使其与 icon 层对齐
+        if (type === 2) {
+            const iconArr = this.node_catContentArr[col];
+            if (iconArr) {
+                const iconYs = iconArr.children.slice().sort((a, b) => b.y - a.y).map(n => n.y);
+                const skelYs = childrenSorted.map(n => n.y);
+                const offset = (skelYs[1] - iconYs[1]) || 0;  // 取中间行偏差
+                if (Math.abs(offset) > 1) {
+                    childrenSorted.forEach(n => (n.y -= offset));
+                }
+            }
+        }
+
+        if (childrenSorted.length >= 4) {
+            return [childrenSorted[1], childrenSorted[2], childrenSorted[3]];
+        } else {
+            return [childrenSorted[0] || null, childrenSorted[1] || null, childrenSorted[2] || null];
+        }
+    },
+    _mapRowIndex(row) {
+        // 可见三行在 children[1], [2], [3]
+        return row + 1;
+    },
+    _getIconByColRow(col, row) {
+        const parent = this.node_catContentArr[col];
+        if (!parent) return null;
+        const idx = this._mapRowIndex(row);
+        return parent.children[idx] || null;
+    },
+    _getSkelByColRow(col, row) {
+        const parent = this.node_catSkelContentArr[col];
+        if (!parent) return null;
+        const idx = this._mapRowIndex(row);
+        return parent.children[idx] || null;
+    },
+
     //结算
-    showSettlementResult: function() {
+    showSettlementResult: function () {
         let totalMultiple = 0;
         for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
             let multiple = this.gameResult.xiannum[i].multiple;
@@ -1023,7 +1249,7 @@ cc.Class({
         };
         let startScore = Number(this.freeTotalWinNum);
         let bet = parseFloat(this.lab_betAmount.string); //下注金额
-        
+
         //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
         let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool / 100 : totalMultiple * bet / 100 / 9 + startScore;
         LoggerUtil.getInstance().log("caojun 结算结果 this.gameResult ：", this.gameResult);
@@ -1043,13 +1269,13 @@ cc.Class({
             let time = finalScore < 1 ? 0.6 : 1; //低于1分，因为有小数点的滚动所以时间要短一些
             this.lab_totalWin.node.active = true;
             this.node_goodluck.active = false;
-            this.runChangeTotalWinScore(this.lab_totalWin, startScore, endedScore, time, ()=>{
+            this.runChangeTotalWinScore(this.lab_totalWin, startScore, endedScore, time, () => {
                 let yanchiTime = 0.1;
                 if (this.gameResult.mianfeinum > 0) { //如果为免费次数，则先需要让元素播放2次再进行结算
                     yanchiTime = 1;
                 }
                 let self = this;
-                this.scheduleOnce(()=>{
+                this.scheduleOnce(() => {
                     if (self.bigWinLevel > 0) { //如果有big弹窗 则需要在弹窗之后再结算
                         self.showBigWinTips(finalScore);
                     }
@@ -1061,15 +1287,14 @@ cc.Class({
         this.startNextSpin();
     },
 
-    showBigWinTips: function(finalScore) {
+    showBigWinTips: function (finalScore) {
         CommonFun.getInstance().loadBundle('catMachine', (bundle) => {
             bundle.load("prefab/catRewardTips", cc.Prefab, (err, prefab) => {
                 if (!err) {
-                    let scene = cc.director.getScene();
                     let catRewardTipsNode = cc.instantiate(prefab);
                     let catRewardTipsCtrl = catRewardTipsNode.getComponent("catRewardTipsCtrl");
-                    scene.addChild(catRewardTipsNode);
-                    catRewardTipsCtrl.showRewardTips(finalScore, this.bigWinLevel, ()=>{
+                    CommonFun.getInstance().addToPointParent(catRewardTipsNode, "SecondLayer");
+                    catRewardTipsCtrl.showRewardTips(finalScore, this.bigWinLevel, () => {
                         this.startNextSpin();
                     })
                 };
@@ -1079,7 +1304,7 @@ cc.Class({
         });
     },
 
-    getBigWinLevel: function(betMul) {
+    getBigWinLevel: function (betMul) {
         let level = 0;
         if (5 <= betMul && betMul < 20) { //bigwin
             level = 1;
@@ -1093,20 +1318,20 @@ cc.Class({
         return level;
     },
 
-    playGameBigWinSound: function() {
+    playGameBigWinSound: function () {
         let self = this;
         this.playGameMusic('win')
-        this.scheduleOnce(()=>{
-            if (self.gameResult && self.gameResult.mianfeinum > 0){
+        this.scheduleOnce(() => {
+            if (self.gameResult && self.gameResult.mianfeinum > 0) {
                 this.playGameMusic('bgm')
             }
-            else{
+            else {
                 this.playGameMusic('bgm')
             }
         }, 2);
     },
 
-    showSpinResult: function() {
+    showSpinResult: function () {
         let isNeedShowAnim = false;
         let xiannumArr = this.gameResult.xiannum;
         for (let i = 0, len = xiannumArr.length; i < len; i++) {
@@ -1124,31 +1349,30 @@ cc.Class({
             // this.node_windb.active = true;
         }
         else {
-            this.isRunningCatAnim = false; 
+            this.isRunningCatAnim = false;
         };
     },
 
-    showFGSymbol: function(type) {
-        for (let j = 0; j < this.node_catContentArr.length; j++) {
-            const children  = this.node_catContentArr[j].children;
-            const children2 = this.node_catSkelContentArr[j].children;
-            for (let k = 0; k < children.length; k++) {
-                const iconNode = children[k];
-                const skelNode = children2[k];
+    showFGSymbol: function (type) {
+        for (let col = 0; col < this.node_catContentArr.length; col++) {
+            const iconRows = this._getVisibleRowNodes(col, 1);
+            const skelRows = this._getVisibleRowNodes(col, 2);
+            for (let r = 0; r < 3; r++) {
+                const iconNode = iconRows[r];
+                const skelNode = skelRows[r];
+                if (!iconNode || !skelNode) continue;
                 const id = iconNode.itemID;
                 if (id == 10) {
                     iconNode.getComponent('catItemCtrl').playAnimation();
                     const skelCtrl = skelNode.getComponent('catSkelItemCtrl');
-                    if (type === 1) 
-                        skelCtrl.playFreeGameApppear();
-                    else            
-                        skelCtrl.playFreeGameWait();
+                    if (type === 1) skelCtrl.playFreeGameApppear();
+                    else skelCtrl.playFreeGameWait();
                 }
             }
         }
     },
 
-    startNextSpin:function () {
+    startNextSpin: function () {
         let StartNextSpin = () => {
             if (this.isRunningCatAnim) {
                 return;
@@ -1161,7 +1385,7 @@ cc.Class({
                 if (this.gameResult.execNum == 1) {//刚进入FG
                     this.startFreeGame(this.gameResult.mianfeinum);
                 }
-                else{
+                else {
                     if (this.gameResult.addFgCount && this.gameResult.addFgCount > 1) //FG过程中又中FG
                         // this.addFreeGame(this.gameResult.addFgCount);
                         this.dealFreeGame(this.lab_betAmount.string, this.gameResult.mianfeinum);
@@ -1172,8 +1396,8 @@ cc.Class({
             else {
                 this.isFg = false;
                 if (this.gameResult.execNum > 1) {//说明是FG最后一次spin 需要结算
-                    let finalScore = CommonFun.getInstance().numberToShow(this.gameResult.freePool/100);
-                    this.PlayFGEndAnim(finalScore, ()=>{
+                    let finalScore = CommonFun.getInstance().numberToShow(this.gameResult.freePool / 100);
+                    this.PlayFGEndAnim(finalScore, () => {
                         this.curRoundAddCoinFinish();
                         if (this.isAuto) {
                             this.sendCallReq();
@@ -1185,8 +1409,8 @@ cc.Class({
                         this.background.spriteFrame = this.mg_bg;
                     });
                 }
-                else{
-                    this.checkWinJp(()=>{
+                else {
+                    this.checkWinJp(() => {
                         this.background.spriteFrame = this.mg_bg; // 兜底
                         this.curRoundAddCoinFinish();
                         if (this.isAuto) {
@@ -1200,15 +1424,15 @@ cc.Class({
                 this.node_free.active = false;
             }
         };
-        this.schedule(StartNextSpin, 0.01); 
+        this.schedule(StartNextSpin, 0.01);
     },
 
-    curRoundAddCoinFinish(){
-        if(cc.isValid(this)){
+    curRoundAddCoinFinish() {
+        if (cc.isValid(this)) {
             let minLimit = this.betAmountArr[0] || 0;
-            minLimit = parseFloat(minLimit) * 100;
-            CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, ()=>{
-                if(cc.isValid(this)){
+            CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, () => {
+                minLimit = parseFloat(minLimit) * 100;
+                if (cc.isValid(this)) {
                     if (GlobalCfg.IS_SHOW_BANKRUPT) { //破产界面显示时才需要暂停自动spin
                         this.toggle_auto.isChecked = false;
                     }
@@ -1247,7 +1471,7 @@ cc.Class({
     /**
      * 显示中奖线动画
      */
-    showXianNum: function() {
+    showXianNum: function () {
         if (!this.gameResult) return;
 
         const iconLines = this.buildLineArrayByRules(1);
@@ -1261,29 +1485,29 @@ cc.Class({
         this.setLine();
     },
 
-    getXianRule: function(ref) {
+    getXianRule: function (ref) {
         // 返回每条线的 [col,row] 路径（row: 0=上,1=中,2=下）
         switch (ref) {
-            case 1: return [[0,1],[1,1],[2,1],[3,1],[4,1]]; // 中线
-            case 2: return [[0,0],[1,0],[2,0],[3,0],[4,0]]; // 上横
-            case 3: return [[0,2],[1,2],[2,2],[3,2],[4,2]]; // 下横
-            case 4: return [[0,0],[1,1],[2,2],[3,1],[4,0]];
-            case 5: return [[0,2],[1,1],[2,0],[3,1],[4,2]];
-            case 6: return [[0,0],[1,0],[2,1],[3,2],[4,2]];
-            case 7: return [[0,2],[1,2],[2,1],[3,0],[4,0]];
-            case 8: return [[0,1],[1,2],[2,1],[3,0],[4,1]];
-            case 9: return [[0,1],[1,0],[2,1],[3,2],[4,1]];
+            case 1: return [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1]]; // 中线
+            case 2: return [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]]; // 上横
+            case 3: return [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]]; // 下横
+            case 4: return [[0, 0], [1, 1], [2, 2], [3, 1], [4, 0]];
+            case 5: return [[0, 2], [1, 1], [2, 0], [3, 1], [4, 2]];
+            case 6: return [[0, 0], [1, 0], [2, 1], [3, 2], [4, 2]];
+            case 7: return [[0, 2], [1, 2], [2, 1], [3, 0], [4, 0]];
+            case 8: return [[0, 1], [1, 2], [2, 1], [3, 0], [4, 1]];
+            case 9: return [[0, 1], [1, 0], [2, 1], [3, 2], [4, 1]];
             default: return [];
         }
     },
 
-    hideLine: function() {
+    hideLine: function () {
         for (let index = 0; index < this.lineArr.length; index++) {
             this.lineArr[index].active = false;
         }
     },
 
-    setLine: function() {
+    setLine: function () {
         if (!this.gameResult || !Array.isArray(this.gameResult.xiannum)) return;
         for (const x of this.gameResult.xiannum) {
             const ref = x && x.ref;
@@ -1293,58 +1517,67 @@ cc.Class({
         }
     },
 
-    isWild: function(id) {
+    isWild: function (id) {
         return id === this.wildId || id > 100;
     },
 
-    /**
-     * 按固定线路规则，基于当前盘面与 xiannum，构建要播放的线路节点数组
-     * @param {number} type 1:icon节点 2:skel节点
-     * @returns {Array<Array<cc.Node>>} 每个元素是一条线的节点列表（已按列顺序）
-     */
-    buildLineArrayByRules: function(type) {
+    buildLineArrayByRules: function (type) {
         const lines = [];
-        const { xiannum, cards } = this.gameResult;
-        if (!xiannum || !cards) return lines;
+        const { xiannum } = this.gameResult || {};
+        if (!xiannum) return lines;
 
-        // 逐条中奖线描述
         for (let i = 0; i < xiannum.length; i++) {
             const it = xiannum[i];
-            const needLen = Math.min(it.len || 0, 5); // 最多5列
+            const needLen = Math.min(it.len || 0, 5);
             if (!it.multiple || it.multiple <= 0 || needLen < 3) continue;
 
             const card = it.card;
 
-            // 我们不知道后端的“线路编号(ref)”；那就把 1..9 每条线路都尝试一遍
+            // 每一条线路（ref 从 1 开始）
             for (let ref = 1; ref <= 9; ref++) {
                 const path = this.getXianRule(ref);
                 if (path.length < needLen) continue;
 
                 const nodes = [];
                 let ok = true;
-                // 检查前 needLen 列是否都匹配 (card 或 wild)
+
                 for (let c = 0; c < needLen; c++) {
                     const [col, row] = path[c];
-                    const colArr = (type === 2 ? this.node_catSkelContentArr : this.node_catContentArr)[col];
-                    if (!colArr || !colArr.children[row]) { ok = false; break; }
 
-                    const n = colArr.children[row];
-                    const id = n.itemID; // 你滚动时已经写入 itemID
-                    if (!(id === card || this.isWild(id))) { ok = false; break; }
+                    // ✅ 使用统一入口取节点，确保 icon / skel 对齐
+                    const n =
+                        type === 2
+                            ? this._getSkelByColRow(col, row)
+                            : this._getIconByColRow(col, row);
+
+                    if (!n) {
+                        ok = false;
+                        break;
+                    }
+
+                    const id = n.itemID;
+                    if (!(id === card || id === this.wildId || id > 100)) {
+                        ok = false;
+                        break;
+                    }
 
                     nodes.push(n);
                 }
 
                 if (ok) {
                     lines.push(nodes);
-                    // 如果一条 xiannum 只需要一条线路，可 break；
-                    // 如果它代表“相同牌型的多条线路”，可不 break。
-                    // 为避免漏表现，建议不 break，显示所有符合的线路。
                 }
             }
         }
+        if (type === 1 && lines.length > 0) {
+            LoggerUtil.getInstance().log("line1 sample", lines[0].map(n => n.y));
+        }
+        if (type === 2 && lines.length > 0) {
+            LoggerUtil.getInstance().log("line2 sample", lines[0].map(n => n.y));
+        }
         return lines;
     },
+
 
     /**
      * 收集匹配的节点（卡牌相同或是万能牌10）
@@ -1353,21 +1586,15 @@ cc.Class({
      * @param {number} type - 1:icon节点 2:skel节点
      * @returns {Array} 每列匹配的节点数组
      */
-    collectMatchingNodes: function(card, xiannumLen, type) {
+    collectMatchingNodes: function (card, xiannumLen, type) {
         const matchingNodes = [];
-        // 从第2列开始遍历（第1列已固定）
         for (let col = 1; col < Math.min(xiannumLen, this.node_catContentArr.length); col++) {
+            const rows = this._getVisibleRowNodes(col, type);
             const columnNodes = [];
-            let shu = this.node_catContentArr[col];  // 当前列的所有节点
-            if (type == 2) {
-                shu = this.node_catSkelContentArr[col];
-            }
-            // 遍历当前列的4个节点
-            for (let j = 0; j < 3; j++) {
-                const itemNode = shu.children[j];
-                itemNode.pos = [col, j];
-                LoggerUtil.getInstance().log(`col = ${col} row = ${j} card == ${card} itemNode.itemID = ${itemNode.itemID}`);
-                // 如果节点卡牌匹配目标卡牌或是万能牌
+            for (let r = 0; r < 3; r++) {
+                const itemNode = rows[r];
+                if (!itemNode) continue;
+                itemNode.pos = [col, r];
                 if (itemNode.itemID == card || itemNode.itemID == this.wildId || itemNode.itemID > 100) {
                     columnNodes.push(itemNode);
                 }
@@ -1383,7 +1610,7 @@ cc.Class({
      * @param {Array} matchingNodes - 每列的匹配节点数组
      * @param {Array} lineArr - 存储结果的数组
      */
-    generateLineCombinations: function(shu0Node, matchingNodes, lineArr) {
+    generateLineCombinations: function (shu0Node, matchingNodes, lineArr) {
         /**
          * 递归构建组合路径
          * @param {Array} currentPath - 当前已构建的路径
@@ -1395,13 +1622,13 @@ cc.Class({
                 lineArr.push([shu0Node, ...currentPath]);
                 return;
             }
-            
+
             // 遍历当前列的所有匹配节点，继续递归构建
             for (const node of matchingNodes[depth]) {
                 buildCombination([...currentPath, node], depth + 1);
             }
         };
-        
+
         // 从第0层开始递归
         buildCombination([], 0);
     },
@@ -1410,31 +1637,44 @@ cc.Class({
      * 立即播放所有动画
      * @param {Array} lineArr - 所有中奖线节点数组
      */
-    playInstantAnimation: function(lineArr, type) {
-        // 遍历所有线
+    playInstantAnimation: function (lineArr, type) {
         for (const typeArr of lineArr) {
-            // 遍历线中的每个相邻节点对
             for (let k = 0; k < typeArr.length - 1; k++) {
-                const itemNode1 = typeArr[k];
-                const itemNode2 = typeArr[k + 1];
-                // 播放两个节点的动画
+                const n1 = typeArr[k], n2 = typeArr[k + 1];
                 if (type == 1) {
-                    itemNode1.getComponent('catItemCtrl').playAnimation();
-                    itemNode2.getComponent('catItemCtrl').playAnimation();
+                    n1.getComponent('catItemCtrl').playAnimation();
+                    n2.getComponent('catItemCtrl').playAnimation();
                 }
                 if (type == 2) {
-                    itemNode1.getComponent('catSkelItemCtrl').playAnimation();
-                    itemNode2.getComponent('catSkelItemCtrl').playAnimation();
+                    n1.getComponent('catSkelItemCtrl').playAnimation();
+                    n2.getComponent('catSkelItemCtrl').playAnimation();
                 }
             }
         }
-        // 1秒后设置动画状态为结束
-        this.scheduleOnce(() => {
-            this.isRunningCatAnim = false;
-        }, 1);
+        // ✅ 纵向“龙”检测改为按可见三行
+        for (let col = 0; col < this.node_catSkelContentArr.length; col++) {
+            const rows = this._getVisibleRowNodes(col, 2); // [top, mid, bot]
+            const row0 = rows[0], row1 = rows[1], row2 = rows[2];
+            if (!row0 || !row1 || !row2) continue;
+
+            const id0 = row0.itemID, id1 = row1.itemID, id2 = row2.itemID;
+            const topTwo = (id0 == 8 && id1 == 8);
+            const bottomTwo = (id1 == 8 && id2 == 8);
+            const allThree = (id0 == 8 && id1 == 8 && id2 == 8);
+
+            const midCtrl = row2.getComponent('catSkelItemCtrl'); // 以最下行为触发点
+            if (allThree) {
+                midCtrl.showDragon(3);
+            } else {
+                if (topTwo) midCtrl.showDragon(1);
+                if (bottomTwo) midCtrl.showDragon(2);
+            }
+        }
+
+        this.scheduleOnce(() => { this.isRunningCatAnim = false; }, 1);
     },
 
-    sendLoginReq: function() {
+    sendLoginReq: function () {
         let proroID = 'gameservice.login';
         let message = 'LoginReq';
         GameServerManager.send(proroID, message, {
@@ -1444,11 +1684,11 @@ cc.Class({
         });
     },
 
-    sendCallReq: function() {
+    sendCallReq: function () {
         if (this.curSendSpin == true) { //避免重复发送请求
             return;
         }
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicat"] == true){   //未曾充值
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicat"] == true) {   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 if (this.paymentSwitch) {
                     CommonFun.getInstance().showSmallAddCash()
@@ -1465,7 +1705,8 @@ cc.Class({
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+            }
             else {
                 CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
                     if (this.paymentSwitch) {
@@ -1484,25 +1725,25 @@ cc.Class({
         this.curSendSpin = true;
         let proroID = 'gameservice.call';
         let message = 'CallReq';
-        GameServerManager.send(proroID, message, {              
+        GameServerManager.send(proroID, message, {
             amount: betAmount
         });
     },
-    
-    getCoinFormatStr: function(coin) {
+
+    getCoinFormatStr: function (coin) {
         let decimalPlaces = this.getCoinDecimalPlaces(coin);
         return coin.toFixed(decimalPlaces);
     },
 
-    
-    startFreeGame: function(num) {
+
+    startFreeGame: function (num) {
         let self = this;
         this.node_fg.scale = 1;
         this.lab_fg_num.string = num;
         // this.node_windb.active = true;
         this.playGameSound('freetimes')
         this.showFGSymbol(2)
-        this.scheduleOnce(()=>{
+        this.scheduleOnce(() => {
             self.playGameMusic('freeBg');
             this.background.spriteFrame = this.fg_bg;
             self.node_fg_pop.active = true;
@@ -1512,7 +1753,7 @@ cc.Class({
     },
 
     //fg过程中又中fg
-    addFreeGame: function(num) {
+    addFreeGame: function (num) {
         this.node_addFG_pop.active = true;
         let self = this;
         let anim = this.node_addFG.getComponent(cc.Animation);
@@ -1520,12 +1761,12 @@ cc.Class({
         this.lab_addfg_num.string = num;
         let curFreeGameNum = parseInt(this.lab_freenum.string);
         let curFreeGameFinalNum = curFreeGameNum + num - 1;
-        this.scheduleOnce(()=>{
+        this.scheduleOnce(() => {
             self.runChangeTotalWinScore(self.lab_addfg_num, num, 0, 1, null, true)
-            self.runChangeTotalWinScore(self.lab_freenum, curFreeGameNum, curFreeGameFinalNum, 1, ()=>{
-                self.scheduleOnce(()=>{
+            self.runChangeTotalWinScore(self.lab_freenum, curFreeGameNum, curFreeGameFinalNum, 1, () => {
+                self.scheduleOnce(() => {
                     anim.play("bigwinEnd");
-                    self.scheduleOnce(()=>{
+                    self.scheduleOnce(() => {
                         self.node_addFG_pop.active = false;
                         self.dealFreeGame(self.lab_betAmount.string, curFreeGameFinalNum);
                     }, 0.5);
@@ -1534,8 +1775,8 @@ cc.Class({
         }, 1);
     },
 
-    playFreeGameAnim: function(skelName) {
-        const pop  = this.node_fg_pop;
+    playFreeGameAnim: function (skelName) {
+        const pop = this.node_fg_pop;
         const skelN = this.node_fg;
 
         // “关闭态”(skelName=="3") 走收尾动画通道，不必重新 setAnimation
@@ -1543,7 +1784,7 @@ cc.Class({
             this._closePopupTween(pop, {
                 dur: 0.18,
                 ease: 'backIn',
-                onAfter: () => { 
+                onAfter: () => {
                     this.dealFreeGame(this.lab_betAmount.string, this.gameResult.mianfeinum);
                 }
             });
@@ -1580,25 +1821,27 @@ cc.Class({
         }, 2);
     },
 
-    dealFreeGameEndEvent: function() {
+    dealFreeGameEndEvent: function () {
         // 玩家手动关闭 FG 过场
         this.btn_fg_end && (this.btn_fg_end.interactable = false);
         this.playFreeGameAnim("3");
     },
 
-    dealFreeGame: function(amount, freeCount) {
+    dealFreeGame: function (amount, freeCount) {
         this.node_free.active = true;
         this.lab_freenum.string = freeCount
         let proroID = 'gameservice.call';
         let message = 'CallReq';
-        GameServerManager.send(proroID, message, {              
+        GameServerManager.send(proroID, message, {
             amount: amount * 100
         });
     },
 
+
+
     //播放FG结算动画
-    PlayFGEndAnim: function(finalScore, callback) {
-        const pop  = this.node_totalwin_pop;
+    PlayFGEndAnim: function (finalScore, callback) {
+        const pop = this.node_totalwin_pop;
         const skelN = this.node_totalwin;
 
         const token = this._preparePopup(pop, skelN);
@@ -1607,17 +1850,18 @@ cc.Class({
         const skel = skelN.getComponent(sp.Skeleton);
         this.playGameMusic("freeTotalWin");
 
-        // 数字滚动
+        // 用纯数字做动画
         this.lab_totalwinpop_num.string = "";
         this.btn_totalwin_end.interactable = false;
-        this.runChangeTotalWinScore(this.lab_totalwinpop_num, 0, finalScore, 4, null);
+        const endNum = Number(finalScore); // finalScore 直接传“数字”，不要先 numberToShow
+        this.runChangeTotalWinScore(this.lab_totalwinpop_num, 0, endNum, 4, null, false);
 
         // 主动画一次
         skel.setAnimation(0, "animation_totalwin", false);
         skel.setCompleteListener(() => {
             if (!this._isPopupTokenAlive(pop, token)) return;
             this.btn_totalwin_end.interactable = true;
- 
+
             this.scheduleOnce(() => {
                 if (!this._isPopupTokenAlive(pop, token)) return;
                 this._closePopupTween(pop, {
@@ -1631,7 +1875,7 @@ cc.Class({
 
     checkWinJp: function (callback) {
         if (this.gameResult.jpWin && this.gameResult.jpWin > 0) {
-            this.showJPpop(callback)   
+            this.showJPpop(callback)
         }
         else {
             callback && callback();
@@ -1640,7 +1884,7 @@ cc.Class({
 
     //进入JP模式
     showJPpop: function (callback) {
-        const pop  = this.node_jp_pop;
+        const pop = this.node_jp_pop;
         const skelN = this.node_jp;
 
         const token = this._preparePopup(pop, skelN);
@@ -1673,7 +1917,7 @@ cc.Class({
         });
     },
 
-    onClickJpEnd: function() {
+    onClickJpEnd: function () {
         this._closePopupTween(this.node_jp_pop, { dur: 0.15, ease: 'backIn' });
     },
 
@@ -1713,59 +1957,59 @@ cc.Class({
     _isTokenAlive(node, t) {
         return node && node.__playToken === t;
     },
-_preparePopup(popNode, skelNode) {
-    if (!cc.isValid(popNode) || !cc.isValid(skelNode)) return null;
+    _preparePopup(popNode, skelNode) {
+        if (!cc.isValid(popNode) || !cc.isValid(skelNode)) return null;
 
-    // 复位 transform，保证再次打开可见
-    try {
-        popNode.scaleX = popNode.scaleY = 1;
-        popNode.opacity = 255;
-        popNode.angle = 0;
-    } catch (e) {}
-
-    // Spine 归零
-    const skel = skelNode.getComponent(sp.Skeleton);
-    if (!skel) return null;
-    skel.setCompleteListener(null);
-    skel.clearTracks();
-    skel.setToSetupPose();
-    skel.timeScale = 1;
-
-    popNode.active = true;
-    skelNode.active = true;
-
-    const token = Symbol('popup');
-    this._popupStates.set(popNode.uuid, { token, skel });
-    return token;
-},
-
-_forceClosePopup(popNode) {
-    const st = this._popupStates.get(popNode && popNode.uuid);
-
-    if (st && st.skel) {
+        // 复位 transform，保证再次打开可见
         try {
-            st.skel.setCompleteListener(null);
-            st.skel.clearTracks();
-            st.skel.setToSetupPose();
-            st.skel.timeScale = 1;
-        } catch (e) {}
-    }
-
-    if (cc.isValid(popNode)) {
-        this._killPopupTweens(popNode);           // 停掉残留 tween
-        try {
-            popNode.scaleX = popNode.scaleY = 1;  // 复位到下次可直接显示
+            popNode.scaleX = popNode.scaleY = 1;
             popNode.opacity = 255;
             popNode.angle = 0;
-        } catch (e) {}
-        popNode.active = false;
-    }
-    this._popupStates.delete(popNode && popNode.uuid);
-},
+        } catch (e) { }
+
+        // Spine 归零
+        const skel = skelNode.getComponent(sp.Skeleton);
+        if (!skel) return null;
+        skel.setCompleteListener(null);
+        skel.clearTracks();
+        skel.setToSetupPose();
+        skel.timeScale = 1;
+
+        popNode.active = true;
+        skelNode.active = true;
+
+        const token = Symbol('popup');
+        this._popupStates.set(popNode.uuid, { token, skel });
+        return token;
+    },
+
+    _forceClosePopup(popNode) {
+        const st = this._popupStates.get(popNode && popNode.uuid);
+
+        if (st && st.skel) {
+            try {
+                st.skel.setCompleteListener(null);
+                st.skel.clearTracks();
+                st.skel.setToSetupPose();
+                st.skel.timeScale = 1;
+            } catch (e) { }
+        }
+
+        if (cc.isValid(popNode)) {
+            this._killPopupTweens(popNode);           // 停掉残留 tween
+            try {
+                popNode.scaleX = popNode.scaleY = 1;  // 复位到下次可直接显示
+                popNode.opacity = 255;
+                popNode.angle = 0;
+            } catch (e) { }
+            popNode.active = false;
+        }
+        this._popupStates.delete(popNode && popNode.uuid);
+    },
     // 停止某弹窗上还在跑的补间
     _killPopupTweens(popNode) {
         if (!cc.isValid(popNode)) return;
-        try { cc.Tween.stopAllByTarget(popNode); } catch (e) {}
+        try { cc.Tween.stopAllByTarget(popNode); } catch (e) { }
     },
 
     // 仅用于“关闭”的缩小+淡出；结束后走 _forceClosePopup 复位并 inactive
@@ -1774,23 +2018,23 @@ _forceClosePopup(popNode) {
         const {
             toScale = 0.75,   // 关时缩至 75%
             toAlpha = 0,      // 淡出
-            dur     = 0.18,   // 关闭时长
-            ease    = 'backIn',
+            dur = 0.18,   // 关闭时长
+            ease = 'backIn',
             onAfter = null,   // 关闭完后的回调（可选）
         } = opts;
 
         this._killPopupTweens(popNode);
 
         cc.tween(popNode)
-        .parallel(
-            cc.tween().to(dur, { opacity: toAlpha }),
-            cc.tween().to(dur, { scaleX: toScale, scaleY: toScale }, { easing: ease })
-        )
-        .call(() => {
-            this._forceClosePopup(popNode);   // 统一清理 Spine & 复位 transform & active=false
-            if (typeof onAfter === 'function') onAfter();
-        })
-        .start();
+            .parallel(
+                cc.tween().to(dur, { opacity: toAlpha }),
+                cc.tween().to(dur, { scaleX: toScale, scaleY: toScale }, { easing: ease })
+            )
+            .call(() => {
+                this._forceClosePopup(popNode);   // 统一清理 Spine & 复位 transform & active=false
+                if (typeof onAfter === 'function') onAfter();
+            })
+            .start();
     },
     _isPopupTokenAlive(popNode, token) {
         if (!cc.isValid(popNode)) return false;
@@ -1798,7 +2042,7 @@ _forceClosePopup(popNode) {
         return !!(st && st.token === token && popNode.activeInHierarchy);
     },
 
-    getCoinDecimalPlaces: function(coin) {
+    getCoinDecimalPlaces: function (coin) {
         let decimalPlaces = 0;
         if (coin < 100000) {
             decimalPlaces = 2;

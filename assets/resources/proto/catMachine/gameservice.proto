@@ -1,15 +1,15 @@
 syntax = "proto3";
 package gameservice;
 
+//心跳
+message PingPang {
+	uint64 timestamp = 1;	//时间戳
+}
+
 //返回结果
 message ResponseBase {
   uint32 result = 1;
   string message = 2;
-}
-
-//心跳
-message PingPang {
-	uint64 timestamp = 1;	//时间戳
 }
 
 //用户信息
@@ -21,6 +21,7 @@ message UserInfoAck {
   int64 diamond = 5;      //金币
   int32 pos = 6;          //位置
   uint32 vipLevel = 7;
+
 }
 
 //登录 gameservice.login
@@ -35,8 +36,9 @@ message LoginAck {
   repeated Free frees = 3;    //下注免费信息
   repeated int32 betOption = 4; // 下注选项
   repeated int64 jpMub = 5;//jp倍数
+  repeated PlayerTask playerTasks = 6; //玩家全部下注任务情况
+  repeated TaskInfo tasks = 7;         //全部任务
 }
-
 message Free {
   int64 amount = 1;     //下注倍数
   int64 freeCount = 2;  //免费次数
@@ -69,11 +71,54 @@ message CallAck {
   int64 freePool = 7;               //免费奖池 (这一轮后三叶草免费奖池)
   int32  execNum = 8;               //执行次数
   int32 addFgCount = 9;             //在fg中增加Fg次数
-  int64 jpWin = 10;                  //jp奖励
+  int64 jpWin = 10;
+  PlayerTask playerTask = 11;       //玩家任务情况
 }
 
 //货币更新广播(非游戏行为) gameservice.updatecoinnotify
 message UpdateCoinNotify {
   int64 diamond = 1;  // 剩余数量
   int32 reason = 2;   // 原因 1:支付; 其他：未知
+}
+
+message PlayerTask {
+  int64 Bet = 1;
+  int32 Id = 2;
+  int32 Count = 3;
+}
+
+message TaskInfo {
+  int32 Id = 1;
+  int32 Cards = 2;
+  int32 Count = 3;
+  int32 Reward = 4;
+}
+
+//下注   gameservice.claimtaskreward
+message ClaimTaskRewardReq {
+  int64 bet = 1;     //下注金额
+}
+
+message ClaimTaskRewardAck {
+  ResponseBase result = 1;
+  UserInfoAck userinfo = 2;         //用户信息
+  int64  RewardCoin = 3;            //领取金币
+}
+
+//下注   gameservice.getranking
+message GetRankingReq {
+  int64 bet = 1;     //下注金额
+}
+
+message GetRankingAck {
+  ResponseBase result = 1;
+  repeated RankingData  infos = 2;            //排行榜信息
+}
+
+message RankingData {
+  int64 time = 1;       //时间
+  int64 TotalBet = 3;   //总下注金额
+  int32 types = 4;      //类型
+  string nickname = 5;  //昵称
+  string HeadUrl = 6;   //头像地址
 }
