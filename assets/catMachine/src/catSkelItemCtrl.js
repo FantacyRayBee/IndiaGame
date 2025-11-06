@@ -18,7 +18,7 @@ cc.Class({
 
     setItemData: function(itemID) {
         this.typeId = itemID;
-        let spriteName = "tubiao";
+        let spriteName = itemID == 8 ? "icon_8" : "tubiao";
         this.loadSkeletonData(spriteName, (skeletonData, self) => {
             if (self && this.skeleton_icon) {
                 this.skeleton_icon.skeletonData = skeletonData;
@@ -31,16 +31,23 @@ cc.Class({
         if (this.skeleton_icon) {
             this.skeleton_icon.node.active = true;
             let typeId = this.typeId;
-            this.skeleton_icon.setAnimation(0, "item_" + typeId, true);
+            if (typeId == 8) { //龙骨动画
+                this.skeleton_icon.setAnimation(0, "skill", true);
+            }
+            else{
+                this.skeleton_icon.setAnimation(0, "item_" + typeId, true);
+            }
             this.setKuangSkeletonDong();
         };
     },
 
-    stopAnimation: function(time = 2) {
+    stopAnimation: function(time = 2, isHideDragon = true) {
         this.scheduleOnce(()=>{
             this.skeleton_icon.node.active = false;
-            this.skeleton_kuang.node.active = false
-            this.mask_dragon.active = false;
+            if (isHideDragon) {
+                this.skeleton_kuang.node.active = false
+                this.mask_dragon.active = false;
+            }
         }, time);
     },
 
@@ -56,26 +63,26 @@ cc.Class({
         this.mask_dragon.active = true;
         if (type == 1) {
             this.mask_dragon.height = 326;
-            this.mask_dragon.position = cc.v2(0, 234);
+            this.mask_dragon.position = cc.v2(0, -66.863);
             this.skel_dragon.position = cc.v2(0, -81.078);
 
         } else if (type == 2) {
             this.mask_dragon.height = 326;
-            this.mask_dragon.position = cc.v2(0, 84.66);
+            this.mask_dragon.position = cc.v2(0, -214.276);
             this.skel_dragon.position = cc.v2(0, -81.078);
         } 
         else if (type == 3) {
             this.mask_dragon.height = 457.7;
-            this.mask_dragon.position = cc.v2(0, 84.66);
+            this.mask_dragon.position = cc.v2(0, -153.177);
             this.skel_dragon.position = cc.v2(0, 0);
         }
     },
 
-    //播放Free元素 出现动画
+    //播放元素出现动画
     playFreeGameApppear: function () {
         if (this.skeleton_icon) {
             this.skeleton_icon.node.active = true;
-            this.skeleton_icon.setAnimation(0, "item_10", false);
+            this.skeleton_icon.setAnimation(0, "item_" + this.typeId, false);
         };
     },
 

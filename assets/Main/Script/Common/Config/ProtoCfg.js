@@ -335,6 +335,7 @@ cc.Class({
     this.protoCat = {
       "gameservice.login": "LoginAck", //登录
       "gameservice.call": "CallAck", //下注
+      "gameservice.exit": "ExitAck", //退出
       "gameservice.getranking": "GetRankingAck",
       "gameservice.claimtaskreward": "ClaimTaskRewardAck", 
     }

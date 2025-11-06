@@ -1,0 +1,85 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "zc",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.3333333333333333,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "1": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.5,
+              "value": 0
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": 800
+            }
+          ]
+        }
+      },
+      "2": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.5,
+              "value": 0
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": -800
+            }
+          ]
+        }
+      },
+      "3": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.5,
+              "value": 0
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": 800
+            }
+          ]
+        }
+      },
+      "4": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.5,
+              "value": 0
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": -800
+            }
+          ]
+        }
+      },
+      "5": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.5,
+              "value": 0
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": 800
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

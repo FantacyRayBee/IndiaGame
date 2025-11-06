@@ -2448,7 +2448,7 @@ cc.Class({
             skeleton = this.btn_minicat.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'animation', true);
+            skeleton.setAnimation(0, 'idle', true);
         };
         if (this.btn_minijoker.node.active) {
             skeleton = this.btn_minijoker.node.getChildByName('Background').getComponent(sp.Skeleton);

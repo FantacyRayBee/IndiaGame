@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         btn_back: cc.Button,
+        btn_rule: cc.Button,
         btn_add: cc.Button,
         btn_addcash: cc.Button,
         btn_wf: cc.Button,
@@ -166,6 +167,7 @@ cc.Class({
         this.btn_jp_minor.node.on('click', this.debounce(this.jpClickCall, 1), this);
         this.btn_jp_major.node.on('click', this.debounce(this.jpClickCall, 1), this);
         this.btn_jp_grand.node.on('click', this.debounce(this.jpClickCall, 1), this);
+        this.btn_rule.node.on('click', this.debounce(this.showRule, 1), this);
 
 
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
@@ -383,10 +385,17 @@ cc.Class({
     },
 
     start: function () {
+        this.showZcAnim();
         this.sendLoginReq();
         this.initSlotData();
     },
 
+    showZcAnim: function () {
+        this.node.getChildByName('zc').active = true;
+        this.scheduleOnce(() => {
+            this.node.getChildByName('zc').getComponent('cc.Animation').play("zc");
+        }, 1);
+    },
 
     onDestroy: function () {
         // 安全清理：把仍在表演的弹窗全部停掉
@@ -422,9 +431,9 @@ cc.Class({
             self.setCallNotify(notify);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
-            if (!notify.deposit || !notify.winnings){
+            if (!notify.deposit || !notify.winnings) {
                 let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-                this.lab_jb.string = CommonFun.getInstance().numberToShow(num);   
+                this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
                 return;
             }
             let coin = notify.deposit + notify.winnings;
@@ -458,6 +467,9 @@ cc.Class({
         }
         else if (msgId == 'gameservice.claimtaskreward') {
             self.dealTaskReward(notify);
+        }
+        else if (msgId === "gameservice.exit" || msgId === "lobbyservice.kicktolobby") {
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
         }
     },
 
@@ -750,7 +762,7 @@ cc.Class({
         let componentName = component.node.name;
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (componentName == "btn_back") {
-            CommonFun.getInstance().showGameMenu(false);
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY, msgData: {} });
         }
         else if (componentName == "btn_add") {
             CommonFun.getInstance().showSmallAddCash()
@@ -1064,7 +1076,7 @@ cc.Class({
         this._allowStopCol = 0;
 
         // ✅ 每列启动间隔也缩短
-        let catContentTime = 0.03 * this.kRate;
+        let catContentTime = 0.1 * this.kRate;
 
         for (let i = 0, len = this.node_catContentArr.length; i < len; i++) {
             let children = this.node_catContentArr[i].children;
@@ -1072,81 +1084,70 @@ cc.Class({
             for (let k = 0, lenk = children.length; k < lenk; k++) {
                 let item = children[k];
                 let item2 = children2[k];
-                item.repeat = 4;     // 初始循环计数
+                item.repeat = 0;     // 初始循环计数
                 item.index = k;       // 行索引：0=buffer 1/2/3=可见三行
                 item.shu = i;         // 列索引
                 this.scheduleOnce(() => {
-                    this.runSlotsItemAnim(item, item2, item.y, item.y - this.height);
+                    this.runSlotsItemAnim(item, item2, item.y, item.y - this.height, i);
                 }, catContentTime * i);
             }
         }
     },
 
-    runSlotsItemAnim: function (node, skelNode, startPositionY, endedPositionY) {
+    runSlotsItemAnim: function (node, skelNode, startPositionY, endedPositionY, col) {
         let self = this;
-
-        // ✅ 只有“被允许的列”才能推进到 17+；其他列卡在 16 循环转动
-        if (node.repeat >= 16) {
-            if (node.shu <= this._allowStopCol) {
-                node.repeat += 1;   // 被允许 → 可以继续走 17/18/19/20
-            } else {
-                node.repeat = 16;   // 未到它 → 先固定在16，保持随机滚动
-            }
-        } else {
-            node.repeat += 1;       // 16以下都正常加
-        }
-
+        node.repeat += 1;
         node.setPosition(cc.v2(0, startPositionY));
         let repeat = node.repeat;
         let index = node.index;
         let shu = node.shu;
-
-        // ✅ 再次稍微加快单步时间
-        let runTime = 0.06 * self.kRate;
         let easeType = '';
-        if (repeat == 20) {
+        let runTime = 0.04 * self.kRate;
+        let retpeat2 = 20
+        let retNumber = retpeat2 + 8 * col;
+        if (repeat == retNumber) {
             easeType = 'backOut';
-            runTime = 0.45 * self.kRate; // 停下来的回弹慢点更有“落停感”
+            runTime = 0.5 * self.kRate;
         }
-
+        // ✅ 改为从上往下滚动（目标Y递减）
         cc.tween(node)
-            .to(runTime, { position: cc.v2(0, endedPositionY) }, { easing: easeType })
+            .to(
+                runTime,
+                { position: cc.v2(0, endedPositionY) },
+                { easing: easeType }
+            )
             .call(() => {
-                if (repeat == 20) {
-                    // 到达底部复位
+                if (repeat == retNumber) {
                     if (endedPositionY <= -(this.height * 2)) {
                         node.setPosition(cc.v2(0, this.height * 2));
                     }
-
-                    // ✅ 这个列已经真正停下了，放行下一列
-                    if (shu === this._allowStopCol) {
-                        this._allowStopCol++;
-                    }
-
                     self.checkAnimFinish();
                     return;
                 }
-
-                // 到达底部边界时重置 + 赋值/随机
+                // ✅ 到达底部边界时重置
                 if (endedPositionY <= -(this.height * 2)) {
                     let src = node.getComponent('catItemCtrl');
                     let src2 = skelNode.getComponent('catSkelItemCtrl');
-
-                    // ✅ 最后三圈按照你的结果表赋值（注意你之前的 19/18/17 与 index 映射）
-                    if (repeat == 19 && index == 1) {
+                    // ✅ 可见三行现在是 index 1/2/3
+                    if (repeat == retNumber - 1 && index == 1) {
                         let itemID = self.gameResult.cards[shu].cards[0];
-                        src.setItemData(itemID);  src2.setItemData(itemID);
-                        node.itemID = itemID;     skelNode.itemID = itemID;
-                    } else if (repeat == 18 && index == 2) {
+                        src.setItemData(itemID);
+                        src2.setItemData(itemID);
+                        node.itemID = itemID;
+                        skelNode.itemID = itemID;
+                    } else if (repeat == retNumber - 2 && index == 2) {
                         let itemID = self.gameResult.cards[shu].cards[1];
-                        src.setItemData(itemID);  src2.setItemData(itemID);
-                        node.itemID = itemID;     skelNode.itemID = itemID;
-                    } else if (repeat == 17 && index == 3) {
+                        src.setItemData(itemID);
+                        src2.setItemData(itemID);
+                        node.itemID = itemID;
+                        skelNode.itemID = itemID;
+                    } else if (repeat == retNumber - 3 && index == 3) {
                         let itemID = self.gameResult.cards[shu].cards[2];
-                        src.setItemData(itemID);  src2.setItemData(itemID);
-                        node.itemID = itemID;     skelNode.itemID = itemID;
+                        src.setItemData(itemID);
+                        src2.setItemData(itemID);
+                        node.itemID = itemID;
+                        skelNode.itemID = itemID;
                     } else {
-                        // 还在高速随机阶段
                         let num = Math.floor(Math.random() * 10 + 1);
                         if (shu == 0 && num == 10) num = 9;
                         else if (shu >= 3 && num == 11) num = 10;
@@ -1154,17 +1155,15 @@ cc.Class({
                         src2.setItemData(num, false);
                         node.itemID = num;
                     }
-
-                    // 复位到顶部继续向下滚
-                    self.runSlotsItemAnim(node, skelNode, this.height * 2, this.height);
+                    // ✅ 重置回顶部继续往下滚
+                    self.runSlotsItemAnim(node, skelNode, this.height * 2, this.height, col);
                 } else {
-                    // 继续往下移动
-                    self.runSlotsItemAnim(node, skelNode, endedPositionY, endedPositionY - this.height);
+                    // ✅ 继续往下移动
+                    self.runSlotsItemAnim(node, skelNode, endedPositionY, endedPositionY - this.height, col);
                 }
             })
             .start();
     },
-
 
     checkAnimFinish: function () {
         this.finishedCatItemNum += 1;
@@ -1190,40 +1189,6 @@ cc.Class({
         this.btn_betJia.enableAutoGrayEffect = !(cur < last);
     },
 
-    /**
-     * 取一列中“可见三行”节点（按 y 从高到低：上/中/下）
-     * @param {number} col 列索引 0..4
-     * @param {number} type 1:icon 2:skel
-     * @returns {cc.Node[]} [topNode, midNode, botNode]
-     */
-    _getVisibleRowNodes: function (col, type) {
-        const colArr = (type === 2 ? this.node_catSkelContentArr : this.node_catContentArr)[col];
-        if (!colArr) return [null, null, null];
-        let childrenSorted = colArr.children.slice().sort((a, b) => b.y - a.y);
-
-        // ✅ 如果是骨骼层，自动平移 y，使其与 icon 层对齐
-        if (type === 2) {
-            const iconArr = this.node_catContentArr[col];
-            if (iconArr) {
-                const iconYs = iconArr.children.slice().sort((a, b) => b.y - a.y).map(n => n.y);
-                const skelYs = childrenSorted.map(n => n.y);
-                const offset = (skelYs[1] - iconYs[1]) || 0;  // 取中间行偏差
-                if (Math.abs(offset) > 1) {
-                    childrenSorted.forEach(n => (n.y -= offset));
-                }
-            }
-        }
-
-        if (childrenSorted.length >= 4) {
-            return [childrenSorted[1], childrenSorted[2], childrenSorted[3]];
-        } else {
-            return [childrenSorted[0] || null, childrenSorted[1] || null, childrenSorted[2] || null];
-        }
-    },
-    _mapRowIndex(row) {
-        // 可见三行在 children[1], [2], [3]
-        return row + 1;
-    },
     _getIconByColRow(col, row) {
         const parent = this.node_catContentArr[col];
         if (!parent) return null;
@@ -1306,14 +1271,17 @@ cc.Class({
 
     getBigWinLevel: function (betMul) {
         let level = 0;
-        if (5 <= betMul && betMul < 20) { //bigwin
+        if (2 <= betMul && betMul < 5) { //bigwin
             level = 1;
         }
-        else if (20 <= betMul && betMul < 100) { //megawin
+        else if (5 <= betMul && betMul < 15) { //megawin
             level = 2;
         }
-        else if (100 <= betMul) { //superwin
+        else if (15 <= betMul && betMul < 50) { //Epic win
             level = 3;
+        }
+        else if (50 <= betMul) { //superwin
+            level = 4;
         }
         return level;
     },
@@ -1342,7 +1310,7 @@ cc.Class({
                 break;
             };
         };
-        this.showFGSymbol(1); //显示元素出现动画
+        this.showAppearSymbol(1); //显示元素出现动画
         if (isNeedShowAnim) {
             this.playGameSound("lianxian");
             this.showXianNum();
@@ -1351,22 +1319,28 @@ cc.Class({
         else {
             this.isRunningCatAnim = false;
         };
+        this.checkDragon(); //显示龙动画
     },
 
-    showFGSymbol: function (type) {
+    showAppearSymbol: function (type) {
+        // 遍历所有列
         for (let col = 0; col < this.node_catContentArr.length; col++) {
-            const iconRows = this._getVisibleRowNodes(col, 1);
-            const skelRows = this._getVisibleRowNodes(col, 2);
-            for (let r = 0; r < 3; r++) {
-                const iconNode = iconRows[r];
-                const skelNode = skelRows[r];
+            // 直接取第 0、1、2 行节点
+            for (let row = 1; row < 4; row++) {
+                const iconNode = this._getIconByColRow(col, row);
+                const skelNode = this._getSkelByColRow(col, row);
                 if (!iconNode || !skelNode) continue;
                 const id = iconNode.itemID;
-                if (id == 10) {
+                if (id === 10) {
+                    // 播放图标动画
                     iconNode.getComponent('catItemCtrl').playAnimation();
+                    // 播放骨骼动画
                     const skelCtrl = skelNode.getComponent('catSkelItemCtrl');
-                    if (type === 1) skelCtrl.playFreeGameApppear();
-                    else skelCtrl.playFreeGameWait();
+                    if (type == 2) {
+                        skelCtrl.playFreeGameWait();
+                    } else {
+                        skelCtrl.playFreeGameApppear();
+                    }
                 }
             }
         }
@@ -1442,16 +1416,13 @@ cc.Class({
         }
     },
 
-    /** 取第 col 列第 row 行的 icon 节点 */
-    _getIconByColRow: function (col, row) {
-        const colNode = this.node_catContentArr[col];
-        return colNode && colNode.children[row] || null;
+    _getIconByColRow(col, row) {
+        const parent = this.node_catContentArr[col];
+        return parent ? parent.children[row] || null : null;
     },
-
-    /** 取第 col 列第 row 行的 spine 节点 */
-    _getSkelByColRow: function (col, row) {
-        const colNode = this.node_catSkelContentArr && this.node_catSkelContentArr[col];
-        return colNode && colNode.children[row] || null;
+    _getSkelByColRow(col, row) {
+        const parent = this.node_catSkelContentArr[col];
+        return parent ? parent.children[row] || null : null;
     },
 
     /** 把 icon 节点配对上 skel 节点与其脚本，返回一个“配对对象” */
@@ -1488,15 +1459,15 @@ cc.Class({
     getXianRule: function (ref) {
         // 返回每条线的 [col,row] 路径（row: 0=上,1=中,2=下）
         switch (ref) {
-            case 1: return [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1]]; // 中线
-            case 2: return [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]]; // 上横
-            case 3: return [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]]; // 下横
-            case 4: return [[0, 0], [1, 1], [2, 2], [3, 1], [4, 0]];
-            case 5: return [[0, 2], [1, 1], [2, 0], [3, 1], [4, 2]];
-            case 6: return [[0, 0], [1, 0], [2, 1], [3, 2], [4, 2]];
-            case 7: return [[0, 2], [1, 2], [2, 1], [3, 0], [4, 0]];
-            case 8: return [[0, 1], [1, 2], [2, 1], [3, 0], [4, 1]];
-            case 9: return [[0, 1], [1, 0], [2, 1], [3, 2], [4, 1]];
+            case 1: return [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]]; // 中线
+            case 2: return [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1]]; // 上横
+            case 3: return [[0, 3], [1, 3], [2, 3], [3, 3], [4, 3]]; // 下横
+            case 4: return [[0, 1], [1, 2], [2, 3], [3, 2], [4, 1]];
+            case 5: return [[0, 3], [1, 2], [2, 1], [3, 2], [4, 3]];
+            case 6: return [[0, 1], [1, 1], [2, 2], [3, 3], [4, 3]];
+            case 7: return [[0, 3], [1, 3], [2, 2], [3, 1], [4, 1]];
+            case 8: return [[0, 2], [1, 3], [2, 2], [3, 1], [4, 2]];
+            case 9: return [[0, 2], [1, 1], [2, 2], [3, 3], [4, 2]];
             default: return [];
         }
     },
@@ -1540,27 +1511,21 @@ cc.Class({
 
                 const nodes = [];
                 let ok = true;
-
                 for (let c = 0; c < needLen; c++) {
                     const [col, row] = path[c];
-
                     // ✅ 使用统一入口取节点，确保 icon / skel 对齐
-                    const n =
-                        type === 2
-                            ? this._getSkelByColRow(col, row)
-                            : this._getIconByColRow(col, row);
-
+                    const n = (type === 2)
+                        ? this._getSkelByColRow(col, row)
+                        : this._getIconByColRow(col, row);
                     if (!n) {
                         ok = false;
                         break;
                     }
-
                     const id = n.itemID;
                     if (!(id === card || id === this.wildId || id > 100)) {
                         ok = false;
                         break;
                     }
-
                     nodes.push(n);
                 }
 
@@ -1569,68 +1534,7 @@ cc.Class({
                 }
             }
         }
-        if (type === 1 && lines.length > 0) {
-            LoggerUtil.getInstance().log("line1 sample", lines[0].map(n => n.y));
-        }
-        if (type === 2 && lines.length > 0) {
-            LoggerUtil.getInstance().log("line2 sample", lines[0].map(n => n.y));
-        }
         return lines;
-    },
-
-
-    /**
-     * 收集匹配的节点（卡牌相同或是万能牌10）
-     * @param {number} card - 目标卡牌ID
-     * @param {number} xiannumLen - 中奖线长度
-     * @param {number} type - 1:icon节点 2:skel节点
-     * @returns {Array} 每列匹配的节点数组
-     */
-    collectMatchingNodes: function (card, xiannumLen, type) {
-        const matchingNodes = [];
-        for (let col = 1; col < Math.min(xiannumLen, this.node_catContentArr.length); col++) {
-            const rows = this._getVisibleRowNodes(col, type);
-            const columnNodes = [];
-            for (let r = 0; r < 3; r++) {
-                const itemNode = rows[r];
-                if (!itemNode) continue;
-                itemNode.pos = [col, r];
-                if (itemNode.itemID == card || itemNode.itemID == this.wildId || itemNode.itemID > 100) {
-                    columnNodes.push(itemNode);
-                }
-            }
-            matchingNodes.push(columnNodes);
-        }
-        return matchingNodes;
-    },
-
-    /**
-     * 递归生成所有可能的线路组合
-     * @param {cc.Node} shu0Node - 第一列的固定节点
-     * @param {Array} matchingNodes - 每列的匹配节点数组
-     * @param {Array} lineArr - 存储结果的数组
-     */
-    generateLineCombinations: function (shu0Node, matchingNodes, lineArr) {
-        /**
-         * 递归构建组合路径
-         * @param {Array} currentPath - 当前已构建的路径
-         * @param {number} depth - 当前递归深度（对应列索引）
-         */
-        const buildCombination = (currentPath, depth) => {
-            // 如果已经处理完所有列，则将完整路径加入结果
-            if (depth >= matchingNodes.length) {
-                lineArr.push([shu0Node, ...currentPath]);
-                return;
-            }
-
-            // 遍历当前列的所有匹配节点，继续递归构建
-            for (const node of matchingNodes[depth]) {
-                buildCombination([...currentPath, node], depth + 1);
-            }
-        };
-
-        // 从第0层开始递归
-        buildCombination([], 0);
     },
 
     /**
@@ -1638,40 +1542,62 @@ cc.Class({
      * @param {Array} lineArr - 所有中奖线节点数组
      */
     playInstantAnimation: function (lineArr, type) {
+        // 播放中奖连线动画
         for (const typeArr of lineArr) {
             for (let k = 0; k < typeArr.length - 1; k++) {
                 const n1 = typeArr[k], n2 = typeArr[k + 1];
-                if (type == 1) {
+                if (type === 1) {
                     n1.getComponent('catItemCtrl').playAnimation();
                     n2.getComponent('catItemCtrl').playAnimation();
                 }
-                if (type == 2) {
+                if (type === 2) {
                     n1.getComponent('catSkelItemCtrl').playAnimation();
                     n2.getComponent('catSkelItemCtrl').playAnimation();
                 }
             }
         }
-        // ✅ 纵向“龙”检测改为按可见三行
+        // 1秒后清除标志
+        this.scheduleOnce(() => { this.isRunningCatAnim = false; }, 1);
+    },
+
+    checkDragon: function () {
+        // ✅ 检测竖向“龙”组合（同列内 1,2 或 2,3 或 1,2,3 都为 8）
         for (let col = 0; col < this.node_catSkelContentArr.length; col++) {
-            const rows = this._getVisibleRowNodes(col, 2); // [top, mid, bot]
-            const row0 = rows[0], row1 = rows[1], row2 = rows[2];
+            const row0 = this._getSkelByColRow(col, 1);
+            const row1 = this._getSkelByColRow(col, 2);
+            const row2 = this._getSkelByColRow(col, 3);
+            LoggerUtil.getInstance().log(`竖向龙组合检测: col=${col}, row0.itemID=${row0.itemID}, row1.itemID=${row1.itemID}, row2.itemID=${row2.itemID}`);
             if (!row0 || !row1 || !row2) continue;
 
-            const id0 = row0.itemID, id1 = row1.itemID, id2 = row2.itemID;
-            const topTwo = (id0 == 8 && id1 == 8);
-            const bottomTwo = (id1 == 8 && id2 == 8);
-            const allThree = (id0 == 8 && id1 == 8 && id2 == 8);
+            const id0 = row0.itemID;
+            const id1 = row1.itemID;
+            const id2 = row2.itemID;
 
-            const midCtrl = row2.getComponent('catSkelItemCtrl'); // 以最下行为触发点
+            const topTwo = (id0 === 8 && id1 === 8);
+            const bottomTwo = (id1 === 8 && id2 === 8);
+            const allThree = (id0 === 8 && id1 === 8 && id2 === 8);
+            LoggerUtil.getInstance().log(`竖向龙组合检测: col=${col}, topTwo=${topTwo}, bottomTwo=${bottomTwo}, allThree=${allThree}`);
+            const upCtrl = row0.getComponent('catSkelItemCtrl');
+            const midCtrl = row1.getComponent('catSkelItemCtrl');
+            const downCtrl = row2.getComponent('catSkelItemCtrl');
             if (allThree) {
-                midCtrl.showDragon(3);
+                upCtrl.showDragon(3);
+                upCtrl.stopAnimation(0, false);
+                midCtrl.stopAnimation(0, false);
+                downCtrl.stopAnimation(0, false);
             } else {
-                if (topTwo) midCtrl.showDragon(1);
-                if (bottomTwo) midCtrl.showDragon(2);
+                if (topTwo) {
+                    upCtrl.showDragon(1);
+                    upCtrl.stopAnimation(0, false);
+                    midCtrl.stopAnimation(0, false);
+                }
+                if (bottomTwo) {
+                    upCtrl.showDragon(2);
+                    downCtrl.stopAnimation(0, false);
+                    midCtrl.stopAnimation(0, false);
+                }
             }
         }
-
-        this.scheduleOnce(() => { this.isRunningCatAnim = false; }, 1);
     },
 
     sendLoginReq: function () {
@@ -1742,7 +1668,7 @@ cc.Class({
         this.lab_fg_num.string = num;
         // this.node_windb.active = true;
         this.playGameSound('freetimes')
-        this.showFGSymbol(2)
+        this.showAppearSymbol(2)
         this.scheduleOnce(() => {
             self.playGameMusic('freeBg');
             this.background.spriteFrame = this.fg_bg;
@@ -1836,8 +1762,6 @@ cc.Class({
             amount: amount * 100
         });
     },
-
-
 
     //播放FG结算动画
     PlayFGEndAnim: function (finalScore, callback) {

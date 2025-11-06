@@ -6,6 +6,13 @@ message PingPang {
 	uint64 timestamp = 1;	//时间戳
 }
 
+// 退出房间 gameservice.exit
+message ExitReq {
+}
+message ExitAck {
+  ResponseBase result = 1;
+}
+
 //返回结果
 message ResponseBase {
   uint32 result = 1;
