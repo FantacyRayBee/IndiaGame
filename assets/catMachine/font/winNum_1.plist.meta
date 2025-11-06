@@ -1,0 +1,34 @@
+{
+  "ver": "1.2.6",
+  "uuid": "6fd32c18-7de3-4898-b564-48b79fc948a1",
+  "importer": "asset",
+  "size": {
+    "width": 256,
+    "height": 256
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "winNum_1.png": {
+      "ver": "1.0.6",
+      "uuid": "1cb4b6be-439a-4d32-a212-fe2b296e2829",
+      "importer": "sprite-frame",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -49,
+      "offsetY": 22,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 158,
+      "height": 212,
+      "rawWidth": 256,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

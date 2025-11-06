@@ -331,6 +331,14 @@ cc.Class({
       "gameservice.login": "LoginAck", //登录
       "gameservice.call": "CallAck", //下注    
     }
+    //猫机台
+    this.protoCat = {
+      "gameservice.login": "LoginAck", //登录
+      "gameservice.call": "CallAck", //下注
+      "gameservice.exit": "ExitAck", //退出
+      "gameservice.getranking": "GetRankingAck",
+      "gameservice.claimtaskreward": "ClaimTaskRewardAck", 
+    }
     //小丑机台
     this.protoJoker = {
       "gameservice.login": "LoginAck", //登录
@@ -561,6 +569,9 @@ cc.Class({
     }
     else if (gameName == "MAYA") {
       return this.protoMaya;
+    }
+    else if (gameName == "CAT") {
+      return this.protoCat;
     }
     else if (gameName == "JOKER") {
       return this.protoJoker;

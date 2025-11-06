@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "037330f8-1fd4-4187-8969-8364cee9c420",
+  "importer": "asset",
+  "rawTextureUuid": "de47e0b1-86bc-4fdb-9539-6eb5ff385360",
+  "size": {
+    "width": 128,
+    "height": 256
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "loseNum_1.png": {
+      "ver": "1.0.6",
+      "uuid": "9d2a23d1-6ddc-4ff5-bdbf-de257fbd8a73",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "de47e0b1-86bc-4fdb-9539-6eb5ff385360",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -12,
+      "offsetY": 5,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 105,
+      "height": 247,
+      "rawWidth": 128,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

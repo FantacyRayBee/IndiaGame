@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "7f9ee445-5655-4c58-a6a1-334f3d5c7282",
+  "importer": "asset",
+  "rawTextureUuid": "72c1a3c3-e2c6-4e77-977b-cfcdbc779470",
+  "size": {
+    "width": 51,
+    "height": 51
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "DT_laba.png": {
+      "ver": "1.0.6",
+      "uuid": "1432939e-5b02-4abf-a878-115a23774862",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "72c1a3c3-e2c6-4e77-977b-cfcdbc779470",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 51,
+      "height": 51,
+      "rawWidth": 51,
+      "rawHeight": 51,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

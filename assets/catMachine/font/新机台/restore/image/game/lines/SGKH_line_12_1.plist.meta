@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "48200d86-630a-416a-a98a-3dd71cd78c0c",
+  "importer": "asset",
+  "rawTextureUuid": "7ec61ec5-f544-4fdc-8adc-f1956f2c69a5",
+  "size": {
+    "width": 72,
+    "height": 63
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "SGKH_line_12_1.png": {
+      "ver": "1.0.6",
+      "uuid": "d17ce1c5-13f7-4e4c-b4d6-6615772d0890",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "7ec61ec5-f544-4fdc-8adc-f1956f2c69a5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 72,
+      "height": 63,
+      "rawWidth": 72,
+      "rawHeight": 63,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

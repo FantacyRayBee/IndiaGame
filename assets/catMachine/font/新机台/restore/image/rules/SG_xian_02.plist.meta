@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "910a9414-8b8f-4216-a6fa-4d55e2edddee",
+  "importer": "asset",
+  "rawTextureUuid": "a4fbaebe-babf-4286-b22d-b23aed80d236",
+  "size": {
+    "width": 863,
+    "height": 407
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "SG_xian_02.png": {
+      "ver": "1.0.6",
+      "uuid": "08bcbf4d-597e-4d57-b7e2-f1742e66c6f8",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a4fbaebe-babf-4286-b22d-b23aed80d236",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 0,
+      "width": 861,
+      "height": 407,
+      "rawWidth": 863,
+      "rawHeight": 407,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

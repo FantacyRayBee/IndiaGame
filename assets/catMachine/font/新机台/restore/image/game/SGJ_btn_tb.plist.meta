@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "0b6150cf-f858-4fef-b42e-e54df09aa503",
+  "importer": "asset",
+  "rawTextureUuid": "950089eb-fee4-4f93-9abf-e52273400853",
+  "size": {
+    "width": 272,
+    "height": 99
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "SGJ_btn_tb.png": {
+      "ver": "1.0.6",
+      "uuid": "3c8f67bc-3702-4427-9c17-d8ace05855da",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "950089eb-fee4-4f93-9abf-e52273400853",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 272,
+      "height": 99,
+      "rawWidth": 272,
+      "rawHeight": 99,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

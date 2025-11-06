@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "5c6ce85f-65cb-4320-b007-445a2c4a860b",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 552,
+  "height": 348,
+  "platformSettings": {},
+  "subMetas": {
+    "tx_hawai_zhuanpan_00000": {
+      "ver": "1.0.6",
+      "uuid": "0446dcee-f2f5-4c30-bece-4f204afbd312",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5c6ce85f-65cb-4320-b007-445a2c4a860b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 1.5,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 552,
+      "height": 345,
+      "rawWidth": 552,
+      "rawHeight": 348,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

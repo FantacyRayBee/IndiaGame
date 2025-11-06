@@ -38,6 +38,7 @@ cc.Class({
             "proto/benz/gameservice",
             "proto/fruitMachine/gameservice",
             "proto/mayaMachine/gameservice",
+            "proto/catMachine/gameservice",
             "proto/jokerMachine/gameservice",
             "proto/indiaMachine/gameservice",
             "proto/vampireMachine/gameservice",

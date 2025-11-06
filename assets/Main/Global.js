@@ -483,6 +483,7 @@ window.GlobalCfg = {
     andeerData: {},
     fruitMachineData: {},
     mayaMachineData: {},
+    catMachineData: {},
     bullMachineData: {},
     jokerMachineData: {},
     indiaMachineData: {},

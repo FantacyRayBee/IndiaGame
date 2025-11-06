@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "58db8f67-e314-409a-88cb-f30ba1a08e52",
+  "importer": "asset",
+  "rawTextureUuid": "c7efa49a-51d9-4575-b5bd-10897e9baff2",
+  "size": {
+    "width": 512,
+    "height": 256
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "continue_free_times_1.png": {
+      "ver": "1.0.6",
+      "uuid": "7e8b06dc-1c27-404e-aa72-88deb9442100",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c7efa49a-51d9-4575-b5bd-10897e9baff2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -27,
+      "offsetY": 17,
+      "trimX": 1,
+      "trimY": 0,
+      "width": 456,
+      "height": 223,
+      "rawWidth": 512,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}
