@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "06fefc0b-100d-4b68-a939-c404e7a49c2b",
+  "importer": "asset",
+  "rawTextureUuid": "db5c81ad-167f-4eda-b88e-5c6423b42747",
+  "size": {
+    "width": 332,
+    "height": 86
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "BP_kuang_renwudi.png": {
+      "ver": "1.0.6",
+      "uuid": "1f99700e-a715-4734-a2a3-587f2de53143",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "db5c81ad-167f-4eda-b88e-5c6423b42747",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 332,
+      "height": 86,
+      "rawWidth": 332,
+      "rawHeight": 86,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

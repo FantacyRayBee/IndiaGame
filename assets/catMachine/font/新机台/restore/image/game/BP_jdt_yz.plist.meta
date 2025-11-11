@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "a8ab6e9f-3420-4937-8a2e-c1899cedc6a6",
+  "importer": "asset",
+  "rawTextureUuid": "2b19a511-fea4-4a1b-91d4-fd6f32c51f14",
+  "size": {
+    "width": 65,
+    "height": 66
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "BP_jdt_yz.png": {
+      "ver": "1.0.6",
+      "uuid": "55d9d322-483b-4c39-a927-41ffc2d34465",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "2b19a511-fea4-4a1b-91d4-fd6f32c51f14",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 65,
+      "height": 66,
+      "rawWidth": 65,
+      "rawHeight": 66,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

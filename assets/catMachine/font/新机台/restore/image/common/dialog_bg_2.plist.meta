@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "f92e0f46-524a-4ce0-acb5-71a04649784e",
+  "importer": "asset",
+  "rawTextureUuid": "294f7c4c-15bc-448f-a0ce-54711907fa91",
+  "size": {
+    "width": 62,
+    "height": 96
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "dialog_bg_2.png": {
+      "ver": "1.0.6",
+      "uuid": "96db8ef4-2ba5-4cc7-a0ab-53b369579d73",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "294f7c4c-15bc-448f-a0ce-54711907fa91",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 62,
+      "height": 96,
+      "rawWidth": 62,
+      "rawHeight": 96,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

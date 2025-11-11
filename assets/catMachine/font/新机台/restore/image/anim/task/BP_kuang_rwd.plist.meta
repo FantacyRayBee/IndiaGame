@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "cf26ab75-5845-47eb-b1ee-40f5d2334381",
+  "importer": "asset",
+  "rawTextureUuid": "0e9e8d9d-fef9-463a-b3a8-22433e0e1c5b",
+  "size": {
+    "width": 85,
+    "height": 30
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "BP_kuang_rwd.png": {
+      "ver": "1.0.6",
+      "uuid": "575087d9-757d-48b6-8944-27b24ab1e039",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "0e9e8d9d-fef9-463a-b3a8-22433e0e1c5b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 85,
+      "height": 30,
+      "rawWidth": 85,
+      "rawHeight": 30,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

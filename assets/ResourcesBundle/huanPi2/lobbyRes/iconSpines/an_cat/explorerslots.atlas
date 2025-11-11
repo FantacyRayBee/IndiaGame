@@ -1,0 +1,104 @@
+
+explorerslots.png
+size: 352,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Explorer Slots
+  rotate: false
+  xy: 2, 156
+  size: 202, 39
+  orig: 204, 41
+  offset: 1, 1
+  index: -1
+Group42
+  rotate: true
+  xy: 2, 197
+  size: 207, 229
+  orig: 213, 237
+  offset: 3, 3
+  index: -1
+aura_color
+  rotate: false
+  xy: 2, 2
+  size: 153, 152
+  orig: 153, 153
+  offset: 0, 0
+  index: -1
+baoshi1
+  rotate: true
+  xy: 307, 127
+  size: 38, 40
+  orig: 55, 57
+  offset: 8, 9
+  index: -1
+baoshi2
+  rotate: false
+  xy: 157, 25
+  size: 37, 36
+  orig: 67, 67
+  offset: 16, 17
+  index: -1
+cangbangtu
+  rotate: false
+  xy: 206, 72
+  size: 99, 93
+  orig: 103, 94
+  offset: 0, 1
+  index: -1
+cat1
+  rotate: false
+  xy: 233, 222
+  size: 117, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: -1
+cat1_wei
+  rotate: true
+  xy: 233, 167
+  size: 53, 109
+  orig: 140, 160
+  offset: 87, 0
+  index: -1
+cat1_yan1
+  rotate: true
+  xy: 157, 63
+  size: 91, 39
+  orig: 140, 160
+  offset: 13, 71
+  index: -1
+cat1_yan2
+  rotate: true
+  xy: 307, 32
+  size: 93, 39
+  orig: 140, 160
+  offset: 11, 71
+  index: -1
+cat1_yan3
+  rotate: false
+  xy: 198, 31
+  size: 91, 39
+  orig: 140, 160
+  offset: 13, 71
+  index: -1
+guang_x
+  rotate: false
+  xy: 270, 384
+  size: 61, 61
+  orig: 80, 80
+  offset: 10, 9
+  index: -1
+moon
+  rotate: false
+  xy: 270, 447
+  size: 62, 62
+  orig: 73, 73
+  offset: 6, 6
+  index: -1
+piaodai
+  rotate: false
+  xy: 2, 406
+  size: 266, 103
+  orig: 276, 112
+  offset: 5, 3
+  index: -1

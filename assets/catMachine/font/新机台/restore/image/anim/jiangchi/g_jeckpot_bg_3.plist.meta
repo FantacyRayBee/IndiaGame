@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "d25a50e7-bedb-4766-9fe8-56ccbea735ce",
+  "importer": "asset",
+  "rawTextureUuid": "f3d1434e-998b-4216-b72d-63d8bc43100a",
+  "size": {
+    "width": 309,
+    "height": 90
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "g_jeckpot_bg_3.png": {
+      "ver": "1.0.6",
+      "uuid": "6a79e2b1-451e-48c2-95d8-cfef5fe9713f",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f3d1434e-998b-4216-b72d-63d8bc43100a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 309,
+      "height": 90,
+      "rawWidth": 309,
+      "rawHeight": 90,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

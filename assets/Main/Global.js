@@ -63,12 +63,12 @@ window.GlobalCfg = {
      */
     is_need_update: true,
 
-    isH5: true,
+    isH5: false,
 
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: false,
+    is_force_gotoTest: true,
 
     /**
      * 渠道信息
@@ -486,6 +486,7 @@ window.GlobalCfg = {
         andeerData: {},
         fruitMachineData: {},
         mayaMachineData: {},
+        catMachineData: {},
         bullMachineData: {},
         jokerMachineData: {},
         indiaMachineData: {},
@@ -1327,16 +1328,16 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "US 1.0.0";
+            GlobalCfg.APP_VERSION = "US test 1.0.0";
             GlobalCfg.APP_INFO_URL = `https://down.jok7.com/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `https://down.jok7.com/AppConfig.json?time=${new Date().getTime()}`;
             break;
-        case "1":     // 1服
-            GlobalCfg.APP_VERSION = "1.0.8.12";
-            GlobalCfg.APP_INFO_URL = `https://download.tpgame.in/Release/AppInfo.json`;
-            GlobalCfg.APP_CONFIG_URL = `https://download.tpgame.in/Release/AppConfig.json`;
+        case "1":     //  印度测试服
+            GlobalCfg.APP_VERSION = "india test 1.0.0";
+            GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json`;
             break;
-        case "2":     // 2服
+        case "2":     //  印度正式服
             GlobalCfg.APP_VERSION = "2.2.8.12";
             GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release/AppInfo.json`;
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release/AppConfig.json`;
@@ -1355,7 +1356,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
         case "5":     // 5服
-            GlobalCfg.APP_VERSION = "US 5.0.2";
+            GlobalCfg.APP_VERSION = "US 1.0.0";
             // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
             GlobalCfg.APP_INFO_URL = `https://down.cj777.net/AppInfo.json`;
 

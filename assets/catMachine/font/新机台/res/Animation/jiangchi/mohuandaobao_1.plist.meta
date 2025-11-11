@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "8a0a70e8-d646-43b6-a284-7621bf6135eb",
+  "importer": "asset",
+  "rawTextureUuid": "ee4ec2a7-7703-4f10-ac40-31a545f47534",
+  "size": {
+    "width": 523,
+    "height": 134
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "mohuandaobao_1.png": {
+      "ver": "1.0.6",
+      "uuid": "d8d82c44-d860-46ee-9793-401fcb8b8f92",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "ee4ec2a7-7703-4f10-ac40-31a545f47534",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 3,
+      "offsetY": 6,
+      "trimX": 19,
+      "trimY": 18,
+      "width": 491,
+      "height": 87,
+      "rawWidth": 523,
+      "rawHeight": 134,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

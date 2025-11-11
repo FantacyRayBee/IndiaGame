@@ -42,6 +42,23 @@ let AudioBase = cc.Class({
         return cc.audioEngine.playEffect(clip, loop);
     },
 
+    /**
+     * 播放音效（支持同时叠加多个）
+     * @param {cc.AudioClip} clip
+     * @param {boolean} loop
+     * @param {number} volume 0~1
+     * @returns {number} audioID
+     */
+    playSoundPro(clip, loop = false, volume = 1) {
+        if (!clip) return -1;
+
+        const enabled = this.checkState("toggle_yinxiao");
+        const vol = enabled ? (volume || 1) : 0;
+
+        // 用 play(clip, loop, volume) —— 每次调用都会生成一个独立的实例，可并发播放
+        return cc.audioEngine.play(clip, !!loop, vol);
+    },
+
     pauseMusic() {
         cc.audioEngine.pauseMusic();
     },

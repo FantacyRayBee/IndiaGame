@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "47ad7013-78c1-45f3-92f9-f3f121ed6989",
+  "importer": "asset",
+  "rawTextureUuid": "038642fd-99c0-45fa-a15d-0f0f01ff0af0",
+  "size": {
+    "width": 63,
+    "height": 65
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "jiesuan_jinbi4.png": {
+      "ver": "1.0.6",
+      "uuid": "e53942ab-4ad8-4517-bf9e-7168df73f799",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "038642fd-99c0-45fa-a15d-0f0f01ff0af0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 2,
+      "offsetY": -2,
+      "trimX": 16,
+      "trimY": 14,
+      "width": 34,
+      "height": 40,
+      "rawWidth": 63,
+      "rawHeight": 65,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

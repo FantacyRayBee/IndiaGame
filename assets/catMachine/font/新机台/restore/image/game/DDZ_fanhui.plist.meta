@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "8a5b1db4-3364-42a0-b78c-0b030bc50d53",
+  "importer": "asset",
+  "rawTextureUuid": "d2f62b21-84f5-4268-9eae-3cb8f995ea5d",
+  "size": {
+    "width": 104,
+    "height": 107
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "DDZ_fanhui.png": {
+      "ver": "1.0.6",
+      "uuid": "54c9bcb6-7a43-44e0-832d-1fd969978354",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d2f62b21-84f5-4268-9eae-3cb8f995ea5d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 104,
+      "height": 107,
+      "rawWidth": 104,
+      "rawHeight": 107,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

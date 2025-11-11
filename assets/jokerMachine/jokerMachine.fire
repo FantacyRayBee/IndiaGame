@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "autoReleaseAssets": false,
+    "autoReleaseAssets": true,
     "_id": "e265c268-4830-413a-973a-4dc0dd05f268"
   },
   {
@@ -44160,8 +44160,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 103,
-      "height": 101
+      "width": 102,
+      "height": 94
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -46226,7 +46226,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 80,
-      "height": 294
+      "height": 293
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",

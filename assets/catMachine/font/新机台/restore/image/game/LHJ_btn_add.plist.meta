@@ -1,0 +1,36 @@
+{
+  "ver": "1.2.6",
+  "uuid": "b28cddf0-0894-4cf5-aeb3-de6f52e4cf71",
+  "importer": "asset",
+  "rawTextureUuid": "a9809dcd-0e2e-4e21-ad88-50028896ef70",
+  "size": {
+    "width": 111,
+    "height": 56
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "LHJ_btn_add.png": {
+      "ver": "1.0.6",
+      "uuid": "39699134-689a-408f-a2f6-d2837d3f2768",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a9809dcd-0e2e-4e21-ad88-50028896ef70",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 111,
+      "height": 56,
+      "rawWidth": 111,
+      "rawHeight": 56,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}
