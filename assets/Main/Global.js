@@ -63,7 +63,7 @@ window.GlobalCfg = {
      */
     is_need_update: true,
 
-    isH5: false,
+    isH5: true,
 
     /**
      * 是否强制进测试服
@@ -972,7 +972,7 @@ window.GlobalCfg = {
         /**
          * 第三方游戏跳转内嵌网页
          */
-        GAMEICONLIST: "ResourcesBundle/huanPi2/lobbyRes/gameIcon/gameIconList",
+        GAMEICONLIST: "MustBundle/Normal/gameIcon/gameIconList",
         /**
          * 俱乐部
          */
@@ -1290,7 +1290,7 @@ function SetPackageChannel() {
     let pkg = url.searchParams.get('PackageChannel');
 
     if (!pkg || pkg.length === 0) {//如果不存在强制设置5_7001
-        pkg = "5_7001";
+        pkg = "0_7001";
     }
     localStorage.setItem('PackageChannel', pkg);
     GlobalCfg.CHANNEL_INFO = pkg;
@@ -1328,7 +1328,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "US test 1.0.0";
+            GlobalCfg.APP_VERSION = "US test 1.0.2";
             GlobalCfg.APP_INFO_URL = `https://down.jok7.com/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `https://down.jok7.com/AppConfig.json?time=${new Date().getTime()}`;
             break;

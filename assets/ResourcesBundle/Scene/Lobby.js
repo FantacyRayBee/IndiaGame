@@ -1475,7 +1475,9 @@ cc.Class({
             CommonFun.getInstance().hidProgress();
         }
         else if (msgId == 'CLOSE_GAMEICONLIST'){ //关闭游戏列表 刷新一下界面的位置 因为触发了横竖屏切换
+            LoggerUtil.getInstance().log("111111111111 GlobalCfg.CLOSE_GAMEICONLIST");
             self.showOtherModules();
+            self.checkShiPei();
         }
         else if (msgId == 'lobbyservice.newmail') {
             // destroy()
@@ -1526,7 +1528,7 @@ cc.Class({
             self.showUserInfo();
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED) {
-            LoggerUtil.getInstance().log("GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED notify.isShow: ", notify.isShow);
+            LoggerUtil.getInstance().log("222222222 GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED notify.isShow: ", notify.isShow);
             let isShow = notify.isShow;
             self.dealToggleModules(isShow);
         }

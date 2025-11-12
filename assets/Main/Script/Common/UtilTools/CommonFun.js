@@ -1360,9 +1360,9 @@ let CommonFun = cc.Class({
      */
     showFirstRecharge: function () {
         let path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
-        if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
-            path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
-        }
+        // if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+        //     path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
+        // }
         let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
         firstRechargePrefabPromise.then((prefab) => {
             let firstRechargeNode = cc.instantiate(prefab);

@@ -43,6 +43,9 @@ cc.Class({
         if (msgId == GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY) {
             this.lb_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
         }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_RELIEF_REWARD) {
+            this.lb_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        }
     },
 
     onDestroy: function () {
@@ -97,8 +100,8 @@ cc.Class({
         let spacing = 5; //间距
         this.heightList[0] = 0;
         this.heightList[1] = spacing + this.heightList[0] + this.getHeightByItemNum(this.gameConfig['quente'].length);
-        this.heightList[2] = spacing + this.heightList[1] + this.getHeightByItemNum(this.gameConfig['JL'].length);
-        this.heightList[3] = spacing + this.heightList[2] + this.getHeightByItemNum(this.gameConfig['PP'].length);
+        this.heightList[2] = spacing + this.heightList[1] + this.getHeightByItemNum(this.gameConfig['PP'].length);
+        this.heightList[3] = spacing + this.heightList[2] + this.getHeightByItemNum(this.gameConfig['PG'].length);
 
         LoggerUtil.getInstance().log('caojun heightList = ', this.heightList);
     },
@@ -106,8 +109,8 @@ cc.Class({
     // 根据item的数量计算高度
     getHeightByItemNum: function(itemNum) {
         let col = Math.ceil(itemNum / 3); // 得出行数
-        let spacing = 20 * (col - 1); // 行间距
-        let itemHeight = 293;
+        let spacing = 15 * (col - 1); // 行间距
+        let itemHeight = 160;
         let top = 10;
         let bottom = 10;
         let titleImgHeight = 75;

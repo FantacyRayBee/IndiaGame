@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        node_root: cc.Node,
         lab_item0Percent: cc.Label,
         lab_item0Cash: cc.Label,
         lab_item0Bonus: cc.Label,
@@ -68,6 +69,10 @@ cc.Class({
         this.btn_item1.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_close.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_otherAmount.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+
+        if (GlobalCfg.CURSCENE_DIRECTION == "vertical") {
+            this.node_root.scale = 0.8
+        }
     },
 
     btnClick: function(btn) {
@@ -182,6 +187,6 @@ cc.Class({
 
     onDestroy: function() {
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.FIRSTRECHARGE);
-        CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V);
+        // CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V);
     },
 });
