@@ -11,10 +11,7 @@ cc.Class({
     },
 
     setItemData: function(itemID, isVertical) {
-        // 提取数字部分（开头连续数字）
-        let match = itemID.match(/^\d+/);
-        this.gameId = match ? match[0] : itemID;
-
+        this.gameId = itemID;
         this.isVertical = isVertical;
         let spriteName = itemID;
         let spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);

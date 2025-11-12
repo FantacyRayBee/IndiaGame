@@ -43,9 +43,6 @@ cc.Class({
         if (msgId == GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY) {
             this.lb_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
         }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_RELIEF_REWARD) {
-            this.lb_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
-        }
     },
 
     onDestroy: function () {
@@ -109,8 +106,8 @@ cc.Class({
     // 根据item的数量计算高度
     getHeightByItemNum: function(itemNum) {
         let col = Math.ceil(itemNum / 3); // 得出行数
-        let spacing = 15 * (col - 1); // 行间距
-        let itemHeight = 160;
+        let spacing = 20 * (col - 1); // 行间距
+        let itemHeight = 293;
         let top = 10;
         let bottom = 10;
         let titleImgHeight = 75;
