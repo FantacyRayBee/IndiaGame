@@ -581,8 +581,15 @@ let CommonFun = cc.Class({
         ;
         xhr.send(JSON.stringify(params));
     },
-
+    //h5之类的短考虑生成
     generateUUID: function () {
+        if (window.location){
+            const urlParams = new URLSearchParams(window.location.search);
+            const uuid = urlParams.get('uuid');
+            if (uuid.length > 0){
+                return uuid;
+            }
+        }
         let d = new Date().getTime();
         if (window.performance && typeof window.performance.now === "function") {
             d += performance.now();
@@ -2635,6 +2642,7 @@ let CommonFun = cc.Class({
      * @returns string 设备id
      */
     getDeviceId: function () {
+        //安卓系统尝试系统获取
         let device = APPManager.getUUID();
         if (!device) {
             device = cc.sys.localStorage.getItem("LOGIN_DEVICE");
