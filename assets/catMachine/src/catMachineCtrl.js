@@ -53,6 +53,9 @@ cc.Class({
         node_jp_pop: cc.Node,
         node_jp: cc.Node,
 
+        playerItem: cc.Node,
+        playerSeatArr: [cc.Node],
+
         node_line: cc.Node,
 
         lab_jb: cc.Label,
@@ -254,6 +257,15 @@ cc.Class({
         this.setTaskInfo();
     },
 
+    dealUpSeatInfo: function (notify) {
+        this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setInfo(notify);
+    },
+
+    dealUpSeatWin: function (notify) {
+        let bigWin = this.getBigWinLevel(notify.win);
+        this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setWin(bigWin, notify.win);
+    },
+
     debounce: function (action, delayTime) {
         if (!delayTime) {
             return action;
@@ -385,16 +397,24 @@ cc.Class({
     },
 
     start: function () {
-        this.showZcAnim();
-        this.sendLoginReq();
+        this.showZcAnim(() => {
+            this.sendLoginReq();
+        });
         this.initSlotData();
     },
 
-    showZcAnim: function () {
-        this.node.getChildByName('zc').active = true;
-        this.scheduleOnce(() => {
-            this.node.getChildByName('zc').getComponent('cc.Animation').play("zc");
-        }, 1);
+    showZcAnim: function (callback) {
+        const zcNode = this.node.getChildByName('zc');
+        if (!zcNode) return;
+        zcNode.active = true;
+        // 延迟 1 秒播放动画（独立于 Cocos 调度）
+        this._zcTimer = setTimeout(() => {
+            if (!this.node || !this.node.isValid) return; // 节点已销毁则不执行
+            const anim = zcNode.getComponent(cc.Animation);
+            if (anim) anim.play("zc");
+            this._zcTimer = null;
+            callback && callback();
+        }, 1000);
     },
 
     onDestroy: function () {
@@ -417,6 +437,10 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_MAYA_GAME);
         this.stopSpinHoldonToggle();
         [this.node_jp_pop, this.node_totalwin_pop, this.node_fg_pop].forEach(n => this._killPopupTweens(n));
+        if (this._zcTimer) {
+        clearTimeout(this._zcTimer);
+        this._zcTimer = null;
+    }
     },
 
 
@@ -470,6 +494,12 @@ cc.Class({
         }
         else if (msgId === "gameservice.exit" || msgId === "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == 'gameservice.broadcastupdateseatinfo') { //广播桌位信息更新
+            self.dealUpSeatInfo(notify);
+        }
+        else if (msgId == 'gameservice.broadcastseatwininfo') { //广播桌位赢钱信息
+            self.dealUpSeatWin(notify);
         }
     },
 
@@ -1323,24 +1353,26 @@ cc.Class({
     },
 
     showAppearSymbol: function (type) {
-        // 遍历所有列
-        for (let col = 0; col < this.node_catContentArr.length; col++) {
-            // 直接取第 0、1、2 行节点
-            for (let row = 1; row < 4; row++) {
-                const iconNode = this._getIconByColRow(col, row);
-                const skelNode = this._getSkelByColRow(col, row);
-                if (!iconNode || !skelNode) continue;
-                const id = iconNode.itemID;
-                if (id === 10) {
-                    // 播放图标动画
-                    iconNode.getComponent('catItemCtrl').playAnimation();
-                    // 播放骨骼动画
-                    const skelCtrl = skelNode.getComponent('catSkelItemCtrl');
-                    if (type == 2) {
-                        skelCtrl.playFreeGameWait();
-                    } else {
-                        skelCtrl.playFreeGameApppear();
-                    }
+        if (!this.gameResult) return;
+        const iconLines = this.buildLineArrayByRules(1);
+        const skelLines = this.buildLineArrayByRules(2);
+        // 播放中奖连线动画
+        for (const typeArr of iconLines) {
+            for (let k = 0; k < typeArr.length - 1; k++) {
+                const n1 = typeArr[k], n2 = typeArr[k + 1];
+                n1.getComponent('catItemCtrl').playAnimation();
+                n2.getComponent('catItemCtrl').playAnimation();
+            }
+        }
+        for (const typeArr of skelLines) {
+            for (let k = 0; k < typeArr.length - 1; k++) {
+                const n1 = typeArr[k], n2 = typeArr[k + 1];
+                if (type == 2) {
+                    n1.getComponent('catSkelItemCtrl').playFreeGameWait();
+                    n2.getComponent('catSkelItemCtrl').playFreeGameWait();
+                } else {
+                    n1.getComponent('catSkelItemCtrl').playFreeGameApppear();
+                    n2.getComponent('catSkelItemCtrl').playFreeGameApppear();
                 }
             }
         }
@@ -1499,9 +1531,17 @@ cc.Class({
         for (let i = 0; i < xiannum.length; i++) {
             const it = xiannum[i];
             const needLen = Math.min(it.len || 0, 5);
-            if (!it.multiple || it.multiple <= 0 || needLen < 3) continue;
+
+            // 长度不足直接跳过
+            if (needLen < 3) continue;
 
             const card = it.card;
+
+            // 如果 card 不是 10，则仍需满足 multiple>0
+            // 若 card === 10 则放宽，不需要 multiple 字段
+            if (card !== 10) {
+                if (!it.multiple || it.multiple <= 0) continue;
+            }
 
             // 每一条线路（ref 从 1 开始）
             for (let ref = 1; ref <= 9; ref++) {
@@ -1512,7 +1552,7 @@ cc.Class({
                 let ok = true;
                 for (let c = 0; c < needLen; c++) {
                     const [col, row] = path[c];
-                    // ✅ 使用统一入口取节点，确保 icon / skel 对齐
+                    // 使用统一入口取节点，确保 icon / skel 对齐
                     const n = (type === 2)
                         ? this._getSkelByColRow(col, row)
                         : this._getIconByColRow(col, row);

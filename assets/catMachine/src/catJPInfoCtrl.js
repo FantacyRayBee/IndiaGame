@@ -53,7 +53,7 @@ cc.Class({
             obj.data = data;
             obj.obj.active = true;
             obj.self.loadHeadSp(data.HeadUrl, 60, obj.imgHead);
-            obj.date.string = obj.self.formatTimestampToDate(data.time);
+            obj.date.string = obj.self.formatTimestampToDate(data.time * 1000);
             obj.bet.string = CommonFun.getInstance().numberToShow(data.TotalBet / 100);
             obj.name.string = CommonFun.getInstance().getStrByLength(data.nickname, 8);
 
