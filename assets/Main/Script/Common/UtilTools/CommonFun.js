@@ -1420,7 +1420,7 @@ let CommonFun = cc.Class({
     /**
      * 显示内嵌网页界面
      */
-    showGameWebview: function (gameId, isVertical) {
+    showGameWebview: function (gameId, isVertical, parentIndex) {
         // if (GlobalCfg.USER_DATAS.isNotCharge == true) {   //未曾充值
         //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
         //         CommonFun.getInstance().showSmallAddCash()
@@ -1437,11 +1437,14 @@ let CommonFun = cc.Class({
                 APPManager.showWebView(msg.data.Url, isVertical);
             } else {
                 GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.closeMusic(); //关闭背景音乐
+                if (!isVertical) { //横板要切回横板
+                    CommonFun.getInstance().decVerticalAcc();
+                }
                 let PrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMEWEBVIEW);
                 PrefabPromise.then((prefab) => {
                     let Node = cc.instantiate(prefab);
                     let Ctrl = Node.getComponent('gameWebview');
-                    Ctrl.setURL(msg.data.Url)
+                    Ctrl.setURL(msg.data.Url, isVertical, parentIndex)
                     this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
                 });
             }
@@ -3048,8 +3051,7 @@ let CommonFun = cc.Class({
         if (this._verticalAcc <= 0 && this._curOrientation == EnumOrientation.VERTICAL) {
             this._curOrientation = EnumOrientation.HORIZONTAL;
             APPManager.setOrientation('H');
-        }
-        ;
+        };
     },
 
     checkVerticalAcc: function () {

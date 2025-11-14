@@ -20,10 +20,13 @@ cc.Class({
 
     onDestroy() {
         this._removeDomCloseBtn();
+
     },
 
-    setURL(url) {
+    setURL(url, isVertical, parentIndex) {
         this.webview.url = url;
+        this.isVertical = isVertical;
+        this.parentIndex = parentIndex;
     },
 
     // ===============================
@@ -35,6 +38,15 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playBack?.();
 
         this.node.destroy();
+        if (!this.isVertical) {
+            CommonFun.getInstance().addVerticalAcc();
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                msgCode: "CLOSE_GAMEWEBVIEW",
+                msgData: {
+                    parentIndex: this.parentIndex,
+                }
+            });
+        }
         this._removeDomCloseBtn();
         GlobalCfg.G_COMPONENTS.Audio.openMusic();
         SceneManager.getInstance().changeScene(

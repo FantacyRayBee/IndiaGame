@@ -180,23 +180,28 @@ APPManager.setOrientation = function (dir) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.setOrientation, '(Ljava/lang/String;)V', dir);
     }
+
     let frameSize = cc.view.getFrameSize();
-    if (dir == 'V') {
-        cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
-        if (frameSize.width > frameSize.height) {
-            cc.view.setFrameSize(frameSize.height, frameSize.width);
-            cc.Canvas.instance.designResolution = cc.size(750, 1625);
+    try {
+        if (dir == 'V') {
+            cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
+            if (frameSize.width > frameSize.height) {
+                cc.view.setFrameSize(frameSize.height, frameSize.width);
+                cc.Canvas.instance.designResolution = cc.size(750, 1625);
+            }
+            GlobalCfg.CURSCENE_DIRECTION = "vertical";
+        } else {
+            cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
+            if (frameSize.height > frameSize.width) {
+                cc.view.setFrameSize(frameSize.height, frameSize.width);
+                cc.Canvas.instance.designResolution = cc.size(1625, 750);
+            }
+            GlobalCfg.CURSCENE_DIRECTION = "horizontal";
         }
-        GlobalCfg.CURSCENE_DIRECTION = "vertical";
-    } else {
-        cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
-        if (frameSize.height > frameSize.width) {
-            cc.view.setFrameSize(frameSize.height, frameSize.width);
-            cc.Canvas.instance.designResolution = cc.size(1625, 750);
-        }
-        GlobalCfg.CURSCENE_DIRECTION = "horizontal";
+    } catch (error) {
+        LoggerUtil.getInstance().error("切换屏幕方向时发生错误:", error);
     }
-}
+};
 
 APPManager.getConcactsArrStr = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
