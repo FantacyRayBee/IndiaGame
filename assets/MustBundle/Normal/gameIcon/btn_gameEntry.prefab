@@ -55,8 +55,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -270,
-        -379.5,
+        -1187.5,
+        -1129.5,
         0,
         0,
         0,
@@ -227,9 +227,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "7f26af74-3d8d-4dba-8978-9080e9e16953"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -241,9 +239,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "a9c3f411-774d-4f19-bc1f-809f9f78f604"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -379,7 +375,7 @@
     },
     "_enabled": true,
     "spriteAtlas_icon": {
-      "__uuid__": "a9c3f411-774d-4f19-bc1f-809f9f78f604"
+      "__uuid__": "0e700d90-8694-48f6-8a7f-e7348be5dedb"
     },
     "icon_node": {
       "__id__": 3

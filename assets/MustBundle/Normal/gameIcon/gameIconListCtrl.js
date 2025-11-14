@@ -64,8 +64,8 @@ cc.Class({
             ctrl.setItemData(data.gameID, data.isVertical)
             this.game_content[0].addChild(pab_player);
         }
-        for (var i = 0; i < this.gameConfig['JL'].length; i++) {
-            let data = this.gameConfig['JL'][i];
+        for (var i = 0; i < this.gameConfig['JILI'].length; i++) {
+            let data = this.gameConfig['JILI'][i];
             let pab_player = cc.instantiate(this.gamePrefab);
             pab_player.active = true;
             pab_player.setPosition(0, 0);
