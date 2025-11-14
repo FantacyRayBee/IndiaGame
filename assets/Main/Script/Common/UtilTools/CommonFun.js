@@ -581,12 +581,13 @@ let CommonFun = cc.Class({
         ;
         xhr.send(JSON.stringify(params));
     },
+    
     //h5之类的短考虑生成
     generateUUID: function () {
-        if (window.location){
+        if (window.location) {
             const urlParams = new URLSearchParams(window.location.search);
             const uuid = urlParams.get('uuid');
-            if (uuid.length > 0){
+            if (uuid && uuid.length > 0) { // 检查 uuid 是否有效
                 return uuid;
             }
         }
@@ -594,7 +595,6 @@ let CommonFun = cc.Class({
         if (window.performance && typeof window.performance.now === "function") {
             d += performance.now();
         }
-        ;
         let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             let r = (d + Math.random() * 16) % 16 | 0;
             d = Math.floor(d / 16);
