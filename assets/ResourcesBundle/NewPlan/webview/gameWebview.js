@@ -8,6 +8,8 @@ cc.Class({
     onLoad() {
         this._createDomCloseBtn();
 
+        // 将 _onDomCloseClick 方法注册到 window 对象
+
     },
 
     start() {
@@ -21,7 +23,7 @@ cc.Class({
 
     onDestroy() {
         this._removeDomCloseBtn();
-        delete window.onDomCloseClick; // 移除方法
+        delete window.onDomCloseClick; // 仅删除当前组件注册的方法
     },
 
     setURL(url, isVertical, parentIndex, gameId) {
@@ -29,13 +31,10 @@ cc.Class({
         this.isVertical = isVertical;
         this.parentIndex = parentIndex;
         this.gameId = parseInt(gameId);
-        // 将 _onDomCloseClick 方法注册到 window 对象
-        if (this.gameId < 200) { //只有PG游戏生效
-            window.onDomCloseClick = this._onDomCloseClick.bind(this);
-        }
-        else {
-            window.onDomCloseClick = () => { };
-        }
+
+        window.onDomCloseClick = this.gameId < 200 ? this._onDomCloseClick.bind(this) : () => {
+            LoggerUtil.getInstance().log("window.onDomCloseClick 已调用");
+        };
     },
 
     // ===============================
