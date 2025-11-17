@@ -1475,7 +1475,6 @@ cc.Class({
             CommonFun.getInstance().hidProgress();
         }
         else if (msgId == 'CLOSE_GAMEICONLIST'){ //关闭游戏列表 刷新一下界面的位置 因为触发了横竖屏切换
-            LoggerUtil.getInstance().log("111111111111 GlobalCfg.CLOSE_GAMEICONLIST");
             self.showOtherModules();
             self.checkShiPei();
         }

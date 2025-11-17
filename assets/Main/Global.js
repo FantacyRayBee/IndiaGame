@@ -929,7 +929,7 @@ window.GlobalCfg = {
         /**
          * 游戏中的菜单
          */
-        GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
+        GAMEMENU: "MustBundle/Normal/GameMenu/GameMenu",
         /**
          * 注册界面
          */
