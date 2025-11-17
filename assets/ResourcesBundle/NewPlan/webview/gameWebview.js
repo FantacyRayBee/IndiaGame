@@ -28,7 +28,7 @@ cc.Class({
         this.webview.url = url;
         this.isVertical = isVertical;
         this.parentIndex = parentIndex;
-        this.gameId = gameId;
+        this.gameId = parseInt(gameId);
         // 将 _onDomCloseClick 方法注册到 window 对象
         if (this.gameId < 200) { //只有PG游戏生效
             window.onDomCloseClick = this._onDomCloseClick.bind(this);
