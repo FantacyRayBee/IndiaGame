@@ -8,8 +8,6 @@ cc.Class({
     onLoad() {
         this._createDomCloseBtn();
 
-        // 将 _onDomCloseClick 方法注册到 window 对象
-        window.onDomCloseClick = this._onDomCloseClick.bind(this);
     },
 
     start() {
@@ -26,10 +24,18 @@ cc.Class({
         delete window.onDomCloseClick; // 移除方法
     },
 
-    setURL(url, isVertical, parentIndex) {
+    setURL(url, isVertical, parentIndex, gameId) {
         this.webview.url = url;
         this.isVertical = isVertical;
         this.parentIndex = parentIndex;
+        this.gameId = gameId;
+        // 将 _onDomCloseClick 方法注册到 window 对象
+        if (this.gameId < 200) { //只有PG游戏生效
+            window.onDomCloseClick = this._onDomCloseClick.bind(this);
+        }
+        else {
+            window.onDomCloseClick = () => { };
+        }
     },
 
     // ===============================

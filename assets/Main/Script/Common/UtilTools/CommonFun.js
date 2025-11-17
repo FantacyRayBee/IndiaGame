@@ -1444,7 +1444,7 @@ let CommonFun = cc.Class({
                 PrefabPromise.then((prefab) => {
                     let Node = cc.instantiate(prefab);
                     let Ctrl = Node.getComponent('gameWebview');
-                    Ctrl.setURL(msg.data.Url, isVertical, parentIndex)
+                    Ctrl.setURL(msg.data.Url, isVertical, parentIndex, gameId)
                     this.addToPointParent(Node, GlobalCfg.PREFAB_PARENT.CONTACTUS);
                 });
             }
