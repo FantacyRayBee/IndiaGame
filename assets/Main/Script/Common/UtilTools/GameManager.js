@@ -92,7 +92,6 @@ let GameManager = cc.Class({
             { type: "JILI", gameID: "1076", isVertical: true },
             { type: "JILI", gameID: "1092", isVertical: true },
             { type: "JILI", gameID: "1090", isVertical: true },
-            // { type: "JILI", gameID: "1091", isVertical: true },
             { type: "JILI", gameID: "1095", isVertical: true },
             { type: "JILI", gameID: "1096", isVertical: true },
             { type: "JILI", gameID: "1097", isVertical: true },
