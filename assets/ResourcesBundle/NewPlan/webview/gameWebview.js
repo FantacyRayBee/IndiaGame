@@ -7,6 +7,9 @@ cc.Class({
 
     onLoad() {
         this._createDomCloseBtn();
+
+        // 将 _onDomCloseClick 方法注册到 window 对象
+        window.onDomCloseClick = this._onDomCloseClick.bind(this);
     },
 
     start() {
@@ -20,7 +23,7 @@ cc.Class({
 
     onDestroy() {
         this._removeDomCloseBtn();
-
+        delete window.onDomCloseClick; // 移除方法
     },
 
     setURL(url, isVertical, parentIndex) {
@@ -54,7 +57,6 @@ cc.Class({
             SceneManager.getInstance().sceneType.LOBBY
         );
     },
-
     // ===============================
     // DOM关闭按钮
     // ===============================
