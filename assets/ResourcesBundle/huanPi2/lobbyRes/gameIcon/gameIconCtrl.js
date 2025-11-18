@@ -10,9 +10,10 @@ cc.Class({
     ctor: function() {
     },
 
-    setItemData: function(itemID, isVertical) {
+    setItemData: function(itemID, isVertical, parentIndex) {
         this.gameId = itemID;
         this.isVertical = isVertical;
+        this.parentIndex = parentIndex;
         let spriteName = itemID;
         let spriteFrame = this.spriteAtlas_icon.getSpriteFrame(spriteName);
         this.btn_click.node.on('click', this.debounce(this.onClick, 2), this);
@@ -23,7 +24,7 @@ cc.Class({
     },
 
     onClick: function() {
-        CommonFun.getInstance().showGameWebview(this.gameId, this.isVertical);
+        CommonFun.getInstance().showGameWebview(this.gameId, this.isVertical, this.parentIndex);
     },
 
     debounce: function(action, delayTime) {  

@@ -15,6 +15,12 @@ cc.Class({
     },
     ctor: function () {
         this.heightList = [];
+        this.toggleViewName = {
+            ["quente"]: "toggle_1",
+            ["PG"]: "toggle_2",
+            ["PP"]: "toggle_3",
+            ["JILI"]: "toggle_4",
+        };
     },
 
     onLoad: function () {
@@ -32,16 +38,28 @@ cc.Class({
         this.getHeightList()
         this.loadItem();
     },
-    
-    start: function() {
+
+    start: function () {
         this.NowToggleName = "toggle_1"
         this.setViewByToggleName(this.NowToggleName)
     },
 
-    onEventMsg: function(webData, target) {
+    onEventMsg: function (webData, target) {
         let msgId = webData.msgCode;
+        let notify = webData.msgData;
         if (msgId == GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY) {
             this.lb_coin.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.userDiamond / 100);
+        }
+        else if (msgId == "CLOSE_GAMEWEBVIEW") {
+            this.scheduleOnce(() => {
+                this.NowToggleName = this.toggleViewName[notify.parentIndex];
+                for (let i = 0; i < this.game_content.length; i++) {
+                    let _toggleName = "toggle_" + (i + 1)
+                    if (_toggleName == this.NowToggleName) {
+                        this.content.position = cc.v2(0, this.heightList[i]);
+                    };
+                }
+            }, 0.1)
         }
     },
 
@@ -61,16 +79,16 @@ cc.Class({
             pab_player.active = true;
             pab_player.setPosition(0, 0);
             let ctrl = pab_player.getComponent('gameIconCtrl');
-            ctrl.setItemData(data.gameID, data.isVertical)
+            ctrl.setItemData(data.gameID, data.isVertical, 'quente')
             this.game_content[0].addChild(pab_player);
         }
-        for (var i = 0; i < this.gameConfig['JL'].length; i++) {
-            let data = this.gameConfig['JL'][i];
+        for (var i = 0; i < this.gameConfig['JILI'].length; i++) {
+            let data = this.gameConfig['JILI'][i];
             let pab_player = cc.instantiate(this.gamePrefab);
             pab_player.active = true;
             pab_player.setPosition(0, 0);
             let ctrl = pab_player.getComponent('gameIconCtrl');
-            ctrl.setItemData(data.gameID, data.isVertical)
+            ctrl.setItemData(data.gameID, data.isVertical, 'JILI')
             this.game_content[3].addChild(pab_player);
         }
         for (var i = 0; i < this.gameConfig['PP'].length; i++) {
@@ -79,7 +97,7 @@ cc.Class({
             pab_player.active = true;
             pab_player.setPosition(0, 0);
             let ctrl = pab_player.getComponent('gameIconCtrl');
-            ctrl.setItemData(data.gameID, data.isVertical)
+            ctrl.setItemData(data.gameID, data.isVertical, 'PP')
             this.game_content[2].addChild(pab_player);
         }
         for (var i = 0; i < this.gameConfig['PG'].length; i++) {
@@ -88,12 +106,12 @@ cc.Class({
             pab_player.active = true;
             pab_player.setPosition(0, 0);
             let ctrl = pab_player.getComponent('gameIconCtrl');
-            ctrl.setItemData(data.gameID, data.isVertical)
+            ctrl.setItemData(data.gameID, data.isVertical, 'PG')
             this.game_content[1].addChild(pab_player);
         }
     },
 
-    getHeightList:function(){
+    getHeightList: function () {
         let spacing = 5; //间距
         this.heightList[0] = 0;
         this.heightList[1] = spacing + this.heightList[0] + this.getHeightByItemNum(this.gameConfig['quente'].length);
@@ -104,18 +122,18 @@ cc.Class({
     },
 
     // 根据item的数量计算高度
-    getHeightByItemNum: function(itemNum) {
-        let col = Math.ceil(itemNum / 4); // 得出行数
+    getHeightByItemNum: function (itemNum) {
+        let col = Math.ceil(itemNum / 3); // 得出行数
         let spacing = 20 * (col - 1); // 行间距
-        let itemHeight = 160;
+        let itemHeight = 293;
         let top = 10;
         let bottom = 10;
         let titleImgHeight = 75;
-        let height = titleImgHeight + top + bottom + (col * itemHeight) + spacing;  // 每行4个，向上取整
+        let height = titleImgHeight + top + bottom + (col * itemHeight) + spacing;  // 每行3个，向上取整
         return height;
     },
 
-    btnClick: function(btn) {
+    btnClick: function (btn) {
         let btnName = btn.node.name;
         if (btnName === "btn_close") {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
@@ -126,20 +144,20 @@ cc.Class({
                 msgData: {}
             });
             return;
-        } 
+        }
         if (btnName === "btn_add") {
             this.dealBtnAddEvent();
-        } 
+        }
         GlobalCfg.G_COMPONENTS.Audio.playButton();
     },
 
-    toggleClick: function(toggle) {
+    toggleClick: function (toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         let toggleName = toggle.node.name;
         this.setViewByToggleName(toggleName);
     },
 
-    dealBtnAddEvent: function() {
+    dealBtnAddEvent: function () {
         if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
             CommonFun.getInstance().showMsgBox("Not yet open", "YES_ON", () => { }, false);
             return
@@ -148,7 +166,7 @@ cc.Class({
     },
 
     setViewByToggleName(toggleName) {
-        if(toggleName == this.NowToggleName)
+        if (toggleName == this.NowToggleName)
             return
 
         for (let i = 0; i < this.game_content.length; i++) {
