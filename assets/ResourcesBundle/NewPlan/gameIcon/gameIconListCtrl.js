@@ -61,6 +61,14 @@ cc.Class({
                 }
             }, 0.1)
         }
+        else if (msgId == "OPEN_WITHDRAW_WEBVIEW") {
+            this.node.destroy();
+            CommonFun.getInstance().decVerticalAcc();
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                msgCode: "CLOSE_GAMEICONLIST",
+                msgData: {}
+            });
+        }
     },
 
     onDestroy: function () {

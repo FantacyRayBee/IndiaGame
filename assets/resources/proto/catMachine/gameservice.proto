@@ -129,3 +129,25 @@ message RankingData {
   string nickname = 5;  //昵称
   string HeadUrl = 6;   //头像地址
 }
+
+//位置新
+message seatInfo {
+  int32 pos = 1;
+  string userId = 2;
+  string nickName = 3;
+  string headUrl = 4;
+  int64 score = 6;
+}
+
+//BroadcastUpdateSeatInfo 广播桌位信息更新  gameservice.broadcastupdateseatinfo
+message BroadcastUpdateSeatInfo {
+  repeated seatInfo infos = 1;
+}
+
+//BroadcastSeatWinInfo 广播桌位赢钱信息 gameservice.broadcastseatwininfo
+message BroadcastSeatWinInfo{
+  int32 pos = 1;    //位置
+  int64 win = 2;    //赢多少
+  int64 score = 3;
+  int64 bet = 4;
+}

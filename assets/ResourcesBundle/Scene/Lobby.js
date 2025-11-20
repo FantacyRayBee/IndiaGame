@@ -1216,12 +1216,19 @@ cc.Class({
             this.updateToastLocalStorageByHours("Pdd", 72);
             this.showPddToast();
         }
+        // /**
+        //  * 提现
+        //  */
+        // else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
+        //         && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+        //     this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+        //     this.showWithDrawToast();
+        // }
+
         /**
          * 提现
          */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
-                && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-            this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
+        else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > 1500 && GlobalCfg.USER_DATAS.isNotCharge == true) {
             this.showWithDrawToast();
         }
         // /** 
@@ -1316,9 +1323,8 @@ cc.Class({
      */
     checkShowSuperDiscount: function () {
         let superDiscount_Show_In_Lobby = CommonFun.getInstance().getAppConfigValueByKey('SuperDiscount_Show_In_Lobby', false);
-        let superDiscount_Show_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('SuperDiscount_Show_Rate', 0.4));
         if (superDiscount_Show_In_Lobby == true) {
-            if (GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * superDiscount_Show_Rate && this.isNeedShowPointToastByHours("SecondRecharge", Number((30 / 60).toFixed(1)))) {
+            if (GlobalCfg.USER_DATAS.userDiamond < 20 && this.isNeedShowPointToastByHours("SecondRecharge", Number((30 / 60).toFixed(1)))) {
                 this.updateToastLocalStorageByHours("SecondRecharge", Number((30 / 60).toFixed(1)));
                 return true;
             }

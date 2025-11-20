@@ -10,7 +10,7 @@ cc.Class({
     },
 
     onLoad() {
-        let defaultWithDrawNum = 30;
+        let defaultWithDrawNum = 15;
         let curDiamond = GlobalCfg.USER_DATAS.userDiamond;
         if (curDiamond > 10000) {
             defaultWithDrawNum = Math.floor(curDiamond / 10000) * 100;
@@ -22,6 +22,10 @@ cc.Class({
         }, 1), this);
         
         this.btn_close.node.active = CommonFun.getInstance().isShowWithdrawToastCloseBtn();
+
+        if (CommonFun.getInstance().checkVerticalAcc()) {
+            this.node.getChildByName("bg").scale = 0.7;
+        };
     },
 
     start() {
@@ -39,6 +43,10 @@ cc.Class({
 
     showWithDraw() {
         if (SceneManager.getInstance().curSceneType == SceneManager.getInstance().sceneType.LOBBY) {
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                msgCode: "OPEN_WITHDRAW_WEBVIEW",
+                msgData: {}
+            });
             CommonFun.getInstance().showWithDrawPreData();
         }
         else {

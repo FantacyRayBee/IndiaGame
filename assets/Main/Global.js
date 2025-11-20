@@ -664,7 +664,7 @@ window.GlobalCfg = {
         /**
          * 侧边栏
          */
-        SIDEBAR: "MustBundle/Normal/CommActivity/activityModules_ScrollView",
+        SIDEBAR: "ResourcesBundle/NewPlan/CommActivity/activityModules_ScrollView",
         /**
          * 标语提示框
          */
@@ -676,7 +676,7 @@ window.GlobalCfg = {
         /**
          * 通用提示操作框
          */
-        MSGBOX: "MustBundle/Normal/MsgBox/MsgBox",
+        MSGBOX: "ResourcesBundle/NewPlan/MsgBox/MsgBox",
         /**
          * 大厅设置
          */
@@ -730,8 +730,8 @@ window.GlobalCfg = {
         /**
          * 首充
          */
-        FIRSTRECHARGE: "MustBundle/Normal/FirstRecharge/FirstRecharge",
-        FIRSTRECHARGE_V: "MustBundle/Normal/FirstRecharge/firstRecharge_V",
+        FIRSTRECHARGE: "ResourcesBundle/NewPlan/FirstRecharge/FirstRecharge",
+        FIRSTRECHARGE_V: "ResourcesBundle/NewPlan/FirstRecharge/firstRecharge_V",
         /**
          * 联系我们 客服邮件地址
          */
@@ -815,7 +815,7 @@ window.GlobalCfg = {
         /**
          * 新人礼
          */
-        FIRSTGIFTDIAMOND: "MustBundle/Normal/FirstGiftDiamond/FirstGiftDiamond",
+        FIRSTGIFTDIAMOND: "ResourcesBundle/NewPlan/FirstGiftDiamond/FirstGiftDiamond",
         /**
          * 规则
          */
@@ -929,7 +929,7 @@ window.GlobalCfg = {
         /**
          * 游戏中的菜单
          */
-        GAMEMENU: "MustBundle/Normal/GameMenu/GameMenu",
+        GAMEMENU: "ResourcesBundle/NewPlan/GameMenu/GameMenu",
         /**
          * 注册界面
          */
@@ -972,7 +972,7 @@ window.GlobalCfg = {
         /**
          * 第三方游戏跳转内嵌网页
          */
-        GAMEICONLIST: "MustBundle/Normal/gameIcon/gameIconList",
+        GAMEICONLIST: "ResourcesBundle/NewPlan/gameIcon/gameIconList",
         /**
          * 俱乐部
          */
@@ -985,7 +985,7 @@ window.GlobalCfg = {
         /**
          * 软键盘
          */
-        SOFTKEYBORAD: "MustBundle/Normal/keyboard/SoftKeyboard",
+        SOFTKEYBORAD: "ResourcesBundle/NewPlan/keyboard/SoftKeyboard",
     },
 
 
@@ -1290,7 +1290,7 @@ function SetPackageChannel() {
     let pkg = url.searchParams.get('PackageChannel');
 
     if (!pkg || pkg.length === 0) {//如果不存在强制设置5_7001
-        pkg = "5_7001";
+        pkg = "0_7001";
     }
     localStorage.setItem('PackageChannel', pkg);
     GlobalCfg.CHANNEL_INFO = pkg;
@@ -1328,7 +1328,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "US test 1.0.2";
+            GlobalCfg.APP_VERSION = "US test 1.0.4";
             GlobalCfg.APP_INFO_URL = `https://down.jok7.com/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `https://down.jok7.com/AppConfig.json?time=${new Date().getTime()}`;
             break;

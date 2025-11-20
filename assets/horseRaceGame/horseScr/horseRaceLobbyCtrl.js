@@ -41,6 +41,19 @@ cc.Class({
     },
 
     onDestroy: function () {
+        // 停止所有计时器
+        this.unschedule(this.RuntimeCallback);
+        this.unschedule(this.callbackCheck);
+        this.unschedule(this.scheduleBetSpineTimeCallback);
+        this.unschedule(this.horsesLisenerCallBack);
+        this.unschedule(this.playAudioCallBack);
+
+        // 停止所有协程
+        cc.Tween.stopAllByTag(1);
+        cc.Tween.stopAllByTarget(this.nodeTrack);
+        cc.Tween.stopAllByTarget(this.spr_LeaderNum);
+
+        // 清理其他资源
         GlobalCfg.ACT_SCENE_CTRL = null;
         this.unschedule(this.scheduleBetSpineTimeCallback);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);

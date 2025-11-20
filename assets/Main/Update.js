@@ -976,7 +976,7 @@ cc.Class({
         this.setUpdateProgressBarProgress(0);
         this.setLabUpdateContentTipsStr("Getting Version Information");
 
-        let packgeName = "MustBundle";
+        let packgeName = "ResourcesBundle";
 
         this.checkDownloadH5Main(() => {
             this.startRealPreload(packgeName); // 开始预加载必要资源
@@ -985,25 +985,52 @@ cc.Class({
 
     // ====== 真正的预加载逻辑（80% → 100%） ======
     startRealPreload: function (packgeName) {
-        cc.assetManager.loadBundle(packgeName, (_, bundle) => {
-            bundle.preloadDir("/", (completedCount, totalCount) => {
-                let rawProgress = completedCount / totalCount;
-                this.setLabUpdateProgressStr(`${(rawProgress * 100).toFixed(2)}%`);
-                this.setUpdateProgressBarProgress(rawProgress);
-                this.setLabUpdateContentTipsStr("Downloading files");
-            }, (err) => {
-                if (err) {
-                    console.error(packgeName + " 资源加载失败:", err);
-                } else {
-                    this.setLabUpdateProgressStr("100%");
-                    this.setUpdateProgressBarProgress(1);
-                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
-                    this.scheduleOnce(() => {
-                        this.changeSceneToLobby();
-                    }, 1);
-                }
-            });
-        });
+        // 初始化进度条
+        let currentProgress = 0;
+        let targetProgress = 0.2; // 目标进度为 20%
+        let progressStep = 0.01; // 每次增加的进度
+        let interval = 0.05; // 每次更新的时间间隔（秒）
+
+        // 设置初始提示
+        this.setLabUpdateContentTipsStr("Preparing files...");
+        this.setLabUpdateProgressStr("0%");
+        this.setUpdateProgressBarProgress(0);
+
+        // 慢慢走到 20%
+        let progressTimer = setInterval(() => {
+            currentProgress += progressStep;
+            if (currentProgress >= targetProgress) {
+                currentProgress = targetProgress;
+                clearInterval(progressTimer); // 到达目标进度后停止计时器
+
+                // 开始加载资源
+                cc.assetManager.loadBundle(packgeName, (_, bundle) => {
+                    window.ResourcesBundle = bundle;
+                    bundle.preloadDir("/", (completedCount, totalCount) => {
+                        let rawProgress = completedCount / totalCount;
+                        let adjustedProgress = 0.2 + rawProgress * 0.8; // 从 20% 开始计算进度
+                        this.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
+                        this.setUpdateProgressBarProgress(adjustedProgress);
+                        this.setLabUpdateContentTipsStr("Downloading files...");
+                    }, (err) => {
+                        if (err) {
+                            console.error(packgeName + " 资源加载失败:", err);
+                        } else {
+                            this.setLabUpdateProgressStr("100%");
+                            this.setUpdateProgressBarProgress(1);
+                            this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                            this.scheduleOnce(() => {
+                                this.changeSceneToLobby();
+                            }, 1);
+                        }
+                    });
+                });
+            }
+
+            // 更新进度条
+            this.setLabUpdateProgressStr(`${(currentProgress * 100).toFixed(2)}%`);
+            this.setUpdateProgressBarProgress(currentProgress);
+        }, interval * 1000); // 转换为毫秒
     },
 
     checkDownloadH5Main(callback = null) {
@@ -1035,13 +1062,7 @@ cc.Class({
             GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
             if (!GlobalCfg.USER_DATAS.token) {
                 this.node_loginLayer.active = true;
-                // let phoneToken = cc.sys.localStorage.getItem("phone_token");
-                // if (phoneToken) {
-                //     this.showMemoryPhoneView();
-                // }
-                // else {
-                    this.showCommonLoginView();
-                // };
+                this.showCommonLoginView();
             }
             else {
                 CommonFun.getInstance().showProgress('Memory login ...');
@@ -1062,13 +1083,7 @@ cc.Class({
         if (GlobalCfg.isH5) {
             Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
             .then((arr) => {
-                let packgeName = "Activity"
-                cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
-                    window.ResourcesBundle = bundle;
-                    bundle.preloadDir(packgeName, null, (err) => {
-                        downAfter();
-                    });
-                });
+                downAfter();
             })
             .catch((err) => {
                 LoggerUtil.getInstance().error(err);
