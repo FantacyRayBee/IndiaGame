@@ -67,6 +67,20 @@
 
         }
     })
+    //添加uuid和渠道强制写入
+    if (window.location) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const uuid = urlParams.get('uuid');
+        if (uuid && uuid.length > 0) {
+            localStorage.setItem('LOGIN_DEVICE', uuid)
+        }
+        const channel = urlParams.get('channel');
+        if (channel && channel.length > 0) {
+            localStorage.setItem('PackageChannel', channel)
+        }
+    }
+
+
 </script>
 <script type="text/javascript">
     (function () {
