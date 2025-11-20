@@ -53,6 +53,9 @@ cc.Class({
         node_jp_pop: cc.Node,
         node_jp: cc.Node,
 
+        playerItem: cc.Node,
+        playerSeatArr: [cc.Node],
+
         node_line: cc.Node,
 
         lab_jb: cc.Label,
@@ -254,6 +257,30 @@ cc.Class({
         this.setTaskInfo();
     },
 
+    dealUpSeatInfo: function (notify) {
+        if (!notify || !notify.infos) {
+            return;
+        }
+        for (let j = 0; j < notify.infos.length; j++) {
+            if (notify.infos[j].pos){
+                this.playerSeatArr[j].getChildByName("playerItem").getComponent("catPlayerItem").setInfo(notify.infos[j]);
+            }
+            else{
+                this.playerSeatArr[j].getChildByName("playerItem").getComponent("catPlayerItem").hide();
+            }
+        }
+    },
+
+    dealUpSeatWin: function (notify) {
+        if (notify.win) {
+            let bigWin = this.getBigWinLevel(notify.win / notify.bet);
+            this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setWin(bigWin, notify.win, notify.score);
+        }
+        else{
+            this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setScore(notify.score);
+        }
+    },
+
     debounce: function (action, delayTime) {
         if (!delayTime) {
             return action;
@@ -385,16 +412,24 @@ cc.Class({
     },
 
     start: function () {
-        this.showZcAnim();
-        this.sendLoginReq();
+        this.showZcAnim(() => {
+            this.sendLoginReq();
+        });
         this.initSlotData();
     },
 
-    showZcAnim: function () {
-        this.node.getChildByName('zc').active = true;
-        this.scheduleOnce(() => {
-            this.node.getChildByName('zc').getComponent('cc.Animation').play("zc");
-        }, 1);
+    showZcAnim: function (callback) {
+        const zcNode = this.node.getChildByName('zc');
+        if (!zcNode) return;
+        zcNode.active = true;
+        // 延迟 1 秒播放动画（独立于 Cocos 调度）
+        this._zcTimer = setTimeout(() => {
+            if (!this.node || !this.node.isValid) return; // 节点已销毁则不执行
+            const anim = zcNode.getComponent(cc.Animation);
+            if (anim) anim.play("zc");
+            this._zcTimer = null;
+            callback && callback();
+        }, 1000);
     },
 
     onDestroy: function () {
@@ -417,6 +452,10 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_MAYA_GAME);
         this.stopSpinHoldonToggle();
         [this.node_jp_pop, this.node_totalwin_pop, this.node_fg_pop].forEach(n => this._killPopupTweens(n));
+        if (this._zcTimer) {
+        clearTimeout(this._zcTimer);
+        this._zcTimer = null;
+    }
     },
 
 
@@ -470,6 +509,12 @@ cc.Class({
         }
         else if (msgId === "gameservice.exit" || msgId === "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == 'gameservice.broadcastupdateseatinfo') { //广播桌位信息更新
+            self.dealUpSeatInfo(notify);
+        }
+        else if (msgId == 'gameservice.broadcastseatwininfo') { //广播桌位赢钱信息
+            self.dealUpSeatWin(notify);
         }
     },
 
@@ -1271,13 +1316,13 @@ cc.Class({
 
     getBigWinLevel: function (betMul) {
         let level = 0;
-        if (2 <= betMul && betMul < 5) { //bigwin
+        if (5 <= betMul && betMul < 10) { //bigwin
             level = 1;
         }
-        else if (5 <= betMul && betMul < 15) { //megawin
+        else if (10 <= betMul && betMul < 30) { //megawin
             level = 2;
         }
-        else if (15 <= betMul && betMul < 50) { //Epic win
+        else if (30 <= betMul && betMul < 50) { //Epic win
             level = 3;
         }
         else if (50 <= betMul) { //superwin
@@ -1323,23 +1368,29 @@ cc.Class({
     },
 
     showAppearSymbol: function (type) {
-        // 遍历所有列
-        for (let col = 0; col < this.node_catContentArr.length; col++) {
-            // 直接取第 0、1、2 行节点
-            for (let row = 1; row < 4; row++) {
-                const iconNode = this._getIconByColRow(col, row);
-                const skelNode = this._getSkelByColRow(col, row);
-                if (!iconNode || !skelNode) continue;
-                const id = iconNode.itemID;
-                if (id === 10) {
-                    // 播放图标动画
-                    iconNode.getComponent('catItemCtrl').playAnimation();
-                    // 播放骨骼动画
-                    const skelCtrl = skelNode.getComponent('catSkelItemCtrl');
+        if (!this.gameResult) return;
+        const iconLines = this.buildLineArrayByRules(1);
+        const skelLines = this.buildLineArrayByRules(2);
+        // 播放中奖连线动画
+        for (const typeArr of iconLines) {
+            for (let k = 0; k < typeArr.length - 1; k++) {
+                const n1 = typeArr[k], n2 = typeArr[k + 1];
+                if (n1.itemID != this.wildId && n2.itemID != this.wildId) {
+                    n1.getComponent('catItemCtrl').playAnimation();
+                    n2.getComponent('catItemCtrl').playAnimation();
+                }
+            }
+        }
+        for (const typeArr of skelLines) {
+            for (let k = 0; k < typeArr.length - 1; k++) {
+                const n1 = typeArr[k], n2 = typeArr[k + 1];
+                if (n1.itemID != this.wildId && n2.itemID != this.wildId) {
                     if (type == 2) {
-                        skelCtrl.playFreeGameWait();
+                        n1.getComponent('catSkelItemCtrl').playFreeGameWait();
+                        n2.getComponent('catSkelItemCtrl').playFreeGameWait();
                     } else {
-                        skelCtrl.playFreeGameApppear();
+                        n1.getComponent('catSkelItemCtrl').playFreeGameApppear();
+                        n2.getComponent('catSkelItemCtrl').playFreeGameApppear();
                     }
                 }
             }
@@ -1361,7 +1412,6 @@ cc.Class({
                 }
                 else {
                     if (this.gameResult.addFgCount && this.gameResult.addFgCount > 1) //FG过程中又中FG
-                        // this.addFreeGame(this.gameResult.addFgCount);
                         this.dealFreeGame(this.lab_betAmount.string, this.gameResult.mianfeinum);
                     else
                         this.dealFreeGame(this.lab_betAmount.string, this.gameResult.mianfeinum);
@@ -1500,9 +1550,17 @@ cc.Class({
         for (let i = 0; i < xiannum.length; i++) {
             const it = xiannum[i];
             const needLen = Math.min(it.len || 0, 5);
-            if (!it.multiple || it.multiple <= 0 || needLen < 3) continue;
+
+            // 长度不足直接跳过
+            if (needLen < 3) continue;
 
             const card = it.card;
+
+            // 如果 card 不是 10，则仍需满足 multiple>0
+            // 若 card === 10 则放宽，不需要 multiple 字段
+            if (card !== 10) {
+                if (!it.multiple || it.multiple <= 0) continue;
+            }
 
             // 每一条线路（ref 从 1 开始）
             for (let ref = 1; ref <= 9; ref++) {
@@ -1513,7 +1571,7 @@ cc.Class({
                 let ok = true;
                 for (let c = 0; c < needLen; c++) {
                     const [col, row] = path[c];
-                    // ✅ 使用统一入口取节点，确保 icon / skel 对齐
+                    // 使用统一入口取节点，确保 icon / skel 对齐
                     const n = (type === 2)
                         ? this._getSkelByColRow(col, row)
                         : this._getIconByColRow(col, row);
@@ -1566,7 +1624,6 @@ cc.Class({
             const row0 = this._getSkelByColRow(col, 1);
             const row1 = this._getSkelByColRow(col, 2);
             const row2 = this._getSkelByColRow(col, 3);
-            LoggerUtil.getInstance().log(`竖向龙组合检测: col=${col}, row0.itemID=${row0.itemID}, row1.itemID=${row1.itemID}, row2.itemID=${row2.itemID}`);
             if (!row0 || !row1 || !row2) continue;
 
             const id0 = row0.itemID;
@@ -1576,7 +1633,6 @@ cc.Class({
             const topTwo = (id0 === 8 && id1 === 8);
             const bottomTwo = (id1 === 8 && id2 === 8);
             const allThree = (id0 === 8 && id1 === 8 && id2 === 8);
-            LoggerUtil.getInstance().log(`竖向龙组合检测: col=${col}, topTwo=${topTwo}, bottomTwo=${bottomTwo}, allThree=${allThree}`);
             const upCtrl = row0.getComponent('catSkelItemCtrl');
             const midCtrl = row1.getComponent('catSkelItemCtrl');
             const downCtrl = row2.getComponent('catSkelItemCtrl');
@@ -1678,29 +1734,6 @@ cc.Class({
         }, 4);
     },
 
-    //fg过程中又中fg
-    addFreeGame: function (num) {
-        this.node_addFG_pop.active = true;
-        let self = this;
-        let anim = this.node_addFG.getComponent(cc.Animation);
-        anim.play("bigwinStart");
-        this.lab_addfg_num.string = num;
-        let curFreeGameNum = parseInt(this.lab_freenum.string);
-        let curFreeGameFinalNum = curFreeGameNum + num - 1;
-        this.scheduleOnce(() => {
-            self.runChangeTotalWinScore(self.lab_addfg_num, num, 0, 1, null, true)
-            self.runChangeTotalWinScore(self.lab_freenum, curFreeGameNum, curFreeGameFinalNum, 1, () => {
-                self.scheduleOnce(() => {
-                    anim.play("bigwinEnd");
-                    self.scheduleOnce(() => {
-                        self.node_addFG_pop.active = false;
-                        self.dealFreeGame(self.lab_betAmount.string, curFreeGameFinalNum);
-                    }, 0.5);
-                }, 0.5);
-            }, true)
-        }, 1);
-    },
-
     playFreeGameAnim: function (skelName) {
         const pop = this.node_fg_pop;
         const skelN = this.node_fg;
@@ -1763,7 +1796,6 @@ cc.Class({
         });
     },
 
-    //播放FG结算动画
     PlayFGEndAnim: function (finalScore, callback) {
         const pop = this.node_totalwin_pop;
         const skelN = this.node_totalwin;
@@ -1774,18 +1806,42 @@ cc.Class({
         const skel = skelN.getComponent(sp.Skeleton);
         this.playGameMusic("freeTotalWin");
 
-        // 用纯数字做动画
+        // 最终数字（用数值，不要预先格式化）
+        const endNum = Number(finalScore) || 0;
+
+        // 状态 & 引用
+        this._fgRolling = true;
+        this._fgFinalNum = endNum;
+
+        // 数字清零开始滚动
         this.lab_totalwinpop_num.string = "";
-        this.btn_totalwin_end.interactable = false;
-        const endNum = Number(finalScore); // finalScore 直接传“数字”，不要先 numberToShow
-        this.runChangeTotalWinScore(this.lab_totalwinpop_num, 0, endNum, 4, null, false);
+        this.btn_totalwin_end.interactable = true; // 允许随时点击来“快进”
 
-        // 主动画一次
-        skel.setAnimation(0, "animation_totalwin", false);
-        skel.setCompleteListener(() => {
-            if (!this._isPopupTokenAlive(pop, token)) return;
-            this.btn_totalwin_end.interactable = true;
+        // 先解绑再绑定，避免重复
+        if (this.btn_totalwin_end && this.btn_totalwin_end.node) {
+            this.btn_totalwin_end.node.off('click');
+            this.btn_totalwin_end.node.on('click', () => {
+                if (this._fgRolling) {
+                    // 快进：停掉数字 tween，直接显示最终值
+                    try { cc.Tween.stopAllByTarget(this); } catch (e) {}
+                    this._fgRolling = false;
+                    // 显示最终值（保留两位小数）
+                    this.lab_totalwinpop_num.string = endNum.toFixed(2);
+                    return; // 本次只快进，不关闭；再点一次才关闭
+                }
+                // 已经是最终值 → 关闭弹窗并回调
+                this._closePopupTween(pop, {
+                    dur: 0.20,
+                    ease: 'backIn',
+                    onAfter: () => { callback && callback(); }
+                });
+            });
+        }
 
+        // 跑数字（4s），结束后进入“可关闭”状态
+        this.runChangeTotalWinScore(this.lab_totalwinpop_num, 0, endNum, 4, () => {
+            this._fgRolling = false;
+            // 若用户不点，5秒后自动关闭
             this.scheduleOnce(() => {
                 if (!this._isPopupTokenAlive(pop, token)) return;
                 this._closePopupTween(pop, {
@@ -1794,6 +1850,13 @@ cc.Class({
                     onAfter: () => { callback && callback(); }
                 });
             }, 5);
+        }, false);
+
+        // 主动画一次
+        skel.setAnimation(0, "animation_totalwin", false);
+        skel.setCompleteListener(() => {
+            if (!this._isPopupTokenAlive(pop, token)) return;
+            // 动画播完不强制关闭，交给按钮或上面的定时器
         });
     },
 
@@ -1806,7 +1869,6 @@ cc.Class({
         }
     },
 
-    //进入JP模式
     showJPpop: function (callback) {
         const pop = this.node_jp_pop;
         const skelN = this.node_jp;
@@ -1815,18 +1877,46 @@ cc.Class({
         if (!token) { callback && callback(); return; }
 
         const skel = skelN.getComponent(sp.Skeleton);
-        const finalScore = CommonFun.getInstance().numberToShow(this.gameResult.jpWin / 100);
-
         this.playGameMusic("jackpot");
+
+        // 最终数字（用纯数值，单位与原逻辑一致：/100）
+        const endNum = (this.gameResult && this.gameResult.jpWin ? this.gameResult.jpWin : 0) / 100;
+
+        // 状态 & 引用
+        this._jpRolling = true;
+        this._jpFinalNum = endNum;
+
+        // 初始化
         this.lab_jp_num.string = "";
-        this.btn_jp_end && (this.btn_jp_end.interactable = false);
-        this.runChangeTotalWinScore(this.lab_jp_num, 0, finalScore, 4, null);
+        if (this.btn_jp_end) this.btn_jp_end.interactable = true;
 
-        skel.setAnimation(0, "animation_jackpot", false);
-        skel.setCompleteListener(() => {
-            if (!this._isPopupTokenAlive(pop, token)) return;
-            this.btn_jp_end && (this.btn_jp_end.interactable = true);
+        // 先解绑再绑定
+        if (this.btn_jp_end && this.btn_jp_end.node) {
+            this.btn_jp_end.node.off('click');
+            this.btn_jp_end.node.on('click', () => {
+                if (this._jpRolling) {
+                    // 快进到最终值
+                    try { cc.Tween.stopAllByTarget(this); } catch (e) {}
+                    this._jpRolling = false;
+                    this.lab_jp_num.string = endNum.toFixed(2);
+                    return; // 本次只快进，不关闭
+                }
+                // 已是最终值 → 关闭并回到 BGM
+                this._closePopupTween(pop, {
+                    dur: 0.20,
+                    ease: 'backIn',
+                    onAfter: () => {
+                        this.playGameMusic("bgm");
+                        callback && callback();
+                    }
+                });
+            });
+        }
 
+        // 数字滚动（4s）
+        this.runChangeTotalWinScore(this.lab_jp_num, 0, endNum, 4, () => {
+            this._jpRolling = false;
+            // 若用户不点，5秒后自动关闭
             this.scheduleOnce(() => {
                 if (!this._isPopupTokenAlive(pop, token)) return;
                 this._closePopupTween(pop, {
@@ -1838,6 +1928,13 @@ cc.Class({
                     }
                 });
             }, 5);
+        }, false);
+
+        // 主动画一次
+        skel.setAnimation(0, "animation_jackpot", false);
+        skel.setCompleteListener(() => {
+            if (!this._isPopupTokenAlive(pop, token)) return;
+            // 播完保持弹窗，等待按钮或自动关闭
         });
     },
 
