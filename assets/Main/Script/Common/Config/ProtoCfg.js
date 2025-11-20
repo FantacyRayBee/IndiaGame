@@ -338,6 +338,8 @@ cc.Class({
       "gameservice.exit": "ExitAck", //退出
       "gameservice.getranking": "GetRankingAck",
       "gameservice.claimtaskreward": "ClaimTaskRewardAck", 
+      "gameservice.broadcastupdateseatinfo": "BroadcastUpdateSeatInfo", 
+      "gameservice.broadcastseatwininfo": "BroadcastSeatWinInfo", 
     }
     //小丑机台
     this.protoJoker = {

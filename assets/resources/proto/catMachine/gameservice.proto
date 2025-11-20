@@ -149,4 +149,5 @@ message BroadcastSeatWinInfo{
   int32 pos = 1;    //位置
   int64 win = 2;    //赢多少
   int64 score = 3;
+  int64 bet = 4;
 }

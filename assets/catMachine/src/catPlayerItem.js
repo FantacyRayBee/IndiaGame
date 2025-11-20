@@ -8,6 +8,7 @@ cc.Class({
         lab_name: cc.Label,
         lab_score: cc.Label,
         node_win: cc.Node, 
+        lab_win: cc.Label, 
     },
 
     ctor: function () {
@@ -18,9 +19,9 @@ cc.Class({
         this.Init();
         this.userId = info.userId;
         this.node.active = true;
-        this.lab_name.string = CommonFun.getInstance().getStrByLength(info.nickname, 8);
+        this.lab_name.string = CommonFun.getInstance().getStrByLength(info.nickName, 8);
         this.lab_score.string = CommonFun.getInstance().numberToShow(info.score / 100);
-        loadHeadSp(info.HeadUrl, 90, this.sp_head);
+        this.loadHeadSp(info.headUrl, 90, this.sp_head);
     },
 
     Init: function () {
@@ -30,15 +31,25 @@ cc.Class({
         this.skeletonTimer = null;
     },
 
-    setWin : function (type, winScore) {
+    hide: function () {
+        this.node.active = false;
+        this.Init();
+    },
+
+    setWin : function (type, winScore, finalScore) {
         this.playWin(type);
         this.node_win.active = true;
-        this.lab_score.string = CommonFun.getInstance().numberToShow(winScore);
+        this.lab_win.string = CommonFun.getInstance().numberToShow(winScore / 100);
         this.winTimer = setTimeout(() => {
             if (!this.node || !this.node.isValid) return; // 节点已销毁则不执行
             this.node_win.active = false;
             this.winTimer = null;
         }, 2000);
+        this.setScore(finalScore);
+    },
+
+    setScore: function (score) {
+        this.lab_score.string = CommonFun.getInstance().numberToShow(score / 100);
     },
     //播放元素出现动画
     playWin: function (type) {

@@ -28087,7 +28087,7 @@
     "_dstBlendFactor": 771,
     "_string": "1.22",
     "_N$string": "1.22",
-    "_fontSize": 40,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -28387,6 +28387,9 @@
     "node_win": {
       "__id__": 707
     },
+    "lab_win": {
+      "__id__": 712
+    },
     "_id": "4fGg6S5FJCWZnQpmTYtNCo"
   },
   {
@@ -28441,7 +28444,7 @@
       "ctor": "Float64Array",
       "array": [
         -568,
-        -142.383,
+        -106.369,
         0,
         0,
         0,
@@ -29540,7 +29543,7 @@
     "_dstBlendFactor": 771,
     "_string": "1.22",
     "_N$string": "1.22",
-    "_fontSize": 40,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -29839,6 +29842,9 @@
     },
     "node_win": {
       "__id__": 745
+    },
+    "lab_win": {
+      "__id__": 750
     },
     "_id": "edSkB7d39Is7Z0XHPVzfpu"
   },
@@ -30993,7 +30999,7 @@
     "_dstBlendFactor": 771,
     "_string": "1.22",
     "_N$string": "1.22",
-    "_fontSize": 40,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -31293,6 +31299,9 @@
     "node_win": {
       "__id__": 783
     },
+    "lab_win": {
+      "__id__": 788
+    },
     "_id": "e3/uGZC+9Czpa3TxduFcX4"
   },
   {
@@ -31347,7 +31356,7 @@
       "ctor": "Float64Array",
       "array": [
         567,
-        -142.383,
+        -106.369,
         0,
         0,
         0,
@@ -32446,7 +32455,7 @@
     "_dstBlendFactor": 771,
     "_string": "1.22",
     "_N$string": "1.22",
-    "_fontSize": 40,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -32745,6 +32754,9 @@
     },
     "node_win": {
       "__id__": 821
+    },
+    "lab_win": {
+      "__id__": 826
     },
     "_id": "b91d52z3pBc7NzcdLXwexN"
   },

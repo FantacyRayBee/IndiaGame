@@ -258,12 +258,27 @@ cc.Class({
     },
 
     dealUpSeatInfo: function (notify) {
-        this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setInfo(notify);
+        if (!notify || !notify.infos) {
+            return;
+        }
+        for (let j = 0; j < notify.infos.length; j++) {
+            if (notify.infos[j].pos){
+                this.playerSeatArr[j].getChildByName("playerItem").getComponent("catPlayerItem").setInfo(notify.infos[j]);
+            }
+            else{
+                this.playerSeatArr[j].getChildByName("playerItem").getComponent("catPlayerItem").hide();
+            }
+        }
     },
 
     dealUpSeatWin: function (notify) {
-        let bigWin = this.getBigWinLevel(notify.win);
-        this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setWin(bigWin, notify.win);
+        if (notify.win) {
+            let bigWin = this.getBigWinLevel(notify.win / notify.bet);
+            this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setWin(bigWin, notify.win, notify.score);
+        }
+        else{
+            this.playerSeatArr[notify.pos - 1].getChildByName("playerItem").getComponent("catPlayerItem").setScore(notify.score);
+        }
     },
 
     debounce: function (action, delayTime) {
@@ -1360,19 +1375,23 @@ cc.Class({
         for (const typeArr of iconLines) {
             for (let k = 0; k < typeArr.length - 1; k++) {
                 const n1 = typeArr[k], n2 = typeArr[k + 1];
-                n1.getComponent('catItemCtrl').playAnimation();
-                n2.getComponent('catItemCtrl').playAnimation();
+                if (n1.itemID != this.wildId && n2.itemID != this.wildId) {
+                    n1.getComponent('catItemCtrl').playAnimation();
+                    n2.getComponent('catItemCtrl').playAnimation();
+                }
             }
         }
         for (const typeArr of skelLines) {
             for (let k = 0; k < typeArr.length - 1; k++) {
                 const n1 = typeArr[k], n2 = typeArr[k + 1];
-                if (type == 2) {
-                    n1.getComponent('catSkelItemCtrl').playFreeGameWait();
-                    n2.getComponent('catSkelItemCtrl').playFreeGameWait();
-                } else {
-                    n1.getComponent('catSkelItemCtrl').playFreeGameApppear();
-                    n2.getComponent('catSkelItemCtrl').playFreeGameApppear();
+                if (n1.itemID != this.wildId && n2.itemID != this.wildId) {
+                    if (type == 2) {
+                        n1.getComponent('catSkelItemCtrl').playFreeGameWait();
+                        n2.getComponent('catSkelItemCtrl').playFreeGameWait();
+                    } else {
+                        n1.getComponent('catSkelItemCtrl').playFreeGameApppear();
+                        n2.getComponent('catSkelItemCtrl').playFreeGameApppear();
+                    }
                 }
             }
         }
@@ -1605,7 +1624,6 @@ cc.Class({
             const row0 = this._getSkelByColRow(col, 1);
             const row1 = this._getSkelByColRow(col, 2);
             const row2 = this._getSkelByColRow(col, 3);
-            LoggerUtil.getInstance().log(`竖向龙组合检测: col=${col}, row0.itemID=${row0.itemID}, row1.itemID=${row1.itemID}, row2.itemID=${row2.itemID}`);
             if (!row0 || !row1 || !row2) continue;
 
             const id0 = row0.itemID;
@@ -1615,7 +1633,6 @@ cc.Class({
             const topTwo = (id0 === 8 && id1 === 8);
             const bottomTwo = (id1 === 8 && id2 === 8);
             const allThree = (id0 === 8 && id1 === 8 && id2 === 8);
-            LoggerUtil.getInstance().log(`竖向龙组合检测: col=${col}, topTwo=${topTwo}, bottomTwo=${bottomTwo}, allThree=${allThree}`);
             const upCtrl = row0.getComponent('catSkelItemCtrl');
             const midCtrl = row1.getComponent('catSkelItemCtrl');
             const downCtrl = row2.getComponent('catSkelItemCtrl');
