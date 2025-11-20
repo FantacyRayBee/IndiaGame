@@ -1328,7 +1328,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "US test 1.0.4";
+            GlobalCfg.APP_VERSION = "US test 1.0.5";
             GlobalCfg.APP_INFO_URL = `https://down.jok7.com/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `https://down.jok7.com/AppConfig.json?time=${new Date().getTime()}`;
             break;
