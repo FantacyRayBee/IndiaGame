@@ -81,8 +81,7 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.WITHDRAW_SELECTED_ITEM) {
             let itemData = notify.itemData;
             self.selectedItemData = itemData;
-            self.lab_withdrawAmount.string = `$${FloatCalculation.accDiv(itemData.price * (1 - itemData.service_rate), 1)}`;
-
+            self.lab_withdrawAmount.string = `$${FloatCalculation.accDiv(itemData.price * (1 - itemData.service_rate), 1).toFixed(2).replace(/\.00$/, '')}`;
             let languagesType = I18NUtil.getInstance().getLanguageType();
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Withdraw_Withdraw']);
             self.lab_btnWithDrawTips.string = `${descriptionStr} $${FloatCalculation.accDiv(itemData.price, 1)}`;

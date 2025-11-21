@@ -55,7 +55,7 @@ cc.Class({
         let frameH = size.height;
         LoggerUtil.getInstance().log("当前屏幕分辨率 ", frameW, frameH);
         if (frameH / frameW < 2) {
-            this.node_root.scale = 1.3;
+            this.node_root.scale = 1.1;
         }
     },
 

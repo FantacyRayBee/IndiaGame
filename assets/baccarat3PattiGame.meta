@@ -6,16 +6,20 @@
   "bundleName": "",
   "priority": 1,
   "compressionType": {
-    "android": "default"
+    "android": "default",
+    "web-mobile": "merge_all_json"
   },
   "optimizeHotUpdate": {
-    "android": true
+    "android": true,
+    "web-mobile": false
   },
   "inlineSpriteFrames": {
-    "android": false
+    "android": false,
+    "web-mobile": false
   },
   "isRemoteBundle": {
-    "android": false
+    "android": false,
+    "web-mobile": false
   },
   "subMetas": {}
 }
