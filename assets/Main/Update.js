@@ -1081,7 +1081,7 @@ cc.Class({
             }
         }
         if (GlobalCfg.isH5) {
-            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadProgressDown()])
             .then((arr) => {
                 downAfter();
             })
@@ -1090,7 +1090,7 @@ cc.Class({
             });
         }
         else{
-            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadProgressDown()])
             .then((arr) => {
                 cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
                     window.ResourcesBundle = bundle;

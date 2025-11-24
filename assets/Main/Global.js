@@ -68,7 +68,7 @@ window.GlobalCfg = {
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: false,
+    is_force_gotoTest: true,
 
     /**
      * 渠道信息
@@ -661,6 +661,7 @@ window.GlobalCfg = {
      * 预制体路径
      */
     PREFAB_PATH: {
+        
         /**
          * 侧边栏
          */
@@ -673,6 +674,7 @@ window.GlobalCfg = {
          * 进度提示框
          */
         PROGRESS: "ResourcesBundle/NewPlan/Progress/Progress",
+        PROGRESSDOWN: "ResourcesBundle/NewPlan/Progress/ProgressDown",
         /**
          * 通用提示操作框
          */
@@ -680,7 +682,7 @@ window.GlobalCfg = {
         /**
          * 大厅设置
          */
-        SETTING: "ResourcesBundle/NewPlan/Setting/Setting",
+        SETTING: "secondBundle/normal/Setting/Setting",
         /**
          * 小游戏中点击充值按钮所显示的金币界面
          */
@@ -692,7 +694,7 @@ window.GlobalCfg = {
         /**
          * 小游戏中玩家信息界面
          */
-        USERHEAD: "ResourcesBundle/NewPlan/UserHead/UserHead",
+        USERHEAD: "secondBundle/normal/UserHead/UserHead",
         /**
          * 领取奖励，撒金币
          */
@@ -735,7 +737,7 @@ window.GlobalCfg = {
         /**
          * 联系我们 客服邮件地址
          */
-        CONTACTUS: "ResourcesBundle/NewPlan/ContactUs/ContactUs",
+        CONTACTUS: "secondBundle/normal/ContactUs/ContactUs",
         /**
          * 跑马灯
          */
@@ -769,12 +771,12 @@ window.GlobalCfg = {
         /**
          * 邮箱
          */
-        EMAIL: "ResourcesBundle/NewPlan/Email/Email",
-        EMAILITEM: "ResourcesBundle/NewPlan/Email/titleItem",
+        EMAIL: "secondBundle/normal/Email/Email",
+        EMAILITEM: "secondBundle/normal/Email/titleItem",
         /**
          * 反馈邮箱
          */
-        FEEDBACKEMAIL: "ResourcesBundle/NewPlan/Email/FeedbackMail",
+        FEEDBACKEMAIL: "secondBundle/normal/Email/FeedbackMail",
         /**
          * 超级折扣
          */
@@ -782,7 +784,7 @@ window.GlobalCfg = {
         /**
          * 客服
          */
-        CUSTOMERSERVICE: "ResourcesBundle/NewPlan/CustomerService/CustomerService",
+        CUSTOMERSERVICE: "secondBundle/normal/CustomerService/CustomerService",
         /**
          * 快速反馈
          */
@@ -790,20 +792,20 @@ window.GlobalCfg = {
         /**
          * 个人中心
          */
-        PERSONAL: "ResourcesBundle/NewPlan/Personal/Personal",
+        PERSONAL: "secondBundle/normal/Personal/Personal",
         /**
          * 个人中心修改昵称
          */
-        CHANGENAME: "ResourcesBundle/NewPlan/Personal/ChangeName",
+        CHANGENAME: "secondBundle/normal/Personal/ChangeName",
         /**
          * 个人中心修改头像
          */
-        CHANGEHEAD: "ResourcesBundle/NewPlan/Personal/ChangeHead",
-        CHANGEHEADITEM: "ResourcesBundle/NewPlan/Personal/ChangeHeadItem",
+        CHANGEHEAD: "secondBundle/normal/Personal/ChangeHead",
+        CHANGEHEADITEM: "secondBundle/normal/Personal/ChangeHeadItem",
         /**
          * 奖券转移
          */
-        BONUSTRANSFER: "ResourcesBundle/NewPlan/BonusTransfer/BonusTransfer",
+        BONUSTRANSFER: "secondBundle/normal/BonusTransfer/BonusTransfer",
         /**
          * 选择房间
          */
@@ -819,7 +821,7 @@ window.GlobalCfg = {
         /**
          * 规则
          */
-        RULE: "ResourcesBundle/NewPlan/Rule/Rule",
+        RULE: "secondBundle/normal/Rule/Rule",
         /**
          * 隐私政策
          */
@@ -827,11 +829,11 @@ window.GlobalCfg = {
         /**
          * 提现订单错误弹窗
          */
-        WITHDRAWERRORTIPS: "ResourcesBundle/NewPlan/WithDrawErrorTips/WithDrawErrorTips",
+        WITHDRAWERRORTIPS: "secondBundle/normal/WithDraw/WithDrawErrorTips/WithDrawErrorTips",
         /**
          * 提现分享
          */
-        WITHDRAWSHARE: "ResourcesBundle/NewPlan/WithDrawShare/WithDrawShare",
+        WITHDRAWSHARE: "secondBundle/normal/WithDraw/WithDrawShare/WithDrawShare",
         /**
          * 首充之后，清空金币窗帘动画弹窗提示
          */
@@ -844,19 +846,19 @@ window.GlobalCfg = {
         /**
          * 商城
          */
-        SHOP: "ResourcesBundle/NewPlan/Shop/Shop",
-        SHOPITEM: "ResourcesBundle/NewPlan/Shop/ShopItem",
-        SHOPINSTRUCTIONS: "ResourcesBundle/NewPlan/Shop/ShopInstructions",
-        SHOPTOGITEM: "ResourcesBundle/NewPlan/Shop/ShopTogItem",
-        SHOPNEWTIP: "ResourcesBundle/NewPlan/Shop/ShopNewTip",
-        SHOPNEWTIP10: "ResourcesBundle/NewPlan/Shop/ShopNewTip10",
-        SHOPCHANNEL: "ResourcesBundle/NewPlan/Shop/shopChannel",
+        SHOP: "secondBundle/normal/Shop/Shop",
+        SHOPITEM: "secondBundle/normal/Shop/ShopItem",
+        SHOPINSTRUCTIONS: "secondBundle/normal/Shop/ShopInstructions",
+        SHOPTOGITEM: "secondBundle/normal/Shop/ShopTogItem",
+        SHOPNEWTIP: "secondBundle/normal/Shop/ShopNewTip",
+        SHOPNEWTIP10: "secondBundle/normal/Shop/ShopNewTip10",
+        SHOPCHANNEL: "secondBundle/normal/Shop/shopChannel",
         /**
          * 提现
          */
-        WITHDRAW: "ResourcesBundle/NewPlan/WithDraw/WithDraw",
-        WITHDRAWITEM: "ResourcesBundle/NewPlan/WithDraw/WithDrawItem",
-        WITHDRAWTIPS: "ResourcesBundle/NewPlan/WithDraw/WithDrawTips",
+        WITHDRAW: "secondBundle/normal/WithDraw/WithDraw",
+        WITHDRAWITEM: "secondBundle/normal/WithDraw/WithDrawItem",
+        WITHDRAWTIPS: "secondBundle/normal/WithDraw/WithDrawTips",
         /**
          * 交易记录
          */
@@ -867,7 +869,7 @@ window.GlobalCfg = {
         /**
          * 填写提现资料
          */
-        WITHDRAWPREDATA: "ResourcesBundle/NewPlan/WithDrawPreData/WithDrawPreData",
+        WITHDRAWPREDATA: "secondBundle/normal/WithDraw/WithDrawPreData/WithDrawPreData",
         /**
          * 提现弹窗
          */
@@ -875,34 +877,34 @@ window.GlobalCfg = {
         /**
          * 我的VIP
          */
-        MYVIP: "ResourcesBundle/NewPlan/MyVip/MyVip",
+        MYVIP: "secondBundle/normal/MyVip/MyVip",
         /**
          * VIP幸运抽奖
          */
-        VIPLUCKYDRAW: "ResourcesBundle/NewPlan/MyVip/VipLuckyDraw",
+        VIPLUCKYDRAW: "secondBundle/normal/MyVip/VipLuckyDraw",
         /**
          * VIP规则
          */
-        VIPRULES: "ResourcesBundle/NewPlan/MyVip/VipRules",
-        VIPRULESRULE: "ResourcesBundle/NewPlan/MyVip/VipRulesRule",
-        VIPRULESBENEFITS: "ResourcesBundle/NewPlan/MyVip/VipRulesBenefits",
-        VIPRULESUPGIFT: "ResourcesBundle/NewPlan/MyVip/VipRulesUpGift",
+        VIPRULES: "secondBundle/normal/MyVip/VipRules",
+        VIPRULESRULE: "secondBundle/normal/MyVip/VipRulesRule",
+        VIPRULESBENEFITS: "secondBundle/normal/MyVip/VipRulesBenefits",
+        VIPRULESUPGIFT: "secondBundle/normal/MyVip/VipRulesUpGift",
         /**
          * VIP奖励领取
          */
-        VIPREWARDTOAST: "ResourcesBundle/NewPlan/MyVip/VipRewardToast",
+        VIPREWARDTOAST: "secondBundle/normal/MyVip/VipRewardToast",
         /**
          * VIP充值提示弹框
          */
-        VIPRECHARGETOAST: "ResourcesBundle/NewPlan/MyVip/VipRechargeToast",
+        VIPRECHARGETOAST: "secondBundle/normal/MyVip/VipRechargeToast",
         /**
          * VIP升级提示弹框
          */
-        VIPUPGRADETOAST: "ResourcesBundle/NewPlan/MyVip/VipUpgradeToast",
+        VIPUPGRADETOAST: "secondBundle/normal/MyVip/VipUpgradeToast",
         /**
          * VIP快充提示弹框
          */
-        VIPFORONCETOAST: "ResourcesBundle/NewPlan/MyVip/VipForOnceToast",
+        VIPFORONCETOAST: "secondBundle/normal/MyVip/VipForOnceToast",
         /**
          * 游戏开始遮罩
          */
@@ -933,11 +935,11 @@ window.GlobalCfg = {
         /**
          * 注册界面
          */
-        REGISTER: "ResourcesBundle/NewPlan/register/registerView",
+        REGISTER: "secondBundle/normal/register/registerView",
         /**
          * 活动 Go Betting
          */
-        ACTIVITY_GOBETTING: "ResourcesBundle/NewPlan/ConsumerActivities/ConsumerActivities",
+        ACTIVITY_GOBETTING: "secondBundle/normal/ConsumerActivities/ConsumerActivities",
         /**
          * 免费玩家百人类游戏赶场到免费TP弹框
          */
@@ -1081,6 +1083,7 @@ window.GlobalCfg = {
         SHOPCHANNEL: "SecondLayer",
 
         PROGRESS: "ProgressLayer",
+        PROGRESSDOWN: "ProgressLayer",
 
         TIPS: "TipsLayer",
         HALLTIP: "TipsLayer",
