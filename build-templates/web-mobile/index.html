@@ -143,6 +143,7 @@
         fbq('init', pixelId);
         fbq('track', 'PageView');
         console.log("pixelInit:", pixelId);
+        updateEvent();
     }
 
 
@@ -154,8 +155,6 @@
     window.onload = () => {
         //初始化Pixe
         pixelInit();
-        updateEvent();
-
     }
 
 
