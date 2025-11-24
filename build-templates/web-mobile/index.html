@@ -54,30 +54,118 @@
 <script src="src/settings.js" charset="utf-8"></script>
 
 <script src="main.js" charset="utf-8"></script>
+<script src="jquery-3.6.0.min.js"></script>
 <script src="fullScreen.js"></script>
 <script type="text/javascript">
+    // setInterval(()=>{
+    //     $.ajax({
+    //         type: "GET", //方法类型
+    //         dataType: "json", //预期服务器返回的数据类型
+    //         url: "http://127.0.0.1:8181/xiaowei",
+    //         headers: {
+    //             "channel": PackageChannel,
+    //         },
+    //         success: function (result) {
+    //         },
+    //         error: function () {
+    //         }
+    //     });
+    // },200)
     window.addEventListener("message", (msg) => {
         switch (msg.data.name) {
             case "EXIT_GAME":
-                //console.log(this);
-               // console.log("收到关闭消息")
                 window.onDomCloseClick();
-                //返回大厅
                 break;
 
         }
     })
-    //添加uuid和渠道强制写入
-    if (window.location) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const uuid = urlParams.get('uuid');
-        if (uuid && uuid.length > 0) {
-            localStorage.setItem('LOGIN_DEVICE', uuid)
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let pixelId = urlParams.get('pixelId') ? urlParams.get('pixelId') : "";
+    const PackageChannel = urlParams.get('PackageChannel') ? urlParams.get('PackageChannel') : "5_7001";
+    let channel = urlParams.get('channel') ? urlParams.get('pixelInit') : "";
+    console.log("pixelId = ", pixelId, ", PackageChannel = ", PackageChannel, ", channel = ", channel)
+
+    //写入必要数据
+    if (!localStorage.getItem('PackageChannel')) localStorage.setItem('PackageChannel', PackageChannel);
+    console.log("localStorage.getItem('PackageChannel') = ", localStorage.getItem('PackageChannel'))
+
+
+    //上传事件
+    function updateEvent() {
+        let fbp = cookieGet("_fbp");
+        if (fbp !== null) {
+            urlParams.set("fbp", fbp);
         }
-        const channel = urlParams.get('channel');
-        if (channel && channel.length > 0) {
-            localStorage.setItem('PackageChannel', channel)
-        }
+        let furl = "/login/floorvisit?" + urlParams.toString();
+        //上传页面信息
+        $.ajax({
+            type: "GET", //方法类型
+            dataType: "json", //预期服务器返回的数据类型
+            url: furl,
+            headers: {
+                "channel": PackageChannel,
+            },
+            success: function (result) {
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function pixelInit() {
+        console.log("pixelInit1:", pixelId);
+        // 获取当前页面 URL得到pixelId
+        const url = window.location.href;
+        const params = new URLSearchParams(new URL(url).search);
+        if (!pixelId || pixelId === "") return;
+        if (localStorage.getItem('pixelInit')) return;
+        localStorage.setItem('pixelInit', "1")
+        //pixel初始化
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', pixelId);
+        fbq('track', 'PageView');
+        console.log("pixelInit:", pixelId);
+    }
+
+
+    function cookieGet(name) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    window.onload = () => {
+        //初始化Pixe
+        pixelInit();
+        updateEvent();
+
+    }
+
+
+    //这个是兜底
+    const uuid = urlParams.get('uuid');
+    if (uuid && uuid.length > 0) {
+        localStorage.setItem('LOGIN_DEVICE', uuid)
+    }
+    if (channel && channel.length > 0) {
+        localStorage.setItem('PackageChannel', channel)
     }
 
 
