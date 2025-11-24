@@ -12,6 +12,8 @@ cc.Class({
     },
 
     onLoad: function () {
+        cc.assetManager.downloader.maxConcurrency = 32; // HTTP/2 可承受更高并发
+        cc.assetManager.downloader.maxRequestsPerFrame = 100;
         /**
          * 首次进入上报
          */
@@ -22,7 +24,7 @@ cc.Class({
                 CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.FIRST_ENTER);
             };
         };
-        cc.assetManager.downloader.maxConcurrency = 20; // 下载最大并发数
+        //cc.assetManager.downloader.maxConcurrency = 20; // 下载最大并发数
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.LAUNCH_GAME);
         /**
          * 日志开关
