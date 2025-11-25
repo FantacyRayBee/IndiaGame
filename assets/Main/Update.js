@@ -983,6 +983,48 @@ cc.Class({
         });
     },
 
+    // preloadMainH5: function () {
+    //     this.node_loginLayer.active = false;
+    //     this.progressBar.node.active = true;
+    //     this.lab_updatePoint.node.active = true;
+    //     this.lab_updateProgress.node.active = true;
+    //     this.lab_updateContentTips.node.active = true;
+
+    //     this.setLabUpdatePointAnim(true);
+    //     this.setLabUpdateProgressStr("0%");
+    //     this.setUpdateProgressBarProgress(0);
+    //     this.setLabUpdateContentTipsStr("Downloading Resources...");
+
+    //     // 下载 ZIP 文件
+    //     fetch('https://game.jok77.com/app/ResourcesBundle.zip')
+    //         .then(response => response.arrayBuffer())
+    //         .then(buffer => {
+    //             const zip = new JSZip();
+    //             return zip.loadAsync(buffer);
+    //         })
+    //         .then(zip => {
+    //             const promises = [];
+    //             Object.keys(zip.files).forEach(filename => {
+    //                 const file = zip.files[filename];
+    //                 promises.push(
+    //                     file.async('blob').then(content => {
+    //                         // 保存文件到目标目录
+    //                         const filePath = `path/to/extracted/${filename}`;
+    //                         saveBlobToFile(content, filePath);
+    //                     })
+    //                 );
+    //             });
+    //             return Promise.all(promises);
+    //         })
+    //         .then(() => {
+    //             console.log('资源解压完成');
+    //             this.startRealPreload('path/to/extracted/ResourcesBundle'); // 加载解压后的资源
+    //         })
+    //         .catch(err => {
+    //             console.error('资源下载或解压失败:', err);
+    //         });
+    // },
+
     // ====== 真正的预加载逻辑（80% → 100%） ======
     startRealPreload: function (packgeName) {
         // 初始化进度条

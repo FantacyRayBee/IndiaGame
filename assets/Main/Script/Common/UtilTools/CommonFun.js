@@ -2151,7 +2151,7 @@ let CommonFun = cc.Class({
      * @param {Function} callback
      */
     showWithDraw: function (callback) {
-        CommonFun.getInstance().checkSecondBundleIsDownloadedByH5("Withdraw", () => {
+        CommonFun.getInstance().checkSecondBundleIsDownloadedByH5("WithDraw", () => {
             let withdrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW);
             withdrawPrefabPromise.then((prefab) => {
                 CommonFun.getInstance().addVerticalAcc();
