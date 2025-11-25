@@ -1492,13 +1492,12 @@ let CommonFun = cc.Class({
      * 显示内嵌网页界面
      */
     showGameWebview: function (gameId, isVertical, parentIndex) {
-        // if (GlobalCfg.USER_DATAS.isNotCharge == true) {   //未曾充值
-        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-        //         CommonFun.getInstance().showSmallAddCash()
-        //     }, false);
-        //     return;
-        // }
-        // ;
+        if (GlobalCfg.USER_DATAS.isNotCharge == true) {   //未曾充值
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return;
+        }
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/pg/game_url";
         let httpParam = {
             game_id: gameId,
