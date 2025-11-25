@@ -1025,6 +1025,13 @@ cc.Class({
             });
     },
 
+    saveBlobToFile:function(blob, filePath) {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filePath;
+        link.click();
+    },
+
     // ====== 真正的预加载逻辑（80% → 100%） ======
     startRealPreload: function (packgeName) {
         // 初始化进度条
