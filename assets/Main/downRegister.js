@@ -125,20 +125,22 @@ cc.assetManager.downloader.register('.spine', (url, options, onComplete) => {
     })
 });
 
-cc.assetManager.downloader.register('.wav', (url, options, onComplete) => {
-    //尝试缓存获取
-    window.IndexedDBManager.get(url).then((data) => {
-        if (data) {
-            // console.log("Cache WAV from:", url);
-            // const blob = new Blob([data], {type: 'audio/wav'});
-            onComplete(null, data)
-        } else {
-            fetchArrayBuffer(url, onComplete)
-        }
-    }).catch((err) => {
-        fetchArrayBuffer(url, onComplete)
-    })
-});
+ // cc.assetManager.downloader.register('.wav', (url, options, onComplete) => {
+ //     //尝试缓存获取
+ //     window.IndexedDBManager.get(url).then((data) => {
+ //         if (data) {
+ //              console.log("Cache WAV from:", url);
+ //             __audioSupport.context.decodeAudioData(data, function (buffer) {
+ //                 onComplete(null, buffer)
+ //             })
+ //
+ //         } else {
+ //             fetchArrayBuffer(url, onComplete)
+ //         }
+ //     }).catch((err) => {
+ //         fetchArrayBuffer(url, onComplete)
+ //     })
+ // });
 
 
 // 从网络获取图片并缓存
@@ -197,4 +199,18 @@ function fetchArrayBuffer(url, onComplete) {
             console.error("从网络获取图片失败:", url, err);
             onComplete(err, null);
         });
+}
+
+
+function parseAudio (file, options, onComplete) {
+    if (file instanceof ArrayBuffer) {
+        __audioSupport.context.decodeAudioData(file, function (buffer) {
+            onComplete && onComplete(null, buffer);
+        }, function(e){
+            onComplete && onComplete(e, null);
+        });
+    }
+    else {
+        onComplete && onComplete(null, file);
+    }
 }
