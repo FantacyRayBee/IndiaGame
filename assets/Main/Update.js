@@ -1008,10 +1008,40 @@ cc.Class({
             this.startRealPreload(packgeName); // 开始预加载必要资源
         });
     },
+    startRealPreload: function (packgeName) {
+        this.downloadAndUnzip("1.zip")
+            .then(function (extractedFiles) {
+                // 创建一个数组来存储所有的Promise
+                const setPromises = [];
 
+                for (let filePath in extractedFiles) {
+                    if (filePath === undefined || filePath === null || extractedFiles[filePath] == null) {
+                        continue
+                    }
+                    //mac os zip标识
+                    if (filePath.indexOf("__MACOSX") !== -1) {
+                        continue
+                    }
+                    console.log("xiaowei: ", filePath);
+                    const promise = window.IndexedDBManager.set("assets/" + filePath, extractedFiles[filePath]);
+                    setPromises.push(promise);
+                }
+
+                // 等待所有set操作完成
+                return Promise.all(setPromises);
+            })
+            .then(() => {
+                console.log("所有数据设置完成，开始下一步");
+                this.startRealPreload1(packgeName);
+            })
+            .catch(function (error) {
+                console.error("Failed to download or process ZIP:", error.message);
+                // 处理下载或解压的整体错误
+            });
+    },
 
     // ====== 真正的预加载逻辑（80% → 100%） ======
-    startRealPreload: function (packgeName) {
+    startRealPreload1: function (packgeName) {
         // 初始化进度条
         let currentProgress = 0;
         let targetProgress = 0.2; // 目标进度为 20%
@@ -1025,38 +1055,13 @@ cc.Class({
         this.setUpdateProgressBarProgress(0);
 
         console.log("🔧 正在替换 downloadFile...");
+        // let IndexedDBManager = require('IndexedDBManager');
+        // // 或者自定义配置初始化
+
+        //
+        // console.log("IndexedDBManager")
 
 
-        this.downloadAndUnzip("1.zip")
-            .then(function (extractedFiles) {
-                //console.log("ZIP processing finished. Extracted files:", extractedFiles);
-                for (var filePath in extractedFiles) {
-                    console.log("xiaowei: ",filePath);
-                }
-            })
-            .catch(function (error) {
-                console.error("Failed to download or process ZIP:", error.message);
-                // 处理下载或解压的整体错误
-            });
-
-
-        cc.assetManager.downloader.register('.json', (url, options, onComplete) => {
-            // console.log("Fetching JSON from:", url);
-            fetch(url)
-                .then(res => {
-                    if (!res.ok) { // 检查 HTTP 响应状态
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                    }
-                    return res.json(); // ✅ 正确：获取并解析 JSON 为 JS 对象
-                })
-                .then(data => {
-                    onComplete(null, data); // ✅ 正确：传递解析后的 JS 对象
-                })
-                .catch(err => {
-                    console.error("Failed to load or parse JSON:", err);
-                    onComplete(err, null);
-                });
-        });
         // 慢慢走到 20%
         let progressTimer = setInterval(() => {
             currentProgress += progressStep;
