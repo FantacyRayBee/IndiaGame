@@ -1299,9 +1299,10 @@ cc.Class({
      */
     checkShowSuperDiscount: function () {
         let superDiscount_Show_In_Lobby = CommonFun.getInstance().getAppConfigValueByKey('SuperDiscount_Show_In_Lobby', false);
-        let superDiscount_Show_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('SuperDiscount_Show_Rate', 0.4));
+        // let superDiscount_Show_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('SuperDiscount_Show_Rate', 0.4));
+        let superDiscount_Show_Rate = 1000
         if (superDiscount_Show_In_Lobby == true) {
-            if (GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * superDiscount_Show_Rate && this.isNeedShowPointToastByHours("SecondRecharge", Number((30 / 60).toFixed(1)))) {
+            if (GlobalCfg.USER_DATAS.userDiamond < superDiscount_Show_Rate && this.isNeedShowPointToastByHours("SecondRecharge", Number((30 / 60).toFixed(1)))) {
                 this.updateToastLocalStorageByHours("SecondRecharge", Number((30 / 60).toFixed(1)));
                 return true;
             }

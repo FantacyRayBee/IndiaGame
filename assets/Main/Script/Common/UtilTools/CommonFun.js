@@ -2095,7 +2095,8 @@ let CommonFun = cc.Class({
      */
     gameShowSecondRecharge: function(curGameMinEnter, curGameCurRoundBetNum = 0, callback){
         let BrokeGift_ShowInGame_Rate = parseFloat(CommonFun.getInstance().getAppConfigValueByKey('BrokeGift_ShowInGame_Rate', 0.2));
-        let rate = GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate
+        // let rate = GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate
+        let rate = 1000
         if (GlobalCfg.USER_DATAS.openModules.includes(23) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0 && GlobalCfg.USER_DATAS.only_pay_time == 0) {
             if (GlobalCfg.USER_DATAS.userDiamond < curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
                 this.checkCanShowOnlyPay(callback, ()=> {
@@ -2111,7 +2112,7 @@ let CommonFun = cc.Class({
             }
         }
         else if (GlobalCfg.USER_DATAS.openModules.includes(20) && GlobalCfg.USER_DATAS.recharged && curGameCurRoundBetNum > 0) {
-            if (GlobalCfg.USER_DATAS.userDiamond <curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < GlobalCfg.USER_DATAS.recharged * BrokeGift_ShowInGame_Rate) {
+            if (GlobalCfg.USER_DATAS.userDiamond <curGameMinEnter || GlobalCfg.USER_DATAS.userDiamond < rate) {
                 this.showBankruptcy();
                 if (callback) {
                     callback();
