@@ -1042,15 +1042,15 @@ cc.Class({
     startRealPreload1: function (packgeName) {
         // 初始化进度条，直接从 20% 开始
         this.setLabUpdateContentTipsStr("Preparing files...");
-        this.setLabUpdateProgressStr("20%");
-        this.setUpdateProgressBarProgress(0.2);
+        this.setLabUpdateProgressStr("80%");
+        this.setUpdateProgressBarProgress(0.8);
 
         // 开始加载资源
         cc.assetManager.loadBundle(packgeName, (_, bundle) => {
             window.ResourcesBundle = bundle;
             bundle.preloadDir("/", (completedCount, totalCount) => {
                 let rawProgress = completedCount / totalCount;
-                let adjustedProgress = 0.2 + rawProgress * 0.8; // 从 20% 开始计算进度
+                let adjustedProgress = 0.8 + rawProgress * 0.2; // 从 80% 开始计算进度
                 this.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
                 this.setUpdateProgressBarProgress(adjustedProgress);
                 this.setLabUpdateContentTipsStr("Downloading files...");
@@ -1236,7 +1236,7 @@ cc.Class({
             xhr.onprogress = function (event) {
                 if (event.lengthComputable) {
                     const progress = event.loaded / event.total;
-                    const adjustedProgress = progress * 0.2; // 下载进度占整体进度的 20%
+                    const adjustedProgress = progress * 0.8; // 下载进度占整体进度的 80%
                     self.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
                     self.setUpdateProgressBarProgress(adjustedProgress);
                     console.log(`Download progress: ${(adjustedProgress * 100).toFixed(2)}%`); // 添加下载进度日志
