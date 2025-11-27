@@ -1331,7 +1331,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "US test 1.0.6";
+            GlobalCfg.APP_VERSION = "US test 1.0.7";
             GlobalCfg.APP_INFO_URL = `https://down.jok7.com/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `https://down.jok7.com/AppConfig.json?time=${new Date().getTime()}`;
             break;
@@ -1359,7 +1359,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
         case "5":     // 5服
-            GlobalCfg.APP_VERSION = "US 1.0.2";
+            GlobalCfg.APP_VERSION = "US 1.0.3";
             // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
             GlobalCfg.APP_INFO_URL = `https://down.cj777.net/AppInfo.json`;
 

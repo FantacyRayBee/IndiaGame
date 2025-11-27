@@ -158,14 +158,11 @@ cc.Class({
             // clearInterval(self.verifyTimer);
             // self.verifyTimer = null;
             // self.lab_otpTips.string = 'OTP';
-        }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
+        } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
             self.setZipFileLoadProgress(notify);
-        }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
+        } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
             self.setZipFileLoadComplete(notify);
-        }
-        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_ERROR) {
+        } else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_ERROR) {
             let subpackgeName = notify.subpackgeName;
             CommonFun.getInstance().behaviorReporting(`${GlobalCfg.BEHAVIOR_TYPE.UPDATE_ERROR}-${subpackgeName}`);
         }
@@ -174,7 +171,8 @@ cc.Class({
     setZipFileLoadProgress: function (notify) {
         if (!notify) {
             return;
-        };
+        }
+        ;
 
         LoggerUtil.getInstance().log(`正在下载的BUNDLE是: ${notify.subpackgeName}`);
 
@@ -187,9 +185,11 @@ cc.Class({
             let tempObj = this.baseBundlesNeedUpdateArr[i];
             if (tempObj.baseBundle == baseBundle) {
                 tempObj.progress = progress;
-            };
+            }
+            ;
             allProgress += tempObj.progress;
-        };
+        }
+        ;
 
         let tempProgress = allProgress / (len * 100);
 
@@ -201,13 +201,15 @@ cc.Class({
     setZipFileLoadComplete: function (notify) {
         if (!notify) {
             return;
-        };
+        }
+        ;
 
         let baseBundle = notify.subpackgeName;
 
         if (!this.baseBundlesUpdateCompleteArr.includes(baseBundle)) {
             this.baseBundlesUpdateCompleteArr.push(baseBundle);
-        };
+        }
+        ;
 
         if (this.baseBundlesUpdateCompleteArr.length == this.baseBundlesNeedUpdateArr.length) {
             let endTime = cc.sys.now();
@@ -228,20 +230,20 @@ cc.Class({
                 GlobalCfg.G_COMPONENTS.Audio.stopAll();
                 cc.game.restart();
             }, 1);
-        };
+        }
+        ;
     },
 
     editBoxCallback: function (editBox) {
         let editBoxName = editBox.node.name;
         if (editBoxName === "editBox_account") {
             this.node_lab_accountTips.active = false;
-        }
-        else if (editBoxName === "editBox_password") {
+        } else if (editBoxName === "editBox_password") {
             this.node_lab_passwordTips.active = false;
-        }
-        else if (editBoxName === "editBox_confirm") {
+        } else if (editBoxName === "editBox_confirm") {
             this.node_lab_confirmTips.active = false;
-        };
+        }
+        ;
     },
 
     clickCallBack: function (btn) {
@@ -266,43 +268,40 @@ cc.Class({
         if (btnName == "btn_accountLogin") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.dealAccountLoginEvent();
-        }
-        else if (btnName == "btn_register") {
+        } else if (btnName == "btn_register") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.dealRegisterEvent();
         }
-        // else if (btnName == "btn_quickLogin") {
-        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
-        //     this.dealQuickLoginEvent();
-        // }
-        // else if (btnName === "btn_facebookLogin") {
-        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
-        //     CommonFun.getInstance().showProgress();
-        //     this.dealFacebookLoginEvent();
-        // }
-        // else if (btnName === "btn_reqVerify") {
-        //     GlobalCfg.G_COMPONENTS.Audio.playButton();
-        //     let accountOrPhoneStr = this.editBox_account.string;
-        //     if (accountOrPhoneStr.length == 0) {
-        //         this.node_lab_accountTips.active = true;
-        //         return;
-        //     };
-        //     if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-        //         this.node_lab_accountTips.active = true;
-        //         return;
-        //     };
-        //     CommonFun.getInstance().showProgress("Sending SMS request ...");
-        //     this.dealReqVerifyEvent(accountOrPhoneStr);
+            // else if (btnName == "btn_quickLogin") {
+            //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+            //     this.dealQuickLoginEvent();
+            // }
+            // else if (btnName === "btn_facebookLogin") {
+            //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+            //     CommonFun.getInstance().showProgress();
+            //     this.dealFacebookLoginEvent();
+            // }
+            // else if (btnName === "btn_reqVerify") {
+            //     GlobalCfg.G_COMPONENTS.Audio.playButton();
+            //     let accountOrPhoneStr = this.editBox_account.string;
+            //     if (accountOrPhoneStr.length == 0) {
+            //         this.node_lab_accountTips.active = true;
+            //         return;
+            //     };
+            //     if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
+            //         this.node_lab_accountTips.active = true;
+            //         return;
+            //     };
+            //     CommonFun.getInstance().showProgress("Sending SMS request ...");
+            //     this.dealReqVerifyEvent(accountOrPhoneStr);
         // }
         else if (btnName === "btn_guestLogin") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             CommonFun.getInstance().showProgress();
             this.dealGuestLoginEvent();
-        }
-        else if (btnName === "btn_wenZi") {
+        } else if (btnName === "btn_wenZi") {
             this.dealBtnWenZiEvent();
-        }
-        else if (btnName === "btn_test1") {
+        } else if (btnName === "btn_test1") {
             this.testIndexNum++;
             if (this.testIndexNum > 2) {
                 let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
@@ -316,8 +315,7 @@ cc.Class({
                     }
                 }
             }
-        }
-        else if (btnName === "btn_testLogin") {
+        } else if (btnName === "btn_testLogin") {
             let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
             if (packageChannel && packageChannel.indexOf("_") != -1) {
                 let packageChannelArr = packageChannel.split("_");
@@ -354,14 +352,16 @@ cc.Class({
             default:
                 languageType = I18NLanguagesEnum.English;
                 break;
-        };
+        }
+        ;
         I18NUtil.getInstance().setLanguageType(languageType);
     },
 
     dealBtnWenZiEvent: function () {
         if (!cc.sys.isNative) {
             return;
-        };
+        }
+        ;
 
         this.btnWenZiClickTimes += 1;
         if (this.btnWenZiClickTimes >= 3) {
@@ -370,7 +370,8 @@ cc.Class({
             console.log(`caojun  LoggerUtil Status Set as ${!loggerStatus}`);
             LoggerUtil.getInstance().setLoggerStatus(!loggerStatus);
             cc.sys.localStorage.setItem("LOGGERUTIL_STATUS", loggerStatus ? 0 : 1);
-        };
+        }
+        ;
     },
 
     dealReqVerifyEvent: function (accountOrPhoneStr) {
@@ -383,7 +384,8 @@ cc.Class({
             // this.lab_otpTips.string = 'OTP';
             CommonFun.getInstance().showTips("Server SMS interface exception");
             return;
-        };
+        }
+        ;
         this.sendVerifyCodeReqAcount += 1;
 
         if (this.sendVerifyCodeReqAcount == 1) {
@@ -415,7 +417,8 @@ cc.Class({
             //         this.lab_otpTips.string = `${waitTime}S`;
             //     }
             // }, 1000);
-        };
+        }
+        ;
 
         let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
         let channel = 0;
@@ -424,16 +427,17 @@ cc.Class({
             channel = packageChannelArr[1];
         }
         let device = CommonFun.getInstance().getDeviceId();
-        let reqVerifyCodeParamObj = { phone: "", device: device, channel: channel };
+        let reqVerifyCodeParamObj = {phone: "", device: device, channel: channel};
         reqVerifyCodeParamObj.phone = '91' + accountOrPhoneStr;
 
         let url = `${GlobalCfg.HTTP_USER_LOGIN}/v1/sendverificationcode`;
         CommonFun.getInstance().httpPost(url, reqVerifyCodeParamObj, (msg) => {
-            CommonFun.getInstance().hidProgress();
-            if (msg.result != 0) {
-                CommonFun.getInstance().showTips(msg.msg);
-            };
-        },
+                CommonFun.getInstance().hidProgress();
+                if (msg.result != 0) {
+                    CommonFun.getInstance().showTips(msg.msg);
+                }
+                ;
+            },
             () => {
                 this.dealReqVerifyEvent(accountOrPhoneStr);
             });
@@ -456,26 +460,29 @@ cc.Class({
             this.node_lab_accountTips.active = true;
             this.node_lab_accountTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
-        };
+        }
+        ;
         let passwordStr = this.editBox_password.string;
         if (passwordStr.length < 6) {
             this.node_lab_passwordTips.active = true;
             this.node_lab_passwordTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
-        };
+        }
+        ;
         let confirmStr = this.editBox_confirm.string;
         if (confirmStr.length < 6) {
             this.node_lab_confirmTips.active = true;
             this.node_lab_confirmTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
-        };
+        }
+        ;
 
         if (passwordStr != confirmStr) {
             this.node_lab_confirmTips.active = true;
             this.node_lab_confirmTips.getComponent(cc.Label).string = "The two passwords are inconsistent";
             return;
         }
-        
+
         CommonFun.getInstance().showProgress();
         let obj = {
             loginType: "ACCOUNT",
@@ -527,34 +534,36 @@ cc.Class({
             this.node_lab_accountTips.active = true;
             this.node_lab_accountTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
-        };
+        }
+        ;
 
         let passwordOrVerCodeStr = this.editBox_password.string;
         if (passwordOrVerCodeStr.length < 6) {
             this.node_lab_passwordTips.active = true;
             this.node_lab_passwordTips.getComponent(cc.Label).string = "length cannot be less than 6 characters";
             return;
-        };
+        }
+        ;
 
         // if (this.isCustomAccount(accountOrPhoneStr)) {
+        CommonFun.getInstance().showProgress();
+        let obj = {
+            loginType: "ACCOUNT",
+            account: accountOrPhoneStr,
+            password: passwordOrVerCodeStr,
+            isRegister: false,
+        };
+        let promise = SceneManager.getInstance().reqTokenInfo(obj);
+        promise.then(() => {
+            return SceneManager.getInstance().reqBearerToken();
+        }).then(() => {
+            return SceneManager.getInstance().reqUserDataInfo();
+        }).then(() => {
             CommonFun.getInstance().showProgress();
-            let obj = {
-                loginType: "ACCOUNT",
-                account: accountOrPhoneStr,
-                password: passwordOrVerCodeStr,
-                isRegister: false,
-            };
-            let promise = SceneManager.getInstance().reqTokenInfo(obj);
-            promise.then(() => {
-                return SceneManager.getInstance().reqBearerToken();
-            }).then(() => {
-                return SceneManager.getInstance().reqUserDataInfo();
-            }).then(() => {
-                CommonFun.getInstance().showProgress();
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-            }).catch(error => {
-                LoggerUtil.getInstance().log(error);
-            });
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+        }).catch(error => {
+            LoggerUtil.getInstance().log(error);
+        });
         // }
         // else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
         //     CommonFun.getInstance().showProgress();
@@ -588,7 +597,8 @@ cc.Class({
         if (accountOrPhoneStr.length == 0) {
             this.node_lab_accountTips.active = true;
             return;
-        };
+        }
+        ;
         if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
             CommonFun.getInstance().showProgress();
             let phoneToken = cc.sys.localStorage.getItem("phone_token");
@@ -610,10 +620,10 @@ cc.Class({
                 this.showCommonLoginView();
                 LoggerUtil.getInstance().log(error);
             });
-        }
-        else {
+        } else {
             this.node_lab_accountTips.active = true;
-        };
+        }
+        ;
     },
 
     dealFacebookLoginEvent: function () {
@@ -644,7 +654,7 @@ cc.Class({
         if (this.testButtonIsActive) {
             GlobalCfg.OPENINSTALL_INVITE_CODE = this.editBox_invited_test.string;
             GlobalCfg.CHANNEL_INFO = this.editBox_chanel_test.string;
-            console.log("dealGuestLoginEvent: ","xiaowei")
+            console.log("dealGuestLoginEvent: ", "xiaowei")
         }
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         let obj = {
@@ -675,7 +685,8 @@ cc.Class({
         let str = account.substring(0, 5);
         if (str == "00000") {
             return true;
-        };
+        }
+        ;
         return false;
     },
 
@@ -699,14 +710,14 @@ cc.Class({
                 cc.game.end();
             });
             return
-        };
+        }
+        ;
 
         if (cc.sys.isNative) {
             this.updateStartTime = cc.sys.now();
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_START);
             this.runUpdateProcess();
-        }
-        else if (GlobalCfg.isH5) {
+        } else if (GlobalCfg.isH5) {
             // H5 环境
             this.preloadMainH5();
             // //预加载软键盘
@@ -716,8 +727,7 @@ cc.Class({
             //     CommonFun.getInstance().addToPointParent(node, GlobalCfg.PREFAB_PARENT.SOFTKEYBORAD);
             //     kb.active = false;
             // });
-        }
-        else {
+        } else {
             this.changeSceneToLobby();
         }
     },
@@ -751,12 +761,12 @@ cc.Class({
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_RESOURCES_UPDATE);
             console.log(`caojun The remote version that needs to be updated is：${GlobalCfg.ASSETS_VERSION}`);
             this.reqMainManifestInfo();
-        }
-        else {
+        } else {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
             console.log(`caojun Remote versions that are consistent and do not require updates at this time!`);
             this.baseBundlesHotUpdate();
-        };
+        }
+        ;
     },
 
     reqMainManifestInfo: function () {
@@ -764,18 +774,18 @@ cc.Class({
             console.log("Exception in requesting manifest file under remote resource file assets!");
             this.setLabUpdateContentTipsStr("Getting Assets Manifest File Error");
             return;
-        };
+        }
 
         let startTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_START);
         this.reqComparisonMainMD5InfoAcount += 1;
         let mainMD5Url = `${GlobalCfg.ASSETS_UPDATE_URL}/assets/project.manifest?version=${GlobalCfg.ASSETS_VERSION}`;
         CommonFun.getInstance().httpGet(mainMD5Url, (json) => {
-            let endTime = cc.sys.now();
-            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_SUCCESS, endTime - startTime);
-            LoggerUtil.getInstance().log("httpGet has requested data from manifest!");
-            this.comparisonFilesByMainManifestInfo(json);
-        },
+                let endTime = cc.sys.now();
+                CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_SUCCESS, endTime - startTime);
+                LoggerUtil.getInstance().log("httpGet has requested data from manifest!");
+                this.comparisonFilesByMainManifestInfo(json);
+            },
             () => {
                 let endTime = cc.sys.now();
                 CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_FAIL, endTime - startTime);
@@ -799,13 +809,15 @@ cc.Class({
             let item = json[i + ""];
             if (!item) {
                 continue;
-            };
+            }
+            ;
             let itemArr = item.filename.split("/");
             let serverMd5 = item.md5;
             let fileDir = "";
             for (let k = 0, itemArrLen = itemArr.length; k < itemArrLen - 1; k++) {
                 fileDir = fileDir + itemArr[k] + "/";
-            };
+            }
+            ;
             let sourceName = jsb.fileUtils.fullPathForFilename(item.filename);
             let localMd5 = jsb.extensFunction.getMd5File(sourceName);
             if (localMd5 !== serverMd5) {
@@ -813,9 +825,11 @@ cc.Class({
                 let isExist = jsb.fileUtils.isDirectoryExist(this.storagePath + fileDir);
                 if (!isExist) {
                     jsb.fileUtils.createDirectory(this.storagePath + fileDir);
-                };
+                }
+                ;
                 this.needUpdateFileArr.push(item);
-            };
+            }
+            ;
             this.simulationCheckFileAcount += 1;
 
             // 模拟校验文件数据的进度过程
@@ -826,8 +840,10 @@ cc.Class({
                 this.setLabUpdateProgressStr("100%");
                 this.setUpdateProgressBarProgress(1);
                 this.prepareDownDifferenceFiles();
-            };
-        };
+            }
+            ;
+        }
+        ;
     },
 
     setUpdateProgressBarProgress: function (progress = 0) {
@@ -847,17 +863,18 @@ cc.Class({
             this.unschedule(this.setDianTipsAnima);
             this.updateStatusPoints = 0;
             this.lab_updatePoint.string = "";
-        }
-        else {
+        } else {
             this.updateStatusPoints = 0;
             this.schedule(this.setDianTipsAnima, 0.5);
-        };
+        }
+        ;
     },
 
     setDianTipsAnima: function () {
         if (this.updateStatusPoints == 5) {
             this.updateStatusPoints = 0;
-        };
+        }
+        ;
         let updateStatusPoints = ["", ".", "..", "...", "...."][this.updateStatusPoints];
         this.lab_updatePoint.string = updateStatusPoints;
         this.updateStatusPoints += 1;
@@ -880,8 +897,7 @@ cc.Class({
 
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
             this.baseBundlesHotUpdate();
-        }
-        else {
+        } else {
             this.setLabUpdateProgressStr("0%");
             this.setUpdateProgressBarProgress(0);
             this.setLabUpdateContentTipsStr("Update Version Files");
@@ -892,10 +908,12 @@ cc.Class({
                 downloader.setOnFileTaskSuccess(this.setOnFileTaskSuccess.bind(this));
                 downloader.setOnTaskError(this.setOnTaskError.bind(this));
                 this.downloaderArr.push(downloader);
-            };
+            }
+            ;
 
             this.downDifferenceFiles();
-        };
+        }
+        ;
     },
 
     downDifferenceFiles: function () {
@@ -910,9 +928,12 @@ cc.Class({
                     downloader.storagePath = this.storagePath + fileInfo.filename;
                     downloader.createDownloadFileTask(url, this.storagePath + fileInfo.filename);
                     this.curNumberOfJoinedDownloader += 1;
-                };
-            };
-        };
+                }
+                ;
+            }
+            ;
+        }
+        ;
     },
 
     getDownLoaderByStoragePath: function (storagePath) {
@@ -920,8 +941,10 @@ cc.Class({
             let downloader = this.downloaderArr[i];
             if (downloader.storagePath == storagePath) {
                 return downloader;
-            };
-        };
+            }
+            ;
+        }
+        ;
     },
 
     setOnFileTaskSuccess: function (task) {
@@ -933,7 +956,8 @@ cc.Class({
         let downloader = this.getDownLoaderByStoragePath(task.storagePath);
         if (downloader) {
             downloader.storagePath = '';
-        };
+        }
+        ;
 
         if (this.totalNumberOfFilesDownloaded >= needUpdateFileArrLen) {
             let endTime = cc.sys.now();
@@ -947,13 +971,13 @@ cc.Class({
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_PERFORM_BUNDLES_UPDATE);
             this.isHaveUpdateForResources = true;
             this.baseBundlesHotUpdate();
-        }
-        else {
+        } else {
             let percent = this.totalNumberOfFilesDownloaded / needUpdateFileArrLen;
             this.setLabUpdateProgressStr((Math.floor(percent * 100) * 0.8).toFixed(2) + "%");
             this.setUpdateProgressBarProgress(Number((percent * 0.8).toFixed(2)));
             this.downDifferenceFiles();
-        };
+        }
+        ;
     },
 
     setOnTaskError: function (task, errorCode, errorCodeInternal, errorStr) {
@@ -961,7 +985,8 @@ cc.Class({
         let downloader = this.getDownLoaderByStoragePath(task.storagePath);
         if (downloader) {
             downloader.createDownloadFileTask(task.requestURL, task.storagePath);
-        };
+        }
+        ;
     },
 
     preloadMainH5: function () {
@@ -981,6 +1006,36 @@ cc.Class({
         this.checkDownloadH5Main(() => {
             this.startRealPreload(packgeName); // 开始预加载必要资源
         });
+    },
+    startRealPreload: function (packgeName) {
+        this.downloadAndUnzip("ResourcesBundle.zip")
+            .then(function (extractedFiles) {
+                // 创建一个数组来存储所有的Promise
+                const setPromises = [];
+                for (let filePath in extractedFiles) {
+                    if (filePath === undefined || filePath === null || extractedFiles[filePath] == null) {
+                        continue
+                    }
+                    //mac os zip标识
+                    if (filePath.indexOf("__MACOSX") !== -1) {
+                        continue
+                    }
+                    // console.log("xiaowei: ", filePath);
+                    const promise = window.IndexedDBManager.set("assets/" + filePath, extractedFiles[filePath]);
+                    setPromises.push(promise);
+                }
+                // 等待所有set操作完成
+                return Promise.all(setPromises);
+            })
+            .then(() => {
+                cc.sys.localStorage.setItem("loadZip", 1);
+                console.log("所有数据设置完成，开始下一步");
+                this.startRealPreload1(packgeName);
+            })
+            .catch(function (error) {
+                console.error("Failed to download or process ZIP:", error.message);
+                // 处理下载或解压的整体错误
+            });
     },
 
     // preloadMainH5: function () {
@@ -1026,53 +1081,34 @@ cc.Class({
     // },
 
     // ====== 真正的预加载逻辑（80% → 100%） ======
-    startRealPreload: function (packgeName) {
-        // 初始化进度条
-        let currentProgress = 0;
-        let targetProgress = 0.2; // 目标进度为 20%
-        let progressStep = 0.01; // 每次增加的进度
-        let interval = 0.05; // 每次更新的时间间隔（秒）
-
-        // 设置初始提示
+    startRealPreload1: function (packgeName) {
+        // 初始化进度条，直接从 20% 开始
         this.setLabUpdateContentTipsStr("Preparing files...");
-        this.setLabUpdateProgressStr("0%");
-        this.setUpdateProgressBarProgress(0);
+        this.setLabUpdateProgressStr("80%");
+        this.setUpdateProgressBarProgress(0.8);
 
-        // 慢慢走到 20%
-        let progressTimer = setInterval(() => {
-            currentProgress += progressStep;
-            if (currentProgress >= targetProgress) {
-                currentProgress = targetProgress;
-                clearInterval(progressTimer); // 到达目标进度后停止计时器
-
-                // 开始加载资源
-                cc.assetManager.loadBundle(packgeName, (_, bundle) => {
-                    window.ResourcesBundle = bundle;
-                    bundle.preloadDir("/", (completedCount, totalCount) => {
-                        let rawProgress = completedCount / totalCount;
-                        let adjustedProgress = 0.2 + rawProgress * 0.8; // 从 20% 开始计算进度
-                        this.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
-                        this.setUpdateProgressBarProgress(adjustedProgress);
-                        this.setLabUpdateContentTipsStr("Downloading files...");
-                    }, (err) => {
-                        if (err) {
-                            console.error(packgeName + " 资源加载失败:", err);
-                        } else {
-                            this.setLabUpdateProgressStr("100%");
-                            this.setUpdateProgressBarProgress(1);
-                            this.setLabUpdateContentTipsStr("Please Enjoy The Game");
-                            this.scheduleOnce(() => {
-                                this.changeSceneToLobby();
-                            }, 1);
-                        }
-                    });
-                });
-            }
-
-            // 更新进度条
-            this.setLabUpdateProgressStr(`${(currentProgress * 100).toFixed(2)}%`);
-            this.setUpdateProgressBarProgress(currentProgress);
-        }, interval * 1000); // 转换为毫秒
+        // 开始加载资源
+        cc.assetManager.loadBundle(packgeName, (_, bundle) => {
+            window.ResourcesBundle = bundle;
+            bundle.preloadDir("/", (completedCount, totalCount) => {
+                let rawProgress = completedCount / totalCount;
+                let adjustedProgress = 0.8 + rawProgress * 0.2; // 从 80% 开始计算进度
+                this.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
+                this.setUpdateProgressBarProgress(adjustedProgress);
+                this.setLabUpdateContentTipsStr("Downloading files...");
+            }, (err) => {
+                if (err) {
+                    console.error(packgeName + " 资源加载失败:", err);
+                } else {
+                    this.setLabUpdateProgressStr("100%");
+                    this.setUpdateProgressBarProgress(1);
+                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                    this.scheduleOnce(() => {
+                        this.changeSceneToLobby();
+                    }, 1);
+                }
+            });
+        });
     },
 
     checkDownloadH5Main(callback = null) {
@@ -1105,8 +1141,7 @@ cc.Class({
             if (!GlobalCfg.USER_DATAS.token) {
                 this.node_loginLayer.active = true;
                 this.showCommonLoginView();
-            }
-            else {
+            } else {
                 CommonFun.getInstance().showProgress('Memory login ...');
                 this.node_loginLayer.active = false;
                 let promise = SceneManager.getInstance().reqBearerToken();
@@ -1123,25 +1158,24 @@ cc.Class({
             }
         }
         if (GlobalCfg.isH5) {
-            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadProgressDown()])
-            .then((arr) => {
-                downAfter();
-            })
-            .catch((err) => {
-                LoggerUtil.getInstance().error(err);
-            });
-        }
-        else{
-            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress(), CommonFun.getInstance().proloadProgressDown()])
-            .then((arr) => {
-                cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
-                    window.ResourcesBundle = bundle;
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
+                .then((arr) => {
                     downAfter();
+                })
+                .catch((err) => {
+                    LoggerUtil.getInstance().error(err);
                 });
-            })
-            .catch((err) => {
-                LoggerUtil.getInstance().error(err);
-            }); 
+        } else {
+            Promise.all([ProtobufManager.proloadProtoFiles(this.protoFiles), CommonFun.getInstance().proloadProgress()])
+                .then((arr) => {
+                    cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
+                        window.ResourcesBundle = bundle;
+                        downAfter();
+                    });
+                })
+                .catch((err) => {
+                    LoggerUtil.getInstance().error(err);
+                });
         }
     },
 
@@ -1159,7 +1193,8 @@ cc.Class({
             this.node_btn_facebookLogin.active = false;
             this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
-        };
+        }
+        ;
     },
 
     showCommonLoginView: function () {
@@ -1180,7 +1215,8 @@ cc.Class({
                         progress: 0
                     };
                     this.baseBundlesNeedUpdateArr.push(tempObj);
-                };
+                }
+                ;
             });
         }
         console.log(`caojun baseBundlesHotUpdate this.baseBundlesNeedUpdateArr.length :${this.baseBundlesNeedUpdateArr.length}`);
@@ -1204,16 +1240,105 @@ cc.Class({
                     cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
                     jsb.fileUtils.setSearchPaths(searchPaths);
                     cc.game.restart();
-                }
-                else {
+                } else {
                     this.changeSceneToLobby();
-                };
+                }
+                ;
             }, 1);
-        }
-        else {
+        } else {
             this.baseBundlesNeedUpdateArr.forEach(tempObj => {
                 GameDownloader.getInstance().priorLoadGame(tempObj.baseBundle);
             });
-        };
+        }
+        ;
+    },
+
+
+    /**
+     * 下载并解压 ZIP 文件
+     * @param {string} url - ZIP 文件的网络地址
+     * @returns {Promise<Object>} - Promise resolves to an object containing extracted files.
+     *                              Key: file path in zip.
+     *                              Value: For .json -> parsed object, for others -> ArrayBuffer.
+     */
+    downloadAndUnzip: function (url) {
+        if (cc.sys.localStorage.getItem("loadZip")){
+            return Promise.resolve(null);
+        }
+        const self = this; // 保存 this 引用
+        console.log("Starting download and unzip of:", url);
+        const JSZip = require('jszip');
+
+        // 1. 下载 ZIP 文件，支持进度更新
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.responseType = 'arraybuffer';
+
+            xhr.onprogress = function (event) {
+                if (event.lengthComputable) {
+                    const progress = event.loaded / event.total;
+                    const adjustedProgress = progress * 0.8; // 下载进度占整体进度的 80%
+                    self.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
+                    self.setUpdateProgressBarProgress(adjustedProgress);
+                    console.log(`Download progress: ${(adjustedProgress * 100).toFixed(2)}%`); // 添加下载进度日志
+                }
+            };
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log("Download complete, starting unzip...");
+                    resolve(xhr.response);
+                } else {
+                    console.error(`Failed to download ZIP: ${xhr.statusText}`); // 添加错误日志
+                    reject(new Error(`Failed to download ZIP: ${xhr.statusText}`));
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Network error occurred during ZIP download."); // 添加网络错误日志
+                reject(new Error("Network error occurred during ZIP download."));
+            };
+
+            xhr.send();
+        })
+        .then(function (arrayBuffer) {
+            // 2. 使用 JSZip 加载 ArrayBuffer
+            return JSZip.loadAsync(arrayBuffer);
+        })
+        .then(function (zip) {
+            console.log("Unzip complete, processing entries..."); // 添加解压完成日志
+            const promises = [];
+            const result = {}; // 用来存储最终结果的对象
+            let processedFiles = 0;
+            const totalFiles = Object.keys(zip.files).length;
+
+            // 3. 遍历 ZIP 内容
+            zip.forEach(function (relativePath, zipEntry) {
+                // 跳过目录
+                if (zipEntry.dir) {
+                    return;
+                }
+
+                const promise = zipEntry.async('arraybuffer')
+                    .then(function (fileData) {
+                        result[relativePath] = fileData; // 存储原始 ArrayBuffer
+                        processedFiles++;
+                        // console.log(`Processed file: ${relativePath} (${processedFiles}/${totalFiles})`); // 添加文件处理日志
+                    })
+                    .catch(function (entryError) {
+                        console.error(`Error processing file (${relativePath}): ${entryError.message}`); // 添加文件处理错误日志
+                        result[relativePath] = { error: entryError.message }; // 用错误信息标记
+                    });
+
+                promises.push(promise);
+            });
+
+            // 4. 等待所有文件处理完毕
+            return Promise.all(promises).then(function () {
+                console.log("All files processed."); // 添加所有文件处理完成日志
+                return result; // 返回包含所有解压内容的对象
+            });
+        });
     },
 });
