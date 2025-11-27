@@ -1012,7 +1012,6 @@ cc.Class({
             .then(function (extractedFiles) {
                 // 创建一个数组来存储所有的Promise
                 const setPromises = [];
-
                 for (let filePath in extractedFiles) {
                     if (filePath === undefined || filePath === null || extractedFiles[filePath] == null) {
                         continue
@@ -1025,11 +1024,11 @@ cc.Class({
                     const promise = window.IndexedDBManager.set("assets/" + filePath, extractedFiles[filePath]);
                     setPromises.push(promise);
                 }
-
                 // 等待所有set操作完成
                 return Promise.all(setPromises);
             })
             .then(() => {
+                cc.sys.localStorage.setItem("loadZip", 1);
                 console.log("所有数据设置完成，开始下一步");
                 this.startRealPreload1(packgeName);
             })
@@ -1221,6 +1220,9 @@ cc.Class({
      *                              Value: For .json -> parsed object, for others -> ArrayBuffer.
      */
     downloadAndUnzip: function (url) {
+        if (cc.sys.localStorage.getItem("loadZip")){
+            return Promise.resolve(null);
+        }
         const self = this; // 保存 this 引用
         console.log("Starting download and unzip of:", url);
         const JSZip = require('jszip');
