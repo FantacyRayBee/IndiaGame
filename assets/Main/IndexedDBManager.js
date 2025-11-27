@@ -202,10 +202,10 @@ cc.Class({
                         request.onsuccess = (event) => {
                             const result = event.target.result;
                             if (result) {
-                                cc.log(`[IndexedDBManager] Data with key '${key}' retrieved successfully.`);
+                                //cc.log(`[IndexedDBManager] Data with key '${key}' retrieved successfully.`);
                                 resolve(result.value); // Return the actual stored value
                             } else {
-                                cc.log(`[IndexedDBManager] Key '${key}' not found.`);
+                               // cc.log(`[IndexedDBManager] Key '${key}' not found.`);
                                 resolve(undefined); // Resolve with undefined if not found
                             }
                         };

@@ -1019,10 +1019,10 @@ cc.Class({
                         continue
                     }
                     //mac os zip标识
-                    if (filePath.indexOf("__MACOSX") !== -1) {
+                    if (filePath.indexOf("__MACOSX") !== -1 || filePath.endsWith(".DS_Store")) {
                         continue
                     }
-                    console.log("xiaowei: ", filePath);
+                    // console.log("xiaowei: ", filePath);
                     const promise = window.IndexedDBManager.set("assets/" + filePath, extractedFiles[filePath]);
                     setPromises.push(promise);
                 }
@@ -1031,7 +1031,7 @@ cc.Class({
                 return Promise.all(setPromises);
             })
             .then(() => {
-                console.log("所有数据设置完成，开始下一步");
+                console.log("所有数据设置完成，开始下一步 2 ");
                 this.startRealPreload1(packgeName);
             })
             .catch(function (error) {
@@ -1251,7 +1251,7 @@ cc.Class({
      *                              Value: For .json -> parsed object, for others -> ArrayBuffer.
      */
     downloadAndUnzip: function (url) {
-        var self = this; // 保存 this 引用，因为在 Promise 链中 this 可能变化
+        let self = this; // 保存 this 引用，因为在 Promise 链中 this 可能变化
         console.log("Starting download and unzip of:", url);
         const JSZip = require('jszip');
         // 1. 下载 ZIP 文件 (返回 Promise<ArrayBuffer>)
@@ -1260,50 +1260,29 @@ cc.Class({
                 if (!response.ok) {
                     throw new Error('Network response was not ok: ' + response.statusText);
                 }
-                console.log("Download complete, starting unzip...");
                 return response.arrayBuffer(); // 获取二进制数据
             })
             .then(function (arrayBuffer) {
-                // 2. 使用 JSZip 加载 ArrayBuffer
-                // JSZip.loadAsync 返回 Promise<JSZip instance>
                 return JSZip.loadAsync(arrayBuffer);
             })
             .then(function (zip) {
-                console.log("Unzip complete, processing entries...");
-                var promises = [];
-                var result = {}; // 用来存储最终结果的对象
+                let promises = [];
+                let result = {}; // 用来存储最终结果的对象
 
                 // 3. 遍历 ZIP 内容
                 zip.forEach(function (relativePath, zipEntry) {
                     // 跳过目录
                     if (zipEntry.dir) {
-                        console.log("Skipped directory:", relativePath);
                         return;
                     }
 
-                    var promise;
+                    let promise;
+                    // 处理其他文件 (如图片、音频等)，统一读取为 ArrayBuffer
+                    promise = zipEntry.async('arraybuffer')
+                        .then(function (fileData) {
+                            result[relativePath] = fileData; // 存储原始 ArrayBuffer
+                        });
 
-                    if (relativePath.endsWith('.json')) {
-                        // 处理 JSON 文件
-                        promise = zipEntry.async('text')
-                            .then(function (textContent) {
-                                try {
-                                    var jsonData = JSON.parse(textContent);
-                                    result[relativePath] = jsonData; // 存储解析后的 JSON 对象
-                                    console.log("Processed JSON:", relativePath);
-                                } catch (parseErr) {
-                                    console.warn("Failed to parse JSON (" + relativePath + "), storing as text. Error:", parseErr.message);
-                                    result[relativePath] = textContent; // 解析失败则存原文
-                                }
-                            });
-                    } else {
-                        // 处理其他文件 (如图片、音频等)，统一读取为 ArrayBuffer
-                        promise = zipEntry.async('arraybuffer')
-                            .then(function (fileData) {
-                                result[relativePath] = fileData; // 存储原始 ArrayBuffer
-                                console.log("Processed binary file:", relativePath, "size:", fileData.byteLength);
-                            });
-                    }
 
                     // 捕获单个文件处理的错误，防止中断整个 Promise.all
                     promise = promise.catch(function (entryError) {
@@ -1317,7 +1296,6 @@ cc.Class({
 
                 // 4. 等待所有文件处理完毕
                 return Promise.all(promises).then(function () {
-                    console.log("All files processed.");
                     return result; // 返回包含所有解压内容的对象
                 });
             });
