@@ -775,7 +775,6 @@ cc.Class({
             this.setLabUpdateContentTipsStr("Getting Assets Manifest File Error");
             return;
         }
-        ;
 
         let startTime = cc.sys.now();
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.UPDATE_REQ_MANIFEST_INFO_START);
@@ -1009,7 +1008,7 @@ cc.Class({
         });
     },
     startRealPreload: function (packgeName) {
-        this.downloadAndUnzip("1.zip")
+        this.downloadAndUnzip("ResourcesBundle.zip")
             .then(function (extractedFiles) {
                 // 创建一个数组来存储所有的Promise
                 const setPromises = [];
@@ -1019,7 +1018,7 @@ cc.Class({
                         continue
                     }
                     //mac os zip标识
-                    if (filePath.indexOf("__MACOSX") !== -1 || filePath.endsWith(".DS_Store")) {
+                    if (filePath.indexOf("__MACOSX") !== -1) {
                         continue
                     }
                     // console.log("xiaowei: ", filePath);
@@ -1031,7 +1030,7 @@ cc.Class({
                 return Promise.all(setPromises);
             })
             .then(() => {
-                console.log("所有数据设置完成，开始下一步 2 ");
+                console.log("所有数据设置完成，开始下一步");
                 this.startRealPreload1(packgeName);
             })
             .catch(function (error) {
@@ -1042,62 +1041,33 @@ cc.Class({
 
     // ====== 真正的预加载逻辑（80% → 100%） ======
     startRealPreload1: function (packgeName) {
-        // 初始化进度条
-        let currentProgress = 0;
-        let targetProgress = 0.2; // 目标进度为 20%
-        let progressStep = 0.01; // 每次增加的进度
-        let interval = 0.05; // 每次更新的时间间隔（秒）
-        // 在游戏初始化时
-
-        // 设置初始提示
+        // 初始化进度条，直接从 20% 开始
         this.setLabUpdateContentTipsStr("Preparing files...");
-        this.setLabUpdateProgressStr("0%");
-        this.setUpdateProgressBarProgress(0);
+        this.setLabUpdateProgressStr("20%");
+        this.setUpdateProgressBarProgress(0.2);
 
-        console.log("🔧 正在替换 downloadFile...");
-        // let IndexedDBManager = require('IndexedDBManager');
-        // // 或者自定义配置初始化
-
-        //
-        // console.log("IndexedDBManager")
-
-
-        // 慢慢走到 20%
-        let progressTimer = setInterval(() => {
-            currentProgress += progressStep;
-            if (currentProgress >= targetProgress) {
-                currentProgress = targetProgress;
-                clearInterval(progressTimer); // 到达目标进度后停止计时器
-
-                // 开始加载资源
-                cc.assetManager.loadBundle(packgeName, (_, bundle) => {
-                    window.ResourcesBundle = bundle;
-                    bundle.preloadDir("/", (completedCount, totalCount) => {
-                        let rawProgress = completedCount / totalCount;
-                        let adjustedProgress = 0.2 + rawProgress * 0.8; // 从 20% 开始计算进度
-                        this.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
-                        this.setUpdateProgressBarProgress(adjustedProgress);
-                        this.setLabUpdateContentTipsStr("Downloading files...");
-                        // console.log(adjustedProgress)
-                    }, (err) => {
-                        if (err) {
-                            console.error(packgeName + " 资源加载失败:", err);
-                        } else {
-                            this.setLabUpdateProgressStr("100%");
-                            this.setUpdateProgressBarProgress(1);
-                            this.setLabUpdateContentTipsStr("Please Enjoy The Game");
-                            this.scheduleOnce(() => {
-                                this.changeSceneToLobby();
-                            }, 1);
-                        }
-                    });
-                });
-            }
-
-            // 更新进度条
-            this.setLabUpdateProgressStr(`${(currentProgress * 100).toFixed(2)}%`);
-            this.setUpdateProgressBarProgress(currentProgress);
-        }, interval * 1000); // 转换为毫秒
+        // 开始加载资源
+        cc.assetManager.loadBundle(packgeName, (_, bundle) => {
+            window.ResourcesBundle = bundle;
+            bundle.preloadDir("/", (completedCount, totalCount) => {
+                let rawProgress = completedCount / totalCount;
+                let adjustedProgress = 0.2 + rawProgress * 0.8; // 从 20% 开始计算进度
+                this.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
+                this.setUpdateProgressBarProgress(adjustedProgress);
+                this.setLabUpdateContentTipsStr("Downloading files...");
+            }, (err) => {
+                if (err) {
+                    console.error(packgeName + " 资源加载失败:", err);
+                } else {
+                    this.setLabUpdateProgressStr("100%");
+                    this.setUpdateProgressBarProgress(1);
+                    this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                    this.scheduleOnce(() => {
+                        this.changeSceneToLobby();
+                    }, 1);
+                }
+            });
+        });
     },
 
     checkDownloadH5Main(callback = null) {
@@ -1251,53 +1221,80 @@ cc.Class({
      *                              Value: For .json -> parsed object, for others -> ArrayBuffer.
      */
     downloadAndUnzip: function (url) {
-        let self = this; // 保存 this 引用，因为在 Promise 链中 this 可能变化
+        const self = this; // 保存 this 引用
         console.log("Starting download and unzip of:", url);
         const JSZip = require('jszip');
-        // 1. 下载 ZIP 文件 (返回 Promise<ArrayBuffer>)
-        return fetch(url)
-            .then(function (response) {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
+
+        // 1. 下载 ZIP 文件，支持进度更新
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.responseType = 'arraybuffer';
+
+            xhr.onprogress = function (event) {
+                if (event.lengthComputable) {
+                    const progress = event.loaded / event.total;
+                    const adjustedProgress = progress * 0.2; // 下载进度占整体进度的 20%
+                    self.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
+                    self.setUpdateProgressBarProgress(adjustedProgress);
+                    console.log(`Download progress: ${(adjustedProgress * 100).toFixed(2)}%`); // 添加下载进度日志
                 }
-                return response.arrayBuffer(); // 获取二进制数据
-            })
-            .then(function (arrayBuffer) {
-                return JSZip.loadAsync(arrayBuffer);
-            })
-            .then(function (zip) {
-                let promises = [];
-                let result = {}; // 用来存储最终结果的对象
+            };
 
-                // 3. 遍历 ZIP 内容
-                zip.forEach(function (relativePath, zipEntry) {
-                    // 跳过目录
-                    if (zipEntry.dir) {
-                        return;
-                    }
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log("Download complete, starting unzip...");
+                    resolve(xhr.response);
+                } else {
+                    console.error(`Failed to download ZIP: ${xhr.statusText}`); // 添加错误日志
+                    reject(new Error(`Failed to download ZIP: ${xhr.statusText}`));
+                }
+            };
 
-                    let promise;
-                    // 处理其他文件 (如图片、音频等)，统一读取为 ArrayBuffer
-                    promise = zipEntry.async('arraybuffer')
-                        .then(function (fileData) {
-                            result[relativePath] = fileData; // 存储原始 ArrayBuffer
-                        });
+            xhr.onerror = function () {
+                console.error("Network error occurred during ZIP download."); // 添加网络错误日志
+                reject(new Error("Network error occurred during ZIP download."));
+            };
 
+            xhr.send();
+        })
+        .then(function (arrayBuffer) {
+            // 2. 使用 JSZip 加载 ArrayBuffer
+            return JSZip.loadAsync(arrayBuffer);
+        })
+        .then(function (zip) {
+            console.log("Unzip complete, processing entries..."); // 添加解压完成日志
+            const promises = [];
+            const result = {}; // 用来存储最终结果的对象
+            let processedFiles = 0;
+            const totalFiles = Object.keys(zip.files).length;
 
-                    // 捕获单个文件处理的错误，防止中断整个 Promise.all
-                    promise = promise.catch(function (entryError) {
-                        console.error("Error processing file (" + relativePath + "):", entryError.message);
-                        result[relativePath] = {error: entryError.message}; // 用错误信息标记
-                        // 不 rethrow，让其他文件继续处理
+            // 3. 遍历 ZIP 内容
+            zip.forEach(function (relativePath, zipEntry) {
+                // 跳过目录
+                if (zipEntry.dir) {
+                    return;
+                }
+
+                const promise = zipEntry.async('arraybuffer')
+                    .then(function (fileData) {
+                        result[relativePath] = fileData; // 存储原始 ArrayBuffer
+                        processedFiles++;
+                        // console.log(`Processed file: ${relativePath} (${processedFiles}/${totalFiles})`); // 添加文件处理日志
+                    })
+                    .catch(function (entryError) {
+                        console.error(`Error processing file (${relativePath}): ${entryError.message}`); // 添加文件处理错误日志
+                        result[relativePath] = { error: entryError.message }; // 用错误信息标记
                     });
 
-                    promises.push(promise);
-                });
-
-                // 4. 等待所有文件处理完毕
-                return Promise.all(promises).then(function () {
-                    return result; // 返回包含所有解压内容的对象
-                });
+                promises.push(promise);
             });
+
+            // 4. 等待所有文件处理完毕
+            return Promise.all(promises).then(function () {
+                console.log("All files processed."); // 添加所有文件处理完成日志
+                return result; // 返回包含所有解压内容的对象
+            });
+        });
     },
 });
