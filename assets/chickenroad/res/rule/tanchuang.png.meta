@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "7d69d9d3-fae3-4485-8c09-9312881ba94d",
+  "uuid": "e156763d-883d-40c2-ac58-15fdb4c8afa8",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "tanchuang": {
       "ver": "1.0.6",
-      "uuid": "ceab4711-ef8b-49ee-9fcf-70ed128a8952",
+      "uuid": "06fa096c-e837-4b19-ab33-1b636b8d1378",
       "importer": "sprite-frame",
-      "rawTextureUuid": "7d69d9d3-fae3-4485-8c09-9312881ba94d",
+      "rawTextureUuid": "e156763d-883d-40c2-ac58-15fdb4c8afa8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

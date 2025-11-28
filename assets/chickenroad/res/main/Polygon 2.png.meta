@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "2534e1fd-e404-4e0b-890f-1609da253cc3",
+  "uuid": "7a370624-d925-48ca-9ce4-0d5ea74b30fa",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "Polygon 2": {
       "ver": "1.0.6",
-      "uuid": "8d41ed55-6a71-4837-88fc-a99bbb869363",
+      "uuid": "615e9b2c-b210-4cd7-92cc-4a8cde55b840",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2534e1fd-e404-4e0b-890f-1609da253cc3",
+      "rawTextureUuid": "7a370624-d925-48ca-9ce4-0d5ea74b30fa",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

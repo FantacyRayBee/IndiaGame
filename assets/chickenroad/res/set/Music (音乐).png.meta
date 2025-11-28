@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "6930fd76-d7b8-4790-b042-fbeef81f4f5e",
+  "uuid": "0eb7ae5f-9ce4-48b0-8270-3b40595f26fc",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "Music (音乐)": {
       "ver": "1.0.6",
-      "uuid": "45f30693-5bfe-4acb-81ed-3687bd244968",
+      "uuid": "daeac2b7-731a-4213-ad8c-bbcd19c828a2",
       "importer": "sprite-frame",
-      "rawTextureUuid": "6930fd76-d7b8-4790-b042-fbeef81f4f5e",
+      "rawTextureUuid": "0eb7ae5f-9ce4-48b0-8270-3b40595f26fc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
