@@ -679,52 +679,50 @@ cc.Class({
     },
 
     showResultAnima: function() {
-        if (this.gameResult) {
-            this.setUserDiamond(this.gameResult.userinfo.diamond);
+        if (!this.gameResult) return;
 
-            let totalMultiple = 0;
-            for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
-                let multiple = this.gameResult.xiannum[i].multiple;
-                let num = this.gameResult.xiannum[i].num;
-                totalMultiple += (multiple * num);
-            };
-         
-            //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let startScore = Number(this.freeTotalWinNum);
-            //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let bet = parseInt(this.lab_betAmount.string)
-            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple *  bet / 10 + startScore;
-            this.freeTotalWinNum = endedScore;
-            let freeCount = this.gameResult.mianfeinum;
-            let isNormal = this.gameResult.rewardtype == 1;
-            let bigWinLevel = this.getBigWinLevel(isNormal, bet, endedScore / bet);
-            if (bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
-                    bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
-                            let scene = cc.director.getScene();
-                            let RewardTipsNode = cc.instantiate(prefab);
-                            let RewardTipsCtrl = RewardTipsNode.getComponent("slotRewardTipsCtrl");
-                            scene.addChild(RewardTipsNode);
-                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-                            .then(() => {
-                                this.showSpinResult(totalMultiple);
-                                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-                            });
-                        };
-                    });
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载indiaMachine-Bundle异常: ${JSON.stringify(err)}`);
-                });
-            }
-            else {
-                this.showSpinResult(totalMultiple);
-                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            };
+        // 1. 更新用户钻石
+        this.setUserDiamond(this.gameResult.userinfo.diamond);
 
-        };
+        // 2. 计算总倍数
+        let totalMultiple = 0;
+        for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
+            let multiple = this.gameResult.xiannum[i].multiple;
+            let num = this.gameResult.xiannum[i].num;
+            totalMultiple += (multiple * num);
+        }
+
+        // 3. 计算总赢分
+        let startScore = Number(this.freeTotalWinNum);
+        let bet = parseInt(this.lab_betAmount.string);
+        let endedScore;
+
+        if (this.gameResult.rewardtype == 2) { // 免费奖励，用 freePool
+            endedScore = this.gameResult.freePool / 100;
+        } else { // 普通奖励：当前赢分 + 上一轮累积
+            endedScore = totalMultiple * bet / 10 + startScore;
+        }
+
+        this.freeTotalWinNum = endedScore;
+
+        let freeCount = this.gameResult.mianfeinum;
+        let isNormal = this.gameResult.rewardtype == 1;
+        let betMul = endedScore / bet;
+        let bigWinLevel = this.getBigWinLevel(isNormal, bet, betMul);
+
+        // ✅ 关键：立刻开始金币滚动（和中奖连线同时进行）
+        this.runChangeTotalWinScore(startScore, endedScore, freeCount);
+
+        // 再去处理中奖线 + bigwin 弹窗 + 自动spin / 免费局流程
+        this.showSpinResult(totalMultiple, {
+            startScore,
+            endedScore,
+            freeCount,
+            isNormal,
+            bigWinLevel
+        });
     },
-
+    
     getBigWinLevel: function(isNormal, bet, betMul) {
         let level = 0;
         if (isNormal == true) {
@@ -818,77 +816,114 @@ cc.Class({
         return level;
     },
 
+    showSpinResult: function(totalMultiple, bigWinData) {
+        bigWinData = bigWinData || {};
+        let startScore = bigWinData.startScore || 0;
+        let endedScore = (bigWinData.endedScore === 0 || bigWinData.endedScore) ? bigWinData.endedScore : 0;
+        let freeCount = bigWinData.freeCount || 0;
+        let isNormal = !!bigWinData.isNormal;
+        let bigWinLevel = bigWinData.bigWinLevel || 0;
 
-    showSpinResult: function(totalMultiple) {
+        // 1. 判断有没有中奖线需要展示
         let isNeedShowAnim = false;
         let xiannumArr = this.gameResult.xiannum;
         for (let i = 0, len = xiannumArr.length; i < len; i++) {
             let xiannum = xiannumArr[i];
-            let xiannumLen = xiannum.len;   //线的长度
+            let xiannumLen = xiannum.len;   // 线的长度
             if (xiannumLen >= 3) {
                 isNeedShowAnim = true;
                 break;
-            };
-        };
+            }
+        }
 
         let isFast = this.toggle_fast.isChecked;
         if (isNeedShowAnim) {
             let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
             this.playGameSound(winClipName);
-            this.showXianNun(totalMultiple/10, isFast);
+            // ✅ 这里会触发 showXianNun，画线 / 高亮中奖图标
+            this.showXianNun(totalMultiple / 10, isFast);
+        } else {
+            this.isRunningMayaAnim = false;
         }
-        else {
-            this.isRunningMayaAnim = false; 
-        };
 
+        // 2. 等中奖线动画结束（isRunningMayaAnim = false）后再进入下一步
         let startNextSpin = () => {
-            // this.isRunningMayaAnim = false;
             if (this.isRunningMayaAnim) {
-                return;
-            };
+                return; // 中奖线动画还在播，等一下
+            }
             this.unschedule(startNextSpin);
 
-            if (this.gameResult.mianfeinum > 0) {
-                //刚进入FG
-                if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
-                    this.isHaveMianFeiRecord = true;
-                    this.selectAutoBetStr = this.lab_autoBetCiShu.string;
-                    this.selectAutoStatus = this.toggle_auto.isChecked;
-                    this.FG_anim1.active = true;
-                    this.FG_anim2.active = true;
-                    this.scheduleOnce(() => {
-                        this.dealFreeGame(true);
-                    }, 3);
+            // 封装：bigwin 弹窗结束后，继续正常流程（免费局 / 自动spin）
+            let continueFlow = () => {
+                // 注意：金币滚动已经在 showResultAnima 里启动，这里不用再调 runChangeTotalWinScore
+
+                if (this.gameResult.mianfeinum > 0) {
+                    // ---------------- 免费游戏流程 ----------------
+                    // 刚进入FG
+                    if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
+                        this.isHaveMianFeiRecord = true;
+                        this.selectAutoBetStr = this.lab_autoBetCiShu.string;
+                        this.selectAutoStatus = this.toggle_auto.isChecked;
+                        this.FG_anim1.active = true;
+                        this.FG_anim2.active = true;
+                        this.scheduleOnce(() => {
+                            this.dealFreeGame(true);
+                        }, 3);
+                    } else {
+                        this.dealFreeGame();
+                    }
+                } else {
+                    // ---------------- 普通游戏流程 ----------------
+                    if (this.isHaveMianFeiRecord) {
+                        this.isHaveMianFeiRecord = false;
+                        this.toggle_auto.isChecked = this.selectAutoStatus;
+                        this.lab_autoBetCiShu.string = this.selectAutoBetStr;
+                    }
+
+                    this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+                    this.toggle_auto.interactable = true;
+                    this.autoSpineNode.active = false;
+
+                    this.curRoundAddCoinFinish();
+                    let isAuto = this.toggle_auto.isChecked;
+                    if (isAuto) {
+                        this.sendCallReq();      // 继续自动spin
+                    } else {
+                        this.recoverySpinBtnEvent(); // 恢复按钮可点
+                    }
                 }
-                else{
-                    this.dealFreeGame();
-                }
-
-            }
-            else {
-                if (this.isHaveMianFeiRecord) {
-                    this.isHaveMianFeiRecord = false;
-                    this.toggle_auto.isChecked = this.selectAutoStatus;
-                    this.lab_autoBetCiShu.string = this.selectAutoBetStr;
-                };
-
-                this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-                
-                this.toggle_auto.interactable = true;
-
-                this.autoSpineNode.active = false;
-
-                this.curRoundAddCoinFinish();
-                let isAuto = this.toggle_auto.isChecked;
-                if (isAuto) {
-                    this.sendCallReq();
-                }
-                else {
-                    this.recoverySpinBtnEvent();
-                };
             };
+
+            // 3. 如果是 bigwin（并且非免费局最后一把仍然按你逻辑），先弹 bigwin，再继续流程
+            if (bigWinLevel > 0 && this.gameResult.mianfeinum == 0) {
+                CommonFun.getInstance().loadBundle('indiaMachine', (bundle) => {
+                    bundle.load("prefab/slotRewardTips", cc.Prefab, (err, prefab) => {
+                        if (!err) {
+                            let scene = cc.director.getScene();
+                            let RewardTipsNode = cc.instantiate(prefab);
+                            let RewardTipsCtrl = RewardTipsNode.getComponent("slotRewardTipsCtrl");
+                            scene.addChild(RewardTipsNode);
+                            // 弹 bigwin，结束后继续（此时金币已经在滚了，不受影响）
+                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+                                .then(() => {
+                                    continueFlow();
+                                });
+                        } else {
+                            // 预制体加载失败，直接走正常流程，避免卡死
+                            continueFlow();
+                        }
+                    });
+                }, (err) => {
+                    LoggerUtil.getInstance().error(`加载indiaMachine-Bundle异常: ${JSON.stringify(err)}`);
+                    continueFlow();
+                });
+            } else {
+                // 非 bigwin 或其他情况，直接继续流程
+                continueFlow();
+            }
         };
-        this.schedule(startNextSpin, 0.01); 
+
+        this.schedule(startNextSpin, 0.01);
     },
 
     dealFreeGame: function(isHideAnim = false) {

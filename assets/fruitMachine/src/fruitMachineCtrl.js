@@ -662,99 +662,117 @@ cc.Class({
     },
 
     showResultAnima: function() {
-        if (this.gameResult) {
-            this.setUserDiamond(this.gameResult.userinfo.diamond);
+        if (!this.gameResult) {
+            return;
+        }
 
-            let totalMultiple = 0;
-            for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
-                let multiple = this.gameResult.xiannum[i].multiple;
-                let num = this.gameResult.xiannum[i].num;
-                totalMultiple += (multiple * num);
+        // 1. 更新用户金币
+        this.setUserDiamond(this.gameResult.userinfo.diamond);
+
+        // 2. 计算总倍数
+        let totalMultiple = 0;
+        for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
+            let multiple = this.gameResult.xiannum[i].multiple;
+            let num = this.gameResult.xiannum[i].num;
+            totalMultiple += (multiple * num);
+        };
+
+        // 3. 计算总赢分
+        let startScore = Number(this.freeTotalWinNum);
+        let bet = parseInt(this.lab_betAmount.string);
+        let endedScore = this.gameResult.rewardtype == 2
+            ? this.gameResult.freePool / 100
+            : totalMultiple * bet / 10 + startScore;
+
+        // 记录本局累计总赢
+        this.freeTotalWinNum = endedScore;
+
+        let freeCount = this.gameResult.mianfeinum;
+
+        // ✅ 立刻开始金币滚动（后面 showXianNun 里会同时播中奖线）
+        this.runChangeTotalWinScore(startScore, endedScore, freeCount);
+
+        // 中奖连线 & 自动/免费逻辑挪到这里
+        this.showSpinResult(totalMultiple);
+    },
+
+    showSpinResult: function(totalMultiple) {
+        // 1. 判断是否需要展示中奖连线
+        let isNeedShowAnim = false;
+        let xiannumArr = this.gameResult.xiannum;
+        for (let i = 0, len = xiannumArr.length; i < len; i++) {
+            let xiannum = xiannumArr[i];
+            let xiannumLen = xiannum.len;   // 线的长度
+            if (xiannumLen >= 3) {
+                isNeedShowAnim = true;
+                break;
             };
-         
-            //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let startScore = Number(this.freeTotalWinNum);
-            //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple * parseInt(this.lab_betAmount.string) / 10 + startScore;
-            this.freeTotalWinNum = endedScore;
-            let freeCount = this.gameResult.mianfeinum;
-            this.runChangeTotalWinScore(startScore, endedScore, freeCount );
+        };
 
-            let isNeedShowAnim = false;
-            let xiannumArr = this.gameResult.xiannum;
-            for (let i = 0, len = xiannumArr.length; i < len; i++) {
-                let xiannum = xiannumArr[i];
-                let xiannumLen = xiannum.len;   //线的长度
-                if (xiannumLen >= 3) {
-                    isNeedShowAnim = true;
-                    break;
+        let isFast = this.toggle_fast.isChecked;
+        if (isNeedShowAnim) {
+            let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
+            this.playGameSound(winClipName);
+            // ✅ 这里调用中奖连线逻辑，和上面的 runChangeTotalWinScore 同时进行
+            this.showXianNun(totalMultiple / 10, isFast);
+        }
+        else {
+            this.isRunningFruitAnim = false;
+        }
+
+        // 2. 等连线动画结束（isRunningFruitAnim=false）后再处理下一局
+        let startNextSpin = () => {
+            if (this.isRunningFruitAnim) {
+                return; // 还在播连线动画，再等等
+            };
+            this.unschedule(startNextSpin);
+
+            if (this.gameResult.mianfeinum > 0) {
+                // -------- 免费局逻辑 --------
+                if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
+                    this.isHaveMianFeiRecord = true;
+                    this.selectAutoBetStr = this.lab_autoBetCiShu.string;
+                    this.selectAutoStatus = this.toggle_auto.isChecked;
                 };
-            };
 
-            let isFast = this.toggle_fast.isChecked;
-            if (isNeedShowAnim) {
-                let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
-                this.playGameSound(winClipName);
-                this.showXianNun(totalMultiple/10, isFast);
+                this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
+                this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
+
+                this.toggle_auto.interactable = false;
+                this.autoSpineNode.active = true;
+
+                let amount = parseInt(this.lab_betAmount.string);
+                let proroID = 'gameservice.call';
+                let message = 'CallReq';
+                GameServerManager.send(proroID, message, {
+                    amount: amount * 100
+                });
             }
             else {
-                this.isRunningFruitAnim = false; 
-            };
-
-            let startNextSpin = () => {
-                // this.isRunningFruitAnim = false;
-                if (this.isRunningFruitAnim) {
-                    return;
+                // -------- 普通局逻辑 --------
+                if (this.isHaveMianFeiRecord) {
+                    this.isHaveMianFeiRecord = false;
+                    this.toggle_auto.isChecked = this.selectAutoStatus;
+                    this.lab_autoBetCiShu.string = this.selectAutoBetStr;
                 };
-                this.unschedule(startNextSpin);
 
-                if (this.gameResult.mianfeinum > 0) {
-                    if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
-                        this.isHaveMianFeiRecord = true;
-                        this.selectAutoBetStr = this.lab_autoBetCiShu.string;
-                        this.selectAutoStatus = this.toggle_auto.isChecked;
-                    };
+                this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+                this.toggle_auto.interactable = true;
+                this.autoSpineNode.active = false;
 
-                    this.lab_autoBetCiShu.string = this.gameResult.mianfeinum;
-                    this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
-
-                    this.toggle_auto.interactable = false;
-
-                    this.autoSpineNode.active = true;
-
-                    let amount = parseInt(this.lab_betAmount.string);
-                    let proroID = 'gameservice.call';
-                    let message = 'CallReq';
-                    GameServerManager.send(proroID, message, {              
-                        amount: amount * 100
-                    });
+                this.curRoundAddCoinFinish();
+                let isAuto = this.toggle_auto.isChecked;
+                if (isAuto) {
+                    this.sendCallReq();
                 }
                 else {
-                    if (this.isHaveMianFeiRecord) {
-                        this.isHaveMianFeiRecord = false;
-                        this.toggle_auto.isChecked = this.selectAutoStatus;
-                        this.lab_autoBetCiShu.string = this.selectAutoBetStr;
-                    };
-
-                    this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-                    
-                    this.toggle_auto.interactable = true;
-
-                    this.autoSpineNode.active = false;
-
-                    this.curRoundAddCoinFinish();
-                    let isAuto = this.toggle_auto.isChecked;
-                    if (isAuto) {
-                        this.sendCallReq();
-                    }
-                    else {
-                        this.recoverySpinBtnEvent();
-                    };
+                    this.recoverySpinBtnEvent();
                 };
             };
-            this.schedule(startNextSpin, 0.01); 
         };
+        this.schedule(startNextSpin, 0.01);
     },
+
 
     curRoundAddCoinFinish(){
         if(cc.isValid(this)){

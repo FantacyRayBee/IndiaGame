@@ -702,53 +702,51 @@ cc.Class({
     },
 
     showResultAnima: function() {
-        if (this.gameResult) {
-            this.setUserDiamond(this.gameResult.userinfo.diamond);
+        if (!this.gameResult) {
+            return;
+        }
 
-            let totalMultiple = 0;
-            for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
-                let multiple = this.gameResult.xiannum[i].multiple;
-                let num = this.gameResult.xiannum[i].num;
-                totalMultiple += (multiple * num);
-            };
-         
-            //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let startScore = Number(this.freeTotalWinNum);
-            //奖励类型 (1:正常金币奖励, 2:免费次数奖励)
-            let bet = parseInt(this.lab_betAmount.string)
-            let endedScore = this.gameResult.rewardtype == 2 ? this.gameResult.freePool/100 : totalMultiple *  bet / 10 + startScore;
-            this.freeTotalWinNum = endedScore;
-            let freeCount = this.gameResult.mianfeinum;
-            let isNormal = this.gameResult.rewardtype == 1;
-            // let testMult = 110
-            let bigWinLevel = this.getBigWinLevel(endedScore / bet);
-            // let bigWinLevel = this.getBigWinLevel(testMult);
-            if (freeCount == 0 && bigWinLevel > 0) {
-                CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
-                    bundle.load("prefab/vampireRewardTips", cc.Prefab, (err, prefab) => {
-                        if (!err) {
-                            let scene = cc.director.getScene();
-                            let RewardTipsNode = cc.instantiate(prefab);
-                            let RewardTipsCtrl = RewardTipsNode.getComponent("vampireRewardTipsCtrl");
-                            scene.addChild(RewardTipsNode);
-                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
-                            .then(() => {
-                                let showFGtoMGAnim = (bigWinLevel == 5);
-                                this.showSpinResult(totalMultiple, showFGtoMGAnim); //level=5的时候 需要显示FG转MG动画
-                                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-                            });
-                        };
-                    });
-                }, (err) => {
-                    LoggerUtil.getInstance().error(`加载vampireMachine-Bundle异常: ${JSON.stringify(err)}`);
-                });
-            }
-            else {
-                this.showSpinResult(totalMultiple);
-                this.runChangeTotalWinScore(startScore, endedScore, freeCount);
-            };
+        // 1. 更新用户钻石
+        this.setUserDiamond(this.gameResult.userinfo.diamond);
 
+        // 2. 计算总倍数
+        let totalMultiple = 0;
+        for (let i = 0, len = this.gameResult.xiannum.length; i < len; i++) {
+            let multiple = this.gameResult.xiannum[i].multiple;
+            let num = this.gameResult.xiannum[i].num;
+            totalMultiple += (multiple * num);
         };
+
+        // 3. 计算总赢分
+        let startScore = Number(this.freeTotalWinNum);
+        let bet = parseInt(this.lab_betAmount.string);
+        let endedScore = this.gameResult.rewardtype == 2
+            ? this.gameResult.freePool / 100
+            : totalMultiple * bet / 10 + startScore;
+
+        this.freeTotalWinNum = endedScore;
+
+        let freeCount = this.gameResult.mianfeinum;
+        let isNormal = this.gameResult.rewardtype == 1;
+        let betMul = endedScore / bet;
+        let bigWinLevel = this.getBigWinLevel(betMul);
+
+        // level=5 且 freeCount=0 时需要显示 FG→MG 转场动画
+        let showFGtoMGAnim = (freeCount == 0 && bigWinLevel == 5);
+
+        // ✅ 关键：立即开始金币滚动（和中奖连线同时进行）
+        this.runChangeTotalWinScore(startScore, endedScore, freeCount);
+
+        // 把 bigwin、FG→MG 等信息交给 showSpinResult，
+        // 中奖线播完后，再决定是否弹 bigwin & FG→MG 转场
+        this.showSpinResult(totalMultiple, {
+            startScore,
+            endedScore,
+            freeCount,
+            bigWinLevel,
+            isNormal,
+            showFGtoMGAnim,
+        });
     },
 
     getBigWinLevel: function(betMul) {
@@ -772,7 +770,18 @@ cc.Class({
     },
 
 
-    showSpinResult: function(totalMultiple, showFGtoMGAnim = false) {
+    showSpinResult: function(totalMultiple, bigWinData) {
+        bigWinData = bigWinData || {};
+        let startScore = bigWinData.startScore || 0;
+        let endedScore = (bigWinData.endedScore === 0 || bigWinData.endedScore)
+            ? bigWinData.endedScore
+            : 0;
+        let freeCount = bigWinData.freeCount || 0;
+        let bigWinLevel = bigWinData.bigWinLevel || 0;
+        let isNormal = !!bigWinData.isNormal;
+        let showFGtoMGAnim = !!bigWinData.showFGtoMGAnim;
+
+        // 1. 判断是否需要展示中奖连线
         let isNeedShowAnim = false;
         let xiannumArr = this.gameResult.xiannum;
         for (let i = 0, len = xiannumArr.length; i < len; i++) {
@@ -788,74 +797,116 @@ cc.Class({
         if (isNeedShowAnim) {
             let winClipName = isFast ? 'sound/win-fast' : 'sound/win';
             this.playGameSound(winClipName);
-            this.showXianNun(totalMultiple/10, isFast);
+            // ✅ 中奖连线动画（同时金币已经在 runChangeTotalWinScore 里滚动）
+            this.showXianNun(totalMultiple / 10, isFast);
         }
         else {
             this.isRunningMayaAnim = false; 
         };
 
+        // 2. 等中奖线动画结束（isRunningMayaAnim=false）以后，再走 bigwin + 自动spin/FG逻辑
         let startNextSpin = () => {
-            // this.isRunningMayaAnim = false;
             if (this.isRunningMayaAnim) {
                 return;
             };
             this.unschedule(startNextSpin);
 
-            if (this.gameResult.mianfeinum > 0) {
-                //刚进入FG
-                if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
-                    this.isHaveMianFeiRecord = true;
-                    this.selectAutoBetStr = this.lab_autoBetCiShu.string;
-                    this.selectAutoStatus = this.toggle_auto.isChecked;
-                    this.showZhuanChangAnim(1, ()=>{
+            // 内部封装：bigwin（如果有）之后再执行“免费局 / 自动spin / FG↔MG 转场”
+            let continueFlow = () => {
+                if (this.gameResult.mianfeinum > 0) {
+                    // -------- 还在免费局内 --------
+                    // 刚进入FG
+                    if (this.gameResult.mianfeinum == 10 && this.isHaveMianFeiRecord == false) {
+                        this.isHaveMianFeiRecord = true;
+                        this.selectAutoBetStr = this.lab_autoBetCiShu.string;
+                        this.selectAutoStatus = this.toggle_auto.isChecked;
+                        this.showZhuanChangAnim(1, () => {
+                            this.dealFreeGame();
+                        });
+                    }
+                    else {
                         this.dealFreeGame();
-                    })
-                }
-                else{
-                    this.dealFreeGame();
-                }
-
-            }
-            else {
-                if (this.isHaveMianFeiRecord) {
-                    this.isHaveMianFeiRecord = false;
-                    let callback = ()=>{
-                        this.setFGplane(false)
-                        this.toggle_auto.isChecked = this.selectAutoStatus;
-                        this.lab_autoBetCiShu.string = this.selectAutoBetStr;
-
-                        this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-                        this.toggle_auto.interactable = true;
-                        this.autoSpineNode.active = false;
-                        this.curRoundAddCoinFinish();
-                        let isAuto = this.toggle_auto.isChecked;
-                        if (isAuto) {
-                            this.sendCallReq();
-                        }
-                        else {
-                            this.recoverySpinBtnEvent();
-                        };
                     }
-                    if (!showFGtoMGAnim) {
-                        callback()
-                    }else{
-                        this.showZhuanChangAnim(2, callback)
-                    }
-                    return
-                };
-                this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
-                this.toggle_auto.interactable = true;
-                this.autoSpineNode.active = false;
-                this.curRoundAddCoinFinish();
-                let isAuto = this.toggle_auto.isChecked;
-                if (isAuto) {
-                    this.sendCallReq();
+
                 }
                 else {
-                    this.recoverySpinBtnEvent();
+                    // -------- 免费局结束或一直是普通局 --------
+                    if (this.isHaveMianFeiRecord) {
+                        // 说明刚从FG结束回到MG
+                        this.isHaveMianFeiRecord = false;
+
+                        let callback = () => {
+                            this.setFGplane(false);
+                            this.toggle_auto.isChecked = this.selectAutoStatus;
+                            this.lab_autoBetCiShu.string = this.selectAutoBetStr;
+
+                            this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+                            this.toggle_auto.interactable = true;
+                            this.autoSpineNode.active = false;
+
+                            this.curRoundAddCoinFinish();
+                            let isAuto = this.toggle_auto.isChecked;
+                            if (isAuto) {
+                                this.sendCallReq();
+                            }
+                            else {
+                                this.recoverySpinBtnEvent();
+                            };
+                        };
+
+                        // 是否需要播放 FG→MG 转场动画（仅 bigWinLevel=5 & freeCount=0 的那局）
+                        if (!showFGtoMGAnim) {
+                            callback();
+                        }
+                        else {
+                            this.showZhuanChangAnim(2, callback);
+                        }
+                        return;
+                    };
+
+                    // 普通局
+                    this.lab_autoBetCiShu.node.color = new cc.Color(217, 244, 255);
+                    this.toggle_auto.interactable = true;
+                    this.autoSpineNode.active = false;
+
+                    this.curRoundAddCoinFinish();
+                    let isAuto = this.toggle_auto.isChecked;
+                    if (isAuto) {
+                        this.sendCallReq();
+                    }
+                    else {
+                        this.recoverySpinBtnEvent();
+                    };
                 };
             };
+
+            // 3. bigwin：仅在 freeCount == 0 & bigWinLevel > 0 时弹 bigwin 弹窗
+            if (freeCount == 0 && bigWinLevel > 0) {
+                CommonFun.getInstance().loadBundle('vampireMachine', (bundle) => {
+                    bundle.load("prefab/vampireRewardTips", cc.Prefab, (err, prefab) => {
+                        if (!err) {
+                            let scene = cc.director.getScene();
+                            let RewardTipsNode = cc.instantiate(prefab);
+                            let RewardTipsCtrl = RewardTipsNode.getComponent("vampireRewardTipsCtrl");
+                            scene.addChild(RewardTipsNode);
+                            // 弹窗结束后再继续流程（金币数字已在滚，不受影响）
+                            RewardTipsCtrl.showRewardTips(endedScore, bigWinLevel, isNormal)
+                                .then(() => {
+                                    continueFlow();
+                                });
+                        };
+                    });
+                }, (err) => {
+                    LoggerUtil.getInstance().error(`加载vampireMachine-Bundle异常: ${JSON.stringify(err)}`);
+                    // 预制加载失败也不要卡死，直接继续
+                    continueFlow();
+                });
+            } else {
+                // 非 bigwin 或 freeCount>0（免费局中）直接继续
+                continueFlow();
+            }
         };
+
         this.schedule(startNextSpin, 0.01); 
     },
 
