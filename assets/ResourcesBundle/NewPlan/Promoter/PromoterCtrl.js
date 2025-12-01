@@ -148,7 +148,7 @@ cc.Class({
 
         teamTipsViewTipsStr = "The friends you invite, as well as the friends they invite, Can loop indefinitely. All belong to your team.";
         opuPutTipsViewTipsStr = "Anyone in your team, as long as they win money, you will get a certain reward. The more people you invite, the more rewards you get.";
-        inviteTipsViewTipsStr = "For anyone you invite, if they recharge < ₹100 for the firs time, you will receive a reward of <₹5. If they recharge< ₹1000 for the first time, you will receive a reward of ₹50";
+        inviteTipsViewTipsStr = "For anyone you invite, if they recharge  ₹100 for the firs time, you will receive a reward of ₹30. If they recharge ₹1000 for the first time, you will receive a reward of ₹300";
         bonusTipsViewTipsStr = "The system will calculate the bonus basedon the output value at am00 : 00, So your bonus for the day will be received the next day.";
 
         btnFXStr = "Share More";
