@@ -1419,10 +1419,10 @@ cc.Class({
         let notify = webData.msgData;
         LoggerUtil.getInstance().log("msgId === " , msgId);
         if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
-            self.setSmallGameLoadProgress(notify);
+            // self.setSmallGameLoadProgress(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
-            self.setSmallGameLoadComplete(notify);
+            // self.setSmallGameLoadComplete(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.showUserInfo();
@@ -2122,13 +2122,26 @@ cc.Class({
                 GameDownloader.getInstance().priorLoadGame(subpackgeName);
             } else {
                 CommonFun.getInstance().gameLoadBundleByH5(subpackgeName);
+                let isVertical = this.getVerticalBySubpackageName(subpackgeName);
+                CommonFun.getInstance().showGameLoading(isVertical, callFun);
             }
-            if (!this.LoadCompletedCallback) {
-                this.LoadCompletedCallback = callFun;
-            }
+            // if (!this.LoadCompletedCallback) {
+            //     this.LoadCompletedCallback = callFun;
+            // }
         } else {
             callFun && callFun();
         }
+    },
+
+    getVerticalBySubpackageName: function(subpackgeName) {
+        // 定义竖屏游戏的映射
+        const verticalGames = {
+            "Benz": true,
+            "aviator": true,
+            "zeusGame": true
+        };
+        const isVertical = verticalGames[subpackgeName] || false;
+        return isVertical;
     },
 
     setSmallGameLoadProgress: function(notify) {

@@ -1417,6 +1417,20 @@ let CommonFun = cc.Class({
         });
     },
 
+    showGameLoading: function(isVertical, callback) {
+        let gameLoadingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMELOADING);
+        gameLoadingPrefabPromise.then((prefab) => {
+            let gameLoadingNode = cc.instantiate(prefab);
+            let gameLoadingCtrl = gameLoadingNode.getComponent('GameLoadingViewCtrl');
+            if (isVertical){
+                this._curOrientation = EnumOrientation.VERTICAL;
+                APPManager.setOrientation('V');
+            }
+            gameLoadingCtrl.init(isVertical, callback);
+            this.addToPointParent(gameLoadingNode, GlobalCfg.PREFAB_PARENT.GAMELOADING);
+        });
+    },
+
     /**
      * 显示内嵌网页界面
      */

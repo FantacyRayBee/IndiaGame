@@ -68,7 +68,7 @@ window.GlobalCfg = {
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: false,
+    is_force_gotoTest: true,
 
     /**
      * 渠道信息
@@ -100,6 +100,7 @@ window.GlobalCfg = {
         SMALL_GAME_UPDATE_PROGRESS: "SMALL_GAME_UPDATE_PROGRESS",
         SHOW_JJC_50Y_TIPS: "SHOW_JJC_50Y_TIPS",
         GD_SMALLGAME_LOAD_COMPLETE: "GD_SMALLGAME_LOAD_COMPLETE",
+        CHANGE_SCENE_COMPLETE: "CHANGE_SCENE_COMPLETE",
         GD_SMALLGAME_LOAD_PROGRESS: "GD_SMALLGAME_LOAD_PROGRESS",
         GD_SMALLGAME_LOAD_ERROR: "GD_SMALLGAME_LOAD_ERROR",
         KWX_GAME_EVENT_ENTERROOM: "KWX_GAME_EVENT_ENTERROOM",
@@ -796,6 +797,10 @@ window.GlobalCfg = {
          */
         CHANGENAME: "ResourcesBundle/NewPlan/Personal/ChangeName",
         /**
+         * 游戏加载界面
+         */
+        GAMELOADING: "ResourcesBundle/NewPlan/GameLoading/GameLoadingView",
+        /**
          * 个人中心修改头像
          */
         CHANGEHEAD: "ResourcesBundle/NewPlan/Personal/ChangeHead",
@@ -1058,6 +1063,7 @@ window.GlobalCfg = {
         VIPREWARDTOAST: "ThirdLayer",
         POPUPWITHDRAW: "ThirdLayer",
         SOFTKEYBORAD: "ThirdLayer",
+        GAMELOADING: "ThirdLayer",
 
 
         VIPUPGRADETOAST: "ToastLayer",
