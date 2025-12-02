@@ -581,9 +581,9 @@ let CommonFun = cc.Class({
      * @returns 
      */
     isNeedUpdata: function(subpackgeName) {
-        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-            return false;
-        };
+        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        //     return false;
+        // };
         
         let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
         let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
@@ -1576,6 +1576,19 @@ let CommonFun = cc.Class({
         }
     },
 
+    showGameLoading: function(isVertical, callback) {
+        let gameLoadingPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.GAMELOADING);
+        gameLoadingPrefabPromise.then((prefab) => {
+            let gameLoadingNode = cc.instantiate(prefab);
+            let gameLoadingCtrl = gameLoadingNode.getComponent('GameLoadingViewCtrl');
+            if (isVertical){
+                this._curOrientation = EnumOrientation.VERTICAL;
+                APPManager.setOrientation('V');
+            }
+            gameLoadingCtrl.init(isVertical, callback);
+            this.addToPointParent(gameLoadingNode, GlobalCfg.PREFAB_PARENT.GAMELOADING);
+        });
+    },
 
     /**
      * 显示推广员左侧界面

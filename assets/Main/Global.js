@@ -806,6 +806,10 @@ window.GlobalCfg = {
      */
     POPUPWITHDRAW: "ResourcesBundle/NewPlan/PopUpWithDraw/PopUpWithDraw",
     /**
+     * 游戏加载界面
+     */
+    GAMELOADING: "ResourcesBundle/NewPlan/GameLoading/GameLoadingView",
+    /**
      * 我的VIP
      */
     MYVIP: "ResourcesBundle/NewPlan/MyVip/MyVip",
@@ -980,6 +984,7 @@ window.GlobalCfg = {
     PRIVACYPOLICY: "ThirdLayer",
     VIPREWARDTOAST: "ThirdLayer",
     POPUPWITHDRAW: "ThirdLayer",
+    GAMELOADING: "ThirdLayer",
 
     VIPUPGRADETOAST: "ToastLayer",
     MSGBOX: "ToastLayer",

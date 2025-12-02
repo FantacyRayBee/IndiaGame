@@ -1397,11 +1397,11 @@ cc.Class({
         let notify = webData.msgData;
         LoggerUtil.getInstance().log("msgId === " , msgId);
         if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
-            self.setSmallGameLoadProgress(notify);
+            // self.setSmallGameLoadProgress(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
-            self.setSmallGameLoadComplete(notify);
-        } 
+            // self.setSmallGameLoadComplete(notify);
+        }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.showUserInfo();
         }
@@ -2081,21 +2081,30 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-            callFun();
-            return;
-        };
+        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+        //     callFun();
+        //     return;
+        // };
 
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
+            let isVertical = this.getVerticalBySubpackageName(subpackgeName);
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
-            if (this.LoadCompletedCallback == null) {
-                this.LoadCompletedCallback = callFun;
-            }
+            CommonFun.getInstance().showGameLoading(isVertical, callFun);
         } 
         else {
             callFun();
         };
+    },
+    getVerticalBySubpackageName: function(subpackgeName) {
+        // 定义竖屏游戏的映射
+        const verticalGames = {
+            "Benz": true,
+            "aviator": true,
+            "zeusGame": true
+        };
+        const isVertical = verticalGames[subpackgeName] || false;
+        return isVertical;
     },
 
     setSmallGameLoadProgress: function(notify) {
