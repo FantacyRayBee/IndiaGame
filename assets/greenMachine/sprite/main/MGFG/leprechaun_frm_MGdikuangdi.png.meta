@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "1d7e3394-84aa-4383-9dc4-66dc6eac6e42",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 814,
+  "height": 477,
+  "platformSettings": {},
+  "subMetas": {
+    "leprechaun_frm_MGdikuangdi": {
+      "ver": "1.0.6",
+      "uuid": "e899514d-71cb-4ac2-855b-6dd0c882212c",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "1d7e3394-84aa-4383-9dc4-66dc6eac6e42",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 814,
+      "height": 477,
+      "rawWidth": 814,
+      "rawHeight": 477,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

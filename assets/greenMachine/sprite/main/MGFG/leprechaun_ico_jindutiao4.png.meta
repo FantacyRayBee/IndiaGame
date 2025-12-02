@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "59ffa90c-1617-4538-b3d9-4b49e59a1ad5",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 584,
+  "height": 47,
+  "platformSettings": {},
+  "subMetas": {
+    "leprechaun_ico_jindutiao4": {
+      "ver": "1.0.6",
+      "uuid": "13a5ef35-26d9-456d-b9d4-63a4c0c4e3cd",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "59ffa90c-1617-4538-b3d9-4b49e59a1ad5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 584,
+      "height": 47,
+      "rawWidth": 584,
+      "rawHeight": 47,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
