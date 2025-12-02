@@ -63,7 +63,7 @@ window.GlobalCfg = {
      */
     is_need_update: true,
 
-    isH5: true,
+    isH5: false,
 
     /**
      * 是否强制进测试服
