@@ -1307,11 +1307,17 @@ if (GlobalCfg.isH5 == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
     SetPackageChannel();
 }
+/* 
+  * 最新测试包
+  * 包名： com.taara.saara.master
+  * 渠道名：5007
+*/
+// GlobalCfg.isOfflineDeve2 = 1;
+if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
+  GlobalCfg.IsDownloadPackage2 = 0;
+  cc.sys.localStorage.setItem("PackageChannel", "0_8001");
+};
 
-if (GlobalCfg.is_force_gotoTest == true) {
-    GlobalCfg.IsDownloadPackage2 = 0;
-    localStorage.setItem('PackageChannel', '0_8001');
-}
 
 /**
  * 新的渠道模式, 格式为：x_xxxx，x表示对应的服务器, xxxx表示对应的渠道.
