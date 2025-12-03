@@ -1033,6 +1033,8 @@ let CommonFun = cc.Class({
 
     proloadProgress: function() {
         return new Promise((resolve, reject) => {
+            console.log(`caojun: setZipFileLoadComplete888`);
+
             let progressPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROGRESS);
             progressPrefabPromise.then((prefab) => {
                 this._progressNode = cc.instantiate(prefab);
@@ -1736,6 +1738,7 @@ let CommonFun = cc.Class({
      */
     proloadSelectRoom: function() {
         return new Promise((resolve, reject) => {
+            console.log(`caojun: setZipFileLoadComplete999`);
             let selectRoomPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SELECTROOM);
             selectRoomPrefabPromise.then((prefab) => {
                 this._selectRoomNode = cc.instantiate(prefab);

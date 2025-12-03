@@ -1499,82 +1499,83 @@ if (GlobalCfg.isPackage6002 == 1) {
  */
 let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
 if (packageChannel && packageChannel.indexOf("_") != -1) {
-  GlobalCfg.IsDownloadPackage2 = 0;
-  let packageChannelArr = packageChannel.split("_"); 
-  let server = packageChannelArr[0];
-  console.log("packageChannelArr == " , packageChannelArr)
-  console.log("server == " , server)
-  console.log("cc.sys.isNative == " , cc.sys.isNative)
-  
-  GlobalCfg.server_id = server;
-  switch (server) {
-    case "0":     // 测试服
-      GlobalCfg.APP_VERSION = "0.1.2.7";
-      GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json?time=${new Date().getTime()}`;
-      GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json?time=${new Date().getTime()}`;
-      break;
-    case "1":     // 1服
-      GlobalCfg.APP_VERSION = "1.0.8.12";
-      GlobalCfg.APP_INFO_URL = `https://download.tpgame.in/Release/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download.tpgame.in/Release/AppConfig.json`;
-      break;
-    case "2":     // 2服
-      GlobalCfg.APP_VERSION = "2.2.8.12";
-      GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release/AppConfig.json`;
+    GlobalCfg.IsDownloadPackage2 = 0;
+    let packageChannelArr = packageChannel.split("_");
+    let server = packageChannelArr[0];
+    console.log("packageChannelArr == ", packageChannelArr)
+    console.log("server == ", server)
+    console.log("cc.sys.isNative == ", cc.sys.isNative)
 
-      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-      break;
-    case "3":     // 3服
-      GlobalCfg.APP_VERSION = "3.0.6.28";
-      GlobalCfg.APP_INFO_URL = `https://download.3tpattiyi.in/Release3/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download.3tpattiyi.in/Release3/AppConfig.json`;
-      break;
-    case "4":     // 联运(2服)
-      GlobalCfg.APP_VERSION = "4.0.8.7"; 
-      GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release4/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
-      break;
-    case "5":     // 5服
-      GlobalCfg.APP_VERSION = "5.0.0.34"; 
-      // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
-      GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+    GlobalCfg.server_id = server;
+    switch (server) {
+        case "0":     // 测试服
+            GlobalCfg.APP_VERSION = "US test 1.0.2";
+            GlobalCfg.APP_INFO_URL = `https://down.jok7.com/AppInfo.json?time=${new Date().getTime()}`;
+            GlobalCfg.APP_CONFIG_URL = `https://down.jok7.com/AppConfig.json?time=${new Date().getTime()}`;
 
-      GlobalCfg.APP_CONFIG_URL = `https://download.rax8.com/production/AppConfig.json`;
-      if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
-        GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/v1/AppInfo.json`;
-      }
-      // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-      // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+            // GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json?time=${new Date().getTime()}`;
+            // GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json?time=${new Date().getTime()}`;
+            break;
+        case "1":     //  印度测试服
+            GlobalCfg.APP_VERSION = "india test 1.0.0";
+            GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json`;
+            break;
+        case "2":     //  印度正式服
+            GlobalCfg.APP_VERSION = "2.2.8.12";
+            GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release/AppConfig.json`;
 
-      GlobalCfg.APP_INFO_URL_SPARE = `https://download.rax8.com/production/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.rax8.com/production/AppConfig.json`;
-      break;
-    case "6":     // 代理服
-      GlobalCfg.APP_VERSION = "6.0.1";
-      GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/s2AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/s2AppConfig.json`;
-      break;
-    case "11":     // 1服(RummyClassic)
-      GlobalCfg.APP_VERSION = "11.0.8.1";
-      GlobalCfg.APP_INFO_URL = `https://download.tpgame.in/RummyClassic/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download.tpgame.in/RummyClassic/AppConfig.json`;
-      break;
-    case "21":     // 个人测试用
-      GlobalCfg.APP_VERSION = "21.1.4.3";
-      GlobalCfg.APP_INFO_URL = `https://downloadtest.tpgame.in/LkTest/AppInfo.json?time=${new Date().getTime()}`;
-      GlobalCfg.APP_CONFIG_URL = `https://downloadtest.tpgame.in/LkTest/AppConfig.json?time=${new Date().getTime()}`;
-      break;
-    case "22":     // 2007包, 2040包(2服)
-      GlobalCfg.APP_VERSION = "22.0.8.7";
-      GlobalCfg.APP_INFO_URL = `https://download2.toopatti.in/Package2007/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL = `https://download2.toopatti.in/Package2007/AppConfig.json`;
-      break;
-    default:
-      break;
-  };
-};
+            // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+            // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+            break;
+        case "3":     // 3服
+            GlobalCfg.APP_VERSION = "3.0.6.28";
+            GlobalCfg.APP_INFO_URL = `https://download.3tpattiyi.in/Release3/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download.3tpattiyi.in/Release3/AppConfig.json`;
+            break;
+        case "4":     // 联运(2服)
+            GlobalCfg.APP_VERSION = "4.0.8.7";
+            GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release4/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
+            break;
+        case "5":     // 5服
+            GlobalCfg.APP_VERSION = "US 1.0.1";
+            // GlobalCfg.APP_INFO_URL = `https://download.rax8.com/production/AppInfo.json`;
+            GlobalCfg.APP_INFO_URL = `https://down.cj777.net/AppInfo.json`;
+
+            GlobalCfg.APP_CONFIG_URL = `https://down.cj777.net/AppConfig.json`;
+            // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
+            // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
+
+            // GlobalCfg.APP_INFO_URL_SPARE = `https://download.rax8.com/production/AppInfo.json`;
+            // GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.rax8.com/production/AppConfig.json`;
+            break;
+        case "6":     // 代理服
+            GlobalCfg.APP_VERSION = "6.0.1";
+            GlobalCfg.APP_INFO_URL = `https://download.tkptat.in/production/s2AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download.tkptat.in/production/s2AppConfig.json`;
+            break;
+        case "11":     // 1服(RummyClassic)
+            GlobalCfg.APP_VERSION = "11.0.8.1";
+            GlobalCfg.APP_INFO_URL = `https://download.tpgame.in/RummyClassic/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download.tpgame.in/RummyClassic/AppConfig.json`;
+            break;
+        case "21":     // 个人测试用
+            GlobalCfg.APP_VERSION = "21.1.4.3";
+            GlobalCfg.APP_INFO_URL = `https://downloadtest.tpgame.in/LkTest/AppInfo.json?time=${new Date().getTime()}`;
+            GlobalCfg.APP_CONFIG_URL = `https://downloadtest.tpgame.in/LkTest/AppConfig.json?time=${new Date().getTime()}`;
+            break;
+        case "22":     // 2007包, 2040包(2服)
+            GlobalCfg.APP_VERSION = "22.0.8.7";
+            GlobalCfg.APP_INFO_URL = `https://download2.toopatti.in/Package2007/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download2.toopatti.in/Package2007/AppConfig.json`;
+            break;
+        default:
+            break;
+    }
+    ;
+}
 
 
 

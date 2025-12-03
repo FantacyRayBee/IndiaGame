@@ -22,6 +22,7 @@ ProtobufManager.proloadProtoFiles = function(filePathArr) {
             let filePath = filePathArr[i];
             protobuf.load(filePath, (err, root) => {
                 if (err) {
+                    console.log(`caojun Error loading proto file: ${err}`);
                     LoggerUtil.getInstance().log(`Error loading proto file: ${err}`);
                     reject();
                     return;
