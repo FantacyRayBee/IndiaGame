@@ -210,6 +210,8 @@ cc.Class({
         this.stopNumScroll = false;
 
         this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4); //是否开启支付
+
+        this.btn_bet.interactable = !GlobalCfg.USER_DATAS.isNotCharge;
     },
 
     debounce: function(action, delayTime) {  
@@ -302,6 +304,9 @@ cc.Class({
         else if (msgId == "STOP_GAME") {
             this.toggle_auto.isChecked = false;
             this.toggle_auto.interactable = false;
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.btn_bet.interactable = !GlobalCfg.USER_DATAS.isNotCharge;
         }
     },
 
@@ -460,6 +465,10 @@ cc.Class({
     setUserDiamond: function(diamond) {
         LoggerUtil.getInstance().log(`caojun setUserDiamond diamond = ${diamond}`);
         GlobalCfg.USER_DATAS.userDiamond = diamond;
+        if (GlobalCfg.USER_DATAS.isNotCharge){
+            CommonFun.getInstance().refreshWalletData(this.lab_jb);
+            return
+        }
         let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
         this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
     },
@@ -479,7 +488,9 @@ cc.Class({
         this.gameResult.cards = notify.cards;
         this.gameResult.buy = notify.buy;
         this.gameResult.restartCards = notify.restartCards;
-
+        if(notify.mianfeinum == 0){
+            CommonFun.getInstance().refreshFreeGameBetCount();
+        }
         this.unscheduleAllCallbacks();
         this.startAutoRotateAnim();
         this.scatterIndex = 1;
@@ -493,9 +504,9 @@ cc.Class({
         else{
             let curSpinUse = this.curNeedBuyJpObj.getRespinBet(this.jpBuyIndex); //获取当前JP购买的spin使用金额
             let userDiamond = ((parseFloat(this.lab_jb.string) * 100) - parseFloat(curSpinUse) * 100).toFixed(0);
-            this.setUserDiamond(userDiamond);
             this.showSkelJpNearWin(this.curNeedBuyJpObj.index);
             this.playSlotItemJpWowAnimation(this.jpBuyIndex);
+            this.setUserDiamond(userDiamond);
         }
         //设置转动的音效
         this.playGameSound("Reel_Spin");
@@ -2081,7 +2092,7 @@ cc.Class({
         if (this.curSendSpin == true) { //避免重复发送请求
             return;
         }
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniclown"]== true){   //未曾充值
+        if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
                 if (this.paymentSwitch) {
                     CommonFun.getInstance().showSmallAddCash()
@@ -2093,7 +2104,7 @@ cc.Class({
         if (this.toggle_extra.isChecked) {
             betAmount = betAmount / 1.5;
         };
-        if (betAmount > GlobalCfg.USER_DATAS.userDiamond) {
+        if (betAmount > GlobalCfg.USER_DATAS.userDiamond && CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
             this.recoverySpinBtnEvent();
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
                 if (this.paymentSwitch) {

@@ -249,12 +249,12 @@ cc.Class({
         /**
          * 配合服务器处理
          */
-        if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
-            GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
-        };
-        if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
-            GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
-        };
+        // if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
+        //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
+        // };
+        // if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
+        //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
+        // };
     
         this.checkShiPei();
         this.setBtnsClick();
@@ -1192,10 +1192,17 @@ cc.Class({
 
         let popup_BonusCard_Time = CommonFun.getInstance().getAppConfigValueByKey('POPUP_BonusCard_FREQUENCY_TIME_MINUTE', 0);
         let BonusCardFrequency = Number((popup_BonusCard_Time / 60).toFixed(1));
+        /** 
+         * 首充
+         */
+        if (GlobalCfg.USER_DATAS.openModules.includes(10) && this.isNeedShowPointToastByHours("FirstRecharge", 3/60)) {
+            this.updateToastLocalStorageByHours("FirstRecharge", 1);
+            this.showFirstRechargeToast();
+        }
         /**
          * 拼多多
          */
-        if (GlobalCfg.USER_DATAS.openModules.includes(14) && GlobalCfg.USER_DATAS.pddNewly && this.isNeedShowPointToastByHours("Pdd", 72)) {
+        else if (GlobalCfg.USER_DATAS.openModules.includes(14) && GlobalCfg.USER_DATAS.pddNewly && this.isNeedShowPointToastByHours("Pdd", 72)) {
             this.updateToastLocalStorageByHours("Pdd", 72);
             this.showPddToast();
         }
@@ -1220,13 +1227,7 @@ cc.Class({
                 CommonFun.getInstance().showInducement();
             }
         }
-        /** 
-         * 首充
-         */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(10) && this.isNeedShowPointToastByHours("FirstRecharge", 1)) {
-            this.updateToastLocalStorageByHours("FirstRecharge", 1);
-            this.showFirstRechargeToast();
-        }
+
         // /**
         //  * 金钻卡
         //  */
@@ -1397,10 +1398,10 @@ cc.Class({
         let notify = webData.msgData;
         LoggerUtil.getInstance().log("msgId === " , msgId);
         if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
-            // self.setSmallGameLoadProgress(notify);
+            self.setSmallGameLoadProgress(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
-            // self.setSmallGameLoadComplete(notify);
+            self.setSmallGameLoadComplete(notify);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.showUserInfo();
@@ -1448,9 +1449,9 @@ cc.Class({
             LoggerUtil.getInstance().log('收到关闭ssc刷新lobby GlobalCfg.USER_DATAS = ', GlobalCfg.USER_DATAS);
             // 救济金
             if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
-                GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
+                // GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
             };
-            self.showUserInfo();
+            // self.showUserInfo();
             // self.showBanner();
             self.showOtherModules();
             self.showSmallGameBtns();
@@ -2081,16 +2082,19 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-        //     callFun();
-        //     return;
-        // };
+        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+            callFun();
+            return;
+        };
 
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
-            let isVertical = this.getVerticalBySubpackageName(subpackgeName);
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
-            CommonFun.getInstance().showGameLoading(isVertical, callFun);
+            if (this.LoadCompletedCallback == null) {
+                this.LoadCompletedCallback = callFun;
+            }
+            // let isVertical = this.getVerticalBySubpackageName(subpackgeName);
+            // CommonFun.getInstance().showGameLoading(isVertical, callFun);
         } 
         else {
             callFun();

@@ -55,6 +55,7 @@ cc.Class({
             type: cc.Boolean,
             visible: false
         },
+        btnFreeGame: cc.Node,
     },
 
     ctor() {
@@ -72,6 +73,7 @@ cc.Class({
         for (let i = 1; i <= 8; i++) {
             this.tableCoinsList.push(new Array())
         }
+        this.isHaveBet = false;    // 是否有下注
     },
 
     onLoad() {
@@ -122,6 +124,9 @@ cc.Class({
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onCustomEventMsg, this);
 
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        // this.curBetCtrl.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
     },
 
     start() {
@@ -196,13 +201,30 @@ cc.Class({
     },
 
     btnBetClick(ani) {
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicricket"]== true) { //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                CommonFun.getInstance().showSmallAddCash()
-            }, false);
-            return
-        } 
-        this.serverMsgManager.sendBetMsg([{ ani: ani, amount: this.curBetCtrl.curBetNum }]);
+        // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicricket"]== true) { //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         CommonFun.getInstance().showSmallAddCash()
+        //     }, false);
+        //     return
+        // } 
+        if(this.gameState == 0){
+            if (this.isHaveBet) {
+                CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+                return;
+            }
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+                return
+            }
+            if (GlobalCfg.USER_DATAS.isNotCharge) {
+                this.isHaveBet = true;
+                CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+            }
+            this.serverMsgManager.sendBetMsg([{ ani: ani, amount: this.curBetCtrl.curBetNum }]);
+        }else{
+            // 1 转动、结算
+            CommonFun.getInstance().showTips('non betting stage');
+        }
+
     },
 
     btnClick(Button) {
@@ -372,7 +394,10 @@ cc.Class({
             // self.rouletteManager.unscheduleAll();
             // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.CRICKET, SceneManager.getInstance().sceneType.LOBBY);
         // }
-
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.curBetCtrl.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+        }
     },
 
     onCustomEventMsg(webData, target) {
@@ -401,7 +426,7 @@ cc.Class({
             self.playEndAnimation(ani, self.gameEndServerMsg, endNode);
             this.showWinAreaLight(ani);
             self.dealGameFinishData(self.gameEndServerMsg);
-
+            this.isHaveBet = false;
         }
         else if (msgId == "GAME_CRICKET_GIFT_SEND_COIN_UPDATE") {
             // 自己发送表情，更新金币值

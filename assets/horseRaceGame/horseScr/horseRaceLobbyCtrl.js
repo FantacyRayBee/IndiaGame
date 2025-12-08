@@ -9,6 +9,8 @@ cc.Class({
         pab_rule: cc.Prefab,
         pab_chat: cc.Prefab,
         btn_openMenu: cc.Button,
+
+        btnFreeGame: cc.Node,
     },
 
     onLoad: function() {
@@ -38,6 +40,21 @@ cc.Class({
             token: GlobalCfg.USER_DATAS.token,
             fromid: GlobalCfg.PRODUCT_ID //平台ID
         });
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+    },
+
+    refreshBetCoinBtn: function (isEnable) {
+        this.btn_50.interactable = isEnable;
+        this.btn_100.interactable = isEnable;
+        this.btn_1000.interactable = isEnable;
+        this.btn_2000.interactable = isEnable;
+
+        this.btn_50.node.opacity =  isEnable ? 255 : 150;
+        this.btn_100.node.opacity =  isEnable ? 255 : 150;
+        this.btn_1000.node.opacity =  isEnable ? 255 : 150;
+        this.btn_2000.node.opacity =  isEnable ? 255 : 150;
     },
 
     onDestroy: function () {
@@ -118,6 +135,10 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.HORSERACE, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
         }
     },
 
@@ -455,6 +476,7 @@ cc.Class({
         let endNode = this.betNodeArr[types];
 
         if (this.my_playerid == playerid) { //自己下注
+            LoggerUtil.getInstance().log("自己下注了 notify:",notify);
             this.horseRaceAudioCtrl.playGameSound("mytouCoin")
             startNode = this.horsePlayer;
             this.myNodeCtrl.headAct("me");
@@ -532,14 +554,22 @@ cc.Class({
             types = 6;
         }
         if (this.betStatus) {
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minisaima"]== true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
+            if (this.isHaveBet) {
+                CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+                return;
+            }
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
                 return
-            } else if (this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond) {
+            }
+            // if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minisaima"]== true){   //未曾充值
+            //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            //         if (this.paymentSwitch) {
+            //             CommonFun.getInstance().showSmallAddCash()
+            //         }
+            //     }, false);
+            //     return
+            // } else 
+            if (this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                 else {
@@ -558,6 +588,10 @@ cc.Class({
                     CommonFun.getInstance().showTips("Upper limit of betting amount!");
                 } else {
                     this.sendReqCtrl.callReq(this.userBtnCion, types);
+                    if (GlobalCfg.USER_DATAS.isNotCharge) {
+                        this.isHaveBet = true;
+                        CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+                    }
                 }
             }
         } else {
@@ -1337,6 +1371,7 @@ cc.Class({
 
     // 结束下注通知
     endbetnotify: function (notify) {
+        this.isHaveBet = false;
         this.betStatus = false;
         this.node_djs.active = false;
         this.btn_repeatBet.node.active = false;
@@ -2016,6 +2051,7 @@ cc.Class({
         this.totalTime = 10;
         this.leaderNum = 8;
         this.averageSpeed = 96;
+        this.isHaveBet = false;    // 是否有下注
         this.historiesScoreArr = [];
         this.coinAllArr = [null, [],
             [],

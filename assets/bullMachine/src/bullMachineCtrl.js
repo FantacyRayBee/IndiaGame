@@ -173,6 +173,8 @@ cc.Class({
         this.stopNumScroll = false;
 
         this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4); //是否开启支付
+
+        this.btn_bet.interactable = !GlobalCfg.USER_DATAS.isNotCharge;
     },
 
     debounce: function(action, delayTime) {  
@@ -275,6 +277,9 @@ cc.Class({
                 this.autoSpinData = notify.toggleTypeArr;
                 this.dealAutoBetCiShuBtnEvent(this.autoSpinTypeNumArr[0]); //设置自动spin次数
             }
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.btn_bet.interactable = !GlobalCfg.USER_DATAS.isNotCharge;
         }
     },
 
@@ -405,6 +410,10 @@ cc.Class({
     setUserDiamond: function(diamond) {
         LoggerUtil.getInstance().log(`caojun setUserDiamond diamond = ${diamond}`);
         GlobalCfg.USER_DATAS.userDiamond = diamond;
+        if (GlobalCfg.USER_DATAS.isNotCharge){
+            CommonFun.getInstance().refreshWalletData(this.lab_jb);
+            return
+        }
         let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
         this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
     },
@@ -434,9 +443,11 @@ cc.Class({
         let isFast = this.toggle_fast.isChecked;
         let zhuangClipName = isFast ? 'zhuang-fast' : 'zhuang';
         this.playGameSound(zhuangClipName);
-
+        if(notify.mianfeinum == 0){
+            CommonFun.getInstance().refreshFreeGameBetCount();
+        }
         //先扣除下注的金额
-        if (this.gameResult.mianfeinum == 0) {
+        if (this.gameResult.mianfeinum == 0 && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             let diamond = GlobalCfg.USER_DATAS.userDiamond - (parseFloat(this.curBetAmount) * 100);
             let num = FloatCalculation.accDiv(diamond, 100);
             this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
@@ -764,7 +775,7 @@ cc.Class({
     recoverySpinBtnEvent: function() {
         this.btn_spin.interactable = true;
         this.btn_spin2.interactable = true;
-        this.btn_bet.interactable = true;
+        this.btn_bet.interactable = !GlobalCfg.USER_DATAS.isNotCharge;
         this.btn_spin.enableAutoGrayEffect = false;
         this.toggle_auto.interactable = true;
         this.btn_auto.interactable = true;
@@ -1444,22 +1455,27 @@ cc.Class({
         if (this.curSendSpin == true) { //避免重复发送请求
             return;
         }
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibull"] == true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-                this.recoverySpinBtnEvent();
-                this.toggle_auto.isChecked = false; //关闭自动
-                this.node_toggle_auto.active = true;
-            }, false);
-            return;
-        };
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+            this.toggle_auto.interactable = false;
+            this.btn_auto.interactable = false;
+            return
+        }
+        // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibull"] == true){   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         if (this.paymentSwitch) {
+        //             CommonFun.getInstance().showSmallAddCash()
+        //         }
+        //         this.recoverySpinBtnEvent();
+        //         this.toggle_auto.isChecked = false; //关闭自动
+        //         this.node_toggle_auto.active = true;
+        //     }, false);
+        //     return;
+        // };
 
         let betAmount = parseFloat(this.curBetAmount) * 100;
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;
-        if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
+        if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0 && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             this.recoverySpinBtnEvent();
             this.toggle_auto.isChecked = false; //关闭自动
             this.node_toggle_auto.active = true;

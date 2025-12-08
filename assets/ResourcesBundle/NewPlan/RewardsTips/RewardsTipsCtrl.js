@@ -14,6 +14,10 @@ cc.Class({
             default: null,
             type: cc.SpriteFrame
         },
+        sprite_free: {
+            default: null,
+            type: cc.SpriteFrame
+        },
         btn_okay: {
             default: null,
             type: cc.Button
@@ -82,7 +86,11 @@ cc.Class({
      * @param {Array{coin}} params 
      */
     setRewards(params) {
+        console.log("setRewardsCoin params === ", params);
+
         let array = this.deduplicationArr(params);
+        console.log("setRewardsCoin array === ", array);
+
         for (let i = 0; i < array.length; i++) {
             const coin = array[i];
             if(i < 1){
@@ -116,14 +124,14 @@ cc.Class({
                 sprite.node.setPosition(this.silver_pos);
                 sprite.node.setContentSize(this.silver_size);
                 break;
-            // case 13:
-            //     sprite.spriteFrame = this.sprite_lubi_coin;
-            //     sprite.node.setPosition(this.gold_pos);
-            //     sprite.node.setContentSize(this.gold_pos);
-            //     break;
+            case 999:
+                sprite.spriteFrame = this.sprite_free;
+                sprite.node.setScale(0.8);
+                break;
             default:
                 break;
         }
-        lab_coin.string = `${amount}`;
+        // 保留 2 位小数
+        lab_coin.string = `${amount.toFixed(2)}`;
     },
 });

@@ -7,6 +7,11 @@ cc.Class({
         lab_day7Reward: cc.Label,
         node_day7Signed: cc.Node,
         node_day7Unsigned: cc.Node,
+
+        img_7: cc.Sprite,
+        sp_normal: cc.SpriteFrame,
+        sp_free: cc.SpriteFrame,
+        node_free: cc.Node,
     },
 
     ctor: function() {
@@ -23,6 +28,13 @@ cc.Class({
         this.btn_sign.node.active = false;
         this.node_day7Signed.active = false;
         this.node_day7Unsigned.active = false;
+
+        if (GlobalCfg.USER_DATAS.isNotCharge) { 
+            this.img_7.spriteFrame = this.sp_free;
+        } else {
+            this.img_7.spriteFrame = this.sp_normal;
+        }
+        this.node_free.active = GlobalCfg.USER_DATAS.isNotCharge;
     },
 
     start: function() {
@@ -33,6 +45,8 @@ cc.Class({
         .catch((err) => {
             LoggerUtil.getInstance().error(err);
         });
+
+
     },
 
     onSignClick: function() {
@@ -45,7 +59,13 @@ cc.Class({
                 if (msg.result == 0 && msg.data) {
                     let data = msg.data;
                     if (data && CommonFun.getInstance().isValidForScr(this)) {
-                        CommonFun.getInstance().showRewardsTips([{ id: 10, amount: data.gift / 100 }]);
+                        if(GlobalCfg.USER_DATAS.isNotCharge == true){
+                            CommonFun.getInstance().showRewardsTips([{ id: 999, amount: data.gift}]);
+                            GlobalCfg.USER_DATAS.freegameBetCount += data.gift;
+                        }
+                        else{
+                            CommonFun.getInstance().showRewardsTips([{ id: 1, amount: data.gift / 100}]);
+                        }
     
                         if (GlobalCfg.USER_DATAS.signInfo) {
                             GlobalCfg.USER_DATAS.signInfo.today = data.today;
@@ -150,7 +170,7 @@ cc.Class({
         let len = signData.gifts.length;
         let index = 0;
         let addSignItem = () => {
-            let gift = signData.gifts[index];
+            let gift = signData.gifts[index] > 100 ? signData.gifts[index] / 100 : signData.gifts[index];
             if (index <= 5) {
                 let signItemPos = this.itemPosArr[index];
                 let signItemNode = cc.instantiate(itemPrefab);
@@ -166,7 +186,13 @@ cc.Class({
             }
             else if (index == 6) {
                 this.lab_day7.string = "Day7";
-                this.lab_day7Reward.string = `₹${gift/100}`;
+
+                if (GlobalCfg.USER_DATAS.isNotCharge == true) {
+                    this.lab_day7Reward.string = `Free`;
+                } else {
+                    this.lab_day7Reward.string = `${gift}`;
+                }
+
                 if (signData.today > 7) {
                     this.node_day7Signed.active = true;
                     this.node_day7Unsigned.active = false;

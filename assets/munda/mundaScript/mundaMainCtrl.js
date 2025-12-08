@@ -17,6 +17,8 @@ cc.Class({
         ske_start: sp.SkeletonData,
         ske_stop: sp.SkeletonData,
         sprite_winNum: [cc.SpriteFrame],
+
+        btnFreeGame: cc.Node,
     },
 
     ctor() {
@@ -46,6 +48,7 @@ cc.Class({
         this.isGameEndStatus = false;
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
+        this.isHaveBet = false;    // 是否有下注
     },
 
     onLoad: function() {
@@ -150,6 +153,10 @@ cc.Class({
         this.btn_5 = cc.find('Canvas_munda/node_players/btn_05').getComponent(cc.Button);
         this.btn_6 = cc.find('Canvas_munda/node_players/btn_06').getComponent(cc.Button);
 
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+
         let btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
             let name = btnArr[i].node.name
@@ -163,6 +170,18 @@ cc.Class({
             token: GlobalCfg.USER_DATAS.token,
             fromid: GlobalCfg.PRODUCT_ID //平台ID
         });
+    },
+
+    refreshBetCoinBtn: function (isEnable) {
+        this.btn_50.interactable = isEnable;
+        this.btn_100.interactable = isEnable;
+        this.btn_1000.interactable = isEnable;
+        this.btn_2000.interactable = isEnable;
+
+        this.btn_50.node.opacity =  isEnable ? 255 : 150;
+        this.btn_100.node.opacity =  isEnable ? 255 : 150;
+        this.btn_1000.node.opacity =  isEnable ? 255 : 150;
+        this.btn_2000.node.opacity =  isEnable ? 255 : 150;
     },
 
     EventHide: function () {
@@ -458,6 +477,10 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.MUNDA, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
         }
     },
 
@@ -768,6 +791,7 @@ cc.Class({
 
     //处于结算状态进入游戏显示当前局的骰子结果
     setGameEndInfo: function (notify) {
+
         let dice = notify.dice;
         for (let i = 0; i < dice.length; i++) {
             let element = dice[i];
@@ -989,6 +1013,10 @@ cc.Class({
     //游戏结果
     resolveGameEndNotify: function (notify) {
         LoggerUtil.getInstance().log("游戏结算---------===========", this.selfBetAmount);
+        if (this.isHaveBet) {
+            CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+        }
+        this.isHaveBet = false;
         let betCount = 0;
         for (let i = 0; i < this.selfBetAmount.length; i++) {
             let element = this.selfBetAmount[i];
@@ -1751,13 +1779,21 @@ cc.Class({
     betting: function (amount, type) {
         this.currentBetNum = this.getCurrentBetNum();
         if (this.betBtnState == true) {
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minijhandimunda"]== true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
-            } else if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
+            if (this.isHaveBet) {
+                CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+                return;
+            }
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+                return
+            }
+            // if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minijhandimunda"]== true){   //未曾充值
+            //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            //         if (this.paymentSwitch) {
+            //             CommonFun.getInstance().showSmallAddCash()
+            //         }
+            //     }, false);
+            // } else 
+            if (GlobalCfg.USER_DATAS.userDiamond < amount * 100 && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                 else {
@@ -1774,6 +1810,7 @@ cc.Class({
                     return
                 }
                 this.sendReqCtrl.callReq(amount, type);
+                this.isHaveBet = GlobalCfg.USER_DATAS.isNotCharge; //未曾充值用户下注后标记
             }
         } else {
             if (this.startBettingSke.node.active == false) {

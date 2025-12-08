@@ -12,6 +12,8 @@ cc.Class({
         pab_chat : cc. Prefab,
         Sprite_winorlose : [cc.SpriteFrame],
         btn_openMenu: cc.Button,
+
+        btnFreeGame: cc.Node,
     },
 
     ctor: function () {
@@ -47,6 +49,7 @@ cc.Class({
         this.isGameEndStatus = false;
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
+        this.isHaveBet = false;    // 是否有下注
     },
 
 
@@ -67,7 +70,9 @@ cc.Class({
     },
 
     start () {
-        
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
     },
 
     onDestroy: function () {
@@ -158,6 +163,22 @@ cc.Class({
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
         }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+        }
+    },
+
+    refreshBetCoinBtn:function(isEnable){
+        this.btn_50.interactable = isEnable;
+        this.btn_100.interactable = isEnable;
+        this.btn_1000.interactable = isEnable;
+        this.btn_2000.interactable = isEnable;
+
+        this.btn_50.node.opacity =  isEnable ? 255 : 150; 
+        this.btn_100.node.opacity =  isEnable ? 255 : 150;
+        this.btn_1000.node.opacity =  isEnable ? 255 : 150;
+        this.btn_2000.node.opacity =  isEnable ? 255 : 150;
     },
 
     cashSwitch:function(){
@@ -410,6 +431,8 @@ cc.Class({
 
     // 自己下注 ACK
     callAck:function(notify){
+        LoggerUtil.getInstance().log("自己下注 ACK :", notify);
+        this.isHaveBet = GlobalCfg.USER_DATAS.isNotCharge; //未曾充值用户下注后标记
         let totalBet = notify.totalBet;
         let after = notify.after;
         let side = notify.side;
@@ -603,6 +626,11 @@ cc.Class({
         let civilianWin = notify.civilianWin;   // 平民赢分
         let vipWin = notify.vipWin;     // vip赢分
         this.infos = vipWin.sort(this.compare("pos"));
+        if (this.isHaveBet) {
+            CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+        }
+        this.isHaveBet = false;
+
         for (let i = 0; i < this.infos.length; i++) {
             const vip = this.infos[i];
             let score = vip.win;
@@ -832,14 +860,22 @@ cc.Class({
             types = 1;
         }
         if(this.betStatus){
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minilonghu"]== true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
+            if (this.isHaveBet) {
+                CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+                return;
+            }
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
                 return
-            } else if( this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond){
+            }
+            // if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minilonghu"]== true){   //未曾充值
+            //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            //         if (this.paymentSwitch) {
+            //             CommonFun.getInstance().showSmallAddCash()
+            //         }
+            //     }, false);
+            //     return
+            // } else 
+            if( this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0){
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
                 else {

@@ -255,6 +255,7 @@ cc.Class({
             // 飞行结束通知
             this.betStatus = 2; //结束阶段
             self.aviatorAudioManager.playGameSound('end', false);
+
             self.rocketEnd(notify);
             self.dealBetInfo(msgId);
         }
@@ -581,11 +582,9 @@ cc.Class({
      */
     setSelfPlayerInfo(data) {
         if (!data) return;
-        LoggerUtil.getInstance().log('caojun setSelfPlayerInfo data: ', data);
         GlobalCfg.USER_DATAS.userDiamond = data.diamond;
-        this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
-        LoggerUtil.getInstance().log('selfPlayerInfo data: ', data);
         this.headId = data.imgUrl == 0 ? 1 : data.imgUrl;
+        this.updateSelfCoin()
     },
 
     updateSelfCoin() {

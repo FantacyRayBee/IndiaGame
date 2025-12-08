@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         btnList: [cc.Button],
         btnRepeat: cc.Button,
+        btnFreeGame: cc.Node,
         lab_danzhu: cc.Label,
         lab_dizhuList: [cc.Label],      //左、右、中的自己、其他人的底注
         lab_rateList: [cc.Label],       //左、右、中的比率
@@ -56,6 +57,7 @@ cc.Class({
         this.jbAudioState = true;
         this.tempTime = 0;          //用来甄别是不是同一秒钟的两次消息
         this.isGameEndStatus = false;
+        this.isHaveBet = false;    // 是否有下注
         this.roundBet = 0;         // 自己当前回合下注值
         this.repeatData = {};         // 重复下注数据
         this.curRoundBetData = {};    // 当前回合下注数据
@@ -90,7 +92,8 @@ cc.Class({
         this.cashSwitch();
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-    
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
         this.scheduleOnce(() => {
             this.upDownAudioCtrl.playGameMusic("7up");
         },0.1)
@@ -178,6 +181,10 @@ cc.Class({
             this.btnList[4].interactable = false;
             this.btnList[5].interactable = true;
         }
+        if (GlobalCfg.USER_DATAS.isNotCharge == true) {
+            this.btnList[4].interactable = false;
+            this.btnList[5].interactable = false;
+        }
     },
 
     initLabState: function () {
@@ -224,71 +231,34 @@ cc.Class({
             this.node.addChild(playList);
         } else if (btnName === "btn_26" || btnName === "left_btn") {
             //下注2-6之间
-            if (this.xiaZhuState == false) {
-                if (this.beginSke.node.active == false) {
-                    CommonFun.getInstance().showTips(this.tipsLabel[4]);
+            this.checkBet(() => {
+                this.choiceState = "left";
+                let playerID = this.userInfoCtrl.getPlayerid();
+                let couldHit = this.checkCoin(GlobalCfg.USER_DATAS.userDiamond, this.danzhuNumArr[this.danzhuNum]);
+                if (couldHit) {
+                    this.callHitBullet(playerID, this.danzhuNumArr[this.danzhuNum], 0);             //ID ,单注的金额，0(左)、4(中)、1(右)
                 }
-                return
-            }
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniseven"] == true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
-                return
-            }
-            this.choiceState = "left";
-            let playerID = this.userInfoCtrl.getPlayerid();
-            let couldHit = this.checkCoin(GlobalCfg.USER_DATAS.userDiamond, this.danzhuNumArr[this.danzhuNum]);
-            if (couldHit) {
-                this.callHitBullet(playerID, this.danzhuNumArr[this.danzhuNum], 0);             //ID ,单注的金额，0(左)、4(中)、1(右)
-            }
+            })
         } else if (btnName === "btn_7" || btnName === "mid_btn") {
             //下注7
-            if (this.xiaZhuState == false) {
-                if (this.beginSke.node.active == false) {
-                    CommonFun.getInstance().showTips(this.tipsLabel[4]);
+            this.checkBet(() => {
+                this.choiceState = "mid";
+                let playerID = this.userInfoCtrl.getPlayerid();
+                let couldHit = this.checkCoin(GlobalCfg.USER_DATAS.userDiamond, this.danzhuNumArr[this.danzhuNum]);
+                if (couldHit) {
+                    this.callHitBullet(playerID, this.danzhuNumArr[this.danzhuNum], 4);
                 }
-                return
-            }
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniseven"] == true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
-                return
-            }
-            this.choiceState = "mid";
-            let playerID = this.userInfoCtrl.getPlayerid();
-            let couldHit = this.checkCoin(GlobalCfg.USER_DATAS.userDiamond, this.danzhuNumArr[this.danzhuNum]);
-            if (couldHit) {
-                this.callHitBullet(playerID, this.danzhuNumArr[this.danzhuNum], 4);
-            }
+            })
         } else if (btnName === "btn_812" || btnName == "right_btn") {
             //下注8-12
-            if (this.xiaZhuState == false) {
-                if (this.beginSke.node.active == false) {
-                    CommonFun.getInstance().showTips(this.tipsLabel[4]);
+            this.checkBet(() => {
+                this.choiceState = "right";
+                let playerID = this.userInfoCtrl.getPlayerid();
+                let couldHit = this.checkCoin(GlobalCfg.USER_DATAS.userDiamond, this.danzhuNumArr[this.danzhuNum]);
+                if (couldHit) {
+                    this.callHitBullet(playerID, this.danzhuNumArr[this.danzhuNum], 1);
                 }
-                return
-            }
-            if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniseven"] == true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    if (this.paymentSwitch) {
-                        CommonFun.getInstance().showSmallAddCash()
-                    }
-                }, false);
-                return
-            }
-            this.choiceState = "right";
-            let playerID = this.userInfoCtrl.getPlayerid();
-            let couldHit = this.checkCoin(GlobalCfg.USER_DATAS.userDiamond, this.danzhuNumArr[this.danzhuNum]);
-            if (couldHit) {
-                this.callHitBullet(playerID, this.danzhuNumArr[this.danzhuNum], 1);
-            }
-
+            })
         } else if (btnName === "btn_chat") {
 
         }
@@ -321,8 +291,33 @@ cc.Class({
         }
     },
 
+    checkBet: function (callback) {
+        if (this.xiaZhuState == false) {
+            if (this.beginSke.node.active == false) {
+                CommonFun.getInstance().showTips(this.tipsLabel[4]);
+            }
+            return
+        }
+        if (this.isHaveBet) {
+            CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+            return;
+        }
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+            return
+        }
+        // if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniseven"] == true){   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         if (this.paymentSwitch) {
+        //             CommonFun.getInstance().showSmallAddCash()
+        //         }
+        //     }, false);
+        //     return
+        // }
+        callback && callback();
+    },
+
     checkCoin: function (coin, danzhu) {
-        if (coin < danzhu) {
+        if (coin < danzhu && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
                 CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
             else {
@@ -377,6 +372,7 @@ cc.Class({
         } else if (msgId === "gameservice.callnotify") {                    // vip发射广播，这里普通用户就自己ack vip用户就广播
             self.setCallNotify(notify);
         } else if (msgId === "gameservice.call") {
+            this.isHaveBet = GlobalCfg.USER_DATAS.isNotCharge; //未曾充值用户下注后标记
             self.setCall(notify);
         } else if (msgId === "gameservice.gamestartnotify") {               // 游戏开始
             self.isGameEndStatus = false;
@@ -411,6 +407,10 @@ cc.Class({
             // SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SEVENUPDOWN, SceneManager.getInstance().sceneType.LOBBY);
         } else if (msgId == "gameservice.shortmessagenotify") {
             self.shortmessagenotify(notify);
+        }
+        else if (msgId == "gameservice.pushcurrencychanged") {
+            this.btn_freegame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            self.initLabDanzhu();
         }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_OUT_TO_LOBBY) {
             let curSceneName = cc.director.getScene().name;
@@ -661,6 +661,10 @@ cc.Class({
         this.win = notify.Win;
         this.setGameEndSke(notify, false);       //摇出的两个色子的结果num1 num2
         this.gameStartState = false;
+        if (this.isHaveBet) {
+            CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+        }
+        this.isHaveBet = false;
         LoggerUtil.getInstance().log("GameEndNotify返回的数据win", this.win);
         this.reqPlayerlist(0, 12);
 
@@ -1740,7 +1744,7 @@ cc.Class({
 
     // 发射
     callHitBullet: function (_playerid, _amount, _call) {
-        if(this.currentBetNum + _amount > this.limitMaxBetNum){
+        if(this.currentBetNum + _amount > this.limitMaxBetNum && GlobalCfg.USER_DATAS.freegameBetCount <= 0){
             LoggerUtil.getInstance().log("当前下注数目：",this.currentBetNum);
             CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "YES", () => { }, false);
             return

@@ -46,7 +46,8 @@ cc.Class({
         prefabPlayerList: cc.Prefab,
         prefabPlayerGetOut: cc.Prefab,
 
-
+        btnFreeGame: cc.Node,
+        bonus_coin: cc.Node,
     },
 
     ctor() {
@@ -85,6 +86,7 @@ cc.Class({
         this.preRoundBetNum = 0;                      // 存放上一轮下注数
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
+        this.isHaveBet = false;    // 是否有下注
     },
 
     onLoad: function() {
@@ -96,11 +98,10 @@ cc.Class({
         this.rocketAudioManager = this.node.getComponent('RocketAudioManager');
         CommonFun.getInstance().showProgress();
         this.rocketMultManager = this.node.getComponent('RocketMultManager');
-
+        this.lab_jb = this.selfPlayer.getChildByName('coin').getComponent(cc.Label)
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-
     },
 
     onDestroy() {
@@ -126,6 +127,23 @@ cc.Class({
         }, this);
         this.initialization();
         LoggerUtil.getInstance().warn("当前游戏帧率", cc.game.getFrameRate());
+
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+    },
+
+    refreshBetCoinBtn(isEnable){
+        this.btnBetList[1].interactable = isEnable;
+        this.btnBetList[2].interactable = isEnable;
+        this.btnBetList[3].interactable = isEnable;
+        this.btnBetList[4].interactable = isEnable;
+
+        this.btnBetList[1].node.opacity =  isEnable ? 255 : 150;
+        this.btnBetList[2].node.opacity =  isEnable ? 255 : 150;
+        this.btnBetList[3].node.opacity =  isEnable ? 255 : 150;
+        this.btnBetList[4].node.opacity =  isEnable ? 255 : 150;
+        this.bonus_coin.active = !isEnable;
+        this.btnFreeGame.active = !isEnable;
     },
 
     /**
@@ -340,7 +358,7 @@ cc.Class({
             self.unGetDownNode.active = false;
             self.rocketAudioManager.playGameSound('cash_out_win', false);
             GlobalCfg.USER_DATAS.userDiamond = after;
-            self.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
+            this.updateSelfCoin()
         }
         else if (msgId == 'gameservice.cashnotify') {
             // 有人领取通知
@@ -396,7 +414,7 @@ cc.Class({
 
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
-            self.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
+            this.updateSelfCoin()
         }
         // else if (msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
         //     LoggerUtil.getInstance().warn("首次充值提示");
@@ -410,6 +428,9 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ROCKET, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
         }
     },
 
@@ -532,15 +553,23 @@ cc.Class({
 
     clickBtnBetCallback(num) {
         if (this.isDuringBet == true) {
-            if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minirocket"]== true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                    CommonFun.getInstance().showSmallAddCash()
-                }, false);
+            if (this.isHaveBet) {
+                CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
                 return;
-            };
-            if (num > GlobalCfg.USER_DATAS.userDiamond) {
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            }
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+                return
+            }
+            // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minirocket"]== true){   //未曾充值
+            //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            //         CommonFun.getInstance().showSmallAddCash()
+            //     }, false);
+            //     return;
+            // };
+            if (num > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
+                if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                }
                 else {
                     CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                         CommonFun.getInstance().showSmallAddCash()
@@ -548,6 +577,10 @@ cc.Class({
                 }
             } else {
                 this.rocketMessageManager.sendBetMessage(num);
+                if (GlobalCfg.USER_DATAS.isNotCharge) {
+                    this.isHaveBet = true;
+                    CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+                }
             }
         }
     },
@@ -827,7 +860,7 @@ cc.Class({
         if (!data) return;
         GlobalCfg.USER_DATAS.userDiamond = data.diamond;
         this.selfPlayer.getChildByName('userName').getComponent(cc.Label).string = CommonFun.getInstance().getStrByLength(data.nickname, 8);
-        this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
+        this.updateSelfCoin()
         let headUrl = data.imgUrl;
         if (headUrl) {
             this.loadHeadSp(headUrl, 85, this.selfPlayer.getChildByName('txk').getChildByName('mask').getChildByName('tx').getComponent(cc.Sprite));
@@ -851,7 +884,11 @@ cc.Class({
     },
 
     updateSelfCoin() {
-        this.selfPlayer.getChildByName('coin').getComponent(cc.Label).string = GlobalCfg.USER_DATAS.userDiamond / 100;
+        if (GlobalCfg.USER_DATAS.isNotCharge){
+            CommonFun.getInstance().refreshWalletData(this.lab_jb);
+            return
+        }
+        this.lab_jb.string = GlobalCfg.USER_DATAS.userDiamond / 100;
     },
 
     dealPlayerList(notify) {
@@ -1004,6 +1041,7 @@ cc.Class({
     },
 
     rocketEnd(notify) {
+        this.isHaveBet = false;
         this.unGetDownNode.active = false;
         LoggerUtil.getInstance().warn("rocketEnd", notify);
         if (!notify) return;

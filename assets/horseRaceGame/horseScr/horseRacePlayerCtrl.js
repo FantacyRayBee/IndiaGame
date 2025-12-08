@@ -116,6 +116,9 @@ cc.Class({
 
     // 玩家金币显示
     showPlayCion: function (coin) {
+        if(GlobalCfg.USER_DATAS.isNotCharge){
+            return;
+        }
         this.diamond -= coin;
         this.lab_coin.string = CommonFun.getInstance().numberToShow(this.diamond / 100);
         if (GlobalCfg.ACT_SCENE_CTRL.my_playerid == this.playerid) {

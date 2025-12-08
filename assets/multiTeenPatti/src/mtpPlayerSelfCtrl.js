@@ -47,7 +47,7 @@ cc.Class({
             } else {
                 LoggerUtil.getInstance().log("收到的头像URL为空！")
             }
-            this.setCoin(data.diamond);
+            this.setCoin(data.diamond, true);
             this.setPlayerid(data.playerId);
         } else {
             this.displayName = data.displayName;
@@ -55,7 +55,7 @@ cc.Class({
             if (data.imgUrl) {
                 this.loadHeadSp(data.imgUrl, 106, this.sprite_tx);
             }
-            this.setCoin(data.diamond);
+            this.setCoin(data.diamond, true);
         }
         this.lab_id.string = data.nickname;
 
@@ -70,10 +70,14 @@ cc.Class({
     setCoin: function (coin, isSelf = false) {
         this.coin = coin / 100;
         if (this.lab_coin && coin != null) {
-            this.lab_coin.string = CommonFun.getInstance().numberToShow(this.coin);
             if (isSelf == true) {
                 GlobalCfg.USER_DATAS.userDiamond = coin;
+                if (GlobalCfg.USER_DATAS.isNotCharge){
+                    CommonFun.getInstance().refreshWalletData(this.lab_coin);
+                    return
+                }
             }
+            this.lab_coin.string = CommonFun.getInstance().numberToShow(this.coin);
         }
     },
     setWinNum: function (num) {

@@ -43,6 +43,12 @@ cc.Class({
 
     btnClick: function(btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
+        if (GlobalCfg.USER_DATAS.isNotCharge == true) {
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return
+        }
         let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
         if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
         {

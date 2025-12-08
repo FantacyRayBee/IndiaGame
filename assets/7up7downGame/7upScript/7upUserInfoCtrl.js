@@ -139,9 +139,9 @@ cc.Class({
     setCoin: function (coin) {
         this.coin = coin / 100;
         if (this.labGold && coin != null) {
-            this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
             // this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
             GlobalCfg.USER_DATAS.userDiamond = coin;
+            this.labGold.string = CommonFun.getInstance().numberToShow(this.coin);
         }
     },
 

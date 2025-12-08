@@ -40,7 +40,7 @@ cc.Class({
     },
 
     start() {
-
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
     },
 
     initBetNum(arr) {
@@ -55,6 +55,12 @@ cc.Class({
         }
     },
 
+    refreshBetCoinBtn: function (isShowCoin) {
+        for (let i = 1; i < this.btns.length; i++) {
+            this.btns[i].interactable = isShowCoin;
+            this.btns[i].node.opacity =  isShowCoin ? 255 : 150;
+        }
+    },
     
     choiceBetButton: function (button, selectLight){
         let scale = 1.1;

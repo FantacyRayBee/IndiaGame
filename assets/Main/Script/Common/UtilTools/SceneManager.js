@@ -917,6 +917,7 @@ let SceneManager = cc.Class({
                      * 首次赠送钻石
                      */
                     let first_gift_diamond = msgData.first_gift_diamond ? msgData.first_gift_diamond : 0;
+                    LoggerUtil.getInstance().log("caojun first_gift_diamond", first_gift_diamond);
                     /**
                      * 救济赠送钻石
                      */
@@ -937,6 +938,8 @@ let SceneManager = cc.Class({
                      * 签到信息。同v1/signlist接口数据
                      */
                     let sign_info = msgData.sign_info ? msgData.sign_info: null;
+                    LoggerUtil.getInstance().log("caojun sign_info", sign_info);
+
                     /**
                      * 转盘活动剩余次数。同v1/turntableremaincount接口数据
                      */
@@ -993,7 +996,8 @@ let SceneManager = cc.Class({
                      * Go Betting 活动
                      */
                     let betrebate = msgData.betrebate ? msgData.betrebate : { bet: 0, item: [] };
-                
+                    let free_trials_count = msgData.free_trials_count ? msgData.free_trials_count : 0;
+
                     GlobalCfg.USER_DATAS.userId = display_name;
                     GlobalCfg.USER_DATAS.sex = sex;
                     GlobalCfg.USER_DATAS.userName = nickname;
@@ -1003,6 +1007,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.realname = real_name;
                     GlobalCfg.USER_DATAS.inGame = in_game;
                     GlobalCfg.USER_DATAS.userDiamond = amount;
+                    GlobalCfg.USER_DATAS.freegameBetCount = free_trials_count;
                     GlobalCfg.USER_DATAS.deposit = deposit;
                     GlobalCfg.USER_DATAS.winnings = winnings;
                     GlobalCfg.USER_DATAS.trial = trial;

@@ -259,6 +259,8 @@ message StartBetNotify {
 // 开始飞行阶段通知 gameservice.startflynotify
 message StartFlyNotify {
   int64 m = 1;   // 曲率系数
+  int64 serverTime = 2; //服务器时间
+
 }
 
 // 飞行结束通知 gameservice.flyfinishnotify
@@ -268,6 +270,8 @@ message FlyFinishNotify {
   int64 sysEat = 3; // 被系统吃掉的分
   bool isJackpot = 4; // 是否头奖
   int64 jackpotPool = 5;  // 头奖池
+  int64 serverTime = 6; //服务器时间
+
 }
 
 // 下注过程update gameservice.bettingupdatenotify

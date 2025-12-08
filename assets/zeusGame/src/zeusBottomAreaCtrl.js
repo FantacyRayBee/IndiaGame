@@ -172,6 +172,9 @@ cc.Class({
     },
 
     dealBtnSpinEvent: function() {
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+            return
+        }
         this.setBtnSpinInteractableStatus(false);
         
         let bet = this.betArr[this.betIndex];
@@ -247,13 +250,13 @@ cc.Class({
     },
 
     setBtnAddInteractableStatus: function(bool) {
-        this.btn_add.interactable = bool;
-        this.btn_add.enableAutoGrayEffect = !bool;
+        this.btn_add.interactable = bool && !GlobalCfg.USER_DATAS.isNotCharge;
+        this.btn_add.enableAutoGrayEffect = !bool || GlobalCfg.USER_DATAS.isNotCharge;
     },
 
     setBtnMaxBetInteractableStatus: function(bool) {
-        this.btn_maxBet.interactable = bool;
-        this.btn_maxBet.enableAutoGrayEffect = !bool;
+        this.btn_maxBet.interactable = bool && !GlobalCfg.USER_DATAS.isNotCharge;
+        this.btn_maxBet.enableAutoGrayEffect = !bool || GlobalCfg.USER_DATAS.isNotCharge;
     },
 
     setTogAutoCheckedStatus: function(bool) {

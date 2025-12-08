@@ -89,16 +89,18 @@ cc.Class({
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM) {
             let shopItemData = notify.shopItemData;
+            LoggerUtil.getInstance().log("SHOP_SELECTED_ITEM shopItemData ===> ",  shopItemData);
             SHOPPING.cashID = shopItemData.id;
             SHOPPING.cashAmount = shopItemData.amount;
             
             let amount = Math.floor(shopItemData.amount / 100);
             let gift = Math.floor(shopItemData.gift / 100);
+            let add = Math.floor(shopItemData.add / 100);
 
             if (shopItemData.loop_status == 0) {
-                self.lab_cash.string = `₹${amount}`;
+                self.lab_cash.string = `₹${amount + add}`;
                 self.lab_bonus.string = `₹${gift}`;
-                self.lab_totalGet.string = `₹${amount + gift}`;
+                self.lab_totalGet.string = `₹${amount + gift + add}`;
                 let languagesType = I18NUtil.getInstance().getLanguageType();
                 switch (languagesType) {
                     case I18NLanguagesEnum.English:
@@ -119,9 +121,9 @@ cc.Class({
                 };
             }
             else if (shopItemData.loop_status == 1) {
-                self.lab_cash.string = `₹${amount}`;
+                self.lab_cash.string = `₹${amount + add}`;
                 self.lab_bonus.string = `₹0`;
-                self.lab_totalGet.string = `₹${amount}`;
+                self.lab_totalGet.string = `₹${amount + add}`;
                 self.lab_details.string = `Get 0% Cash Back on \nyour losing amount`;
 
                 let languagesType = I18NUtil.getInstance().getLanguageType();

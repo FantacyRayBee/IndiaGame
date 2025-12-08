@@ -55,35 +55,28 @@ cc.Class({
      * @param {Array<{ani,amount}>} chips 
      */
     sendBetMsg(chips) {
-        if(GlobalCfg.ACT_SCENE_CTRL.gameState == 0){
-            // 0 下注中
-            let allBet = 0;
-            for (let i = 0; i < chips.length; i++) {
-                let chip = chips[i];
-                let amount = chip.amount;
-                allBet += amount;
-            }
-            if (allBet > GlobalCfg.USER_DATAS.userDiamond) {
-                if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
-                else {
-                    CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
-                        if (this.paymentSwitch) {
-                            CommonFun.getInstance().showSmallAddCash();
-                        }
-                    }, false);
-                }
-                return;
-            }else{
-                GameServerManager.send("gameservice.bet", "BetReq", {
-                    chip: chips
-                }); 
-            }
-        }else{
-            // 1 转动、结算
-            CommonFun.getInstance().showTips('non betting stage');
+        let allBet = 0;
+        for (let i = 0; i < chips.length; i++) {
+            let chip = chips[i];
+            let amount = chip.amount;
+            allBet += amount;
         }
-        
+        if (allBet > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
+            if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+            else {
+                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                    if (this.paymentSwitch) {
+                        CommonFun.getInstance().showSmallAddCash();
+                    }
+                }, false);
+            }
+            return;
+        }else{
+            GameServerManager.send("gameservice.bet", "BetReq", {
+                chip: chips
+            }); 
+        }
     },
 
     // vip入座

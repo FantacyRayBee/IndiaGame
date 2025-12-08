@@ -35,6 +35,8 @@ cc.Class({
     },
 
     start () {
+        LoggerUtil.getInstance().log("caojun 222 first_pay_product: ", GlobalCfg.USER_DATAS.first_pay_product);
+
         let commodity = GlobalCfg.USER_DATAS.first_pay_product.sort((a, b) => {
             return a.amount - b.amount;
         });
@@ -42,13 +44,14 @@ cc.Class({
             for (let i = 0; i < 2; i++) {
                 let data = commodity[i];
                 let price = Math.floor(Number(data.amount) / 100);
+                let amount = Math.floor(Number(data.amount + data.add) / 100);
                 let bonus = Math.floor(Number(data.gift) / 100);
-                let total = price + bonus;
-                let point = bonus / price;
+                let total = amount + bonus;
+                let point = (total - price) / price;
                 let percent = (point * 100).toFixed(0);
                 if (i == 0) {
                     this.firstCommodityId = data.id;
-                    this.lab_cash1.string = `₹${price}`;
+                    this.lab_cash1.string = `₹${amount}`;
                     this.lab_addCash1.string = `₹${price}`;
                     this.lab_bonus1.string = `₹${bonus}`;
                     this.lab_totalGet1.string = `₹${total}`;
@@ -57,7 +60,7 @@ cc.Class({
                 }
                 else if (i == 1) {
                     this.secondCommodityId = data.id;
-                    this.lab_cash2.string = `₹${price}`;
+                    this.lab_cash2.string = `₹${amount}`;
                     this.lab_addCash2.string = `₹${price}`;
                     this.lab_bonus2.string = `₹${bonus}`;
                     this.lab_totalGet2.string = `₹${total}`;

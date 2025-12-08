@@ -14,7 +14,7 @@ cc.Class({
     btnClick: function(btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         CommonFun.getInstance().showRewardsTips([{ id: 10, amount: GlobalCfg.USER_DATAS.reliefGiftDiamond / 100 }]);
-        GlobalCfg.USER_DATAS.userDiamond += GlobalCfg.USER_DATAS.reliefGiftDiamond;
+        // GlobalCfg.USER_DATAS.userDiamond += GlobalCfg.USER_DATAS.reliefGiftDiamond;
         GlobalCfg.USER_DATAS.reliefGiftDiamond = 0;
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.GET_RELIEF_REWARD, msgData: {}});
         this.node.destroy();

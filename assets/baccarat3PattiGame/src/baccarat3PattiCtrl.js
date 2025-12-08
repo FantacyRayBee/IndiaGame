@@ -21,6 +21,8 @@ cc.Class({
         atlas_icon: cc.SpriteAtlas,
         // btn_openMenu: cc.Button,
         // btn_tableInfo: cc.Button,
+
+        btnFreeGame: cc.Node,
     },
 
     ctor: function () {
@@ -54,6 +56,7 @@ cc.Class({
         this.isGameEndStatus = false;
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
         this.showBetSpineTime = 0;
+        this.isHaveBet = false;    // 是否有下注
     },
 
 
@@ -81,6 +84,9 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg,this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
     },
 
     onDestroy: function () {
@@ -157,6 +163,10 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BACCARAT, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.buttonClickCtrl.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
         }
     },
 
@@ -339,6 +349,10 @@ cc.Class({
         if(!notify) {
             LoggerUtil.getInstance().error("服务器数据错误: gameendnotify")
         }
+        if (this.isHaveBet) {
+            CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+        }
+        this.isHaveBet = false;
 
         let cards = notify.cards;   
         let winSide = notify.winSide
@@ -347,7 +361,7 @@ cc.Class({
         let score = notify.score;
         let calcResult = notify.calcResult;
         this.winBlueRed = winBlueRed;
-
+        
         let myWin = {
             pos:7,
             after:after,

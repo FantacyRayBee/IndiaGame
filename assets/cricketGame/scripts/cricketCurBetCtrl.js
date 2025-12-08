@@ -40,22 +40,22 @@ cc.Class({
     },
 
     start() {
-
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
     },
 
-    choiceBetButton: function (button, selectLight){
+    choiceBetButton: function (button, selectLight) {
         let scale = 1.1;
         let btnName = button.node.name;
         selectLight.setScale(scale);
         for (let i = 0; i < this.btns.length; i++) {
             let btn = this.btns[i];
-            if(btn.node.name == btnName){
+            if (btn.node.name == btnName) {
                 btn.node.setScale(scale);
-            }else{
+            } else {
                 btn.node.setScale(1);
             }
             let widget = btn.node.getComponent(cc.Widget);
-            if(widget){
+            if (widget) {
                 widget.updateAlignment();
             }
         }
@@ -75,18 +75,26 @@ cc.Class({
         }
     },
 
+    refreshBetCoinBtn: function (isShowCoin) {
+        for (let i = 1; i < this.btns.length; i++) {
+            let btn = this.btns[i];
+            btn.interactable = isShowCoin;
+            btn.node.opacity = isShowCoin ? 255 : 150; // 根据 isShowCoin 设置透明度
+        }
+    },
+
     showBtnBetSpine: function () {
         let animationName = 'animation';
         let len = this.btns.length, i = 0;
-        this.scheduleBetSpineTimeCallback = ()=>{
+        this.scheduleBetSpineTimeCallback = () => {
             let spine = this.btns[i].node.getChildByName('spine').getComponent(sp.Skeleton);
             spine.setAnimation(0, animationName, false);
             i++;
         }
-        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len-1);
+        this.schedule(this.scheduleBetSpineTimeCallback, 0.8, len - 1);
     },
 
-    update (dt) {
+    update(dt) {
         this.showBetSpineTime += dt;
         if (this.showBetSpineTime > this.showBetSpineTimeInterval) {
             this.showBetSpineTime = 0;

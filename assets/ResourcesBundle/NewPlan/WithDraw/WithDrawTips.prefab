@@ -573,7 +573,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 32.76
+      "height": 44.1
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -627,7 +627,7 @@
     "_string": "Your withdrawal amount is insufficient!",
     "_N$string": "Your withdrawal amount is insufficient!",
     "_fontSize": 26,
-    "_lineHeight": 26,
+    "_lineHeight": 35,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "74b6746e-9573-40e3-b82d-3ec3123b6eed"

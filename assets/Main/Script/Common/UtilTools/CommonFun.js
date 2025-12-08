@@ -581,9 +581,9 @@ let CommonFun = cc.Class({
      * @returns 
      */
     isNeedUpdata: function(subpackgeName) {
-        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-        //     return false;
-        // };
+        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+            return false;
+        };
         
         let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
         let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
@@ -1014,16 +1014,23 @@ let CommonFun = cc.Class({
             return false;
         }
     },
-
     /**
      * 显示提示框
      * @param {string} content 内容
      * @param {string} direction 方向
      */
     showTips: function(content, direction = "horizontal") {
+        // 检查是否已经存在提示框
+        let parentNode = this.getLayerNode(GlobalCfg.PREFAB_PARENT.TIPS);
+        if (parentNode && parentNode.getChildByName("TipsNode")) {
+            console.log("Tips already exists, skipping...");
+            return; // 如果存在，则不重复加载
+        }
+
         let tipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TIPS);
         tipsPrefabPromise.then((prefab) => {
             let tipsNode = cc.instantiate(prefab);
+            tipsNode.name = "TipsNode"; // 设置唯一名称，便于检查
             tipsNode.angle = direction == "horizontal" ? 0 : -90;
             let tipsCtrl = tipsNode.getComponent('TipsCtrl');
             tipsCtrl.setContent(content);
@@ -1263,6 +1270,29 @@ let CommonFun = cc.Class({
                 });
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    refreshFreeGameBetCount: function(node) {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true){//未曾充值
+            GlobalCfg.USER_DATAS.freegameBetCount -= 1;
+            GlobalCfg.USER_DATAS.freegameBetCount = Math.max(GlobalCfg.USER_DATAS.freegameBetCount, 0);
+            if (node){
+                let lab = node.getChildByName("lab").getComponent(cc.Label);
+                lab.string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+            }
+        }
+    },
+
+    checkFreeGameBetCountEmpty: function() {
+        LoggerUtil.getInstance().log("检查免费游戏次数1===> ", GlobalCfg.USER_DATAS.isNotCharge);
+        LoggerUtil.getInstance().log("检查免费游戏次数2===> ", GlobalCfg.USER_DATAS.freegameBetCount);
+        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.freegameBetCount == 0){   //未曾充值且免费次数为0
+            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return true;
+        };
+        return false;
     },
 
     /**
@@ -1904,7 +1934,6 @@ let CommonFun = cc.Class({
             this.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW); 
         });     
     },
-
     
     /**
      * 展示提现界面回调的提示框
@@ -1912,12 +1941,12 @@ let CommonFun = cc.Class({
      * @param {string} content 
      * @param {Function} callFun 
      */
-    showWithDrawTips: function(btnTipsType, content, callFun) {
+    showWithDrawTips: function(btnTipsType, content, callFun, fontSize = 26, lineHeight = 26) {
         let withdrawTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWTIPS);
         withdrawTipsPrefabPromise.then((prefab) => {
             let withDrawTipsNode = cc.instantiate(prefab);
             let withDrawTipsCtrl = withDrawTipsNode.getComponent("WithDrawTipsCtrl");
-            withDrawTipsCtrl.setWithDrawTipsData(btnTipsType, content, callFun);
+            withDrawTipsCtrl.setWithDrawTipsData(btnTipsType, content, callFun, fontSize, lineHeight);
             this.addToPointParent(withDrawTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWTIPS); 
         });     
     },
@@ -1944,6 +1973,16 @@ let CommonFun = cc.Class({
             let transactionRecordTipsNode = cc.instantiate(prefab);
             this.addToPointParent(transactionRecordTipsNode, GlobalCfg.PREFAB_PARENT.TRANSACTIONRECORDTIPS);
         });
+    },
+
+    refreshWalletData:function(label){
+        let url =  GlobalCfg.HTTP_SERVER + "/v1/currency";  
+        CommonFun.getInstance().httpGet(url, (msg) => {  
+            if (msg.result == 0) { 
+                LoggerUtil.getInstance().log("refreshWalletData msg.data:", msg.data);
+                label.string = CommonFun.getInstance().numberToShow(msg.data.wallet.voucher/100);
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
     /**

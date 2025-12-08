@@ -61,6 +61,20 @@ cc.Class({
         self.node_betCoinBtn.getChildByName('btn_1000').getChildByName('lab').getComponent(cc.Label).string = self.betCoinList[3];
         self.node_betCoinBtn.getChildByName('btn_2000').getChildByName('lab').getComponent(cc.Label).string = self.betCoinList[4];
 
+        this.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+    },
+
+    refreshBetCoinBtn: function (isEnable) {
+        let self = GlobalCfg.ACT_SCENE_CTRL;
+        self.node_betCoinBtn.getChildByName('btn_50').getComponent(cc.Button).interactable = isEnable;
+        self.node_betCoinBtn.getChildByName('btn_100').getComponent(cc.Button).interactable = isEnable;
+        self.node_betCoinBtn.getChildByName('btn_1000').getComponent(cc.Button).interactable = isEnable;
+        self.node_betCoinBtn.getChildByName('btn_2000').getComponent(cc.Button).interactable = isEnable;
+
+        self.node_betCoinBtn.getChildByName('btn_50').opacity =  isEnable ? 255 : 150;
+        self.node_betCoinBtn.getChildByName('btn_100').opacity =  isEnable ? 255 : 150;
+        self.node_betCoinBtn.getChildByName('btn_1000').opacity =  isEnable ? 255 : 150;
+        self.node_betCoinBtn.getChildByName('btn_2000').opacity =  isEnable ? 255 : 150;
     },
 
     btnClick: function (button) {

@@ -80,6 +80,9 @@ cc.Class({
     onEventMsg(webData, target) {
         let self = target;
         var msgId = webData.msgCode;
+        if (msgId == "close_Only_Pay") {
+            self.Init()
+        }
     },
 
     Init() {
@@ -87,11 +90,13 @@ cc.Class({
         this.btn_bet.node.active = true;
         this.btn_bet_cancel.node.active = false;
         this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.greenSpriteFrame;
+        // this.lab_bet_tip.string = GlobalCfg.USER_DATAS.isNotCharge ? `Free Games(${GlobalCfg.USER_DATAS.freegameBetCount})` : "Bet";
         this.lab_bet_tip.string = "Bet";
         // this.lab_curBet1.string = this.curBet + ".00";
         this.edit_Bet.string = CommonFun.getInstance().fixed(this.curBet / 100);
         this.lab_curBet2.string = CommonFun.getInstance().fixed(this.curBet / 100) + " INR";
-        this.setButtonEnabled(true);
+        this.setButtonEnabled(!GlobalCfg.USER_DATAS.isNotCharge);
+        this.toggle_auto.enabled = !GlobalCfg.USER_DATAS.isNotCharge;
     },
 
     StartBet() {
@@ -119,7 +124,7 @@ cc.Class({
             if (this.autoCount <= 0) {
                 this.autoCount = 0;
                 this.toggle_isAuto.enabled = true;
-                this.setButtonEnabled(true);
+                this.setButtonEnabled(!GlobalCfg.USER_DATAS.isNotCharge);
             }
             return;
         }
@@ -297,8 +302,11 @@ cc.Class({
                 }, false, null, null, null, null, 0.85);
                 return;
             };
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+                return
+            }
             let num = this.curBet;
-            if (num > GlobalCfg.USER_DATAS.userDiamond) {
+            if (num > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
                 CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false, null, null, null, null, 0.85);
@@ -349,12 +357,15 @@ cc.Class({
 
     sendBetReq: function () {
         let amount = this.curBet;
-        if (amount > GlobalCfg.USER_DATAS.userDiamond) {
+        if (amount > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             CommonFun.getInstance().showMsgBox('Your cash is insufficient, Please recharge in time!', "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false, null, null, null, null, 0.85);
             this.dealStopAutoEvent();
             return;
+        }
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+            return
         }
         let mult = this.toggle_isAuto.isChecked ? Math.round(Number(this.edit_Mult.string) * 1000): 0;
         GameServerManager.send("gameservice.bet", "BetReq", {
@@ -370,7 +381,7 @@ cc.Class({
         this.btn_bet.node.active = true;
         this.btn_bet_cancel.node.active = false;
         this.node_waitnextround.active = false;
-        this.setButtonEnabled(true);
+        this.setButtonEnabled(!GlobalCfg.USER_DATAS.isNotCharge);
         if (this.autoCount > 0) { //如果为自动下注，则取消自动下注
             this.dealStopAutoEvent();
         }
@@ -390,7 +401,7 @@ cc.Class({
     dealStopAutoEvent: function () {
         this.autoCount = 0;
         this.toggle_isAuto.enabled = true;
-        this.setButtonEnabled(true);
+        this.setButtonEnabled(!GlobalCfg.USER_DATAS.isNotCharge);
         this.Init();
     },
 

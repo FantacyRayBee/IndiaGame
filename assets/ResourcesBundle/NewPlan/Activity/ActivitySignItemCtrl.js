@@ -6,10 +6,14 @@ cc.Class({
         lab_day: cc.Label,
         node_signed: cc.Node,
         node_unsigned: cc.Node,
+
+        img_coin: cc.Sprite,
+        sp_free: cc.SpriteFrame,
+        sp_gold: cc.SpriteFrame,
     },
 
     setSignItemData: function(gift, today, done, day) {
-        this.lab_reward.string = `₹${gift/100}`;
+        this.lab_reward.string = `${gift}`;
         this.lab_day.string = `Day${day}`;
 
         if (today > day) {
@@ -28,6 +32,11 @@ cc.Class({
             this.node_signed.active = false;
             this.node_unsigned.active = false;
         };
+        if (GlobalCfg.USER_DATAS.isNotCharge == true) {
+            this.img_coin.spriteFrame = this.sp_free;
+        } else {
+            this.img_coin.spriteFrame = this.sp_gold;
+        }
     },
 
     setSignItemSigned: function() {

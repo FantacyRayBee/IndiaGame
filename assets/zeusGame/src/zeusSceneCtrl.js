@@ -373,6 +373,10 @@ cc.Class({
          */
         let bet = notify.bet;
 
+        if(startFreeSpin == 0){
+            CommonFun.getInstance().refreshFreeGameBetCount();
+        }
+
         if (!isBuy) {
             if (!generalSpin) {
                 LoggerUtil.getInstance().warn("zeus游戏中, 服务器下发的gameservice.call结构体中spin字段异常");
@@ -550,14 +554,17 @@ cc.Class({
     },
 
     dealSendSpinReqEvent: function(bet, isDoubleMulti) {
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minizeus"]== true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-            }, false);
-            return;
-        };
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+            return
+        }
+        // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minizeus"]== true){   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         if (GlobalCfg.USER_DATAS.openModules.includes(4)) {
+        //             CommonFun.getInstance().showSmallAddCash()
+        //         }
+        //     }, false);
+        //     return;
+        // };
         
         if (bet <= 0) {
             LoggerUtil.getInstance().warn(`zeus游戏中, 自定义ZEUS_SEND_SPIN_REQ消息的数据异常`, bet)
@@ -565,7 +572,7 @@ cc.Class({
         };
 
         let coin = this.myCoinCtrl.getMyCoin();
-        if (coin < bet) {
+        if (coin < bet && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             this.bottomAreaCtrl.setBtnSpinInteractableStatus(true);  
             this.leftAreaCtrl.setBtnBuyFreeInteractableStatus(true); 
             this.leftAreaCtrl.setTogDoubleMultiInteractableStatus(true);

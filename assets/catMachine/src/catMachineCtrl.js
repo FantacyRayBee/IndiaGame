@@ -70,6 +70,11 @@ cc.Class({
         node_task: cc.Node,
         btn_task_collect: cc.Button,
         spriteAtlas_icon: cc.SpriteAtlas,
+
+        btnFreeGame: cc.Button,
+        sp_coin: cc.Sprite,
+        bonus_sp: cc.SpriteFrame,
+        normal_sp: cc.SpriteFrame,
     },
 
     ctor: function () {
@@ -108,6 +113,14 @@ cc.Class({
         this.node_catSkelContentArr = []; // 每个水果图片的节点
 
         this._popupStates = new Map(); // key: pop.uuid -> { token, skel }
+    },
+
+    setCoinSpriteFrame: function() {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true) {
+            this.sp_coin.spriteFrame = this.bonus_sp;
+        } else {
+            this.sp_coin.spriteFrame = this.normal_sp;
+        }
     },
 
     loadAudioClip: function (audioClipUrl = "", func = null, target = null) {
@@ -171,6 +184,7 @@ cc.Class({
         this.btn_jp_major.node.on('click', this.debounce(this.jpClickCall, 1), this);
         this.btn_jp_grand.node.on('click', this.debounce(this.jpClickCall, 1), this);
         this.btn_rule.node.on('click', this.debounce(this.showRule, 1), this);
+        this.btnFreeGame.node.on('click', this.debounce(this.componentClickCall, 1), this);
 
 
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 0), this);
@@ -208,6 +222,10 @@ cc.Class({
         this._initSpinHoldonToggle();
         this.startSpinHoldonToggle(5); // 5 秒
         this._initSpinLongPress();
+
+        this.btnFreeGame.node.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.node.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        this.setCoinSpriteFrame();
     },
 
     cashSwitch: function () {
@@ -516,6 +534,10 @@ cc.Class({
         else if (msgId == 'gameservice.broadcastseatwininfo') { //广播桌位赢钱信息
             self.dealUpSeatWin(notify);
         }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.node.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.setCoinSpriteFrame();
+        }
     },
 
     checkWebMsgError: function (webData, target) {
@@ -604,6 +626,7 @@ cc.Class({
         }
         else {
             this.btn_spin.interactable = true;
+            this.btnFreeGame.interactable = true;
             this.btn_spin.enableAutoGrayEffect = false;
         }
     },
@@ -730,6 +753,10 @@ cc.Class({
 
     setUserDiamond: function (diamond) {
         GlobalCfg.USER_DATAS.userDiamond = diamond;
+        if (GlobalCfg.USER_DATAS.isNotCharge){
+            CommonFun.getInstance().refreshWalletData(this.lab_jb);
+            return
+        }
         let num = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
         this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
     },
@@ -780,19 +807,21 @@ cc.Class({
         this.gameResult.freePool = notify.freePool;
         this.gameResult.jpWin = notify.jpWin;
         this.setMyTask(notify.playerTask)
-
         this.hideSlotState();
+
 
         //设置转动的音效
         this.playGameSound('zhuang');
 
         //先扣除下注的金额
-        if (this.gameResult.mianfeinum == 0) {
+        if (this.gameResult.mianfeinum == 0 && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             let diamond = GlobalCfg.USER_DATAS.userDiamond - parseFloat(this.lab_betAmount.string) * 100;
             let num = FloatCalculation.accDiv(diamond, 100);
             this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
         };
-
+        if(notify.mianfeinum == 0){
+            CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame.node);
+        }
         if (this.gameResult.rewardtype == 1) {
             this.lab_totalWin.string = 0;
             this.freeTotalWinNum = 0;
@@ -846,7 +875,7 @@ cc.Class({
         else if (componentName == "btn_auto") {
             this.dealAutoBtnEvent();
         }
-        else if (componentName == "btn_spin") {
+        else if (componentName == "btn_spin" || componentName == "btn_freegame") {
             this.sendCallReq();
         }
         else if (componentName == "btn_stop") {
@@ -929,6 +958,7 @@ cc.Class({
 
         this.btn_spin.interactable = false;
         this.btn_spin.enableAutoGrayEffect = true;
+        this.btnFreeGame.interactable = false;
 
         this.btn_auto.interactable = false;
         this.btn_auto.enableAutoGrayEffect = true;
@@ -1223,6 +1253,8 @@ cc.Class({
     recoverySpinBtnEvent: function () {
         this.btn_spin.interactable = true;
         this.btn_spin.enableAutoGrayEffect = false;
+        this.btnFreeGame.interactable = true;
+
         this.btn_auto.interactable = true;
         this.btn_auto.enableAutoGrayEffect = false;
         const first = parseFloat(this.betAmountArr[0]);
@@ -1670,21 +1702,25 @@ cc.Class({
         if (this.curSendSpin == true) { //避免重复发送请求
             return;
         }
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicat"] == true) {   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                if (this.paymentSwitch) {
-                    CommonFun.getInstance().showSmallAddCash()
-                }
-            }, false);
-            return;
-        };
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+            this.setBetCiShuAutoTips();
+            return
+        }
+        // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicat"] == true) {   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+        //         if (this.paymentSwitch) {
+        //             CommonFun.getInstance().showSmallAddCash()
+        //         }
+        //     }, false);
+        //     return;
+        // };
 
         let betAmount = parseFloat(this.lab_betAmount.string) * 100;
 
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount || 0;
 
-        if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
+        if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0 && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
             this.recoverySpinBtnEvent();
             if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城
                 CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
@@ -2075,5 +2111,16 @@ cc.Class({
             decimalPlaces = 0;
         };
         return decimalPlaces;
+    },
+
+    update: function (dt) {
+        if (GlobalCfg.USER_DATAS.isNotCharge == false && this.betAmountArrIndex != this.betAmountArr.length - 1) {
+            this.btn_betJia.interactable = true;
+            this.btn_betJia.enableAutoGrayEffect = false;
+        }
+        else{
+            this.btn_betJia.interactable = false;
+            this.btn_betJia.enableAutoGrayEffect = true;
+        }
     },
 });

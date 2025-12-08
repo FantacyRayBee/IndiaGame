@@ -64,6 +64,7 @@ cc.Class({
             type: cc.Boolean,
             visible: false
         },
+        btnFreeGame: cc.Node,
     },
 
     ctor() {
@@ -76,9 +77,10 @@ cc.Class({
         this.preRoundBetData = [];         // 上一局下注数据
         this.curRoundBetData = [];          // 当局下注数据
         this.gameState = null;          // 游戏状态, 0 下注中，1转动+结算
+        this.isHaveBet = false;    // 是否有下注
     },
 
-    onLoad: function() {
+    onLoad: function () {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_ZOO_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this;
@@ -179,6 +181,9 @@ cc.Class({
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onCustomEventMsg, this);
+
+        this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
     },
 
     start() {
@@ -224,13 +229,29 @@ cc.Class({
     },
 
     btnBetClick(ani) {
-        if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minizoo"]== true) { //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
-                CommonFun.getInstance().showSmallAddCash()
-            }, false);
-            return
-        } 
-        this.serverMsgManager.sendBetMsg([{ ani: ani, amount: this.zooCurBetCtrl.curBetNum }]);
+        if (this.gameState == 0) {
+            if (this.isHaveBet) {
+                CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+                return;
+            }
+            if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
+                return
+            }
+            // if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minizoo"]== true) { //未曾充值
+            //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            //         CommonFun.getInstance().showSmallAddCash()
+            //     }, false);
+            //     return
+            // } 
+            if (GlobalCfg.USER_DATAS.isNotCharge) {
+                this.isHaveBet = true;
+                CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+            }
+            this.serverMsgManager.sendBetMsg([{ ani: ani, amount: this.zooCurBetCtrl.curBetNum }]);
+        } else {
+            // 1 转动、结算
+            CommonFun.getInstance().showTips('non betting stage');
+        }
     },
 
     btnClick(button) {
@@ -309,11 +330,11 @@ cc.Class({
                         }
                     }
                 }
-                if(isShowAction == true){
+                if (isShowAction == true) {
                     let pos = self.btnAllWj.node.getPosition();
                     cc.tween(self.btnAllWj.node)
                         .to(0.1, { position: cc.v2(pos.x, 20) })
-                        .to(0.1, { position: cc.v2(pos.x, 0)  })
+                        .to(0.1, { position: cc.v2(pos.x, 0) })
                         .start();
                 }
                 self.zooAudioManager.playGameSound('otherCoin');
@@ -325,7 +346,7 @@ cc.Class({
             LoggerUtil.getInstance().log("开始下注阶段通知>>>>", notify);
             self.zooAudioManager.playGameMusic('zooBgMusic');
             self.gameState = 0;
-            if(notify){
+            if (notify) {
                 let diamond = notify.diamond;
                 GlobalCfg.USER_DATAS.userDiamond = diamond;
             }
@@ -377,7 +398,7 @@ cc.Class({
             //vip入座广播
             LoggerUtil.getInstance().log("vip入座广播>>>>", notify);
         }
-        else if (msgId == "gameservice.shortmessagenotify") {  
+        else if (msgId == "gameservice.shortmessagenotify") {
             self.shortmessagenotify(notify);             // 发送表情
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
@@ -388,6 +409,10 @@ cc.Class({
         //     self.zooRouletteManager.unscheduleAll();
         //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZOO, SceneManager.getInstance().sceneType.LOBBY);
         // }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.curBetCtrl.refreshBetCoinBtn(!GlobalCfg.USER_DATAS.isNotCharge);
+        }
     },
 
     onCustomEventMsg(webData, target) {
@@ -432,8 +457,7 @@ cc.Class({
                 .start();
 
             self.dealGameFinishData(self.gameEndServerMsg);
-
-
+            this.isHaveBet = false;
         }
         else if (msgId == "GAME_ZOO_GIFT_SEND_COIN_UPDATE") {
             // 自己发送表情，更新金币值
@@ -489,8 +513,8 @@ cc.Class({
         };
     },
 
-    
-    shortmessagenotify: function(notify) {
+
+    shortmessagenotify: function (notify) {
         if (!notify) {
             return;
         };
@@ -503,14 +527,14 @@ cc.Class({
         let name = notify.name;                     // 表情名/短语内容
 
         if (msgType != 2) {    // 1表情
-            
-        } 
+
+        }
         else {
             let targetNodeArr = [];
             let senderCtrl = this.zooSeatManager.getPlayerCtrlBySeatId(sender);
             if (!senderCtrl || !senderCtrl.node) {
                 return;
-            }else{
+            } else {
                 senderCtrl.setUserCoinLabel(senderAfter);
             }
 
@@ -688,10 +712,10 @@ cc.Class({
         this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 80, tx.getComponent(cc.Sprite));
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
         if (isCanShowVIPFont) {
-            this.selfPlayerNode.getChildByName('userName').color = new cc.Color(250, 225, 76); 
+            this.selfPlayerNode.getChildByName('userName').color = new cc.Color(250, 225, 76);
         }
         else {
-            this.selfPlayerNode.getChildByName('userName').color = new cc.Color(255, 255, 255); 
+            this.selfPlayerNode.getChildByName('userName').color = new cc.Color(255, 255, 255);
         };
         if (pos > -1) {
             // 自己在座位上
@@ -783,7 +807,7 @@ cc.Class({
         }
     },
 
-    selfBetCoinAction(){
+    selfBetCoinAction() {
         let txNode = this.selfPlayerNode.getChildByName('txk');
         cc.tween(txNode)
             .to(0.1, { position: cc.v2(0, 20) })
@@ -927,7 +951,7 @@ cc.Class({
             LoggerUtil.getInstance().warn('动画播放一次循环结束后的事件监听');
             this.endAnimationNode.active = false;
             this.scheduleUpdateEndCoinCallback = () => {
-                if(!notify){
+                if (!notify) {
                     return
                 }
                 let selfInfo = notify.self;
@@ -953,7 +977,7 @@ cc.Class({
         let take = Player.take;                 // 输赢积分
         GlobalCfg.USER_DATAS.userDiamond = after;
         this.updateSelfCoin();
-        this.curRoundAddCoinFinish();    
+        this.curRoundAddCoinFinish();
     },
 
     curRoundAddCoinFinish() {
@@ -1226,7 +1250,7 @@ cc.Class({
         feijbNode.setPosition(nodeFromPos);
         this.coinParentNode.addChild(feijbNode);
         cc.tween(feijbNode)
-            .delay(Number((Math.random()/3).toFixed(2))) 
+            .delay(Number((Math.random() / 3).toFixed(2)))
             .to(0.5, { position: nodeToPos })
             .to(0.2, { opacity: 0 })
             .call(() => {

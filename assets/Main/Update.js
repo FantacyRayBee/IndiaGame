@@ -70,6 +70,7 @@ cc.Class({
 
         this.loadDiffFilesStartTime = 0;
         this.loadBundlesStartTime = 0;
+        this.guestLoginClickCount = 0;
         this.isHaveUpdateForResources = false;
     },
 
@@ -334,18 +335,11 @@ cc.Class({
             }
         }
         else if (btnName === "btn_testLogin") {
-            let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
-            if (packageChannel && packageChannel.indexOf("_") != -1) {
-                let packageChannelArr = packageChannel.split("_"); 
-                let server = packageChannelArr[0];
-                if (server == "0") { //只有测试服才能打开测试按钮
-                    if (this.editBox_account.string == "") {
-                        return;
-                    }
-                    GlobalCfg.G_COMPONENTS.Audio.playButton();
-                    CommonFun.getInstance().showProgress();
-                    this.dealTestLoginEvent();
-                }
+            this.guestLoginClickCount++; // 每次点击计数器加 1
+            LoggerUtil.getInstance().log(`guestLoginClickCount: ${this.guestLoginClickCount}`);
+            if (this.guestLoginClickCount >= 5) {
+                this.node_btn_guestLogin.active = true; // 显示 node_btn_guestLogin
+                this.guestLoginClickCount = 0; // 重置计数器
             }
         }
     },
@@ -627,7 +621,16 @@ cc.Class({
         }
         else {
             this.changeSceneToLobby();
+
         };
+        let packageChannel = cc.sys.localStorage.getItem("PackageChannel");
+        this.server = "0"; //默认测试服
+        if (packageChannel && packageChannel.indexOf("_") != -1) {
+            let packageChannelArr = packageChannel.split("_");
+            this.server = packageChannelArr[0];
+        }
+        this.node_btn_guestLogin.active = this.server == "0"
+        this.node_btn_accountLogin.active = this.server != "0"
     },
 
     onDestroy: function() {
@@ -954,7 +957,7 @@ cc.Class({
         this.editBox_password.node.active = true;
         this.node_btn_passwordDelete.active = true;
         this.node_btn_reqVerify.active = true;
-        this.node_btn_accountLogin.active = true;
+        this.node_btn_accountLogin.active = this.server != "0";
         this.node_btn_quickLogin.active = false;
 
         this.editBox_account.string = "";

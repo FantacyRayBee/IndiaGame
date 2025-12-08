@@ -240,8 +240,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1511,
-      "height": 750
+      "width": 1426,
+      "height": 745
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -562,8 +562,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 64,
-      "height": 54
+      "width": 59,
+      "height": 59
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -574,15 +574,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        8,
+        0,
         0,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.8,
+        0.8,
         1
       ]
     },
@@ -1307,6 +1307,9 @@
     },
     "sprite_silver_coin": {
       "__uuid__": "46842171-7ebb-4ded-a8d1-a24808b4559b"
+    },
+    "sprite_free": {
+      "__uuid__": "f03e7417-2bb6-43fa-a439-c0bc2da9c0f6"
     },
     "btn_okay": {
       "__id__": 31

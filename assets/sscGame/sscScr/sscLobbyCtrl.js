@@ -11,7 +11,10 @@ cc.Class({
         pab_historyRecords : cc.Prefab,
         Atlas_lobby: cc.SpriteAtlas,
         spite_cradBei : cc.SpriteFrame,
-    
+        
+        btnFreeGame: cc.Node,
+        bonus_coin: cc.Node,
+        btn_max: cc.Button,
     },
 
     ctor: function () {
@@ -42,6 +45,7 @@ cc.Class({
         "Your cash is insufficient, Please recharge in time!"
         ];
         this.isGameEndStatus = false;
+        this.isHaveBet = false;    // 是否有下注
     },
 
     onLoad: function() {
@@ -64,6 +68,15 @@ cc.Class({
             token: GlobalCfg.USER_DATAS.token,
             fromid: GlobalCfg.PRODUCT_ID //平台ID
         });
+        this.refreshBetCoinBtn(GlobalCfg.USER_DATAS.isNotCharge);
+    },
+
+    refreshBetCoinBtn(bool){
+        this.btnFreeGame.active = bool;
+        this.bonus_coin.active = bool;
+        this.btnFreeGame.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
+        this.btn_jia.active = !bool;
+        this.btn_max.interactable = !bool;
     },
 
     onDestroy: function () {
@@ -125,6 +138,7 @@ cc.Class({
                 ctrl.setRecordDate(notify)
             }
         } else if (msgId == "gameservice.querygameendinfo") {
+            this.isHaveBet = false;
             if(self.remaining >=5 ) {
                 self.gameendnotify(notify,'querygame');
             } else if (self.remaining >= 1) {
@@ -148,13 +162,22 @@ cc.Class({
             GlobalCfg.USER_DATAS.userDiamond = notify.deposit + notify.winnings;
             GlobalCfg.USER_DATAS.userDiamond = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.userDiamond, 0);
             let coin = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
-            self.lab_coin.string = CommonFun.getInstance().numberToShow(coin);
+                if (GlobalCfg.USER_DATAS.isNotCharge){
+                    CommonFun.getInstance().refreshWalletData(this.lab_coin);
+                }
+                else{
+                    self.lab_coin.string = CommonFun.getInstance().numberToShow(coin);
+                }
         } 
         // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
         //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
         // }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
+        }
+        else if (msgId == "close_Only_Pay") {
+            this.btnFreeGame.active = GlobalCfg.USER_DATAS.isNotCharge;
+            this.refreshBetCoinBtn(GlobalCfg.USER_DATAS.isNotCharge);
         }
     },
 
@@ -212,7 +235,12 @@ cc.Class({
         if(!notify.Result){
             this.myId = notify.playerId;
             let diamond = FloatCalculation.accDiv(notify.diamond,100);
-            this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
+            if (GlobalCfg.USER_DATAS.isNotCharge){
+                CommonFun.getInstance().refreshWalletData(this.lab_coin);
+            }
+            else{
+                this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
+            }
             GlobalCfg.USER_DATAS.userDiamond = notify.diamond;
         } else {
             CommonFun.getInstance().showMsgBox("Connection error " + "\n" + "403", "YES", () => {
@@ -259,7 +287,12 @@ cc.Class({
 
         if (requester) {
             let diamond = FloatCalculation.accDiv(requester.diamond,100);
-            this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
+            if (GlobalCfg.USER_DATAS.isNotCharge){
+                CommonFun.getInstance().refreshWalletData(this.lab_coin);
+            }
+            else{
+                this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
+            }
             GlobalCfg.USER_DATAS.userDiamond = requester.diamond;
         }
 
@@ -319,7 +352,12 @@ cc.Class({
                 this.betCionAct(6, parseFloat((score/100).toFixed(2)))
                 this.sscAudioCtrl.playGameSound("touCoin")
                 GlobalCfg.USER_DATAS.userDiamond = after;
-                this.lab_coin.string = CommonFun.getInstance().numberToShow(after/100);
+                if (GlobalCfg.USER_DATAS.isNotCharge){
+                    CommonFun.getInstance().refreshWalletData(this.lab_coin);
+                }
+                else {
+                    this.lab_coin.string = CommonFun.getInstance().numberToShow(after/100);
+                }
             }
             this.curRoundAddCoinFinish();
         }, 1.5);
@@ -372,7 +410,9 @@ cc.Class({
             this.hideBet = true;
             this.isRepeatBet = true;
             this.sscAudioCtrl.playGameSound("otherCoin")
-            this.lab_coin.string = CommonFun.getInstance().numberToShow(after);
+            if (!GlobalCfg.USER_DATAS.isNotCharge){
+                this.lab_coin.string = CommonFun.getInstance().numberToShow(after);
+            }
             GlobalCfg.USER_DATAS.userDiamond = notify.after;
             this.betCionAct(side,amount);
             this.recordBetAll[side] = notify.selfAll;
@@ -763,19 +803,26 @@ cc.Class({
     },
 
     callReq:function(CardType,coin){
-        let amount = 0
-        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniluckyloto"]== true) {   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
-                CommonFun.getInstance().showSmallAddCash();
-            }, false);
+        if (this.isHaveBet) {
+            CommonFun.getInstance().showTips("Non-VIP players can only bet once.");
+            return;
+        }
+        if (CommonFun.getInstance().checkFreeGameBetCountEmpty()) {
             return
-        };
+        }
+        let amount = 0
+        // if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniluckyloto"]== true) {   //未曾充值
+        //     CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
+        //         CommonFun.getInstance().showSmallAddCash();
+        //     }, false);
+        //     return
+        // };
         if (coin) {
             amount = coin;
         } 
         else {
             amount = this.betCion * 100;
-            if (amount > GlobalCfg.USER_DATAS.userDiamond) {
+            if (amount > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
                 if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
                 else {
@@ -786,9 +833,14 @@ cc.Class({
                 return
             }
         };
+        if (GlobalCfg.USER_DATAS.isNotCharge) {
+            this.isHaveBet = true;
+            CommonFun.getInstance().refreshFreeGameBetCount(this.btnFreeGame);
+        }
+
         GameServerManager.send("gameservice.call", "CallReq", {
-            amount: amount, 
-            side : CardType,  
+            amount: amount,
+            side: CardType,
         });
     },
 

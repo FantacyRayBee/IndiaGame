@@ -62,7 +62,7 @@ cc.Class({
                 let amount = chip.amount;
                 allBet += amount;
             }
-            if (allBet > GlobalCfg.USER_DATAS.userDiamond) {
+            if (allBet > GlobalCfg.USER_DATAS.userDiamond && GlobalCfg.USER_DATAS.freegameBetCount <= 0) {
                 if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
                     CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
                 else{
