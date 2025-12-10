@@ -581,9 +581,9 @@ let CommonFun = cc.Class({
      * @returns 
      */
     isNeedUpdata: function(subpackgeName) {
-        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-        //     return false;
-        // };
+        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+            return false;
+        };
         
         let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
         let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
