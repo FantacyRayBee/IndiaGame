@@ -237,11 +237,17 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setPosition(-(w / 2) + 130, -15);
         this.node_gameScollview.setContentSize(w - 100 - 30, 520);
     },
 
     onLoad: function() {
+        // this.gameToggle = [];
+        for (let i = 0; i < 6; i++) {
+            let toggleNode = cc.find("Canvas/lobby/toggle/tog" + (i + 1))
+            toggleNode.on('toggle', this.toggleClick, this);
+            // this.gameToggle.push(toggleNode);
+        }
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_LOBBY);
         if (CommonFun.getInstance().isNeewShowSignToast() && GlobalCfg.USER_DATAS.signInfo && GlobalCfg.USER_DATAS.signInfo.done == false && GlobalCfg.USER_DATAS.signInfo.gifts && GlobalCfg.USER_DATAS.signInfo.gifts.length > 0) {
             CommonFun.getInstance().showSignToast();
@@ -255,7 +261,7 @@ cc.Class({
         // if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
         //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
         // };
-    
+        this.NowToggleName = "tog1";
         this.checkShiPei();
         this.setBtnsClick();
         this.setGameOrder();
@@ -263,7 +269,7 @@ cc.Class({
         // this.showBanner();
         this.showOtherModules(); 
         this.showVipLevelIcon();
-        this.showSmallGameBtns();
+        this.showSmallGameBtns(this.NowToggleName);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
@@ -586,10 +592,22 @@ cc.Class({
         this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
     },
 
+    toggleClick: function (toggle) {
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        let toggleName = toggle.node.name;
+        if (this.NowToggleName == toggleName) {
+            return;
+        };
+        this.NowToggleName = toggleName;
+        this.showSmallGameBtns(toggleName);
+    },
+
     /**
      * 处理小游戏按钮逻辑
      */
-    showSmallGameBtns: function() {
+    showSmallGameBtns: function(toggleName) {
+        let gameconfig = GameManager.getInstance().getLobbyGameConfig(toggleName);
+
         this.btn_miniandar.node.active = false;
         this.btn_minibenzbmw.node.active = false;
         this.btn_minijhandimunda.node.active = false;
@@ -617,17 +635,34 @@ cc.Class({
         this.btn_minicricket.node.active = false;
         this.btn_minizeus.node.active = false;
 
-        if (!Array.isArray(GlobalCfg.USER_DATAS.games) || GlobalCfg.USER_DATAS.games.length == 0) {
+        let tmpGames = GlobalCfg.USER_DATAS.games;
+        
+        // let games = gameconfig || GlobalCfg.USER_DATAS.games;
+        if (!Array.isArray(tmpGames) || tmpGames.length == 0) {
             return;
         };
-
+        tmpGames.push({ product: "slots", host: ""}); //测试代码
+        let games = [];
+        for (let i = 0, len = tmpGames.length; i < len; i++) {
+            for (let j = 0, len1 = gameconfig.length; j < len1; j++) {
+                if(gameconfig[j].product) //如果存在product字段，说明是ALL标签 直接使用全局games里的值
+                {
+                    games = GlobalCfg.USER_DATAS.games
+                    break;
+                }
+                if (tmpGames[i].product == gameconfig[j]) {
+                    games.push(tmpGames[i]);
+                }
+            }
+        }
         /**
          * 既要判断对应的小游戏模块是否开启，还要判断对应的小游戏参数是否存在
          */
         let needUpdataArr = [];
-        LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.openModules == ", GlobalCfg.USER_DATAS.openModules);
-        for (let i = 0, len = GlobalCfg.USER_DATAS.games.length; i < len; i++) {
-            let gameData = GlobalCfg.USER_DATAS.games[i];
+        // LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.openModules == ", GlobalCfg.USER_DATAS.openModules);
+        LoggerUtil.getInstance().log("22222 games == ", games);
+        for (let i = 0, len = games.length; i < len; i++) {
+            let gameData = games[i];
             let gameProduct = gameData.product;
             let gameHost = gameData.host;
             LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.gameProduct == ", gameProduct);
@@ -942,14 +977,16 @@ cc.Class({
                         }
                     }
                     break;
+                case "slots":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
+                        this.btn_slots.node.active = true;
+                    };
+                    break;
                 default:
                     break; 
-                    
             }
         };
-        if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
-            this.btn_slots.node.active = true;
-        };
+
         //自动下载小游戏
         // if (needUpdataArr.length > 0) {
         //     let gameSubPackageNames = {
@@ -1195,8 +1232,8 @@ cc.Class({
         /** 
          * 首充
          */
-        if (GlobalCfg.USER_DATAS.openModules.includes(10) && this.isNeedShowPointToastByHours("FirstRecharge", 3/60)) {
-            this.updateToastLocalStorageByHours("FirstRecharge", 1);
+        if (GlobalCfg.USER_DATAS.openModules.includes(10) && this.isNeedShowPointToastByHours("FirstRecharge", 0.01)) {
+            this.updateToastLocalStorageByHours("FirstRecharge", 0.01);
             this.showFirstRechargeToast();
         }
         /**
@@ -1398,13 +1435,18 @@ cc.Class({
         let notify = webData.msgData;
         LoggerUtil.getInstance().log("msgId === " , msgId);
         if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
-            self.setSmallGameLoadProgress(notify);
+            // self.setSmallGameLoadProgress(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
-            self.setSmallGameLoadComplete(notify);
+            // self.setSmallGameLoadComplete(notify);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.showUserInfo();
+            // if (notify.isPaySuccess == true) {
+            //     let coin = GlobalCfg.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
+            //     GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
+            //     CommonFun.getInstance().showRewardsTips([{ id: 10, amount: coin }]);
+            // }
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GET_TGY_REWARD 
             || msgId == GlobalCfg.CLIENT_MSG_ID.GET_CHALLENGES_REWARD) {
@@ -1454,7 +1496,7 @@ cc.Class({
             // self.showUserInfo();
             // self.showBanner();
             self.showOtherModules();
-            self.showSmallGameBtns();
+            self.showSmallGameBtns(this.NowToggleName);
             self.showToastViews();
             self.showTransBounsRedPoint();
             CommonFun.getInstance().hidProgress();
@@ -1745,6 +1787,7 @@ cc.Class({
     },
 
     dealChallengesAct: function(notify) {
+        
         let actName = notify.actName;
         if (actName == "recharge") {
             /**
@@ -2090,11 +2133,11 @@ cc.Class({
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
-            if (this.LoadCompletedCallback == null) {
-                this.LoadCompletedCallback = callFun;
-            }
-            // let isVertical = this.getVerticalBySubpackageName(subpackgeName);
-            // CommonFun.getInstance().showGameLoading(isVertical, callFun);
+            // if (this.LoadCompletedCallback == null) {
+            //     this.LoadCompletedCallback = callFun;
+            // }
+            let isVertical = this.getVerticalBySubpackageName(subpackgeName);
+            CommonFun.getInstance().showGameLoading(isVertical, callFun);
         } 
         else {
             callFun();
@@ -2105,7 +2148,6 @@ cc.Class({
         const verticalGames = {
             "Benz": true,
             "aviator": true,
-            "zeusGame": true
         };
         const isVertical = verticalGames[subpackgeName] || false;
         return isVertical;
@@ -2287,10 +2329,10 @@ cc.Class({
                 break;
         };
 
-        if (this.LoadCompletedCallback) {
-            this.LoadCompletedCallback();
-            this.LoadCompletedCallback = null;
-        }
+        // if (this.LoadCompletedCallback) {
+        //     this.LoadCompletedCallback();
+        //     this.LoadCompletedCallback = null;
+        // }
     },
 
     onDestroy: function() {

@@ -326,6 +326,7 @@ LobbyServerManager.checkDistributed = function(webData) {
             GlobalCfg.USER_DATAS.recharged += changed;
             GlobalCfg.USER_DATAS.lastRecharged = changed;
             if (firstRecharge == true) {
+                // GlobalCfg.USER_DATAS.signInfo = null
                 if (firstRechargeCleanWallet) {
                     // 是否展示首充清金币的动画
                     GlobalCfg.FIRST_RECHARGE_TIPS_SHOW = true;

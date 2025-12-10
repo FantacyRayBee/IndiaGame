@@ -917,7 +917,6 @@ let SceneManager = cc.Class({
                      * 首次赠送钻石
                      */
                     let first_gift_diamond = msgData.first_gift_diamond ? msgData.first_gift_diamond : 0;
-                    LoggerUtil.getInstance().log("caojun first_gift_diamond", first_gift_diamond);
                     /**
                      * 救济赠送钻石
                      */
@@ -992,6 +991,8 @@ let SceneManager = cc.Class({
                     let user_vip = msgData.user_vip ? msgData.user_vip : {};
 
                     let user_level = msgData.user_level ? msgData.user_level : 0;      // 用户特殊身份 默认为0，100 代表不清模式下被首清了
+
+                    let game_like = msgData.game_like ? msgData.game_like : [];  // 用户喜欢的游戏列表
                     /**
                      * Go Betting 活动
                      */
@@ -1055,6 +1056,8 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
                     GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
                     GlobalCfg.USER_DATAS.inducement = inducement;
+                    GlobalCfg.USER_DATAS.game_like = game_like;
+                    
                     LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userVip == ", GlobalCfg.USER_DATAS.userVip);
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');

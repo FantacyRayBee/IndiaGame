@@ -210,6 +210,9 @@ cc.Class({
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.ZEUS, SceneManager.getInstance().sceneType.LOBBY);
         }
+        else if (msgId == "close_Only_Pay") {
+            this.bottomAreaCtrl.refreshFreeGameBet();
+        }
     },
 
     // 监听错误消息
@@ -374,7 +377,7 @@ cc.Class({
         let bet = notify.bet;
 
         if(startFreeSpin == 0){
-            CommonFun.getInstance().refreshFreeGameBetCount();
+            CommonFun.getInstance().refreshFreeGameBetCount(this.bottomAreaCtrl.btn_freegame.node);
         }
 
         if (!isBuy) {
@@ -464,12 +467,12 @@ cc.Class({
         /**
          * 先扣除bet金额
          */
-        let coin = this.myCoinCtrl.getMyCoin();
-        let coinTemp = coin - (isBuy ? bet * 100 : bet);
-        this.myCoinCtrl.setMyCoin(coinTemp);
-
+        if (!GlobalCfg.USER_DATAS.isNotCharge) {
+            let coin = this.myCoinCtrl.getMyCoin();
+            let coinTemp = coin - (isBuy ? bet * 100 : bet);
+            this.myCoinCtrl.setMyCoin(coinTemp);
+        };
         LoggerUtil.getInstance().log("服务器下发的源数据 =======> ", JSON.parse(JSON.stringify(notify)));
-
 
         /**
          * 清空上次SPIN相关内容

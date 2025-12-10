@@ -131,7 +131,12 @@ cc.Class({
             default:
                 break;
         }
-        // 保留 2 位小数
-        lab_coin.string = `${amount.toFixed(2)}`;
+
+        // 判断是否为整数
+        if (Number.isInteger(amount)) {
+            lab_coin.string = `${amount}`; // 整数不显示小数部分
+        } else {
+            lab_coin.string = `${amount.toFixed(2)}`; // 小数保留 2 位
+        }
     },
 });

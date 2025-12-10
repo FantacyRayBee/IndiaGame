@@ -64,7 +64,7 @@ cc.Class({
                             GlobalCfg.USER_DATAS.freegameBetCount += data.gift;
                         }
                         else{
-                            CommonFun.getInstance().showRewardsTips([{ id: 1, amount: data.gift / 100}]);
+                            CommonFun.getInstance().showRewardsTips([{ id: 10, amount: data.gift / 100}]);
                         }
     
                         if (GlobalCfg.USER_DATAS.signInfo) {
@@ -100,10 +100,10 @@ cc.Class({
 
     getSignList: function() {
         return new Promise((resolve, reject) => {
-            if (GlobalCfg.USER_DATAS.signInfo != null) {
-                resolve(GlobalCfg.USER_DATAS.signInfo);
-                return;
-            };
+            // if (GlobalCfg.USER_DATAS.signInfo != null) {
+            //     resolve(GlobalCfg.USER_DATAS.signInfo);
+            //     return;
+            // };
     
             let url =  GlobalCfg.HTTP_SERVER + "/v1/signlist"; 
             CommonFun.getInstance().httpGet(url, (strInfo) => {  

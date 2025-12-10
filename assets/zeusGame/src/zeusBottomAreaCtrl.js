@@ -11,6 +11,8 @@ cc.Class({
 
         lab_bet: cc.Label,
         lab_allWin: cc.Label,
+
+        btn_freegame: cc.Button,
     },
 
     ctor: function() {
@@ -27,10 +29,14 @@ cc.Class({
         this.btn_add.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 0), this);
         this.btn_maxBet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 0), this);
         this.btn_spin.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_freegame.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
 
         this.tog_auto.node.on("toggle", this.toggleClick, this);
 
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+
+        this.btn_freegame.node.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.btn_freegame.node.getChildByName("lab").getComponent(cc.Label).string = "Free Games\n(" + GlobalCfg.USER_DATAS.freegameBetCount + ")";
     },
 
     onDestroy: function() {
@@ -121,6 +127,10 @@ cc.Class({
                 GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickSpinBtnEffect();
                 this.dealBtnSpinEvent();
                 break;
+            case this.btn_freegame.node.name:
+                GlobalCfg.ACT_SCENE_CTRL.zeusAudiosCtrl.playClickSpinBtnEffect();
+                this.dealBtnSpinEvent();
+                break;
             default:
                 break;
         }
@@ -176,6 +186,8 @@ cc.Class({
             return
         }
         this.setBtnSpinInteractableStatus(false);
+
+
         
         let bet = this.betArr[this.betIndex];
         ClientNotify.send(
@@ -242,6 +254,12 @@ cc.Class({
                 bet: bet
             }
         });
+    },
+
+    refreshFreeGameBet: function() {
+        this.btn_freegame.node.active = GlobalCfg.USER_DATAS.isNotCharge;
+        this.setBtnAddInteractableStatus(!GlobalCfg.USER_DATAS.isNotCharge);
+        this.setBtnMaxBetInteractableStatus(!GlobalCfg.USER_DATAS.isNotCharge);
     },
 
     setBtnReduceInteractableStatus: function(bool) {

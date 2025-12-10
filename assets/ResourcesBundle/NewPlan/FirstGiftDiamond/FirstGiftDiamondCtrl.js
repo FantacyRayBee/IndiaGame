@@ -52,7 +52,7 @@ cc.Class({
 
     btnClick: function (btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
-        CommonFun.getInstance().showRewardsTips([{ id: 12, amount: GlobalCfg.USER_DATAS.firstGiftDiamond / 100 }, { id: 999, amount: 5 }]);
+        CommonFun.getInstance().showRewardsTips([{ id: 10, amount: GlobalCfg.USER_DATAS.firstGiftDiamond / 100 }, { id: 999, amount: 5 }]);
         // GlobalCfg.USER_DATAS.userDiamond += GlobalCfg.USER_DATAS.firstGiftDiamond;
         GlobalCfg.USER_DATAS.firstGiftDiamond = 0;
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.GET_FIRST_GIFT_REWARD, msgData: {} });

@@ -1190,6 +1190,7 @@ let CommonFun = cc.Class({
      * @param {Array[{id,amount}]} coin 奖励金币
      */
     showRewardsTips: function(coin) {
+        LoggerUtil.getInstance().error("显示领取奖励提示界面===> ", coin);
         let count = 0;
         for (let i = 0; i < coin.length; i++) {
             count += coin[i].amount;
@@ -1611,7 +1612,7 @@ let CommonFun = cc.Class({
         gameLoadingPrefabPromise.then((prefab) => {
             let gameLoadingNode = cc.instantiate(prefab);
             let gameLoadingCtrl = gameLoadingNode.getComponent('GameLoadingViewCtrl');
-            if (isVertical){
+            if (isVertical) {
                 this._curOrientation = EnumOrientation.VERTICAL;
                 APPManager.setOrientation('V');
             }
@@ -2198,38 +2199,6 @@ let CommonFun = cc.Class({
                 showTag: curTimeStamp
             };
             cc.sys.localStorage.setItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`, JSON.stringify(toastLocalData));
-        };
-    },
-
-    /**
-     * 根据本地缓存判断是否需要显示弹框
-     * @param {*} toastType 弹框类型
-     * @param {*} hours 间隔几个小时
-     */
-    isNeedShowPointToastByHours: function(toastType, hours) {
-        /**
-         * 当前毫秒级的时间戳
-         */
-        let curTimeStamp = new Date().getTime();
-        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-        if (toastLocalStorage) {
-            try {
-                let toastLocalData = JSON.parse(toastLocalStorage);
-                let showTag = toastLocalData.showTag;
-                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                    return true;
-                }
-                else {
-                    return false;
-                };
-            } 
-            catch (error) {
-                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-                return false;
-            };
-        }
-        else {
-            return true;
         };
     },
 
@@ -2922,6 +2891,7 @@ let CommonFun = cc.Class({
      * @param {*} hours 间隔几个小时
      */
     isNeedShowPointToastByHours: function(toastType, hours) {
+        LoggerUtil.getInstance().log(`isNeedShowPointToastByHours toastType: ${toastType}, hours: ${hours}`);
         /**
          * 当前毫秒级的时间戳
          */

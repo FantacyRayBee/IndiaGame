@@ -16,6 +16,10 @@ cc.Class({
             this.lab_myCoin.string = `$0`;
             return;
         };
+        if (GlobalCfg.USER_DATAS.isNotCharge){
+            CommonFun.getInstance().refreshWalletData(this.lab_myCoin);
+            return
+        }
         this.myCoin = coin;
         GlobalCfg.USER_DATAS.userDiamond = coin;
         this.lab_myCoin.string = `$${this.changeNumToK(coin/100)}`;

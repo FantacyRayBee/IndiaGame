@@ -92,16 +92,10 @@ cc.Class({
 
     initDataLobby: function () {
         if(!cc.isValid(this.node)) { return }
-        this.lab_deposited.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit, 100)) : "₹" +0;
-        if (GlobalCfg.USER_DATAS.recharged > 0) {
-            this.lab_winnings.string = GlobalCfg.USER_DATAS.winnings ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.winnings,100)) : "₹0";
-        }
-        else {
-            this.lab_deposited.string = "₹0";
-            this.lab_winnings.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit, 100)) : "₹0";
-        };
+        this.lab_deposited.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit, 100)) : "₹0";
+        this.lab_winnings.string = GlobalCfg.USER_DATAS.winnings ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.winnings,100)) : "₹0";
         this.lab_totalCash.string = GlobalCfg.USER_DATAS.userDiamond ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.userDiamond,100)) : "₹0";
-        this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;
+        this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹0";
 
         // if( GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.USER_DATAS.isNotCharge) {
         //     this.lab_bnode_bonusonus.string = language==1 ? "Chips" : "बोनास";
