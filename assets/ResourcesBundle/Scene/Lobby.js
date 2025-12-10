@@ -2088,8 +2088,11 @@ cc.Class({
 
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
-            let isVertical = this.getVerticalBySubpackageName(subpackgeName);
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            // if (this.LoadCompletedCallback == null) {
+            //     this.LoadCompletedCallback = callFun;
+            // }
+            let isVertical = this.getVerticalBySubpackageName(subpackgeName);
             CommonFun.getInstance().showGameLoading(isVertical, callFun);
         } 
         else {
