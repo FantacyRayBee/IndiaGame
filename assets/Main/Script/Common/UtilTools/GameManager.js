@@ -1,6 +1,6 @@
 let GameManager = cc.Class({
-    ctor: function() {
-    this.gameConfig = [
+    ctor: function () {
+        this.gameConfig = [
             // PG类型游戏
             { type: "PG", gameID: "8", isVertical: true },
             { type: "PG", gameID: "9", isVertical: true },
@@ -100,9 +100,19 @@ let GameManager = cc.Class({
             { type: "quente", gameID: "1143", isVertical: true },
             { type: "quente", gameID: "1144", isVertical: true },
         ];
+
+        this.mainGameConfig = [
+            { tog: "tog1", type: "all", games: GlobalCfg.USER_DATAS.games || [] },
+            { tog: "tog2", type: "casino", games: ["minilonghu", "minijhandimunda", "miniandar", "minicricket", "miniteenpattibaccarat", "minizoo", "miniseven", "minisaima", "minimultiteenpatti",] },
+            { tog: "tog3", type: "skills", games: ["miniteenpatti", "minirummy"] },
+            { tog: "tog4", type: "Slots", games: ["minizeus", "minicat", "slots", "minishuiguo", "minibull", "miniindia", "minivampire", "minimaya", "minibenzbmw", "miniclown"] },
+            { tog: "tog5", type: "casual", games: ["miniaviator", "minichickenroad", "minirocket"] },
+            { tog: "tog6", type: "like", games: GlobalCfg.USER_DATAS.game_like || [] },
+        ];
     },
 
-    getGameConfig: function() {
+
+    getGameConfig: function () {
         let tmpCfg = {};
         for (let item of this.gameConfig) {
             const type = item.type;
@@ -123,6 +133,18 @@ let GameManager = cc.Class({
         //     tmpCfg['quente'].push(...hotGames);
         // }
         return tmpCfg;
+    },
+
+    getLobbyGameConfig: function (toggleName) {
+        let games = {};
+        for (let item of this.mainGameConfig) {
+            const type = item.tog;
+            if (type == toggleName) {
+                games = item.games;
+                break;
+            }
+        }
+        return games;
     },
 
     statics: {

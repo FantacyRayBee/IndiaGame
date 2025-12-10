@@ -242,6 +242,22 @@ cc.Class({
     },
 
     onLoad: function() {
+        for (let i = 0; i < 6; i++) {
+            let toggleNode = cc.find("Canvas/lobby/toggle/tog" + (i + 1))
+            toggleNode.on('toggle', this.toggleClick, this);
+            // this.gameToggle.push(toggleNode);
+        }
+        /**
+         * 配合服务器处理
+         */
+        // if (GlobalCfg.USER_DATAS.reliefGiftDiamond > 0) {
+        //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.reliefGiftDiamond; 
+        // };
+        // if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
+        //     GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
+        // };
+        this.NowToggleName = "tog1";
+
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_LOBBY);
         if (CommonFun.getInstance().isNeewShowSignToast() && GlobalCfg.USER_DATAS.signInfo && GlobalCfg.USER_DATAS.signInfo.done == false && GlobalCfg.USER_DATAS.signInfo.gifts && GlobalCfg.USER_DATAS.signInfo.gifts.length > 0) {
             CommonFun.getInstance().showSignToast();
