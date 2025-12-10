@@ -81,8 +81,7 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.WITHDRAW_SELECTED_ITEM) {
             let itemData = notify.itemData;
             self.selectedItemData = itemData;
-            self.lab_withdrawAmount.string = `₹${FloatCalculation.accDiv(itemData.price * (1 - itemData.service_rate), 1)}`;
-
+            self.lab_withdrawAmount.string = `₹${FloatCalculation.accDiv(itemData.price * (1 - itemData.service_rate), 1).toFixed(1)}`;
             let languagesType = I18NUtil.getInstance().getLanguageType();
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Withdraw_Withdraw']);
             self.lab_btnWithDrawTips.string = `${descriptionStr} ₹${FloatCalculation.accDiv(itemData.price, 1)}`;
@@ -212,6 +211,7 @@ cc.Class({
     },
 
 
+
     dealBtnWinningsCashTipsEvent: function() {
         let content = "Winnings Cash is the Cash that you have won in cash games.\n\nYou can use Winnings Cash and Deposit Cash to play for cash games.\n\nNote: You can withdraw your Winnings Cash.";
         CommonFun.getInstance().showWithDrawTips("Okay", content, () => {});
@@ -284,43 +284,53 @@ cc.Class({
             CommonFun.getInstance().hidProgress();
             let strTip = '';
             if (msg.result == 0) {
-                this.isWithdrawSuccess = true;
-                if (CommonFun.getInstance().isOpenVipModule()) {
-                    GlobalCfg.USER_DATAS.userVip.day_withdraw_count += 1;
-                    GlobalCfg.USER_DATAS.userVip.withdraw_total += amount;
+                let error = msg.data.error;
+                if (error && error.status == 1) {
+                    strTip = `Total Bet : ${error.total_bet / 100} \nNeed Bet : ${error.need_bet / 100} \nAlready withdrawn : ${error.withdrawal_amount / 100}`;
+                    if (CommonFun.getInstance().isValidForScr(this)) {
+                        CommonFun.getInstance().showWithDrawTips("Okay", strTip, null,  40, 70);
+                    };
+                    return;
                 }
-                else {
-                    GlobalCfg.USER_DATAS.remainWithdrawCount -= 1; 
-                };
-                
-                GlobalCfg.HAVE_WITHDRAW = true;
-                GlobalCfg.USER_DATAS.userDiamond = msg.data.wallet.amount;
-                GlobalCfg.USER_DATAS.deposit = msg.data.wallet.deposit;
-                GlobalCfg.USER_DATAS.winnings = msg.data.wallet.winnings;
-                GlobalCfg.USER_DATAS.undraw = msg.data.wallet.undraw;
-                GlobalCfg.USER_DATAS.bonus = msg.data.wallet.voucher;
+                else{
+                    let languagesType = I18NUtil.getInstance().getLanguageType();
+                    switch (languagesType) {
+                        case I18NLanguagesEnum.English:
+                            strTip = "Cash withdrawal application succeeded, please wait!";
+                            break;
+                        case I18NLanguagesEnum.Hindi:
+                            strTip = "नकद निकासी आवेदन सफल हुआ, कृपया प्रतीक्षा करें!";
+                            break;
+                        case I18NLanguagesEnum.Urdu:
+                            strTip = "نقد رقم نکالنے کی درخواست کامیاب، براہ کرم انتظار کریں!";
+                            break;
+                        case I18NLanguagesEnum.Bengali:
+                            strTip = "নগদ উত্তোলনের আবেদন সফল হয়েছে, অনুগ্রহ করে অপেক্ষা করুন!";
+                            break;
+                        default:
+                            strTip = "Cash withdrawal application succeeded, please wait!";
+                            break;
+                    };
+                    this.isWithdrawSuccess = true;
+                    if (CommonFun.getInstance().isOpenVipModule()) {
+                        GlobalCfg.USER_DATAS.userVip.day_withdraw_count += 1;
+                        GlobalCfg.USER_DATAS.userVip.withdraw_total += amount;
+                    }
+                    else {
+                        GlobalCfg.USER_DATAS.remainWithdrawCount -= 1; 
+                    };
+                    
+                    GlobalCfg.HAVE_WITHDRAW = true;
+                    GlobalCfg.USER_DATAS.userDiamond = msg.data.wallet.amount;
+                    GlobalCfg.USER_DATAS.deposit = msg.data.wallet.deposit;
+                    GlobalCfg.USER_DATAS.winnings = msg.data.wallet.winnings;
+                    GlobalCfg.USER_DATAS.undraw = msg.data.wallet.undraw;
+                    GlobalCfg.USER_DATAS.bonus = msg.data.wallet.voucher;
 
-                if (CommonFun.getInstance().isValidForScr(this)) {
-                    this.setLabsData();
-                };  
-                let languagesType = I18NUtil.getInstance().getLanguageType();
-                switch (languagesType) {
-                    case I18NLanguagesEnum.English:
-                        strTip = "Cash withdrawal application succeeded, please wait!";
-                        break;
-                    case I18NLanguagesEnum.Hindi:
-                        strTip = "नकद निकासी आवेदन सफल हुआ, कृपया प्रतीक्षा करें!";
-                        break;
-                    case I18NLanguagesEnum.Urdu:
-                        strTip = "نقد رقم نکالنے کی درخواست کامیاب، براہ کرم انتظار کریں!";
-                        break;
-                    case I18NLanguagesEnum.Bengali:
-                        strTip = "নগদ উত্তোলনের আবেদন সফল হয়েছে, অনুগ্রহ করে অপেক্ষা করুন!";
-                        break;
-                    default:
-                        strTip = "Cash withdrawal application succeeded, please wait!";
-                        break;
-                };
+                    if (CommonFun.getInstance().isValidForScr(this)) {
+                        this.setLabsData();
+                    };
+                }
             } 
             else {
                 this.isWithdrawSuccess = false;

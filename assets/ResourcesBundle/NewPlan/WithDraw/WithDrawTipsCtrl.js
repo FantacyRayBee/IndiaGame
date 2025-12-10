@@ -43,10 +43,12 @@ cc.Class({
         this.node.destroy();
     },
 
-    setWithDrawTipsData: function(btnTipsType, content, callFun) {
+    setWithDrawTipsData: function(btnTipsType, content, callFun, fontSize, lineHeight) {
         this.lab_content.string = content;
         this.okayCallback = callFun;
         this.setBtnTipsType(btnTipsType);
+        this.lab_content.lineHeight = lineHeight;
+        this.lab_content.fontSize = fontSize;
     },
 
     setBtnTipsType: function(btnTipsType) {
