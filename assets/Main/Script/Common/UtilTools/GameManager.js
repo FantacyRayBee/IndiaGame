@@ -103,10 +103,10 @@ let GameManager = cc.Class({
 
         this.mainGameConfig = [
             { tog: "tog1", type: "all", games: GlobalCfg.USER_DATAS.games || [] },
-            { tog: "tog2", type: "casual", games: ["miniaviator", "minichickenroad", "minirocket"] },
-            { tog: "tog3", type: "Slots", games: ["minizeus", "minicat", "slots", "minishuiguo", "minibull", "miniindia", "minivampire", "minimaya", "minibenzbmw", "miniclown"] },
-            { tog: "tog4", type: "skills", games: ["miniteenpatti", "minirummy"] },
-            { tog: "tog5", type: "casino", games: ["minilonghu", "minijhandimunda", "miniandar", "minicricket", "miniteenpattibaccarat", "minizoo", "miniseven", "minisaima", "minimultiteenpatti",] },
+            { tog: "tog2", type: "casino", games: ["minilonghu", "minijhandimunda", "miniandar", "minicricket", "miniteenpattibaccarat", "minizoo", "miniseven", "minisaima", "minimultiteenpatti",] },
+            { tog: "tog3", type: "skills", games: ["miniteenpatti", "minirummy"] },
+            { tog: "tog4", type: "Slots", games: ["minizeus", "minicat", "slots", "minishuiguo", "minibull", "miniindia", "minivampire", "minimaya", "minibenzbmw", "miniclown"] },
+            { tog: "tog5", type: "casual", games: ["miniaviator", "minichickenroad", "minirocket"] },
             { tog: "tog6", type: "like", games: GlobalCfg.USER_DATAS.game_like || [] },
         ];
     },
