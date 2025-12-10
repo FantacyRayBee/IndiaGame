@@ -10,23 +10,29 @@ cc.Class({
     },
     ctor() {
         this.initUsers = [
-            {Name: "鱼", ID: "GARRETT", score: 2400 }, 
-            {Name: "边牧", ID: "边牧", score: 1290 }, 
-            {Name: "蔡徐坤", ID: "蔡徐坤", score: 700 }, 
-            {Name: "东拉", ID: "线上的神", score: 700 }, 
-            {Name: "张哲", ID: "蹲子", score: 600 }, 
-            {Name: "翠花", ID: "泡芙老板", score: 360 }, 
-            {Name: "张哥", ID: "zzy", score: 310 }, 
-            {Name: "走马", ID: "充电宝", score: 210 }, 
-            {Name: "胖哥", ID: "俊俊子", score: 140 }, 
-            {Name: "小骨", ID: "专业he官", score: 100 }, 
-            {Name: "TT", ID: "TT", score: 20 }, 
-            {Name: "飞机", ID: "纸飞机", score: -140 }, 
-            {Name: "赵老师", ID: "王重阳", score: -200 }, 
-            {Name: "赖发财", ID: "又菜又凶", score: -290 }, 
-            {Name: "小姜", ID: "上等马", score: -1060 }, 
-            {Name: "曹俊", ID: "花店老板", score: -1750 }, 
-            {Name: "嘉豪", ID: "谭轩", score: -1900 }, 
+            // {Name: "鱼", ID: "GARRETT", score: 2400 }, 
+            {Name: "边牧", ID: "边牧", score: -350 }, 
+            // {Name: "蔡徐坤", ID: "蔡徐坤", score: 700 }, 
+            {Name: "东拉", ID: "线上的神", score: -460 }, 
+            // {Name: "张哲", ID: "蹲子", score: 600 }, 
+            {Name: "翠花", ID: "泡芙老板", score: -120 }, 
+            {Name: "张哥", ID: "zzy", score: 530 }, 
+            {Name: "走马", ID: "充电宝", score: -1590 }, 
+            // {Name: "胖哥", ID: "俊俊子", score: 140 }, 
+            {Name: "小骨", ID: "专业he官", score: 70 }, 
+            // {Name: "TT", ID: "TT", score: 20 }, 
+            {Name: "飞机", ID: "纸飞机", score: 7100 }, 
+            {Name: "赵老师", ID: "王重阳", score: -450 }, 
+            {Name: "赖发财", ID: "又菜又凶", score: -2740 }, 
+            {Name: "小姜", ID: "上等马", score: 50 }, 
+            {Name: "曹俊", ID: "花店老板", score: -80 }, 
+            {Name: "嘉豪", ID: "谭轩", score: -2480 }, 
+            {Name: "吴洋", ID: "吴洋", score: 1940 }, 
+            {Name: "翟子文", ID: "翟子文", score: -1300 }, 
+            {Name: "艾黎", ID: "艾黎", score: -600 }, 
+            {Name: "李伟", ID: "李嘉诚", score: -1890 }, 
+            {Name: "挖机", ID: "挖机", score: 1350 }, 
+            {Name: "贝总", ID: "贝总", score: 370 }, 
             // { ID: '皮卡丘', Name: '柠檬轩', score: 0 },
             // { ID: '齐天大圣', Name: '猴子', score: 0 },
             // { ID: '独家彤话', Name: '彤彤', score: 0 },
@@ -92,8 +98,8 @@ cc.Class({
             let strings2 = `{Name: "${this.users[i].Name}", ID: "${this.users[i].ID}", score: ${this.users[i].score} }, \n`
             printString2 += strings2
         }
-        LoggerUtil.getInstance().log("S3赛季排行榜：\n", printString);
-        LoggerUtil.getInstance().log("S3赛季排行榜2：\n", printString2);
+        LoggerUtil.getInstance().log("S4赛季排行榜：\n", printString);
+        LoggerUtil.getInstance().log("S4赛季排行榜2：\n", printString2);
     },
 
     onSort: function () {

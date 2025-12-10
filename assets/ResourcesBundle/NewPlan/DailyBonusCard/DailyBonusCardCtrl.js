@@ -90,11 +90,11 @@ cc.Class({
                 lab_rate.string = `${parseInt(((days * daySend + bonus + add) / price) * 100)}%`;
                 lab_amount.string = `${(price + add) / 100}`;
                 lab_reward.string = `${(days * daySend + bonus) / 100}`;
-                lab_tips1.string = `Get ₹${(price + add) / 100} right now`;
+                lab_tips1.string = `₹${(price) / 100} + bonus ${bonus / 100} right now`;
                 // lab_tips2.string = `Bonus ₹${bonus / 100} right now`;
                 // lab_tips3.string = `₹${daySend / 100} Cash x${days} days`;
 
-                lab_tips2.string = `₹${daySend / 100} Bonus x${days} days`;
+                lab_tips2.string = `₹${daySend / 100} cash x${days} days`;
                 
                 lab_btnTips.string = `₹${price / 100}`;
             };
