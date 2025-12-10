@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        917.5,
+        375,
         0,
         0,
         0,
@@ -341,7 +341,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 146.7
+      "height": 180
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -408,7 +408,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 1,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -799,8 +799,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 248,
-      "height": 86
+      "width": 244,
+      "height": 82
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1055,8 +1055,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 248,
-      "height": 86
+      "width": 246,
+      "height": 84
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
