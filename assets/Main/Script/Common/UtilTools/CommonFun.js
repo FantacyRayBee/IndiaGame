@@ -1905,23 +1905,21 @@ let CommonFun = cc.Class({
         });     
     },
 
-    
     /**
      * 展示提现界面回调的提示框
      * @param {string} btnTipsType
      * @param {string} content 
      * @param {Function} callFun 
      */
-    showWithDrawTips: function(btnTipsType, content, callFun) {
+    showWithDrawTips: function(btnTipsType, content, callFun, fontSize = 26, lineHeight = 26) {
         let withdrawTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWTIPS);
         withdrawTipsPrefabPromise.then((prefab) => {
             let withDrawTipsNode = cc.instantiate(prefab);
             let withDrawTipsCtrl = withDrawTipsNode.getComponent("WithDrawTipsCtrl");
-            withDrawTipsCtrl.setWithDrawTipsData(btnTipsType, content, callFun);
+            withDrawTipsCtrl.setWithDrawTipsData(btnTipsType, content, callFun, fontSize, lineHeight);
             this.addToPointParent(withDrawTipsNode, GlobalCfg.PREFAB_PARENT.WITHDRAWTIPS); 
         });     
     },
-
     /**
      * 显示交易记录界面
      */
