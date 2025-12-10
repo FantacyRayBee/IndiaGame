@@ -276,6 +276,7 @@ LobbyServerManager.checkDistributed = function(webData) {
     let msgId = webData.msgCode;
     let notify = webData.msgData;
     LoggerUtil.getInstance().log("checkDistributed msgId ===> ", msgId);
+    LoggerUtil.getInstance().log("checkDistributed notify ===> ", notify);
     if (msgId === 'lobbyservice.kickout') {
         LobbyServerManager.clientCloseServer();
         GameServerManager.clientCloseServer();
@@ -384,7 +385,7 @@ LobbyServerManager.checkDistributed = function(webData) {
             ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {
                 msgCode: GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS,
                 msgData: {}
-            }); 
+            });
         }
         // 自己充值消息下发到每个游戏中
         ClientNotify.send(GlobalCfg.MSG_TYPE.serverMsg, {

@@ -1192,17 +1192,11 @@ cc.Class({
 
         let popup_BonusCard_Time = CommonFun.getInstance().getAppConfigValueByKey('POPUP_BonusCard_FREQUENCY_TIME_MINUTE', 0);
         let BonusCardFrequency = Number((popup_BonusCard_Time / 60).toFixed(1));
-                /** 
-         * 首充
-         */
-        if (GlobalCfg.USER_DATAS.openModules.includes(10) && this.isNeedShowPointToastByHours("FirstRecharge", 1/60)) {
-            this.updateToastLocalStorageByHours("FirstRecharge", 1/60);
-            this.showFirstRechargeToast();
-        }
+
         /**
          * 拼多多
          */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(14) && GlobalCfg.USER_DATAS.pddNewly && this.isNeedShowPointToastByHours("Pdd", 72)) {
+        if (GlobalCfg.USER_DATAS.openModules.includes(14) && GlobalCfg.USER_DATAS.pddNewly && this.isNeedShowPointToastByHours("Pdd", 72)) {
             this.updateToastLocalStorageByHours("Pdd", 72);
             this.showPddToast();
         }
@@ -1213,6 +1207,13 @@ cc.Class({
                 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
             this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
             this.showWithDrawToast();
+        }
+        /** 
+         * 首充
+         */
+        else if (GlobalCfg.USER_DATAS.openModules.includes(10) && this.isNeedShowPointToastByHours("FirstRecharge", 1)) {
+            this.updateToastLocalStorageByHours("FirstRecharge", 1);
+            this.showFirstRechargeToast();
         }
         // /** 
         //  * 诱导充值

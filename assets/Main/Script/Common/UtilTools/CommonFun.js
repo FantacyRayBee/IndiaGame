@@ -1183,6 +1183,7 @@ let CommonFun = cc.Class({
      * @param {Array[{id,amount}]} coin 奖励金币
      */
     showRewardsTips: function(coin) {
+        LoggerUtil.getInstance().error("显示领取奖励提示界面===> ", coin);
         let count = 0;
         for (let i = 0; i < coin.length; i++) {
             count += coin[i].amount;
