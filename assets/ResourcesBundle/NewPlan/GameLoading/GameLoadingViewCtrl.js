@@ -13,11 +13,11 @@ cc.Class({
 
 
     onLoad: function () {
-        this.progressBar_hor = this.node.getChildByName("hor").getComponent(cc.ProgressBar);
-        this.progressBar_ver = this.node.getChildByName("ver").getComponent(cc.ProgressBar);
+        this.progressBar_hor = this.hor_node.getChildByName("hor").getComponent(cc.ProgressBar);
+        this.progressBar_ver = this.ver_node.getChildByName("ver").getComponent(cc.ProgressBar);
 
-        this.labBar_hor = this.node.getChildByName("hor").getChildByName("lab").getComponent(cc.Label);
-        this.labBar_ver = this.node.getChildByName("ver").getChildByName("lab").getComponent(cc.Label);
+        this.labBar_hor = this.hor_node.getChildByName("hor").getChildByName("lab").getComponent(cc.Label);
+        this.labBar_ver = this.ver_node.getChildByName("ver").getChildByName("lab").getComponent(cc.Label);
 
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -27,6 +27,8 @@ cc.Class({
         this.LoadCompletedCallback = callback;
         this.hor_node.active = !isVertical;
         this.ver_node.active = isVertical;
+
+        this.img_background.spriteFrame = isVertical ? this.ver_sprites[Math.floor(Math.random() * 2)] : this.hor_sprites[Math.floor(Math.random() * 3)];
     },
 
     onEventMsg: function (webData, target) {
@@ -39,7 +41,7 @@ cc.Class({
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
             self.setSmallGameLoadComplete(notify);
-        } 
+        }
     },
 
     setSmallGameLoadProgress: function (notify) {
@@ -52,7 +54,7 @@ cc.Class({
         this.labBar_ver.string = `${progress}%`;
     },
 
-    setSmallGameLoadComplete: function(notify) {
+    setSmallGameLoadComplete: function (notify) {
         if (!notify) {
             return;
         };
@@ -60,7 +62,11 @@ cc.Class({
             this.LoadCompletedCallback();
             this.LoadCompletedCallback = null;
         }
-        this.node.destroy();
+        this.progressBar_hor.node.active = false;
+        this.progressBar_ver.node.active = false;
+        this.scheduleOnce(() => {
+            this.node.destroy();
+        }, 2)
     },
 
     setUpdateProgressBarProgress: function (progress = 0) {

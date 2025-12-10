@@ -2081,10 +2081,10 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
-        // if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
-        //     callFun();
-        //     return;
-        // };
+        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+            callFun();
+            return;
+        };
 
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
@@ -2101,7 +2101,6 @@ cc.Class({
         const verticalGames = {
             "Benz": true,
             "aviator": true,
-            "zeusGame": true
         };
         const isVertical = verticalGames[subpackgeName] || false;
         return isVertical;
