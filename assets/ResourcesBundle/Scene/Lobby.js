@@ -237,7 +237,7 @@ cc.Class({
         this.node_middles.setContentSize(w, 480);
         this.node_middles.setPosition(0, -20);
         this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setPosition(-(w / 2) + 130, -15);
         this.node_gameScollview.setContentSize(w - 100 - 30, 520);
     },
 
@@ -279,7 +279,7 @@ cc.Class({
         // this.showBanner();
         this.showOtherModules(); 
         this.showVipLevelIcon();
-        this.showSmallGameBtns();
+        this.showSmallGameBtns(this.NowToggleName);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
@@ -587,9 +587,10 @@ cc.Class({
         /**
          * VIP系统按钮
          */
-        if (GlobalCfg.USER_DATAS.recharged > 0 
-            && GlobalCfg.USER_DATAS.userVip.level > 0 
-            && CommonFun.getInstance().isOpenVipModule()) { 
+        // if (GlobalCfg.USER_DATAS.recharged > 0 
+        //     && GlobalCfg.USER_DATAS.userVip.level > 0 
+        //     && CommonFun.getInstance().isOpenVipModule()) { 
+        if (CommonFun.getInstance().isOpenVipModule()) { 
             this.btn_vip.node.active = true;
         }
         else {
@@ -602,10 +603,22 @@ cc.Class({
         this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
     },
 
+    toggleClick: function (toggle) {
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        let toggleName = toggle.node.name;
+        if (this.NowToggleName == toggleName) {
+            return;
+        };
+        this.NowToggleName = toggleName;
+        this.showSmallGameBtns(toggleName);
+    },
+
     /**
      * 处理小游戏按钮逻辑
      */
-    showSmallGameBtns: function() {
+    showSmallGameBtns: function(toggleName) {
+        let gameconfig = GameManager.getInstance().getLobbyGameConfig(toggleName);
+
         this.btn_miniandar.node.active = false;
         this.btn_minibenzbmw.node.active = false;
         this.btn_minijhandimunda.node.active = false;
@@ -633,17 +646,34 @@ cc.Class({
         this.btn_minicricket.node.active = false;
         this.btn_minizeus.node.active = false;
 
-        if (!Array.isArray(GlobalCfg.USER_DATAS.games) || GlobalCfg.USER_DATAS.games.length == 0) {
+        let tmpGames = GlobalCfg.USER_DATAS.games;
+        
+        // let games = gameconfig || GlobalCfg.USER_DATAS.games;
+        if (!Array.isArray(tmpGames) || tmpGames.length == 0) {
             return;
         };
-
+        tmpGames.push({ product: "slots", host: ""}); //测试代码
+        let games = [];
+        for (let i = 0, len = tmpGames.length; i < len; i++) {
+            for (let j = 0, len1 = gameconfig.length; j < len1; j++) {
+                if(gameconfig[j].product) //如果存在product字段，说明是ALL标签 直接使用全局games里的值
+                {
+                    games = GlobalCfg.USER_DATAS.games
+                    break;
+                }
+                if (tmpGames[i].product == gameconfig[j]) {
+                    games.push(tmpGames[i]);
+                }
+            }
+        }
         /**
          * 既要判断对应的小游戏模块是否开启，还要判断对应的小游戏参数是否存在
          */
         let needUpdataArr = [];
-        LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.openModules == ", GlobalCfg.USER_DATAS.openModules);
-        for (let i = 0, len = GlobalCfg.USER_DATAS.games.length; i < len; i++) {
-            let gameData = GlobalCfg.USER_DATAS.games[i];
+        // LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.openModules == ", GlobalCfg.USER_DATAS.openModules);
+        LoggerUtil.getInstance().log("22222 games == ", games);
+        for (let i = 0, len = games.length; i < len; i++) {
+            let gameData = games[i];
             let gameProduct = gameData.product;
             let gameHost = gameData.host;
             LoggerUtil.getInstance().log("22222 GlobalCfg.USER_DATAS.gameProduct == ", gameProduct);
@@ -958,14 +988,16 @@ cc.Class({
                         }
                     }
                     break;
+                case "slots":
+                    if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
+                        this.btn_slots.node.active = true;
+                    };
+                    break;
                 default:
                     break; 
-                    
             }
         };
-        if (GlobalCfg.USER_DATAS.openModules.includes(126)) {
-            this.btn_slots.node.active = true;
-        };
+
         //自动下载小游戏
         // if (needUpdataArr.length > 0) {
         //     let gameSubPackageNames = {
@@ -1001,6 +1033,7 @@ cc.Class({
         let languagesType = I18NUtil.getInstance().getLanguageType();
         this.setSmallGameBtnByLanguageType(languagesType);
     },
+
 
 
     showVipLevelIcon: function() {
@@ -1189,26 +1222,31 @@ cc.Class({
             return;
         };
 
-        let defaultPopupWithdrawLimit = CommonFun.getInstance().getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        // let defaultPopupWithdrawLimit = CommonFun.getInstance().getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
         let func = (date)=>{
             let _date = date * 1000;
             let _curDate = new Date().getTime();
             let _differ = _curDate - _date;
-            if(_differ < 24 * 60 * 60 * 1000){
-                return Number(30 / 60).toFixed(1);
-            }else if(_differ < 3 * 24 * 60 * 60 * 1000){
+            let oneDayMs = 24 * 60 * 60 * 1000;
+            if(_differ < oneDayMs){
                 return Number(20 / 60).toFixed(1);
-            }else if(_differ < 5 * 24 * 60 * 60 * 1000){
-                return Number(10 / 60).toFixed(1);
-            }else{
+            }else if(_differ < 2 * oneDayMs){
+                return Number(15 / 60).toFixed(1);
+            }else if(_differ < 4 * oneDayMs){
                 return Number(5 / 60).toFixed(1);
+            }else if(_differ < 7 * oneDayMs){
+                return Number(1 / 60).toFixed(1);
+            }else{
+                return 0;
             }
         }
-        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        let toastWithDrawFrequency = 0.01
 
         let popup_BonusCard_Time = CommonFun.getInstance().getAppConfigValueByKey('POPUP_BonusCard_FREQUENCY_TIME_MINUTE', 0);
         let BonusCardFrequency = Number((popup_BonusCard_Time / 60).toFixed(1));
-
+        LoggerUtil.getInstance().log("toastWithDrawFrequency == ", toastWithDrawFrequency, ", defaultPopupWithdrawLimit == ", defaultPopupWithdrawLimit);
         /**
          * 拼多多
          */
@@ -1219,7 +1257,7 @@ cc.Class({
         /**
          * 提现
          */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
+        else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100)
                 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
             this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
             this.showWithDrawToast();
@@ -1471,7 +1509,7 @@ cc.Class({
             self.showUserInfo();
             // self.showBanner();
             self.showOtherModules();
-            self.showSmallGameBtns();
+            self.showSmallGameBtns(this.NowToggleName);
             self.showToastViews();
             self.showTransBounsRedPoint();
             CommonFun.getInstance().hidProgress();
@@ -1508,9 +1546,7 @@ cc.Class({
         }
         else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
             self.showVipLevelIcon();
-            if (GlobalCfg.USER_DATAS.recharged > 0 
-                && GlobalCfg.USER_DATAS.userVip.level > 0 
-                && CommonFun.getInstance().isOpenVipModule()) { 
+            if (CommonFun.getInstance().isOpenVipModule()) { 
                 self.btn_vip.node.active = true;
             }
             else {

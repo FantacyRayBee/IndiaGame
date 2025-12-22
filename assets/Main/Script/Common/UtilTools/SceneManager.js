@@ -989,6 +989,7 @@ let SceneManager = cc.Class({
                     let user_vip = msgData.user_vip ? msgData.user_vip : {};
 
                     let user_level = msgData.user_level ? msgData.user_level : 0;      // 用户特殊身份 默认为0，100 代表不清模式下被首清了
+                    let game_like = msgData.game_like ? msgData.game_like : [];  // 用户喜欢的游戏列表
                     /**
                      * Go Betting 活动
                      */
@@ -1015,6 +1016,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.voucherCard = voucher_card;
                     GlobalCfg.USER_DATAS.voucherDayGift = voucher_day_gift;
                     GlobalCfg.USER_DATAS.voucherCardCreated = voucher_card_created;
+                    GlobalCfg.USER_DATAS.game_like = game_like;
                     GlobalCfg.USER_DATAS.seriesCard = series_card;
                     GlobalCfg.USER_DATAS.promoterUnclaimed = promoter_unclaimed;
                     GlobalCfg.USER_DATAS.pddNewly = pdd_newly;        

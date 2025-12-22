@@ -2176,21 +2176,23 @@ let CommonFun = cc.Class({
             try {
                 let toastLocalData = JSON.parse(toastLocalStorage);
                 let showTag = toastLocalData.showTag;
-                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
+                let nextAllowedTime = parseInt(showTag) + hours * 60 * 60 * 1000;
+
+                if (curTimeStamp > nextAllowedTime) {
                     return true;
-                }
-                else {
+                } else {
+                    // 计算还剩多少秒
+                    let remainingTime = Math.ceil((nextAllowedTime - curTimeStamp) / 1000);
+                    LoggerUtil.getInstance().log(`${toastType} 还剩 ${remainingTime} 秒可以显示`);
                     return false;
-                };
-            } 
-            catch (error) {
-                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
+                }
+            } catch (error) {
+                LoggerUtil.getInstance().error(`${toastType} 本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
                 return false;
-            };
-        }
-        else {
+            }
+        } else {
             return true;
-        };
+        }
     },
 
     /**
@@ -2877,38 +2879,6 @@ let CommonFun = cc.Class({
     },
 
     /**
-     * 根据本地缓存判断是否需要显示弹框
-     * @param {*} toastType 弹框类型
-     * @param {*} hours 间隔几个小时
-     */
-    isNeedShowPointToastByHours: function(toastType, hours) {
-        /**
-         * 当前毫秒级的时间戳
-         */
-        let curTimeStamp = new Date().getTime();
-        let toastLocalStorage = cc.sys.localStorage.getItem(`${GlobalCfg.USER_DATAS.userId}_${toastType}_LocalStorage`);
-        if (toastLocalStorage) {
-            try {
-                let toastLocalData = JSON.parse(toastLocalStorage);
-                let showTag = toastLocalData.showTag;
-                if (curTimeStamp > (parseInt(showTag) + hours * 60 * 60 * 1000)) {
-                    return true;
-                }
-                else {
-                    return false;
-                };
-            } 
-            catch (error) {
-                LoggerUtil.getInstance().error(`${toastType}本地缓存的数据异常：`, cc.sys.isNative ? JSON.stringify(error) : error);
-                return false;
-            };
-        }
-        else {
-            return true;
-        };
-    },
-
-    /**
      * 根据key获取APP_CONFIG中的值
      * @param {string} key 
      * @param {any} defaultValue 
@@ -2987,22 +2957,27 @@ let CommonFun = cc.Class({
         if (this.isNeedShowWithdrawToastInGame() == false) {
             return;
         };
-        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        // let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
         let func = (date)=>{
             let _date = date * 1000;
             let _curDate = new Date().getTime();
             let _differ = _curDate - _date;
-            if (_differ < 24 * 60 * 60 * 1000) {
-                return Number(30 / 60).toFixed(1);
-            }
-            else if (_differ < 3 * 24 * 60 * 60 * 1000) {
+            let oneday = 24 * 60 * 60 * 1000;
+            if (_differ < oneday) {
                 return Number(20 / 60).toFixed(1);
             }
-            else if (_differ < 5 * 24 * 60 * 60 * 1000) {
-                return Number(10 / 60).toFixed(1);
+            else if (_differ < 2 * oneday) {
+                return Number(15 / 60).toFixed(1);
+            }
+            else if (_differ < 4 * oneday) {
+                return Number(5 / 60).toFixed(1);
+            }
+            else if (_differ < 7 * oneday) {
+                return Number(1 / 60).toFixed(1);
             }
             else {
-                return Number(5 / 60).toFixed(1);
+                return 0;
             };
         };
         let isNeedShowPointToastByHours = (toastType, hours) => {
@@ -3031,7 +3006,8 @@ let CommonFun = cc.Class({
                 return true;
             };
         };
-        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        let toastWithDrawFrequency = 0.01;
         console.log("toastWithDrawFrequency1: ", GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5))
         console.log("toastWithDrawFrequency2: ", GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100))
         console.log("toastWithDrawFrequency3: ", isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency));
@@ -3080,9 +3056,10 @@ let CommonFun = cc.Class({
             }
         }
         // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
-        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        let toastWithDrawFrequency = 0.01;
         LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
-        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        // let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
         if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
             && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
                 this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
