@@ -85,13 +85,12 @@ cc.Class({
     },
 
     setVipInfo: function() {    
-        let curLevel = GlobalCfg.USER_DATAS.userVip.level > 0 ? GlobalCfg.USER_DATAS.userVip.level : 1;
-        this.lab_vipLevel.string = `VIP ${curLevel}`;
-        this.selectVipLevel = curLevel;
+        this.lab_vipLevel.string = `VIP ${GlobalCfg.USER_DATAS.userVip.level}`;
+        this.selectVipLevel = GlobalCfg.USER_DATAS.userVip.level;
 
         for (let i = 0, len = GlobalCfg.USER_DATAS.vipLevels.length; i < len; i++) {
             const element = GlobalCfg.USER_DATAS.vipLevels[i];
-            if (element.level >= curLevel) {
+            if (element.level >= GlobalCfg.USER_DATAS.userVip.level) {
                 this.vipDataList.push(element);
             };
         };

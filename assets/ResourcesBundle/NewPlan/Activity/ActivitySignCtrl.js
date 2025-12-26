@@ -58,10 +58,14 @@ cc.Class({
                         };
     
                         if (data.today == 7) {
-                            this.node_day7Signed.active = true;
+                            this.signItemCtrlMap.forEach((ctrl) => {
+                                if (ctrl && typeof ctrl.initSignItem === "function") {
+                                    ctrl.initSignItem();
+                                }
+                            });
+                            this.node_day7Signed.active = false;
                             this.node_day7Unsigned.active = false;
-                        };
-    
+                        }
                         this.btn_sign.interactable = false;
                         this.btn_sign.enableAutoGrayEffect = true;
                     };
@@ -127,6 +131,7 @@ cc.Class({
 
         let signData = arr[0];
         let itemPrefab = arr[1];
+            LoggerUtil.getInstance().log(`signData : `, signData);
 
         if (!itemPrefab) {
             return;
@@ -149,6 +154,10 @@ cc.Class({
 
         let len = signData.gifts.length;
         let index = 0;
+        let showNewRound = false;
+        if (signData.done == true && signData.today == 7) {
+            showNewRound = true;
+        }
         let addSignItem = () => {
             let gift = signData.gifts[index];
             if (index <= 5) {
@@ -157,7 +166,7 @@ cc.Class({
                 signItemNode.scale = 0.862;
                 let activitySignItemCtrl = signItemNode.getComponent("ActivitySignItemCtrl");
                 if (activitySignItemCtrl) {
-                    activitySignItemCtrl.setSignItemData(gift, signData.today, signData.done, index + 1);
+                    activitySignItemCtrl.setSignItemData(gift, signData.today, signData.done, index + 1, showNewRound);
                     this.signItemCtrlMap.set(index + 1, activitySignItemCtrl);
                 };
                 signItemNode.name = `signItemDay${index + 1}`;
@@ -190,7 +199,21 @@ cc.Class({
                 if (signData.done == true) {
                     this.btn_sign.interactable = false;
                     this.btn_sign.enableAutoGrayEffect = true;
+
+                    // 如果 7 天签到全部完成，调用 ActivitySignItemCtrl 的 initSignItem 方法
+                    if (signData.today == 7) {
+                        this.signItemCtrlMap.forEach((ctrl) => {
+                            if (ctrl && typeof ctrl.initSignItem === "function") {
+                                ctrl.initSignItem();
+                            }
+                        });
+                        this.node_day7Signed.active = false;
+                        this.node_day7Unsigned.active = false;
+                    }
                 };
+
+
+
                 this.unschedule(addSignItem);
                 return;
             };

@@ -18,6 +18,7 @@ cc.Class({
     },
 
     setData: function(payChannels, infos, callback) {
+        LoggerUtil.getInstance().log("setData infos:", infos);
         this.callback = callback;
         this.addShopTogItems(payChannels);   
         let final = parseFloat(infos.price) + parseFloat(infos.bonus);

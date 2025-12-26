@@ -79,7 +79,8 @@ cc.Class({
                 if (GlobalCfg.USER_DATAS.voucherCard == 0) {
                     
                     node_btn.on("click", CommonFun.getInstance().debounce(() => {
-                        this.bonusRecharge(id, lab_amount.string, lab_reward.string);
+                        let cashNum = ((price + add) / 100) + (daySend * days / 100);
+                        this.bonusRecharge(id, cashNum, lab_reward.string);
                     }, 1), this);
                 }
                 else {

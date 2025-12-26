@@ -8,10 +8,13 @@ cc.Class({
         node_unsigned: cc.Node,
     },
 
-    setSignItemData: function(gift, today, done, day) {
+    setSignItemData: function(gift, today, done, day, showNewRound) {
         this.lab_reward.string = `₹${gift/100}`;
         this.lab_day.string = `Day${day}`;
-
+        if (showNewRound) {
+            this.initSignItem();
+            return;
+        }
         if (today > day) {
             this.node_signed.active = true;
             this.node_unsigned.active = false;
@@ -34,4 +37,10 @@ cc.Class({
         this.node_signed.active = true;
         this.node_unsigned.active = false;
     },
+
+    initSignItem:function()
+    {
+        this.node_signed.active = false;
+        this.node_unsigned.active = false;
+    }
 });

@@ -208,6 +208,10 @@ cc.Class({
          */
         btn_onlypay: cc.Button,
         /**
+         * 首冲
+         */
+        btn_firstRecharge: cc.Button,
+        /**
          * 诱导充值
          */
         btn_inducement: cc.Button,
@@ -292,7 +296,7 @@ cc.Class({
         CommonFun.getInstance().addSidebar();
         CommonFun.getInstance().updateSidebarData(true);
         CommonFun.getInstance().showHallTip();
-        
+
 
         if (window.isNeedShowRoomList) {
             this.showGameRoomList();
@@ -438,6 +442,9 @@ cc.Class({
         this.btn_wallet.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_inducement.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_firstRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+
+        
         
         this.btn_getNow.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_referEarn.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -569,7 +576,7 @@ cc.Class({
 
         // this.btn_wallet.node.active = (GlobalCfg.IS_CLUB_MODE == 1) //代理包才展示钱包
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
-
+        this.btn_firstRecharge.node.active = GlobalCfg.USER_DATAS.isNotCharge //首冲按钮是否展示
         this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
         this.dealInducementInfo();
         this.dealShowOnlyPayEvent();
@@ -587,10 +594,9 @@ cc.Class({
         /**
          * VIP系统按钮
          */
-        // if (GlobalCfg.USER_DATAS.recharged > 0 
-        //     && GlobalCfg.USER_DATAS.userVip.level > 0 
-        //     && CommonFun.getInstance().isOpenVipModule()) { 
-        if (CommonFun.getInstance().isOpenVipModule()) { 
+        if (GlobalCfg.USER_DATAS.recharged > 0 
+            && GlobalCfg.USER_DATAS.userVip.level > 0 
+            && CommonFun.getInstance().isOpenVipModule()) { 
             this.btn_vip.node.active = true;
         }
         else {
@@ -1241,8 +1247,8 @@ cc.Class({
                 return 0;
             }
         }
-        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
-        let toastWithDrawFrequency = 0.01
+        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        // let toastWithDrawFrequency = 0.01
 
         let popup_BonusCard_Time = CommonFun.getInstance().getAppConfigValueByKey('POPUP_BonusCard_FREQUENCY_TIME_MINUTE', 0);
         let BonusCardFrequency = Number((popup_BonusCard_Time / 60).toFixed(1));
@@ -1533,6 +1539,7 @@ cc.Class({
                 this.showFirstRechargeTipPopup();
             }
             if (GlobalCfg.FIRST_RECHARGE_REWARD_SHOW == true){ //首次充值奖励 直接显示奖励弹窗
+                this.btn_firstRecharge.node.active = false;
                 let coin = GlobalCfg.USER_DATAS.lastRecharged / 100; //本次充值获得的金币
                 let getBouns = GlobalCfg.USER_DATAS.firstGetBonus / 100 //本次充值获得的代金券
                 GlobalCfg.FIRST_RECHARGE_REWARD_SHOW = false;
@@ -1650,6 +1657,9 @@ cc.Class({
         }
         else if (btnName == 'btn_inducement') {
             this.dealInducementClickEvent();
+        }
+        else if (btnName == 'btn_firstRecharge') {
+            this.showFirstRechargeToast();
         }
     },
 

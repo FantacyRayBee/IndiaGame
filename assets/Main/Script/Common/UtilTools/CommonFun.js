@@ -194,6 +194,8 @@ let CommonFun = cc.Class({
          * 子包资源的版本信息
          */
         GlobalCfg.SUB_GAME_VERSION_INFO = json["SUB_GAME_VERSION_INFO"];
+
+        LoggerUtil.getInstance().log("caojun SUB_GAME_VERSION_INFO:", GlobalCfg.SUB_GAME_VERSION_INFO);
         /**
          * Http根路由 
          */
@@ -587,6 +589,9 @@ let CommonFun = cc.Class({
         
         let serverVersionNum = Number(GlobalCfg.SUB_GAME_VERSION_INFO[subpackgeName]);
         let localVersionNum = Number(cc.sys.localStorage.getItem(subpackgeName));
+
+        console.log(`isNeedUpdata subpackgeName: ${subpackgeName}, serverVersionNum: ${serverVersionNum}, localVersionNum: ${localVersionNum}`);
+
         LoggerUtil.getInstance().log(`${subpackgeName}版本号对比===> 远程版本号: ${serverVersionNum}, 本地版本号: ${localVersionNum}`);
         if (serverVersionNum !== localVersionNum) {
             return true;
@@ -2957,8 +2962,8 @@ let CommonFun = cc.Class({
         if (this.isNeedShowWithdrawToastInGame() == false) {
             return;
         };
-        // let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
-        let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        // let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
         let func = (date)=>{
             let _date = date * 1000;
             let _curDate = new Date().getTime();
@@ -3006,8 +3011,8 @@ let CommonFun = cc.Class({
                 return true;
             };
         };
-        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
-        let toastWithDrawFrequency = 0.01;
+        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        // let toastWithDrawFrequency = 0.01;
         console.log("toastWithDrawFrequency1: ", GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(5))
         console.log("toastWithDrawFrequency2: ", GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100))
         console.log("toastWithDrawFrequency3: ", isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency));
@@ -3055,11 +3060,11 @@ let CommonFun = cc.Class({
                 return Number(5 / 60).toFixed(1);
             }
         }
-        // let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
-        let toastWithDrawFrequency = 0.01;
+        let toastWithDrawFrequency = Number(func(GlobalCfg.USER_DATAS.registerTime));
+        // let toastWithDrawFrequency = 0.01;
         LoggerUtil.getInstance().log("checkShowWithDrawToast toastWithDrawFrequency:", toastWithDrawFrequency);
-        // let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
-        let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = this.getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        // let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
         if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
             && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
                 this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);

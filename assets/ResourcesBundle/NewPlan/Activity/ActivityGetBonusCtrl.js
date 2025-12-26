@@ -95,7 +95,7 @@ cc.Class({
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
                     };
                 }
-                let data1 = {price: Math.floor(Number(commodity[0].amount) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
+                let data1 = {price: Math.floor(Number(commodity[0].amount + commodity[0].add) / 100), bonus: Math.floor(Number(commodity[0].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data1, callback);
                 break;
             case "btn_addCash2":
@@ -115,7 +115,7 @@ cc.Class({
                         CommonFun.getInstance().rechargeByCommodityId(this.firstCommodityId, GlobalCfg.SHOP_RECHARGE_FROM.ActivityFirstRecharge);
                     };
                 }
-                let data2 = {price: Math.floor(Number(commodity[1].amount) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
+                let data2 = {price: Math.floor(Number(commodity[1].amount + commodity[1].add) / 100), bonus: Math.floor(Number(commodity[1].gift) / 100)}
                 CommonFun.getInstance().showPayChannel(data2, callback2);
                 break;
             case "btn_otherAmount":

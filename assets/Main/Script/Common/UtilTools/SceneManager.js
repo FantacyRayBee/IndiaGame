@@ -188,6 +188,35 @@ let SceneManager = cc.Class({
 
 
     dealEnterGameScene: function(toSceneName) {
+        let REGISTER_TIME = GlobalCfg.USER_DATAS.limit_register_time;    // 注册时间内没充值，禁止进入游戏，单位：小时
+        // let REGISTER_TIME = 0.01    // 注册时间内没充值，禁止进入游戏，单位：小时
+        let ItOverdue = (date)=>{ // 判断是否过期
+            let _date = date * 1000;
+            let _curDate = new Date().getTime();
+            let _differ = _curDate - _date;
+            let checkDay = REGISTER_TIME * 60 * 60 * 1000;
+            let remindDay = checkDay - _differ;
+            if(REGISTER_TIME == 0){
+                return false   
+            }
+            if(_differ > checkDay){
+                LoggerUtil.getInstance().log(`已过期${Math.floor(-remindDay/(1000))}秒`);
+                return true;
+            }else{
+                LoggerUtil.getInstance().log(`距离试玩过期还有${Math.floor(remindDay/(1000))}秒`);
+                return false;
+            }
+        }
+        if(GlobalCfg.USER_DATAS.isNotCharge == true && ItOverdue(GlobalCfg.USER_DATAS.registerTime)){
+            this.isLoadingScene = false;
+            CommonFun.getInstance().hidProgress();
+            // 处理未充值用户的逻辑
+            CommonFun.getInstance().showMsgBox("Your trial period has ended. Please complete your first recharge before playing the game.", "YES", () => {
+                CommonFun.getInstance().showSmallAddCash()
+            }, false);
+            return;
+        }
+
         let protoCfg = null;
         let protoPathArr = null;
         let websocketUrl = null;
@@ -926,6 +955,11 @@ let SceneManager = cc.Class({
                      */
                     let highest_recharged = msgData.highest_recharged ? msgData.highest_recharged : 0;
                     /**
+                     * 注册时间内没充值，禁止进入游戏，单位：小时，0的时候为不限制
+                     */
+                    let limit_register_time = msgData.limit_register_time ? msgData.limit_register_time : 0;
+                    LoggerUtil.getInstance().log("limit_register_time: ", limit_register_time);
+                    /**
                      * 是否有PDD任务
                      */
                     let have_pdd_activity = msgData.have_pdd_activity ? msgData.have_pdd_activity : false;
@@ -1052,6 +1086,11 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.service_help_url = msgData.service_help_url;
                     GlobalCfg.USER_DATAS.web_customer_service = msgData.web_customer_service;
                     GlobalCfg.USER_DATAS.inducement = inducement;
+                    GlobalCfg.USER_DATAS.limit_register_time = limit_register_time;
+                    
+                    // GlobalCfg.USER_DATAS.phone = "123456789";
+                    // GlobalCfg.USER_DATAS.mail = "test@gmail.com";
+                    
                     LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.userVip == ", GlobalCfg.USER_DATAS.userVip);
                     if (channel.length > 0) {
                         GlobalCfg.USER_DATAS.CHANNEL_INFO = channel.replace('_01', '');

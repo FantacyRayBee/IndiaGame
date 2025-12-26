@@ -361,6 +361,7 @@ let GameDownloader = cc.Class({
         let gameName = gameZipName.split(".")[0];
         let version = GlobalCfg.SUB_GAME_VERSION_INFO[gameName];
         cc.sys.localStorage.setItem(gameName, version);
+        console.log(`loadGameCompleteByZip gameName: ${gameName}, version: ${version}`);
         jsb.fileUtils.removeFile(zipPath);
 
         /** 
