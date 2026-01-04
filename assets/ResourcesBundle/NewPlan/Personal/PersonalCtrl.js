@@ -98,7 +98,7 @@ cc.Class({
         }
         else {
             this.lab_deposited.string = "₹0";
-            this.lab_winnings.string = GlobalCfg.USER_DATAS.deposit ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit, 100)) : "₹0";
+            this.lab_winnings.string = GlobalCfg.USER_DATAS.deposit + GlobalCfg.USER_DATAS.winnings ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.deposit + GlobalCfg.USER_DATAS.winnings, 100)) : "₹0";
         };
         this.lab_totalCash.string = GlobalCfg.USER_DATAS.userDiamond ? "₹" + CommonFun.getInstance().numberToShow(FloatCalculation.accDiv( GlobalCfg.USER_DATAS.userDiamond,100)) : "₹0";
         this.lab_bonus.string = GlobalCfg.USER_DATAS.bonus ? "₹" + GlobalCfg.USER_DATAS.bonus / 100 : "₹" + 0;

@@ -1250,6 +1250,27 @@ let CommonFun = cc.Class({
         });
     },
 
+    showInvitation: function() {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.INVITATION, GlobalCfg.PREFAB_PARENT.INVITATION);
+        if (isExist) {
+            return;
+        };
+        this.showProgress();
+        let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/promoter/shareactivity";
+        CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
+            this.hidProgress();
+            if (msg.result == 0) {
+                GlobalCfg.USER_DATAS.invitationData = msg.data;
+                let invitationPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.INVITATION);
+                invitationPrefabPromise.then((prefab) => {
+                    let invitationNode = cc.instantiate(prefab);
+                    let invitationCtrl = invitationNode.getComponent('invitationCtrl');
+                    this.addToPointParent(invitationNode, GlobalCfg.PREFAB_PARENT.INVITATION);
+                });
+            }
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
     /**
      * 显示诱导充值界面
      */
@@ -1523,12 +1544,14 @@ let CommonFun = cc.Class({
      * 显示推广员界面
      */
     showPromoter: function() {
-        let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-        promoterPrefabPromise.then((prefab) => {
-            let promoterNode = cc.instantiate(prefab);
-            let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
-            this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
-        });
+        CommonFun.getInstance().showInvitation();
+
+        // let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+        // promoterPrefabPromise.then((prefab) => {
+        //     let promoterNode = cc.instantiate(prefab);
+        //     let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+        //     this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+        // });
     },
     
     // /**

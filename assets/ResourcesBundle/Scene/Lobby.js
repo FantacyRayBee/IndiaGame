@@ -1744,7 +1744,7 @@ cc.Class({
     },
 
     dealBtnTxEvent: function() {
-        CommonFun.getInstance().showPersonal();   
+        CommonFun.getInstance().showPersonal();
     },
 
     dealBtnActivityEvent: function(btnName) {
@@ -2379,7 +2379,9 @@ cc.Class({
     },
     
     showPromoterToast: function() {
+        // CommonFun.getInstance().showPromoter();
         CommonFun.getInstance().showPromoter();
+        
     },
 
     showBonusCardToast: function() {

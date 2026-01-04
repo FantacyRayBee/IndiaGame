@@ -57,6 +57,13 @@ cc.Class({
             tooltip: "按钮图标方向",
             visible: true,
         },
+
+        btnInvitation: {
+            default: null,
+            type: cc.Button,
+            tooltip: "邀请活动",
+            visible: true,
+        },
         red_act: cc.Node, //活动红点
         isShow: {
             get: function () {
@@ -96,6 +103,7 @@ cc.Class({
         this.btnSuperDiscount.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btnNewTGY.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_club.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btnInvitation.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
 
@@ -157,6 +165,9 @@ cc.Class({
         }
         else if (name == this.btn_club.node.name) {
             CommonFun.getInstance().showClub();
+        }
+        else if (name == this.btnInvitation.node.name) {
+            CommonFun.getInstance().showInvitation();
         }
     },
 
@@ -221,6 +232,9 @@ cc.Class({
 
     showOtherModules() {
         clearInterval(this.changeTime);
+
+        LoggerUtil.getInstance().log("showOtherModules GlobalCfg.USER_DATAS.openModules: ", GlobalCfg.USER_DATAS.openModules);
+
         /**
          * 绑定手机
          */
@@ -257,6 +271,8 @@ cc.Class({
             this.btnBrokeGift.node.active = false;
             this.btnSuperDiscount.node.active = false;
         };
+
+        this.btnInvitation.node.active = GlobalCfg.USER_DATAS.openModules.includes(25);
 
         /**
          * Bonus系统
