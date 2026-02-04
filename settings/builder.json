@@ -43,7 +43,7 @@
   },
   "android-instant": {
     "packageName": "org.cocos2d.demo",
-    "REMOTE_SERVER_ROOT": "",
+    "REMOTE_SERVER_ROOT": "http://26.26.26.1:7456/preview-android-instant/",
     "pathPattern": "",
     "scheme": "https",
     "host": "",
@@ -58,5 +58,6 @@
   "openharmony": {
     "packageName": "com.cocos.openharmony",
     "REMOTE_SERVER_ROOT": ""
-  }
+  },
+  "includeAnySDK": false
 }
