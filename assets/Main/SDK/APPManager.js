@@ -395,10 +395,11 @@ APPManager.getOpenInstallData = function () {
 }
 
 APPManager.getOpenInstallDataCallBack = function (channelCode, bindData) {
-    LoggerUtil.getInstance().log(`getOpenInstallDataCallBack ===> channelCode: ${channelCode}, bindData: ${bindData}`);
+    console.log(`getOpenInstallDataCallBack ===> channelCode: ${channelCode}, bindData: ${bindData}`);
     try {
         bindData = JSON.parse(bindData);
         let inviteCode = bindData["inviteCode"];
+        console.log("getOpenInstallDataCallBack ===> inviteCode: ", inviteCode);
         let inviteCodeArr = [];
         if (inviteCode && inviteCode.indexOf("_") != -1) {
             inviteCodeArr = inviteCode.split("_");

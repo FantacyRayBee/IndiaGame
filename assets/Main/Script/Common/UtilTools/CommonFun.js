@@ -174,6 +174,8 @@ let CommonFun = cc.Class({
          * App的落地页地址（主要是OpenInstall的功能）
          */
         GlobalCfg.APP_SHARE_URL = json["APP_SHARE_URL"];
+
+        LoggerUtil.getInstance().log("App Share URL:", GlobalCfg.APP_SHARE_URL);
         /**
          * 是否检查热更
          */
@@ -1544,14 +1546,12 @@ let CommonFun = cc.Class({
      * 显示推广员界面
      */
     showPromoter: function() {
-        CommonFun.getInstance().showInvitation();
-
-        // let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
-        // promoterPrefabPromise.then((prefab) => {
-        //     let promoterNode = cc.instantiate(prefab);
-        //     let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
-        //     this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
-        // });
+        let promoterPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROMOTER);
+        promoterPrefabPromise.then((prefab) => {
+            let promoterNode = cc.instantiate(prefab);
+            let promoterCtrl = promoterNode.getComponent('PromoterCtrl');    
+            this.addToPointParent(promoterNode, GlobalCfg.PREFAB_PARENT.PROMOTER);  
+        });
     },
     
     // /**

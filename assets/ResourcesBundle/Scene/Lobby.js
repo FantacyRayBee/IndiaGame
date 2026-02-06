@@ -1301,7 +1301,9 @@ cc.Class({
          */
         else if (GlobalCfg.USER_DATAS.openModules.includes(15) && this.isNeedShowPointToastByHours("Promoter", 1)) {
             this.updateToastLocalStorageByHours("Promoter", 1);
-            this.showPromoterToast();
+            // this.showPromoterToast();
+            CommonFun.getInstance().showInvitation();
+
         };
 
         /**

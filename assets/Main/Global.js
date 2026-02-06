@@ -1543,18 +1543,18 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
       break;
     case "5":     // 5服
       GlobalCfg.APP_VERSION = "5.0.0.1"; 
-      // GlobalCfg.APP_INFO_URL = `https://download.mok77.com/production/AppInfo.json`;
-      GlobalCfg.APP_INFO_URL = `https://download.mok77.com/production/AppInfo.json`;
+      // GlobalCfg.APP_INFO_URL = `https://download.gobet10.com/production/AppInfo.json`;
+      GlobalCfg.APP_INFO_URL = `https://download.gobet10.com/production/AppInfo.json`;
 
-      GlobalCfg.APP_CONFIG_URL = `https://download.mok77.com/production/AppConfig.json`;
+      GlobalCfg.APP_CONFIG_URL = `https://download.gobet10.com/production/AppConfig.json`;
       if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
-        GlobalCfg.APP_INFO_URL = `https://download.mok77.com/production/v1/AppInfo.json`;
+        GlobalCfg.APP_INFO_URL = `https://download.gobet10.com/production/v1/AppInfo.json`;
       }
       // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
       // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 
-      GlobalCfg.APP_INFO_URL_SPARE = `https://download.mok77.com/production/AppInfo.json`;
-      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.mok77.com/production/AppConfig.json`;
+      GlobalCfg.APP_INFO_URL_SPARE = `https://download.gobet10.com/production/AppInfo.json`;
+      GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.gobet10.com/production/AppConfig.json`;
       break;
     case "6":     // 代理服
       GlobalCfg.APP_VERSION = "6.0.1";
