@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "db134c9a-0dbf-40a4-af4c-3d298ef090f9",
+  "uuid": "ed95e33b-4d8b-4764-9a77-f5d481c27c1a",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "小鸡 3": {
       "ver": "1.0.6",
-      "uuid": "8473b86d-76d3-4133-b7d0-c860812d3591",
+      "uuid": "87cb10e4-8c42-4458-bf09-42a6c39f1611",
       "importer": "sprite-frame",
-      "rawTextureUuid": "db134c9a-0dbf-40a4-af4c-3d298ef090f9",
+      "rawTextureUuid": "ed95e33b-4d8b-4764-9a77-f5d481c27c1a",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

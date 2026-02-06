@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "ec9a12a0-dc55-4277-86b4-3695cfeb7b5a",
+  "uuid": "c6333f1a-41f5-44e0-aa75-21304b230c1e",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "Hamburger-button": {
       "ver": "1.0.6",
-      "uuid": "8cd48bdc-04dd-4668-9e7f-cadeb8f52b0e",
+      "uuid": "eaa08116-100a-46cf-86cd-293da9d776e6",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ec9a12a0-dc55-4277-86b4-3695cfeb7b5a",
+      "rawTextureUuid": "c6333f1a-41f5-44e0-aa75-21304b230c1e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

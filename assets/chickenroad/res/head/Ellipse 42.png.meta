@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "f90d6363-9476-45ce-81e8-3d00ba98a92f",
+  "uuid": "d1a5edb0-fbbd-4d00-a065-fd7029959867",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "Ellipse 42": {
       "ver": "1.0.6",
-      "uuid": "4a106d18-2141-4844-a064-45bc3adca48c",
+      "uuid": "d61a57a7-9b55-426c-a16a-6d72d5e8a76e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "f90d6363-9476-45ce-81e8-3d00ba98a92f",
+      "rawTextureUuid": "d1a5edb0-fbbd-4d00-a065-fd7029959867",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
