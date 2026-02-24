@@ -294,8 +294,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 682,
-      "height": 449
+      "width": 678,
+      "height": 447
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -672,7 +672,7 @@
       "__id__": 7
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 19
@@ -3470,7 +3470,7 @@
         "__id__": 138
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 153

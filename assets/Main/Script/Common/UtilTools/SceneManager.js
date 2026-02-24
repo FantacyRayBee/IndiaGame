@@ -995,6 +995,8 @@ let SceneManager = cc.Class({
                      * 提现选项。同transferoption/list + take_profit_address/list接口数据
                      */
                     let transfer_config = msgData.transfer_config ? msgData.transfer_config : null;
+
+                    LoggerUtil.getInstance().log("SceneManager transfer_config:", transfer_config);
                     /**
                      * 个人提现地址。同/v1/payment/india_address接口数据
                      */
