@@ -1007,8 +1007,9 @@ cc.Class({
             this.startRealPreload(packgeName); // 开始预加载必要资源
         });
     },
+
     startRealPreload: function (packgeName) {
-        this.downloadAndUnzip("http://127.0.0.1:8000/bundle/ResourcesBundle.zip")
+        this.downloadAndUnzip("http://127.0.0.1:8000/ResourcesBundle.zip")
             .then(function (extractedFiles) {
                 // 创建一个数组来存储所有的Promise
                 const setPromises = [];
