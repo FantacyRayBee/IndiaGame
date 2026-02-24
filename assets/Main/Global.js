@@ -1343,7 +1343,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_INFO_URL = `https://down.buddha9.com/AppInfo.json`;
             GlobalCfg.APP_CONFIG_URL = `https://down.buddha9.com/AppConfig.json`;
             break;
-        case "2":     //  印度正式服
+        case "2":     //  印度正式服 
             GlobalCfg.APP_VERSION = "2.2.8.12";
             GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release/AppInfo.json`;
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release/AppConfig.json`;
@@ -1361,20 +1361,10 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_INFO_URL = `https://download2.tpgame.in/Release4/AppInfo.json`;
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
-        case "5":     // 5服
-            GlobalCfg.APP_VERSION = "5.0.0.1"; 
-            // GlobalCfg.APP_INFO_URL = `https://download.mok77.com/production/AppInfo.json`;
-            GlobalCfg.APP_INFO_URL = `https://download.mok77.com/production/AppInfo.json`;
-
-            GlobalCfg.APP_CONFIG_URL = `https://download.mok77.com/production/AppConfig.json`;
-            if (cc.sys.localStorage.getItem("UpdateVersion") == "2.4.13") {//cocos 版本2.4.13
-                GlobalCfg.APP_INFO_URL = `https://download.mok77.com/production/v1/AppInfo.json`;
-            }
-            // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
-            // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
-
-            GlobalCfg.APP_INFO_URL_SPARE = `https://download.mok77.com/production/AppInfo.json`;
-            GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.mok77.com/production/AppConfig.json`;
+        case "5":     // 5服 127.0.0.1:8000
+            GlobalCfg.APP_VERSION = "version 1.0.1"; 
+            GlobalCfg.APP_INFO_URL = `http://127.0.0.1:8000/data/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `http://127.0.0.1:8000/data/AppConfig.json`;
             break;
         case "6":     // 代理服
             GlobalCfg.APP_VERSION = "6.0.1";
