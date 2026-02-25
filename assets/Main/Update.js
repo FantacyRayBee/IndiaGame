@@ -1004,7 +1004,9 @@ cc.Class({
         let packgeName = "ResourcesBundle";
 
         this.checkDownloadH5Main(() => {
-            this.startRealPreload(packgeName); // 开始预加载必要资源
+            // this.startRealPreload(packgeName); // 开始预加载必要资源
+            // this.startRealPreload1(packgeName); // 开始预加载必要资源
+            this.stanblyEnrty()
         });
     },
 
@@ -1070,10 +1072,22 @@ cc.Class({
         });
     },
 
+    stanblyEnrty() {
+        this.scheduleOnce(() => {
+            this.setLabUpdateProgressStr("100%");
+            this.setUpdateProgressBarProgress(1);
+            this.setLabUpdateContentTipsStr("Please Enjoy The Game");
+            this.scheduleOnce(() => {
+                this.changeSceneToLobby();
+            }, 1);    
+        }, 1);  
+    },
+
     checkDownloadH5Main(callback = null) {
-        cc.assetManager.loadBundle('LanguageEnglish', function (err, bundle) {
+        cc.assetManager.loadBundle('MainBundle', function (err, bundle) {
+            window.MainBundle = bundle;
             if (err) {
-                console.error("加载 LanguageEnglish 失败:", err);
+                console.error("加载 MainBundle 失败:", err);
                 return;
             }
             callback && callback();

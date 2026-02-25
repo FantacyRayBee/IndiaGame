@@ -257,7 +257,7 @@ cc.Class({
         };
 
         if (GlobalCfg.isH5) {
-            this.loadBundleByH5();
+            // this.loadBundleByH5();
         }
     
         this.checkShiPei();
