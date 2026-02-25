@@ -21,7 +21,7 @@ cc.Class({
         }
     },
 
-    start: function() {
+    start: function () {
         this.setContactData();
 
     },
@@ -56,18 +56,18 @@ cc.Class({
             let mobileNum = whatsAppInfos[0].match(/\d+/g);
             let channelLink = whatsAppInfos[1];
             APPManager.skipToOtherApp("com.whatsapp", channelLink);
-        } 
+        }
         else if (btnName == 'btn_service') {
             // Skip to service
             let str = GlobalCfg.USER_DATAS.web_customer_service;
-            str += "?userId=" + GlobalCfg.USER_DATAS.userId;
+            str += "?userId=" + GlobalCfg.USER_DATAS.userId + "_" + (GlobalCfg.USER_DATAS.recharged / 100) + "_" + (GlobalCfg.USER_DATAS.allWithdraw / 100);
             str += "&nickname=" + GlobalCfg.USER_DATAS.userName;
             str += "&mobile=" + GlobalCfg.USER_DATAS.phone;
             str += "&email=" + GlobalCfg.USER_DATAS.mail;
 
-            LoggerUtil.getInstance().log('btn_service str:' , str);
+            LoggerUtil.getInstance().log('btn_service str:', str);
             cc.sys.openURL(str);
-        } 
+        }
         else if (btnName == 'btn_go_feedback') {
             CommonFun.getInstance().showFastFeedBack();
         }
@@ -76,8 +76,8 @@ cc.Class({
     /**
      * 设置多种联系方式
      */
-    setContactData: function() {
-        this.channel_info = {...GlobalCfg.USER_DATAS.customerService};
+    setContactData: function () {
+        this.channel_info = { ...GlobalCfg.USER_DATAS.customerService };
         LoggerUtil.getInstance().log('ContactData', this.channel_info);
         for (let i = 0, len = this.lab_nums.length; i < len; i++) {
             switch (i) {

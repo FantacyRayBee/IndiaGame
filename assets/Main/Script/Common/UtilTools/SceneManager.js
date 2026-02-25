@@ -1049,6 +1049,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.recharged = recharged;
                     GlobalCfg.USER_DATAS.inviteCode = code;
                     GlobalCfg.USER_DATAS.remainWithdrawCount = remain_withdraw_count;
+                    GlobalCfg.USER_DATAS.allWithdraw = withdraw;
                     GlobalCfg.USER_DATAS.voucherCard = voucher_card;
                     GlobalCfg.USER_DATAS.voucherDayGift = voucher_day_gift;
                     GlobalCfg.USER_DATAS.voucherCardCreated = voucher_card_created;
