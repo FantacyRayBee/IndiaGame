@@ -67,7 +67,7 @@ cc.Class({
                 this._isShow = value;
                 // LoggerUtil.getInstance().warn("重新设置侧边栏显示状态", this._isShow);
                 ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED, msgData: { isShow: this._isShow } });
-                
+
             },
             tooltip: "是否显示",
             visible: true,
@@ -124,6 +124,12 @@ cc.Class({
             };
             this.btn_register.node.active = !GlobalCfg.USER_DATAS.isBindAccount;
         }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_PROGRESS) {
+            self.setLobbyLoadProgress(notify);
+        }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_COMPLETE) {
+            self.setLobbyLoadComplete(notify);
+        }
         // if (msgId == "RefreshActivity_RedPoint") {
         //     this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
         // }
@@ -133,9 +139,9 @@ cc.Class({
         let name = button.node.name;
         if (name == this.btnShowOrHide.node.name) {
             this.isShow = !this.isShow;
-            if(true == this.isShow){
+            if (true == this.isShow) {
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
-            }else{
+            } else {
                 GlobalCfg.G_COMPONENTS.Audio.playBack();
             }
             this.onBtnShowOrHideClick();
@@ -174,7 +180,7 @@ cc.Class({
         this.onBtnShowOrHideClick();
     },
 
-    setHideActivity: function() {
+    setHideActivity: function () {
         this.node.active = false;
     },
 
@@ -215,7 +221,7 @@ cc.Class({
                     this.node_btnDirection.spriteFrame = this.on_sf;
                 })
                 .start();
-        } 
+        }
         else {
             ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED, msgData: { isShow: false } });
             cc.tween(this.node)
@@ -295,7 +301,7 @@ cc.Class({
 
                 // 格式化时分秒
                 let formatDuring = (mss) => {
-                    if(mss < 0){
+                    if (mss < 0) {
                         return ""
                     }
                     let days = Math.floor(mss / (24 * 60 * 60));
@@ -353,7 +359,7 @@ cc.Class({
     dealBtnMobileEvent: function () {
         if (GlobalCfg.USER_DATAS.phone.length == 0) {
             CommonFun.getInstance().showBindPhoneRewards();
-            
+
         }
         else {
             CommonFun.getInstance().showTips(`Already bind your Phone Number: ${GlobalCfg.USER_DATAS.phone}`);
@@ -365,16 +371,16 @@ cc.Class({
     },
 
     dealClubEvent: function () {
-        
+
     },
 
     dealBtnSuperDiscountferEvent: function () {
         this.showSecondRechargeToast();
     },
 
-    dealBtnBrokeGiftEvent:function(){
+    dealBtnBrokeGiftEvent: function () {
         CommonFun.getInstance().showBankruptcy(true);
-    }, 
+    },
 
     showSecondRechargeToast: function () {
         CommonFun.getInstance().showSuperDiscount('Lobby');
@@ -387,6 +393,42 @@ cc.Class({
     dealBtnActivityEvent: function () {
         CommonFun.getInstance().showActivity();
     },
+
+
+    setLobbyLoadProgress: function (notify) {
+        if (!notify) {
+            return;
+        };
+        switch (notify.packageName) {
+            case "DailyBonusCard":
+                let progress = notify.progress;
+                this.setUpdateProgressBarProgress(this.btnBonusCard.node, progress / 100);
+                break;
+        }
+    },
+
+    setUpdateProgressBarProgress: function (node, progress) {
+        let updateMaskNode = node.getChildByName('updateMask')
+        updateMaskNode.active = true;
+        updateMaskNode.getChildByName('progressBar').getComponent(cc.ProgressBar).progress = progress;
+        updateMaskNode.getChildByName('lab_xz').getComponent(cc.Label).string = Math.floor(progress * 100) + '%';
+    },
+
+    setLobbyLoadComplete: function (notify) {
+        if (!notify) {
+            return;
+        };
+        switch (notify.packageName) {
+            case "DailyBonusCard":
+                this.setUpdateComplete(this.btnBonusCard.node);
+                break;
+        }
+    },
+
+    setUpdateComplete: function (node) {
+        let updateMaskNode = node.getChildByName('updateMask')
+        updateMaskNode.active = false;
+    }
 
     // update (dt) {},
 });

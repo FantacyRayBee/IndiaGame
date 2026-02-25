@@ -612,13 +612,29 @@ let CommonFun = cc.Class({
             // 预加载资源包中的目录并获取进度
             bundle.preloadDir(packageName, (completedCount, totalCount) => {
                 let rawProgress = completedCount / totalCount;  // 计算进度
-                LoggerUtil.getInstance().log(`packageName 下载进度 ： ${(rawProgress * 100).toFixed(2)}%`);
+                if (rawProgress >= 1) {
+                    rawProgress = 1;
+                }
+                let progressStr = (rawProgress * 100).toFixed(2);
+                let msgData = {
+                    progress: progressStr,
+                    packageName: packageName,
+                };
+                ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                    msgCode: GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_PROGRESS,
+                    msgData: msgData
+                });
+
             }, (err) => {
                 if (err) {
                 } else {
                     this.hidProgress();  // 隐藏进度
                     this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
                     callback && callback();  // 执行回调
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                        msgCode: GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_COMPLETE,
+                        msgData: {packageName: packageName}
+                    });
                 }
             });
         });
