@@ -435,6 +435,8 @@ cc.Class({
         let zhuangClipName = isFast ? 'zhuang-fast' : 'zhuang';
         this.playGameSound(zhuangClipName);
 
+        this.lab_betAmount.string = "bet " + parseInt(this.curBetAmount);
+
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
             let diamond = GlobalCfg.USER_DATAS.userDiamond - (parseFloat(this.curBetAmount) * 100);
