@@ -399,11 +399,17 @@ cc.Class({
         if (!notify) {
             return;
         };
+        let progress = 0;
         switch (notify.packageName) {
             case "DailyBonusCard":
-                let progress = notify.progress;
+                progress = notify.progress;
                 this.setUpdateProgressBarProgress(this.btnBonusCard.node, progress / 100);
                 break;
+            case "Activity":
+                progress = notify.progress;
+                this.setUpdateProgressBarProgress(this.btnActivity.node, progress / 100);
+                break;
+                
         }
     },
 
@@ -421,6 +427,9 @@ cc.Class({
         switch (notify.packageName) {
             case "DailyBonusCard":
                 this.setUpdateComplete(this.btnBonusCard.node);
+                break;
+            case "Activity":
+                this.setUpdateComplete(this.btnActivity.node);
                 break;
         }
     },

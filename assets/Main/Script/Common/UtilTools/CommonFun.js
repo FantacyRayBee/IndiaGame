@@ -597,7 +597,7 @@ let CommonFun = cc.Class({
             callback && callback();
             return;
         }
-        this.showProgress();  // 显示进度
+        this.showProgress("Downloading Resources", 120);  // 显示进度, 120秒超时
         // 加载资源包
         cc.assetManager.loadBundle("ResourcesBundle", (err, bundle) => {
             if (err) {
@@ -610,7 +610,7 @@ let CommonFun = cc.Class({
                 return;
             }
             // 预加载资源包中的目录并获取进度
-            bundle.preloadDir(packageName, (completedCount, totalCount) => {
+            bundle.preloadDir("NewPlan/" + packageName, (completedCount, totalCount) => {
                 let rawProgress = completedCount / totalCount;  // 计算进度
                 if (rawProgress >= 1) {
                     rawProgress = 1;
@@ -629,7 +629,7 @@ let CommonFun = cc.Class({
                 if (err) {
                 } else {
                     this.hidProgress();  // 隐藏进度
-                    this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
+                    // this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
                     callback && callback();  // 执行回调
                     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
                         msgCode: GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_COMPLETE,
@@ -1101,6 +1101,7 @@ let CommonFun = cc.Class({
      * @param {number} lastTime 持续时间
      */
     showProgress: function (content, lastTime = 15) {
+        LoggerUtil.getInstance().error('111111111showProgress');
         if (this._progressNode) {
             let progressCtrl = this._progressNode.getComponent('ProgressCtrl');
             progressCtrl.setContent(content);
@@ -1117,6 +1118,7 @@ let CommonFun = cc.Class({
      * 隐藏进度框
      */
     hidProgress: function () {
+        LoggerUtil.getInstance().error('111111111hidProgress');
         clearTimeout(this._progressTimer);
         if (this._progressNode) {
             this._progressNode.active = false;

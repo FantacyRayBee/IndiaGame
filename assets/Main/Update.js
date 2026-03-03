@@ -1084,13 +1084,37 @@ cc.Class({
     },
 
     checkDownloadH5Main(callback = null) {
+        this.setLabUpdateContentTipsStr("Preparing files...");
+        this.setLabUpdateProgressStr("80%");
+        this.setUpdateProgressBarProgress(0.8);
+        let self = this;
+        cc.assetManager.loadBundle('LanguageEnglish', function (err, bundle) {
+            bundle.preloadDir("/", () => {
+            }, (err) => {
+                if (err) {
+                    console.error("LanguageEnglish 资源加载失败:", err);
+                }
+            });
+        });
+
         cc.assetManager.loadBundle('MainBundle', function (err, bundle) {
             window.MainBundle = bundle;
-            if (err) {
-                console.error("加载 MainBundle 失败:", err);
-                return;
-            }
-            callback && callback();
+            bundle.preloadDir("/", (completedCount, totalCount) => {
+                let rawProgress = completedCount / totalCount;
+                let adjustedProgress = 0.8 + rawProgress * 0.2; // 从 80% 开始计算进度
+                self.setLabUpdateProgressStr(`${(adjustedProgress * 100).toFixed(2)}%`);
+                self.setUpdateProgressBarProgress(adjustedProgress);
+                self.setLabUpdateContentTipsStr("Downloading files...");
+            }, (err) => {
+                if (err) {
+                    console.error("MainBundle 资源加载失败:", err);
+                } else {
+                    self.setLabUpdateProgressStr("100%");
+                    self.setUpdateProgressBarProgress(1);
+                    self.setLabUpdateContentTipsStr("Please Enjoy The Game");
+                    callback && callback();
+                }
+            });
         });
     },
 
