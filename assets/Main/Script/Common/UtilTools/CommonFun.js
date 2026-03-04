@@ -18,7 +18,6 @@ let CommonFun = cc.Class({
         this._verticalAcc = 0;
         this._curOrientation = EnumOrientation.HORIZONTAL;
 
-        this.resoucesBundleOpenList = {}
         this.gameBundleOpenList = {}
     },
 
@@ -592,11 +591,6 @@ let CommonFun = cc.Class({
             callback && callback();
             return;
         }
-        if (this.resoucesBundleOpenList[packageName]) { // 如果已经下载过，则直接返回
-            LoggerUtil.getInstance().log(`ResourcesBundle下载完毕`);
-            callback && callback();
-            return;
-        }
         this.showProgress("Downloading Resources", 120);  // 显示进度, 120秒超时
         // 加载资源包
         cc.assetManager.loadBundle("ResourcesBundle", (err, bundle) => {
@@ -629,12 +623,34 @@ let CommonFun = cc.Class({
                 if (err) {
                 } else {
                     this.hidProgress();  // 隐藏进度
-                    // this.resoucesBundleOpenList[packageName] = true; // 标记该资源包已打开
                     callback && callback();  // 执行回调
                     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
                         msgCode: GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_COMPLETE,
                         msgData: {packageName: packageName}
                     });
+                }
+            });
+        });
+    },
+
+    // 预加载H5模块资源
+    perloadResByH5: function (packageName, callback) {
+        if (!GlobalCfg.isH5) { // 非h5平台，直接返回
+            callback && callback();
+            return;
+        }
+        cc.assetManager.loadBundle("ResourcesBundle", (err, bundle) => {
+            if (err) {
+                clearTimeout(timeout);  // 发生错误时清除定时器
+                this.hidProgress();  // 隐藏进度条
+                return;
+            }
+            // 预加载资源包中的目录并获取进度
+            bundle.preloadDir("NewPlan/" + packageName, () => {
+            }, (err) => {
+                if (err) {
+                } else {
+                    this.hidProgress();  // 隐藏进度
                 }
             });
         });

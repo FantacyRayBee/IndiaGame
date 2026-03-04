@@ -258,6 +258,7 @@ cc.Class({
 
         if (GlobalCfg.isH5) {
             // this.loadBundleByH5();
+            CommonFun.getInstance().perloadResByH5("Shop"); //预加载商店资源
         }
     
         this.checkShiPei();
@@ -275,7 +276,7 @@ cc.Class({
     },
 
 
-    //偷偷下载
+    //偷偷下载H5
     loadBundleByH5 : function () {
         cc.assetManager.loadBundle('ResourcesBundle', (_, bundle) => {
             bundle.preloadDir("/", (completedCount, totalCount) => {

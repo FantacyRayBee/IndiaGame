@@ -125,7 +125,7 @@ cc.Class({
             this.btn_register.node.active = !GlobalCfg.USER_DATAS.isBindAccount;
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_PROGRESS) {
-            self.setLobbyLoadProgress(notify);
+            // self.setLobbyLoadProgress(notify);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_LOBBY_LOAD_COMPLETE) {
             self.setLobbyLoadComplete(notify);
