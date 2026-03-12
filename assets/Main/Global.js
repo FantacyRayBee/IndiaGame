@@ -675,11 +675,11 @@ window.GlobalCfg = {
         /**
          * 进度提示框
          */
-        PROGRESS: "ResourcesBundle/NewPlan/Progress/Progress",
+        PROGRESS: "MainBundle/perfab/Progress/Progress",
         /**
          * 通用提示操作框
          */
-        MSGBOX: "ResourcesBundle/NewPlan/MsgBox/MsgBox",
+        MSGBOX: "MainBundle/perfab/MsgBox/MsgBox",
         /**
          * 大厅设置
          */
@@ -1318,7 +1318,7 @@ if (GlobalCfg.isH5 == true) {
 
 if (GlobalCfg.is_force_gotoTest == true) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    localStorage.setItem('PackageChannel', '5_1004');
+    localStorage.setItem('PackageChannel', '0_1001');
 }
 
 /**
@@ -1337,8 +1337,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     switch (server) {
         case "0":     // 测试服
             GlobalCfg.APP_VERSION = "H5 test 1.0.7";
-            GlobalCfg.APP_INFO_URL = `https://down.97ssr.com/AppInfo.json?time=${new Date().getTime()}`;
-            GlobalCfg.APP_CONFIG_URL = `https://down.97ssr.com/AppConfig.json?time=${new Date().getTime()}`;
+            GlobalCfg.APP_INFO_URL = `http://download.cj888viptest.com/production/AppInfo.json?time=${new Date().getTime()}`;
+            GlobalCfg.APP_CONFIG_URL = `http://download.cj888viptest.com/production/AppConfig.json?time=${new Date().getTime()}`;
             break;
         case "1":     //  印度测试服
             GlobalCfg.APP_VERSION = "india test 1.0.0";

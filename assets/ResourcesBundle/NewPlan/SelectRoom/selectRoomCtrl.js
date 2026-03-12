@@ -291,31 +291,58 @@ cc.Class({
 
     dealRummyRoomItemEvent: function(itemData) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_RUMMY_PLAYNOW_BUTTON);
-        CommonFun.getInstance().showProgress();
-        GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID = itemData.id;
-        GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum = itemData.num;
-        cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.RUMMY);
-        CommonFun.getInstance().hideSelectRoom();
-        return;
+        this.checkUpdate("rummy", ()=>{
+            GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID = itemData.id;
+            GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum = itemData.num;
+            cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
+            CommonFun.getInstance().showProgress();
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.RUMMY);
+            CommonFun.getInstance().hideSelectRoom();
+        });
     },
 
     dealAndarRoomItemEvent: function(itemData) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ANDAR_PLAYNOW_BUTTON);
-        CommonFun.getInstance().showProgress();
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ANDAER);
-        GlobalCfg.SMALL_GAME_DATAS.andeerData.roomID = itemData.id;
-        cc.sys.localStorage.setItem("AndeerData", JSON.stringify(itemData));
-        CommonFun.getInstance().hideSelectRoom();
+        this.checkUpdate("andaerGame", ()=>{
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ANDAER);
+            GlobalCfg.SMALL_GAME_DATAS.andeerData.roomID = itemData.id;
+            cc.sys.localStorage.setItem("AndeerData", JSON.stringify(itemData));
+            CommonFun.getInstance().showProgress();
+            CommonFun.getInstance().hideSelectRoom();
+        });
     },
 
     dealTeenpattiRoomItemEvent: function(itemData) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_PLAYNOW_BUTTON);
-        CommonFun.getInstance().showProgress();
-        GlobalCfg.SMALL_GAME_DATAS.teenPattiData.roomId = itemData.id;
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.TEENPATTI);
-        CommonFun.getInstance().hideSelectRoom();
-        return;
+        this.checkUpdate("tpGame", ()=>{
+            GlobalCfg.SMALL_GAME_DATAS.teenPattiData.roomId = itemData.id;
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.TEENPATTI);
+            CommonFun.getInstance().showProgress();
+            CommonFun.getInstance().hideSelectRoom();
+        });
+    },
+
+    checkUpdate: function (subpackgeName, callFun) {
+        // ✅ 在编辑器点 Play 的预览环境（浏览器/模拟器）直接走回调，跳过下载
+        const isEditorPreview =
+            (typeof CC_PREVIEW !== 'undefined' && CC_PREVIEW) ||
+            (typeof Editor !== 'undefined'); // 少数内嵌预览场景的兜底
+
+        if (isEditorPreview) {
+            callFun && callFun();
+            return;
+        }
+        if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
+            if (!GlobalCfg.isH5) {
+                CommonFun.getInstance().showTips("Download the game now!");
+                GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            } else {
+                CommonFun.getInstance().gameLoadBundleByH5(subpackgeName);
+                CommonFun.getInstance().showGameLoading(false, callFun);
+            }
+        } else {
+            callFun && callFun();
+        }
     },
 
     isAvailableToUpRoom: function(gameType) {

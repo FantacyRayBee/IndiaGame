@@ -1117,7 +1117,6 @@ let CommonFun = cc.Class({
      * @param {number} lastTime 持续时间
      */
     showProgress: function (content, lastTime = 15) {
-        LoggerUtil.getInstance().error('111111111showProgress');
         if (this._progressNode) {
             let progressCtrl = this._progressNode.getComponent('ProgressCtrl');
             progressCtrl.setContent(content);
@@ -1134,7 +1133,6 @@ let CommonFun = cc.Class({
      * 隐藏进度框
      */
     hidProgress: function () {
-        LoggerUtil.getInstance().error('111111111hidProgress');
         clearTimeout(this._progressTimer);
         if (this._progressNode) {
             this._progressNode.active = false;
@@ -1821,14 +1819,14 @@ let CommonFun = cc.Class({
      */
     showPersonal: function () {
         CommonFun.getInstance().checkBundleIsDownloadedByH5("Personal", () => {
-            this.getClubData(() => {
+            // this.getClubData(() => {
                 let personalPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PERSONAL);
                 personalPrefabPromise.then((prefab) => {
                     let personalNode = cc.instantiate(prefab);
                     let personalCtrl = personalNode.getComponent('PersonalCtrl');
                     this.addToPointParent(personalNode, GlobalCfg.PREFAB_PARENT.PERSONAL);
                 });
-            });
+            // });
         });
     },
 
@@ -1873,6 +1871,7 @@ let CommonFun = cc.Class({
      */
     proloadSelectRoom: function () {
         return new Promise((resolve, reject) => {
+        CommonFun.getInstance().checkBundleIsDownloadedByH5("SelectRoom", () => {
             let selectRoomPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SELECTROOM);
             selectRoomPrefabPromise.then((prefab) => {
                 this._selectRoomNode = cc.instantiate(prefab);
@@ -1880,9 +1879,9 @@ let CommonFun = cc.Class({
                 this.addToPointParent(this._selectRoomNode, GlobalCfg.PREFAB_PARENT.SELECTROOM);
                 resolve();
             })
-                .catch(() => {
-                    reject();
-                })
+            .catch(() => {
+                reject();
+            })});
         });
     },
 
@@ -1892,15 +1891,29 @@ let CommonFun = cc.Class({
     showSelectRoom: function () {
         if (this._selectRoomNode) {
             CommonFun.getInstance().updateSidebarData(false);
-            let selectRoomCtrl = this._selectRoomNode.getComponent('selectRoomCtrl');
             this._selectRoomNode.active = true;
+            let selectRoomCtrl = this._selectRoomNode.getComponent('selectRoomCtrl');
             if (selectRoomCtrl) {
                 selectRoomCtrl && selectRoomCtrl.showPointGameRoom();
             } else {
                 LoggerUtil.getInstance().log("3333333333 selectRoomCtrl is null");
             }
         }
-        ;
+        else{
+            CommonFun.getInstance().checkBundleIsDownloadedByH5("SelectRoom", () => {
+                let selectRoomPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SELECTROOM);
+                selectRoomPrefabPromise.then((prefab) => {
+                    this._selectRoomNode = cc.instantiate(prefab);
+                    this.addToPointParent(this._selectRoomNode, GlobalCfg.PREFAB_PARENT.SELECTROOM);
+                    let selectRoomCtrl = this._selectRoomNode.getComponent('selectRoomCtrl');
+                    if (selectRoomCtrl) {
+                        selectRoomCtrl && selectRoomCtrl.showPointGameRoom();
+                    } else {
+                        LoggerUtil.getInstance().log("3333333333 selectRoomCtrl is null");
+                    }
+                })
+            })
+        }
     },
 
     /**

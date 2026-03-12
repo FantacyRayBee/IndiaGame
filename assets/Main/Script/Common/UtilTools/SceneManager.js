@@ -686,7 +686,7 @@ let SceneManager = cc.Class({
 
                         let msgData = msg.data;
                         let token = msgData.token;
-                        LoggerUtil.getInstance().error(`v1/login msgData: ${JSON.stringify(msgData)}`);
+                        // LoggerUtil.getInstance().error(`v1/login msgData: ${JSON.stringify(msgData)}`);
                         let login_way = msgData.login_way;
                         /**
                          * 用户token的有效时间截点

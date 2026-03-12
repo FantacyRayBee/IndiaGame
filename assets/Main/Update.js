@@ -1079,8 +1079,8 @@ cc.Class({
             this.setLabUpdateContentTipsStr("Please Enjoy The Game");
             this.scheduleOnce(() => {
                 this.changeSceneToLobby();
-            }, 1);    
-        }, 1);  
+            }, 0.1);    
+        }, 0.5);  
     },
 
     checkDownloadH5Main(callback = null) {
@@ -1088,14 +1088,14 @@ cc.Class({
         this.setLabUpdateProgressStr("80%");
         this.setUpdateProgressBarProgress(0.8);
         let self = this;
-        cc.assetManager.loadBundle('LanguageEnglish', function (err, bundle) {
-            bundle.preloadDir("/", () => {
-            }, (err) => {
-                if (err) {
-                    console.error("LanguageEnglish 资源加载失败:", err);
-                }
-            });
-        });
+        // cc.assetManager.loadBundle('LanguageEnglish', function (err, bundle) {
+        //     bundle.preloadDir("/", () => {
+        //     }, (err) => {
+        //         if (err) {
+        //             console.error("LanguageEnglish 资源加载失败:", err);
+        //         }
+        //     });
+        // });
 
         cc.assetManager.loadBundle('MainBundle', function (err, bundle) {
             window.MainBundle = bundle;
