@@ -2139,7 +2139,6 @@ cc.Class({
         const verticalGames = {
             "Benz": true,
             "aviator": true,
-            "zeusGame": true
         };
         const isVertical = verticalGames[subpackgeName] || false;
         return isVertical;
