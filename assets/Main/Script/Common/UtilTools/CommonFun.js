@@ -801,7 +801,6 @@ let CommonFun = cc.Class({
             }, false);
             return
         }
-        ;
         this._showShop(from);
     },
 
