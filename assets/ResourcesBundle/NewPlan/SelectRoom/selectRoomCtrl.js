@@ -291,12 +291,12 @@ cc.Class({
 
     dealRummyRoomItemEvent: function(itemData) {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_RUMMY_PLAYNOW_BUTTON);
-        this.checkUpdate("rummy", ()=>{
+        this.checkUpdate("Rummy", ()=>{
             GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID = itemData.id;
             GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum = itemData.num;
-            cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
-            CommonFun.getInstance().showProgress();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.RUMMY);
+            CommonFun.getInstance().showProgress();
+            cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
             CommonFun.getInstance().hideSelectRoom();
         });
     },
