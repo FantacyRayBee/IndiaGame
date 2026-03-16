@@ -1220,18 +1220,12 @@ cc.Class({
         // /**
         //  * 提现
         //  */
-        // else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
-        //         && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
-        //     this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
-        //     this.showWithDrawToast();
-        // }
-
-        /**
-         * 提现
-         */
-        else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > 1500 && GlobalCfg.USER_DATAS.isNotCharge == true) {
+        else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100) 
+                && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
+            this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
             this.showWithDrawToast();
         }
+
         // /** 
         //  * 诱导充值
         //  */

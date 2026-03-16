@@ -363,6 +363,7 @@ let SceneManager = cc.Class({
                     CommonFun.getInstance().showGameStartMask();
                     CommonFun.getInstance().hidProgress();
                     CommonFun.getInstance().hideSidebarData();
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.CHANGE_SCENE_COMPLETE, msgData: {}});
                 })
                 .catch((err) => {
                     LoggerUtil.getInstance().error(err);

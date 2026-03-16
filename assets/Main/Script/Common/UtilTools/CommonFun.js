@@ -791,17 +791,33 @@ let CommonFun = cc.Class({
      * @returns
      */
     showNewShop: function (isFromFirstRecharge, from = '') {
-        if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
-            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {
-            }, false);
+        if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
+            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
             return;
         }
         if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
-            CommonFun.getInstance().showMsgBox("Not yet open", "NO", () => {
-            }, false);
+            CommonFun.getInstance().showMsgBox("Not yet open", "NO", () => { }, false);
             return
+        };
+        // 首充 且 首充活动模块开关开启
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(10)) {
+            // if (isFromFirstRecharge == true) {
+                // 展示商城
+                if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0){
+                    this._showShop(from);
+
+                }
+                else {
+                    this.showBindPhone('AddCash');
+                }
+            // }
+            // else {
+            //     this.showFirstRecharge();
+            // }
+        } 
+        else {
+            this._showShop(from);
         }
-        this._showShop(from);
     },
 
     debounce: function (action, delayTime) {
