@@ -21,10 +21,10 @@ cc.Class({
     },
 
     onDestroy: function () {
-        this.node_chatArr = GlobalCfg.ACT_SCENE_CTRL.node_chat.children;
-        if (this.node_chatArr && this.node_chatArr[this.pos]) {
-            this.node_chatArr[this.pos].active = false;
-        }
+        // this.node_chatArr = GlobalCfg.ACT_SCENE_CTRL.node_chat.children;
+        // if (this.node_chatArr && this.node_chatArr[this.pos]) {
+        //     this.node_chatArr[this.pos].active = false;
+        // }
     },
 
     // 设置玩家数据

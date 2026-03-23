@@ -16,7 +16,6 @@ cc.Class({
 
         this.myNodeCtrl = null;
         GlobalCfg.ACT_SCENE_CTRL = this;
-        this._isDestroyed = false;
         this.initLocalBtn(); // 实例化节点
         this.initCoinPool(); // 创建金币对象池
         this.assetBundle = cc.assetManager.getBundle('horseRaceGame');
@@ -42,39 +41,23 @@ cc.Class({
     },
 
     onDestroy: function () {
-        // 【新增】防止重复销毁的标志
-        if (this._isDestroyed) {
-            return;
-        }
-        this._isDestroyed = true;
+        // 停止所有计时器
+        this.unschedule(this.RuntimeCallback);
+        this.unschedule(this.callbackCheck);
+        this.unschedule(this.scheduleBetSpineTimeCallback);
+        this.unschedule(this.horsesLisenerCallBack);
+        this.unschedule(this.playAudioCallBack);
 
-        // 1. 停止所有计时器 (原有代码保留)
-        this.unscheduleAllCallbacks(); // 【建议】直接使用这个代替逐个 unschedule，更彻底
-
-        // 2. 停止所有 Tween (原有代码保留并增强)
+        // 停止所有协程
         cc.Tween.stopAllByTag(1);
-        if (this.nodeTrack) cc.Tween.stopAllByTarget(this.nodeTrack);
-        if (this.spr_LeaderNum) cc.Tween.stopAllByTarget(this.spr_LeaderNum);
-        
-        // 【新增】停止当前节点上所有的 Tween
-        cc.Tween.stopAllByTarget(this.node); 
+        cc.Tween.stopAllByTarget(this.nodeTrack);
+        cc.Tween.stopAllByTarget(this.spr_LeaderNum);
 
-        // 3. 清理全局引用 (原有代码保留)
+        // 清理其他资源
         GlobalCfg.ACT_SCENE_CTRL = null;
-
-        // 4. 移除消息监听 (原有代码保留)
-        if (this.msgHandle) ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
-        if (this.customMsgEventHandle) ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
-        
-        // 【新增】移除游戏前后台切换监听 (非常重要，你的代码在 onLoad 里注册了但没有移除)
-        cc.game.off(cc.game.EVENT_SHOW, this._eventShowCallback, this); 
-        cc.game.off(cc.game.EVENT_HIDE, this._eventHideCallback, this);
-
-        // 5. 清理对象池中的节点 (防止对象池里的节点还引用着当前场景的资源)
-        if (this.coinPool) {
-            this.coinPool.clear(); 
-        }
-
+        this.unschedule(this.scheduleBetSpineTimeCallback);
+        ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
+        ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_HORSE_GAME);
     },
 

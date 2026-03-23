@@ -230,33 +230,15 @@ cc.Class({
         this.teenPatti2Endpoint = "";
     },
 
-    checkShiPei: function () {
-        // 【关键修复 1】检查当前脚本所在的节点是否有效
-        if (!this.node || !cc.isValid(this.node)) {
-            return;
-        }
+    checkShiPei: function() {
+        cc.game.setFrameRate(60);
 
-        if (!this.node_middles || !cc.isValid(this.node_middles)) return;
-        if (!this.node_banner || !cc.isValid(this.node_banner)) return;
-        if (!this.node_gameScollview || !cc.isValid(this.node_gameScollview)) return;
-
-        // 【关键修复 3】防止在组件正在销毁的过程中执行逻辑
-        if (this._isDestroyed) { 
-            return;
-        }
-        try {
-            cc.game.setFrameRate(60);
-            let w = cc.view.getVisibleSize().width;
-            // 设置内容大小和位置
-            this.node_middles.setContentSize(w, 480);
-            this.node_middles.setPosition(0, -20);
-            this.node_banner.setPosition(-(w / 2) + 337.83, 0);
-            this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
-            this.node_gameScollview.setContentSize(w - 100 - 30, 520);
-        } catch (e) {
-            // 捕获可能的错误，防止卡死主线程
-            cc.console.warn("checkShiPei 执行出错，可能节点已销毁:", e);
-        }
+        let w = cc.view.getVisibleSize().width;
+        this.node_middles.setContentSize(w, 480);
+        this.node_middles.setPosition(0, -20);
+        this.node_banner.setPosition(-(w / 2) + 337.83, 0);
+        this.node_gameScollview.setPosition(-(w / 2) + 130, 0);
+        this.node_gameScollview.setContentSize(w - 100 - 30, 520);
     },
 
     onLoad: function() {
@@ -273,32 +255,24 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
         };
-        
-        
-        // 使用 scheduleOnce 推迟到下一帧执行，避开销毁高峰期
-        this.scheduleOnce(() => {
-            if (cc.isValid(this.node)) {
-                if (GlobalCfg.isH5) {
-                    // this.loadBundleByH5();
-                    CommonFun.getInstance().perloadResByH5("Shop"); //预加载商店资源
-                }
-                this.checkShiPei();
-                this.setBtnsClick();
-                this.setGameOrder();
-                this.showUserInfo();
-                // this.showBanner();
-                this.showOtherModules(); 
-                this.showVipLevelIcon();
-                this.showSmallGameBtns();
-                this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
-                this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
-                GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
-                this.LoadCompletedCallback = null;
-            }
-        }, 0.1); 
 
+        if (GlobalCfg.isH5) {
+            // this.loadBundleByH5();
+            CommonFun.getInstance().perloadResByH5("Shop"); //预加载商店资源
+        }
+        this.checkShiPei();
+        this.setBtnsClick();
+        this.setGameOrder();
+        this.showUserInfo();
+        // this.showBanner();
+        this.showOtherModules(); 
+        this.showVipLevelIcon();
+        this.showSmallGameBtns();
+        this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+        this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
+        GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
+        this.LoadCompletedCallback = null;
     },
-
 
     //偷偷下载H5
     loadBundleByH5 : function () {

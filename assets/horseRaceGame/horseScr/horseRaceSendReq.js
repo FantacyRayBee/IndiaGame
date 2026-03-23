@@ -49,11 +49,9 @@ cc.Class({
     },
 
      // 退出游戏
-     OutGameReq: function () {
+    OutGameReq: function () {
+        LoggerUtil.getInstance().error("OutGameReq fromSceneName: ");
         GameServerManager.send("gameservice.outgame", "OutGameReq", {});
     },
-
-  
-
   
 });
