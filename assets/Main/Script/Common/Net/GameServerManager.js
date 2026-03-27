@@ -13,7 +13,9 @@ let GameServerManager = {
 
     isHaveGameEventShowListener: false,
 
-    isTriggerGameEventHide: false, 
+    isTriggerGameEventHide: false,
+
+    isReconnecting: false,          // 防止重连风暴：同一时刻只允许一个重连流程
 
     readyState: {
         Connecting: 0,          // 正在链接中
@@ -198,6 +200,7 @@ GameServerManager.onOpen = function (evt, isFirstConnect) {
     LoggerUtil.getInstance().log("GameService WebSocket onOpen***********>", JSON.stringify(evt), isFirstConnect);
 
     GameServerManager.reconnectAcount = 0;
+    GameServerManager.isReconnecting = false;
     GameServerManager.startHeartBeat();
     CommonFun.getInstance().hidProgress();
 
@@ -216,16 +219,28 @@ GameServerManager.onError = function(evt) {
 
 GameServerManager.onClose = function(evt, isFirstConnect) {
     if (evt) {
-        LoggerUtil.getInstance().warn("GameService WebSocket onClose With Event", JSON.stringify(evt));
+        let closeCode = typeof evt.code === "number" ? evt.code : -1;
+        let closeReason = evt.reason || "";
+        let closeWasClean = typeof evt.wasClean === "boolean" ? evt.wasClean : false;
+        let socketState = GameServerManager.socket ? GameServerManager.socket.readyState : -1;
+        LoggerUtil.getInstance().error(
+            `GameService WebSocket onClose With Event => code: ${closeCode}, reason: ${closeReason}, wasClean: ${closeWasClean}, socketReadyState: ${socketState}`,
+            JSON.stringify(evt)
+        );
     }
     else {
-        LoggerUtil.getInstance().warn("GameService WebSocket onClose ***********>");
+        LoggerUtil.getInstance().error("GameService WebSocket onClose ***********>");
     };
     
     // 关闭心跳检测
     GameServerManager.stopHeartBeat();
     // 清除ws实例对象
     GameServerManager.socket = null;
+    // App 在后台时不触发重连，等回到前台后由 onGameEventShow 处理
+    if (GameServerManager.isTriggerGameEventHide) {
+        LoggerUtil.getInstance().log('GameService WebSocket onClose: app is in background, skip reconnect, wait for foreground');
+        return;
+    };
     // 是否需要重新连接
     if (GameServerManager.needReconnect && isFirstConnect == false) {
         LoggerUtil.getInstance().warn('GameService WebSocket tryReconnect...');
@@ -234,41 +249,40 @@ GameServerManager.onClose = function(evt, isFirstConnect) {
 };
 
 GameServerManager.tryReconnect = function() {
+    // 防重入：同一时刻只允许一个重连流程
+    if (GameServerManager.isReconnecting) {
+        LoggerUtil.getInstance().log('GameService WebSocket already reconnecting, skip duplicate tryReconnect');
+        return;
+    };
+    GameServerManager.isReconnecting = true;
     GameServerManager.reconnectAcount += 1;
+
     LoggerUtil.getInstance().log('The number of times GameService reconnects ===> ', GameServerManager.reconnectAcount);
     let networkType = APPManager.getNetWorkType();
     LoggerUtil.getInstance().log(`The current network type is ===> ${networkType}.  0-无网络; 1-移动网络; 2-无线网络`);
-    if (networkType == 0 && GameServerManager.reconnectAcount > 30) {
+
+    // 指数退避：第1次1s，第2次2s，第3次4s...最大30s
+    // 避免连接失败后立即重试形成重连风暴
+    let delay = Math.min(1000 * Math.pow(2, Math.min(GameServerManager.reconnectAcount - 1, 5)), 30000);
+    LoggerUtil.getInstance().log(`GameService WebSocket reconnect delay: ${delay}ms`);
+
+    if (networkType == 0) {
         CommonFun.getInstance().showProgress("Please open the device's network !");
-        let connectPromise = GameServerManager.connectServer(false);
-        connectPromise.catch((err) => {
-            LoggerUtil.getInstance().log(err)
-        });
-    }
-    else if (networkType != 0 && GameServerManager.reconnectAcount > 60) {
-        CommonFun.getInstance().showProgress('The network reconnected fails, the server network is busy!');
-        if (GameServerManager.reconnectAcount < 66) {
-            let connectPromise = GameServerManager.connectServer(false);
-            connectPromise.catch((err) => {
-                LoggerUtil.getInstance().log(err)
-            });
-        }
-        else {
-            GameServerManager.reconnectAcount = 0;
-            CommonFun.getInstance().hidProgress();
-            let connectPromise = GameServerManager.connectServer(false);
-            connectPromise.catch((err) => {
-                LoggerUtil.getInstance().log(err)
-            });
-        };
-    }
-    else {
-        CommonFun.getInstance().showProgress('The network is reconnected ...'); 
-        let connectPromise = GameServerManager.connectServer(false);
-        connectPromise.catch((err) => {
-            LoggerUtil.getInstance().log(err)
-        });
+    } else {
+        CommonFun.getInstance().showProgress('The network is reconnected ...');
     };
+
+    setTimeout(() => {
+        GameServerManager.isReconnecting = false;
+        if (!GameServerManager.needReconnect) {
+            LoggerUtil.getInstance().log('GameService WebSocket needReconnect is false, abort reconnect');
+            return;
+        };
+        let connectPromise = GameServerManager.connectServer(false);
+        connectPromise.catch((err) => {
+            LoggerUtil.getInstance().log('GameService WebSocket connectServer failed:', err);
+        });
+    }, delay);
 };
 
 GameServerManager.clientCloseServer  = function() {

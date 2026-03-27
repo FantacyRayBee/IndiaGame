@@ -77,6 +77,7 @@ cc.Class({
         this.autoSpinTypeNumArr = [50, 100, 800, 3000];
         this.autoSpinData = [true, false, false, false];
         this.itemHeight = 130; // 每个slotitem的高度
+        this.autoTimes = 10000; // 自动下注次数 默认10000
         this.paymentSwitch = false;
         this.popCoinIsRun = false; // 弹窗金币是否在滚动中
         this.frees = [];
@@ -476,6 +477,11 @@ cc.Class({
                 children2[k].getComponent('bullSkelItemCtrl').stopAnimation();
             };
         };
+
+        this.node_bigwin_pop.active = false;
+        this.node_fg_pop.active = false;
+        this.node_fgwin_pop.active = false;
+        this.node_addFG_pop.active = false;
     },
 
     componentClickCall: function (component) {
@@ -601,7 +607,7 @@ cc.Class({
         this.toggle_auto.isChecked = !this.toggle_auto.isChecked
 
         if (this.toggle_auto.isChecked) {
-            this.dealAutoBetCiShuBtnEvent("50");
+            this.dealAutoBetCiShuBtnEvent(this.autoTimes.toString());
             this.sendCallReq(); //新需求：点击自动下注的时候 直接开始spin
             this.node_toggle_auto.active = false;
         }
