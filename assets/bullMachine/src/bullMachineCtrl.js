@@ -73,10 +73,11 @@ cc.Class({
         this.finishedSlotItemNum = 0; //已经滚动停止的item数量
         this.isRunningSlotAnim = false; 
         //投注额度数组
-        this.betAmountArr = [0.2, 0.5, 1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500];
+        this.betAmountArr = [1, 2, 3, 5, 10, 20, 30, 40, 50, 80, 100, 200, 500, 800, 1000];
         this.autoSpinTypeNumArr = [50, 100, 800, 3000];
         this.autoSpinData = [true, false, false, false];
         this.itemHeight = 130; // 每个slotitem的高度
+        this.autoTimes = 10000; // 自动下注次数 默认10000
         this.paymentSwitch = false;
         this.popCoinIsRun = false; // 弹窗金币是否在滚动中
         this.frees = [];
@@ -164,7 +165,7 @@ cc.Class({
         this.toggle_fast.node.on('toggle', this.debounce(this.componentClickCall, 1), this);
         this.anim_curwin = this.lab_curWin.node.getComponent(cc.Animation);
 
-        this.betIndex = 0;
+        this.betIndex = 4;
         this.curBetAmount = this.betAmountArr[this.betIndex];
         this.lab_betAmount.string = "bet " + this.betAmountArr[this.betIndex];
         //总共赢的金额
@@ -192,10 +193,11 @@ cc.Class({
             }
         };
         return fn;
-    },
+    }, 
 
     start: function() {
-        // this.playEntryAnim()
+        CommonFun.getInstance().addVerticalAcc();
+        this.playEntryAnim()
         this.sendLoginReq();
         this.initSlotData();
     },
@@ -229,9 +231,8 @@ cc.Class({
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_BULL_GAME);
-        cc.Tween.stopAllByTarget(this); // ★ 停掉所有挂在本组件上的 tween
-        this.coinRunAnimTween && this.coinRunAnimTween.stop();
-        this.coinRunAnimTween = null;
+        cc.Tween.stopAllByTarget(this.title_logo1.node);
+        cc.Tween.stopAllByTarget(this.title_logo2.node);
         this.stopAutoSwitch();
     },
 
@@ -257,10 +258,12 @@ cc.Class({
             if (self.isRunningSlotAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
                     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
+                    CommonFun.getInstance().decVerticalAcc();
                 },  false);
             }
             else {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
+                CommonFun.getInstance().decVerticalAcc();
             };
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
@@ -268,6 +271,7 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
+            CommonFun.getInstance().decVerticalAcc();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.SAVE_AUTOSPIN) {
             this.autoSpinTypeNumArr = notify.autoSpinTypeNumArr;
@@ -296,7 +300,8 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);           
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);    
+                CommonFun.getInstance().decVerticalAcc();       
             }, false);
         }
         else if (msgId === "gameservice.call") {
@@ -436,6 +441,8 @@ cc.Class({
         let zhuangClipName = isFast ? 'zhuang-fast' : 'zhuang';
         this.playGameSound(zhuangClipName);
 
+        this.lab_betAmount.string = "bet " + parseInt(this.curBetAmount);
+
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
             let diamond = GlobalCfg.USER_DATAS.userDiamond - (parseFloat(this.curBetAmount) * 100);
@@ -475,6 +482,11 @@ cc.Class({
                 children2[k].getComponent('bullSkelItemCtrl').stopAnimation();
             };
         };
+
+        this.node_bigwin_pop.active = false;
+        this.node_fg_pop.active = false;
+        this.node_fgwin_pop.active = false;
+        this.node_addFG_pop.active = false;
     },
 
     componentClickCall: function (component) {
@@ -600,7 +612,7 @@ cc.Class({
         this.toggle_auto.isChecked = !this.toggle_auto.isChecked
 
         if (this.toggle_auto.isChecked) {
-            this.dealAutoBetCiShuBtnEvent("50");
+            this.dealAutoBetCiShuBtnEvent(this.autoTimes.toString());
             this.sendCallReq(); //新需求：点击自动下注的时候 直接开始spin
             this.node_toggle_auto.active = false;
         }
@@ -838,50 +850,46 @@ cc.Class({
      * @param {*} time 动画时间
      */
     runChangeBigWinScore: function(label, startValue, endValue, time, callback) {
-        // 目标无效就直接回调
-        if (!cc.isValid(label) || !cc.isValid(label.node) || !cc.isValid(this)) {
-            callback && callback();
+        if (startValue == 0 && endValue == 0) {
+            if (callback) {
+                callback();
+            }
             return;
         }
-        if (startValue === 0 && endValue === 0) {
-            callback && callback();
-            return;
-        }
-
-        // 停掉旧动画
         if (this.coinRunAnimTween) {
             this.coinRunAnimTween.stop();
-            this.coinRunAnimTween = null;
+            this.coinRunAnimTween = null; // 清空引用
         }
-
+        let obj = {};
+        obj.currentValue = startValue;
         this.popCoinIsRun = true;
-        this._bigNumTweenVal = startValue;
-
-        const isInteger = (n) => Math.floor(n) === n;
-
-        // 这里也挂到组件自身，便于统一 stop
-        this.coinRunAnimTween = cc.tween(this)
-            .to(time, { _bigNumTweenVal: endValue }, {
-                onUpdate: () => {
-                    if (!cc.isValid(this) || !cc.isValid(label) || !cc.isValid(label.node)) {
-                        cc.Tween.stopAllByTarget(this);
-                        this.popCoinIsRun = false;
-                        this.coinRunAnimTween = null;
-                        return;
-                    }
-                    const v = this._bigNumTweenVal;
-                    label.string = isInteger(v) ? Math.floor(v).toString() : v.toFixed(2);
-                }
-            })
-            .call(() => {
-                if (cc.isValid(label) && cc.isValid(label.node)) {
+        // 判断是否为整数
+        const isInteger = (value) => Math.floor(value) === value;
+        this.coinRunAnimTween = cc.tween(obj)
+        .to(time, { currentValue: endValue }, {
+            onUpdate: (target, ratio) => {
+                if (this.stopNumScroll == false) {
+                    const value = startValue + (endValue - startValue) * ratio;
+                    // 根据是否为整数决定显示格式
+                    label.string = isInteger(value) ? Math.floor(value).toString() : value.toFixed(2);
+                } else { 
+                    // 立即停止动画，并且不执行后续的 call()
+                    this.coinRunAnimTween.stop(); // 停止 Tween 动画
+                    // 如果停止了，则直接显示最终值
                     label.string = isInteger(endValue) ? Math.floor(endValue).toString() : endValue.toFixed(2);
+                    this.popCoinIsRun = false; // 手动标记动画结束
+                    return; // 提前退出，避免后续逻辑
                 }
-                this.popCoinIsRun = false;
-                this.coinRunAnimTween = null;
-                callback && callback();
-            })
-            .start();
+            }
+        }).call(() => {
+            // 最后要显示的值，根据是否为整数决定显示格式
+            label.string = isInteger(endValue) ? Math.floor(endValue).toString() : endValue.toFixed(2);
+            this.popCoinIsRun = false; // 动画结束
+            if (callback) {
+                callback();
+            }
+
+        }).start();
     },
 
     /**
@@ -894,53 +902,42 @@ cc.Class({
      * @param {Boolean} [isInt=false] 是否以整数形式变化(默认false，即允许小数动画)
      */
     runChangeTotalWinScore: function(label, startValue, endValue, time, callback, isInt = false) {
-        // 目标无效就直接回调
-        if (!cc.isValid(label) || !cc.isValid(label.node) || !cc.isValid(this)) {
+        if (startValue === 0 && endValue === 0) {
             callback && callback();
             return;
         }
-
+    
+        let obj = { currentValue: startValue };
         this.popCoinIsRun = true;
-
-        // 将动画状态挂到组件自身，方便 stopAllByTarget(this)
-        this._numTweenVal = startValue;
-
-        // 是否需要两位小数
-        const shouldShowTwoDecimals = !isInt &&
-            (Math.abs(endValue - Math.floor(endValue)) > 0.01 ||
-            Math.abs(startValue - Math.floor(startValue)) > 0.01);
-
-        cc.tween(this)
-            .to(time, { _numTweenVal: endValue }, {
-                onUpdate: () => {
-                    // 任一对象无效 → 立刻停掉
-                    if (!cc.isValid(this) || !cc.isValid(label) || !cc.isValid(label.node)) {
-                        cc.Tween.stopAllByTarget(this);
-                        this.popCoinIsRun = false;
-                        return;
-                    }
-
-                    let v = this._numTweenVal;
+        const shouldShowTwoDecimals = !isInt && 
+            (Math.abs(endValue - Math.floor(endValue)) > 0.01 || 
+             Math.abs(startValue - Math.floor(startValue)) > 0.01);
+    
+        cc.tween(obj)
+            .to(time, { currentValue: endValue }, {
+                onUpdate: function(_, ratio) {
+                    let currentValue = startValue + (endValue - startValue) * ratio;
                     if (isInt) {
-                        v = Math.floor(v);
+                        currentValue = Math.floor(currentValue);
                     } else {
-                        v = shouldShowTwoDecimals ? parseFloat(v.toFixed(2)) : parseFloat(v.toFixed(1));
+                        if (shouldShowTwoDecimals) {
+                            currentValue = parseFloat(currentValue.toFixed(2));
+                        } else {
+                            currentValue = parseFloat(currentValue.toFixed(1));
+                        }
                     }
-
-                    // 再次防御
-                    if (cc.isValid(label) && cc.isValid(label.node)) {
-                        label.string = v.toString();
-                    }
+                    label.string = currentValue.toString();
                 }
             })
-            .call(() => {
-                if (cc.isValid(this) && cc.isValid(label) && cc.isValid(label.node)) {
-                    if (isInt) label.string = Math.floor(endValue).toString();
-                    else label.string = (shouldShowTwoDecimals ? endValue.toFixed(2) : endValue.toFixed(1));
+            .call(function() {
+                if (isInt) {
+                    label.string = Math.floor(endValue).toString();
+                } else {
+                    label.string = shouldShowTwoDecimals ? endValue.toFixed(2) : endValue.toFixed(1);
                 }
                 this.popCoinIsRun = false;
                 callback && callback();
-            })
+            }.bind(this))
             .start();
     },
 
