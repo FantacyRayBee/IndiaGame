@@ -178,17 +178,20 @@ let CommonFun = cc.Class({
          * 是否检查热更
          */
         GlobalCfg.IS_UPDATE = json["IS_UPDATE"];
-        /**
-         * 资源的版本
-         */
-        GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
-        /**
-         * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
-         */
-        GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
-        /**
-         * 资源的父路径
-         */
+        // /**
+        //  * 资源的版本
+        //  */
+        // GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
+        // /**
+        //  * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
+        //  */
+        // GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
+        // /**
+        //  * 资源的父路径
+        //  */
+        // GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
+        GlobalCfg.ASSETS_VERSION = 4;
+        GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/"
         GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
         /**
          * 子包资源的版本信息

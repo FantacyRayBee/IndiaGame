@@ -196,6 +196,8 @@ cc.Class({
     }, 
 
     start: function() {
+        CommonFun.getInstance().addVerticalAcc();
+
         this.playEntryAnim()
         this.sendLoginReq();
         this.initSlotData();
@@ -257,10 +259,12 @@ cc.Class({
             if (self.isRunningSlotAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
                     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
+                    CommonFun.getInstance().decVerticalAcc();
                 },  false);
             }
             else {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
+                CommonFun.getInstance().decVerticalAcc();
             };
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
@@ -268,6 +272,7 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
+            CommonFun.getInstance().decVerticalAcc();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.SAVE_AUTOSPIN) {
             this.autoSpinTypeNumArr = notify.autoSpinTypeNumArr;
@@ -296,7 +301,8 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);           
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);    
+                CommonFun.getInstance().decVerticalAcc();       
             }, false);
         }
         else if (msgId === "gameservice.call") {

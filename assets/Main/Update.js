@@ -628,6 +628,9 @@ cc.Class({
         else {
             this.changeSceneToLobby();
         };
+        console.log(`ASSETS_VERSION: ${GlobalCfg.ASSETS_VERSION}`);
+        console.log(`ASSETS_URL: ${GlobalCfg.ASSETS_URL}`);
+        console.log(`ASSETS_UPDATE_URL: ${GlobalCfg.ASSETS_UPDATE_URL}`);
     },
 
     onDestroy: function() {
@@ -653,6 +656,8 @@ cc.Class({
     },
 
     comparisonVersionInfo: function() {
+
+
         let localVersion = Number(cc.sys.localStorage.getItem("localVersion"));
         LoggerUtil.getInstance().log(`Remote resource file version：${GlobalCfg.ASSETS_VERSION}, Local resource file version：${localVersion}`);
         if (localVersion != GlobalCfg.ASSETS_VERSION && GlobalCfg.is_need_update) {

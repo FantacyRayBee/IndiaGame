@@ -1514,7 +1514,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "0.1.2.7";
+            GlobalCfg.APP_VERSION = "1.1.2";
             GlobalCfg.APP_INFO_URL = `http://download.cj888viptest.com/production/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `http://download.cj888viptest.com/production/AppConfig.json?time=${new Date().getTime()}`;
             break;
