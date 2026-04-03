@@ -196,8 +196,6 @@ cc.Class({
     }, 
 
     start: function() {
-        CommonFun.getInstance().addVerticalAcc();
-
         this.playEntryAnim()
         this.sendLoginReq();
         this.initSlotData();

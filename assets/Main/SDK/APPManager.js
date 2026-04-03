@@ -138,6 +138,21 @@ APPManager.showWebView = function (Url, isPortrait) {
     }
 }
 
+
+//打开直播间
+APPManager.startLive = function (Url) {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "startLiveByBloom3Rummy", "(Ljava/lang/String;)V", Url);
+    }
+}
+
+//关闭直播间
+APPManager.LiveBackToLobbyCallBack = function () {
+    console.log(`LiveBackToLobbyCallBack=================>>>`);
+    CommonFun.getInstance().decVerticalAcc();
+}
+
+
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {

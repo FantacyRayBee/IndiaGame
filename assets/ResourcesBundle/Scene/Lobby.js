@@ -1613,7 +1613,11 @@ cc.Class({
         let btnName = btn.node.name;
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_setting") {
-            CommonFun.getInstance().showSetting();
+            // CommonFun.getInstance().showSetting();
+            let url = "http://192.168.110.28:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1";
+            console.log(`CommonFun.getInstance().addVerticalAcc()`);
+            CommonFun.getInstance().addVerticalAcc();
+            APPManager.startLive(url)
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ADD_BUTTON);
