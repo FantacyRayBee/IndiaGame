@@ -1365,9 +1365,10 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             break;
         case "5":     // 5服 127.0.0.1:8000
             GlobalCfg.APP_VERSION = "version 1.0.1"; 
-            GlobalCfg.APP_INFO_URL = `http://download.cj888vip.com/production/AppInfo.json?time=${new Date().getTime()}`;
-            GlobalCfg.APP_CONFIG_URL = `http://download.cj888vip.com/production/AppConfig.json?time=${new Date().getTime()}`;
-            break;
+            // GlobalCfg.APP_INFO_URL = `http://download.cj888vip.com/production/AppInfo.json?time=${new Date().getTime()}`;
+            // GlobalCfg.APP_CONFIG_URL = `http://download.cj888vip.com/production/AppConfig.json?time=${new Date().getTime()}`;
+            GlobalCfg.APP_CONFIG_URL = `http://download1.cj888vip.com/production/AppConfig.json`;
+            GlobalCfg.APP_INFO_URL = `https://download1.cj888vip.com/production/AppInfo.json`;
             break;
         case "6":     // 代理服
             GlobalCfg.APP_VERSION = "6.0.1";
