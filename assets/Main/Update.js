@@ -880,7 +880,6 @@ cc.Class({
     changeSceneToLobby: function() {
         LoggerUtil.getInstance().log("Update completed, now enter Login-view");
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_LOGIN_VIEW);
-
         this.node_lab_accountTips.active = false;
         this.node_lab_passwordTips.active = false;
         this.progressBar.node.active = false;

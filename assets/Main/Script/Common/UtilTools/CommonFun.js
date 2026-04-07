@@ -2847,6 +2847,28 @@ let CommonFun = cc.Class({
         };
     },
 
+        /**
+     * 累加竖屏次数，当累加次数大于0，则竖屏
+     */
+    addHorizontalAcc: function() {
+        this._horizontalAcc += 1;
+        if (this._horizontalAcc > 0 && this._curOrientation == EnumOrientation.VERTICAL) {
+            this._curOrientation = EnumOrientation.HORIZONTAL;
+            APPManager.setOrientation('H');
+        };
+    },
+
+    /**
+     * 减少横屏次数，当累加次数等于0，则竖屏
+     */
+    decHorizontalAcc: function() {
+        this._horizontalAcc -= 1;
+        if (this._horizontalAcc <= 0 && this._curOrientation == EnumOrientation.HORIZONTAL) {
+            this._curOrientation = EnumOrientation.VERTICAL;
+            APPManager.setOrientation('V');
+        };
+    },
+
     checkVerticalAcc: function() {
         if (this._curOrientation == EnumOrientation.VERTICAL) {
             return true;

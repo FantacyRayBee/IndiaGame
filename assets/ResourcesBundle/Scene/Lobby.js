@@ -246,6 +246,7 @@ cc.Class({
     },
 
     onLoad: function() {
+        CommonFun.getInstance().addVerticalAcc();
         for (let i = 0; i < 6; i++) {
             let toggleNode = cc.find("Canvas/lobby/toggle/tog" + (i + 1))
             toggleNode.on('toggle', this.toggleClick, this);
@@ -2361,6 +2362,7 @@ cc.Class({
 
     onDestroy: function() {
         CommonFun.getInstance().removeCarouselStrip();
+        CommonFun.getInstance().decVerticalAcc();
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         // 清除之前的倒计时（避免重复）

@@ -716,10 +716,17 @@ cc.Class({
         this.rewardPosNode.addChild(prefabRwd);
         prefabRwd.getComponent("AviatorReward").setData(notify);
         this.checkAutoSettingStatus(notify.mul);
-        this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
-        this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
-
-
+        let rootPos = notify.pos;
+        LoggerUtil.getInstance().log("showReward notify = ", notify);
+        if (rootPos === 0) {
+            this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
+        } else if (rootPos === 1) {
+            this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
+        } else {
+            // pos 字段缺失时兜底，两个都更新
+            this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
+            this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
+        }
     },
 
     checkAutoSettingStatus(curWinMult = 0) {
