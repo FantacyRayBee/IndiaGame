@@ -68,7 +68,7 @@ window.GlobalCfg = {
     /**
      * 是否强制进测试服
      */
-    is_force_gotoTest: true,
+    is_force_gotoTest: false,
 
     /**
      * 渠道信息
@@ -1364,7 +1364,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
         case "5":     // 5服 127.0.0.1:8000
-            GlobalCfg.APP_VERSION = "version 1.0.1"; 
+            GlobalCfg.APP_VERSION = "version 1.0.2"; 
             // GlobalCfg.APP_INFO_URL = `http://download.cj888vip.com/production/AppInfo.json?time=${new Date().getTime()}`;
             // GlobalCfg.APP_CONFIG_URL = `http://download.cj888vip.com/production/AppConfig.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `http://download1.cj888vip.com/production/AppConfig.json`;

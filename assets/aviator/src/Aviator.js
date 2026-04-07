@@ -43,7 +43,7 @@ cc.Class({
     ctor() {
         // Config
         this.isHide = false;                                // 是否后台隐藏
-        this.btnBetCoinNum = [1, 10, 50, 200, 500];      // 配置下注按钮数值
+        this.btnBetCoinNum = [10, 50, 200, 500, 1000];      // 配置下注按钮数值
         this.curSingleNote = this.btnBetCoinNum[0];             // 当前单注数值
         this.betDuration = 15000;                              // 下注持续时间 ms
         this.calcDuration = 3000;                              // 爆炸后结算时长 ms
@@ -716,10 +716,17 @@ cc.Class({
         this.rewardPosNode.addChild(prefabRwd);
         prefabRwd.getComponent("AviatorReward").setData(notify);
         this.checkAutoSettingStatus(notify.mul);
-        this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
-        this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
-
-
+        let rootPos = notify.pos;
+        LoggerUtil.getInstance().log("showReward notify = ", notify);
+        if (rootPos === 0) {
+            this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
+        } else if (rootPos === 1) {
+            this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
+        } else {
+            // pos 字段缺失时兜底，两个都更新
+            this.node_betinfo1.getComponent("AviatorBetCtrl").showReward();
+            this.node_betinfo2.getComponent("AviatorBetCtrl").showReward();
+        }
     },
 
     checkAutoSettingStatus(curWinMult = 0) {
