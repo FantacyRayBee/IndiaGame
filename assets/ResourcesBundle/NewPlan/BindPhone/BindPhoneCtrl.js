@@ -49,7 +49,7 @@ cc.Class({
         this.editBox_mail.node.on('editing-did-ended', this.editEndedCallback, this);
 
         this.shoujiNode.active = true;
-        this.yzmNode.active = true;
+        // this.yzmNode.active = true;
         this.yxNode.active = true;
         this.otpNode.active = true;
         
@@ -131,28 +131,32 @@ cc.Class({
             else if (btnName === "btn_bd") {
                 let _name = this.editBox_name.string;
                 let phoneNum = this.editBox_phoneNumber.string;
-                let _code = this.editBox_verificationCode.string;
+                if (!this.isPoneAvailable("91" + phoneNum)) {
+                    this.lab_tip1.active = true;
+                    return;
+                } 
+                // let _code = this.editBox_verificationCode.string;
                 let mail = this.editBox_mail.string;
                 this.earlyBinding = phoneNum;
                 this.earlyMail = mail;
-                let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/bind_phone";
+                let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/bind_phoneV1";
                 let httpParam = {
                     phone: '91'+ phoneNum,
-                    code : _code ? _code : '',
+                    // code : _code ? _code : '',
                     mail : mail ? mail : '',
                     realname : _name ? _name : '',
                 }
                 let isExistence = this.chack_name(_name);
                 let isChina = this.funcChina(_name);
                 if (GlobalCfg.USER_DATAS.phone.length <= 0) {
-                    if (phoneNum.length == 0 || _code.length == 0 || mail.length == 0 || !this.isEmail(mail) || isExistence || isChina) {
-                        this.testBindPhoneSuccess(_name, '91'+ phoneNum, _code, mail);
+                    if (phoneNum.length == 0 || mail.length == 0 || !this.isEmail(mail) || isExistence || isChina) {
+                        this.testBindPhoneSuccess(_name, '91'+ phoneNum, mail);
                         return;
                     }; 
                 } 
                 else {
                     if (_name.length == 0 || mail.length == 0 || !this.isEmail(mail) || isExistence || isChina ) {
-                        this.testBindPhoneSuccess(_name, '91'+ phoneNum, _code, mail);
+                        this.testBindPhoneSuccess(_name, '91'+ phoneNum, mail);
                         return;
                     }; 
                 };
@@ -225,7 +229,7 @@ cc.Class({
 
     //检验是否是合理的手机号码
     isPoneAvailable: function (pone) {
-        var myreg = /^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[6789]\d{9}|(\d[ -]?){10}\d$/;
+        var myreg = /^91[6-9]\d{9}$/;
         return myreg.test(pone);
     },
 
@@ -265,12 +269,12 @@ cc.Class({
     },
 
     //检测绑定手机信息是否正确成功
-    testBindPhoneSuccess: function(name, phoneNum, code, mail){
+    testBindPhoneSuccess: function(name, phoneNum, mail){
         let str =  this.lab_tips_mobile4.getComponent(cc.Label);
         let str_phone =  this.lab_tips_mobile1.getComponent(cc.Label)
         let str_name =  this.lab_tips_mobile3.getComponent(cc.Label)
         this.lab_tips_mobile1.active = phoneNum.length == 0 ? true : false;
-        this.lab_tips_mobile2.active = code.length == 0 ? true : false;
+        // this.lab_tips_mobile2.active = code.length == 0 ? true : false;
 
         this.lab_tips_mobile3.active = name.length == 0 ? true : false;
     

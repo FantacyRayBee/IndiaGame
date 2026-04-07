@@ -1210,7 +1210,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    cc.sys.localStorage.setItem("PackageChannel", "5_1001");
+    cc.sys.localStorage.setItem("PackageChannel", "0_1001");
     // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
     // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };
@@ -1514,7 +1514,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "0.1.2.7";
+            GlobalCfg.APP_VERSION = "0.1.3";
             GlobalCfg.APP_INFO_URL = `http://download.cj888viptest.com/production/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `http://download.cj888viptest.com/production/AppConfig.json?time=${new Date().getTime()}`;
             break;
@@ -1546,8 +1546,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             // GlobalCfg.APP_INFO_URL = `https://download.cj888vip.com/production/AppInfo.json`;
             // GlobalCfg.APP_CONFIG_URL = `https://download.cj888vip.com/production/AppConfig.json`;
 
-            GlobalCfg.APP_INFO_URL = `https://download1.cj888vip.com/production/AppInfo.json`;
-            GlobalCfg.APP_CONFIG_URL = `https://download1.cj888vip.com/production/AppConfig.json`;
+            GlobalCfg.APP_INFO_URL = `https://download.cj888vip.com/production/AppInfo.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download.cj888vip.com/production/AppConfig.json`;
 
 
             GlobalCfg.APP_INFO_URL_SPARE = `https://download.cj888vip.com/production/AppInfo.json`;

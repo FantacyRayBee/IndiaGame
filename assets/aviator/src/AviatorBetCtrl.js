@@ -114,11 +114,13 @@ cc.Class({
 
     flyEnd() {
         this.toggle_isAuto.enabled = true;
+        this.toggle_autoPlay.enabled = true;
         if (this.autoCount > 0) { //如果为自动下注
             this.autoCount--;
             if (this.autoCount <= 0) {
                 this.autoCount = 0;
                 this.toggle_isAuto.enabled = true;
+                this.toggle_autoPlay.enabled = true;
                 this.setButtonEnabled(true);
             }
             return;
@@ -206,6 +208,8 @@ cc.Class({
             this.btn_bet.node.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.orangeSpriteFrame;
             this.lab_bet_tip.string = "Cash Out";
             this.toggle_isAuto.enabled = false; //飞行状态&&下注状态 不能自动下注
+            this.toggle_autoPlay.enabled = false; //飞行状态&&下注状态 不能自动下注
+            
         }
     },
 
@@ -371,7 +375,7 @@ cc.Class({
         this.btn_bet_cancel.node.active = false;
         this.node_waitnextround.active = false;
         this.setButtonEnabled(true);
-        if (this.autoCount > 0) { //如果为自动下注，则取消自动下注
+        if (this.autoCount > 0 || this.toggle_autoPlay.isChecked) { //如果为自动下注，则取消自动下注
             this.dealStopAutoEvent();
         }
     },
@@ -389,7 +393,14 @@ cc.Class({
     //取消自动下注
     dealStopAutoEvent: function () {
         this.autoCount = 0;
+        this.toggle_autoPlay.isChecked = false;
+        this.toggle_isAuto.isChecked = false;
         this.toggle_isAuto.enabled = true;
+        this.edit_Mult.enabled = false;
+        this.edit_Mult.node.opacity = 160;
+        this.toggle_auto.interactable = true;
+        this.toggle_bet.interactable = true;
+        this.node_choice.opacity = 255;
         this.setButtonEnabled(true);
         this.Init();
     },
