@@ -1367,7 +1367,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_VERSION = "version 1.0.2"; 
             // GlobalCfg.APP_INFO_URL = `http://download.cj888vip.com/production/AppInfo.json?time=${new Date().getTime()}`;
             // GlobalCfg.APP_CONFIG_URL = `http://download.cj888vip.com/production/AppConfig.json?time=${new Date().getTime()}`;
-            GlobalCfg.APP_CONFIG_URL = `http://download1.cj888vip.com/production/AppConfig.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download1.cj888vip.com/production/AppConfig.json`;
             GlobalCfg.APP_INFO_URL = `https://download1.cj888vip.com/production/AppInfo.json`;
             break;
         case "6":     // 代理服
