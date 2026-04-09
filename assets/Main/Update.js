@@ -25,11 +25,11 @@ cc.Class({
 
         this.or_sprite_pos = cc.v2(326, -160);
         this.btn_facebookLogin_pos = cc.v2(209, -274);
-        this.btn_guestLogin_pos = cc.v2(326, -225);
+        this.btn_guestLogin_pos = cc.v2(0, -225);
 
         this.or_sprite_pos1 = cc.v2(326, -76);
         this.btn_facebookLogin_pos1 = cc.v2(209, -144);
-        this.btn_guestLogin_pos1 = cc.v2(326, -144);
+        this.btn_guestLogin_pos1 = cc.v2(0, -144);
 
         this.protoFiles = [
             "proto/baseproto",
@@ -77,7 +77,7 @@ cc.Class({
 
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_UPDATE_VIEW);
 
-        CommonFun.getInstance().initVerticalAcc();
+        CommonFun.getInstance().initHorizontalAcc();
 
         CommonFun.getInstance().hidProgress();
 
@@ -949,7 +949,7 @@ cc.Class({
 
         if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
             this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
+            this.node_btn_guestLogin.setPosition(0, this.btn_guestLogin_pos1.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
     },
@@ -968,7 +968,7 @@ cc.Class({
 
         if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
             this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
+            this.node_btn_guestLogin.setPosition(0, this.btn_guestLogin_pos.y);
             this.node_btn_guestLogin.setContentSize(512, 79);
         };
     },

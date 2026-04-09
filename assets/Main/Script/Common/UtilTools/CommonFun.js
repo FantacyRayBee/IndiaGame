@@ -2829,6 +2829,17 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 初始化横屏次数
+     */
+    initHorizontalAcc: function() {
+        this._horizontalAcc = 0;
+        if (this._curOrientation == EnumOrientation.HORIZONTAL) {
+            this._curOrientation = EnumOrientation.VERTICAL;
+            APPManager.setOrientation('V');
+        };
+    },
+
+    /**
      * 累加竖屏次数，当累加次数大于0，则竖屏
      */
     addVerticalAcc: function() {
