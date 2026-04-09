@@ -1617,7 +1617,7 @@ cc.Class({
             // CommonFun.getInstance().showSetting();
             let url = "http://192.168.110.28:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1";
             console.log(`CommonFun.getInstance().addVerticalAcc()`);
-            CommonFun.getInstance().addVerticalAcc();
+            // CommonFun.getInstance().addVerticalAcc();
             APPManager.startLive(url)
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
@@ -2362,7 +2362,7 @@ cc.Class({
 
     onDestroy: function() {
         CommonFun.getInstance().removeCarouselStrip();
-        CommonFun.getInstance().decVerticalAcc();
+        CommonFun.getInstance().decHorizontalAcc();
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         // 清除之前的倒计时（避免重复）

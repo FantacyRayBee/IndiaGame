@@ -149,7 +149,7 @@ APPManager.startLive = function (Url) {
 //关闭直播间
 APPManager.LiveBackToLobbyCallBack = function () {
     console.log(`LiveBackToLobbyCallBack=================>>>`);
-    CommonFun.getInstance().decVerticalAcc();
+    // CommonFun.getInstance().decVerticalAcc();
 }
 
 
@@ -167,14 +167,18 @@ APPManager.setOrientation = function (dir) {
         cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
         if (frameSize.width > frameSize.height) {
             cc.view.setFrameSize(frameSize.height, frameSize.width);
-            cc.Canvas.instance.designResolution = cc.size(750, 1625);
+            if (cc.Canvas.instance) {
+                cc.Canvas.instance.designResolution = cc.size(750, 1625);
+            }
         }
         GlobalCfg.CURSCENE_DIRECTION = "vertical";
     } else {
         cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
         if (frameSize.height > frameSize.width) {
             cc.view.setFrameSize(frameSize.height, frameSize.width);
-            cc.Canvas.instance.designResolution = cc.size(1625, 750);
+            if (cc.Canvas.instance) {
+                cc.Canvas.instance.designResolution = cc.size(1625, 750);
+            }
         }
         GlobalCfg.CURSCENE_DIRECTION = "horizontal";
     }

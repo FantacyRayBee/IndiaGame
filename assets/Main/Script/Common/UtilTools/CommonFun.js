@@ -16,7 +16,10 @@ let CommonFun = cc.Class({
         this._selectRoomNode = null;
         this._loadedPrefabMap = new Map();
         this._verticalAcc = 0;
-        this._curOrientation = EnumOrientation.HORIZONTAL;
+        this._horizontalAcc = 0;
+        // this._curOrientation = EnumOrientation.HORIZONTAL;
+        this._curOrientation = EnumOrientation.VERTICAL;
+
     },
 
     checkShiPei: function(node) {

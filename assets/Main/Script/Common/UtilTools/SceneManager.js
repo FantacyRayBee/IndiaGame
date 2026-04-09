@@ -72,7 +72,6 @@ let SceneManager = cc.Class({
         }
         // 从大厅场景跳转到更新登录场景
         else if (fromSceneName === this.sceneType.LOBBY && toSceneName === this.sceneType.UPDATE) {
-            CommonFun.getInstance().addVerticalAcc();
             LobbyServerManager.clientCloseServer(); 
             GameServerManager.clientCloseServer();
             CommonFun.getInstance().deleteLoginLocalStorage();
@@ -175,6 +174,7 @@ let SceneManager = cc.Class({
             this.curSceneType = toSceneName;
             cc.director.runScene(scene, () => {}, () => {
                 this.isLoadingScene = false;
+                CommonFun.getInstance().addHorizontalAcc();
                 CommonFun.getInstance().hidProgress();
             });
         })
