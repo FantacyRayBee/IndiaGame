@@ -1297,8 +1297,8 @@ function SetPackageChannel() {
     // 获取参数值
     let pkg = url.searchParams.get('PackageChannel');
 
-    if (!pkg || pkg.length === 0) {//如果不存在强制设置5_7001
-        pkg = "5_7001";
+    if (!pkg || pkg.length === 0) {//如果不存在强制设置5_2001
+        pkg = "5_2001";
     }
     localStorage.setItem('PackageChannel', pkg);
     GlobalCfg.CHANNEL_INFO = pkg;
