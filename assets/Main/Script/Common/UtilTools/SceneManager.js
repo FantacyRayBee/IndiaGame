@@ -174,7 +174,6 @@ let SceneManager = cc.Class({
             this.curSceneType = toSceneName;
             cc.director.runScene(scene, () => {}, () => {
                 this.isLoadingScene = false;
-                CommonFun.getInstance().addHorizontalAcc();
                 CommonFun.getInstance().hidProgress();
             });
         })

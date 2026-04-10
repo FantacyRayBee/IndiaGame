@@ -222,6 +222,10 @@ cc.Class({
         node_webview: cc.Node,
 
         lab_onlypayTime: cc.Label,
+
+
+        // 直播模块
+        node_live: cc.Node,
     },
 
     ctor: function() {
@@ -248,7 +252,7 @@ cc.Class({
     onLoad: function() {
         CommonFun.getInstance().addVerticalAcc();
         for (let i = 0; i < 6; i++) {
-            let toggleNode = cc.find("Canvas/lobby/toggle/tog" + (i + 1))
+            let toggleNode = cc.find("Canvas/lobby/middle/toggle/tog" + (i + 1))
             toggleNode.on('toggle', this.toggleClick, this);
             // this.gameToggle.push(toggleNode);
         }
@@ -277,8 +281,9 @@ cc.Class({
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
         };
     
-        this.checkShiPei();
+        // this.checkShiPei();
         this.setBtnsClick();
+        this.initLiveModule();
         this.setGameOrder();
         this.showUserInfo();
         // this.showBanner();
@@ -480,6 +485,17 @@ cc.Class({
         this.btn_minizeus.node.on("click", CommonFun.getInstance().debounce(this.btnClickGame, 2), this);
     },
 
+    //直播模块
+    initLiveModule: function() {  
+        this.live_item = this.node_live.getChildByName("item")
+        this.scrollView_live = this.node_live.getChildByName("ScrollView").getComponent(cc.ScrollView);
+        this.content_live = this.scrollView_live.content;
+        this.btn_open_live = this.scrollView_live.node.getChildByName("btn_open_lieve").getComponent(cc.Button);
+        this.btn_close_live = this.scrollView_live.node.getChildByName("btn_close_lieve").getComponent(cc.Button);
+
+        this.btn_open_live.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.btn_close_live.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+    },
     /**
      * 显示玩家信息内容
      */
@@ -605,9 +621,8 @@ cc.Class({
         };
 
         let w = cc.view.getVisibleSize().width;
-        // this.node_middles.setPosition(cc.v2(-132, -20));
-        this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 520);
-        this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
+        // this.node_gameScollview.setContentSize(w - 130 - 30 + 132, 520);
+        // this.node_gameScollview.getChildByName("view").setContentSize(w - 100 - 30 + 132, 520);
     },
 
     toggleClick: function (toggle) {
@@ -1574,7 +1589,7 @@ cc.Class({
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED) {
             LoggerUtil.getInstance().log("GlobalCfg.CLIENT_MSG_ID.SIDEBAT_DISPLAYED notify.isShow: ", notify.isShow);
             let isShow = notify.isShow;
-            self.dealToggleModules(isShow);
+            // self.dealToggleModules(isShow);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.BINDPHONE_SUCCESS) {
             self.lab_userBonus.string = CommonFun.getInstance().numberToShow(GlobalCfg.USER_DATAS.bonus / 100)
@@ -1665,6 +1680,12 @@ cc.Class({
         }
         else if (btnName == 'btn_firstRecharge') {
             this.showFirstRechargeToast();
+        }
+        else if (btnName == 'btn_open_live') {
+            this.expandLiveModule(true);
+        }
+        else if (btnName == 'btn_close_live') {
+            this.expandLiveModule(false);
         }
     },
 
