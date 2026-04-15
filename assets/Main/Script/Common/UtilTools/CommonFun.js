@@ -1245,7 +1245,7 @@ let CommonFun = cc.Class({
      */
     showFirstRecharge: function() {
         let path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE;
-        if(GlobalCfg.CURSCENE_DIRECTION == "vertical"){
+        if(this._curOrientation == EnumOrientation.VERTICAL){
             path = GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V;
         }
         let firstRechargePrefabPromise = this.loadPrefabByPromise(path);
@@ -1616,9 +1616,8 @@ let CommonFun = cc.Class({
         gameLoadingPrefabPromise.then((prefab) => {
             let gameLoadingNode = cc.instantiate(prefab);
             let gameLoadingCtrl = gameLoadingNode.getComponent('GameLoadingViewCtrl');
-            if (isVertical){
-                this._curOrientation = EnumOrientation.VERTICAL;
-                APPManager.setOrientation('V');
+            if (!isVertical){
+                CommonFun.getInstance().addHorizontalAcc();
             }
             gameLoadingCtrl.init(isVertical, callback);
             this.addToPointParent(gameLoadingNode, GlobalCfg.PREFAB_PARENT.GAMELOADING);
@@ -2861,11 +2860,12 @@ let CommonFun = cc.Class({
         };
     },
 
-        /**
-     * 累加竖屏次数，当累加次数大于0，则竖屏
+    /**
+     * 累加横屏次数，当累加次数大于0，则横屏
      */
     addHorizontalAcc: function() {
         this._horizontalAcc += 1;
+        LoggerUtil.getInstance().log("addHorizontalAcc _curOrientation: ", this._curOrientation);
         if (this._horizontalAcc > 0 && this._curOrientation == EnumOrientation.VERTICAL) {
             this._curOrientation = EnumOrientation.HORIZONTAL;
             APPManager.setOrientation('H');

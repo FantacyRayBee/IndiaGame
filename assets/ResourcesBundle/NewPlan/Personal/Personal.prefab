@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        917.5,
         375,
+        917.5,
         0,
         0,
         0,
@@ -103,7 +103,7 @@
     "_prefab": {
       "__id__": 5
     },
-    "_opacity": 120,
+    "_opacity": 160,
     "_color": {
       "__type__": "cc.Color",
       "r": 0,
@@ -113,8 +113,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -263,7 +263,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -1730,
+        -812.5,
         0,
         0,
         0,
@@ -325,7 +325,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 547,
+      "width": 568,
       "height": 744
     },
     "_anchorPoint": {
@@ -337,7 +337,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -546.5,
+        0,
         0,
         0,
         0,
@@ -426,7 +426,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -5,
+        13.026,
         265,
         0,
         0,
@@ -5921,7 +5921,7 @@
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
-    "_horizontalCenter": -5,
+    "_horizontalCenter": 13.026,
     "_isAbsLeft": true,
     "_isAbsRight": true,
     "_isAbsTop": true,
@@ -5996,7 +5996,7 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 8,
-    "_left": -7.5,
+    "_left": 528.5,
     "_right": 0,
     "_top": 0,
     "_bottom": 0,
@@ -6033,7 +6033,7 @@
     "_enabled": true,
     "alignMode": 1,
     "_target": null,
-    "_alignFlags": 2,
+    "_alignFlags": 16,
     "_left": -707.5,
     "_right": 0,
     "_top": 0,

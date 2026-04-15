@@ -234,6 +234,7 @@ cc.Class({
         this.is_can_click1 = true;
         this.isLoadHead = false;
         this.updateInval = 0;
+        this.isLiveExpanded = false;
 
         this.teenPatti2Endpoint = "";
     },
@@ -490,11 +491,27 @@ cc.Class({
         this.live_item = this.node_live.getChildByName("item")
         this.scrollView_live = this.node_live.getChildByName("ScrollView").getComponent(cc.ScrollView);
         this.content_live = this.scrollView_live.content;
-        this.btn_open_live = this.scrollView_live.node.getChildByName("btn_open_lieve").getComponent(cc.Button);
-        this.btn_close_live = this.scrollView_live.node.getChildByName("btn_close_lieve").getComponent(cc.Button);
 
-        this.btn_open_live.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
-        this.btn_close_live.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
+        this.toggle_live = this.scrollView_live.node.getChildByName("toggle_live").getComponent(cc.Toggle);
+        this.widget_view_live = this.scrollView_live.node.getChildByName("view").getComponent(cc.Widget);
+        this.toggle_live.isChecked = false;
+        this.toggle_live_widget = this.toggle_live.node.getComponent(cc.Widget);
+        if (this.toggle_live_widget) {
+            this.toggle_live_widget.alignMode = cc.Widget.AlignMode.ALWAYS;
+            this.toggle_live_widget.updateAlignment();
+        }
+        if (this.widget_view_live) {
+            this.widget_view_live.alignMode = cc.Widget.AlignMode.ALWAYS;
+            this.widget_view_live.updateAlignment();
+        }
+        this.toggle_live.node.on('toggle', this.toggleLiveClick, this);
+        // 默认合上（初始化不播动画）
+        this.expandLiveModule(false, false);
+    },
+
+    toggleLiveClick: function(toggle) {
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        this.expandLiveModule(toggle.isChecked);
     },
     /**
      * 显示玩家信息内容
@@ -1629,11 +1646,9 @@ cc.Class({
         let btnName = btn.node.name;
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_setting") {
-            // CommonFun.getInstance().showSetting();
-            let url = "http://192.168.110.28:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1";
-            console.log(`CommonFun.getInstance().addVerticalAcc()`);
-            // CommonFun.getInstance().addVerticalAcc();
-            APPManager.startLive(url)
+            CommonFun.getInstance().showSetting();
+            // let url = "http://192.168.110.197:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1";
+            // APPManager.startLive(url)
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ADD_BUTTON);
@@ -1681,11 +1696,8 @@ cc.Class({
         else if (btnName == 'btn_firstRecharge') {
             this.showFirstRechargeToast();
         }
-        else if (btnName == 'btn_open_live') {
-            this.expandLiveModule(true);
-        }
-        else if (btnName == 'btn_close_live') {
-            this.expandLiveModule(false);
+        else if (btnName == 'btn_live_toggle' || btnName == 'btn_open_live' || btnName == 'btn_close_live') {
+            this.expandLiveModule(!this.isLiveExpanded);
         }
     },
 
@@ -1767,6 +1779,85 @@ cc.Class({
 
     dealBtnWithDrawEvent: function() {
         CommonFun.getInstance().showWithDrawPreData();
+    },
+
+    expandLiveModule: function(isExpand, isAnim = true) {
+        if (!this.scrollView_live || !this.content_live) {
+            return;
+        }
+
+        const expandHeight = 900;
+        const collapseHeight = 320;
+        const duration = 0.3;
+        const targetHeight = isExpand ? expandHeight : collapseHeight;
+
+        if (this.isLiveAnimating) {
+            return;
+        }
+        this.isLiveAnimating = true;
+        this.isLiveExpanded = !!isExpand;
+
+        cc.Tween.stopAllByTarget(this.scrollView_live.node);
+        cc.Tween.stopAllByTarget(this.node_live);
+
+        if (isExpand) {
+            for (let i = 0; i < this.content_live.childrenCount; i++) {
+                this.content_live.children[i].active = true;
+            }
+
+            let layoutExpand = this.content_live.getComponent(cc.Layout);
+            if (layoutExpand && layoutExpand.enabled) {
+                layoutExpand.updateLayout();
+            }
+        }
+        else {
+            this.scrollView_live.scrollToTop(0);
+        }
+
+        const finish = () => {
+            this.scrollView_live.node.height = targetHeight;
+            this.node_live.height = targetHeight;
+
+            if (this.toggle_live_widget) {
+                this.toggle_live_widget.updateAlignment();
+            }
+
+            this.scrollView_live.vertical = !!isExpand;
+            this.scrollView_live.enabled = !!isExpand;
+
+            if (!isExpand) {
+                for (let i = 0; i < this.content_live.childrenCount; i++) {
+                    this.content_live.children[i].active = i < 2;
+                }
+                let layoutCollapse = this.content_live.getComponent(cc.Layout);
+                if (layoutCollapse && layoutCollapse.enabled) {
+                    layoutCollapse.updateLayout();
+                }
+            }
+            this.isLiveAnimating = false;
+        };
+
+        if (!isAnim) {
+            if (this.toggle_live) {
+                this.toggle_live.isChecked = !!isExpand;
+            }
+            finish();
+            return;
+        }
+
+        cc.tween(this.scrollView_live.node)
+            .to(duration, { height: targetHeight }, { easing: 'sineOut' })
+            .start();
+
+        cc.tween(this.node_live)
+            .to(duration, { height: targetHeight }, { easing: 'sineOut' })
+            .call(() => {
+                if (this.toggle_live) {
+                    this.toggle_live.isChecked = !!isExpand;
+                }
+                finish();
+            })
+            .start();
     },
 
     dealBtnTxEvent: function() {
@@ -2171,6 +2262,7 @@ cc.Class({
     },
 
     checkUpdate: function(subpackgeName, callFun) {
+        let isVertical = this.getVerticalBySubpackageName(subpackgeName);
         if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
             callFun();
             return;
@@ -2182,7 +2274,6 @@ cc.Class({
             // if (this.LoadCompletedCallback == null) {
             //     this.LoadCompletedCallback = callFun;
             // }
-            let isVertical = this.getVerticalBySubpackageName(subpackgeName);
             CommonFun.getInstance().showGameLoading(isVertical, callFun);
         } 
         else {
@@ -2383,7 +2474,6 @@ cc.Class({
 
     onDestroy: function() {
         CommonFun.getInstance().removeCarouselStrip();
-        CommonFun.getInstance().decHorizontalAcc();
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         // 清除之前的倒计时（避免重复）

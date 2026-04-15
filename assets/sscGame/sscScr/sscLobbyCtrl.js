@@ -46,7 +46,7 @@ cc.Class({
 
     onLoad: function() {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_SSC_GAME);
-
+        CommonFun.getInstance().checkShiPei(this.node);
         GlobalCfg.ACT_SCENE_CTRL = this;
         this.initNode();
         this.showBetCion();
@@ -108,6 +108,7 @@ cc.Class({
                     msgData: {}
                 });
                 if (CommonFun.getInstance().isValidForScr(self)) {
+                    CommonFun.getInstance().decHorizontalAcc();
                     self.node.destroy();
                 };   
             }).catch((error) => {

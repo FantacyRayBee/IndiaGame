@@ -11,8 +11,8 @@ cc.Class({
 
     ctor: function() {
         this.itemPosArr = [
-            cc.v2(-90, 55), cc.v2(7, 55), cc.v2(100, 55), 
-            cc.v2(-90, -75), cc.v2(7, -75), cc.v2(100, -75), cc.v2(85, -77),
+            cc.v2(-17, 175), cc.v2(91, 175), cc.v2(199, 175), 
+            cc.v2(-17, 52), cc.v2(91, 52), cc.v2(199, 52), cc.v2(85, 50),
         ];
 
         this.signItemCtrlMap = new Map();

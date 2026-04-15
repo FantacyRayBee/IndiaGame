@@ -127,6 +127,11 @@ cc.Class({
                 };
             };
         }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY) {
+            let w = cc.view.getVisibleSize().width;
+            this.node.setPosition(-(w / 2) + 69.5, -12);
+            this.checkActivity();
+        }
         // if (msgId == "RefreshActivity_RedPoint") {
         //     this.red_act.active = GlobalCfg.USER_DATAS.turntableRemainCount > 0;
         // }

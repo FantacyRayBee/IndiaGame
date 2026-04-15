@@ -155,6 +155,7 @@ APPManager.LiveBackToLobbyCallBack = function () {
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
+    LoggerUtil.getInstance().error("setOrientation setOrientation setOrientation");
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);

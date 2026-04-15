@@ -105,6 +105,7 @@ let SceneManager = cc.Class({
             GameServerManager.clientCloseServer();
             Promise.all([this.reqUserDataInfo(), this.loadBundleScene(toSceneName)])
             .then((arr) => {
+                CommonFun.getInstance().initHorizontalAcc();
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
                 cc.director.runScene(scene, () => {}, () => {
@@ -220,6 +221,7 @@ let SceneManager = cc.Class({
         let protoCfg = null;
         let protoPathArr = null;
         let websocketUrl = null;
+        let isVertical = this.getVerticalBySceneName(toSceneName);
         switch (toSceneName) {
             case this.sceneType.BENZ:
                 protoCfg = ProtoObj.getProto("Benz");
@@ -381,6 +383,9 @@ let SceneManager = cc.Class({
             .then((arr) => {
                 let prefab = arr[1];
                 this.curSceneType = toSceneName;
+                if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                    CommonFun.getInstance().addHorizontalAcc();
+                }
                 let pab_ssc = cc.instantiate(prefab);
                 cc.Canvas.instance.node.addChild(pab_ssc);
                 this.isLoadingScene = false;
@@ -401,6 +406,9 @@ let SceneManager = cc.Class({
             .then((arr) => {
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
+                if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                    CommonFun.getInstance().addHorizontalAcc();
+                }
                 cc.director.runScene(scene, () => {}, () => {
                     this.isLoadingScene = false;
                     // CommonFun.getInstance().showGameStartMask();
@@ -416,6 +424,17 @@ let SceneManager = cc.Class({
                 CommonFun.getInstance().showTips(err);
             });
         };
+    },
+
+
+    getVerticalBySceneName: function(SceneName) {
+        // 定义竖屏游戏的映射
+        const verticalGames = {
+            [this.sceneType.BENZ]: true,
+            [this.sceneType.AVIATOR]: true,
+        };
+        const isVertical = verticalGames[SceneName] || false;
+        return isVertical;
     },
 
     loadSSCBundlePab: function(toSceneName) {

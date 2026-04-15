@@ -206,7 +206,7 @@ cc.Class({
     statiAct: function() {
         let node = this.node.getChildByName('node');
         cc.tween(node)
-        .to(0.3, {position: cc.v2(0, 0)},{ easing: 'smooth'})
+        .to(0.3, {position: cc.v2(-375, 0)},{ easing: 'smooth'})
         .call(()=>{
             if (this.lab_mobile.string == "null" && this.lab_name.string == "null" && this.lab_email.string == "null") {
                 // this.lab_blind.string = teenPattiLanguage.lobby[2][language];

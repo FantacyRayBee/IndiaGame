@@ -216,7 +216,7 @@ cc.Class({
         let width = cc.view.getVisibleSize().width;
         let underLayout = this.node.getChildByName('underLayout');
         cc.tween(underLayout)
-        .to(0.3, {position: cc.v2((width - 573)/2, 0)}, {easing: 'smooth'})
+        .to(0.3, {position: cc.v2(0, 0)}, {easing: 'smooth'})
         .start()
     },
 

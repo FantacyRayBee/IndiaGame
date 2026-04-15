@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        917.5,
         375,
+        917.5,
         0,
         0,
         0,
@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -282,8 +282,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 964,
-      "height": 649
+      "width": 686,
+      "height": 507
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -362,8 +362,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        467.947,
-        238.669,
+        328.815,
+        208.158,
         0,
         0,
         0,
@@ -414,8 +414,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 66,
-      "height": 67
+      "width": 60,
+      "height": 61
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -621,8 +621,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 189,
-      "height": 277
+      "width": 150,
+      "height": 219
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -633,7 +633,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -332.763,
+        -237.349,
         -14.953,
         0,
         0,
@@ -698,7 +698,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -113,
+        -88.549,
         0,
         0,
         0,
@@ -812,7 +812,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -191,
+        -155.435,
         0,
         0,
         0,
@@ -1113,8 +1113,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 189,
-      "height": 277
+      "width": 150,
+      "height": 219
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1125,7 +1125,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -110,
+        -76.612,
         -14.953,
         0,
         0,
@@ -1190,7 +1190,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -113,
+        -88.549,
         0,
         0,
         0,
@@ -1304,7 +1304,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -191,
+        -155.435,
         0,
         0,
         0,
@@ -2254,8 +2254,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 189,
-      "height": 277
+      "width": 150,
+      "height": 219
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2266,7 +2266,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        110,
+        80.447,
         -14.953,
         0,
         0,
@@ -2331,7 +2331,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -113,
+        -88.549,
         0,
         0,
         0,
@@ -2445,7 +2445,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -191,
+        -155.435,
         0,
         0,
         0,
@@ -2743,8 +2743,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 189,
-      "height": 277
+      "width": 150,
+      "height": 219
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2755,7 +2755,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        330.653,
+        238.639,
         -14.953,
         0,
         0,
@@ -2824,7 +2824,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -191,
+        -155.435,
         0,
         0,
         0,
@@ -3134,7 +3134,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -280.401,
+        -220.599,
         0,
         0,
         0,
