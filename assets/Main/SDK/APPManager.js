@@ -148,10 +148,11 @@ APPManager.startLive = function (Url) {
 
 //关闭直播间
 APPManager.LiveBackToLobbyCallBack = function () {
-    console.log(`LiveBackToLobbyCallBack=================>>>`);
+    GlobalCfg.game_state = 0;
     // CommonFun.getInstance().decVerticalAcc();
+    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
+    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: "LiveBackToLobbyCallBack", msgData: {} });
 }
-
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {

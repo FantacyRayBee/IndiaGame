@@ -23,11 +23,11 @@ cc.Class({
 
         this.verifyTimer = null;
 
-        this.or_sprite_pos = cc.v2(326, -160);
+        // this.or_sprite_pos = cc.v2(326, -160);
         this.btn_facebookLogin_pos = cc.v2(209, -274);
         this.btn_guestLogin_pos = cc.v2(0, -225);
 
-        this.or_sprite_pos1 = cc.v2(326, -76);
+        // this.or_sprite_pos1 = cc.v2(326, -76);
         this.btn_facebookLogin_pos1 = cc.v2(209, -144);
         this.btn_guestLogin_pos1 = cc.v2(0, -144);
 
@@ -943,7 +943,7 @@ cc.Class({
         this.node_btn_quickLogin.active = true;
       
         this.editBox_account.string = cc.sys.localStorage.getItem("login_phone").slice(2);
-        this.node_or_sprite.setPosition(this.or_sprite_pos1);
+        // this.node_or_sprite.setPosition(this.or_sprite_pos1);
         this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
         this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
 
@@ -962,7 +962,7 @@ cc.Class({
         this.node_btn_quickLogin.active = false;
 
         this.editBox_account.string = "";
-        this.node_or_sprite.setPosition(this.or_sprite_pos);
+        // this.node_or_sprite.setPosition(this.or_sprite_pos);
         this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
         this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
 

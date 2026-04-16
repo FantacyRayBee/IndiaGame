@@ -1,6 +1,5 @@
 //定义全局配置 
 window.GlobalCfg = {
-
     /**
      * 服务器重启
      */
@@ -66,6 +65,10 @@ window.GlobalCfg = {
      * 是否强制进测试服
      */
     is_force_gotoTest: true,
+    /**
+     * 游戏状态
+     */
+    game_state: 0, // 0:正常，1：直播
 
     /**
      * 渠道信息
@@ -1057,6 +1060,8 @@ window.GlobalCfg = {
         BankruptcyGift: "破产礼包",
         OnlyPay: "终身一次支付",
     },
+
+
 };
 
 GlobalCfg.NATIVE_CALL_URL = "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy";

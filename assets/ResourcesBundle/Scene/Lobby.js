@@ -281,7 +281,6 @@ cc.Class({
         if (GlobalCfg.USER_DATAS.firstGiftDiamond > 0) {
             GlobalCfg.USER_DATAS.userDiamond -= GlobalCfg.USER_DATAS.firstGiftDiamond; 
         };
-    
         // this.checkShiPei();
         this.setBtnsClick();
         this.initLiveModule();
@@ -507,6 +506,48 @@ cc.Class({
         this.toggle_live.node.on('toggle', this.toggleLiveClick, this);
         // 默认合上（初始化不播动画）
         this.expandLiveModule(false, false);
+
+        this.refreshLiveData();
+    },
+
+    refreshLiveData: function() {
+        let testLiveData = [{
+                "id": 1,
+                "sort": 1,
+                "title": "主播小美正在直播，快来围观吧！",
+                "coverImg": "http://192.168.110.177:8000/8834_list.jpg",
+                "streamUrl": "http://192.168.110.198:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1"}
+            ]
+        let liveData = GlobalCfg.USER_DATAS.liveData || testLiveData;
+
+        this.content_live.destroyAllChildren();
+        //最多加载10个直播数据
+        for (let i = 0; i < liveData.length && i < 10; i++) {
+            const liveItemData = liveData[i];
+            let liveItemNode = cc.instantiate(this.live_item);
+            liveItemNode.active = true;
+            this.setLiveItemInfo(liveItemNode, liveItemData);
+            this.content_live.addChild(liveItemNode);
+        }
+    },
+
+    setLiveItemInfo: function(liveItemNode, liveItemData) {
+        let sprite_cover = liveItemNode.getChildByName("bg").getComponent(cc.Sprite);
+        let button = liveItemNode.getChildByName("bg").getComponent(cc.Button);
+        let label_people = liveItemNode.getChildByName("people").getComponent(cc.Label);
+        CommonFun.getInstance().loadHeadSp(liveItemData.coverImg, sprite_cover, 300, 200);
+        label_people.string = "1000人围观"; // 直播间人数，暂时写死，后续接口完善了再改
+
+        button.node.on("click", () => {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            this.goToLiveRoom(liveItemData);
+        });
+    },
+    
+    goToLiveRoom: function(liveItemData) {
+        GlobalCfg.game_state = 1;
+        APPManager.startLive(liveItemData.streamUrl);
+        this.dealJumpBtnEvent("Dragon");
     },
 
     toggleLiveClick: function(toggle) {
@@ -1647,8 +1688,7 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_setting") {
             CommonFun.getInstance().showSetting();
-            // let url = "http://192.168.110.197:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1";
-            // APPManager.startLive(url)
+
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ADD_BUTTON);

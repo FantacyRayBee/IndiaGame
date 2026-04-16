@@ -406,9 +406,9 @@ let SceneManager = cc.Class({
             .then((arr) => {
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
-                if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
-                    CommonFun.getInstance().addHorizontalAcc();
-                }
+                // if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                //     CommonFun.getInstance().addHorizontalAcc();
+                // }
                 cc.director.runScene(scene, () => {}, () => {
                     this.isLoadingScene = false;
                     // CommonFun.getInstance().showGameStartMask();

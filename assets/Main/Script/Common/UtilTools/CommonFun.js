@@ -1616,7 +1616,7 @@ let CommonFun = cc.Class({
         gameLoadingPrefabPromise.then((prefab) => {
             let gameLoadingNode = cc.instantiate(prefab);
             let gameLoadingCtrl = gameLoadingNode.getComponent('GameLoadingViewCtrl');
-            if (!isVertical){
+            if (!isVertical && GlobalCfg.game_state == 0) {
                 CommonFun.getInstance().addHorizontalAcc();
             }
             gameLoadingCtrl.init(isVertical, callback);
@@ -2718,6 +2718,26 @@ let CommonFun = cc.Class({
             gameWordInteractionCtrl.setTargetSeat(targetSeat);
             this.addToPointParent(gameWordInteractionNode, GlobalCfg.PREFAB_PARENT.GAMEWORDINTERACTION);
         });
+    },
+
+    loadHeadSp: function(headUrl, heaSprite, width = 0, height = 0) {
+        if (headUrl && headUrl.length > 0) {
+            let urlWithoutQuery = headUrl.split('?')[0].split('#')[0];
+            let extMatch = urlWithoutQuery.match(/\.(png|jpg|jpeg|webp)$/i);
+            let loadOptions = extMatch ? { ext: `.${extMatch[1].toLowerCase()}` } : {};
+            cc.assetManager.loadRemote(headUrl, loadOptions, (err, texture) => {
+                if(!err && cc.isValid(heaSprite)){
+                    heaSprite.spriteFrame = new cc.SpriteFrame(texture);
+                    if (width > 0 && height > 0 && cc.isValid(heaSprite.node)) {
+                        heaSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+                        heaSprite.node.setContentSize(width, height);
+                    }
+                    else {
+                        heaSprite.sizeMode = cc.Sprite.SizeMode.TRIMMED;
+                    }
+                }
+            });
+        }
     },
 
     /**

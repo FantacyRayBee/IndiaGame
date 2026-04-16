@@ -67,7 +67,7 @@ cc.Class({
     },
 
     start () {
-        
+        this.btn_openMenu.node.active = GlobalCfg.game_state == 0;
     },
 
     onDestroy: function () {

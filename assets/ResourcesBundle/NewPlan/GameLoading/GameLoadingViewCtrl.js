@@ -25,6 +25,9 @@ cc.Class({
 
     init: function (isVertical, callback) {
         this.LoadCompletedCallback = callback;
+        if (GlobalCfg.game_state == 1) {
+            isVertical = false; //直播状态默认横屏
+        }
         this.hor_node.active = !isVertical;
         this.ver_node.active = isVertical;
 
@@ -42,6 +45,10 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
             self.setSmallGameLoadComplete(notify);
         }
+        else if (msgId == "LiveBackToLobbyCallBack") {
+            this.node.destroy();
+        }
+        
     },
 
     setSmallGameLoadProgress: function (notify) {
