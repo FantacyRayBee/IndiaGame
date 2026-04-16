@@ -204,6 +204,11 @@ GameServerManager.onOpen = function (evt, isFirstConnect) {
     GameServerManager.startHeartBeat();
     CommonFun.getInstance().hidProgress();
 
+    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+        msgCode: GlobalCfg.CLIENT_MSG_ID.NET_OPEN,
+        msgData: "GAME_SERVER"
+    });
+
     if (isFirstConnect == false) {
         GameServerManager.send('gameservice.login', 'LoginReq', {
             userid: GlobalCfg.USER_DATAS.userId,

@@ -24,11 +24,15 @@ cc.Class({
         this._isRolling = false;         // 是否正在数字滚动
         this._finalScore = 0;            // 本次应显示的最终分数
         this._boundQuickHandler = null;  // 点击处理器引用
+        this._autoCloseTimer = null;
+        this._autoCloseDelay = 3;
+        this._isClosed = false;
     },
 
     showRewardTips: function(curSpinAllWin, bigWinLevel, callback) {
         return new Promise((resolve) => {
             this.callback = callback;
+            this._isClosed = false;
 
             // 播放音效
             GlobalCfg.ACT_SCENE_CTRL.playGameSound("win");
@@ -53,13 +57,15 @@ cc.Class({
 
             // === 改动核心：点击优先快进；已到终点则结束 ===
             this._boundQuickHandler = () => {
+                this._resetAutoCloseTimer(() => {
+                    this._finishRewardTips(resolve);
+                });
                 if (this._isRolling) {
                     this._fastForwardScore(); // 直接显示最终结果
                     return;                   // 本次不 resolve，允许用户再点一次结束
                 }
                 // 已经是最终结果 → 正常结束
-                this.playEndAnim();
-                resolve();
+                this._finishRewardTips(resolve);
             };
             if (this.btn_quick && this.btn_quick.node) {
                 // 用 on 而不是 once：第一次可快进，第二次再结束
@@ -68,6 +74,9 @@ cc.Class({
 
             // 开始数字滚动
             this.setAllWinScore(curSpinAllWin, 2);
+            this._resetAutoCloseTimer(() => {
+                this._finishRewardTips(resolve);
+            });
         });
     },
 
@@ -75,6 +84,37 @@ cc.Class({
         if (this.btn_quick) this.btn_quick.interactable = false;
         this.callback && this.callback();
         this.node && this.node.destroy();
+    },
+
+    _finishRewardTips: function(resolve) {
+        if (this._isClosed) {
+            return;
+        }
+        this._isClosed = true;
+        this._cancelAutoCloseTimer();
+        if (this._isRolling) {
+            this._fastForwardScore();
+        }
+        this.playEndAnim();
+        resolve && resolve();
+    },
+
+    _resetAutoCloseTimer: function(onTimeout) {
+        this._cancelAutoCloseTimer();
+        this._autoCloseTimer = setTimeout(() => {
+            this._autoCloseTimer = null;
+            if (!cc.isValid(this)) {
+                return;
+            }
+            onTimeout && onTimeout();
+        }, this._autoCloseDelay * 1000);
+    },
+
+    _cancelAutoCloseTimer: function() {
+        if (this._autoCloseTimer) {
+            clearTimeout(this._autoCloseTimer);
+            this._autoCloseTimer = null;
+        }
     },
 
     /**
@@ -146,6 +186,7 @@ cc.Class({
 
     onDestroy: function() {
         this.unscheduleAllCallbacks();
+        this._cancelAutoCloseTimer();
 
         // 停止并释放 tween
         if (this._scoreTween) {
