@@ -27,8 +27,8 @@ export default class SignCtrl extends cc.Component {
     private node_day7Unsigned: cc.Node = null;
 
     private itemPosArr = [
-        cc.v2(-165, 84), cc.v2(-40, 84), cc.v2(85, 84), 
-        cc.v2(-165, -77), cc.v2(-40, -77), cc.v2(85, -77), cc.v2(85, -77),
+        cc.v2(-68, 192), cc.v2(-40, 192), cc.v2(85, 192), 
+        cc.v2(-68, 49), cc.v2(-40, 49), cc.v2(85, 49), cc.v2(85, -77),
     ];
 
     private signItemCtrlMap = new Map();

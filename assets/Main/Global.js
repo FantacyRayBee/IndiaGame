@@ -70,6 +70,8 @@ window.GlobalCfg = {
      */
     game_state: 0, // 0:正常，1：直播
 
+    live_data: null, // 直播数据
+
     /**
      * 渠道信息
      */
@@ -935,7 +937,6 @@ window.GlobalCfg = {
         SETTING: "FirstLayer",
         CHATACT: "FirstLayer",
         PROMOTER: "FirstLayer",
-        SELECTROOM: "FirstLayer",
         MYVIP: "FirstLayer",
         GAMESTARTMASK: "FirstLayer",
         GAMEGIFINTERACTION: "FirstLayer",
@@ -950,6 +951,7 @@ window.GlobalCfg = {
         WALLET: "FirstLayer",
 
         ACTIVITY: "SecondLayer",
+        SELECTROOM: "SecondLayer",
         FIRSTRECHARGE: "SecondLayer",
         CONTACTUS: "SecondLayer",
         RATEUS: "SecondLayer",

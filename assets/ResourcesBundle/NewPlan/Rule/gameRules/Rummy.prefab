@@ -56,7 +56,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -129.554,
+        -73.542,
         0,
         0,
         0,
@@ -111,7 +111,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 858,
+      "width": 690,
       "height": 419
     },
     "_anchorPoint": {
@@ -175,7 +175,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 858,
+      "width": 690,
       "height": 2400
     },
     "_anchorPoint": {
@@ -294,14 +294,14 @@
       "ctor": "Float64Array",
       "array": [
         -105,
-        -1149.516,
+        -926.548,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.8,
+        0.8,
         1
       ]
     },

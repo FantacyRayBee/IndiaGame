@@ -169,7 +169,7 @@ let SceneManager = cc.Class({
 
         LobbyServerManager.setProtoCfgAndUrl(protoCfg, websocketUrl);
 
-        Promise.all([LobbyServerManager.connectServer(true), this.loadBundleScene(toSceneName)])
+        Promise.all([LobbyServerManager.connectServer(true), this.loadBundleScene(toSceneName), this.getLiveData()])
         .then((arr) => {
             let scene = arr[1];
             this.curSceneType = toSceneName;
@@ -484,6 +484,40 @@ let SceneManager = cc.Class({
             }, (err) => {
                 reject(`failed to load ${bundleName}-bundle: ${err}`);
             });
+        });
+    },
+
+    getLiveData: function() {
+        return new Promise((resolve, reject) => {
+            let isDone = false;
+            let timeout = setTimeout(() => {
+                if (isDone) {
+                    return;
+                }
+                isDone = true;
+                LoggerUtil.getInstance().warn("getLiveData timeout, continue enter lobby");
+                resolve();
+            }, 5000);
+
+            try {
+                CommonFun.getInstance().getLiveModuleStatus(() => {
+                    if (isDone) {
+                        return;
+                    }
+                    isDone = true;
+                    clearTimeout(timeout);
+                    resolve();
+                });
+            }
+            catch (error) {
+                if (isDone) {
+                    return;
+                }
+                isDone = true;
+                clearTimeout(timeout);
+                LoggerUtil.getInstance().error("getLiveData exception:", cc.sys.isNative ? JSON.stringify(error) : error);
+                resolve();
+            }
         });
     },
 

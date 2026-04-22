@@ -1796,6 +1796,9 @@ let CommonFun = cc.Class({
             this._selectRoomNode.active = true;
             if (selectRoomCtrl) {
                 selectRoomCtrl && selectRoomCtrl.showPointGameRoom();
+                if (GlobalCfg.game_state == 0) {
+                    CommonFun.getInstance().addHorizontalAcc();
+                }
             }
             else{
                 LoggerUtil.getInstance().log("3333333333 selectRoomCtrl is null");
@@ -1810,6 +1813,7 @@ let CommonFun = cc.Class({
         if (this._selectRoomNode) {
             CommonFun.getInstance().updateSidebarData(true);
             this._selectRoomNode.active = false;
+            CommonFun.getInstance().decHorizontalAcc();
         };
     },
 
@@ -2623,6 +2627,20 @@ let CommonFun = cc.Class({
     },
 
     /**
+     * 获取直播间数据
+     */
+    getLiveModuleStatus: function(callback) {
+        let url = GlobalCfg.HTTP_SERVER + "/v1/live/getAllRoomInfo";
+        CommonFun.getInstance().showProgress();
+        CommonFun.getInstance().httpGet(url, (strInfo) => {
+            LoggerUtil.getInstance().log("getLiveModuleStatus strInfo：", strInfo);
+            CommonFun.getInstance().hidProgress();
+            GlobalCfg.live_data = strInfo.data;
+            callback && callback();
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    /**
      * 显示游戏开始遮罩
      */
     showGameStartMask: function() {
@@ -2896,6 +2914,7 @@ let CommonFun = cc.Class({
      * 减少横屏次数，当累加次数等于0，则竖屏
      */
     decHorizontalAcc: function() {
+        LoggerUtil.getInstance().log("decHorizontalAcc _horizontalAcc: ", this._horizontalAcc);
         this._horizontalAcc -= 1;
         if (this._horizontalAcc <= 0 && this._curOrientation == EnumOrientation.HORIZONTAL) {
             this._curOrientation = EnumOrientation.VERTICAL;

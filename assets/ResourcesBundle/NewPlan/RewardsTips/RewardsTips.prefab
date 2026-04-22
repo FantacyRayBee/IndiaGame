@@ -21,7 +21,7 @@
         "__id__": 2
       },
       {
-        "__id__": 6
+        "__id__": 7
       }
     ],
     "_active": true,
@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        917.5,
         375,
+        917.5,
         0,
         0,
         0,
@@ -98,10 +98,13 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 6
     },
     "_opacity": 125,
     "_color": {
@@ -113,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -193,6 +196,33 @@
     "_id": ""
   },
   {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "alignMode": 1,
+    "_target": null,
+    "_alignFlags": 45,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 1835,
+    "_originalHeight": 750,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -212,7 +242,7 @@
     },
     "_children": [
       {
-        "__id__": 7
+        "__id__": 8
       },
       {
         "__id__": 11
@@ -240,8 +270,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1426,
-      "height": 745
+      "width": 678,
+      "height": 816
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -282,14 +312,11 @@
     "_name": "title",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 6
+      "__id__": 7
     },
     "_children": [],
     "_active": true,
     "_components": [
-      {
-        "__id__": 8
-      },
       {
         "__id__": 9
       }
@@ -307,8 +334,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 294,
-      "height": 57
+      "width": 291,
+      "height": 56
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -320,14 +347,14 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        160,
+        357.021,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.7,
+        0.7,
         1
       ]
     },
@@ -349,7 +376,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 7
+      "__id__": 8
     },
     "_enabled": true,
     "_materials": [
@@ -359,7 +386,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "001b25cc-f6ff-45b9-bfaf-35e8a80d9c61"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -372,17 +401,6 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "3d074wD6iBBc7Uckbpsinme",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 7
-    },
-    "_enabled": true,
-    "spriteTransId": 200,
     "_id": ""
   },
   {
@@ -401,7 +419,7 @@
     "_name": "layout",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 6
+      "__id__": 7
     },
     "_children": [
       {
@@ -841,7 +859,7 @@
     "_name": "btn_ok",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 6
+      "__id__": 7
     },
     "_children": [
       {
@@ -880,7 +898,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -220,
+        -330.576,
         0,
         0,
         0,
@@ -1226,7 +1244,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 6
+      "__id__": 7
     },
     "_enabled": true,
     "_materials": [

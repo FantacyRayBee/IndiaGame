@@ -408,6 +408,7 @@ cc.Class({
         }
         else {
             this.loadPrecess = 100.00;
+            CommonFun.getInstance().initHorizontalAcc();
             cc.director.loadScene("Update");
         };
     },

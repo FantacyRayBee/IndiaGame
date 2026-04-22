@@ -165,7 +165,7 @@ cc.Class({
             let btn_add = cc.find('Canvas/btn_shop/Background/icon_chipsshop');
             btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
         }
-        this.btn_shop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
+        this.btn_shop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4) && GlobalCfg.game_state == 0;
         this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 

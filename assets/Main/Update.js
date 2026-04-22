@@ -77,8 +77,6 @@ cc.Class({
 
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_UPDATE_VIEW);
 
-        CommonFun.getInstance().initHorizontalAcc();
-
         CommonFun.getInstance().hidProgress();
 
         CommonFun.getInstance().removeCarouselStrip();

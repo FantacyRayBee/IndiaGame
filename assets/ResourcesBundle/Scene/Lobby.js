@@ -511,14 +511,12 @@ cc.Class({
     },
 
     refreshLiveData: function() {
-        let testLiveData = [{
-                "id": 1,
-                "sort": 1,
-                "title": "主播小美正在直播，快来围观吧！",
-                "coverImg": "http://192.168.110.177:8000/8834_list.jpg",
-                "streamUrl": "http://192.168.110.198:5173/room?roomId=10001&userId=user_1&nickname=观众1&role=audience&debugMedia=1"}
-            ]
-        let liveData = GlobalCfg.USER_DATAS.liveData || testLiveData;
+        let liveData = Array.isArray(GlobalCfg.live_data) ? GlobalCfg.live_data : [];
+        if (liveData.length == 0) {
+            this.node_live.active = false;
+            return;
+        }
+        this.node_live.active = true;
 
         this.content_live.destroyAllChildren();
         //最多加载10个直播数据
@@ -535,9 +533,10 @@ cc.Class({
         let sprite_cover = liveItemNode.getChildByName("bg").getComponent(cc.Sprite);
         let button = liveItemNode.getChildByName("bg").getComponent(cc.Button);
         let label_people = liveItemNode.getChildByName("people").getComponent(cc.Label);
-        CommonFun.getInstance().loadHeadSp(liveItemData.coverImg, sprite_cover, 300, 200);
-        label_people.string = "1000人围观"; // 直播间人数，暂时写死，后续接口完善了再改
-
+        let label_desc = liveItemNode.getChildByName("desc").getComponent(cc.Label);
+        CommonFun.getInstance().loadHeadSp(liveItemData.homeImage, sprite_cover, 300, 200);
+        label_people.string = liveItemData.title; // 直播间人数，暂时写死，后续接口完善了再改
+        label_desc.string = liveItemData.title;
         button.node.on("click", () => {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.goToLiveRoom(liveItemData);
@@ -546,7 +545,7 @@ cc.Class({
     
     goToLiveRoom: function(liveItemData) {
         GlobalCfg.game_state = 1;
-        APPManager.startLive(liveItemData.streamUrl);
+        APPManager.startLive(liveItemData.url);
         this.dealJumpBtnEvent("Dragon");
     },
 

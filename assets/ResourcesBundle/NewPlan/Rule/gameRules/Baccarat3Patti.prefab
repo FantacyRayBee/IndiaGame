@@ -56,7 +56,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -119.577,
+        -76.071,
         0,
         0,
         0,
@@ -111,7 +111,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 929,
+      "width": 690,
       "height": 426.3
     },
     "_anchorPoint": {
@@ -175,7 +175,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 852,
+      "width": 690,
       "height": 700
     },
     "_anchorPoint": {
@@ -254,7 +254,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 852,
+      "width": 690,
       "height": 560
     },
     "_anchorPoint": {
@@ -318,7 +318,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 690,
       "height": 72.32
     },
     "_anchorPoint": {
@@ -330,7 +330,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -427.235,
+        -339.931,
         243.304,
         0,
         0,
@@ -372,7 +372,7 @@
     "_dstBlendFactor": 771,
     "_string": "* At beginning dealer will deal 3 cards each to red and blue area on the table",
     "_N$string": "* At beginning dealer will deal 3 cards each to red and blue area on the table",
-    "_fontSize": 32,
+    "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": true,
     "_N$file": {
@@ -428,7 +428,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 690,
       "height": 104.32
     },
     "_anchorPoint": {
@@ -440,7 +440,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -426.067,
+        -338.763,
         154,
         0,
         0,
@@ -482,7 +482,7 @@
     "_dstBlendFactor": 771,
     "_string": "* Player can bet on red and blue. after all player placed \ntheir bet dealer will show cards on both side\n",
     "_N$string": "* Player can bet on red and blue. after all player placed \ntheir bet dealer will show cards on both side\n",
-    "_fontSize": 32,
+    "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": true,
     "_N$file": {
@@ -538,7 +538,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 690,
       "height": 40.32
     },
     "_anchorPoint": {
@@ -550,7 +550,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -426.619,
+        -339.315,
         104,
         0,
         0,
@@ -592,7 +592,7 @@
     "_dstBlendFactor": 771,
     "_string": "* Comparing rule is the same as teen patti ",
     "_N$string": "* Comparing rule is the same as teen patti ",
-    "_fontSize": 32,
+    "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": true,
     "_N$file": {
@@ -648,7 +648,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 690,
       "height": 72.32
     },
     "_anchorPoint": {
@@ -660,7 +660,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -425.139,
+        -337.835,
         45,
         0,
         0,
@@ -702,7 +702,7 @@
     "_dstBlendFactor": 771,
     "_string": "* If player bet on blue or red color, winner will get double winnings based on how much he bet",
     "_N$string": "* If player bet on blue or red color, winner will get double winnings based on how much he bet",
-    "_fontSize": 32,
+    "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": true,
     "_N$file": {
@@ -758,7 +758,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 690,
       "height": 72.32
     },
     "_anchorPoint": {
@@ -770,7 +770,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -425.139,
+        -337.835,
         -29,
         0,
         0,
@@ -812,7 +812,7 @@
     "_dstBlendFactor": 771,
     "_string": "*When there's a draw after showing cards, all the betting amount would be refunded",
     "_N$string": "*When there's a draw after showing cards, all the betting amount would be refunded",
-    "_fontSize": 32,
+    "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": true,
     "_N$file": {
@@ -868,7 +868,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 690,
       "height": 330.4
     },
     "_anchorPoint": {
@@ -880,8 +880,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -425.139,
-        -248.62400000000002,
+        -337.835,
+        -248.624,
         0,
         0,
         0,
@@ -922,7 +922,7 @@
     "_dstBlendFactor": 771,
     "_string": "Bet on Blue / Red Win = bet * 2\nBet on winner card type :\nPair：Win = bet * 3.5\nColor : Win = bet * 10\nSequence : Win = bet * 15\nPure Sequence : Win = bet * 100\nSet： Win = bet * 100\n",
     "_N$string": "Bet on Blue / Red Win = bet * 2\nBet on winner card type :\nPair：Win = bet * 3.5\nColor : Win = bet * 10\nSequence : Win = bet * 15\nPure Sequence : Win = bet * 100\nSet： Win = bet * 100\n",
-    "_fontSize": 32,
+    "_fontSize": 24,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {

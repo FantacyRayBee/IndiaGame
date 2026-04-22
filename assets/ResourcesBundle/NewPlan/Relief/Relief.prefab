@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        917.5,
         375,
+        917.5,
         0,
         0,
         0,
@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
-      "height": 750
+      "width": 750,
+      "height": 1835
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -267,8 +267,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1065,
-      "height": 669
+      "width": 732,
+      "height": 734
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -331,7 +331,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 108,
+      "width": 140,
       "height": 40
     },
     "_anchorPoint": {
@@ -343,8 +343,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        137,
-        -7,
+        35.419,
+        17.477,
         0,
         0,
         0,
@@ -385,7 +385,7 @@
     "_dstBlendFactor": 771,
     "_string": "₹0",
     "_N$string": "₹0",
-    "_fontSize": 32,
+    "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -457,8 +457,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        210,
-        -250,
+        135.411,
+        -326.605,
         0,
         0,
         0,

@@ -56,7 +56,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -122.284,
+        -72.221,
         0,
         0,
         0,
@@ -111,7 +111,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 858,
+      "width": 690,
       "height": 428
     },
     "_anchorPoint": {
@@ -175,7 +175,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 858,
+      "width": 690,
       "height": 615
     },
     "_anchorPoint": {
@@ -248,7 +248,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 829,
+      "width": 690,
       "height": 173
     },
     "_anchorPoint": {
@@ -312,7 +312,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 536.96,
+      "width": 454.35,
       "height": 32.76
     },
     "_anchorPoint": {
@@ -324,7 +324,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -397.121,
+        -340.994,
         75.631,
         0,
         0,
@@ -366,7 +366,7 @@
     "_dstBlendFactor": 771,
     "_string": "Players must place a bet before the racing start",
     "_N$string": "Players must place a bet before the racing start",
-    "_fontSize": 26,
+    "_fontSize": 22,
     "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
@@ -422,7 +422,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 800,
+      "width": 690,
       "height": 32.76
     },
     "_anchorPoint": {
@@ -434,8 +434,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -397.342,
-        19.245000000000005,
+        -340.994,
+        19.245,
         0,
         0,
         0,
@@ -476,7 +476,7 @@
     "_dstBlendFactor": 771,
     "_string": "You can bet on any horse or any number of horses among the horse 1-6",
     "_N$string": "You can bet on any horse or any number of horses among the horse 1-6",
-    "_fontSize": 26,
+    "_fontSize": 22,
     "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
@@ -532,7 +532,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 364.3,
+      "width": 308.26,
       "height": 32.76
     },
     "_anchorPoint": {
@@ -544,7 +544,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -398.191,
+        -340.994,
         -36.144,
         0,
         0,
@@ -586,7 +586,7 @@
     "_dstBlendFactor": 771,
     "_string": "The odds will change every round",
     "_N$string": "The odds will change every round",
-    "_fontSize": 26,
+    "_fontSize": 22,
     "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
@@ -642,7 +642,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 700,
+      "width": 690,
       "height": 32.76
     },
     "_anchorPoint": {
@@ -654,7 +654,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -398.214,
+        -340.994,
         -81.072,
         0,
         0,
@@ -696,7 +696,7 @@
     "_dstBlendFactor": 771,
     "_string": "Winning amount =winner area betting amount * odds",
     "_N$string": "Winning amount =winner area betting amount * odds",
-    "_fontSize": 26,
+    "_fontSize": 22,
     "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {

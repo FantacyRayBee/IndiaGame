@@ -40,7 +40,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 929,
+      "width": 690,
       "height": 615
     },
     "_anchorPoint": {
@@ -53,7 +53,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -131.129,
+        -69.774,
         0,
         0,
         0,
@@ -108,7 +108,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 858,
+      "width": 690,
       "height": 416
     },
     "_anchorPoint": {
@@ -172,7 +172,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 858,
+      "width": 750,
       "height": 426
     },
     "_anchorPoint": {
@@ -266,7 +266,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 851,
+      "width": 750,
       "height": 426
     },
     "_anchorPoint": {
@@ -330,7 +330,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 67.8
     },
     "_anchorPoint": {
@@ -342,7 +342,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -391.783,
+        -347.036,
         189.25,
         0,
         0,
@@ -384,7 +384,7 @@
     "_dstBlendFactor": 771,
     "_string": "In this game we have symbols \" Jhanda \" , \" Burja”“Itta \" , \" Paan \" , \" Hukum \" and \" Chidi \" printed on the six faces of each dice.",
     "_N$string": "In this game we have symbols \" Jhanda \" , \" Burja”“Itta \" , \" Paan \" , \" Hukum \" and \" Chidi \" printed on the six faces of each dice.",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -440,7 +440,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -452,7 +452,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -392.783,
+        -347.036,
         128.84,
         0,
         0,
@@ -494,7 +494,7 @@
     "_dstBlendFactor": 771,
     "_string": "The player will place a bet and the game will start rolling the dices.",
     "_N$string": "The player will place a bet and the game will start rolling the dices.",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -550,7 +550,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -562,7 +562,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -392.783,
+        -347.036,
         86.108,
         0,
         0,
@@ -604,7 +604,7 @@
     "_dstBlendFactor": 771,
     "_string": "You can bet on multiple symbols in a similar way",
     "_N$string": "You can bet on multiple symbols in a similar way",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -660,7 +660,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 97.8
     },
     "_anchorPoint": {
@@ -672,7 +672,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -392.783,
+        -347.036,
         9.376,
         0,
         0,
@@ -714,7 +714,7 @@
     "_dstBlendFactor": 771,
     "_string": "Winning ratio is as below . If you bet Rs .10 on Burja and 2 dices show Burja , then your winnings is3 *10 = Rs 30 . If 3 dices show Burja , then your winningsis 5 *10 = 5 *10 = Rs 50",
     "_N$string": "Winning ratio is as below . If you bet Rs .10 on Burja and 2 dices show Burja , then your winnings is3 *10 = Rs 30 . If 3 dices show Burja , then your winningsis 5 *10 = 5 *10 = Rs 50",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -770,7 +770,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -782,7 +782,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -427.783,
+        -347.036,
         -67.444,
         0,
         0,
@@ -824,7 +824,7 @@
     "_dstBlendFactor": 771,
     "_string": "Winning ratio chart :",
     "_N$string": "Winning ratio chart :",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -880,7 +880,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -892,7 +892,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -390.023,
+        -347.036,
         -101.379,
         0,
         0,
@@ -934,7 +934,7 @@
     "_dstBlendFactor": 771,
     "_string": "0 or 1 Symbols hit , lose",
     "_N$string": "0 or 1 Symbols hit , lose",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -990,7 +990,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -1002,7 +1002,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -390.023,
+        -347.036,
         -133.214,
         0,
         0,
@@ -1044,7 +1044,7 @@
     "_dstBlendFactor": 771,
     "_string": "2 Symbols hit , win = bet amount * 3",
     "_N$string": "2 Symbols hit , win = bet amount * 3",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -1100,7 +1100,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -1112,7 +1112,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -391.044,
+        -347.036,
         -165.631,
         0,
         0,
@@ -1154,7 +1154,7 @@
     "_dstBlendFactor": 771,
     "_string": "3 Symbols hit , win bet amount *5",
     "_N$string": "3 Symbols hit , win bet amount *5",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -1210,7 +1210,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -1222,7 +1222,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -391.044,
+        -347.036,
         -196.174,
         0,
         0,
@@ -1264,7 +1264,7 @@
     "_dstBlendFactor": 771,
     "_string": "4 Symbols hit , win = bet amount *10",
     "_N$string": "4 Symbols hit , win = bet amount *10",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -1320,7 +1320,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -1332,7 +1332,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -391.044,
+        -347.036,
         -229.863,
         0,
         0,
@@ -1374,7 +1374,7 @@
     "_dstBlendFactor": 771,
     "_string": "5 Symbols hit , win bet amount *20",
     "_N$string": "5 Symbols hit , win bet amount *20",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
@@ -1430,7 +1430,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 820,
+      "width": 690,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -1442,7 +1442,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -391.044,
+        -347.036,
         -262.352,
         0,
         0,
@@ -1484,7 +1484,7 @@
     "_dstBlendFactor": 771,
     "_string": "6 Symbols hit , win bet amount *100",
     "_N$string": "6 Symbols hit , win bet amount *100",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {

@@ -25,10 +25,7 @@ cc.Class({
         this.node_btn_team = this.viewList["btn_team"];
         this.node_btn_history = this.viewList["btn_history"];
         this.node_btn_bonusTable = this.viewList["btn_bonusTable"];
-        this.node_btn_teamTips = this.viewList["btn_teamTips"];
-        this.node_btn_outPutTips = this.viewList["btn_outPutTips"];
-        this.node_btn_invitedTips = this.viewList["btn_invitedTips"];
-        this.node_btn_totalTips = this.viewList["btn_totalTips"];
+
         this.node_btn_get = this.viewList["btn_get"];
 
         this.node_btn_fx_lab = this.viewList["btn_fx/Background/lab"];
@@ -40,15 +37,21 @@ cc.Class({
         this.node_btn_get_lab = this.viewList["btn_get/Background/lab"];
         this.node_btn_get_red_point = this.viewList["btn_get/Background/dian"];
 
-        this.node_lab_team = this.viewList["lab_team"];
-        this.node_lab_outIncome = this.viewList["lab_outIncome"];
-        this.node_lab_invitedIncome = this.viewList["lab_invitedIncome"];
-        this.node_lab_totalBonus = this.viewList["lab_totalBonus"];
+        this.node_btn_teamTips = this.viewList["team/btn_teamTips"];
+        this.node_lab_team = this.viewList["team/lab_team"];
+        this.node_lab_teamTips = this.viewList["team/lab_teamTips"];
 
-        this.node_lab_teamTips = this.viewList["lab_teamTips"];
-        this.node_lab_outIncomeTips = this.viewList["lab_outTips"];
-        this.node_lab_invitedIncomeTips = this.viewList["lab_invitedTips"];
-        this.node_lab_totalBonusTips = this.viewList["lab_totalTips"];
+        this.node_btn_outPutTips = this.viewList["out/btn_outPutTips"];
+        this.node_lab_outIncome = this.viewList["out/lab_outIncome"];
+        this.node_lab_outIncomeTips = this.viewList["out/lab_outTips"];
+
+        this.node_btn_invitedTips = this.viewList["invited/btn_invitedTips"];
+        this.node_lab_invitedIncome = this.viewList["invited/lab_invitedIncome"];
+        this.node_lab_invitedIncomeTips = this.viewList["invited/lab_invitedTips"];
+
+        this.node_btn_totalTips = this.viewList["total/btn_totalTips"];
+        this.node_lab_totalBonus = this.viewList["total/lab_totalBonus"];
+        this.node_lab_totalBonusTips = this.viewList["total/lab_totalTips"];
 
         this.node_teamTipsView = this.viewList["teamTipsView"];
         this.node_opuPutTipsView = this.viewList["opuPutTipsView"];
