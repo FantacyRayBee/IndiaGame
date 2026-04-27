@@ -815,6 +815,10 @@ window.GlobalCfg = {
          */
         GAMELOADING: "ResourcesBundle/NewPlan/GameLoading/GameLoadingView",
         /**
+         * 直播返回大厅遮羞布
+         */
+        LIVELOAD: "ResourcesBundle/NewPlan/LiveLoad/LiveLoadingView",
+        /**
          * 我的VIP
          */
         MYVIP: "ResourcesBundle/NewPlan/MyVip/MyVip",
@@ -1015,6 +1019,7 @@ window.GlobalCfg = {
         SHOPNEWTIP: "SecondLayer",
         SHOPNEWTIP10: "SecondLayer",
         SHOPCHANNEL: "SecondLayer",
+        LIVELOAD: "SecondLayer",
 
         PROGRESS: "ProgressLayer",
 

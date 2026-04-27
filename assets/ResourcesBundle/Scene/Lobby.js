@@ -226,6 +226,7 @@ cc.Class({
 
         // 直播模块
         node_live: cc.Node,
+        sp_live_rank: [cc.SpriteFrame],
     },
 
     ctor: function() {
@@ -512,7 +513,19 @@ cc.Class({
 
     refreshLiveData: function() {
         let liveData = Array.isArray(GlobalCfg.live_data) ? GlobalCfg.live_data : [];
+        liveData = liveData.filter((item) => {
+            if (!item) {
+                return false;
+            }
+            // status: 0停用 1启用；缺省按启用处理
+            if (item.status === 0) {
+                return false;
+            }
+            return true;
+        });
+
         if (liveData.length == 0) {
+            this.content_live && this.content_live.destroyAllChildren();
             this.node_live.active = false;
             return;
         }
@@ -524,26 +537,59 @@ cc.Class({
             const liveItemData = liveData[i];
             let liveItemNode = cc.instantiate(this.live_item);
             liveItemNode.active = true;
-            this.setLiveItemInfo(liveItemNode, liveItemData);
+            this.setLiveItemInfo(liveItemNode, liveItemData, i);
             this.content_live.addChild(liveItemNode);
         }
     },
 
-    setLiveItemInfo: function(liveItemNode, liveItemData) {
-        let sprite_cover = liveItemNode.getChildByName("bg").getComponent(cc.Sprite);
-        let button = liveItemNode.getChildByName("bg").getComponent(cc.Button);
-        let label_people = liveItemNode.getChildByName("people").getComponent(cc.Label);
-        let label_desc = liveItemNode.getChildByName("desc").getComponent(cc.Label);
-        CommonFun.getInstance().loadHeadSp(liveItemData.homeImage, sprite_cover, 300, 200);
-        label_people.string = liveItemData.title; // 直播间人数，暂时写死，后续接口完善了再改
-        label_desc.string = liveItemData.title;
+    setLiveItemInfo: function(liveItemNode, liveItemData, rank) {
+        if (!liveItemNode || !liveItemData) {
+            return;
+        }
+
+        let sprite_cover = liveItemNode.getChildByName("mask").getChildByName("bg").getComponent(cc.Sprite);
+        let button = liveItemNode.getChildByName("mask").getChildByName("bg").getComponent(cc.Button);
+        let node_bottom = liveItemNode.getChildByName("bottom");
+        let label_people = node_bottom.getChildByName("people").getComponent(cc.Label);
+        let label_desc = node_bottom.getChildByName("desc").getComponent(cc.Label);
+
+        let node_flag = liveItemNode.getChildByName("flag");
+        let sp_flag = node_flag.getComponent(cc.Sprite);
+        let label_top = node_flag.getChildByName("lab_top").getComponent(cc.Label);
+
+        node_flag.active = (rank < 3 && Array.isArray(this.sp_live_rank) && this.sp_live_rank[rank]);
+        if (rank < 3) {
+            if (this.sp_live_rank && this.sp_live_rank[rank]) {
+                sp_flag.spriteFrame = this.sp_live_rank[rank];
+                label_top.string = "TOP" + (rank+1);
+            }
+        }
+        let homeImage = liveItemData.homeImage || "";
+        let title = liveItemData.title || "Live Room";
+        CommonFun.getInstance().loadHeadSp(homeImage, sprite_cover, 300, 200);
+        label_people.string = title; // 直播间人数，暂时写死，后续接口完善了再改
+        label_desc.string = title;
         button.node.on("click", () => {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.goToLiveRoom(liveItemData);
         });
+        
     },
     
     goToLiveRoom: function(liveItemData) {
+        if (!liveItemData || !liveItemData.url) {
+            CommonFun.getInstance().showTips("Live room is unavailable");
+            return;
+        }
+        if (GlobalCfg.G_COMPONENTS && GlobalCfg.G_COMPONENTS.Audio) {
+            let isMusicOn = GlobalCfg.G_COMPONENTS.Audio.getMusicVolume() > 0;
+            let isSoundOn = GlobalCfg.G_COMPONENTS.Audio.getSoundVolume() > 0;
+            cc.sys.localStorage.setItem("LIVE_PREV_MUSIC_ON", isMusicOn ? "1" : "0");
+            cc.sys.localStorage.setItem("LIVE_PREV_SOUND_ON", isSoundOn ? "1" : "0");
+            GlobalCfg.G_COMPONENTS.Audio.closeMusic();
+            GlobalCfg.G_COMPONENTS.Audio.closeSound();
+            GlobalCfg.G_COMPONENTS.Audio.stopAll();
+        }
         GlobalCfg.game_state = 1;
         APPManager.startLive(liveItemData.url);
         this.dealJumpBtnEvent("Dragon");
@@ -1602,6 +1648,9 @@ cc.Class({
         else if (msgId == 'GAME_WEBVIEW_BACK') {
             this.node_webview.active = false;
         }
+        else if (msgId == 'LiveBackToLobbyCallBack') {
+            GlobalCfg.game_state = 0;
+        }
         else if(msgId == GlobalCfg.CLIENT_MSG_ID.READ_EMAIL){
             // 读取邮件，更新邮件按钮状态
             let bool = notify.state;
@@ -1825,8 +1874,8 @@ cc.Class({
             return;
         }
 
-        const expandHeight = 900;
-        const collapseHeight = 320;
+        const expandHeight = 940;
+        const collapseHeight = 340;
         const duration = 0.3;
         const targetHeight = isExpand ? expandHeight : collapseHeight;
 

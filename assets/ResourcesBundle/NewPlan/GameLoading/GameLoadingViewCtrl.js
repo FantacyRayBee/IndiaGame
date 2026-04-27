@@ -31,7 +31,7 @@ cc.Class({
         this.hor_node.active = !isVertical;
         this.ver_node.active = isVertical;
 
-        this.img_background.spriteFrame = isVertical ? this.ver_sprites[Math.floor(Math.random() * 2)] : this.hor_sprites[Math.floor(Math.random() * 3)];
+        this.img_background.spriteFrame = isVertical ? this.ver_sprites[Math.floor(Math.random() * 5)] : this.hor_sprites[Math.floor(Math.random() * 5)];
     },
 
     onEventMsg: function (webData, target) {

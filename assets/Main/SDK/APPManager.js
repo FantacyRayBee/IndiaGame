@@ -1,5 +1,31 @@
 let APPManager = {};
 
+APPManager._liveLoadNode = null;
+
+APPManager._showLiveLoadView = function () {
+    if (APPManager._liveLoadNode && cc.isValid(APPManager._liveLoadNode)) {
+        return;
+    }
+    CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.LIVELOAD)
+    .then((prefab) => {
+        if (APPManager._liveLoadNode && cc.isValid(APPManager._liveLoadNode)) {
+            return;
+        }
+        APPManager._liveLoadNode = cc.instantiate(prefab);
+        CommonFun.getInstance().addToPointParent(APPManager._liveLoadNode, GlobalCfg.PREFAB_PARENT.LIVELOAD);
+    })
+    .catch((err) => {
+        LoggerUtil.getInstance().error("show live load view error:", err);
+    });
+};
+
+APPManager._hideLiveLoadView = function () {
+    if (APPManager._liveLoadNode && cc.isValid(APPManager._liveLoadNode)) {
+        APPManager._liveLoadNode.destroy();
+    }
+    APPManager._liveLoadNode = null;
+};
+
 
 APPManager.faceBookLogEvent = function (json) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
@@ -149,8 +175,58 @@ APPManager.startLive = function (Url) {
 //关闭直播间
 APPManager.LiveBackToLobbyCallBack = function () {
     GlobalCfg.game_state = 0;
-    // CommonFun.getInstance().decVerticalAcc();
-    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
+    APPManager._showLiveLoadView();
+    if (GlobalCfg.G_COMPONENTS && GlobalCfg.G_COMPONENTS.Audio) {
+        let prevMusicOn = cc.sys.localStorage.getItem("LIVE_PREV_MUSIC_ON");
+        let prevSoundOn = cc.sys.localStorage.getItem("LIVE_PREV_SOUND_ON");
+
+        if (prevMusicOn == "1") {
+            GlobalCfg.G_COMPONENTS.Audio.openMusic();
+        }
+        else if (prevMusicOn == "0") {
+            GlobalCfg.G_COMPONENTS.Audio.closeMusic();
+        }
+
+        if (prevSoundOn == "1") {
+            GlobalCfg.G_COMPONENTS.Audio.openSound();
+        }
+        else if (prevSoundOn == "0") {
+            GlobalCfg.G_COMPONENTS.Audio.closeSound();
+        }
+
+        cc.sys.localStorage.removeItem("LIVE_PREV_MUSIC_ON");
+        cc.sys.localStorage.removeItem("LIVE_PREV_SOUND_ON");
+    }
+    // 直播开启时底层是LHD，返回时优先第一时间切回Lobby，避免看到LHD残影
+    let sceneMgr = SceneManager.getInstance();
+    let toSceneName = sceneMgr.sceneType.LOBBY;
+    GameServerManager.clientCloseServer();
+    CommonFun.getInstance().showProgress();
+    sceneMgr.loadBundleScene(toSceneName)
+    .then((scene) => {
+        CommonFun.getInstance().initHorizontalAcc();
+        sceneMgr.curSceneType = toSceneName;
+        cc.director.runScene(scene, () => {}, () => {
+            CommonFun.getInstance().hidProgress();
+            APPManager._hideLiveLoadView();
+        });
+    })
+    .catch((err) => {
+        LoggerUtil.getInstance().error(err);
+        CommonFun.getInstance().hidProgress();
+        // 兜底走原有切场景流程
+        sceneMgr.changeScene(sceneMgr.sceneType.LHD, sceneMgr.sceneType.LOBBY);
+
+        // 兜底流程下，等待Lobby完成后再关闭liveload
+        let watchCount = 0;
+        let timer = setInterval(() => {
+            watchCount += 1;
+            if (sceneMgr.curSceneType == sceneMgr.sceneType.LOBBY || watchCount > 200) {
+                clearInterval(timer);
+                APPManager._hideLiveLoadView();
+            }
+        }, 50);
+    });
     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: "LiveBackToLobbyCallBack", msgData: {} });
 }
 
