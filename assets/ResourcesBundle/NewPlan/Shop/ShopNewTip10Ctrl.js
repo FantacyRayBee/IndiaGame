@@ -41,7 +41,7 @@ cc.Class({
         CommonFun.getInstance().startTextAnimation(this.lab_1, this.startCoin, 0, ()=>{}, 2.3);
         await this.waitForSeconds(2.1);
         cc.tween(this.img_coin2)
-        .to(1.2, { scale: 1 })
+        .to(1.2, { scale: 0.7 })
         .start();
         CommonFun.getInstance().startTextAnimation(this.lab_2, 0, this.remind, ()=>{}, 2.3);
         await this.waitForSeconds(1);

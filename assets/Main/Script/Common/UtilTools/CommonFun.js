@@ -13,6 +13,9 @@ let CommonFun = cc.Class({
         this._layerNodeMap = new Map();
         this._progressTimer = null;
         this._progressNode = null;
+        this._liveLoadNode = null;
+        this._liveLoadLoadingPromise = null;
+        this._liveLoadWantShow = false;
         this._selectRoomNode = null;
         this._loadedPrefabMap = new Map();
         this._verticalAcc = 0;
@@ -181,21 +184,21 @@ let CommonFun = cc.Class({
          * 是否检查热更
          */
         GlobalCfg.IS_UPDATE = json["IS_UPDATE"];
-        // /**
-        //  * 资源的版本
-        //  */
-        // GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
-        // /**
-        //  * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
-        //  */
-        // GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
-        // /**
-        //  * 资源的父路径
-        //  */
-        // GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
-        GlobalCfg.ASSETS_VERSION = 4;
-        GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/"
+        /**
+         * 资源的版本
+         */
+        GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
+        /**
+         * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
+         */
+        GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
+        /**
+         * 资源的父路径
+         */
         GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
+        // GlobalCfg.ASSETS_VERSION = 4;
+        // GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/"
+        // GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
         /**
          * 子包资源的版本信息
          */
@@ -1622,6 +1625,53 @@ let CommonFun = cc.Class({
             gameLoadingCtrl.init(isVertical, callback);
             this.addToPointParent(gameLoadingNode, GlobalCfg.PREFAB_PARENT.GAMELOADING);
         });
+    },
+
+    preloadLiveLoadView: function() {
+        if (this._liveLoadNode && cc.isValid(this._liveLoadNode)) {
+            return Promise.resolve(this._liveLoadNode);
+        }
+        if (this._liveLoadLoadingPromise) {
+            return this._liveLoadLoadingPromise;
+        }
+
+        this._liveLoadLoadingPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.LIVELOAD)
+        .then((prefab) => {
+            if (!(this._liveLoadNode && cc.isValid(this._liveLoadNode))) {
+                this._liveLoadNode = cc.instantiate(prefab);
+                this.addToPointParent(this._liveLoadNode, GlobalCfg.PREFAB_PARENT.LIVELOAD);
+            }
+            if (this._liveLoadNode && cc.isValid(this._liveLoadNode)) {
+                this._liveLoadNode.active = this._liveLoadWantShow;
+            }
+            this._liveLoadLoadingPromise = null;
+            return this._liveLoadNode;
+        })
+        .catch((err) => {
+            this._liveLoadLoadingPromise = null;
+            LoggerUtil.getInstance().error("preload live load view error:", err);
+            throw err;
+        });
+
+        return this._liveLoadLoadingPromise;
+    },
+
+    showLiveLoadView: function() {
+        this._liveLoadWantShow = true;
+        if (this._liveLoadNode && cc.isValid(this._liveLoadNode)) {
+            this._liveLoadNode.active = true;
+            return;
+        }
+        this.preloadLiveLoadView().catch((err) => {
+            LoggerUtil.getInstance().error("show live load view error:", err);
+        });
+    },
+
+    hideLiveLoadView: function() {
+        this._liveLoadWantShow = false;
+        if (this._liveLoadNode && cc.isValid(this._liveLoadNode)) {
+            this._liveLoadNode.active = false;
+        }
     },
 
     /**

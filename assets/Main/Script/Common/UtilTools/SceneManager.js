@@ -109,6 +109,13 @@ let SceneManager = cc.Class({
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
                 cc.director.runScene(scene, () => {}, () => {
+                    CommonFun.getInstance().preloadLiveLoadView()
+                    .then(() => {
+                        CommonFun.getInstance().hideLiveLoadView();
+                    })
+                    .catch((err) => {
+                        LoggerUtil.getInstance().error("preload live load on lobby error:", err);
+                    });
                     this.isLoadingScene = false;
                     CommonFun.getInstance().hidProgress();
                 });
@@ -174,6 +181,13 @@ let SceneManager = cc.Class({
             let scene = arr[1];
             this.curSceneType = toSceneName;
             cc.director.runScene(scene, () => {}, () => {
+                CommonFun.getInstance().preloadLiveLoadView()
+                .then(() => {
+                    CommonFun.getInstance().hideLiveLoadView();
+                })
+                .catch((err) => {
+                    LoggerUtil.getInstance().error("preload live load on lobby error:", err);
+                });
                 this.isLoadingScene = false;
                 CommonFun.getInstance().hidProgress();
             });
@@ -383,7 +397,7 @@ let SceneManager = cc.Class({
             .then((arr) => {
                 let prefab = arr[1];
                 this.curSceneType = toSceneName;
-                if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                if (GlobalCfg.game_state == 0 && CommonFun.getInstance().checkVerticalAcc() && !isVertical){
                     CommonFun.getInstance().addHorizontalAcc();
                 }
                 let pab_ssc = cc.instantiate(prefab);
@@ -406,9 +420,9 @@ let SceneManager = cc.Class({
             .then((arr) => {
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
-                // if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
-                //     CommonFun.getInstance().addHorizontalAcc();
-                // }
+                if (GlobalCfg.game_state == 0 && CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                    CommonFun.getInstance().addHorizontalAcc();
+                }
                 cc.director.runScene(scene, () => {}, () => {
                     this.isLoadingScene = false;
                     // CommonFun.getInstance().showGameStartMask();

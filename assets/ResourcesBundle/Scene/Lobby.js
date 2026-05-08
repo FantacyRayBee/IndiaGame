@@ -1736,7 +1736,7 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_setting") {
             CommonFun.getInstance().showSetting();
-
+            // APPManager.LiveBackToLobbyCallBack()
         } 
         else if (btnName == "btn_add" || btnName == 'btn_quickRecharge' || btnName == "btn_addCash") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ADD_BUTTON);
@@ -2650,7 +2650,6 @@ cc.Class({
         if (this.btn_minijhandimunda.node.active) {
             skeleton = this.btn_minijhandimunda.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minilonghu.node.active) {
@@ -2704,7 +2703,7 @@ cc.Class({
             skeleton = this.btn_minicat.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'idle', true);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minijoker.node.active) {
             skeleton = this.btn_minijoker.node.getChildByName('Background').getComponent(sp.Skeleton);

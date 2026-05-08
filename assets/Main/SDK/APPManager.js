@@ -1,31 +1,5 @@
 let APPManager = {};
 
-APPManager._liveLoadNode = null;
-
-APPManager._showLiveLoadView = function () {
-    if (APPManager._liveLoadNode && cc.isValid(APPManager._liveLoadNode)) {
-        return;
-    }
-    CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.LIVELOAD)
-    .then((prefab) => {
-        if (APPManager._liveLoadNode && cc.isValid(APPManager._liveLoadNode)) {
-            return;
-        }
-        APPManager._liveLoadNode = cc.instantiate(prefab);
-        CommonFun.getInstance().addToPointParent(APPManager._liveLoadNode, GlobalCfg.PREFAB_PARENT.LIVELOAD);
-    })
-    .catch((err) => {
-        LoggerUtil.getInstance().error("show live load view error:", err);
-    });
-};
-
-APPManager._hideLiveLoadView = function () {
-    if (APPManager._liveLoadNode && cc.isValid(APPManager._liveLoadNode)) {
-        APPManager._liveLoadNode.destroy();
-    }
-    APPManager._liveLoadNode = null;
-};
-
 
 APPManager.faceBookLogEvent = function (json) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
@@ -172,63 +146,97 @@ APPManager.startLive = function (Url) {
     }
 }
 
-//关闭直播间
-APPManager.LiveBackToLobbyCallBack = function () {
+// 关闭直播并回大厅（由 Java 在“已关闭直播层”后通知触发）
+APPManager.closeLive = function () {
     GlobalCfg.game_state = 0;
-    APPManager._showLiveLoadView();
-    if (GlobalCfg.G_COMPONENTS && GlobalCfg.G_COMPONENTS.Audio) {
-        let prevMusicOn = cc.sys.localStorage.getItem("LIVE_PREV_MUSIC_ON");
-        let prevSoundOn = cc.sys.localStorage.getItem("LIVE_PREV_SOUND_ON");
 
-        if (prevMusicOn == "1") {
-            GlobalCfg.G_COMPONENTS.Audio.openMusic();
-        }
-        else if (prevMusicOn == "0") {
-            GlobalCfg.G_COMPONENTS.Audio.closeMusic();
-        }
+    let prevMusicOn = cc.sys.localStorage.getItem("LIVE_PREV_MUSIC_ON");
+    let prevSoundOn = cc.sys.localStorage.getItem("LIVE_PREV_SOUND_ON");
 
-        if (prevSoundOn == "1") {
-            GlobalCfg.G_COMPONENTS.Audio.openSound();
-        }
-        else if (prevSoundOn == "0") {
-            GlobalCfg.G_COMPONENTS.Audio.closeSound();
+    let hasRestoredAudio = false;
+
+    let restoreAudioState = function () {
+        if (hasRestoredAudio) return;
+        hasRestoredAudio = true;
+
+        if (GlobalCfg.G_COMPONENTS && GlobalCfg.G_COMPONENTS.Audio) {
+            if (prevMusicOn == "1") {
+                GlobalCfg.G_COMPONENTS.Audio.openMusic();
+            } else if (prevMusicOn == "0") {
+                GlobalCfg.G_COMPONENTS.Audio.closeMusic();
+            }
+
+            if (prevSoundOn == "1") {
+                GlobalCfg.G_COMPONENTS.Audio.openSound();
+            } else if (prevSoundOn == "0") {
+                GlobalCfg.G_COMPONENTS.Audio.closeSound();
+            }
         }
 
         cc.sys.localStorage.removeItem("LIVE_PREV_MUSIC_ON");
         cc.sys.localStorage.removeItem("LIVE_PREV_SOUND_ON");
-    }
-    // 直播开启时底层是LHD，返回时优先第一时间切回Lobby，避免看到LHD残影
+    };
+
     let sceneMgr = SceneManager.getInstance();
     let toSceneName = sceneMgr.sceneType.LOBBY;
+
     GameServerManager.clientCloseServer();
     CommonFun.getInstance().showProgress();
-    sceneMgr.loadBundleScene(toSceneName)
-    .then((scene) => {
-        CommonFun.getInstance().initHorizontalAcc();
-        sceneMgr.curSceneType = toSceneName;
-        cc.director.runScene(scene, () => {}, () => {
-            CommonFun.getInstance().hidProgress();
-            APPManager._hideLiveLoadView();
-        });
-    })
-    .catch((err) => {
-        LoggerUtil.getInstance().error(err);
-        CommonFun.getInstance().hidProgress();
-        // 兜底走原有切场景流程
-        sceneMgr.changeScene(sceneMgr.sceneType.LHD, sceneMgr.sceneType.LOBBY);
 
-        // 兜底流程下，等待Lobby完成后再关闭liveload
-        let watchCount = 0;
-        let timer = setInterval(() => {
-            watchCount += 1;
-            if (sceneMgr.curSceneType == sceneMgr.sceneType.LOBBY || watchCount > 200) {
-                clearInterval(timer);
-                APPManager._hideLiveLoadView();
-            }
-        }, 50);
-    });
-    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: "LiveBackToLobbyCallBack", msgData: {} });
-}
+    sceneMgr.loadBundleScene(toSceneName)
+        .then((scene) => {
+            CommonFun.getInstance().initHorizontalAcc();
+            sceneMgr.curSceneType = toSceneName;
+
+            cc.director.runScene(scene, () => {}, () => {
+                restoreAudioState();
+                CommonFun.getInstance().hidProgress();
+                CommonFun.getInstance().hideLiveLoadView();
+            });
+        })
+        .catch((err) => {
+            LoggerUtil.getInstance().error(err);
+            CommonFun.getInstance().hidProgress();
+
+            // 兜底走原有切场景流程
+            sceneMgr.changeScene(sceneMgr.sceneType.LHD, sceneMgr.sceneType.LOBBY);
+
+            // 兜底流程下，等待Lobby完成后再关闭liveload
+            let watchCount = 0;
+            let timer = setInterval(() => {
+                watchCount += 1;
+                if (sceneMgr.curSceneType == sceneMgr.sceneType.LOBBY || watchCount > 200) {
+                    clearInterval(timer);
+
+                    if (sceneMgr.curSceneType == sceneMgr.sceneType.LOBBY) {
+                        restoreAudioState();
+                    }
+                    CommonFun.getInstance().hideLiveLoadView();
+                }
+            }, 50);
+        });
+};
+
+APPManager.LiveBackToLobbyCallBack = function () {
+    console.log("[TRACE][Live] LiveBackToLobbyCallBack enter -> showLiveLoadView");
+    CommonFun.getInstance().showLiveLoadView();
+
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        try {
+            console.log("[TRACE][Live] send ACK to Java: backToLobbyAckByBloom3Rummy()");
+            jsb.reflection.callStaticMethod(
+                "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy",
+                "backToLobbyAckByBloom3Rummy",
+                "()V"
+            );
+            console.log("[TRACE][Live] send ACK success");
+        } catch (e) {
+            console.error("[TRACE][Live] backToLobbyAckByBloom3Rummy error:", e);
+        }
+    } else {
+        console.log("[TRACE][Live] skip ACK: not android native");
+    }
+};
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
@@ -455,7 +463,7 @@ APPManager.selectPhotoCallBack = function (photoPath) {
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     }, 500);
-    
+
     APPManager.appCallBack("SELECTIMG", photoPath);
 }
 
@@ -668,7 +676,7 @@ APPManager.adjustGoogleIdCallBack = function (googleAdId) {
 }
 
 // 打开相册
-APPManager.openAlbum = function() {
+APPManager.openAlbum = function () {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.openPhotoAlbum, "()V");
     }

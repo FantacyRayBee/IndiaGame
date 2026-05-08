@@ -112,7 +112,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 408
+      "height": 532.7
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -124,7 +124,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        100,
+        37.7,
         0,
         0,
         0,
@@ -180,26 +180,26 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 841.68,
-      "height": 834.03
+      "height": 920.67
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.59
+      "y": 0.63
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
         0,
-        -79.991,
+        -14.815,
         0,
         0,
         0,
         0,
         1,
-        0.82,
-        0.82,
+        0.8,
+        0.8,
         1
       ]
     },
@@ -275,12 +275,12 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 840,
-      "height": 830.85
+      "height": 916.67
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.67
+      "y": 0.7
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -1311,7 +1311,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 820,
-      "height": 483.28000000000003
+      "height": 569.1
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1364,8 +1364,8 @@
     "_dstBlendFactor": 771,
     "_string": "Crash is a easy win game , you just need to Cash Out before the rocket crash .\nHowever , if you don't Cash Out in time you will lose your bet\nThe multiplier will continue to increase after the game starts , the higher the multiplier , the more you win , you just need to Cash Out in time before the rocket crash.\nWhen the multiple comes to 20X , all players who have\nnot Cash Out will share 20% of the jackpot.\n\n1 . No refunds for network delays when using the Cash\nOut feature.\n2 . Sometime you will receive more or less than what you raised , due to delavs between your device and our servers.\n3 . Crash is currently in BETA , which means if any errors occur with the animation , you may not receive a refund\n4 . If you Cash Out at the same point as the rocket crash,you lose your bet.",
     "_N$string": "Crash is a easy win game , you just need to Cash Out before the rocket crash .\nHowever , if you don't Cash Out in time you will lose your bet\nThe multiplier will continue to increase after the game starts , the higher the multiplier , the more you win , you just need to Cash Out in time before the rocket crash.\nWhen the multiple comes to 20X , all players who have\nnot Cash Out will share 20% of the jackpot.\n\n1 . No refunds for network delays when using the Cash\nOut feature.\n2 . Sometime you will receive more or less than what you raised , due to delavs between your device and our servers.\n3 . Crash is currently in BETA , which means if any errors occur with the animation , you may not receive a refund\n4 . If you Cash Out at the same point as the rocket crash,you lose your bet.",
-    "_fontSize": 28,
-    "_lineHeight": 28,
+    "_fontSize": 26,
+    "_lineHeight": 35,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "74b6746e-9573-40e3-b82d-3ec3123b6eed"
@@ -1404,7 +1404,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 840,
-      "height": 830.85
+      "height": 916.67
     },
     "_resize": 1,
     "_N$layoutType": 0,
@@ -1447,7 +1447,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 841.68,
-      "height": 834.03
+      "height": 920.67
     },
     "_resize": 1,
     "_N$layoutType": 0,
