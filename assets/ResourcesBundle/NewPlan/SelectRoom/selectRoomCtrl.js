@@ -290,35 +290,34 @@ cc.Class({
     },
 
     dealRummyRoomItemEvent: function(itemData) {
-        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_RUMMY_PLAYNOW_BUTTON);
-        CommonFun.getInstance().showProgress();
-        GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID = itemData.id;
-        GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum = itemData.num;
-        cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
-        window.isNeedShowRoomList = null;
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.RUMMY);
-        CommonFun.getInstance().hideSelectRoom(true);
-        return;
+        this.checkUpdate("Rummy", ()=>{
+            GlobalCfg.SMALL_GAME_DATAS.rummyData.roomID = itemData.id;
+            GlobalCfg.SMALL_GAME_DATAS.rummyData.enterPlayerNum = itemData.num;
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.RUMMY);
+            CommonFun.getInstance().showProgress();
+            cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
+            CommonFun.getInstance().hideSelectRoom();
+        });
     },
 
     dealAndarRoomItemEvent: function(itemData) {
-        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ANDAR_PLAYNOW_BUTTON);
-        CommonFun.getInstance().showProgress();
-        window.isNeedShowRoomList = null;
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ANDAER);
-        GlobalCfg.SMALL_GAME_DATAS.andeerData.roomID = itemData.id;
-        cc.sys.localStorage.setItem("AndeerData", JSON.stringify(itemData));
-        CommonFun.getInstance().hideSelectRoom(true);
+        this.checkUpdate("andaerGame", ()=>{
+            GlobalCfg.SMALL_GAME_DATAS.andeerData.roomID = itemData.id;
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ANDAER);
+            CommonFun.getInstance().showProgress();
+            cc.sys.localStorage.setItem("AndeerData", JSON.stringify(itemData));
+            CommonFun.getInstance().hideSelectRoom();
+        });
     },
 
     dealTeenpattiRoomItemEvent: function(itemData) {
-        CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_PLAYNOW_BUTTON);
-        CommonFun.getInstance().showProgress();
-        GlobalCfg.SMALL_GAME_DATAS.teenPattiData.roomId = itemData.id;
-        window.isNeedShowRoomList = null;
-        SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.TEENPATTI);
-        CommonFun.getInstance().hideSelectRoom(true);
-        return;
+        this.checkUpdate("tpGame", ()=>{
+            GlobalCfg.SMALL_GAME_DATAS.teenPattiData.roomId = itemData.id;
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.TEENPATTI);
+            CommonFun.getInstance().showProgress();
+            cc.sys.localStorage.setItem("TeenPattiData", JSON.stringify(itemData));
+            CommonFun.getInstance().hideSelectRoom();
+        });
     },
 
     isAvailableToUpRoom: function(gameType) {

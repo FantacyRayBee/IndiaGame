@@ -1812,11 +1812,11 @@ cc.Class({
 
     dealJumpBtnEvent: function(jumpid) {
         if (jumpid == "tpGame") {
-            this.checkUpdate("tpGame", () => {
+            // this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product;
                 this.showGameRoomList();
-            });
+            // });
         }
         else if (jumpid == "fruitMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_FRUIT_GAME);
@@ -2032,16 +2032,16 @@ cc.Class({
             CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.ChallengeTasks);
         }
         else if (actName == SceneManager.getInstance().sceneType.TEENPATTI) {
-            this.checkUpdate("tpGame", () => {
+            // this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 this.showGameRoomList();
-            });
+            // });
         }
         else if (actName == SceneManager.getInstance().sceneType.RUMMY) {
-            this.checkUpdate("Rummy", () => {
+            // this.checkUpdate("Rummy", () => {
                 window.isNeedShowRoomList = "rummy";
                 this.showGameRoomList();
-            });
+            // });
         }
         else if (actName == SceneManager.getInstance().sceneType.LHD) {
             this.checkUpdate("lhdGame", () => {
@@ -2069,10 +2069,10 @@ cc.Class({
             });
         }
         else if (actName == SceneManager.getInstance().sceneType.ANDAER) {
-            this.checkUpdate("andaerGame", () => {
+            // this.checkUpdate("andaerGame", () => {
                 window.isNeedShowRoomList = "andar";
                 this.showGameRoomList();
-            });
+            // });
         }
         else if (actName == SceneManager.getInstance().sceneType.BENZ) {
             this.checkUpdate("Benz", () => {
@@ -2103,38 +2103,38 @@ cc.Class({
                 this.tryEnterMinScoreTP();
             }
             else {
-                this.checkUpdate("tpGame", () => {
+                // this.checkUpdate("tpGame", () => {
                     window.isNeedShowRoomList = "tpGame";
                     GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product;
                     this.showGameRoomList();
-                });
+                // });
             };
         } 
         else if (btnName == "btn_zjh2") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_BUTTON);
-            this.checkUpdate("tpGame", () => {
+            // this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint = this.teenPatti2Endpoint;
                 console.log("teenPatti2Endpoint:", this.teenPatti2Endpoint);
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product;
                 this.showGameRoomList();
-            });
+            // });
         } 
         else if (btnName == "btn_andeer") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_ANDAR_BUTTON);
-            this.checkUpdate("andaerGame", () => {
+            // this.checkUpdate("andaerGame", () => {
                 window.isNeedShowRoomList = "andar";
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.andeerData.product;
                 this.showGameRoomList();
-            });
+            // });
         } 
         else if( btnName == "btn_rummy") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_RUMMY_BUTTON);
-            this.checkUpdate("Rummy", () => {
+            // this.checkUpdate("Rummy", () => {
                 window.isNeedShowRoomList = "rummy";
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.rummyData.product;
                 this.showGameRoomList();
-            });
+            // });
         } 
         else if (btnName == "btn_upDown") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_UPDOWN_GAME);
