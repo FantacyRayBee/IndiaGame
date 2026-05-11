@@ -58,7 +58,7 @@ cc.Class({
     },
 
     start() {
-        this.jumpId = "TeenPatti";
+        this.jumpId = "tpGame";
         this.startAutoSwitch();
         this.startCountdown(GlobalCfg.USER_DATAS.inducement.end_time)
         this.refreshData();

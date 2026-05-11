@@ -140,9 +140,13 @@ APPManager.showWebView = function (Url, isPortrait) {
 
 
 //打开直播间
-APPManager.startLive = function (Url) {
+APPManager.startLive = function (Url, gameIds) {
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
-        jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "startLiveByBloom3Rummy", "(Ljava/lang/String;)V", Url);
+        let data = {
+            url: Url,
+            gameIds: gameIds
+        }
+        jsb.reflection.callStaticMethod("com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy", "startLiveByBloom3Rummy", "(Ljava/lang/String;)V", JSON.stringify(data));
     }
 }
 
@@ -192,6 +196,7 @@ APPManager.closeLive = function () {
                 restoreAudioState();
                 CommonFun.getInstance().hidProgress();
                 CommonFun.getInstance().hideLiveLoadView();
+                SceneManager.getInstance().startLiveDataPolling();
             });
         })
         .catch((err) => {
@@ -218,53 +223,85 @@ APPManager.closeLive = function () {
 };
 
 APPManager.LiveBackToLobbyCallBack = function () {
-    console.log("[TRACE][Live] LiveBackToLobbyCallBack enter -> showLiveLoadView");
-    CommonFun.getInstance().showLiveLoadView();
-
+    CommonFun.getInstance().showLiveLoadView(false);
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         try {
-            console.log("[TRACE][Live] send ACK to Java: backToLobbyAckByBloom3Rummy()");
             jsb.reflection.callStaticMethod(
                 "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy",
                 "backToLobbyAckByBloom3Rummy",
                 "()V"
             );
-            console.log("[TRACE][Live] send ACK success");
         } catch (e) {
-            console.error("[TRACE][Live] backToLobbyAckByBloom3Rummy error:", e);
         }
     } else {
-        console.log("[TRACE][Live] skip ACK: not android native");
     }
 };
+
+APPManager.LiveOpenGame = function (jump = "") {
+    console.log(`Live JS APPManager.LiveOpenGame jump: ${jump}`);
+    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+        msgCode: 'inducement_click',
+        msgData: jump ? { jump: jump } : {}
+    });
+};
+
+APPManager.LiveOpenGameSuccessfulCallJava = function () {
+    console.log(`Live JS APPManager.LiveOpenGameSuccessfulCallJava`);
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        try {
+            jsb.reflection.callStaticMethod(
+                "com/gugu/bloomthreerummy/JSCallJavaByBloom3Rummy",
+                "LiveOpenGameSuccessfulByBloom3Rummy",
+                "()V"
+            );
+        } catch (e) {
+        }
+    } else {
+    }
+};
+
+APPManager.LiveCloseGame = function () {
+    console.log(`Live JS APPManager.LiveCloseGame`);
+    //收到直播间的关闭游戏通知，先关闭直播加载界面，再切回大厅场景
+    SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LHD, SceneManager.getInstance().sceneType.LOBBY);
+};
+
 
 //横竖屏切换
 APPManager.setOrientation = function (dir) {
     LoggerUtil.getInstance().error("setOrientation setOrientation setOrientation");
-    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+    // 直播态下只旋转游戏层，不旋转 Java 壳层
+    let shouldRotateNative = !(GlobalCfg && GlobalCfg.game_state == 1);
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative && shouldRotateNative) {
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL, GlobalCfg.NATIVE_CALL_NAME_OBJ.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL1, GlobalCfg.NATIVE_CALL_NAME_OBJ1.setOrientation, '(Ljava/lang/String;)V', dir);
         jsb.reflection.callStaticMethod(GlobalCfg.NATIVE_CALL_URL2, GlobalCfg.NATIVE_CALL_NAME_OBJ2.setOrientation, '(Ljava/lang/String;)V', dir);
     }
 
     let frameSize = cc.view.getFrameSize();
+    if (!APPManager._baseFrameLong || !APPManager._baseFrameShort) {
+        APPManager._baseFrameLong = Math.max(frameSize.width, frameSize.height);
+        APPManager._baseFrameShort = Math.min(frameSize.width, frameSize.height);
+    }
+    let baseLong = APPManager._baseFrameLong;
+    let baseShort = APPManager._baseFrameShort;
 
     if (dir == 'V') {
         cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
-        if (frameSize.width > frameSize.height) {
-            cc.view.setFrameSize(frameSize.height, frameSize.width);
-            if (cc.Canvas.instance) {
-                cc.Canvas.instance.designResolution = cc.size(750, 1625);
-            }
+        if (!cc.sys.isNative && frameSize.width > frameSize.height) {
+            cc.view.setFrameSize(baseShort, baseLong);
+        }
+        if (cc.Canvas.instance) {
+            cc.Canvas.instance.designResolution = cc.size(845, 1835);
         }
         GlobalCfg.CURSCENE_DIRECTION = "vertical";
     } else {
         cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
-        if (frameSize.height > frameSize.width) {
-            cc.view.setFrameSize(frameSize.height, frameSize.width);
-            if (cc.Canvas.instance) {
-                cc.Canvas.instance.designResolution = cc.size(1625, 750);
-            }
+        if (!cc.sys.isNative && frameSize.height > frameSize.width) {
+            cc.view.setFrameSize(baseLong, baseShort);
+        }
+        if (cc.Canvas.instance) {
+            cc.Canvas.instance.designResolution = cc.size(1835, 750);
         }
         GlobalCfg.CURSCENE_DIRECTION = "horizontal";
     }

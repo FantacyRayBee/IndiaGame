@@ -16,6 +16,7 @@ let CommonFun = cc.Class({
         this._liveLoadNode = null;
         this._liveLoadLoadingPromise = null;
         this._liveLoadWantShow = false;
+        this._liveLoadFromLobbyEnterGame = false;
         this._selectRoomNode = null;
         this._loadedPrefabMap = new Map();
         this._verticalAcc = 0;
@@ -184,21 +185,21 @@ let CommonFun = cc.Class({
          * 是否检查热更
          */
         GlobalCfg.IS_UPDATE = json["IS_UPDATE"];
-        /**
-         * 资源的版本
-         */
-        GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
-        /**
-         * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
-         */
-        GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
-        /**
-         * 资源的父路径
-         */
-        GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
-        // GlobalCfg.ASSETS_VERSION = 4;
-        // GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/"
+        // /**
+        //  * 资源的版本
+        //  */
+        // GlobalCfg.ASSETS_VERSION = json["ASSETS_VERSION"];
+        // /**
+        //  * 远程资源的根路径（ftp的路径：/home/ubuntu/august/www/download/whwh/）
+        //  */
+        // GlobalCfg.ASSETS_URL = json["ASSETS_URL"];
+        // /**
+        //  * 资源的父路径
+        //  */
         // GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
+        GlobalCfg.ASSETS_VERSION = 4;
+        GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/"
+        GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
         /**
          * 子包资源的版本信息
          */
@@ -1136,6 +1137,7 @@ let CommonFun = cc.Class({
      * @param {number} gameCoin 游戏底分
      */
     showSmallAddCash: function(gameName = null, gameCoin = null) {
+        if(GlobalCfg.game_state == 1) return; // 直播间内不跳转商城
         let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
         if (rechargeNeedInfo) {
             if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
@@ -1643,6 +1645,11 @@ let CommonFun = cc.Class({
             }
             if (this._liveLoadNode && cc.isValid(this._liveLoadNode)) {
                 this._liveLoadNode.active = this._liveLoadWantShow;
+                this._liveLoadNode.fromLobbyEnterGame = this._liveLoadFromLobbyEnterGame;
+                let liveLoadCtrl = this._liveLoadNode.getComponent('LiveLoadingViewCtrl');
+                if (liveLoadCtrl && typeof liveLoadCtrl.setFromLobbyEnterGame === 'function') {
+                    liveLoadCtrl.setFromLobbyEnterGame(this._liveLoadFromLobbyEnterGame);
+                }
             }
             this._liveLoadLoadingPromise = null;
             return this._liveLoadNode;
@@ -1656,10 +1663,16 @@ let CommonFun = cc.Class({
         return this._liveLoadLoadingPromise;
     },
 
-    showLiveLoadView: function() {
+    showLiveLoadView: function(fromLobbyEnterGame = false) {
+        this._liveLoadFromLobbyEnterGame = fromLobbyEnterGame;
         this._liveLoadWantShow = true;
         if (this._liveLoadNode && cc.isValid(this._liveLoadNode)) {
             this._liveLoadNode.active = true;
+            this._liveLoadNode.fromLobbyEnterGame = fromLobbyEnterGame;
+            let liveLoadCtrl = this._liveLoadNode.getComponent('LiveLoadingViewCtrl');
+            if (liveLoadCtrl && typeof liveLoadCtrl.setFromLobbyEnterGame === 'function') {
+                liveLoadCtrl.setFromLobbyEnterGame(fromLobbyEnterGame);
+            }
             return;
         }
         this.preloadLiveLoadView().catch((err) => {
@@ -1845,25 +1858,26 @@ let CommonFun = cc.Class({
             let selectRoomCtrl = this._selectRoomNode.getComponent('selectRoomCtrl');
             this._selectRoomNode.active = true;
             if (selectRoomCtrl) {
-                selectRoomCtrl && selectRoomCtrl.showPointGameRoom();
+                selectRoomCtrl.showPointGameRoom();
                 if (GlobalCfg.game_state == 0) {
                     CommonFun.getInstance().addHorizontalAcc();
                 }
-            }
-            else{
+            } else {
                 LoggerUtil.getInstance().log("3333333333 selectRoomCtrl is null");
             }
-        }; 
+        };
     },
 
     /**
      * 隐藏选择房间界面
      */
-    hideSelectRoom: function() {
+    hideSelectRoom: function(onlyHide = false) {
         if (this._selectRoomNode) {
             CommonFun.getInstance().updateSidebarData(true);
             this._selectRoomNode.active = false;
-            CommonFun.getInstance().decHorizontalAcc();
+            if (!onlyHide) {
+                CommonFun.getInstance().decHorizontalAcc();
+            }
         };
     },
 
@@ -2679,12 +2693,16 @@ let CommonFun = cc.Class({
     /**
      * 获取直播间数据
      */
-    getLiveModuleStatus: function(callback) {
+    getLiveModuleStatus: function(callback, isSilent = false) {
         let url = GlobalCfg.HTTP_SERVER + "/v1/live/getAllRoomInfo";
-        CommonFun.getInstance().showProgress();
+        if (!isSilent) {
+            CommonFun.getInstance().showProgress();
+        }
         CommonFun.getInstance().httpGet(url, (strInfo) => {
             LoggerUtil.getInstance().log("getLiveModuleStatus strInfo：", strInfo);
-            CommonFun.getInstance().hidProgress();
+            if (!isSilent) {
+                CommonFun.getInstance().hidProgress();
+            }
             GlobalCfg.live_data = strInfo.data;
             callback && callback();
         }, null, GlobalCfg.USER_DATAS.BearerToken);

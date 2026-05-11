@@ -36,6 +36,8 @@ let SceneManager = cc.Class({
         this.curSceneType = null;
 
         this.isLoadingScene = false;
+
+        this._liveDataPollingTimer = null;
     },
 
     statics: {
@@ -118,6 +120,7 @@ let SceneManager = cc.Class({
                     });
                     this.isLoadingScene = false;
                     CommonFun.getInstance().hidProgress();
+                    this.startLiveDataPolling();
                 });
             })
             .catch((err) => {
@@ -176,7 +179,7 @@ let SceneManager = cc.Class({
 
         LobbyServerManager.setProtoCfgAndUrl(protoCfg, websocketUrl);
 
-        Promise.all([LobbyServerManager.connectServer(true), this.loadBundleScene(toSceneName), this.getLiveData()])
+        Promise.all([LobbyServerManager.connectServer(true), this.loadBundleScene(toSceneName)])
         .then((arr) => {
             let scene = arr[1];
             this.curSceneType = toSceneName;
@@ -190,6 +193,7 @@ let SceneManager = cc.Class({
                 });
                 this.isLoadingScene = false;
                 CommonFun.getInstance().hidProgress();
+                this.startLiveDataPolling();
             });
         })
         .catch((err) => {
@@ -203,6 +207,7 @@ let SceneManager = cc.Class({
 
 
     dealEnterGameScene: function(toSceneName) {
+        this.stopLiveDataPolling();
         let REGISTER_TIME = GlobalCfg.USER_DATAS.limit_register_time;    // 注册时间内没充值，禁止进入游戏，单位：小时
         // let REGISTER_TIME = 0.01    // 注册时间内没充值，禁止进入游戏，单位：小时
         let ItOverdue = (date)=>{ // 判断是否过期
@@ -235,7 +240,6 @@ let SceneManager = cc.Class({
         let protoCfg = null;
         let protoPathArr = null;
         let websocketUrl = null;
-        let isVertical = this.getVerticalBySceneName(toSceneName);
         switch (toSceneName) {
             case this.sceneType.BENZ:
                 protoCfg = ProtoObj.getProto("Benz");
@@ -391,13 +395,24 @@ let SceneManager = cc.Class({
 
         GameServerManager.setProtoCfgAndUrl(protoCfg, websocketUrl);
 
-
+        let isVertical = this.getVerticalBySceneName(toSceneName);
+        let isSelectRoomGame = (
+            toSceneName == this.sceneType.TEENPATTI ||
+            toSceneName == this.sceneType.RUMMY ||
+            toSceneName == this.sceneType.ANDAER
+        );
+        let selectRoomNode = CommonFun.getInstance()._selectRoomNode;
+        let isEnterFromSelectRoom = !!(selectRoomNode && cc.isValid(selectRoomNode) && selectRoomNode.active);
+        let isNeedShowLiveLoadMask = GlobalCfg.game_state == 0 && isSelectRoomGame && isEnterFromSelectRoom;
+        if (isNeedShowLiveLoadMask) {
+            CommonFun.getInstance().showLiveLoadView(true);
+        }
         if (toSceneName == this.sceneType.SSC) {
             Promise.all([GameServerManager.connectServer(true), this.loadSSCBundlePab(toSceneName)])
             .then((arr) => {
                 let prefab = arr[1];
                 this.curSceneType = toSceneName;
-                if (GlobalCfg.game_state == 0 && CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
                     CommonFun.getInstance().addHorizontalAcc();
                 }
                 let pab_ssc = cc.instantiate(prefab);
@@ -406,6 +421,12 @@ let SceneManager = cc.Class({
                 CommonFun.getInstance().showGameStartMask();
                 CommonFun.getInstance().hidProgress();
                 CommonFun.getInstance().hideSidebarData();
+                if (isNeedShowLiveLoadMask) {
+                    CommonFun.getInstance().hideLiveLoadView();
+                }
+                if (GlobalCfg.game_state == 1){
+                    APPManager.LiveOpenGameSuccessfulCallJava();
+                }
             })
             .catch((err) => {
                 LoggerUtil.getInstance().error(err);
@@ -413,6 +434,12 @@ let SceneManager = cc.Class({
                 CommonFun.getInstance().hidProgress();
                 GameServerManager.clientCloseServer();
                 CommonFun.getInstance().showTips(err);
+                if (isNeedShowLiveLoadMask) {
+                    CommonFun.getInstance().hideLiveLoadView();
+                }
+                if (GlobalCfg.game_state == 1){
+                    APPManager.LiveOpenGameSuccessfulCallJava();
+                }
             });
         }
         else {
@@ -420,7 +447,7 @@ let SceneManager = cc.Class({
             .then((arr) => {
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
-                if (GlobalCfg.game_state == 0 && CommonFun.getInstance().checkVerticalAcc() && !isVertical){
+                if (CommonFun.getInstance().checkVerticalAcc() && !isVertical){
                     CommonFun.getInstance().addHorizontalAcc();
                 }
                 cc.director.runScene(scene, () => {}, () => {
@@ -428,6 +455,12 @@ let SceneManager = cc.Class({
                     // CommonFun.getInstance().showGameStartMask();
                     CommonFun.getInstance().hidProgress();
                     CommonFun.getInstance().hideSidebarData();
+                    if (isNeedShowLiveLoadMask) {
+                        CommonFun.getInstance().hideLiveLoadView();
+                    }
+                    if (GlobalCfg.game_state == 1){
+                        APPManager.LiveOpenGameSuccessfulCallJava();
+                    }
                 });
             })
             .catch((err) => {
@@ -436,6 +469,12 @@ let SceneManager = cc.Class({
                 CommonFun.getInstance().hidProgress();
                 GameServerManager.clientCloseServer();
                 CommonFun.getInstance().showTips(err);
+                if (isNeedShowLiveLoadMask) {
+                    CommonFun.getInstance().hideLiveLoadView();
+                }
+                if (GlobalCfg.game_state == 1){
+                    APPManager.LiveOpenGameSuccessfulCallJava();
+                }
             });
         };
     },
@@ -533,6 +572,33 @@ let SceneManager = cc.Class({
                 resolve();
             }
         });
+    },
+
+    startLiveDataPolling: function() {
+        this.stopLiveDataPolling();
+        let poll = () => {
+            try {
+                CommonFun.getInstance().getLiveModuleStatus(() => {
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                        msgCode: 'LIVE_DATA_UPDATED',
+                        msgData: {}
+                    });
+                }, true);
+            } catch (e) {
+                LoggerUtil.getInstance().error("liveDataPolling error:", cc.sys.isNative ? JSON.stringify(e) : e);
+            }
+        };
+        poll(); // 立即执行一次
+        this._liveDataPollingTimer = setInterval(poll, 20000);
+        LoggerUtil.getInstance().log("liveDataPolling started, interval 20s");
+    },
+
+    stopLiveDataPolling: function() {
+        if (this._liveDataPollingTimer !== null) {
+            clearInterval(this._liveDataPollingTimer);
+            this._liveDataPollingTimer = null;
+            LoggerUtil.getInstance().log("liveDataPolling stopped");
+        }
     },
 
     proloadBundleScene: function(toSceneName) {

@@ -246,7 +246,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "b03c3ed7-ac0e-4feb-be69-4d677bf55845"
+      "__uuid__": "e650afa9-9b05-40a5-b55d-f780bc74543c"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -572,6 +572,43 @@
       "__id__": 1
     },
     "_enabled": true,
+    "img_background": {
+      "__id__": 4
+    },
+    "hor_sprites": [
+      {
+        "__uuid__": "02e41547-a12c-4f88-9e3f-e6a1c2cdc975"
+      },
+      {
+        "__uuid__": "a7686db9-2abe-486a-afd7-d6b459092a1f"
+      },
+      {
+        "__uuid__": "e93288a3-8389-4ba4-958b-87ba1c75b672"
+      },
+      {
+        "__uuid__": "89e7b09c-dffb-4310-ba16-3ae4ec1cd92f"
+      },
+      {
+        "__uuid__": "315b37cc-b5ac-4f0e-aa03-b5811876cb2a"
+      }
+    ],
+    "ver_sprites": [
+      {
+        "__uuid__": "bf232bdf-79f3-4c02-a375-6b10ba8f586a"
+      },
+      {
+        "__uuid__": "c328678a-733f-4a01-a30f-c448a88da6b1"
+      },
+      {
+        "__uuid__": "18ec82f1-c515-4910-9a64-4269c7effb51"
+      },
+      {
+        "__uuid__": "e650afa9-9b05-40a5-b55d-f780bc74543c"
+      },
+      {
+        "__uuid__": "2619166f-3951-47d8-96d5-72ce533a38a2"
+      }
+    ],
     "_id": ""
   },
   {

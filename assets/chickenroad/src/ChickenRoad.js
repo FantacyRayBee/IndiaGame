@@ -100,6 +100,8 @@ cc.Class({
     start() {
         this.initOnline();
         this.initialization();
+        this.btnBack.node.active = GlobalCfg.game_state == 0;
+        this.btnSetting.node.active = GlobalCfg.game_state == 0;
     },
 
     // ========== 地图对象池 ========== 

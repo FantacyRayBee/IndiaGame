@@ -7760,8 +7760,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 213,
-      "height": 236
+      "width": 209.88,
+      "height": 230
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -7811,7 +7811,7 @@
       }
     ],
     "paused": false,
-    "defaultSkin": "yuyan1",
+    "defaultSkin": "default",
     "defaultAnimation": "animation",
     "_preCacheMode": 0,
     "_cacheMode": 0,
@@ -16275,8 +16275,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 270.51,
-      "height": 249.09
+      "width": 269.53,
+      "height": 252.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",

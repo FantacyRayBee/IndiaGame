@@ -85,7 +85,7 @@ cc.Class({
 
     ///////////////////////////////////////////////////////// 脚本生命周期函数处理 Start //////////////////////////////////////////
     onLoad: function () {
-        CommonFun.getInstance().hideSelectRoom();
+        CommonFun.getInstance().hideSelectRoom(true);
 
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_TP_GAME);
 

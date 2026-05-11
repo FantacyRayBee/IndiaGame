@@ -67,7 +67,6 @@ cc.Class({
     },
 
     start () {
-        this.btn_openMenu.node.active = GlobalCfg.game_state == 0;
     },
 
     onDestroy: function () {
@@ -166,6 +165,7 @@ cc.Class({
             btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
         }
         this.btn_shop.node.active = GlobalCfg.USER_DATAS.openModules.includes(4) && GlobalCfg.game_state == 0;
+        this.btn_openMenu.node.active = GlobalCfg.game_state == 0;
         this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
     },
 

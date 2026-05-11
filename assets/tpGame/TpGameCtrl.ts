@@ -223,7 +223,7 @@ export default class TpGameCtrl extends cc.Component {
         //@ts-ignore
         this.node.getChildByName("btn_chat").on("click", CommonFun.getInstance().debounce(this.btnClickCall, 1), this);
         //@ts-ignore
-        CommonFun.getInstance().hideSelectRoom();
+        CommonFun.getInstance().hideSelectRoom(true);
         //@ts-ignore
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_TP_GAME);
         //@ts-ignore

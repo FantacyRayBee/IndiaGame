@@ -295,6 +295,7 @@ cc.Class({
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
         this.LoadCompletedCallback = null;
+        this.pendingUpdateSubpackgeName = null;
     },
 
 
@@ -305,9 +306,8 @@ cc.Class({
         CommonFun.getInstance().showHallTip();
 
 
-        if (window.isNeedShowRoomList) {
-            this.showGameRoomList();
-        };
+        // 退出游戏返回大厅时直接清除，不再重新弹出 SelectRoom
+        window.isNeedShowRoomList = null;
         if (GlobalCfg.USER_DATAS.inGame.length > 0) {
             LoggerUtil.getInstance().log("当前处于其他游戏中：",JSON.stringify(GlobalCfg.USER_DATAS.inGame));
             let gameMap = {
@@ -523,7 +523,7 @@ cc.Class({
             }
             return true;
         });
-
+        LoggerUtil.getInstance().log("直播数据：", liveData);
         if (liveData.length == 0) {
             this.content_live && this.content_live.destroyAllChildren();
             this.node_live.active = false;
@@ -591,8 +591,7 @@ cc.Class({
             GlobalCfg.G_COMPONENTS.Audio.stopAll();
         }
         GlobalCfg.game_state = 1;
-        APPManager.startLive(liveItemData.url);
-        this.dealJumpBtnEvent("Dragon");
+        APPManager.startLive(liveItemData.url, liveItemData.gamesId);
     },
 
     toggleLiveClick: function(toggle) {
@@ -1385,7 +1384,7 @@ cc.Class({
         else if (GlobalCfg.USER_DATAS.openModules.includes(5) && GlobalCfg.USER_DATAS.userDiamond > (defaultPopupWithdrawLimit * 100)
                 && this.isNeedShowPointToastByHours("WithDraw", toastWithDrawFrequency)) {
             this.updateToastLocalStorageByHours("WithDraw", toastWithDrawFrequency);
-            this.showWithDrawToast();
+            // this.showWithDrawToast();
         }
         /** 
          * 首充
@@ -1581,7 +1580,11 @@ cc.Class({
             // self.setSmallGameLoadProgress(notify);
         } 
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
+            self.invokeLoadCompletedCallback(notify && notify.subpackgeName);
             // self.setSmallGameLoadComplete(notify);
+        }
+        else if (msgId == 'LIVE_DATA_UPDATED') {
+            self.refreshLiveData();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             self.showUserInfo();
@@ -1808,14 +1811,14 @@ cc.Class({
     },
 
     dealJumpBtnEvent: function(jumpid) {
-        if (jumpid == "TeenPatti") {
+        if (jumpid == "tpGame") {
             this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product;
                 this.showGameRoomList();
             });
         }
-        else if (jumpid == "Fruit") {
+        else if (jumpid == "fruitMachine") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_FRUIT_GAME);
             this.checkUpdate("fruitMachine", () => {
                 CommonFun.getInstance().showProgress();
@@ -1823,7 +1826,7 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.SGJ);
             });
         }
-        else if (jumpid == "Dragon") {
+        else if (jumpid == "lhdGame") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_LHD_GAME);
             this.checkUpdate("lhdGame", () => {
                 CommonFun.getInstance().showProgress();
@@ -1831,7 +1834,15 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.LHD);
             });
         }
-        else if (jumpid == "Munda") {
+        else if (jumpid == "chickenroad") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_CHICKENROAD_GAME);
+            this.checkUpdate("chickenroad", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.chickenData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.CHICKEN);
+            });
+        }
+        else if (jumpid == "munda") {
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_MUNDA_GAME);
             this.checkUpdate("munda", () => {
                 CommonFun.getInstance().showProgress();
@@ -2358,16 +2369,32 @@ cc.Class({
 
         if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
             CommonFun.getInstance().showTips("Download the game now!");
+            this.pendingUpdateSubpackgeName = subpackgeName;
+            this.LoadCompletedCallback = callFun;
             GameDownloader.getInstance().priorLoadGame(subpackgeName);
-            // if (this.LoadCompletedCallback == null) {
-            //     this.LoadCompletedCallback = callFun;
-            // }
-            CommonFun.getInstance().showGameLoading(isVertical, callFun);
+            CommonFun.getInstance().showGameLoading(isVertical, () => {
+                this.invokeLoadCompletedCallback(subpackgeName);
+            });
         } 
         else {
             callFun();
         };
     },
+
+    invokeLoadCompletedCallback: function(subpackgeName) {
+        if (!this.LoadCompletedCallback) {
+            return;
+        }
+        if (this.pendingUpdateSubpackgeName && subpackgeName && this.pendingUpdateSubpackgeName !== subpackgeName) {
+            return;
+        }
+
+        let callback = this.LoadCompletedCallback;
+        this.LoadCompletedCallback = null;
+        this.pendingUpdateSubpackgeName = null;
+        callback && callback();
+    },
+
     getVerticalBySubpackageName: function(subpackgeName) {
         // 定义竖屏游戏的映射
         const verticalGames = {
@@ -2769,7 +2796,7 @@ cc.Class({
         if (this.btn_minirocket.node.active) {
             skeleton = this.btn_minirocket.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniaviator.node.active) {

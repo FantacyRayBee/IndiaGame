@@ -586,11 +586,11 @@ window.GlobalCfg = {
      * 诱导充值配置
      */
     INDUCEMENT_INFO: {
-        [1]: { taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1, tips: "" },
-        [2]: { taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1, tips: "" },
-        [3]: { taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'TeenPatti', paiIndex: -1, tips: "" },
-        [4]: { taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100, 200, 90, 50], jump: 'Fruit', paiIndex: 2, tips: "Only need ₹10 to withdraw ₹5000" },
-        [5]: { taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10, 9, 10, 8], jump: 'Dragon', paiIndex: 1, tips: "Only need ₹1 to withdraw ₹5000" },
+        [1]: { taskName: 'Play 3 games of TeenPatti', reward: 4500, status: 1, pais: [], jump: 'tpGame', paiIndex: -1, tips: "" },
+        [2]: { taskName: 'Play 7 games of TeenPatti', reward: 4800, status: 1, pais: [], jump: 'tpGame', paiIndex: -1, tips: "" },
+        [3]: { taskName: 'Play 10 games of TeenPatti', reward: 4900, status: 1, pais: [], jump: 'tpGame', paiIndex: -1, tips: "" },
+        [4]: { taskName: 'Play 10 games of Fruit Machines', reward: 4990, status: 2, pais: [100, 200, 90, 50], jump: 'fruitMachine', paiIndex: 2, tips: "Only need ₹10 to withdraw ₹5000" },
+        [5]: { taskName: 'Play 10 games of Dragon VS Tiger', reward: 4999, status: 2, pais: [10, 9, 10, 8], jump: 'lhdGame', paiIndex: 1, tips: "Only need ₹1 to withdraw ₹5000" },
         [6]: { taskName: 'Complete a recharge of ₹500', reward: 4999.9, status: 2, pais: [0.1, 0.9, 0.5, 1], jump: 'shop', paiIndex: 1, tips: "Only need ₹0.1 to withdraw ₹5000" },
         [7]: { taskName: 'Check the account is correct and complete a withdrawal', reward: 4999.99, status: 2, pais: [0.1, 0.09, 0.1, 0.09], jump: 'withdraw', paiIndex: 1, tips: "Only need ₹0.01 to withdraw ₹5000" },
         [8]: { taskName: 'Total recharge ₹50000', reward: 5000, status: 1, pais: [], jump: 'shop', paiIndex: -1, tips: "" },
@@ -598,8 +598,8 @@ window.GlobalCfg = {
     /**
      * 预制体路径
      */
-    PREFAB_PATH: {
-        /**
+        PREFAB_PATH: {
+            /**
          * 侧边栏
          */
         SIDEBAR: "ResourcesBundle/NewPlan/CommActivity/activityModules_ScrollView",
@@ -817,7 +817,7 @@ window.GlobalCfg = {
         /**
          * 直播返回大厅遮羞布
          */
-        LIVELOAD: "ResourcesBundle/NewPlan/LiveLoad/LiveLoadingView",
+        LIVELOAD: "ResourcesBundle/NewPlan/GameLoading/LiveLoadingView",
         /**
          * 我的VIP
          */
@@ -1222,7 +1222,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    cc.sys.localStorage.setItem("PackageChannel", "0_1001");
+    cc.sys.localStorage.setItem("PackageChannel", "5_1001");
     // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
     // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };
@@ -1555,8 +1555,8 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             break;
         case "5":     // 5服
             GlobalCfg.APP_VERSION = "5.0.0.1";
-            GlobalCfg.APP_INFO_URL = `https://download.cj888vip.com/production/AppInfo.json`;
-            GlobalCfg.APP_CONFIG_URL = `https://download.cj888vip.com/production/AppConfig.json`;
+            GlobalCfg.APP_INFO_URL = `https://download.cj888vip.com/production/AppInfo_live.json`;
+            GlobalCfg.APP_CONFIG_URL = `https://download.cj888vip.com/production/AppConfig_live.json`;
 
             GlobalCfg.APP_INFO_URL_SPARE = `https://download.cj888vip.com/production/AppInfo.json`;
             GlobalCfg.APP_CONFIG_URL_SPARE = `https://download.cj888vip.com/production/AppConfig.json`;
