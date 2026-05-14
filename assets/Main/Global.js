@@ -1554,7 +1554,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
         case "5":     // 5服
-            GlobalCfg.APP_VERSION = "5.0.0.2";
+            GlobalCfg.APP_VERSION = "5.0.0.3";
             GlobalCfg.APP_INFO_URL = `https://download.cj888vip.com/production/AppInfo_live.json`;
             GlobalCfg.APP_CONFIG_URL = `https://download.cj888vip.com/production/AppConfig_live.json`;
 
