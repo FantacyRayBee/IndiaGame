@@ -79,6 +79,8 @@ cc.Class({
         };
 
         this.updateInterval = 0;
+        this.LoadCompletedCallback = null;
+        this.pendingUpdateSubpackgeName = null;
     },
 
 
@@ -261,7 +263,10 @@ cc.Class({
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
-        if (msgId == GlobalCfg.CLIENT_MSG_ID.ENTER_GAME_FROM_SELECT_ROOM) {
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_COMPLETE) {
+            self.invokeLoadCompletedCallback(notify && notify.subpackgeName);
+        }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.ENTER_GAME_FROM_SELECT_ROOM) {
             self.dealSelectRoomItemEvent(notify);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.EXIT_GAME) {
@@ -296,7 +301,6 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.RUMMY);
             CommonFun.getInstance().showProgress();
             cc.sys.localStorage.setItem("rummyRoomData", JSON.stringify(itemData));
-            CommonFun.getInstance().hideSelectRoom();
         });
     },
 
@@ -306,7 +310,6 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.ANDAER);
             CommonFun.getInstance().showProgress();
             cc.sys.localStorage.setItem("AndeerData", JSON.stringify(itemData));
-            CommonFun.getInstance().hideSelectRoom();
         });
     },
 
@@ -316,8 +319,50 @@ cc.Class({
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.TEENPATTI);
             CommonFun.getInstance().showProgress();
             cc.sys.localStorage.setItem("TeenPattiData", JSON.stringify(itemData));
-            CommonFun.getInstance().hideSelectRoom();
         });
+    },
+
+    checkUpdate: function (subpackgeName, callFun) {
+        CommonFun.getInstance().hideSelectRoom();
+        let isVertical = this.getVerticalBySubpackageName(subpackgeName);
+        if (cc.sys.os != cc.sys.OS_ANDROID || !GlobalCfg.IS_SMALL_GAME_UPDATE || cc.sys.isBrowser) {
+            callFun && callFun();
+            return;
+        };
+        if (CommonFun.getInstance().isNeedUpdata(subpackgeName)) {
+            CommonFun.getInstance().showTips("Download the game now!");
+            this.pendingUpdateSubpackgeName = subpackgeName;
+            this.LoadCompletedCallback = callFun;
+            GameDownloader.getInstance().priorLoadGame(subpackgeName);
+            CommonFun.getInstance().showGameLoading(isVertical, () => {
+                this.invokeLoadCompletedCallback(subpackgeName);
+            });
+        } else {
+            callFun && callFun();
+        };
+    },
+
+    invokeLoadCompletedCallback: function(subpackgeName) {
+        if (!this.LoadCompletedCallback) {
+            return;
+        }
+        if (this.pendingUpdateSubpackgeName && subpackgeName && this.pendingUpdateSubpackgeName !== subpackgeName) {
+            return;
+        }
+
+        let callback = this.LoadCompletedCallback;
+        this.LoadCompletedCallback = null;
+        this.pendingUpdateSubpackgeName = null;
+        callback && callback();
+    },
+
+    getVerticalBySubpackageName: function(subpackgeName) {
+        const verticalGames = {
+            "Benz": true,
+            "aviator": true,
+        };
+        const isVertical = verticalGames[subpackgeName] || false;
+        return isVertical;
     },
 
     isAvailableToUpRoom: function(gameType) {

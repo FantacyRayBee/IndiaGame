@@ -124,6 +124,7 @@ message RoomStatusChangedNotify {
 message CallReq {
   int64 amount = 1;     // 金额
   BetSide side = 2;     // 下注位置(0.龙 1.虎 2.平)
+  boolen isLive = 3;     // 是否是直播间内下注
 }
 message CallAck {
   ResponseBase result = 1;

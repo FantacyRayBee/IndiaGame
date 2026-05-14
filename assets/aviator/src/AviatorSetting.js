@@ -50,6 +50,7 @@ cc.Class({
         this.setMusicEffectBtns(EnumBtnType.Music);
         this.setMusicEffectBtns(EnumBtnType.Effect);
         this.setMusicEffectBtns(EnumBtnType.Aniamtion);
+        this.updateAudioToggleStateInLive();
     },
 
     start() {
@@ -62,6 +63,10 @@ cc.Class({
     },
 
     onToggleSound(toggle) {
+        if (GlobalCfg.game_state == 1) {
+            this.setMusicEffectBtns(EnumBtnType.Effect);
+            return;
+        }
         if (toggle.isChecked) {
             GlobalCfg.G_COMPONENTS.Audio.openSound();
         } else {
@@ -70,6 +75,10 @@ cc.Class({
     },
 
     onToggleMusic(toggle) {
+        if (GlobalCfg.game_state == 1) {
+            this.setMusicEffectBtns(EnumBtnType.Music);
+            return;
+        }
         if (toggle.isChecked) {
             GlobalCfg.G_COMPONENTS.Audio.openMusic();
         } else {
@@ -153,5 +162,11 @@ cc.Class({
         else if (type == EnumBtnType.Aniamtion) {
             this.tog_animation.isChecked = GlobalCfg.ACT_SCENE_CTRL.isHideAviatorAnim;
         }
+    },
+
+    updateAudioToggleStateInLive: function () {
+        let isInLive = (GlobalCfg.game_state == 1);
+        this.tog_sound.interactable = !isInLive;
+        this.tog_music.interactable = !isInLive;
     },
 });

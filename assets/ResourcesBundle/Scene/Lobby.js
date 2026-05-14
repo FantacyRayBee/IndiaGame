@@ -216,6 +216,10 @@ cc.Class({
          */
         btn_inducement: cc.Button,
         /**
+         * 开始直播
+         */
+        btn_startLive: cc.Button,
+        /**
          * tp引导手指
          */
         node_tpFinger: cc.Node,
@@ -450,6 +454,7 @@ cc.Class({
         this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_inducement.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_firstRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_startLive.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
 
         
         
@@ -592,6 +597,7 @@ cc.Class({
         }
         GlobalCfg.game_state = 1;
         APPManager.startLive(liveItemData.url, liveItemData.gamesId);
+        this.dealJumpBtnEvent(liveItemData.gamesId[0]);
     },
 
     toggleLiveClick: function(toggle) {
@@ -697,6 +703,7 @@ cc.Class({
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
         this.btn_firstRecharge.node.active = GlobalCfg.USER_DATAS.isNotCharge //首冲按钮是否展示
         this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
+        this.btn_startLive.node.active = true;
         this.dealInducementInfo();
         this.dealShowOnlyPayEvent();
         /**
@@ -1784,6 +1791,9 @@ cc.Class({
         else if (btnName == 'btn_inducement') {
             this.dealInducementClickEvent();
         }
+        else if (btnName == 'btn_startLive') {
+            this.dealStartLiveEvent();
+        }
         else if (btnName == 'btn_firstRecharge') {
             this.showFirstRechargeToast();
         }
@@ -1808,6 +1818,12 @@ cc.Class({
                 });
             }
         }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    dealStartLiveEvent: function() {
+        let LiveKit = require("LiveKit");
+        LiveKit.init({ debug: true });
+        LiveKit.startAnchor();
     },
 
     dealJumpBtnEvent: function(jumpid) {
@@ -1848,6 +1864,14 @@ cc.Class({
                 CommonFun.getInstance().showProgress();
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.mundaData.product;
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.MUNDA);
+            });
+        }
+        else if (jumpid == "aviator") {
+            CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_AVIATOR_GAME);
+            this.checkUpdate("aviator", () => {
+                CommonFun.getInstance().showProgress();
+                GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.aviatorData.product;
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.LOBBY, SceneManager.getInstance().sceneType.AVIATOR);
             });
         }
         else if (jumpid == "shop") {

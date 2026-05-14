@@ -11,7 +11,18 @@ cc.Class({
     },
 
     setFromLobbyEnterGame: function (isHorizotal) {
-        this.img_background.spriteFrame = isHorizotal ? this.hor_sprites[Math.floor(Math.random() * 5)] : this.ver_sprites[Math.floor(Math.random() * 5)];
+        let targetArr = isHorizotal ? this.hor_sprites : this.ver_sprites;
+        let fallbackArr = isHorizotal ? this.ver_sprites : this.hor_sprites;
+
+        if (Array.isArray(targetArr) && targetArr.length > 0) {
+            this.img_background.spriteFrame = targetArr[Math.floor(Math.random() * targetArr.length)];
+            return;
+        }
+
+        // 目标数组为空时兜底，避免保留上一次的背景造成“方向看起来没变”
+        if (Array.isArray(fallbackArr) && fallbackArr.length > 0) {
+            this.img_background.spriteFrame = fallbackArr[Math.floor(Math.random() * fallbackArr.length)];
+        }
     },
 
     onDestroy: function () {

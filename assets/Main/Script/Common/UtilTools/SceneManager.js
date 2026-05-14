@@ -405,7 +405,7 @@ let SceneManager = cc.Class({
         let isEnterFromSelectRoom = !!(selectRoomNode && cc.isValid(selectRoomNode) && selectRoomNode.active);
         let isNeedShowLiveLoadMask = GlobalCfg.game_state == 0 && isSelectRoomGame && isEnterFromSelectRoom;
         if (isNeedShowLiveLoadMask) {
-            CommonFun.getInstance().showLiveLoadView(true);
+            CommonFun.getInstance().showLiveLoadView();
         }
         if (toSceneName == this.sceneType.SSC) {
             Promise.all([GameServerManager.connectServer(true), this.loadSSCBundlePab(toSceneName)])
