@@ -1,5 +1,6 @@
 let protoCfgObj = require("ProtoCfg");
 let ProtoObj = new protoCfgObj();
+let LiveHostAdapter = require("LiveHostAdapter");
 
 let SceneManager = cc.Class({
     ctor: function() {
@@ -57,6 +58,10 @@ let SceneManager = cc.Class({
             return;
         };
         this.isLoadingScene = true;
+
+        if (!LiveHostAdapter.shouldHandleScene(toSceneName)) {
+            LiveHostAdapter.uninstallLiveHostFindBridge();
+        }
 
         if (!toSceneName) {
             this.isLoadingScene = false;
@@ -407,7 +412,44 @@ let SceneManager = cc.Class({
         if (isNeedShowLiveLoadMask) {
             CommonFun.getInstance().showLiveLoadView();
         }
-        if (toSceneName == this.sceneType.SSC) {
+        if (LiveHostAdapter.shouldHandleScene(toSceneName)) {
+            Promise.all([
+                GameServerManager.connectServer(true),
+                LiveHostAdapter.loadHostedPrefab(toSceneName),
+                this.loadBundleScene(LiveHostAdapter.getHostScenePath())
+            ])
+            .then((arr) => {
+                let hostedPrefab = arr[1];
+                let hostScene = arr[2];
+                this.curSceneType = toSceneName;
+                cc.director.runScene(hostScene, () => {}, () => {
+                    LiveHostAdapter.mountHostedPrefab(toSceneName, hostedPrefab);
+                    this.isLoadingScene = false;
+                    CommonFun.getInstance().hidProgress();
+                    CommonFun.getInstance().hideSidebarData();
+                    if (isNeedShowLiveLoadMask) {
+                        CommonFun.getInstance().hideLiveLoadView();
+                    }
+                    if (GlobalCfg.game_state == 1){
+                        APPManager.LiveOpenGameSuccessfulCallJava();
+                    }
+                });
+            })
+            .catch((err) => {
+                LoggerUtil.getInstance().error(err);
+                this.isLoadingScene = false;
+                CommonFun.getInstance().hidProgress();
+                GameServerManager.clientCloseServer();
+                CommonFun.getInstance().showTips(err);
+                if (isNeedShowLiveLoadMask) {
+                    CommonFun.getInstance().hideLiveLoadView();
+                }
+                if (GlobalCfg.game_state == 1){
+                    APPManager.LiveOpenGameSuccessfulCallJava();
+                }
+            });
+        }
+        else if (toSceneName == this.sceneType.SSC) {
             Promise.all([GameServerManager.connectServer(true), this.loadSSCBundlePab(toSceneName)])
             .then((arr) => {
                 let prefab = arr[1];
@@ -524,7 +566,7 @@ let SceneManager = cc.Class({
             };
             let arr = toSceneName.split("/");
             let bundleName = arr[0];
-            let sceneName = arr[1];
+            let sceneName = arr.slice(1).join("/");
             CommonFun.getInstance().loadBundle(bundleName, (bundle) => {
                 bundle.loadScene(sceneName, (err1, scene) => {
                     if (!err1) {

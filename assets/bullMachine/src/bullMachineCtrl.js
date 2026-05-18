@@ -94,6 +94,11 @@ cc.Class({
         this.switchInterval = 2.0;  // 自动切换间隔
         this.switchTimer = 0;
         this.isFg = false;
+
+        this._spinReqTimer = null;
+        this._spinReqTimeoutMs = 8000;
+        this._spinReqRetry = 0;
+        this._spinReqMaxRetry = 2;
     },
 
     loadAudioClip: function(audioClipUrl = "", func = null, target = null) {
@@ -227,6 +232,7 @@ cc.Class({
     
     onDestroy: function() {
         GlobalCfg.ACT_SCENE_CTRL = null;
+        this._clearSpinReqWatchdog();
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgHandle);
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_BULL_GAME);
@@ -257,12 +263,10 @@ cc.Class({
             if (self.isRunningSlotAnim) {
                 CommonFun.getInstance().showMsgBox(self.tipsLabel[0], "YES_NO", ()=>{
                     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
-                    CommonFun.getInstance().decVerticalAcc();
                 },  false);
             }
             else {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
-                CommonFun.getInstance().decVerticalAcc();
             };
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GAME_MENU_CLICK_HOW_TO_PLAY) {
@@ -270,7 +274,6 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);
-            CommonFun.getInstance().decVerticalAcc();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.SAVE_AUTOSPIN) {
             this.autoSpinTypeNumArr = notify.autoSpinTypeNumArr;
@@ -299,11 +302,12 @@ cc.Class({
         };
         if (msgId === "gameservice.login") {
             CommonFun.getInstance().showMsgBox(result.message, "YES", () => {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);    
-                CommonFun.getInstance().decVerticalAcc();       
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.BULL, SceneManager.getInstance().sceneType.LOBBY);           
             }, false);
         }
         else if (msgId === "gameservice.call") {
+            this._clearSpinReqWatchdog();
+            this.curSendSpin = false;
             if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
                 if (result.result == 57) {
                     CommonFun.getInstance().showDiversionFreeTP(() => {
@@ -422,6 +426,8 @@ cc.Class({
     },
 
     setCallNotify: function(notify) {
+        this._clearSpinReqWatchdog();
+        this._spinReqRetry = 0;
         this.curSendSpin = false; //当前是否在发送请求 如果收到服务器回复，说明请求已经发送 避免多次发送
         this.gameResult = {};
         this.gameResult.userinfo = notify.userinfo;
@@ -1483,11 +1489,55 @@ cc.Class({
             return;
         };
         this.curSendSpin = true;
+        this._startSpinReqWatchdog();
         let proroID = 'gameservice.call';
         let message = 'CallReq';
         GameServerManager.send(proroID, message, {              
             amount: betAmount,
         });
+    },
+
+    _startSpinReqWatchdog: function() {
+        this._clearSpinReqWatchdog();
+        this._spinReqTimer = setTimeout(() => {
+            if (!cc.isValid(this) || this.curSendSpin !== true) {
+                return;
+            }
+
+            LoggerUtil.getInstance().warn("bullMachine spin request timeout, try recover", this._spinReqRetry);
+            this.curSendSpin = false;
+
+            let isAuto = this.toggle_auto && this.toggle_auto.isChecked;
+            if (isAuto) {
+                if (this._spinReqRetry < this._spinReqMaxRetry) {
+                    this._spinReqRetry += 1;
+                    setTimeout(() => {
+                        if (!cc.isValid(this) || !this.toggle_auto || !this.toggle_auto.isChecked || this.isRunningSlotAnim) {
+                            return;
+                        }
+                        this.sendCallReq();
+                    }, 300);
+                }
+                else {
+                    this._spinReqRetry = 0;
+                    this.toggle_auto.isChecked = false;
+                    this.node_toggle_auto.active = true;
+                    this.recoverySpinBtnEvent();
+                    CommonFun.getInstance().showTips("Network unstable, auto spin paused");
+                }
+            }
+            else {
+                this.recoverySpinBtnEvent();
+                CommonFun.getInstance().showTips("Network unstable, please spin again");
+            }
+        }, this._spinReqTimeoutMs);
+    },
+
+    _clearSpinReqWatchdog: function() {
+        if (this._spinReqTimer) {
+            clearTimeout(this._spinReqTimer);
+            this._spinReqTimer = null;
+        }
     },
 
     executeSwitchAnimation: function() {

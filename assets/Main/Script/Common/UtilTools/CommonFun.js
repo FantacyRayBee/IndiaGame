@@ -1618,7 +1618,8 @@ let CommonFun = cc.Class({
         gameLoadingPrefabPromise.then((prefab) => {
             let gameLoadingNode = cc.instantiate(prefab);
             let gameLoadingCtrl = gameLoadingNode.getComponent('GameLoadingViewCtrl');
-            if (!isVertical && GlobalCfg.game_state == 0) {
+            let isAnchorModeEnabled = GlobalCfg.IS_ANCHOR_MODE && GlobalCfg.server_id == "0";
+            if (!isVertical && GlobalCfg.game_state == 0 && !isAnchorModeEnabled) {
                 CommonFun.getInstance().addHorizontalAcc();
             }
             gameLoadingCtrl.init(isVertical, callback);
@@ -2992,6 +2993,58 @@ let CommonFun = cc.Class({
             return true;
         }
         return false;
+    },
+
+    shouldUseAnchorPortraitGameLayout: function(isVertical) {
+        return !!(GlobalCfg.IS_ANCHOR_MODE && GlobalCfg.server_id == "0" && !isVertical);
+    },
+
+    /**
+     * 主播模式下，将横屏游戏内容按“竖屏宿主容器”重新缩放并居中到目标区域。
+     * 主要用于把独立游戏 prefab 挂进 LiveHost 场景后，按宿主节点尺寸重新排版。
+     * @param {cc.Node} targetNode 子游戏根节点
+     * @param {cc.Node} hostNode 宿主场景中承载子游戏的节点，通常是 game_root
+     */
+    applyAnchorPortraitGameLayout: function(targetNode, hostNode) {
+        if (!targetNode || !cc.isValid(targetNode)) {
+            return;
+        }
+
+        let hostWidth = 0;
+        let hostHeight = 0;
+        if (hostNode && cc.isValid(hostNode) && hostNode.getContentSize) {
+            // 先刷新宿主节点的 Widget，避免读取到旧的宽高。
+            let widget = hostNode.getComponent && hostNode.getComponent(cc.Widget);
+            if (widget && widget.enabled) {
+                widget.updateAlignment();
+            }
+            let hostSize = hostNode.getContentSize();
+            hostWidth = hostSize ? hostSize.width : 0;
+            hostHeight = hostSize ? hostSize.height : 0;
+        }
+        if (!hostWidth) {
+            // 宿主宽度取不到时，退回到当前可视区域宽度。
+            let visibleSize = cc.view.getVisibleSize();
+            hostWidth = visibleSize ? visibleSize.width : 0;
+        }
+
+        // 优先使用进入宿主模式前记录的原始设计分辨率，避免被后续缩放污染。
+        let originalSize = targetNode.__liveHostOriginalSize || (targetNode.getContentSize ? targetNode.getContentSize() : null);
+        let canvasWidth = (originalSize && originalSize.width) || 1835;
+        let canvasHeight = (originalSize && originalSize.height) || 750;
+
+        // 以宿主宽度为基准做整体缩放，1.3 是当前主播场景的经验补偿系数。
+        let scale = canvasWidth > 0 ? (hostWidth / canvasWidth) * 1.3 : 1;
+        let scaledHeight = canvasHeight * scale;
+
+        // 根据 targetNode 和 hostNode 的锚点，计算缩放后在宿主中的纵向对齐位置。
+        let anchorY = typeof targetNode.anchorY === "number" ? targetNode.anchorY : 0.5;
+        let hostAnchorY = hostNode && typeof hostNode.anchorY === "number" ? hostNode.anchorY : 0.5;
+        let posY = scaledHeight * anchorY - hostHeight * hostAnchorY;
+
+        targetNode.scaleX = scale;
+        targetNode.scaleY = scale;
+        targetNode.setPosition(0, posY);
     },
 
     /**

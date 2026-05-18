@@ -703,7 +703,7 @@ cc.Class({
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
         this.btn_firstRecharge.node.active = GlobalCfg.USER_DATAS.isNotCharge //首冲按钮是否展示
         this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
-        this.btn_startLive.node.active = true;
+        this.btn_startLive.node.active = GlobalCfg.server_id == "0";
         this.dealInducementInfo();
         this.dealShowOnlyPayEvent();
         /**

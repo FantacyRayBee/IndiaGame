@@ -1,5 +1,10 @@
 //定义全局配置 
 window.GlobalCfg = {
+    IS_ANCHOR_MODE: false,   // 是否是主播模式，true是主播模式，false是正常模式
+    ANCHOR_LANDSCAPE_LAYOUT: {
+        width: 1835,
+        height: 750,
+    },
     /**
      * 服务器重启
      */
@@ -1222,7 +1227,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    cc.sys.localStorage.setItem("PackageChannel", "5_1001");
+    cc.sys.localStorage.setItem("PackageChannel", "0_1001");
     // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
     // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };

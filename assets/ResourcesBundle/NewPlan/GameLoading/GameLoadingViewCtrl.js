@@ -25,7 +25,11 @@ cc.Class({
 
     init: function (isVertical, callback) {
         this.LoadCompletedCallback = callback;
-        if (GlobalCfg.game_state == 1) {
+        let isAnchorModeEnabled = GlobalCfg.IS_ANCHOR_MODE && GlobalCfg.server_id == "0";
+        if (isAnchorModeEnabled || GlobalCfg.game_state == 0) {
+            isVertical = true;
+        }
+        else if (GlobalCfg.game_state == 1) {
             isVertical = false; //直播状态默认横屏
         }
         this.hor_node.active = !isVertical;
