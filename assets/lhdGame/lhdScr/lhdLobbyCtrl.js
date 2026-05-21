@@ -292,6 +292,12 @@ cc.Class({
             GameServerManager.connectServer();
         } 
         else if (btnName == "btn_openMenu") {
+            if (GlobalCfg.IS_ANCHOR_MODE) {
+                if (CommonFun.getInstance().isValidForScr(this.sendReqCtrl) && this.sendReqCtrl.OutGameReq) {
+                    this.sendReqCtrl.OutGameReq();
+                }
+                return;
+            }
             CommonFun.getInstance().showGameMenu(false);
         }
     },

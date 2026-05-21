@@ -141,7 +141,6 @@ APPManager.showWebView = function (Url, isPortrait) {
 
 //打开直播间
 APPManager.startLive = function (Url, gameIds) {
-    // GlobalCfg.IS_ANCHOR_MODE = true;
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
         let data = {
             url: Url,
@@ -154,7 +153,7 @@ APPManager.startLive = function (Url, gameIds) {
 // 关闭直播并回大厅（由 Java 在“已关闭直播层”后通知触发）
 APPManager.closeLive = function () {
     GlobalCfg.game_state = 0;
-    // GlobalCfg.IS_ANCHOR_MODE = false;
+    GlobalCfg.IS_ANCHOR_MODE = false;
 
     let prevMusicOn = cc.sys.localStorage.getItem("LIVE_PREV_MUSIC_ON");
     let prevSoundOn = cc.sys.localStorage.getItem("LIVE_PREV_SOUND_ON");

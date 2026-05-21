@@ -1,6 +1,6 @@
 //定义全局配置 
 window.GlobalCfg = {
-    IS_ANCHOR_MODE: false,   // 是否是主播模式，true是主播模式，false是正常模式
+    IS_ANCHOR_MODE: true,   // 是否是主播模式，true是主播模式，false是正常模式
     ANCHOR_LANDSCAPE_LAYOUT: {
         width: 1835,
         height: 750,

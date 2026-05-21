@@ -84,12 +84,14 @@ const LiveKit = {
      */
     startAnchor: function(url) {
         if (url) {
+            GlobalCfg.IS_ANCHOR_MODE = true;
             this.enterAudience(url);
             this.log("startAnchor[h5-url]", url);
             return;
         }
         const mode = this.getMode();
         if (mode === "android-native") {
+            GlobalCfg.IS_ANCHOR_MODE = true;
             this.callAndroid("showAnchorSetupDialog", "()V");
             this.log("startAnchor[android-config-dialog]");
             return;
@@ -113,6 +115,7 @@ const LiveKit = {
         }
         const mode = this.getMode();
         if (mode === "android-native") {
+            GlobalCfg.IS_ANCHOR_MODE = true;
             this.callAndroid(
                 "startAnchorWithRtmpConfig",
                 "(Ljava/lang/String;)V",
@@ -128,6 +131,7 @@ const LiveKit = {
      * 停止推流
      */
     stopAnchor: function() {
+        GlobalCfg.IS_ANCHOR_MODE = false;
         const mode = this.getMode();
         if (mode === "android-native") {
             this.callAndroid("stopAnchorPush", "()V");

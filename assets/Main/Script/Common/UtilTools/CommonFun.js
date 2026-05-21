@@ -987,6 +987,93 @@ let CommonFun = cc.Class({
         };
     },
 
+    findNodeByNameDeep: function(rootNode, targetName) {
+        if (!rootNode || !cc.isValid(rootNode) || !targetName) {
+            return null;
+        }
+        if (rootNode.name === targetName) {
+            return rootNode;
+        }
+        let children = rootNode.children || [];
+        for (let i = 0; i < children.length; i++) {
+            let foundNode = this.findNodeByNameDeep(children[i], targetName);
+            if (foundNode) {
+                return foundNode;
+            }
+        }
+        return null;
+    },
+
+    findLiveHostGameRoot: function() {
+        if (GlobalCfg.LIVE_HOST_GAME_ROOT && cc.isValid(GlobalCfg.LIVE_HOST_GAME_ROOT)) {
+            return GlobalCfg.LIVE_HOST_GAME_ROOT;
+        }
+        let curScene = cc.director && cc.director.getScene ? cc.director.getScene() : null;
+        if (!curScene || !cc.isValid(curScene)) {
+            return null;
+        }
+        return this.findNodeByNameDeep(curScene, "game_root");
+    },
+
+    shouldMountToLiveHostGameRoot: function(sceneMgr, gameRootNode) {
+        return !!(GlobalCfg.IS_ANCHOR_MODE
+            && GlobalCfg.server_id == "0"
+            && sceneMgr
+            && sceneMgr.curSceneType === sceneMgr.sceneType.LHD
+            && gameRootNode
+            && cc.isValid(gameRootNode));
+    },
+
+    mountNodeToLiveHostGameRoot: function(targetNode, gameRootNode, posY = 260, scale = 1, zIndex = 999) {
+        if (!targetNode || !cc.isValid(targetNode) || !gameRootNode || !cc.isValid(gameRootNode)) {
+            return false;
+        }
+        let widgetComp = targetNode.getComponent(cc.Widget);
+        if (widgetComp) {
+            let widgetAlignMode = cc.Widget && cc.Widget.AlignMode ? cc.Widget.AlignMode : null;
+            if (widgetAlignMode && widgetComp.alignMode === widgetAlignMode.ALWAYS) {
+                widgetComp.alignMode = widgetAlignMode.ON_WINDOW_RESIZE;
+            }
+            widgetComp.isAlignLeft = false;
+            widgetComp.isAlignRight = false;
+            widgetComp.isAlignTop = false;
+            widgetComp.isAlignBottom = false;
+            widgetComp.isAlignHorizontalCenter = true;
+            widgetComp.isAlignVerticalCenter = true;
+            widgetComp.horizontalCenter = 0;
+            widgetComp.verticalCenter = posY;
+        }
+        targetNode.scale = scale;
+        if (targetNode.parent && targetNode.parent !== gameRootNode) {
+            targetNode.removeFromParent(false);
+        }
+        if (!targetNode.parent) {
+            gameRootNode.addChild(targetNode);
+        }
+        if (widgetComp) {
+            widgetComp.updateAlignment();
+        } else {
+            targetNode.setPosition(0, posY);
+        }
+        targetNode.zIndex = zIndex;
+        return true;
+    },
+
+    applyLiveHostMaskOverride: function(targetNode) {
+        if (!targetNode || !cc.isValid(targetNode)) {
+            return;
+        }
+        let maskNode = targetNode.getChildByName("mask");
+        if (!maskNode || !cc.isValid(maskNode)) {
+            return;
+        }
+        let maskWidget = maskNode.getComponent(cc.Widget);
+        if (maskWidget) {
+            maskWidget.enabled = false;
+        }
+        maskNode.scale = 3;
+    },
+
     /**
      * 将指定的LayerNode节点加入到layerNodeMap中
      * @param {string} tag
@@ -1039,6 +1126,12 @@ let CommonFun = cc.Class({
             tipsNode.angle = direction == "horizontal" ? 0 : -90;
             let tipsCtrl = tipsNode.getComponent('TipsCtrl');
             tipsCtrl.setContent(content);
+            let sceneMgr = typeof SceneManager !== "undefined" && SceneManager.getInstance ? SceneManager.getInstance() : null;
+            let gameRootNode = this.findLiveHostGameRoot();
+            if (this.shouldMountToLiveHostGameRoot(sceneMgr, gameRootNode)) {
+                this.mountNodeToLiveHostGameRoot(tipsNode, gameRootNode, 260, 1, 999);
+                return;
+            }
             this.addToPointParent(tipsNode, GlobalCfg.PREFAB_PARENT.TIPS);
         });
     },
@@ -1047,9 +1140,19 @@ let CommonFun = cc.Class({
         return new Promise((resolve, reject) => {
             let progressPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.PROGRESS);
             progressPrefabPromise.then((prefab) => {
+                if (this._progressNode && cc.isValid(this._progressNode)) {
+                    this._progressNode.destroy();
+                }
                 this._progressNode = cc.instantiate(prefab);
                 this._progressNode.active = false;
-                this.addToPointParent(this._progressNode, GlobalCfg.PREFAB_PARENT.PROGRESS);
+                let sceneMgr = typeof SceneManager !== "undefined" && SceneManager.getInstance ? SceneManager.getInstance() : null;
+                let gameRootNode = this.findLiveHostGameRoot();
+                if (this.shouldMountToLiveHostGameRoot(sceneMgr, gameRootNode)) {
+                    this.applyLiveHostMaskOverride(this._progressNode);
+                    this.mountNodeToLiveHostGameRoot(this._progressNode, gameRootNode, 260, 1, 999);
+                } else {
+                    this.addToPointParent(this._progressNode, GlobalCfg.PREFAB_PARENT.PROGRESS);
+                }
                 resolve();
             })
             .catch(() => {
@@ -1058,21 +1161,50 @@ let CommonFun = cc.Class({
         });
     },
 
+    isProgressNodeUsable: function() {
+        return !!(this._progressNode
+            && cc.isValid(this._progressNode)
+            && this._progressNode._components);
+    },
+
     /**
      * 显示进度框
      * @param {string} content 内容
      * @param {number} lastTime 持续时间
      */
     showProgress: function(content, lastTime = 15) {
-        if (this._progressNode) {
-            let progressCtrl = this._progressNode.getComponent('ProgressCtrl');
-            progressCtrl.setContent(content);
-            this._progressNode.active = true;
+        if (!this.isProgressNodeUsable()) {
+            this._progressNode = null;
+            this.proloadProgress()
+            .then(() => {
+                this.showProgress(content, lastTime);
+            })
+            .catch(() => {});
+            return;
+        }
 
-            this._progressTimer = setTimeout(() => {
-                this.hidProgress();
-            }, lastTime * 1000);
-        };
+        let sceneMgr = typeof SceneManager !== "undefined" && SceneManager.getInstance ? SceneManager.getInstance() : null;
+        let gameRootNode = this.findLiveHostGameRoot();
+        if (this.shouldMountToLiveHostGameRoot(sceneMgr, gameRootNode)) {
+            this.applyLiveHostMaskOverride(this._progressNode);
+            this.mountNodeToLiveHostGameRoot(this._progressNode, gameRootNode, 260, 1, 999);
+        }
+        let progressCtrl = this._progressNode.getComponent('ProgressCtrl');
+        if (!progressCtrl) {
+            this._progressNode = null;
+            this.proloadProgress()
+            .then(() => {
+                this.showProgress(content, lastTime);
+            })
+            .catch(() => {});
+            return;
+        }
+        progressCtrl.setContent(content);
+        this._progressNode.active = true;
+
+        this._progressTimer = setTimeout(() => {
+            this.hidProgress();
+        }, lastTime * 1000);
     },
 
     /**
@@ -1080,9 +1212,11 @@ let CommonFun = cc.Class({
      */
     hidProgress: function() {
         clearTimeout(this._progressTimer);
-        if (this._progressNode) {
+        if (this.isProgressNodeUsable()) {
             this._progressNode.active = false;
-        };
+            return;
+        }
+        this._progressNode = null;
     },
     /**
      * 显示消息框
@@ -1098,10 +1232,52 @@ let CommonFun = cc.Class({
         let msgBoxPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MSGBOX);
         msgBoxPrefabPromise.then((prefab) => {
             let msgBoxNode = cc.instantiate(prefab);
-            msgBoxNode.scale = scale;
+            let sceneMgr = typeof SceneManager !== "undefined" && SceneManager.getInstance ? SceneManager.getInstance() : null;
+            let gameRootNode = this.findLiveHostGameRoot();
+            let shouldMountToGameRoot = this.shouldMountToLiveHostGameRoot(sceneMgr, gameRootNode);
+
+            console.log("[LIVEHOST_MSGBOX_TRACE] state", JSON.stringify({
+                isAnchorMode: !!GlobalCfg.IS_ANCHOR_MODE,
+                serverId: GlobalCfg.server_id,
+                curSceneType: sceneMgr ? sceneMgr.curSceneType : null,
+                lhdSceneType: sceneMgr ? sceneMgr.sceneType.LHD : null,
+                hasGameRoot: !!gameRootNode,
+                gameRootName: gameRootNode && gameRootNode.name ? gameRootNode.name : null,
+                shouldMountToGameRoot: shouldMountToGameRoot,
+                content: content,
+                msgBoxType: msgBoxType
+            }));
+
+            if (shouldMountToGameRoot) {
+                msgBoxNode.scale = 0.7;
+            } else {
+                msgBoxNode.scale = scale;
+            }
             let msgBoxCtrl = msgBoxNode.getComponent('MsgBoxCtrl');
             msgBoxCtrl.setContent(content, msgBoxType, callFun, isShowCloseBtn, title, callFun2, horizontal);
+            if (shouldMountToGameRoot) {
+                this.applyLiveHostMaskOverride(msgBoxNode);
+                let maskNode = msgBoxNode.getChildByName("mask");
+                this.mountNodeToLiveHostGameRoot(msgBoxNode, gameRootNode, 260, 0.7, 999);
+                console.log("[LIVEHOST_MSGBOX_TRACE] mounted_to_game_root", JSON.stringify({
+                    parentName: msgBoxNode.parent ? msgBoxNode.parent.name : null,
+                    x: msgBoxNode.x,
+                    y: msgBoxNode.y,
+                    hasMask: !!maskNode,
+                    maskScale: maskNode ? maskNode.scale : null,
+                    scaleX: msgBoxNode.scaleX,
+                    scaleY: msgBoxNode.scaleY
+                }));
+                return;
+            }
             this.addToPointParent(msgBoxNode, GlobalCfg.PREFAB_PARENT.MSGBOX);
+            console.log("[LIVEHOST_MSGBOX_TRACE] mounted_to_default_parent", JSON.stringify({
+                parentName: msgBoxNode.parent ? msgBoxNode.parent.name : null,
+                x: msgBoxNode.x,
+                y: msgBoxNode.y,
+                scaleX: msgBoxNode.scaleX,
+                scaleY: msgBoxNode.scaleY
+            }));
         });
     },
 

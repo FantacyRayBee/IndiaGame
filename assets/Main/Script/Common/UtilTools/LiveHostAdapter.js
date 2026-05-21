@@ -48,6 +48,8 @@ let LiveHostAdapter = cc.Class({
             let gameNode = cc.instantiate(prefab);
             this.normalizeLiveHostPrefabRoot(gameNode);
             this.installLiveHostFindBridge(gameNode);
+            GlobalCfg.LIVE_HOST_GAME_ROOT = roots.gameRoot;
+            GlobalCfg.LIVE_HOST_LIVE_ROOT = roots.liveRoot;
             roots.gameRoot.addChild(gameNode);
             this.updateHostRootAlignment(roots);
             CommonFun.getInstance().applyAnchorPortraitGameLayout(gameNode, roots.gameRoot);
@@ -142,6 +144,8 @@ let LiveHostAdapter = cc.Class({
         // 退出宿主模式时恢复原始 cc.find。
         uninstallLiveHostFindBridge() {
             GlobalCfg.LIVE_HOST_GAME_CANVAS = null;
+            GlobalCfg.LIVE_HOST_GAME_ROOT = null;
+            GlobalCfg.LIVE_HOST_LIVE_ROOT = null;
             if (cc.find && cc.find.__liveHostBridged && cc.find.__originalFind) {
                 cc.find = cc.find.__originalFind;
             }
