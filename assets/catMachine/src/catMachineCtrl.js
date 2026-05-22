@@ -584,6 +584,7 @@ cc.Class({
 
         this.setFreesList(notify.frees);
         this.setUserDiamond(notify.userinfo.diamond);
+        this.setBetAmount(notify.betOption);
         this.jpMub = notify.jpMub; //jp倍数
 
         let freeCountItem = this.getFreesItemOfFreeCount();
@@ -622,6 +623,14 @@ cc.Class({
             this.btn_spin.interactable = true;
             this.btn_spin.enableAutoGrayEffect = false;
         }
+    },
+
+    setBetAmount: function (betOption) {
+        if (Array.isArray(betOption)) {
+            this.betAmountArr = betOption.map(x => `${Number(x) / 100}`.trim());
+        }
+        this.betAmountArrIndex = 0;
+        this.setLabAmount(this.betAmountArr[this.betAmountArrIndex]);
     },
 
     initSlotData: function () {
