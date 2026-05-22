@@ -2032,10 +2032,10 @@ export class I18NUtil {
      * @returns 
      */
     public getLanguageType(): I18NLanguagesEnum {
-        let curLanguagesType = I18NLanguagesEnum.English;
+        let curLanguagesType = I18NLanguagesEnum.Bengali;
         let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
         if (!languagesType) {
-            curLanguagesType = I18NLanguagesEnum.English;
+            curLanguagesType = I18NLanguagesEnum.Bengali;
         }
         else {
             switch (languagesType) {
@@ -2052,7 +2052,7 @@ export class I18NUtil {
                     curLanguagesType = I18NLanguagesEnum.Urdu;
                     break;
                 default:
-                    curLanguagesType = I18NLanguagesEnum.English;
+                    curLanguagesType = I18NLanguagesEnum.Bengali;
                     break;
             };
         };

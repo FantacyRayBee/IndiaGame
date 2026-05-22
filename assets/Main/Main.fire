@@ -524,7 +524,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 285.06,
+      "width": 239.88,
       "height": 44.1
     },
     "_anchorPoint": {
@@ -576,13 +576,15 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Resource loading ...",
-    "_N$string": "Resource loading ...",
+    "_string": "রিসোর্স লোড হচ্ছে...",
+    "_N$string": "রিসোর্স লোড হচ্ছে...",
     "_fontSize": 30,
     "_lineHeight": 35,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "4ccdf98f-e89b-492f-8398-546383e7b4ca"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 1,
