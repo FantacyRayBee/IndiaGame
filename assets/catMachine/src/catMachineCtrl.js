@@ -113,6 +113,7 @@ cc.Class({
         this._spinReqTimeoutMs = 8000;
         this._spinReqRetry = 0;
         this._spinReqMaxRetry = 2;
+        this._pendingResumeSpinAfterReconnect = false;
     },
 
     loadAudioClip: function (audioClipUrl = "", func = null, target = null) {
@@ -477,10 +478,9 @@ cc.Class({
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.NET_OPEN && notify === "GAME_SERVER") {
             // 断线重连后，如果之前处于“等待 call 回包”状态，主动补发一次
-            if (self.isAuto && self.curSendSpin) {
-                self.curSendSpin = false;
+            if (self.curSendSpin) {
+                self._pendingResumeSpinAfterReconnect = true;
                 self._clearSpinReqWatchdog();
-                self.sendCallReq();
             }
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
@@ -539,6 +539,7 @@ cc.Class({
         this.curSendSpin = false;
         this._clearSpinReqWatchdog();
         this._spinReqRetry = 0;
+        this._pendingResumeSpinAfterReconnect = false;
         if (!notify) {
             let info = {
                 errorMessage: `MayaMachine游戏中, 服务器下发的非正确消息中结构体异常, 内容为===>${JSON.stringify(webData)}`
@@ -613,7 +614,14 @@ cc.Class({
                 amount: amount * 100
             });
 
+            this._pendingResumeSpinAfterReconnect = false;
             return;
+        }
+
+        if (this._pendingResumeSpinAfterReconnect) {
+            this._pendingResumeSpinAfterReconnect = false;
+            this.curSendSpin = false;
+            this._clearSpinReqWatchdog();
         }
 
         if (this.isAuto) {
@@ -1744,6 +1752,14 @@ cc.Class({
         this._clearSpinReqWatchdog();
         this._spinReqTimer = setTimeout(() => {
             if (!cc.isValid(this) || this.curSendSpin !== true) {
+                return;
+            }
+            const socket = GameServerManager.socket;
+            const isSocketReady = socket && socket.readyState === 1;
+            if (GameServerManager.isReconnecting || !isSocketReady) {
+                LoggerUtil.getInstance().warn("catMachine spin watchdog waiting reconnect");
+                this._pendingResumeSpinAfterReconnect = true;
+                this._startSpinReqWatchdog();
                 return;
             }
 
