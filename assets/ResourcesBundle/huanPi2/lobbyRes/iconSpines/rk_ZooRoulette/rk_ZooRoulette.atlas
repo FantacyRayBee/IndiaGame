@@ -1,62 +1,55 @@
 
 rk_ZooRoulette.png
-size: 412,517
+size: 630,312
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1
   rotate: false
-  xy: 2, 412
-  size: 266, 103
-  orig: 276, 112
-  offset: 5, 3
+  xy: 232, 2
+  size: 265, 103
+  orig: 265, 103
+  offset: 0, 0
   index: -1
 6
   rotate: false
-  xy: 2, 211
-  size: 236, 199
-  orig: 238, 199
-  offset: 2, 0
+  xy: 232, 107
+  size: 236, 203
+  orig: 236, 203
+  offset: 0, 0
   index: -1
 di
   rotate: true
-  xy: 2, 2
-  size: 207, 228
-  orig: 213, 236
-  offset: 3, 3
+  xy: 2, 106
+  size: 204, 228
+  orig: 204, 228
+  offset: 0, 0
   index: -1
 laoying
   rotate: false
-  xy: 266, 105
+  xy: 2, 8
   size: 144, 96
   orig: 144, 96
   offset: 0, 0
   index: -1
 shizi
   rotate: true
-  xy: 240, 203
+  xy: 470, 121
   size: 189, 158
   orig: 189, 158
   offset: 0, 0
   index: -1
 staraY
-  rotate: true
-  xy: 270, 394
-  size: 121, 122
-  orig: 128, 128
-  offset: 6, 1
+  rotate: false
+  xy: 499, 5
+  size: 119, 114
+  orig: 119, 114
+  offset: 0, 0
   index: -1
 xiongmao
   rotate: false
-  xy: 266, 12
+  xy: 148, 13
   size: 77, 91
   orig: 77, 91
   offset: 0, 0
-  index: -1
-yuyan1
-  rotate: true
-  xy: 232, 14
-  size: 187, 32
-  orig: 189, 35
-  offset: 2, 1
   index: -1

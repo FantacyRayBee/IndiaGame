@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "4c566906-82e8-4a9f-b116-94b4ef6dece2",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 476,
+  "height": 73,
+  "platformSettings": {},
+  "subMetas": {
+    "daily bonus card": {
+      "ver": "1.0.6",
+      "uuid": "a2a4e22a-038b-4e65-a3d6-449cf9855ed4",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "4c566906-82e8-4a9f-b116-94b4ef6dece2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 476,
+      "height": 73,
+      "rawWidth": 476,
+      "rawHeight": 73,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

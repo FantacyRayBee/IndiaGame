@@ -53,7 +53,6 @@ cc.Class({
 
     initCard(){
         let seriesCard = GlobalCfg.USER_DATAS.seriesCard;
-        LoggerUtil.getInstance().log("caojun seriesCard", seriesCard);
         let content = this.scrollView.content;
         for (let i = 0, len = seriesCard.length; i < len; i++) {
             let cardInfo = seriesCard[i];
@@ -91,13 +90,21 @@ cc.Class({
                 lab_rate.string = `${parseInt(((days * daySend + bonus + add) / price) * 100)}%`;
                 lab_amount.string = `${(price + add) / 100}`;
                 lab_reward.string = `${(days * daySend + bonus) / 100}`;
-                lab_tips1.string = `₹${(price) / 100} + bonus ${bonus / 100} right now`;
                 // lab_tips2.string = `Bonus ₹${bonus / 100} right now`;
                 // lab_tips3.string = `₹${daySend / 100} Cash x${days} days`;
-
-                lab_tips2.string = `₹${daySend / 100} cash x${days} days`;
                 
-                lab_btnTips.string = `₹${price / 100}`;
+                
+                let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+                if (languagesType == I18NLanguagesEnum.English) {
+                    lab_tips1.string = `₹${(price) / 100} + bonus ${bonus / 100} right now`;
+                    lab_tips2.string = `₹${daySend / 100} cash x${days} days`;
+                    lab_btnTips.string = `₹${price / 100}`;
+                }
+                else if (languagesType == I18NLanguagesEnum.Bengali) {
+                    lab_tips1.string = `এখনই ৳${(price) / 100} + বোনাস ${bonus / 100}`;
+                    lab_tips2.string = `৳${daySend / 100} নগদ x${days} দিন`;
+                    lab_btnTips.string = `৳${price / 100}`;
+                }
             };
         };
     },

@@ -343,11 +343,15 @@ export enum I18NLabelTransIdEnum {
     'Shop_Cash',
     'Shop_Bonus',
     'Shop_Select payment amount',
+    'Shop_tips',
+    'Shop_Select payment channel',
+    'Shop_service title',
 
     /**
      * Withdraw
      */
-    'Withdraw_Withdraw' = 9000,
+    'Withdraw_title' = 9000,
+    'Withdraw_Button',
     'Withdraw_Cash Balance',
     'Withdraw_Withdrawal history',
     'Withdraw_Add Cash',
@@ -357,7 +361,19 @@ export enum I18NLabelTransIdEnum {
     'Withdraw_Withdrawal Amount',
     'Withdraw_Okay',
     'Withdraw_Tip',
-
+    'Withdraw_desc',
+    'Withdraw_Total Balance',
+    'Withdraw_Withdrawable',
+    'Withdraw_Bank Account',
+    'Withdraw_no card account',
+    'Withdraw_rule_info',
+    'Withdraw_Input Account number',
+    'Withdraw_Input User Name',
+    'Withdraw_Input IFSC Code',
+    'Withdraw_Input Bank Name',
+    'Withdraw_Input Branch',
+    'Withdraw_Input Email',
+    'Withdraw_Input Mobile Number',
 
     'TransactionRecord_Record' = 10000,
     'TransactionRecord_Recharge',
@@ -376,6 +392,36 @@ export enum I18NLabelTransIdEnum {
     'TransactionRecord_Pending',
     'TransactionRecord_Rejected',
     'TransactionRecord_Experience Coins',
+    
+    'Invitation_friends' = 11000,
+    'Invitation_winnings',
+    'Invitation_state',
+    'Invitation_Task',
+    'Invitation_Spin',
+    'Invitation_Schedule',
+    'Invitation_Tips',
+    'Invitation_Recharged friends',
+
+    'BonusCardRule_desc' = 12000,
+
+    'personal_edit' = 13000,
+
+    //游戏
+    'bull_balance' = 20000,
+    'bull_bet',
+    'bull_win',
+
+    'cat_rule_1' = 21000,
+    'cat_rule_2',
+    'cat_rule_3',
+    'cat_rule_4',
+    'cat_rule_5',
+    'cat_rule_6',
+    'cat_rule_7',
+    'cat_rule_8',
+    'cat_totalbet',
+    'cat_collect',
+
 }; 
 
 
@@ -383,8 +429,8 @@ export enum I18NSpriteTransIdEnum {
     'default' = 0,
 
     'Setting_title' = 1,
-    'Setting_music',
-    'Setting_sound',
+    'Setting_on',
+    'Setting_off',
     'Setting_howToPlay',
     'Setting_rateUs',
     'Setting_contactUs',
@@ -422,6 +468,7 @@ export enum I18NSpriteTransIdEnum {
     'FirstGiftDiamond_content',
 
     'Personal_title' = 1000,
+    'Personal_bind',
 
     'Promoter_getABonus' = 1100,
     'Promoter_millionaire',
@@ -440,13 +487,56 @@ export enum I18NSpriteTransIdEnum {
     'LobbyBanner_getNow',
     'LobbyBanner_quickRecharge',
     'LobbyBanner_refer',
-    'LobbyBanner_rewards',
+    'LobbyBanner_Group 206',
+    'LobbyBanner_Group 207',
+    'LobbyBanner_Group 208',
+    'LobbyBanner_Group 209',
+    'LobbyBanner_Group 210',
+    'LobbyBanner_Group 211',
+    'LobbyBanner_Group 212',
+    'LobbyBanner_Group 213',
+    'LobbyBanner_Group 214',
+    'LobbyBanner_Group 215',
+    'LobbyBanner_Group 216',
+    'LobbyBanner_Group 217',
 
     'CommActivity_activity' = 1700,
     'CommActivity_bonusCard',
     'CommActivity_mobile',
+    'CommActivity_gift',
+    'CommActivity_re',
+    'CommActivity_super discount',
 
     'LobbyIcons_luckyLoto' = 1800,
+    'LobbyIcons_rocket',
+    'LobbyIcons_3patti',
+    'LobbyIcons_77',
+    'LobbyIcons_andar',
+    'LobbyIcons_aviator',
+    'LobbyIcons_bez',
+    'LobbyIcons_buffalo',
+    'LobbyIcons_cat',
+    'LobbyIcons_chicken',
+    'LobbyIcons_cricket',
+    'LobbyIcons_dancegirl',
+    'LobbyIcons_dragon',
+    'LobbyIcons_fruit',
+    'LobbyIcons_horse',
+    'LobbyIcons_maya',
+    'LobbyIcons_mtp',
+    'LobbyIcons_munda',
+    'LobbyIcons_rummy',
+    'LobbyIcons_teenpatti',
+    'LobbyIcons_vampire',
+    'LobbyIcons_zeus',
+    'LobbyIcons_zoo',
+    'LobbyIcons_refer&earn',
+    'LobbyIcons_addcash',
+    'LobbyIcons_go Betting',
+    'LobbyIcons_earnMoney',
+    'LobbyIcons_OncePay',
+    'LobbyIcons_vip',
+
 
     'GameSetting_title' = 1900,
 
@@ -472,8 +562,69 @@ export enum I18NSpriteTransIdEnum {
     'MyVip_cashout',
 
 
-    'Login_text' = 2300,
+    'Login_or' = 2300,
+    'Login_title',
+    'Login_text',
     'Login_bonus',
+
+    'DailyBonusCard_title' = 2400,
+    'DailyBonusCard_01',
+    'DailyBonusCard_02',
+    'DailyBonusCard_03',
+    'DailyBonusCard_04',
+
+    'invitation_bg' = 2500,
+    'invitation_yes',
+    'invitation_collect',
+    'invitation_spin',
+
+
+    'withdraw_bankcard' = 2600,
+    'withdraw_btn_ba',
+    'withdraw_logo',
+    'withdraw_tips',
+    'withdraw_rule',
+    'withdraw_ruletips',
+    'withdraw_bg',
+    'withdraw_save',
+
+    'servicew_bg' = 2700,
+    'servicew_service',
+    'servicew_Fast feedback',
+    'servicew_Twitter',
+    'servicew_Telegram',
+    'servicew_button',
+
+    //游戏
+    'bullMachine_spin_label' = 10000,
+    'bullMachine_tips1',
+    'bullMachine_tips2',
+    'bullMachine_tips3',
+    'bullMachine_tips4',
+    'bullMachine_tips5',
+
+    'catMachine_tips1' = 11000,
+    'catMachine_tips2',
+    'catMachine_tips3',
+    'catMachine_goldbg',
+    'catMachine_win',
+    'catMachine_goodluck',
+    'catMachine_totalwin',
+    'catMachine_spin',
+    'catMachine_line9',
+    'catMachine_jpInfo_bg',
+    'catMachine_jpInfo_title',
+    'catMachine_rule_mulitiples',
+    'catMachine_rule_lines',
+    'catMachine_rule_rules',
+    'catMachine_rule_jackpot',
+    'catMachine_rule_4',
+
+    
+};
+
+export enum I18NSpineTransIdEnum {
+    'default' = 0,
 };
 
 
@@ -511,6 +662,8 @@ export class I18NUtil {
 
     private SpriteFramePathMap = new Map();
 
+    private SpinePathMap = new Map();
+
     private static _instance: I18NUtil = null;
 
     public static getInstance(): I18NUtil {
@@ -518,15 +671,13 @@ export class I18NUtil {
             I18NUtil._instance = new I18NUtil();
             I18NUtil._instance._initLanguageMap();
             I18NUtil._instance._initSpriteFramePathMap();
+            I18NUtil._instance._initSpinePathMap();
         };
         return I18NUtil._instance;
     };
 
     private _initLanguageMap() {
-        
-        /**
-         * 英语
-         */
+        // #region 英语
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_The Best Online Experience'], 'The Best Online Experience');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'Play instant online any time');
         this.EnglishMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'Win cash prizes instantly');
@@ -825,8 +976,12 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['Shop_Cash'], 'Cash');
         this.EnglishMap.set(I18NLabelTransIdEnum['Shop_Bonus'], 'Bonus');
         this.EnglishMap.set(I18NLabelTransIdEnum['Shop_Select payment amount'], 'Select payment amount');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Shop_Select payment channel'], 'Select payment channel');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Shop_tips'], '<color=#000000>If the recharge is unsuccessful, please try </c><color=#ff0000>another channel</color>');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Shop_service title'], 'Service');
 
-        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Withdraw'], 'Withdraw');
+
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Title'], 'Withdraw');
         this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Cash Balance'], 'Cash Balance');
         this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Withdrawal history'], 'Withdrawal history');
         this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Add Cash'], 'Add Cash');
@@ -835,7 +990,21 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Daily Withdrawal Count Left'], 'Daily Withdrawal Count Left');
         this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Withdrawal Amount'], 'Withdrawal Amount');
         this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Okay'], 'Okay');
-        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Tip'], 'Tip');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Tip'], 'please check bank information, while facing the withdraw issues');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_desc'], '1.You can with draw every rupee you win.\n2.The withdrawal will arrive within 48 hours at the latest. If not,please contact us.\n3.The user’s daily withdrawal limit is 3 times and the withdrawal limit 100000.');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Total Balance'], 'Total Balance');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Withdrawable'], 'Withdrawable');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Bank Account'], 'Bank Account');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_no card account'], 'no card account');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_rule_info'], '1.Request any time, and payment will be processed as soon as possible.\n\n2.You can withdraw every rupee you won.\n\n3.Single payment should be between 100-50000 \n\n4.Any questions, please contact our customer service, feedback \n\nshould be sent in 10mins.');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input Account number'], 'Input Account number');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input User Name'], 'Input User Name');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input IFSC Code'], 'Input IFSC Code');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input Bank Name'], 'Input Bank Name');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input Branch'], 'Input Branch Bank Name (optional)');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input Email'], 'Input Email');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Withdraw_Input Mobile Number'], 'Input Mobile Number');
+
 
         this.EnglishMap.set(I18NLabelTransIdEnum['TransactionRecord_Record'], 'Record');
         this.EnglishMap.set(I18NLabelTransIdEnum['TransactionRecord_Recharge'], 'Recharge');
@@ -855,14 +1024,36 @@ export class I18NUtil {
         this.EnglishMap.set(I18NLabelTransIdEnum['TransactionRecord_Rejected'], 'Rejected');
         this.EnglishMap.set(I18NLabelTransIdEnum['TransactionRecord_Experience Coins'], 'Experience Coins');
 
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_friends'], 'Friends');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_winnings'], 'Winnings');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_state'], 'State');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_Task'], 'Task');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_Spin'], 'Spin');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_Schedule'], 'Schedule');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_Tips'], 'It will be counted when your friend  completed their first recharge.');
+        this.EnglishMap.set(I18NLabelTransIdEnum['Invitation_Recharged friends'], 'Recharged friends:');
+        this.EnglishMap.set(I18NLabelTransIdEnum['BonusCardRule_desc'], '1. You can recharge to buy the Daily Bonus Card.You can get the recharged amount right now, and extra bonus rewards will be given out a few days.\n2. When you buy the Daily Bonus Card,you need to completed first deposit.');
+
+        this.EnglishMap.set(I18NLabelTransIdEnum['personal_edit'], 'Edit');
+        //游戏
+        this.EnglishMap.set(I18NLabelTransIdEnum['bull_balance'], 'Balance');
+        this.EnglishMap.set(I18NLabelTransIdEnum['bull_bet'], 'bet');
+        this.EnglishMap.set(I18NLabelTransIdEnum['bull_win'], 'WIN');
+
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_1'], 'WILD symbol can substitute for any symbols except free and jackpot');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_2'], '3 same for 5 free spins \n4 same for 10 free spins \n5 same for 15 free spins');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_3'], 'You can get a different percentage  of the JACKPOT');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_4'], 'In each payline, the symbols crossing from the first row to the third row are same, then you can win. If the same symbol appears on the fourth row or even fifth row, you can win more.');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_5'], 'WILD symbol can substitute for any symbols');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_6'], 'Same symbols');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_7'], 'Different symbols');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_rule_8'], 'The total bet reaches 45 and the same symbol is the jackpot You get the JACKPOT cash');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_totalbet'], 'Total Bet');
+        this.EnglishMap.set(I18NLabelTransIdEnum['cat_collect'], 'Collect');
 
 
-
-
-
-        /**
-         * 印度语
-         */
+        // #endregion 英语
+        // #region 印度语
         this.HindiMap.set(I18NLabelTransIdEnum['Login_The Best Online Experience'], 'सबसे अच्छा ऑनलाइन अनुभव');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'किसी भी समय तत्काल ऑनलाइन खेलें');
         this.HindiMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'तुरंत नकद जीत');
@@ -1161,6 +1352,7 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['Shop_Cash'], 'नकद');
         this.HindiMap.set(I18NLabelTransIdEnum['Shop_Bonus'], 'बक्शीश');
         this.HindiMap.set(I18NLabelTransIdEnum['Shop_Select payment amount'], 'भुगतान राशि चुनें');
+        
 
         this.HindiMap.set(I18NLabelTransIdEnum['Withdraw_Withdraw'], 'निकालना');
         this.HindiMap.set(I18NLabelTransIdEnum['Withdraw_Cash Balance'], 'नकदी संतुलन');
@@ -1192,14 +1384,8 @@ export class I18NUtil {
         this.HindiMap.set(I18NLabelTransIdEnum['TransactionRecord_Experience Coins'], 'सिक्कों का अनुभव करें');
 
 
-
-
-
-
-
-        /**
-         * 孟加拉语
-         */
+        // #endregion 印度语
+        // #region 孟加拉语
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_The Best Online Experience'], 'সেরা অনলাইন অভিজ্ঞতা');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'যেকোনো সময় তৎক্ষণাৎ অনলাইনে খেলুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'অবিলম্বে ক্যাশ প্রাইজ জিতুন');
@@ -1210,7 +1396,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Login'], 'লগইন করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Login Via Facebook'], 'Facebook দিয়ে লগইন করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Please be wait and check your phone!'], 'অনুগ্রহ করে অপেক্ষা করে আপনার ফোন চেক করুন');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'OTP যাচাই করুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Login_Verify with OTP'], 'OTP দিয়ে যাচাই করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Sent to'], 'এখানে পাঠান');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_Input OTP here'], 'OTP এখানে লিপিবদ্ধ করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Login_X Invalid OTP. Please try again.'], 'X অবৈধ OTP। অনুগ্রহ করে আবার চেষ্টা করুন।');
@@ -1228,11 +1414,11 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Mobile 10 BONUS'], 'মোবাইল 10 বোনাস');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Activity'], 'গতিবিধি');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_REFER ＆ EARN'], 'রেফার করুন ও জিতুন');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_JHANDI MUNDA'], 'JHANDI MUNDA');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_WHACK-A-MOLE'], 'WHACK-A-MOLE');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_HORSE RACING'], 'HORSE RACING');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_FRUIT PARTY'], 'FRUIT PARTV');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_LUCKY  LOTO'], 'LUCKY  LOTO');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_JHANDI MUNDA'], 'ঝান্ডি মুন্ডা');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_WHACK-A-MOLE'], 'হোয়্যাক-এ-মোল');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_HORSE RACING'], 'ঘোড়দৌড়');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_FRUIT PARTY'], 'ফ্রুট পার্টি');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_LUCKY  LOTO'], 'লাকি লোটো');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_MESSAGE'], 'বার্তা');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_NO MESSAGE'], 'কোনো বার্তা নেই');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Only keep mails within 15 days'], 'শুধু 15 দিনের মেল রাখুন');
@@ -1268,8 +1454,8 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Please fill in the correct email'], 'অনুগ্রহ করে সঠিক ইমেল পূরণ করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_SETTINGS'], 'বিন্যাস');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_English'], 'ইংরেজি');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Hindi'], '');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Urdu'], '');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Hindi'], 'হিন্দি');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Urdu'], 'উর্দু');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Bengali'], 'বাংলা');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Background Music'], 'ব্যাকগ্রাউন্ড সঙ্গীত');
         this.BengaliMap.set(I18NLabelTransIdEnum['Lobby_Effect Sound'], 'প্রভাব ধ্বনি');
@@ -1398,7 +1584,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Activity_2.You can only choose one type to purchase . On- ly one card is allowed at the same time'], '2.আপনি ক্রয় করার জন্য শুধু একটি প্রকারই বেছে নিতে পারেন। এক সময়ে শুধু একটি কার্ডই অনুমোদিত');
         this.BengaliMap.set(I18NLabelTransIdEnum['Activity_3.You can buy the Daily Bonus Card only after the first deposit.'], '3.আপনি প্রতিদিনের বোনাস কার্ড শুধু প্রথমবার জমা দেওয়ার পরেই ক্রয় করতে পারবেন।');
 
-        this.BengaliMap.set(I18NLabelTransIdEnum['Game_7UP 7DOWN'], '7UP 7DOWN');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Game_7UP 7DOWN'], '৭ আপ ৭ ডাউন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Start Betting'], 'বাজি ধরা শুরু করুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Betting starts in 0 seconds'], 'বাজি ধরা 0 সেকেন্ডে শুরু হচ্ছে');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Betting ends in 11 seconds'], 'বাজি ধরা 11 সেকেন্ডে শেষ হচ্ছে');
@@ -1411,7 +1597,7 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_You can`t be a VIP if you carry less than 100 gold coins'], 'যদি আপনার কাছে 100 এর চেয়ে কম সোনার কয়েন থাকে তাহলে আপনি ভিআইপি হতে পারবেন না');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_On other VIP seats, are you sure you want to enter this VIP seat?'], 'অন্য ভিআইপি সীটে, আপনি কি নিশ্চিত অপি এই ভিআইপি সীটে প্রবেশ করতে চান?');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_You`re not a VIP . You can`t send expressions'], 'আপনি একজন ভিআইপি নন। আপনি অভিব্যক্তি পাঠাতে পারবেন না');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Game_DRAGON VS TIGER'], 'DRAGON VS TIGER');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Game_DRAGON VS TIGER'], 'ড্রাগন বনাম টাইগার');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Repeat bets'], 'আবার বাজি ধরুন');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_WINNING HISTORY'], 'জেতার ইতিহাস');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Tiger'], 'টাইগার');
@@ -1426,14 +1612,14 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Prev'], 'পূর্বের');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Next'], 'পরবর্তী');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Stop Betting!'], 'বাজি ধরা বন্ধ করুন!');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Game_Fruit Party'], 'Fruit Party');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Game_Fruit Party'], 'ফ্রুট পার্টি');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_MAX'], 'সর্বাধিক');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_BET AMOUNT'], 'বাজির পরিমাণ');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_TOTAL WIN'], 'মোট জয়');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_FAST'], 'দ্রুত');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_AUTO'], 'অটো');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_SPIN'], 'স্পিন করুন');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Game_Lucky Loto'], 'Lucky Loto');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Game_Lucky Loto'], 'লাকি লোটো');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_JACKPOT'], 'জ্যাকপট');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Interval after jackpot'], 'জ্যাকপটের পরের বিরতি');
         this.BengaliMap.set(I18NLabelTransIdEnum['Game_Betting'], 'বাজি ধরুন');
@@ -1497,6 +1683,9 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Shop_Cash'], 'নগদ');
         this.BengaliMap.set(I18NLabelTransIdEnum['Shop_Bonus'], 'বোনাস');
         this.BengaliMap.set(I18NLabelTransIdEnum['Shop_Select payment amount'], 'অর্থপ্রদানের পরিমাণ নির্বাচন করুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Shop_Select payment channel'], 'পেমেন্ট চ্যানেল নির্বাচন করুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Shop_tips'], '<color=#000000>রিচার্জ ব্যর্থ হলে অনুগ্রহ করে </c><color=#ff0000>অন্য একটি চ্যানেল</color><color=#000000> চেষ্টা করুন</color>');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Shop_service title'], 'সেবা');
 
         this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Withdraw'], 'প্রত্যাহার');
         this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Cash Balance'], 'নগদ ভারসাম্য');
@@ -1507,7 +1696,21 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Daily Withdrawal Count Left'], 'দৈনিক প্রত্যাহার বাম গণনা');
         this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Withdrawal Amount'], 'তোলা টাকার পরিমান');
         this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Okay'], 'ঠিক আছে');
-        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Tip'], 'টিপ');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Tip'], 'উত্তোলনে সমস্যা হলে অনুগ্রহ করে ব্যাংকের তথ্য যাচাই করুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_desc'], '1. আপনি জেতা প্রতিটি রুপি উত্তোলন করতে পারেন।\n2. সর্বোচ্চ 48 ঘণ্টার মধ্যে উত্তোলনের টাকা পৌঁছে যাবে। না পৌঁছালে অনুগ্রহ করে আমাদের সাথে যোগাযোগ করুন।\n3. ব্যবহারকারী দৈনিক সর্বোচ্চ 3 বার উত্তোলন করতে পারবেন এবং উত্তোলনের সীমা 100000।');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Total Balance'], 'মোট ব্যালেন্স');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Withdrawable'], 'উত্তোলনযোগ্য');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Bank Account'], 'ব্যাংক অ্যাকাউন্ট');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_no card account'], 'কোনো কার্ড অ্যাকাউন্ট নেই');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_rule_info'], '1. যেকোনো সময় অনুরোধ করতে পারেন, এবং পেমেন্ট যত দ্রুত সম্ভব প্রক্রিয়া করা হবে।\n\n2. আপনি জেতা প্রতিটি রুপি উত্তোলন করতে পারেন।\n\n3. একক উত্তোলনের পরিমাণ 100-50000 এর মধ্যে হতে হবে।\n\n4. কোনো প্রশ্ন থাকলে অনুগ্রহ করে আমাদের কাস্টমার সার্ভিসের সাথে যোগাযোগ করুন, প্রতিক্রিয়া \n\n10 মিনিটের মধ্যে পাঠানো হবে।');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input Account number'], 'অ্যাকাউন্ট নম্বর লিখুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input User Name'], 'ব্যবহারকারীর নাম লিখুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input IFSC Code'], 'IFSC কোড লিখুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input Bank Name'], 'ব্যাংকের নাম লিখুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input Branch'], 'শাখা ব্যাংকের নাম লিখুন (ঐচ্ছিক)');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input Email'], 'ইমেল লিখুন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Withdraw_Input Mobile Number'], 'মোবাইল নম্বর লিখুন');
+
 
         this.BengaliMap.set(I18NLabelTransIdEnum['TransactionRecord_Record'], 'রেকর্ড');
         this.BengaliMap.set(I18NLabelTransIdEnum['TransactionRecord_Recharge'], 'রিচার্জ');
@@ -1527,17 +1730,36 @@ export class I18NUtil {
         this.BengaliMap.set(I18NLabelTransIdEnum['TransactionRecord_Rejected'], 'প্রত্যাখ্যাত');
         this.BengaliMap.set(I18NLabelTransIdEnum['TransactionRecord_Experience Coins'], 'অভিজ্ঞতা কয়েন');
 
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_friends'], 'বন্ধুরা');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_winnings'], 'জয়ী অর্থ');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_state'], 'অবস্থা');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_Task'], 'কাজ');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_Spin'], 'স্পিন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_Schedule'], 'অগ্রগতি');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_Tips'], 'আপনার বন্ধু প্রথম রিচার্জ সম্পন্ন করলে এটি গণনা করা হবে।');
+        this.BengaliMap.set(I18NLabelTransIdEnum['Invitation_Recharged friends'], 'রিচার্জ করা বন্ধু:');
+        this.BengaliMap.set(I18NLabelTransIdEnum['BonusCardRule_desc'], '1. আপনি রিচার্জ করে ডেইলি বোনাস কার্ড কিনতে পারেন। রিচার্জের পরিমাণ আপনি সঙ্গে সঙ্গে পাবেন, এবং অতিরিক্ত বোনাস পুরস্কার কয়েক দিনের মধ্যে প্রদান করা হবে।\n2. ডেইলি বোনাস কার্ড কিনতে হলে আপনাকে প্রথম ডিপোজিট সম্পন্ন করতে হবে।');
+        
+        this.BengaliMap.set(I18NLabelTransIdEnum['personal_edit'], 'সম্পাদনা');
+        //游戏
+        this.BengaliMap.set(I18NLabelTransIdEnum['bull_balance'], 'ব্যালেন্স');
+        this.BengaliMap.set(I18NLabelTransIdEnum['bull_bet'], 'বেট');
+        this.BengaliMap.set(I18NLabelTransIdEnum['bull_win'], 'জয়');
+
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_1'], 'WILD চিহ্ন free এবং jackpot ছাড়া অন্য যেকোনো চিহ্নের বিকল্প হিসেবে ব্যবহার করা যায়');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_2'], 'একই 3টি হলে 5টি free spin \nএকই 4টি হলে 10টি free spin \nএকই 5টি হলে 15টি free spin');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_3'], 'আপনি JACKPOT-এর একটি ভিন্ন শতাংশ পেতে পারেন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_4'], 'প্রতিটি payline-এ প্রথম সারি থেকে তৃতীয় সারি পর্যন্ত একই চিহ্ন থাকলে আপনি জিতবেন। একই চিহ্ন যদি চতুর্থ বা পঞ্চম সারিতেও আসে, তাহলে আপনি আরও বেশি জিততে পারবেন।');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_5'], 'WILD চিহ্ন যেকোনো চিহ্নের বিকল্প হিসেবে ব্যবহার করা যায়');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_6'], 'একই চিহ্ন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_7'], 'ভিন্ন চিহ্ন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_rule_8'], 'মোট বেট 45 হলে এবং একই চিহ্ন jackpot হলে, আপনি JACKPOT-এর নগদ পুরস্কার পাবেন');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_totalbet'], 'মোট বেট');
+        this.BengaliMap.set(I18NLabelTransIdEnum['cat_collect'], 'সংগ্রহ করুন');
 
 
-
-
-
-
-
-
-        /**
-         * 乌尔都语
-         */
+        // #endregion 孟加拉语
+        // #region 乌尔都语
         this.UrduMap.set(I18NLabelTransIdEnum['Login_The Best Online Experience'], 'بہترین آن لائن تجربہ');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Play instant online any time'], 'کسی بھی وقت فوری طور پر آن لائن کھیلیں');
         this.UrduMap.set(I18NLabelTransIdEnum['Login_Win cash prizes instantly'], 'فوری طور پر کیش انعامات جیتیں');
@@ -1865,20 +2087,24 @@ export class I18NUtil {
         this.UrduMap.set(I18NLabelTransIdEnum['TransactionRecord_Rejected'], 'مسترد');
         this.UrduMap.set(I18NLabelTransIdEnum['TransactionRecord_Experience Coins'], 'سککوں کا تجربہ کریں۔');
 
-
-
+        // #endregion 乌尔都语
     };
 
     private _initSpriteFramePathMap() {
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_title'], 'Setting/wenzi_01');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_music'], 'Setting/wenzi_02');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_sound'], 'Setting/wenzi_03');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_howToPlay'], 'Setting/wenzi_04');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_rateUs'], 'Setting/wenzi_05');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_contactUs'], 'Setting/wenzi_06');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_privacy'], 'Setting/wenzi_07');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_terms'], 'Setting/wenzi_08');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_logOut'], 'Setting/wenzi_09');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Login_or'], 'Login/or');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Login_title'], 'Login/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Login_text'], 'Login/text');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Login_bonus'], 'Login/bonus');
+
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_title'], 'Setting/img_set_bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_on'], 'Setting/btn_on');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_off'], 'Setting/btn_off');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_howToPlay'], 'Setting/btn_htp');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_rateUs'], 'Setting/btn_rus');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_contactUs'], 'Setting/btn_cus');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_privacy'], 'Setting/btn_pp');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_terms'], 'Setting/btn_tos');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Setting_logOut'], 'Setting/btn_logout');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_title'], 'Activity/Base/title');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_bonus_title'], 'Activity/Bonus/title');
@@ -1908,6 +2134,7 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['FirstGiftDiamond_content'], 'FirstGiftDiamond/content');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Personal_title'], 'Personal/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['personal_bind'], 'personal/bind');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Promoter_getABonus'], 'Promoter/getABonus');
 
@@ -1927,14 +2154,58 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_getNow'], 'LobbyBanner/getNow');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_quickRecharge'], 'LobbyBanner/quickRecharge');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_refer'], 'LobbyBanner/refer');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_rewards'], 'LobbyBanner/rewards');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 206'], 'LobbyBanner/Group 206');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 207'], 'LobbyBanner/Group 207');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 208'], 'LobbyBanner/Group 208');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 209'], 'LobbyBanner/Group 209');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 210'], 'LobbyBanner/Group 210');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 211'], 'LobbyBanner/Group 211');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 212'], 'LobbyBanner/Group 212');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 213'], 'LobbyBanner/Group 213');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 214'], 'LobbyBanner/Group 214');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 215'], 'LobbyBanner/Group 215');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 216'], 'LobbyBanner/Group 216');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 217'], 'LobbyBanner/Group 217');
+
 
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_activity'], 'CommActivity/activity');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_bonusCard'], 'CommActivity/bonusCard');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_gift'], 'CommActivity/gift');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_mobile'], 'CommActivity/mobile');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_re'], 'CommActivity/re');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_super discount'], 'CommActivity/super discount');
 
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_luckyLoto'], 'LobbyIcons/luckyLoto');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_luckyLoto'], 'LobbyIcons/lucky loto');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_rocket'], 'LobbyIcons/rocket');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_3patti'], 'LobbyIcons/3patti');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_77'], 'LobbyIcons/77');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_andar'], 'LobbyIcons/andar');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_aviator'], 'LobbyIcons/aviator');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_bez'], 'LobbyIcons/bez');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_buffalo'], 'LobbyIcons/buffalo');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_cat'], 'LobbyIcons/cat');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_chicken'], 'LobbyIcons/chicken');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_cricket'], 'LobbyIcons/cricket');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_dancegirl'], 'LobbyIcons/dancegirl');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_dragon'], 'LobbyIcons/dragon');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_fruit'], 'LobbyIcons/fruit');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_horse'], 'LobbyIcons/horse');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_maya'], 'LobbyIcons/maya');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_mtp'], 'LobbyIcons/mtp');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_munda'], 'LobbyIcons/munda');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_rocket'], 'LobbyIcons/rocket');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_rummy'], 'LobbyIcons/rummy');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_teenpatti'], 'LobbyIcons/teenpatti');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_vampire'], 'LobbyIcons/vampire');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_zeus'], 'LobbyIcons/zeus');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_zoo'], 'LobbyIcons/zoo');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_refer&earn'], 'LobbyIcons/refer&earn');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_addcash'], 'LobbyIcons/addCash');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_go Betting'], 'LobbyIcons/go betting');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_earnMoney'], 'LobbyIcons/earnmoney');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_OncePay'], 'LobbyIcons/once pay');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_vip'], 'LobbyIcons/vip');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['GameSetting_title'], 'GameSetting/title');
 
@@ -1948,7 +2219,6 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['PopUpWithDraw_onYourChance'], 'PopUpWithDraw/onYourChance');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['PopUpWithDraw_yourWinningAmount'], 'PopUpWithDraw/yourWinningAmount');
 
-
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_levelUpGiftMark'], 'MyVip/levelUpGiftMark');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_levelUpGiftTitle'], 'MyVip/levelUpGiftTitle');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_limitedTimeOffer'], 'MyVip/limitedTimeOffer');
@@ -1960,10 +2230,92 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_more'], 'MyVip/more');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_cashout'], 'MyVip/cashout');
 
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Login_text'], 'Login/text');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Login_bonus'], 'Login/bonus');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_title'], 'DailyBonusCard/daily bonus card');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_01'], 'DailyBonusCard/01');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_02'], 'DailyBonusCard/02');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_03'], 'DailyBonusCard/03');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_04'], 'DailyBonusCard/04');
+        
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['invitation_bg'], 'invitation/bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['invitation_yes'], 'invitation/yes');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['invitation_collect'], 'invitation/collect');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['invitation_spin'], 'invitation/spin');
+
+
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_bankcard'], 'withdraw/bankcard');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_btn_ba'], 'withdraw/btn_ba');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_logo'], 'withdraw/logo_withdraw');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_tips'], 'withdraw/Please');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_rule'], 'withdraw/rule');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_ruletips'], 'withdraw/ruletips');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_bg'], 'withdraw/bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_save'], 'withdraw/save');
+        
+
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_bg'], 'service/bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_service'], 'service/customer service');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_Fast feedback'], 'service/Fast feedback');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_Twitter'], 'service/Twitter');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_Telegram'], 'service/Telegram');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_button'], 'service/btn_GO');
+
+        //游戏
+        //野牛
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_spin_label'], 'game/bullMachine/spin');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips1'], 'game/bullMachine/tips1');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips2'], 'game/bullMachine/tips2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips3'], 'game/bullMachine/tips3');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips4'], 'game/bullMachine/tips4');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips5'], 'game/bullMachine/tips5');
+        //猫
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_tips1'], 'game/catMachine/jackpot_title_1');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_tips2'], 'game/catMachine/jackpot_title_2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_tips3'], 'game/catMachine/jackpot_title_3');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_goldbg'], 'game/catMachine/goldbg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_win'], 'game/catMachine/win');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_goodluck'], 'game/catMachine/good luck');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_totalwin'], 'game/catMachine/total win');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_spin'], 'game/catMachine/spin');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_line9'], 'game/catMachine/line9');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_jpInfo_bg'], 'game/catMachine/jpInfo_bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_jpInfo_title'], 'game/catMachine/jpInfo_title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_rule_mulitiples'], 'game/catMachine/btn_multiples');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_rule_lines'], 'game/catMachine/btn_lines');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_rule_rules'], 'game/catMachine/btn_rules');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_rule_jackpot'], 'game/catMachine/btn_jackpot');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_rule_4'], 'game/catMachine/rule4');
     };
 
+    private _initSpinePathMap() {
+
+    };
+
+    /**
+     * 动态加载 Spine SkeletonData 资源
+     * @param languages 语言类型 I18NLanguagesEnum
+     * @param spineTransId spine关键字 I18NSpineTransIdEnum
+     * @param callFun 加载成功后的回调
+     * @returns
+     */
+    public loadSpineSkeletonData(languages: I18NLanguagesEnum, spineTransId: I18NSpineTransIdEnum, callFun: (skeletonData: sp.SkeletonData) => void) {
+        let spinePath = this.SpinePathMap.get(spineTransId);
+        if (!spinePath) {
+            window["LoggerUtil"].getInstance().error("请先配置 spine 的路径");
+            return;
+        };
+        window["CommonFun"].getInstance().loadBundle(`Language${languages}`, (bundle) => {
+            bundle.load(spinePath, sp.SkeletonData, (err, skeletonData: sp.SkeletonData) => {
+                if (!err) {
+                    callFun(skeletonData);
+                }
+                else {
+                    window["LoggerUtil"].getInstance().error(`${err}`);
+                };
+            });
+        }, (err) => {
+            window["LoggerUtil"].getInstance().error(err);
+        });
+    };
 
     /**
      * 动态加载SpriteFrame资源

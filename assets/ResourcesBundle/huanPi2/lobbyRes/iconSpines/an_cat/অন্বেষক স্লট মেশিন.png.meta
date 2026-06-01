@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e2f77a08-36dc-44b9-8e96-cf5dd986e7b2",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 217,
+  "height": 36,
+  "platformSettings": {},
+  "subMetas": {
+    "অন্বেষক স্লট মেশিন": {
+      "ver": "1.0.6",
+      "uuid": "cceb98a5-c90c-49e7-9f68-5c3c3c24b2d9",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e2f77a08-36dc-44b9-8e96-cf5dd986e7b2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 217,
+      "height": 36,
+      "rawWidth": 217,
+      "rawHeight": 36,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

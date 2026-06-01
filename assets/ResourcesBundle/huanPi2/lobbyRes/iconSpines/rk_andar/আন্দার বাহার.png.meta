@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "89eb4501-c98f-477c-9d3e-37809db465aa",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 162,
+  "height": 28,
+  "platformSettings": {},
+  "subMetas": {
+    "আন্দার বাহার": {
+      "ver": "1.0.6",
+      "uuid": "83abcb61-0fcb-43c7-bd24-edf06c244726",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "89eb4501-c98f-477c-9d3e-37809db465aa",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 162,
+      "height": 28,
+      "rawWidth": 162,
+      "rawHeight": 28,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,152 +1,145 @@
 
 rk_RacingCarRoulette.png
-size: 547,526
+size: 521,531
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1
-  rotate: true
-  xy: 190, 258
-  size: 266, 103
-  orig: 276, 112
-  offset: 5, 3
+  rotate: false
+  xy: 2, 246
+  size: 264, 102
+  orig: 264, 102
+  offset: 0, 0
   index: -1
 che
-  rotate: true
-  xy: 2, 232
-  size: 292, 186
-  orig: 298, 194
-  offset: 5, 0
+  rotate: false
+  xy: 2, 350
+  size: 276, 179
+  orig: 276, 179
+  offset: 0, 0
   index: -1
 di
-  rotate: false
-  xy: 2, 2
-  size: 207, 228
-  orig: 213, 236
-  offset: 3, 3
+  rotate: true
+  xy: 280, 324
+  size: 205, 239
+  orig: 205, 239
+  offset: 0, 0
   index: -1
 diciguang_00
   rotate: false
-  xy: 439, 453
-  size: 90, 37
-  orig: 90, 37
+  xy: 236, 3
+  size: 90, 41
+  orig: 90, 41
   offset: 0, 0
   index: -1
 diciguang_01
   rotate: true
-  xy: 285, 10
-  size: 90, 37
-  orig: 90, 37
+  xy: 198, 10
+  size: 90, 36
+  orig: 90, 36
   offset: 0, 0
   index: -1
 diciguang_02
   rotate: true
-  xy: 324, 10
+  xy: 358, 102
   size: 90, 37
   orig: 90, 37
   offset: 0, 0
   index: -1
 diciguang_03
-  rotate: true
-  xy: 363, 10
+  rotate: false
+  xy: 397, 136
   size: 90, 37
   orig: 90, 37
   offset: 0, 0
   index: -1
 diciguang_04
   rotate: true
-  xy: 402, 10
+  xy: 480, 44
   size: 90, 37
   orig: 90, 37
   offset: 0, 0
   index: -1
 liuxianguanxian_00
   rotate: false
-  xy: 425, 379
-  size: 120, 72
-  orig: 120, 72
+  xy: 398, 249
+  size: 120, 73
+  orig: 120, 73
   offset: 0, 0
   index: -1
 liuxianguanxian_01
   rotate: false
-  xy: 425, 305
-  size: 120, 72
-  orig: 120, 72
+  xy: 398, 175
+  size: 121, 72
+  orig: 121, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_02
-  rotate: false
-  xy: 295, 250
+  rotate: true
+  xy: 2, 124
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_03
-  rotate: true
-  xy: 211, 136
+  rotate: false
+  xy: 76, 172
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_04
   rotate: false
-  xy: 417, 231
+  xy: 76, 98
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_05
-  rotate: false
-  xy: 285, 176
+  rotate: true
+  xy: 2, 2
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_06
-  rotate: true
-  xy: 211, 14
+  rotate: false
+  xy: 236, 120
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_07
   rotate: false
-  xy: 407, 157
+  xy: 236, 46
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_08
   rotate: false
-  xy: 285, 102
+  xy: 76, 24
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
 liuxianguanxian_09
-  rotate: true
-  xy: 441, 35
+  rotate: false
+  xy: 358, 28
   size: 120, 72
   orig: 120, 72
   offset: 0, 0
   index: -1
-qq1
-  rotate: false
-  xy: 295, 492
-  size: 221, 32
-  orig: 223, 34
-  offset: 1, 1
-  index: -1
 shuguang
-  rotate: true
-  xy: 295, 454
+  rotate: false
+  xy: 198, 102
   size: 36, 142
   orig: 36, 142
   offset: 0, 0
   index: -1
 staraY
   rotate: false
-  xy: 295, 324
+  xy: 268, 194
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

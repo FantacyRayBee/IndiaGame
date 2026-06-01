@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "150278d3-8208-4fb4-b971-9e3d39e449bc",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 173,
+  "height": 39,
+  "platformSettings": {},
+  "subMetas": {
+    "মাল্টি টিনপাটি": {
+      "ver": "1.0.6",
+      "uuid": "7c853fb9-70ef-4ce4-a348-2ebd3bcffe39",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "150278d3-8208-4fb4-b971-9e3d39e449bc",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 173,
+      "height": 39,
+      "rawWidth": 173,
+      "rawHeight": 39,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

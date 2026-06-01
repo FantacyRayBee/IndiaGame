@@ -260,7 +260,9 @@ cc.Class({
      */
     updateWithDrawRemainingCount() {
         let lab = this.btnWithDraw.target.getChildByName('Label').getComponent(cc.Label);
-        lab.string = `WITHDRAW(${this.remainingTimes})`;
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        let withdrawStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Withdraw_Title']);
+        lab.string = `${withdrawStr}(${this.remainingTimes})`;
     },
 
     setBankAccount(account) {

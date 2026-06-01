@@ -1,69 +1,62 @@
 
 icon_multiteenpatti.png
-size: 909,265
+size: 890,270
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Tex_0993
   rotate: false
-  xy: 2, 7
+  xy: 2, 12
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 a_f
   rotate: false
-  xy: 584, 7
-  size: 90, 94
-  orig: 93, 98
-  offset: 2, 2
+  xy: 686, 13
+  size: 88, 93
+  orig: 88, 93
+  offset: 0, 0
   index: -1
 a_t
   rotate: false
-  xy: 794, 36
-  size: 113, 122
-  orig: 115, 123
+  xy: 776, 21
+  size: 112, 122
+  orig: 113, 122
   offset: 1, 0
   index: -1
 a_x
   rotate: true
-  xy: 469, 6
+  xy: 571, 11
   size: 95, 113
-  orig: 100, 117
-  offset: 3, 2
+  orig: 95, 113
+  offset: 0, 0
   index: -1
 cm
   rotate: true
-  xy: 676, 35
+  xy: 724, 145
   size: 123, 116
-  orig: 123, 117
-  offset: 0, 1
+  orig: 123, 116
+  offset: 0, 0
   index: -1
 di
   rotate: false
-  xy: 260, 35
-  size: 207, 228
-  orig: 213, 236
-  offset: 3, 3
+  xy: 260, 41
+  size: 204, 227
+  orig: 204, 227
+  offset: 0, 0
   index: -1
 nv
   rotate: false
-  xy: 469, 103
+  xy: 571, 108
   size: 151, 160
-  orig: 151, 160
-  offset: 0, 0
+  orig: 165, 160
+  offset: 7, 0
   index: -1
 pd
-  rotate: false
-  xy: 622, 160
+  rotate: true
+  xy: 466, 2
   size: 266, 103
-  orig: 276, 112
-  offset: 5, 3
-  index: -1
-zi
-  rotate: false
-  xy: 260, 2
-  size: 206, 31
-  orig: 208, 33
-  offset: 1, 1
+  orig: 266, 103
+  offset: 0, 0
   index: -1

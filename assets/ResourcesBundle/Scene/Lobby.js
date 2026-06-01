@@ -2428,13 +2428,13 @@ cc.Class({
         if (this.btn_miniandar.node.active) {
             skeleton = this.btn_miniandar.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minibenzbmw.node.active) {
             skeleton = this.btn_minibenzbmw.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minimultiteenpatti.node.active) {
@@ -2445,13 +2445,13 @@ cc.Class({
         if (this.btn_minijhandimunda.node.active) {
             skeleton = this.btn_minijhandimunda.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minilonghu.node.active) {
             skeleton = this.btn_minilonghu.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
 
@@ -2468,25 +2468,25 @@ cc.Class({
             else {
                 temp1 = skinName;
             };
-            skeleton.setSkin(temp1);
+            // skeleton.setSkin(temp1);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minisaima.node.active) {
             skeleton = this.btn_minisaima.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniseven.node.active) {
             skeleton = this.btn_miniseven.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minishuiguo.node.active) {
             skeleton = this.btn_minishuiguo.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minimaya.node.active) {
@@ -2499,7 +2499,7 @@ cc.Class({
             skeleton = this.btn_minicat.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'idle', true);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minijoker.node.active) {
             skeleton = this.btn_minijoker.node.getChildByName('Background').getComponent(sp.Skeleton);
@@ -2511,7 +2511,7 @@ cc.Class({
             skeleton = this.btn_miniindia.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
             // skeleton.setSkin(skinName);
-            skeleton.setAnimation(0, 'idle', true);
+            skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minivampire.node.active) {
             skeleton = this.btn_minivampire.node.getChildByName('Background').getComponent(sp.Skeleton);
@@ -2537,7 +2537,7 @@ cc.Class({
             else {
                 temp1 = skinName;
             };
-            skeleton.setSkin(temp1);
+            // skeleton.setSkin(temp1);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniteenpatti2.node.active) {
@@ -2553,19 +2553,19 @@ cc.Class({
             else {
                 temp1 = skinName;
             };
-            skeleton.setSkin(temp1);
+            // skeleton.setSkin(temp1);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniteenpattibaccarat.node.active) {
             skeleton = this.btn_miniteenpattibaccarat.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minirocket.node.active) {
             skeleton = this.btn_minirocket.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_miniaviator.node.active) {
@@ -2581,18 +2581,18 @@ cc.Class({
         if (this.btn_minicricket.node.active) {
             skeleton = this.btn_minicricket.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minizeus.node.active) {
             skeleton = this.btn_minizeus.node.getChildByName('Background').getComponent(sp.Skeleton);
             skeleton.clearTrack(0);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };
         if (this.btn_minizoo.node.active) {
             skeleton = this.btn_minizoo.node.getChildByName('Background').getComponent(sp.Skeleton);
-            skeleton.setSkin(skinName);
+            // skeleton.setSkin(skinName);
             skeleton.setAnimation(0, 'animation', true);
         };        
     },

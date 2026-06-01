@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "145b9966-d279-4c81-888e-afaefe959ee0",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 185,
+  "height": 35,
+  "platformSettings": {},
+  "subMetas": {
+    "ক্রিকেটব্যাটল": {
+      "ver": "1.0.6",
+      "uuid": "c561e210-74b5-4826-8adf-627ec19eaeb8",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "145b9966-d279-4c81-888e-afaefe959ee0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 185,
+      "height": 35,
+      "rawWidth": 185,
+      "rawHeight": 35,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

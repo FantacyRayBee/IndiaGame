@@ -197,9 +197,22 @@ cc.Class({
         let lab_num = obj.getChildByName("desc").getComponent(cc.Label);
         let lab_spin = obj.getChildByName("num").getComponent(cc.Label);
 
-        lab_desc.string = `Invite ${data.task} friends to recharge`;
         lab_num.string = `${data.schedule}/${data.task}`;
         lab_spin.string = data.spin;
+
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == I18NLanguagesEnum.English) {
+            lab_desc.string = `Invite ${data.task} friends to recharge`;
+        }
+        else if (languagesType == I18NLanguagesEnum.Hindi) {
+            lab_desc.string = `अपने ${data.task} दोस्तों को रिचार्ज करने के लिए आमंत्रित करें`;
+        }
+        else if (languagesType == I18NLanguagesEnum.Urdu) {
+            lab_desc.string = `اپنے ${data.task} دوستوں کو ریچارج کرنے کے لئے مدعو کریں`;
+        }
+        else if (languagesType == I18NLanguagesEnum.Bengali) {
+            lab_desc.string = `আপনার ${data.task} বন্ধুদের রিচার্জ করতে আমন্ত্রণ জানান`;
+        }
     },
 
     dealDraw() {

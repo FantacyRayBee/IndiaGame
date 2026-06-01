@@ -1,69 +1,174 @@
 
 rk_CricketBattle.png
-size: 690,279
+size: 1339,294
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1
   rotate: true
-  xy: 403, 11
-  size: 266, 103
-  orig: 276, 112
-  offset: 5, 3
+  xy: 2, 29
+  size: 263, 107
+  orig: 263, 107
+  offset: 0, 0
   index: -1
 2
-  rotate: false
-  xy: 211, 85
-  size: 190, 192
-  orig: 190, 194
-  offset: 0, 2
+  rotate: true
+  xy: 320, 87
+  size: 205, 192
+  orig: 206, 192
+  offset: 1, 0
   index: -1
 3
-  rotate: false
-  xy: 508, 129
-  size: 180, 148
-  orig: 180, 148
+  rotate: true
+  xy: 514, 113
+  size: 179, 148
+  orig: 179, 148
   offset: 0, 0
   index: -1
 4
   rotate: false
-  xy: 508, 5
+  xy: 769, 4
   size: 162, 122
   orig: 162, 122
   offset: 0, 0
   index: -1
 5
   rotate: false
-  xy: 243, 17
+  xy: 1224, 21
   size: 65, 66
-  orig: 67, 67
-  offset: 1, 0
+  orig: 65, 66
+  offset: 0, 0
   index: -1
 di
   rotate: false
-  xy: 2, 49
-  size: 207, 228
-  orig: 213, 236
-  offset: 3, 3
-  index: -1
-jinbi1
-  rotate: true
-  xy: 201, 2
-  size: 45, 40
-  orig: 47, 42
-  offset: 1, 1
-  index: -1
-jinbi2
-  rotate: false
-  xy: 310, 27
-  size: 53, 56
-  orig: 53, 56
+  xy: 111, 65
+  size: 207, 227
+  orig: 207, 228
   offset: 0, 0
   index: -1
-qq1
+jinbi1
   rotate: false
-  xy: 2, 15
-  size: 197, 32
-  orig: 200, 35
-  offset: 2, 1
+  xy: 316, 18
+  size: 40, 45
+  orig: 40, 45
+  offset: 0, 0
+  index: -1
+jinbi2
+  rotate: true
+  xy: 252, 10
+  size: 53, 62
+  orig: 53, 64
+  offset: 0, 2
+  index: -1
+图层 11
+  rotate: false
+  xy: 111, 4
+  size: 139, 59
+  orig: 142, 65
+  offset: 1, 0
+  index: -1
+图层 12
+  rotate: true
+  xy: 1068, 143
+  size: 149, 62
+  orig: 151, 65
+  offset: 2, 0
+  index: -1
+图层 13
+  rotate: true
+  xy: 994, 136
+  size: 156, 72
+  orig: 160, 72
+  offset: 2, 0
+  index: -1
+图层 14
+  rotate: true
+  xy: 745, 128
+  size: 164, 79
+  orig: 171, 82
+  offset: 2, 3
+  index: -1
+图层 15
+  rotate: false
+  xy: 358, 6
+  size: 172, 79
+  orig: 181, 91
+  offset: 5, 5
+  index: -1
+图层 16
+  rotate: true
+  xy: 664, 122
+  size: 170, 79
+  orig: 178, 91
+  offset: 1, 5
+  index: -1
+图层 17
+  rotate: true
+  xy: 826, 128
+  size: 164, 79
+  orig: 165, 82
+  offset: 0, 3
+  index: -1
+图层 18
+  rotate: true
+  xy: 907, 134
+  size: 158, 85
+  orig: 164, 92
+  offset: 0, 7
+  index: -1
+图层 19
+  rotate: true
+  xy: 1132, 145
+  size: 147, 85
+  orig: 154, 85
+  offset: 5, 0
+  index: -1
+图层 20
+  rotate: true
+  xy: 1131, 2
+  size: 139, 91
+  orig: 143, 91
+  offset: 0, 0
+  index: -1
+图层 21
+  rotate: true
+  xy: 933, 4
+  size: 128, 91
+  orig: 133, 94
+  offset: 3, 0
+  index: -1
+图层 22
+  rotate: false
+  xy: 532, 4
+  size: 118, 107
+  orig: 124, 107
+  offset: 1, 0
+  index: -1
+图层 23
+  rotate: false
+  xy: 1224, 89
+  size: 112, 101
+  orig: 121, 101
+  offset: 4, 0
+  index: -1
+图层 24
+  rotate: false
+  xy: 652, 8
+  size: 115, 103
+  orig: 121, 103
+  offset: 5, 0
+  index: -1
+图层 25
+  rotate: true
+  xy: 1026, 20
+  size: 114, 103
+  orig: 121, 103
+  offset: 5, 0
+  index: -1
+图层 26
+  rotate: false
+  xy: 1224, 192
+  size: 113, 100
+  orig: 116, 100
+  offset: 0, 0
   index: -1

@@ -1,118 +1,20 @@
 
 earnmoney.png
-size: 227,142
+size: 83,70
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-01
-  rotate: false
-  xy: 34, 51
-  size: 4, 19
-  orig: 200, 200
-  offset: 67, 85
-  index: -1
-02
-  rotate: true
-  xy: 2, 5
-  size: 12, 42
-  orig: 200, 200
-  offset: 67, 75
-  index: -1
-03
-  rotate: false
-  xy: 200, 86
-  size: 20, 54
-  orig: 200, 200
-  offset: 67, 70
-  index: -1
-04
-  rotate: false
-  xy: 171, 79
-  size: 27, 61
-  orig: 200, 200
-  offset: 67, 67
-  index: -1
-05
-  rotate: false
-  xy: 114, 6
-  size: 31, 65
-  orig: 200, 200
-  offset: 70, 66
-  index: -1
-06
-  rotate: false
-  xy: 46, 2
-  size: 32, 68
-  orig: 200, 200
-  offset: 75, 66
-  index: -1
-07
-  rotate: false
-  xy: 34, 72
-  size: 33, 68
-  orig: 200, 200
-  offset: 81, 66
-  index: -1
-08
-  rotate: false
-  xy: 69, 72
-  size: 32, 68
-  orig: 200, 200
-  offset: 88, 66
-  index: -1
-09
-  rotate: false
-  xy: 80, 2
-  size: 32, 68
-  orig: 200, 200
-  offset: 93, 66
-  index: -1
-10
-  rotate: false
-  xy: 147, 7
-  size: 30, 64
-  orig: 200, 200
-  offset: 100, 68
-  index: -1
-11
-  rotate: false
-  xy: 179, 17
-  size: 26, 60
-  orig: 200, 200
-  offset: 107, 70
-  index: -1
-12
-  rotate: false
-  xy: 207, 32
-  size: 18, 52
-  orig: 200, 200
-  offset: 115, 75
-  index: -1
-13
-  rotate: true
-  xy: 179, 4
-  size: 11, 39
-  orig: 200, 200
-  offset: 122, 83
-  index: -1
 img_zhuanpan
   rotate: false
-  xy: 103, 73
-  size: 66, 67
-  orig: 66, 67
+  xy: 2, 2
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 xingdian_yle
   rotate: false
-  xy: 207, 19
+  xy: 70, 57
   size: 11, 11
-  orig: 13, 13
-  offset: 1, 1
-  index: -1
-zi
-  rotate: true
-  xy: 2, 19
-  size: 121, 30
-  orig: 124, 31
-  offset: 1, 1
+  orig: 11, 11
+  offset: 0, 0
   index: -1

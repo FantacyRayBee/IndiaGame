@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "4ea42df3-0ab5-4f5a-bdbd-4bd39eb08731",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1002,
+  "height": 221,
+  "platformSettings": {},
+  "subMetas": {
+    "an_dancinggirl": {
+      "ver": "1.0.6",
+      "uuid": "f05b2a89-3537-4091-82fb-57cf82038581",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "4ea42df3-0ab5-4f5a-bdbd-4bd39eb08731",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 2,
+      "width": 998,
+      "height": 217,
+      "rawWidth": 1002,
+      "rawHeight": 221,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

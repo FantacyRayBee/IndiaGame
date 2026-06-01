@@ -8,20 +8,20 @@ cc.Class({
         node_bonus: cc.Node,
     },
 
-    onLoad: function() {
+    onLoad: function () {
         this.node.on('toggle', this.toggleCallback, this);
 
     },
 
-    toggleCallback: function(toggle) {
+    toggleCallback: function (toggle) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         let toggleName = toggle.node.name;
         if (this.node.getComponent(cc.Toggle).isChecked) {
-            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM, msgData: {shopItemData: this.shopItemData}});
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM, msgData: { shopItemData: this.shopItemData } });
         };
     },
 
-    setNewShopItemData: function(data) {
+    setNewShopItemData: function (data) {
         if (!data) {
             return;
         };
@@ -33,22 +33,30 @@ cc.Class({
         let loop_status = data.loop_status;
         let gift = Math.floor(data.gift / 100);   // 赠送
 
-        this.lab_shopCoin1.string = `₹${amount}`;
-        this.lab_shopCoin2.string = `₹${amount}`;
 
         if (loop_status == 0 && gift != 0) {
             this.node_bonus.active = true;
-            this.lab_bonus.string = '+₹' + Number(gift);
+            let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+            if (languagesType == I18NLanguagesEnum.English) {
+                this.lab_shopCoin1.string = `₹${amount}`;
+                this.lab_shopCoin2.string = `₹${amount}`;
+                this.lab_bonus.string = '+₹' + Number(gift);
+            }
+            else if (languagesType == I18NLanguagesEnum.Bengali) {
+                this.lab_shopCoin1.string = `৳${amount}`;
+                this.lab_shopCoin2.string = `৳${amount}`;
+                this.lab_bonus.string = '+৳' + Number(gift);
+            }
         }
         else if (loop_status == 1) {
             this.node_bonus.active = false;
         };
     },
 
-    setNewShopItemChecked: function(isChecked) {
+    setNewShopItemChecked: function (isChecked) {
         this.node.getComponent(cc.Toggle).isChecked = isChecked;
         if (isChecked) {
-            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {msgCode: GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM, msgData: {shopItemData: this.shopItemData}});
+            ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, { msgCode: GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM, msgData: { shopItemData: this.shopItemData } });
         };
     },
 });

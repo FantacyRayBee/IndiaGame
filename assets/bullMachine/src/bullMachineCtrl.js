@@ -172,7 +172,7 @@ cc.Class({
 
         this.betIndex = 4;
         this.curBetAmount = this.betAmountArr[this.betIndex];
-        this.lab_betAmount.string = "bet " + this.betAmountArr[this.betIndex];
+        this.refreshBetAmountLabel(this.betAmountArr[this.betIndex]);
         //总共赢的金额
         this.lab_totalWin.string = 0;
         this.bigWinLevel = 0;
@@ -201,6 +201,7 @@ cc.Class({
     }, 
 
     start: function() {
+        this.setLanguageInfo();
         this.playEntryAnim()
         this.sendLoginReq();
         this.initSlotData();
@@ -215,6 +216,52 @@ cc.Class({
             this.switchTimer = 0;
             this.executeSwitchAnimation();
         }
+    },
+
+    setLanguageInfo: function() {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        if (languagesType !== I18NLanguagesEnum.English && languagesType !== I18NLanguagesEnum.Bengali) {
+            languagesType = I18NLanguagesEnum.English;
+        }
+
+        let spriteIds = [
+            I18NSpriteTransIdEnum['bullMachine_tips1'],
+            I18NSpriteTransIdEnum['bullMachine_tips2'],
+            I18NSpriteTransIdEnum['bullMachine_tips3'],
+            I18NSpriteTransIdEnum['bullMachine_tips4'],
+            I18NSpriteTransIdEnum['bullMachine_tips5'],
+        ];
+        let loadedFrames = new Array(spriteIds.length);
+        let loadedCount = 0;
+
+        for (let i = 0; i < spriteIds.length; i++) {
+            I18NUtil.getInstance().loadSpriteFrame(languagesType, spriteIds[i], (spriteFrame) => {
+                if (!CommonFun.getInstance().isValidForScr(this)) {
+                    return;
+                }
+                loadedFrames[i] = spriteFrame;
+                loadedCount += 1;
+                if (loadedCount === spriteIds.length) {
+                    this.title_spriteFrame = loadedFrames;
+                    if (this.title_logo2 && this.title_spriteFrame.length > 0) {
+                        this.currentSpriteIndex = 0;
+                        this.title_logo2.spriteFrame = this.title_spriteFrame[this.currentSpriteIndex];
+                        this.currentSpriteIndex = (this.currentSpriteIndex + 1) % this.title_spriteFrame.length;
+                    }
+                }
+            });
+        }
+        this.refreshBetAmountLabel(this.curBetAmount);
+    },
+
+    getBullBetPrefix: function() {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        let betStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['bull_bet']);
+        return betStr || "bet";
+    },
+
+    refreshBetAmountLabel: function(amount) {
+        this.lab_betAmount.string = `${this.getBullBetPrefix()} ${parseInt(amount)}`;
     },
 
     playEntryAnim: function() {
@@ -339,7 +386,7 @@ cc.Class({
             let freeCount = freeCountItem.freeCount;
 
             let freePool = freeCountItem.freePool/100;
-            this.lab_betAmount.string = "bet " + amount;
+            this.refreshBetAmountLabel(amount);
             this.lab_totalWin.string = freePool.toFixed(2);
             this.freeTotalWinNum = freePool;
             // this.dealAutoBetCiShuBtnEvent(freeCount);
@@ -446,7 +493,7 @@ cc.Class({
         let zhuangClipName = isFast ? 'zhuang-fast' : 'zhuang';
         this.playGameSound(zhuangClipName);
 
-        this.lab_betAmount.string = "bet " + parseInt(this.curBetAmount);
+        this.refreshBetAmountLabel(this.curBetAmount);
 
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
@@ -550,7 +597,7 @@ cc.Class({
         this.btn_db.node.active = false;
 
         this.curBetAmount = parseFloat(label.string);
-        this.lab_betAmount.string = "bet " + label.string;
+        this.refreshBetAmountLabel(label.string);
 
         //TODO 切换下注的时候 需要刷新界面上的各种相关金额
         this.anim_root_bet.play("popCloseAnim");

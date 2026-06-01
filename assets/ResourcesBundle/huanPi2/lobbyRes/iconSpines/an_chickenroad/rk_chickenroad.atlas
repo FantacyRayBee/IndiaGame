@@ -1,83 +1,90 @@
 
 rk_chickenroad.png
-size: 655,266
+size: 1002,212
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1
   rotate: false
-  xy: 211, 161
-  size: 266, 103
+  xy: 581, 105
+  size: 266, 105
   orig: 276, 112
-  offset: 5, 3
+  offset: 5, 2
+  index: -1
+beijing
+  rotate: true
+  xy: 234, 20
+  size: 190, 168
+  orig: 213, 236
+  offset: 7, 53
   index: -1
 chick
   rotate: true
-  xy: 211, 9
+  xy: 849, 60
   size: 150, 151
   orig: 184, 151
   offset: 28, 0
   index: -1
 chick2
-  rotate: false
-  xy: 364, 97
+  rotate: true
+  xy: 777, 12
   size: 91, 62
   orig: 184, 151
   offset: 0, 26
   index: -1
 chick3
-  rotate: false
-  xy: 364, 19
+  rotate: true
+  xy: 841, 2
   size: 56, 76
   orig: 184, 151
   offset: 128, 58
   index: -1
 chick4
-  rotate: false
-  xy: 460, 26
+  rotate: true
+  xy: 479, 2
   size: 31, 26
   orig: 184, 151
   offset: 148, 38
   index: -1
 chick5
   rotate: true
-  xy: 422, 18
+  xy: 441, 3
   size: 30, 36
   orig: 184, 151
   offset: 96, 11
   index: -1
 di
-  rotate: false
-  xy: 2, 36
-  size: 207, 228
+  rotate: true
+  xy: 2, 3
+  size: 207, 230
   orig: 213, 236
-  offset: 3, 3
+  offset: 3, 1
   index: -1
 guang
-  rotate: true
-  xy: 479, 91
-  size: 173, 174
+  rotate: false
+  xy: 404, 35
+  size: 175, 175
   orig: 179, 176
-  offset: 3, 2
+  offset: 2, 1
+  index: -1
+jinbi
+  rotate: false
+  xy: 581, 24
+  size: 194, 34
+  orig: 194, 34
+  offset: 0, 0
   index: -1
 jinbi1
   rotate: true
-  xy: 422, 50
+  xy: 919, 13
   size: 45, 36
   orig: 45, 36
   offset: 0, 0
   index: -1
 jinbi2
-  rotate: false
-  xy: 460, 54
+  rotate: true
+  xy: 404, 2
   size: 31, 35
   orig: 43, 44
   offset: 7, 4
-  index: -1
-yuyan1
-  rotate: false
-  xy: 2, 2
-  size: 187, 32
-  orig: 189, 35
-  offset: 1, 1
   index: -1

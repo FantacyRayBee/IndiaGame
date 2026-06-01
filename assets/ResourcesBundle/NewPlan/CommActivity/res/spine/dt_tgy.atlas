@@ -1,20 +1,13 @@
 
 dt_tgy.png
-size: 238,72
+size: 86,72
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-img/cc
+imgcc
   rotate: false
-  xy: 154, 2
+  xy: 2, 2
   size: 82, 68
   orig: 82, 68
-  offset: 0, 0
-  index: -1
-img/zi
-  rotate: false
-  xy: 2, 48
-  size: 150, 22
-  orig: 150, 22
   offset: 0, 0
   index: -1

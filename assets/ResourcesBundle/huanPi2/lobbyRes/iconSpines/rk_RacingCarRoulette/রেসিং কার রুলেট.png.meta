@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "b25b4609-7f2b-432b-a2b0-56940d232b64",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 206,
+  "height": 38,
+  "platformSettings": {},
+  "subMetas": {
+    "রেসিং কার রুলেট": {
+      "ver": "1.0.6",
+      "uuid": "a3356766-3077-49be-8be9-3cd399d7ff07",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "b25b4609-7f2b-432b-a2b0-56940d232b64",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 206,
+      "height": 38,
+      "rawWidth": 206,
+      "rawHeight": 38,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

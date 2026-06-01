@@ -24,16 +24,16 @@ cc.Class({
         togList: [cc.Toggle],
     },
 
-    ctor: function() {
+    ctor: function () {
         this.haveFromData = false;  // 是否有跳转来源数据
         this.upiChannel = 1;    // upi渠道
-        this.entryStrList = ['paytm','upi','phonepe']
+        this.entryStrList = ['paytm', 'upi', 'phonepe']
     },
 
-    onLoad: function() {
+    onLoad: function () {
         SHOPPING.cashID = -1;
         this.node_bonusTips.active = false;
-        
+
         this.btn_back.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_instructions.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_record.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
@@ -43,8 +43,7 @@ cc.Class({
         for (let i = 0; i < 3; i++) {
             this.togList[i].node.on("toggle", CommonFun.getInstance().debounce(this.togClick, 1), this);
         }
-        this.lab_userDiamond.string = `₹${FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100)}`;
-
+        this.setUserDiamond(GlobalCfg.USER_DATAS.userDiamond);
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     },
@@ -53,7 +52,7 @@ cc.Class({
      * 设置跳转来源
      * @param {string} from 
      */
-    setJumpFrom: function(from) {
+    setJumpFrom: function (from) {
         if (from && from.length > 0) {
             this.haveFromData = true;
             SHOPPING.from = from;
@@ -63,19 +62,28 @@ cc.Class({
         };
     },
 
-    start: function() {
+    setUserDiamond: function (diamond) {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        if (languagesType == I18NLanguagesEnum.Bengali) {
+            this.lab_userDiamond.string = `৳${FloatCalculation.accDiv(diamond, 100)}`;
+        } else {
+            this.lab_userDiamond.string = `₹${FloatCalculation.accDiv(diamond, 100)}`;
+        }
+    },
+
+    start: function () {
         this.togList[0].isChecked = true;
         GlobalCfg.PAY_CHANNEL2 = this.entryStrList[0];
         this.setShopItems();
     },
 
-    onEventMsg: function(webData, target) {
+    onEventMsg: function (webData, target) {
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
-        LoggerUtil.getInstance().log("onEventMsg msgId ===> ",  msgId);
-        LoggerUtil.getInstance().log("onEventMsg notify ===> ",  JSON.stringify(notify));
-        if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) { 
+        LoggerUtil.getInstance().log("onEventMsg msgId ===> ", msgId);
+        LoggerUtil.getInstance().log("onEventMsg notify ===> ", JSON.stringify(notify));
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
             let reason = notify.reason;         // 原因
             let changed = notify.changed;       // 变化值
             let winnings = notify.winnings;     // winnings(后)
@@ -85,14 +93,14 @@ cc.Class({
             GlobalCfg.USER_DATAS.userDiamond = deposit + winnings;
             let tempCoin = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.userDiamond, 0);
             let coin = FloatCalculation.accDiv(tempCoin, 100);
-            self.lab_userDiamond.string = `₹${coin}`;
+            self.setUserDiamond(coin);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.SHOP_SELECTED_ITEM) {
             let shopItemData = notify.shopItemData;
-            LoggerUtil.getInstance().log("SHOP_SELECTED_ITEM shopItemData ===> ",  shopItemData);
+            LoggerUtil.getInstance().log("SHOP_SELECTED_ITEM shopItemData ===> ", shopItemData);
             SHOPPING.cashID = shopItemData.id;
             SHOPPING.cashAmount = shopItemData.amount;
-            
+
             let amount = Math.floor(shopItemData.amount / 100);
             let gift = Math.floor(shopItemData.gift / 100);
             let add = Math.floor(shopItemData.add / 100);
@@ -113,6 +121,9 @@ cc.Class({
                         self.lab_details.string = `اپنی کھوئی ہوئی رقم پر ${Number((gift / amount) * 100).toFixed(0)}% کیش بیک حاصل کریں۔`;
                         break;
                     case I18NLanguagesEnum.Bengali:
+                        self.lab_cash.string = `৳${amount + add}`;
+                        self.lab_bonus.string = `৳${gift}`;
+                        self.lab_totalGet.string = `৳${amount + gift + add}`;
                         self.lab_details.string = `আপনার হারানো পরিমাণে ${Number((gift / amount) * 100).toFixed(0)}% নগদ ফেরত পান`;
                         break;
                     default:
@@ -138,6 +149,9 @@ cc.Class({
                         self.lab_details.string = `اپنی کھوئی ہوئی رقم پر 0% کیش بیک حاصل کریں۔`;
                         break;
                     case I18NLanguagesEnum.Bengali:
+                        self.lab_cash.string = `৳${amount + add}`;
+                        self.lab_bonus.string = `৳0`;
+                        self.lab_totalGet.string = `৳${amount + add}`;
                         self.lab_details.string = `আপনার হারানো পরিমাণে 0% নগদ ফেরত পান`;
                         break;
                     default:
@@ -149,7 +163,11 @@ cc.Class({
 
             let languagesType = I18NUtil.getInstance().getLanguageType();
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Shop_Add Cash']);
-            self.lab_addCash.string = `${descriptionStr} ₹${amount}`;
+            if (languagesType == I18NLanguagesEnum.Bengali) {
+                self.lab_addCash.string = `${descriptionStr} ৳${amount}`;
+            } else {
+                self.lab_addCash.string = `${descriptionStr} ₹${amount}`;
+            }
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.REFRESH_SHOP_COMMODITY) {
             self.setShopItems();
@@ -163,7 +181,7 @@ cc.Class({
     },
 
 
-    onDestroy: function() {
+    onDestroy: function () {
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.serverMsg, this.msgHandle);
         ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPITEM);
@@ -171,33 +189,33 @@ cc.Class({
         // CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.SHOPTOGITEM);
     },
 
-    setShopItems: function() {
+    setShopItems: function () {
         Promise.all([this.getStoreListInfo(), CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPITEM)])
-        .then((arr) => {
-            let storeList = arr[0];
-            let itemPrefab = arr[1];
-            if (CommonFun.getInstance().isValidForScr(this)) {
-                let couldWithdraw = GlobalCfg.USER_DATAS.userDiamond;
-                let arr = CommonFun.getInstance().dealShopList(couldWithdraw, storeList);
-                this.addShopItems(arr, itemPrefab);         
-            };       
-        })
-        .catch((err) => {});
+            .then((arr) => {
+                let storeList = arr[0];
+                let itemPrefab = arr[1];
+                if (CommonFun.getInstance().isValidForScr(this)) {
+                    let couldWithdraw = GlobalCfg.USER_DATAS.userDiamond;
+                    let arr = CommonFun.getInstance().dealShopList(couldWithdraw, storeList);
+                    this.addShopItems(arr, itemPrefab);
+                };
+            })
+            .catch((err) => { });
     },
 
-    setPayChannel : function(payChannels) {
+    setPayChannel: function (payChannels) {
         Promise.all([CommonFun.getInstance().loadPrefabByPromise(GlobalCfg.PREFAB_PATH.SHOPTOGITEM)])
-        .then((arr) => {
-            let itemPrefab = arr[0];
-            if (CommonFun.getInstance().isValidForScr(this)) {
-                this.addShopTogItems(payChannels, itemPrefab);         
-            };
-        })
-        .catch((err) => {}); 
+            .then((arr) => {
+                let itemPrefab = arr[0];
+                if (CommonFun.getInstance().isValidForScr(this)) {
+                    this.addShopTogItems(payChannels, itemPrefab);
+                };
+            })
+            .catch((err) => { });
     },
 
 
-    addShopItems: function(arr, itemPrefab) {
+    addShopItems: function (arr, itemPrefab) {
         let children = this.node_shopItemContent.children;
         for (let i = 0, len = children.length; i < len; i++) {
             const node = children[i];
@@ -243,13 +261,13 @@ cc.Class({
                 };
                 this.unschedule(addItem);
                 return;
-            }; 
+            };
         };
-        this.schedule(addItem, 1/cc.game.getFrameRate(), len - 1, 0);
+        this.schedule(addItem, 1 / cc.game.getFrameRate(), len - 1, 0);
     },
 
 
-    addShopTogItems : function(data, itemPrefab) {
+    addShopTogItems: function (data, itemPrefab) {
         let children = this.node_shopTogItemContent.children;
         for (let i = 0, len = children.length; i < len; i++) {
             const node = children[i];
@@ -276,15 +294,15 @@ cc.Class({
         }
     },
 
-    getStoreListInfo: function() {
+    getStoreListInfo: function () {
         return new Promise((resolve, reject) => {
             if (GlobalCfg.USER_DATAS.store) {
                 resolve(GlobalCfg.USER_DATAS.store);
                 return;
             };
 
-            let url = `${GlobalCfg.HTTP_SERVER}/v1/payment/commodity/storelist`;  
-            CommonFun.getInstance().httpGet(url, (json) => {  
+            let url = `${GlobalCfg.HTTP_SERVER}/v1/payment/commodity/storelist`;
+            CommonFun.getInstance().httpGet(url, (json) => {
                 if (json && json.result == 0 && json.data) {
                     let data = json.data;
                     let list = data.list;
@@ -300,7 +318,7 @@ cc.Class({
     },
 
 
-    btnClick: function(btn) {
+    btnClick: function (btn) {
         let btnName = btn.node.name;
         switch (btnName) {
             case this.btn_back.node.name:
@@ -317,9 +335,9 @@ cc.Class({
                 break;
             case this.btn_addCash.node.name:
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
-                this.dealBtnAddCashEvent(); 
+                this.dealBtnAddCashEvent();
                 break;
-            case  this.btn_bonusTips.node.name:
+            case this.btn_bonusTips.node.name:
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
                 this.dealBtnBonusTipsEvent();
                 break;
@@ -328,27 +346,27 @@ cc.Class({
         }
     },
 
-    togClick: function(tog) {
+    togClick: function (tog) {
         if (tog.isChecked) {
             let index = parseInt(tog.node.name);
             GlobalCfg.PAY_CHANNEL2 = this.entryStrList[index];
         }
     },
 
-    dealBtnBackEvent: function() {
+    dealBtnBackEvent: function () {
         CommonFun.getInstance().decVerticalAcc();
         this.node.destroy();
     },
 
-    dealBtnInstructionsEvent: function() {
+    dealBtnInstructionsEvent: function () {
         CommonFun.getInstance().showShopInstructions();
     },
 
-    dealBtnRecordEvent: function() {
+    dealBtnRecordEvent: function () {
         CommonFun.getInstance().showTransactionRecord();
     },
 
-    dealBtnAddCashEvent: function() {
+    dealBtnAddCashEvent: function () {
         if (SHOPPING.cashID == -1) {
             return;
         };
@@ -364,9 +382,9 @@ cc.Class({
         CommonFun.getInstance().rechargeByCommodityId(commodityId, this.upiChannel + '-' + SHOPPING.from, null, GlobalCfg.PAY_CHANNEL);
     },
 
-    dealBtnBonusTipsEvent: function() {
+    dealBtnBonusTipsEvent: function () {
         this.node_bonusTips.active = !this.node_bonusTips.active;
     },
 
-    
+
 });
