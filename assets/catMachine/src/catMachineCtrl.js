@@ -114,6 +114,7 @@ cc.Class({
         this._spinReqRetry = 0;
         this._spinReqMaxRetry = 2;
         this._pendingResumeSpinAfterReconnect = false;
+        this._lastSpinBetAmount = 0;
     },
 
     loadAudioClip: function (audioClipUrl = "", func = null, target = null) {
@@ -608,20 +609,16 @@ cc.Class({
             this.toggle_auto.interactable = false;
             this.autoSpineNode.active = true;
 
-            let proroID = 'gameservice.call';
-            let message = 'CallReq';
-            GameServerManager.send(proroID, message, {
-                amount: amount * 100
-            });
-
+            this.curSendSpin = false;
+            this._clearSpinReqWatchdog();
             this._pendingResumeSpinAfterReconnect = false;
+            this._sendCallReqWithAmount(amount * 100);
             return;
         }
 
         if (this._pendingResumeSpinAfterReconnect) {
-            this._pendingResumeSpinAfterReconnect = false;
-            this.curSendSpin = false;
-            this._clearSpinReqWatchdog();
+            this._recoverPendingSpinAfterReconnect();
+            return;
         }
 
         if (this.isAuto) {
@@ -1739,13 +1736,42 @@ cc.Class({
         this.lab_totalWin.node.active = false;
         this.node_goodluck.active = true;
 
+        this._sendCallReqWithAmount(betAmount);
+    },
+
+    _sendCallReqWithAmount: function (betAmount) {
         this.curSendSpin = true;
+        this._lastSpinBetAmount = betAmount;
         this._startSpinReqWatchdog();
         let proroID = 'gameservice.call';
         let message = 'CallReq';
         GameServerManager.send(proroID, message, {
             amount: betAmount
         });
+    },
+
+    _recoverPendingSpinAfterReconnect: function () {
+        const hadPendingSpin = this._pendingResumeSpinAfterReconnect || this.curSendSpin;
+        this._pendingResumeSpinAfterReconnect = false;
+        this.curSendSpin = false;
+        this._clearSpinReqWatchdog();
+
+        if (!hadPendingSpin) {
+            return;
+        }
+
+        LoggerUtil.getInstance().warn("catMachine recover pending spin after reconnect", {
+            isAuto: this.isAuto,
+            isRunningCatAnim: this.isRunningCatAnim,
+            lastSpinBetAmount: this._lastSpinBetAmount
+        });
+
+        if (this.isAuto && !this.isRunningCatAnim) {
+            this.sendCallReq();
+            return;
+        }
+
+        this.recoverySpinBtnEvent();
     },
 
     _startSpinReqWatchdog: function () {
