@@ -151,7 +151,42 @@ cc.Class({
         else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
             self.setVipInfo();
             self.setUpgradeVipAnim();
+        }
+        else if (GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE === msgId) {
+            self.showBenifitsByLevel(self.selectVipLevel, true);
         };
+    },
+
+    getNextLevelTipsStr: function(rechargeAmount, vipLevel) {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        switch (languagesType) {
+            case I18NLanguagesEnum.English:
+                return `Recharge ${rechargeAmount} to become VIP${vipLevel}`;
+            case I18NLanguagesEnum.Hindi:
+                return `VIP${vipLevel} बनने के लिए ${rechargeAmount} रिचार्ज करें`;
+            case I18NLanguagesEnum.Urdu:
+                return `VIP${vipLevel} بننے کے لیے ${rechargeAmount} ری چارج کریں`;
+            case I18NLanguagesEnum.Bengali:
+                return `VIP${vipLevel} হতে ${rechargeAmount} রিচার্জ করুন`;
+            default:
+                return `Recharge ${rechargeAmount} to become VIP${vipLevel}`;
+        }
+    },
+
+    getUnlockMoreLevelTipsStr: function() {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        switch (languagesType) {
+            case I18NLanguagesEnum.English:
+                return "Unlock more level";
+            case I18NLanguagesEnum.Hindi:
+                return "अधिक स्तर अनलॉक करें";
+            case I18NLanguagesEnum.Urdu:
+                return "مزید لیول ان لاک کریں";
+            case I18NLanguagesEnum.Bengali:
+                return "আরও লেভেল আনলক করুন";
+            default:
+                return "Unlock more level";
+        }
     },
 
     btnClick: function(btn) {
@@ -395,7 +430,7 @@ cc.Class({
             this.btn_vipRight.interactable = true;
             this.btn_vipRight.enableAutoGrayEffect = false; 
 
-            this.lab_nextLevelTips.string = `Recharge ${nextBenifits.recharge/100} to become VIP${level + 1}`;
+            this.lab_nextLevelTips.string = this.getNextLevelTipsStr(nextBenifits.recharge / 100, level + 1);
             this.lab_nextLevelProgress.string = `${GlobalCfg.USER_DATAS.userVip.recharged/100}/${nextBenifits.recharge/100}`;
             this.progressBar_nextLevel.progress = GlobalCfg.USER_DATAS.userVip.recharged/nextBenifits.recharge;
         }
@@ -403,7 +438,7 @@ cc.Class({
             this.btn_vipRight.interactable = false;
             this.btn_vipRight.enableAutoGrayEffect = true; 
 
-            this.lab_nextLevelTips.string = `Unlock more level`;
+            this.lab_nextLevelTips.string = this.getUnlockMoreLevelTipsStr();
             this.lab_nextLevelProgress.string = `${GlobalCfg.USER_DATAS.userVip.recharged/100}/-`;
             this.progressBar_nextLevel.progress = 0;
         }; 

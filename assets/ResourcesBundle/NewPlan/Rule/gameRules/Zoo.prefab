@@ -24,14 +24,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 15
       },
       {
-        "__id__": 15
+        "__id__": 16
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 17
     },
     "_opacity": 255,
     "_color": {
@@ -95,11 +95,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 12
+        "__id__": 13
       }
     ],
     "_prefab": {
-      "__id__": 13
+      "__id__": 14
     },
     "_opacity": 255,
     "_color": {
@@ -160,17 +160,17 @@
         "__id__": 4
       },
       {
-        "__id__": 7
+        "__id__": 8
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 10
+        "__id__": 11
       }
     ],
     "_prefab": {
-      "__id__": 11
+      "__id__": 12
     },
     "_opacity": 255,
     "_color": {
@@ -231,10 +231,13 @@
     "_components": [
       {
         "__id__": 5
+      },
+      {
+        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 7
     },
     "_opacity": 255,
     "_color": {
@@ -300,8 +303,8 @@
     "_dstBlendFactor": 771,
     "_string": "1.\"Zoo Roulette\" is a very entertaining and exiting large-scale online roulette game.\n2.Players bet on the animals. Animals are divided into three categories, birds, beasts,sharks, and you win the payout by betting on the right animals.\n3.There are 11 betting areas in the game, and the odds for each area are different.",
     "_N$string": "1.\"Zoo Roulette\" is a very entertaining and exiting large-scale online roulette game.\n2.Players bet on the animals. Animals are divided into three categories, birds, beasts,sharks, and you win the payout by betting on the right animals.\n3.There are 11 betting areas in the game, and the odds for each area are different.",
-    "_fontSize": 24,
-    "_lineHeight": 32,
+    "_fontSize": 23,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "74b6746e-9573-40e3-b82d-3ec3123b6eed"
@@ -314,8 +317,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 4
+    },
+    "_enabled": true,
+    "labelTransId": 13186,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -340,11 +355,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 8
+        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 9
+      "__id__": 10
     },
     "_opacity": 255,
     "_color": {
@@ -398,7 +413,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 7
+      "__id__": 8
     },
     "_enabled": true,
     "_materials": [

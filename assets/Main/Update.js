@@ -890,6 +890,7 @@ cc.Class({
         .then((arr) => {
             CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
                 window.ResourcesBundle = bundle;
+                this.preloadCurrentLanguageBundle(() => {
                 GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
                 GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
                 if (!GlobalCfg.USER_DATAS.token) {
@@ -920,14 +921,26 @@ cc.Class({
                 if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
                     this.node_btn_guestLogin.active = false;
                     this.node_or_sprite.active = false;
-                    this.node_bg_title.active = false;
-                }
+                        this.node_bg_title.active = false;
+                    }
+                });
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
             });
         })
         .catch((err) => {
             LoggerUtil.getInstance().error(err);
+        });
+    },
+
+    preloadCurrentLanguageBundle: function(callback) {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        let bundleName = `Language${languagesType}`;
+        CommonFun.getInstance().loadBundle(bundleName, () => {
+            callback && callback();
+        }, (err) => {
+            LoggerUtil.getInstance().error(`${bundleName}-Bundle error: ${JSON.stringify(err)}`);
+            callback && callback();
         });
     },
 

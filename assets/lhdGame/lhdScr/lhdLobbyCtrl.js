@@ -554,8 +554,17 @@ cc.Class({
         this.betStatus = false;
         this.lhdAudioCtrl.playGameSound("1s");
         let spine = this.skeleDataMap.get("Stop Betting");
+        if (this.stopBettingLabel) {
+            this.stopBettingLabel.active = true;
+        }
         this.sek_stopBetig.skeletonData = spine;
-        this.sek_stopBetig.addAnimation(0, "animation", false); 
+        this.sek_stopBetig.addAnimation(0, "animation", false);
+        this.sek_stopBetig.setCompleteListener(() => {
+            if (this.stopBettingLabel) {
+                this.stopBettingLabel.active = false;
+            }
+            this.sek_stopBetig.setCompleteListener(null);
+        });
         GlobalCfg.ACT_SCENE_CTRL.ske_huo_hu.active = false;
         GlobalCfg.ACT_SCENE_CTRL.ske_huo_long.active = false;
         this.btn_repeatBet.node.active = false;
@@ -966,6 +975,10 @@ cc.Class({
         this.ske_vs_longhu = cc.find('Canvas/node_skeAll/ske_vs_longhu').getComponent(sp.Skeleton);
         this.ske_endWin = cc.find('Canvas/node_skeAll/ske_endWin').getComponent(sp.Skeleton);
         this.sek_stopBetig = cc.find('Canvas/node_skeAll/ske_StopBetting').getComponent(sp.Skeleton);
+        this.stopBettingLabel = this.sek_stopBetig.node.getChildByName('label');
+        if (this.stopBettingLabel) {
+            this.stopBettingLabel.active = false;
+        }
         this.ske_kuang_long = cc.find('Canvas/node_skeAll/ske_kuang_long');
         this.ske_kuang_hu = cc.find('Canvas/node_skeAll/ske_kuang_hu');
         this.ske_kuang_ping = cc.find('Canvas/node_skeAll/ske_kuang_ping');

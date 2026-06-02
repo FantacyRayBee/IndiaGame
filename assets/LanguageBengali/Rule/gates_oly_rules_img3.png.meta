@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "05176e61-a530-47f6-8c09-d06edfcb458c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 924,
+  "height": 563,
+  "platformSettings": {},
+  "subMetas": {
+    "gates_oly_rules_img3": {
+      "ver": "1.0.6",
+      "uuid": "0f5eb070-9c93-47b4-9a79-bb37fa55487e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "05176e61-a530-47f6-8c09-d06edfcb458c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 924,
+      "height": 563,
+      "rawWidth": 924,
+      "rawHeight": 563,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

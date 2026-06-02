@@ -45,17 +45,17 @@
         "__id__": 61
       },
       {
-        "__id__": 64
+        "__id__": 65
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 67
+        "__id__": 68
       }
     ],
     "_prefab": {
-      "__id__": 68
+      "__id__": 69
     },
     "_opacity": 255,
     "_color": {
@@ -1457,7 +1457,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 45,
       "height": 28
     },
     "_anchorPoint": {
@@ -1469,7 +1469,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        234.565,
+        268.615,
         -280.514,
         0,
         0,
@@ -1497,7 +1497,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Background",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 38
     },
@@ -1528,7 +1528,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 18,
       "height": 28
     },
     "_anchorPoint": {
@@ -1592,7 +1592,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 79.2,
+      "width": 17.52,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -1604,7 +1604,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        43,
+        0,
         4.006,
         0,
         0,
@@ -1644,8 +1644,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "<Prev",
-    "_N$string": "<Prev",
+    "_string": "<",
+    "_N$string": "<",
     "_fontSize": 30,
     "_lineHeight": 30,
     "_enableWrapText": true,
@@ -1718,8 +1718,8 @@
     "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 0,
-    "_right": 0,
+    "_left": 13.5,
+    "_right": 13.5,
     "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
@@ -1869,7 +1869,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 45,
       "height": 50
     },
     "_anchorPoint": {
@@ -1881,7 +1881,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        436.671,
+        409.688,
         -280.308,
         0,
         0,
@@ -1909,7 +1909,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Background",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 48
     },
@@ -1940,7 +1940,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 18,
       "height": 28
     },
     "_anchorPoint": {
@@ -2004,7 +2004,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 79.2,
+      "width": 17.52,
       "height": 37.8
     },
     "_anchorPoint": {
@@ -2016,7 +2016,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -39,
+        0,
         3.853999999999999,
         0,
         0,
@@ -2056,8 +2056,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Next>",
-    "_N$string": "Next>",
+    "_string": ">",
+    "_N$string": ">",
     "_fontSize": 30,
     "_lineHeight": 30,
     "_enableWrapText": true,
@@ -2130,8 +2130,8 @@
     "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 0,
-    "_right": 0,
+    "_left": 13.5,
+    "_right": 13.5,
     "_top": 11,
     "_bottom": 11,
     "_verticalCenter": 0,
@@ -2370,10 +2370,13 @@
     "_components": [
       {
         "__id__": 62
+      },
+      {
+        "__id__": 63
       }
     ],
     "_prefab": {
-      "__id__": 63
+      "__id__": 64
     },
     "_opacity": 255,
     "_color": {
@@ -2458,6 +2461,18 @@
     "_id": ""
   },
   {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 61
+    },
+    "_enabled": true,
+    "labelTransId": 22002,
+    "textType": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -2479,11 +2494,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 65
+        "__id__": 66
       }
     ],
     "_prefab": {
-      "__id__": 66
+      "__id__": 67
     },
     "_opacity": 255,
     "_color": {
@@ -2537,7 +2552,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 64
+      "__id__": 65
     },
     "_enabled": true,
     "_materials": [
@@ -2596,7 +2611,7 @@
       "__id__": 59
     },
     "lab_page": {
-      "__id__": 65
+      "__id__": 66
     },
     "lab_playerTotal": {
       "__id__": 62

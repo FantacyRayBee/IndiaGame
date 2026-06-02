@@ -24,14 +24,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 86
+        "__id__": 101
       },
       {
-        "__id__": 87
+        "__id__": 102
       }
     ],
     "_prefab": {
-      "__id__": 88
+      "__id__": 103
     },
     "_opacity": 255,
     "_color": {
@@ -95,11 +95,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 84
+        "__id__": 99
       }
     ],
     "_prefab": {
-      "__id__": 85
+      "__id__": 100
     },
     "_opacity": 255,
     "_color": {
@@ -163,7 +163,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 83
+      "__id__": 98
     },
     "_opacity": 255,
     "_color": {
@@ -257,7 +257,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 82
+      "__id__": 97
     },
     "_opacity": 255,
     "_color": {
@@ -1388,52 +1388,52 @@
         "__id__": 36
       },
       {
-        "__id__": 39
+        "__id__": 40
       },
       {
-        "__id__": 42
-      },
-      {
-        "__id__": 45
+        "__id__": 44
       },
       {
         "__id__": 48
       },
       {
-        "__id__": 51
+        "__id__": 52
       },
       {
-        "__id__": 54
-      },
-      {
-        "__id__": 57
+        "__id__": 56
       },
       {
         "__id__": 60
       },
       {
-        "__id__": 63
+        "__id__": 64
       },
       {
-        "__id__": 66
-      },
-      {
-        "__id__": 69
+        "__id__": 68
       },
       {
         "__id__": 72
       },
       {
-        "__id__": 75
+        "__id__": 76
       },
       {
-        "__id__": 78
+        "__id__": 80
+      },
+      {
+        "__id__": 84
+      },
+      {
+        "__id__": 88
+      },
+      {
+        "__id__": 92
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 81
+      "__id__": 96
     },
     "_opacity": 255,
     "_color": {
@@ -1494,10 +1494,13 @@
     "_components": [
       {
         "__id__": 37
+      },
+      {
+        "__id__": 38
       }
     ],
     "_prefab": {
-      "__id__": 38
+      "__id__": 39
     },
     "_opacity": 255,
     "_color": {
@@ -1582,6 +1585,18 @@
     "_id": ""
   },
   {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 36
+    },
+    "_enabled": true,
+    "labelTransId": 13131,
+    "textType": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1603,11 +1618,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 40
+        "__id__": 41
+      },
+      {
+        "__id__": 42
       }
     ],
     "_prefab": {
-      "__id__": 41
+      "__id__": 43
     },
     "_opacity": 255,
     "_color": {
@@ -1661,7 +1679,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 39
+      "__id__": 40
     },
     "_enabled": true,
     "_materials": [
@@ -1692,6 +1710,18 @@
     "_id": ""
   },
   {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 40
+    },
+    "_enabled": true,
+    "labelTransId": 13132,
+    "textType": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1713,11 +1743,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 43
+        "__id__": 45
+      },
+      {
+        "__id__": 46
       }
     ],
     "_prefab": {
-      "__id__": 44
+      "__id__": 47
     },
     "_opacity": 255,
     "_color": {
@@ -1771,7 +1804,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 42
+      "__id__": 44
     },
     "_enabled": true,
     "_materials": [
@@ -1802,6 +1835,18 @@
     "_id": ""
   },
   {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 44
+    },
+    "_enabled": true,
+    "labelTransId": 13133,
+    "textType": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1823,11 +1868,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 46
+        "__id__": 49
+      },
+      {
+        "__id__": 50
       }
     ],
     "_prefab": {
-      "__id__": 47
+      "__id__": 51
     },
     "_opacity": 255,
     "_color": {
@@ -1881,7 +1929,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 45
+      "__id__": 48
     },
     "_enabled": true,
     "_materials": [
@@ -1912,6 +1960,18 @@
     "_id": ""
   },
   {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 48
+    },
+    "_enabled": true,
+    "labelTransId": 13134,
+    "textType": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1933,11 +1993,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 49
+        "__id__": 53
+      },
+      {
+        "__id__": 54
       }
     ],
     "_prefab": {
-      "__id__": 50
+      "__id__": 55
     },
     "_opacity": 255,
     "_color": {
@@ -1991,7 +2054,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 48
+      "__id__": 52
     },
     "_enabled": true,
     "_materials": [
@@ -2022,6 +2085,18 @@
     "_id": ""
   },
   {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 52
+    },
+    "_enabled": true,
+    "labelTransId": 13135,
+    "textType": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -2043,11 +2118,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 52
+        "__id__": 57
+      },
+      {
+        "__id__": 58
       }
     ],
     "_prefab": {
-      "__id__": 53
+      "__id__": 59
     },
     "_opacity": 255,
     "_color": {
@@ -2101,7 +2179,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 51
+      "__id__": 56
     },
     "_enabled": true,
     "_materials": [
@@ -2113,7 +2191,7 @@
     "_dstBlendFactor": 771,
     "_string": "If the same symbol appears in at least three consecutive columns since the first column, you win. It is OK if the same symbol does not appear in the same line, but it must appear in the first column. The prize you get",
     "_N$string": "If the same symbol appears in at least three consecutive columns since the first column, you win. It is OK if the same symbol does not appear in the same line, but it must appear in the first column. The prize you get",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2127,8 +2205,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 56
+    },
+    "_enabled": true,
+    "labelTransId": 13121,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2153,11 +2243,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 55
+        "__id__": 61
+      },
+      {
+        "__id__": 62
       }
     ],
     "_prefab": {
-      "__id__": 56
+      "__id__": 63
     },
     "_opacity": 255,
     "_color": {
@@ -2211,7 +2304,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 54
+      "__id__": 60
     },
     "_enabled": true,
     "_materials": [
@@ -2223,7 +2316,7 @@
     "_dstBlendFactor": 771,
     "_string": "If you get more than one type same symbols , the odds of each type will be calculated and the total prize will be distributed together",
     "_N$string": "If you get more than one type same symbols , the odds of each type will be calculated and the total prize will be distributed together",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2237,8 +2330,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 60
+    },
+    "_enabled": true,
+    "labelTransId": 13122,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2263,11 +2368,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 58
+        "__id__": 65
+      },
+      {
+        "__id__": 66
       }
     ],
     "_prefab": {
-      "__id__": 59
+      "__id__": 67
     },
     "_opacity": 255,
     "_color": {
@@ -2321,7 +2429,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 57
+      "__id__": 64
     },
     "_enabled": true,
     "_materials": [
@@ -2333,7 +2441,7 @@
     "_dstBlendFactor": 771,
     "_string": "ore than one type same ill be calculated and the total prize will be distr",
     "_N$string": "ore than one type same ill be calculated and the total prize will be distr",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2347,8 +2455,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 64
+    },
+    "_enabled": true,
+    "labelTransId": 13123,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2373,11 +2493,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 61
+        "__id__": 69
+      },
+      {
+        "__id__": 70
       }
     ],
     "_prefab": {
-      "__id__": 62
+      "__id__": 71
     },
     "_opacity": 255,
     "_color": {
@@ -2431,7 +2554,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 60
+      "__id__": 68
     },
     "_enabled": true,
     "_materials": [
@@ -2443,7 +2566,7 @@
     "_dstBlendFactor": 771,
     "_string": "If Clover appears in the first three columns consecutively , you will get “Freegame'prize.That means , you will get 10 free spins . The machine will spin 10 times ",
     "_N$string": "If Clover appears in the first three columns consecutively , you will get “Freegame'prize.That means , you will get 10 free spins . The machine will spin 10 times ",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2457,8 +2580,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 68
+    },
+    "_enabled": true,
+    "labelTransId": 13124,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2483,11 +2618,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 64
+        "__id__": 73
+      },
+      {
+        "__id__": 74
       }
     ],
     "_prefab": {
-      "__id__": 65
+      "__id__": 75
     },
     "_opacity": 255,
     "_color": {
@@ -2541,7 +2679,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 63
+      "__id__": 72
     },
     "_enabled": true,
     "_materials": [
@@ -2553,7 +2691,7 @@
     "_dstBlendFactor": 771,
     "_string": "WILD SYMBOL",
     "_N$string": "WILD SYMBOL",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2567,8 +2705,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 72
+    },
+    "_enabled": true,
+    "labelTransId": 13125,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2593,11 +2743,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 67
+        "__id__": 77
+      },
+      {
+        "__id__": 78
       }
     ],
     "_prefab": {
-      "__id__": 68
+      "__id__": 79
     },
     "_opacity": 255,
     "_color": {
@@ -2651,7 +2804,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 66
+      "__id__": 76
     },
     "_enabled": true,
     "_materials": [
@@ -2663,7 +2816,7 @@
     "_dstBlendFactor": 771,
     "_string": "It only appears on the 2-5th reel .",
     "_N$string": "It only appears on the 2-5th reel .",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2677,8 +2830,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 76
+    },
+    "_enabled": true,
+    "labelTransId": 13126,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2703,11 +2868,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 70
+        "__id__": 81
+      },
+      {
+        "__id__": 82
       }
     ],
     "_prefab": {
-      "__id__": 71
+      "__id__": 83
     },
     "_opacity": 255,
     "_color": {
@@ -2761,7 +2929,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 69
+      "__id__": 80
     },
     "_enabled": true,
     "_materials": [
@@ -2773,7 +2941,7 @@
     "_dstBlendFactor": 771,
     "_string": "Substitutes all symbols except",
     "_N$string": "Substitutes all symbols except",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2787,8 +2955,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 80
+    },
+    "_enabled": true,
+    "labelTransId": 13127,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2813,11 +2993,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 73
+        "__id__": 85
+      },
+      {
+        "__id__": 86
       }
     ],
     "_prefab": {
-      "__id__": 74
+      "__id__": 87
     },
     "_opacity": 255,
     "_color": {
@@ -2871,7 +3054,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 72
+      "__id__": 84
     },
     "_enabled": true,
     "_materials": [
@@ -2883,7 +3066,7 @@
     "_dstBlendFactor": 771,
     "_string": "It only appears on the 1-3th reel",
     "_N$string": "It only appears on the 1-3th reel",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -2897,8 +3080,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 84
+    },
+    "_enabled": true,
+    "labelTransId": 13128,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -2923,11 +3118,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 76
+        "__id__": 89
+      },
+      {
+        "__id__": 90
       }
     ],
     "_prefab": {
-      "__id__": 77
+      "__id__": 91
     },
     "_opacity": 255,
     "_color": {
@@ -2981,7 +3179,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 75
+      "__id__": 88
     },
     "_enabled": true,
     "_materials": [
@@ -2993,7 +3191,7 @@
     "_dstBlendFactor": 771,
     "_string": "If the first three reels are all appears",
     "_N$string": "If the first three reels are all appears",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -3007,8 +3205,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 88
+    },
+    "_enabled": true,
+    "labelTransId": 13129,
+    "textType": 0,
     "_id": ""
   },
   {
@@ -3033,11 +3243,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 79
+        "__id__": 93
+      },
+      {
+        "__id__": 94
       }
     ],
     "_prefab": {
-      "__id__": 80
+      "__id__": 95
     },
     "_opacity": 255,
     "_color": {
@@ -3091,7 +3304,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 78
+      "__id__": 92
     },
     "_enabled": true,
     "_materials": [
@@ -3103,7 +3316,7 @@
     "_dstBlendFactor": 771,
     "_string": "you will receive 10 Free Spins",
     "_N$string": "you will receive 10 Free Spins",
-    "_fontSize": 24,
+    "_fontSize": 22,
     "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
@@ -3117,8 +3330,20 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "c70b1BUiBVE47NI6m5k/CHC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 92
+    },
+    "_enabled": true,
+    "labelTransId": 13130,
+    "textType": 0,
     "_id": ""
   },
   {
