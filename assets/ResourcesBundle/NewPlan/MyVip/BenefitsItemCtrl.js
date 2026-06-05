@@ -63,17 +63,17 @@ cc.Class({
                     this.rewardTimer = null;
 
                     if (this.benifitsType == 5) {
-                        this.lab_tips2.string = `₹${this.benifitsData.dayTake/100}`;
+                        this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(this.benifitsData.dayTake / 100);
                         this.btn_icon.interactable = true;
                         this.node_quan.active = true;
                     }
                     else if (this.benifitsType == 4) {
-                        this.lab_tips2.string = `₹${this.benifitsData.weekTake/100}`;
+                        this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(this.benifitsData.weekTake / 100);
                         this.btn_icon.interactable = true;
                         this.node_quan.active = true;
                     }
                     else if (this.benifitsType == 3) {
-                        this.lab_tips2.string = `₹${this.benifitsData.monthTake/100}`;
+                        this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(this.benifitsData.monthTake / 100);
                         this.btn_icon.interactable = true;
                         this.node_quan.active = true;
                     }
@@ -172,7 +172,7 @@ cc.Class({
                     this.node_quan.active = false;
                 }
                 else {
-                    this.lab_tips2.string = `₹${data.dayTake/100}`;
+                    this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(data.dayTake / 100);
                     this.btn_icon.interactable = true;
                     this.node_quan.active = true;
 
@@ -189,7 +189,7 @@ cc.Class({
                     this.node_quan.active = false;
                 }
                 else {
-                    this.lab_tips2.string = `₹${data.weekTake/100}`;
+                    this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(data.weekTake / 100);
                     this.btn_icon.interactable = true;
                     this.node_quan.active = true;
 
@@ -206,7 +206,7 @@ cc.Class({
                     this.node_quan.active = false;
                 }
                 else {
-                    this.lab_tips2.string = `₹${data.monthTake/100}`;
+                    this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(data.monthTake / 100);
                     this.btn_icon.interactable = true;
                     this.node_quan.active = true;
 
@@ -217,7 +217,7 @@ cc.Class({
                 this.lab_tips2.node.active = true;
             }
             else if (type == 2) {
-                this.lab_tips2.string = `₹${data.withdrawTotalLimit/100}`;
+                this.lab_tips2.string = CommonFun.getInstance().formatCurrencyAmount(data.withdrawTotalLimit / 100);
                 this.lab_tips2.node.active = true;
                 this.btn_icon.interactable = false;
                 this.node_quan.active = false;

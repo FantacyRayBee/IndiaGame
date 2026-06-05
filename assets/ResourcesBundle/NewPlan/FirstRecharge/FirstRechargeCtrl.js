@@ -45,22 +45,22 @@ cc.Class({
                     this.lab_item0Cash.string = amount;
                     this.lab_item0Bonus.string = bonus;
                     let total = amount + bonus;
-                    this.lab_item0TotalGet.string = "₹" + total;
+                    this.lab_item0TotalGet.string = CommonFun.getInstance().formatCurrencyAmount(total);
                     let point = (total - price) / price;
                     let percent = (point * 100).toFixed(0);
                     this.lab_item0Percent.string = percent;
-                    this.lab_item0Btn.string = "₹" + price;
+                    this.lab_item0Btn.string = CommonFun.getInstance().formatCurrencyAmount(price);
                 }
                 else if (i == 1) {
                     this.secondCommodityId = data.id;
                     this.lab_item1Cash.string = amount;
                     this.lab_item1Bonus.string = bonus;
                     let total = amount + bonus;
-                    this.lab_item1TotalGet.string = "₹" + total;
+                    this.lab_item1TotalGet.string = CommonFun.getInstance().formatCurrencyAmount(total);
                     let point = (total - price) / price;
                     let percent = (point * 100).toFixed(0);
                     this.lab_item1Percent.string = percent;
-                    this.lab_item1Btn.string = "₹" + price;
+                    this.lab_item1Btn.string = CommonFun.getInstance().formatCurrencyAmount(price);
                 };
             };
         };

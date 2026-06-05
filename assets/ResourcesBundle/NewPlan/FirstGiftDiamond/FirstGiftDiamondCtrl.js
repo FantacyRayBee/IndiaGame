@@ -44,7 +44,7 @@ cc.Class({
                 this.lab_diamondMini.node.setPosition(cc.v2(115, 76));
                 break;
         };
-        this.lab_diamond.string = `₹${GlobalCfg.USER_DATAS.firstGiftDiamond/100}`;
+            this.lab_diamond.string = CommonFun.getInstance().formatCurrencyAmount(GlobalCfg.USER_DATAS.firstGiftDiamond / 100);
         this.lab_diamondMini.string = `${GlobalCfg.USER_DATAS.firstGiftDiamond/100}`;
         this.btn_get.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_close.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);

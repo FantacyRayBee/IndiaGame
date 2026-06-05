@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "aa9b1db9-e6e8-4d9c-85dc-b16d8d47cb41",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 397,
+  "height": 64,
+  "platformSettings": {},
+  "subMetas": {
+    "DAILY FREE RUPEES": {
+      "ver": "1.0.6",
+      "uuid": "93ba9d6e-9a25-4ed1-889b-c4a1094ee9a4",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "aa9b1db9-e6e8-4d9c-85dc-b16d8d47cb41",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 397,
+      "height": 64,
+      "rawWidth": 397,
+      "rawHeight": 64,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -51,11 +51,11 @@ cc.Class({
         let add = data.add;             // 额外赠送-dep
         let bonus = data.bonus;         // 额外赠送-bonus
 
-        this.lab_cash.string = `₹${amount/100}`;
-        this.lab_extraCash.string = `₹${add/100}`;
-        this.lab_bonus.string = `₹${bonus/100}`;
-        this.lab_total.string = `₹${(amount + add + bonus)/100}`;
-        this.lab_amount.string = `₹${amount/100}`;
+        this.lab_cash.string = CommonFun.getInstance().formatCurrencyAmount(amount / 100);
+        this.lab_extraCash.string = CommonFun.getInstance().formatCurrencyAmount(add / 100);
+        this.lab_bonus.string = CommonFun.getInstance().formatCurrencyAmount(bonus / 100);
+        this.lab_total.string = CommonFun.getInstance().formatCurrencyAmount((amount + add + bonus) / 100);
+        this.lab_amount.string = CommonFun.getInstance().formatCurrencyAmount(amount / 100);
     },
 
     setTeenPattiRechargeTime: function(time) {

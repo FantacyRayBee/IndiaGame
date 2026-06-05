@@ -81,10 +81,10 @@ cc.Class({
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.WITHDRAW_SELECTED_ITEM) {
             let itemData = notify.itemData;
             self.selectedItemData = itemData;
-            self.lab_withdrawAmount.string = `₹${FloatCalculation.accDiv(itemData.price * (1 - itemData.service_rate), 1).toFixed(1)}`;
+            self.lab_withdrawAmount.string = CommonFun.getInstance().formatCurrencyAmount(FloatCalculation.accDiv(itemData.price * (1 - itemData.service_rate), 1).toFixed(1));
             let languagesType = I18NUtil.getInstance().getLanguageType();
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Withdraw_Withdraw']);
-            self.lab_btnWithDrawTips.string = `${descriptionStr} ₹${FloatCalculation.accDiv(itemData.price, 1)}`;
+            self.lab_btnWithDrawTips.string = CommonFun.getInstance().formatCurrencyText(descriptionStr, FloatCalculation.accDiv(itemData.price, 1));
         }
     },
 
@@ -98,9 +98,9 @@ cc.Class({
 
 
     setLabsData: function() {
-        this.lab_cashBalance.string = `₹${FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100)}`;
-        this.lab_depositCash.string = `₹${FloatCalculation.accDiv(GlobalCfg.USER_DATAS.deposit, 100)}`;
-        this.lab_winningsCash.string = `₹${FloatCalculation.accDiv(GlobalCfg.USER_DATAS.winnings, 100)}`;
+        this.lab_cashBalance.string = CommonFun.getInstance().formatCurrencyAmount(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100));
+        this.lab_depositCash.string = CommonFun.getInstance().formatCurrencyAmount(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.deposit, 100));
+        this.lab_winningsCash.string = CommonFun.getInstance().formatCurrencyAmount(FloatCalculation.accDiv(GlobalCfg.USER_DATAS.winnings, 100));
         if (CommonFun.getInstance().isOpenVipModule()) { 
             let remainingTimes = GlobalCfg.USER_DATAS.userVip.day_withdraw_count_limit - GlobalCfg.USER_DATAS.userVip.day_withdraw_count;
             remainingTimes = remainingTimes <= 0 ? 0 : remainingTimes;

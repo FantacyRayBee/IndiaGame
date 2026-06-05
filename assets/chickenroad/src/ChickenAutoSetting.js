@@ -252,6 +252,21 @@ cc.Class({
         GlobalCfg.ACT_SCENE_CTRL.touchbg.active = false;
     },
 
+    getStartAutoText() {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        switch (languagesType) {
+            case I18NLanguagesEnum.Hindi:
+                return "शुरू करें";
+            case I18NLanguagesEnum.Urdu:
+                return "شروع کریں";
+            case I18NLanguagesEnum.Bengali:
+                return "শুরু করুন";
+            case I18NLanguagesEnum.English:
+            default:
+                return "START";
+        }
+    },
+
     update(dt) {
         this.autoTime = parseInt(this.edit_autoTime.string);
         this.autoLevel = parseInt(this.edit_autoLevel.string);
@@ -263,7 +278,7 @@ cc.Class({
                 this.btn_bet_quicks[i].node.getChildByName('mark').active = false;
             }
         }
-        this.lab_save.string = "START (" + this.autoTime + ")";
+        this.lab_save.string = `${this.getStartAutoText()} (${this.autoTime})`;
     }
 
 });

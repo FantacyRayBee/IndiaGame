@@ -58,7 +58,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
+      "width": 1625,
       "height": 750
     },
     "_anchorPoint": {
@@ -70,7 +70,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        917.5,
+        812.5,
         375,
         0,
         0,
@@ -135,7 +135,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1835,
+      "width": 1625,
       "height": 88
     },
     "_anchorPoint": {
@@ -218,7 +218,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -789.3,
+        -684.3,
         -5.125,
         0,
         0,
@@ -626,7 +626,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -524.157,
+        -419.15700000000004,
         3.326999999999998,
         0,
         0,
@@ -778,7 +778,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        853.549,
+        748.549,
         0,
         0,
         0,
@@ -1164,7 +1164,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": -210,
       "height": 0
     },
     "_anchorPoint": {
@@ -3264,7 +3264,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 86.05,
+      "width": 64.22,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -3316,8 +3316,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹200",
-    "_N$string": "₹200",
+    "_string": "200",
+    "_N$string": "200",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -3771,7 +3771,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 86.05,
+      "width": 64.22,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -3823,8 +3823,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹300",
-    "_N$string": "₹300",
+    "_string": "300",
+    "_N$string": "300",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -4278,7 +4278,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 86.05,
+      "width": 64.22,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -4330,8 +4330,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹500",
-    "_N$string": "₹500",
+    "_string": "500",
+    "_N$string": "500",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -4785,7 +4785,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100.12,
+      "width": 78.28,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -4837,8 +4837,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹1000",
-    "_N$string": "₹1000",
+    "_string": "1000",
+    "_N$string": "1000",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -5292,7 +5292,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 107.46,
+      "width": 85.63,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -5344,8 +5344,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹3000",
-    "_N$string": "₹3000",
+    "_string": "3000",
+    "_N$string": "3000",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -5799,7 +5799,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 107.46,
+      "width": 85.63,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -5851,8 +5851,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "₹5000",
-    "_N$string": "₹5000",
+    "_string": "5000",
+    "_N$string": "5000",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -6213,8 +6213,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200.84,
-      "height": 50.4
+      "width": 350,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -6281,7 +6281,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 1,
     "_id": ""
   },
@@ -7484,7 +7484,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1859,
+      "width": 1649,
       "height": 750
     },
     "_anchorPoint": {
@@ -7554,7 +7554,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1859,
+      "width": 1649,
       "height": 750
     },
     "_anchorPoint": {
@@ -7772,7 +7772,7 @@
         "__id__": 207
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 223
@@ -7804,7 +7804,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        98.875,
+        83.157,
         0,
         0,
         0,
@@ -8460,7 +8460,7 @@
       "ctor": "Float64Array",
       "array": [
         -201.686,
-        16.806,
+        83.609,
         0,
         0,
         0,
@@ -9115,8 +9115,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        228.936,
-        16.806,
+        -203.319,
+        -19.543,
         0,
         0,
         0,
@@ -9775,7 +9775,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -62.639,
+        -124.53,
         0,
         0,
         0,
@@ -10944,7 +10944,7 @@
         "__id__": 299
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 315
@@ -11600,7 +11600,7 @@
         "__id__": 318
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 334
@@ -14296,6 +14296,26 @@
     "MobileEditBox": {
       "__id__": 332
     },
+    "lab_num": [
+      {
+        "__id__": 86
+      },
+      {
+        "__id__": 99
+      },
+      {
+        "__id__": 112
+      },
+      {
+        "__id__": 125
+      },
+      {
+        "__id__": 138
+      },
+      {
+        "__id__": 151
+      }
+    ],
     "_id": ""
   },
   {

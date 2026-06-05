@@ -106,12 +106,12 @@ cc.Class({
             this.node_hand.active = this.isCollect || needShow;
             this.jumpId = info[curRound].jump;
             if (curRound == 1) {
-                this.lab_remind.string = `Only need ₹${allNumber} to withdraw ₹${allNumber}`;
+                this.lab_remind.string = `Only need ${CommonFun.getInstance().formatCurrencyAmount(allNumber)} to withdraw ${CommonFun.getInstance().formatCurrencyAmount(allNumber)}`;
                 let canGetReward = info[curRound].reward
-                this.lab_totalNum.string = "₹0";
+                this.lab_totalNum.string = CommonFun.getInstance().formatCurrencyAmount(0);
                 this.lab_progress.string = `0/${allNumber}`
                 let decimals = this.countDecimals(canGetReward);
-                this.node_task_reward1.getComponent(cc.Label).string = "₹" + canGetReward.toFixed(decimals > 2 ? 2 : decimals);
+                this.node_task_reward1.getComponent(cc.Label).string = CommonFun.getInstance().formatCurrencyAmount(canGetReward.toFixed(decimals > 2 ? 2 : decimals));
             }
             else{
                 if (isShowNextRoundAnim) { //需要播放金币滚动动画
@@ -123,15 +123,15 @@ cc.Class({
                     }
                 }
                 else {
-                    this.lab_totalNum.string = "₹" + info[curRound - 1].reward;
+                    this.lab_totalNum.string = CommonFun.getInstance().formatCurrencyAmount(info[curRound - 1].reward);
                 }
                 let remind = (allNumber - info[curRound - 1].reward);
                 
-                this.lab_remind.string = `Only need ₹${parseFloat(remind.toFixed(2))} to withdraw ₹${allNumber}`;
+                this.lab_remind.string = `Only need ${CommonFun.getInstance().formatCurrencyAmount(parseFloat(remind.toFixed(2)))} to withdraw ${CommonFun.getInstance().formatCurrencyAmount(allNumber)}`;
                 this.lab_progress.string = `${info[curRound - 1].reward}/${allNumber}`
 
                 let canGetReward = info[curRound].reward - info[curRound - 1].reward
-                this.node_task_reward1.getComponent(cc.Label).string = "₹" + parseFloat(canGetReward.toFixed(2));
+                this.node_task_reward1.getComponent(cc.Label).string = CommonFun.getInstance().formatCurrencyAmount(parseFloat(canGetReward.toFixed(2)));
             }
         }
         else{ //已经达到最大轮次 能够领取最终大奖
@@ -146,7 +146,7 @@ cc.Class({
             this.lab_progress.string = `${allNumber}/${allNumber}`;
             this.node_task_reward1.active = false;
             this.node_task_reward2.active = false;
-            this.lab_totalNum.string = `₹${allNumber}`;
+            this.lab_totalNum.string = CommonFun.getInstance().formatCurrencyAmount(allNumber);
             this.progressbar.progress = 1;
             this.node_hand.active = false;
         }
@@ -239,10 +239,10 @@ cc.Class({
             this.node_paiArrs[i].getChildByName(""+i).getComponent(cc.Button).interactable = false;
             let label = this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").getChildByName("price").getComponent(cc.Label)
             if (i == parseInt(btnName)) { //即将翻开的这张牌 使用inducement_info里的index
-                label.string = "₹" + info[curRound].pais[info[curRound].paiIndex];
+                label.string = CommonFun.getInstance().formatCurrencyAmount(info[curRound].pais[info[curRound].paiIndex]);
             }
             else{ //其他三张牌 使用paiIndex以外的值
-                label.string = "₹" + info[curRound].pais[tmpPais[paiIndex]];
+                label.string = CommonFun.getInstance().formatCurrencyAmount(info[curRound].pais[tmpPais[paiIndex]]);
                 paiIndex++;
             }
         }
@@ -326,7 +326,7 @@ cc.Class({
         let allNumber = GlobalCfg.INDUCEMENT_INFO[8].reward;
         for (let i = 1; i < 5; i++) {
             descs[i] = node.getChildByName("" + i).getChildByName("desc").getComponent(cc.RichText);
-            descs[i].string = "User" + infos[i - 1] +` Withdraw <color=#F9D95A>₹${allNumber}</color>`;
+            descs[i].string = "User" + infos[i - 1] +` Withdraw <color=#F9D95A>${CommonFun.getInstance().formatCurrencyAmount(allNumber)}</color>`;
         };
     },
     
@@ -467,7 +467,7 @@ cc.Class({
             this.node_paiArrs[i].getChildByName(""+i).scale = 1; // 恢复原始大小
             this.node_paiArrs[i].getChildByName(""+i).getChildByName("back").active = false;
             this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").active = true;
-            this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").getChildByName("price").getComponent(cc.Label).string = "₹" + info[curRound].pais[i];
+            this.node_paiArrs[i].getChildByName(""+i).getChildByName("detail").getChildByName("price").getComponent(cc.Label).string = CommonFun.getInstance().formatCurrencyAmount(info[curRound].pais[i]);
         }
     },
 

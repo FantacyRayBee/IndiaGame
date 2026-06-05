@@ -13,12 +13,12 @@ cc.Class({
         if (typeof coin != "number") {
             LoggerUtil.getInstance().warn("setMyCoin: coin is not a number");
             this.myCoin = 0;
-            this.lab_myCoin.string = `$0`;
+            this.lab_myCoin.string = CommonFun.getInstance().getCurrencySymbol() +`$0`;
             return;
         };
         this.myCoin = coin;
         GlobalCfg.USER_DATAS.userDiamond = coin;
-        this.lab_myCoin.string = `$${this.changeNumToK(coin/100)}`;
+        this.lab_myCoin.string = CommonFun.getInstance().getCurrencySymbol() + `${this.changeNumToK(coin/100)}`;
     },
 
     getMyCoin: function() {

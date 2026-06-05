@@ -9,8 +9,14 @@ cc.Class({
     },
 
     setSignItemData: function(gift, today, done, day, showNewRound) {
-        this.lab_reward.string = `₹${gift/100}`;
-        this.lab_day.string = `Day${day}`;
+        this.lab_reward.string = CommonFun.getInstance().formatCurrencyAmount(gift / 100);
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == I18NLanguagesEnum.Bengali) {
+            this.lab_day.string = `দিন${day}`;
+        }
+        else {
+            this.lab_day.string = `Day${day}`;
+        }
         if (showNewRound) {
             this.initSignItem();
             return;

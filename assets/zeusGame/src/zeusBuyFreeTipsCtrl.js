@@ -29,7 +29,7 @@ cc.Class({
 
     setBuyFreeTipsData: function(bet) {
         this.bet = bet;
-        this.lab_freePrice.string = `$${this.bet * 100 / 100}`;
+        this.lab_freePrice.string = CommonFun.getInstance().getCurrencySymbol() + `${this.bet * 100 / 100}`;
     },
 
     dealBtnNoAndYesEvent: function(isAgree) {

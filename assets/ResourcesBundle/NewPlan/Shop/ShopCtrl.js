@@ -63,12 +63,7 @@ cc.Class({
     },
 
     setUserDiamond: function (diamond) {
-        let languagesType = I18NUtil.getInstance().getLanguageType();
-        if (languagesType == I18NLanguagesEnum.Bengali) {
-            this.lab_userDiamond.string = `৳${FloatCalculation.accDiv(diamond, 100)}`;
-        } else {
-            this.lab_userDiamond.string = `₹${FloatCalculation.accDiv(diamond, 100)}`;
-        }
+        this.lab_userDiamond.string = CommonFun.getInstance().formatCurrencyAmount(FloatCalculation.accDiv(diamond, 100));
     },
 
     start: function () {
@@ -106,9 +101,9 @@ cc.Class({
             let add = Math.floor(shopItemData.add / 100);
 
             if (shopItemData.loop_status == 0) {
-                self.lab_cash.string = `₹${amount + add}`;
-                self.lab_bonus.string = `₹${gift}`;
-                self.lab_totalGet.string = `₹${amount + gift + add}`;
+                self.lab_cash.string = CommonFun.getInstance().formatCurrencyAmount(amount + add);
+                self.lab_bonus.string = CommonFun.getInstance().formatCurrencyAmount(gift);
+                self.lab_totalGet.string = CommonFun.getInstance().formatCurrencyAmount(amount + gift + add);
                 let languagesType = I18NUtil.getInstance().getLanguageType();
                 switch (languagesType) {
                     case I18NLanguagesEnum.English:
@@ -121,9 +116,6 @@ cc.Class({
                         self.lab_details.string = `اپنی کھوئی ہوئی رقم پر ${Number((gift / amount) * 100).toFixed(0)}% کیش بیک حاصل کریں۔`;
                         break;
                     case I18NLanguagesEnum.Bengali:
-                        self.lab_cash.string = `৳${amount + add}`;
-                        self.lab_bonus.string = `৳${gift}`;
-                        self.lab_totalGet.string = `৳${amount + gift + add}`;
                         self.lab_details.string = `আপনার হারানো পরিমাণে ${Number((gift / amount) * 100).toFixed(0)}% নগদ ফেরত পান`;
                         break;
                     default:
@@ -132,9 +124,9 @@ cc.Class({
                 };
             }
             else if (shopItemData.loop_status == 1) {
-                self.lab_cash.string = `₹${amount + add}`;
-                self.lab_bonus.string = `₹0`;
-                self.lab_totalGet.string = `₹${amount + add}`;
+                self.lab_cash.string = CommonFun.getInstance().formatCurrencyAmount(amount + add);
+                self.lab_bonus.string = CommonFun.getInstance().formatCurrencyAmount(0);
+                self.lab_totalGet.string = CommonFun.getInstance().formatCurrencyAmount(amount + add);
                 self.lab_details.string = `Get 0% Cash Back on \nyour losing amount`;
 
                 let languagesType = I18NUtil.getInstance().getLanguageType();
@@ -149,9 +141,6 @@ cc.Class({
                         self.lab_details.string = `اپنی کھوئی ہوئی رقم پر 0% کیش بیک حاصل کریں۔`;
                         break;
                     case I18NLanguagesEnum.Bengali:
-                        self.lab_cash.string = `৳${amount + add}`;
-                        self.lab_bonus.string = `৳0`;
-                        self.lab_totalGet.string = `৳${amount + add}`;
                         self.lab_details.string = `আপনার হারানো পরিমাণে 0% নগদ ফেরত পান`;
                         break;
                     default:
@@ -163,11 +152,7 @@ cc.Class({
 
             let languagesType = I18NUtil.getInstance().getLanguageType();
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['Shop_Add Cash']);
-            if (languagesType == I18NLanguagesEnum.Bengali) {
-                self.lab_addCash.string = `${descriptionStr} ৳${amount}`;
-            } else {
-                self.lab_addCash.string = `${descriptionStr} ₹${amount}`;
-            }
+            self.lab_addCash.string = CommonFun.getInstance().formatCurrencyText(descriptionStr, amount);
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.REFRESH_SHOP_COMMODITY) {
             self.setShopItems();

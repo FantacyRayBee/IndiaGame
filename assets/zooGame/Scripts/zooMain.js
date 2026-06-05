@@ -175,6 +175,9 @@ cc.Class({
 
         this.endAnimationNode.active = false;
         this.betStartEndAnimationNode.active = false;
+        this.labelStartNode = this.betStartEndAnimationNode.getChildByName('label_start');
+        this.labelStopNode = this.betStartEndAnimationNode.getChildByName('label_stop');
+        this.setBetStateLabelVisible(false, false);
         this.btnAddCash.node.active = GlobalCfg.USER_DATAS.openModules.includes(4);
 
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
@@ -537,11 +540,21 @@ cc.Class({
      * 开始/结束下注
      * @param {boolean} bool true 开始，false 结束
      */
+    setBetStateLabelVisible(showStart, showStop) {
+        if (this.labelStartNode) {
+            this.labelStartNode.active = !!showStart;
+        }
+        if (this.labelStopNode) {
+            this.labelStopNode.active = !!showStop;
+        }
+    },
+
     dealStartEndBet(bool) {
         this.zooRouletteManager.offEndNodeLight();
         this.betStartEndAnimationNode.active = true;
         let spine = this.betStartEndAnimationNode.getComponent(sp.Skeleton);
         if (bool) {
+            this.setBetStateLabelVisible(true, false);
             this.zooAudioManager.playGameSound('time1');
             spine.skeletonData = this.startEndSkeletonData[1];
             let arr = new Array(11).fill(0, 0, 11);
@@ -554,11 +567,13 @@ cc.Class({
                 }
             }
         } else {
+            this.setBetStateLabelVisible(false, true);
             this.zooAudioManager.playGameSound('Sotpbeting');
             spine.skeletonData = this.startEndSkeletonData[0];
         }
         spine.setAnimation(0, "animation", false);
         spine.setCompleteListener(() => {
+            this.setBetStateLabelVisible(false, false);
             this.betStartEndAnimationNode.active = false;
         });
     },

@@ -190,6 +190,11 @@ let CommonFun = cc.Class({
          * 资源的父路径
          */
         GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
+        // if (GlobalCfg.server_id == "0") {
+        //     GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/";
+        //     GlobalCfg.ASSETS_VERSION = 4;
+        //     GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
+        // };
         /**
          * 子包资源的版本信息
          */
@@ -672,6 +677,45 @@ let CommonFun = cc.Class({
         return number; // 其他情况返回原数字
     },
 
+    getCurrencySymbol: function(languageType) {
+        let currentLanguageType = languageType;
+        if (currentLanguageType == null || currentLanguageType == undefined) {
+            if (typeof I18NUtil != 'undefined' && I18NUtil.getInstance) {
+                currentLanguageType = I18NUtil.getInstance().getLanguageType();
+            }
+            else {
+                currentLanguageType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+            }
+        }
+
+        let currencySymbolMap = {};
+        if (typeof I18NLanguagesEnum != 'undefined') {
+            currencySymbolMap[I18NLanguagesEnum.Bengali] = '৳';
+            if (I18NLanguagesEnum.Pakistani != null) {
+                currencySymbolMap[I18NLanguagesEnum.Pakistani] = '₨';
+            }
+            if (I18NLanguagesEnum.Pakistan != null) {
+                currencySymbolMap[I18NLanguagesEnum.Pakistan] = '₨';
+            }
+        }
+
+        return currencySymbolMap[currentLanguageType] || '₹';
+    },
+    
+
+    formatCurrencyAmount: function(amount, options) {
+        let config = options || {};
+        let prefix = config.prefix || '';
+        let suffix = config.suffix || '';
+        let symbol = this.getCurrencySymbol(config.languageType);
+        return `${prefix}${symbol}${amount}${suffix}`;
+    },
+
+    formatCurrencyText: function(text, amount, options) {
+        let currencyText = this.formatCurrencyAmount(amount, options);
+        return text ? `${text} ${currencyText}` : currencyText;
+    },
+
     getStrLength: function(str) {
         let realLength = 0,
             len = str.length,
@@ -750,13 +794,13 @@ let CommonFun = cc.Class({
         if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.openModules.includes(10)) {
             // if (isFromFirstRecharge == true) {
                 // 展示商城
-                if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0){
+                // if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0){
                     this._showShop(from);
 
-                }
-                else {
-                    this.showBindPhone('AddCash');
-                }
+                // }
+                // else {
+                //     this.showBindPhone('AddCash');
+                // }
             // }
             // else {
             //     this.showFirstRecharge();
@@ -1129,13 +1173,13 @@ let CommonFun = cc.Class({
     showSmallAddCash: function(gameName = null, gameCoin = null) {
         let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
         if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+            // if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
                 this.showNewShop();
-            }
-            else {
-                // CommonFun.getInstance().showFirstRecharge();
-                this.showBindPhone('AddCash');
-            };
+            // }
+            // else {
+            //     // CommonFun.getInstance().showFirstRecharge();
+            //     this.showBindPhone('AddCash');
+            // };
         }
         else {
             this.showNewShop();
@@ -3148,7 +3192,7 @@ let CommonFun = cc.Class({
      * 购买之前显示提示框
      */
     ShowTipsBeforeBuy: function(msg, callback) {
-        let str = 'Go to Recharge ₹ '+ msg + '?'
+        let str = `${CommonFun.getInstance().formatCurrencyText('Go to Recharge', msg)}?`
         CommonFun.getInstance().showMsgBox(str, "SHOP", () => {
             if(callback){
                 callback()

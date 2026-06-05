@@ -125,7 +125,7 @@ cc.Class({
         let dt = 0;
         let pointArr = ['.', '..', '...'];
         this.schedule(() => {
-            this.lab_loadTips.string = `Resource loading ${pointArr[dt%3]} ${this.loadPrecess}%`;
+            this.lab_loadTips.string = `রিসোর্স লোড হচ্ছে ${pointArr[dt%3]} ${this.loadPrecess}%`;
             dt += 1;
         }, 0.5);
 

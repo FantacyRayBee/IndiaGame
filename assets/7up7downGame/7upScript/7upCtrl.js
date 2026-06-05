@@ -56,6 +56,8 @@ cc.Class({
         this.jbAudioState = true;
         this.tempTime = 0;          //用来甄别是不是同一秒钟的两次消息
         this.isGameEndStatus = false;
+        this.tipTextState = "";
+        this.tipTextTime = 0;
         this.roundBet = 0;         // 自己当前回合下注值
         this.repeatData = {};         // 重复下注数据
         this.curRoundBetData = {};    // 当前回合下注数据
@@ -78,10 +80,13 @@ cc.Class({
         this.saizhongSke = this.saizhong.getComponent(sp.Skeleton);
         this.saiziSke = this.saizi.getComponent(sp.Skeleton);
         this.beginSke = this.node.getChildByName("beginGame").getComponent(sp.Skeleton);
+        this.beginStartLabelNode = this.beginSke.node.getChildByName("start_label");
+        this.beginStopLabelNode = this.beginSke.node.getChildByName("stop_label");
         this.beginSke.node.active = false;
         this.paymentSwitch = false
         this.lab_tip = this.node_tip.getChildByName("lab_djs").getComponent(cc.Label);
         this.initAll();
+        this.setBeginGameLabelVisible(false, false);
         for (let i = 0, j = this.btnList.length; i < j; i++) {
             this.btnList[i].node.on("click", this.btnClick, this);
         }
@@ -430,6 +435,78 @@ cc.Class({
         }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SEVENUPDOWN, SceneManager.getInstance().sceneType.LOBBY);
+        } else if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
+            self.refreshTipLabel();
+        }
+    },
+
+    getCurrentLanguageType: function () {
+        return cc.sys.localStorage.getItem("LanguageTypeStorage") || I18NLanguagesEnum.Bengali;
+    },
+
+    getTipLocalizedText: function (type, time) {
+        let languageType = this.getCurrentLanguageType();
+        let languageName = "Bengali";
+        switch (languageType) {
+            case I18NLanguagesEnum.English:
+                languageName = "English";
+                break;
+            case I18NLanguagesEnum.Hindi:
+                languageName = "Hindi";
+                break;
+            case I18NLanguagesEnum.Urdu:
+                languageName = "Urdu";
+                break;
+            case I18NLanguagesEnum.Bengali:
+            default:
+                languageName = "Bengali";
+                break;
+        }
+
+        let textMap = {
+            billing: {
+                English: "Billing...",
+                Hindi: "Billing...",
+                Urdu: "Billing...",
+                Bengali: "হিসাব করা হচ্ছে..."
+            },
+            bettingStarts: {
+                English: "Betting starts in " + time + " seconds",
+                Hindi: "Betting starts in " + time + " seconds",
+                Urdu: "Betting starts in " + time + " seconds",
+                Bengali: time + " সেকেন্ডের মধ্যে বাজি শুরু হবে"
+            },
+            bettingEnd: {
+                English: "Betting end in " + time + " seconds",
+                Hindi: "Betting end in " + time + " seconds",
+                Urdu: "Betting end in " + time + " seconds",
+                Bengali: time + " সেকেন্ডের মধ্যে বাজি শেষ হবে"
+            }
+        };
+        return textMap[type] ? textMap[type][languageName] : "";
+    },
+
+    setTipText: function (type, time) {
+        this.tipTextState = type;
+        this.tipTextTime = time || 0;
+        if (this.lab_tip) {
+            this.lab_tip.string = this.getTipLocalizedText(type, this.tipTextTime);
+        }
+    },
+
+    refreshTipLabel: function () {
+        if (!this.tipTextState || !this.lab_tip) {
+            return;
+        }
+        this.lab_tip.string = this.getTipLocalizedText(this.tipTextState, this.tipTextTime);
+    },
+
+    setBeginGameLabelVisible: function (showStart, showStop) {
+        if (this.beginStartLabelNode) {
+            this.beginStartLabelNode.active = !!showStart;
+        }
+        if (this.beginStopLabelNode) {
+            this.beginStopLabelNode.active = !!showStop;
         }
     },
 
@@ -656,7 +733,7 @@ cc.Class({
         }
         this.curRoundBetData = {};
         this.selfGameresult = notify.SelfGameResult;
-        this.lab_tip.string = CommonFun.getInstance().showLabelLanguage("Billing...")
+        this.setTipText("billing");
         LoggerUtil.getInstance().log("setGameEndNotify中的gameresult", this.gameresult);
         this.win = notify.Win;
         this.setGameEndSke(notify, false);       //摇出的两个色子的结果num1 num2
@@ -674,7 +751,7 @@ cc.Class({
         this.gameresult = notify.GameResult;
         this.selfGameresult = notify.SelfGameResult;
         // this.userInfoCtrl.setCoin(notify.Gold);
-        this.lab_tip.string = CommonFun.getInstance().showLabelLanguage("Billing...")
+        this.setTipText("billing");
         this.win = notify.Win;
         // this.setGameEndSke(notify, true);       //摇出的两个色子的结果num1 num2
         let num1 = notify.LeftDicePoints;
@@ -1394,14 +1471,22 @@ cc.Class({
                 //     }
                 // });
             }
-            this.lab_tip.string = CommonFun.getInstance().showLabelLanguage("Betting starts in " + time + " seconds",)
+            this.setTipText("bettingStarts", time);
         } else if (remaining == 15 && isFirstTime == true) {
             this.isPlayAudio = false;
             this.tipAnimation(remaining);
             this.upDownAudioCtrl.playGameSound("start", false);
             this.beginSke.skeletonData = this.skeletonDataList[2];
             this.beginSke.node.active = true;
+            this.setBeginGameLabelVisible(true, false);
             this.beginSke.setAnimation(0, "animation", false);
+            this.beginSke.setCompleteListener((trackEntry, loopCount) => {
+                var name = trackEntry.animation.name;
+                if (name == "animation") {
+                    this.setBeginGameLabelVisible(false, false);
+                    this.beginSke.node.active = false;
+                }
+            });
             this.setXiaZhuBtn(true);
             if(Object.keys(this.repeatData).length > 0){
                 this.btnRepeat.interactable = true;
@@ -1410,6 +1495,7 @@ cc.Class({
             }
         } else if (remaining < 15) {
             this.beginSke.node.active = false;
+            this.setBeginGameLabelVisible(false, false);
             if (this.isPlayAudio && isFirstTime == true) {
                 if (remaining < 15) {
                     this.isPlayAudio = false;
@@ -1461,10 +1547,12 @@ cc.Class({
                 this.upDownAudioCtrl.playGameSound("stopBet", false);
                 this.beginSke.skeletonData = this.skeletonDataList[4];
                 this.beginSke.node.active = true;
+                this.setBeginGameLabelVisible(false, true);
                 this.beginSke.setAnimation(0, "animation", false);
                 this.beginSke.setCompleteListener((trackEntry, loopCount) => {
                     var name = trackEntry.animation.name;
                     if (name == "animation") {
+                        this.setBeginGameLabelVisible(false, false);
                         this.beginSke.node.active = false;
                     }
                 });
@@ -1486,7 +1574,7 @@ cc.Class({
         cc.tween(this.node_tip)
             .to(0, { scale: 0 })
             .call(() => {
-                this.lab_tip.string = CommonFun.getInstance().showLabelLanguage("Betting end in " + time + " seconds",)
+                this.setTipText("bettingEnd", time);
             })
             .to(0.5, { scale: 1.2 }, { easing: 'sineOutIn' })
             .to(0.3, { scale: 1 })
@@ -1495,7 +1583,7 @@ cc.Class({
 
     setTip: function (time) {
         this.node_tip.active = true;
-        this.lab_tip.string = CommonFun.getInstance().showLabelLanguage("Betting end in " + time + " seconds")
+        this.setTipText("bettingEnd", time);
     },
 
     //桌面的金币
@@ -1562,7 +1650,7 @@ cc.Class({
         this.setXiaZhuBtn(false);
         // this.setResult();
         this.node_tip.active = true;
-        this.lab_tip.string = CommonFun.getInstance().showLabelLanguage("Billing...")
+        this.setTipText("billing");
         this.setLabeldizhu(notify);
 
     },

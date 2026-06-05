@@ -29,7 +29,7 @@ cc.Class({
         let num = erase.num;             // 元素个数
         let mul = erase.mul;             // 倍数
         this.lab_num.string = `${num}`;
-        this.lab_winCoin.string = `$${this.changeNumToK(bet * mul/2000)}`;
+        this.lab_winCoin.string = (CommonFun.getInstance().getCurrencySymbol() + `${this.changeNumToK(bet * mul/2000)}`).replace(/\./g, '_');
         this.sprite_icon.spriteFrame = this[`spriteFrame_icon${elf}`];
     },
 

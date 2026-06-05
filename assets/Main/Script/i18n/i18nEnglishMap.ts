@@ -20,7 +20,14 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['Login_Back & Change Mobile'], 'Back & Change Mobile');
     map.set(labels['Login_Guest Login'], 'Guest Login');
     map.set(labels['Login_Quick Login'], 'Quick Login');
-    
+    map.set(labels['Login_Please enter your account'], 'Please enter your account');
+    map.set(labels['Login_Please enter your password'], 'Please enter your password');
+    map.set(labels['Login_Please confirm your password'], 'Please confirm your password');
+    map.set(labels['Login_Register'], 'Register');
+    map.set(labels['Login_Account or Password is incorrect'], 'Account or Password is incorrect');
+
+
+
     map.set(labels['Lobby_WITHDRAW'], 'WITHDRAW');
     map.set(labels['Lobby_ADD'], 'ADD');
     map.set(labels['Lobby_ADDCASH'], 'ADD CASH');
@@ -84,6 +91,8 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['Lobby_Terms of Service'], 'Terms of Service');
     map.set(labels['Lobby_How to play'], 'How to play');
     map.set(labels['Lobby_Contact US'], 'Contact US');
+    map.set(labels['Lobby_YouHavent'], 'You haven’t gotten any mail yet');
+
     
     map.set(labels['Customer_Customer System'], 'Customer System');
     map.set(labels['Customer_Customer Service'], 'Customer Service');
@@ -170,7 +179,7 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['Activity_Tips'], 'Tips');
     map.set(labels['Activity_1.You can get a luckdraw for every 50 games you play'], '1.You can get a luckdraw for every 50 games you play');
     map.set(labels['Activity_2.there is a freelottery every day'], '2.there is a freelottery every day');
-    map.set(labels['Activity_Remaining times'], 'Remaining times');
+    map.set(labels['Activity_Remaining times'], 'Remaining times:');
     map.set(labels['Activity_GET YOUR BONUS'], 'GET YOUR BONUS');
     map.set(labels['Activity_Login every day can get rewards'], 'Login every day can get rewards');
     map.set(labels['Activity_more cash bonus after the purchase'], 'more cash bonus after the purchase');
@@ -459,7 +468,11 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['rule_updown_desc1'], '7 Up 7 Down is a simple dice game\nTwo 6 sided dice are rolled and the results are totalled up.');
     map.set(labels['rule_updown_desc2'], 'You can bet on the total being under 7, exactly 7 ,or over 7\nAbove and below 7 gives payout double the bet amount\nExactly 7 gives payout 6 times the bet amount.');
     map.set(labels['rule_zoo_desc1'], '1.\'Zoo Roulette\' is a very entertaining and exiting large-scale online roulette game.\n2.Players bet on the animals. Animals are divided into three categories, birds, beasts,sharks, and you win the payout by betting on the right animals.\n3.There are 11 betting areas in the game, and the odds for each area are different.');
-
+    
+    map.set(labels['autoSpinSetting_title1'], 'Total Spins');
+    map.set(labels['autoSpinSetting_title2'], 'Single win ratio exceeds');
+    map.set(labels['autoSpinSetting_title3'], 'Stop if balance<');
+    map.set(labels['autoSpinSetting_title4'], 'Stop if balance>');
     //游戏
     map.set(labels['bull_balance'], 'Balance');
     map.set(labels['bull_bet'], 'bet');
@@ -476,8 +489,106 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['cat_totalbet'], 'Total Bet');
     map.set(labels['cat_collect'], 'Collect');
     
-    
     map.set(labels['lhd_bet_tip'], 'Click to bet');
     map.set(labels['lhd_Repeat bets'], 'Repeat bets');
     map.set(labels['lhd_total online players'], 'Total online players:');
+
+    map.set(labels['chicken_title1'], 'Difficulty');
+    map.set(labels['chicken_tip1'], 'Chance of collision');
+    map.set(labels['chicken_desc1'], 'Easy');
+    map.set(labels['chicken_desc2'], 'Medium');
+    map.set(labels['chicken_desc3'], 'Hard');
+    map.set(labels['chicken_desc4'], 'Hardcore');
+    map.set(labels['chicken_desc5'], 'Play');
+    map.set(labels['chicken_desc6'], 'Live wins');
+    map.set(labels['chicken_desc7'], 'Online:');
+    map.set(labels['chicken_Autoplay'], 'Autoplay');
+    map.set(labels['chicken_Numbers of autospins:'], 'Numbers of autospins:');
+    map.set(labels['chicken_Step to cashout?'], 'Step to cashout?');
+    map.set(labels['chicken_ChangeAvatar'], 'Change Avatar');
+    map.set(labels['chicken_Save and close'], 'SAVE AND CLOSE');
+    map.set(labels['chicken_howtoplay'], 'How to play?');
+    map.set(labels['chicken_howtoplay_desc'], '1. Specify the amount of your bet.\n\n2. Choose a difficulty level in a game. the number of lines covers and the chance to be fried hard varies depending on level of difficulty.\n\nThe game has 4 difficulty levels:\n· Easy - there are 24 linesat at this level.\n· Medium - there are 22 linesat at this level.\n· Hard - there are 20 linesat at this level.\n· Hardcore - at the level of 15 lines.\n\n3. Press “play” button.\n\n4. Your goal is to get through as many lines covers as possible without getting fried. You can withdraw your winnings at any stage of the game.\n\n5. In the menu, there is an option to enable “Space”to spin & go, it will allow you move forward, use the “Space”key.');
+    map.set(labels['chicken_MyBetHistory'], 'My bet history');
+    map.set(labels['chicken_MyBetHistory_title1'], 'Date');
+    map.set(labels['chicken_MyBetHistory_title2'], 'Bet');
+    map.set(labels['chicken_MyBetHistory_title3'], 'Mult.');
+    map.set(labels['chicken_MyBetHistory_title4'], 'Win');
+    map.set(labels['chicken_provably'], 'Provably fair settings');
+    map.set(labels['chicken_provably_desc1'], 'This game uses Provaly Fair technology to determine game result');
+    map.set(labels['chicken_provably_desc2'], 'Next client (Your) seed:');
+    map.set(labels['chicken_provably_desc3'], 'Round result is determined from combination of server seed and first 3 bets of the round');
+    map.set(labels['chicken_provably_desc4'], 'You can check fairness of each bet from bets history');
+    map.set(labels['chicken_provably_info1_1'], 'Random on every game:');
+    map.set(labels['chicken_provably_info1_2'], 'Current:');
+    map.set(labels['chicken_provably_info2_'], 'Next server seed SHA256:');
+    map.set(labels['chicken_gamerule'], 'Game rules');
+    map.set(labels['chicken_gamerule_desc1'], 'Bet limits are presented below');
+    map.set(labels['chicken_gamerule_desc2'], 'Min bet:');
+    map.set(labels['chicken_gamerule_desc3'], 'Max bet:');
+    map.set(labels['chicken_gamerule_desc4'], 'Max win:');
+    map.set(labels['chicken_setting_sound'], 'Sound');
+    map.set(labels['chicken_setting_Music'], 'Music');
+    map.set(labels['chicken_setting_Provably'], 'Provably Fair Settings');
+    map.set(labels['chicken_setting_GameRules'], 'Game Rules');
+    map.set(labels['chicken_setting_MyBetHistroy'], 'My Bet Histroy');
+    map.set(labels['aviator_title1'], 'Bet');
+    map.set(labels['aviator_title2'], 'Auto');
+    map.set(labels['aviator_AllBets'], 'All Bets');
+    map.set(labels['aviator_Previous'], 'Previous');
+    map.set(labels['aviator_Top'], 'Top');
+    map.set(labels['aviator_Player'], 'Player');
+    map.set(labels['aviator_FreeBets_title'], 'FREE BETS MANAGEMENT');
+    map.set(labels['aviator_FreeBets_play'], 'Play with cash');
+    map.set(labels['aviator_FreeBets_desc'], 'Minimum bet BDT:');
+    map.set(labels['aviator_FreeBets_NoActive'], 'No Active Free Bets. Yet!');
+    map.set(labels['aviator_ProvablySetting_desc'], 'Thus game uses Provably Fair technology to determine game result. This tool gives you ability to change your seed and check fairness of the game.');
+    map.set(labels['aviator_ProvablySetting_whatIs'], 'What is Provably Fair');
+    map.set(labels['aviator_ProvablySetting_Clinet'], 'Clinet (your) Seed:');
+    map.set(labels['aviator_ProvablySetting_Clinet2'], 'Round result is determined form combination of server seed and first 3 bets of the round');
+    map.set(labels['aviator_ProvablySetting_random'], 'Random on every new game');
+    map.set(labels['aviator_ProvablySetting_EnterManually'], 'Enter manually');
+    map.set(labels['aviator_ProvablySetting_YouCan'], 'You can check fairness of each bet from bets history');
+    map.set(labels['aviator_reward_tips'], 'You Have Cash\nOut!');
+    map.set(labels['aviator_setting_animation'], 'Animation');
+    map.set(labels['aviator_setting_FreeBets'], 'Free Bets');
+    map.set(labels['aviator_setting_ProvablyFairSettings'], 'Provably Fair Settings');
+    map.set(labels['aviator_setting_GameRules'], 'Game Rules');
+    map.set(labels['aviator_setting_HowToplay'], 'How To play');
+    map.set(labels['aviator_setting_MyBetHistroy'], 'My Bet Histroy');
+    map.set(labels['aviator_setting_GameLimits'], 'Game Limits');
+    map.set(labels['aviator_RoundHistory'], 'Round History');
+    map.set(labels['aviator_cashout'], 'Cash Out');
+    map.set(labels['aviator_AutoBet'], 'Auto Bet');
+    map.set(labels['aviator_AutoCashOut'], 'Auto Cash Out');
+    map.set(labels['aviator_BetBDT'], 'Bet BDT');
+    map.set(labels['aviator_WinBDT'], 'Win BDT');
+    map.set(labels['aviator_RoundResult'], 'Round Result');
+    map.set(labels['aviator_Rounds'], 'Rounds');
+    map.set(labels['aviator_Day'], 'Day');
+    map.set(labels['aviator_Month'], 'Month');
+    map.set(labels['aviator_Year'], 'Year');
+    map.set(labels['aviator_RoundMAX'], 'Round MAX');
+    map.set(labels['aviator_ForInstructionsCheck'], 'For instructions check');
+    map.set(labels['aviator_Generated'], 'Generated on players side');
+    map.set(labels['aviator_Above'], 'Above seeds combined and converted to SHA512 Hash. This is your game result');
+    map.set(labels['aviator_Hax'], 'Hax:');
+    map.set(labels['aviator_Decimal'], 'Decimal:');
+    map.set(labels['aviator_Result'], 'Result:');
+    map.set(labels['aviator_Date'], 'Date');
+    map.set(labels['sscGame_set'], 'SET');
+    map.set(labels['sscGame_pure seq'], 'PURE SEQ');
+    map.set(labels['sscGame_seq'], 'SEQ');
+    map.set(labels['sscGame_color'], 'COLOR');
+    map.set(labels['sscGame_pair'], 'PAIR');
+    map.set(labels['sscGame_high card'], 'HIGH CARD');
+    map.set(labels['sscGame_interval'], 'Interval after jackpot:');
+    map.set(labels['sscGame_all'], 'ALL');
+    map.set(labels['sscGame_total'], 'Total:');
+    map.set(labels['sscGame_pure10X'], 'PURE 10X');
+    map.set(labels['sscGame_SEQ6X'], 'SEQ 6X');
+    map.set(labels['sscGame_COLOR5X'], 'COLOR 5X');
+    map.set(labels['sscGame_PAIR4X'], 'PAIR 4X');
+    map.set(labels['sscGame_HIGHCARD3X'], 'HIGH CARD 3X');
+
 }

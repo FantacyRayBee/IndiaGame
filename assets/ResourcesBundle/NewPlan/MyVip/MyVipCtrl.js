@@ -100,9 +100,9 @@ cc.Class({
 
         this.showBenifitsByLevel(this.selectVipLevel, false);
 
-        this.lab_upgradeBagAmount.string = `₹${GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100}`;
-        this.lab_upgradeBagGift.string = `₹${(GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount)/100}`;
-        this.lab_upgradeBagBtnAmount.string = `Pay ₹${GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount/100}`
+        this.lab_upgradeBagAmount.string = CommonFun.getInstance().formatCurrencyAmount(GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100);
+        this.lab_upgradeBagGift.string = CommonFun.getInstance().formatCurrencyAmount((GlobalCfg.USER_DATAS.userVip.upgrade_bag_dgift + GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount) / 100);
+        this.lab_upgradeBagBtnAmount.string = `Pay ${CommonFun.getInstance().formatCurrencyAmount(GlobalCfg.USER_DATAS.userVip.upgrade_bag_amount / 100)}`
     },
 
     setUpgradeVipAnim: function() {

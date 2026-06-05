@@ -542,7 +542,7 @@ cc.Class({
         item.getChildByName("tx").getComponent(cc.Sprite).spriteFrame = this.atlas_head.getSpriteFrame('img_head_' + randomHead);
         item.getChildByName("name").getComponent(cc.Label).string = "player" + (Math.floor(Math.random() * (299 - 100 + 1)) + 100) + "...";
         let wins = (Math.random() * (5000 - 200) + 200).toFixed(2)
-        item.getChildByName("win").getComponent(cc.Label).string = "+₹ " + wins;
+        item.getChildByName("win").getComponent(cc.Label).string = CommonFun.getInstance().formatCurrencyAmount(wins, { prefix: '+' });
         // 动画：从上到下淡入
         cc.tween(item)
         .to(0.6, { position: cc.v2(0, 0), opacity: 255 }, { easing: "quadOut" })

@@ -558,7 +558,7 @@ let SceneManager = cc.Class({
             }
         }
         else if (notify.loginType == "ACCOUNT") {
-            httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/accountlogin";
+            httpUrl = GlobalCfg.HTTP_USER_LOGIN + "/v1/in/accountloginv1";
             httpParam = {
                 "device": device,
                 "account": notify.account,
@@ -575,6 +575,7 @@ let SceneManager = cc.Class({
                 "fcmtoken": GlobalCfg.FIREBASE_TOKEN,
                 "sign": CommonFun.getInstance().encryptByRSA(notify.account),
                 "cl": conversionListener,
+                "isRegister": notify.isRegister, //只有注册的时候才传true 用于区分登录和注册接口  注册接口会有额外的行为上报
             }
         }
         else if (notify.loginType == "GUEST") {

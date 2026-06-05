@@ -1,0 +1,49 @@
+{
+"skeleton": {
+	"hash": "Wn8AkZYWxyT5/QZxT2fe3eSup3c",
+	"spine": "3.8.75",
+	"x": -352,
+	"y": -126.5,
+	"width": 704,
+	"height": 253,
+	"images": "",
+	"audio": "C:/Users/Administrator/Desktop/other"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "an", "parent": "root" },
+	{ "name": "guang", "parent": "root" }
+],
+"slots": [
+	{ "name": "an_start", "bone": "an", "attachment": "an_start" },
+	{ "name": "guang", "bone": "guang", "color": "ffffff00", "attachment": "guang", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"an_start": {
+				"an_start": { "width": 632, "height": 166 }
+			},
+			"guang": {
+				"guang": { "width": 704, "height": 253 }
+			}
+		}
+	}
+],
+"animations": {
+	"idle": {
+		"slots": {
+			"guang": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffc793d7" },
+					{ "time": 1.6667, "color": "ffc793c3" },
+					{ "time": 2.6667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 4, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

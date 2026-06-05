@@ -28,8 +28,8 @@ cc.Class({
         this.itemData = data;
 
         let price = data.price;
-        this.lab_amoount1.string = `₹${price}`;
-        this.lab_amoount2.string = `₹${price}`;
+    this.lab_amoount1.string = CommonFun.getInstance().formatCurrencyAmount(price);
+    this.lab_amoount2.string = CommonFun.getInstance().formatCurrencyAmount(price);
 
         let service_rate = data.service_rate;
         if (service_rate > 0) {

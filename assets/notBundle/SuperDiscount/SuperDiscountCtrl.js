@@ -111,9 +111,9 @@ cc.Class({
     },
 
     setData(before, after) {
-        this.labBefore.string = '₹' + Number(before / 100);
-        this.labAfter.string = '₹' + Number(after / 100);
-        this.btnShop.target.getChildByName('Label').getComponent(cc.Label).string = '₹' + Number(before / 100);
+        this.labBefore.string = CommonFun.getInstance().formatCurrencyAmount(Number(before / 100));
+        this.labAfter.string = CommonFun.getInstance().formatCurrencyAmount(Number(after / 100));
+        this.btnShop.target.getChildByName('Label').getComponent(cc.Label).string = CommonFun.getInstance().formatCurrencyAmount(Number(before / 100));
     },
 
     // 点击去充值

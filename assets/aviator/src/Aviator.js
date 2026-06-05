@@ -38,6 +38,8 @@ cc.Class({
         region: cc.Node,      // 红色区域图片节点
         lights: [cc.Node],
         atlas_head: cc.SpriteAtlas,     // 头像图集
+
+        lab_dw: cc.Label,       // 单位
     },
 
     ctor() {
@@ -155,7 +157,6 @@ cc.Class({
         LoggerUtil.getInstance().warn("当前游戏帧率", cc.game.getFrameRate());
         this.aviatorAudioManager.playGameMusic();
     },
-
 
     /**
      * 初始化变量

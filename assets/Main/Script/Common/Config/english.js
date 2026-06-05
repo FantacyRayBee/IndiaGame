@@ -1,6 +1,25 @@
 
 // 1是英文 2是印地语 3乌尔都 4孟加拉语  默认英语 
-window.language = cc.sys.localStorage.getItem("language") ? cc.sys.localStorage.getItem("language") : 1; 
+let languageTypeStorage = cc.sys.localStorage.getItem("LanguageTypeStorage");
+let defaultLanguage = 4;
+if (languageTypeStorage == "English") {
+    defaultLanguage = 1;
+}
+else if (languageTypeStorage == "Hindi") {
+    defaultLanguage = 2;
+}
+else if (languageTypeStorage == "Urdu") {
+    defaultLanguage = 3;
+}
+else if (languageTypeStorage == "Bengali") {
+    defaultLanguage = 4;
+}
+
+window.language = defaultLanguage; 
+if (!languageTypeStorage && cc.sys.localStorage.getItem("language")) {
+    window.language = cc.sys.localStorage.getItem("language");
+}
+cc.sys.localStorage.setItem("language", window.language);
 
 // 登录界面
 window.loginLanguage = {

@@ -1,96 +1,41 @@
 {
-"skeleton": { "hash": "Te7xFJCHT7ALeaxsScEr46vtpes", "spine": "3.3.07", "width": 709, "height": 82, "images": "./images/" },
+"skeleton": { "hash": "yyjUuwqkgFZSvX2UdDgCVPNpoRI", "spine": "3.8.75", "images": "E:/AA工作文件/孟加拉版/dragon vs tiger", "audio": "C:\\Users\\Administrator\\Desktop\\lhdGame\\lhdGame\\lhdSke" },
 "bones": [
 	{ "name": "root" },
-	{ "name": "Stop Betting", "parent": "root" },
 	{ "name": "di", "parent": "root" }
 ],
 "slots": [
-	{ "name": "di", "bone": "di", "attachment": "di" },
-	{ "name": "Stop Betting", "bone": "Stop Betting", "attachment": "Stop Betting" }
+	{ "name": "di", "bone": "di", "attachment": "di" }
 ],
-"skins": {
-	"default": {
-		"Stop Betting": {
-			"Stop Betting": { "path": "Stop Betting!", "x": 0.5, "width": 264, "height": 46 }
-		},
-		"di": {
-			"di": { "width": 709, "height": 82 }
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"di": {
+				"di": { "width": 553, "height": 64 }
+			}
 		}
 	}
-},
+],
 "animations": {
 	"animation": {
 		"slots": {
-			"Stop Betting": {
-				"color": [
-					{ "time": 0, "color": "ffffff00" },
-					{ "time": 0.1666, "color": "ffffffff", "curve": "stepped" },
-					{ "time": 0.8333, "color": "ffffffff" },
-					{ "time": 1, "color": "ffffff00" }
-				]
-			},
 			"di": {
 				"color": [
-					{ "time": 0, "color": "ffffff00" },
-					{ "time": 0.1666, "color": "ffffffff", "curve": "stepped" },
+					{ "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffffff", "curve": "stepped" },
 					{ "time": 0.8333, "color": "ffffffff" },
 					{ "time": 1, "color": "ffffff00" }
 				]
 			}
 		},
 		"bones": {
-			"root": {
-				"rotate": [
-					{ "time": 0, "angle": 0, "curve": "stepped" },
-					{ "time": 0.8333, "angle": 0, "curve": "stepped" },
-					{ "time": 1, "angle": 0 }
-				],
-				"translate": [
-					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
-					{ "time": 0.8333, "x": 0, "y": 0, "curve": "stepped" },
-					{ "time": 1, "x": 0, "y": 0 }
-				],
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.8333, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 1, "x": 1, "y": 1 }
-				]
-			},
-			"Stop Betting": {
-				"rotate": [
-					{ "time": 0, "angle": 0, "curve": "stepped" },
-					{ "time": 0.8333, "angle": 0, "curve": "stepped" },
-					{ "time": 1, "angle": 0 }
-				],
-				"translate": [
-					{ "time": 0, "x": -463.57, "y": 0 },
-					{ "time": 0.1666, "x": -33.54, "y": 0 },
-					{ "time": 0.8333, "x": 0, "y": 0 },
-					{ "time": 1, "x": 446.69, "y": 0 }
-				],
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.8333, "x": 1, "y": 1 },
-					{ "time": 1, "x": 1, "y": 0.33 }
-				]
-			},
 			"di": {
-				"rotate": [
-					{ "time": 0, "angle": 0, "curve": "stepped" },
-					{ "time": 0.8333, "angle": 0, "curve": "stepped" },
-					{ "time": 1, "angle": 0 }
-				],
-				"translate": [
-					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
-					{ "time": 0.8333, "x": 0, "y": 0, "curve": "stepped" },
-					{ "time": 1, "x": 0, "y": 0 }
-				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 0.031 },
-					{ "time": 0.1666, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.8333, "x": 1, "y": 1 },
-					{ "time": 1, "x": 1, "y": 0.031 }
+					{ "y": 0.031 },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 0.8333 },
+					{ "time": 1, "y": 0.031 }
 				]
 			}
 		}

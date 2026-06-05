@@ -5,6 +5,7 @@ cc.Class({
         lab_remainingTimes: cc.Label,
         btn_go: cc.Button,
         node_wheel: cc.Node,
+        lab_num: [cc.Label],
     },
 
     ctor: function() {
@@ -19,6 +20,9 @@ cc.Class({
         this.btn_go.node.on('click', CommonFun.getInstance().debounce(this.btnClick, 1), this);
         this.btn_go.interactable = false;
         this.lab_remainingTimes.string = `0`;
+        for (let i = 0, len = this.lab_num.length; i < len; i++) {
+            this.lab_num[i].string = CommonFun.getInstance().formatCurrencyAmount(this.lab_num[i].string);
+        }
     },
 
     start: function() {

@@ -61,7 +61,10 @@ cc.Class({
             "proto/zeus/gameservice",
         ];
 
-        this.baseBundlesCheckUpdateArr = ['ResourcesBundle','tpGame'];
+        this.baseBundlesCheckUpdateArr = [
+            'ResourcesBundle',
+            'tpGame',
+        ];
         this.baseBundlesNeedUpdateArr = [];
         this.baseBundlesUpdateCompleteArr = []; 
 
@@ -92,23 +95,45 @@ cc.Class({
         
         // login节点部分
         this.node_loginLayer = this.node.getChildByName("loginLayer");
-        this.editBox_account = this.node_loginLayer.getChildByName("editBox_account").getComponent(cc.EditBox);
-        this.editBox_password = this.node_loginLayer.getChildByName("editBox_password").getComponent(cc.EditBox);
-        this.node_btn_accountDelete = this.node_loginLayer.getChildByName("btn_accountDelete");
-        this.node_btn_passwordDelete = this.node_loginLayer.getChildByName("btn_passwordDelete");
-        this.node_btn_reqVerify = this.node_loginLayer.getChildByName("btn_reqVerify");
+
+        // 手机号登录相关节点
+        this.node_login_mobile = this.node_loginLayer.getChildByName("login_mobile_root");
+        this.editBox_mobile = this.node_login_mobile.getChildByName("editBox_mobile").getComponent(cc.EditBox);
+        this.editBox_verity = this.node_login_mobile.getChildByName("editBox_verity").getComponent(cc.EditBox);
+        this.node_btn_mobileDelete = this.node_login_mobile.getChildByName("btn_mobileDelete");
+        this.node_btn_verifyDelete = this.node_login_mobile.getChildByName("btn_verifyDelete");
+        this.node_btn_reqVerify = this.node_login_mobile.getChildByName("btn_reqVerify");
         this.btn_reqVerify = this.node_btn_reqVerify.getComponent(cc.Button);
-        this.node_btn_accountLogin = this.node_loginLayer.getChildByName("btn_accountLogin");
-        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
+        this.node_btn_mobileLogin = this.node_login_mobile.getChildByName("btn_mobileLogin");
+        this.node_lab_mobileTips = this.node_login_mobile.getChildByName("lab_mobileTips");
+        this.node_lab_verifyTips = this.node_login_mobile.getChildByName("lab_verifyTips");
+        this.lab_otpTips = this.node_btn_reqVerify.getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
+        // 账号密码登录相关节点
+        this.node_login_account = this.node_loginLayer.getChildByName("login_account_root");
+        this.editBox_account = this.getChildComponentByName(this.node_login_account, "editBox_account", cc.EditBox);
+        this.editBox_password = this.getChildComponentByName(this.node_login_account, "editBox_password", cc.EditBox);
+        this.node_btn_accountLogin = this.getChildNodeByName(this.node_login_account, "btn_accountLogin");
+        this.node_btn_accountDelete = this.getChildNodeByName(this.node_login_account, "btn_accountDelete");
+        this.node_btn_passwordDelete = this.getChildNodeByName(this.node_login_account, "btn_passwordDelete");
+        this.node_lab_accountTips = this.getChildNodeByName(this.node_login_account, "lab_accountTips");
+        this.node_lab_passwordTips = this.getChildNodeByName(this.node_login_account, "lab_passwordTips");
+        this.node_btn_goRegister = this.getChildNodeByName(this.node_login_account, "btn_goRegister");
+        
+        // 注册账号相关节点
+        this.node_login_register = this.node_loginLayer.getChildByName("login_regirster_root");
+        this.editBox_register_account = this.getChildComponentByName(this.node_login_register, "editBox_register_account", cc.EditBox);
+        this.editBox_register_password1 = this.getChildComponentByName(this.node_login_register, "editBox_register_password1", cc.EditBox);
+        this.editBox_register_password2 = this.getChildComponentByName(this.node_login_register, "editBox_register_password2", cc.EditBox);
+        this.node_btn_register = this.getChildNodeByName(this.node_login_register, "btn_register");
+        this.node_btn_registerBack = this.getChildNodeByName(this.node_login_register, "btn_back");
+        this.node_lab_password2Tips = this.getChildNodeByName(this.node_login_register, "lab_password2Tips") || this.getChildNodeByName(this.node_login_register, "lab_passwordTips");
+        this.lab_registerTips = this.node_lab_password2Tips ? this.node_lab_password2Tips.getComponent(cc.Label) : null;
+
         this.node_btn_quickLogin = this.node_loginLayer.getChildByName("btn_quickLogin");
         this.node_btn_facebookLogin = this.node_loginLayer.getChildByName("btn_facebookLogin");
         this.node_btn_guestLogin = this.node_loginLayer.getChildByName("btn_guestLogin");
-        this.node_bg_title = this.node_loginLayer.getChildByName("bg_title");
-        this.node_lab_accountTips = this.node_loginLayer.getChildByName("lab_accountTips");
-        this.node_lab_passwordTips = this.node_loginLayer.getChildByName("lab_passwordTips");
+        this.node_or_sprite = this.node_loginLayer.getChildByName("or_sprite");
         this.node_btn_wenZi = this.node_loginLayer.getChildByName("btn_wenZi");
-        this.lab_otpTips = this.node_loginLayer.getChildByName("btn_reqVerify").getChildByName("Background").getChildByName("lab_otpTips").getComponent(cc.Label);
-
         let languagesType = I18NUtil.getInstance().getLanguageType();
         let checkedName = "";
         switch (languagesType) {
@@ -144,16 +169,49 @@ cc.Class({
         this.lab_updateProgress.node.active = false;
         this.node_loginLayer.active = false;
 
-        this.editBox_account.node.on('editing-did-began', this.editBoxCallback, this);
-        this.editBox_password.node.on('editing-did-began', this.editBoxCallback, this);
+        this.editBox_mobile.node.on('editing-did-began', this.editBoxCallback, this);
+        this.editBox_verity.node.on('editing-did-began', this.editBoxCallback, this);
+        if (this.editBox_account) {
+            this.editBox_account.node.on('editing-did-began', this.editBoxCallback, this);
+        };
+        if (this.editBox_password) {
+            this.editBox_password.node.on('editing-did-began', this.editBoxCallback, this);
+        };
+        if (this.editBox_register_account) {
+            this.editBox_register_account.node.on('editing-did-began', this.editBoxCallback, this);
+        };
+        if (this.editBox_register_password1) {
+            this.editBox_register_password1.node.on('editing-did-began', this.editBoxCallback, this);
+        };
+        if (this.editBox_register_password2) {
+            this.editBox_register_password2.node.on('editing-did-began', this.editBoxCallback, this);
+        };
 
         this.editBox_invited_test.node.on('editing-did-began', this.editBoxCallback, this);
         this.editBox_chanel_test.node.on('editing-did-began', this.editBoxCallback, this);
   
         this.node_btn_reqVerify.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
-        this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
-        this.node_btn_passwordDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
-        this.node_btn_accountLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        this.node_btn_mobileDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1),  this);
+        this.node_btn_verifyDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        this.node_btn_mobileLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        if (this.node_btn_accountDelete) {
+            this.node_btn_accountDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        };
+        if (this.node_btn_passwordDelete) {
+            this.node_btn_passwordDelete.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        };
+        if (this.node_btn_accountLogin) {
+            this.node_btn_accountLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        };
+        if (this.node_btn_goRegister) {
+            this.node_btn_goRegister.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        };
+        if (this.node_btn_register) {
+            this.node_btn_register.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        };
+        if (this.node_btn_registerBack) {
+            this.node_btn_registerBack.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
+        };
         this.node_btn_quickLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_facebookLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
         this.node_btn_guestLogin.on('click', CommonFun.getInstance().debounce(this.clickCallBack, 1), this);
@@ -180,7 +238,7 @@ cc.Class({
             self.lab_updateProgress.node.active = false;
             clearInterval(self.verifyTimer);
             self.verifyTimer = null;
-            self.lab_otpTips.string = 'OTP';
+            self.resetOtpTipsLabel();
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.GD_SMALLGAME_LOAD_PROGRESS) {
             self.setZipFileLoadProgress(notify);
@@ -254,38 +312,96 @@ cc.Class({
         };
     },
 
+    getChildNodeByName: function(parentNode, childName) {
+        if (!parentNode) {
+            return null;
+        };
+        return parentNode.getChildByName(childName);
+    },
+
+    getChildComponentByName: function(parentNode, childName, componentType) {
+        let childNode = this.getChildNodeByName(parentNode, childName);
+        if (!childNode) {
+            return null;
+        };
+        return childNode.getComponent(componentType);
+    },
+
     editBoxCallback: function(editBox) {
         let editBoxName = editBox.node.name;
-        if (editBoxName === "editBox_account") {
-            this.node_lab_accountTips.active = false;
+        if (editBoxName === "editBox_mobile") {
+            this.node_lab_mobileTips.active = false;
+        }
+        else if (editBoxName === "editBox_verity") {
+            this.node_lab_verifyTips.active = false;
         }
         else if (editBoxName === "editBox_password") {
-            this.node_lab_passwordTips.active = false;
+            if (this.node_lab_passwordTips) {
+                this.node_lab_passwordTips.active = false;
+            };
+        }
+        else if (editBoxName === "editBox_register_account" || editBoxName === "editBox_register_password1" || editBoxName === "editBox_register_password2") {
+            this.hideRegisterTips();
         };
     },
 
     clickCallBack: function(btn) {
         let btnName = btn.node.name;
-        if (btnName == "btn_accountDelete") {
+        if (btnName == "btn_mobileDelete") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.editBox_account.string = "";
-            this.node_lab_accountTips.active = false;
+            this.editBox_mobile.string = "";
+            this.node_lab_mobileTips.active = false;
             this.sendVerifyCodeReqAcount = 0;
             this.btn_reqVerify.interactable = true;
             this.btn_reqVerify.enableAutoGrayEffect = false;
             clearInterval(this.verifyTimer);
             this.verifyTimer = null;
-            this.lab_otpTips.string = 'OTP';
+            this.resetOtpTipsLabel();
             this.showCommonLoginView();
+        }
+        else if (btnName == "btn_verifyDelete") {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            this.editBox_verity.string = "";
+            this.node_lab_verifyTips.active = false;
+        }
+        else if (btnName == "btn_mobileLogin") {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            this.dealMobileLoginEvent();
+        }
+        else if (btnName == "btn_accountDelete") {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            if (this.editBox_account) {
+                this.editBox_account.string = "";
+            };
+            if (this.node_lab_accountTips) {
+                this.node_lab_accountTips.active = false;
+            };
         }
         else if (btnName == "btn_passwordDelete") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            this.editBox_password.string = "";
-            this.node_lab_passwordTips.active = false;
+            if (this.editBox_password) {
+                this.editBox_password.string = "";
+            };
+            if (this.node_lab_passwordTips) {
+                this.node_lab_passwordTips.active = false;
+            };
         }
         else if (btnName == "btn_accountLogin") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
             this.dealAccountLoginEvent();
+        }
+        else if (btnName == "btn_goRegister") {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            this.showRegisterView();
+        }
+        else if (btnName == "btn_register") {
+            GlobalCfg.G_COMPONENTS.Audio.playButton();
+            this.dealRegisterEvent();
+        }
+        else if (btnName == "btn_back") {
+            GlobalCfg.G_COMPONENTS.Audio.playBack();
+            this.showAccountLoginView();
+            return;
         }
         else if (btnName == "btn_quickLogin") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -298,16 +414,16 @@ cc.Class({
         }
         else if (btnName === "btn_reqVerify") {
             GlobalCfg.G_COMPONENTS.Audio.playButton();
-            let accountOrPhoneStr = this.editBox_account.string;
+            let accountOrPhoneStr = this.editBox_mobile.string;
             if (accountOrPhoneStr.length == 0) {
-                this.node_lab_accountTips.active = true;
+                this.node_lab_mobileTips.active = true;
                 return;
             };
             if (!this.isPhoneAvailable('91' + accountOrPhoneStr)) {
-                this.node_lab_accountTips.active = true;
+                this.node_lab_mobileTips.active = true;
                 return;
             };
-            CommonFun.getInstance().showProgress("Sending SMS request ...");
+            CommonFun.getInstance().showProgress(this.getUpdateLocalizedText("Sending SMS request ..."));
             this.dealReqVerifyEvent(accountOrPhoneStr);
         }
         else if (btnName === "btn_guestLogin") {
@@ -339,7 +455,7 @@ cc.Class({
                 let packageChannelArr = packageChannel.split("_"); 
                 let server = packageChannelArr[0];
                 if (server == "0") { //只有测试服才能打开测试按钮
-                    if (this.editBox_account.string == "") {
+                    if (this.editBox_mobile.string == "") {
                         return;
                     }
                     GlobalCfg.G_COMPONENTS.Audio.playButton();
@@ -396,8 +512,8 @@ cc.Class({
             this.btn_reqVerify.enableAutoGrayEffect = false;
             clearInterval(this.verifyTimer);
             this.verifyTimer = null;
-            this.lab_otpTips.string = 'OTP';
-            CommonFun.getInstance().showTips("Server SMS interface exception");
+            this.resetOtpTipsLabel();
+            CommonFun.getInstance().showTips(this.getUpdateLocalizedText("Server SMS interface exception"));
             return;
         };
         this.sendVerifyCodeReqAcount += 1;
@@ -423,7 +539,7 @@ cc.Class({
                         this.btn_reqVerify.enableAutoGrayEffect = false;
                     }
                     if (this && this.lab_otpTips) {
-                        this.lab_otpTips.string = 'OTP';
+                        this.resetOtpTipsLabel();
                     }
                     return;
                 }
@@ -455,43 +571,24 @@ cc.Class({
         });
     },
 
-    dealAccountLoginEvent: function() {
-        let accountOrPhoneStr = this.editBox_account.string;
-        if (accountOrPhoneStr.length == 0) {
-            this.node_lab_accountTips.active = true;
+    dealMobileLoginEvent: function() {
+        let phoneStr = this.editBox_mobile.string;
+        if (phoneStr.length == 0) {
+            this.node_lab_mobileTips.active = true;
             return;
         };
 
-        let passwordOrVerCodeStr = this.editBox_password.string;
+        let passwordOrVerCodeStr = this.editBox_verity.string;
         if (passwordOrVerCodeStr.length == 0) {
-            this.node_lab_passwordTips.active = true;
+            this.node_lab_verifyTips.active = true;
             return;
         };
 
-        if (this.isCustomAccount(accountOrPhoneStr)) {
-            CommonFun.getInstance().showProgress();
-            let obj = {
-                loginType: "ACCOUNT",
-                account: accountOrPhoneStr,
-                password: passwordOrVerCodeStr,
-            };
-            let promise = SceneManager.getInstance().reqTokenInfo(obj);
-            promise.then(() => {
-                return SceneManager.getInstance().reqBearerToken();
-            }).then(() => {
-                return SceneManager.getInstance().reqUserDataInfo();
-            }).then(() => {
-                CommonFun.getInstance().showProgress();
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
-            }).catch(error => {
-                LoggerUtil.getInstance().log(error);
-            });
-        }
-        else if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
+        if (this.isPhoneAvailable('91' + phoneStr)) {
             CommonFun.getInstance().showProgress();
             let obj = {
                 loginType: "PHONE",
-                phone: '91' + accountOrPhoneStr,
+                phone: '91' + phoneStr,
                 code: passwordOrVerCodeStr,
                 token: "",
             };
@@ -509,15 +606,146 @@ cc.Class({
             });
         }
         else {
-            this.node_lab_accountTips.active = true;
+            this.node_lab_mobileTips.active = true;
         };
+    },
+
+    dealAccountLoginEvent: function() {
+        let accountStr = this.editBox_account ? this.editBox_account.string.trim() : "";
+        if (accountStr.length == 0) {
+            if (this.node_lab_accountTips) {
+                this.node_lab_accountTips.active = true;
+            };
+            return;
+        };
+
+        let passwordStr = this.editBox_password ? this.editBox_password.string : "";
+        if (passwordStr.length == 0) {
+            if (this.node_lab_passwordTips) {
+                this.node_lab_passwordTips.active = true;
+            };
+            return;
+        };
+
+        this.doAccountPasswordLogin(accountStr, passwordStr, false);
+
+        // TODO: 接入账号密码登录请求，并在成功后继续 bearer token / user data / 切场景流程。
+    },
+
+    showRegisterTips: function(tipsStr) {
+        if (!this.node_lab_password2Tips) {
+            return;
+        };
+        this.node_lab_password2Tips.active = true;
+        if (this.lab_registerTips) {
+            this.lab_registerTips.string = this.getRegisterLocalizedText(tipsStr);
+        };
+    },
+
+    getRegisterLocalizedText: function(tipsStr = "") {
+        if (!this.isBengaliLanguage()) {
+            return tipsStr;
+        };
+
+        let bengaliTextMap = {
+            "Please complete all fields": "সব ঘর পূরণ করুন",
+            "The two passwords do not match": "দুইটি পাসওয়ার্ড মেলেনি",
+        };
+        return bengaliTextMap[tipsStr] || tipsStr;
+    },
+
+    hideRegisterTips: function() {
+        if (this.node_lab_password2Tips) {
+            this.node_lab_password2Tips.active = false;
+        };
+    },
+
+    showAccountLoginView: function() {
+        if (this.node_login_account) {
+            this.node_login_account.active = true;
+        };
+        if (this.node_login_register) {
+            this.node_login_register.active = false;
+        };
+        if (this.node_btn_guestLogin) {
+            this.node_btn_guestLogin.active = true;
+        };
+        this.hideRegisterTips();
+    },
+
+    showRegisterView: function() {
+        if (this.node_login_account) {
+            this.node_login_account.active = false;
+        };
+        if (this.node_login_register) {
+            this.node_login_register.active = true;
+        };
+        if (this.node_btn_guestLogin) {
+            this.node_btn_guestLogin.active = false;
+        };
+        if (this.editBox_register_account) {
+            this.editBox_register_account.string = "";
+        };
+        if (this.editBox_register_password1) {
+            this.editBox_register_password1.string = "";
+        };
+        if (this.editBox_register_password2) {
+            this.editBox_register_password2.string = "";
+        };
+        this.hideRegisterTips();
+    },
+
+    doAccountPasswordLogin: function(accountStr, passwordStr, isRegister) {
+        let obj = {
+            loginType: "ACCOUNT",
+            account: accountStr,
+            password: passwordStr,
+            isRegister: isRegister,
+        };
+        let promise = SceneManager.getInstance().reqTokenInfo(obj);
+        promise.then(() => {
+            return SceneManager.getInstance().reqBearerToken();
+        }).then(() => {
+            return SceneManager.getInstance().reqUserDataInfo();
+        }).then(() => {
+            CommonFun.getInstance().showProgress();
+            SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
+        }).catch(error => {
+            LoggerUtil.getInstance().log(error);
+        });
+    },
+
+    dealRegisterEvent: function() {
+        this.hideRegisterTips();
+
+        let accountStr = this.editBox_register_account ? this.editBox_register_account.string.trim() : "";
+        let password1Str = this.editBox_register_password1 ? this.editBox_register_password1.string : "";
+        let password2Str = this.editBox_register_password2 ? this.editBox_register_password2.string : "";
+
+        if (!accountStr || !password1Str || !password2Str) {
+            this.showRegisterTips("Please complete all fields");
+            return;
+        };
+
+        if (password1Str !== password2Str) {
+            this.showRegisterTips("The two passwords do not match");
+            return;
+        };
+
+        if (this.editBox_account) {
+            this.editBox_account.string = accountStr;
+        };
+        if (this.editBox_password) {
+            this.editBox_password.string = password1Str;
+        };
+        this.doAccountPasswordLogin(accountStr, password1Str, true);
     },
 
     dealQuickLoginEvent: function() {
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
-        let accountOrPhoneStr = this.editBox_account.string;
+        let accountOrPhoneStr = this.editBox_mobile.string;
         if (accountOrPhoneStr.length == 0) {
-            this.node_lab_accountTips.active = true;
+            this.node_lab_mobileTips.active = true;
             return;
         };
         if (this.isPhoneAvailable('91' + accountOrPhoneStr)) {
@@ -543,7 +771,7 @@ cc.Class({
             });
         }
         else {
-            this.node_lab_accountTips.active = true;
+            this.node_lab_mobileTips.active = true;
         };
     },
 
@@ -555,7 +783,7 @@ cc.Class({
     dealTestLoginEvent: function() {
         let obj = {
             loginType: "USERID",
-            userid: this.editBox_account.string,
+            userid: this.editBox_mobile.string,
         };
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
         let promise = SceneManager.getInstance().reqTokenInfo(obj);
@@ -743,11 +971,41 @@ cc.Class({
     },
 
     setLabUpdateContentTipsStr: function(str = "") {
-        this.lab_updateContentTips.string = str;
+        this.lab_updateContentTips.string = this.getUpdateLocalizedText(str);
     },
 
     setLabUpdateProgressStr: function(str) {
         this.lab_updateProgress.string = str;
+    },
+
+    isBengaliLanguage: function() {
+        return I18NUtil.getInstance().getLanguageType() == I18NLanguagesEnum.Bengali;
+    },
+
+    getUpdateLocalizedText: function(str = "") {
+        if (!this.isBengaliLanguage()) {
+            return str;
+        };
+
+        let bengaliTextMap = {
+            "OTP": "ওটিপি",
+            "Downloading files": "ফাইল ডাউনলোড করা হচ্ছে",
+            "Getting Version Information": "ভার্সনের তথ্য আনা হচ্ছে",
+            "Getting Assets Manifest File Error": "অ্যাসেট ম্যানিফেস্ট ফাইল আনতে ত্রুটি",
+            "Compare Version Files": "ভার্সন ফাইল তুলনা করা হচ্ছে",
+            "Update Version Files": "ভার্সন ফাইল আপডেট করা হচ্ছে",
+            "Please Enjoy The Game": "দয়া করে গেমটি উপভোগ করুন",
+            "Sending SMS request ...": "এসএমএস অনুরোধ পাঠানো হচ্ছে...",
+            "Memory login ...": "সংরক্ষিত লগইন করা হচ্ছে...",
+            "Server SMS interface exception": "সার্ভারের এসএমএস ইন্টারফেসে ত্রুটি",
+        };
+        return bengaliTextMap[str] || str;
+    },
+
+    resetOtpTipsLabel: function() {
+        if (this.lab_otpTips) {
+            this.lab_otpTips.string = this.getUpdateLocalizedText("OTP");
+        };
     },
 
     setLabUpdatePointAnim: function(isAct = false) {
@@ -876,8 +1134,8 @@ cc.Class({
         LoggerUtil.getInstance().log("Update completed, now enter Login-view");
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_LOGIN_VIEW);
 
-        this.node_lab_accountTips.active = false;
-        this.node_lab_passwordTips.active = false;
+        this.node_lab_mobileTips.active = false;
+        this.node_lab_verifyTips.active = false;
         this.progressBar.node.active = false;
 
         GlobalCfg.IS_FROM_LOGIN_TO_LOBBY = true;
@@ -890,7 +1148,9 @@ cc.Class({
         .then((arr) => {
             CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
                 window.ResourcesBundle = bundle;
+                this.preloadStartupLanguageBundles(() => {
                 this.preloadCurrentLanguageBundle(() => {
+                this.ensureCurrentLanguageEnvironment();
                 GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
                 GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
                 if (!GlobalCfg.USER_DATAS.token) {
@@ -904,7 +1164,7 @@ cc.Class({
                     };
                 }
                 else {
-                    CommonFun.getInstance().showProgress('Memory login ...');
+                    CommonFun.getInstance().showProgress(this.getUpdateLocalizedText('Memory login ...'));
                     this.node_loginLayer.active = false;
                     let promise = SceneManager.getInstance().reqBearerToken();
                     promise.then(() => {
@@ -921,8 +1181,8 @@ cc.Class({
                 if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不显示游客登录
                     this.node_btn_guestLogin.active = false;
                     this.node_or_sprite.active = false;
-                        this.node_bg_title.active = false;
                     }
+                });
                 });
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
@@ -944,41 +1204,150 @@ cc.Class({
         });
     },
 
+    ensureCurrentLanguageEnvironment: function() {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        I18NUtil.getInstance().setLanguageType(languagesType, true);
+    },
+
+    preloadStartupLanguageBundles: function(callback) {
+        let bundleNames = ['LanguageEnglish', 'LanguageBengali'];
+        let remaining = bundleNames.length;
+        if (remaining === 0) {
+            callback && callback();
+            return;
+        };
+
+        let finishOne = () => {
+            remaining -= 1;
+            if (remaining <= 0) {
+                callback && callback();
+            };
+        };
+
+        bundleNames.forEach((bundleName) => {
+            CommonFun.getInstance().loadBundle(bundleName, () => {
+                finishOne();
+            }, (err) => {
+                LoggerUtil.getInstance().error(`${bundleName}-Bundle error: ${JSON.stringify(err)}`);
+                finishOne();
+            });
+        });
+    },
+
     showMemoryPhoneView: function() {
-        this.editBox_password.node.active = false;
-        this.node_btn_passwordDelete.active = false;
-        this.node_btn_reqVerify.active = false;
-        this.node_btn_accountLogin.active = false;
-        this.node_btn_quickLogin.active = true;
-      
-        this.editBox_account.string = cc.sys.localStorage.getItem("login_phone").slice(2);
-        this.node_or_sprite.setPosition(this.or_sprite_pos1);
-        this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
-        this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
+        if (this.node_login_account) {
+            this.node_login_account.active = false;
+        };
+        if (this.node_login_register) {
+            this.node_login_register.active = false;
+        };
+        if (this.editBox_verity) {
+            this.editBox_verity.node.active = false;
+        };
+        if (this.node_btn_verifyDelete) {
+            this.node_btn_verifyDelete.active = false;
+        };
+        if (this.node_btn_reqVerify) {
+            this.node_btn_reqVerify.active = false;
+        };
+        if (this.node_btn_mobileLogin) {
+            this.node_btn_mobileLogin.active = false;
+        };
+        if (this.node_btn_quickLogin) {
+            this.node_btn_quickLogin.active = true;
+        };
+       
+        if (this.editBox_mobile) {
+            this.editBox_mobile.string = cc.sys.localStorage.getItem("login_phone").slice(2);
+        };
+        if (this.node_or_sprite) {
+            this.node_or_sprite.setPosition(this.or_sprite_pos1);
+        };
+        if (this.node_btn_facebookLogin) {
+            this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos1);
+        };
+        if (this.node_btn_guestLogin) {
+            this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos1);
+        };
 
         if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-            this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
-            this.node_btn_guestLogin.setContentSize(512, 79);
+            if (this.node_btn_facebookLogin) {
+                this.node_btn_facebookLogin.active = false;
+            };
+            if (this.node_btn_guestLogin) {
+                this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos1.y);
+                this.node_btn_guestLogin.setContentSize(512, 79);
+            };
         };
     },
 
     showCommonLoginView: function() {
-        this.editBox_password.node.active = true;
-        this.node_btn_passwordDelete.active = true;
-        this.node_btn_reqVerify.active = true;
-        this.node_btn_accountLogin.active = true;
-        this.node_btn_quickLogin.active = false;
+        this.showRegisterView();
+        if (this.editBox_verity) {
+            this.editBox_verity.node.active = true;
+        };
+        if (this.node_btn_verifyDelete) {
+            this.node_btn_verifyDelete.active = true;
+        };
+        if (this.node_btn_reqVerify) {
+            this.node_btn_reqVerify.active = true;
+        };
+        if (this.node_btn_mobileLogin) {
+            this.node_btn_mobileLogin.active = true;
+        };
+        if (this.node_btn_quickLogin) {
+            this.node_btn_quickLogin.active = false;
+        };
 
-        this.editBox_account.string = "";
-        this.node_or_sprite.setPosition(this.or_sprite_pos);
-        this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
-        this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
+        if (this.editBox_mobile) {
+            this.editBox_mobile.string = "";
+        };
+        if (this.editBox_verity) {
+            this.editBox_verity.string = "";
+        };
+        if (this.editBox_account) {
+            this.editBox_account.string = "";
+        };
+        if (this.editBox_password) {
+            this.editBox_password.string = "";
+        };
+        if (this.editBox_register_account) {
+            this.editBox_register_account.string = "";
+        };
+        if (this.editBox_register_password1) {
+            this.editBox_register_password1.string = "";
+        };
+        if (this.editBox_register_password2) {
+            this.editBox_register_password2.string = "";
+        };
+        if (this.node_lab_mobileTips) {
+            this.node_lab_mobileTips.active = false;
+        };
+        if (this.node_lab_verifyTips) {
+            this.node_lab_verifyTips.active = false;
+        };
+        if (this.node_lab_passwordTips) {
+            this.node_lab_passwordTips.active = false;
+        };
+        this.hideRegisterTips();
+        if (this.node_or_sprite) {
+            this.node_or_sprite.setPosition(this.or_sprite_pos);
+        };
+        if (this.node_btn_facebookLogin) {
+            this.node_btn_facebookLogin.setPosition(this.btn_facebookLogin_pos);
+        };
+        if (this.node_btn_guestLogin) {
+            this.node_btn_guestLogin.setPosition(this.btn_guestLogin_pos);
+        };
 
         if (GlobalCfg.CHANNEL_INFO == "2023" || GlobalCfg.UNUSE_FACEBOOK > 0) {
-            this.node_btn_facebookLogin.active = false;
-            this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
-            this.node_btn_guestLogin.setContentSize(512, 79);
+            if (this.node_btn_facebookLogin) {
+                this.node_btn_facebookLogin.active = false;
+            };
+            if (this.node_btn_guestLogin) {
+                this.node_btn_guestLogin.setPosition(326, this.btn_guestLogin_pos.y);
+                this.node_btn_guestLogin.setContentSize(512, 79);
+            };
         };
     },
 

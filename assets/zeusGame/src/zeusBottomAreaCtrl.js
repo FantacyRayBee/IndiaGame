@@ -65,13 +65,13 @@ cc.Class({
 
     setAllWinScore: function(score, isAnim) {
         if (!isAnim || score == 0) {
-            this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score);
+            this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score).replace(/\./g, '_');
             return;
         };
 
-        let oldScore = Number(this.lab_allWin.string);
+        let oldScore = Number(String(this.lab_allWin.string).replace(/_/g, '.'));
         if (score == oldScore) {
-            this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score);
+            this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score).replace(/\./g, '_');
             return;
         };
 
@@ -85,6 +85,7 @@ cc.Class({
                 progress: (start, end, current, t) => {
                     if (this && this.lab_allWin) {
                         let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t);
+                        temp = temp.replace(/\./g, '_');
                         this.lab_allWin.string = temp;
                     };
                     return start + (end - start) * t;
@@ -227,12 +228,11 @@ cc.Class({
         let bet = this.betArr[betIndex];
         if (typeof bet != "number") {
             LoggerUtil.getInstance().warn("bet is not a number");
-            this.lab_bet.string = `$0`;
+            this.lab_bet.string = CommonFun.getInstance().getCurrencySymbol() + `0`;
             return;
         };
         let tempBet = this.isDoubleMulti ? bet * 1.25 : bet;
-        this.lab_bet.string = `$${tempBet/100}`;
-
+        this.lab_bet.string = CommonFun.getInstance().getCurrencySymbol() + `${tempBet/100}`;
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
             msgCode: GlobalCfg.CLIENT_MSG_ID.ZEUS_SELECTED_BET_FRESH, 
             msgData: {

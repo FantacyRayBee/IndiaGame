@@ -4,8 +4,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        labs : [cc.Label]
-      
+        labs : [cc.Label],
+
     },
 
   
@@ -14,6 +14,10 @@ cc.Class({
 
     showDate :function (date) {   
         let sideArr = ["SET","PURE","SEQ","COLOR","PAIR","HIGH"];
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == I18NLanguagesEnum.Bengali) {
+            sideArr = ["সেট","পিওর","সিক","কালার","পেয়ার","হাই"];
+        }
         this.labs[0].string = date.pools[0].all ? FloatCalculation.accDiv(date.pools[0].all,100): "X";
         this.labs[1].string = date.pools[1].all ? FloatCalculation.accDiv(date.pools[1].all,100) : "X";
         this.labs[2].string = date.pools[2].all ? FloatCalculation.accDiv(date.pools[2].all,100) : "X";
@@ -29,7 +33,6 @@ cc.Class({
         this.labs[12].string = this.getLocalTime(date.time);
         this.labs[13].string = sideArr[date.side];
         this.labs[14].string = FloatCalculation.accDiv(date.calc,100);
-        
     },
 
     getLocalTime(nS) {  

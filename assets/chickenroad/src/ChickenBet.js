@@ -191,7 +191,7 @@ cc.Class({
 
     setMultiplier(curWinMoney) {
         let ret = curWinMoney / 100;
-        this.lab_withdraw.string = CommonFun.getInstance().fixed(ret) + " INR";
+        this.lab_withdraw.string = CommonFun.getInstance().fixed(ret) + " BDT";
     },
 
     getCurBet() { return this.curBet; },

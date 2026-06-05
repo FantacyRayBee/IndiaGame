@@ -36,17 +36,9 @@ cc.Class({
 
         if (loop_status == 0 && gift != 0) {
             this.node_bonus.active = true;
-            let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
-            if (languagesType == I18NLanguagesEnum.English) {
-                this.lab_shopCoin1.string = `₹${amount}`;
-                this.lab_shopCoin2.string = `₹${amount}`;
-                this.lab_bonus.string = '+₹' + Number(gift);
-            }
-            else if (languagesType == I18NLanguagesEnum.Bengali) {
-                this.lab_shopCoin1.string = `৳${amount}`;
-                this.lab_shopCoin2.string = `৳${amount}`;
-                this.lab_bonus.string = '+৳' + Number(gift);
-            }
+            this.lab_shopCoin1.string = CommonFun.getInstance().formatCurrencyAmount(amount);
+            this.lab_shopCoin2.string = CommonFun.getInstance().formatCurrencyAmount(amount);
+            this.lab_bonus.string = CommonFun.getInstance().formatCurrencyAmount(Number(gift), { prefix: '+' });
         }
         else if (loop_status == 1) {
             this.node_bonus.active = false;

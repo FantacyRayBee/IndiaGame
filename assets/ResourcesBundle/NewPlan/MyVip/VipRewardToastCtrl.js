@@ -16,7 +16,7 @@ cc.Class({
 
     setVipRewardToastAmount: function(amount, isBonus) {
         GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sajinbi", false);
-        this.lab_tips.string = `₹${amount}`;
+        this.lab_tips.string = CommonFun.getInstance().formatCurrencyAmount(amount);
         this.spine_reward.setAnimation(0, isBonus ? "animation2" : "animation", true);
     },
 });

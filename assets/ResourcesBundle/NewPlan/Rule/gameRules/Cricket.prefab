@@ -24,14 +24,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 79
+        "__id__": 80
       },
       {
-        "__id__": 80
+        "__id__": 81
       }
     ],
     "_prefab": {
-      "__id__": 81
+      "__id__": 82
     },
     "_opacity": 255,
     "_color": {
@@ -95,11 +95,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 77
+        "__id__": 78
       }
     ],
     "_prefab": {
-      "__id__": 78
+      "__id__": 79
     },
     "_opacity": 255,
     "_color": {
@@ -169,11 +169,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 75
+        "__id__": 76
       }
     ],
     "_prefab": {
-      "__id__": 76
+      "__id__": 77
     },
     "_opacity": 255,
     "_color": {
@@ -491,10 +491,13 @@
     "_components": [
       {
         "__id__": 73
+      },
+      {
+        "__id__": 74
       }
     ],
     "_prefab": {
-      "__id__": 74
+      "__id__": 75
     },
     "_opacity": 255,
     "_color": {
@@ -2645,6 +2648,17 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "3d074wD6iBBc7Uckbpsinme",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 12
+    },
+    "_enabled": true,
+    "spriteTransId": 1307,
     "_id": ""
   },
   {

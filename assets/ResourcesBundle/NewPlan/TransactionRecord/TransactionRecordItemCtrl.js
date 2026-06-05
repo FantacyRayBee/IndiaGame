@@ -98,7 +98,7 @@ cc.Class({
         let status = data.status;
         let previous_pay = data.previous_pay;   // 充值之前的金额，为 0 代表 此条记录为首充订单
 
-        this.lab_amount.string = `₹${(Number(amount)/100).toFixed(2)}`;
+        this.lab_amount.string = CommonFun.getInstance().formatCurrencyAmount((Number(amount) / 100).toFixed(2));
         this.lab_id.string = `${id}`;
         this.lab_time.string = `${this.getTimeStrByCreatedAt(createdAt)}`;
         let languagesType = I18NUtil.getInstance().getLanguageType();
@@ -106,9 +106,9 @@ cc.Class({
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Processing']);
             this.lab_state.string = descriptionStr;
             this.lab_state.node.color = new cc.color(247, 114, 21, 255);
-            this.lab_changeAmount.string = `+₹${Number(amount/100).toFixed(2)}`;
-            this.lab_before.string = `₹${Number(before/100).toFixed(2)}`;
-            this.lab_after.string = `₹${((Number(before) + Number(amount))/100).toFixed(2)}`
+            this.lab_changeAmount.string = CommonFun.getInstance().formatCurrencyAmount(Number(amount / 100).toFixed(2), { prefix: '+' });
+            this.lab_before.string = CommonFun.getInstance().formatCurrencyAmount(Number(before / 100).toFixed(2));
+            this.lab_after.string = CommonFun.getInstance().formatCurrencyAmount(((Number(before) + Number(amount)) / 100).toFixed(2))
             this.btn_detail.node.active = true;
             this.lab_btnDetailTips.string = "Help";
         }
@@ -116,18 +116,18 @@ cc.Class({
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Succeeded']);
             this.lab_state.string = descriptionStr;
             this.lab_state.node.color = new cc.color(26, 182, 51, 255);
-            this.lab_changeAmount.string = `+₹${Number(amount/100).toFixed(2)}`;
+            this.lab_changeAmount.string = CommonFun.getInstance().formatCurrencyAmount(Number(amount / 100).toFixed(2), { prefix: '+' });
             
             if (previous_pay == 0 && GlobalCfg.uncleaned == false) {
                 let descriptionStr1 = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Experience Coins']);
                 this.lab_before.string = descriptionStr1;                                                    
-                this.lab_after.string = `₹${Number(amount/100).toFixed(2)}`;   
+                this.lab_after.string = CommonFun.getInstance().formatCurrencyAmount(Number(amount / 100).toFixed(2));   
                 this.btn_detail.node.active = true;
                 this.lab_btnDetailTips.string = "Detail";
             }
             else {
-                this.lab_before.string = `₹${Number(before/100).toFixed(2)}`;             
-                this.lab_after.string = `₹${((Number(before) + Number(amount))/100).toFixed(2)}`;
+                this.lab_before.string = CommonFun.getInstance().formatCurrencyAmount(Number(before / 100).toFixed(2));             
+                this.lab_after.string = CommonFun.getInstance().formatCurrencyAmount(((Number(before) + Number(amount)) / 100).toFixed(2));
                 this.lab_btnDetailTips.string = "";
                 this.btn_detail.node.active = false;
             };
@@ -136,9 +136,9 @@ cc.Class({
             let descriptionStr = I18NUtil.getInstance().getLanguageStr(languagesType, I18NLabelTransIdEnum['TransactionRecord_Failed']);
             this.lab_state.string = descriptionStr;
             this.lab_state.node.color = new cc.color(255, 125, 0, 255);
-            this.lab_changeAmount.string = `₹0`;
-            this.lab_before.string = `₹0`;
-            this.lab_after.string = `₹0`;
+            this.lab_changeAmount.string = CommonFun.getInstance().formatCurrencyAmount(0);
+            this.lab_before.string = CommonFun.getInstance().formatCurrencyAmount(0);
+            this.lab_after.string = CommonFun.getInstance().formatCurrencyAmount(0);
             this.lab_btnDetailTips.string = "";
             this.btn_detail.node.active = false;
         };
@@ -156,12 +156,12 @@ cc.Class({
         this.btn_detail.node.active = false;
         this.lab_btnDetailTips.string = "";
 
-        this.lab_amount.string = `₹${(Number(amount)/100).toFixed(2)}`;
+        this.lab_amount.string = CommonFun.getInstance().formatCurrencyAmount((Number(amount) / 100).toFixed(2));
         this.lab_id.string = `${orderno}`;
         this.lab_time.string = `${this.getTimeStrByCreatedAt(applytime)}`;
-        this.lab_changeAmount.string = `-₹${(Number(deduction)/100).toFixed(2)}`;
-        this.lab_before.string = `₹${(Number(before)/100).toFixed(2)}`;
-        this.lab_after.string = `₹${((Number(before) - Number(deduction))/100).toFixed(2)}`;
+        this.lab_changeAmount.string = CommonFun.getInstance().formatCurrencyAmount((Number(deduction) / 100).toFixed(2), { prefix: '-' });
+        this.lab_before.string = CommonFun.getInstance().formatCurrencyAmount((Number(before) / 100).toFixed(2));
+        this.lab_after.string = CommonFun.getInstance().formatCurrencyAmount(((Number(before) - Number(deduction)) / 100).toFixed(2));
 
         let languagesType = I18NUtil.getInstance().getLanguageType();
         if (status == 0) {                   // 等待审核 

@@ -31,7 +31,7 @@ cc.Class({
         this.lab_currentXMark.string = "";
         this.lab_currentXMul.string = "";
         this.lab_mulWinScore.string = "";
-        this.lab_notMulWinScore.string = `$0.00`;
+        this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `0.00`;
 
         this.startTitleAnima();
 
@@ -119,7 +119,7 @@ cc.Class({
         this.lab_mulWinScore.node.setPosition(cc.v2(1.6, -15));
         this.lab_currentXMul.node.setPosition(cc.v2(44.2, -15));
 
-        this.lab_notMulWinScore.string = `$0.00`;
+        this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `0.00`;
 
         if (this.isHaveTitleTimer == false) {
             this.startTitleAnima();
@@ -149,7 +149,7 @@ cc.Class({
             this.lab_currentXMark.string = "";
             this.lab_currentXMul.string = "";
             this.lab_mulWinScore.string = "";
-            this.lab_notMulWinScore.string = `$${GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(winScore)}`;
+            this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(winScore)}`;
 
             cc.tween(this.lab_notMulWinScore.node)
             .to(0.1, {scale: 1.3})
@@ -185,7 +185,7 @@ cc.Class({
                 progress: (start, end, current, t) => {
                     if (this && this.lab_mulWinScore) {
                         let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t); 
-                        this.lab_mulWinScore.string = `$${temp}`;
+                        this.lab_mulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${temp}`;
                     };
                     return start + (end - start) * t;
                 }
@@ -197,7 +197,7 @@ cc.Class({
 
     setCurrentElfMul2: function(score) {
         if (score == 0) {
-            this.lab_notMulWinScore.string = `$0.00`;
+            this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `0.00`;
             return;
         };
 
@@ -222,7 +222,7 @@ cc.Class({
                 progress: (start, end, current, t) => {
                     if (this && this.lab_notMulWinScore) {
                         let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t); 
-                        this.lab_notMulWinScore.string = `$${temp}`;
+                        this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${temp}`;
                     };
                     return start + (end - start) * t;
                 }
@@ -266,7 +266,7 @@ cc.Class({
 
         this.lab_notMulWinScore.string = "";
        
-        this.lab_mulWinScore.string = `$${GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(this.currentElfMul * this.currentBet/2000)}`;
+        this.lab_mulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(this.currentElfMul * this.currentBet/2000)}`;
         this.lab_currentXMark.string = "X";
         this.lab_currentXMul.string = `${Number(currentXMul).toFixed(0)}`;
 

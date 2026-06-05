@@ -126,13 +126,13 @@ cc.Class({
             this.btn_collect.node.active = false;
         };
 
-        this.lab_win.string = `₹${award/100}`;
+        this.lab_win.string = CommonFun.getInstance().formatCurrencyAmount(award / 100);
         this.lab_winCompleted.string = `${progress}/${need} Games won`;
         this.lab_sub.string = `Win ${need} games ${this.taskGameNameObj[this.ChallengesItemTask]}`;
 
         if (this.ChallengesItemTask == 12) {
             this.lab_playTips.string = 'Add Cash';
-            this.lab_win.string = `₹${award/100}`;
+            this.lab_win.string = CommonFun.getInstance().formatCurrencyAmount(award / 100);
             this.lab_winCompleted.string = '';
             this.lab_sub.string = `${this.taskGameNameObj[this.ChallengesItemTask]}`;
         };

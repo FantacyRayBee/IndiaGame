@@ -145,7 +145,7 @@ cc.Class({
 
         this.lab_date.string = `${this.getTimeStrByCreatedAt(createdAt)}`;
         this.lab_state.string = `${this.stateArr[state]}`;
-        this.lab_rechargeAmount.string = `₹${(Number(amount)/100).toFixed(2)}`;
+        this.lab_rechargeAmount.string = CommonFun.getInstance().formatCurrencyAmount((Number(amount) / 100).toFixed(2));
     },
 
 

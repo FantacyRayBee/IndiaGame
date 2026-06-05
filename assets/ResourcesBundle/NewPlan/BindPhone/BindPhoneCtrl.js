@@ -21,6 +21,8 @@ cc.Class({
         otpNode: cc.Node,
         lab_tip1: cc.Node,
         lab_tip2: cc.Label,
+
+        number91: cc.Label,
     },
 
     ctor() {
@@ -62,6 +64,13 @@ cc.Class({
         if (CommonFun.getInstance().checkVerticalAcc()) {
             this.zhuNode.scale = 0.7
         };
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == I18NLanguagesEnum.Bengali) {
+            this.number91.string = "+880";
+        }
+        else {
+            this.number91.string = "+91";
+        }
         this.showRealName();
     },
 

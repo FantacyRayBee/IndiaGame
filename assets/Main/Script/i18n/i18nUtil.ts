@@ -30,6 +30,11 @@ export enum I18NLabelTransIdEnum {
     'Login_Back & Change Mobile',
     'Login_Guest Login',
     'Login_Quick Login',
+    'Login_Please enter your account',
+    'Login_Please enter your password',
+    'Login_Please confirm your password',
+    'Login_Register',
+    'Login_Account or Password is incorrect',
 
 
     /**
@@ -98,7 +103,7 @@ export enum I18NLabelTransIdEnum {
     'Lobby_How to play',
     'Lobby_Please enter the correct phone number',
     'Lobby_Contact US',
-
+    'Lobby_YouHavent',
 
     /**
      * 客服
@@ -424,12 +429,12 @@ export enum I18NLabelTransIdEnum {
 
     'personal_edit' = 13000,
 
-    'rule_andar_desc1'= 13100,
+    'rule_andar_desc1' = 13100,
     'rule_andar_desc2',
     'rule_andar_desc3',
     'rule_andar_desc4',
     'rule_andar_desc5',
-    
+
     'rule_3patti_desc1',
     'rule_3patti_desc2',
     'rule_3patti_desc3',
@@ -513,6 +518,11 @@ export enum I18NLabelTransIdEnum {
     'rule_updown_desc2',
     'rule_zoo_desc1',
 
+    'autoSpinSetting_title1' = 14000,
+    'autoSpinSetting_title2',
+    'autoSpinSetting_title3',
+    'autoSpinSetting_title4',
+
     //游戏
     'bull_balance' = 20000,
     'bull_bet',
@@ -532,6 +542,104 @@ export enum I18NLabelTransIdEnum {
     'lhd_bet_tip' = 22000,
     'lhd_repeat bets',
     'lhd_total online players',
+
+    'chicken_title1',
+    'chicken_tip1',
+    'chicken_desc1',
+    'chicken_desc2',
+    'chicken_desc3',
+    'chicken_desc4',
+    'chicken_desc5',
+    'chicken_desc6',
+    'chicken_desc7',
+    'chicken_Autoplay',
+    'chicken_Numbers of autospins:',
+    'chicken_Step to cashout?',
+    'chicken_ChangeAvatar',
+    'chicken_Save and close',
+    'chicken_howtoplay',
+    'chicken_howtoplay_desc',
+    'chicken_MyBetHistory',
+    'chicken_MyBetHistory_title1',
+    'chicken_MyBetHistory_title2',
+    'chicken_MyBetHistory_title3',
+    'chicken_MyBetHistory_title4',
+    'chicken_provably',
+    'chicken_provably_desc1',
+    'chicken_provably_desc2',
+    'chicken_provably_desc3',
+    'chicken_provably_desc4',
+    'chicken_provably_info1_1',
+    'chicken_provably_info1_2',
+    'chicken_provably_info2_',
+    'chicken_gamerule',
+    'chicken_gamerule_desc1',
+    'chicken_gamerule_desc2',
+    'chicken_gamerule_desc3',
+    'chicken_gamerule_desc4',
+    'chicken_setting_sound',
+    'chicken_setting_Music',
+    'chicken_setting_Provably',
+    'chicken_setting_GameRules',
+    'chicken_setting_MyBetHistroy',
+    'aviator_title1',
+    'aviator_title2',
+    'aviator_AllBets',
+    'aviator_Previous',
+    'aviator_Top',
+    'aviator_Player',
+    'aviator_FreeBets_title',
+    'aviator_FreeBets_play',
+    'aviator_FreeBets_desc',
+    'aviator_FreeBets_NoActive',
+    'aviator_ProvablySetting_desc',
+    'aviator_ProvablySetting_whatIs',
+    'aviator_ProvablySetting_Clinet',
+    'aviator_ProvablySetting_Clinet2',
+    'aviator_ProvablySetting_random',
+    'aviator_ProvablySetting_EnterManually',
+    'aviator_ProvablySetting_YouCan',
+    'aviator_reward_tips',
+    'aviator_setting_animation',
+    'aviator_setting_FreeBets',
+    'aviator_setting_ProvablyFairSettings',
+    'aviator_setting_GameRules',
+    'aviator_setting_HowToplay',
+    'aviator_setting_MyBetHistroy',
+    'aviator_setting_GameLimits',
+    'aviator_RoundHistory',
+    'aviator_cashout',
+    'aviator_AutoBet',
+    'aviator_AutoCashOut',
+    'aviator_BetBDT',
+    'aviator_WinBDT',
+    'aviator_RoundResult',
+    'aviator_Rounds',
+    'aviator_Day',
+    'aviator_Month',
+    'aviator_Year',
+    'aviator_RoundMAX',
+    'aviator_ForInstructionsCheck',
+    'aviator_Generated',
+    'aviator_Above',
+    'aviator_Hax',
+    'aviator_Decimal',
+    'aviator_Result',
+    'aviator_Date',
+    'sscGame_set',
+    'sscGame_pure seq',
+    'sscGame_seq',
+    'sscGame_color',
+    'sscGame_pair',
+    'sscGame_high card',
+    'sscGame_interval',
+    'sscGame_all',
+    'sscGame_total',
+    'sscGame_pure10X',
+    'sscGame_SEQ6X',
+    'sscGame_COLOR5X',
+    'sscGame_PAIR4X',
+    'sscGame_HIGHCARD3X',
 };
 
 
@@ -548,16 +656,22 @@ export enum I18NSpriteTransIdEnum {
     'Setting_terms',
     'Setting_logOut',
 
-
     'Activity_title' = 100,
     'Activity_bonus_title',
     'Activity_signIn_title',
     'Activity_turnTable_title',
-
+    'Activity_gobetting_title',
+    'Activity_gobetting_remaining',
+    'Activity_signIn_button',
 
     'RewardsTips_title' = 200,
 
     'BindPhone_title' = 300,
+    'BindPhone_email',
+    'BindPhone_mobile',
+    'BindPhone_opt',
+    'BindPhone_btn_save',
+    'BindPhone_name',
 
     'BindPhoneRewards_title' = 400,
     'BindPhoneRewards_free',
@@ -591,6 +705,9 @@ export enum I18NSpriteTransIdEnum {
     'Rule_zeus_desc2',
     'Rule_zeus_desc3',
     'Rule_zeus_desc4',
+    'Rule_updown_desc',
+    'Rule_zoo_desc',
+    'Rule_cricket_desc',
 
     'SmallAddExperience_title' = 1400,
 
@@ -613,6 +730,11 @@ export enum I18NSpriteTransIdEnum {
     'LobbyBanner_Group 215',
     'LobbyBanner_Group 216',
     'LobbyBanner_Group 217',
+
+    'lobby_add' = 1650,
+    'lobby_WITHDRAW',
+    'lobby_yinbi',
+    'lobby_jinbi',
 
     'CommActivity_activity' = 1700,
     'CommActivity_bonusCard',
@@ -651,6 +773,7 @@ export enum I18NSpriteTransIdEnum {
     'LobbyIcons_OncePay',
     'LobbyIcons_vip',
     'LobbyIcons_email',
+    'LobbyIcons_invited reward',
 
 
     'GameSetting_title' = 1900,
@@ -687,6 +810,8 @@ export enum I18NSpriteTransIdEnum {
     'DailyBonusCard_02',
     'DailyBonusCard_03',
     'DailyBonusCard_04',
+    'DailyBonusCard_rule_title',
+    'Bonus_bg',
 
     'invitation_bg' = 2500,
     'invitation_yes',
@@ -710,6 +835,15 @@ export enum I18NSpriteTransIdEnum {
     'servicew_Telegram',
     'servicew_button',
 
+    'email_bg' = 2800,
+    'email_btn_yes',
+    'email_btn_no',
+
+    'jinbi_jinbi' = 2850,
+    'jinbi_jinbi2',
+    'jinbi_jinbi3',
+    'jinbi_jinbi4',
+
     //游戏
     'game_shop_cz' = 9000,
     'game_shop_free',
@@ -723,6 +857,8 @@ export enum I18NSpriteTransIdEnum {
     'game_machine_spin2',
     'game_machine_gold',
     'game_machine_total',
+    'game_title_OnlinePlayer',
+    'game_title_TableInfo',
 
 
     'bullMachine_spin_label' = 10000,
@@ -731,6 +867,9 @@ export enum I18NSpriteTransIdEnum {
     'bullMachine_tips3',
     'bullMachine_tips4',
     'bullMachine_tips5',
+    'AutoSpinSetting_title',
+    'AutoSpinSetting_cancel',
+    'AutoSpinSetting_start',
 
     'catMachine_tips1' = 11000,
     'catMachine_tips2',
@@ -749,8 +888,70 @@ export enum I18NSpriteTransIdEnum {
     'catMachine_rule_jackpot',
     'catMachine_rule_4',
 
-    'lhd_stopbetting',
+    'lhd_stopbetting' = 11100,
+    'lhd_startbetting',
 
+    'chicken_htp' = 11200,
+    'chicken_min',
+    'chicken_max',
+    'chicken_jb',
+    'chicken_jb2',
+
+    'aviator_help' = 11300,
+    'aviator_limit',
+    'aviator_changeHead',
+    'aviator_myBetHistory',
+    'aviator_Head_close',
+
+    'zeus_btn_max' = 11400,
+    'zeus_btn_quick1',
+    'zeus_btn_quick2',
+    'zeus_btn_auto1',
+    'zeus_btn_auto2',
+    'zeus_btn_spin',
+    'zeus_desc_title1',
+    'zeus_desc_title2',
+    'zeus_desc_title3',
+    'zeus_desc_title4',
+    'zeus_desc_toBuy',
+    'zeus_desc_betsTips1',
+    'zeus_desc_betsTips2',
+    'zeus_btn_getcoin',
+    'zeus_desc_tumblewin',
+    'zeus_desc_freespins',
+    'zeus_desc_totalMultiplier',
+    'zeus_buy_freespins',
+    'zeus_gates_oly_congra',
+    'zeus_gates_oly_YouHaveWon',
+    'zeus_gates_oly_FREE',
+    'zeus_gates_oly_InIsFreeSpins',
+    'zeus_gates_oly_PRESS_ANYWHERE_TO_CONTINUE',
+    'zeus_gates_oly_bouns',
+
+    'sscGame_record_bg' = 11500,
+    'sscGame_record_title',
+    'sscGame_help_desc',
+    'sscGame_help_title',
+    'sscGame_btn_add',
+    'sscGame_btn_max',
+    'sscGame_btn_repeat',
+    'sscGame_btn_repeat2',
+    'sscGame_jinbi',
+    'sscGame_flag_new',
+
+    'zoo_icon_1' = 11600,
+    'zoo_icon_2',
+    'zoo_icon_3',
+    'zoo_icon_4',
+    'zoo_icon_5',
+    'zoo_icon_6',
+    'zoo_icon_7',
+    'zoo_icon_8',
+    'zoo_icon_9',
+    'zoo_icon_10',
+    'zoo_icon_11',
+    'zoo_totalWin',
+    'zoo_zhadan',
 };
 
 export enum I18NSpineTransIdEnum {
@@ -831,12 +1032,21 @@ export class I18NUtil {
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_title'], 'Activity/Base/title');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_bonus_title'], 'Activity/Bonus/title');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_signIn_title'], 'Activity/SignIn/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_signIn_title'], 'Activity/SignIn/DAILY FREE RUPEES');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_signIn_button'], 'Activity/SignIn/btn_get');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_turnTable_title'], 'Activity/TurnTable/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_gobetting_title'], 'Activity/gobetting/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_gobetting_remaining'], 'Activity/gobetting/remaining');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['RewardsTips_title'], 'RewardsTips/title');
 
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_title'], 'BindPhone/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_title'], 'BindPhone/bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_email'], 'BindPhone/email');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_mobile'], 'BindPhone/mobile');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_opt'], 'BindPhone/opt');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_btn_save'], 'BindPhone/btn_save');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_name'], 'BindPhone/name');
+
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhoneRewards_title'], 'BindPhoneRewards/title');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhoneRewards_free'], 'BindPhoneRewards/free');
@@ -857,7 +1067,7 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['FirstGiftDiamond_content'], 'FirstGiftDiamond/content');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Personal_title'], 'Personal/title');
-        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['personal_bind'], 'personal/bind');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Personal_bind'], 'Personal/bind');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Promoter_getABonus'], 'Promoter/getABonus');
 
@@ -871,6 +1081,9 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Rule_zeus_desc2'], 'Rule/gates_oly_rules_img2');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Rule_zeus_desc3'], 'Rule/gates_oly_rules_img3');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Rule_zeus_desc4'], 'Rule/gates_oly_rules_img4');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Rule_updown_desc'], 'Rule/shaizi2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Rule_zoo_desc'], 'Rule/zoo');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Rule_cricket_desc'], 'Rule/cricket');
 
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['SmallAddExperience_title'], 'SmallAddExperience/title');
@@ -895,7 +1108,10 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 216'], 'LobbyBanner/Group 216');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyBanner_Group 217'], 'LobbyBanner/Group 217');
 
-
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['lobby_add'], 'lobby/btn_add');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['lobby_WITHDRAW'], 'lobby/btn_WITHDRAW');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['lobby_yinbi'], 'lobby/btn_yinbi');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['lobby_jinbi'], 'lobby/img_jinbi');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_activity'], 'CommActivity/activity');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['CommActivity_bonusCard'], 'CommActivity/bonusCard');
@@ -935,6 +1151,8 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_OncePay'], 'LobbyIcons/once pay');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_vip'], 'LobbyIcons/vip');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_email'], 'LobbyIcons/Email');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_invited reward'], 'LobbyIcons/invited reward');
+
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['GameSetting_title'], 'GameSetting/title');
 
@@ -964,6 +1182,10 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_02'], 'DailyBonusCard/02');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_03'], 'DailyBonusCard/03');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_04'], 'DailyBonusCard/04');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_rule_title'], 'DailyBonusCard/rule_title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Bonus_bg'], 'DailyBonusCard/bonus_bg');
+
+        
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['invitation_bg'], 'invitation/bg');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['invitation_yes'], 'invitation/yes');
@@ -988,6 +1210,15 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_Telegram'], 'service/Telegram');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_button'], 'service/btn_GO');
 
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['email_bg'], 'Email/img_email');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['email_btn_yes'], 'Email/btn_get_yes');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['email_btn_no'], 'Email/btn_get_no');
+
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['jinbi_jinbi'], 'jinbi/jinbi');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['jinbi_jinbi2'], 'jinbi/jinbi2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['jinbi_jinbi3'], 'jinbi/jinbi3');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['jinbi_jinbi4'], 'jinbi/jinbi4');
+
         //游戏
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_shop_cz'], 'game/btn_cz');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_shop_free'], 'game/btn_mfjf');
@@ -1001,6 +1232,9 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_machine_spin2'], 'game/fruitMachine/btn_spin_grey');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_machine_gold'], 'game/fruitMachine/jinbi');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_machine_total'], 'game/fruitMachine/btn_total');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_title_OnlinePlayer'], 'game/OnlinePlayer');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['game_title_TableInfo'], 'game/TableInfo');
+        
 
         //野牛
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_spin_label'], 'game/bullMachine/spin');
@@ -1009,6 +1243,10 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips3'], 'game/bullMachine/tips3');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips4'], 'game/bullMachine/tips4');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['bullMachine_tips5'], 'game/bullMachine/tips5');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['AutoSpinSetting_title'], 'game/bullMachine/title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['AutoSpinSetting_cancel'], 'game/bullMachine/btn_cancel');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['AutoSpinSetting_start'], 'game/bullMachine/btn_start');
+
         //猫
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_tips1'], 'game/catMachine/jackpot_title_1');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['catMachine_tips2'], 'game/catMachine/jackpot_title_2');
@@ -1029,7 +1267,71 @@ export class I18NUtil {
 
         //龙虎斗
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['lhd_stopbetting'], 'game/lhdGame/stopbetting');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['lhd_startbetting'], 'game/lhdGame/startbetting');
+        
+        //小鸡
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['chicken_htp'], 'game/chicken/btn_htp');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['chicken_min'], 'game/chicken/btn_min');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['chicken_max'], 'game/chicken/btn_max');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['chicken_jb'], 'game/chicken/jb');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['chicken_jb2'], 'game/chicken/jb2');
+        //飞机
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['aviator_help'], 'game/aviator/help');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['aviator_limit'], 'game/aviator/game limits');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['aviator_changeHead'], 'game/aviator/btn_changeHead');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['aviator_myBetHistory'], 'game/aviator/MyBetHistory');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['aviator_Head_close'], 'game/aviator/close');
+        //宙斯
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_max'], 'game/zeus/gates_oly_maxbet_btn_normal');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_quick1'], 'game/zeus/gates_oly_quick_btn_checked');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_quick2'], 'game/zeus/gates_oly_quick_btn_uncheked');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_auto1'], 'game/zeus/gates_oly_auto_btn_checked');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_auto2'], 'game/zeus/gates_oly_auto_btn_unchecked');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_spin'], 'game/zeus/gates_oly_spin_btn_normal');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_title1'], 'game/zeus/gates_oly_title_1');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_title2'], 'game/zeus/gates_oly_title_2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_title3'], 'game/zeus/gates_oly_title_3');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_title4'], 'game/zeus/gates_oly_title_4');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_toBuy'], 'game/zeus/gates_oly_texte_1');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_betsTips1'], 'game/zeus/gates_oly_text_2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_betsTips2'], 'game/zeus/gates_oly_text_3');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_btn_getcoin'], 'game/zeus/gates_oly_getcoin_btn');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_tumblewin'], 'game/zeus/gates_oly_TUMBLEWIN');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_freespins'], 'game/zeus/gates_oly_total_multiply');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_desc_totalMultiplier'], 'game/zeus/gates_oly_freespins_2');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_buy_freespins'], 'game/zeus/gates_oly_buy_freespin');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_gates_oly_congra'], 'game/zeus/gates_oly_congra');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_gates_oly_YouHaveWon'], 'game/zeus/gates_oly_YouHaveWon');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_gates_oly_FREE SPINS'], 'game/zeus/gates_oly_FREE SPINS');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_gates_oly_InIsFreeSpins'], 'game/zeus/gates_oly_InIsFreeSpins');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_gates_oly_PRESS_ANYWHERE_TO_CONTINUE'], 'game/zeus/gates_oly_PRESS_ANYWHERE_TO_CONTINUE');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zeus_gates_oly_bouns'], 'game/zeus/gates_oly_bouns');
 
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_record_bg'], 'game/sscGame/record_bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_record_title'], 'game/sscGame/record_title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_help_desc'], 'game/sscGame/help_desc');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_help_title'], 'game/sscGame/help_title');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_btn_add'], 'game/sscGame/btn_add');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_btn_max'], 'game/sscGame/btn_max');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_btn_repeat'], 'game/sscGame/btn_repeat_click');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_btn_repeat2'], 'game/sscGame/btn_repeat_unclick');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_jinbi'], 'game/sscGame/jinbi');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['sscGame_flag_new'], 'game/sscGame/flag_new');
+    
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_1'], 'game/zoo/tb_01');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_2'], 'game/zoo/tb_02');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_3'], 'game/zoo/tb_03');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_4'], 'game/zoo/tb_04');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_5'], 'game/zoo/tb_05');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_6'], 'game/zoo/tb_06');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_7'], 'game/zoo/tb_07');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_8'], 'game/zoo/tb_08');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_9'], 'game/zoo/tb_09');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_10'], 'game/zoo/tb_10');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_icon_11'], 'game/zoo/tb_11');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_totalWin'], 'game/zoo/tb');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['zoo_zhadan'], 'game/zoo/ZD');
+    
     };
 
     private _initSpinePathMap() {
@@ -1133,7 +1435,22 @@ export class I18NUtil {
         let curLanguagesType = I18NLanguagesEnum.Bengali;
         let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
         if (!languagesType) {
-            curLanguagesType = I18NLanguagesEnum.Bengali;
+            let legacyLanguage = String(cc.sys.localStorage.getItem("language") || "4");
+            switch (legacyLanguage) {
+                case "1":
+                    curLanguagesType = I18NLanguagesEnum.English;
+                    break;
+                case "2":
+                    curLanguagesType = I18NLanguagesEnum.Hindi;
+                    break;
+                case "3":
+                    curLanguagesType = I18NLanguagesEnum.Urdu;
+                    break;
+                case "4":
+                default:
+                    curLanguagesType = I18NLanguagesEnum.Bengali;
+                    break;
+            };
         }
         else {
             switch (languagesType) {
@@ -1158,11 +1475,26 @@ export class I18NUtil {
         return curLanguagesType;
     };
 
+    public getLegacyLanguageIndex(languagesType: I18NLanguagesEnum | string): string {
+        switch (languagesType) {
+            case I18NLanguagesEnum.English:
+                return "1";
+            case I18NLanguagesEnum.Hindi:
+                return "2";
+            case I18NLanguagesEnum.Urdu:
+                return "3";
+            case I18NLanguagesEnum.Bengali:
+                return "4";
+            default:
+                return "4";
+        };
+    };
+
     /**
      * 设置当前语言类型
      * @param languagesType 语言类型 I18NLanguagesEnum
      */
-    public setLanguageType(languagesType: I18NLanguagesEnum) {
+    public setLanguageType(languagesType: I18NLanguagesEnum, forceNotify: boolean = false) {
         let curLanguagesType = "";
         switch (languagesType) {
             case I18NLanguagesEnum.English:
@@ -1183,11 +1515,13 @@ export class I18NUtil {
         };
 
         let beforeLanguagesType = this.getLanguageType();
-        if (beforeLanguagesType === curLanguagesType) {
+        cc.sys.localStorage.setItem("LanguageTypeStorage", curLanguagesType);
+        let legacyLanguageIndex = this.getLegacyLanguageIndex(curLanguagesType);
+        cc.sys.localStorage.setItem("language", legacyLanguageIndex);
+        window["language"] = legacyLanguageIndex;
+        if (beforeLanguagesType === curLanguagesType && forceNotify !== true) {
             return;
         };
-
-        cc.sys.localStorage.setItem("LanguageTypeStorage", curLanguagesType);
         window["ClientNotify"].send(window["GlobalCfg"].MSG_TYPE.clientMsg, { msgCode: window["GlobalCfg"].CLIENT_MSG_ID.CHANGE_LANGUAGE, msgData: { languagesType: curLanguagesType } });
     };
 };

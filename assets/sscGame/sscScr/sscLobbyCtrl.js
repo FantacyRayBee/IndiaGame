@@ -4,14 +4,14 @@ cc.Class({
     extends: require('UINode'),
 
     properties: {
-        pab_waFa : cc.Prefab,
-        pab_winCion : cc.Prefab,
-        pab_record : cc.Prefab,
-        pab_winTepy : cc.Prefab,
-        pab_historyRecords : cc.Prefab,
+        pab_waFa: cc.Prefab,
+        pab_winCion: cc.Prefab,
+        pab_record: cc.Prefab,
+        pab_winTepy: cc.Prefab,
+        pab_historyRecords: cc.Prefab,
         Atlas_lobby: cc.SpriteAtlas,
-        spite_cradBei : cc.SpriteFrame,
-    
+        spite_cradBei: cc.SpriteFrame,
+
     },
 
     ctor: function () {
@@ -21,30 +21,32 @@ cc.Class({
         this.betTime = 0;           // 记录切后台回来时 重复下注按钮是否显示 
         this.isRepeatBet = false;   // 是否可以重复下注
         this.remaining = -1;       // 等待游戏开始的时间 
-        this.startBetTime  = 0;     // 下注时间
+        this.startBetTime = 0;     // 下注时间
         this.isBackStage = true;   // 是否切后台进入游戏
         this.LotteryRecord = null; // 开奖记录f
         this.betIndex = 0;     //玩家下注的下标
         this.betCion = 1;     //玩家下注的金额
         this.myBetCoinAll = 0   //统计自己下注全部金额
         this.paymentSwitch = false;
+        this.betTimeDisplayState = "";
+        this.betTimeDisplayNum = 0;
 
         this.betCionArr = [10, 50, 100, 200, 500, 1000];  //下注的钱的数组
         this.recordArr = [];                        //大厅历史记录数组
-        this.recordBet = [0,0,0,0,0,0];             //记录自己上局下注金额 
-        this.recordBetAll = [0,0,0,0,0,0];  
-        this.hideBetArr = [0,0,0,0,0,0];            //记录切后台自己上局下注金额 
+        this.recordBet = [0, 0, 0, 0, 0, 0];             //记录自己上局下注金额 
+        this.recordBetAll = [0, 0, 0, 0, 0, 0];
+        this.hideBetArr = [0, 0, 0, 0, 0, 0];            //记录切后台自己上局下注金额 
 
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
-        "Sorry, there are not enough gold coins.", //金币不足请充值
-        "In the game, unable to exit",                              // 游戏中无法退出
-        "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
-        "Your cash is insufficient, Please recharge in time!"
+            "Sorry, there are not enough gold coins.", //金币不足请充值
+            "In the game, unable to exit",                              // 游戏中无法退出
+            "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
+            "Your cash is insufficient, Please recharge in time!"
         ];
         this.isGameEndStatus = false;
     },
 
-    onLoad: function() {
+    onLoad: function () {
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.SHOW_SSC_GAME);
 
         GlobalCfg.ACT_SCENE_CTRL = this;
@@ -53,12 +55,12 @@ cc.Class({
         this.eventShow();
         this.eventHide();
         this.cashSwitch()
-        this.pushpaysuccess =  ClientNotify.register("PUSHPAYSUCCESS",this.onEventMsg,this);
-        this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg,this.onEventMsg,this);
+        this.pushpaysuccess = ClientNotify.register("PUSHPAYSUCCESS", this.onEventMsg, this);
+        this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         this.customMsgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
     },
 
-    start () {
+    start() {
         GameServerManager.send("gameservice.login", "LoginReq", {
             userid: GlobalCfg.USER_DATAS.userId,
             token: GlobalCfg.USER_DATAS.token,
@@ -75,47 +77,47 @@ cc.Class({
         CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.EXIT_SSC_GAME);
     },
 
-    onEventMsg:function(webData, target){
+    onEventMsg: function (webData, target) {
         let self = target;
         var msgId = webData.msgCode;
         var notify = webData.msgData;
-        if( msgId == "gameservice.login" ){
+        if (msgId == "gameservice.login") {
             self.setLogin(notify)
-        } else if ( msgId == "gameservice.gamescene" ) { 
+        } else if (msgId == "gameservice.gamescene") {
             self.gamescene(notify);
-        } else if ( msgId == "gameservice.gamestartnotify" ) {
+        } else if (msgId == "gameservice.gamestartnotify") {
             self.isGameEndStatus = false;
             self.gamestartnotify()
-        } else if ( msgId == "gameservice.callnotify" ) {
+        } else if (msgId == "gameservice.callnotify") {
             self.callnotify(notify);
-        } else if ( msgId == "gameservice.gameendnotify" ) {
+        } else if (msgId == "gameservice.gameendnotify") {
             self.isGameEndStatus = true;
-            self.gameendnotify(notify,"endGame");
-        } else if ( msgId == "gameservice.querymyrecord" ) {
-            self.setRecord(notify,1)
-        }  else if ( msgId == "gameservice.queryjackpotrecord" ) {
-            self.setRecord(notify,0)
-        }  else if ( msgId == "gameservice.querybigwinnerrecord" ) {
-            self.setRecord(notify,2)
-        } else if( msgId == "gameservice.exitgame") {
+            self.gameendnotify(notify, "endGame");
+        } else if (msgId == "gameservice.querymyrecord") {
+            self.setRecord(notify, 1)
+        } else if (msgId == "gameservice.queryjackpotrecord") {
+            self.setRecord(notify, 0)
+        } else if (msgId == "gameservice.querybigwinnerrecord") {
+            self.setRecord(notify, 2)
+        } else if (msgId == "gameservice.exitgame") {
             SceneManager.getInstance().curSceneType = SceneManager.getInstance().sceneType.LOBBY;
             GameServerManager.clientCloseServer();
             let promise = SceneManager.getInstance().reqUserDataInfo();
             promise.then(() => {
                 GlobalCfg.G_COMPONENTS.Audio.playLobby('lobby');
                 ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
-                    msgCode: GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY, 
+                    msgCode: GlobalCfg.CLIENT_MSG_ID.CLOSE_SSCGAME_REFRESH_LOBBY,
                     msgData: {}
                 });
                 if (CommonFun.getInstance().isValidForScr(self)) {
                     self.node.destroy();
-                };   
+                };
             }).catch((error) => {
                 LoggerUtil.getInstance().log(error);
             });
-        } else if (msgId =="gameservice.queryopenrecord") {
+        } else if (msgId == "gameservice.queryopenrecord") {
             let pab_record = self.node.getChildByName("pab_record");
-            if(pab_record) {
+            if (pab_record) {
                 let ctrl = pab_record.getComponent("recordCtrl")
                 ctrl.setRecordDate(notify)
             } else {
@@ -125,13 +127,13 @@ cc.Class({
                 ctrl.setRecordDate(notify)
             }
         } else if (msgId == "gameservice.querygameendinfo") {
-            if(self.remaining >=5 ) {
-                self.gameendnotify(notify,'querygame');
+            if (self.remaining >= 5) {
+                self.gameendnotify(notify, 'querygame');
             } else if (self.remaining >= 1) {
                 self.cradAct(notify.cards);
                 self.showCradTypeAct(notify.winSide);
                 self.node_cradKuang.runAction(cc.blink(1, 2));
-                self.node_winKuang.runAction(cc.blink(1, 2)) 
+                self.node_winKuang.runAction(cc.blink(1, 2))
             } else {
                 self.cradAct(notify.cards);
                 self.showCradTypeAct(notify.winSide);
@@ -140,26 +142,30 @@ cc.Class({
                 self.node_winKuang.active = true;
                 for (let i = 0; i < self.node_cradArr.length; i++) {
                     self.node_cradArr[i].scale = 0.63;
-                    self.node_cradArr[i].getComponent(cc.Sprite).spriteFrame =  self.spite_cradBei;
+                    self.node_cradArr[i].getComponent(cc.Sprite).spriteFrame = self.spite_cradBei;
                 }
-                self.betCionAct(6, parseFloat((notify.score/100).toFixed(2)))
+                self.betCionAct(6, parseFloat((notify.score / 100).toFixed(2)))
             }
-        } else if (msgId == "lobbyservice.pushcurrencychanged") { 
+        } else if (msgId == "lobbyservice.pushcurrencychanged") {
             GlobalCfg.USER_DATAS.userDiamond = notify.deposit + notify.winnings;
             GlobalCfg.USER_DATAS.userDiamond = FloatCalculation.accAdd(GlobalCfg.USER_DATAS.userDiamond, 0);
             let coin = FloatCalculation.accDiv(GlobalCfg.USER_DATAS.userDiamond, 100);
             self.lab_coin.string = CommonFun.getInstance().numberToShow(coin);
-        } 
+        }
         // else if(msgId == GlobalCfg.CLIENT_MSG_ID.FIRST_RECHARGE_TIPS) {
         //     SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
         // }
         else if (msgId == "lobbyservice.kicktolobby") {
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
         }
+        else if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
+            self.refreshLanguageNodes();
+            self.refreshBetTimeLabel();
+        }
     },
 
     // 监听错误消息
-    checkWebMsgError: function(webData, target) {
+    checkWebMsgError: function (webData, target) {
         let self = target;
         let msgId = webData.msgCode;
         let notify = webData.msgData;
@@ -195,23 +201,23 @@ cc.Class({
             CommonFun.getInstance().showTips(result.message);
         };
     },
-    
+
 
     cashSwitch: function () {
-        if(GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.CHANNEL == "ios") {
+        if (GlobalCfg.PAYMENT_SWITCH == 2 && GlobalCfg.CHANNEL == "ios") {
             let btn_add = this.btn_shop.getChildByName('Background').getChildByName('btn_shop');
             btn_add.active = GlobalCfg.USER_DATAS.isNotCharge;
         }
         this.btn_shop.active = GlobalCfg.USER_DATAS.openModules.includes(4);
-        this.paymentSwitch =  GlobalCfg.USER_DATAS.openModules.includes(4);
-    }, 
+        this.paymentSwitch = GlobalCfg.USER_DATAS.openModules.includes(4);
+    },
 
-    setLogin:function(notify) {
-        LoggerUtil.getInstance().log("notify",notify)
-        if(!notify) {return}
-        if(!notify.Result){
+    setLogin: function (notify) {
+        LoggerUtil.getInstance().log("notify", notify)
+        if (!notify) { return }
+        if (!notify.Result) {
             this.myId = notify.playerId;
-            let diamond = FloatCalculation.accDiv(notify.diamond,100);
+            let diamond = FloatCalculation.accDiv(notify.diamond, 100);
             this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
             GlobalCfg.USER_DATAS.userDiamond = notify.diamond;
         } else {
@@ -219,10 +225,10 @@ cc.Class({
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.SSC, SceneManager.getInstance().sceneType.LOBBY);
             }, false);
         }
-        
+
     },
 
-    gamescene:function(notify){
+    gamescene: function (notify) {
         let status = notify.status;
         let remaining = notify.remaining;
         let jackpot = notify.jackpot;
@@ -232,33 +238,33 @@ cc.Class({
         let lastJackpotTime = notify.lastJackpotTime;
         this.bigWinnerPlayerId = bigWinner.bigWinner.playerId;
 
-        this.lab_Jackpot.string = FloatCalculation.accDiv(jackpot,100);
+        this.lab_Jackpot.string = FloatCalculation.accDiv(jackpot, 100);
         this.lab_bigWinnerName.string = CommonFun.getInstance().getStrByLength(bigWinner.bigWinner.nickname, 14);
-        this.lab_bigWinnerCoin.string = FloatCalculation.accDiv(bigWinner.win,100);
+        this.lab_bigWinnerCoin.string = FloatCalculation.accDiv(bigWinner.win, 100);
         this.loadHeadSp(bigWinner.bigWinner.imgUrl, 89, this.node_bigWinnerImage);
-        if( status == 1 ) {
+        if (status == 1) {
             this.node_betBtn.active = false;
-            this.remaining =  notify.remaining;
-            if(this.isBackStage) {
+            this.remaining = notify.remaining;
+            if (this.isBackStage) {
                 this.isBackStage = false;
-                GameServerManager.send("gameservice.querygameendinfo","QueryGameEndInfoReq",{});
+                GameServerManager.send("gameservice.querygameendinfo", "QueryGameEndInfoReq", {});
             }
 
-        } else if(status == 0){
+        } else if (status == 0) {
             this.startBetTime = remaining;
-            this.countDown(remaining,status);
+            this.countDown(remaining, status);
             this.node_betBtn.active = true;
             this.sprite_cradType.node.active = false;
             this.node_cradKuang.active = false;
             this.node_winKuang.active = false;
             for (let i = 0; i < this.node_cradArr.length; i++) {
                 this.node_cradArr[i].scale = 0.63;
-                this.node_cradArr[i].getComponent(cc.Sprite).spriteFrame =  this.spite_cradBei;
+                this.node_cradArr[i].getComponent(cc.Sprite).spriteFrame = this.spite_cradBei;
             }
         }
 
         if (requester) {
-            let diamond = FloatCalculation.accDiv(requester.diamond,100);
+            let diamond = FloatCalculation.accDiv(requester.diamond, 100);
             this.lab_coin.string = CommonFun.getInstance().numberToShow(diamond);
             GlobalCfg.USER_DATAS.userDiamond = requester.diamond;
         }
@@ -269,14 +275,14 @@ cc.Class({
     },
 
     // 游戏开始
-    gamestartnotify:function(){
+    gamestartnotify: function () {
         this.playAnimation('StartBet');
         this.node_betBtn.active = true;
         this.node_cradKuang.active = false;
         this.node_winKuang.active = false;
-    
+
         for (let i = 0; i < this.myBetLabArr.length; i++) {
-           this.myBetLabArr[i].string = "0";
+            this.myBetLabArr[i].string = "0";
         }
 
         for (let i = 0; i < this.betLabArr.length; i++) {
@@ -284,10 +290,10 @@ cc.Class({
         }
 
         for (let i = 0; i < this.node_cradArr.length; i++) {
-            this.node_cradArr[i].getComponent(cc.Sprite).spriteFrame =  this.spite_cradBei;
+            this.node_cradArr[i].getComponent(cc.Sprite).spriteFrame = this.spite_cradBei;
         }
 
-        if( this.myBetCoinAll > 0){
+        if (this.myBetCoinAll > 0) {
             this.btn_repeat.active = true;
         } else {
             this.btn_repeat.active = false;
@@ -296,7 +302,7 @@ cc.Class({
     },
 
     // 游戏结束
-    gameendnotify:function(notify,str){
+    gameendnotify: function (notify, str) {
         let winSide = notify.winSide;
         let cards = notify.cards;
         let after = notify.after;
@@ -309,49 +315,53 @@ cc.Class({
         this.node_betBtn.active = false;
         this.node_cradKuang.active = true;
         this.node_cradKuang.runAction(cc.blink(4, 10));
-        this.cradAct(cards,"isAct");
-        this.lab_betTime.string = "Waitting...";
+        this.cradAct(cards, "isAct");
+        this.betTimeDisplayState = "waitingOnly";
+        this.betTimeDisplayNum = 0;
+        this.refreshBetTimeLabel();
         this.curRoundBet = 0;
-        this.scheduleOnce(function() { 
-            this.lab_betTime.string = "";
-            this.showCradTypeAct(winSide) 
-            if( score > 0 && str == "endGame") {
-                this.betCionAct(6, parseFloat((score/100).toFixed(2)))
+        this.scheduleOnce(function () {
+            this.betTimeDisplayState = "empty";
+            this.betTimeDisplayNum = 0;
+            this.refreshBetTimeLabel();
+            this.showCradTypeAct(winSide)
+            if (score > 0 && str == "endGame") {
+                this.betCionAct(6, parseFloat((score / 100).toFixed(2)))
                 this.sscAudioCtrl.playGameSound("touCoin")
                 GlobalCfg.USER_DATAS.userDiamond = after;
-                this.lab_coin.string = CommonFun.getInstance().numberToShow(after/100);
+                this.lab_coin.string = CommonFun.getInstance().numberToShow(after / 100);
             }
             this.curRoundAddCoinFinish();
         }, 1.5);
-      
-    
-        if( this.bigWinnerPlayerId != bigWinner.bigWinner.playerId) {
+
+
+        if (this.bigWinnerPlayerId != bigWinner.bigWinner.playerId) {
             this.loadHeadSp(bigWinner.bigWinner.imgUrl, 89, this.node_bigWinnerImage);
             this.lab_bigWinnerName.string = CommonFun.getInstance().getStrByLength(bigWinner.bigWinner.nickname, 14);
-            this.lab_bigWinnerCoin.string = FloatCalculation.accDiv(bigWinner.win,100);
+            this.lab_bigWinnerCoin.string = FloatCalculation.accDiv(bigWinner.win, 100);
         }
-      
+
 
         let pab_record = this.node.getChildByName("pab_record");
-        if(pab_record){
-            GameServerManager.send("gameservice.queryopenrecord","QueryOpenRecordReq",{});
+        if (pab_record) {
+            GameServerManager.send("gameservice.queryopenrecord", "QueryOpenRecordReq", {});
         }
 
-        if(!this.isRepeatBet) {
-            this.recordBet = [0,0,0,0,0,0];                  
-            this.recordBetAll = [0,0,0,0,0,0];
+        if (!this.isRepeatBet) {
+            this.recordBet = [0, 0, 0, 0, 0, 0];
+            this.recordBetAll = [0, 0, 0, 0, 0, 0];
         } else {
-            this.recordBet = [0,0,0,0,0,0];
+            this.recordBet = [0, 0, 0, 0, 0, 0];
             for (let i = 0; i < this.recordBetAll.length; i++) {
                 this.recordBet[i] = this.recordBetAll[i];
-                this.recordBetAll[i] = 0 ;
+                this.recordBetAll[i] = 0;
             }
         }
         this.isRepeatBet = false;
     },
 
-    curRoundAddCoinFinish(){
-        if(cc.isValid(this)){
+    curRoundAddCoinFinish() {
+        if (cc.isValid(this)) {
             let minLimit = this.betCionArr[0] || 0;
             minLimit *= 100;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, this.myBetCoinAll);
@@ -360,59 +370,59 @@ cc.Class({
     },
 
     //下注通知
-    callnotify:function(notify) {
+    callnotify: function (notify) {
         let playerId = notify.playerId;
         let side = notify.side;
-        let allAmount = notify.allAmount/100;
-        let amount = notify.amount/100;
-        let after = FloatCalculation.accDiv(notify.after,100);
+        let allAmount = notify.allAmount / 100;
+        let amount = notify.amount / 100;
+        let after = FloatCalculation.accDiv(notify.after, 100);
         this.betLabArr[side].string = allAmount;
-       
-        if( this.myId == playerId){
+
+        if (this.myId == playerId) {
             this.hideBet = true;
             this.isRepeatBet = true;
             this.sscAudioCtrl.playGameSound("otherCoin")
             this.lab_coin.string = CommonFun.getInstance().numberToShow(after);
             GlobalCfg.USER_DATAS.userDiamond = notify.after;
-            this.betCionAct(side,amount);
+            this.betCionAct(side, amount);
             this.recordBetAll[side] = notify.selfAll;
             this.myBetCoinAll += notify.amount;
             this.hideBetArr[side] = notify.selfAll;
-        } 
+        }
     },
 
-    btnClick:function(button){
+    btnClick: function (button) {
         let btnName = button.node.name;
-        
-        if( btnName == "btn_close") { 
+
+        if (btnName == "btn_close") {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             if (this.myBetCoinAll > 0 && this.isGameEndStatus == false) {
-                CommonFun.getInstance().showMsgBox( this.tipsLabel[0],"YES_NO",()=>{
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[0], "YES_NO", () => {
                     GameServerManager.send("gameservice.exitgame", "ExitGameReq", {});
-                },false);
-            } else { 
+                }, false);
+            } else {
                 GameServerManager.send("gameservice.exitgame", "ExitGameReq", {});
             }
             return;
         }
-        GlobalCfg.G_COMPONENTS.Audio.playButton(); 
-        if ( btnName == "btn_shop") {
+        GlobalCfg.G_COMPONENTS.Audio.playButton();
+        if (btnName == "btn_shop") {
             CommonFun.getInstance().showSmallAddCash();
-        } else if ( btnName == "btn_waFa") {
+        } else if (btnName == "btn_waFa") {
             let pab_waFa = cc.instantiate(this.pab_waFa);
             this.node.addChild(pab_waFa);
-        } else if ( btnName == "btn_zhanJi" ||  btnName == "btn_jackpot") {
-            GameServerManager.send("gameservice.queryjackpotrecord","QueryJackpotRecordReq",{});
+        } else if (btnName == "btn_zhanJi" || btnName == "btn_jackpot") {
+            GameServerManager.send("gameservice.queryjackpotrecord", "QueryJackpotRecordReq", {});
 
-        }else if (btnName == "btn_bigWinner"){ 
-            GameServerManager.send("gameservice.querybigwinnerrecord","QueryBigWinnerRecordReq",{});
-        } else if ( btnName == "btn_jia") {
+        } else if (btnName == "btn_bigWinner") {
+            GameServerManager.send("gameservice.querybigwinnerrecord", "QueryBigWinnerRecordReq", {});
+        } else if (btnName == "btn_jia") {
             this.showBetCion("jia")
             this.sscAudioCtrl.playGameSound("start")
-        } else if ( btnName == "btn_jian") {
+        } else if (btnName == "btn_jian") {
             this.showBetCion("jian");
 
-        } else if ( btnName == "btn_max") {
+        } else if (btnName == "btn_max") {
             this.showBetCion("max");
         } else if (btnName == "btn_set") {
             this.callReq(0)
@@ -426,33 +436,37 @@ cc.Class({
             this.callReq(4)
         } else if (btnName == "btn_3X") {
             this.callReq(5)
-        } else if ( btnName == "btn_record") {
-            GameServerManager.send("gameservice.queryopenrecord","QueryOpenRecordReq",{});
-        } else if ( btnName == "btn_repeat") {
+        } else if (btnName == "btn_record") {
+            GameServerManager.send("gameservice.queryopenrecord", "QueryOpenRecordReq", {});
+        } else if (btnName == "btn_repeat") {
             this.repeatBet();
         }
     },
 
-    initNode:function(){
+    initNode: function () {
         CommonFun.getInstance().hidProgress();
         this.btn_jian = this.node.getChildByName("btn_jian");
         this.btn_jia = this.node.getChildByName("btn_jia");
         this.node_score = this.node.getChildByName("node_score");
-        this.node_betBtn =  this.node.getChildByName("node_betBtn");
+        this.node_betBtn = this.node.getChildByName("node_betBtn");
         this.btn_shop = this.node.getChildByName("btn_shop");
-        this.StartBetting =  this.node.getChildByName("StartBetting").getComponent(sp.Skeleton);
-        this.StopBetting =  this.node.getChildByName("StopBetting").getComponent(sp.Skeleton);
+        this.StartBetting = this.node.getChildByName("StartBetting").getComponent(sp.Skeleton);
+        this.StopBetting = this.node.getChildByName("StopBetting").getComponent(sp.Skeleton);
+        this.startBettingLabelNode = this.StartBetting.node.getChildByName("label");
+        this.stopBettingLabelNode = this.StopBetting.node.getChildByName("label");
         this.btn_repeat = this.node.getChildByName("btn_repeat");
         this.node_crad01 = this.node.getChildByName("node_crad").getChildByName("back_01");
         this.node_crad02 = this.node.getChildByName("node_crad").getChildByName("back_02");
         this.node_crad03 = this.node.getChildByName("node_crad").getChildByName("back_03");
         this.node_cradKuang = this.node.getChildByName("bg").getChildByName("node_cradKuang");
         this.node_winKuang = this.node.getChildByName("bg").getChildByName("node_winKuang");
-        this.node_bigWinner = this.node.getChildByName("node_bigWinner").getChildByName("node_user");
+        this.node_bigWinnerRoot = this.node.getChildByName("node_bigWinner");
+        this.node_bigWinner = this.node_bigWinnerRoot.getChildByName("node_user");
         this.node_HistoricalRecords = this.node.getChildByName("node_HistoricalRecords");
         this.node_new = this.node.getChildByName("bq_new");
         this.node_bigWinnerImage = this.node_bigWinner.getChildByName("node_mask").getChildByName("tx").getComponent(cc.Sprite);
         this.sprite_cradType = this.node.getChildByName("sprite_cradType").getComponent(cc.Sprite);
+        this.node_jackpotTitle = this.node.getChildByName("node_jackpot");
 
 
         this.node_labAll = this.node.getChildByName("node_labAll");
@@ -467,107 +481,239 @@ cc.Class({
         this.sscAudioCtrl = this.node.getChildByName("sscAudioCtrl").getComponent("sscAudioCtrl");
         this.sscAudioCtrl.playGameSound("touCoin");
 
-        this.node_cradArr = [ this.node_crad01, this.node_crad02, this.node_crad03];
+        this.node_cradArr = [this.node_crad01, this.node_crad02, this.node_crad03];
 
         let btnArr = this.node.getComponentsInChildren(cc.Button);
         for (let i = 0; i < btnArr.length; i++) {
-            let btn =  btnArr[i].node
+            let btn = btnArr[i].node
             if (btn.name != "btn_mask") {
                 if (btn.name == "btn_close") {
-                    btnArr[i].node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this); 
+                    btnArr[i].node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this);
                 }
                 else {
-                    btnArr[i].node.on("click", this.btnClick, this); 
+                    btnArr[i].node.on("click", this.btnClick, this);
                 };
             }
         }
 
-        this.betLabArr = [ 
-            this.FindNode('lab_setAll'),this.FindNode('lab_pureSeqAll'),this.FindNode('lab_seqAll'),
-            this.FindNode('lab_colorAll'),this.FindNode('lab_pailAll'),this.FindNode('lab_hifhCardAll')
+        this.betLabArr = [
+            this.FindNode('lab_setAll'), this.FindNode('lab_pureSeqAll'), this.FindNode('lab_seqAll'),
+            this.FindNode('lab_colorAll'), this.FindNode('lab_pailAll'), this.FindNode('lab_hifhCardAll')
         ]
-       
-        this.myBetLabArr = [ 
-            this.FindNode('lab_mySet'),this.FindNode('lab_myPureSeq'),this.FindNode('lab_mySeq'),
-            this.FindNode('lab_myColor'),this.FindNode('lab_myPail'),this.FindNode('lab_myHifhCard')
+
+        this.myBetLabArr = [
+            this.FindNode('lab_mySet'), this.FindNode('lab_myPureSeq'), this.FindNode('lab_mySeq'),
+            this.FindNode('lab_myColor'), this.FindNode('lab_myPail'), this.FindNode('lab_myHifhCard')
         ]
+
+        this.refreshLanguageNodes();
+        this.setBettingLabelVisible(false, false);
 
     },
 
+    refreshLanguageNodes: function () {
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage") || I18NLanguagesEnum.Bengali;
+        this.setLanguageNodesVisible(this.node_jackpotTitle, "JACKPOT", languagesType);
+        this.setLanguageNodesVisible(this.node_bigWinnerRoot, "BIG WINNER", languagesType);
+    },
+
+    setLanguageNodesVisible: function (parentNode, suffixName, languagesType) {
+        if (!parentNode) {
+            console.log(`[SSC][Lang] parentNode missing for ${suffixName}`);
+            return;
+        }
+
+        let targetLanguageName = this.getLanguageNodePrefix(languagesType);
+        let targetSuffix = `@${suffixName}`;
+        let matchNodes = [];
+        this.collectChildNodesBySuffix(parentNode, targetSuffix, matchNodes);
+        console.log(`[SSC][Lang] ${suffixName} language=${targetLanguageName} matches=${matchNodes.map(node => node.name).join(",")}`);
+        for (let i = 0; i < matchNodes.length; i++) {
+            let childNode = matchNodes[i];
+            childNode.active = childNode.name.indexOf(`${targetLanguageName}@`) == 0;
+            console.log(`[SSC][Lang] set ${childNode.name} active=${childNode.active}`);
+        }
+    },
+
+    collectChildNodesBySuffix: function (parentNode, nodeSuffix, resultArr) {
+        if (!parentNode) {
+            return;
+        }
+        if (parentNode.name.indexOf(nodeSuffix) != -1) {
+            resultArr.push(parentNode);
+        }
+
+        for (let i = 0; i < parentNode.childrenCount; i++) {
+            this.collectChildNodesBySuffix(parentNode.children[i], nodeSuffix, resultArr);
+        }
+    },
+
+    getLanguageNodePrefix: function (languagesType) {
+        switch (languagesType) {
+            case I18NLanguagesEnum.English:
+                return "English";
+            case I18NLanguagesEnum.Hindi:
+                return "Hindi";
+            case I18NLanguagesEnum.Urdu:
+                return "Urdu";
+            case I18NLanguagesEnum.Bengali:
+            default:
+                return "Bengali";
+        }
+    },
+
+    getLanguageStorageName: function (languagesType) {
+        switch (languagesType) {
+            case I18NLanguagesEnum.English:
+                return "English";
+            case I18NLanguagesEnum.Hindi:
+                return "Hindi";
+            case I18NLanguagesEnum.Urdu:
+                return "Urdu";
+            case I18NLanguagesEnum.Bengali:
+            default:
+                return "Bengali";
+        }
+    },
+
+    getBetTimeLocalizedText: function (type, time = 0) {
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage") || I18NLanguagesEnum.Bengali;
+        let languageName = this.getLanguageStorageName(languagesType);
+        let textMap = {
+            waiting: {
+                English: "Waitting:",
+                Hindi: "प्रतीक्षा:",
+                Urdu: "انتظار:",
+                Bengali: "অপেক্ষা:"
+            },
+            waitingOnly: {
+                English: "Waitting...",
+                Hindi: "प्रतीक्षा...",
+                Urdu: "انتظار...",
+                Bengali: "অপেক্ষা..."
+            },
+            flipping: {
+                English: "Flipping card...",
+                Hindi: "कार्ड पलटा जा रहा है...",
+                Urdu: "کارڈ پلٹا جا رہا ہے...",
+                Bengali: "কার্ড উল্টাচ্ছে..."
+            }
+        };
+
+        if (type == "betting") {
+            let legacyLanguage = Number(window["language"] || cc.sys.localStorage.getItem("language") || 4);
+            return loToLanguage.Betting[legacyLanguage] + time;
+        }
+
+        let prefix = textMap[type] ? textMap[type][languageName] : "";
+        return type == "waiting" ? prefix + time : prefix;
+    },
+
+    refreshBetTimeLabel: function () {
+        switch (this.betTimeDisplayState) {
+            case "waiting":
+                this.lab_betTime.string = this.getBetTimeLocalizedText("waiting", this.betTimeDisplayNum);
+                break;
+            case "betting":
+                this.lab_betTime.string = this.getBetTimeLocalizedText("betting", this.betTimeDisplayNum);
+                break;
+            case "flipping":
+                this.lab_betTime.string = this.getBetTimeLocalizedText("flipping");
+                break;
+            case "waitingOnly":
+                this.lab_betTime.string = this.getBetTimeLocalizedText("waitingOnly");
+                break;
+            case "empty":
+                this.lab_betTime.string = "";
+                break;
+            default:
+                break;
+        }
+    },
+
+    setBettingLabelVisible: function (showStart, showStop) {
+        if (this.startBettingLabelNode) {
+            this.startBettingLabelNode.active = !!showStart;
+        }
+        if (this.stopBettingLabelNode) {
+            this.stopBettingLabelNode.active = !!showStop;
+        }
+    },
+
     // 拉取我的记录数据
-    setRecord : function (notify,num) {
-        let nameArr = ['jackpot','myhistory','bigWinner']
+    setRecord: function (notify, num) {
+        let nameArr = ['jackpot', 'myhistory', 'bigWinner']
         let pab_historyRecords = this.node.getChildByName("pab_historyRecords");
-        if(pab_historyRecords) {
+        if (pab_historyRecords) {
             let Ctrl = pab_historyRecords.getComponent("historyRecordsCtrl");
             Ctrl.showUI(nameArr[num]);
-            Ctrl.showDate(nameArr[num],notify.list)
+            Ctrl.showDate(nameArr[num], notify.list)
         } else {
             let newPab = cc.instantiate(this.pab_historyRecords);
             let Ctrl = newPab.getComponent("historyRecordsCtrl");
             this.node.addChild(newPab);
             Ctrl.showUI(nameArr[num]);
-            Ctrl.showDate(nameArr[num],notify.list);
+            Ctrl.showDate(nameArr[num], notify.list);
         }
     },
 
     // 重复下注
-    repeatBet:function(){
+    repeatBet: function () {
         let myBetCoinAll = 0
         for (let i = 0; i < this.recordBet.length; i++) {
-            myBetCoinAll += this.recordBet[i] 
+            myBetCoinAll += this.recordBet[i]
         }
 
-        if( myBetCoinAll <= GlobalCfg.USER_DATAS.userDiamond) {
+        if (myBetCoinAll <= GlobalCfg.USER_DATAS.userDiamond) {
             for (let i = 0; i < this.recordBet.length; i++) {
-                let  coin = this.recordBet[i];
-                if( coin >0 ){
-                    this.callReq(i,coin)
+                let coin = this.recordBet[i];
+                if (coin > 0) {
+                    this.callReq(i, coin)
                 }
             }
         } else {
             if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
             else {
-                CommonFun.getInstance().showMsgBox(this.tipsLabel[4],"SHOP",()=>{
+                CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash();
-                },false);
+                }, false);
             }
         }
     },
 
     //显示离上一次头奖时间
-    jackpotTime:function(lastJackpotTime){
-        let time = Math.floor(lastJackpotTime/1000)
-        let h  = Math.floor(time/3600);  
-        let f =  (Math.floor(time/60))%60;
-        let s = time%60;
-        if(h<10){ h = h <= 0 ? "00" : "0" + h;}
-        if(f<10){ f = f <= 0 ? "00" : "0" + f; }
-        if(s<10){ s = s <= 0 ? "00" : "0" + s; }
+    jackpotTime: function (lastJackpotTime) {
+        let time = Math.floor(lastJackpotTime / 1000)
+        let h = Math.floor(time / 3600);
+        let f = (Math.floor(time / 60)) % 60;
+        let s = time % 60;
+        if (h < 10) { h = h <= 0 ? "00" : "0" + h; }
+        if (f < 10) { f = f <= 0 ? "00" : "0" + f; }
+        if (s < 10) { s = s <= 0 ? "00" : "0" + s; }
         this.FindNode("lab_time").string = h + ":" + f + ":" + s;
     },
 
     //设置玩家下注的金额
-    setSidePool:function(SidePool){
+    setSidePool: function (SidePool) {
         let myCion = 0;
         let play = 0;
-        let arr  = SidePool;
+        let arr = SidePool;
         for (let i = 0; i < arr.length; i++) {
             let date = arr[i];
             let coin = this.betLabArr[i].string;
-            myCion = date.self/100;
-            let betCion = Math.abs(Number(coin) - date.all/100);
-           
-            if( this.isOneInGame > 0 ){
-                this.betCionAct(date.side,betCion,"play");
+            myCion = date.self / 100;
+            let betCion = Math.abs(Number(coin) - date.all / 100);
+
+            if (this.isOneInGame > 0) {
+                this.betCionAct(date.side, betCion, "play");
             }
 
-            if(betCion > 0 ) {
+            if (betCion > 0) {
                 play++
             }
 
-            this.betLabArr[i].string = date.all/100;
+            this.betLabArr[i].string = date.all / 100;
             this.myBetLabArr[i].string = myCion;
         }
         this.isOneInGame++;
@@ -577,161 +723,177 @@ cc.Class({
     },
 
     //倒计时
-    countDown:function(time,status){
+    countDown: function (time, status) {
         let newTime = time;
-        if( status==1 ) {
-            this.lab_betTime.string = "Waitting:" + newTime;
+        if (status == 1) {
+            this.betTimeDisplayState = "waiting";
+            this.betTimeDisplayNum = newTime;
+            this.refreshBetTimeLabel();
         } {
-            if(newTime<14) {
-                this.lab_betTime.string = loToLanguage.Betting[language] + newTime;
+            if (newTime < 14) {
+                this.betTimeDisplayState = "betting";
+                this.betTimeDisplayNum = newTime;
+                this.refreshBetTimeLabel();
             } else {
-                this.lab_betTime.string = "Flipping card...";
+                this.betTimeDisplayState = "flipping";
+                this.betTimeDisplayNum = newTime;
+                this.refreshBetTimeLabel();
             }
         }
     },
 
     // 玩家下注金币向上的动作
-    betCionAct:function(num,coin,str){ 
-        if( coin > 0){
+    betCionAct: function (num, coin, str) {
+        if (coin > 0) {
             LoggerUtil.getInstance().log("下注金币向上动作 ", coin);
-            if(str != "play"){this.sscAudioCtrl.playGameSound("otherCoin")}
-            let betPosArr =  [cc.v2(-483,-83),cc.v2(-287,-83),cc.v2(-92,-83),cc.v2(102,-83),cc.v2(295,-83),cc.v2(490,-83),cc.v2(-450,-288)]   
+            if (str != "play") { this.sscAudioCtrl.playGameSound("otherCoin") }
+            let betPosArr = [cc.v2(-483, -83), cc.v2(-287, -83), cc.v2(-92, -83), cc.v2(102, -83), cc.v2(295, -83), cc.v2(490, -83), cc.v2(-450, -288)]
             let pos = betPosArr[num];
-            let time = num == 6 ? 1 :0.6;
+            let time = num == 6 ? 1 : 0.6;
             let pab_winCion = cc.instantiate(this.pab_winCion);
             pab_winCion.setPosition(pos);
             this.node_score.addChild(pab_winCion);
             pab_winCion.getChildByName("lab_coin").getComponent(cc.Label).string = "+" + coin
-    
+
             cc.tween(pab_winCion)
-            .tag(1)
-            .to(time, {  position: cc.v2(pos.x, pos.y+55)})
-            .call(() => { 
-                pab_winCion.destroy()
-             })
-            .start()
+                .tag(1)
+                .to(time, { position: cc.v2(pos.x, pos.y + 55) })
+                .call(() => {
+                    pab_winCion.destroy()
+                })
+                .start()
         }
     },
 
     //显示那个牌型赢的动画
-    showCradTypeAct:function(winType){
+    showCradTypeAct: function (winType) {
         let ctarType = [
-            ["SET","PURE SEQ","SEQ","COLOR","PAIR","HIGH CARD"],
-            ["सेट","शुद्ध","अनुक्रम","रंग","जोड़ा","उच्च कार्ड"],
-            ["سیٹ","خالص","ترتیب","رنگ","جوڑا","بلند کارڈ"],
-            ["সেট","শুদ্ধ","ক্রম","রং","জোড়া","বড় তাস"],
+            ["SET", "PURE SEQ", "SEQ", "COLOR", "PAIR", "HIGH CARD"],
+            ["सेट", "शुद्ध", "अनुक्रम", "रंग", "जोड़ा", "उच्च कार्ड"],
+            ["سیٹ", "خالص", "ترتیب", "رنگ", "جوڑا", "بلند کارڈ"],
+            ["সেট", "শুদ্ধ", "ক্রম", "রং", "জোড়া", "বড় তাস"],
         ]
-        let sprite_cradTypeArr = ["bg_set","bg_pure","bg_seq","bg_color","bg_pair","bg_high"]
-        let cradTypeArr = [cc.v2(-488,-85),cc.v2(-294,-85),cc.v2(-100,-85),cc.v2(94,-85),cc.v2(290,-85),cc.v2(486,-85)]
+        let sprite_cradTypeArr = ["bg_set", "bg_pure", "bg_seq", "bg_color", "bg_pair", "bg_high"]
+        let cradTypeArr = [cc.v2(-488, -85), cc.v2(-294, -85), cc.v2(-100, -85), cc.v2(94, -85), cc.v2(290, -85), cc.v2(486, -85)]
         let pos = cradTypeArr[winType];
 
         this.node_winKuang.active = true;
         this.node_winKuang.setPosition(pos);
-        this.node_winKuang.runAction(cc.blink(4, 6)) 
+        this.node_winKuang.runAction(cc.blink(4, 6))
 
         this.sprite_cradType.node.active = true;
-        this.FindNode("lab_cradType").string = ctarType[language-1][winType];
+        this.FindNode("lab_cradType").string = ctarType[language - 1][winType];
         this.sprite_cradType.spriteFrame = this.Atlas_lobby.getSpriteFrame(sprite_cradTypeArr[winType]);
     },
 
     //游戏结束后显示牌型
-    cradAct:function(cards,str) {
+    cradAct: function (cards, str) {
         LoggerUtil.getInstance().log(`翻牌 cards = ${cards} str = ${str}`);
         let arr = cards;
         for (let i = 0; i < this.node_cradArr.length; i++) {
             let cradNode = this.node_cradArr[i];
             cradNode.scale = 0.63;
-            cradNode.getComponent(cc.Sprite).spriteFrame =  this.spite_cradBei;
+            cradNode.getComponent(cc.Sprite).spriteFrame = this.spite_cradBei;
             let cradScrpit = cradNode.getComponent("sscCradCtrl");
-            if(str == "isAct") {
+            if (str == "isAct") {
                 cc.tween(cradNode)
-                .tag(1)
-                .delay(i*0.5)
-                .to(0.25, { scaleX:0})
-                .call(() => {  
-                    cradScrpit.setCardInfo(arr[i])
-                })
-                .to(0.25,{ scaleX:0.63})
-                .start()
-            }else{
+                    .tag(1)
+                    .delay(i * 0.5)
+                    .to(0.25, { scaleX: 0 })
+                    .call(() => {
+                        cradScrpit.setCardInfo(arr[i])
+                    })
+                    .to(0.25, { scaleX: 0.63 })
+                    .start()
+            } else {
                 cradScrpit.setCardInfo(arr[i])
             }
         }
     },
 
     //播放开始停止下注动画
-    playAnimation:function(str) {
-        if( str == 'StartBet') {
+    playAnimation: function (str) {
+        if (str == 'StartBet') {
             this.sprite_cradType.node.active = false;
             this.sscAudioCtrl.playGameSound("start")
             this.StopBetting.node.active = false;
             this.StartBetting.node.active = true;
-            this.StartBetting.addAnimation(0, "animation", false); 
-        } else if ( str == 'StopBet') {
+            this.setBettingLabelVisible(true, false);
+            this.StartBetting.setCompleteListener(() => {
+                this.setBettingLabelVisible(false, false);
+                this.StartBetting.node.active = false;
+            });
+            this.StartBetting.addAnimation(0, "animation", false);
+        } else if (str == 'StopBet') {
             this.sscAudioCtrl.playGameSound("stopBet")
             this.StopBetting.node.active = true;
             this.StartBetting.node.active = false;
-            this.StopBetting.addAnimation(0, "animation", false); 
+            this.setBettingLabelVisible(false, true);
+            this.StopBetting.setCompleteListener(() => {
+                this.setBettingLabelVisible(false, false);
+                this.StopBetting.node.active = false;
+            });
+            this.StopBetting.addAnimation(0, "animation", false);
         }
     },
 
     //实例化历史记录
-    insHistoricalRecords:function(list){
-        if(this.LotteryRecord) {
-            if(JSON.stringify(this.LotteryRecord) == JSON.stringify(list)) {
+    insHistoricalRecords: function (list) {
+        if (this.LotteryRecord) {
+            if (JSON.stringify(this.LotteryRecord) == JSON.stringify(list)) {
                 this.LotteryRecord = list;
                 return
-             }
-        } 
+            }
+        }
         this.LotteryRecord = list;
 
         this.node_HistoricalRecords.destroyAllChildren();
-        let len = list.length >10 ? list.length -10 : 0;
-        let count  = 0
+        let len = list.length > 10 ? list.length - 10 : 0;
+        let count = 0
         for (let i = len; i < list.length; i++) {
             count++
-            if(count<=10) {
+            if (count <= 10) {
                 let pab_winTepy = cc.instantiate(this.pab_winTepy);
                 this.node_HistoricalRecords.addChild(pab_winTepy);
                 let Ctrl = pab_winTepy.getComponent('winTepyCtrl');
-                Ctrl.showNode("lobbyRecord",list[i])
+                Ctrl.showNode("lobbyRecord", list[i])
                 this.recordArr.push(pab_winTepy);
             }
         }
-        if(this.recordArr.length > 0){
-            this.recordArr[this.recordArr.length-1].getChildByName("bq_new").active = true;
+        if (this.recordArr.length > 0) {
+            this.recordArr[this.recordArr.length - 1].getChildByName("bq_new").active = true;
         }
     },
 
     //查找组件
-    FindNode:function(nodeName){
+    FindNode: function (nodeName) {
         let labArr = this.node.getComponentsInChildren(cc.Label);
         for (let i = 0; i < labArr.length; i++) {
-            let node =  labArr[i].node
-            if(nodeName == node.name){
+            let node = labArr[i].node
+            if (nodeName == node.name) {
                 return labArr[i]
             }
         }
     },
 
     // 显示下注的金币 
-    showBetCion:function(str){
-        if(GlobalCfg.USER_DATAS.gamePattern == 1){
+    showBetCion: function (str) {
+        if (GlobalCfg.USER_DATAS.gamePattern == 1) {
             this.betCionArr = [1, 10, 50, 100, 200, 500];
         }
-        let len = this.betCionArr.length-1;
-        if(str == "jia") {
+        let len = this.betCionArr.length - 1;
+        if (str == "jia") {
             this.betIndex++;
-            if( this.betIndex >= len){
+            if (this.betIndex >= len) {
                 this.btn_jia.active = false;
-            }else {
+            } else {
                 this.btn_jia.active = true;
                 this.btn_jian.active = true;
             }
 
-        } else if ( str == "jian") {
+        } else if (str == "jian") {
             this.betIndex--;
-            if(this.betIndex <=0 ) {
+            if (this.betIndex <= 0) {
                 this.btn_jian.active = false;
             } else {
                 this.btn_jia.active = true;
@@ -739,7 +901,7 @@ cc.Class({
             }
 
         } else if (str == "max") {
-            this.betIndex =  len;
+            this.betIndex = len;
             this.btn_jia.active = false;
             this.btn_jian.active = true;
 
@@ -748,23 +910,23 @@ cc.Class({
             this.btn_jian.active = false;
         }
 
-        if(this.betIndex >= 0 && this.betIndex <= len) {
-            this.lab_betCion.string = this.betCionArr[this.betIndex]; 
-            this.betCion = this.betCionArr[this.betIndex]; 
+        if (this.betIndex >= 0 && this.betIndex <= len) {
+            this.lab_betCion.string = this.betCionArr[this.betIndex];
+            this.betCion = this.betCionArr[this.betIndex];
         }
     },
 
-    LoginReq:function(){
+    LoginReq: function () {
         GameServerManager.send("gameservice.login", "LoginReq", {
-            userid: GlobalCfg.USER_DATAS.userId, 
-            token : GlobalCfg.USER_DATAS.token,  
+            userid: GlobalCfg.USER_DATAS.userId,
+            token: GlobalCfg.USER_DATAS.token,
             fromid: GlobalCfg.PRODUCT_ID    //平台ID
         });
     },
 
-    callReq:function(CardType,coin){
+    callReq: function (CardType, coin) {
         let amount = 0
-        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniluckyloto"]== true) {   //未曾充值
+        if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniluckyloto"] == true) {   //未曾充值
             CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash();
             }, false);
@@ -772,12 +934,12 @@ cc.Class({
         };
         if (coin) {
             amount = coin;
-        } 
+        }
         else {
             amount = this.betCion * 100;
             if (amount > GlobalCfg.USER_DATAS.userDiamond) {
                 if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
                 else {
                     CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", () => {
                         CommonFun.getInstance().showSmallAddCash();
@@ -787,26 +949,26 @@ cc.Class({
             }
         };
         GameServerManager.send("gameservice.call", "CallReq", {
-            amount: amount, 
-            side : CardType,  
+            amount: amount,
+            side: CardType,
         });
     },
 
 
-     // 游戏切回到前台
-     eventShow:function(){
-        cc.game.on(cc.game.EVENT_SHOW, function () {  
-            GameServerManager.hideFilterMag(2,function () {
-                GameServerManager.send("gameservice.gamescene","GameSceneReq",{});
+    // 游戏切回到前台
+    eventShow: function () {
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            GameServerManager.hideFilterMag(2, function () {
+                GameServerManager.send("gameservice.gamescene", "GameSceneReq", {});
             })
-                this.isBackStage = true;
+            this.isBackStage = true;
             this.inGameShowchongFuBtn()
         }, this);
     },
 
     //游戏切入到后台
-    eventHide:function(){
-        cc.game.on(cc.game.EVENT_HIDE, function () {   
+    eventHide: function () {
+        cc.game.on(cc.game.EVENT_HIDE, function () {
             // cc.Tween.stopAll();
             cc.Tween.stopAllByTag(1);
             this.node_score.destroyAllChildren();
@@ -814,20 +976,20 @@ cc.Class({
             this.inGameShowchongFuBtn("HT")
         }, this);
     },
-    
-    inGameShowchongFuBtn:function(str){  // 切后台进入游戏是否可以重复下注（客户端处理服务器没空）
-        if(str == "HT") {
+
+    inGameShowchongFuBtn: function (str) {  // 切后台进入游戏是否可以重复下注（客户端处理服务器没空）
+        if (str == "HT") {
             this.betTime = this.startBetTime;
             let timeStamp = Date.parse(new Date());
             cc.sys.localStorage.setItem("timeStamp", timeStamp);
         } else {
             let timeStamp = Date.parse(new Date());
-            let newTimeStamp = cc.sys.localStorage.getItem("timeStamp"); 
-            let time = (timeStamp - newTimeStamp)/1000;
-            if( time > this.betTime+6) {  
-                if( time < 21 + this.betTime+6) {     // 下局
-                    if(this.hideBet) {
-                        this.recordBet = [0,0,0,0,0,0];
+            let newTimeStamp = cc.sys.localStorage.getItem("timeStamp");
+            let time = (timeStamp - newTimeStamp) / 1000;
+            if (time > this.betTime + 6) {
+                if (time < 21 + this.betTime + 6) {     // 下局
+                    if (this.hideBet) {
+                        this.recordBet = [0, 0, 0, 0, 0, 0];
                         for (let i = 0; i < this.hideBetArr.length; i++) {
                             this.recordBet[i] = this.hideBetArr[i];
                         }
@@ -841,16 +1003,16 @@ cc.Class({
                 } else {   //下下局
                     this.isRepeatBet = false;
                     this.btn_repeat.active = false;
-                    this.recordBet = [0,0,0,0,0,0];     
-                    this.recordBetAll = [0,0,0,0,0,0];   
-                    this.myBetCoinAll = 0;  
+                    this.recordBet = [0, 0, 0, 0, 0, 0];
+                    this.recordBetAll = [0, 0, 0, 0, 0, 0];
+                    this.myBetCoinAll = 0;
                 }
             }
         }
     },
 
 
-    
+
 
 
 

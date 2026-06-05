@@ -281,11 +281,12 @@ cc.Class({
     },
 
     setFreePrice: function(freePriceStr) {
-        this.lab_freePrice.string = `$${freePriceStr}`;
+        this.lab_freePrice.string = `${CommonFun.getInstance().getCurrencySymbol()}${freePriceStr}`.replace(/\./g, '_');
+        
     },
 
     setMutilPrice: function(score) {
-        this.lab_multiPrice.string = `$${score}`;
+        this.lab_multiPrice.string = `${CommonFun.getInstance().getCurrencySymbol()}${score}`.replace(/\./g, '_');
     },
 
     setMutil: function(mutil) {

@@ -89,7 +89,13 @@ cc.Class({
             this.setWheelItemData(this.obj_wheels[i], GlobalCfg.USER_DATAS.invitationData.invitation_to_the_draw[i]);
         }
 
-        this.lab_spin.string = "spin: " + GlobalCfg.USER_DATAS.invitationData.spin_count;
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == I18NLanguagesEnum.Bengali) {
+            this.lab_spin.string = "স্পিন: " + GlobalCfg.USER_DATAS.invitationData.spin_count;
+        }
+        else {
+            this.lab_spin.string = "spin: " + GlobalCfg.USER_DATAS.invitationData.spin_count;
+        }
     },
 
     setWheelItemData(obj, data) {
@@ -98,7 +104,7 @@ cc.Class({
         let button_bg = obj.getChildByName("bg").getComponent(cc.Button);
         let button_jb = obj.getChildByName("jb").getComponent(cc.Button);
         let node_yes = obj.getChildByName("yes");
-        lab_jb.string = "₹" + (data.item.amount / 100);
+        lab_jb.string = CommonFun.getInstance().formatCurrencyAmount(data.item.amount / 100);
         img_jb.spriteFrame = data.item.id == 12 ? this.sp_coin2 : this.sp_coin1;
 
         button_bg.interactable = !data.is_reward;
@@ -187,7 +193,7 @@ cc.Class({
         obj.active = true;
 
         lab_friends.string = data.friends;
-        lab_winnings.string = "₹" + (data.rewards / 100);
+        lab_winnings.string = CommonFun.getInstance().formatCurrencyAmount(data.rewards / 100);
         node_lock.active = data.friends > GlobalCfg.USER_DATAS.invitationData.recharge_count;
         node_unlock.active = !node_lock.active;
     },
@@ -309,7 +315,13 @@ cc.Class({
                 //     this.btn_draw.enableAutoGrayEffect = false;
                 // };
 
-                this.lab_spin.string = "spin: " + remaincount;
+                let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+                if (languagesType == I18NLanguagesEnum.Bengali) {
+                    this.lab_spin.string = "স্পিন: " + remaincount;
+                }
+                else {
+                    this.lab_spin.string = "spin: " + remaincount;
+                }
             })
             .start();
     },

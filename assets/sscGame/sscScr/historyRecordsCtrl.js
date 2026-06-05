@@ -19,13 +19,70 @@ cc.Class({
         btn_close : cc.Button, 
     },
 
-   
+    ctor: function() {
+        this.customMsgEventHandle = null;
+    },
 
     onLoad () {
         this.toggle_jackpot.node.on('click',this.btnClick,this);
         this.toggle_myHistory.node.on('click',this.btnClick,this);
         this.toggle_bigWinner.node.on('click',this.btnClick,this);
         this.btn_close.node.on('click',this.btnClick,this);
+        this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+        this.refreshToggleLanguage();
+    },
+
+    onEventMsg: function(webData, target) {
+        let self = target;
+        let msgId = webData.msgCode;
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
+            self.refreshToggleLanguage();
+        }
+    },
+
+    refreshToggleLanguage: function() {
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage") || I18NLanguagesEnum.Bengali;
+        this.setToggleLanguageNodes(this.toggle_jackpot.node, languagesType, "btn_jackpot");
+        this.setToggleLanguageNodes(this.toggle_myHistory.node, languagesType, "MyHistory");
+        this.setToggleLanguageNodes(this.toggle_bigWinner.node, languagesType, "BigWinner");
+    },
+
+    setToggleLanguageNodes: function(toggleNode, languagesType, suffixName) {
+        if (!toggleNode) {
+            return;
+        }
+
+        let languageNames = ["English", "Hindi", "Urdu", "Bengali"];
+        let targetLanguageName = this.getLanguageNodePrefix(languagesType);
+        let parentNames = ["Background", "checkmark"];
+        for (let i = 0; i < parentNames.length; i++) {
+            let parentNode = toggleNode.getChildByName(parentNames[i]);
+            if (!parentNode) {
+                continue;
+            }
+
+            for (let j = 0; j < languageNames.length; j++) {
+                let childName = `${languageNames[j]}@${suffixName}`;
+                let childNode = parentNode.getChildByName(childName);
+                if (childNode) {
+                    childNode.active = languageNames[j] == targetLanguageName;
+                }
+            }
+        }
+    },
+
+    getLanguageNodePrefix: function(languagesType) {
+        switch (languagesType) {
+            case I18NLanguagesEnum.English:
+                return "English";
+            case I18NLanguagesEnum.Hindi:
+                return "Hindi";
+            case I18NLanguagesEnum.Urdu:
+                return "Urdu";
+            case I18NLanguagesEnum.Bengali:
+            default:
+                return "Bengali";
+        }
     },
 
     btnClick:function(button){
@@ -128,6 +185,13 @@ cc.Class({
     },
  
     start () {
+    },
+
+    onDestroy: function() {
+        if (this.customMsgEventHandle) {
+            ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
+            this.customMsgEventHandle = null;
+        }
     },
 
     // update (dt) {},

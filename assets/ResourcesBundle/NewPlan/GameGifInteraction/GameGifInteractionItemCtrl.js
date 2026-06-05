@@ -33,7 +33,7 @@ cc.Class({
 
         this.itemData = data;
 
-        this.lab_price.string = `₹${price}`;
+        this.lab_price.string = CommonFun.getInstance().formatCurrencyAmount(price);
         ResourcesBundle.load(`NewPlan/GameGifInteraction/res/item/${name}`, cc.SpriteFrame, (err, spriteFrame) => {
             if (!err) {
                 if (CommonFun.getInstance().isValidForScr(this)) {

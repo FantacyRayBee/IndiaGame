@@ -32,12 +32,15 @@ cc.Class({
         BranchBankNameEditBox: cc.EditBox,
         EmailEditBox: cc.EditBox,
         MobileEditBox: cc.EditBox,
+
+        lab_num: [cc.Label],
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     ctor() {
         this.remainingTimes = 0;        // 剩余提现次数
+        this.firstRegisterRequiredFields = new Set(['name', 'ifsc', 'bank_code']);
         this.address = {            // 当前脚本主要数据
             uid: GlobalCfg.USER_DATAS.userid,
             bank_card_id: "",       // 银行个人卡号
@@ -86,6 +89,14 @@ cc.Class({
                 GlobalCfg.G_COMPONENTS.Audio.playButton();
             })
         });
+        for (let i = 0, len = this.lab_num.length; i < len; i++) {
+            this.lab_num[i].string = CommonFun.getInstance().formatCurrencyAmount(this.lab_num[i].string);
+        }
+
+        this.AccountEditBox.node.active = false;
+        // this.BranchBankNameEditBox.node.active = false;
+        this.EmailEditBox.node.active = false;
+        this.MobileEditBox.node.active = false;
     },
 
     onDestroy: function() {
@@ -227,14 +238,12 @@ cc.Class({
     },
 
     initWriteDataErrorList() {
-        for (const key in this.address) {
-            if (Object.hasOwnProperty.call(this.address, key)) {
-                // if (this.address[key] == "") {
-                if (Reflect.has(this.errorStrArr, key) && this.address[key] == "") {
-                    this.writeDataErrorList.add(key)
-                }
+        this.writeDataErrorList.clear();
+        this.firstRegisterRequiredFields.forEach((key) => {
+            if (this.address[key] == "") {
+                this.writeDataErrorList.add(key);
             }
-        }
+        });
         // LoggerUtil.getInstance().warn(">>>>>>>填写信息错误>>>>>>Set====", this.writeDataErrorList);
     },
 
@@ -340,6 +349,10 @@ cc.Class({
     },
     // -----------------------------------------EditBox-------------------------------------------------------------
     checkAccound(editBox) {
+        if (!this.AccountEditBox.node.active) {
+            this.writeDataErrorList.delete("bank_card_id");
+            return;
+        }
         let str = editBox.string;
         let pattern = new RegExp('^[0-9]+$');
         if (pattern.test(str) == true) {
@@ -393,10 +406,14 @@ cc.Class({
     },
 
     checkBranchBankName(editBox) {
-        // 参数暂未使用
+        this.writeDataErrorList.delete('branch_bank_name');
     },
 
     checkEmail(editBox) {
+        if (!this.EmailEditBox.node.active) {
+            this.writeDataErrorList.delete('email');
+            return;
+        }
         let str = editBox.string;
         let validateEmail = (email) => {
             return email.match(
@@ -413,6 +430,10 @@ cc.Class({
     },
 
     checkMobile(editBox) {
+        if (!this.MobileEditBox.node.active) {
+            this.writeDataErrorList.delete('mobile');
+            return;
+        }
         let str = editBox.string;
         if (str.length == 10) {
             this.address.mobile = "91"+str;

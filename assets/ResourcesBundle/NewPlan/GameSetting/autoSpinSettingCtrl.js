@@ -36,6 +36,7 @@ cc.Class({
     ctor: function () {
         this.counter = 0;
         this.interval = null;
+        this.customMsgEventHandle = null;
         this.toggleTypeArr = [true, false, false, false];
         this.timeArr = [10, 20, 30, 40, 50];
         this.inTime = 150;
@@ -61,6 +62,42 @@ cc.Class({
             this.btn_timeArr[i].node.on('click', CommonFun.getInstance().debounce(this.timeBtnClick, 0), this);
         }
         this.buttonAddEventListener();
+        this.customMsgEventHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+        this.refreshStartBtnLanguage();
+    },
+
+    onEventMsg: function(webData, target) {
+        let self = target;
+        let msgId = webData.msgCode;
+        let notify = webData.msgData;
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
+            self.dealChangeLanguageEvent(notify);
+        }
+    },
+
+    dealChangeLanguageEvent: function() {
+        this.refreshStartBtnLanguage();
+    },
+
+    refreshStartBtnLanguage: function() {
+        if (!this.btn_start || !this.btn_start.node) {
+            return;
+        }
+
+        let englishNode = this.btn_start.node.getChildByName("English");
+        let bengaliNode = this.btn_start.node.getChildByName("Bengali");
+        if (!englishNode && !bengaliNode) {
+            return;
+        }
+
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        let isBengali = languagesType == I18NLanguagesEnum.Bengali;
+        if (englishNode) {
+            englishNode.active = !isBengali;
+        }
+        if (bengaliNode) {
+            bengaliNode.active = isBengali;
+        }
     },
 
     initData: function(arr1, arr2){
@@ -287,6 +324,11 @@ cc.Class({
     },
 
     onDestroy: function() {
+        if (this.customMsgEventHandle) {
+            ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.customMsgEventHandle);
+            this.customMsgEventHandle = null;
+        }
+        clearInterval(this.interval);
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.GAMESETTING);
     },
 
