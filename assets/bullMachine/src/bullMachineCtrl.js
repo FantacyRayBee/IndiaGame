@@ -68,7 +68,7 @@ cc.Class({
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
             "Can't bet temporarily",                    //请选择下注的范围
-            "Your cash is insufficient, Please recharge in time!"
+            commonTipsLanguage.cashInsufficientRecharge[language]
         ];
         this.finishedSlotItemNum = 0; //已经滚动停止的item数量
         this.isRunningSlotAnim = false; 
@@ -380,6 +380,7 @@ cc.Class({
         }
         this.setFreesList(notify.frees);
         this.setUserDiamond(notify.userinfo.diamond);
+        this.setBetAmount(notify.betOption);
         let freeCountItem = this.getFreesItemOfFreeCount();
         if (freeCountItem) {
             let amount = freeCountItem.amount / 100;
@@ -426,6 +427,42 @@ cc.Class({
         }
     },
 
+    setBetAmount: function(betOption) {
+        if (Array.isArray(betOption) && betOption.length > 0) {
+            let betArr = betOption
+                .map(x => Number(x) / 100)
+                .filter(x => !isNaN(x) && x > 0)
+                .map(x => `${x}`.trim());
+            if (betArr.length > 0) {
+                this.betAmountArr = betArr;
+            }
+        }
+
+        let defaultIndex = Math.min(4, this.betAmountArr.length - 1);
+        this.betIndex = Math.max(0, Math.min(this.betIndex == null ? defaultIndex : this.betIndex, this.betAmountArr.length - 1));
+        this.curBetAmount = parseFloat(this.betAmountArr[this.betIndex]) || 0;
+
+        this.updateBetOptionNodes();
+        this.refreshBetAmountLabel(this.betAmountArr[this.betIndex]);
+    },
+
+    updateBetOptionNodes: function() {
+        let btnLen = this.node_bet && this.node_bet.children ? this.node_bet.children.length : 0;
+        for (let i = 0; i < btnLen; i++) {
+            if (!this.node_betInfos[i] || !this.node_betInfos[i].node) {
+                continue;
+            }
+            let isValidBet = i < this.betAmountArr.length;
+            this.node_betInfos[i].node.active = isValidBet;
+            if (this.node_betInfos[i].label) {
+                this.node_betInfos[i].label.string = isValidBet ? this.betAmountArr[i] : "";
+            }
+            if (this.node_betInfos[i].mark) {
+                this.node_betInfos[i].mark.active = isValidBet && i === this.betIndex;
+            }
+        }
+    },
+
     initSlotData: function() {
         for (let j = 0, len1 = this.node_itemContentArr.length; j < len1; j++) {
             let children = this.node_itemContentArr[j].children;
@@ -434,16 +471,15 @@ cc.Class({
                 src.initIcon();
             };
         };
-        for (let i = 0, len = 15; i < len; i++) {
+        for (let i = 0, len = this.node_bet.children.length; i < len; i++) {
             this.node_betInfos[i] = {};
             this.node_betInfos[i].node = this.node_bet.children[i];
             let button = this.node_bet.children[i].getComponent(cc.Button);
             this.node_betInfos[i].label = this.node_bet.children[i].getChildByName("num").getComponent(cc.Label);
             this.node_betInfos[i].mark = this.node_bet.children[i].getChildByName("mark");
-            this.node_betInfos[i].label.string = this.betAmountArr[i];
             button.node.on('click', this.debounce(this.betClickCall, 0.5), this);
         }
-        this.node_betInfos[this.betIndex].mark.active = true;
+        this.updateBetOptionNodes();
         this.startAutoRotateAnim();
     },
 
@@ -593,6 +629,9 @@ cc.Class({
 
     betClickCall: function (component) {
         this.betIndex = parseInt(component.node.name) - 1;
+        if (isNaN(this.betIndex) || this.betIndex < 0 || this.betIndex >= this.betAmountArr.length || !this.node_betInfos[this.betIndex]) {
+            return;
+        }
         let label = component.node.getChildByName("num").getComponent(cc.Label);
         this.btn_db.node.active = false;
 
@@ -602,10 +641,14 @@ cc.Class({
         //TODO 切换下注的时候 需要刷新界面上的各种相关金额
         this.anim_root_bet.play("popCloseAnim");
         this.betrootIsOpen = false;
-        for (let i = 0; i < 15; i++) {
-            this.node_betInfos[i].mark.active = false;
+        for (let i = 0, len = this.node_bet.children.length; i < len; i++) {
+            if (this.node_betInfos[i] && this.node_betInfos[i].mark) {
+                this.node_betInfos[i].mark.active = false;
+            }
         }
-        this.node_betInfos[this.betIndex].mark.active = true;
+        if (this.node_betInfos[this.betIndex] && this.node_betInfos[this.betIndex].mark) {
+            this.node_betInfos[this.betIndex].mark.active = true;
+        }
     },
 
     dealbetBtnEvent: function (btnType) {
@@ -1510,7 +1553,7 @@ cc.Class({
             return;
         }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibull"] == true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 if (this.paymentSwitch) {
                     CommonFun.getInstance().showSmallAddCash()
                 }

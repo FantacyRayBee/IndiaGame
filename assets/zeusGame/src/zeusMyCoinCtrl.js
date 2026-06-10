@@ -27,11 +27,11 @@ cc.Class({
 
     changeNumToK: function(num) {
         if (num < 1000) { 
-            return num;
+            return String(num).replace('.', '_');
         } 
         else {
             let n = (num / 1000).toFixed(2)
-            let res = n.toString() + 'K'
+            let res = n.toString().replace('.', '_') + 'K'
             return res;
         }
     }

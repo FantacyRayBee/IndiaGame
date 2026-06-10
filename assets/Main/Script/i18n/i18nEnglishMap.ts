@@ -349,7 +349,37 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['Withdraw_Input Branch'], 'Input Branch Bank Name (optional)');
     map.set(labels['Withdraw_Input Email'], 'Input Email');
     map.set(labels['Withdraw_Input Mobile Number'], 'Input Mobile Number');
-    
+    map.set(labels['Withdraw_Input bKash Account'], 'Input bKash Account');
+    map.set(labels['Withdraw_Tip2'], '1 . Money will be remitted to you within 1-7 days\n2 . If the withdrawal application is wrong , please fill in you bank information again\n3 . Withdrawal requires an additional service charge');
+
+    map.set(labels['withdrawal_refresh'], "refresh");
+    map.set(labels['withdrawal_empty'], "You haven't added any wallet account yet.");
+    map.set(labels['withdrawal_Withdrawal Time'], "Withdrawal Time");
+    map.set(labels['withdrawal_Daily Withdrawal Limit'], "Daily Withdrawal Limit");
+    map.set(labels['withdrawal_Remaining Withdrawals'], "Remaining Withdrawals");
+    map.set(labels['withdrawal_Wallet Balance'], "Wallet Balance");
+    map.set(labels['withdrawal_Withdrawable Balance'], "Withdrawable Balance");
+    map.set(labels['withdrawal_Withdrawal Amount'], "Withdrawal Amount");
+    map.set(labels['withdrawal_Transaction Password'], "Transaction Password");
+    map.set(labels['withdrawal_enter withdrawal amount'], "Please enter the withdrawal amount");
+    map.set(labels['withdrawal_enter transaction password'], "Please enter the transaction password");
+
+    map.set(labels['withdrawal_bind_title'], "Bind E-Wallet");
+    map.set(labels['withdrawal_bind_Select E-Wallet Type'], "Select E-Wallet Type");
+    map.set(labels['withdrawal_bind_Recipient Name'], "Recipient Name");
+    map.set(labels['withdrawal_bind_Account'], "Account");
+    map.set(labels['withdrawal_bind_Set Transaction Password'], "Set Transaction Password");
+    map.set(labels['withdrawal_bind_Transaction Password'], "Transaction Password");
+    map.set(labels['withdrawal_bind_Confirm Transaction Password'], "Confirm Transaction Password");
+    map.set(labels['withdrawal_bind_tips1'], "* Please make sure the recipient name matches the verified real-name information, otherwise withdrawal may fail.");
+    map.set(labels['withdrawal_bind_Please enter account'], "Please enter account");
+    map.set(labels['withdrawal_bind_tips2'], "* Please enter your real-name verified mobile number");
+    map.set(labels['withdrawal_bind_Please enter transaction password'], "Please enter transaction password");
+    map.set(labels['withdrawal_bind_Please enter transaction password again'], "Please enter transaction password again");
+    map.set(labels['withdrawal_bind_tips3'], "* The two transaction passwords must match");
+    map.set(labels['withdrawal_bind_CurrentPassword'], "Current Password");
+    map.set(labels['withdrawal_bind_Please enter current password'], "Please enter current password");
+
     map.set(labels['TransactionRecord_Record'], 'Record');
     map.set(labels['TransactionRecord_Recharge'], 'Recharge');
     map.set(labels['TransactionRecord_Withdraw'], 'Withdraw');
@@ -490,7 +520,7 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['cat_collect'], 'Collect');
     
     map.set(labels['lhd_bet_tip'], 'Click to bet');
-    map.set(labels['lhd_Repeat bets'], 'Repeat bets');
+    map.set(labels['lhd_repeat bets'], 'Repeat bets');
     map.set(labels['lhd_total online players'], 'Total online players:');
 
     map.set(labels['chicken_title1'], 'Difficulty');
@@ -590,5 +620,10 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['sscGame_COLOR5X'], 'COLOR 5X');
     map.set(labels['sscGame_PAIR4X'], 'PAIR 4X');
     map.set(labels['sscGame_HIGHCARD3X'], 'HIGH CARD 3X');
+
+    map.set(labels['benzGame_start'], 'START');
+    map.set(labels['benzGame_reset'], 'RESET');
+    map.set(labels['benzGame_collect'], 'COLLECT');
+
 
 }

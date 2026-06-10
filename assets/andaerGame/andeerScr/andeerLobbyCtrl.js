@@ -28,7 +28,7 @@ cc.Class({
         this.tuiChuLabel = [
             "Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
             "Are you sure you want to discard",  // 弃牌
-            "Your cash is insufficient, Please recharge in time!" , //金币不足请充值
+            commonTipsLanguage.cashInsufficientRecharge[language] , //金币不足请充值
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
             "You are not longer sitting on the table because you missed your turn"
@@ -185,7 +185,7 @@ cc.Class({
 
     btnBetsClick:function(button){
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniandar"] == true) { //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false);
             return
@@ -205,7 +205,7 @@ cc.Class({
         };
         if (btnName == "btn_aBet") {
             if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniandar"] == true) { //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
                 return
@@ -216,7 +216,7 @@ cc.Class({
         } 
         else if (btnName == "btn_bBet") {
             if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniandar"] == true) { //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
                 return
@@ -391,7 +391,7 @@ cc.Class({
                         } 
                         else {
                             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                             else {
                                 CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
                                     CommonFun.getInstance().showSmallAddCash()
@@ -413,7 +413,7 @@ cc.Class({
                     } 
                     else {
                         if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                            CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                         else {
                             CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
                                 CommonFun.getInstance().showSmallAddCash()

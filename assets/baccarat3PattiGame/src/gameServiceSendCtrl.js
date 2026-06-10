@@ -42,10 +42,10 @@ cc.Class({
     
         if(self.stopBetState) {
             LoggerUtil.getInstance().log("非下注状态");
-            CommonFun.getInstance().showTips('non betting stage');
+            CommonFun.getInstance().showTips(commonTipsLanguage.nonBettingStage[language]);
         } else {
             if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred[gameName] == true && GlobalCfg.isPayGame == true) {  //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             } else {
@@ -56,7 +56,7 @@ cc.Class({
                     });
                 } else {
                     if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                        CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                     else {
                         CommonFun.getInstance().showMsgBox(self.tipsLabel[5],"SHOP",()=>{          
                             CommonFun.getInstance().showSmallAddCash()
@@ -113,7 +113,7 @@ cc.Class({
         };
 
         if (isVip) {
-            CommonFun.getInstance().showTips("This seat already has a player, Please select another empty seat!"); 
+            CommonFun.getInstance().showTips(commonTipsLanguage.seatAlreadyHasPlayer[language]);
             return;
         };
 
@@ -140,9 +140,9 @@ cc.Class({
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {          
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }

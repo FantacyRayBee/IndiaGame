@@ -61,7 +61,7 @@ cc.Class({
 
         //体验场不添加判断
         if (this.roomToggleType != "practice" && GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred[gameName] == true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false, null, null, null, null, 0.85);
             return;

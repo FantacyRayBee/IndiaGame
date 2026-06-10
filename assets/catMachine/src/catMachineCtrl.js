@@ -79,7 +79,7 @@ cc.Class({
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
             "Can't bet temporarily",                    //请选择下注的范围
-            "Your cash is insufficient, Please recharge in time!"
+            commonTipsLanguage.cashInsufficientRecharge[language]
         ];
         //投注额度数组
         this.betAmountArr = ['4.5', '9', '45', '90', '180', '450', '900', '1800'];
@@ -113,6 +113,8 @@ cc.Class({
         this._spinReqTimeoutMs = 8000;
         this._spinReqRetry = 0;
         this._spinReqMaxRetry = 2;
+        this._pendingResumeSpinAfterReconnect = false;
+        this._lastSpinBetAmount = 0;
     },
 
     loadAudioClip: function (audioClipUrl = "", func = null, target = null) {
@@ -477,10 +479,9 @@ cc.Class({
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.NET_OPEN && notify === "GAME_SERVER") {
             // 断线重连后，如果之前处于“等待 call 回包”状态，主动补发一次
-            if (self.isAuto && self.curSendSpin) {
-                self.curSendSpin = false;
+            if (self.curSendSpin) {
+                self._pendingResumeSpinAfterReconnect = true;
                 self._clearSpinReqWatchdog();
-                self.sendCallReq();
             }
         }
         else if (msgId == GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO) {
@@ -539,6 +540,7 @@ cc.Class({
         this.curSendSpin = false;
         this._clearSpinReqWatchdog();
         this._spinReqRetry = 0;
+        this._pendingResumeSpinAfterReconnect = false;
         if (!notify) {
             let info = {
                 errorMessage: `MayaMachine游戏中, 服务器下发的非正确消息中结构体异常, 内容为===>${JSON.stringify(webData)}`
@@ -584,6 +586,7 @@ cc.Class({
 
         this.setFreesList(notify.frees);
         this.setUserDiamond(notify.userinfo.diamond);
+        this.setBetAmount(notify.betOption);
         this.jpMub = notify.jpMub; //jp倍数
 
         let freeCountItem = this.getFreesItemOfFreeCount();
@@ -606,12 +609,15 @@ cc.Class({
             this.toggle_auto.interactable = false;
             this.autoSpineNode.active = true;
 
-            let proroID = 'gameservice.call';
-            let message = 'CallReq';
-            GameServerManager.send(proroID, message, {
-                amount: amount * 100
-            });
+            this.curSendSpin = false;
+            this._clearSpinReqWatchdog();
+            this._pendingResumeSpinAfterReconnect = false;
+            this._sendCallReqWithAmount(amount * 100);
+            return;
+        }
 
+        if (this._pendingResumeSpinAfterReconnect) {
+            this._recoverPendingSpinAfterReconnect();
             return;
         }
 
@@ -622,6 +628,14 @@ cc.Class({
             this.btn_spin.interactable = true;
             this.btn_spin.enableAutoGrayEffect = false;
         }
+    },
+
+    setBetAmount: function (betOption) {
+        if (Array.isArray(betOption)) {
+            this.betAmountArr = betOption.map(x => `${Number(x) / 100}`.trim());
+        }
+        this.betAmountArrIndex = 0;
+        this.setLabAmount(this.betAmountArr[this.betAmountArrIndex]);
     },
 
     initSlotData: function () {
@@ -1689,7 +1703,7 @@ cc.Class({
             return;
         }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minicat"] == true) {   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 if (this.paymentSwitch) {
                     CommonFun.getInstance().showSmallAddCash()
                 }
@@ -1705,7 +1719,7 @@ cc.Class({
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             if (GlobalCfg.IS_CLUB_MODE == 1) { //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => { }, false);
             }
             else {
                 CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
@@ -1722,7 +1736,12 @@ cc.Class({
         this.lab_totalWin.node.active = false;
         this.node_goodluck.active = true;
 
+        this._sendCallReqWithAmount(betAmount);
+    },
+
+    _sendCallReqWithAmount: function (betAmount) {
         this.curSendSpin = true;
+        this._lastSpinBetAmount = betAmount;
         this._startSpinReqWatchdog();
         let proroID = 'gameservice.call';
         let message = 'CallReq';
@@ -1731,10 +1750,42 @@ cc.Class({
         });
     },
 
+    _recoverPendingSpinAfterReconnect: function () {
+        const hadPendingSpin = this._pendingResumeSpinAfterReconnect || this.curSendSpin;
+        this._pendingResumeSpinAfterReconnect = false;
+        this.curSendSpin = false;
+        this._clearSpinReqWatchdog();
+
+        if (!hadPendingSpin) {
+            return;
+        }
+
+        LoggerUtil.getInstance().warn("catMachine recover pending spin after reconnect", {
+            isAuto: this.isAuto,
+            isRunningCatAnim: this.isRunningCatAnim,
+            lastSpinBetAmount: this._lastSpinBetAmount
+        });
+
+        if (this.isAuto && !this.isRunningCatAnim) {
+            this.sendCallReq();
+            return;
+        }
+
+        this.recoverySpinBtnEvent();
+    },
+
     _startSpinReqWatchdog: function () {
         this._clearSpinReqWatchdog();
         this._spinReqTimer = setTimeout(() => {
             if (!cc.isValid(this) || this.curSendSpin !== true) {
+                return;
+            }
+            const socket = GameServerManager.socket;
+            const isSocketReady = socket && socket.readyState === 1;
+            if (GameServerManager.isReconnecting || !isSocketReady) {
+                LoggerUtil.getInstance().warn("catMachine spin watchdog waiting reconnect");
+                this._pendingResumeSpinAfterReconnect = true;
+                this._startSpinReqWatchdog();
                 return;
             }
 

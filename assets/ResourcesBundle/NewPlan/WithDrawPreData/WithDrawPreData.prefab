@@ -58,7 +58,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1625,
+      "width": 1835,
       "height": 750
     },
     "_anchorPoint": {
@@ -70,7 +70,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        812.5,
+        917.5,
         375,
         0,
         0,
@@ -135,7 +135,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1625,
+      "width": 1835,
       "height": 88
     },
     "_anchorPoint": {
@@ -218,7 +218,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -684.3,
+        -789.3,
         -5.125,
         0,
         0,
@@ -626,7 +626,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -419.15700000000004,
+        -524.157,
         3.326999999999998,
         0,
         0,
@@ -778,7 +778,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        748.549,
+        853.549,
         0,
         0,
         0,
@@ -1164,7 +1164,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": -210,
+      "width": 0,
       "height": 0
     },
     "_anchorPoint": {
@@ -7484,7 +7484,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1649,
+      "width": 1859,
       "height": 750
     },
     "_anchorPoint": {
@@ -7554,7 +7554,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1649,
+      "width": 1859,
       "height": 750
     },
     "_anchorPoint": {
@@ -7772,7 +7772,7 @@
         "__id__": 207
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 223
@@ -7804,7 +7804,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        83.157,
+        -122.884,
         0,
         0,
         0,
@@ -8067,7 +8067,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 89.52999999999997,
+      "width": 680,
       "height": 40.32
     },
     "_anchorPoint": {
@@ -8262,8 +8262,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Input Account number",
-    "_N$string": "Input Account number",
+    "_string": "Input bKash Account",
+    "_N$string": "Input bKash Account",
     "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": false,
@@ -8317,7 +8317,7 @@
       "__id__": 216
     },
     "_enabled": true,
-    "labelTransId": 9017,
+    "labelTransId": 9024,
     "textType": 0,
     "_id": ""
   },
@@ -8342,7 +8342,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 100,
+    "maxLength": 11,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -8533,7 +8533,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        78.9,
+        80.189,
         0,
         0,
         0,
@@ -9084,7 +9084,7 @@
         "__id__": 245
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 261
@@ -9743,7 +9743,7 @@
         "__id__": 280
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 296
@@ -9836,7 +9836,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 284.9,
+      "width": 675.4,
       "height": 40
     },
     "_anchorPoint": {
@@ -9848,7 +9848,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -122.6,
+        72.6,
         0,
         0,
         0,
@@ -9903,7 +9903,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 284.9,
+      "width": 675.4,
       "height": 40
     },
     "_anchorPoint": {
@@ -10181,7 +10181,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 173.91,
+      "width": 206.34000000000003,
       "height": 40.32
     },
     "_anchorPoint": {
@@ -10193,7 +10193,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -140.45,
+        -335.7,
         20,
         0,
         0,
@@ -10233,8 +10233,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Input Bank Name",
-    "_N$string": "Input Bank Name",
+    "_string": "Input bKash Account",
+    "_N$string": "Input bKash Account",
     "_fontSize": 24,
     "_lineHeight": 32,
     "_enableWrapText": false,
@@ -10265,7 +10265,7 @@
     "_target": null,
     "_alignFlags": 45,
     "_left": 2,
-    "_right": 108.98999999999998,
+    "_right": 467.05999999999995,
     "_top": 0,
     "_bottom": -0.3200000000000003,
     "_verticalCenter": 0,
@@ -10288,7 +10288,7 @@
       "__id__": 273
     },
     "_enabled": true,
-    "labelTransId": 9020,
+    "labelTransId": 9024,
     "textType": 0,
     "_id": ""
   },
@@ -10362,7 +10362,7 @@
         "__id__": 289
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 294
@@ -11600,7 +11600,7 @@
         "__id__": 318
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 334
@@ -11631,8 +11631,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        228.936,
-        -140.214,
+        -207.009,
+        -21.032,
         0,
         0,
         0,
@@ -12170,7 +12170,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 10,
+    "maxLength": 11,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],

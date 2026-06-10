@@ -37,8 +37,8 @@ cc.Class({
         this.currentBetNum = 0;                 //当前下注额
         this.limitMaxBetNum = 3000000;          //下注上限
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
-            "Your cash is insufficient, Please recharge in time!", //您的现金不足，请及时充值！
-            "non betting stage",                     //暂时不能下注
+            commonTipsLanguage.cashInsufficientRecharge[language], //您的现金不足，请及时充值！
+            commonTipsLanguage.nonBettingStage[language],                     //暂时不能下注
             "Upper limit of betting amount！"  //投注金额上限！
         ];
         this.paixStrArr = ["HIGH CARD","PAIR","COLOR","SEQ","PURE SEQ","SET"];
@@ -467,7 +467,7 @@ cc.Class({
                 else {
                     if (result.result == 19) {
                         if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                            CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                         else {
                             CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
                                 CommonFun.getInstance().showSmallAddCash()
@@ -482,7 +482,7 @@ cc.Class({
             else {
                 if (result.result == 19) {
                     if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                        CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                        CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                     else {
                         CommonFun.getInstance().showMsgBox( "Your cash is insufficient, Please recharge in time！", "SHOP", () => {
                             CommonFun.getInstance().showSmallAddCash()
@@ -1344,9 +1344,9 @@ cc.Class({
         LoggerUtil.getInstance().log(`当前阶段重复下注金额: ${amount}`);
         if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
                     }
@@ -1443,7 +1443,7 @@ cc.Class({
 
         let ctrl = this.getPlayerInfoByUserId(siteID);
         if (ctrl && ctrl.siteID == siteID) {
-            CommonFun.getInstance().showTips("This seat already has a player, Please select another empty seat!"); 
+            CommonFun.getInstance().showTips(commonTipsLanguage.seatAlreadyHasPlayer[language]);
             return;
         }; 
 
@@ -1468,9 +1468,9 @@ cc.Class({
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {          
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }
@@ -1633,13 +1633,13 @@ cc.Class({
         LoggerUtil.getInstance().log("betting betBtnState：" + this.betBtnState);
         if (this.betBtnState == true) {
             if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minimultiteenpatti"]== true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
                     }
                 }, false);
             } else if (GlobalCfg.USER_DATAS.userDiamond < amount * 100) {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
                     }

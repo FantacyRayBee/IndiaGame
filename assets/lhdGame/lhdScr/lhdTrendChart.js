@@ -131,10 +131,55 @@ cc.Class({
             this.node.destroy();
         },this)
 
-        for (let i = 0; i < this.nodes.length; i++) {
-            this.nodes[i].active = language-1 == i;  
+        this.refreshLanguageNodes();
+        this.languageChangeHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.clientMsg, this.onEventMsg, this);
+    },
+
+    onDestroy: function() {
+        ClientNotify.removeByHandle(GlobalCfg.MSG_TYPE.clientMsg, this.languageChangeHandle);
+    },
+
+    onEventMsg:function(webData, target) {
+        let msgId = webData.msgCode;
+        if (msgId == GlobalCfg.CLIENT_MSG_ID.CHANGE_LANGUAGE) {
+            target.refreshLanguageNodes();
+            target.setWinningLab();
+            if (target.recordlist) {
+                target.lab_set.string = lhdLanguage.lab_set[language] + " " + target.recordlist.length;
+            }
         }
-    
+    },
+
+    refreshLanguageNodes:function() {
+        for (let i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].active = language - 1 == i;
+        }
+        let bgBig = this.node.getChildByName("bg_big");
+        this.setLanguageChildVisible(bgBig, "title_lhzs");
+    },
+
+    setLanguageChildVisible:function(parentNode, suffixName) {
+        if (!parentNode) {
+            return;
+        }
+        let languageNames = ["English", "Hindi", "Urdu", "Bengali"];
+        let targetLanguageName = this.getCurrentLanguageName();
+        for (let i = 0; i < languageNames.length; i++) {
+            let childNode = parentNode.getChildByName(languageNames[i] + "@" + suffixName);
+            if (childNode) {
+                childNode.active = languageNames[i] == targetLanguageName;
+            }
+        }
+    },
+
+    getCurrentLanguageName:function() {
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == "English" || languagesType == "Hindi" || languagesType == "Urdu" || languagesType == "Bengali") {
+            return languagesType;
+        }
+        let legacyLanguage = Number(window.language || language || cc.sys.localStorage.getItem("language") || 4);
+        let languageNames = ["", "English", "Hindi", "Urdu", "Bengali"];
+        return languageNames[legacyLanguage] || "Bengali";
     },
 
     start () {

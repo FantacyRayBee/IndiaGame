@@ -36,13 +36,16 @@ cc.Class({
         this.tieChipArr = [];      // 存放中间的区域的筹码
         this.tigerChipArr = [];     // 存放老虎的区域的筹码
         this.repeatBetArr = [0,0,0]      // 存放重复下注的数据
+        this.pendingBetArr = [0, 0, 0];   // 本地已发送但服务器还未ACK的下注，避免快速连点突破单局上限
+        this.roundMaxBet = 2000000;       // 单局最大下注，服务器login.maxBet下发前沿用旧本地上限
+        this.roundMaxBetTipsTime = 0;
         this.coinAllArr = [this.dragonChipArr,this.tigerChipArr,this.tieChipArr];
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the table , you will lose your money . Do you want to leave table?", // 退出游戏
         "Sorry, there are not enough gold coins.", //金币不足请充值
         "In the game, unable to exit",                              // 游戏中无法退出
         "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
         "Can't bet temporarily",                    //请选择下注的范围
-        "Your cash is insufficient, Please recharge in time!"
+        commonTipsLanguage.cashInsufficientRecharge[language]
         ];
         this.isGameEndStatus = false;
         this.showBetSpineTimeInterval = 15;      // 显示下注动画的时间间隔
@@ -67,7 +70,10 @@ cc.Class({
     },
 
     start () {
-        
+        let clickToBetText = commonTipsLanguage.clickToBet[language];
+        if (this.lab_dragaonBet) this.lab_dragaonBet.string = clickToBetText;
+        if (this.lab_tieBet) this.lab_tieBet.string = clickToBetText;
+        if (this.lab_tigerBet) this.lab_tigerBet.string = clickToBetText;
     },
 
     onDestroy: function () {
@@ -191,6 +197,7 @@ cc.Class({
             }, false);
         } 
         else if (msgId === "gameservice.call") {
+            target.pendingBetArr = [0, 0, 0];
             if (CommonFun.getInstance().isFreePlayerDirectedToFreeTP()) {
                 if (result.result == 57) {
                     CommonFun.getInstance().showDiversionFreeTP(() => {
@@ -321,9 +328,77 @@ cc.Class({
         let sceneInfo = notify.sceneInfo;           // 场景信息
         let configInfo = notify.configInfo;         // 配置信息
         let requester = notify.requester;           // 玩家信息
+        this.setRoundMaxBet(notify);
         this.lhdAudioCtrl.playGameMusic('lhd');
 
         this.GameSceneRefresh(sceneInfo, requester);
+    },
+
+    setRoundMaxBet:function(notify){
+        if (!notify) {
+            return;
+        }
+        let maxBet = notify.maxBet;
+        if ((maxBet == null || maxBet == undefined) && notify.configInfo) {
+            maxBet = notify.configInfo.maxBet;
+        }
+        if ((maxBet == null || maxBet == undefined) && notify.sceneInfo) {
+            maxBet = notify.sceneInfo.maxBet;
+        }
+        maxBet = Number(maxBet);
+        if (!isNaN(maxBet) && maxBet > 0) {
+            this.roundMaxBet = maxBet;
+        }
+    },
+
+    getCurrentRoundBetCoinAll:function(){
+        let pendingBetAll = this.pendingBetArr[0] + this.pendingBetArr[1] + this.pendingBetArr[2];
+        return this.myDragonCoin + this.mytieCoin + this.mytigerCoin + pendingBetAll;
+    },
+
+    isBengaliLanguage:function(){
+        let languageTypeStorage = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        let legacyLanguage = typeof language !== "undefined" ? language : window.language;
+        return languageTypeStorage == "Bengali" || String(legacyLanguage) == "4";
+    },
+
+    showRoundMaxBetTips:function(){
+        let now = Date.now();
+        if (now - this.roundMaxBetTipsTime < 1200) {
+            return;
+        }
+        this.roundMaxBetTipsTime = now;
+
+        let maxBet = this.roundMaxBet / 100;
+        let tips = this.isBengaliLanguage()
+            ? "\u098f\u0987 \u09b0\u09be\u0989\u09a8\u09cd\u09a1\u09c7 \u09b8\u09b0\u09cd\u09ac\u09cb\u099a\u09cd\u099a \u09ac\u09be\u099c\u09bf: " + maxBet
+            : "You have reached the max bet for this round: " + maxBet;
+        CommonFun.getInstance().showTips(tips);
+    },
+
+    canAddRoundBet:function(addAmount){
+        if (!this.roundMaxBet || this.roundMaxBet <= 0) {
+            return true;
+        }
+        return this.getCurrentRoundBetCoinAll() + addAmount <= this.roundMaxBet;
+    },
+
+    addPendingBet:function(amount, side){
+        if (amount > 0 && side >= 0 && side < this.pendingBetArr.length) {
+            this.pendingBetArr[side] += amount;
+        }
+    },
+
+    refreshPendingBetByServerBet:function(totalBet){
+        if (!totalBet) {
+            return;
+        }
+        let serverBetArr = [totalBet.dragon || 0, totalBet.tiger || 0, totalBet.tie || 0];
+        let localBetArr = [this.myDragonCoin || 0, this.mytigerCoin || 0, this.mytieCoin || 0];
+        for (let i = 0; i < this.pendingBetArr.length; i++) {
+            let ackBet = Math.max(0, serverBetArr[i] - localBetArr[i]);
+            this.pendingBetArr[i] = Math.max(0, this.pendingBetArr[i] - ackBet);
+        }
     },
 
     GameSceneRefresh:function(sceneInfo,requester){
@@ -338,6 +413,7 @@ cc.Class({
         // 玩家信息
         let userInfo = requester.userInfo;
         this.my_playerId = userInfo.playerId;
+        this.pendingBetArr = [0, 0, 0];
         this.showBetScore(requester.betInfo,"me");
         this.myNodeCtrl = this.lhdPlayer.getComponent("lhdPlayerCtrl");
         this.myNodeCtrl.setUserData(userInfo, requester.pos);
@@ -416,6 +492,7 @@ cc.Class({
         this.lhdAudioCtrl.playGameSound("mytouCoin");
         let startNode = this.lhdPlayer;
         let endNode = null;
+        this.refreshPendingBetByServerBet(totalBet);
         this.showBetScore(totalBet,"me");
         this.myNodeCtrl.headAct("me");
         this.myNodeCtrl.showPlayCion(after);
@@ -536,13 +613,14 @@ cc.Class({
         this.myDragonCoin = 0;     
         this.mytieCoin = 0;       
         this.mytigerCoin = 0;   
+        this.pendingBetArr = [0, 0, 0];
        
         this.lab_dragonAllCion.string = 0;
         this.lab_tigerAllCion.string = 0;
         this.lab_tieAllCion.string = 0;
-        this.lab_dragaonBet.string  = "Click to bet";
-        this.lab_tieBet.string  = "Click to bet";
-        this.lab_tigerBet.string  = "Click to bet";
+        this.lab_dragaonBet.string  = commonTipsLanguage.clickToBet[language];
+        this.lab_tieBet.string  = commonTipsLanguage.clickToBet[language];
+        this.lab_tigerBet.string  = commonTipsLanguage.clickToBet[language];
 
         this.coinAllArr[0] = [];
         this.coinAllArr[1] = [];
@@ -794,7 +872,7 @@ cc.Class({
 
         let ctrl = this.getPlayerInfoByUserId(pos);
         if (ctrl) {
-            CommonFun.getInstance().showTips("This seat already has a player, Please select another empty seat!"); 
+            CommonFun.getInstance().showTips(commonTipsLanguage.seatAlreadyHasPlayer[language]);
             return;
         }; 
 
@@ -817,9 +895,9 @@ cc.Class({
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {          
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }
@@ -842,7 +920,7 @@ cc.Class({
         }
         if(this.betStatus){
             if(GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minilonghu"]== true){   //未曾充值
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                     if (this.paymentSwitch) {
                         CommonFun.getInstance().showSmallAddCash()
                     }
@@ -850,23 +928,23 @@ cc.Class({
                 return
             } else if( this.userBtnCion > GlobalCfg.USER_DATAS.userDiamond){
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                 else {
                     CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
                         CommonFun.getInstance().showSmallAddCash()
                     },false);
                 }
             }else {
-                let betCoinAll = this.myDragonCoin + this.mytieCoin + this.mytigerCoin + this.userBtnCion;
-                if( betCoinAll > 2000000){   // 限制玩家下注
-                    CommonFun.getInstance().showTips("Upper limit of betting amount!");
+                if(!this.canAddRoundBet(this.userBtnCion)){   // 限制玩家单局累计下注
+                    this.showRoundMaxBetTips();
                 } else {
+                    this.addPendingBet(this.userBtnCion, types);
                     this.sendReqCtrl.callReq(this.userBtnCion,types);
                 }
             }
         } else {
             LoggerUtil.getInstance().log("游戏未开始")
-            CommonFun.getInstance().showTips('non betting stage');
+            CommonFun.getInstance().showTips(commonTipsLanguage.nonBettingStage[language]);
         }
     },
 
@@ -1007,8 +1085,8 @@ cc.Class({
         this.skeleDataMap = new Map();
         if (this.assetBundle) {
             let self = this;
-            var skeleArr = ['lhdSke/vs_longhu','lhdSke/Win-dragon',"lhdSke/win-tiger","lhdSke/win-tie","lhdSke/Stop Betting",
-                            'lhdSke/pai_z1'] 
+            var skeleArr = ['lhdSke/English/vs_longhu','lhdSke/Win-dragon',"lhdSke/win-tiger","lhdSke/win-tie","lhdSke/Stop Betting",
+                            'lhdSke/pai_z1', 'lhdSke/Bengali/vs_longhu_Bengali'] 
             for (let index = 0; index < skeleArr.length; index++) {
                 var url = skeleArr[index];
                 self.assetBundle.load(url, sp.SkeletonData, function (err, asset) {
@@ -1050,7 +1128,7 @@ cc.Class({
         if(str == "me"){
             if(this.myDragonCoin < betscore.dragon){
                 this.myDragonCoin = betscore.dragon;
-                this.lab_dragaonBet.string = this.myDragonCoin > 0 ? this.myDragonCoin / 100 : "Click to bet";
+                this.lab_dragaonBet.string = this.myDragonCoin > 0 ? this.myDragonCoin / 100 : commonTipsLanguage.clickToBet[language];
                 cc.tween(this.lab_dragaonBet.node)
                     .to(0.1, { scale: 1.2 })
                     .to(0.1, { scale: 1 })
@@ -1058,7 +1136,7 @@ cc.Class({
             }
             if(this.mytieCoin < betscore.tie){
                 this.mytieCoin = betscore.tie;
-                this.lab_tieBet.string = this.mytieCoin > 0 ? this.mytieCoin / 100 : "Click to bet";
+                this.lab_tieBet.string = this.mytieCoin > 0 ? this.mytieCoin / 100 : commonTipsLanguage.clickToBet[language];
                 cc.tween(this.lab_tieBet.node)
                     .to(0.1, { scale: 1.2 })
                     .to(0.1, { scale: 1 })
@@ -1066,7 +1144,7 @@ cc.Class({
             }
             if(this.mytigerCoin < betscore.tiger){
                 this.mytigerCoin = betscore.tiger;
-                this.lab_tigerBet.string = this.mytigerCoin > 0 ? this.mytigerCoin / 100 : "Click to bet";
+                this.lab_tigerBet.string = this.mytigerCoin > 0 ? this.mytigerCoin / 100 : commonTipsLanguage.clickToBet[language];
                 cc.tween(this.lab_tigerBet.node)
                     .to(0.1, { scale: 1.2 })
                     .to(0.1, { scale: 1 })
@@ -1523,7 +1601,7 @@ cc.Class({
         if( str == "bet"){
             if( betCoinAll > GlobalCfg.USER_DATAS.userDiamond || GlobalCfg.USER_DATAS.userDiamond <= 0){
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                 else {
                     CommonFun.getInstance().showMsgBox( this.tipsLabel[5],"SHOP",()=>{          
                         if(this.paymentSwitch){
@@ -1532,12 +1610,13 @@ cc.Class({
                     },false);
                 }
             } else {
-                let newBetCoinAll = this.myDragonCoin + this.mytieCoin + this.mytigerCoin;
-                let allCoin = betCoinAll + newBetCoinAll;
-                if( allCoin > 2000000){
-                    CommonFun.getInstance().showTips("Upper limit of betting amount!");
+                if(!this.canAddRoundBet(betCoinAll)){
+                    this.showRoundMaxBetTips();
                     return
                 }else{
+                    this.addPendingBet(this.repeatBetArr[0], 0);
+                    this.addPendingBet(this.repeatBetArr[1], 1);
+                    this.addPendingBet(this.repeatBetArr[2], 2);
                     this.sendReqCtrl.callReq(this.repeatBetArr[0],0);
                     this.sendReqCtrl.callReq( this.repeatBetArr[1],1);
                     this.sendReqCtrl.callReq( this.repeatBetArr[2],2);
@@ -1590,6 +1669,10 @@ cc.Class({
     startBetAim:function(){
         this.lhdAudioCtrl.playGameSound("VS");    
         let spine = this.skeleDataMap.get("vs_longhu");
+        let languagesType = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        if (languagesType == I18NLanguagesEnum.Bengali) {
+            spine = this.skeleDataMap.get("vs_longhu_Bengali");
+        }
         this.ske_vs_longhu.skeletonData = spine;
         this.ske_vs_longhu.node.active = true;
         this.ske_vs_longhu.addAnimation(0, "animation", false); 

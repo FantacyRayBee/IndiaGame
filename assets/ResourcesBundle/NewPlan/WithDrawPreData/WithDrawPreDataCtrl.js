@@ -40,7 +40,7 @@ cc.Class({
 
     ctor() {
         this.remainingTimes = 0;        // 剩余提现次数
-        this.firstRegisterRequiredFields = new Set(['name', 'ifsc', 'bank_code']);
+        this.firstRegisterRequiredFields = new Set(['bank_card_id', 'name', 'mobile']);
         this.address = {            // 当前脚本主要数据
             uid: GlobalCfg.USER_DATAS.userid,
             bank_card_id: "",       // 银行个人卡号
@@ -55,13 +55,40 @@ cc.Class({
         };
         this.writeDataErrorList = new Set();   // 填写信息错误
         this.errorStrArr = {
-            bank_card_id: 'Must be number in Account',        // 银行个人卡号
-            name: 'The User Name only contain letters',    // UserName
-            ifsc: 'The IFSC is invalid , top 4s should \n be upper letters the 5th should be zero',   // IFSC
-            ifsc_1: 'Invalid IFSC, please confirm \n it is the correct 11 bit length',   // IFSC
-            bank_code: 'Please fill in the correct bank',     // 银行
-            email: 'Error Email',  // Email
-            mobile: 'The Mobile Number is invalid',      // Mobile
+            bank_card_id: {
+                English: 'Account must be 11 digits',
+                Bengali: 'অ্যাকাউন্ট নম্বর অবশ্যই ১১ সংখ্যার হতে হবে'
+            },        // 银行个人卡号
+            name: {
+                English: 'The User Name only contain letters',
+                Bengali: 'ইউজার নেমে শুধুমাত্র অক্ষর থাকতে হবে'
+            },    // UserName
+            ifsc: {
+                English: 'The IFSC is invalid , top 4s should \n be upper letters the 5th should be zero',
+                Bengali: 'IFSC ভুল। প্রথম ৪টি বড় হাতের অক্ষর \n এবং ৫মটি 0 হতে হবে'
+            },   // IFSC
+            ifsc_1: {
+                English: 'Invalid IFSC, please confirm \n it is the correct 11 bit length',
+                Bengali: 'IFSC ভুল, অনুগ্রহ করে নিশ্চিত করুন \n এটি ১১ অক্ষরের সঠিক দৈর্ঘ্য'
+            },   // IFSC
+            bank_code: {
+                English: 'Please fill in the correct bank',
+                Bengali: 'সঠিক ব্যাংকের নাম লিখুন'
+            },     // 银行
+            email: {
+                English: 'Error Email',
+                Bengali: 'ইমেইল ভুল'
+            },  // Email
+            mobile: {
+                English: 'Mobile must be 11 digits',
+                Bengali: 'মোবাইল নম্বর অবশ্যই ১১ সংখ্যার হতে হবে'
+            },      // Mobile
+        };
+        this.commonTipsStrArr = {
+            saveInfoSuccess: {
+                English: 'Save Info Success!',
+                Bengali: 'তথ্য সফলভাবে সংরক্ষণ করা হয়েছে!'
+            }
         };
     },
 
@@ -93,10 +120,10 @@ cc.Class({
             this.lab_num[i].string = CommonFun.getInstance().formatCurrencyAmount(this.lab_num[i].string);
         }
 
-        this.AccountEditBox.node.active = false;
-        // this.BranchBankNameEditBox.node.active = false;
+        // this.AccountEditBox.node.active = false;
+        this.BranchBankNameEditBox.node.active = false;
         this.EmailEditBox.node.active = false;
-        this.MobileEditBox.node.active = false;
+        // this.MobileEditBox.node.active = false;
     },
 
     onDestroy: function() {
@@ -244,6 +271,16 @@ cc.Class({
                 this.writeDataErrorList.add(key);
             }
         });
+
+        let accountPattern = new RegExp('^[0-9]{11}$');
+        if (!accountPattern.test(this.address.bank_card_id || "")) {
+            this.writeDataErrorList.add('bank_card_id');
+        }
+
+        let mobilePattern = new RegExp('^[0-9]{11}$');
+        if (!mobilePattern.test(this.address.mobile || "")) {
+            this.writeDataErrorList.add('mobile');
+        }
         // LoggerUtil.getInstance().warn(">>>>>>>填写信息错误>>>>>>Set====", this.writeDataErrorList);
     },
 
@@ -292,7 +329,12 @@ cc.Class({
         this.IFSCEditBox.string = this.address.ifsc;
         this.BankNameEditBox.string = this.address.bank_code;
         this.EmailEditBox.string = this.address.email;
-        this.MobileEditBox.string = this.address.mobile.slice(2, this.address.mobile.length);
+        let mobile = this.address.mobile || "";
+        // 兼容旧数据：历史上可能保存为 91 + 10 位
+        if (/^91\d{10}$/.test(mobile)) {
+            mobile = mobile.slice(2);
+        }
+        this.MobileEditBox.string = mobile;
 
         this.nodeMain.active = false;
         this.nodeWirte.active = true;
@@ -301,12 +343,13 @@ cc.Class({
 
     saveAddress() {
         if (this.writeDataErrorList.size == 0) {
+            this.address.country = 2;   // 1 印度 2 孟加拉
             CommonFun.getInstance().showProgress();
             let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/payment/india_address";
             CommonFun.getInstance().httpPost(httpUrl, { address: this.address }, (msg) => {
                 CommonFun.getInstance().hidProgress();
                 if (msg.result == 0) {
-                    CommonFun.getInstance().showTips('Save Info Success!');
+                    CommonFun.getInstance().showTips(this.getCommonTipStrByLanguage('saveInfoSuccess'));
                     if (CommonFun.getInstance().isValidForScr(this)) { 
                         this.initServiceData();
                         this.nodeMain.active = true;
@@ -332,9 +375,34 @@ cc.Class({
         } else {
             const iterator1 = this.writeDataErrorList.values();
             let value = iterator1.next().value;
-            let errorStr = this.errorStrArr[value];
+            let errorStr = this.getErrorStrByLanguage(value);
             CommonFun.getInstance().showTips(errorStr);
         }
+    },
+
+    isBengaliLanguage() {
+        let languagesType = I18NUtil.getInstance().getLanguageType();
+        let languageTypeStorage = cc.sys.localStorage.getItem("LanguageTypeStorage");
+        let legacyLanguage = cc.sys.localStorage.getItem("language");
+        return languagesType == I18NLanguagesEnum.Bengali || languageTypeStorage == "Bengali" || String(legacyLanguage) == "4";
+    },
+
+    getErrorStrByLanguage(errorKey) {
+        let languageKey = this.isBengaliLanguage() ? "Bengali" : "English";
+        let errorConfig = this.errorStrArr[errorKey];
+        if (errorConfig && typeof errorConfig === 'object') {
+            return errorConfig[languageKey] || errorConfig.English || '';
+        }
+        return errorConfig || '';
+    },
+
+    getCommonTipStrByLanguage(tipKey) {
+        let languageKey = this.isBengaliLanguage() ? "Bengali" : "English";
+        let tipConfig = this.commonTipsStrArr[tipKey];
+        if (tipConfig && typeof tipConfig === 'object') {
+            return tipConfig[languageKey] || tipConfig.English || '';
+        }
+        return tipConfig || '';
     },
 
     loadHeadSp: function (headUrl,realWidth,heaSprite) {
@@ -354,7 +422,7 @@ cc.Class({
             return;
         }
         let str = editBox.string;
-        let pattern = new RegExp('^[0-9]+$');
+        let pattern = new RegExp('^[0-9]{11}$');
         if (pattern.test(str) == true) {
             this.writeDataErrorList.delete("bank_card_id");
             this.address.bank_card_id = str;
@@ -378,34 +446,20 @@ cc.Class({
 
     checkIFSCCode(editBox) {
         let str = editBox.string;
-        let pattern = new RegExp('^[A-Z]{4}[0]{1}');
-        if (pattern.test(str) == true) {
-            this.writeDataErrorList.delete('ifsc');
-            if (str.length == 11) {
-                this.writeDataErrorList.delete('ifsc_1');
-                this.address.ifsc = str;
-            } else {
-                this.writeDataErrorList.add('ifsc_1');
-            }
-        } else {
-            this.writeDataErrorList.add('ifsc');
-        }
+        this.address.ifsc = str;
+        this.writeDataErrorList.delete('ifsc');
+        this.writeDataErrorList.delete('ifsc_1');
 
     },
 
     checkBankName(editBox) {
         let str = editBox.string;
-        let pattern = /^[A-Za-z0-9]*(\s[A-Za-z0-9]*)*$/;
-        // 纯英文 + 数字 + 空格
-        if (pattern.test(str) == true && str.length > 0) {
-            this.address.bank_code = str;
-            this.writeDataErrorList.delete('bank_code');
-        } else {
-            this.writeDataErrorList.add('bank_code');
-        }
+        this.address.bank_code = str;
+        this.writeDataErrorList.delete('bank_code');
     },
 
     checkBranchBankName(editBox) {
+        // 分行名称不参与必填校验
         this.writeDataErrorList.delete('branch_bank_name');
     },
 
@@ -415,18 +469,8 @@ cc.Class({
             return;
         }
         let str = editBox.string;
-        let validateEmail = (email) => {
-            return email.match(
-                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-        };
-        if (validateEmail(str)) {
-            this.address.email = str;
-            this.writeDataErrorList.delete('email');
-        } 
-        else {
-            this.writeDataErrorList.add('email');
-        };
+        this.address.email = str;
+        this.writeDataErrorList.delete('email');
     },
 
     checkMobile(editBox) {
@@ -435,8 +479,9 @@ cc.Class({
             return;
         }
         let str = editBox.string;
-        if (str.length == 10) {
-            this.address.mobile = "91"+str;
+        let pattern = new RegExp('^[0-9]{11}$');
+        if (pattern.test(str) == true) {
+            this.address.mobile = str;
             this.writeDataErrorList.delete('mobile');
         } else {
             this.writeDataErrorList.add('mobile');

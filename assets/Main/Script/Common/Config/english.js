@@ -46,6 +46,114 @@ window.UpdateLanguage= {
 }
 
 //  个人中心 
+window.commonTipsLanguage = {
+    seatAlreadyHasPlayer: [
+        "seatAlreadyHasPlayer",
+        "This seat already has a player, Please select another empty seat!",
+        "इस सीट पर पहले से खिलाड़ी है, कृपया दूसरी खाली सीट चुनें!",
+        "اس نشست پر پہلے سے کھلاڑی موجود ہے، براہ کرم دوسری خالی نشست منتخب کریں!",
+        "এই সিটে ইতিমধ্যে একজন খেলোয়াড় আছে, অনুগ্রহ করে অন্য খালি সিট বেছে নিন!"
+    ],
+    premiumPlayersOnly: [
+        "premiumPlayersOnly",
+        "This feature is available only for premium players. Add cash now to become a premium player.",
+        "यह सुविधा केवल प्रीमियम खिलाड़ियों के लिए उपलब्ध है। प्रीमियम खिलाड़ी बनने के लिए अभी कैश जोड़ें।",
+        "یہ فیچر صرف پریمیم کھلاڑیوں کے لیے دستیاب ہے۔ پریمیم کھلاڑی بننے کے لیے ابھی کیش جمع کریں۔",
+        "এই ফিচারটি শুধুমাত্র প্রিমিয়াম খেলোয়াড়দের জন্য। প্রিমিয়াম খেলোয়াড় হতে এখনই ক্যাশ যোগ করুন।"
+    ],
+    insufficientCash: [
+        "insufficientCash",
+        "Insufficient cash",
+        "पर्याप्त नकद नहीं है",
+        "ناکافی نقد رقم",
+        "অপর্যাপ্ত ক্যাশ"
+    ],
+    cashInsufficientRecharge: [
+        "cashInsufficientRecharge",
+        "Your cash is insufficient, Please recharge in time!",
+        "आपका कैश अपर्याप्त है, कृपया समय पर रिचार्ज करें!",
+        "آپ کی نقد رقم ناکافی ہے، براہ کرم بروقت ریچارج کریں!",
+        "আপনার ক্যাশ অপর্যাপ্ত, অনুগ্রহ করে সময়মতো রিচার্জ করুন!"
+    ],
+    nonBettingStage: [
+        "nonBettingStage",
+        "non betting stage",
+        "फिलहाल बेट नहीं लगाई जा सकती",
+        "فی الحال بیٹنگ ممکن نہیں",
+        "এই মুহূর্তে বাজি ধরা যাবে না"
+    ],
+    clickToBet: [
+        "clickToBet",
+        "Click to bet",
+        "दांव लगाने के लिए क्लिक करें",
+        "بیٹنگ کے لیے کلک کریں",
+        "বাজি দিন"
+    ],
+    noCard: [
+        "noCard",
+        "No bank card added",
+        "कोई बैंक कार्ड नहीं जोड़ा गया",
+        "کوئی بینک کارڈ شامل نہیں کیا گیا",
+        "কোনও ব্যাংক কার্ড যোগ করা হয়নি"
+    ],
+    pleaseAddCard: [
+        "pleaseAddCard",
+        "Please add bank card first",
+        "कृपया पहले बैंक कार्ड जोड़ें",
+        "براہ کرم پہلے بینک کارڈ شامل کریں",
+        "অনুগ্রহ করে আগে ব্যাংক কার্ড যোগ করুন"
+    ],
+    pleaseInputAmount: [
+        "pleaseInputAmount",
+        "Please input withdraw amount",
+        "कृपया निकासी राशि दर्ज करें",
+        "براہ کرم نکالنے کی رقم درج کریں",
+        "অনুগ্রহ করে উত্তোলনের পরিমাণ লিখুন"
+    ],
+    pleaseInputSafeCode: [
+        "pleaseInputSafeCode",
+        "Please input security code",
+        "कृपया सुरक्षा कोड दर्ज करें",
+        "براہ کرم سیکیورٹی کوڈ درج کریں",
+        "অনুগ্রহ করে সিকিউরিটি কোড লিখুন"
+    ],
+    winningCashNotEnough: [
+        "winningCashNotEnough",
+        "Withdrawable Balance is not enough!",
+        "निकासी योग्य राशि पर्याप्त नहीं है!",
+        "قابل واپسی بیلنس کافی نہیں ہے!",
+        "উত্তোলনযোগ্য ব্যালেন্স যথেষ্ট নয়!"
+    ],
+    withdrawCountNotEnough: [
+        "withdrawCountNotEnough",
+        "Withdrawal count be not enough!",
+        "निकासी की संख्या पर्याप्त नहीं है!",
+        "نکالنے کی تعداد کافی نہیں ہے!",
+        "উত্তোলনের সংখ্যা যথেষ্ট নয়!"
+    ],
+    vipUpgrade: [
+        "vipUpgrade",
+        "Your VIP level needs to be improved, please go to upgrade your VIP level!",
+        "आपके वीआईपी स्तर में सुधार की आवश्यकता है, कृपया अपने वीआईपी स्तर को अपग्रेड करने के लिए जाएं!",
+        "آپ کے VIP لیول کو بہتر کرنے کی ضرورت ہے، براہ کرم اپنے VIP لیول کو اپ گریڈ کرنے کے لیے جائیں!",
+        "আপনার ভিআইপি স্তর উন্নত করা প্রয়োজন, অনুগ্রহ করে আপনার ভিআইপি স্তর আপগ্রেড করতে যান!"
+    ],
+    goUpgrade: [
+        "goUpgrade",
+        "Go upgrade",
+        "अपग्रेड करें",
+        "اپ گریڈ کریں",
+        "আপগ্রেড করুন"
+    ],
+    withdrawSuccess: [
+        "withdrawSuccess",
+        "Cash withdrawal application succeeded, please wait!",
+        "नकद निकासी आवेदन सफल हुआ, कृपया प्रतीक्षा करें!",
+        "نقد رقم نکالنے کی درخواست کامیاب، براہ کرم انتظار کریں!",
+        "নগদ উত্তোলনের আবেদন সফল হয়েছে, অনুগ্রহ করে অপেক্ষা করুন!"
+    ],
+}
+
 window.playerCenterLanguage = {
     node_deposited: ["node_deposited","Deposited","जमा","ڈپازٹ کریں","জমা"],
     node_bonus: ["node_bonus","Bonus","बोनास","بونس","বোনাস"],
@@ -265,6 +373,17 @@ window.shopLanguage = {
             "2. ব্যবহারকারীর প্রতিদিনের টাকা তোলার সীমা 3 বার এবং"+"\n"+
             "   15000 পর্যন্ত টাকা তোলা যাবে"   
     ],
+    lab_withdrawWallect:["lab_withdrawWallect","E Wallect","E वॉलेट","ای والٹ","ই ওয়ালেট"],
+    withdrawBindTipsNameEmpty:["withdrawBindTipsNameEmpty","Please enter recipient name","कृपया प्राप्तकर्ता का नाम दर्ज करें","براہِ کرم وصول کنندہ کا نام درج کریں","অনুগ্রহ করে প্রাপকের নাম লিখুন"],
+    withdrawBindTipsAccountEmpty:["withdrawBindTipsAccountEmpty","Please enter account","कृपया खाता दर्ज करें","براہِ کرم اکاؤنٹ درج کریں","অনুগ্রহ করে অ্যাকাউন্ট লিখুন"],
+    withdrawBindTipsNameMin:["withdrawBindTipsNameMin","Recipient name must be at least 2 characters","प्राप्तकर्ता का नाम कम से कम 2 अक्षरों का होना चाहिए","وصول کنندہ کا نام کم از کم 2 حروف کا ہونا چاہیے","প্রাপকের নাম কমপক্ষে 2 অক্ষরের হতে হবে"],
+    withdrawBindTipsAccountMin:["withdrawBindTipsAccountMin","Account must be at least 2 characters","खाता कम से कम 2 अक्षरों का होना चाहिए","اکاؤنٹ کم از کم 2 حروف کا ہونا چاہیے","অ্যাকাউন্ট কমপক্ষে 2 অক্ষরের হতে হবে"],
+    withdrawBindTipsOldPasswordEmpty:["withdrawBindTipsOldPasswordEmpty","Please enter old password","कृपया पुराना पासवर्ड दर्ज करें","براہِ کرم پرانا پاس ورڈ درج کریں","অনুগ্রহ করে পুরোনো পাসওয়ার্ড লিখুন"],
+    withdrawBindTipsPasswordEmpty:["withdrawBindTipsPasswordEmpty","Please enter transaction password","कृपया लेन-देन पासवर्ड दर्ज करें","براہِ کرم ٹرانزیکشن پاس ورڈ درج کریں","অনুগ্রহ করে লেনদেনের পাসওয়ার্ড লিখুন"],
+    withdrawBindTipsPasswordAgainEmpty:["withdrawBindTipsPasswordAgainEmpty","Please enter transaction password again","कृपया फिर से लेन-देन पासवर्ड दर्ज करें","براہِ کرم دوبارہ ٹرانزیکشن پاس ورڈ درج کریں","অনুগ্রহ করে আবার লেনদেনের পাসওয়ার্ড লিখুন"],
+    withdrawBindTipsPasswordNotMatch:["withdrawBindTipsPasswordNotMatch","The two transaction passwords must match","दोनों लेन-देन पासवर्ड समान होने चाहिए","دونوں ٹرانزیکشن پاس ورڈ ایک جیسے ہونے چاہئیں","দুটি লেনদেনের পাসওয়ার্ড একই হতে হবে"],
+    withdrawBindTipsSaveSuccess:["withdrawBindTipsSaveSuccess","Save successful!","सहेजना सफल हुआ!","محفوظ کرنا کامیاب رہا!","সেভ সফল হয়েছে!"],
+    withdrawBindTipsSaveFailed:["withdrawBindTipsSaveFailed","Save failed!","सहेजना विफल हुआ!","محفوظ کرنا ناکام رہا!","সেভ ব্যর্থ হয়েছে!"],
 }
 
 // 手机登录 手机绑定

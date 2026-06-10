@@ -31,7 +31,7 @@ cc.Class({
         this.lab_currentXMark.string = "";
         this.lab_currentXMul.string = "";
         this.lab_mulWinScore.string = "";
-        this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `0.00`;
+        this.lab_notMulWinScore.string = this.formatHeadAmount(0, true);
 
         this.startTitleAnima();
 
@@ -119,7 +119,7 @@ cc.Class({
         this.lab_mulWinScore.node.setPosition(cc.v2(1.6, -15));
         this.lab_currentXMul.node.setPosition(cc.v2(44.2, -15));
 
-        this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `0.00`;
+        this.lab_notMulWinScore.string = this.formatHeadAmount(0, true);
 
         if (this.isHaveTitleTimer == false) {
             this.startTitleAnima();
@@ -149,7 +149,7 @@ cc.Class({
             this.lab_currentXMark.string = "";
             this.lab_currentXMul.string = "";
             this.lab_mulWinScore.string = "";
-            this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(winScore)}`;
+            this.lab_notMulWinScore.string = this.formatHeadAmount(winScore, true);
 
             cc.tween(this.lab_notMulWinScore.node)
             .to(0.1, {scale: 1.3})
@@ -165,13 +165,7 @@ cc.Class({
         };
 
         let obj = {};
-        let str = this.lab_mulWinScore.string;
-        if (str.includes("$")) {
-            obj.num = Number(str.slice(1));
-        }
-        else {
-            obj.num = Number(str);
-        };
+        obj.num = this.parseHeadAmount(this.lab_mulWinScore.string);
 
         if (obj.num == score) {
             return;
@@ -184,31 +178,31 @@ cc.Class({
             {
                 progress: (start, end, current, t) => {
                     if (this && this.lab_mulWinScore) {
-                        let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t); 
-                        this.lab_mulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${temp}`;
+                        let curScore = Number(current);
+                        curScore = isNaN(curScore) ? 0 : curScore;
+                        this.lab_mulWinScore.string = this.formatHeadAmount(curScore, true);
                     };
                     return start + (end - start) * t;
                 }
             }
         )
+        .call(() => {
+            if (this && this.lab_mulWinScore) {
+                this.lab_mulWinScore.string = this.formatHeadAmount(score, true);
+            }
+        })
         .start();
     },
 
 
     setCurrentElfMul2: function(score) {
         if (score == 0) {
-            this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `0.00`;
+            this.lab_notMulWinScore.string = this.formatHeadAmount(0, true);
             return;
         };
 
         let obj = {};
-        let str = this.lab_notMulWinScore.string;
-        if (str.includes("$")) {
-            obj.num = Number(str.slice(1));
-        }
-        else {
-            obj.num = Number(str);
-        };
+        obj.num = this.parseHeadAmount(this.lab_notMulWinScore.string);
         
         if (obj.num == score) {
             return;
@@ -221,13 +215,19 @@ cc.Class({
             {
                 progress: (start, end, current, t) => {
                     if (this && this.lab_notMulWinScore) {
-                        let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t); 
-                        this.lab_notMulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${temp}`;
+                        let curScore = Number(current);
+                        curScore = isNaN(curScore) ? 0 : curScore;
+                        this.lab_notMulWinScore.string = this.formatHeadAmount(curScore, true);
                     };
                     return start + (end - start) * t;
                 }
             }
         )
+        .call(() => {
+            if (this && this.lab_notMulWinScore) {
+                this.lab_notMulWinScore.string = this.formatHeadAmount(score, true);
+            }
+        })
         .start();
     },
 
@@ -266,7 +266,7 @@ cc.Class({
 
         this.lab_notMulWinScore.string = "";
        
-        this.lab_mulWinScore.string = CommonFun.getInstance().getCurrencySymbol() + `${GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(this.currentElfMul * this.currentBet/2000)}`;
+        this.lab_mulWinScore.string = this.formatHeadAmount(this.currentElfMul * this.currentBet/2000, true);
         this.lab_currentXMark.string = "X";
         this.lab_currentXMul.string = `${Number(currentXMul).toFixed(0)}`;
 
@@ -274,6 +274,21 @@ cc.Class({
         .to(0.1, {scale: 1.3})
         .to(0.1, {scale: 1})
         .start()
+    },
+
+    parseHeadAmount: function(text) {
+        let str = String(text || "");
+        str = str.replace(/_/g, '.').replace(/,/g, '');
+        str = str.replace(/[^0-9.-]/g, '');
+        let num = Number(str);
+        return isNaN(num) ? 0 : num;
+    },
+
+    formatHeadAmount: function(num, withCurrency) {
+        let val = Number(num);
+        val = isNaN(val) ? 0 : val;
+        let text = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(val).replace(/\./g, '_');
+        return withCurrency ? (CommonFun.getInstance().getCurrencySymbol() + `${text}`) : text;
     },
 
 

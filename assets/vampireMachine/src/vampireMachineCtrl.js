@@ -52,7 +52,7 @@ cc.Class({
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
             "Can't bet temporarily",                    //请选择下注的范围
-            "Your cash is insufficient, Please recharge in time!"
+            commonTipsLanguage.cashInsufficientRecharge[language]
         ];
         //投注额度数组
         this.betAmountArr = ['10', '20', '50', '100', '200', '500', '1000', '2000'];
@@ -296,6 +296,7 @@ cc.Class({
 
         this.setFreesList(notify.frees);
         this.setUserDiamond(notify.userinfo.diamond);
+        this.setBetAmount(notify.betOption);
 
         let freeCountItem = this.getFreesItemOfFreeCount();
         if (freeCountItem) {
@@ -329,6 +330,14 @@ cc.Class({
             this.btn_spin.interactable = true;
             this.btn_spin.enableAutoGrayEffect = false;
         }
+    },
+
+    setBetAmount: function(betOption) {
+        if (Array.isArray(betOption) && betOption.length > 0) {
+            this.betAmountArr = betOption.map(x => `${Number(x) / 100}`.trim());
+        }
+        this.betAmountArrIndex = 0;
+        this.lab_betAmount.string = this.betAmountArr[this.betAmountArrIndex];
     },
 
     initSlotData: function() {
@@ -403,7 +412,7 @@ cc.Class({
 
         //先扣除下注的金额
         if (this.gameResult.mianfeinum == 0) {
-            let diamond = GlobalCfg.USER_DATAS.userDiamond - parseInt(this.lab_betAmount.string) * 100;
+            let diamond = GlobalCfg.USER_DATAS.userDiamond - parseFloat(this.lab_betAmount.string) * 100;
             let num = FloatCalculation.accDiv(diamond, 100);
             this.lab_jb.string = CommonFun.getInstance().numberToShow(num);
         }
@@ -686,13 +695,15 @@ cc.Class({
         this.btn_auto.interactable = true;
         this.btn_auto.enableAutoGrayEffect = false;
 
-        let betAmount = parseInt(this.lab_betAmount.string);
-        if (betAmount != 10) {
+        let betAmount = parseFloat(this.lab_betAmount.string);
+        let minBetAmount = parseFloat(this.betAmountArr[0]);
+        let maxBetAmount = parseFloat(this.betAmountArr[this.betAmountArr.length - 1]);
+        if (betAmount != minBetAmount) {
             this.btn_betJian.interactable = true;
             this.btn_betJian.enableAutoGrayEffect = false;
         };
 
-        if (betAmount != 2000) {
+        if (betAmount != maxBetAmount) {
             this.btn_betJia.interactable = true;
             this.btn_betJia.enableAutoGrayEffect = false;
 
@@ -719,7 +730,7 @@ cc.Class({
 
         // 3. 计算总赢分
         let startScore = Number(this.freeTotalWinNum);
-        let bet = parseInt(this.lab_betAmount.string);
+        let bet = parseFloat(this.lab_betAmount.string);
         let endedScore = this.gameResult.rewardtype == 2
             ? this.gameResult.freePool / 100
             : totalMultiple * bet / 10 + startScore;
@@ -925,7 +936,7 @@ cc.Class({
         this.lab_autoBetCiShu.node.color = new cc.Color(255, 255, 51);
         this.toggle_auto.interactable = false;
         this.autoSpineNode.active = true;
-        let amount = parseInt(this.lab_betAmount.string);
+        let amount = parseFloat(this.lab_betAmount.string);
         let proroID = 'gameservice.call';
         let message = 'CallReq';
         GameServerManager.send(proroID, message, {              
@@ -936,7 +947,7 @@ cc.Class({
     curRoundAddCoinFinish(){
         if(cc.isValid(this)){
             let minLimit = this.betAmountArr[0] || 0;
-            minLimit = parseInt(minLimit) * 100;
+            minLimit = parseFloat(minLimit) * 100;
             CommonFun.getInstance().gameShowSecondRecharge(minLimit, Number.MAX_SAFE_INTEGER, ()=>{
                 if(cc.isValid(this)){
                     if (GlobalCfg.IS_SHOW_BANKRUPT) { //破产界面显示时才需要暂停自动spin
@@ -1132,7 +1143,7 @@ cc.Class({
 
     sendCallReq: function() {
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minivampire"]== true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 if (this.paymentSwitch) {
                     CommonFun.getInstance().showSmallAddCash()
                 }
@@ -1140,7 +1151,7 @@ cc.Class({
             return;
         };
 
-        let betAmount = parseInt(this.lab_betAmount.string) * 100;
+        let betAmount = parseFloat(this.lab_betAmount.string) * 100;
 
         let freesItem = this.getFreesItem(betAmount);
         let freeCount = freesItem.freeCount;
@@ -1148,7 +1159,7 @@ cc.Class({
         if (betAmount > GlobalCfg.USER_DATAS.userDiamond && freeCount <= 0) {
             this.recoverySpinBtnEvent();
             if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);
             else {
                 CommonFun.getInstance().showMsgBox(this.tipsLabel[5], "SHOP", () => {
                     if (this.paymentSwitch) {

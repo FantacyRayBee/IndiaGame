@@ -65,12 +65,12 @@ cc.Class({
                 
                 let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
                 if (rechargeNeedInfo) {
-                    if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+                    // if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
                         CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);
-                    }
-                    else {
-                        CommonFun.getInstance().showBindPhone('AddCash');
-                    };
+                    // }
+                    // else {
+                    //     CommonFun.getInstance().showBindPhone('AddCash');
+                    // };
                 }
                 else {
                     CommonFun.getInstance().rechargeByCommodityId(GlobalCfg.USER_DATAS.userVip.upgrade_bag_id, SHOPPING.from, _cb, GlobalCfg.PAY_CHANNEL);

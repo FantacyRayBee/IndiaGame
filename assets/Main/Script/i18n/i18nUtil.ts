@@ -36,7 +36,6 @@ export enum I18NLabelTransIdEnum {
     'Login_Register',
     'Login_Account or Password is incorrect',
 
-
     /**
      * 大厅
      */
@@ -397,6 +396,37 @@ export enum I18NLabelTransIdEnum {
     'Withdraw_Input Branch',
     'Withdraw_Input Email',
     'Withdraw_Input Mobile Number',
+    'Withdraw_Input bKash Account',
+    'Withdraw_Tip2',
+
+    'withdrawal_empty',
+    'withdrawal_Withdrawal Time',
+    'withdrawal_Daily Withdrawal Limit',
+    'withdrawal_Remaining Withdrawals',
+    'withdrawal_Wallet Balance',
+    'withdrawal_Withdrawable Balance',
+    'withdrawal_Withdrawal Amount',
+    'withdrawal_Transaction Password',
+    'withdrawal_enter withdrawal amount',
+    'withdrawal_enter transaction password',
+    'withdrawal_refresh',
+
+    'withdrawal_bind_title',
+    'withdrawal_bind_Select E-Wallet Type',
+    'withdrawal_bind_Recipient Name',
+    'withdrawal_bind_Account',
+    'withdrawal_bind_Set Transaction Password',
+    'withdrawal_bind_Transaction Password',
+    'withdrawal_bind_Confirm Transaction Password',
+    'withdrawal_bind_tips1',
+    'withdrawal_bind_Please enter account',
+    'withdrawal_bind_tips2',
+    'withdrawal_bind_Please enter transaction password',
+    'withdrawal_bind_Please enter transaction password again',
+    'withdrawal_bind_tips3',
+    'withdrawal_bind_CurrentPassword',
+    'withdrawal_bind_Please enter current password',
+
 
     'TransactionRecord_Record' = 10000,
     'TransactionRecord_Recharge',
@@ -640,6 +670,10 @@ export enum I18NLabelTransIdEnum {
     'sscGame_COLOR5X',
     'sscGame_PAIR4X',
     'sscGame_HIGHCARD3X',
+
+    'benzGame_start' = 23000,
+    'benzGame_reset',
+    'benzGame_collect',
 };
 
 
@@ -798,6 +832,8 @@ export enum I18NSpriteTransIdEnum {
     'MyVip_recharge',
     'MyVip_more',
     'MyVip_cashout',
+    'MyVip_cashoutbg',
+    'MyVip_addcash',
 
 
     'Login_or' = 2300,
@@ -827,6 +863,7 @@ export enum I18NSpriteTransIdEnum {
     'withdraw_ruletips',
     'withdraw_bg',
     'withdraw_save',
+
 
     'servicew_bg' = 2700,
     'servicew_service',
@@ -1176,6 +1213,9 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_recharge'], 'MyVip/recharge');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_more'], 'MyVip/more');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_cashout'], 'MyVip/cashout');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_cashoutbg'], 'MyVip/cashoutBg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['MyVip_addcash'], 'MyVip/btn_addcash');
+
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_title'], 'DailyBonusCard/daily bonus card');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['DailyBonusCard_01'], 'DailyBonusCard/01');

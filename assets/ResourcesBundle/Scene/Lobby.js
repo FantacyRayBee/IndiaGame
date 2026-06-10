@@ -1177,40 +1177,66 @@ cc.Class({
     },
 
     showActivityGoBetting() {
-        if(GlobalCfg.USER_DATAS.openModules.includes(22) == false){
-            this.btn_goBetiing.node.active = false;
+        let goBettingNode = this.btn_goBetiing && this.btn_goBetiing.node;
+        let hideGoBetting = () => {
+            if (goBettingNode) {
+                goBettingNode.active = false;
+            }
+            if (this.scheduleGetTodayTimeCountdown) {
+                this.unschedule(this.scheduleGetTodayTimeCountdown);
+                this.scheduleGetTodayTimeCountdown = null;
+            }
+        };
+
+        if (!goBettingNode) {
             return;
         }
 
+        let openModules = GlobalCfg.USER_DATAS.openModules || [];
+        if(openModules.includes(22) == false){
+            hideGoBetting();
+            return;
+        }
+
+        let betrebate = GlobalCfg.USER_DATAS.betrebate || {};
+        let betrebateItem = Array.isArray(betrebate.item) ? betrebate.item : [];
+        let selfbet = Number(betrebate.bet) || 0;
+
         function checkActivityGoBettingData(){
-            let selfbet = GlobalCfg.USER_DATAS.betrebate.bet;
-            let item = GlobalCfg.USER_DATAS.betrebate.item;
-            item = item.sort((a,b)=>{
-                return a.bet - b.bet;
+            let item = betrebateItem.slice().sort((a,b)=>{
+                return (Number(a.bet) || 0) - (Number(b.bet) || 0);
             });
             for(let i = 0; i < item.length; i++){
-                if(selfbet >= item[i].bet && item[i].received == false){
+                if(selfbet >= (Number(item[i].bet) || 0) && item[i].received == false){
                     return true;
                 }
             }
             return false;
         };
 
-        if (GlobalCfg.USER_DATAS.recharged == 0) {
-            this.btn_goBetiing.node.active = false;
+        if (GlobalCfg.USER_DATAS.recharged == 0 || betrebateItem.length == 0) {
+            hideGoBetting();
         } else {
-            if(GlobalCfg.USER_DATAS.betrebate.item.length == 0){
-                this.btn_goBetiing.node.active = false;
-                return;
-            }
-            this.btn_goBetiing.node.active = true;
-            let time = this.btn_goBetiing.node.getChildByName('time').getComponent(cc.Label);
-            time.string = CommonFun.getInstance().getTodayCountdown();
-            this.scheduleGetTodayTimeCountdown = () => {
+            goBettingNode.active = true;
+            let timeNode = goBettingNode.getChildByName('time');
+            let time = timeNode && timeNode.getComponent(cc.Label);
+            if (time) {
                 time.string = CommonFun.getInstance().getTodayCountdown();
             }
+            if (this.scheduleGetTodayTimeCountdown) {
+                this.unschedule(this.scheduleGetTodayTimeCountdown);
+            }
+            this.scheduleGetTodayTimeCountdown = () => {
+                if (time) {
+                    time.string = CommonFun.getInstance().getTodayCountdown();
+                }
+            }
             this.schedule(this.scheduleGetTodayTimeCountdown, 1);
-            let spine = this.btn_goBetiing.node.getChildByName('Background').getComponent(sp.Skeleton);
+            let spineNode = goBettingNode.getChildByName('Background');
+            let spine = spineNode && spineNode.getComponent(sp.Skeleton);
+            if (!spine) {
+                return;
+            }
             if (checkActivityGoBettingData.call(this) == true) {
                 spine.setAnimation(0, 'animation', true);
             } else {

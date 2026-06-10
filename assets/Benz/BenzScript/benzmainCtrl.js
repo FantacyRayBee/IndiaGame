@@ -39,7 +39,7 @@ cc.Class({
         this.ReSetPos()
         this.initNode()
         this.tipsLabel = ["Your game is not finished yet . If you wish to exit the game , you will lose your money . Do you want to leave game?", // 退出游戏
-            "Your cash is insufficient, Please recharge in time!",
+            commonTipsLanguage.cashInsufficientRecharge[language],
         ];
         // this.pmdTime = setTimeout(()=>{this.runPMD()}, 5000);
     },
@@ -258,7 +258,7 @@ cc.Class({
 
     betFunc: function (bBet) {
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibenzbmw"] == true) { //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false);
             return
@@ -296,7 +296,7 @@ cc.Class({
             this.showBtnReset(true);
         } else if (reBetCoin > GlobalCfg.USER_DATAS.userDiamond) {
             if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => { }, false);
             }
             else {
                 CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
@@ -324,7 +324,7 @@ cc.Class({
                 this.showBtnReset(true);
             } else {
                 if (GlobalCfg.IS_CLUB_MODE == 1) {  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                    CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => { }, false);
                 }
                 else {
                     CommonFun.getInstance().showMsgBox(this.tipsLabel[1], "SHOP", () => {
@@ -485,7 +485,7 @@ cc.Class({
         if (this.betStatus) {
             this.playGameSound('Sound/s' + types);
             if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["minibenzbmw"] == true) {
-                CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
                 return;

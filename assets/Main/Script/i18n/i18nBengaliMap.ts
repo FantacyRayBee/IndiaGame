@@ -345,7 +345,38 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['Withdraw_Input Branch'], 'শাখা ব্যাংকের নাম লিখুন (ঐচ্ছিক)');
     map.set(labels['Withdraw_Input Email'], 'ইমেল লিখুন');
     map.set(labels['Withdraw_Input Mobile Number'], 'মোবাইল নম্বর লিখুন');
+    map.set(labels['Withdraw_Input bKash Account'], 'bKash অ্যাকাউন্ট লিখুন');
+    map.set(labels['Withdraw_Tip2'], '1 . ১-৭ দিনের মধ্যে আপনার টাকা পাঠানো হবে\n2 . উত্তোলনের আবেদন ভুল হলে, অনুগ্রহ করে আপনার ব্যাংক তথ্য আবার পূরণ করুন\n3 . উত্তোলনের জন্য অতিরিক্ত সার্ভিস চার্জ প্রযোজ্য');
 
+    map.set(labels['withdrawal_refresh'], 'রিফ্রেশ');
+    map.set(labels['withdrawal_empty'], 'আপনি এখনও কোনো ওয়ালেট অ্যাকাউন্ট যোগ করেননি।');
+    map.set(labels['withdrawal_Withdrawal Time'], 'উত্তোলনের সময়');
+    map.set(labels['withdrawal_Daily Withdrawal Limit'], 'দৈনিক উত্তোলন সীমা');
+    map.set(labels['withdrawal_Remaining Withdrawals'], 'অবশিষ্ট উত্তোলন');
+    map.set(labels['withdrawal_Wallet Balance'], 'ওয়ালেট ব্যালেন্স');
+    map.set(labels['withdrawal_Withdrawable Balance'], 'উত্তোলনযোগ্য ব্যালেন্স');
+    map.set(labels['withdrawal_Withdrawal Amount'], 'উত্তোলনের পরিমাণ');
+    map.set(labels['withdrawal_Transaction Password'], 'লেনদেনের পাসওয়ার্ড');
+    map.set(labels['withdrawal_enter withdrawal amount'], 'উত্তোলনের পরিমাণ লিখুন');
+    map.set(labels['withdrawal_enter transaction password'], 'লেনদেনের পাসওয়ার্ড লিখুন');
+
+    map.set(labels['withdrawal_bind_title'], 'ই-ওয়ালেট যুক্ত করুন');
+    map.set(labels['withdrawal_bind_Select E-Wallet Type'], 'ই-ওয়ালেটের ধরন নির্বাচন করুন');
+    map.set(labels['withdrawal_bind_Recipient Name'], 'প্রাপকের নাম');
+    map.set(labels['withdrawal_bind_Account'], 'অ্যাকাউন্ট');
+    map.set(labels['withdrawal_bind_Set Transaction Password'], 'লেনদেনের পাসওয়ার্ড সেট করুন');
+    map.set(labels['withdrawal_bind_Transaction Password'], 'লেনদেনের পাসওয়ার্ড');
+    map.set(labels['withdrawal_bind_Confirm Transaction Password'], 'লেনদেনের পাসওয়ার্ড নিশ্চিত করুন');
+    map.set(labels['withdrawal_bind_Please enter the transaction password'], 'লেনদেনের পাসওয়ার্ড লিখুন');
+    map.set(labels['withdrawal_bind_Please enter the transaction password again'], 'লেনদেনের পাসওয়ার্ড আবার লিখুন');
+    map.set(labels['withdrawal_bind_tips1'], '* প্রাপকের নামটি যাচাইকৃত আসল নামের তথ্যের সাথে মিলছে কিনা নিশ্চিত করুন, নইলে উত্তোলন ব্যর্থ হতে পারে।');
+    map.set(labels['withdrawal_bind_Please enter account'], 'অ্যাকাউন্ট লিখুন');
+    map.set(labels['withdrawal_bind_tips2'], '* আপনার আসল নামে যাচাইকৃত মোবাইল নম্বর লিখুন');
+    map.set(labels['withdrawal_bind_Please enter transaction password'], 'লেনদেনের পাসওয়ার্ড লিখুন');
+    map.set(labels['withdrawal_bind_Please enter transaction password again'], 'লেনদেনের পাসওয়ার্ড আবার লিখুন');
+    map.set(labels['withdrawal_bind_tips3'], '* দুইবার দেওয়া লেনদেনের পাসওয়ার্ড অবশ্যই একই হতে হবে');
+    map.set(labels['withdrawal_bind_CurrentPassword'], "বর্তমান পাসওয়ার্ড");
+    map.set(labels['withdrawal_bind_Please enter current password'], "বর্তমান পাসওয়ার্ড লিখুন");
 
     map.set(labels['TransactionRecord_Record'], 'রেকর্ড');
     map.set(labels['TransactionRecord_Recharge'], 'রিচার্জ');
@@ -486,7 +517,7 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['cat_collect'], 'সংগ্রহ করুন');
 
     map.set(labels['lhd_bet_tip'], 'বাজি দিন');
-    map.set(labels['lhd_Repeat bets'], 'বাজি পুনরাবৃত্তি করুন');
+    map.set(labels['lhd_repeat bets'], 'বাজি পুনরাবৃত্তি করুন');
     map.set(labels['lhd_total online players'], 'মোট অনলাইন খেলোয়াড়:');
 
     map.set(labels['chicken_title1'], 'কঠিনতা');
@@ -586,4 +617,7 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['sscGame_COLOR5X'], 'রং 5X');
     map.set(labels['sscGame_PAIR4X'], 'জোড়া 4X');
     map.set(labels['sscGame_HIGHCARD3X'], 'হাই কার্ড 3X');
+    map.set(labels['benzGame_start'], 'শুরু');
+    map.set(labels['benzGame_reset'], 'রিসেট');
+    map.set(labels['benzGame_collect'], 'সংগ্রহ');
 }

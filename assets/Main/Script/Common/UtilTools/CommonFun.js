@@ -678,28 +678,7 @@ let CommonFun = cc.Class({
     },
 
     getCurrencySymbol: function(languageType) {
-        let currentLanguageType = languageType;
-        if (currentLanguageType == null || currentLanguageType == undefined) {
-            if (typeof I18NUtil != 'undefined' && I18NUtil.getInstance) {
-                currentLanguageType = I18NUtil.getInstance().getLanguageType();
-            }
-            else {
-                currentLanguageType = cc.sys.localStorage.getItem("LanguageTypeStorage");
-            }
-        }
-
-        let currencySymbolMap = {};
-        if (typeof I18NLanguagesEnum != 'undefined') {
-            currencySymbolMap[I18NLanguagesEnum.Bengali] = '৳';
-            if (I18NLanguagesEnum.Pakistani != null) {
-                currencySymbolMap[I18NLanguagesEnum.Pakistani] = '₨';
-            }
-            if (I18NLanguagesEnum.Pakistan != null) {
-                currencySymbolMap[I18NLanguagesEnum.Pakistan] = '₨';
-            }
-        }
-
-        return currencySymbolMap[currentLanguageType] || '₹';
+        return '৳'
     },
     
 
@@ -783,7 +762,7 @@ let CommonFun = cc.Class({
      */
     showNewShop: function(isFromFirstRecharge, from = '') {          
         if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-            CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);
             return;
         }
         if (!GlobalCfg.USER_DATAS.openModules.includes(4)) {
@@ -1353,7 +1332,7 @@ let CommonFun = cc.Class({
      */
     showGameWebview: function(gameId, isVertical) {
         if (GlobalCfg.USER_DATAS.isNotCharge == true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash()
             }, false);
             return;
@@ -1971,7 +1950,7 @@ let CommonFun = cc.Class({
     showWithDraw: function(callback) {
         let withdrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW);
         withdrawPrefabPromise.then((prefab) => {
-            CommonFun.getInstance().addVerticalAcc();
+            // CommonFun.getInstance().addVerticalAcc();
             let withdrawNode = cc.instantiate(prefab);
             callback && callback();
             this.addToPointParent(withdrawNode, GlobalCfg.PREFAB_PARENT.WITHDRAW); 
@@ -1984,6 +1963,20 @@ let CommonFun = cc.Class({
      * @param {string} content 
      * @param {Function} callFun 
      */
+    showWithDrawBindCard: function(data, callback) {
+        let withdrawBindCardPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWBINDCARD);
+        withdrawBindCardPrefabPromise.then((prefab) => {
+            let withdrawBindCardNode = cc.instantiate(prefab);
+            let withdrawBindCardCtrl = withdrawBindCardNode.getComponent("WithDrawBindCardCtrl");
+            if (!withdrawBindCardCtrl) {
+                LoggerUtil.getInstance().error("WithDrawBindCardCtrl is not mounted on WithDrawBindCard prefab!");
+                return;
+            }
+            withdrawBindCardCtrl.setData(data, callback);
+            this.addToPointParent(withdrawBindCardNode, GlobalCfg.PREFAB_PARENT.WITHDRAW);
+        });
+    },
+
     showWithDrawTips: function(btnTipsType, content, callFun, fontSize = 26, lineHeight = 26) {
         let withdrawTipsPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWTIPS);
         withdrawTipsPrefabPromise.then((prefab) => {
@@ -2044,7 +2037,7 @@ let CommonFun = cc.Class({
     /**
      * 展示填写提现资料界面
      */
-    showWithDrawPreData: function() {
+    showWithDrawPreDataV1: function() {
         this.showProgress();
         let withdrawPreDataPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAWPREDATA);
         withdrawPreDataPrefabPromise.then((prefab) => {
@@ -2053,6 +2046,22 @@ let CommonFun = cc.Class({
             let withDrawPreDataCtrl = withdrawalPreDataNode.getComponent('WithDrawPreDataCtrl');
             withDrawPreDataCtrl.setData(data);
             this.addToPointParent(withdrawalPreDataNode, GlobalCfg.PREFAB_PARENT.WITHDRAWPREDATA); 
+            this.hidProgress();
+        })
+    },
+
+    /**
+     * 展示填写提现资料界面
+     */
+    showWithDrawPreData: function() {
+        this.showProgress();
+        let withdrawfabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW_NEW);
+        withdrawfabPromise.then((prefab) => {
+            let withdrawalPreDataNode = cc.instantiate(prefab);
+            // let data = GlobalCfg.USER_DATAS.transferAddress;
+            // let withDrawPreDataCtrl = withdrawalPreDataNode.getComponent('WithDrawNewCtrl');
+            // withDrawPreDataCtrl.setData(data);
+            this.addToPointParent(withdrawalPreDataNode, GlobalCfg.PREFAB_PARENT.WITHDRAW_NEW); 
             this.hidProgress();
         })
     },

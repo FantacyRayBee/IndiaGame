@@ -132,12 +132,12 @@ cc.Class({
 
         let rechargeNeedInfo = CommonFun.getInstance().getAppConfigValueByKey('Recharge_Need_Info', false);
         if (rechargeNeedInfo) {
-            if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
+            // if (GlobalCfg.USER_DATAS.phone.length > 0 && GlobalCfg.USER_DATAS.mail.length > 0) {
                 CommonFun.getInstance().rechargeByCommodityId(this.curData.id, SHOPPING.from, _cb);
-            }
-            else {
-                CommonFun.getInstance().showBindPhone('AddCash');
-            };
+            // }
+            // else {
+            //     CommonFun.getInstance().showBindPhone('AddCash');
+            // };
         }
         else {
             CommonFun.getInstance().rechargeByCommodityId(this.curData.id, SHOPPING.from, _cb);

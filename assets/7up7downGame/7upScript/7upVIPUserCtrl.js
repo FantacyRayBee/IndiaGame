@@ -47,7 +47,7 @@ cc.Class({
         }
 
         if (this.vipSiteState == false) {
-            CommonFun.getInstance().showTips("This seat already has a player, Please select another empty seat!"); 
+            CommonFun.getInstance().showTips(commonTipsLanguage.seatAlreadyHasPlayer[language]);
             return;
         };
 
@@ -75,9 +75,9 @@ cc.Class({
 
         if (GlobalCfg.USER_DATAS.userDiamond <= 10000) {
             if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
             else {
-                CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {          
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {          
                     CommonFun.getInstance().showSmallAddCash()
                 }, false);
             }

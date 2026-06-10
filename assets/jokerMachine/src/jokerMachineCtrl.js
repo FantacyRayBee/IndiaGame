@@ -91,7 +91,7 @@ cc.Class({
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
             "Can't bet temporarily",                    //请选择下注的范围
-            "Your cash is insufficient, Please recharge in time!"
+            commonTipsLanguage.cashInsufficientRecharge[language]
         ];
         this.finishedSlotItemNum = 0; //已经滚动停止的item数量
         this.finishedJpRunItemNum = 0; //已经滚动停止的jpItem数量
@@ -2082,7 +2082,7 @@ cc.Class({
             return;
         }
         if (GlobalCfg.USER_DATAS.isNotCharge == true && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniclown"]== true){   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players . Add cash now to become a premium player .", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 if (this.paymentSwitch) {
                     CommonFun.getInstance().showSmallAddCash()
                 }

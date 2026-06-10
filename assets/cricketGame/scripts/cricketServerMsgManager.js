@@ -65,9 +65,9 @@ cc.Class({
             }
             if (allBet > GlobalCfg.USER_DATAS.userDiamond) {
                 if (GlobalCfg.IS_CLUB_MODE == 1){  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => {}, false);}
+                    CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => {}, false);}
                 else {
-                    CommonFun.getInstance().showMsgBox("Your cash is insufficient, Please recharge in time!", "SHOP", () => {
+                    CommonFun.getInstance().showMsgBox(commonTipsLanguage.cashInsufficientRecharge[language], "SHOP", () => {
                         if (this.paymentSwitch) {
                             CommonFun.getInstance().showSmallAddCash();
                         }
@@ -81,7 +81,7 @@ cc.Class({
             }
         }else{
             // 1 转动、结算
-            CommonFun.getInstance().showTips('non betting stage');
+            CommonFun.getInstance().showTips(commonTipsLanguage.nonBettingStage[language]);
         }
         
     },

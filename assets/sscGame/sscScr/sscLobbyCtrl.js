@@ -41,7 +41,7 @@ cc.Class({
             "Sorry, there are not enough gold coins.", //金币不足请充值
             "In the game, unable to exit",                              // 游戏中无法退出
             "Sorry, your gold coin can't be played in this game",     // 对不起，您的金币无法在本场内游戏）
-            "Your cash is insufficient, Please recharge in time!"
+            commonTipsLanguage.cashInsufficientRecharge[language]
         ];
         this.isGameEndStatus = false;
     },
@@ -673,7 +673,7 @@ cc.Class({
             }
         } else {
             if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
-                CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => { }, false);
             else {
                 CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", () => {
                     CommonFun.getInstance().showSmallAddCash();
@@ -927,7 +927,7 @@ cc.Class({
     callReq: function (CardType, coin) {
         let amount = 0
         if (GlobalCfg.USER_DATAS.recharged == 0 && GlobalCfg.USER_DATAS.gamePattern == 0 && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniluckyloto"] == true) {   //未曾充值
-            CommonFun.getInstance().showMsgBox("This feature is available only for premium players. Add cash now to become a premium player.", "SHOP", () => {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
                 CommonFun.getInstance().showSmallAddCash();
             }, false);
             return
@@ -939,7 +939,7 @@ cc.Class({
             amount = this.betCion * 100;
             if (amount > GlobalCfg.USER_DATAS.userDiamond) {
                 if (GlobalCfg.IS_CLUB_MODE == 1)  //代理模式不跳转商城
-                    CommonFun.getInstance().showMsgBox('Insufficient cash', "YES", () => { }, false);
+                    CommonFun.getInstance().showMsgBox(commonTipsLanguage.insufficientCash[language], "YES", () => { }, false);
                 else {
                     CommonFun.getInstance().showMsgBox(this.tipsLabel[4], "SHOP", () => {
                         CommonFun.getInstance().showSmallAddCash();

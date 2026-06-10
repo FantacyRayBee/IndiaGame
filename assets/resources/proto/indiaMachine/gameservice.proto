@@ -41,6 +41,7 @@ message LoginAck {
   ResponseBase result = 1;
   UserInfoAck userinfo = 2;   //用户信息
   repeated Free frees = 3;    //免费信息(因为存在多个下注 登录推送的时候我吧所有有的免费信息全部推送,自行选择)
+  repeated int32 betOption = 4; // 下注选项
 }
 
 

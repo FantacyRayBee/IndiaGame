@@ -37,6 +37,8 @@ message LoginAck {
   SceneInfo sceneInfo = 2;    // 场景信息
   ConfigInfo configInfo = 3;  // 配置信息
   PlayerInfo requester = 4;   // 玩家信息
+  repeated int32 betOption = 5; // 下注选项
+  int64 maxBet = 6;
 }
 
 // 刷新游戏场景 gameservice.gamescene

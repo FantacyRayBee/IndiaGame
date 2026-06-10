@@ -56,27 +56,42 @@ cc.Class({
         };
 
         let erase = notify.erase;
+        if (!erase) {
+            this.setAllWinScore(0, false);
+            return;
+        }
 
-        let bet = erase.bet;
-        let progressAllMul = erase.progressAllMul;
+        let bet = Number(erase.bet);
+        let progressAllMul = Number(erase.progressAllMul);
+        if (isNaN(bet) || isNaN(progressAllMul)) {
+            LoggerUtil.getInstance().warn("dealOnceEraseFinishedEvent: invalid bet or progressAllMul", erase);
+            this.setAllWinScore(0, false);
+            return;
+        }
 
-        this.setAllWinScore(progressAllMul * bet/2000, true);
+        this.setAllWinScore(progressAllMul * bet / 2000, true);
     },
 
     setAllWinScore: function(score, isAnim) {
+        score = Number(score);
+        if (isNaN(score)) {
+            score = 0;
+        }
+
         if (!isAnim || score == 0) {
-            this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score).replace(/\./g, '_');
+            this.lab_allWin.string = this.formatAllWinScore(score);
             return;
         };
 
-        let oldScore = Number(String(this.lab_allWin.string).replace(/_/g, '.'));
+        let oldScore = this.parseAllWinScore(this.lab_allWin.string);
+        oldScore = isNaN(oldScore) ? 0 : oldScore;
         if (score == oldScore) {
-            this.lab_allWin.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score).replace(/\./g, '_');
+            this.lab_allWin.string = this.formatAllWinScore(score);
             return;
         };
 
         let obj = {};
-        obj.num = Number(this.lab_allWin.string);
+        obj.num = oldScore;
         cc.tween(obj)
         .to(
             0.5,
@@ -84,15 +99,34 @@ cc.Class({
             {
                 progress: (start, end, current, t) => {
                     if (this && this.lab_allWin) {
-                        let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t);
-                        temp = temp.replace(/\./g, '_');
-                        this.lab_allWin.string = temp;
+                        let curScore = Number(current);
+                        curScore = isNaN(curScore) ? 0 : curScore;
+                        this.lab_allWin.string = this.formatAllWinScore(curScore);
                     };
                     return start + (end - start) * t;
                 }
             }
         )
+        .call(() => {
+            if (this && this.lab_allWin) {
+                this.lab_allWin.string = this.formatAllWinScore(score);
+            }
+        })
         .start();
+    },
+
+    parseAllWinScore: function(scoreText) {
+        let text = String(scoreText || "");
+        text = text.replace(/_/g, '.').replace(/,/g, '');
+        text = text.replace(/[^0-9.-]/g, '');
+        let num = Number(text);
+        return isNaN(num) ? 0 : num;
+    },
+
+    formatAllWinScore: function(score) {
+        let num = Number(score);
+        num = isNaN(num) ? 0 : num;
+        return GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(num).replace(/\./g, '_');
     },
     
     removeWinScore: function() {
