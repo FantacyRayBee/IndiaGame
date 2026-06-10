@@ -1254,8 +1254,8 @@ cc.Class({
             return;
         };
 
-        // let defaultPopupWithdrawLimit = CommonFun.getInstance().getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
-        let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
+        let defaultPopupWithdrawLimit = CommonFun.getInstance().getAppConfigValueByKey('POPUP_WITHDRAW_DATA', 100);    // 提现弹窗限制默认值
+        // let defaultPopupWithdrawLimit = 100;    // 提现弹窗限制默认值
         let func = (date)=>{
             let _date = date * 1000;
             let _curDate = new Date().getTime();

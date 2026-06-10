@@ -208,18 +208,7 @@ cc.Class({
     },
 
     fillMaxWithdrawAmount: function () {
-        if (!this.editBox_with_amount) {
-            return;
-        }
-
-        let withdrawable = FloatCalculation.accDiv(this.getWithdrawableBalanceCent(), 100);
-        if (Number(withdrawable) <= 0) {
-            this.refreshWithdrawButtonState();
-            return;
-        }
-
-        this.editBox_with_amount.string = this.formatAmountForEditBox(withdrawable);
-        this.fixWithdrawAmountRange();
+        this.refreshBalanceInfo();
         this.refreshWithdrawButtonState();
     },
 
@@ -271,7 +260,7 @@ cc.Class({
 
     canWithdrawAmount: function (amountCent) {
         let withdrawableBalanceCent = this.getWithdrawableBalanceCent();
-        return withdrawableBalanceCent > 10000 && amountCent >= 10000 && amountCent <= withdrawableBalanceCent;
+        return withdrawableBalanceCent >= 10000 && amountCent >= 10000 && amountCent <= withdrawableBalanceCent;
     },
 
     /**

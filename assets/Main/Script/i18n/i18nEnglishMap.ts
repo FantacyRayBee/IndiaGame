@@ -624,6 +624,20 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['benzGame_start'], 'START');
     map.set(labels['benzGame_reset'], 'RESET');
     map.set(labels['benzGame_collect'], 'COLLECT');
-
-
+    map.set(labels['vip_CurrentLevel'], 'Current Level:');
+    map.set(labels['vip_NeededToUpgrade'], 'Needed to Upgrade');
+    map.set(labels['vip_RemainingTime'], 'Remaining Time');
+    map.set(labels['vip_UpgradeNow'], 'Upgrade Now');
+    map.set(labels['vip_History'], 'History');
+    map.set(labels['vip_WeeklyReward'], 'Weekly Reward');
+    map.set(labels['vip_MonthlyReward'], 'Monthly Reward');
+    map.set(labels['vip_UpgradeReward'], 'Upgrade Reward');
+    map.set(labels['vip_UpgradeRequirements'], 'Upgrade Requirements');
+    map.set(labels['vip_TotalDeposit'], 'Total Deposit');
+    map.set(labels['vip_TotalBet'], 'Total Bet');
+    map.set(labels['vip_ClaimableEveryMonday'], 'Claimable Every Monday');
+    map.set(labels['vip_ClaimableOnThe1stOfEveryMonth'], 'Claimable on the 1st of Every Month');
+    map.set(labels['vip_ClaimableAtVIP'], 'Claimable at VIP');
+    map.set(labels['vip_Histroy_Rewards'], 'Rewards');
+    
 }

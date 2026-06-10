@@ -553,6 +553,22 @@ export enum I18NLabelTransIdEnum {
     'autoSpinSetting_title3',
     'autoSpinSetting_title4',
 
+    'vip_CurrentLevel'= 14100,
+    'vip_NeededToUpgrade',
+    'vip_RemainingTime',
+    'vip_UpgradeNow',
+    'vip_History',
+    'vip_WeeklyReward',
+    'vip_MonthlyReward',
+    'vip_UpgradeReward',
+    'vip_UpgradeRequirements',
+    'vip_TotalDeposit',
+    'vip_TotalBet',
+    'vip_ClaimableEveryMonday',
+    'vip_ClaimableOnThe1stOfEveryMonth',
+    'vip_ClaimableAtVIP',
+    'vip_Histroy_Rewards',
+
     //游戏
     'bull_balance' = 20000,
     'bull_bet',
@@ -674,6 +690,7 @@ export enum I18NLabelTransIdEnum {
     'benzGame_start' = 23000,
     'benzGame_reset',
     'benzGame_collect',
+
 };
 
 
@@ -863,6 +880,9 @@ export enum I18NSpriteTransIdEnum {
     'withdraw_ruletips',
     'withdraw_bg',
     'withdraw_save',
+    'withdraw_share_bg',
+    'withdraw_share_button',
+    'withdraw_share_tip',
 
 
     'servicew_bg' = 2700,
@@ -1241,7 +1261,9 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_ruletips'], 'withdraw/ruletips');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_bg'], 'withdraw/bg');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_save'], 'withdraw/save');
-
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_share_bg'], 'withdraw/share_bg');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_share_button'], 'withdraw/share_button');
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['withdraw_share_tip'], 'withdraw/share_tip');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_bg'], 'service/bg');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['servicew_service'], 'service/customer service');

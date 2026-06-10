@@ -620,4 +620,19 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['benzGame_start'], 'শুরু');
     map.set(labels['benzGame_reset'], 'রিসেট');
     map.set(labels['benzGame_collect'], 'সংগ্রহ');
+    map.set(labels['vip_CurrentLevel'], 'বর্তমান স্তর:');
+    map.set(labels['vip_NeededToUpgrade'], 'আপগ্রেডের জন্য আরও প্রয়োজন');
+    map.set(labels['vip_RemainingTime'], 'অবশিষ্ট সময়');
+    map.set(labels['vip_UpgradeNow'], 'এখনই আপগ্রেড করুন');
+    map.set(labels['vip_History'], 'ইতিহাস');
+    map.set(labels['vip_WeeklyReward'], 'সাপ্তাহিক পুরস্কার');
+    map.set(labels['vip_MonthlyReward'], 'মাসিক পুরস্কার');
+    map.set(labels['vip_UpgradeReward'], 'আপগ্রেড পুরস্কার');
+    map.set(labels['vip_UpgradeRequirements'], 'আপগ্রেডের শর্ত');
+    map.set(labels['vip_TotalDeposit'], 'মোট জমা');
+    map.set(labels['vip_TotalBet'], 'মোট বাজি');
+    map.set(labels['vip_ClaimableEveryMonday'], 'প্রতি সোমবার সংগ্রহ করা যাবে');
+    map.set(labels['vip_ClaimableOnThe1stOfEveryMonth'], 'প্রতি মাসের ১ তারিখে সংগ্রহ করা যাবে');
+    map.set(labels['vip_ClaimableAtVIP'], 'VIP এ সংগ্রহ করা যাবে');
+    map.set(labels['vip_Histroy_Rewards'], 'পুরস্কার');
 }
