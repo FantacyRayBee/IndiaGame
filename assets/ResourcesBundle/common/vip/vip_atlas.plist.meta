@@ -9,9 +9,9 @@
   },
   "type": "Texture Packer",
   "subMetas": {
-    "vip_26": {
+    "vip_28": {
       "ver": "1.0.6",
-      "uuid": "3d2e4293-5060-4303-a165-349f1a66aea4",
+      "uuid": "c51cf48d-c617-4552-ae67-4e98ddfe3d80",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -32,9 +32,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_28": {
+    "vip_26": {
       "ver": "1.0.6",
-      "uuid": "c51cf48d-c617-4552-ae67-4e98ddfe3d80",
+      "uuid": "3d2e4293-5060-4303-a165-349f1a66aea4",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -193,9 +193,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_19": {
+    "vip_20": {
       "ver": "1.0.6",
-      "uuid": "3b725066-500a-49af-9b86-26a140504b07",
+      "uuid": "a8f510d1-fbff-4c72-892c-bc0a0512d5aa",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -216,9 +216,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_20": {
+    "vip_19": {
       "ver": "1.0.6",
-      "uuid": "a8f510d1-fbff-4c72-892c-bc0a0512d5aa",
+      "uuid": "3b725066-500a-49af-9b86-26a140504b07",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -285,9 +285,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_9": {
+    "vip_8": {
       "ver": "1.0.6",
-      "uuid": "39a66270-2428-490c-8052-a80c84c71800",
+      "uuid": "bab795b6-0d6c-46d3-9e88-8492f8770024",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -308,9 +308,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_8": {
+    "vip_9": {
       "ver": "1.0.6",
-      "uuid": "bab795b6-0d6c-46d3-9e88-8492f8770024",
+      "uuid": "39a66270-2428-490c-8052-a80c84c71800",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -423,9 +423,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_14": {
+    "vip_13": {
       "ver": "1.0.6",
-      "uuid": "fa5462d7-dbdb-49bf-bac3-91ff411a3a00",
+      "uuid": "a8346d5a-8b9a-4e5a-bb83-0e332d1f2d1c",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -446,9 +446,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_13": {
+    "vip_14": {
       "ver": "1.0.6",
-      "uuid": "a8346d5a-8b9a-4e5a-bb83-0e332d1f2d1c",
+      "uuid": "fa5462d7-dbdb-49bf-bac3-91ff411a3a00",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -538,9 +538,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_4": {
+    "vip_5": {
       "ver": "1.0.6",
-      "uuid": "0e5fe26f-4e54-4216-a686-7d58d245c776",
+      "uuid": "69b2a2ec-4fde-4f82-babb-b09c09a5d04c",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -561,9 +561,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "vip_5": {
+    "vip_4": {
       "ver": "1.0.6",
-      "uuid": "69b2a2ec-4fde-4f82-babb-b09c09a5d04c",
+      "uuid": "0e5fe26f-4e54-4216-a686-7d58d245c776",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -584,6 +584,29 @@
       "spriteType": "normal",
       "subMetas": {}
     },
+    "vip_0": {
+      "ver": "1.0.6",
+      "uuid": "bbd5016d-1495-41d0-99f1-647199cf436d",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 540,
+      "trimY": 172,
+      "width": 165,
+      "height": 134,
+      "rawWidth": 165,
+      "rawHeight": 134,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    },
     "vip_21": {
       "ver": "1.0.6",
       "uuid": "20710faf-2b5c-489e-bcb5-5be18fbb08d9",
@@ -594,8 +617,8 @@
       "rotated": true,
       "offsetX": 0,
       "offsetY": 0,
-      "trimX": 620,
-      "trimY": 480,
+      "trimX": 638,
+      "trimY": 1,
       "width": 164,
       "height": 143,
       "rawWidth": 164,
@@ -617,8 +640,8 @@
       "rotated": true,
       "offsetX": 0,
       "offsetY": 0,
-      "trimX": 753,
-      "trimY": 645,
+      "trimX": 620,
+      "trimY": 480,
       "width": 164,
       "height": 143,
       "rawWidth": 164,
@@ -633,6 +656,29 @@
     "vip_24": {
       "ver": "1.0.6",
       "uuid": "48bd9107-3518-4918-91e5-5374c4c5cc3e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": true,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 753,
+      "trimY": 645,
+      "width": 164,
+      "height": 143,
+      "rawWidth": 164,
+      "rawHeight": 143,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    },
+    "vip_25": {
+      "ver": "1.0.6",
+      "uuid": "f169c3ec-63d9-439c-98ea-3ffec5262501",
       "importer": "sprite-frame",
       "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
       "trimType": "auto",
@@ -664,30 +710,7 @@
       "offsetX": 0,
       "offsetY": 0,
       "trimX": 621,
-      "trimY": 172,
-      "width": 164,
-      "height": 143,
-      "rawWidth": 164,
-      "rawHeight": 143,
-      "borderTop": 0,
-      "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
-      "spriteType": "normal",
-      "subMetas": {}
-    },
-    "vip_25": {
-      "ver": "1.0.6",
-      "uuid": "f169c3ec-63d9-439c-98ea-3ffec5262501",
-      "importer": "sprite-frame",
-      "rawTextureUuid": "d5788dbe-c028-4196-bc71-ab3d73908c09",
-      "trimType": "auto",
-      "trimThreshold": 1,
-      "rotated": true,
-      "offsetX": 0,
-      "offsetY": 0,
-      "trimX": 638,
-      "trimY": 1,
+      "trimY": 307,
       "width": 164,
       "height": 143,
       "rawWidth": 164,

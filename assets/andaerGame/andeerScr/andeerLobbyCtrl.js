@@ -680,7 +680,7 @@ cc.Class({
             let imgUrl = userInfo.imgUrl;                           // 头像
             let nickname = userInfo.nickname;                       // 昵称
             let diamond = userInfo.diamond;                         // 金币
-            let vipLevel = userInfo.vipLevel;
+            let vipLevel = userInfo.vip1Level;
 
             let pab_user = cc.instantiate(this.pab_user);
             this.node_users.addChild(pab_user);  
@@ -732,7 +732,7 @@ cc.Class({
         let imgUrl = userInfo.imgUrl;                           // 头像
         let nickname = userInfo.nickname;                       // 昵称
         let diamond = userInfo.diamond;                         // 金币
-        let vipLevel = userInfo.vipLevel;
+        let vipLevel = userInfo.vip1Level;
 
         let isExist = false;
         for (let i = 0, len = this.playerNodeArr.length; i < len; i++) {

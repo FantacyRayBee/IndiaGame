@@ -24,6 +24,7 @@ message UserInfo {
   int64 Diamond = 8;
   int64 VipSite = 9;
   uint32 vipLevel = 10;
+  uint32 vip1Level = 11;
 }
 //游戏场馆状态
 enum SevenEnumGameStatus {

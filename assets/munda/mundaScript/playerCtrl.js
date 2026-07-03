@@ -8,9 +8,10 @@ cc.Class({
         btn_gift: cc.Button,
         lab_win: cc.Label,
         textBg: cc.Node,
-        bqAtlas:cc.SpriteAtlas,
+        bqAtlas: cc.SpriteAtlas,
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
     ctor() {
         this.giftPos_1 = cc.v2(-50, -8);
@@ -42,7 +43,7 @@ cc.Class({
         if (btnName == "btn_gift") {
             if (GlobalCfg.ACT_SCENE_CTRL.hasDown == true) {
                 CommonFun.getInstance().showGameGifInteraction(this.siteID);
-            } 
+            }
             else {
                 CommonFun.getInstance().showTips("You're not a VIP. You can't send expressions");
             };
@@ -76,18 +77,21 @@ cc.Class({
             }
         }
         this.setUserBgOraLab();
-
-        if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${data.vipLevel}`);
+        // if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        this.sprite_vipLevelIcon.node.active = true;
+        let targetVipLevel = Number(data.vip1Level);
+        if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+            targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
         }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
 
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(data.vipLevel);
         if (isCanShowVIPFont) {
-            this.lab_name.node.color = new cc.Color(250, 225, 76); 
+            this.lab_name.node.color = new cc.Color(250, 225, 76);
         }
         else {
             this.lab_name.node.color = new cc.Color(255, 255, 255);
@@ -98,7 +102,7 @@ cc.Class({
         if (num <= 0) return;
 
         // 1) 文案
-        const amount = parseFloat((num / 100).toFixed(2)) ;
+        const amount = parseFloat((num / 100).toFixed(2));
         this.lab_win.string = "+" + amount;
 
         const bg = this.textBg;
@@ -125,7 +129,7 @@ cc.Class({
         this._winTween = cc.tween(bg)
             .to(0.12, { scale: 1.06 })            // 小弹一下（可选）
             .to(0.10, { scale: 1.00 })
-            .to(1.0,  { position: cc.v2(0, 90) }) // 上飘
+            .to(1.0, { position: cc.v2(0, 90) }) // 上飘
             .delay(0.5)                            // 停留
             .to(0.15, { opacity: 0 })             // 淡出
             .call(() => {
@@ -198,64 +202,64 @@ cc.Class({
     },
 
     // 设置节点左右的位置
-    setUserBgOraLab:function(){
-            this.node_chat = this.node.getChildByName("node_chat");
-            this.chat_bg =  this.node_chat.getChildByName("chat_bg");
-            this.lab_qph = this.chat_bg.getChildByName("chat_bg_01").getChildByName("lab_qph").getComponent(cc.Label);
-            this.node_emotion = this.node.getChildByName("emotion");
-           
-            if (this.curSeat == 1 || this.curSeat==2 || this.curSeat == 3) {
-                this.btn_gift.node.setPosition(48,0);
-                this.sprite_vipLevelIcon.node.setPosition(-48, 0);
-                this.chat_bg.scaleX = 1;
-                this.lab_qph.node.scaleX = -1;
-                this.chat_bg.setPosition(185,100)
-                this.node_emotion.setPosition(-123,-35)
-            } else if(this.curSeat == 4 || this.curSeat==5 || this.curSeat == 6){
-                this.btn_gift.node.setPosition(-48,0);
-                this.sprite_vipLevelIcon.node.setPosition(48, 0);
-                this.chat_bg.scaleX = -1;
-                this.lab_qph.node.scaleX = 1;
-                this.chat_bg.setPosition(-185,100)
-                this.node_emotion.setPosition(123,-35)
-            }
+    setUserBgOraLab: function () {
+        this.node_chat = this.node.getChildByName("node_chat");
+        this.chat_bg = this.node_chat.getChildByName("chat_bg");
+        this.lab_qph = this.chat_bg.getChildByName("chat_bg_01").getChildByName("lab_qph").getComponent(cc.Label);
+        this.node_emotion = this.node.getChildByName("emotion");
+
+        if (this.curSeat == 1 || this.curSeat == 2 || this.curSeat == 3) {
+            this.btn_gift.node.setPosition(48, 0);
+            this.sprite_vipLevelIcon.node.setPosition(-48, 0);
+            this.chat_bg.scaleX = 1;
+            this.lab_qph.node.scaleX = -1;
+            this.chat_bg.setPosition(185, 100)
+            this.node_emotion.setPosition(-123, -35)
+        } else if (this.curSeat == 4 || this.curSeat == 5 || this.curSeat == 6) {
+            this.btn_gift.node.setPosition(-48, 0);
+            this.sprite_vipLevelIcon.node.setPosition(48, 0);
+            this.chat_bg.scaleX = -1;
+            this.lab_qph.node.scaleX = 1;
+            this.chat_bg.setPosition(-185, 100)
+            this.node_emotion.setPosition(123, -35)
+        }
     },
 
 
 
     // 发送表情  消息类型 0短语 1表情
-    face:function(notify){
+    face: function (notify) {
         let data = notify;
         let msgtype = notify.msgType;
         let msgid = data.name;
 
-        if ( msgtype == 0){
+        if (msgtype == 0) {
             this.lab_qph.node.stopAllActions()
             this.node_chat.active = true;
-            this.lab_qph.node.setPosition(156,6)
+            this.lab_qph.node.setPosition(156, 6)
             this.lab_qph.string = msgid;
 
             cc.tween(this.lab_qph.node)
-            .to(3, { position: cc.v2(-105, 6) })
-            .call(() => {
-                this.node_chat.active = false;
-            })
-            .start()
+                .to(3, { position: cc.v2(-105, 6) })
+                .call(() => {
+                    this.node_chat.active = false;
+                })
+                .start()
 
-        }else if( msgtype == 1 ) {
+        } else if (msgtype == 1) {
             this.node_emotion.stopAllActions()
             this.node_emotion.active = true
             this.node_emotion.getComponent(cc.Sprite).spriteFrame = this.bqAtlas.getSpriteFrame(msgid);
 
             cc.tween(this.node_emotion)
-            .repeat(4,cc.tween().by(0.5, { position: cc.v2(0,-5) }).by(0.5, { position: cc.v2(0,5) }))
-            .call(() => {
-                this.node_emotion.active = false
-                this.node_emotion.getComponent(cc.Sprite).spriteFrame = null
-            })
-            .start()
-    }
-},
+                .repeat(4, cc.tween().by(0.5, { position: cc.v2(0, -5) }).by(0.5, { position: cc.v2(0, 5) }))
+                .call(() => {
+                    this.node_emotion.active = false
+                    this.node_emotion.getComponent(cc.Sprite).spriteFrame = null
+                })
+                .start()
+        }
+    },
 
     // update (dt) {},
 });

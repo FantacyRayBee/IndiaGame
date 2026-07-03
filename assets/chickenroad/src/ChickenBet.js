@@ -63,7 +63,7 @@ cc.Class({
     },
 
     start() {
-        this.quickBetStr = [1000, 2000, 5000, 10000];
+        this.quickBetStr = [1000, 2000, 5000, 500000000];
         this.minBet = 1000;
         this.maxBet = 100000;
         this.curBet = 1000;

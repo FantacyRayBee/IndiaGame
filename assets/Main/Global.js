@@ -815,6 +815,9 @@ window.GlobalCfg = {
          * 我的VIP
          */
         MYVIP: "ResourcesBundle/NewPlan/MyVip/MyVip",
+        VIPMAIN: "ResourcesBundle/NewPlan/Vip/VipMain",
+        VIPHISTORY: "ResourcesBundle/NewPlan/Vip/VipHistory",
+        VIPRULE: "ResourcesBundle/NewPlan/Vip/VipRule",
         /**
          * VIP幸运抽奖
          */
@@ -891,6 +894,7 @@ window.GlobalCfg = {
          */
         INDUCEMENT: "ResourcesBundle/NewPlan/Inducement/Inducement",
         INDUCEMENTPOP: "ResourcesBundle/NewPlan/Inducement/InducementPop",
+        TASK: "ResourcesBundle/NewPlan/Task/Task",
         /**
          * 分享领奖
          */
@@ -936,6 +940,7 @@ window.GlobalCfg = {
         PROMOTER: "FirstLayer",
         SELECTROOM: "FirstLayer",
         MYVIP: "FirstLayer",
+        VIPMAIN: "FirstLayer",
         GAMESTARTMASK: "FirstLayer",
         GAMEGIFINTERACTION: "FirstLayer",
         GAMEGIFINTERACTIONSKE: "FirstLayer",
@@ -971,6 +976,8 @@ window.GlobalCfg = {
         RULE: "SecondLayer",
         VIPLUCKYDRAW: "SecondLayer",
         VIPRULES: "SecondLayer",
+        VIPHISTORY: "SecondLayer",
+        VIPRULE: "SecondLayer",
         GAMESETTING: "SecondLayer",
         GAMESETTINGNEW: "SecondLayer",
         AUTOSPINSETTING: "SecondLayer",
@@ -980,6 +987,7 @@ window.GlobalCfg = {
         INDUCEMENT: "SecondLayer",
         INVITATION: "SecondLayer",
         INDUCEMENTPOP: "SecondLayer",
+        TASK: "SecondLayer",
         ONLY_PAY: "SecondLayer",
         GAMEICONLIST: "SecondLayer",
         WITHDRAW_NEW: "SecondLayer",
@@ -1214,7 +1222,7 @@ if (GlobalCfg.isOfflineDeve == 1) {
 // GlobalCfg.isOfflineDeve2 = 1;
 if (GlobalCfg.is_force_gotoTest == true && !cc.sys.isNative) {
     GlobalCfg.IsDownloadPackage2 = 0;
-    cc.sys.localStorage.setItem("PackageChannel", "5_bn3001");
+    cc.sys.localStorage.setItem("PackageChannel", "0_1001");
     // GlobalCfg.APP_INFO_URL = `https://server.tpmass.com/AppInfo.json?time=${new Date().getTime()}`;
     // GlobalCfg.APP_CONFIG_URL = `https://server.tpmass.com/AppConfig.json?time=${new Date().getTime()}`;
 };
@@ -1518,7 +1526,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
     GlobalCfg.server_id = server;
     switch (server) {
         case "0":     // 测试服
-            GlobalCfg.APP_VERSION = "0.0.2";
+            GlobalCfg.APP_VERSION = "1.0.3";
             GlobalCfg.APP_INFO_URL = `http://download.cj888viptest.com/production/AppInfo.json?time=${new Date().getTime()}`;
             GlobalCfg.APP_CONFIG_URL = `http://download.cj888viptest.com/production/AppConfig.json?time=${new Date().getTime()}`;
             break;
@@ -1546,7 +1554,7 @@ if (packageChannel && packageChannel.indexOf("_") != -1) {
             GlobalCfg.APP_CONFIG_URL = `https://download2.tpgame.in/Release4/AppConfig.json`;
             break;
         case "5":     // 5服
-            GlobalCfg.APP_VERSION = "5.0.6";
+            GlobalCfg.APP_VERSION = "5.0.16";
             // GlobalCfg.APP_INFO_URL = `https://download.cj888vip.com/production/AppInfo.json`;
             // GlobalCfg.APP_CONFIG_URL = `https://download.cj888vip.com/production/AppConfig.json`;
 

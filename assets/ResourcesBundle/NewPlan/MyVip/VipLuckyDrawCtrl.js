@@ -236,6 +236,10 @@ cc.Class({
                         msgData: {}
                     }); 
                     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                        msgCode: GlobalCfg.CLIENT_MSG_ID.GET_MAIL_REWARD,
+                        msgData: {}
+                    });
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
                         msgCode: GlobalCfg.CLIENT_MSG_ID.CURRENCY_CHANGED_USER_INFO,
                         msgData: {}
                     });

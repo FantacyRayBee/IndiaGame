@@ -21,6 +21,7 @@ message UserInfo{
   int32  sex = 5;
   int64 diamond = 6;
   uint32 vipLevel = 7;
+  uint32 vip1Level = 8;
 }
 //游戏场馆状态
 enum EnumTableStatus{

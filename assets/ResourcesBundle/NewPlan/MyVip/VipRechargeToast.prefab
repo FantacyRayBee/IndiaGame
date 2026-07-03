@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 750,
-      "height": 1835
+      "width": 1835,
+      "height": 750
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        375,
         917.5,
+        375,
         0,
         0,
         0,
@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 750,
-      "height": 1835
+      "width": 1835,
+      "height": 750
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -813,8 +813,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Add cash 200 now to become a VIP player.",
-    "_N$string": "Add cash 200 now to become a VIP player.",
+    "_string": "Add any amount now to become a VIP player.",
+    "_N$string": "Add any amount now to become a VIP player.",
     "_fontSize": 30,
     "_lineHeight": 26,
     "_enableWrapText": true,

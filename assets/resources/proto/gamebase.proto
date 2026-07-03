@@ -15,6 +15,7 @@ message UserInfo {
   string nickname = 4;    // 昵称
   int64 diamond = 5;      // 金币
   uint32 vipLevel = 6;
+  uint32 vip1Level = 7;   //vip等级 新版
 }
 
 // 登录 gameservice.login

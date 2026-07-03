@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
 
     ctor() {
@@ -130,21 +131,26 @@ cc.Class({
         this.userTx.node.active = true;
         this.btn_gift.node.active = true;
         this.setVipSiteState(false);
-        if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${data.vipLevel}`);
+        // if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        this.sprite_vipLevelIcon.node.active = true;
+        let targetVipLevel = Number(data.vip1Level);
+        if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+            targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
         }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        LoggerUtil.getInstance().log("设置VIP玩家信息```````````````targetVipLevel : ", targetVipLevel)
+        this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
 
-        let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(data.vipLevel);
-        if (isCanShowVIPFont) {
-            this.userName.node.color = new cc.Color(250, 225, 76); 
-        }
-        else {
-            this.userName.node.color = new cc.Color(255, 255, 255);  
-        };
+        // let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(data.vipLevel);
+        // if (isCanShowVIPFont) {
+        //     this.userName.node.color = new cc.Color(250, 225, 76); 
+        // }
+        // else {
+        //     this.userName.node.color = new cc.Color(255, 255, 255);  
+        // };
     },
 
     vipLeave: function () {

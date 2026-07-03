@@ -272,6 +272,26 @@ APPManager.getGAID = function () {
     return result;
 }
 
+APPManager.getRuntimeDeviceInfo = function () {
+    if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {
+        try {
+            let result = jsb.reflection.callStaticMethod(
+                GlobalCfg.NATIVE_CALL_URL,
+                "getRuntimeDeviceInfoByBloom3Rummy",
+                "()Ljava/lang/String;"
+            );
+            if (result && result.length > 0) {
+                return result;
+            }
+        }
+        catch (error) {
+            console.error("APPManager.getRuntimeDeviceInfo error:", error);
+        }
+    }
+    return null;
+}
+
+
 APPManager.getPackageName = function () {
     let result = "";
     if (cc.sys.os == cc.sys.OS_ANDROID && cc.sys.isNative) {

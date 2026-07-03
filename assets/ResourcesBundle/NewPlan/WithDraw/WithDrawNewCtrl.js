@@ -101,7 +101,7 @@ cc.Class({
 
     bindToggleEvents: function () {
         // 三个 toggle 对应不同提现通道，实际显示数量由后端返回的通道列表决定。
-        let toggleList = [this.toggle1, this.toggle2, this.toggle3];
+        let toggleList = [this.toggle1, this.toggle2] //, this.toggle3];
         for (let i = 0; i < toggleList.length; i++) {
             if (toggleList[i]) {
                 toggleList[i].node.on('toggle', this.toggleClick, this);
@@ -295,7 +295,7 @@ cc.Class({
         if (msg.result == 0) {
             let error = msg.data && msg.data.error ? msg.data.error : null;
             if (error && error.status == 1) {
-                strTip = `Total Bet : ${error.total_bet / 100} \nNeed Bet : ${error.need_bet / 100} \nAlready withdrawn : ${error.withdrawal_amount / 100}`;
+                strTip = this.getWithdrawBetErrorText(error);
                 CommonFun.getInstance().showWithDrawTips("Okay", strTip, null, 40, 70);
                 return;
             }
@@ -397,7 +397,8 @@ cc.Class({
     },
 
     refreshToggleVisible: function () {
-        let toggleArr = [this.toggle1, this.toggle2, this.toggle3];
+        // let toggleArr = [this.toggle1, this.toggle2, this.toggle3];
+        let toggleArr = [this.toggle1, this.toggle2]
         for (let i = 0; i < toggleArr.length; i++) {
             if (toggleArr[i] && toggleArr[i].node) {
                 toggleArr[i].node.active = true;
@@ -409,8 +410,10 @@ cc.Class({
      * 通道列表变化后，保证当前 toggle 和 selectedWithdrawWay 始终有效。
      */
     syncToggleSelection: function () {
-        let toggleNameList = ['toggle1', 'toggle2', 'toggle3'];
-        let toggleArr = [this.toggle1, this.toggle2, this.toggle3];
+        // let toggleNameList = ['toggle1', 'toggle2', 'toggle3'];
+        // let toggleArr = [this.toggle1, this.toggle2, this.toggle3];
+        let toggleNameList = ['toggle1', 'toggle2'];
+        let toggleArr = [this.toggle1, this.toggle2];
         let currentIndex = this.getToggleIndex(this.NowToggleName);
         let targetIndex = this.withdrawWayList[currentIndex] ? currentIndex : 0;
 
@@ -680,6 +683,18 @@ cc.Class({
             return '';
         }
         return Number.isInteger(num) ? `${num}` : `${num.toFixed(2)}`;
+    },
+
+    getWithdrawBetErrorText: function (error) {
+        let totalBet = Number(error && error.total_bet || 0) / 100;
+        let needBet = Number(error && error.need_bet || 0) / 100;
+        let withdrawn = Number(error && error.withdrawal_amount || 0) / 100;
+
+        if (this.getCurrentLanguageIndex() == 4) {
+            return `মোট বেট : ${totalBet} \nপ্রয়োজনীয় বেট : ${needBet} \nইতিমধ্যে উত্তোলন : ${withdrawn}`;
+        }
+
+        return `Total Bet : ${totalBet} \nNeed Bet : ${needBet} \nAlready withdrawn : ${withdrawn}`;
     },
 
     getLocalizedText: function (key) {

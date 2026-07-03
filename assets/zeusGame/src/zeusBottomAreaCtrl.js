@@ -188,6 +188,11 @@ cc.Class({
 
 
     dealBtnReduceEvent: function() {
+        if (this.isQuestBigBetLimited()) {
+            this.betIndex = 0;
+            this.setBetBtnsAndLabByIndex(this.betIndex);
+            return;
+        }
         if (this.betIndex > 0) {
             this.betIndex -= 1;
         };
@@ -195,6 +200,11 @@ cc.Class({
     },
 
     dealBtnAddEvent: function() {
+        if (this.isQuestBigBetLimited()) {
+            this.betIndex = 0;
+            this.setBetBtnsAndLabByIndex(this.betIndex);
+            return;
+        }
         if (this.betIndex < this.betArr.length - 1) {
             this.betIndex += 1;
         };
@@ -202,6 +212,11 @@ cc.Class({
     },
 
     dealBtnMaxBetEvent: function() {
+        if (this.isQuestBigBetLimited()) {
+            this.betIndex = 0;
+            this.setBetBtnsAndLabByIndex(this.betIndex);
+            return;
+        }
         this.betIndex = this.betArr.length - 1;
         this.setBetBtnsAndLabByIndex(this.betIndex);
     },
@@ -227,7 +242,18 @@ cc.Class({
             LoggerUtil.getInstance().warn("setBetArr: arr is not an array");
             return;
         };
-        this.betArr = arr;        
+        let serverBetArr = arr
+            .map((bet) => Number(bet))
+            .filter((bet) => !isNaN(bet) && bet > 0);
+        if (serverBetArr.length <= 0) {
+            LoggerUtil.getInstance().warn("setBetArr: server bet arr is empty", arr);
+            return;
+        };
+        this.betArr = serverBetArr;
+        this.betIndex = Math.min(this.betIndex, this.betArr.length - 1);
+        if (this.isQuestBigBetLimited()) {
+            this.betIndex = 0;
+        }
     },
 
     getBetArr: function() {
@@ -235,6 +261,9 @@ cc.Class({
     },
 
     setCurBetIndex: function(betIndex = 0) {
+        if (this.isQuestBigBetLimited()) {
+            betIndex = 0;
+        }
         this.betIndex = betIndex;
         this.setBetBtnsAndLabByIndex(this.betIndex);
     },
@@ -244,6 +273,14 @@ cc.Class({
     },
 
     setBetBtnsAndLabByIndex: function(betIndex) {
+        if (this.isQuestBigBetLimited()) {
+            betIndex = 0;
+            this.betIndex = 0;
+            this.setBtnAddInteractableStatus(false);
+            this.setBtnMaxBetInteractableStatus(false);
+            this.setBtnReduceInteractableStatus(false);
+        }
+        else {
         if (betIndex >= this.betArr.length - 1) {
             this.setBtnAddInteractableStatus(false);
             this.setBtnMaxBetInteractableStatus(false);
@@ -258,6 +295,7 @@ cc.Class({
         else {
             this.setBtnReduceInteractableStatus(true);
         };
+        }
 
         let bet = this.betArr[betIndex];
         if (typeof bet != "number") {
@@ -266,13 +304,19 @@ cc.Class({
             return;
         };
         let tempBet = this.isDoubleMulti ? bet * 1.25 : bet;
-        this.lab_bet.string = CommonFun.getInstance().getCurrencySymbol() + `${tempBet/100}`;
+        this.lab_bet.string = CommonFun.getInstance().getCurrencySymbol() + `${tempBet/100}`.replace(/\./g, '_');
         ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
             msgCode: GlobalCfg.CLIENT_MSG_ID.ZEUS_SELECTED_BET_FRESH, 
             msgData: {
                 bet: bet
             }
         });
+    },
+
+    isQuestBigBetLimited: function() {
+        return CommonFun.getInstance().getAppConfigValueByKey('IS_QUEST_CAN_BIGBET', false) == true
+            && GlobalCfg.USER_DATAS
+            && GlobalCfg.USER_DATAS.isNotCharge == true;
     },
 
     setBtnReduceInteractableStatus: function(bool) {

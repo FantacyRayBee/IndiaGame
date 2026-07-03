@@ -235,8 +235,7 @@ export enum I18NLabelTransIdEnum {
     'Activity_3.You can buy the Daily Bonus Card only after the first deposit.',
     'Activity_GET YOUR BONUS',
     'Activity_Login every day can get rewards',
-
-
+    'Activity_All',
 
     /**
      * 投注类游戏
@@ -568,6 +567,12 @@ export enum I18NLabelTransIdEnum {
     'vip_ClaimableOnThe1stOfEveryMonth',
     'vip_ClaimableAtVIP',
     'vip_Histroy_Rewards',
+    'vip_rule_Upgrade Rules',
+    'vip_rule_Betting Threshold',
+    'vip_rule_Upgrade Reward',
+    'vip_rule_Weekly Reward',
+    'vip_rule_Monthly Reward',
+    'vip_rule_Level',
 
     //游戏
     'bull_balance' = 20000,
@@ -714,6 +719,7 @@ export enum I18NSpriteTransIdEnum {
     'Activity_gobetting_title',
     'Activity_gobetting_remaining',
     'Activity_signIn_button',
+    'Activity_detail',
 
     'RewardsTips_title' = 200,
 
@@ -825,6 +831,7 @@ export enum I18NSpriteTransIdEnum {
     'LobbyIcons_vip',
     'LobbyIcons_email',
     'LobbyIcons_invited reward',
+    'LobbyIcons_activityDetail',
 
 
     'GameSetting_title' = 1900,
@@ -1094,7 +1101,8 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_turnTable_title'], 'Activity/TurnTable/title');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_gobetting_title'], 'Activity/gobetting/title');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_gobetting_remaining'], 'Activity/gobetting/remaining');
-
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['Activity_detail'], 'Activity/Detail/Activity Center');
+        
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['RewardsTips_title'], 'RewardsTips/title');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['BindPhone_title'], 'BindPhone/bg');
@@ -1209,7 +1217,7 @@ export class I18NUtil {
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_vip'], 'LobbyIcons/vip');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_email'], 'LobbyIcons/Email');
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_invited reward'], 'LobbyIcons/invited reward');
-
+        this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['LobbyIcons_activityDetail'], 'LobbyIcons/Activity Center');
 
         this.SpriteFramePathMap.set(I18NSpriteTransIdEnum['GameSetting_title'], 'GameSetting/title');
 

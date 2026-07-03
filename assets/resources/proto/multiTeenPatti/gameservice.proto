@@ -62,6 +62,7 @@ message UserInfo {
   int64 diamond = 8;
   int64 seat = 9;             // vip座位, 0表示非vip
   uint32 vipLevel = 10;
+  uint32 vip1Level = 11;
 }
 
 //登录 gameservice.login

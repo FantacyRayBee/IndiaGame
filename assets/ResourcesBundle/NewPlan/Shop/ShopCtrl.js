@@ -63,7 +63,10 @@ cc.Class({
     },
 
     setUserDiamond: function (diamond) {
-        this.lab_userDiamond.string = CommonFun.getInstance().formatCurrencyAmount(FloatCalculation.accDiv(diamond, 100));
+        // 1. 先除以 100
+        let result = FloatCalculation.accDiv(diamond, 100);
+        let formattedResult = result.toFixed(2);
+        this.lab_userDiamond.string = CommonFun.getInstance().formatCurrencyAmount(formattedResult);
     },
 
     start: function () {
@@ -201,6 +204,7 @@ cc.Class({
 
 
     addShopItems: function (arr, itemPrefab) {
+        LoggerUtil.getInstance().log("addShopItems arr ===> ", arr);
         let children = this.node_shopItemContent.children;
         for (let i = 0, len = children.length; i < len; i++) {
             const node = children[i];

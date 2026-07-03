@@ -42,6 +42,9 @@ cc.Class({
         }
         else if (loop_status == 1) {
             this.node_bonus.active = false;
+            this.lab_shopCoin1.string = CommonFun.getInstance().formatCurrencyAmount(amount);
+            this.lab_shopCoin2.string = CommonFun.getInstance().formatCurrencyAmount(amount);
+            this.lab_bonus.string = '';
         };
     },
 

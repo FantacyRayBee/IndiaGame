@@ -64,6 +64,8 @@ cc.Class({
         this.baseBundlesCheckUpdateArr = [
             'ResourcesBundle',
             'tpGame',
+            'LanguageEnglish',
+            'LanguageBengali',
         ];
         this.baseBundlesNeedUpdateArr = [];
         this.baseBundlesUpdateCompleteArr = []; 
@@ -74,6 +76,7 @@ cc.Class({
         this.loadDiffFilesStartTime = 0;
         this.loadBundlesStartTime = 0;
         this.isHaveUpdateForResources = false;
+        this.defaultLoginViewStorageKey = "UPDATE_DEFAULT_ACCOUNT_LOGIN_AFTER_SUCCESS";
     },
 
     onLoad: function () {
@@ -598,6 +601,7 @@ cc.Class({
             }).then(() => {
                 return SceneManager.getInstance().reqUserDataInfo();
             }).then(() => {
+                this.markDefaultShowAccountLogin();
                 CommonFun.getInstance().showProgress();
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
             }).catch(error => {
@@ -695,6 +699,14 @@ cc.Class({
         this.hideRegisterTips();
     },
 
+    markDefaultShowAccountLogin: function() {
+        cc.sys.localStorage.setItem(this.defaultLoginViewStorageKey || "UPDATE_DEFAULT_ACCOUNT_LOGIN_AFTER_SUCCESS", "1");
+    },
+
+    shouldDefaultShowAccountLogin: function() {
+        return cc.sys.localStorage.getItem(this.defaultLoginViewStorageKey || "UPDATE_DEFAULT_ACCOUNT_LOGIN_AFTER_SUCCESS") == "1";
+    },
+
     doAccountPasswordLogin: function(accountStr, passwordStr, isRegister) {
         let obj = {
             loginType: "ACCOUNT",
@@ -708,6 +720,7 @@ cc.Class({
         }).then(() => {
             return SceneManager.getInstance().reqUserDataInfo();
         }).then(() => {
+            this.markDefaultShowAccountLogin();
             CommonFun.getInstance().showProgress();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
         }).catch(error => {
@@ -763,6 +776,7 @@ cc.Class({
             }).then(() => {
                 return SceneManager.getInstance().reqUserDataInfo();
             }).then(() => {
+                this.markDefaultShowAccountLogin();
                 CommonFun.getInstance().showProgress();
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
             }).catch(error => {
@@ -792,6 +806,7 @@ cc.Class({
         }).then(() => {
             return SceneManager.getInstance().reqUserDataInfo();
         }).then(() => {
+            this.markDefaultShowAccountLogin();
             CommonFun.getInstance().showProgress();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
         }).catch(error => {
@@ -814,6 +829,7 @@ cc.Class({
         }).then(() => {
             return SceneManager.getInstance().reqUserDataInfo();
         }).then(() => {
+            this.markDefaultShowAccountLogin();
             CommonFun.getInstance().showProgress();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
         }).catch(error => {
@@ -1149,14 +1165,13 @@ cc.Class({
             CommonFun.getInstance().loadBundle('ResourcesBundle', (bundle) => {
                 window.ResourcesBundle = bundle;
                 this.preloadStartupLanguageBundles(() => {
-                this.preloadCurrentLanguageBundle(() => {
                 this.ensureCurrentLanguageEnvironment();
                 GlobalCfg.USER_DATAS.token = cc.sys.localStorage.getItem("login_token");
                 GlobalCfg.USER_DATAS.userId = cc.sys.localStorage.getItem("login_userid");
                 if (!GlobalCfg.USER_DATAS.token) {
                     this.node_loginLayer.active = true;
                     let phoneToken = cc.sys.localStorage.getItem("phone_token");
-                    if (phoneToken) {
+                    if (phoneToken && !this.shouldDefaultShowAccountLogin()) {
                         this.showMemoryPhoneView();
                     }
                     else {
@@ -1170,6 +1185,7 @@ cc.Class({
                     promise.then(() => {
                         return SceneManager.getInstance().reqUserDataInfo();
                     }).then(() => {
+                        this.markDefaultShowAccountLogin();
                         CommonFun.getInstance().showProgress();
                         SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
                     }).catch(error => {
@@ -1183,24 +1199,12 @@ cc.Class({
                     this.node_or_sprite.active = false;
                     }
                 });
-                });
             }, (err) => {
                 LoggerUtil.getInstance().error(`加载ResourcesBundle-Bundle异常: ${JSON.stringify(err)}`);
             });
         })
         .catch((err) => {
             LoggerUtil.getInstance().error(err);
-        });
-    },
-
-    preloadCurrentLanguageBundle: function(callback) {
-        let languagesType = I18NUtil.getInstance().getLanguageType();
-        let bundleName = `Language${languagesType}`;
-        CommonFun.getInstance().loadBundle(bundleName, () => {
-            callback && callback();
-        }, (err) => {
-            LoggerUtil.getInstance().error(`${bundleName}-Bundle error: ${JSON.stringify(err)}`);
-            callback && callback();
         });
     },
 
@@ -1282,7 +1286,12 @@ cc.Class({
     },
 
     showCommonLoginView: function() {
-        this.showRegisterView();
+        if (this.shouldDefaultShowAccountLogin()) {
+            this.showAccountLoginView();
+        }
+        else {
+            this.showRegisterView();
+        }
         if (this.editBox_verity) {
             this.editBox_verity.node.active = true;
         };

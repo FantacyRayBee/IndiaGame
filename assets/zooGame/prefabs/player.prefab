@@ -844,8 +844,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 45,
-      "height": 45
+      "width": 55,
+      "height": 55
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -863,8 +863,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.3,
+        0.3,
         1
       ]
     },
@@ -900,7 +900,7 @@
       "__uuid__": "4f6e8cb1-df37-48d5-ae7f-58788bbd604e"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -1093,6 +1093,9 @@
     },
     "atlas_icon": {
       "__uuid__": "f4c351f4-749e-4504-8c5a-38083a5c1379"
+    },
+    "atlas_new_icon": {
+      "__uuid__": "722d0047-58d8-464a-a8ca-7766044ca995"
     },
     "winLabel": {
       "__id__": 25

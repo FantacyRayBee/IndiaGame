@@ -636,6 +636,7 @@ cc.Class({
         }
         this.betAmountArrIndex = 0;
         this.setLabAmount(this.betAmountArr[this.betAmountArrIndex]);
+        this.refreshQuestBigBetState();
     },
 
     initSlotData: function () {
@@ -909,6 +910,15 @@ cc.Class({
     },
 
     dealbetBtnEvent: function (btnType) {
+        if (this.isQuestBigBetLimited()) {
+            this.betAmountArrIndex = 0;
+            this.setLabAmount(this.betAmountArr[this.betAmountArrIndex]);
+            this.setBetBtnActive(false, false);
+            this.setJackPotNum();
+            this.setTaskInfo();
+            return;
+        }
+
         if (btnType == "jian" && this.betAmountArrIndex > 0) {
             this.betAmountArrIndex -= 1;
         }
@@ -936,6 +946,10 @@ cc.Class({
     },
 
     setBetBtnActive: function (betJianActive, betJiaActive) {
+        if (this.isQuestBigBetLimited()) {
+            betJianActive = false;
+            betJiaActive = false;
+        }
         this.btn_betJian.interactable = betJianActive;
         this.btn_betJian.enableAutoGrayEffect = !betJianActive;
         this.btn_betJia.interactable = betJiaActive;
@@ -1257,6 +1271,12 @@ cc.Class({
         this.btn_spin.enableAutoGrayEffect = false;
         this.btn_auto.interactable = true;
         this.btn_auto.enableAutoGrayEffect = false;
+        if (this.isQuestBigBetLimited()) {
+            this.betAmountArrIndex = 0;
+            this.setLabAmount(this.betAmountArr[this.betAmountArrIndex]);
+            this.setBetBtnActive(false, false);
+            return;
+        }
         const first = parseFloat(this.betAmountArr[0]);
         const last = parseFloat(this.betAmountArr[this.betAmountArr.length - 1]);
         const cur = parseFloat(this.lab_betAmount.string);
@@ -1264,6 +1284,23 @@ cc.Class({
         this.btn_betJian.enableAutoGrayEffect = !(cur > first);
         this.btn_betJia.interactable = cur < last;
         this.btn_betJia.enableAutoGrayEffect = !(cur < last);
+    },
+
+    isQuestBigBetLimited: function() {
+        return CommonFun.getInstance().getAppConfigValueByKey('IS_QUEST_CAN_BIGBET', false) == true
+            && GlobalCfg.USER_DATAS
+            && GlobalCfg.USER_DATAS.isNotCharge == true;
+    },
+
+    refreshQuestBigBetState: function() {
+        if (!this.isQuestBigBetLimited()) {
+            return;
+        }
+        this.betAmountArrIndex = 0;
+        this.setLabAmount(this.betAmountArr[this.betAmountArrIndex]);
+        this.setBetBtnActive(false, false);
+        this.setJackPotNum();
+        this.setTaskInfo();
     },
 
     _getIconByColRow(col, row) {

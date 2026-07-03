@@ -314,6 +314,7 @@ cc.Class({
         }
         this.betAmountArrIndex = 0;
         this.lab_betAmount.string = this.betAmountArr[this.betAmountArrIndex];
+        this.refreshQuestBigBetState();
     },
 
     setUserDiamond: function(diamond) {
@@ -456,6 +457,13 @@ cc.Class({
     },
 
     dealbetBtnEvent: function (btnType) {
+        if (this.isQuestBigBetLimited()) {
+            this.betAmountArrIndex = 0;
+            this.lab_betAmount.string = this.betAmountArr[this.betAmountArrIndex];
+            this.setBetBtnActive(false, false);
+            return;
+        }
+
         if (btnType == "jian" && this.betAmountArrIndex > 0) {
             this.betAmountArrIndex -= 1;
         }
@@ -481,6 +489,10 @@ cc.Class({
     },
 
     setBetBtnActive: function (betJianActive, betJiaActive) {
+        if (this.isQuestBigBetLimited()) {
+            betJianActive = false;
+            betJiaActive = false;
+        }
         this.btn_betJian.interactable = betJianActive;
         this.btn_betJian.enableAutoGrayEffect = !betJianActive;
         this.btn_betJia.interactable = betJiaActive;
@@ -655,6 +667,13 @@ cc.Class({
         this.btn_auto.interactable = true;
         this.btn_auto.enableAutoGrayEffect = false;
 
+        if (this.isQuestBigBetLimited()) {
+            this.betAmountArrIndex = 0;
+            this.lab_betAmount.string = this.betAmountArr[this.betAmountArrIndex];
+            this.setBetBtnActive(false, false);
+            return;
+        }
+
         let betAmount = parseFloat(this.lab_betAmount.string);
         let minBetAmount = parseFloat(this.betAmountArr[0]);
         let maxBetAmount = parseFloat(this.betAmountArr[this.betAmountArr.length - 1]);
@@ -670,6 +689,21 @@ cc.Class({
             this.btn_betMax.interactable = true;
             this.btn_betMax.enableAutoGrayEffect = false;
         };
+    },
+
+    isQuestBigBetLimited: function() {
+        return CommonFun.getInstance().getAppConfigValueByKey('IS_QUEST_CAN_BIGBET', false) == true
+            && GlobalCfg.USER_DATAS
+            && GlobalCfg.USER_DATAS.isNotCharge == true;
+    },
+
+    refreshQuestBigBetState: function() {
+        if (!this.isQuestBigBetLimited()) {
+            return;
+        }
+        this.betAmountArrIndex = 0;
+        this.lab_betAmount.string = this.betAmountArr[this.betAmountArrIndex];
+        this.setBetBtnActive(false, false);
     },
 
     showResultAnima: function() {

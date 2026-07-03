@@ -48,6 +48,7 @@ message UserInfo {
   int64 diamond = 5;
   int64 vipPos = 6;
   uint32 vipLevel = 7;
+  uint32 vip1Level = 8;
 }
 
 //登录 gameservice.login

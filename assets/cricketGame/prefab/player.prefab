@@ -844,8 +844,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 45,
-      "height": 45
+      "width": 165,
+      "height": 134
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -863,8 +863,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.3,
+        0.3,
         1
       ]
     },
@@ -897,10 +897,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "c9578a56-2ed1-4bc9-9253-094055fe6a2c"
+      "__uuid__": "bbd5016d-1495-41d0-99f1-647199cf436d"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -911,7 +911,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "d90d2f87-49b7-4728-a0b0-0b8352ebc099"
+      "__uuid__": "722d0047-58d8-464a-a8ca-7766044ca995"
     },
     "_id": ""
   },
@@ -1096,6 +1096,9 @@
     },
     "winLabel": {
       "__id__": 25
+    },
+    "atlas_new_icon": {
+      "__uuid__": "722d0047-58d8-464a-a8ca-7766044ca995"
     },
     "_id": ""
   },

@@ -84,6 +84,7 @@ message UserInfo {
   int64 diamond = 5;      // 金币
   int32 pos = 6;          // vip座位, -1非vip，>=0表示vip座
   uint32 vipLevel = 7;    // vip等级
+  uint32 vip1Level = 8;    // vip等级
 }
 
 // 刷新游戏场景 gameservice.loadwhole

@@ -192,6 +192,10 @@ cc.Class({
          */
         atlas_levelIcon: cc.SpriteAtlas,
         /**
+         * VIP等级图标图集
+         */
+        atlas_newLevelIcon: cc.SpriteAtlas,
+        /**
          * 活动 Go Betting
          */
         btn_goBetiing: cc.Button,
@@ -215,6 +219,10 @@ cc.Class({
          * 诱导充值
          */
         btn_inducement: cc.Button,
+        /**
+         * 活动详情
+         */
+        btn_activityDetail: cc.Button,
         /**
          * tp引导手指
          */
@@ -288,6 +296,7 @@ cc.Class({
         this.msgHandle = ClientNotify.register(GlobalCfg.MSG_TYPE.serverMsg, this.onEventMsg, this);
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
         this.LoadCompletedCallback = null;
+        this.waitTaskPopupToShowOtherToast = false;
     },
 
 
@@ -443,6 +452,7 @@ cc.Class({
         this.btn_onlypay.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_inducement.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
         this.btn_firstRecharge.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
+        this.btn_activityDetail.node.on("click", CommonFun.getInstance().debounce(this.btnClick, 1), this)
 
         
         
@@ -578,6 +588,7 @@ cc.Class({
         this.btn_onlypay.node.active = (GlobalCfg.USER_DATAS.only_pay_time > 0) //一次支付按钮是否展示
         this.btn_firstRecharge.node.active = GlobalCfg.USER_DATAS.isNotCharge //首冲按钮是否展示
         this.btn_inducement.node.active = (GlobalCfg.USER_DATAS.openModules.includes(24))
+        this.btn_activityDetail.node.active = GlobalCfg.USER_DATAS.openModules.includes(25)
         this.dealInducementInfo();
         this.dealShowOnlyPayEvent();
         /**
@@ -594,9 +605,10 @@ cc.Class({
         /**
          * VIP系统按钮
          */
-        if (GlobalCfg.USER_DATAS.recharged > 0 
-            && GlobalCfg.USER_DATAS.userVip.level > 0 
-            && CommonFun.getInstance().isOpenVipModule()) { 
+        // if (GlobalCfg.USER_DATAS.recharged > 0
+        //     && GlobalCfg.USER_DATAS.userVip.level > 0
+        //     && CommonFun.getInstance().isOpenVipModule()) {
+        if (CommonFun.getInstance().isOpenVipModule()) {
             this.btn_vip.node.active = true;
         }
         else {
@@ -1043,13 +1055,18 @@ cc.Class({
 
 
     showVipLevelIcon: function() {
-        if (CommonFun.getInstance().isOpenVipModule() && GlobalCfg.USER_DATAS.userVip.level > 0) {
-            this.sprite_vipLevel.node.active = true;
-            this.sprite_vipLevel.spriteFrame = this.atlas_levelIcon.getSpriteFrame(GlobalCfg.USER_DATAS.userVip.level);
-        }
-        else {
-            this.sprite_vipLevel.node.active = false;
-        };
+        LoggerUtil.getInstance().log("showVipLevelIcon GlobalCfg.USER_DATAS.myVipLevel = ", GlobalCfg.USER_DATAS.myVipLevel);
+        // if (CommonFun.getInstance().isOpenVipModule() && GlobalCfg.USER_DATAS.userVip.level > 0) {
+            // this.sprite_vipLevel.node.active = true;
+            let targetVipLevel = Number(GlobalCfg.USER_DATAS.myVipLevel || 0);
+            if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+                targetVipLevel = 0; // 0-30随机数
+            }
+            this.sprite_vipLevel.spriteFrame = this.atlas_newLevelIcon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevel.node.active = false;
+        // };
     },
 
     showTransBounsRedPoint: function() {
@@ -1087,12 +1104,36 @@ cc.Class({
      * 处理弹框逻辑
      */
     showToastViews: function() {
+        if (window.isNeedShowTaskPopup) {
+            window.isNeedShowTaskPopup = false;
+            this.waitTaskPopupToShowOtherToast = true;
+            this.showTaskPopup();
+            return;
+        }
+
         if (GlobalCfg.USER_DATAS.recharged == 0) {
             this.dealNotRechargeToast();
         }
         else {
             this.dealRechargeToast();
         };
+    },
+
+    showTaskPopup: function() {
+        let commonFun = CommonFun.getInstance();
+        let isExist = commonFun.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.TASK, GlobalCfg.PREFAB_PARENT.TASK);
+        if (isExist) {
+            return;
+        }
+
+        let prefabPromise = commonFun.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TASK);
+        prefabPromise.then((prefab) => {
+            if (!prefab) {
+                return;
+            }
+            let node = cc.instantiate(prefab);
+            commonFun.addToPointParent(node, GlobalCfg.PREFAB_PARENT.TASK);
+        });
     },
 
     dealShowOnlyPayEvent: function() {
@@ -1546,6 +1587,13 @@ cc.Class({
             self.showTransBounsRedPoint();
             CommonFun.getInstance().hidProgress();
         }
+        else if (msgId == 'TASK_POPUP_CLOSED') {
+            if (self.waitTaskPopupToShowOtherToast) {
+                self.waitTaskPopupToShowOtherToast = false;
+                self.showToastViews();
+                self.showActivityGoBetting();
+            }
+        }
         else if (msgId == 'CLOSE_GAMEICONLIST'){ //关闭游戏列表 刷新一下界面的位置 因为触发了横竖屏切换
             self.showOtherModules();
         }
@@ -1579,13 +1627,13 @@ cc.Class({
         }
         else if (GlobalCfg.CLIENT_MSG_ID.VIP_INFO_UPDATE === msgId) {
             self.showVipLevelIcon();
-            if (CommonFun.getInstance().isOpenVipModule()) { 
+            if (CommonFun.getInstance().isOpenVipModule()) {
                 self.btn_vip.node.active = true;
             }
             else {
                 self.btn_vip.node.active = false;
             };
-            let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(GlobalCfg.USER_DATAS.userVip.level);
+            let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(GlobalCfg.USER_DATAS.myVipLevel);
             if (isCanShowVIPFont) {
                 self.lab_userName.node.color = new cc.Color(250, 225, 76); 
             }
@@ -1687,6 +1735,64 @@ cc.Class({
         else if (btnName == 'btn_firstRecharge') {
             this.showFirstRechargeToast();
         }
+        else if (btnName == 'btn_activityDetail') {
+            this.showActivityDetail();
+        }
+    },
+
+    showActivityDetail: function() {
+        if (!GlobalCfg.USER_DATAS.openModules.includes(25)) {
+            return;
+        };
+
+        let prefabPath = "ResourcesBundle/NewPlan/Activity/ActivityDetail";
+        let isExist = CommonFun.getInstance().checkNodeInParentNode(prefabPath, GlobalCfg.PREFAB_PARENT.ACTIVITY);
+        if (isExist) {
+            return;
+        };
+
+        CommonFun.getInstance().showProgress();
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/activity/announcements`;
+        CommonFun.getInstance().httpGet(httpUrl, (jsonObj) => {
+            if (!jsonObj || jsonObj.result !== 0) {
+                CommonFun.getInstance().hidProgress();
+                CommonFun.getInstance().showTips(jsonObj && jsonObj.msg ? jsonObj.msg : "Load activity announcement failed");
+                return;
+            };
+            let activityList = this.normalizeActivityAnnouncementList(jsonObj);
+            let prefabPromise = CommonFun.getInstance().loadPrefabByPromise(prefabPath);
+            prefabPromise.then((prefab) => {
+                let activityDetailNode = cc.instantiate(prefab);
+                let activityDetailCtrl = activityDetailNode.getComponent("ActivityDetailCtrl");
+                if (activityDetailCtrl) {
+                    activityDetailCtrl.initWithActivityList(activityList);
+                }
+                CommonFun.getInstance().addToPointParent(activityDetailNode, GlobalCfg.PREFAB_PARENT.ACTIVITY);
+                CommonFun.getInstance().hidProgress();
+            }).catch((err) => {
+                CommonFun.getInstance().hidProgress();
+                LoggerUtil.getInstance().error("load ActivityDetail prefab failed", err);
+            });
+        }, (msg) => {
+            CommonFun.getInstance().hidProgress();
+            let errMsg = msg && msg.msg ? msg.msg : "Load activity announcement failed";
+            CommonFun.getInstance().showTips(errMsg);
+        }, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    normalizeActivityAnnouncementList: function(jsonObj) {
+        let list = jsonObj && jsonObj.data && Array.isArray(jsonObj.data.list) ? jsonObj.data.list : [];
+        return list
+            .filter((item) => item && item.image_url)
+            .sort((a, b) => Number(a.sort || 0) - Number(b.sort || 0))
+            .map((item, index) => {
+                return {
+                    id: index + 1,
+                    type: item.type ? String(item.type) : "",
+                    imgUrl: item.image_url,
+                    sort: Number(item.sort || 0),
+                };
+            });
     },
 
     dealInducementClickEvent: function () {
@@ -1709,6 +1815,9 @@ cc.Class({
 
     dealJumpBtnEvent: function(jumpid) {
         if (jumpid == "TeenPatti") {
+            if (!this.checkTeenPattiUnpayAllowed()) {
+                return;
+            };
             this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 GlobalCfg.CUR_GAME_TYPE = GlobalCfg.SMALL_GAME_DATAS.teenPattiData.product;
@@ -1842,6 +1951,9 @@ cc.Class({
             CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.ChallengeTasks);
         }
         else if (actName == SceneManager.getInstance().sceneType.TEENPATTI) {
+            if (!this.checkTeenPattiUnpayAllowed()) {
+                return;
+            };
             this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 this.showGameRoomList();
@@ -1909,6 +2021,9 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         if (btnName == "btn_zjh") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_BUTTON);
+            if (!this.checkTeenPattiUnpayAllowed()) {
+                return;
+            };
             if (CommonFun.getInstance().isNeedShowTPFingerTip() && CommonFun.getInstance().isEnteredTPGame() == false && GlobalCfg.USER_DATAS.recharged == 0) {
                 this.tryEnterMinScoreTP();
             }
@@ -1922,6 +2037,9 @@ cc.Class({
         } 
         else if (btnName == "btn_zjh2") {  
             CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.CLICK_TP_BUTTON);
+            if (!this.checkTeenPattiUnpayAllowed()) {
+                return;
+            };
             this.checkUpdate("tpGame", () => {
                 window.isNeedShowRoomList = "tpGame";
                 GlobalCfg.SMALL_GAME_DATAS.teenPattiData.endpoint = this.teenPatti2Endpoint;
@@ -2120,7 +2238,23 @@ cc.Class({
         } 
     },
 
+    checkTeenPattiUnpayAllowed: function() {
+        if (GlobalCfg.USER_DATAS.isNotCharge == true
+            && GlobalCfg.USER_DATAS.gamePattern == 0
+            && GlobalCfg.USER_DATAS.refuseUnpayHundred
+            && GlobalCfg.USER_DATAS.refuseUnpayHundred["miniteenpatti"] == true) {
+            CommonFun.getInstance().showMsgBox(commonTipsLanguage.premiumPlayersOnly[language], "SHOP", () => {
+                CommonFun.getInstance().showSmallAddCash();
+            }, false);
+            return false;
+        };
+        return true;
+    },
+
     tryEnterMinScoreTP: function() {
+        if (!this.checkTeenPattiUnpayAllowed()) {
+            return;
+        };
         //@ts-ignore
         if (CommonFun.getInstance().isNeedUpdata("tpGame") == false) {
             //@ts-ignore

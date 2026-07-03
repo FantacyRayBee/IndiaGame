@@ -37,8 +37,8 @@ cc.Class({
 
     onSignClick: function() {
         let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
-        if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
-            {
+        // if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
+        // {
             GlobalCfg.G_COMPONENTS.Audio.playSoundByNameInResources("sign", false);
             let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/sign";
             CommonFun.getInstance().httpPost(httpUrl, {}, (msg) => {
@@ -74,12 +74,12 @@ cc.Class({
                     CommonFun.getInstance().showTips(msg.msg);
                 };
             }, null, GlobalCfg.USER_DATAS.BearerToken);
-        }
-        else{
-            CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
-                CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
-            }, false);
-        }
+        // }
+        // else{
+        //     CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
+        //         CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
+        //     }, false);
+        // }
     },
 
     getSignList: function() {

@@ -439,7 +439,13 @@ cc.Class({
         }
 
         let defaultIndex = Math.min(4, this.betAmountArr.length - 1);
+        if (this.isQuestBigBetLimited()) {
+            defaultIndex = 0;
+        }
         this.betIndex = Math.max(0, Math.min(this.betIndex == null ? defaultIndex : this.betIndex, this.betAmountArr.length - 1));
+        if (this.isQuestBigBetLimited()) {
+            this.betIndex = 0;
+        }
         this.curBetAmount = parseFloat(this.betAmountArr[this.betIndex]) || 0;
 
         this.updateBetOptionNodes();
@@ -456,6 +462,12 @@ cc.Class({
             this.node_betInfos[i].node.active = isValidBet;
             if (this.node_betInfos[i].label) {
                 this.node_betInfos[i].label.string = isValidBet ? this.betAmountArr[i] : "";
+            }
+            let canUseBet = isValidBet && (!this.isQuestBigBetLimited() || i === 0);
+            let button = this.node_betInfos[i].node.getComponent(cc.Button);
+            if (button) {
+                button.interactable = canUseBet;
+                button.enableAutoGrayEffect = !canUseBet;
             }
             if (this.node_betInfos[i].mark) {
                 this.node_betInfos[i].mark.active = isValidBet && i === this.betIndex;
@@ -632,6 +644,10 @@ cc.Class({
         if (isNaN(this.betIndex) || this.betIndex < 0 || this.betIndex >= this.betAmountArr.length || !this.node_betInfos[this.betIndex]) {
             return;
         }
+        if (this.isQuestBigBetLimited() && this.betIndex !== 0) {
+            this.betIndex = 0;
+            return;
+        }
         let label = component.node.getChildByName("num").getComponent(cc.Label);
         this.btn_db.node.active = false;
 
@@ -649,6 +665,12 @@ cc.Class({
         if (this.node_betInfos[this.betIndex] && this.node_betInfos[this.betIndex].mark) {
             this.node_betInfos[this.betIndex].mark.active = true;
         }
+    },
+
+    isQuestBigBetLimited: function() {
+        return CommonFun.getInstance().getAppConfigValueByKey('IS_QUEST_CAN_BIGBET', false) == true
+            && GlobalCfg.USER_DATAS
+            && GlobalCfg.USER_DATAS.isNotCharge == true;
     },
 
     dealbetBtnEvent: function (btnType) {

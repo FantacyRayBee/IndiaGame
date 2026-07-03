@@ -203,6 +203,8 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['Activity_1.You can recharge to buy the Daily Bonus Card，you can get the recharged amount right now , and extra bonus rewards will be given out a few days'], '1.আপনি প্রতিদিনের বোনাস কার্ড ক্রয় করার জন্য রিচার্জ করতে পারেন, আপনি এখনই রিচার্জ করা পরিমাণ পেতে পারেন, এবং অতিরিক্ত বোনাস পুরস্কারগুলি কিছু দিনে দেওয়া হবে');
     map.set(labels['Activity_2.You can only choose one type to purchase . On- ly one card is allowed at the same time'], '2.আপনি ক্রয় করার জন্য শুধু একটি প্রকারই বেছে নিতে পারেন। এক সময়ে শুধু একটি কার্ডই অনুমোদিত');
     map.set(labels['Activity_3.You can buy the Daily Bonus Card only after the first deposit.'], '3.আপনি প্রতিদিনের বোনাস কার্ড শুধু প্রথমবার জমা দেওয়ার পরেই ক্রয় করতে পারবেন।');
+    map.set(labels['Activity_All'], 'সব');
+
 
     map.set(labels['Game_7UP 7DOWN'], '৭ আপ ৭ ডাউন');
     map.set(labels['Game_Start Betting'], 'বাজি ধরা শুরু করুন');
@@ -286,7 +288,7 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['MyVip_Benefits'], 'সুবিধা');
     map.set(labels['MyVip_RULES'], 'নিয়ম');
     map.set(labels['MyVip_Only VIP players can use this feature'], 'শুধুমাত্র ভিআইপি খেলোয়াড়রাই এই বৈশিষ্ট্যটি ব্যবহার করতে পারবেন');
-    map.set(labels['MyVip_Add cash 200 now to become a VIP player.'], 'ভিআইপি প্লেয়ার হতে এখন নগদ 200 যোগ করুন।');
+    map.set(labels['MyVip_Add cash 200 now to become a VIP player.'], 'এখন যেকোনো পরিমাণ যোগ করুন, VIP খেলোয়াড় হতে।');
     map.set(labels['MyVip_VIP Rules'], 'ভিআইপি নিয়ম');
     map.set(labels['MyVip_Level up gift'], 'লেভেল আপ উপহার');
     map.set(labels['MyVip_Daily Withdrawal Count'], 'দৈনিক \nউত্তোলনের গণনা');
@@ -322,7 +324,7 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['Shop_tips'], '<color=#000000>রিচার্জ ব্যর্থ হলে অনুগ্রহ করে </c><color=#ff0000>অন্য একটি চ্যানেল</color><color=#000000> চেষ্টা করুন</color>');
     map.set(labels['Shop_service title'], 'সেবা');
 
-    map.set(labels['Withdraw_Withdraw'], 'প্রত্যাহার');
+    map.set(labels['Withdraw_title'], 'প্রত্যাহার');
     map.set(labels['Withdraw_Cash Balance'], 'নগদ ভারসাম্য');
     map.set(labels['Withdraw_Withdrawal history'], 'প্রত্যাহারের ইতিহাস');
     map.set(labels['Withdraw_Add Cash'], 'নগদ যোগ করুন');
@@ -621,8 +623,8 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['benzGame_reset'], 'রিসেট');
     map.set(labels['benzGame_collect'], 'সংগ্রহ');
     map.set(labels['vip_CurrentLevel'], 'বর্তমান স্তর:');
-    map.set(labels['vip_NeededToUpgrade'], 'আপগ্রেডের জন্য আরও প্রয়োজন');
-    map.set(labels['vip_RemainingTime'], 'অবশিষ্ট সময়');
+    map.set(labels['vip_NeededToUpgrade'], 'বাকি আপগ্রেড');
+    map.set(labels['vip_RemainingTime'], 'অবশিষ্ট সময়:');
     map.set(labels['vip_UpgradeNow'], 'এখনই আপগ্রেড করুন');
     map.set(labels['vip_History'], 'ইতিহাস');
     map.set(labels['vip_WeeklyReward'], 'সাপ্তাহিক পুরস্কার');
@@ -635,4 +637,10 @@ export function initBengaliMap(map: Map<any, any>, labels: any) {
     map.set(labels['vip_ClaimableOnThe1stOfEveryMonth'], 'প্রতি মাসের ১ তারিখে সংগ্রহ করা যাবে');
     map.set(labels['vip_ClaimableAtVIP'], 'VIP এ সংগ্রহ করা যাবে');
     map.set(labels['vip_Histroy_Rewards'], 'পুরস্কার');
+    map.set(labels['vip_rule_Upgrade Rules'], 'আপগ্রেডের নিয়ম');
+    map.set(labels['vip_rule_Betting Threshold'], 'বেটিং থ্রেশহোল্ড');
+    map.set(labels['vip_rule_Upgrade Reward'], 'আপগ্রেড পুরস্কার');
+    map.set(labels['vip_rule_Weekly Reward'], 'সাপ্তাহিক পুরস্কার');
+    map.set(labels['vip_rule_Monthly Reward'], 'মাসিক পুরস্কার');
+    map.set(labels['vip_rule_Level'], 'স্তর');
 }

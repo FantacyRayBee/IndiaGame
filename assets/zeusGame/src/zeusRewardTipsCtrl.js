@@ -31,6 +31,7 @@ cc.Class({
             this.node_title4.active = bigWinLevel == 4 ? true : false;
             this.node_title5.active = bigWinLevel == 5 ? true : false;  
 
+            LoggerUtil.getInstance().log("宙斯bigwin curSpinAllWin: ", curSpinAllWin);
             this.skeleton_wing.node.active = true;
             this.skeleton_wing.timeScale = 1.5;
             this.skeleton_wing.defaultSkin = 'default';
@@ -40,7 +41,7 @@ cc.Class({
             this.node_notAnim.active = true;
             this.node.on("click", CommonFun.getInstance().debounce(() => {
                 this.stopShowScoreTween = true;
-                this.lab_score.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(curSpinAllWin); 
+                this.lab_score.string = GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(curSpinAllWin).replace(/\./g, '_'); 
                 this.scheduleOnce(() => {
                     this.playXiaoShiAnim(bigWinLevel);
                 }, 1);
@@ -165,7 +166,8 @@ cc.Class({
                 progress: (start, end, current, t) => {
                     if (this && this.lab_score && this.stopShowScoreTween == false) {
                         let temp = (end - start == 0) ? GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(score) : GlobalCfg.ACT_SCENE_CTRL.getCoinFormatStr(start + (end - start) * t);
-                        this.lab_score.string = temp; 
+                        LoggerUtil.getInstance().log("宙斯bigwin temp: ", temp);
+                        this.lab_score.string = temp.replace(/\./g, '_'); 
                     };
                     return start + (end - start) * t;
                 }

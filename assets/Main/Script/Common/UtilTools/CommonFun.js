@@ -190,11 +190,11 @@ let CommonFun = cc.Class({
          * 资源的父路径
          */
         GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
-        // if (GlobalCfg.server_id == "0") {
-        //     GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/";
-        //     GlobalCfg.ASSETS_VERSION = 4;
-        //     GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
-        // };
+        if (GlobalCfg.server_id == "0") {
+            GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/";
+            GlobalCfg.ASSETS_VERSION = 4;
+            GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
+        };
         /**
          * 子包资源的版本信息
          */
@@ -1315,6 +1315,19 @@ let CommonFun = cc.Class({
         }, null, GlobalCfg.USER_DATAS.BearerToken);
     },
 
+    showTask: function() {
+        let isExist = this.checkNodeInParentNode(GlobalCfg.PREFAB_PATH.TASK, GlobalCfg.PREFAB_PARENT.TASK);
+        if (isExist) {
+            return;
+        }
+
+        let prefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.TASK);
+        prefabPromise.then((prefab) => {
+            let node = cc.instantiate(prefab);
+            this.addToPointParent(node, GlobalCfg.PREFAB_PARENT.TASK);
+        });
+    },
+
     /**
      * 显示联系我们界面
      */
@@ -2054,6 +2067,10 @@ let CommonFun = cc.Class({
      * 展示填写提现资料界面
      */
     showWithDrawPreData: function() {
+        if (GlobalCfg.USER_DATAS.recharged == 0 && CommonFun.getInstance().isOpenVipModule()) {
+            CommonFun.getInstance().showVipRechargeToast();
+            return;
+        }
         this.showProgress();
         let withdrawfabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.WITHDRAW_NEW);
         withdrawfabPromise.then((prefab) => {
@@ -2299,16 +2316,140 @@ let CommonFun = cc.Class({
      * 显示我的VIP
      */
     showMyVip: function() {
-        let myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.MYVIP);
-        myVipPrefabPromise.then((prefab) => {
-            let myVipNode = cc.instantiate(prefab);
-            this.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.MYVIP); 
-        });     
+        this.showProgress();
+        this.preloadVipMainData((isSuccess) => {
+            if (!isSuccess) {
+                this.hidProgress();
+                return;
+            }
+
+            let myVipPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPMAIN);
+            myVipPrefabPromise.then((prefab) => {
+                let myVipNode = cc.instantiate(prefab);
+                this.addToPointParent(myVipNode, GlobalCfg.PREFAB_PARENT.VIPMAIN);
+                this.hidProgress();
+            });
+        });
     },
 
     /**
      * 显示VIP幸运抽奖
      */
+    showVipMain: function() {
+        this.showProgress();
+        this.preloadVipMainData((isSuccess) => {
+            if (!isSuccess) {
+                this.hidProgress();
+                return;
+            }
+
+            let vipMainPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPMAIN);
+            vipMainPrefabPromise.then((prefab) => {
+                let vipMainNode = cc.instantiate(prefab);
+                this.addToPointParent(vipMainNode, GlobalCfg.PREFAB_PARENT.VIPMAIN);
+                this.hidProgress();
+            });
+        });
+    },
+
+    preloadVipMainData: function(callback) {
+        let pendingCount = 2;
+        let isFinished = false;
+        let finishRequest = (isSuccess, errMsg = '') => {
+            if (isFinished) {
+                return;
+            }
+
+            if (!isSuccess) {
+                isFinished = true;
+                this.showTips(errMsg || 'vip data error');
+                callback && callback(false);
+                return;
+            }
+
+            pendingCount--;
+            if (pendingCount > 0) {
+                return;
+            }
+
+            isFinished = true;
+            callback && callback(true);
+        };
+
+        let token = GlobalCfg.USER_DATAS.BearerToken;
+        this.httpGet(`${GlobalCfg.HTTP_SERVER}/v1/vip1/info`, (msg) => {
+            if (!msg || msg.result != 0 || !msg.data) {
+                finishRequest(false, msg && msg.msg ? msg.msg : 'vip info error');
+                return;
+            }
+
+            GlobalCfg.USER_DATAS.myVipLevel = msg.data.current_level < 0 ? 0 : msg.data.current_level;
+            GlobalCfg.USER_DATAS.vip1InfoData = msg.data;
+            finishRequest(true);
+        }, null, token);
+
+        this.httpGet(`${GlobalCfg.HTTP_SERVER}/v1/vip1/levels`, (msg) => {
+            if (!msg || msg.result != 0 || !msg.data) {
+                finishRequest(false, msg && msg.msg ? msg.msg : 'vip levels error');
+                return;
+            }
+
+            GlobalCfg.USER_DATAS.vip1LevelConfigData = msg.data;
+            finishRequest(true);
+        }, null, token);
+    },
+
+    showVipHistory: function() {
+        this.showProgress();
+        this.preloadVipHistoryData(1, 7, (isSuccess) => {
+            if (!isSuccess) {
+                this.hidProgress();
+                return;
+            }
+
+            let vipHistoryPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPHISTORY);
+            vipHistoryPrefabPromise.then((prefab) => {
+                let vipHistoryNode = cc.instantiate(prefab);
+                this.addToPointParent(vipHistoryNode, GlobalCfg.PREFAB_PARENT.VIPHISTORY);
+                this.hidProgress();
+            });
+        });
+    },
+
+    preloadVipHistoryData: function(page, pageSize, callback) {
+        let httpUrl = `${GlobalCfg.HTTP_SERVER}/v1/vip1/history?page=${page}&size=${pageSize}`;
+        CommonFun.getInstance().httpGet(httpUrl, (msg) => {
+            if (!msg || msg.result != 0 || !msg.data) {
+                CommonFun.getInstance().showTips(msg && msg.msg ? msg.msg : 'vip history error');
+                callback && callback(false);
+                return;
+            }
+
+            let cacheData = GlobalCfg.USER_DATAS.vip1HistoryData || {};
+            let pageKey = `${page}_${pageSize}`;
+            cacheData.total = Number(msg.data.total || 0);
+            cacheData.page = page;
+            cacheData.pageSize = pageSize;
+            cacheData.pages = cacheData.pages || {};
+            cacheData.pages[pageKey] = {
+                page: page,
+                pageSize: pageSize,
+                total: cacheData.total,
+                list: msg.data.list || [],
+            };
+            GlobalCfg.USER_DATAS.vip1HistoryData = cacheData;
+            callback && callback(true);
+        }, null, GlobalCfg.USER_DATAS.BearerToken);
+    },
+
+    showVipRule: function() {
+        let vipRulePrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPRULE);
+        vipRulePrefabPromise.then((prefab) => {
+            let vipRuleNode = cc.instantiate(prefab);
+            this.addToPointParent(vipRuleNode, GlobalCfg.PREFAB_PARENT.VIPRULE);
+        });
+    },
+
     showVipLuckyDraw: function() {  
         let vipLuckyDrawPrefabPromise = this.loadPrefabByPromise(GlobalCfg.PREFAB_PATH.VIPLUCKYDRAW);
         vipLuckyDrawPrefabPromise.then((prefab) => {

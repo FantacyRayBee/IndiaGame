@@ -10,6 +10,7 @@ cc.Class({
         bqAtlas:cc.SpriteAtlas,
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
     ctor() {
         this.giftPos_1 = cc.v2(-50, -8);
@@ -74,13 +75,17 @@ cc.Class({
         }
         this.setUserBgOraLab();
 
-        if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${data.vipLevel}`);
-        }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        // if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        //     this.sprite_vipLevelIcon.node.active = true;
+            let targetVipLevel = Number(data.vip1Level);
+            if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+                targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
+            }
+            this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
     },
 
     setWinNum: function (num) {

@@ -48,8 +48,8 @@ cc.Class({
     btnClick: function(btn) {
         GlobalCfg.G_COMPONENTS.Audio.playButton();
         let timestamp = GlobalCfg.USER_DATAS.userVip.system_time;
-        if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
-        {
+        // if (GlobalCfg.USER_DATAS.userVip.level == false || GlobalCfg.USER_DATAS.userVip.level == 0 || (GlobalCfg.USER_DATAS.userVip.level > 0 && timestamp < GlobalCfg.USER_DATAS.userVip.expires_time))
+        // {
             this.btn_go.interactable = false;
             let url =  GlobalCfg.HTTP_SERVER + "/v1/turntabledraw";
             CommonFun.getInstance().httpGet(url, (jsonObj) => {  
@@ -64,12 +64,12 @@ cc.Class({
                     CommonFun.getInstance().showTips(jsonObj.msg);
                 };
             }, null, GlobalCfg.USER_DATAS.BearerToken);
-        }
-        else{
-            CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
-                CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
-            }, false);
-        }
+        // }
+        // else{
+        //     CommonFun.getInstance().showMsgBox('Your VIP has expired , you can activate it after recharging !', 'ADDCASH', ()=>{
+        //         CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.VipExpired);
+        //     }, false);
+        // }
     },
 
     trunPlateRotation: function(data) {

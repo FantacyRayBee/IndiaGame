@@ -7,6 +7,7 @@ cc.Class({
         sprite_tx: cc.Sprite,
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
         btn_add: cc.Button,
         lab_win: cc.Label,
         textBg: cc.Node,
@@ -59,13 +60,13 @@ cc.Class({
         }
         this.lab_id.string = data.nickname;
 
-        if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${data.vipLevel}`);
-        }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        // if (data.vipLevel >= 1 && data.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        //     this.sprite_vipLevelIcon.node.active = true;
+            this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${data.vipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
     },
     setCoin: function (coin, isSelf = false) {
         this.coin = coin / 100;

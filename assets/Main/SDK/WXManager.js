@@ -25,6 +25,7 @@ WXManager.wxCallBack = function(wxKey, wxState, wxValue) {
         }).then(() => {
             return SceneManager.getInstance().reqUserDataInfo();
         }).then(() => {
+            cc.sys.localStorage.setItem("UPDATE_DEFAULT_ACCOUNT_LOGIN_AFTER_SUCCESS", "1");
             CommonFun.getInstance().showProgress();
             SceneManager.getInstance().changeScene(SceneManager.getInstance().sceneType.UPDATE, SceneManager.getInstance().sceneType.LOBBY);
         }).catch(error => {

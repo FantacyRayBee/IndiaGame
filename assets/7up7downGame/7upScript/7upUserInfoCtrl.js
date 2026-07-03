@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
 
     ctor() {
@@ -95,13 +96,17 @@ cc.Class({
         }
         this.setCoin(userinfo.Diamond);
         this.setPlayerid(userinfo.PlayerId);
-        if (userinfo.vipLevel >= 1 && userinfo.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        // if (userinfo.vipLevel >= 1 && userinfo.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
             this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${userinfo.vipLevel}`);
-        }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+            let targetVipLevel = Number(userinfo.vip1Level);
+            if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+                targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
+            }
+            this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
 
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(userinfo.vipLevel);
         if (isCanShowVIPFont) {

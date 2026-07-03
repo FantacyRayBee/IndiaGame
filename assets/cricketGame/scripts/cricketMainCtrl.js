@@ -44,6 +44,7 @@ cc.Class({
         betStartEndAnimationNode: { default: null, type: cc.Node, tooltip: "开始结束Bet动画节点" },
         startEndSkeletonData: { default: [], type: sp.SkeletonData, tooltip: "开始结束Spine动画数据" },
         vipSpriteAtlas: { default: null, type: cc.SpriteAtlas, tooltip: "vip图标" },
+        vipSpriteAtlas_new: { default: null, type: cc.SpriteAtlas, tooltip: "vip图标" },
 
         isInHide: {
             get: function () {
@@ -675,18 +676,22 @@ cc.Class({
         GlobalCfg.USER_DATAS.userHeadimgurl = UserInfo.imgUrl;
         this.selfPid = UserInfo.playerId;           // 当前游戏玩家唯一标识
         let pos = UserInfo.pos;
-        let vipLevel = UserInfo.vipLevel;
+        let vipLevel = UserInfo.vip1Level;
         this.selfPlayerNode.getChildByName('userName').getComponent(cc.Label).string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 8);
         this.updateSelfCoin();
         let tx = cc.find('txk/mask/tx', this.selfPlayerNode);
         this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 80, tx.getComponent(cc.Sprite));
-        if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.vipSprite.node.active = true;
-            this.vipSprite.spriteFrame = this.vipSpriteAtlas.getSpriteFrame(`${vipLevel}`);
+        // if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        //     this.vipSprite.node.active = true;
+        let targetVipLevel = Number(vipLevel);
+        if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+            targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
         }
-        else {
-            this.vipSprite.node.active = false;
-        };
+        this.vipSprite.spriteFrame = this.vipSpriteAtlas_new.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.vipSprite.node.active = false;
+        // };
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
         if (isCanShowVIPFont) {
             this.selfPlayerNode.getChildByName('userName').color = new cc.Color(250, 225, 76);

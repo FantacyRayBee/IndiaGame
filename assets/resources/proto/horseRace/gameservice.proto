@@ -23,6 +23,7 @@ message UserInfoAck {
   int32 pos = 6;                //位置
   repeated int64 BetScore = 7;  //下注积分
   uint32 vipLevel = 8;
+  uint32 vip1Level = 9;
 }
 
 //房间配置
@@ -30,8 +31,6 @@ message RoomConfig {
   int64 minibetscore = 1; //最小下分
   int64 maxberscore = 2;  //最大下分
 }
-
-
 
 //RoomRuntimeInfo 房间运行信息
 message RoomRuntimeInfo {

@@ -207,6 +207,8 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['Activity_1.You can recharge to buy the Daily Bonus Card，you can get the recharged amount right now , and extra bonus rewards will be given out a few days'], '1.You can recharge to buy the Daily Bonus Card，you can get the recharged amount right now , and extra bonus rewards will be given out a few days');
     map.set(labels['Activity_2.You can only choose one type to purchase . On- ly one card is allowed at the same time'], '2.You can only choose one type to purchase . On- ly one card is allowed at the same time');
     map.set(labels['Activity_3.You can buy the Daily Bonus Card only after the first deposit.'], '3.You can buy the Daily Bonus Card only after the first deposit.');
+    map.set(labels['Activity_All'], 'ALL');
+    
     
     map.set(labels['Game_7UP 7DOWN'], '7UP 7DOWN');
     map.set(labels['Game_Start Betting'], 'Start Betting');
@@ -290,7 +292,7 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['MyVip_Benefits'], 'Benefits');
     map.set(labels['MyVip_RULES'], 'Rules');
     map.set(labels['MyVip_Only VIP players can use this feature'], 'Only VIP players can use this feature');
-    map.set(labels['MyVip_Add cash 200 now to become a VIP player.'], 'Add cash 200 now to become a VIP player.');
+    map.set(labels['MyVip_Add cash 200 now to become a VIP player.'], 'Add any amount now to become a VIP player.');
     map.set(labels['MyVip_VIP Rules'], 'VIP Rules');
     map.set(labels['MyVip_Level up gift'], 'Level up gift');
     map.set(labels['MyVip_Daily Withdrawal Count'], 'Daily \nWithdrawal Count');
@@ -326,7 +328,7 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['Shop_tips'], '<color=#000000>If the recharge is unsuccessful, please try </c><color=#ff0000>another channel</color>');
     map.set(labels['Shop_service title'], 'Service');
     
-    map.set(labels['Withdraw_Title'], 'Withdraw');
+    map.set(labels['Withdraw_title'], 'Withdraw');
     map.set(labels['Withdraw_Cash Balance'], 'Cash Balance');
     map.set(labels['Withdraw_Withdrawal history'], 'Withdrawal history');
     map.set(labels['Withdraw_Add Cash'], 'Add Cash');
@@ -626,7 +628,7 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['benzGame_collect'], 'COLLECT');
     map.set(labels['vip_CurrentLevel'], 'Current Level:');
     map.set(labels['vip_NeededToUpgrade'], 'Needed to Upgrade');
-    map.set(labels['vip_RemainingTime'], 'Remaining Time');
+    map.set(labels['vip_RemainingTime'], 'Remain Time:');
     map.set(labels['vip_UpgradeNow'], 'Upgrade Now');
     map.set(labels['vip_History'], 'History');
     map.set(labels['vip_WeeklyReward'], 'Weekly Reward');
@@ -639,5 +641,10 @@ export function initEnglishMap(map: Map<any, any>, labels: any) {
     map.set(labels['vip_ClaimableOnThe1stOfEveryMonth'], 'Claimable on the 1st of Every Month');
     map.set(labels['vip_ClaimableAtVIP'], 'Claimable at VIP');
     map.set(labels['vip_Histroy_Rewards'], 'Rewards');
-    
+    map.set(labels['vip_rule_Upgrade Rules'], 'Upgrade Rules');
+    map.set(labels['vip_rule_Betting Threshold'], 'Betting Threshold');
+    map.set(labels['vip_rule_Upgrade Reward'], 'Upgrade Reward');
+    map.set(labels['vip_rule_Weekly Reward'], 'Weekly Reward');
+    map.set(labels['vip_rule_Monthly Reward'], 'Monthly Reward');
+    map.set(labels['vip_rule_Level'], 'Level');
 }

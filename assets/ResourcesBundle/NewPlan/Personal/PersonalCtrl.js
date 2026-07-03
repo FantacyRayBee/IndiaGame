@@ -12,6 +12,7 @@ cc.Class({
          * VIP等级图标图集
          */
         atlas_levelIcon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
 
     getNode: function() {
@@ -254,13 +255,20 @@ cc.Class({
     },
 
     showVipLevelIcon: function() {
-        if (CommonFun.getInstance().isOpenVipModule() && GlobalCfg.USER_DATAS.userVip.level > 0 && GlobalCfg.USER_DATAS.userVip.level <= 10) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_levelIcon.getSpriteFrame(GlobalCfg.USER_DATAS.userVip.level);
+        // if (CommonFun.getInstance().isOpenVipModule() && GlobalCfg.USER_DATAS.userVip.level > 0 && GlobalCfg.USER_DATAS.userVip.level <= 10) {
+        //     this.sprite_vipLevelIcon.node.active = true;
+        //     this.sprite_vipLevelIcon.spriteFrame = this.atlas_levelIcon.getSpriteFrame(GlobalCfg.USER_DATAS.userVip.level);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
+        let targetVipLevel = Number(GlobalCfg.USER_DATAS.myVipLevel || 0);
+        if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+            targetVipLevel = 0; // 0-30随机数
         }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        this.sprite_vipLevelIcon.node.active = true;
+        this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+
 
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(GlobalCfg.USER_DATAS.userVip.level);
         if (isCanShowVIPFont) {

@@ -1,0 +1,58 @@
+{
+"skeleton": {
+	"hash": "P0e8XszN0kmYh7EDG4MyNG9dGy4",
+	"spine": "3.8.75",
+	"x": -50.5,
+	"y": -23,
+	"width": 91.03,
+	"height": 79.5,
+	"images": "E:/AA工作文件/Spine/images/activity center",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "icon1", "parent": "root", "length": 56.97, "rotation": 135.84, "x": 22.66, "y": -21.3 },
+	{ "name": "guang", "parent": "icon1", "rotation": -135.84, "x": 41.48, "y": -23.81 }
+],
+"slots": [
+	{ "name": "icon1", "bone": "icon1", "attachment": "icon1" },
+	{ "name": "guang", "bone": "guang", "attachment": "guang" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"icon1": {
+				"icon1": { "x": 48.43, "y": 1.32, "rotation": -135.84, "width": 75, "height": 69 }
+			},
+			"guang": {
+				"guang": { "x": -0.79, "rotation": 135.84, "width": 45, "height": 45 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"icon1": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "angle": -6.13, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.6667, "angle": -9.18, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.8333, "angle": 5.13, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3, "angle": -9.18, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.1667, "angle": 5.13 }
+				]
+			},
+			"guang": {
+				"scale": [
+					{ "x": 0, "y": 0, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 0, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}

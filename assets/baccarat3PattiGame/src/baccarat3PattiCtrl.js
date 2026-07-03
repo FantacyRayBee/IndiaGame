@@ -19,6 +19,7 @@ cc.Class({
         pokseBei : cc.SpriteFrame,
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
         // btn_openMenu: cc.Button,
         // btn_tableInfo: cc.Button,
     },

@@ -22,6 +22,7 @@ cc.Class({
         node_actCion: cc.Node,
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
 
     onLoad: function() {
@@ -274,13 +275,18 @@ cc.Class({
     },
 
     setPlayerVipLevel: function(vipLevel) {
-        if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${vipLevel}`);
-        }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        // if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        //     this.sprite_vipLevelIcon.node.active = true;
+            // this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${vipLevel}`);
+            let targetVipLevel = Number(vipLevel);
+            if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+                targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
+            }
+            this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
 
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
         if (isCanShowVIPFont) {

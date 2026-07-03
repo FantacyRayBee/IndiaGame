@@ -199,14 +199,14 @@ cc.Class({
         else if (name == this.btnWithDraw.node.name) {
             if (this.labBankAccount.node.active == true) {       // 已有银行卡号，
                 if (GlobalCfg.USER_DATAS.recharged == 0) {       // 未充值
-                    if (CommonFun.getInstance().isOpenVipModule()) {
-                        CommonFun.getInstance().showVipRechargeToast();
-                    }
-                    else {
-                        CommonFun.getInstance().showMsgBox("You can recharge any amount to active \n the withdraw function,recharge now?", "ADDCASH", () => {
+                    // if (CommonFun.getInstance().isOpenVipModule()) {
+                    //     CommonFun.getInstance().showVipRechargeToast();
+                    // }
+                    // else {
+                        CommonFun.getInstance().showMsgBox(this.getPlayerCenterLanguageText('withdrawActiveRechargeTips'), "OK", () => {
                             CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.WithDrawPreData);
                         }, false); 
-                    };
+                    // };
                 }
                 else {
                     if (CommonFun.getInstance().isOpenVipModule()) {
@@ -356,14 +356,14 @@ cc.Class({
                         this.nodeWirte.active = false;
                         GlobalCfg.USER_DATAS.transferAddress = CommonFun.getInstance().deepCopy(this.address);
                         if (GlobalCfg.USER_DATAS.recharged == 0) {// 未充值的玩家 第一次保存消息时 自动打开vip提示界面
-                            if (CommonFun.getInstance().isOpenVipModule()) {
-                                CommonFun.getInstance().showVipRechargeToast();
-                            }
-                            else {
-                                CommonFun.getInstance().showMsgBox("You can recharge any amount to active \n the withdraw function,recharge now?", "ADDCASH", () => {
+                            // if (CommonFun.getInstance().isOpenVipModule()) {
+                            //     CommonFun.getInstance().showVipRechargeToast();
+                            // }
+                            // else {
+                                CommonFun.getInstance().showMsgBox(this.getPlayerCenterLanguageText('withdrawActiveRechargeTips'), "OK", () => {
                                     CommonFun.getInstance().showNewShop(false, GlobalCfg.SHOP_RECHARGE_FROM.WithDrawPreData);
                                 }, false); 
-                            };
+                        //     };
                         }
                     };
 
@@ -403,6 +403,16 @@ cc.Class({
             return tipConfig[languageKey] || tipConfig.English || '';
         }
         return tipConfig || '';
+    },
+
+    getPlayerCenterLanguageText(key) {
+        let config = window.playerCenterLanguage && window.playerCenterLanguage[key];
+        if (!config) {
+            return '';
+        }
+
+        let languageIndex = Number(window.language || (this.isBengaliLanguage() ? 4 : 1));
+        return config[languageIndex] || config[1] || '';
     },
 
     loadHeadSp: function (headUrl,realWidth,heaSprite) {

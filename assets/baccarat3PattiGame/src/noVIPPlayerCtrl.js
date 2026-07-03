@@ -16,13 +16,13 @@ cc.Class({
             self.lab_myCoin.string = CommonFun.getInstance().numberToShow(requester.diamond/100);
             self.utils.loadHeadSp(requester.imgUrl,90,self.headSp);
 
-            if (requester.vipLevel >= 1 && requester.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+            // if (requester.vipLevel >= 1 && requester.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
                 self.sprite_vipLevelIcon.node.active = true;
-                self.sprite_vipLevelIcon.spriteFrame = self.atlas_icon.getSpriteFrame(`${requester.vipLevel}`);
-            }
-            else {
-                self.sprite_vipLevelIcon.node.active = false;
-            };
+                self.sprite_vipLevelIcon.spriteFrame = self.atlas_new_icon.getSpriteFrame(`vip_${requester.vip1Level}`);
+            // }
+            // else {
+            //     self.sprite_vipLevelIcon.node.active = false;
+            // };
         } else {
             LoggerUtil.getInstance().error("服务器数据错误：requester")
         }

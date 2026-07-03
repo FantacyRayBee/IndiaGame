@@ -10,6 +10,7 @@ cc.Class({
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
         winLabel: cc.Label,
+        atlas_new_icon: cc.SpriteAtlas,
     },
 
     ctor() {
@@ -37,7 +38,7 @@ cc.Class({
         let userName = UserInfo.nickname;
         let diamond = UserInfo.diamond;
         let imgUrl = UserInfo.imgUrl;
-        let vipLevel = UserInfo.vipLevel;
+        let vipLevel = UserInfo.vip1Level;
         let pos = UserInfo.pos;
         this.loadHeadSp(imgUrl, 95, this.tx);
         this.labName.string = CommonFun.getInstance().getStrByLength(userName, 8);
@@ -49,13 +50,18 @@ cc.Class({
             this.sprite_vipLevelIcon.node.setPosition(giftPos.x, giftPos.y);
             this.btnGift.node.setPosition(vipPos.x, vipPos.y);
         }
-        if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
-            this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${vipLevel}`);
-        }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+        // if (vipLevel >= 1 && vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        //     this.sprite_vipLevelIcon.node.active = true;
+            let targetVipLevel = Number(vipLevel);
+            if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+                targetVipLevel = 0
+                // targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
+            }
+            this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
 
         let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
         if (isCanShowVIPFont) {

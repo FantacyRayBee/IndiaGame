@@ -12,6 +12,7 @@ cc.Class({
         bqAtlas: cc.SpriteAtlas,
         sprite_vipLevelIcon: cc.Sprite,
         atlas_icon: cc.SpriteAtlas,
+        atlas_new_icon: cc.SpriteAtlas,
     },
 
     ctor: function () {
@@ -46,21 +47,25 @@ cc.Class({
         this.setUserBgOraLab();
 
 
-        if (date.vipLevel >= 1 && date.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
+        // if (date.vipLevel >= 1 && date.vipLevel <= 10 && CommonFun.getInstance().isOpenVipModule()) {
             this.sprite_vipLevelIcon.node.active = true;
-            this.sprite_vipLevelIcon.spriteFrame = this.atlas_icon.getSpriteFrame(`${date.vipLevel}`);
-        }
-        else {
-            this.sprite_vipLevelIcon.node.active = false;
-        };
+            let targetVipLevel = Number(date.vip1Level);
+            if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+                targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
+            }
+            this.sprite_vipLevelIcon.spriteFrame = this.atlas_new_icon.getSpriteFrame(`vip_${targetVipLevel}`);
+        // }
+        // else {
+        //     this.sprite_vipLevelIcon.node.active = false;
+        // };
 
-        let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(date.vipLevel);
-        if (isCanShowVIPFont) {
-            this.lab_name.node.color = new cc.Color(250, 225, 76); 
-        }
-        else {
-            this.lab_name.node.color = new cc.Color(255, 255, 255);
-        };
+        // let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(date.vipLevel);
+        // if (isCanShowVIPFont) {
+        //     this.lab_name.node.color = new cc.Color(250, 225, 76); 
+        // }
+        // else {
+        //     this.lab_name.node.color = new cc.Color(255, 255, 255);
+        // };
     },
 
     // 设置玩家状态

@@ -374,6 +374,7 @@ window.shopLanguage = {
             "   15000 পর্যন্ত টাকা তোলা যাবে"   
     ],
     lab_withdrawWallect:["lab_withdrawWallect","E Wallect","E वॉलेट","ای والٹ","ই ওয়ালেট"],
+    withdrawActiveRechargeTips:["withdrawActiveRechargeTips","You can recharge any amount to active \n the withdraw function,recharge now?","आप निकासी फ़ंक्शन सक्रिय करने के लिए कोई भी राशि रिचार्ज कर सकते हैं,\nअभी रिचार्ज करें?","آپ رقم نکلوانے کا فنکشن فعال کرنے کے لیے کسی بھی رقم سے ری چارج کر سکتے ہیں،\nابھی ری چارج کریں؟","উত্তোলন ফাংশন চালু করতে আপনি যেকোনো পরিমাণ রিচার্জ করতে পারেন,\nএখনই রিচার্জ করবেন?"],
     withdrawBindTipsNameEmpty:["withdrawBindTipsNameEmpty","Please enter recipient name","कृपया प्राप्तकर्ता का नाम दर्ज करें","براہِ کرم وصول کنندہ کا نام درج کریں","অনুগ্রহ করে প্রাপকের নাম লিখুন"],
     withdrawBindTipsAccountEmpty:["withdrawBindTipsAccountEmpty","Please enter account","कृपया खाता दर्ज करें","براہِ کرم اکاؤنٹ درج کریں","অনুগ্রহ করে অ্যাকাউন্ট লিখুন"],
     withdrawBindTipsNameMin:["withdrawBindTipsNameMin","Recipient name must be at least 2 characters","प्राप्तकर्ता का नाम कम से कम 2 अक्षरों का होना चाहिए","وصول کنندہ کا نام کم از کم 2 حروف کا ہونا چاہیے","প্রাপকের নাম কমপক্ষে 2 অক্ষরের হতে হবে"],

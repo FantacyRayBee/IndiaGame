@@ -105,6 +105,7 @@ let SceneManager = cc.Class({
             GameServerManager.clientCloseServer();
             Promise.all([this.reqUserDataInfo(), this.loadBundleScene(toSceneName)])
             .then((arr) => {
+                window.isNeedShowTaskPopup = true;
                 let scene = arr[1];
                 this.curSceneType = toSceneName;
                 cc.director.runScene(scene, () => {}, () => {
@@ -170,10 +171,12 @@ let SceneManager = cc.Class({
 
         Promise.all([LobbyServerManager.connectServer(true), this.loadBundleScene(toSceneName)])
         .then((arr) => {
+            cc.sys.localStorage.setItem("UPDATE_DEFAULT_ACCOUNT_LOGIN_AFTER_SUCCESS", "1");
             let scene = arr[1];
             this.curSceneType = toSceneName;
             cc.director.runScene(scene, () => {}, () => {
                 this.isLoadingScene = false;
+                window.isNeedShowTaskPopup = true;
                 CommonFun.getInstance().hidProgress();
             });
         })
@@ -675,6 +678,7 @@ let SceneManager = cc.Class({
         CommonFun.getInstance().showProgress();
     
         let device = CommonFun.getInstance().getDeviceId();
+        let runtimeDeviceInfo = APPManager.getRuntimeDeviceInfo() || "";
         
         let httpUrl = GlobalCfg.HTTP_SERVER + "/v1/login";
         let httpParam = {
@@ -683,7 +687,8 @@ let SceneManager = cc.Class({
             "token": GlobalCfg.USER_DATAS.token,
             "device": device,
             "channel_info": GlobalCfg.CHANNEL_INFO,
-            "login_product": GlobalCfg.PRODUCT_ID
+            "login_product": GlobalCfg.PRODUCT_ID,
+            "device_info": runtimeDeviceInfo,
         };
         LoggerUtil.getInstance().error(`caojun httpParam: ${JSON.stringify(httpParam)}`);
         return new Promise((resolve, reject) => {
@@ -731,6 +736,7 @@ let SceneManager = cc.Class({
                      * 拒绝未充值玩家玩百人
                      */
                     let refuse_unpay_hundred = config.refuse_unpay_hundred ? config.refuse_unpay_hundred : false;
+                    LoggerUtil.getInstance().log("refuse_unpay_hundred: ", refuse_unpay_hundred);
                     /**
                      * 三方支付开启
                      */
@@ -1024,6 +1030,9 @@ let SceneManager = cc.Class({
                      * VIP信息
                      */
                     let user_vip = msgData.user_vip ? msgData.user_vip : {};
+                    let vip_level = msgData.vip_level || 0;
+
+                    
 
                     let user_level = msgData.user_level ? msgData.user_level : 0;      // 用户特殊身份 默认为0，100 代表不清模式下被首清了
                     let game_like = msgData.game_like ? msgData.game_like : [];  // 用户喜欢的游戏列表
@@ -1083,6 +1092,7 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.only_pay_countDownTime = only_pay_time + Date.now();
                     GlobalCfg.USER_DATAS.only_pay_time = only_pay_time;
                     GlobalCfg.USER_DATAS.userVip = user_vip;
+                    GlobalCfg.USER_DATAS.myVipLevel = vip_level;
                     GlobalCfg.USER_DATAS.userLevel = user_level;
                     GlobalCfg.USER_DATAS.betrebate = betrebate;
                     GlobalCfg.USER_DATAS.lastRecharged = last_recharged;

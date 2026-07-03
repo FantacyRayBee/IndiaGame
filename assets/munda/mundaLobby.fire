@@ -4197,7 +4197,7 @@
       "__id__": 49
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 89
@@ -4216,8 +4216,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 45,
-      "height": 45
+      "width": 55,
+      "height": 55
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4235,8 +4235,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.3,
+        0.3,
         1
       ]
     },
@@ -4272,7 +4272,7 @@
       "__uuid__": "bb22ca35-6157-422f-96da-8b558389e5e0"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -4364,6 +4364,9 @@
     },
     "atlas_icon": {
       "__uuid__": "80ecb41e-30cc-4347-85e8-3a7a3b82e745"
+    },
+    "atlas_new_icon": {
+      "__uuid__": "722d0047-58d8-464a-a8ca-7766044ca995"
     },
     "_id": "9eDhvp/YFPrIvT4puobJOV"
   },

@@ -52,6 +52,7 @@ cc.Class({
         betStartEndAnimationNode: cc.Node,          // 开始结束动画节点
         startEndSkeletonData: [sp.SkeletonData],
         vipSpriteAtlas: cc.SpriteAtlas,
+        vipSpriteAtlas_new: cc.SpriteAtlas,
         btnRepeat: cc.Button,
 
         isInHide: {
@@ -695,19 +696,23 @@ cc.Class({
         GlobalCfg.USER_DATAS.userHeadimgurl = UserInfo.imgUrl;
         this.selfPid = UserInfo.playerId;           // 当前游戏玩家唯一标识
         let pos = UserInfo.pos;
-        let vipLevel = UserInfo.vipLevel;
-        this.vipSprite.spriteFrame = this.vipSpriteAtlas.getSpriteFrame(`${vipLevel}`);
+        let vipLevel = UserInfo.vip1Level;
+        let targetVipLevel = Number(vipLevel);
+        if (isNaN(targetVipLevel) || targetVipLevel < 0) {
+            targetVipLevel = Math.floor(Math.random() * 30) + 1; // 0-30随机数
+        }
+        this.vipSprite.spriteFrame = this.vipSpriteAtlas_new.getSpriteFrame(`vip_${targetVipLevel}`);
         this.selfPlayerNode.getChildByName('userName').getComponent(cc.Label).string = CommonFun.getInstance().getStrByLength(GlobalCfg.USER_DATAS.userName, 8);
         this.updateSelfCoin();
         let tx = cc.find('txk/mask/tx', this.selfPlayerNode);
         this.loadHeadSp(GlobalCfg.USER_DATAS.userHeadimgurl, 80, tx.getComponent(cc.Sprite));
-        let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
-        if (isCanShowVIPFont) {
-            this.selfPlayerNode.getChildByName('userName').color = new cc.Color(250, 225, 76); 
-        }
-        else {
-            this.selfPlayerNode.getChildByName('userName').color = new cc.Color(255, 255, 255); 
-        };
+        // let isCanShowVIPFont = CommonFun.getInstance().isCanShowVIPFontByLevel(vipLevel);
+        // if (isCanShowVIPFont) {
+        //     this.selfPlayerNode.getChildByName('userName').color = new cc.Color(250, 225, 76); 
+        // }
+        // else {
+        //     this.selfPlayerNode.getChildByName('userName').color = new cc.Color(255, 255, 255); 
+        // };
         if (pos > -1) {
             // 自己在座位上
 

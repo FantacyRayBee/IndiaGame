@@ -491,7 +491,11 @@ cc.Class({
                     ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
                         msgCode: GlobalCfg.CLIENT_MSG_ID.VIP_REWARD,
                         msgData: {}
-                    }); 
+                    });
+                    ClientNotify.send(GlobalCfg.MSG_TYPE.clientMsg, {
+                        msgCode: GlobalCfg.CLIENT_MSG_ID.GET_MAIL_REWARD,
+                        msgData: {}
+                    });
                 }
                 else {
                     CommonFun.getInstance().showTips(strInfo.msg);
