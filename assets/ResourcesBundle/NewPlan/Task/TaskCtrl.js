@@ -32,6 +32,7 @@ cc.Class({
     },
 
     onDestroy: function () {
+        LoggerUtil.getInstance().log("TaskCtrl onDestroy send TASK_POPUP_CLOSED");
         this.clearItemButtons();
         CommonFun.getInstance().hidProgress();
         CommonFun.getInstance().releasePrefab(GlobalCfg.PREFAB_PATH.TASK);
@@ -492,6 +493,7 @@ cc.Class({
 
     bntclick: function (button) {
         let btnName = button.node.name;
+        LoggerUtil.getInstance().log("TaskCtrl bntclick:", btnName);
         if (btnName === 'btn_close') {
             GlobalCfg.G_COMPONENTS.Audio.playBack();
             this.node.destroy();

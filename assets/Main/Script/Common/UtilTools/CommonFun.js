@@ -191,7 +191,7 @@ let CommonFun = cc.Class({
          */
         GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
         if (GlobalCfg.server_id == "0") {
-            GlobalCfg.ASSETS_URL = "http://192.168.110.177:8000/";
+            GlobalCfg.ASSETS_URL = "http://192.168.110.149:8000/";
             GlobalCfg.ASSETS_VERSION = 4;
             GlobalCfg.ASSETS_UPDATE_URL = `${GlobalCfg.ASSETS_URL}${GlobalCfg.ASSETS_VERSION}`;
         };

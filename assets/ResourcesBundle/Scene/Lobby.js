@@ -297,6 +297,8 @@ cc.Class({
         GlobalCfg.G_COMPONENTS.Audio && GlobalCfg.G_COMPONENTS.Audio.playLobby();
         this.LoadCompletedCallback = null;
         this.waitTaskPopupToShowOtherToast = false;
+        this.isPayNoticeWaitShowing = false;
+        this.hasShownPayNotice = false;
     },
 
 
@@ -1104,10 +1106,18 @@ cc.Class({
      * 处理弹框逻辑
      */
     showToastViews: function() {
+        LoggerUtil.getInstance().log("PayNotice showToastViews enter:", {
+            payNotice: GlobalCfg.USER_DATAS.PayNotice,
+            isNeedShowTaskPopup: window.isNeedShowTaskPopup,
+            hasShownPayNotice: this.hasShownPayNotice,
+            isPayNoticeWaitShowing: this.isPayNoticeWaitShowing,
+        });
         if (window.isNeedShowTaskPopup) {
             window.isNeedShowTaskPopup = false;
             this.waitTaskPopupToShowOtherToast = true;
+            LoggerUtil.getInstance().log("PayNotice showToastViews task branch, start wait queue");
             this.showTaskPopup();
+            this.tryShowPayNoticeAfterToastViews();
             return;
         }
 
@@ -1117,6 +1127,150 @@ cc.Class({
         else {
             this.dealRechargeToast();
         };
+        this.tryShowPayNoticeAfterToastViews();
+    },
+
+    tryShowPayNoticeAfterToastViews: function() {
+        LoggerUtil.getInstance().log("PayNotice tryShowPayNoticeAfterToastViews:", {
+            payNotice: GlobalCfg.USER_DATAS.PayNotice,
+            recharged: GlobalCfg.USER_DATAS.recharged,
+            hasShownPayNotice: this.hasShownPayNotice,
+            isPayNoticeWaitShowing: this.isPayNoticeWaitShowing,
+        });
+        if (this.hasShownPayNotice || this.isPayNoticeWaitShowing) {
+            LoggerUtil.getInstance().log("PayNotice try skip because already shown or waiting");
+            return;
+        };
+
+        if (GlobalCfg.USER_DATAS.PayNotice !== true || !this.isPayNoticeRechargeUser()) {
+            LoggerUtil.getInstance().log("PayNotice try skip because PayNotice is not true or user has not recharged:", {
+                payNotice: GlobalCfg.USER_DATAS.PayNotice,
+                recharged: GlobalCfg.USER_DATAS.recharged,
+            });
+            return;
+        };
+
+        this.isPayNoticeWaitShowing = true;
+        LoggerUtil.getInstance().log("PayNotice wait queue scheduled");
+        this.scheduleOnce(() => {
+            this.waitAndShowPayNotice();
+        }, 0.7);
+    },
+
+    waitAndShowPayNotice: function() {
+        LoggerUtil.getInstance().log("PayNotice waitAndShowPayNotice enter:", {
+            payNotice: GlobalCfg.USER_DATAS.PayNotice,
+            recharged: GlobalCfg.USER_DATAS.recharged,
+            hasShownPayNotice: this.hasShownPayNotice,
+            isPayNoticeWaitShowing: this.isPayNoticeWaitShowing,
+        });
+        if (this.hasShownPayNotice == true) {
+            this.isPayNoticeWaitShowing = false;
+            LoggerUtil.getInstance().log("PayNotice wait stop because already shown");
+            return;
+        };
+
+        if (this.hasLobbyPopupShowing()) {
+            LoggerUtil.getInstance().log("PayNotice wait blocked by other popup, retry");
+            this.scheduleOnce(() => {
+                this.waitAndShowPayNotice();
+            }, 0.5);
+            return;
+        };
+
+        this.isPayNoticeWaitShowing = false;
+        if (GlobalCfg.USER_DATAS.PayNotice !== true) {
+            LoggerUtil.getInstance().log("PayNotice wait stop because PayNotice is not true:", GlobalCfg.USER_DATAS.PayNotice);
+            return;
+        };
+        if (!this.isPayNoticeRechargeUser()) {
+            LoggerUtil.getInstance().log("PayNotice wait stop because user has not recharged:", GlobalCfg.USER_DATAS.recharged);
+            return;
+        };
+
+        this.hasShownPayNotice = true;
+        GlobalCfg.USER_DATAS.PayNotice = false;
+        let payNoticeContent = this.getPayNoticeContent();
+        LoggerUtil.getInstance().log("PayNotice show msgbox:", payNoticeContent);
+        CommonFun.getInstance().showMsgBox(payNoticeContent, "YES", null, false);
+    },
+
+    isPayNoticeRechargeUser: function() {
+        return Number(GlobalCfg.USER_DATAS.recharged || 0) > 0;
+    },
+
+    getPayNoticeContent: function() {
+        let languageIndex = Number(window.language || cc.sys.localStorage.getItem("language") || 1);
+        if (!languageIndex || languageIndex < 1 || languageIndex > 4) {
+            languageIndex = 1;
+        };
+
+        let payNoticeList = window.commonTipsLanguage && window.commonTipsLanguage.payNotice;
+        if (!payNoticeList) {
+            LoggerUtil.getInstance().warn("PayNotice content missing commonTipsLanguage.payNotice");
+            return "";
+        };
+        LoggerUtil.getInstance().log("PayNotice get content languageIndex:", languageIndex, "content:", payNoticeList[languageIndex] || payNoticeList[1] || "");
+        return payNoticeList[languageIndex] || payNoticeList[1] || "";
+    },
+
+    hasLobbyPopupShowing: function() {
+        let popupPrefabInfos = [
+            { path: GlobalCfg.PREFAB_PATH.TASK, parentTag: GlobalCfg.PREFAB_PARENT.TASK },
+            { path: GlobalCfg.PREFAB_PATH.REWARDSTIPS, parentTag: GlobalCfg.PREFAB_PARENT.REWARDSTIPS },
+            { path: GlobalCfg.PREFAB_PATH.FIRSTRECHARGE, parentTag: GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE },
+            { path: GlobalCfg.PREFAB_PATH.FIRSTRECHARGE_V, parentTag: GlobalCfg.PREFAB_PARENT.FIRSTRECHARGE },
+            { path: GlobalCfg.PREFAB_PATH.NEW_FIRSTRECHARGETIPS, parentTag: GlobalCfg.PREFAB_PARENT.FIRSTRECHARGETIPS },
+            { path: GlobalCfg.PREFAB_PATH.FIRSTGIFTDIAMOND, parentTag: GlobalCfg.PREFAB_PARENT.FIRSTGIFTDIAMOND },
+            { path: GlobalCfg.PREFAB_PATH.POPUPWITHDRAW, parentTag: GlobalCfg.PREFAB_PARENT.POPUPWITHDRAW },
+            { path: GlobalCfg.PREFAB_PATH.WITHDRAWPREDATA, parentTag: GlobalCfg.PREFAB_PARENT.WITHDRAWPREDATA },
+            { path: GlobalCfg.PREFAB_PATH.WITHDRAW, parentTag: GlobalCfg.PREFAB_PARENT.WITHDRAW },
+            { path: GlobalCfg.PREFAB_PATH.WITHDRAW_NEW, parentTag: GlobalCfg.PREFAB_PARENT.WITHDRAW_NEW },
+            { path: GlobalCfg.PREFAB_PATH.WITHDRAWBINDCARD, parentTag: GlobalCfg.PREFAB_PARENT.WITHDRAWBINDCARD },
+            { path: GlobalCfg.PREFAB_PATH.BONUSTRANSFER, parentTag: GlobalCfg.PREFAB_PARENT.BONUSTRANSFER },
+            { path: GlobalCfg.PREFAB_PATH.PROMOTER, parentTag: GlobalCfg.PREFAB_PARENT.PROMOTER },
+            { path: GlobalCfg.PREFAB_PATH.PROMOTERMAIN, parentTag: GlobalCfg.PREFAB_PARENT.PROMOTERMAIN },
+            { path: GlobalCfg.PREFAB_PATH.RELIEF, parentTag: GlobalCfg.PREFAB_PARENT.RELIEF },
+            { path: GlobalCfg.PREFAB_PATH.INDUCEMENT, parentTag: GlobalCfg.PREFAB_PARENT.INDUCEMENT },
+            { path: GlobalCfg.PREFAB_PATH.SUPERDISCOUNT, parentTag: GlobalCfg.PREFAB_PARENT.SUPERDISCOUNT },
+            { path: GlobalCfg.PREFAB_PATH.BANKRUPTCY_GIFT, parentTag: GlobalCfg.PREFAB_PARENT.BANKRUPTCY_GIFT },
+            { path: GlobalCfg.PREFAB_PATH.ACTIVITY_PDD_FIRST, parentTag: GlobalCfg.PREFAB_PARENT.ACTIVITY_PDD },
+            { path: GlobalCfg.PREFAB_PATH.DAILYBONUSCARD, parentTag: GlobalCfg.PREFAB_PARENT.DAILYBONUSCARD },
+            { path: GlobalCfg.PREFAB_PATH.SIGN, parentTag: GlobalCfg.PREFAB_PARENT.SIGN },
+            { path: GlobalCfg.PREFAB_PATH.MSGBOX, parentTag: GlobalCfg.PREFAB_PARENT.MSGBOX },
+        ];
+
+        let commonFun = CommonFun.getInstance();
+        for (let i = 0; i < popupPrefabInfos.length; i++) {
+            let popupInfo = popupPrefabInfos[i];
+            if (!popupInfo || !popupInfo.path || !popupInfo.parentTag) {
+                continue;
+            };
+
+            let parentNode = commonFun.getLayerNode(popupInfo.parentTag);
+            if (!cc.isValid(parentNode)) {
+                continue;
+            };
+
+            let nodeName = this.getPrefabNodeNameByPath(popupInfo.path);
+            let popupNode = parentNode.getChildByName(nodeName);
+            if (cc.isValid(popupNode)) {
+                LoggerUtil.getInstance().log("PayNotice blocked parent:", {
+                    parentTag: popupInfo.parentTag,
+                    popupName: nodeName,
+                    childrenCount: parentNode.childrenCount,
+                    childNames: parentNode.children.map((child) => child.name),
+                });
+                return true;
+            };
+        };
+        LoggerUtil.getInstance().log("PayNotice no popup blocking");
+        return false;
+    },
+
+    getPrefabNodeNameByPath: function(path) {
+        let pathArr = String(path || "").split("/");
+        return pathArr[pathArr.length - 1];
     },
 
     showTaskPopup: function() {
@@ -1588,11 +1742,20 @@ cc.Class({
             CommonFun.getInstance().hidProgress();
         }
         else if (msgId == 'TASK_POPUP_CLOSED') {
+            LoggerUtil.getInstance().log("PayNotice lobby received TASK_POPUP_CLOSED:", {
+                waitTaskPopupToShowOtherToast: self.waitTaskPopupToShowOtherToast,
+                payNotice: GlobalCfg.USER_DATAS.PayNotice,
+                hasShownPayNotice: self.hasShownPayNotice,
+                isPayNoticeWaitShowing: self.isPayNoticeWaitShowing,
+            });
             if (self.waitTaskPopupToShowOtherToast) {
                 self.waitTaskPopupToShowOtherToast = false;
                 self.showToastViews();
                 self.showActivityGoBetting();
             }
+            else {
+                self.tryShowPayNoticeAfterToastViews();
+            };
         }
         else if (msgId == 'CLOSE_GAMEICONLIST'){ //关闭游戏列表 刷新一下界面的位置 因为触发了横竖屏切换
             self.showOtherModules();

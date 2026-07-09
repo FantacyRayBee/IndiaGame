@@ -741,6 +741,13 @@ let SceneManager = cc.Class({
                      * 三方支付开启
                      */
                     let third_payment_opened = config.third_payment_opened ? config.third_payment_opened : false;
+
+                    let PayNotice = config.PayNotice === true || msgData.PayNotice === true;
+                    LoggerUtil.getInstance().log("PayNotice parse:", {
+                        configPayNotice: config.PayNotice,
+                        msgDataPayNotice: msgData.PayNotice,
+                        finalPayNotice: PayNotice,
+                    });
                     /**
                      * 首充商品列表
                      */
@@ -781,6 +788,8 @@ let SceneManager = cc.Class({
                     GlobalCfg.USER_DATAS.vipLevels = vip_levels;
                     GlobalCfg.USER_DATAS.vipExpiresDay = vip_expires_day;
                     GlobalCfg.USER_DATAS.gacha = gacha;
+                    GlobalCfg.USER_DATAS.PayNotice = PayNotice; //
+                    LoggerUtil.getInstance().log("GlobalCfg.USER_DATAS.PayNotice set:", GlobalCfg.USER_DATAS.PayNotice);
                     
 
                     CommonFun.getInstance().behaviorReporting(GlobalCfg.BEHAVIOR_TYPE.REQ_BEARER_INFO_SUCCESS);

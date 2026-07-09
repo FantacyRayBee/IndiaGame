@@ -75,6 +75,13 @@ window.commonTipsLanguage = {
         "آپ کی نقد رقم ناکافی ہے، براہ کرم بروقت ریچارج کریں!",
         "আপনার ক্যাশ অপর্যাপ্ত, অনুগ্রহ করে সময়মতো রিচার্জ করুন!"
     ],
+    payNotice: [
+        "payNotice",
+        "Dear Customer, due to the recent fluctuations in banking services, some deposit or withdrawal transactions may fail temporarily. If you face any recharge/deposit failure or withdrawal issue, please try again after a while. Thank you for your patience and understanding.",
+        "Dear Customer, due to the recent fluctuations in banking services, some deposit or withdrawal transactions may fail temporarily. If you face any recharge/deposit failure or withdrawal issue, please try again after a while. Thank you for your patience and understanding.",
+        "Dear Customer, due to the recent fluctuations in banking services, some deposit or withdrawal transactions may fail temporarily. If you face any recharge/deposit failure or withdrawal issue, please try again after a while. Thank you for your patience and understanding.",
+        "সম্মানিত গ্রাহক, সাম্প্রতিক ব্যাংকিং সেবার ওঠানামার কারণে কিছু ডিপোজিট বা উইথড্রয়াল লেনদেন সাময়িকভাবে ব্যর্থ হতে পারে। যদি রিচার্জ/ডিপোজিট ব্যর্থ হয় অথবা টাকা উত্তোলনে সমস্যা দেখা দেয়, তাহলে কিছুক্ষণ পর আবার চেষ্টা করুন। আপনার ধৈর্য ও সহযোগিতার জন্য ধন্যবাদ।"
+    ],
     nonBettingStage: [
         "nonBettingStage",
         "non betting stage",
